@@ -237,6 +237,8 @@ in the config file, from the downloaded models.''';
           );
         }
 
+        // some actual change
+
         pubspecFile.writeAsStringSync(pubspecYaml);
         serviceFile.writeAsStringSync(serviceText);
 
