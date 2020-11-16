@@ -231,10 +231,9 @@ ${builder.constructor()}
         if (shape.requiresJson) {
           var dateTimeConversion = '';
 
-          if (member.dartType == 'Uint8List') {
+          if (const ['Uint8List', 'List<Uint8List>']
+              .contains(member.dartType)) {
             writeln('@Uint8ListConverter()');
-          } else if (member.dartType == 'List<Uint8List>') {
-            writeln('@Uint8ListListConverter()');
           } else if (member.dartType == 'DateTime') {
             var timeStampFormat = 'unixTimestamp';
 

@@ -379,7 +379,7 @@ class AttributeValue {
   final bool boolValue;
 
   /// A Binary Set data type.
-  @Uint8ListListConverter()
+  @Uint8ListConverter()
   @_s.JsonKey(name: 'BS')
   final List<Uint8List> bs;
 

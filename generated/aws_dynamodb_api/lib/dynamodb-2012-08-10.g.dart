@@ -79,7 +79,9 @@ AttributeValue _$AttributeValueFromJson(Map<String, dynamic> json) {
   return AttributeValue(
     b: const Uint8ListConverter().fromJson(json['B'] as String),
     boolValue: json['BOOL'] as bool,
-    bs: const Uint8ListListConverter().fromJson(json['BS'] as List),
+    bs: (json['BS'] as List)
+        ?.map((e) => const Uint8ListConverter().fromJson(e as String))
+        ?.toList(),
     l: (json['L'] as List)
         ?.map((e) => e == null
             ? null
@@ -111,7 +113,8 @@ Map<String, dynamic> _$AttributeValueToJson(AttributeValue instance) {
 
   writeNotNull('B', const Uint8ListConverter().toJson(instance.b));
   writeNotNull('BOOL', instance.boolValue);
-  writeNotNull('BS', const Uint8ListListConverter().toJson(instance.bs));
+  writeNotNull(
+      'BS', instance.bs?.map(const Uint8ListConverter().toJson)?.toList());
   writeNotNull('L', instance.l?.map((e) => e?.toJson())?.toList());
   writeNotNull('M', instance.m?.map((k, e) => MapEntry(k, e?.toJson())));
   writeNotNull('N', instance.n);

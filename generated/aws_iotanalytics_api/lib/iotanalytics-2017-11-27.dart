@@ -3910,7 +3910,7 @@ class RunPipelineActivityResponse {
   /// The enriched or transformed sample message payloads as base64-encoded
   /// strings. (The results of running the pipeline activity on each input sample
   /// message payload, encoded in base64.)
-  @Uint8ListListConverter()
+  @Uint8ListConverter()
   @_s.JsonKey(name: 'payloads')
   final List<Uint8List> payloads;
 
@@ -3973,7 +3973,7 @@ class S3DestinationConfiguration {
 class SampleChannelDataResponse {
   /// The list of message samples. Each sample message is returned as a
   /// base64-encoded string.
-  @Uint8ListListConverter()
+  @Uint8ListConverter()
   @_s.JsonKey(name: 'payloads')
   final List<Uint8List> payloads;
 

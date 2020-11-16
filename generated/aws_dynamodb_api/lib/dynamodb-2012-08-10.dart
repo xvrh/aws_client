@@ -5202,7 +5202,7 @@ class AttributeValue {
   /// An attribute of type Binary Set. For example:
   ///
   /// <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
-  @Uint8ListListConverter()
+  @Uint8ListConverter()
   @_s.JsonKey(name: 'BS')
   final List<Uint8List> bs;
 

@@ -869,7 +869,7 @@ class AttributeValue {
   final Uint8List b;
 
   /// A set of binary attributes.
-  @Uint8ListListConverter()
+  @Uint8ListConverter()
   @_s.JsonKey(name: 'BS')
   final List<Uint8List> bs;
 

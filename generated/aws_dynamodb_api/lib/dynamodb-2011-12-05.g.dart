@@ -9,7 +9,9 @@ part of 'dynamodb-2011-12-05.dart';
 AttributeValue _$AttributeValueFromJson(Map<String, dynamic> json) {
   return AttributeValue(
     b: const Uint8ListConverter().fromJson(json['B'] as String),
-    bs: const Uint8ListListConverter().fromJson(json['BS'] as List),
+    bs: (json['BS'] as List)
+        ?.map((e) => const Uint8ListConverter().fromJson(e as String))
+        ?.toList(),
     n: json['N'] as String,
     ns: (json['NS'] as List)?.map((e) => e as String)?.toList(),
     s: json['S'] as String,
@@ -27,7 +29,8 @@ Map<String, dynamic> _$AttributeValueToJson(AttributeValue instance) {
   }
 
   writeNotNull('B', const Uint8ListConverter().toJson(instance.b));
-  writeNotNull('BS', const Uint8ListListConverter().toJson(instance.bs));
+  writeNotNull(
+      'BS', instance.bs?.map(const Uint8ListConverter().toJson)?.toList());
   writeNotNull('N', instance.n);
   writeNotNull('NS', instance.ns);
   writeNotNull('S', instance.s);

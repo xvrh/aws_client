@@ -1306,7 +1306,9 @@ RunPipelineActivityResponse _$RunPipelineActivityResponseFromJson(
     Map<String, dynamic> json) {
   return RunPipelineActivityResponse(
     logResult: json['logResult'] as String,
-    payloads: const Uint8ListListConverter().fromJson(json['payloads'] as List),
+    payloads: (json['payloads'] as List)
+        ?.map((e) => const Uint8ListConverter().fromJson(e as String))
+        ?.toList(),
   );
 }
 
@@ -1343,7 +1345,9 @@ Map<String, dynamic> _$S3DestinationConfigurationToJson(
 SampleChannelDataResponse _$SampleChannelDataResponseFromJson(
     Map<String, dynamic> json) {
   return SampleChannelDataResponse(
-    payloads: const Uint8ListListConverter().fromJson(json['payloads'] as List),
+    payloads: (json['payloads'] as List)
+        ?.map((e) => const Uint8ListConverter().fromJson(e as String))
+        ?.toList(),
   );
 }
 
