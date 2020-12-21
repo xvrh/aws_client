@@ -20,8 +20,6 @@ import 'package:shared_aws_api/shared.dart'
 import 'nested_structure_members.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'nested_structure_members.g.dart';
-
 /// Nested structure members
 class NestedStructureMembers {
   final _s.QueryProtocol _protocol;
@@ -72,7 +70,9 @@ class StructType {
   StructType({
     this.scalarArg,
   });
-  Map<String, dynamic> toJson() => _$StructTypeToJson(this);
+  Map<String, dynamic> toJson() => {
+        if (scalarArg != null) 'ScalarArg': scalarArg,
+      };
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

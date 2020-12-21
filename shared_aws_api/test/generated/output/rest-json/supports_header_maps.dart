@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'supports_header_maps.g.dart';
-
 /// Supports header maps
 class SupportsHeaderMaps {
   final _s.RestJsonProtocol _protocol;
@@ -69,8 +67,9 @@ class OutputShape {
     this.allHeaders,
     this.prefixedHeaders,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape();
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'timestamp_members.g.dart';
-
 /// Timestamp members
 class TimestampMembers {
   final _s.JsonProtocol _protocol;
@@ -80,8 +78,17 @@ class OutputShape {
     this.timeCustom,
     this.timeFormat,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      structMember: json['StructMember'] == null
+          ? null
+          : TimeContainer.fromJson(
+              json['StructMember'] as Map<String, dynamic>),
+      timeArg: timeStampFromJson(json['TimeArg']),
+      timeCustom: timeStampFromJson(json['TimeCustom']),
+      timeFormat: timeStampFromJson(json['TimeFormat']),
+    );
+  }
 }
 
 @_s.JsonSerializable(
@@ -100,8 +107,12 @@ class TimeContainer {
     this.bar,
     this.foo,
   });
-  factory TimeContainer.fromJson(Map<String, dynamic> json) =>
-      _$TimeContainerFromJson(json);
+  factory TimeContainer.fromJson(Map<String, dynamic> json) {
+    return TimeContainer(
+      bar: timeStampFromJson(json['bar']),
+      foo: timeStampFromJson(json['foo']),
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

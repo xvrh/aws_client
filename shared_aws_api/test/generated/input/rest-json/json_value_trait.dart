@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'json_value_trait.g.dart';
-
 /// JSON value trait
 class JSONValueTrait {
   final _s.RestJsonProtocol _protocol;
@@ -115,7 +113,10 @@ class BodyStructure {
     this.bodyField,
     this.bodyListField,
   });
-  Map<String, dynamic> toJson() => _$BodyStructureToJson(this);
+  Map<String, dynamic> toJson() => {
+        if (bodyField != null) 'BodyField': bodyField,
+        if (bodyListField != null) 'BodyListField': bodyListField,
+      };
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

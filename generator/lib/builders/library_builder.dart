@@ -60,7 +60,7 @@ import 'package:shared_aws_api/shared.dart'
     ..putExceptions(api);
 
   if (api.requiresJsonMethods) {
-    buf.writeln("part '${api.fileBasename}.g.dart';\n");
+    //buf.writeln("part '${api.fileBasename}.g.dart';\n");
   }
   buf.writeln(body);
   return buf.toString();
@@ -283,8 +283,14 @@ ${builder.constructor()}
       }
 
       if (shape.generateFromJson) {
-        writeln(
-            '\n  factory $name.fromJson(Map<String, dynamic> json) => _\$${name}FromJson(json);');
+        writeln('\n  factory $name.fromJson(Map<String, dynamic> json) {');
+        writeln('return $name(');
+        for (var member in shape.members.where((m) => m.isBody)) {
+          writeln(
+              "${member.fieldName}: ${extractJsonCode(member.shapeClass, "json['${member.locationName ?? member.name}']", member: member)},");
+        }
+        writeln(');');
+        writeln('}');
       }
 
       if (shape.generateFromXml && !shape.hasHeaderMembers) {
@@ -315,7 +321,19 @@ ${builder.constructor()}
       }
 
       if (shape.generateToJson) {
-        writeln('\n  Map<String, dynamic> toJson() => _\$${name}ToJson(this);');
+        writeln('\n  Map<String, dynamic> toJson() => {');
+        for (var member in shape.members.where((m) => m.isBody)) {
+          if (!member.isRequired) {
+            writeln('if (${member.fieldName} != null)');
+          }
+          final encodeCode = encodeJsonCode(member.shapeClass, member.fieldName,
+              member: member, maybeNull: member.isRequired);
+          final location = member.locationName ??
+              member.shapeClass.locationName ??
+              member.name;
+          writeln("'$location': $encodeCode,");
+        }
+        writeln('};');
       }
 
       if (shape.generateToXml) {

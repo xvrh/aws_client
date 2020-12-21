@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'lists.g.dart';
-
 /// Lists
 class Lists {
   final _s.RestJsonProtocol _protocol;
@@ -62,8 +60,12 @@ class OutputShape {
   OutputShape({
     this.listMember,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      listMember:
+          (json['ListMember'] as List)?.map((e) => e as String)?.toList(),
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

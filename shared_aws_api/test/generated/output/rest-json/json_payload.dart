@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'json_payload.g.dart';
-
 /// JSON payload
 class JSONPayload {
   final _s.RestJsonProtocol _protocol;
@@ -69,8 +67,13 @@ class OutputShape {
     this.data,
     this.header,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      data: json['Data'] == null
+          ? null
+          : BodyStructure.fromJson(json['Data'] as Map<String, dynamic>),
+    );
+  }
 }
 
 @_s.JsonSerializable(
@@ -85,8 +88,11 @@ class BodyStructure {
   BodyStructure({
     this.foo,
   });
-  factory BodyStructure.fromJson(Map<String, dynamic> json) =>
-      _$BodyStructureFromJson(json);
+  factory BodyStructure.fromJson(Map<String, dynamic> json) {
+    return BodyStructure(
+      foo: json['Foo'] as String,
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'ignores_extra_data.g.dart';
-
 /// Ignores extra data
 class IgnoresExtraData {
   final _s.JsonProtocol _protocol;
@@ -68,8 +66,11 @@ class OutputShape {
   OutputShape({
     this.strType,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      strType: json['StrType'] as String,
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

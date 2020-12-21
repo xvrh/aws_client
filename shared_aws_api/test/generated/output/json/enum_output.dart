@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'enum_output.g.dart';
-
 /// Enum output
 class EnumOutput {
   final _s.JsonProtocol _protocol;
@@ -71,8 +69,14 @@ class OutputShape {
     this.fooEnum,
     this.listEnums,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      fooEnum: (json['FooEnum'] as String)?.toJSONEnumType(),
+      listEnums: (json['ListEnums'] as List)
+          ?.map((e) => (e as String)?.toJSONEnumType())
+          ?.toList(),
+    );
+  }
 }
 
 enum JSONEnumType {
@@ -80,6 +84,18 @@ enum JSONEnumType {
   foo,
   @_s.JsonValue('bar')
   bar,
+}
+
+extension on String {
+  JSONEnumType toJSONEnumType() {
+    switch (this) {
+      case 'foo':
+        return JSONEnumType.foo;
+      case 'bar':
+        return JSONEnumType.bar;
+    }
+    throw Exception('Unknown enum value: $this');
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

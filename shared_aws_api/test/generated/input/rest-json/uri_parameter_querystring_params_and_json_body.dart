@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'uri_parameter_querystring_params_and_json_body.g.dart';
-
 /// URI parameter, querystring params and JSON body
 class URIParameterQuerystringParamsAndJSONBody {
   final _s.RestJsonProtocol _protocol;
@@ -78,7 +76,10 @@ class StructType {
     this.a,
     this.b,
   });
-  Map<String, dynamic> toJson() => _$StructTypeToJson(this);
+  Map<String, dynamic> toJson() => {
+        if (a != null) 'A': a,
+        if (b != null) 'B': b,
+      };
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

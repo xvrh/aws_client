@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'streaming_payload.g.dart';
-
 /// Streaming payload
 class StreamingPayload {
   final _s.RestJsonProtocol _protocol;
@@ -65,8 +63,11 @@ class OutputShape {
   OutputShape({
     this.stream,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      stream: const Uint8ListConverter().fromJson(json['Stream'] as String),
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'maps.g.dart';
-
 /// Maps
 class Maps {
   final _s.JsonProtocol _protocol;
@@ -68,8 +66,12 @@ class OutputShape {
   OutputShape({
     this.mapMember,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      mapMember: (json['MapMember'] as Map<String, dynamic>)?.map(
+          (k, e) => MapEntry(k, (e as List)?.map((e) => e as int)?.toList())),
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

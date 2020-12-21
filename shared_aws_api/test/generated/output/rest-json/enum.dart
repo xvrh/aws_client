@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'enum.g.dart';
-
 /// Enum
 class Enum {
   final _s.RestJsonProtocol _protocol;
@@ -98,8 +96,14 @@ class OutputShape {
     this.headerEnum,
     this.listEnums,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      fooEnum: (json['FooEnum'] as String)?.toRESTJSONEnumType(),
+      listEnums: (json['ListEnums'] as List)
+          ?.map((e) => (e as String)?.toRESTJSONEnumType())
+          ?.toList(),
+    );
+  }
 }
 
 enum RESTJSONEnumType {

@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'lists.g.dart';
-
 /// Lists
 class Lists {
   final _s.JsonProtocol _protocol;
@@ -90,8 +88,20 @@ class OutputShape {
     this.listMemberMap,
     this.listMemberStruct,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      listMember:
+          (json['ListMember'] as List)?.map((e) => e as String)?.toList(),
+      listMemberMap: (json['ListMemberMap'] as List)
+          ?.map((e) => (e as Map<String, dynamic>)
+              ?.map((k, e) => MapEntry(k, e as String)))
+          ?.toList(),
+      listMemberStruct: (json['ListMemberStruct'] as List)
+          ?.map((e) =>
+              e == null ? null : StructType.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
+    );
+  }
 }
 
 @_s.JsonSerializable(
@@ -101,8 +111,9 @@ class OutputShape {
     createToJson: false)
 class StructType {
   StructType();
-  factory StructType.fromJson(Map<String, dynamic> json) =>
-      _$StructTypeFromJson(json);
+  factory StructType.fromJson(Map<String, dynamic> json) {
+    return StructType();
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

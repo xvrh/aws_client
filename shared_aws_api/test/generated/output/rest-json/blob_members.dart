@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'blob_members.g.dart';
-
 /// Blob members
 class BlobMembers {
   final _s.RestJsonProtocol _protocol;
@@ -66,8 +64,16 @@ class OutputShape {
     this.blobMember,
     this.structMember,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      blobMember:
+          const Uint8ListConverter().fromJson(json['BlobMember'] as String),
+      structMember: json['StructMember'] == null
+          ? null
+          : BlobContainer.fromJson(
+              json['StructMember'] as Map<String, dynamic>),
+    );
+  }
 }
 
 @_s.JsonSerializable(
@@ -83,8 +89,11 @@ class BlobContainer {
   BlobContainer({
     this.foo,
   });
-  factory BlobContainer.fromJson(Map<String, dynamic> json) =>
-      _$BlobContainerFromJson(json);
+  factory BlobContainer.fromJson(Map<String, dynamic> json) {
+    return BlobContainer(
+      foo: const Uint8ListConverter().fromJson(json['foo'] as String),
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

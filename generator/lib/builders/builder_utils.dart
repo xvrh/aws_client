@@ -10,7 +10,7 @@ String extractJsonCode(Shape shape, String variable, {Member member}) {
   } else if (shape.type == 'list') {
     return '($variable as List)?.map((e) => ${extractJsonCode(shape.member.shapeClass, 'e')})?.toList()';
   } else if (shape.type == 'structure') {
-    return '${shape.className}.fromJson($variable as Map<String, dynamic>)';
+    return '$variable == null ? null : ${shape.className}.fromJson($variable as Map<String, dynamic>)';
   } else if (shape.enumeration?.isNotEmpty ?? false) {
     shape.isTopLevelOutputEnum = true;
     return '($variable as String)?.to${shape.className}()';

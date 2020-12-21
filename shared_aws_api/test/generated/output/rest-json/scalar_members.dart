@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'scalar_members.g.dart';
-
 /// Scalar members
 class ScalarMembers {
   final _s.RestJsonProtocol _protocol;
@@ -105,8 +103,18 @@ class OutputShape {
     this.str,
     this.trueBool,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> json) =>
-      _$OutputShapeFromJson(json);
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      char: json['Char'] as String,
+      doubleValue: json['Double'] as double,
+      falseBool: json['FalseBool'] as bool,
+      float: json['Float'] as double,
+      long: json['Long'] as int,
+      num: json['Num'] as int,
+      str: json['Str'] as String,
+      trueBool: json['TrueBool'] as bool,
+    );
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

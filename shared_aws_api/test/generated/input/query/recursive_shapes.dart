@@ -20,8 +20,6 @@ import 'package:shared_aws_api/shared.dart'
 import 'recursive_shapes.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'recursive_shapes.g.dart';
-
 /// Recursive shapes
 class RecursiveShapes {
   final _s.QueryProtocol _protocol;
@@ -166,7 +164,12 @@ class RecursiveStructType {
     this.recursiveMap,
     this.recursiveStruct,
   });
-  Map<String, dynamic> toJson() => _$RecursiveStructTypeToJson(this);
+  Map<String, dynamic> toJson() => {
+        if (noRecurse != null) 'NoRecurse': noRecurse,
+        if (recursiveList != null) 'RecursiveList': recursiveList,
+        if (recursiveMap != null) 'RecursiveMap': recursiveMap,
+        if (recursiveStruct != null) 'RecursiveStruct': recursiveStruct,
+      };
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

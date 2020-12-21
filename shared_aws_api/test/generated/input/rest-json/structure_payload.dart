@@ -19,8 +19,6 @@ import 'package:shared_aws_api/shared.dart'
 
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
-part 'structure_payload.g.dart';
-
 /// Structure payload
 class StructurePayload {
   final _s.RestJsonProtocol _protocol;
@@ -74,7 +72,9 @@ class FooShape {
   FooShape({
     this.baz,
   });
-  Map<String, dynamic> toJson() => _$FooShapeToJson(this);
+  Map<String, dynamic> toJson() => {
+        if (baz != null) 'baz': baz,
+      };
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};
