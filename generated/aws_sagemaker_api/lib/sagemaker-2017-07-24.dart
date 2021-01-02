@@ -16806,7 +16806,7 @@ class HumanLoopActivationConditionsConfig {
   /// Schema for Human Loop Activation Conditions in Amazon Augmented AI</a> in
   /// the <i>Amazon SageMaker Developer Guide</i>.
   @_s.JsonKey(name: 'HumanLoopActivationConditions')
-  final String humanLoopActivationConditions;
+  final Object humanLoopActivationConditions;
 
   HumanLoopActivationConditionsConfig({
     @_s.required this.humanLoopActivationConditions,

@@ -1,4 +1,5 @@
 import 'package:aws_client.generator/model/api.dart';
+import 'package:aws_client.generator/model/descriptor.dart';
 import 'package:aws_client.generator/model/operation.dart';
 import 'package:aws_client.generator/model/shape.dart';
 
@@ -29,10 +30,11 @@ abstract class ServiceBuilder {
           if (timestampFormat == 'unixTimestamp') {
             converter += '.toString()';
           }
-        }
-        if (m.shapeClass.enumeration != null) {
+        } else if (m.shapeClass.enumeration != null) {
           m.shapeClass.isTopLevelInputEnum = true;
           converter = 'v.toValue()';
+        } else if (m.jsonvalue) {
+          converter = 'base64Encode(utf8.encode(jsonEncode(v)))';
         }
         out.writeln(
             '${m.fieldName}?.let((v) => headers[\'${m.locationName ?? m.shapeClass.locationName ?? m.name}\'] = $converter);');
@@ -109,12 +111,13 @@ String _encodeQueryParamCode(Shape shape, String variable,
 }
 
 String _queryCode(Shape shape, String variable,
-    {Member member, bool maybeNull = false}) {
+    {Member member, Descriptor descriptor, bool maybeNull = false}) {
   if (shape.enumeration != null) {
     shape.isTopLevelInputEnum = true;
     return '$variable${maybeNull ? '?' : ''}.toValue()${maybeNull ? "??''" : ''}';
   } else if (shape.type == 'list') {
-    final code = _queryCode(shape.member.shapeClass, 'e', maybeNull: true);
+    final code = _queryCode(shape.member.shapeClass, 'e',
+        maybeNull: true, descriptor: shape.member);
     if (code != 'e') {
       final nullAware = maybeNull ? '?' : '';
       return '$nullAware$variable$nullAware.map((e) => $code)$nullAware.toList()';
@@ -124,6 +127,8 @@ String _queryCode(Shape shape, String variable,
         member?.timestampFormat ?? shape.timestampFormat ?? 'iso8601';
     variable =
         '_s.${timestampFormat}ToJson($variable)${timestampFormat == 'unixTimestamp' ? '.toString()' : ''}';
+  } else if (member?.jsonvalue == true || descriptor?.jsonvalue == true) {
+    variable = 'jsonEncode($variable)';
   }
 
   return variable;

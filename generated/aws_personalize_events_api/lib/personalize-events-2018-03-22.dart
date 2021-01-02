@@ -138,7 +138,7 @@ class Event {
   /// would match the 'NUMBER_OF_RATINGS' field defined in the Interactions
   /// schema.
   @_s.JsonKey(name: 'properties')
-  final String properties;
+  final Object properties;
 
   /// The timestamp on the client side when the event occurred.
   @UnixDateTimeConverter()

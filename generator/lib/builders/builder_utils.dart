@@ -1,14 +1,18 @@
 import 'package:aws_client.generator/model/descriptor.dart';
 
-import '../model/dart_type.dart';
 import '../model/shape.dart';
 import '../utils/string_utils.dart';
 
-String extractJsonCode(Shape shape, String variable, {Member member}) {
+String extractJsonCode(Shape shape, String variable,
+    {Member member, Descriptor descriptor}) {
   if (shape.type == 'map') {
-    return '($variable as Map<String, dynamic>)?.map((k, e) => MapEntry(k, ${extractJsonCode(shape.value.shapeClass, 'e')}))';
+    final valueCode =
+        extractJsonCode(shape.value.shapeClass, 'e', descriptor: shape.value);
+    return '($variable as Map<String, dynamic>)?.map((k, e) => MapEntry(k, $valueCode))';
   } else if (shape.type == 'list') {
-    return '($variable as List)?.map((e) => ${extractJsonCode(shape.member.shapeClass, 'e')})?.toList()';
+    final memberCode =
+        extractJsonCode(shape.member.shapeClass, 'e', descriptor: shape.member);
+    return '($variable as List)?.map((e) => $memberCode)?.toList()';
   } else if (shape.type == 'structure') {
     return '${shape.className}.fromJson($variable as Map<String, dynamic>)';
   } else if (shape.enumeration?.isNotEmpty ?? false) {
@@ -18,22 +22,27 @@ String extractJsonCode(Shape shape, String variable, {Member member}) {
     return 'timeStampFromJson($variable)';
   } else if (shape.type == 'blob') {
     return 'const Uint8ListConverter().fromJson($variable as String)';
+  } else if (member?.jsonvalue == true || descriptor?.jsonvalue == true) {
+    return '$variable != null ? jsonDecode($variable as String) : null';
   } else {
-    return '$variable as ${shape.type.getDartType(shape.api)}';
+    return '$variable as ${shape.dartType}';
   }
 }
 
 String encodeJsonCode(Shape shape, String variable,
-    {Member member, bool maybeNull}) {
+    {Member member, Descriptor descriptor, bool maybeNull}) {
   maybeNull ??= true;
   if (shape.type == 'map') {
-    final keyCode = encodeJsonCode(shape.key.shapeClass, 'k', maybeNull: false);
-    final valueCode = encodeJsonCode(shape.value.shapeClass, 'e');
+    final keyCode = encodeJsonCode(shape.key.shapeClass, 'k',
+        maybeNull: false, descriptor: shape.key);
+    final valueCode =
+        encodeJsonCode(shape.value.shapeClass, 'e', descriptor: shape.value);
     if (keyCode != 'k' || valueCode != 'e') {
       return '$variable${maybeNull ? '?' : ''}.map((k, e) => MapEntry($keyCode, $valueCode))';
     }
   } else if (shape.type == 'list') {
-    final valueCode = encodeJsonCode(shape.member.shapeClass, 'e');
+    final valueCode =
+        encodeJsonCode(shape.member.shapeClass, 'e', descriptor: shape.member);
     if (valueCode != 'e') {
       final nullAware = maybeNull ? '?' : '';
       return '$variable$nullAware.map((e) => $valueCode)$nullAware.toList()';
@@ -51,6 +60,8 @@ String encodeJsonCode(Shape shape, String variable,
     } else {
       return 'base64Encode($variable)';
     }
+  } else if (member?.jsonvalue == true || descriptor?.jsonvalue == true) {
+    return 'jsonEncode($variable)';
   }
   return '$variable';
 }
@@ -113,6 +124,6 @@ String encodeXmlCode(Shape shape, String variable,
         "$variable${maybeNull ? '?' : ''}.toValue()${maybeNull ? " ?? ''" : ''}";
   }
 
-  final dartType = shape.type.getDartType(shape.api);
+  final dartType = shape.dartType;
   return '_s.encodeXml${uppercaseName(dartType)}Value(\'$elemName\', $variable)';
 }

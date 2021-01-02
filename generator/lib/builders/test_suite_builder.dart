@@ -212,12 +212,7 @@ String _buildParameters(Shape shape, Member member, Object params,
       return 'DateTime.fromMillisecondsSinceEpoch($params * 1000)';
     } else {
       final value = jsonEncode(params);
-      if (member != null && member.jsonvalue ||
-          descriptor != null && descriptor.jsonvalue) {
-        return "r'''$value'''";
-      } else {
-        return value;
-      }
+      return value;
     }
   }
 }

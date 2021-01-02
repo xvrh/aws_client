@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'api.dart';
-import 'dart_type.dart';
 import 'descriptor.dart';
 import 'error.dart';
 import 'xml_namespace.dart';
@@ -139,7 +138,7 @@ class Shape {
   Iterable<Member> get queryMembers => _members.where((m) => m.isQuery);
 
   bool get requiresJson {
-    if (type.isBasicType()) {
+    if (isBasicType) {
       return false;
     }
     if (member != null && !member.shapeClass.requiresJson) {
@@ -180,6 +179,60 @@ class Shape {
     member?.shapeClass?.markUsed(isInput);
     key?.shapeClass?.markUsed(isInput);
     value?.shapeClass?.markUsed(isInput);
+  }
+
+  String getListOrMapDartType() {
+    final buf = StringBuffer();
+    if (type == 'list') {
+      buf.write('List<');
+      buf.write(member.dartType);
+      buf.write('>');
+    } else if (type == 'map') {
+      buf.write('Map<');
+      buf.write(key.dartType);
+      buf.write(', ');
+      buf.write(value.dartType);
+      buf.write('>');
+    } else {
+      throw Exception('No type found');
+    }
+
+    return buf.toString();
+  }
+
+  bool get isBasicType =>
+      type == 'string' ||
+      type == 'character' ||
+      type == 'boolean' ||
+      type == 'double' ||
+      type == 'float' ||
+      type == 'integer' ||
+      type == 'long' ||
+      type == 'blob' ||
+      type == 'timestamp';
+
+  bool isMapOrList() => type == 'list' || type == 'map';
+
+  String get dartType {
+    switch (type) {
+      case 'string':
+      case 'character':
+        return 'String';
+      case 'boolean':
+        return 'bool';
+      case 'double':
+      case 'float':
+        return 'double';
+      case 'integer':
+      case 'long':
+        return 'int';
+      case 'blob':
+        return 'Uint8List';
+      case 'timestamp':
+        return 'DateTime';
+      default:
+        throw ArgumentError('Unknown type: $this');
+    }
   }
 }
 
@@ -259,14 +312,16 @@ class Member {
 
   String get dartType {
     final dartType = shape;
-    final type = shapeClass.type;
+    final shapeClass = this.shapeClass;
     // There should be an enum for enumerated parameters
-    if (shapeClass.enumeration != null) {
+    if (jsonvalue) {
+      return 'Object';
+    } else if (shapeClass.enumeration != null) {
       return shapeClass.className;
-    } else if (type.isBasicType()) {
-      return type.getDartType(api);
-    } else if (type.isMapOrList()) {
-      return getListOrMapDartType(shapeClass);
+    } else if (shapeClass.isBasicType) {
+      return shapeClass.dartType;
+    } else if (shapeClass.isMapOrList()) {
+      return shapeClass.getListOrMapDartType();
     }
     return dartType;
   }

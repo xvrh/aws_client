@@ -1268,7 +1268,7 @@ class HumanLoopActivationOutput {
   /// Shows the result of condition evaluations, including those conditions which
   /// activated a human review.
   @_s.JsonKey(name: 'HumanLoopActivationConditionsEvaluationResults')
-  final String humanLoopActivationConditionsEvaluationResults;
+  final Object humanLoopActivationConditionsEvaluationResults;
 
   /// Shows if and why human review was needed.
   @_s.JsonKey(name: 'HumanLoopActivationReasons')

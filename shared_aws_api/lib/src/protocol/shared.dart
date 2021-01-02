@@ -317,6 +317,14 @@ Map<String, String> extractHeaderMapValues(
       .map((e) => MapEntry(e.key.substring(name.length), e.value)));
 }
 
+Object extractHeaderObjectValue(Map<String, String> headers, String name) {
+  final v = extractHeaderStringValue(headers, name);
+  if (v != null) {
+    return jsonDecode(utf8.decode(base64Decode(v)));
+  }
+  return null;
+}
+
 String extractService(Uri uri) {
   final parts = uri.host.split('.');
   if (parts.length == 4) return parts.first;

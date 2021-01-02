@@ -51,10 +51,13 @@ class JSONValueTrait {
     );
     final $json = await _s.jsonFromResponse(response);
     return OutputShape(
-      bodyField: $json['BodyField'] as String,
-      bodyListField:
-          ($json['BodyListField'] as List)?.map((e) => e as String)?.toList(),
-      headerField: _s.extractHeaderStringValue(response.headers, 'X-Amz-Foo'),
+      bodyField: $json['BodyField'] != null
+          ? jsonDecode($json['BodyField'] as String)
+          : null,
+      bodyListField: ($json['BodyListField'] as List)
+          ?.map((e) => e != null ? jsonDecode(e as String) : null)
+          ?.toList(),
+      headerField: _s.extractHeaderObjectValue(response.headers, 'X-Amz-Foo'),
     );
   }
 
@@ -67,10 +70,13 @@ class JSONValueTrait {
     );
     final $json = await _s.jsonFromResponse(response);
     return OutputShape(
-      bodyField: $json['BodyField'] as String,
-      bodyListField:
-          ($json['BodyListField'] as List)?.map((e) => e as String)?.toList(),
-      headerField: _s.extractHeaderStringValue(response.headers, 'X-Amz-Foo'),
+      bodyField: $json['BodyField'] != null
+          ? jsonDecode($json['BodyField'] as String)
+          : null,
+      bodyListField: ($json['BodyListField'] as List)
+          ?.map((e) => e != null ? jsonDecode(e as String) : null)
+          ?.toList(),
+      headerField: _s.extractHeaderObjectValue(response.headers, 'X-Amz-Foo'),
     );
   }
 }
@@ -82,11 +88,11 @@ class JSONValueTrait {
     createToJson: false)
 class OutputShape {
   @_s.JsonKey(name: 'BodyField')
-  final String bodyField;
+  final Object bodyField;
   @_s.JsonKey(name: 'BodyListField')
-  final List<String> bodyListField;
+  final List<Object> bodyListField;
   @_s.JsonKey(name: 'X-Amz-Foo')
-  final String headerField;
+  final Object headerField;
 
   OutputShape({
     this.bodyField,

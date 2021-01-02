@@ -1,6 +1,5 @@
 import 'package:aws_client.generator/builders/protocols/service_builder.dart';
 import 'package:aws_client.generator/model/api.dart';
-import 'package:aws_client.generator/model/dart_type.dart';
 import 'package:aws_client.generator/model/operation.dart';
 import 'package:aws_client.generator/model/shape.dart';
 
@@ -47,7 +46,7 @@ class RestXmlServiceBuilder extends ServiceBuilder {
       } else if (payloadMember.shapeClass.enumeration != null) {
         payloadMember.shapeClass.isTopLevelInputEnum = true;
         payloadArg = '${payloadMember.fieldName}?.toValue()';
-      } else if (payloadMember.shapeClass.type.isBasicType()) {
+      } else if (payloadMember.shapeClass.isBasicType) {
         payloadArg = payloadMember.fieldName;
       } else {
         payloadArg =

@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'api.dart';
-import 'dart_type.dart';
 import 'error.dart';
 import 'shape.dart';
 import 'xml_namespace.dart';
@@ -50,14 +49,15 @@ class Descriptor {
 
   String get dartType {
     final shapeRef = api.shapes[shape];
-    final shapeRefType = shapeRef.type;
 
-    if (shapeRef.enumeration != null) {
+    if (jsonvalue) {
+      return 'Object';
+    } else if (shapeRef.enumeration != null) {
       return shapeRef.className;
-    } else if (shapeRefType.isBasicType()) {
-      return shapeRefType.getDartType(api);
-    } else if (shapeRefType.isMapOrList()) {
-      return getListOrMapDartType(shapeRef);
+    } else if (shapeRef.isBasicType) {
+      return shapeRef.dartType;
+    } else if (shapeRef.isMapOrList()) {
+      return shapeRef.getListOrMapDartType();
     } else {
       return shapeRef.className;
     }

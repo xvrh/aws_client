@@ -44,13 +44,14 @@ class JSONValueTrait {
 
   Future<void> operationName0({
     BodyStructure body,
-    String headerField,
-    String queryField,
+    Object headerField,
+    Object queryField,
   }) async {
     final headers = <String, String>{};
-    headerField?.let((v) => headers['X-Amz-Foo'] = v.toString());
+    headerField?.let(
+        (v) => headers['X-Amz-Foo'] = base64Encode(utf8.encode(jsonEncode(v))));
     final $query = <String, List<String>>{
-      if (queryField != null) 'Bar': [queryField],
+      if (queryField != null) 'Bar': [jsonEncode(queryField)],
     };
     await _protocol.send(
       payload: body,
@@ -64,13 +65,14 @@ class JSONValueTrait {
 
   Future<void> operationName1({
     BodyStructure body,
-    String headerField,
-    String queryField,
+    Object headerField,
+    Object queryField,
   }) async {
     final headers = <String, String>{};
-    headerField?.let((v) => headers['X-Amz-Foo'] = v.toString());
+    headerField?.let(
+        (v) => headers['X-Amz-Foo'] = base64Encode(utf8.encode(jsonEncode(v))));
     final $query = <String, List<String>>{
-      if (queryField != null) 'Bar': [queryField],
+      if (queryField != null) 'Bar': [jsonEncode(queryField)],
     };
     await _protocol.send(
       payload: body,
@@ -84,13 +86,14 @@ class JSONValueTrait {
 
   Future<void> operationName2({
     BodyStructure body,
-    String headerField,
-    String queryField,
+    Object headerField,
+    Object queryField,
   }) async {
     final headers = <String, String>{};
-    headerField?.let((v) => headers['X-Amz-Foo'] = v.toString());
+    headerField?.let(
+        (v) => headers['X-Amz-Foo'] = base64Encode(utf8.encode(jsonEncode(v))));
     final $query = <String, List<String>>{
-      if (queryField != null) 'Bar': [queryField],
+      if (queryField != null) 'Bar': [jsonEncode(queryField)],
     };
     await _protocol.send(
       payload: body,
@@ -110,9 +113,9 @@ class JSONValueTrait {
     createToJson: true)
 class BodyStructure {
   @_s.JsonKey(name: 'BodyField')
-  final String bodyField;
+  final Object bodyField;
   @_s.JsonKey(name: 'BodyListField')
-  final List<String> bodyListField;
+  final List<Object> bodyListField;
 
   BodyStructure({
     this.bodyField,

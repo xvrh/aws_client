@@ -8,7 +8,6 @@ import 'package:aws_client.generator/builders/protocols/rest_json_builder.dart';
 import 'package:aws_client.generator/builders/protocols/rest_xml_builder.dart';
 import 'package:aws_client.generator/builders/protocols/service_builder.dart';
 import 'package:aws_client.generator/model/api.dart';
-import 'package:aws_client.generator/model/dart_type.dart';
 import 'package:aws_client.generator/model/operation.dart';
 import 'package:aws_client.generator/model/shape.dart';
 import 'package:aws_client.generator/model/xml_namespace.dart';
@@ -425,8 +424,8 @@ String extractXmlCode(
 
   final enumeration = shapeRef?.enumeration?.isNotEmpty ?? false;
 
-  if (type.isBasicType()) {
-    final dartType = type.getDartType(api);
+  if (shapeRef.isBasicType) {
+    final dartType = shapeRef.dartType;
     var extraParameters = '';
     if (shapeRef.timestampFormat != null || member?.timestampFormat != null) {
       extraParameters = ', parser: _s.timeStampFromJson';
@@ -446,9 +445,9 @@ String extractXmlCode(
     }
 
     String fn;
-    if (memberShape.type.isBasicType()) {
+    if (memberShape.isBasicType) {
       fn =
-          '_s.extractXml${uppercaseName(memberShape.type.getDartType(api))}ListValues($elemVar, \'$memberElemName\')';
+          '_s.extractXml${uppercaseName(memberShape.dartType)}ListValues($elemVar, \'$memberElemName\')';
       if (memberShape.enumeration != null) {
         fn += '.map((s) => s.to${uppercaseName(memberShape.name)}()).toList()';
       }
