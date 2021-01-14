@@ -2366,23 +2366,23 @@ class IoTWireless {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class AbpV1_0_x {
+class AbpV10x {
   /// The DevAddr value.
   @_s.JsonKey(name: 'DevAddr')
   final String devAddr;
 
   /// Session keys for ABP v1.0.x
   @_s.JsonKey(name: 'SessionKeys')
-  final SessionKeysAbpV1_0_x sessionKeys;
+  final SessionKeysAbpV10x sessionKeys;
 
-  AbpV1_0_x({
+  AbpV10x({
     this.devAddr,
     this.sessionKeys,
   });
-  factory AbpV1_0_x.fromJson(Map<String, dynamic> json) =>
-      _$AbpV1_0_xFromJson(json);
+  factory AbpV10x.fromJson(Map<String, dynamic> json) =>
+      _$AbpV10xFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AbpV1_0_xToJson(this);
+  Map<String, dynamic> toJson() => _$AbpV10xToJson(this);
 }
 
 /// ABP device object for LoRaWAN specification v1.1
@@ -2391,23 +2391,22 @@ class AbpV1_0_x {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class AbpV1_1 {
+class AbpV11 {
   /// The DevAddr value.
   @_s.JsonKey(name: 'DevAddr')
   final String devAddr;
 
   /// Session keys for ABP v1.1
   @_s.JsonKey(name: 'SessionKeys')
-  final SessionKeysAbpV1_1 sessionKeys;
+  final SessionKeysAbpV11 sessionKeys;
 
-  AbpV1_1({
+  AbpV11({
     this.devAddr,
     this.sessionKeys,
   });
-  factory AbpV1_1.fromJson(Map<String, dynamic> json) =>
-      _$AbpV1_1FromJson(json);
+  factory AbpV11.fromJson(Map<String, dynamic> json) => _$AbpV11FromJson(json);
 
-  Map<String, dynamic> toJson() => _$AbpV1_1ToJson(this);
+  Map<String, dynamic> toJson() => _$AbpV11ToJson(this);
 }
 
 @_s.JsonSerializable(
@@ -3438,11 +3437,11 @@ class ListWirelessGatewaysResponse {
 class LoRaWANDevice {
   /// LoRaWAN object for create APIs
   @_s.JsonKey(name: 'AbpV1_0_x')
-  final AbpV1_0_x abpV1_0X;
+  final AbpV10x abpV1_0X;
 
   /// ABP device object for create APIs for v1.1
   @_s.JsonKey(name: 'AbpV1_1')
-  final AbpV1_1 abpV1_1;
+  final AbpV11 abpV1_1;
 
   /// The DevEUI value.
   @_s.JsonKey(name: 'DevEui')
@@ -3454,11 +3453,11 @@ class LoRaWANDevice {
 
   /// OTAA device object for create APIs for v1.0.x
   @_s.JsonKey(name: 'OtaaV1_0_x')
-  final OtaaV1_0_x otaaV1_0X;
+  final OtaaV10x otaaV1_0X;
 
   /// OTAA device object for v1.1 for create APIs
   @_s.JsonKey(name: 'OtaaV1_1')
-  final OtaaV1_1 otaaV1_1;
+  final OtaaV11 otaaV1_1;
 
   /// The ID of the service profile.
   @_s.JsonKey(name: 'ServiceProfileId')
@@ -3980,7 +3979,7 @@ class LoRaWANUpdateGatewayTaskEntry {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class OtaaV1_0_x {
+class OtaaV10x {
   /// The AppEUI value.
   @_s.JsonKey(name: 'AppEui')
   final String appEui;
@@ -3989,14 +3988,14 @@ class OtaaV1_0_x {
   @_s.JsonKey(name: 'AppKey')
   final String appKey;
 
-  OtaaV1_0_x({
+  OtaaV10x({
     this.appEui,
     this.appKey,
   });
-  factory OtaaV1_0_x.fromJson(Map<String, dynamic> json) =>
-      _$OtaaV1_0_xFromJson(json);
+  factory OtaaV10x.fromJson(Map<String, dynamic> json) =>
+      _$OtaaV10xFromJson(json);
 
-  Map<String, dynamic> toJson() => _$OtaaV1_0_xToJson(this);
+  Map<String, dynamic> toJson() => _$OtaaV10xToJson(this);
 }
 
 /// OTAA device object for v1.1
@@ -4005,7 +4004,7 @@ class OtaaV1_0_x {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class OtaaV1_1 {
+class OtaaV11 {
   /// The AppKey value.
   @_s.JsonKey(name: 'AppKey')
   final String appKey;
@@ -4018,15 +4017,15 @@ class OtaaV1_1 {
   @_s.JsonKey(name: 'NwkKey')
   final String nwkKey;
 
-  OtaaV1_1({
+  OtaaV11({
     this.appKey,
     this.joinEui,
     this.nwkKey,
   });
-  factory OtaaV1_1.fromJson(Map<String, dynamic> json) =>
-      _$OtaaV1_1FromJson(json);
+  factory OtaaV11.fromJson(Map<String, dynamic> json) =>
+      _$OtaaV11FromJson(json);
 
-  Map<String, dynamic> toJson() => _$OtaaV1_1ToJson(this);
+  Map<String, dynamic> toJson() => _$OtaaV11ToJson(this);
 }
 
 enum PartnerType {
@@ -4096,7 +4095,7 @@ class ServiceProfile {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class SessionKeysAbpV1_0_x {
+class SessionKeysAbpV10x {
   /// The AppSKey value.
   @_s.JsonKey(name: 'AppSKey')
   final String appSKey;
@@ -4105,14 +4104,14 @@ class SessionKeysAbpV1_0_x {
   @_s.JsonKey(name: 'NwkSKey')
   final String nwkSKey;
 
-  SessionKeysAbpV1_0_x({
+  SessionKeysAbpV10x({
     this.appSKey,
     this.nwkSKey,
   });
-  factory SessionKeysAbpV1_0_x.fromJson(Map<String, dynamic> json) =>
-      _$SessionKeysAbpV1_0_xFromJson(json);
+  factory SessionKeysAbpV10x.fromJson(Map<String, dynamic> json) =>
+      _$SessionKeysAbpV10xFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SessionKeysAbpV1_0_xToJson(this);
+  Map<String, dynamic> toJson() => _$SessionKeysAbpV10xToJson(this);
 }
 
 /// Session keys for ABP v1.1
@@ -4121,7 +4120,7 @@ class SessionKeysAbpV1_0_x {
     explicitToJson: true,
     createFactory: true,
     createToJson: true)
-class SessionKeysAbpV1_1 {
+class SessionKeysAbpV11 {
   /// The AppSKey value.
   @_s.JsonKey(name: 'AppSKey')
   final String appSKey;
@@ -4138,16 +4137,16 @@ class SessionKeysAbpV1_1 {
   @_s.JsonKey(name: 'SNwkSIntKey')
   final String sNwkSIntKey;
 
-  SessionKeysAbpV1_1({
+  SessionKeysAbpV11({
     this.appSKey,
     this.fNwkSIntKey,
     this.nwkSEncKey,
     this.sNwkSIntKey,
   });
-  factory SessionKeysAbpV1_1.fromJson(Map<String, dynamic> json) =>
-      _$SessionKeysAbpV1_1FromJson(json);
+  factory SessionKeysAbpV11.fromJson(Map<String, dynamic> json) =>
+      _$SessionKeysAbpV11FromJson(json);
 
-  Map<String, dynamic> toJson() => _$SessionKeysAbpV1_1ToJson(this);
+  Map<String, dynamic> toJson() => _$SessionKeysAbpV11ToJson(this);
 }
 
 /// Information about a Sidewalk account.

@@ -264,7 +264,6 @@ class Member {
   }
 
   String get dartType {
-    final dartType = shape;
     final type = shapeClass.type;
     // There should be an enum for enumerated parameters
     if (shapeClass.enumeration != null) {
@@ -274,7 +273,7 @@ class Member {
     } else if (type.isMapOrList()) {
       return getListOrMapDartType(shapeClass);
     }
-    return dartType;
+    return shapeClass.className;
   }
 
   bool get isHeader =>

@@ -6,17 +6,17 @@ part of '2020-11-22.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AbpV1_0_x _$AbpV1_0_xFromJson(Map<String, dynamic> json) {
-  return AbpV1_0_x(
+AbpV10x _$AbpV10xFromJson(Map<String, dynamic> json) {
+  return AbpV10x(
     devAddr: json['DevAddr'] as String,
     sessionKeys: json['SessionKeys'] == null
         ? null
-        : SessionKeysAbpV1_0_x.fromJson(
+        : SessionKeysAbpV10x.fromJson(
             json['SessionKeys'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$AbpV1_0_xToJson(AbpV1_0_x instance) {
+Map<String, dynamic> _$AbpV10xToJson(AbpV10x instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -30,17 +30,17 @@ Map<String, dynamic> _$AbpV1_0_xToJson(AbpV1_0_x instance) {
   return val;
 }
 
-AbpV1_1 _$AbpV1_1FromJson(Map<String, dynamic> json) {
-  return AbpV1_1(
+AbpV11 _$AbpV11FromJson(Map<String, dynamic> json) {
+  return AbpV11(
     devAddr: json['DevAddr'] as String,
     sessionKeys: json['SessionKeys'] == null
         ? null
-        : SessionKeysAbpV1_1.fromJson(
+        : SessionKeysAbpV11.fromJson(
             json['SessionKeys'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$AbpV1_1ToJson(AbpV1_1 instance) {
+Map<String, dynamic> _$AbpV11ToJson(AbpV11 instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -533,18 +533,18 @@ LoRaWANDevice _$LoRaWANDeviceFromJson(Map<String, dynamic> json) {
   return LoRaWANDevice(
     abpV1_0X: json['AbpV1_0_x'] == null
         ? null
-        : AbpV1_0_x.fromJson(json['AbpV1_0_x'] as Map<String, dynamic>),
+        : AbpV10x.fromJson(json['AbpV1_0_x'] as Map<String, dynamic>),
     abpV1_1: json['AbpV1_1'] == null
         ? null
-        : AbpV1_1.fromJson(json['AbpV1_1'] as Map<String, dynamic>),
+        : AbpV11.fromJson(json['AbpV1_1'] as Map<String, dynamic>),
     devEui: json['DevEui'] as String,
     deviceProfileId: json['DeviceProfileId'] as String,
     otaaV1_0X: json['OtaaV1_0_x'] == null
         ? null
-        : OtaaV1_0_x.fromJson(json['OtaaV1_0_x'] as Map<String, dynamic>),
+        : OtaaV10x.fromJson(json['OtaaV1_0_x'] as Map<String, dynamic>),
     otaaV1_1: json['OtaaV1_1'] == null
         ? null
-        : OtaaV1_1.fromJson(json['OtaaV1_1'] as Map<String, dynamic>),
+        : OtaaV11.fromJson(json['OtaaV1_1'] as Map<String, dynamic>),
     serviceProfileId: json['ServiceProfileId'] as String,
   );
 }
@@ -827,14 +827,14 @@ LoRaWANUpdateGatewayTaskEntry _$LoRaWANUpdateGatewayTaskEntryFromJson(
   );
 }
 
-OtaaV1_0_x _$OtaaV1_0_xFromJson(Map<String, dynamic> json) {
-  return OtaaV1_0_x(
+OtaaV10x _$OtaaV10xFromJson(Map<String, dynamic> json) {
+  return OtaaV10x(
     appEui: json['AppEui'] as String,
     appKey: json['AppKey'] as String,
   );
 }
 
-Map<String, dynamic> _$OtaaV1_0_xToJson(OtaaV1_0_x instance) {
+Map<String, dynamic> _$OtaaV10xToJson(OtaaV10x instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -848,15 +848,15 @@ Map<String, dynamic> _$OtaaV1_0_xToJson(OtaaV1_0_x instance) {
   return val;
 }
 
-OtaaV1_1 _$OtaaV1_1FromJson(Map<String, dynamic> json) {
-  return OtaaV1_1(
+OtaaV11 _$OtaaV11FromJson(Map<String, dynamic> json) {
+  return OtaaV11(
     appKey: json['AppKey'] as String,
     joinEui: json['JoinEui'] as String,
     nwkKey: json['NwkKey'] as String,
   );
 }
 
-Map<String, dynamic> _$OtaaV1_1ToJson(OtaaV1_1 instance) {
+Map<String, dynamic> _$OtaaV11ToJson(OtaaV11 instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -886,15 +886,14 @@ ServiceProfile _$ServiceProfileFromJson(Map<String, dynamic> json) {
   );
 }
 
-SessionKeysAbpV1_0_x _$SessionKeysAbpV1_0_xFromJson(Map<String, dynamic> json) {
-  return SessionKeysAbpV1_0_x(
+SessionKeysAbpV10x _$SessionKeysAbpV10xFromJson(Map<String, dynamic> json) {
+  return SessionKeysAbpV10x(
     appSKey: json['AppSKey'] as String,
     nwkSKey: json['NwkSKey'] as String,
   );
 }
 
-Map<String, dynamic> _$SessionKeysAbpV1_0_xToJson(
-    SessionKeysAbpV1_0_x instance) {
+Map<String, dynamic> _$SessionKeysAbpV10xToJson(SessionKeysAbpV10x instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -908,8 +907,8 @@ Map<String, dynamic> _$SessionKeysAbpV1_0_xToJson(
   return val;
 }
 
-SessionKeysAbpV1_1 _$SessionKeysAbpV1_1FromJson(Map<String, dynamic> json) {
-  return SessionKeysAbpV1_1(
+SessionKeysAbpV11 _$SessionKeysAbpV11FromJson(Map<String, dynamic> json) {
+  return SessionKeysAbpV11(
     appSKey: json['AppSKey'] as String,
     fNwkSIntKey: json['FNwkSIntKey'] as String,
     nwkSEncKey: json['NwkSEncKey'] as String,
@@ -917,7 +916,7 @@ SessionKeysAbpV1_1 _$SessionKeysAbpV1_1FromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SessionKeysAbpV1_1ToJson(SessionKeysAbpV1_1 instance) {
+Map<String, dynamic> _$SessionKeysAbpV11ToJson(SessionKeysAbpV11 instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
