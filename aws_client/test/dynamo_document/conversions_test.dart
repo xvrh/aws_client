@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:document_client/src/translator.dart';
+import 'package:aws_client/dynamo_document.dart';
 import 'package:test/test.dart';
 
 void main() {
