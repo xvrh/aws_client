@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import '../utils/aws_names.dart';
 
 import 'descriptor.dart';
@@ -17,6 +16,8 @@ class Api {
   final String documentation;
   final Map<String, dynamic> examples;
   final Map<String, Authorizer> authorizers;
+  String fileBasename;
+  String _baseName;
 
   Api(
     this.metadata,
@@ -26,7 +27,10 @@ class Api {
     this.documentation,
     this.examples,
     this.authorizers,
-  );
+  ) {
+    _baseName = _getBaseName();
+    fileBasename = metadata.apiVersion;
+  }
 
   factory Api.fromJson(Map<String, dynamic> json) => _$ApiFromJson(json);
 
@@ -70,26 +74,18 @@ class Api {
 
   bool get generateToXml => usesRestXmlProtocol;
 
-  String get directoryPath {
-    // TODO: lowercase directory name
-    return metadata.className;
-  }
+  bool get isRecognized => _baseName != null;
 
-  String get fileBasename {
-    // TODO: lowercase file name
-    return metadata.uid ?? '${metadata.endpointPrefix}-${metadata.apiVersion}';
-  }
+  String get baseName => _baseName;
 
-  bool get isRecognized => packageBaseName != null;
-
-  String get packageName {
-    if (packageBaseName == null) {
-      throw ArgumentError('API not recognized: $fileBasename');
+  String get directoryName {
+    if (_baseName == null) {
+      throw ArgumentError('API not recognized: $_baseName');
     }
-    return 'aws_${packageBaseName.replaceAll('-', '_')}_api';
+    return _baseName.replaceAll('-', '_');
   }
 
-  String get packageBaseName {
+  String _getBaseName() {
     final candidates = <String>[
       metadata.uid?.split('-20')?.first,
       metadata.className.toLowerCase(),
@@ -109,7 +105,7 @@ class Api {
       'runtime.lex-2016-11-28': 'lex-runtime',
       'entitlement.marketplace-2017-01-11': 'marketplace-entitlement',
       'runtime.sagemaker-2017-05-13': 'sagemaker-runtime',
-    }[fileBasename];
+    }[metadata.uid ?? '${metadata.endpointPrefix}-${metadata.apiVersion}'];
     if (mapped != null && awsCliServiceNames.contains(mapped)) {
       return mapped;
     }

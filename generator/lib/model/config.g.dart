@@ -18,7 +18,6 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
               ? null
               : ProtocolConfig.fromJson(e as Map<String, dynamic>)),
     ),
-    packages: (json['packages'] as List)?.map((e) => e as String)?.toList(),
   );
 }
 

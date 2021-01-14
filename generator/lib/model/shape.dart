@@ -169,7 +169,7 @@ class Shape {
     var cn = name.substring(0, 1).toUpperCase() + name.substring(1);
     if (cn == 'Function') cn = '\$$cn';
 
-    cn = cn.replaceAll(RegExp(r'^_+'), '');
+    cn = cn.replaceAll('_', '');
 
     return cn;
   }
@@ -316,6 +316,7 @@ extension NameStuff on String {
       isReserved ||
       <String>{
         'index',
+        'values',
       }.contains(this);
 
   bool get isFieldReserved =>
