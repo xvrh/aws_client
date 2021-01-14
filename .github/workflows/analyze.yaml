@@ -12,14 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v0.1
+      - run: dart pub get
+        working-directory: generator
+      - run: dart pub get
+        working-directory: aws_client
       - name: Generate all apis
-        run: dart pub get && dart bin/generate.dart generate
+        run: dart bin/generate.dart generate
         working-directory: generator
       - name: Analyze generator package
         run: dart analyze --fatal-warnings --fatal-infos
         working-directory: generator
       - name: Analyze aws_client package
-        run: dart pub get && dart analyze --fatal-warnings --fatal-infos
+        run: dart analyze --fatal-warnings --fatal-infos
         working-directory: aws_client
       - name: Check formatting generator
         run: dart format --output=none --set-exit-if-changed .
@@ -37,9 +41,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v0.1
       - name: Run tests on aws_client
-        run: dart test
+        run: dart pub get && dart test
         working-directory: aws_client
       - name: Run tests on generator
-        run: dart test
+        run: dart pub get && dart test
         working-directory: generator
 
