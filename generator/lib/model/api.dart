@@ -98,7 +98,10 @@ class Api {
   String _getBaseName() {
     final candidates = <String>[
       metadata.uid?.split('-20')?.first,
-      metadata.className.toLowerCase(),
+      metadata.serviceId?.replaceAll(RegExp(r'\W'), '')?.toLowerCase(),
+      (metadata.serviceAbbreviation ?? metadata.serviceFullName)
+          .replaceAll(RegExp(r'\W'), '')
+          .toLowerCase(),
       metadata.endpointPrefix
     ];
     final identified = candidates
