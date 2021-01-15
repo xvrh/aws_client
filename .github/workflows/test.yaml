@@ -7,7 +7,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze all apis
+    name: Generate and analyze all apis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
         run: git diff --exit-code --stat -- .
 
   test:
-    name: Analyze all apis
+    name: Test all packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

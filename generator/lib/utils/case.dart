@@ -60,7 +60,7 @@ List<String> splitWords(String input) {
     var lastChar = '';
 
     for (var rune in word.runes) {
-      var char = String.fromCharCode(rune);
+      final char = String.fromCharCode(rune);
 
       if (!_isLower(char) && !_isUpper(char) && !_isNum(char)) {
         currentWord += lastChar;
