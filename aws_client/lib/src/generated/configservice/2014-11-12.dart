@@ -36,9 +36,9 @@ part '2014-11-12.g.dart';
 /// see <a
 /// href="https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources">Supported
 /// AWS Resources</a>.
-class Config {
+class ConfigService {
   final _s.JsonProtocol _protocol;
-  Config({
+  ConfigService({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

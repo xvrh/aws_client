@@ -200,11 +200,19 @@ class Metadata {
 
   String get className {
     final baseName = (serviceAbbreviation ?? serviceFullName)
-        .replaceAll(RegExp(r'^Amazon|AWS\s*'), '')
-        .replaceAll(RegExp(r' Service$'), '');
+        .replaceAll(RegExp(r'^Amazon|AWS\s*'), '');
 
-    final words = splitWords(baseName)
-        .map((w) => const ['IoT'].contains(w) ? w : w.toLowerCase());
+    // Try to follow Effective Dart: DO capitalize acronyms and abbreviations longer than two letters like words.
+    // https://dart.dev/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words
+    final words = splitWords(baseName).map((w) {
+      if (const ['IoT'].contains(w) || w.length < 3) {
+        return w;
+      }
+      return w.toLowerCase();
+    }).toList();
+    if (words.last == 'service' && words.first != 'config') {
+      words.removeLast();
+    }
     return upperCamel(words);
   }
 

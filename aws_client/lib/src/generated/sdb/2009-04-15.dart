@@ -44,11 +44,11 @@ part '2009-04-15.g.dart';
 /// Visit <a
 /// href="http://aws.amazon.com/simpledb/">http://aws.amazon.com/simpledb/</a>
 /// for more information.
-class SimpleDb {
+class SimpleDB {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  SimpleDb({
+  SimpleDB({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

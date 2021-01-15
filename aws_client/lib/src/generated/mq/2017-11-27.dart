@@ -31,9 +31,9 @@ part '2017-11-27.g.dart';
 /// cloud. A message broker allows software applications and components to
 /// communicate using various programming languages, operating systems, and
 /// formal messaging protocols.
-class Mq {
+class MQ {
   final _s.RestJsonProtocol _protocol;
-  Mq({
+  MQ({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -31,9 +31,9 @@ part '2012-08-10.g.dart';
 /// offload the administrative burdens of operating and scaling a distributed
 /// database, so that you don't have to worry about hardware provisioning, setup
 /// and configuration, replication, software patching, or cluster scaling.
-class DynamoDb {
+class DynamoDB {
   final _s.JsonProtocol _protocol;
-  DynamoDb({
+  DynamoDB({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,
