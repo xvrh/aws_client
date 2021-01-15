@@ -20,7 +20,7 @@ void main() {
           headers: {"X-Foo": "baz"});
     });
 
-    final service = XMLPayload(
+    final service = XmlPayload(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

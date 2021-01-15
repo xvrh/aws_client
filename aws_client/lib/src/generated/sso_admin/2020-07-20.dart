@@ -26,9 +26,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 
 part '2020-07-20.g.dart';
 
-class SSOAdmin {
+class SsoAdmin {
   final _s.JsonProtocol _protocol;
-  SSOAdmin({
+  SsoAdmin({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

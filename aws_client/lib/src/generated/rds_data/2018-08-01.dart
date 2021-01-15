@@ -29,9 +29,9 @@ part '2018-08-01.g.dart';
 /// Amazon RDS provides an HTTP endpoint to run SQL statements on an Amazon
 /// Aurora Serverless DB cluster. To run these statements, you work with the
 /// Data Service API.
-class RDSDataService {
+class RdsDataService {
   final _s.RestJsonProtocol _protocol;
-  RDSDataService({
+  RdsDataService({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -28,11 +28,11 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2014-10-31.g.dart';
 
 /// Amazon DocumentDB API documentation
-class DocDB {
+class DocDb {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  DocDB({
+  DocDb({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

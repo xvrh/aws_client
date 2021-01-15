@@ -30,9 +30,9 @@ part '2020-07-01.g.dart';
 /// API reference documentation. For more information, see <a
 /// href="https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html">What
 /// Is Amazon MWAA?</a>.
-class MWAA {
+class Mwaa {
   final _s.RestJsonProtocol _protocol;
-  MWAA({
+  Mwaa({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

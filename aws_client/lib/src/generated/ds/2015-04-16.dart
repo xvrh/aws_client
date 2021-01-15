@@ -43,9 +43,9 @@ part '2015-04-16.g.dart';
 /// SDKs, including how to download and install them, see <a
 /// href="http://aws.amazon.com/tools/">Tools for Amazon Web Services</a>.
 /// </note>
-class DirectoryService {
+class Directory {
   final _s.JsonProtocol _protocol;
-  DirectoryService({
+  Directory({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

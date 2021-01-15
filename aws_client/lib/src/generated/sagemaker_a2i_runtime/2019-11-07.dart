@@ -71,9 +71,9 @@ part '2019-11-07.g.dart';
 /// these APIs, see <a
 /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-api-references.html">Use
 /// APIs in Amazon A2I</a> in the Amazon SageMaker Developer Guide.
-class AugmentedAIRuntime {
+class AugmentedAiRuntime {
   final _s.RestJsonProtocol _protocol;
-  AugmentedAIRuntime({
+  AugmentedAiRuntime({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

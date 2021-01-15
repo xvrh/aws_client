@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2015-12-08.g.dart';
 
 /// Welcome to the AWS Certificate Manager (ACM) API documentation.
-class ACM {
+class Acm {
   final _s.JsonProtocol _protocol;
-  ACM({
+  Acm({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

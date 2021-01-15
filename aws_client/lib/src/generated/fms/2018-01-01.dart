@@ -32,9 +32,9 @@ part '2018-01-01.g.dart';
 /// Manager features, see the <a
 /// href="https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html">AWS
 /// Firewall Manager Developer Guide</a>.
-class FMS {
+class Fms {
   final _s.JsonProtocol _protocol;
-  FMS({
+  Fms({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -30,9 +30,9 @@ part '2017-04-28.g.dart';
 /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a> and the <a
 /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
 /// User Guide</a>.
-class CloudHSMV2 {
+class CloudHsmV2 {
   final _s.JsonProtocol _protocol;
-  CloudHSMV2({
+  CloudHsmV2({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

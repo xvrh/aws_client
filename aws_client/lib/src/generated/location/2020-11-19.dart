@@ -28,9 +28,9 @@ part '2020-11-19.g.dart';
 
 /// Suite of geospatial services including Maps, Places, Tracking, and
 /// Geofencing
-class LocationService {
+class Location {
   final _s.RestJsonProtocol _protocol;
-  LocationService({
+  Location({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

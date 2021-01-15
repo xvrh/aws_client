@@ -43,9 +43,9 @@ part '2014-11-01.g.dart';
 /// </note>
 /// We recommend that you use the AWS SDKs to make programmatic API calls to AWS
 /// KMS.
-class KMS {
+class Kms {
   final _s.JsonProtocol _protocol;
-  KMS({
+  Kms({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

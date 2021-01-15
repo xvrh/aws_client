@@ -33,9 +33,9 @@ part '2015-09-21.g.dart';
 /// Initiative (OCI) images. Amazon ECR supports private repositories with
 /// resource-based permissions using IAM so that specific users or Amazon EC2
 /// instances can access repositories and images.
-class ECR {
+class Ecr {
   final _s.JsonProtocol _protocol;
-  ECR({
+  Ecr({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

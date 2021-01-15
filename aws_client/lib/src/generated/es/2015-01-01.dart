@@ -28,9 +28,9 @@ part '2015-01-01.g.dart';
 
 /// Use the Amazon Elasticsearch Configuration API to create, configure, and
 /// manage Elasticsearch domains.
-class ElasticsearchService {
+class Elasticsearch {
   final _s.RestJsonProtocol _protocol;
-  ElasticsearchService({
+  Elasticsearch({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -32,9 +32,9 @@ part '2012-01-25.g.dart';
 /// that is performed by a component of your workflow. Coordinating tasks in a
 /// workflow involves managing intertask dependencies, scheduling, and
 /// concurrency in accordance with the logical flow of the application.
-class SWF {
+class Swf {
   final _s.JsonProtocol _protocol;
-  SWF({
+  Swf({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

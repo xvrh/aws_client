@@ -31,9 +31,9 @@ part '2018-05-14.g.dart';
 /// Also provides sample requests, responses, and errors for the supported web
 /// services
 /// protocols.
-class IoT1ClickDevicesService {
+class IoT1ClickDevices {
   final _s.RestJsonProtocol _protocol;
-  IoT1ClickDevicesService({
+  IoT1ClickDevices({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -58,9 +58,9 @@ part '2020-10-01.g.dart';
 /// EMR on EKS Service Endpoints</a>.
 /// </li>
 /// </ul>
-class EMRContainers {
+class EmrContainers {
   final _s.RestJsonProtocol _protocol;
-  EMRContainers({
+  EmrContainers({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

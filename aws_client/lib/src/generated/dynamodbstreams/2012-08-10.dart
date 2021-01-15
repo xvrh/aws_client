@@ -32,9 +32,9 @@ part '2012-08-10.g.dart';
 /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html">Capturing
 /// Table Activity with DynamoDB Streams</a> in the Amazon DynamoDB Developer
 /// Guide.
-class DynamoDBStreams {
+class DynamoDbStreams {
   final _s.JsonProtocol _protocol;
-  DynamoDBStreams({
+  DynamoDbStreams({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

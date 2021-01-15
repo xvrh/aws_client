@@ -37,11 +37,11 @@ part '2015-12-01.g.dart';
 /// with a protocol and port number for connections from the load balancer to
 /// the targets, and with health check settings to be used when checking the
 /// health status of the targets.
-class ElasticLoadBalancingv2 {
+class ElasticLoadBalancingV2 {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  ElasticLoadBalancingv2({
+  ElasticLoadBalancingV2({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

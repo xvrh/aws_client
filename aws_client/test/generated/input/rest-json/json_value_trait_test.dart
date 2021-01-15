@@ -22,7 +22,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = JSONValueTrait(
+    final service = JsonValueTrait(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(
@@ -63,7 +63,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = JSONValueTrait(
+    final service = JsonValueTrait(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(
@@ -97,7 +97,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = JSONValueTrait(
+    final service = JsonValueTrait(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

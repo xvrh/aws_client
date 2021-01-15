@@ -36,9 +36,9 @@ part '2014-11-13.g.dart';
 /// launch types, see <a
 /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
 /// ECS Launch Types</a>.
-class ECS {
+class Ecs {
   final _s.JsonProtocol _protocol;
-  ECS({
+  Ecs({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

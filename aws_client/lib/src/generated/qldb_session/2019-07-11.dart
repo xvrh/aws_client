@@ -48,9 +48,9 @@ part '2019-07-11.g.dart';
 /// Amazon QLDB using the QLDB shell</a>.
 /// </li>
 /// </ul> </note>
-class QLDBSession {
+class QldbSession {
   final _s.JsonProtocol _protocol;
-  QLDBSession({
+  QldbSession({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

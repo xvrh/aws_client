@@ -24,7 +24,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = URIParameterQuerystringParamsHeadersAndJSONBody(
+    final service = UriParameterQuerystringParamsHeadersAndJsonBody(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

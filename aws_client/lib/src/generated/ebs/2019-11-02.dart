@@ -54,9 +54,9 @@ part '2019-11-02.g.dart';
 /// href="https://docs.aws.amazon.com/general/latest/gr/ebs-service.html">Amazon
 /// Elastic Block Store Endpoints and Quotas</a> in the <i>AWS General
 /// Reference</i>.
-class EBS {
+class Ebs {
   final _s.RestJsonProtocol _protocol;
-  EBS({
+  Ebs({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

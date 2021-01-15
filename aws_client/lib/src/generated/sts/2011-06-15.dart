@@ -34,11 +34,11 @@ part '2011-06-15.g.dart';
 /// service, see <a
 /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html">Temporary
 /// Security Credentials</a>.
-class STS {
+class Sts {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  STS({
+  Sts({
     String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

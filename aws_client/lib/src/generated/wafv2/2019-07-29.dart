@@ -102,9 +102,9 @@ part '2019-07-29.g.dart';
 /// know the maximum cost of a rule group when you use it.
 /// </li>
 /// </ul>
-class WAFV2 {
+class Wafv2 {
   final _s.JsonProtocol _protocol;
-  WAFV2({
+  Wafv2({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

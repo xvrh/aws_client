@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2019-01-02.g.dart';
 
 /// The control plane for Amazon QLDB
-class QLDB {
+class Qldb {
   final _s.RestJsonProtocol _protocol;
-  QLDB({
+  Qldb({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

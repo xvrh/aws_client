@@ -23,7 +23,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = URIParameterQuerystringParamsAndJSONBody(
+    final service = UriParameterQuerystringParamsAndJsonBody(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

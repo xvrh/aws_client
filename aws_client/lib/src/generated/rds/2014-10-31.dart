@@ -33,11 +33,11 @@ part '2014-10-31.g.dart';
 /// relational database and manages common database administration tasks,
 /// freeing up developers to focus on what makes their applications and
 /// businesses unique.
-class RDS {
+class Rds {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  RDS({
+  Rds({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

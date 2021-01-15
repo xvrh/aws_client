@@ -25,9 +25,9 @@ import 'package:aws_client/src/shared/shared.dart'
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
 /// Named locations in JSON body
-class NamedLocationsInJSONBody {
+class NamedLocationsInJsonBody {
   final _s.RestJsonProtocol _protocol;
-  NamedLocationsInJSONBody({
+  NamedLocationsInJsonBody({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

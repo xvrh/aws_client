@@ -29,9 +29,9 @@ part '2018-01-12.g.dart';
 /// With Amazon Data Lifecycle Manager, you can manage the lifecycle of your AWS
 /// resources. You create lifecycle policies, which are used to automate
 /// operations on the specified resources.
-class DLM {
+class Dlm {
   final _s.RestJsonProtocol _protocol;
-  DLM({
+  Dlm({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -29,9 +29,9 @@ part '2017-04-19.g.dart';
 /// Amazon Lex is an AWS service for building conversational voice and text
 /// interfaces. Use these actions to create, update, and delete conversational
 /// bots for new and existing client applications.
-class LexModelBuildingService {
+class LexModelBuilding {
   final _s.RestJsonProtocol _protocol;
-  LexModelBuildingService({
+  LexModelBuilding({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

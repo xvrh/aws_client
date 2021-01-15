@@ -17,8 +17,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// computing capacity in the AWS cloud. Using Amazon EC2 eliminates the need to
 /// invest in hardware up front, so you can develop and deploy applications
 /// faster.
-class EC2 {
-  EC2({
+class Ec2 {
+  Ec2({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

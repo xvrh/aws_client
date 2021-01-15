@@ -42,9 +42,9 @@ part '2017-08-22.g.dart';
 /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaLimits.html#PcaLimits-api">API
 /// Rate Quotas in ACM Private CA</a> in the ACM Private CA user guide.
 /// </note>
-class ACMPCA {
+class AcmPca {
   final _s.JsonProtocol _protocol;
-  ACMPCA({
+  AcmPca({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

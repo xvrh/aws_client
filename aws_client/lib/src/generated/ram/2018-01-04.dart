@@ -36,9 +36,9 @@ part '2018-01-04.g.dart';
 /// For more information, see the <a
 /// href="https://docs.aws.amazon.com/ram/latest/userguide/">AWS Resource Access
 /// Manager User Guide</a>.
-class RAM {
+class Ram {
   final _s.RestJsonProtocol _protocol;
-  RAM({
+  Ram({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

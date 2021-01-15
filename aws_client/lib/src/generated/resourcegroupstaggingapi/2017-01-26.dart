@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2017-01-26.g.dart';
 
 /// This guide describes the API operations for the resource groups tagging.
-class ResourceGroupsTaggingAPI {
+class ResourceGroupsTaggingApi {
   final _s.JsonProtocol _protocol;
-  ResourceGroupsTaggingAPI({
+  ResourceGroupsTaggingApi({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

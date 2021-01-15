@@ -37,9 +37,9 @@ part '2016-11-28.g.dart';
 /// performs fulfillment activity (that you configured when you created the
 /// bot). You use the build-time API to create and manage your Amazon Lex bot.
 /// For a list of build-time operations, see the build-time API, .
-class LexRuntimeService {
+class LexRuntime {
   final _s.RestJsonProtocol _protocol;
-  LexRuntimeService({
+  LexRuntime({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

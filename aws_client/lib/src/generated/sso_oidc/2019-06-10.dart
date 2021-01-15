@@ -49,9 +49,9 @@ part '2019-06-10.g.dart';
 /// including how to download and install them, see <a
 /// href="http://aws.amazon.com/tools/">Tools for Amazon Web Services</a>.
 /// </note>
-class SSOOIDC {
+class SsoOidc {
   final _s.RestJsonProtocol _protocol;
-  SSOOIDC({
+  SsoOidc({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -28,9 +28,9 @@ part '2017-01-11.g.dart';
 
 /// This reference provides descriptions of the AWS Marketplace Entitlement
 /// Service API.
-class MarketplaceEntitlementService {
+class MarketplaceEntitlement {
   final _s.JsonProtocol _protocol;
-  MarketplaceEntitlementService({
+  MarketplaceEntitlement({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -23,7 +23,7 @@ void main() {
       return Response('<Response></Response>', 200, headers: {});
     });
 
-    final service = XMLAttribute(
+    final service = XmlAttribute(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

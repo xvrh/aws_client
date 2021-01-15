@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2018-06-26.g.dart';
 
 /// Provides APIs for creating and managing Amazon Forecast resources.
-class ForecastQueryService {
+class ForecastQuery {
   final _s.JsonProtocol _protocol;
-  ForecastQueryService({
+  ForecastQuery({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

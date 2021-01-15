@@ -31,9 +31,9 @@ part '2009-03-31.g.dart';
 /// AWS services to do tasks such as web indexing, data mining, log file
 /// analysis, machine learning, scientific simulation, and data warehouse
 /// management.
-class EMR {
+class Emr {
   final _s.JsonProtocol _protocol;
-  EMR({
+  Emr({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

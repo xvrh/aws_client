@@ -30,9 +30,9 @@ part '2018-04-02.g.dart';
 /// publish temporary SSH keys to their EC2 instances in order to establish
 /// connections to their instances without leaving a permanent authentication
 /// option.
-class EC2InstanceConnect {
+class Ec2InstanceConnect {
   final _s.JsonProtocol _protocol;
-  EC2InstanceConnect({
+  Ec2InstanceConnect({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

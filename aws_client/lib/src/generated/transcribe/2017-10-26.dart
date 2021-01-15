@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2017-10-26.g.dart';
 
 /// Operations and objects for transcribing speech to text.
-class TranscribeService {
+class Transcribe {
   final _s.JsonProtocol _protocol;
-  TranscribeService({
+  Transcribe({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

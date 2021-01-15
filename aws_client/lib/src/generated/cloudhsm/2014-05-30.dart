@@ -33,9 +33,9 @@ part '2014-05-30.g.dart';
 /// Classic User Guide</a>, and the <a
 /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
 /// CloudHSM Classic API Reference</a>.
-class CloudHSM {
+class CloudHsm {
   final _s.JsonProtocol _protocol;
-  CloudHSM({
+  CloudHsm({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

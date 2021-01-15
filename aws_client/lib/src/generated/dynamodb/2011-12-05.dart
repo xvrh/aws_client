@@ -31,9 +31,9 @@ part '2011-12-05.g.dart';
 ///
 /// Amazon DynamoDB removes traditional scalability limitations on data storage
 /// while maintaining low latency and predictable performance.
-class DynamoDB {
+class DynamoDb {
   final _s.JsonProtocol _protocol;
-  DynamoDB({
+  DynamoDb({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

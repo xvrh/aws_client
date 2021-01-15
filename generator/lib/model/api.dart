@@ -1,3 +1,4 @@
+import 'package:aws_client.generator/utils/case.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../utils/aws_names.dart';
 
@@ -195,9 +196,13 @@ class Metadata {
   );
 
   String get className {
-    final name = (serviceAbbreviation ?? serviceFullName)
-        .replaceAll(RegExp(r'^Amazon|AWS\s*|\(.*|\s+|\W+'), '');
-    return name.substring(0, 1).toUpperCase() + name.substring(1);
+    final baseName = (serviceAbbreviation ?? serviceFullName)
+        .replaceAll(RegExp(r'^Amazon|AWS\s*'), '')
+        .replaceAll(RegExp(r' Service$'), '');
+
+    final words = splitWords(baseName)
+        .map((w) => const ['IoT'].contains(w) ? w : w.toLowerCase());
+    return upperCamel(words);
   }
 
   factory Metadata.fromJson(Map<String, dynamic> json) =>

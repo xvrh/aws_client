@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2018-09-05.g.dart';
 
 /// Pinpoint SMS and Voice Messaging public facing APIs
-class PinpointSMSVoice {
+class PinpointSmsVoice {
   final _s.RestJsonProtocol _protocol;
-  PinpointSMSVoice({
+  PinpointSmsVoice({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

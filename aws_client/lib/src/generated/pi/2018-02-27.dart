@@ -30,9 +30,9 @@ part '2018-02-27.g.dart';
 /// dimensions of database load based on data captured from a running DB
 /// instance. The guide provides detailed information about Performance Insights
 /// data types, parameters and errors.
-class PI {
+class Pi {
   final _s.JsonProtocol _protocol;
-  PI({
+  Pi({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

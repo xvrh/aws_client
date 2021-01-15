@@ -29,9 +29,9 @@ part '2019-12-20.g.dart';
 /// You can use the Amazon Redshift Data API to run queries on Amazon Redshift
 /// tables. You can run individual SQL statements, which are committed if the
 /// statement succeeds.
-class RedshiftDataAPIService {
+class RedshiftDataApi {
   final _s.JsonProtocol _protocol;
-  RedshiftDataAPIService({
+  RedshiftDataApi({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

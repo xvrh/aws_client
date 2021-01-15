@@ -30,9 +30,9 @@ part '2016-11-01.g.dart';
 /// manages configuration management servers. You can use AWS OpsWorks CM to
 /// create and manage AWS OpsWorks for Chef Automate and AWS OpsWorks for Puppet
 /// Enterprise servers, and add or remove nodes for the servers to manage.
-class OpsWorksCM {
+class OpsWorksCm {
   final _s.JsonProtocol _protocol;
-  OpsWorksCM({
+  OpsWorksCm({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

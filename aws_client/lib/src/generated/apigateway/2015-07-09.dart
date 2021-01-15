@@ -31,9 +31,9 @@ part '2015-07-09.g.dart';
 /// securely connect mobile and web applications to APIs that run on AWS Lambda,
 /// Amazon EC2, or other publicly addressable web services that are hosted
 /// outside of AWS.
-class APIGateway {
+class ApiGateway {
   final _s.RestJsonProtocol _protocol;
-  APIGateway({
+  ApiGateway({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

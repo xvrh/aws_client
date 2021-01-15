@@ -33,9 +33,9 @@ part '2016-01-01.g.dart';
 /// homogeneous migrations such as Oracle to Oracle, as well as heterogeneous
 /// migrations between different database platforms, such as Oracle to MySQL or
 /// SQL Server to PostgreSQL.
-class DatabaseMigrationService {
+class DatabaseMigration {
   final _s.JsonProtocol _protocol;
-  DatabaseMigrationService({
+  DatabaseMigration({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

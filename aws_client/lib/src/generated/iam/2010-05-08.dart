@@ -35,11 +35,11 @@ part '2010-05-08.g.dart';
 /// and Access Management (IAM)</a> and the <a
 /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/">AWS Identity and
 /// Access Management User Guide</a>.
-class IAM {
+class Iam {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  IAM({
+  Iam({
     String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

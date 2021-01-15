@@ -25,9 +25,9 @@ import 'package:aws_client/src/shared/shared.dart'
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
 /// URI parameter only with no location name
-class URIParameterOnlyWithNoLocationName {
+class UriParameterOnlyWithNoLocationName {
   final _s.RestJsonProtocol _protocol;
-  URIParameterOnlyWithNoLocationName({
+  UriParameterOnlyWithNoLocationName({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

@@ -14,9 +14,9 @@ import 'package:aws_client/src/shared/shared.dart'
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
 /// XML payload
-class XMLPayload {
+class XmlPayload {
   final _s.RestXmlProtocol _protocol;
-  XMLPayload({
+  XmlPayload({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

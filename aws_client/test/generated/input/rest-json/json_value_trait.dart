@@ -27,9 +27,9 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 part 'json_value_trait.g.dart';
 
 /// JSON value trait
-class JSONValueTrait {
+class JsonValueTrait {
   final _s.RestJsonProtocol _protocol;
-  JSONValueTrait({
+  JsonValueTrait({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

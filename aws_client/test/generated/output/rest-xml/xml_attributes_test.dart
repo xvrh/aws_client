@@ -20,7 +20,7 @@ void main() {
           headers: {});
     });
 
-    final service = XMLAttributes(
+    final service = XmlAttributes(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

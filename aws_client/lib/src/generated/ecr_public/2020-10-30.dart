@@ -36,9 +36,9 @@ part '2020-10-30.g.dart';
 /// <a
 /// href="https://docs.aws.amazon.com/AmazonECR/latest/APIReference/Welcome.html">Amazon
 /// Elastic Container Registry API Reference</a>.
-class ECRPublic {
+class EcrPublic {
   final _s.JsonProtocol _protocol;
-  ECRPublic({
+  EcrPublic({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

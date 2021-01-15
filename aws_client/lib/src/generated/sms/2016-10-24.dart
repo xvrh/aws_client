@@ -29,9 +29,9 @@ part '2016-10-24.g.dart';
 /// AWS Server Migration Service (AWS SMS) makes it easier and faster for you to
 /// migrate your on-premises workloads to AWS. To learn more about AWS SMS, see
 /// the following resources:
-class SMS {
+class Sms {
   final _s.JsonProtocol _protocol;
-  SMS({
+  Sms({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

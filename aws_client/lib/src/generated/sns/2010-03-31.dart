@@ -36,11 +36,11 @@ part '2010-03-31.g.dart';
 /// detailed information about Amazon SNS features and their associated API
 /// calls, see the <a href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon
 /// SNS Developer Guide</a>.
-class SNS {
+class Sns {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  SNS({
+  Sns({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

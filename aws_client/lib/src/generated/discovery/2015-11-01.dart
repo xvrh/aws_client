@@ -33,9 +33,9 @@ part '2015-11-01.g.dart';
 /// Application Discovery Service FAQ</a>. Application Discovery Service offers
 /// three ways of performing discovery and collecting data about your
 /// on-premises servers:
-class ApplicationDiscoveryService {
+class ApplicationDiscovery {
   final _s.JsonProtocol _protocol;
-  ApplicationDiscoveryService({
+  ApplicationDiscovery({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

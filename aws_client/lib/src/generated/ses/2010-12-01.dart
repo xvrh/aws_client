@@ -40,11 +40,11 @@ part '2010-12-01.g.dart';
 /// href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html">Amazon
 /// SES Developer Guide</a>.
 /// </note>
-class SES {
+class Ses {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  SES({
+  Ses({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

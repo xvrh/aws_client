@@ -23,7 +23,7 @@ void main() {
       return Response('<Response></Response>', 200, headers: {});
     });
 
-    final service = BasicXMLSerialization(
+    final service = BasicXmlSerialization(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(
@@ -55,7 +55,7 @@ void main() {
       return Response('<Response></Response>', 200, headers: {});
     });
 
-    final service = BasicXMLSerialization(
+    final service = BasicXmlSerialization(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(
@@ -84,7 +84,7 @@ void main() {
       return Response('<Response></Response>', 200, headers: {});
     });
 
-    final service = BasicXMLSerialization(
+    final service = BasicXmlSerialization(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

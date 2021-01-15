@@ -39,9 +39,9 @@ part '2017-11-01.g.dart';
 /// in on-premises data centers or public clouds. This means that you can easily
 /// migrate any standard Kubernetes application to Amazon EKS without any code
 /// modification required.
-class EKS {
+class Eks {
   final _s.RestJsonProtocol _protocol;
-  EKS({
+  Eks({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

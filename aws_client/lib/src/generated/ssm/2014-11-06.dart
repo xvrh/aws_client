@@ -35,9 +35,9 @@ part '2014-11-06.g.dart';
 /// Compute Cloud instance (EC2 instance), or any on-premises server or virtual
 /// machine (VM) in your hybrid environment that has been configured for Systems
 /// Manager.
-class SSM {
+class Ssm {
   final _s.JsonProtocol _protocol;
-  SSM({
+  Ssm({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

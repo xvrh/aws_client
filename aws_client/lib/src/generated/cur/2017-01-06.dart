@@ -44,9 +44,9 @@ part '2017-01-06.g.dart';
 /// cur.us-east-1.amazonaws.com
 /// </li>
 /// </ul>
-class CostandUsageReportService {
+class CostAndUsageReport {
   final _s.JsonProtocol _protocol;
-  CostandUsageReportService({
+  CostAndUsageReport({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

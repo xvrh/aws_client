@@ -30,9 +30,9 @@ part '2019-12-01.g.dart';
 /// examples of the operations and data types for the AWS CodeStar Connections
 /// API. You can use the connections API to work with connections and
 /// installations.
-class CodeStarconnections {
+class CodeStarConnections {
   final _s.JsonProtocol _protocol;
-  CodeStarconnections({
+  CodeStarConnections({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

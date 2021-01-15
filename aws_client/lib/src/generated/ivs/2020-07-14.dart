@@ -250,9 +250,9 @@ part '2020-07-14.g.dart';
 /// specified ARN.
 /// </li>
 /// </ul>
-class IVS {
+class Ivs {
   final _s.RestJsonProtocol _protocol;
-  IVS({
+  Ivs({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

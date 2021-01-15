@@ -36,9 +36,9 @@ part '2020-07-29.g.dart';
 /// Connect, see <a
 /// href="https://docs.aws.amazon.com/connect/latest/adminguide/crm.html">Set up
 /// pre-built integrations</a> in the <i>Amazon Connect Administrator Guide</i>.
-class AppIntegrationsService {
+class AppIntegrations {
   final _s.RestJsonProtocol _protocol;
-  AppIntegrationsService({
+  AppIntegrations({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

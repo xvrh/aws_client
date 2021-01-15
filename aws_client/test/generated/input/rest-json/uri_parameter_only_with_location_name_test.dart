@@ -19,7 +19,7 @@ void main() {
       return Response('{}', 200, headers: {});
     });
 
-    final service = URIParameterOnlyWithLocationName(
+    final service = UriParameterOnlyWithLocationName(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

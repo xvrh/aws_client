@@ -27,9 +27,9 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 part 'uri_parameter_querystring_params_headers_and_json_body.g.dart';
 
 /// URI parameter, querystring params, headers and JSON body
-class URIParameterQuerystringParamsHeadersAndJSONBody {
+class UriParameterQuerystringParamsHeadersAndJsonBody {
   final _s.RestJsonProtocol _protocol;
-  URIParameterQuerystringParamsHeadersAndJSONBody({
+  UriParameterQuerystringParamsHeadersAndJsonBody({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

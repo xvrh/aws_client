@@ -96,11 +96,11 @@ part '2012-11-05.g.dart';
 /// </li>
 /// </ul> </li>
 /// </ul>
-class SQS {
+class Sqs {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
 
-  SQS({
+  Sqs({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

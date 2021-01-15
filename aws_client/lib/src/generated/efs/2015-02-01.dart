@@ -33,9 +33,9 @@ part '2015-02-01.g.dart';
 /// need it. For more information, see the <a
 /// href="https://docs.aws.amazon.com/efs/latest/ug/api-reference.html">User
 /// Guide</a>.
-class EFS {
+class Efs {
   final _s.RestJsonProtocol _protocol;
-  EFS({
+  Efs({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

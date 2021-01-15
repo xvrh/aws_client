@@ -33,9 +33,9 @@ part '2017-04-19.g.dart';
 /// Console. With a few simple modifications to your code, your application can
 /// begin taking advantage of the DAX cluster and realize significant
 /// improvements in read performance.
-class DAX {
+class Dax {
   final _s.JsonProtocol _protocol;
-  DAX({
+  Dax({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

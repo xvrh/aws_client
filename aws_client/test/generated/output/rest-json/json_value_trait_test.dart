@@ -18,7 +18,7 @@ void main() {
           headers: {"X-Amz-Foo": "eyJGb28iOiJCYXIifQ=="});
     });
 
-    final service = JSONValueTrait(
+    final service = JsonValueTrait(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(
@@ -49,7 +49,7 @@ void main() {
           headers: {});
     });
 
-    final service = JSONValueTrait(
+    final service = JsonValueTrait(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

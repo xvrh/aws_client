@@ -51,9 +51,9 @@ part '2016-11-28.g.dart';
 /// how to use the AWS WAF Classic API, see the <a
 /// href="https://docs.aws.amazon.com/waf/latest/developerguide/classic-waf-chapter.html">AWS
 /// WAF Classic</a> in the developer guide.
-class WAFRegional {
+class WafRegional {
   final _s.JsonProtocol _protocol;
-  WAFRegional({
+  WafRegional({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

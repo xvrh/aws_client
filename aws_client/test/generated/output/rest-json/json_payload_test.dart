@@ -17,7 +17,7 @@ void main() {
       return Response(r'''{"Foo": "abc"}''', 200, headers: {"X-Foo": "baz"});
     });
 
-    final service = JSONPayload(
+    final service = JsonPayload(
       client: client,
       region: 'us-east-1',
       credentials: AwsClientCredentials(

@@ -27,9 +27,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 part '2020-08-01.g.dart';
 
 /// Amazon Managed Service for Prometheus
-class PrometheusService {
+class Prometheus {
   final _s.RestJsonProtocol _protocol;
-  PrometheusService({
+  Prometheus({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

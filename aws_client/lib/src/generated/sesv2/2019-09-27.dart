@@ -29,9 +29,9 @@ part '2019-09-27.g.dart';
 /// Welcome to the Amazon SES API v2 Reference. This guide provides information
 /// about the Amazon SES API v2, including supported operations, data types,
 /// parameters, and schemas.
-class SESV2 {
+class SesV2 {
   final _s.RestJsonProtocol _protocol;
-  SESV2({
+  SesV2({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

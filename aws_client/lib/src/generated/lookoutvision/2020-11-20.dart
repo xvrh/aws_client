@@ -35,9 +35,9 @@ part '2020-11-20.g.dart';
 /// structures, irregularities in production lines, and even minuscule defects
 /// in silicon wafers — or any other physical item where quality is important
 /// such as a missing capacitor on printed circuit boards.
-class LookoutforVision {
+class LookoutForVision {
   final _s.RestJsonProtocol _protocol;
-  LookoutforVision({
+  LookoutForVision({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,

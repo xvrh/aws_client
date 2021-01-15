@@ -27,9 +27,9 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 part 'json_payload.g.dart';
 
 /// JSON payload
-class JSONPayload {
+class JsonPayload {
   final _s.RestJsonProtocol _protocol;
-  JSONPayload({
+  JsonPayload({
     @_s.required String region,
     _s.AwsClientCredentials credentials,
     _s.Client client,
