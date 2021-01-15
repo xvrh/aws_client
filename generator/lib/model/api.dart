@@ -16,7 +16,6 @@ class Api {
   final String documentation;
   final Map<String, dynamic> examples;
   final Map<String, Authorizer> authorizers;
-  String fileBasename;
   String _baseName;
 
   Api(
@@ -77,6 +76,16 @@ class Api {
   bool get isRecognized => _baseName != null;
 
   String get baseName => _baseName;
+
+  @JsonKey(ignore: true)
+  String get fileBasename => _fileBasename;
+  String _fileBasename;
+  set fileBasename(String fileBasename) {
+    if (fileBasename == null) {
+      throw ArgumentError('fileBasename');
+    }
+    _fileBasename = fileBasename;
+  }
 
   String get directoryName {
     if (_baseName == null) {

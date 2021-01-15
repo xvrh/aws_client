@@ -14,8 +14,7 @@ Api _$ApiFromJson(Map<String, dynamic> json) {
     'shapes',
     'documentation',
     'examples',
-    'authorizers',
-    'fileBasename'
+    'authorizers'
   ]);
   return Api(
     json['metadata'] == null
@@ -36,7 +35,7 @@ Api _$ApiFromJson(Map<String, dynamic> json) {
       (k, e) => MapEntry(
           k, e == null ? null : Authorizer.fromJson(e as Map<String, dynamic>)),
     ),
-  )..fileBasename = json['fileBasename'] as String;
+  );
 }
 
 Metadata _$MetadataFromJson(Map<String, dynamic> json) {
