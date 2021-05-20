@@ -3,13 +3,19 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
-    show Uint8ListConverter, Uint8ListListConverter;
+    show
+        rfc822ToJson,
+        iso8601ToJson,
+        unixTimestampToJson,
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
@@ -17,10 +23,10 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 class RecursiveShapes {
   final _s.RestXmlProtocol _protocol;
   RecursiveShapes({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestXmlProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -32,7 +38,7 @@ class RecursiveShapes {
         );
 
   Future<void> operationName0({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -48,7 +54,7 @@ class RecursiveShapes {
   }
 
   Future<void> operationName1({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -64,7 +70,7 @@ class RecursiveShapes {
   }
 
   Future<void> operationName2({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -80,7 +86,7 @@ class RecursiveShapes {
   }
 
   Future<void> operationName3({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -96,7 +102,7 @@ class RecursiveShapes {
   }
 
   Future<void> operationName4({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -112,7 +118,7 @@ class RecursiveShapes {
   }
 
   Future<void> operationName5({
-    RecursiveStructType recursiveStruct,
+    RecursiveStructType? recursiveStruct,
   }) async {
     await _protocol.send(
       method: 'POST',
@@ -129,14 +135,15 @@ class RecursiveShapes {
 }
 
 class InputShape {
-  final RecursiveStructType recursiveStruct;
+  final RecursiveStructType? recursiveStruct;
 
   InputShape({
     this.recursiveStruct,
   });
-  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute> attributes}) {
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final recursiveStruct = this.recursiveStruct;
     final $children = <_s.XmlNode>[
-      if (recursiveStruct != null) recursiveStruct?.toXml('RecursiveStruct'),
+      if (recursiveStruct != null) recursiveStruct.toXml('RecursiveStruct'),
     ];
     final $attributes = <_s.XmlAttribute>[
       ...?attributes,
@@ -144,16 +151,16 @@ class InputShape {
     return _s.XmlElement(
       _s.XmlName(elemName),
       $attributes,
-      $children.where((e) => e != null),
+      $children,
     );
   }
 }
 
 class RecursiveStructType {
-  final String noRecurse;
-  final List<RecursiveStructType> recursiveList;
-  final Map<String, RecursiveStructType> recursiveMap;
-  final RecursiveStructType recursiveStruct;
+  final String? noRecurse;
+  final List<RecursiveStructType>? recursiveList;
+  final Map<String, RecursiveStructType>? recursiveMap;
+  final RecursiveStructType? recursiveStruct;
 
   RecursiveStructType({
     this.noRecurse,
@@ -161,13 +168,17 @@ class RecursiveStructType {
     this.recursiveMap,
     this.recursiveStruct,
   });
-  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute> attributes}) {
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final noRecurse = this.noRecurse;
+    final recursiveList = this.recursiveList;
+    final recursiveMap = this.recursiveMap;
+    final recursiveStruct = this.recursiveStruct;
     final $children = <_s.XmlNode>[
       if (noRecurse != null) _s.encodeXmlStringValue('NoRecurse', noRecurse),
-      if (recursiveStruct != null) recursiveStruct?.toXml('RecursiveStruct'),
+      if (recursiveStruct != null) recursiveStruct.toXml('RecursiveStruct'),
       if (recursiveList != null)
         _s.XmlElement(_s.XmlName('RecursiveList'), [],
-            recursiveList.map((e) => e?.toXml('member'))),
+            recursiveList.map((e) => e.toXml('member'))),
       if (recursiveMap != null)
         _s.XmlElement(
             _s.XmlName('RecursiveMap'),
@@ -175,7 +186,7 @@ class RecursiveStructType {
             recursiveMap.entries.map((e) => _s.XmlElement(
                     _s.XmlName('entry'), [], <_s.XmlNode>[
                   _s.encodeXmlStringValue('key', e.key),
-                  e.value?.toXml('value')
+                  e.value.toXml('value')
                 ]))),
     ];
     final $attributes = <_s.XmlAttribute>[
@@ -184,7 +195,7 @@ class RecursiveStructType {
     return _s.XmlElement(
       _s.XmlName(elemName),
       $attributes,
-      $children.where((e) => e != null),
+      $children,
     );
   }
 }

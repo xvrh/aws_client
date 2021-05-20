@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-07-01.g.dart';
 
 /// This section contains the Amazon Managed Workflows for Apache Airflow (MWAA)
 /// API reference documentation. For more information, see <a
@@ -33,10 +26,10 @@ part '2020-07-01.g.dart';
 class Mwaa {
   final _s.RestJsonProtocol _protocol;
   Mwaa({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -55,7 +48,7 @@ class Mwaa {
   /// Parameter [name] :
   /// Create a CLI token request for a MWAA environment.
   Future<CreateCliTokenResponse> createCliToken({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -188,24 +181,24 @@ class Mwaa {
   /// The day and time you want MWAA to start weekly maintenance updates on your
   /// environment.
   Future<CreateEnvironmentOutput> createEnvironment({
-    @_s.required String dagS3Path,
-    @_s.required String executionRoleArn,
-    @_s.required String name,
-    @_s.required NetworkConfiguration networkConfiguration,
-    @_s.required String sourceBucketArn,
-    Map<String, String> airflowConfigurationOptions,
-    String airflowVersion,
-    String environmentClass,
-    String kmsKey,
-    LoggingConfigurationInput loggingConfiguration,
-    int maxWorkers,
-    String pluginsS3ObjectVersion,
-    String pluginsS3Path,
-    String requirementsS3ObjectVersion,
-    String requirementsS3Path,
-    Map<String, String> tags,
-    WebserverAccessMode webserverAccessMode,
-    String weeklyMaintenanceWindowStart,
+    required String dagS3Path,
+    required String executionRoleArn,
+    required String name,
+    required NetworkConfiguration networkConfiguration,
+    required String sourceBucketArn,
+    Map<String, String>? airflowConfigurationOptions,
+    String? airflowVersion,
+    String? environmentClass,
+    String? kmsKey,
+    LoggingConfigurationInput? loggingConfiguration,
+    int? maxWorkers,
+    String? pluginsS3ObjectVersion,
+    String? pluginsS3Path,
+    String? requirementsS3ObjectVersion,
+    String? requirementsS3Path,
+    Map<String, String>? tags,
+    WebserverAccessMode? webserverAccessMode,
+    String? weeklyMaintenanceWindowStart,
   }) async {
     ArgumentError.checkNotNull(dagS3Path, 'dagS3Path');
     _s.validateStringLength(
@@ -388,7 +381,7 @@ class Mwaa {
   /// Parameter [name] :
   /// Create an Airflow Web UI login token request for a MWAA environment.
   Future<CreateWebLoginTokenResponse> createWebLoginToken({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -422,7 +415,7 @@ class Mwaa {
   /// Parameter [name] :
   /// The name of the environment to delete.
   Future<void> deleteEnvironment({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -444,7 +437,6 @@ class Mwaa {
       requestUri: '/environments/${Uri.encodeComponent(name)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteEnvironmentOutput.fromJson(response);
   }
 
   /// Get details of an existing environment.
@@ -456,7 +448,7 @@ class Mwaa {
   /// Parameter [name] :
   /// The name of the environment to retrieve.
   Future<GetEnvironmentOutput> getEnvironment({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -492,8 +484,8 @@ class Mwaa {
   /// Parameter [nextToken] :
   /// The Next Token when listing MWAA environments.
   Future<ListEnvironmentsOutput> listEnvironments({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -530,7 +522,7 @@ class Mwaa {
   /// Parameter [resourceArn] :
   /// The ARN of the MWAA environment.
   Future<ListTagsForResourceOutput> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -567,8 +559,8 @@ class Mwaa {
   /// Publishes metric data points to Amazon CloudWatch. CloudWatch associates
   /// the data points with the specified metrica.
   Future<void> publishMetrics({
-    @_s.required String environmentName,
-    @_s.required List<MetricDatum> metricData,
+    required String environmentName,
+    required List<MetricDatum> metricData,
   }) async {
     ArgumentError.checkNotNull(environmentName, 'environmentName');
     _s.validateStringLength(
@@ -595,7 +587,6 @@ class Mwaa {
           '/metrics/environments/${Uri.encodeComponent(environmentName)}',
       exceptionFnMap: _exceptionFns,
     );
-    return PublishMetricsOutput.fromJson(response);
   }
 
   /// Add tag to the MWAA environments.
@@ -610,8 +601,8 @@ class Mwaa {
   /// Parameter [tags] :
   /// The tag resource tag of the MWAA environments.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -637,7 +628,6 @@ class Mwaa {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceOutput.fromJson(response);
   }
 
   /// Remove a tag from the MWAA environments.
@@ -652,8 +642,8 @@ class Mwaa {
   /// Parameter [tagKeys] :
   /// The tag resource key of the MWAA environments.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -671,7 +661,7 @@ class Mwaa {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -680,7 +670,6 @@ class Mwaa {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceOutput.fromJson(response);
   }
 
   /// Update an MWAA environment.
@@ -741,22 +730,22 @@ class Mwaa {
   /// The Weekly Maintenance Window Start to update of your Amazon MWAA
   /// environment.
   Future<UpdateEnvironmentOutput> updateEnvironment({
-    @_s.required String name,
-    Map<String, String> airflowConfigurationOptions,
-    String airflowVersion,
-    String dagS3Path,
-    String environmentClass,
-    String executionRoleArn,
-    LoggingConfigurationInput loggingConfiguration,
-    int maxWorkers,
-    UpdateNetworkConfigurationInput networkConfiguration,
-    String pluginsS3ObjectVersion,
-    String pluginsS3Path,
-    String requirementsS3ObjectVersion,
-    String requirementsS3Path,
-    String sourceBucketArn,
-    WebserverAccessMode webserverAccessMode,
-    String weeklyMaintenanceWindowStart,
+    required String name,
+    Map<String, String>? airflowConfigurationOptions,
+    String? airflowVersion,
+    String? dagS3Path,
+    String? environmentClass,
+    String? executionRoleArn,
+    LoggingConfigurationInput? loggingConfiguration,
+    int? maxWorkers,
+    UpdateNetworkConfigurationInput? networkConfiguration,
+    String? pluginsS3ObjectVersion,
+    String? pluginsS3Path,
+    String? requirementsS3ObjectVersion,
+    String? requirementsS3Path,
+    String? sourceBucketArn,
+    WebserverAccessMode? webserverAccessMode,
+    String? weeklyMaintenanceWindowStart,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -907,202 +896,159 @@ class Mwaa {
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateCliTokenResponse {
   /// Create an Airflow CLI login token response for the provided JWT token.
-  @_s.JsonKey(name: 'CliToken')
-  final String cliToken;
+  final String? cliToken;
 
   /// Create an Airflow CLI login token response for the provided webserver
   /// hostname.
-  @_s.JsonKey(name: 'WebServerHostname')
-  final String webServerHostname;
+  final String? webServerHostname;
 
   CreateCliTokenResponse({
     this.cliToken,
     this.webServerHostname,
   });
-  factory CreateCliTokenResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateCliTokenResponseFromJson(json);
+  factory CreateCliTokenResponse.fromJson(Map<String, dynamic> json) {
+    return CreateCliTokenResponse(
+      cliToken: json['CliToken'] as String?,
+      webServerHostname: json['WebServerHostname'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateEnvironmentOutput {
   /// The resulting Amazon MWAA envirnonment ARN.
-  @_s.JsonKey(name: 'Arn')
-  final String arn;
+  final String? arn;
 
   CreateEnvironmentOutput({
     this.arn,
   });
-  factory CreateEnvironmentOutput.fromJson(Map<String, dynamic> json) =>
-      _$CreateEnvironmentOutputFromJson(json);
+  factory CreateEnvironmentOutput.fromJson(Map<String, dynamic> json) {
+    return CreateEnvironmentOutput(
+      arn: json['Arn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateWebLoginTokenResponse {
   /// Create an Airflow Web UI login token response for the provided webserver
   /// hostname.
-  @_s.JsonKey(name: 'WebServerHostname')
-  final String webServerHostname;
+  final String? webServerHostname;
 
   /// Create an Airflow Web UI login token response for the provided JWT token.
-  @_s.JsonKey(name: 'WebToken')
-  final String webToken;
+  final String? webToken;
 
   CreateWebLoginTokenResponse({
     this.webServerHostname,
     this.webToken,
   });
-  factory CreateWebLoginTokenResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateWebLoginTokenResponseFromJson(json);
+  factory CreateWebLoginTokenResponse.fromJson(Map<String, dynamic> json) {
+    return CreateWebLoginTokenResponse(
+      webServerHostname: json['WebServerHostname'] as String?,
+      webToken: json['WebToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteEnvironmentOutput {
   DeleteEnvironmentOutput();
-  factory DeleteEnvironmentOutput.fromJson(Map<String, dynamic> json) =>
-      _$DeleteEnvironmentOutputFromJson(json);
+  factory DeleteEnvironmentOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteEnvironmentOutput();
+  }
 }
 
 /// Internal only API.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class Dimension {
   /// Internal only API.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'Value')
   final String value;
 
   Dimension({
-    @_s.required this.name,
-    @_s.required this.value,
+    required this.name,
+    required this.value,
   });
-  Map<String, dynamic> toJson() => _$DimensionToJson(this);
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
+    };
+  }
 }
 
 /// An Amazon MWAA environment.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Environment {
   /// The Airflow Configuration Options of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'AirflowConfigurationOptions')
-  final Map<String, String> airflowConfigurationOptions;
+  final Map<String, String>? airflowConfigurationOptions;
 
   /// The AirflowV ersion of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'AirflowVersion')
-  final String airflowVersion;
+  final String? airflowVersion;
 
   /// The ARN of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'Arn')
-  final String arn;
+  final String? arn;
 
   /// The Created At date of the Amazon MWAA Environment.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// The Dags S3 Path of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'DagS3Path')
-  final String dagS3Path;
+  final String? dagS3Path;
 
   /// The Environment Class (size) of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'EnvironmentClass')
-  final String environmentClass;
+  final String? environmentClass;
 
   /// The Execution Role ARN of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'ExecutionRoleArn')
-  final String executionRoleArn;
+  final String? executionRoleArn;
 
   /// The Kms Key of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'KmsKey')
-  final String kmsKey;
-  @_s.JsonKey(name: 'LastUpdate')
-  final LastUpdate lastUpdate;
+  final String? kmsKey;
+  final LastUpdate? lastUpdate;
 
   /// The Logging Configuration of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'LoggingConfiguration')
-  final LoggingConfiguration loggingConfiguration;
+  final LoggingConfiguration? loggingConfiguration;
 
   /// The Maximum Workers of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'MaxWorkers')
-  final int maxWorkers;
+  final int? maxWorkers;
 
   /// The name of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'Name')
-  final String name;
-  @_s.JsonKey(name: 'NetworkConfiguration')
-  final NetworkConfiguration networkConfiguration;
+  final String? name;
+  final NetworkConfiguration? networkConfiguration;
 
   /// The Plugins.zip S3 Object Version of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'PluginsS3ObjectVersion')
-  final String pluginsS3ObjectVersion;
+  final String? pluginsS3ObjectVersion;
 
   /// The Plugins.zip S3 Path of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'PluginsS3Path')
-  final String pluginsS3Path;
+  final String? pluginsS3Path;
 
   /// The Requirements.txt file S3 Object Version of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'RequirementsS3ObjectVersion')
-  final String requirementsS3ObjectVersion;
+  final String? requirementsS3ObjectVersion;
 
   /// The Requirement.txt S3 Path of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'RequirementsS3Path')
-  final String requirementsS3Path;
+  final String? requirementsS3Path;
 
   /// The Service Role ARN of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'ServiceRoleArn')
-  final String serviceRoleArn;
+  final String? serviceRoleArn;
 
   /// The Source S3 Bucket ARN of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'SourceBucketArn')
-  final String sourceBucketArn;
+  final String? sourceBucketArn;
 
   /// The status of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'Status')
-  final EnvironmentStatus status;
+  final EnvironmentStatus? status;
 
   /// The Tags of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// The Webserver Access Mode of the Amazon MWAA Environment (public or private
   /// only).
-  @_s.JsonKey(name: 'WebserverAccessMode')
-  final WebserverAccessMode webserverAccessMode;
+  final WebserverAccessMode? webserverAccessMode;
 
   /// The Webserver URL of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'WebserverUrl')
-  final String webserverUrl;
+  final String? webserverUrl;
 
   /// The Weekly Maintenance Window Start of the Amazon MWAA Environment.
-  @_s.JsonKey(name: 'WeeklyMaintenanceWindowStart')
-  final String weeklyMaintenanceWindowStart;
+  final String? weeklyMaintenanceWindowStart;
 
   Environment({
     this.airflowConfigurationOptions,
@@ -1130,127 +1076,185 @@ class Environment {
     this.webserverUrl,
     this.weeklyMaintenanceWindowStart,
   });
-  factory Environment.fromJson(Map<String, dynamic> json) =>
-      _$EnvironmentFromJson(json);
+  factory Environment.fromJson(Map<String, dynamic> json) {
+    return Environment(
+      airflowConfigurationOptions:
+          (json['AirflowConfigurationOptions'] as Map<String, dynamic>?)
+              ?.map((k, e) => MapEntry(k, e as String)),
+      airflowVersion: json['AirflowVersion'] as String?,
+      arn: json['Arn'] as String?,
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      dagS3Path: json['DagS3Path'] as String?,
+      environmentClass: json['EnvironmentClass'] as String?,
+      executionRoleArn: json['ExecutionRoleArn'] as String?,
+      kmsKey: json['KmsKey'] as String?,
+      lastUpdate: json['LastUpdate'] != null
+          ? LastUpdate.fromJson(json['LastUpdate'] as Map<String, dynamic>)
+          : null,
+      loggingConfiguration: json['LoggingConfiguration'] != null
+          ? LoggingConfiguration.fromJson(
+              json['LoggingConfiguration'] as Map<String, dynamic>)
+          : null,
+      maxWorkers: json['MaxWorkers'] as int?,
+      name: json['Name'] as String?,
+      networkConfiguration: json['NetworkConfiguration'] != null
+          ? NetworkConfiguration.fromJson(
+              json['NetworkConfiguration'] as Map<String, dynamic>)
+          : null,
+      pluginsS3ObjectVersion: json['PluginsS3ObjectVersion'] as String?,
+      pluginsS3Path: json['PluginsS3Path'] as String?,
+      requirementsS3ObjectVersion:
+          json['RequirementsS3ObjectVersion'] as String?,
+      requirementsS3Path: json['RequirementsS3Path'] as String?,
+      serviceRoleArn: json['ServiceRoleArn'] as String?,
+      sourceBucketArn: json['SourceBucketArn'] as String?,
+      status: (json['Status'] as String?)?.toEnvironmentStatus(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      webserverAccessMode:
+          (json['WebserverAccessMode'] as String?)?.toWebserverAccessMode(),
+      webserverUrl: json['WebserverUrl'] as String?,
+      weeklyMaintenanceWindowStart:
+          json['WeeklyMaintenanceWindowStart'] as String?,
+    );
+  }
 }
 
 enum EnvironmentStatus {
-  @_s.JsonValue('CREATING')
   creating,
-  @_s.JsonValue('CREATE_FAILED')
   createFailed,
-  @_s.JsonValue('AVAILABLE')
   available,
-  @_s.JsonValue('UPDATING')
   updating,
-  @_s.JsonValue('DELETING')
   deleting,
-  @_s.JsonValue('DELETED')
   deleted,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on EnvironmentStatus {
+  String toValue() {
+    switch (this) {
+      case EnvironmentStatus.creating:
+        return 'CREATING';
+      case EnvironmentStatus.createFailed:
+        return 'CREATE_FAILED';
+      case EnvironmentStatus.available:
+        return 'AVAILABLE';
+      case EnvironmentStatus.updating:
+        return 'UPDATING';
+      case EnvironmentStatus.deleting:
+        return 'DELETING';
+      case EnvironmentStatus.deleted:
+        return 'DELETED';
+    }
+  }
+}
+
+extension on String {
+  EnvironmentStatus toEnvironmentStatus() {
+    switch (this) {
+      case 'CREATING':
+        return EnvironmentStatus.creating;
+      case 'CREATE_FAILED':
+        return EnvironmentStatus.createFailed;
+      case 'AVAILABLE':
+        return EnvironmentStatus.available;
+      case 'UPDATING':
+        return EnvironmentStatus.updating;
+      case 'DELETING':
+        return EnvironmentStatus.deleting;
+      case 'DELETED':
+        return EnvironmentStatus.deleted;
+    }
+    throw Exception('$this is not known in enum EnvironmentStatus');
+  }
+}
+
 class GetEnvironmentOutput {
   /// A JSON blob with environment details.
-  @_s.JsonKey(name: 'Environment')
-  final Environment environment;
+  final Environment? environment;
 
   GetEnvironmentOutput({
     this.environment,
   });
-  factory GetEnvironmentOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetEnvironmentOutputFromJson(json);
+  factory GetEnvironmentOutput.fromJson(Map<String, dynamic> json) {
+    return GetEnvironmentOutput(
+      environment: json['Environment'] != null
+          ? Environment.fromJson(json['Environment'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Last update information for the environment.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LastUpdate {
   /// Time that last update occurred.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Error string of last update, if applicable.
-  @_s.JsonKey(name: 'Error')
-  final UpdateError error;
+  final UpdateError? error;
 
   /// Status of last update of SUCCESS, FAILED, CREATING, DELETING.
-  @_s.JsonKey(name: 'Status')
-  final UpdateStatus status;
+  final UpdateStatus? status;
 
   LastUpdate({
     this.createdAt,
     this.error,
     this.status,
   });
-  factory LastUpdate.fromJson(Map<String, dynamic> json) =>
-      _$LastUpdateFromJson(json);
+  factory LastUpdate.fromJson(Map<String, dynamic> json) {
+    return LastUpdate(
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      error: json['Error'] != null
+          ? UpdateError.fromJson(json['Error'] as Map<String, dynamic>)
+          : null,
+      status: (json['Status'] as String?)?.toUpdateStatus(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListEnvironmentsOutput {
   /// The list of Amazon MWAA Environments.
-  @_s.JsonKey(name: 'Environments')
   final List<String> environments;
 
   /// The Next Token when listing MWAA environments.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListEnvironmentsOutput({
-    @_s.required this.environments,
+    required this.environments,
     this.nextToken,
   });
-  factory ListEnvironmentsOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListEnvironmentsOutputFromJson(json);
+  factory ListEnvironmentsOutput.fromJson(Map<String, dynamic> json) {
+    return ListEnvironmentsOutput(
+      environments: (json['Environments'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceOutput {
   /// The tags of the MWAA environments.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceOutput({
     this.tags,
   });
-  factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceOutputFromJson(json);
+  factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceOutput(
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// The Logging Configuration of your Amazon MWAA environment.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LoggingConfiguration {
-  @_s.JsonKey(name: 'DagProcessingLogs')
-  final ModuleLoggingConfiguration dagProcessingLogs;
-  @_s.JsonKey(name: 'SchedulerLogs')
-  final ModuleLoggingConfiguration schedulerLogs;
-  @_s.JsonKey(name: 'TaskLogs')
-  final ModuleLoggingConfiguration taskLogs;
-  @_s.JsonKey(name: 'WebserverLogs')
-  final ModuleLoggingConfiguration webserverLogs;
-  @_s.JsonKey(name: 'WorkerLogs')
-  final ModuleLoggingConfiguration workerLogs;
+  final ModuleLoggingConfiguration? dagProcessingLogs;
+  final ModuleLoggingConfiguration? schedulerLogs;
+  final ModuleLoggingConfiguration? taskLogs;
+  final ModuleLoggingConfiguration? webserverLogs;
+  final ModuleLoggingConfiguration? workerLogs;
 
   LoggingConfiguration({
     this.dagProcessingLogs,
@@ -1259,27 +1263,39 @@ class LoggingConfiguration {
     this.webserverLogs,
     this.workerLogs,
   });
-  factory LoggingConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$LoggingConfigurationFromJson(json);
+  factory LoggingConfiguration.fromJson(Map<String, dynamic> json) {
+    return LoggingConfiguration(
+      dagProcessingLogs: json['DagProcessingLogs'] != null
+          ? ModuleLoggingConfiguration.fromJson(
+              json['DagProcessingLogs'] as Map<String, dynamic>)
+          : null,
+      schedulerLogs: json['SchedulerLogs'] != null
+          ? ModuleLoggingConfiguration.fromJson(
+              json['SchedulerLogs'] as Map<String, dynamic>)
+          : null,
+      taskLogs: json['TaskLogs'] != null
+          ? ModuleLoggingConfiguration.fromJson(
+              json['TaskLogs'] as Map<String, dynamic>)
+          : null,
+      webserverLogs: json['WebserverLogs'] != null
+          ? ModuleLoggingConfiguration.fromJson(
+              json['WebserverLogs'] as Map<String, dynamic>)
+          : null,
+      workerLogs: json['WorkerLogs'] != null
+          ? ModuleLoggingConfiguration.fromJson(
+              json['WorkerLogs'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// The Logging Configuration of your Amazon MWAA environment.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class LoggingConfigurationInput {
-  @_s.JsonKey(name: 'DagProcessingLogs')
-  final ModuleLoggingConfigurationInput dagProcessingLogs;
-  @_s.JsonKey(name: 'SchedulerLogs')
-  final ModuleLoggingConfigurationInput schedulerLogs;
-  @_s.JsonKey(name: 'TaskLogs')
-  final ModuleLoggingConfigurationInput taskLogs;
-  @_s.JsonKey(name: 'WebserverLogs')
-  final ModuleLoggingConfigurationInput webserverLogs;
-  @_s.JsonKey(name: 'WorkerLogs')
-  final ModuleLoggingConfigurationInput workerLogs;
+  final ModuleLoggingConfigurationInput? dagProcessingLogs;
+  final ModuleLoggingConfigurationInput? schedulerLogs;
+  final ModuleLoggingConfigurationInput? taskLogs;
+  final ModuleLoggingConfigurationInput? webserverLogs;
+  final ModuleLoggingConfigurationInput? workerLogs;
 
   LoggingConfigurationInput({
     this.dagProcessingLogs,
@@ -1288,178 +1304,217 @@ class LoggingConfigurationInput {
     this.webserverLogs,
     this.workerLogs,
   });
-  Map<String, dynamic> toJson() => _$LoggingConfigurationInputToJson(this);
+  Map<String, dynamic> toJson() {
+    final dagProcessingLogs = this.dagProcessingLogs;
+    final schedulerLogs = this.schedulerLogs;
+    final taskLogs = this.taskLogs;
+    final webserverLogs = this.webserverLogs;
+    final workerLogs = this.workerLogs;
+    return {
+      if (dagProcessingLogs != null) 'DagProcessingLogs': dagProcessingLogs,
+      if (schedulerLogs != null) 'SchedulerLogs': schedulerLogs,
+      if (taskLogs != null) 'TaskLogs': taskLogs,
+      if (webserverLogs != null) 'WebserverLogs': webserverLogs,
+      if (workerLogs != null) 'WorkerLogs': workerLogs,
+    };
+  }
 }
 
 enum LoggingLevel {
-  @_s.JsonValue('CRITICAL')
   critical,
-  @_s.JsonValue('ERROR')
   error,
-  @_s.JsonValue('WARNING')
   warning,
-  @_s.JsonValue('INFO')
   info,
-  @_s.JsonValue('DEBUG')
   debug,
 }
 
+extension on LoggingLevel {
+  String toValue() {
+    switch (this) {
+      case LoggingLevel.critical:
+        return 'CRITICAL';
+      case LoggingLevel.error:
+        return 'ERROR';
+      case LoggingLevel.warning:
+        return 'WARNING';
+      case LoggingLevel.info:
+        return 'INFO';
+      case LoggingLevel.debug:
+        return 'DEBUG';
+    }
+  }
+}
+
+extension on String {
+  LoggingLevel toLoggingLevel() {
+    switch (this) {
+      case 'CRITICAL':
+        return LoggingLevel.critical;
+      case 'ERROR':
+        return LoggingLevel.error;
+      case 'WARNING':
+        return LoggingLevel.warning;
+      case 'INFO':
+        return LoggingLevel.info;
+      case 'DEBUG':
+        return LoggingLevel.debug;
+    }
+    throw Exception('$this is not known in enum LoggingLevel');
+  }
+}
+
 /// Internal only API.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class MetricDatum {
   /// Internal only API.
-  @_s.JsonKey(name: 'MetricName')
   final String metricName;
 
   /// Internal only API.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'Timestamp')
   final DateTime timestamp;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'Dimensions')
-  final List<Dimension> dimensions;
+  final List<Dimension>? dimensions;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'StatisticValues')
-  final StatisticSet statisticValues;
-  @_s.JsonKey(name: 'Unit')
-  final Unit unit;
+  final StatisticSet? statisticValues;
+  final Unit? unit;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'Value')
-  final double value;
+  final double? value;
 
   MetricDatum({
-    @_s.required this.metricName,
-    @_s.required this.timestamp,
+    required this.metricName,
+    required this.timestamp,
     this.dimensions,
     this.statisticValues,
     this.unit,
     this.value,
   });
-  Map<String, dynamic> toJson() => _$MetricDatumToJson(this);
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final timestamp = this.timestamp;
+    final dimensions = this.dimensions;
+    final statisticValues = this.statisticValues;
+    final unit = this.unit;
+    final value = this.value;
+    return {
+      'MetricName': metricName,
+      'Timestamp': unixTimestampToJson(timestamp),
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (statisticValues != null) 'StatisticValues': statisticValues,
+      if (unit != null) 'Unit': unit.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// A JSON blob that provides configuration to use for logging with respect to
 /// the various Apache Airflow services: DagProcessingLogs, SchedulerLogs,
 /// TaskLogs, WebserverLogs, and WorkerLogs.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ModuleLoggingConfiguration {
   /// Provides the ARN for the CloudWatch group where the logs will be published.
-  @_s.JsonKey(name: 'CloudWatchLogGroupArn')
-  final String cloudWatchLogGroupArn;
+  final String? cloudWatchLogGroupArn;
 
   /// Defines that the logging module is enabled.
-  @_s.JsonKey(name: 'Enabled')
-  final bool enabled;
+  final bool? enabled;
 
   /// Defines the log level, which can be CRITICAL, ERROR, WARNING, or INFO.
-  @_s.JsonKey(name: 'LogLevel')
-  final LoggingLevel logLevel;
+  final LoggingLevel? logLevel;
 
   ModuleLoggingConfiguration({
     this.cloudWatchLogGroupArn,
     this.enabled,
     this.logLevel,
   });
-  factory ModuleLoggingConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$ModuleLoggingConfigurationFromJson(json);
+  factory ModuleLoggingConfiguration.fromJson(Map<String, dynamic> json) {
+    return ModuleLoggingConfiguration(
+      cloudWatchLogGroupArn: json['CloudWatchLogGroupArn'] as String?,
+      enabled: json['Enabled'] as bool?,
+      logLevel: (json['LogLevel'] as String?)?.toLoggingLevel(),
+    );
+  }
 }
 
 /// A JSON blob that provides configuration to use for logging with respect to
 /// the various Apache Airflow services: DagProcessingLogs, SchedulerLogs,
 /// TaskLogs, WebserverLogs, and WorkerLogs.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class ModuleLoggingConfigurationInput {
   /// Defines that the logging module is enabled.
-  @_s.JsonKey(name: 'Enabled')
   final bool enabled;
 
   /// Defines the log level, which can be CRITICAL, ERROR, WARNING, or INFO.
-  @_s.JsonKey(name: 'LogLevel')
   final LoggingLevel logLevel;
 
   ModuleLoggingConfigurationInput({
-    @_s.required this.enabled,
-    @_s.required this.logLevel,
+    required this.enabled,
+    required this.logLevel,
   });
-  Map<String, dynamic> toJson() =>
-      _$ModuleLoggingConfigurationInputToJson(this);
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final logLevel = this.logLevel;
+    return {
+      'Enabled': enabled,
+      'LogLevel': logLevel.toValue(),
+    };
+  }
 }
 
 /// Provide the security group and subnet IDs for the workers and scheduler.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class NetworkConfiguration {
   /// A JSON list of 1 or more security groups IDs by name, in the same VPC as the
   /// subnets.
-  @_s.JsonKey(name: 'SecurityGroupIds')
-  final List<String> securityGroupIds;
+  final List<String>? securityGroupIds;
 
   /// Provide a JSON list of 2 subnet IDs by name. These must be private subnets,
   /// in the same VPC, in two different availability zones.
-  @_s.JsonKey(name: 'SubnetIds')
-  final List<String> subnetIds;
+  final List<String>? subnetIds;
 
   NetworkConfiguration({
     this.securityGroupIds,
     this.subnetIds,
   });
-  factory NetworkConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$NetworkConfigurationFromJson(json);
+  factory NetworkConfiguration.fromJson(Map<String, dynamic> json) {
+    return NetworkConfiguration(
+      securityGroupIds: (json['SecurityGroupIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      subnetIds: (json['SubnetIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$NetworkConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    return {
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PublishMetricsOutput {
   PublishMetricsOutput();
-  factory PublishMetricsOutput.fromJson(Map<String, dynamic> json) =>
-      _$PublishMetricsOutputFromJson(json);
+  factory PublishMetricsOutput.fromJson(Map<String, dynamic> _) {
+    return PublishMetricsOutput();
+  }
 }
 
 /// Internal only API.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class StatisticSet {
   /// Internal only API.
-  @_s.JsonKey(name: 'Maximum')
-  final double maximum;
+  final double? maximum;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'Minimum')
-  final double minimum;
+  final double? minimum;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'SampleCount')
-  final int sampleCount;
+  final int? sampleCount;
 
   /// Internal only API.
-  @_s.JsonKey(name: 'Sum')
-  final double sum;
+  final double? sum;
 
   StatisticSet({
     this.maximum,
@@ -1467,161 +1522,274 @@ class StatisticSet {
     this.sampleCount,
     this.sum,
   });
-  Map<String, dynamic> toJson() => _$StatisticSetToJson(this);
+  Map<String, dynamic> toJson() {
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    return {
+      if (maximum != null) 'Maximum': maximum,
+      if (minimum != null) 'Minimum': minimum,
+      if (sampleCount != null) 'SampleCount': sampleCount,
+      if (sum != null) 'Sum': sum,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TagResourceOutput {
   TagResourceOutput();
-  factory TagResourceOutput.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceOutputFromJson(json);
+  factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return TagResourceOutput();
+  }
 }
 
 /// Unit
 enum Unit {
-  @_s.JsonValue('Seconds')
   seconds,
-  @_s.JsonValue('Microseconds')
   microseconds,
-  @_s.JsonValue('Milliseconds')
   milliseconds,
-  @_s.JsonValue('Bytes')
   bytes,
-  @_s.JsonValue('Kilobytes')
   kilobytes,
-  @_s.JsonValue('Megabytes')
   megabytes,
-  @_s.JsonValue('Gigabytes')
   gigabytes,
-  @_s.JsonValue('Terabytes')
   terabytes,
-  @_s.JsonValue('Bits')
   bits,
-  @_s.JsonValue('Kilobits')
   kilobits,
-  @_s.JsonValue('Megabits')
   megabits,
-  @_s.JsonValue('Gigabits')
   gigabits,
-  @_s.JsonValue('Terabits')
   terabits,
-  @_s.JsonValue('Percent')
   percent,
-  @_s.JsonValue('Count')
   count,
-  @_s.JsonValue('Bytes/Second')
   bytesSecond,
-  @_s.JsonValue('Kilobytes/Second')
   kilobytesSecond,
-  @_s.JsonValue('Megabytes/Second')
   megabytesSecond,
-  @_s.JsonValue('Gigabytes/Second')
   gigabytesSecond,
-  @_s.JsonValue('Terabytes/Second')
   terabytesSecond,
-  @_s.JsonValue('Bits/Second')
   bitsSecond,
-  @_s.JsonValue('Kilobits/Second')
   kilobitsSecond,
-  @_s.JsonValue('Megabits/Second')
   megabitsSecond,
-  @_s.JsonValue('Gigabits/Second')
   gigabitsSecond,
-  @_s.JsonValue('Terabits/Second')
   terabitsSecond,
-  @_s.JsonValue('Count/Second')
   countSecond,
-  @_s.JsonValue('None')
   none,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
-class UntagResourceOutput {
-  UntagResourceOutput();
-  factory UntagResourceOutput.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceOutputFromJson(json);
+extension on Unit {
+  String toValue() {
+    switch (this) {
+      case Unit.seconds:
+        return 'Seconds';
+      case Unit.microseconds:
+        return 'Microseconds';
+      case Unit.milliseconds:
+        return 'Milliseconds';
+      case Unit.bytes:
+        return 'Bytes';
+      case Unit.kilobytes:
+        return 'Kilobytes';
+      case Unit.megabytes:
+        return 'Megabytes';
+      case Unit.gigabytes:
+        return 'Gigabytes';
+      case Unit.terabytes:
+        return 'Terabytes';
+      case Unit.bits:
+        return 'Bits';
+      case Unit.kilobits:
+        return 'Kilobits';
+      case Unit.megabits:
+        return 'Megabits';
+      case Unit.gigabits:
+        return 'Gigabits';
+      case Unit.terabits:
+        return 'Terabits';
+      case Unit.percent:
+        return 'Percent';
+      case Unit.count:
+        return 'Count';
+      case Unit.bytesSecond:
+        return 'Bytes/Second';
+      case Unit.kilobytesSecond:
+        return 'Kilobytes/Second';
+      case Unit.megabytesSecond:
+        return 'Megabytes/Second';
+      case Unit.gigabytesSecond:
+        return 'Gigabytes/Second';
+      case Unit.terabytesSecond:
+        return 'Terabytes/Second';
+      case Unit.bitsSecond:
+        return 'Bits/Second';
+      case Unit.kilobitsSecond:
+        return 'Kilobits/Second';
+      case Unit.megabitsSecond:
+        return 'Megabits/Second';
+      case Unit.gigabitsSecond:
+        return 'Gigabits/Second';
+      case Unit.terabitsSecond:
+        return 'Terabits/Second';
+      case Unit.countSecond:
+        return 'Count/Second';
+      case Unit.none:
+        return 'None';
+    }
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on String {
+  Unit toUnit() {
+    switch (this) {
+      case 'Seconds':
+        return Unit.seconds;
+      case 'Microseconds':
+        return Unit.microseconds;
+      case 'Milliseconds':
+        return Unit.milliseconds;
+      case 'Bytes':
+        return Unit.bytes;
+      case 'Kilobytes':
+        return Unit.kilobytes;
+      case 'Megabytes':
+        return Unit.megabytes;
+      case 'Gigabytes':
+        return Unit.gigabytes;
+      case 'Terabytes':
+        return Unit.terabytes;
+      case 'Bits':
+        return Unit.bits;
+      case 'Kilobits':
+        return Unit.kilobits;
+      case 'Megabits':
+        return Unit.megabits;
+      case 'Gigabits':
+        return Unit.gigabits;
+      case 'Terabits':
+        return Unit.terabits;
+      case 'Percent':
+        return Unit.percent;
+      case 'Count':
+        return Unit.count;
+      case 'Bytes/Second':
+        return Unit.bytesSecond;
+      case 'Kilobytes/Second':
+        return Unit.kilobytesSecond;
+      case 'Megabytes/Second':
+        return Unit.megabytesSecond;
+      case 'Gigabytes/Second':
+        return Unit.gigabytesSecond;
+      case 'Terabytes/Second':
+        return Unit.terabytesSecond;
+      case 'Bits/Second':
+        return Unit.bitsSecond;
+      case 'Kilobits/Second':
+        return Unit.kilobitsSecond;
+      case 'Megabits/Second':
+        return Unit.megabitsSecond;
+      case 'Gigabits/Second':
+        return Unit.gigabitsSecond;
+      case 'Terabits/Second':
+        return Unit.terabitsSecond;
+      case 'Count/Second':
+        return Unit.countSecond;
+      case 'None':
+        return Unit.none;
+    }
+    throw Exception('$this is not known in enum Unit');
+  }
+}
+
+class UntagResourceOutput {
+  UntagResourceOutput();
+  factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return UntagResourceOutput();
+  }
+}
+
 class UpdateEnvironmentOutput {
   /// The ARN to update of your Amazon MWAA environment.
-  @_s.JsonKey(name: 'Arn')
-  final String arn;
+  final String? arn;
 
   UpdateEnvironmentOutput({
     this.arn,
   });
-  factory UpdateEnvironmentOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateEnvironmentOutputFromJson(json);
+  factory UpdateEnvironmentOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateEnvironmentOutput(
+      arn: json['Arn'] as String?,
+    );
+  }
 }
 
 /// Error information of update, if applicable.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateError {
   /// Error code of update.
-  @_s.JsonKey(name: 'ErrorCode')
-  final String errorCode;
+  final String? errorCode;
 
   /// Error message of update.
-  @_s.JsonKey(name: 'ErrorMessage')
-  final String errorMessage;
+  final String? errorMessage;
 
   UpdateError({
     this.errorCode,
     this.errorMessage,
   });
-  factory UpdateError.fromJson(Map<String, dynamic> json) =>
-      _$UpdateErrorFromJson(json);
+  factory UpdateError.fromJson(Map<String, dynamic> json) {
+    return UpdateError(
+      errorCode: json['ErrorCode'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+    );
+  }
 }
 
 /// Provide the security group and subnet IDs for the workers and scheduler.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class UpdateNetworkConfigurationInput {
   /// Provide a JSON list of 1 or more security groups IDs by name, in the same
   /// VPC as the subnets.
-  @_s.JsonKey(name: 'SecurityGroupIds')
   final List<String> securityGroupIds;
 
   UpdateNetworkConfigurationInput({
-    @_s.required this.securityGroupIds,
+    required this.securityGroupIds,
   });
-  Map<String, dynamic> toJson() =>
-      _$UpdateNetworkConfigurationInputToJson(this);
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    return {
+      'SecurityGroupIds': securityGroupIds,
+    };
+  }
 }
 
 enum UpdateStatus {
-  @_s.JsonValue('SUCCESS')
   success,
-  @_s.JsonValue('PENDING')
   pending,
-  @_s.JsonValue('FAILED')
   failed,
 }
 
+extension on UpdateStatus {
+  String toValue() {
+    switch (this) {
+      case UpdateStatus.success:
+        return 'SUCCESS';
+      case UpdateStatus.pending:
+        return 'PENDING';
+      case UpdateStatus.failed:
+        return 'FAILED';
+    }
+  }
+}
+
+extension on String {
+  UpdateStatus toUpdateStatus() {
+    switch (this) {
+      case 'SUCCESS':
+        return UpdateStatus.success;
+      case 'PENDING':
+        return UpdateStatus.pending;
+      case 'FAILED':
+        return UpdateStatus.failed;
+    }
+    throw Exception('$this is not known in enum UpdateStatus');
+  }
+}
+
 enum WebserverAccessMode {
-  @_s.JsonValue('PRIVATE_ONLY')
   privateOnly,
-  @_s.JsonValue('PUBLIC_ONLY')
   publicOnly,
 }
 
@@ -1633,27 +1801,38 @@ extension on WebserverAccessMode {
       case WebserverAccessMode.publicOnly:
         return 'PUBLIC_ONLY';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  WebserverAccessMode toWebserverAccessMode() {
+    switch (this) {
+      case 'PRIVATE_ONLY':
+        return WebserverAccessMode.privateOnly;
+      case 'PUBLIC_ONLY':
+        return WebserverAccessMode.publicOnly;
+    }
+    throw Exception('$this is not known in enum WebserverAccessMode');
   }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

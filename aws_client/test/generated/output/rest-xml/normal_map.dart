@@ -3,13 +3,19 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
-    show Uint8ListConverter, Uint8ListListConverter;
+    show
+        rfc822ToJson,
+        iso8601ToJson,
+        unixTimestampToJson,
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
@@ -17,10 +23,10 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 class NormalMap {
   final _s.RestXmlProtocol _protocol;
   NormalMap({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestXmlProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -42,7 +48,7 @@ class NormalMap {
 }
 
 class OutputShape {
-  final Map<String, SingleStructure> map;
+  final Map<String, SingleStructure>? map;
 
   OutputShape({
     this.map,
@@ -50,21 +56,20 @@ class OutputShape {
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       map: Map.fromEntries(
-        elem.getElement('Map').findElements('entry').map(
-              (c) => MapEntry(
-                _s.extractXmlStringValue(c, 'key'),
-                _s
-                    .extractXmlChild(c, 'value')
-                    ?.let((e) => SingleStructure.fromXml(e)),
-              ),
-            ),
+        elem.getElement('Map')?.findElements('entry').map(
+                  (c) => MapEntry(
+                    _s.extractXmlStringValue(c, 'key')!,
+                    SingleStructure.fromXml(_s.extractXmlChild(c, 'value')!),
+                  ),
+                ) ??
+            {},
       ),
     );
   }
 }
 
 class SingleStructure {
-  final String foo;
+  final String? foo;
 
   SingleStructure({
     this.foo,

@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,22 +11,14 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 import '2015-02-02.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2015-02-02.g.dart';
 
 /// Amazon ElastiCache is a web service that makes it easier to set up, operate,
 /// and scale a distributed cache in the cloud.
@@ -34,9 +27,9 @@ class ElastiCache {
   final Map<String, _s.Shape> shapes;
 
   ElastiCache({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
   })  : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -83,8 +76,8 @@ class ElastiCache {
   /// A list of cost allocation tags to be added to this resource. A tag is a
   /// key-value pair. A tag key must be accompanied by a tag value.
   Future<TagListMessage> addTagsToResource({
-    @_s.required String resourceName,
-    @_s.required List<Tag> tags,
+    required String resourceName,
+    required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
     ArgumentError.checkNotNull(tags, 'tags');
@@ -132,9 +125,9 @@ class ElastiCache {
   /// valid AWS account number for this parameter.
   Future<AuthorizeCacheSecurityGroupIngressResult>
       authorizeCacheSecurityGroupIngress({
-    @_s.required String cacheSecurityGroupName,
-    @_s.required String eC2SecurityGroupName,
-    @_s.required String eC2SecurityGroupOwnerId,
+    required String cacheSecurityGroupName,
+    required String eC2SecurityGroupName,
+    required String eC2SecurityGroupOwnerId,
   }) async {
     ArgumentError.checkNotNull(
         cacheSecurityGroupName, 'cacheSecurityGroupName');
@@ -176,9 +169,9 @@ class ElastiCache {
   /// Parameter [replicationGroupIds] :
   /// The replication group IDs
   Future<UpdateActionResultsMessage> batchApplyUpdateAction({
-    @_s.required String serviceUpdateName,
-    List<String> cacheClusterIds,
-    List<String> replicationGroupIds,
+    required String serviceUpdateName,
+    List<String>? cacheClusterIds,
+    List<String>? replicationGroupIds,
   }) async {
     ArgumentError.checkNotNull(serviceUpdateName, 'serviceUpdateName');
     final $request = <String, dynamic>{};
@@ -216,9 +209,9 @@ class ElastiCache {
   /// Parameter [replicationGroupIds] :
   /// The replication group IDs
   Future<UpdateActionResultsMessage> batchStopUpdateAction({
-    @_s.required String serviceUpdateName,
-    List<String> cacheClusterIds,
-    List<String> replicationGroupIds,
+    required String serviceUpdateName,
+    List<String>? cacheClusterIds,
+    List<String>? replicationGroupIds,
   }) async {
     ArgumentError.checkNotNull(serviceUpdateName, 'serviceUpdateName');
     final $request = <String, dynamic>{};
@@ -253,8 +246,8 @@ class ElastiCache {
   /// recommended to use this option only to abort the migration and not
   /// recommended when application wants to continue migration to ElastiCache.
   Future<CompleteMigrationResponse> completeMigration({
-    @_s.required String replicationGroupId,
-    bool force,
+    required String replicationGroupId,
+    bool? force,
   }) async {
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
     final $request = <String, dynamic>{};
@@ -398,10 +391,10 @@ class ElastiCache {
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Snapshots.Exporting.html">Exporting
   /// a Snapshot</a> in the <i>Amazon ElastiCache User Guide</i>.
   Future<CopySnapshotResult> copySnapshot({
-    @_s.required String sourceSnapshotName,
-    @_s.required String targetSnapshotName,
-    String kmsKeyId,
-    String targetBucket,
+    required String sourceSnapshotName,
+    required String targetSnapshotName,
+    String? kmsKeyId,
+    String? targetBucket,
   }) async {
     ArgumentError.checkNotNull(sourceSnapshotName, 'sourceSnapshotName');
     ArgumentError.checkNotNull(targetSnapshotName, 'targetSnapshotName');
@@ -833,32 +826,32 @@ class ElastiCache {
   /// Parameter [tags] :
   /// A list of cost allocation tags to be added to this resource.
   Future<CreateCacheClusterResult> createCacheCluster({
-    @_s.required String cacheClusterId,
-    AZMode aZMode,
-    String authToken,
-    bool autoMinorVersionUpgrade,
-    String cacheNodeType,
-    String cacheParameterGroupName,
-    List<String> cacheSecurityGroupNames,
-    String cacheSubnetGroupName,
-    String engine,
-    String engineVersion,
-    String notificationTopicArn,
-    int numCacheNodes,
-    OutpostMode outpostMode,
-    int port,
-    String preferredAvailabilityZone,
-    List<String> preferredAvailabilityZones,
-    String preferredMaintenanceWindow,
-    String preferredOutpostArn,
-    List<String> preferredOutpostArns,
-    String replicationGroupId,
-    List<String> securityGroupIds,
-    List<String> snapshotArns,
-    String snapshotName,
-    int snapshotRetentionLimit,
-    String snapshotWindow,
-    List<Tag> tags,
+    required String cacheClusterId,
+    AZMode? aZMode,
+    String? authToken,
+    bool? autoMinorVersionUpgrade,
+    String? cacheNodeType,
+    String? cacheParameterGroupName,
+    List<String>? cacheSecurityGroupNames,
+    String? cacheSubnetGroupName,
+    String? engine,
+    String? engineVersion,
+    String? notificationTopicArn,
+    int? numCacheNodes,
+    OutpostMode? outpostMode,
+    int? port,
+    String? preferredAvailabilityZone,
+    List<String>? preferredAvailabilityZones,
+    String? preferredMaintenanceWindow,
+    String? preferredOutpostArn,
+    List<String>? preferredOutpostArns,
+    String? replicationGroupId,
+    List<String>? securityGroupIds,
+    List<String>? snapshotArns,
+    String? snapshotName,
+    int? snapshotRetentionLimit,
+    String? snapshotWindow,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(cacheClusterId, 'cacheClusterId');
     final $request = <String, dynamic>{};
@@ -953,9 +946,9 @@ class ElastiCache {
   /// Parameter [description] :
   /// A user-specified description for the cache parameter group.
   Future<CreateCacheParameterGroupResult> createCacheParameterGroup({
-    @_s.required String cacheParameterGroupFamily,
-    @_s.required String cacheParameterGroupName,
-    @_s.required String description,
+    required String cacheParameterGroupFamily,
+    required String cacheParameterGroupName,
+    required String description,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupFamily, 'cacheParameterGroupFamily');
@@ -1006,8 +999,8 @@ class ElastiCache {
   /// Parameter [description] :
   /// A description for the cache security group.
   Future<CreateCacheSecurityGroupResult> createCacheSecurityGroup({
-    @_s.required String cacheSecurityGroupName,
-    @_s.required String description,
+    required String cacheSecurityGroupName,
+    required String description,
   }) async {
     ArgumentError.checkNotNull(
         cacheSecurityGroupName, 'cacheSecurityGroupName');
@@ -1055,9 +1048,9 @@ class ElastiCache {
   /// Parameter [subnetIds] :
   /// A list of VPC subnet IDs for the cache subnet group.
   Future<CreateCacheSubnetGroupResult> createCacheSubnetGroup({
-    @_s.required String cacheSubnetGroupDescription,
-    @_s.required String cacheSubnetGroupName,
-    @_s.required List<String> subnetIds,
+    required String cacheSubnetGroupDescription,
+    required String cacheSubnetGroupName,
+    required List<String> subnetIds,
   }) async {
     ArgumentError.checkNotNull(
         cacheSubnetGroupDescription, 'cacheSubnetGroupDescription');
@@ -1128,9 +1121,9 @@ class ElastiCache {
   /// Parameter [globalReplicationGroupDescription] :
   /// Provides details of the Global Datastore
   Future<CreateGlobalReplicationGroupResult> createGlobalReplicationGroup({
-    @_s.required String globalReplicationGroupIdSuffix,
-    @_s.required String primaryReplicationGroupId,
-    String globalReplicationGroupDescription,
+    required String globalReplicationGroupIdSuffix,
+    required String primaryReplicationGroupId,
+    String? globalReplicationGroupDescription,
   }) async {
     ArgumentError.checkNotNull(
         globalReplicationGroupIdSuffix, 'globalReplicationGroupIdSuffix');
@@ -1670,38 +1663,38 @@ class ElastiCache {
   /// Parameter [userGroupIds] :
   /// The list of user groups to associate with the replication group.
   Future<CreateReplicationGroupResult> createReplicationGroup({
-    @_s.required String replicationGroupDescription,
-    @_s.required String replicationGroupId,
-    bool atRestEncryptionEnabled,
-    String authToken,
-    bool autoMinorVersionUpgrade,
-    bool automaticFailoverEnabled,
-    String cacheNodeType,
-    String cacheParameterGroupName,
-    List<String> cacheSecurityGroupNames,
-    String cacheSubnetGroupName,
-    String engine,
-    String engineVersion,
-    String globalReplicationGroupId,
-    String kmsKeyId,
-    bool multiAZEnabled,
-    List<NodeGroupConfiguration> nodeGroupConfiguration,
-    String notificationTopicArn,
-    int numCacheClusters,
-    int numNodeGroups,
-    int port,
-    List<String> preferredCacheClusterAZs,
-    String preferredMaintenanceWindow,
-    String primaryClusterId,
-    int replicasPerNodeGroup,
-    List<String> securityGroupIds,
-    List<String> snapshotArns,
-    String snapshotName,
-    int snapshotRetentionLimit,
-    String snapshotWindow,
-    List<Tag> tags,
-    bool transitEncryptionEnabled,
-    List<String> userGroupIds,
+    required String replicationGroupDescription,
+    required String replicationGroupId,
+    bool? atRestEncryptionEnabled,
+    String? authToken,
+    bool? autoMinorVersionUpgrade,
+    bool? automaticFailoverEnabled,
+    String? cacheNodeType,
+    String? cacheParameterGroupName,
+    List<String>? cacheSecurityGroupNames,
+    String? cacheSubnetGroupName,
+    String? engine,
+    String? engineVersion,
+    String? globalReplicationGroupId,
+    String? kmsKeyId,
+    bool? multiAZEnabled,
+    List<NodeGroupConfiguration>? nodeGroupConfiguration,
+    String? notificationTopicArn,
+    int? numCacheClusters,
+    int? numNodeGroups,
+    int? port,
+    List<String>? preferredCacheClusterAZs,
+    String? preferredMaintenanceWindow,
+    String? primaryClusterId,
+    int? replicasPerNodeGroup,
+    List<String>? securityGroupIds,
+    List<String>? snapshotArns,
+    String? snapshotName,
+    int? snapshotRetentionLimit,
+    String? snapshotWindow,
+    List<Tag>? tags,
+    bool? transitEncryptionEnabled,
+    List<String>? userGroupIds,
   }) async {
     ArgumentError.checkNotNull(
         replicationGroupDescription, 'replicationGroupDescription');
@@ -1794,10 +1787,10 @@ class ElastiCache {
   /// The identifier of an existing replication group. The snapshot is created
   /// from this replication group.
   Future<CreateSnapshotResult> createSnapshot({
-    @_s.required String snapshotName,
-    String cacheClusterId,
-    String kmsKeyId,
-    String replicationGroupId,
+    required String snapshotName,
+    String? cacheClusterId,
+    String? kmsKeyId,
+    String? replicationGroupId,
   }) async {
     ArgumentError.checkNotNull(snapshotName, 'snapshotName');
     final $request = <String, dynamic>{};
@@ -1849,12 +1842,12 @@ class ElastiCache {
   /// Passwords used for this user. You can create up to two passwords for each
   /// user.
   Future<User> createUser({
-    @_s.required String accessString,
-    @_s.required String engine,
-    @_s.required String userId,
-    @_s.required String userName,
-    bool noPasswordRequired,
-    List<String> passwords,
+    required String accessString,
+    required String engine,
+    required String userId,
+    required String userName,
+    bool? noPasswordRequired,
+    List<String>? passwords,
   }) async {
     ArgumentError.checkNotNull(accessString, 'accessString');
     _s.validateStringPattern(
@@ -1934,9 +1927,9 @@ class ElastiCache {
   /// Parameter [userIds] :
   /// The list of user IDs that belong to the user group.
   Future<UserGroup> createUserGroup({
-    @_s.required String engine,
-    @_s.required String userGroupId,
-    List<String> userIds,
+    required String engine,
+    required String userGroupId,
+    List<String>? userIds,
   }) async {
     ArgumentError.checkNotNull(engine, 'engine');
     _s.validateStringPattern(
@@ -1997,11 +1990,11 @@ class ElastiCache {
   /// listed by NodeGroupsToRemove from the cluster.
   Future<DecreaseNodeGroupsInGlobalReplicationGroupResult>
       decreaseNodeGroupsInGlobalReplicationGroup({
-    @_s.required bool applyImmediately,
-    @_s.required String globalReplicationGroupId,
-    @_s.required int nodeGroupCount,
-    List<String> globalNodeGroupsToRemove,
-    List<String> globalNodeGroupsToRetain,
+    required bool applyImmediately,
+    required String globalReplicationGroupId,
+    required int nodeGroupCount,
+    List<String>? globalNodeGroupsToRemove,
+    List<String>? globalNodeGroupsToRetain,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(
@@ -2094,11 +2087,11 @@ class ElastiCache {
   /// A list of the node ids to remove from the replication group or node group
   /// (shard).
   Future<DecreaseReplicaCountResult> decreaseReplicaCount({
-    @_s.required bool applyImmediately,
-    @_s.required String replicationGroupId,
-    int newReplicaCount,
-    List<ConfigureShard> replicaConfiguration,
-    List<String> replicasToRemove,
+    required bool applyImmediately,
+    required String replicationGroupId,
+    int? newReplicaCount,
+    List<ConfigureShard>? replicaConfiguration,
+    List<String>? replicasToRemove,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
@@ -2165,8 +2158,8 @@ class ElastiCache {
   /// name that identifies the snapshot. ElastiCache creates the snapshot, and
   /// then deletes the cluster immediately afterward.
   Future<DeleteCacheClusterResult> deleteCacheCluster({
-    @_s.required String cacheClusterId,
-    String finalSnapshotIdentifier,
+    required String cacheClusterId,
+    String? finalSnapshotIdentifier,
   }) async {
     ArgumentError.checkNotNull(cacheClusterId, 'cacheClusterId');
     final $request = <String, dynamic>{};
@@ -2202,7 +2195,7 @@ class ElastiCache {
   /// clusters.
   /// </note>
   Future<void> deleteCacheParameterGroup({
-    @_s.required String cacheParameterGroupName,
+    required String cacheParameterGroupName,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupName, 'cacheParameterGroupName');
@@ -2237,7 +2230,7 @@ class ElastiCache {
   /// You cannot delete the default security group.
   /// </note>
   Future<void> deleteCacheSecurityGroup({
-    @_s.required String cacheSecurityGroupName,
+    required String cacheSecurityGroupName,
   }) async {
     ArgumentError.checkNotNull(
         cacheSecurityGroupName, 'cacheSecurityGroupName');
@@ -2270,7 +2263,7 @@ class ElastiCache {
   /// Constraints: Must contain no more than 255 alphanumeric characters or
   /// hyphens.
   Future<void> deleteCacheSubnetGroup({
-    @_s.required String cacheSubnetGroupName,
+    required String cacheSubnetGroupName,
   }) async {
     ArgumentError.checkNotNull(cacheSubnetGroupName, 'cacheSubnetGroupName');
     final $request = <String, dynamic>{};
@@ -2319,8 +2312,8 @@ class ElastiCache {
   /// The primary replication group is retained as a standalone replication
   /// group.
   Future<DeleteGlobalReplicationGroupResult> deleteGlobalReplicationGroup({
-    @_s.required String globalReplicationGroupId,
-    @_s.required bool retainPrimaryReplicationGroup,
+    required String globalReplicationGroupId,
+    required bool retainPrimaryReplicationGroup,
   }) async {
     ArgumentError.checkNotNull(
         globalReplicationGroupId, 'globalReplicationGroupId');
@@ -2378,9 +2371,9 @@ class ElastiCache {
   /// If set to <code>true</code>, all of the read replicas are deleted, but the
   /// primary node is retained.
   Future<DeleteReplicationGroupResult> deleteReplicationGroup({
-    @_s.required String replicationGroupId,
-    String finalSnapshotIdentifier,
-    bool retainPrimaryCluster,
+    required String replicationGroupId,
+    String? finalSnapshotIdentifier,
+    bool? retainPrimaryCluster,
   }) async {
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
     final $request = <String, dynamic>{};
@@ -2417,7 +2410,7 @@ class ElastiCache {
   /// Parameter [snapshotName] :
   /// The name of the snapshot to be deleted.
   Future<DeleteSnapshotResult> deleteSnapshot({
-    @_s.required String snapshotName,
+    required String snapshotName,
   }) async {
     ArgumentError.checkNotNull(snapshotName, 'snapshotName');
     final $request = <String, dynamic>{};
@@ -2450,7 +2443,7 @@ class ElastiCache {
   /// Parameter [userId] :
   /// The ID of the user.
   Future<User> deleteUser({
-    @_s.required String userId,
+    required String userId,
   }) async {
     ArgumentError.checkNotNull(userId, 'userId');
     _s.validateStringLength(
@@ -2495,7 +2488,7 @@ class ElastiCache {
   /// Parameter [userGroupId] :
   /// The ID of the user group.
   Future<UserGroup> deleteUserGroup({
-    @_s.required String userGroupId,
+    required String userGroupId,
   }) async {
     ArgumentError.checkNotNull(userGroupId, 'userGroupId');
     final $request = <String, dynamic>{};
@@ -2573,11 +2566,11 @@ class ElastiCache {
   /// <code>DescribeCacheCluster</code> request to retrieve information about
   /// the individual cache nodes.
   Future<CacheClusterMessage> describeCacheClusters({
-    String cacheClusterId,
-    String marker,
-    int maxRecords,
-    bool showCacheClustersNotInReplicationGroups,
-    bool showCacheNodeInfo,
+    String? cacheClusterId,
+    String? marker,
+    int? maxRecords,
+    bool? showCacheClustersNotInReplicationGroups,
+    bool? showCacheNodeInfo,
   }) async {
     final $request = <String, dynamic>{};
     cacheClusterId?.also((arg) => $request['CacheClusterId'] = arg);
@@ -2653,12 +2646,12 @@ class ElastiCache {
   ///
   /// Constraints: minimum 20; maximum 100.
   Future<CacheEngineVersionMessage> describeCacheEngineVersions({
-    String cacheParameterGroupFamily,
-    bool defaultOnly,
-    String engine,
-    String engineVersion,
-    String marker,
-    int maxRecords,
+    String? cacheParameterGroupFamily,
+    bool? defaultOnly,
+    String? engine,
+    String? engineVersion,
+    String? marker,
+    int? maxRecords,
   }) async {
     final $request = <String, dynamic>{};
     cacheParameterGroupFamily
@@ -2708,9 +2701,9 @@ class ElastiCache {
   ///
   /// Constraints: minimum 20; maximum 100.
   Future<CacheParameterGroupsMessage> describeCacheParameterGroups({
-    String cacheParameterGroupName,
-    String marker,
-    int maxRecords,
+    String? cacheParameterGroupName,
+    String? marker,
+    int? maxRecords,
   }) async {
     final $request = <String, dynamic>{};
     cacheParameterGroupName
@@ -2762,10 +2755,10 @@ class ElastiCache {
   /// Valid values: <code>user</code> | <code>system</code> |
   /// <code>engine-default</code>
   Future<CacheParameterGroupDetails> describeCacheParameters({
-    @_s.required String cacheParameterGroupName,
-    String marker,
-    int maxRecords,
-    String source,
+    required String cacheParameterGroupName,
+    String? marker,
+    int? maxRecords,
+    String? source,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupName, 'cacheParameterGroupName');
@@ -2814,9 +2807,9 @@ class ElastiCache {
   ///
   /// Constraints: minimum 20; maximum 100.
   Future<CacheSecurityGroupMessage> describeCacheSecurityGroups({
-    String cacheSecurityGroupName,
-    String marker,
-    int maxRecords,
+    String? cacheSecurityGroupName,
+    String? marker,
+    int? maxRecords,
   }) async {
     final $request = <String, dynamic>{};
     cacheSecurityGroupName
@@ -2862,9 +2855,9 @@ class ElastiCache {
   ///
   /// Constraints: minimum 20; maximum 100.
   Future<CacheSubnetGroupMessage> describeCacheSubnetGroups({
-    String cacheSubnetGroupName,
-    String marker,
-    int maxRecords,
+    String? cacheSubnetGroupName,
+    String? marker,
+    int? maxRecords,
   }) async {
     final $request = <String, dynamic>{};
     cacheSubnetGroupName?.also((arg) => $request['CacheSubnetGroupName'] = arg);
@@ -2914,9 +2907,9 @@ class ElastiCache {
   /// Constraints: minimum 20; maximum 100.
   Future<DescribeEngineDefaultParametersResult>
       describeEngineDefaultParameters({
-    @_s.required String cacheParameterGroupFamily,
-    String marker,
-    int maxRecords,
+    required String cacheParameterGroupFamily,
+    String? marker,
+    int? maxRecords,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupFamily, 'cacheParameterGroupFamily');
@@ -2987,13 +2980,13 @@ class ElastiCache {
   ///
   /// <b>Example:</b> 2017-03-30T07:03:49.555Z
   Future<EventsMessage> describeEvents({
-    int duration,
-    DateTime endTime,
-    String marker,
-    int maxRecords,
-    String sourceIdentifier,
-    SourceType sourceType,
-    DateTime startTime,
+    int? duration,
+    DateTime? endTime,
+    String? marker,
+    int? maxRecords,
+    String? sourceIdentifier,
+    SourceType? sourceType,
+    DateTime? startTime,
   }) async {
     final $request = <String, dynamic>{};
     duration?.also((arg) => $request['Duration'] = arg);
@@ -3042,10 +3035,10 @@ class ElastiCache {
   /// Returns the list of members that comprise the Global Datastore.
   Future<DescribeGlobalReplicationGroupsResult>
       describeGlobalReplicationGroups({
-    String globalReplicationGroupId,
-    String marker,
-    int maxRecords,
-    bool showMemberInfo,
+    String? globalReplicationGroupId,
+    String? marker,
+    int? maxRecords,
+    bool? showMemberInfo,
   }) async {
     final $request = <String, dynamic>{};
     globalReplicationGroupId
@@ -3100,9 +3093,9 @@ class ElastiCache {
   /// If you do not specify this parameter, information about all replication
   /// groups is returned.
   Future<ReplicationGroupMessage> describeReplicationGroups({
-    String marker,
-    int maxRecords,
-    String replicationGroupId,
+    String? marker,
+    int? maxRecords,
+    String? replicationGroupId,
   }) async {
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
@@ -3298,14 +3291,14 @@ class ElastiCache {
   /// The offering identifier filter value. Use this parameter to show only
   /// purchased reservations matching the specified offering identifier.
   Future<ReservedCacheNodeMessage> describeReservedCacheNodes({
-    String cacheNodeType,
-    String duration,
-    String marker,
-    int maxRecords,
-    String offeringType,
-    String productDescription,
-    String reservedCacheNodeId,
-    String reservedCacheNodesOfferingId,
+    String? cacheNodeType,
+    String? duration,
+    String? marker,
+    int? maxRecords,
+    String? offeringType,
+    String? productDescription,
+    String? reservedCacheNodeId,
+    String? reservedCacheNodesOfferingId,
   }) async {
     final $request = <String, dynamic>{};
     cacheNodeType?.also((arg) => $request['CacheNodeType'] = arg);
@@ -3505,13 +3498,13 @@ class ElastiCache {
   /// Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code>
   Future<ReservedCacheNodesOfferingMessage>
       describeReservedCacheNodesOfferings({
-    String cacheNodeType,
-    String duration,
-    String marker,
-    int maxRecords,
-    String offeringType,
-    String productDescription,
-    String reservedCacheNodesOfferingId,
+    String? cacheNodeType,
+    String? duration,
+    String? marker,
+    int? maxRecords,
+    String? offeringType,
+    String? productDescription,
+    String? reservedCacheNodesOfferingId,
   }) async {
     final $request = <String, dynamic>{};
     cacheNodeType?.also((arg) => $request['CacheNodeType'] = arg);
@@ -3557,17 +3550,17 @@ class ElastiCache {
   /// Parameter [serviceUpdateStatus] :
   /// The status of the service update
   Future<ServiceUpdatesMessage> describeServiceUpdates({
-    String marker,
-    int maxRecords,
-    String serviceUpdateName,
-    List<ServiceUpdateStatus> serviceUpdateStatus,
+    String? marker,
+    int? maxRecords,
+    String? serviceUpdateName,
+    List<ServiceUpdateStatus>? serviceUpdateStatus,
   }) async {
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
     serviceUpdateName?.also((arg) => $request['ServiceUpdateName'] = arg);
-    serviceUpdateStatus?.also((arg) => $request['ServiceUpdateStatus'] =
-        arg.map((e) => e?.toValue() ?? '').toList());
+    serviceUpdateStatus?.also((arg) =>
+        $request['ServiceUpdateStatus'] = arg.map((e) => e.toValue()).toList());
     final $result = await _protocol.send(
       $request,
       action: 'DescribeServiceUpdates',
@@ -3633,13 +3626,13 @@ class ElastiCache {
   /// output shows snapshots that were manually created. If omitted, the output
   /// shows both automatically and manually created snapshots.
   Future<DescribeSnapshotsListMessage> describeSnapshots({
-    String cacheClusterId,
-    String marker,
-    int maxRecords,
-    String replicationGroupId,
-    bool showNodeGroupConfig,
-    String snapshotName,
-    String snapshotSource,
+    String? cacheClusterId,
+    String? marker,
+    int? maxRecords,
+    String? replicationGroupId,
+    bool? showNodeGroupConfig,
+    String? snapshotName,
+    String? snapshotSource,
   }) async {
     final $request = <String, dynamic>{};
     cacheClusterId?.also((arg) => $request['CacheClusterId'] = arg);
@@ -3703,16 +3696,16 @@ class ElastiCache {
   /// Parameter [updateActionStatus] :
   /// The status of the update action.
   Future<UpdateActionsMessage> describeUpdateActions({
-    List<String> cacheClusterIds,
-    String engine,
-    String marker,
-    int maxRecords,
-    List<String> replicationGroupIds,
-    String serviceUpdateName,
-    List<ServiceUpdateStatus> serviceUpdateStatus,
-    TimeRangeFilter serviceUpdateTimeRange,
-    bool showNodeLevelUpdateStatus,
-    List<UpdateActionStatus> updateActionStatus,
+    List<String>? cacheClusterIds,
+    String? engine,
+    String? marker,
+    int? maxRecords,
+    List<String>? replicationGroupIds,
+    String? serviceUpdateName,
+    List<ServiceUpdateStatus>? serviceUpdateStatus,
+    TimeRangeFilter? serviceUpdateTimeRange,
+    bool? showNodeLevelUpdateStatus,
+    List<UpdateActionStatus>? updateActionStatus,
   }) async {
     final $request = <String, dynamic>{};
     cacheClusterIds?.also((arg) => $request['CacheClusterIds'] = arg);
@@ -3721,14 +3714,14 @@ class ElastiCache {
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
     replicationGroupIds?.also((arg) => $request['ReplicationGroupIds'] = arg);
     serviceUpdateName?.also((arg) => $request['ServiceUpdateName'] = arg);
-    serviceUpdateStatus?.also((arg) => $request['ServiceUpdateStatus'] =
-        arg.map((e) => e?.toValue() ?? '').toList());
+    serviceUpdateStatus?.also((arg) =>
+        $request['ServiceUpdateStatus'] = arg.map((e) => e.toValue()).toList());
     serviceUpdateTimeRange
         ?.also((arg) => $request['ServiceUpdateTimeRange'] = arg);
     showNodeLevelUpdateStatus
         ?.also((arg) => $request['ShowNodeLevelUpdateStatus'] = arg);
-    updateActionStatus?.also((arg) => $request['UpdateActionStatus'] =
-        arg.map((e) => e?.toValue() ?? '').toList());
+    updateActionStatus?.also((arg) =>
+        $request['UpdateActionStatus'] = arg.map((e) => e.toValue()).toList());
     final $result = await _protocol.send(
       $request,
       action: 'DescribeUpdateActions',
@@ -3762,9 +3755,9 @@ class ElastiCache {
   /// Parameter [userGroupId] :
   /// The ID of the user group.
   Future<DescribeUserGroupsResult> describeUserGroups({
-    String marker,
-    int maxRecords,
-    String userGroupId,
+    String? marker,
+    int? maxRecords,
+    String? userGroupId,
   }) async {
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
@@ -3809,11 +3802,11 @@ class ElastiCache {
   /// Parameter [userId] :
   /// The ID of the user.
   Future<DescribeUsersResult> describeUsers({
-    String engine,
-    List<Filter> filters,
-    String marker,
-    int maxRecords,
-    String userId,
+    String? engine,
+    List<Filter>? filters,
+    String? marker,
+    int? maxRecords,
+    String? userId,
   }) async {
     _s.validateStringPattern(
       'engine',
@@ -3873,9 +3866,9 @@ class ElastiCache {
   /// Datastore
   Future<DisassociateGlobalReplicationGroupResult>
       disassociateGlobalReplicationGroup({
-    @_s.required String globalReplicationGroupId,
-    @_s.required String replicationGroupId,
-    @_s.required String replicationGroupRegion,
+    required String globalReplicationGroupId,
+    required String replicationGroupId,
+    required String replicationGroupRegion,
   }) async {
     ArgumentError.checkNotNull(
         globalReplicationGroupId, 'globalReplicationGroupId');
@@ -3918,9 +3911,9 @@ class ElastiCache {
   /// Parameter [primaryReplicationGroupId] :
   /// The name of the primary replication group
   Future<FailoverGlobalReplicationGroupResult> failoverGlobalReplicationGroup({
-    @_s.required String globalReplicationGroupId,
-    @_s.required String primaryRegion,
-    @_s.required String primaryReplicationGroupId,
+    required String globalReplicationGroupId,
+    required String primaryRegion,
+    required String primaryReplicationGroupId,
   }) async {
     ArgumentError.checkNotNull(
         globalReplicationGroupId, 'globalReplicationGroupId');
@@ -3966,10 +3959,10 @@ class ElastiCache {
   /// and the shard configuration for each that comprise the Global Datastore
   Future<IncreaseNodeGroupsInGlobalReplicationGroupResult>
       increaseNodeGroupsInGlobalReplicationGroup({
-    @_s.required bool applyImmediately,
-    @_s.required String globalReplicationGroupId,
-    @_s.required int nodeGroupCount,
-    List<RegionalConfiguration> regionalConfigurations,
+    required bool applyImmediately,
+    required String globalReplicationGroupId,
+    required int nodeGroupCount,
+    List<RegionalConfiguration>? regionalConfigurations,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(
@@ -4035,10 +4028,10 @@ class ElastiCache {
   /// <code>NewReplicaCount</code>, <code>NodeGroupId</code>, and
   /// <code>PreferredAvailabilityZones</code>.
   Future<IncreaseReplicaCountResult> increaseReplicaCount({
-    @_s.required bool applyImmediately,
-    @_s.required String replicationGroupId,
-    int newReplicaCount,
-    List<ConfigureShard> replicaConfiguration,
+    required bool applyImmediately,
+    required String replicationGroupId,
+    int? newReplicaCount,
+    List<ConfigureShard>? replicaConfiguration,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
@@ -4094,8 +4087,8 @@ class ElastiCache {
   /// <code>ReplicationGroupId</code>.
   /// </important>
   Future<AllowedNodeTypeModificationsMessage> listAllowedNodeTypeModifications({
-    String cacheClusterId,
-    String replicationGroupId,
+    String? cacheClusterId,
+    String? replicationGroupId,
   }) async {
     final $request = <String, dynamic>{};
     cacheClusterId?.also((arg) => $request['CacheClusterId'] = arg);
@@ -4141,7 +4134,7 @@ class ElastiCache {
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
   /// Resource Names (ARNs) and AWS Service Namespaces</a>.
   Future<TagListMessage> listTagsForResource({
-    @_s.required String resourceName,
+    required String resourceName,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
     final $request = <String, dynamic>{};
@@ -4506,25 +4499,25 @@ class ElastiCache {
   /// The daily time range (in UTC) during which ElastiCache begins taking a
   /// daily snapshot of your cluster.
   Future<ModifyCacheClusterResult> modifyCacheCluster({
-    @_s.required String cacheClusterId,
-    AZMode aZMode,
-    bool applyImmediately,
-    String authToken,
-    AuthTokenUpdateStrategyType authTokenUpdateStrategy,
-    bool autoMinorVersionUpgrade,
-    List<String> cacheNodeIdsToRemove,
-    String cacheNodeType,
-    String cacheParameterGroupName,
-    List<String> cacheSecurityGroupNames,
-    String engineVersion,
-    List<String> newAvailabilityZones,
-    String notificationTopicArn,
-    String notificationTopicStatus,
-    int numCacheNodes,
-    String preferredMaintenanceWindow,
-    List<String> securityGroupIds,
-    int snapshotRetentionLimit,
-    String snapshotWindow,
+    required String cacheClusterId,
+    AZMode? aZMode,
+    bool? applyImmediately,
+    String? authToken,
+    AuthTokenUpdateStrategyType? authTokenUpdateStrategy,
+    bool? autoMinorVersionUpgrade,
+    List<String>? cacheNodeIdsToRemove,
+    String? cacheNodeType,
+    String? cacheParameterGroupName,
+    List<String>? cacheSecurityGroupNames,
+    String? engineVersion,
+    List<String>? newAvailabilityZones,
+    String? notificationTopicArn,
+    String? notificationTopicStatus,
+    int? numCacheNodes,
+    String? preferredMaintenanceWindow,
+    List<String>? securityGroupIds,
+    int? snapshotRetentionLimit,
+    String? snapshotWindow,
   }) async {
     ArgumentError.checkNotNull(cacheClusterId, 'cacheClusterId');
     final $request = <String, dynamic>{};
@@ -4586,8 +4579,8 @@ class ElastiCache {
   /// supply at least one parameter name and value; subsequent arguments are
   /// optional. A maximum of 20 parameters may be modified per request.
   Future<CacheParameterGroupNameMessage> modifyCacheParameterGroup({
-    @_s.required String cacheParameterGroupName,
-    @_s.required List<ParameterNameValue> parameterNameValues,
+    required String cacheParameterGroupName,
+    required List<ParameterNameValue> parameterNameValues,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupName, 'cacheParameterGroupName');
@@ -4632,9 +4625,9 @@ class ElastiCache {
   /// Parameter [subnetIds] :
   /// The EC2 subnet IDs for the cache subnet group.
   Future<ModifyCacheSubnetGroupResult> modifyCacheSubnetGroup({
-    @_s.required String cacheSubnetGroupName,
-    String cacheSubnetGroupDescription,
-    List<String> subnetIds,
+    required String cacheSubnetGroupName,
+    String? cacheSubnetGroupDescription,
+    List<String>? subnetIds,
   }) async {
     ArgumentError.checkNotNull(cacheSubnetGroupName, 'cacheSubnetGroupName');
     final $request = <String, dynamic>{};
@@ -4685,12 +4678,12 @@ class ElastiCache {
   /// Parameter [globalReplicationGroupDescription] :
   /// A description of the Global Datastore
   Future<ModifyGlobalReplicationGroupResult> modifyGlobalReplicationGroup({
-    @_s.required bool applyImmediately,
-    @_s.required String globalReplicationGroupId,
-    bool automaticFailoverEnabled,
-    String cacheNodeType,
-    String engineVersion,
-    String globalReplicationGroupDescription,
+    required bool applyImmediately,
+    required String globalReplicationGroupId,
+    bool? automaticFailoverEnabled,
+    String? cacheNodeType,
+    String? engineVersion,
+    String? globalReplicationGroupDescription,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(
@@ -4951,30 +4944,30 @@ class ElastiCache {
   /// A list of users groups to remove, meaning the users in the group no longer
   /// can access thereplication group.
   Future<ModifyReplicationGroupResult> modifyReplicationGroup({
-    @_s.required String replicationGroupId,
-    bool applyImmediately,
-    String authToken,
-    AuthTokenUpdateStrategyType authTokenUpdateStrategy,
-    bool autoMinorVersionUpgrade,
-    bool automaticFailoverEnabled,
-    String cacheNodeType,
-    String cacheParameterGroupName,
-    List<String> cacheSecurityGroupNames,
-    String engineVersion,
-    bool multiAZEnabled,
-    String nodeGroupId,
-    String notificationTopicArn,
-    String notificationTopicStatus,
-    String preferredMaintenanceWindow,
-    String primaryClusterId,
-    bool removeUserGroups,
-    String replicationGroupDescription,
-    List<String> securityGroupIds,
-    int snapshotRetentionLimit,
-    String snapshotWindow,
-    String snapshottingClusterId,
-    List<String> userGroupIdsToAdd,
-    List<String> userGroupIdsToRemove,
+    required String replicationGroupId,
+    bool? applyImmediately,
+    String? authToken,
+    AuthTokenUpdateStrategyType? authTokenUpdateStrategy,
+    bool? autoMinorVersionUpgrade,
+    bool? automaticFailoverEnabled,
+    String? cacheNodeType,
+    String? cacheParameterGroupName,
+    List<String>? cacheSecurityGroupNames,
+    String? engineVersion,
+    bool? multiAZEnabled,
+    String? nodeGroupId,
+    String? notificationTopicArn,
+    String? notificationTopicStatus,
+    String? preferredMaintenanceWindow,
+    String? primaryClusterId,
+    bool? removeUserGroups,
+    String? replicationGroupDescription,
+    List<String>? securityGroupIds,
+    int? snapshotRetentionLimit,
+    String? snapshotWindow,
+    String? snapshottingClusterId,
+    List<String>? userGroupIdsToAdd,
+    List<String>? userGroupIdsToRemove,
   }) async {
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
     final $request = <String, dynamic>{};
@@ -5086,12 +5079,12 @@ class ElastiCache {
   /// groups (shards).
   Future<ModifyReplicationGroupShardConfigurationResult>
       modifyReplicationGroupShardConfiguration({
-    @_s.required bool applyImmediately,
-    @_s.required int nodeGroupCount,
-    @_s.required String replicationGroupId,
-    List<String> nodeGroupsToRemove,
-    List<String> nodeGroupsToRetain,
-    List<ReshardingConfiguration> reshardingConfiguration,
+    required bool applyImmediately,
+    required int nodeGroupCount,
+    required String replicationGroupId,
+    List<String>? nodeGroupsToRemove,
+    List<String>? nodeGroupsToRetain,
+    List<ReshardingConfiguration>? reshardingConfiguration,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(nodeGroupCount, 'nodeGroupCount');
@@ -5140,11 +5133,11 @@ class ElastiCache {
   /// Parameter [passwords] :
   /// The passwords belonging to the user. You are allowed up to two.
   Future<User> modifyUser({
-    @_s.required String userId,
-    String accessString,
-    String appendAccessString,
-    bool noPasswordRequired,
-    List<String> passwords,
+    required String userId,
+    String? accessString,
+    String? appendAccessString,
+    bool? noPasswordRequired,
+    List<String>? passwords,
   }) async {
     ArgumentError.checkNotNull(userId, 'userId');
     _s.validateStringLength(
@@ -5209,9 +5202,9 @@ class ElastiCache {
   /// Parameter [userIdsToRemove] :
   /// The list of user IDs to remove from the user group.
   Future<UserGroup> modifyUserGroup({
-    @_s.required String userGroupId,
-    List<String> userIdsToAdd,
-    List<String> userIdsToRemove,
+    required String userGroupId,
+    List<String>? userIdsToAdd,
+    List<String>? userIdsToRemove,
   }) async {
     ArgumentError.checkNotNull(userGroupId, 'userGroupId');
     final $request = <String, dynamic>{};
@@ -5260,9 +5253,9 @@ class ElastiCache {
   /// Example: myreservationID
   Future<PurchaseReservedCacheNodesOfferingResult>
       purchaseReservedCacheNodesOffering({
-    @_s.required String reservedCacheNodesOfferingId,
-    int cacheNodeCount,
-    String reservedCacheNodeId,
+    required String reservedCacheNodesOfferingId,
+    int? cacheNodeCount,
+    String? reservedCacheNodeId,
   }) async {
     ArgumentError.checkNotNull(
         reservedCacheNodesOfferingId, 'reservedCacheNodesOfferingId');
@@ -5298,8 +5291,8 @@ class ElastiCache {
   /// The name of the Global Datastore
   Future<RebalanceSlotsInGlobalReplicationGroupResult>
       rebalanceSlotsInGlobalReplicationGroup({
-    @_s.required bool applyImmediately,
-    @_s.required String globalReplicationGroupId,
+    required bool applyImmediately,
+    required String globalReplicationGroupId,
   }) async {
     ArgumentError.checkNotNull(applyImmediately, 'applyImmediately');
     ArgumentError.checkNotNull(
@@ -5352,8 +5345,8 @@ class ElastiCache {
   /// (0001, 0002, etc.). To reboot an entire cluster, specify all of the cache
   /// node IDs.
   Future<RebootCacheClusterResult> rebootCacheCluster({
-    @_s.required String cacheClusterId,
-    @_s.required List<String> cacheNodeIdsToReboot,
+    required String cacheClusterId,
+    required List<String> cacheNodeIdsToReboot,
   }) async {
     ArgumentError.checkNotNull(cacheClusterId, 'cacheClusterId');
     ArgumentError.checkNotNull(cacheNodeIdsToReboot, 'cacheNodeIdsToReboot');
@@ -5396,8 +5389,8 @@ class ElastiCache {
   /// A list of <code>TagKeys</code> identifying the tags you want removed from
   /// the named resource.
   Future<TagListMessage> removeTagsFromResource({
-    @_s.required String resourceName,
-    @_s.required List<String> tagKeys,
+    required String resourceName,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -5448,9 +5441,9 @@ class ElastiCache {
   ///
   /// Valid values: <code>true</code> | <code>false</code>
   Future<CacheParameterGroupNameMessage> resetCacheParameterGroup({
-    @_s.required String cacheParameterGroupName,
-    List<ParameterNameValue> parameterNameValues,
-    bool resetAllParameters,
+    required String cacheParameterGroupName,
+    List<ParameterNameValue>? parameterNameValues,
+    bool? resetAllParameters,
   }) async {
     ArgumentError.checkNotNull(
         cacheParameterGroupName, 'cacheParameterGroupName');
@@ -5494,9 +5487,9 @@ class ElastiCache {
   /// valid AWS account number for this parameter.
   Future<RevokeCacheSecurityGroupIngressResult>
       revokeCacheSecurityGroupIngress({
-    @_s.required String cacheSecurityGroupName,
-    @_s.required String eC2SecurityGroupName,
-    @_s.required String eC2SecurityGroupOwnerId,
+    required String cacheSecurityGroupName,
+    required String eC2SecurityGroupName,
+    required String eC2SecurityGroupOwnerId,
   }) async {
     ArgumentError.checkNotNull(
         cacheSecurityGroupName, 'cacheSecurityGroupName');
@@ -5535,8 +5528,8 @@ class ElastiCache {
   /// Parameter [replicationGroupId] :
   /// The ID of the replication group to which data should be migrated.
   Future<StartMigrationResponse> startMigration({
-    @_s.required List<CustomerNodeEndpoint> customerNodeEndpointList,
-    @_s.required String replicationGroupId,
+    required List<CustomerNodeEndpoint> customerNodeEndpointList,
+    required String replicationGroupId,
   }) async {
     ArgumentError.checkNotNull(
         customerNodeEndpointList, 'customerNodeEndpointList');
@@ -5645,8 +5638,8 @@ class ElastiCache {
   /// The name of the replication group (console: cluster) whose automatic
   /// failover is being tested by this operation.
   Future<TestFailoverResult> testFailover({
-    @_s.required String nodeGroupId,
-    @_s.required String replicationGroupId,
+    required String nodeGroupId,
+    required String replicationGroupId,
   }) async {
     ArgumentError.checkNotNull(nodeGroupId, 'nodeGroupId');
     _s.validateStringLength(
@@ -5682,9 +5675,7 @@ class ElastiCache {
 }
 
 enum AZMode {
-  @_s.JsonValue('single-az')
   singleAz,
-  @_s.JsonValue('cross-az')
   crossAz,
 }
 
@@ -5696,7 +5687,6 @@ extension on AZMode {
       case AZMode.crossAz:
         return 'cross-az';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -5708,7 +5698,7 @@ extension on String {
       case 'cross-az':
         return AZMode.crossAz;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum AZMode');
   }
 }
 
@@ -5720,7 +5710,7 @@ class AllowedNodeTypeModificationsMessage {
   /// Redis cluster or replication group using ModifyCacheCluster or
   /// ModifyReplicationGroup, use a value from this list for the CacheNodeType
   /// parameter.
-  final List<String> scaleDownModifications;
+  final List<String>? scaleDownModifications;
 
   /// A string list, each element of which specifies a cache node type which you
   /// can use to scale your cluster or replication group.
@@ -5728,7 +5718,7 @@ class AllowedNodeTypeModificationsMessage {
   /// When scaling up a Redis cluster or replication group using
   /// <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>, use
   /// a value from this list for the <code>CacheNodeType</code> parameter.
-  final List<String> scaleUpModifications;
+  final List<String>? scaleUpModifications;
 
   AllowedNodeTypeModificationsMessage({
     this.scaleDownModifications,
@@ -5747,10 +5737,19 @@ class AllowedNodeTypeModificationsMessage {
 }
 
 enum AuthTokenUpdateStatus {
-  @_s.JsonValue('SETTING')
   setting,
-  @_s.JsonValue('ROTATING')
   rotating,
+}
+
+extension on AuthTokenUpdateStatus {
+  String toValue() {
+    switch (this) {
+      case AuthTokenUpdateStatus.setting:
+        return 'SETTING';
+      case AuthTokenUpdateStatus.rotating:
+        return 'ROTATING';
+    }
+  }
 }
 
 extension on String {
@@ -5761,16 +5760,13 @@ extension on String {
       case 'ROTATING':
         return AuthTokenUpdateStatus.rotating;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum AuthTokenUpdateStatus');
   }
 }
 
 enum AuthTokenUpdateStrategyType {
-  @_s.JsonValue('SET')
   set,
-  @_s.JsonValue('ROTATE')
   rotate,
-  @_s.JsonValue('DELETE')
   delete,
 }
 
@@ -5784,7 +5780,6 @@ extension on AuthTokenUpdateStrategyType {
       case AuthTokenUpdateStrategyType.delete:
         return 'DELETE';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -5798,17 +5793,17 @@ extension on String {
       case 'DELETE':
         return AuthTokenUpdateStrategyType.delete;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum AuthTokenUpdateStrategyType');
   }
 }
 
 /// Indicates whether the user requires a password to authenticate.
 class Authentication {
   /// The number of passwords belonging to the user. The maximum is two.
-  final int passwordCount;
+  final int? passwordCount;
 
   /// Indicates whether the user requires a password to authenticate.
-  final AuthenticationType type;
+  final AuthenticationType? type;
 
   Authentication({
     this.passwordCount,
@@ -5823,10 +5818,19 @@ class Authentication {
 }
 
 enum AuthenticationType {
-  @_s.JsonValue('password')
   password,
-  @_s.JsonValue('no-password')
   noPassword,
+}
+
+extension on AuthenticationType {
+  String toValue() {
+    switch (this) {
+      case AuthenticationType.password:
+        return 'password';
+      case AuthenticationType.noPassword:
+        return 'no-password';
+    }
+  }
 }
 
 extension on String {
@@ -5837,12 +5841,12 @@ extension on String {
       case 'no-password':
         return AuthenticationType.noPassword;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum AuthenticationType');
   }
 }
 
 class AuthorizeCacheSecurityGroupIngressResult {
-  final CacheSecurityGroup cacheSecurityGroup;
+  final CacheSecurityGroup? cacheSecurityGroup;
 
   AuthorizeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
@@ -5857,14 +5861,25 @@ class AuthorizeCacheSecurityGroupIngressResult {
 }
 
 enum AutomaticFailoverStatus {
-  @_s.JsonValue('enabled')
   enabled,
-  @_s.JsonValue('disabled')
   disabled,
-  @_s.JsonValue('enabling')
   enabling,
-  @_s.JsonValue('disabling')
   disabling,
+}
+
+extension on AutomaticFailoverStatus {
+  String toValue() {
+    switch (this) {
+      case AutomaticFailoverStatus.enabled:
+        return 'enabled';
+      case AutomaticFailoverStatus.disabled:
+        return 'disabled';
+      case AutomaticFailoverStatus.enabling:
+        return 'enabling';
+      case AutomaticFailoverStatus.disabling:
+        return 'disabling';
+    }
+  }
 }
 
 extension on String {
@@ -5879,14 +5894,14 @@ extension on String {
       case 'disabling':
         return AutomaticFailoverStatus.disabling;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum AutomaticFailoverStatus');
   }
 }
 
 /// Describes an Availability Zone in which the cluster is launched.
 class AvailabilityZone {
   /// The name of the Availability Zone.
-  final String name;
+  final String? name;
 
   AvailabilityZone({
     this.name,
@@ -5901,7 +5916,7 @@ class AvailabilityZone {
 /// Contains all of the attributes of a specific cluster.
 class CacheCluster {
   /// The ARN (Amazon Resource Name) of the cache cluster.
-  final String arn;
+  final String? arn;
 
   /// A flag that enables encryption at-rest when set to <code>true</code>.
   ///
@@ -5915,33 +5930,33 @@ class CacheCluster {
   /// later.
   ///
   /// Default: <code>false</code>
-  final bool atRestEncryptionEnabled;
+  final bool? atRestEncryptionEnabled;
 
   /// A flag that enables using an <code>AuthToken</code> (password) when issuing
   /// Redis commands.
   ///
   /// Default: <code>false</code>
-  final bool authTokenEnabled;
+  final bool? authTokenEnabled;
 
   /// The date the auth token was last modified
-  final DateTime authTokenLastModifiedDate;
+  final DateTime? authTokenLastModifiedDate;
 
   /// This parameter is currently disabled.
-  final bool autoMinorVersionUpgrade;
+  final bool? autoMinorVersionUpgrade;
 
   /// The date and time when the cluster was created.
-  final DateTime cacheClusterCreateTime;
+  final DateTime? cacheClusterCreateTime;
 
   /// The user-supplied identifier of the cluster. This identifier is a unique key
   /// that identifies a cluster.
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The current state of this cluster, one of the following values:
   /// <code>available</code>, <code>creating</code>, <code>deleted</code>,
   /// <code>deleting</code>, <code>incompatible-network</code>,
   /// <code>modifying</code>, <code>rebooting cluster nodes</code>,
   /// <code>restore-failed</code>, or <code>snapshotting</code>.
-  final String cacheClusterStatus;
+  final String? cacheClusterStatus;
 
   /// The name of the compute and memory capacity node type for the cluster.
   ///
@@ -6066,24 +6081,24 @@ class CacheCluster {
   /// later.
   /// </li>
   /// </ul>
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// A list of cache nodes that are members of the cluster.
-  final List<CacheNode> cacheNodes;
+  final List<CacheNode>? cacheNodes;
 
   /// Status of the cache parameter group.
-  final CacheParameterGroupStatus cacheParameterGroup;
+  final CacheParameterGroupStatus? cacheParameterGroup;
 
   /// A list of cache security group elements, composed of name and status
   /// sub-elements.
-  final List<CacheSecurityGroupMembership> cacheSecurityGroups;
+  final List<CacheSecurityGroupMembership>? cacheSecurityGroups;
 
   /// The name of the cache subnet group associated with the cluster.
-  final String cacheSubnetGroupName;
+  final String? cacheSubnetGroupName;
 
   /// The URL of the web page where you can download the latest ElastiCache client
   /// library.
-  final String clientDownloadLandingPage;
+  final String? clientDownloadLandingPage;
 
   /// Represents a Memcached cluster endpoint which, if Automatic Discovery is
   /// enabled on the cluster, can be used by an application to connect to any node
@@ -6091,30 +6106,30 @@ class CacheCluster {
   /// <code>.cfg</code> in it.
   ///
   /// Example: <code>mem-3.9dvc4r<u>.cfg</u>.usw2.cache.amazonaws.com:11211</code>
-  final Endpoint configurationEndpoint;
+  final Endpoint? configurationEndpoint;
 
   /// The name of the cache engine (<code>memcached</code> or <code>redis</code>)
   /// to be used for this cluster.
-  final String engine;
+  final String? engine;
 
   /// The version of the cache engine that is used in this cluster.
-  final String engineVersion;
+  final String? engineVersion;
 
   /// Describes a notification topic and its status. Notification topics are used
   /// for publishing ElastiCache events to subscribers using Amazon Simple
   /// Notification Service (SNS).
-  final NotificationConfiguration notificationConfiguration;
+  final NotificationConfiguration? notificationConfiguration;
 
   /// The number of cache nodes in the cluster.
   ///
   /// For clusters running Redis, this value must be 1. For clusters running
   /// Memcached, this value must be between 1 and 20.
-  final int numCacheNodes;
-  final PendingModifiedValues pendingModifiedValues;
+  final int? numCacheNodes;
+  final PendingModifiedValues? pendingModifiedValues;
 
   /// The name of the Availability Zone in which the cluster is located or
   /// "Multiple" if the cache nodes are located in different Availability Zones.
-  final String preferredAvailabilityZone;
+  final String? preferredAvailabilityZone;
 
   /// Specifies the weekly time range during which maintenance on the cluster is
   /// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
@@ -6146,17 +6161,17 @@ class CacheCluster {
   /// </li>
   /// </ul>
   /// Example: <code>sun:23:00-mon:01:30</code>
-  final String preferredMaintenanceWindow;
+  final String? preferredMaintenanceWindow;
 
   /// The outpost ARN in which the cache cluster is created.
-  final String preferredOutpostArn;
+  final String? preferredOutpostArn;
 
   /// The replication group to which this cluster belongs. If this field is empty,
   /// the cluster is not associated with any replication group.
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// A list of VPC Security Groups associated with the cluster.
-  final List<SecurityGroupMembership> securityGroups;
+  final List<SecurityGroupMembership>? securityGroups;
 
   /// The number of days for which ElastiCache retains automatic cluster snapshots
   /// before deleting them. For example, if you set
@@ -6166,13 +6181,13 @@ class CacheCluster {
   /// If the value of SnapshotRetentionLimit is set to zero (0), backups are
   /// turned off.
   /// </important>
-  final int snapshotRetentionLimit;
+  final int? snapshotRetentionLimit;
 
   /// The daily time range (in UTC) during which ElastiCache begins taking a daily
   /// snapshot of your cluster.
   ///
   /// Example: <code>05:00-09:00</code>
-  final String snapshotWindow;
+  final String? snapshotWindow;
 
   /// A flag that enables in-transit encryption when set to <code>true</code>.
   ///
@@ -6186,7 +6201,7 @@ class CacheCluster {
   /// later.
   ///
   /// Default: <code>false</code>
-  final bool transitEncryptionEnabled;
+  final bool? transitEncryptionEnabled;
 
   CacheCluster({
     this.arn,
@@ -6286,10 +6301,10 @@ class CacheCluster {
 class CacheClusterMessage {
   /// A list of clusters. Each item in the list contains detailed information
   /// about one cluster.
-  final List<CacheCluster> cacheClusters;
+  final List<CacheCluster>? cacheClusters;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   CacheClusterMessage({
     this.cacheClusters,
@@ -6310,10 +6325,10 @@ class CacheClusterMessage {
 /// Provides all of the details about a particular cache engine version.
 class CacheEngineVersion {
   /// The description of the cache engine.
-  final String cacheEngineDescription;
+  final String? cacheEngineDescription;
 
   /// The description of the cache engine version.
-  final String cacheEngineVersionDescription;
+  final String? cacheEngineVersionDescription;
 
   /// The name of the cache parameter group family associated with this cache
   /// engine.
@@ -6322,13 +6337,13 @@ class CacheEngineVersion {
   /// <code>memcached1.6</code> | <code>redis2.6</code> | <code>redis2.8</code> |
   /// <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> |
   /// <code>redis6.x</code> |
-  final String cacheParameterGroupFamily;
+  final String? cacheParameterGroupFamily;
 
   /// The name of the cache engine.
-  final String engine;
+  final String? engine;
 
   /// The version number of the cache engine.
-  final String engineVersion;
+  final String? engineVersion;
 
   CacheEngineVersion({
     this.cacheEngineDescription,
@@ -6355,10 +6370,10 @@ class CacheEngineVersion {
 class CacheEngineVersionMessage {
   /// A list of cache engine version details. Each element in the list contains
   /// detailed information about one cache engine version.
-  final List<CacheEngineVersion> cacheEngineVersions;
+  final List<CacheEngineVersion>? cacheEngineVersions;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   CacheEngineVersionMessage({
     this.cacheEngineVersions,
@@ -6503,33 +6518,33 @@ class CacheEngineVersionMessage {
 /// </ul>
 class CacheNode {
   /// The date and time when the cache node was created.
-  final DateTime cacheNodeCreateTime;
+  final DateTime? cacheNodeCreateTime;
 
   /// The cache node identifier. A node ID is a numeric identifier (0001, 0002,
   /// etc.). The combination of cluster ID and node ID uniquely identifies every
   /// cache node used in a customer's AWS account.
-  final String cacheNodeId;
+  final String? cacheNodeId;
 
   /// The current state of this cache node, one of the following values:
   /// <code>available</code>, <code>creating</code>, <code>rebooting</code>, or
   /// <code>deleting</code>.
-  final String cacheNodeStatus;
+  final String? cacheNodeStatus;
 
   /// The Availability Zone where this node was created and now resides.
-  final String customerAvailabilityZone;
+  final String? customerAvailabilityZone;
 
   /// The customer outpost ARN of the cache node.
-  final String customerOutpostArn;
+  final String? customerOutpostArn;
 
   /// The hostname for connecting to this cache node.
-  final Endpoint endpoint;
+  final Endpoint? endpoint;
 
   /// The status of the parameter group applied to this cache node.
-  final String parameterGroupStatus;
+  final String? parameterGroupStatus;
 
   /// The ID of the primary node to which this read replica node is synchronized.
   /// If this field is empty, this node is not associated with a primary cluster.
-  final String sourceCacheNodeId;
+  final String? sourceCacheNodeId;
 
   CacheNode({
     this.cacheNodeCreateTime,
@@ -6565,11 +6580,11 @@ class CacheNode {
 /// <code>cache.m1.small</code> type.
 class CacheNodeTypeSpecificParameter {
   /// The valid range of values for the parameter.
-  final String allowedValues;
+  final String? allowedValues;
 
   /// A list of cache node types and their corresponding values for this
   /// parameter.
-  final List<CacheNodeTypeSpecificValue> cacheNodeTypeSpecificValues;
+  final List<CacheNodeTypeSpecificValue>? cacheNodeTypeSpecificValues;
 
   /// Indicates whether a change to the parameter is applied immediately or
   /// requires a reboot for the change to be applied. You can force a reboot or
@@ -6577,27 +6592,27 @@ class CacheNodeTypeSpecificParameter {
   /// <a
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html">Rebooting
   /// a Cluster</a>.
-  final ChangeType changeType;
+  final ChangeType? changeType;
 
   /// The valid data type for the parameter.
-  final String dataType;
+  final String? dataType;
 
   /// A description of the parameter.
-  final String description;
+  final String? description;
 
   /// Indicates whether (<code>true</code>) or not (<code>false</code>) the
   /// parameter can be modified. Some parameters have security or operational
   /// implications that prevent them from being changed.
-  final bool isModifiable;
+  final bool? isModifiable;
 
   /// The earliest cache engine version to which the parameter can apply.
-  final String minimumEngineVersion;
+  final String? minimumEngineVersion;
 
   /// The name of the parameter.
-  final String parameterName;
+  final String? parameterName;
 
   /// The source of the parameter value.
-  final String source;
+  final String? source;
 
   CacheNodeTypeSpecificParameter({
     this.allowedValues,
@@ -6634,10 +6649,10 @@ class CacheNodeTypeSpecificParameter {
 /// A value that applies only to a certain cache node type.
 class CacheNodeTypeSpecificValue {
   /// The cache node type for which this value applies.
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// The value for the cache node type.
-  final String value;
+  final String? value;
 
   CacheNodeTypeSpecificValue({
     this.cacheNodeType,
@@ -6654,29 +6669,29 @@ class CacheNodeTypeSpecificValue {
 /// The status of the service update on the cache node
 class CacheNodeUpdateStatus {
   /// The node ID of the cache cluster
-  final String cacheNodeId;
+  final String? cacheNodeId;
 
   /// The deletion date of the node
-  final DateTime nodeDeletionDate;
+  final DateTime? nodeDeletionDate;
 
   /// The end date of the update for a node
-  final DateTime nodeUpdateEndDate;
+  final DateTime? nodeUpdateEndDate;
 
   /// Reflects whether the update was initiated by the customer or automatically
   /// applied
-  final NodeUpdateInitiatedBy nodeUpdateInitiatedBy;
+  final NodeUpdateInitiatedBy? nodeUpdateInitiatedBy;
 
   /// The date when the update is triggered
-  final DateTime nodeUpdateInitiatedDate;
+  final DateTime? nodeUpdateInitiatedDate;
 
   /// The start date of the update for a node
-  final DateTime nodeUpdateStartDate;
+  final DateTime? nodeUpdateStartDate;
 
   /// The update status of the node
-  final NodeUpdateStatus nodeUpdateStatus;
+  final NodeUpdateStatus? nodeUpdateStatus;
 
   /// The date when the NodeUpdateStatus was last modified&gt;
-  final DateTime nodeUpdateStatusModifiedDate;
+  final DateTime? nodeUpdateStatusModifiedDate;
 
   CacheNodeUpdateStatus({
     this.cacheNodeId,
@@ -6712,7 +6727,7 @@ class CacheNodeUpdateStatus {
 /// Represents the output of a <code>CreateCacheParameterGroup</code> operation.
 class CacheParameterGroup {
   /// The ARN (Amazon Resource Name) of the cache parameter group.
-  final String arn;
+  final String? arn;
 
   /// The name of the cache parameter group family that this cache parameter group
   /// is compatible with.
@@ -6721,16 +6736,16 @@ class CacheParameterGroup {
   /// <code>memcached1.6</code> | <code>redis2.6</code> | <code>redis2.8</code> |
   /// <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> |
   /// <code>redis6.x</code> |
-  final String cacheParameterGroupFamily;
+  final String? cacheParameterGroupFamily;
 
   /// The name of the cache parameter group.
-  final String cacheParameterGroupName;
+  final String? cacheParameterGroupName;
 
   /// The description for this cache parameter group.
-  final String description;
+  final String? description;
 
   /// Indicates whether the parameter group is associated with a Global Datastore
-  final bool isGlobal;
+  final bool? isGlobal;
 
   CacheParameterGroup({
     this.arn,
@@ -6756,13 +6771,13 @@ class CacheParameterGroup {
 class CacheParameterGroupDetails {
   /// A list of parameters specific to a particular cache node type. Each element
   /// in the list contains detailed information about one parameter.
-  final List<CacheNodeTypeSpecificParameter> cacheNodeTypeSpecificParameters;
+  final List<CacheNodeTypeSpecificParameter>? cacheNodeTypeSpecificParameters;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   /// A list of <a>Parameter</a> instances.
-  final List<Parameter> parameters;
+  final List<Parameter>? parameters;
 
   CacheParameterGroupDetails({
     this.cacheNodeTypeSpecificParameters,
@@ -6798,7 +6813,7 @@ class CacheParameterGroupDetails {
 /// </ul>
 class CacheParameterGroupNameMessage {
   /// The name of the cache parameter group.
-  final String cacheParameterGroupName;
+  final String? cacheParameterGroupName;
 
   CacheParameterGroupNameMessage({
     this.cacheParameterGroupName,
@@ -6815,13 +6830,13 @@ class CacheParameterGroupNameMessage {
 class CacheParameterGroupStatus {
   /// A list of the cache node IDs which need to be rebooted for parameter changes
   /// to be applied. A node ID is a numeric identifier (0001, 0002, etc.).
-  final List<String> cacheNodeIdsToReboot;
+  final List<String>? cacheNodeIdsToReboot;
 
   /// The name of the cache parameter group.
-  final String cacheParameterGroupName;
+  final String? cacheParameterGroupName;
 
   /// The status of parameter updates.
-  final String parameterApplyStatus;
+  final String? parameterApplyStatus;
 
   CacheParameterGroupStatus({
     this.cacheNodeIdsToReboot,
@@ -6846,10 +6861,10 @@ class CacheParameterGroupStatus {
 class CacheParameterGroupsMessage {
   /// A list of cache parameter groups. Each element in the list contains detailed
   /// information about one cache parameter group.
-  final List<CacheParameterGroup> cacheParameterGroups;
+  final List<CacheParameterGroup>? cacheParameterGroups;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   CacheParameterGroupsMessage({
     this.cacheParameterGroups,
@@ -6883,20 +6898,20 @@ class CacheParameterGroupsMessage {
 /// </ul>
 class CacheSecurityGroup {
   /// The ARN of the cache security group,
-  final String arn;
+  final String? arn;
 
   /// The name of the cache security group.
-  final String cacheSecurityGroupName;
+  final String? cacheSecurityGroupName;
 
   /// The description of the cache security group.
-  final String description;
+  final String? description;
 
   /// A list of Amazon EC2 security groups that are associated with this cache
   /// security group.
-  final List<EC2SecurityGroup> eC2SecurityGroups;
+  final List<EC2SecurityGroup>? eC2SecurityGroups;
 
   /// The AWS account ID of the cache security group owner.
-  final String ownerId;
+  final String? ownerId;
 
   CacheSecurityGroup({
     this.arn,
@@ -6924,12 +6939,12 @@ class CacheSecurityGroup {
 /// Represents a cluster's status within a particular cache security group.
 class CacheSecurityGroupMembership {
   /// The name of the cache security group.
-  final String cacheSecurityGroupName;
+  final String? cacheSecurityGroupName;
 
   /// The membership status in the cache security group. The status changes when a
   /// cache security group is modified, or when the cache security groups assigned
   /// to a cluster are modified.
-  final String status;
+  final String? status;
 
   CacheSecurityGroupMembership({
     this.cacheSecurityGroupName,
@@ -6949,10 +6964,10 @@ class CacheSecurityGroupMembership {
 class CacheSecurityGroupMessage {
   /// A list of cache security groups. Each element in the list contains detailed
   /// information about one group.
-  final List<CacheSecurityGroup> cacheSecurityGroups;
+  final List<CacheSecurityGroup>? cacheSecurityGroups;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   CacheSecurityGroupMessage({
     this.cacheSecurityGroups,
@@ -6982,20 +6997,20 @@ class CacheSecurityGroupMessage {
 /// </ul>
 class CacheSubnetGroup {
   /// The ARN (Amazon Resource Name) of the cache subnet group.
-  final String arn;
+  final String? arn;
 
   /// The description of the cache subnet group.
-  final String cacheSubnetGroupDescription;
+  final String? cacheSubnetGroupDescription;
 
   /// The name of the cache subnet group.
-  final String cacheSubnetGroupName;
+  final String? cacheSubnetGroupName;
 
   /// A list of subnets associated with the cache subnet group.
-  final List<Subnet> subnets;
+  final List<Subnet>? subnets;
 
   /// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
   /// group.
-  final String vpcId;
+  final String? vpcId;
 
   CacheSubnetGroup({
     this.arn,
@@ -7022,10 +7037,10 @@ class CacheSubnetGroup {
 class CacheSubnetGroupMessage {
   /// A list of cache subnet groups. Each element in the list contains detailed
   /// information about one group.
-  final List<CacheSubnetGroup> cacheSubnetGroups;
+  final List<CacheSubnetGroup>? cacheSubnetGroups;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   CacheSubnetGroupMessage({
     this.cacheSubnetGroups,
@@ -7044,10 +7059,19 @@ class CacheSubnetGroupMessage {
 }
 
 enum ChangeType {
-  @_s.JsonValue('immediate')
   immediate,
-  @_s.JsonValue('requires-reboot')
   requiresReboot,
+}
+
+extension on ChangeType {
+  String toValue() {
+    switch (this) {
+      case ChangeType.immediate:
+        return 'immediate';
+      case ChangeType.requiresReboot:
+        return 'requires-reboot';
+    }
+  }
 }
 
 extension on String {
@@ -7058,12 +7082,12 @@ extension on String {
       case 'requires-reboot':
         return ChangeType.requiresReboot;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum ChangeType');
   }
 }
 
 class CompleteMigrationResponse {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   CompleteMigrationResponse({
     this.replicationGroup,
@@ -7080,11 +7104,6 @@ class CompleteMigrationResponse {
 /// Node group (shard) configuration options when adding or removing replicas.
 /// Each node group (shard) configuration has the following members:
 /// NodeGroupId, NewReplicaCount, and PreferredAvailabilityZones.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class ConfigureShard {
   /// The number of replicas you want in this node group at the end of this
   /// operation. The maximum value for <code>NewReplicaCount</code> is 5. The
@@ -7110,7 +7129,6 @@ class ConfigureShard {
   /// a replica if your primary node fails)
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'NewReplicaCount')
   final int newReplicaCount;
 
   /// The 4-digit id for the node group you are configuring. For Redis (cluster
@@ -7118,7 +7136,6 @@ class ConfigureShard {
   /// a Redis (cluster mode enabled)'s node group's (shard's) id, see <a
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/shard-find-id.html">Finding
   /// a Shard's Id</a>.
-  @_s.JsonKey(name: 'NodeGroupId')
   final String nodeGroupId;
 
   /// A list of <code>PreferredAvailabilityZone</code> strings that specify which
@@ -7127,24 +7144,35 @@ class ConfigureShard {
   /// <code>NewReplicaCount</code> plus 1 to account for the primary node. If this
   /// member of <code>ReplicaConfiguration</code> is omitted, ElastiCache for
   /// Redis selects the availability zone for each of the replicas.
-  @_s.JsonKey(name: 'PreferredAvailabilityZones')
-  final List<String> preferredAvailabilityZones;
+  final List<String>? preferredAvailabilityZones;
 
   /// The outpost ARNs in which the cache cluster is created.
-  @_s.JsonKey(name: 'PreferredOutpostArns')
-  final List<String> preferredOutpostArns;
+  final List<String>? preferredOutpostArns;
 
   ConfigureShard({
-    @_s.required this.newReplicaCount,
-    @_s.required this.nodeGroupId,
+    required this.newReplicaCount,
+    required this.nodeGroupId,
     this.preferredAvailabilityZones,
     this.preferredOutpostArns,
   });
-  Map<String, dynamic> toJson() => _$ConfigureShardToJson(this);
+  Map<String, dynamic> toJson() {
+    final newReplicaCount = this.newReplicaCount;
+    final nodeGroupId = this.nodeGroupId;
+    final preferredAvailabilityZones = this.preferredAvailabilityZones;
+    final preferredOutpostArns = this.preferredOutpostArns;
+    return {
+      'NewReplicaCount': newReplicaCount,
+      'NodeGroupId': nodeGroupId,
+      if (preferredAvailabilityZones != null)
+        'PreferredAvailabilityZones': preferredAvailabilityZones,
+      if (preferredOutpostArns != null)
+        'PreferredOutpostArns': preferredOutpostArns,
+    };
+  }
 }
 
 class CopySnapshotResult {
-  final Snapshot snapshot;
+  final Snapshot? snapshot;
 
   CopySnapshotResult({
     this.snapshot,
@@ -7158,7 +7186,7 @@ class CopySnapshotResult {
 }
 
 class CreateCacheClusterResult {
-  final CacheCluster cacheCluster;
+  final CacheCluster? cacheCluster;
 
   CreateCacheClusterResult({
     this.cacheCluster,
@@ -7173,7 +7201,7 @@ class CreateCacheClusterResult {
 }
 
 class CreateCacheParameterGroupResult {
-  final CacheParameterGroup cacheParameterGroup;
+  final CacheParameterGroup? cacheParameterGroup;
 
   CreateCacheParameterGroupResult({
     this.cacheParameterGroup,
@@ -7188,7 +7216,7 @@ class CreateCacheParameterGroupResult {
 }
 
 class CreateCacheSecurityGroupResult {
-  final CacheSecurityGroup cacheSecurityGroup;
+  final CacheSecurityGroup? cacheSecurityGroup;
 
   CreateCacheSecurityGroupResult({
     this.cacheSecurityGroup,
@@ -7203,7 +7231,7 @@ class CreateCacheSecurityGroupResult {
 }
 
 class CreateCacheSubnetGroupResult {
-  final CacheSubnetGroup cacheSubnetGroup;
+  final CacheSubnetGroup? cacheSubnetGroup;
 
   CreateCacheSubnetGroupResult({
     this.cacheSubnetGroup,
@@ -7218,7 +7246,7 @@ class CreateCacheSubnetGroupResult {
 }
 
 class CreateGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   CreateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7233,7 +7261,7 @@ class CreateGlobalReplicationGroupResult {
 }
 
 class CreateReplicationGroupResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   CreateReplicationGroupResult({
     this.replicationGroup,
@@ -7248,7 +7276,7 @@ class CreateReplicationGroupResult {
 }
 
 class CreateSnapshotResult {
-  final Snapshot snapshot;
+  final Snapshot? snapshot;
 
   CreateSnapshotResult({
     this.snapshot,
@@ -7262,29 +7290,29 @@ class CreateSnapshotResult {
 }
 
 /// The endpoint from which data should be migrated.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class CustomerNodeEndpoint {
   /// The address of the node endpoint
-  @_s.JsonKey(name: 'Address')
-  final String address;
+  final String? address;
 
   /// The port of the node endpoint
-  @_s.JsonKey(name: 'Port')
-  final int port;
+  final int? port;
 
   CustomerNodeEndpoint({
     this.address,
     this.port,
   });
-  Map<String, dynamic> toJson() => _$CustomerNodeEndpointToJson(this);
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+    };
+  }
 }
 
 class DecreaseNodeGroupsInGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   DecreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7300,7 +7328,7 @@ class DecreaseNodeGroupsInGlobalReplicationGroupResult {
 }
 
 class DecreaseReplicaCountResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   DecreaseReplicaCountResult({
     this.replicationGroup,
@@ -7315,7 +7343,7 @@ class DecreaseReplicaCountResult {
 }
 
 class DeleteCacheClusterResult {
-  final CacheCluster cacheCluster;
+  final CacheCluster? cacheCluster;
 
   DeleteCacheClusterResult({
     this.cacheCluster,
@@ -7330,7 +7358,7 @@ class DeleteCacheClusterResult {
 }
 
 class DeleteGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   DeleteGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7345,7 +7373,7 @@ class DeleteGlobalReplicationGroupResult {
 }
 
 class DeleteReplicationGroupResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   DeleteReplicationGroupResult({
     this.replicationGroup,
@@ -7360,7 +7388,7 @@ class DeleteReplicationGroupResult {
 }
 
 class DeleteSnapshotResult {
-  final Snapshot snapshot;
+  final Snapshot? snapshot;
 
   DeleteSnapshotResult({
     this.snapshot,
@@ -7374,7 +7402,7 @@ class DeleteSnapshotResult {
 }
 
 class DescribeEngineDefaultParametersResult {
-  final EngineDefaults engineDefaults;
+  final EngineDefaults? engineDefaults;
 
   DescribeEngineDefaultParametersResult({
     this.engineDefaults,
@@ -7390,13 +7418,13 @@ class DescribeEngineDefaultParametersResult {
 
 class DescribeGlobalReplicationGroupsResult {
   /// Indicates the slot configuration and global identifier for each slice group.
-  final List<GlobalReplicationGroup> globalReplicationGroups;
+  final List<GlobalReplicationGroup>? globalReplicationGroups;
 
   /// An optional marker returned from a prior request. Use this marker for
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by MaxRecords. &gt;
-  final String marker;
+  final String? marker;
 
   DescribeGlobalReplicationGroupsResult({
     this.globalReplicationGroups,
@@ -7421,11 +7449,11 @@ class DescribeSnapshotsListMessage {
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by <code>MaxRecords</code>.
-  final String marker;
+  final String? marker;
 
   /// A list of snapshots. Each item in the list contains detailed information
   /// about one snapshot.
-  final List<Snapshot> snapshots;
+  final List<Snapshot>? snapshots;
 
   DescribeSnapshotsListMessage({
     this.marker,
@@ -7447,10 +7475,10 @@ class DescribeUserGroupsResult {
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by MaxRecords. &gt;
-  final String marker;
+  final String? marker;
 
   /// Returns a list of user groups.
-  final List<UserGroup> userGroups;
+  final List<UserGroup>? userGroups;
 
   DescribeUserGroupsResult({
     this.marker,
@@ -7472,10 +7500,10 @@ class DescribeUsersResult {
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by MaxRecords. &gt;
-  final String marker;
+  final String? marker;
 
   /// A list of users.
-  final List<User> users;
+  final List<User>? users;
 
   DescribeUsersResult({
     this.marker,
@@ -7491,7 +7519,7 @@ class DescribeUsersResult {
 }
 
 class DisassociateGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   DisassociateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7508,13 +7536,13 @@ class DisassociateGlobalReplicationGroupResult {
 /// Provides ownership and status information for an Amazon EC2 security group.
 class EC2SecurityGroup {
   /// The name of the Amazon EC2 security group.
-  final String eC2SecurityGroupName;
+  final String? eC2SecurityGroupName;
 
   /// The AWS account ID of the Amazon EC2 security group owner.
-  final String eC2SecurityGroupOwnerId;
+  final String? eC2SecurityGroupOwnerId;
 
   /// The status of the Amazon EC2 security group.
-  final String status;
+  final String? status;
 
   EC2SecurityGroup({
     this.eC2SecurityGroupName,
@@ -7536,10 +7564,10 @@ class EC2SecurityGroup {
 /// cache node.
 class Endpoint {
   /// The DNS hostname of the cache node.
-  final String address;
+  final String? address;
 
   /// The port number that the cache engine is listening on.
-  final int port;
+  final int? port;
 
   Endpoint({
     this.address,
@@ -7558,7 +7586,7 @@ class Endpoint {
 class EngineDefaults {
   /// A list of parameters specific to a particular cache node type. Each element
   /// in the list contains detailed information about one parameter.
-  final List<CacheNodeTypeSpecificParameter> cacheNodeTypeSpecificParameters;
+  final List<CacheNodeTypeSpecificParameter>? cacheNodeTypeSpecificParameters;
 
   /// Specifies the name of the cache parameter group family to which the engine
   /// default parameters apply.
@@ -7567,13 +7595,13 @@ class EngineDefaults {
   /// <code>memcached1.6</code> | <code>redis2.6</code> | <code>redis2.8</code> |
   /// <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> |
   /// <code>redis6.x</code> |
-  final String cacheParameterGroupFamily;
+  final String? cacheParameterGroupFamily;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   /// Contains a list of engine default parameters.
-  final List<Parameter> parameters;
+  final List<Parameter>? parameters;
 
   EngineDefaults({
     this.cacheNodeTypeSpecificParameters,
@@ -7605,19 +7633,19 @@ class EngineDefaults {
 /// node, or rebooting a node.
 class Event {
   /// The date and time when the event occurred.
-  final DateTime date;
+  final DateTime? date;
 
   /// The text of the event.
-  final String message;
+  final String? message;
 
   /// The identifier for the source of the event. For example, if the event
   /// occurred at the cluster level, the identifier would be the name of the
   /// cluster.
-  final String sourceIdentifier;
+  final String? sourceIdentifier;
 
   /// Specifies the origin of this event - a cluster, a parameter group, a
   /// security group, etc.
-  final SourceType sourceType;
+  final SourceType? sourceType;
 
   Event({
     this.date,
@@ -7639,10 +7667,10 @@ class Event {
 class EventsMessage {
   /// A list of events. Each element in the list contains detailed information
   /// about one event.
-  final List<Event> events;
+  final List<Event>? events;
 
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   EventsMessage({
     this.events,
@@ -7658,7 +7686,7 @@ class EventsMessage {
 }
 
 class FailoverGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   FailoverGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7673,34 +7701,34 @@ class FailoverGlobalReplicationGroupResult {
 }
 
 /// Used to streamline results of a search based on the property being filtered.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class Filter {
   /// The property being filtered. For example, UserId.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The property values to filter on. For example, "user-123".
-  @_s.JsonKey(name: 'Values')
   final List<String> values;
 
   Filter({
-    @_s.required this.name,
-    @_s.required this.values,
+    required this.name,
+    required this.values,
   });
-  Map<String, dynamic> toJson() => _$FilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final values = this.values;
+    return {
+      'Name': name,
+      'Values': values,
+    };
+  }
 }
 
 /// Indicates the slot configuration and global identifier for a slice group.
 class GlobalNodeGroup {
   /// The name of the global node group
-  final String globalNodeGroupId;
+  final String? globalNodeGroupId;
 
   /// The keyspace for this node group
-  final String slots;
+  final String? slots;
 
   GlobalNodeGroup({
     this.globalNodeGroupId,
@@ -7727,7 +7755,7 @@ class GlobalNodeGroup {
 /// </ul>
 class GlobalReplicationGroup {
   /// The ARN (Amazon Resource Name) of the global replication group.
-  final String arn;
+  final String? arn;
 
   /// A flag that enables encryption at rest when set to <code>true</code>.
   ///
@@ -7739,46 +7767,46 @@ class GlobalReplicationGroup {
   /// <b>Required:</b> Only available when creating a replication group in an
   /// Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or
   /// later.
-  final bool atRestEncryptionEnabled;
+  final bool? atRestEncryptionEnabled;
 
   /// A flag that enables using an <code>AuthToken</code> (password) when issuing
   /// Redis commands.
   ///
   /// Default: <code>false</code>
-  final bool authTokenEnabled;
+  final bool? authTokenEnabled;
 
   /// The cache node type of the Global Datastore
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// A flag that indicates whether the Global Datastore is cluster enabled.
-  final bool clusterEnabled;
+  final bool? clusterEnabled;
 
   /// The Elasticache engine. For Redis only.
-  final String engine;
+  final String? engine;
 
   /// The Elasticache Redis engine version.
-  final String engineVersion;
+  final String? engineVersion;
 
   /// Indicates the slot configuration and global identifier for each slice group.
-  final List<GlobalNodeGroup> globalNodeGroups;
+  final List<GlobalNodeGroup>? globalNodeGroups;
 
   /// The optional description of the Global Datastore
-  final String globalReplicationGroupDescription;
+  final String? globalReplicationGroupDescription;
 
   /// The name of the Global Datastore
-  final String globalReplicationGroupId;
+  final String? globalReplicationGroupId;
 
   /// The replication groups that comprise the Global Datastore.
-  final List<GlobalReplicationGroupMember> members;
+  final List<GlobalReplicationGroupMember>? members;
 
   /// The status of the Global Datastore
-  final String status;
+  final String? status;
 
   /// A flag that enables in-transit encryption when set to true. You cannot
   /// modify the value of <code>TransitEncryptionEnabled</code> after the cluster
   /// is created. To enable in-transit encryption on a cluster you must set
   /// <code>TransitEncryptionEnabled</code> to true when you create a cluster.
-  final bool transitEncryptionEnabled;
+  final bool? transitEncryptionEnabled;
 
   GlobalReplicationGroup({
     this.arn,
@@ -7829,11 +7857,11 @@ class GlobalReplicationGroup {
 /// Global Datastore.
 class GlobalReplicationGroupInfo {
   /// The name of the Global Datastore
-  final String globalReplicationGroupId;
+  final String? globalReplicationGroupId;
 
   /// The role of the replication group in a Global Datastore. Can be primary or
   /// secondary.
-  final String globalReplicationGroupMemberRole;
+  final String? globalReplicationGroupMemberRole;
 
   GlobalReplicationGroupInfo({
     this.globalReplicationGroupId,
@@ -7853,19 +7881,19 @@ class GlobalReplicationGroupInfo {
 /// AWS region and the role of the replication group.
 class GlobalReplicationGroupMember {
   /// Indicates whether automatic failover is enabled for the replication group.
-  final AutomaticFailoverStatus automaticFailover;
+  final AutomaticFailoverStatus? automaticFailover;
 
   /// The replication group id of the Global Datastore member.
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The AWS region of the Global Datastore member.
-  final String replicationGroupRegion;
+  final String? replicationGroupRegion;
 
   /// Indicates the role of the replication group, primary or secondary.
-  final String role;
+  final String? role;
 
   /// The status of the membership of the replication group.
-  final String status;
+  final String? status;
 
   GlobalReplicationGroupMember({
     this.automaticFailover,
@@ -7889,7 +7917,7 @@ class GlobalReplicationGroupMember {
 }
 
 class IncreaseNodeGroupsInGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   IncreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7905,7 +7933,7 @@ class IncreaseNodeGroupsInGlobalReplicationGroupResult {
 }
 
 class IncreaseReplicaCountResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   IncreaseReplicaCountResult({
     this.replicationGroup,
@@ -7920,7 +7948,7 @@ class IncreaseReplicaCountResult {
 }
 
 class ModifyCacheClusterResult {
-  final CacheCluster cacheCluster;
+  final CacheCluster? cacheCluster;
 
   ModifyCacheClusterResult({
     this.cacheCluster,
@@ -7935,7 +7963,7 @@ class ModifyCacheClusterResult {
 }
 
 class ModifyCacheSubnetGroupResult {
-  final CacheSubnetGroup cacheSubnetGroup;
+  final CacheSubnetGroup? cacheSubnetGroup;
 
   ModifyCacheSubnetGroupResult({
     this.cacheSubnetGroup,
@@ -7950,7 +7978,7 @@ class ModifyCacheSubnetGroupResult {
 }
 
 class ModifyGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   ModifyGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -7965,7 +7993,7 @@ class ModifyGlobalReplicationGroupResult {
 }
 
 class ModifyReplicationGroupResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   ModifyReplicationGroupResult({
     this.replicationGroup,
@@ -7980,7 +8008,7 @@ class ModifyReplicationGroupResult {
 }
 
 class ModifyReplicationGroupShardConfigurationResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   ModifyReplicationGroupShardConfigurationResult({
     this.replicationGroup,
@@ -7996,10 +8024,19 @@ class ModifyReplicationGroupShardConfigurationResult {
 }
 
 enum MultiAZStatus {
-  @_s.JsonValue('enabled')
   enabled,
-  @_s.JsonValue('disabled')
   disabled,
+}
+
+extension on MultiAZStatus {
+  String toValue() {
+    switch (this) {
+      case MultiAZStatus.enabled:
+        return 'enabled';
+      case MultiAZStatus.disabled:
+        return 'disabled';
+    }
+  }
 }
 
 extension on String {
@@ -8010,7 +8047,7 @@ extension on String {
       case 'disabled':
         return MultiAZStatus.disabled;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum MultiAZStatus');
   }
 }
 
@@ -8023,24 +8060,24 @@ class NodeGroup {
   /// is 0001. A Redis (cluster mode enabled) replication group contains 1 to 90
   /// node groups numbered 0001 to 0090. Optionally, the user can provide the id
   /// for a node group.
-  final String nodeGroupId;
+  final String? nodeGroupId;
 
   /// A list containing information about individual nodes within the node group
   /// (shard).
-  final List<NodeGroupMember> nodeGroupMembers;
+  final List<NodeGroupMember>? nodeGroupMembers;
 
   /// The endpoint of the primary node in this node group (shard).
-  final Endpoint primaryEndpoint;
+  final Endpoint? primaryEndpoint;
 
   /// The endpoint of the replica nodes in this node group (shard).
-  final Endpoint readerEndpoint;
+  final Endpoint? readerEndpoint;
 
   /// The keyspace for this node group (shard).
-  final String slots;
+  final String? slots;
 
   /// The current state of this replication group - <code>creating</code>,
   /// <code>available</code>, <code>modifying</code>, <code>deleting</code>.
-  final String status;
+  final String? status;
 
   NodeGroup({
     this.nodeGroupId,
@@ -8074,48 +8111,36 @@ class NodeGroup {
 /// configuration has the following: <code>Slots</code>,
 /// <code>PrimaryAvailabilityZone</code>, <code>ReplicaAvailabilityZones</code>,
 /// <code>ReplicaCount</code>.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class NodeGroupConfiguration {
   /// Either the ElastiCache for Redis supplied 4-digit id or a user supplied id
   /// for the node group these configuration values apply to.
-  @_s.JsonKey(name: 'NodeGroupId')
-  final String nodeGroupId;
+  final String? nodeGroupId;
 
   /// The Availability Zone where the primary node of this node group (shard) is
   /// launched.
-  @_s.JsonKey(name: 'PrimaryAvailabilityZone')
-  final String primaryAvailabilityZone;
+  final String? primaryAvailabilityZone;
 
   /// The outpost ARN of the primary node.
-  @_s.JsonKey(name: 'PrimaryOutpostArn')
-  final String primaryOutpostArn;
+  final String? primaryOutpostArn;
 
   /// A list of Availability Zones to be used for the read replicas. The number of
   /// Availability Zones in this list must match the value of
   /// <code>ReplicaCount</code> or <code>ReplicasPerNodeGroup</code> if not
   /// specified.
-  @_s.JsonKey(name: 'ReplicaAvailabilityZones')
-  final List<String> replicaAvailabilityZones;
+  final List<String>? replicaAvailabilityZones;
 
   /// The number of read replica nodes in this node group (shard).
-  @_s.JsonKey(name: 'ReplicaCount')
-  final int replicaCount;
+  final int? replicaCount;
 
   /// The outpost ARN of the node replicas.
-  @_s.JsonKey(name: 'ReplicaOutpostArns')
-  final List<String> replicaOutpostArns;
+  final List<String>? replicaOutpostArns;
 
   /// A string that specifies the keyspace for a particular node group. Keyspaces
   /// range from 0 to 16,383. The string is in the format
   /// <code>startkey-endkey</code>.
   ///
   /// Example: <code>"0-3999"</code>
-  @_s.JsonKey(name: 'Slots')
-  final String slots;
+  final String? slots;
 
   NodeGroupConfiguration({
     this.nodeGroupId,
@@ -8144,33 +8169,52 @@ class NodeGroupConfiguration {
     );
   }
 
-  Map<String, dynamic> toJson() => _$NodeGroupConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final primaryAvailabilityZone = this.primaryAvailabilityZone;
+    final primaryOutpostArn = this.primaryOutpostArn;
+    final replicaAvailabilityZones = this.replicaAvailabilityZones;
+    final replicaCount = this.replicaCount;
+    final replicaOutpostArns = this.replicaOutpostArns;
+    final slots = this.slots;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (primaryAvailabilityZone != null)
+        'PrimaryAvailabilityZone': primaryAvailabilityZone,
+      if (primaryOutpostArn != null) 'PrimaryOutpostArn': primaryOutpostArn,
+      if (replicaAvailabilityZones != null)
+        'ReplicaAvailabilityZones': replicaAvailabilityZones,
+      if (replicaCount != null) 'ReplicaCount': replicaCount,
+      if (replicaOutpostArns != null) 'ReplicaOutpostArns': replicaOutpostArns,
+      if (slots != null) 'Slots': slots,
+    };
+  }
 }
 
 /// Represents a single node within a node group (shard).
 class NodeGroupMember {
   /// The ID of the cluster to which the node belongs.
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The ID of the node within its cluster. A node ID is a numeric identifier
   /// (0001, 0002, etc.).
-  final String cacheNodeId;
+  final String? cacheNodeId;
 
   /// The role that is currently assigned to the node - <code>primary</code> or
   /// <code>replica</code>. This member is only applicable for Redis (cluster mode
   /// disabled) replication groups.
-  final String currentRole;
+  final String? currentRole;
 
   /// The name of the Availability Zone in which the node is located.
-  final String preferredAvailabilityZone;
+  final String? preferredAvailabilityZone;
 
   /// The outpost ARN of the node group member.
-  final String preferredOutpostArn;
+  final String? preferredOutpostArn;
 
   /// The information required for client programs to connect to a node for read
   /// operations. The read endpoint is only applicable on Redis (cluster mode
   /// disabled) clusters.
-  final Endpoint readEndpoint;
+  final Endpoint? readEndpoint;
 
   NodeGroupMember({
     this.cacheClusterId,
@@ -8199,32 +8243,32 @@ class NodeGroupMember {
 /// The status of the service update on the node group member
 class NodeGroupMemberUpdateStatus {
   /// The cache cluster ID
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The node ID of the cache cluster
-  final String cacheNodeId;
+  final String? cacheNodeId;
 
   /// The deletion date of the node
-  final DateTime nodeDeletionDate;
+  final DateTime? nodeDeletionDate;
 
   /// The end date of the update for a node
-  final DateTime nodeUpdateEndDate;
+  final DateTime? nodeUpdateEndDate;
 
   /// Reflects whether the update was initiated by the customer or automatically
   /// applied
-  final NodeUpdateInitiatedBy nodeUpdateInitiatedBy;
+  final NodeUpdateInitiatedBy? nodeUpdateInitiatedBy;
 
   /// The date when the update is triggered
-  final DateTime nodeUpdateInitiatedDate;
+  final DateTime? nodeUpdateInitiatedDate;
 
   /// The start date of the update for a node
-  final DateTime nodeUpdateStartDate;
+  final DateTime? nodeUpdateStartDate;
 
   /// The update status of the node
-  final NodeUpdateStatus nodeUpdateStatus;
+  final NodeUpdateStatus? nodeUpdateStatus;
 
   /// The date when the NodeUpdateStatus was last modified
-  final DateTime nodeUpdateStatusModifiedDate;
+  final DateTime? nodeUpdateStatusModifiedDate;
 
   NodeGroupMemberUpdateStatus({
     this.cacheClusterId,
@@ -8262,10 +8306,10 @@ class NodeGroupMemberUpdateStatus {
 /// The status of the service update on the node group
 class NodeGroupUpdateStatus {
   /// The ID of the node group
-  final String nodeGroupId;
+  final String? nodeGroupId;
 
   /// The status of the service update on the node group member
-  final List<NodeGroupMemberUpdateStatus> nodeGroupMemberUpdateStatus;
+  final List<NodeGroupMemberUpdateStatus>? nodeGroupMemberUpdateStatus;
 
   NodeGroupUpdateStatus({
     this.nodeGroupId,
@@ -8287,26 +8331,26 @@ class NodeGroupUpdateStatus {
 /// Represents an individual cache node in a snapshot of a cluster.
 class NodeSnapshot {
   /// A unique identifier for the source cluster.
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The date and time when the cache node was created in the source cluster.
-  final DateTime cacheNodeCreateTime;
+  final DateTime? cacheNodeCreateTime;
 
   /// The cache node identifier for the node in the source cluster.
-  final String cacheNodeId;
+  final String? cacheNodeId;
 
   /// The size of the cache on the source cache node.
-  final String cacheSize;
+  final String? cacheSize;
 
   /// The configuration for the source node group (shard).
-  final NodeGroupConfiguration nodeGroupConfiguration;
+  final NodeGroupConfiguration? nodeGroupConfiguration;
 
   /// A unique identifier for the source node group (shard).
-  final String nodeGroupId;
+  final String? nodeGroupId;
 
   /// The date and time when the source node's metadata and cache data set was
   /// obtained for the snapshot.
-  final DateTime snapshotCreateTime;
+  final DateTime? snapshotCreateTime;
 
   NodeSnapshot({
     this.cacheClusterId,
@@ -8335,10 +8379,19 @@ class NodeSnapshot {
 }
 
 enum NodeUpdateInitiatedBy {
-  @_s.JsonValue('system')
   system,
-  @_s.JsonValue('customer')
   customer,
+}
+
+extension on NodeUpdateInitiatedBy {
+  String toValue() {
+    switch (this) {
+      case NodeUpdateInitiatedBy.system:
+        return 'system';
+      case NodeUpdateInitiatedBy.customer:
+        return 'customer';
+    }
+  }
 }
 
 extension on String {
@@ -8349,23 +8402,36 @@ extension on String {
       case 'customer':
         return NodeUpdateInitiatedBy.customer;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum NodeUpdateInitiatedBy');
   }
 }
 
 enum NodeUpdateStatus {
-  @_s.JsonValue('not-applied')
   notApplied,
-  @_s.JsonValue('waiting-to-start')
   waitingToStart,
-  @_s.JsonValue('in-progress')
   inProgress,
-  @_s.JsonValue('stopping')
   stopping,
-  @_s.JsonValue('stopped')
   stopped,
-  @_s.JsonValue('complete')
   complete,
+}
+
+extension on NodeUpdateStatus {
+  String toValue() {
+    switch (this) {
+      case NodeUpdateStatus.notApplied:
+        return 'not-applied';
+      case NodeUpdateStatus.waitingToStart:
+        return 'waiting-to-start';
+      case NodeUpdateStatus.inProgress:
+        return 'in-progress';
+      case NodeUpdateStatus.stopping:
+        return 'stopping';
+      case NodeUpdateStatus.stopped:
+        return 'stopped';
+      case NodeUpdateStatus.complete:
+        return 'complete';
+    }
+  }
 }
 
 extension on String {
@@ -8384,7 +8450,7 @@ extension on String {
       case 'complete':
         return NodeUpdateStatus.complete;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum NodeUpdateStatus');
   }
 }
 
@@ -8393,10 +8459,10 @@ extension on String {
 /// Notification Service (SNS).
 class NotificationConfiguration {
   /// The Amazon Resource Name (ARN) that identifies the topic.
-  final String topicArn;
+  final String? topicArn;
 
   /// The current state of the topic.
-  final String topicStatus;
+  final String? topicStatus;
 
   NotificationConfiguration({
     this.topicArn,
@@ -8411,9 +8477,7 @@ class NotificationConfiguration {
 }
 
 enum OutpostMode {
-  @_s.JsonValue('single-outpost')
   singleOutpost,
-  @_s.JsonValue('cross-outpost')
   crossOutpost,
 }
 
@@ -8425,7 +8489,6 @@ extension on OutpostMode {
       case OutpostMode.crossOutpost:
         return 'cross-outpost';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -8437,7 +8500,7 @@ extension on String {
       case 'cross-outpost':
         return OutpostMode.crossOutpost;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum OutpostMode');
   }
 }
 
@@ -8445,7 +8508,7 @@ extension on String {
 /// behavior.
 class Parameter {
   /// The valid range of values for the parameter.
-  final String allowedValues;
+  final String? allowedValues;
 
   /// Indicates whether a change to the parameter is applied immediately or
   /// requires a reboot for the change to be applied. You can force a reboot or
@@ -8453,30 +8516,30 @@ class Parameter {
   /// <a
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html">Rebooting
   /// a Cluster</a>.
-  final ChangeType changeType;
+  final ChangeType? changeType;
 
   /// The valid data type for the parameter.
-  final String dataType;
+  final String? dataType;
 
   /// A description of the parameter.
-  final String description;
+  final String? description;
 
   /// Indicates whether (<code>true</code>) or not (<code>false</code>) the
   /// parameter can be modified. Some parameters have security or operational
   /// implications that prevent them from being changed.
-  final bool isModifiable;
+  final bool? isModifiable;
 
   /// The earliest cache engine version to which the parameter can apply.
-  final String minimumEngineVersion;
+  final String? minimumEngineVersion;
 
   /// The name of the parameter.
-  final String parameterName;
+  final String? parameterName;
 
   /// The value of the parameter.
-  final String parameterValue;
+  final String? parameterValue;
 
   /// The source of the parameter.
-  final String source;
+  final String? source;
 
   Parameter({
     this.allowedValues,
@@ -8506,32 +8569,41 @@ class Parameter {
 }
 
 /// Describes a name-value pair that is used to update the value of a parameter.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class ParameterNameValue {
   /// The name of the parameter.
-  @_s.JsonKey(name: 'ParameterName')
-  final String parameterName;
+  final String? parameterName;
 
   /// The value of the parameter.
-  @_s.JsonKey(name: 'ParameterValue')
-  final String parameterValue;
+  final String? parameterValue;
 
   ParameterNameValue({
     this.parameterName,
     this.parameterValue,
   });
-  Map<String, dynamic> toJson() => _$ParameterNameValueToJson(this);
+  Map<String, dynamic> toJson() {
+    final parameterName = this.parameterName;
+    final parameterValue = this.parameterValue;
+    return {
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (parameterValue != null) 'ParameterValue': parameterValue,
+    };
+  }
 }
 
 enum PendingAutomaticFailoverStatus {
-  @_s.JsonValue('enabled')
   enabled,
-  @_s.JsonValue('disabled')
   disabled,
+}
+
+extension on PendingAutomaticFailoverStatus {
+  String toValue() {
+    switch (this) {
+      case PendingAutomaticFailoverStatus.enabled:
+        return 'enabled';
+      case PendingAutomaticFailoverStatus.disabled:
+        return 'disabled';
+    }
+  }
 }
 
 extension on String {
@@ -8542,7 +8614,8 @@ extension on String {
       case 'disabled':
         return PendingAutomaticFailoverStatus.disabled;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception(
+        '$this is not known in enum PendingAutomaticFailoverStatus');
   }
 }
 
@@ -8550,23 +8623,23 @@ extension on String {
 /// are currently being applied.
 class PendingModifiedValues {
   /// The auth token status
-  final AuthTokenUpdateStatus authTokenStatus;
+  final AuthTokenUpdateStatus? authTokenStatus;
 
   /// A list of cache node IDs that are being removed (or will be removed) from
   /// the cluster. A node ID is a 4-digit numeric identifier (0001, 0002, etc.).
-  final List<String> cacheNodeIdsToRemove;
+  final List<String>? cacheNodeIdsToRemove;
 
   /// The cache node type that this cluster or replication group is scaled to.
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// The new cache engine version that the cluster runs.
-  final String engineVersion;
+  final String? engineVersion;
 
   /// The new number of cache nodes for the cluster.
   ///
   /// For clusters running Redis, this value must be 1. For clusters running
   /// Memcached, this value must be between 1 and 20.
-  final int numCacheNodes;
+  final int? numCacheNodes;
 
   PendingModifiedValues({
     this.authTokenStatus,
@@ -8594,16 +8667,16 @@ class PendingModifiedValues {
 /// request
 class ProcessedUpdateAction {
   /// The ID of the cache cluster
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The ID of the replication group
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The unique ID of the service update
-  final String serviceUpdateName;
+  final String? serviceUpdateName;
 
   /// The status of the update action on the Redis cluster
-  final UpdateActionStatus updateActionStatus;
+  final UpdateActionStatus? updateActionStatus;
 
   ProcessedUpdateAction({
     this.cacheClusterId,
@@ -8624,7 +8697,7 @@ class ProcessedUpdateAction {
 }
 
 class PurchaseReservedCacheNodesOfferingResult {
-  final ReservedCacheNode reservedCacheNode;
+  final ReservedCacheNode? reservedCacheNode;
 
   PurchaseReservedCacheNodesOfferingResult({
     this.reservedCacheNode,
@@ -8639,7 +8712,7 @@ class PurchaseReservedCacheNodesOfferingResult {
 }
 
 class RebalanceSlotsInGlobalReplicationGroupResult {
-  final GlobalReplicationGroup globalReplicationGroup;
+  final GlobalReplicationGroup? globalReplicationGroup;
 
   RebalanceSlotsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
@@ -8655,7 +8728,7 @@ class RebalanceSlotsInGlobalReplicationGroupResult {
 }
 
 class RebootCacheClusterResult {
-  final CacheCluster cacheCluster;
+  final CacheCluster? cacheCluster;
 
   RebootCacheClusterResult({
     this.cacheCluster,
@@ -8673,10 +8746,10 @@ class RebootCacheClusterResult {
 /// reserved cache node, or for a reserved cache node offering.
 class RecurringCharge {
   /// The monetary amount of the recurring charge.
-  final double recurringChargeAmount;
+  final double? recurringChargeAmount;
 
   /// The frequency of the recurring charge.
-  final String recurringChargeFrequency;
+  final String? recurringChargeFrequency;
 
   RecurringCharge({
     this.recurringChargeAmount,
@@ -8693,37 +8766,38 @@ class RecurringCharge {
 }
 
 /// A list of the replication groups
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class RegionalConfiguration {
   /// The name of the secondary cluster
-  @_s.JsonKey(name: 'ReplicationGroupId')
   final String replicationGroupId;
 
   /// The AWS region where the cluster is stored
-  @_s.JsonKey(name: 'ReplicationGroupRegion')
   final String replicationGroupRegion;
 
   /// A list of <code>PreferredAvailabilityZones</code> objects that specifies the
   /// configuration of a node group in the resharded cluster.
-  @_s.JsonKey(name: 'ReshardingConfiguration')
   final List<ReshardingConfiguration> reshardingConfiguration;
 
   RegionalConfiguration({
-    @_s.required this.replicationGroupId,
-    @_s.required this.replicationGroupRegion,
-    @_s.required this.reshardingConfiguration,
+    required this.replicationGroupId,
+    required this.replicationGroupRegion,
+    required this.reshardingConfiguration,
   });
-  Map<String, dynamic> toJson() => _$RegionalConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final replicationGroupId = this.replicationGroupId;
+    final replicationGroupRegion = this.replicationGroupRegion;
+    final reshardingConfiguration = this.reshardingConfiguration;
+    return {
+      'ReplicationGroupId': replicationGroupId,
+      'ReplicationGroupRegion': replicationGroupRegion,
+      'ReshardingConfiguration': reshardingConfiguration,
+    };
+  }
 }
 
 /// Contains all of the attributes of a specific Redis replication group.
 class ReplicationGroup {
   /// The ARN (Amazon Resource Name) of the replication group.
-  final String arn;
+  final String? arn;
 
   /// A flag that enables encryption at-rest when set to <code>true</code>.
   ///
@@ -8737,69 +8811,69 @@ class ReplicationGroup {
   /// later.
   ///
   /// Default: <code>false</code>
-  final bool atRestEncryptionEnabled;
+  final bool? atRestEncryptionEnabled;
 
   /// A flag that enables using an <code>AuthToken</code> (password) when issuing
   /// Redis commands.
   ///
   /// Default: <code>false</code>
-  final bool authTokenEnabled;
+  final bool? authTokenEnabled;
 
   /// The date the auth token was last modified
-  final DateTime authTokenLastModifiedDate;
+  final DateTime? authTokenLastModifiedDate;
 
   /// Indicates the status of automatic failover for this Redis replication group.
-  final AutomaticFailoverStatus automaticFailover;
+  final AutomaticFailoverStatus? automaticFailover;
 
   /// The name of the compute and memory capacity node type for each node in the
   /// replication group.
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// A flag indicating whether or not this replication group is cluster enabled;
   /// i.e., whether its data can be partitioned across multiple shards (API/CLI:
   /// node groups).
   ///
   /// Valid values: <code>true</code> | <code>false</code>
-  final bool clusterEnabled;
+  final bool? clusterEnabled;
 
   /// The configuration endpoint for this replication group. Use the configuration
   /// endpoint to connect to this replication group.
-  final Endpoint configurationEndpoint;
+  final Endpoint? configurationEndpoint;
 
   /// The user supplied description of the replication group.
-  final String description;
+  final String? description;
 
   /// The name of the Global Datastore and role of this replication group in the
   /// Global Datastore.
-  final GlobalReplicationGroupInfo globalReplicationGroupInfo;
+  final GlobalReplicationGroupInfo? globalReplicationGroupInfo;
 
   /// The ID of the KMS key used to encrypt the disk in the cluster.
-  final String kmsKeyId;
+  final String? kmsKeyId;
 
   /// The names of all the cache clusters that are part of this replication group.
-  final List<String> memberClusters;
+  final List<String>? memberClusters;
 
   /// The outpost ARNs of the replication group's member clusters.
-  final List<String> memberClustersOutpostArns;
+  final List<String>? memberClustersOutpostArns;
 
   /// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
   /// For more information, see <a
   /// href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html">Minimizing
   /// Downtime: Multi-AZ</a>
-  final MultiAZStatus multiAZ;
+  final MultiAZStatus? multiAZ;
 
   /// A list of node groups in this replication group. For Redis (cluster mode
   /// disabled) replication groups, this is a single-element list. For Redis
   /// (cluster mode enabled) replication groups, the list contains an entry for
   /// each node group (shard).
-  final List<NodeGroup> nodeGroups;
+  final List<NodeGroup>? nodeGroups;
 
   /// A group of settings to be applied to the replication group, either
   /// immediately or during the next maintenance window.
-  final ReplicationGroupPendingModifiedValues pendingModifiedValues;
+  final ReplicationGroupPendingModifiedValues? pendingModifiedValues;
 
   /// The identifier for the replication group.
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The number of days for which ElastiCache retains automatic cluster snapshots
   /// before deleting them. For example, if you set
@@ -8809,7 +8883,7 @@ class ReplicationGroup {
   /// If the value of <code>SnapshotRetentionLimit</code> is set to zero (0),
   /// backups are turned off.
   /// </important>
-  final int snapshotRetentionLimit;
+  final int? snapshotRetentionLimit;
 
   /// The daily time range (in UTC) during which ElastiCache begins taking a daily
   /// snapshot of your node group (shard).
@@ -8822,16 +8896,16 @@ class ReplicationGroup {
   /// This parameter is only valid if the <code>Engine</code> parameter is
   /// <code>redis</code>.
   /// </note>
-  final String snapshotWindow;
+  final String? snapshotWindow;
 
   /// The cluster ID that is used as the daily snapshot source for the replication
   /// group.
-  final String snapshottingClusterId;
+  final String? snapshottingClusterId;
 
   /// The current state of this replication group - <code>creating</code>,
   /// <code>available</code>, <code>modifying</code>, <code>deleting</code>,
   /// <code>create-failed</code>, <code>snapshotting</code>.
-  final String status;
+  final String? status;
 
   /// A flag that enables in-transit encryption when set to <code>true</code>.
   ///
@@ -8845,10 +8919,10 @@ class ReplicationGroup {
   /// later.
   ///
   /// Default: <code>false</code>
-  final bool transitEncryptionEnabled;
+  final bool? transitEncryptionEnabled;
 
   /// The list of user group IDs that have access to the replication group.
-  final List<String> userGroupIds;
+  final List<String>? userGroupIds;
 
   ReplicationGroup({
     this.arn,
@@ -8930,11 +9004,11 @@ class ReplicationGroup {
 /// Represents the output of a <code>DescribeReplicationGroups</code> operation.
 class ReplicationGroupMessage {
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   /// A list of replication groups. Each item in the list contains detailed
   /// information about one replication group.
-  final List<ReplicationGroup> replicationGroups;
+  final List<ReplicationGroup>? replicationGroups;
 
   ReplicationGroupMessage({
     this.marker,
@@ -8956,21 +9030,21 @@ class ReplicationGroupMessage {
 /// immediately or during the next maintenance window.
 class ReplicationGroupPendingModifiedValues {
   /// The auth token status
-  final AuthTokenUpdateStatus authTokenStatus;
+  final AuthTokenUpdateStatus? authTokenStatus;
 
   /// Indicates the status of automatic failover for this Redis replication group.
-  final PendingAutomaticFailoverStatus automaticFailoverStatus;
+  final PendingAutomaticFailoverStatus? automaticFailoverStatus;
 
   /// The primary cluster ID that is applied immediately (if
   /// <code>--apply-immediately</code> was specified), or during the next
   /// maintenance window.
-  final String primaryClusterId;
+  final String? primaryClusterId;
 
   /// The status of an online resharding operation.
-  final ReshardingStatus resharding;
+  final ReshardingStatus? resharding;
 
   /// The user groups being modified.
-  final UserGroupsUpdateStatus userGroups;
+  final UserGroupsUpdateStatus? userGroups;
 
   ReplicationGroupPendingModifiedValues({
     this.authTokenStatus,
@@ -9002,7 +9076,7 @@ class ReplicationGroupPendingModifiedValues {
 /// operation.
 class ReservedCacheNode {
   /// The number of cache nodes that have been reserved.
-  final int cacheNodeCount;
+  final int? cacheNodeCount;
 
   /// The cache node type for the reserved cache nodes.
   ///
@@ -9127,43 +9201,43 @@ class ReservedCacheNode {
   /// later.
   /// </li>
   /// </ul>
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// The duration of the reservation in seconds.
-  final int duration;
+  final int? duration;
 
   /// The fixed price charged for this reserved cache node.
-  final double fixedPrice;
+  final double? fixedPrice;
 
   /// The offering type of this reserved cache node.
-  final String offeringType;
+  final String? offeringType;
 
   /// The description of the reserved cache node.
-  final String productDescription;
+  final String? productDescription;
 
   /// The recurring price charged to run this reserved cache node.
-  final List<RecurringCharge> recurringCharges;
+  final List<RecurringCharge>? recurringCharges;
 
   /// The Amazon Resource Name (ARN) of the reserved cache node.
   ///
   /// Example:
   /// <code>arn:aws:elasticache:us-east-1:123456789012:reserved-instance:ri-2017-03-27-08-33-25-582</code>
-  final String reservationARN;
+  final String? reservationARN;
 
   /// The unique identifier for the reservation.
-  final String reservedCacheNodeId;
+  final String? reservedCacheNodeId;
 
   /// The offering identifier.
-  final String reservedCacheNodesOfferingId;
+  final String? reservedCacheNodesOfferingId;
 
   /// The time the reservation started.
-  final DateTime startTime;
+  final DateTime? startTime;
 
   /// The state of the reserved cache node.
-  final String state;
+  final String? state;
 
   /// The hourly price charged for this reserved cache node.
-  final double usagePrice;
+  final double? usagePrice;
 
   ReservedCacheNode({
     this.cacheNodeCount,
@@ -9209,11 +9283,11 @@ class ReservedCacheNode {
 /// operation.
 class ReservedCacheNodeMessage {
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   /// A list of reserved cache nodes. Each element in the list contains detailed
   /// information about one node.
-  final List<ReservedCacheNode> reservedCacheNodes;
+  final List<ReservedCacheNode>? reservedCacheNodes;
 
   ReservedCacheNodeMessage({
     this.marker,
@@ -9356,28 +9430,28 @@ class ReservedCacheNodesOffering {
   /// later.
   /// </li>
   /// </ul>
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// The duration of the offering. in seconds.
-  final int duration;
+  final int? duration;
 
   /// The fixed price charged for this offering.
-  final double fixedPrice;
+  final double? fixedPrice;
 
   /// The offering type.
-  final String offeringType;
+  final String? offeringType;
 
   /// The cache engine used by the offering.
-  final String productDescription;
+  final String? productDescription;
 
   /// The recurring price charged to run this reserved cache node.
-  final List<RecurringCharge> recurringCharges;
+  final List<RecurringCharge>? recurringCharges;
 
   /// A unique identifier for the reserved cache node offering.
-  final String reservedCacheNodesOfferingId;
+  final String? reservedCacheNodesOfferingId;
 
   /// The hourly price charged for this offering.
-  final double usagePrice;
+  final double? usagePrice;
 
   ReservedCacheNodesOffering({
     this.cacheNodeType,
@@ -9412,11 +9486,11 @@ class ReservedCacheNodesOffering {
 /// operation.
 class ReservedCacheNodesOfferingMessage {
   /// Provides an identifier to allow retrieval of paginated results.
-  final String marker;
+  final String? marker;
 
   /// A list of reserved cache node offerings. Each element in the list contains
   /// detailed information about one offering.
-  final List<ReservedCacheNodesOffering> reservedCacheNodesOfferings;
+  final List<ReservedCacheNodesOffering>? reservedCacheNodesOfferings;
 
   ReservedCacheNodesOfferingMessage({
     this.marker,
@@ -9437,32 +9511,33 @@ class ReservedCacheNodesOfferingMessage {
 
 /// A list of <code>PreferredAvailabilityZones</code> objects that specifies the
 /// configuration of a node group in the resharded cluster.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class ReshardingConfiguration {
   /// Either the ElastiCache for Redis supplied 4-digit id or a user supplied id
   /// for the node group these configuration values apply to.
-  @_s.JsonKey(name: 'NodeGroupId')
-  final String nodeGroupId;
+  final String? nodeGroupId;
 
   /// A list of preferred availability zones for the nodes in this cluster.
-  @_s.JsonKey(name: 'PreferredAvailabilityZones')
-  final List<String> preferredAvailabilityZones;
+  final List<String>? preferredAvailabilityZones;
 
   ReshardingConfiguration({
     this.nodeGroupId,
     this.preferredAvailabilityZones,
   });
-  Map<String, dynamic> toJson() => _$ReshardingConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final preferredAvailabilityZones = this.preferredAvailabilityZones;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (preferredAvailabilityZones != null)
+        'PreferredAvailabilityZones': preferredAvailabilityZones,
+    };
+  }
 }
 
 /// The status of an online resharding operation.
 class ReshardingStatus {
   /// Represents the progress of an online resharding operation.
-  final SlotMigration slotMigration;
+  final SlotMigration? slotMigration;
 
   ReshardingStatus({
     this.slotMigration,
@@ -9477,7 +9552,7 @@ class ReshardingStatus {
 }
 
 class RevokeCacheSecurityGroupIngressResult {
-  final CacheSecurityGroup cacheSecurityGroup;
+  final CacheSecurityGroup? cacheSecurityGroup;
 
   RevokeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
@@ -9494,12 +9569,12 @@ class RevokeCacheSecurityGroupIngressResult {
 /// Represents a single cache security group and its status.
 class SecurityGroupMembership {
   /// The identifier of the cache security group.
-  final String securityGroupId;
+  final String? securityGroupId;
 
   /// The status of the cache security group membership. The status changes
   /// whenever a cache security group is modified, or when the cache security
   /// groups assigned to a cluster are modified.
-  final String status;
+  final String? status;
 
   SecurityGroupMembership({
     this.securityGroupId,
@@ -9517,45 +9592,45 @@ class SecurityGroupMembership {
 class ServiceUpdate {
   /// Indicates whether the service update will be automatically applied once the
   /// recommended apply-by date has expired.
-  final bool autoUpdateAfterRecommendedApplyByDate;
+  final bool? autoUpdateAfterRecommendedApplyByDate;
 
   /// The Elasticache engine to which the update applies. Either Redis or
   /// Memcached
-  final String engine;
+  final String? engine;
 
   /// The Elasticache engine version to which the update applies. Either Redis or
   /// Memcached engine version
-  final String engineVersion;
+  final String? engineVersion;
 
   /// The estimated length of time the service update will take
-  final String estimatedUpdateTime;
+  final String? estimatedUpdateTime;
 
   /// Provides details of the service update
-  final String serviceUpdateDescription;
+  final String? serviceUpdateDescription;
 
   /// The date after which the service update is no longer available
-  final DateTime serviceUpdateEndDate;
+  final DateTime? serviceUpdateEndDate;
 
   /// The unique ID of the service update
-  final String serviceUpdateName;
+  final String? serviceUpdateName;
 
   /// The recommendend date to apply the service update in order to ensure
   /// compliance. For information on compliance, see <a
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
   /// Security Updates for Compliance</a>.
-  final DateTime serviceUpdateRecommendedApplyByDate;
+  final DateTime? serviceUpdateRecommendedApplyByDate;
 
   /// The date when the service update is initially available
-  final DateTime serviceUpdateReleaseDate;
+  final DateTime? serviceUpdateReleaseDate;
 
   /// The severity of the service update
-  final ServiceUpdateSeverity serviceUpdateSeverity;
+  final ServiceUpdateSeverity? serviceUpdateSeverity;
 
   /// The status of the service update
-  final ServiceUpdateStatus serviceUpdateStatus;
+  final ServiceUpdateStatus? serviceUpdateStatus;
 
   /// Reflects the nature of the service update
-  final ServiceUpdateType serviceUpdateType;
+  final ServiceUpdateType? serviceUpdateType;
 
   ServiceUpdate({
     this.autoUpdateAfterRecommendedApplyByDate,
@@ -9602,14 +9677,25 @@ class ServiceUpdate {
 }
 
 enum ServiceUpdateSeverity {
-  @_s.JsonValue('critical')
   critical,
-  @_s.JsonValue('important')
   important,
-  @_s.JsonValue('medium')
   medium,
-  @_s.JsonValue('low')
   low,
+}
+
+extension on ServiceUpdateSeverity {
+  String toValue() {
+    switch (this) {
+      case ServiceUpdateSeverity.critical:
+        return 'critical';
+      case ServiceUpdateSeverity.important:
+        return 'important';
+      case ServiceUpdateSeverity.medium:
+        return 'medium';
+      case ServiceUpdateSeverity.low:
+        return 'low';
+    }
+  }
 }
 
 extension on String {
@@ -9624,16 +9710,13 @@ extension on String {
       case 'low':
         return ServiceUpdateSeverity.low;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum ServiceUpdateSeverity');
   }
 }
 
 enum ServiceUpdateStatus {
-  @_s.JsonValue('available')
   available,
-  @_s.JsonValue('cancelled')
   cancelled,
-  @_s.JsonValue('expired')
   expired,
 }
 
@@ -9647,7 +9730,6 @@ extension on ServiceUpdateStatus {
       case ServiceUpdateStatus.expired:
         return 'expired';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -9661,13 +9743,21 @@ extension on String {
       case 'expired':
         return ServiceUpdateStatus.expired;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum ServiceUpdateStatus');
   }
 }
 
 enum ServiceUpdateType {
-  @_s.JsonValue('security-update')
   securityUpdate,
+}
+
+extension on ServiceUpdateType {
+  String toValue() {
+    switch (this) {
+      case ServiceUpdateType.securityUpdate:
+        return 'security-update';
+    }
+  }
 }
 
 extension on String {
@@ -9676,7 +9766,7 @@ extension on String {
       case 'security-update':
         return ServiceUpdateType.securityUpdate;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum ServiceUpdateType');
   }
 }
 
@@ -9685,10 +9775,10 @@ class ServiceUpdatesMessage {
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by <code>MaxRecords</code>.
-  final String marker;
+  final String? marker;
 
   /// A list of service updates
-  final List<ServiceUpdate> serviceUpdates;
+  final List<ServiceUpdate>? serviceUpdates;
 
   ServiceUpdatesMessage({
     this.marker,
@@ -9707,12 +9797,22 @@ class ServiceUpdatesMessage {
 }
 
 enum SlaMet {
-  @_s.JsonValue('yes')
   yes,
-  @_s.JsonValue('no')
   no,
-  @_s.JsonValue('n/a')
   na,
+}
+
+extension on SlaMet {
+  String toValue() {
+    switch (this) {
+      case SlaMet.yes:
+        return 'yes';
+      case SlaMet.no:
+        return 'no';
+      case SlaMet.na:
+        return 'n/a';
+    }
+  }
 }
 
 extension on String {
@@ -9725,14 +9825,14 @@ extension on String {
       case 'n/a':
         return SlaMet.na;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum SlaMet');
   }
 }
 
 /// Represents the progress of an online resharding operation.
 class SlotMigration {
   /// The percentage of the slot migration that is complete.
-  final double progressPercentage;
+  final double? progressPercentage;
 
   SlotMigration({
     this.progressPercentage,
@@ -9748,20 +9848,20 @@ class SlotMigration {
 /// snapshot was taken.
 class Snapshot {
   /// The ARN (Amazon Resource Name) of the snapshot.
-  final String arn;
+  final String? arn;
 
   /// This parameter is currently disabled.
-  final bool autoMinorVersionUpgrade;
+  final bool? autoMinorVersionUpgrade;
 
   /// Indicates the status of automatic failover for the source Redis replication
   /// group.
-  final AutomaticFailoverStatus automaticFailover;
+  final AutomaticFailoverStatus? automaticFailover;
 
   /// The date and time when the source cluster was created.
-  final DateTime cacheClusterCreateTime;
+  final DateTime? cacheClusterCreateTime;
 
   /// The user-supplied identifier of the source cluster.
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The name of the compute and memory capacity node type for the source
   /// cluster.
@@ -9887,43 +9987,43 @@ class Snapshot {
   /// later.
   /// </li>
   /// </ul>
-  final String cacheNodeType;
+  final String? cacheNodeType;
 
   /// The cache parameter group that is associated with the source cluster.
-  final String cacheParameterGroupName;
+  final String? cacheParameterGroupName;
 
   /// The name of the cache subnet group associated with the source cluster.
-  final String cacheSubnetGroupName;
+  final String? cacheSubnetGroupName;
 
   /// The name of the cache engine (<code>memcached</code> or <code>redis</code>)
   /// used by the source cluster.
-  final String engine;
+  final String? engine;
 
   /// The version of the cache engine version that is used by the source cluster.
-  final String engineVersion;
+  final String? engineVersion;
 
   /// The ID of the KMS key used to encrypt the snapshot.
-  final String kmsKeyId;
+  final String? kmsKeyId;
 
   /// A list of the cache nodes in the source cluster.
-  final List<NodeSnapshot> nodeSnapshots;
+  final List<NodeSnapshot>? nodeSnapshots;
 
   /// The number of cache nodes in the source cluster.
   ///
   /// For clusters running Redis, this value must be 1. For clusters running
   /// Memcached, this value must be between 1 and 20.
-  final int numCacheNodes;
+  final int? numCacheNodes;
 
   /// The number of node groups (shards) in this snapshot. When restoring from a
   /// snapshot, the number of node groups (shards) in the snapshot and in the
   /// restored replication group must be the same.
-  final int numNodeGroups;
+  final int? numNodeGroups;
 
   /// The port number used by each cache nodes in the source cluster.
-  final int port;
+  final int? port;
 
   /// The name of the Availability Zone in which the source cluster is located.
-  final String preferredAvailabilityZone;
+  final String? preferredAvailabilityZone;
 
   /// Specifies the weekly time range during which maintenance on the cluster is
   /// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
@@ -9955,20 +10055,20 @@ class Snapshot {
   /// </li>
   /// </ul>
   /// Example: <code>sun:23:00-mon:01:30</code>
-  final String preferredMaintenanceWindow;
+  final String? preferredMaintenanceWindow;
 
   /// The ARN (Amazon Resource Name) of the preferred outpost.
-  final String preferredOutpostArn;
+  final String? preferredOutpostArn;
 
   /// A description of the source replication group.
-  final String replicationGroupDescription;
+  final String? replicationGroupDescription;
 
   /// The unique identifier of the source replication group.
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The name of a snapshot. For an automatic snapshot, the name is
   /// system-generated. For a manual snapshot, this is the user-provided name.
-  final String snapshotName;
+  final String? snapshotName;
 
   /// For an automatic snapshot, the number of days for which ElastiCache retains
   /// the snapshot before deleting it.
@@ -9981,28 +10081,28 @@ class Snapshot {
   ///
   /// <b>Important</b> If the value of SnapshotRetentionLimit is set to zero (0),
   /// backups are turned off.
-  final int snapshotRetentionLimit;
+  final int? snapshotRetentionLimit;
 
   /// Indicates whether the snapshot is from an automatic backup
   /// (<code>automated</code>) or was created manually (<code>manual</code>).
-  final String snapshotSource;
+  final String? snapshotSource;
 
   /// The status of the snapshot. Valid values: <code>creating</code> |
   /// <code>available</code> | <code>restoring</code> | <code>copying</code> |
   /// <code>deleting</code>.
-  final String snapshotStatus;
+  final String? snapshotStatus;
 
   /// The daily time range during which ElastiCache takes daily snapshots of the
   /// source cluster.
-  final String snapshotWindow;
+  final String? snapshotWindow;
 
   /// The Amazon Resource Name (ARN) for the topic used by the source cluster for
   /// publishing notifications.
-  final String topicArn;
+  final String? topicArn;
 
   /// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
   /// group for the source cluster.
-  final String vpcId;
+  final String? vpcId;
 
   Snapshot({
     this.arn,
@@ -10082,19 +10182,12 @@ class Snapshot {
 }
 
 enum SourceType {
-  @_s.JsonValue('cache-cluster')
   cacheCluster,
-  @_s.JsonValue('cache-parameter-group')
   cacheParameterGroup,
-  @_s.JsonValue('cache-security-group')
   cacheSecurityGroup,
-  @_s.JsonValue('cache-subnet-group')
   cacheSubnetGroup,
-  @_s.JsonValue('replication-group')
   replicationGroup,
-  @_s.JsonValue('user')
   user,
-  @_s.JsonValue('user-group')
   userGroup,
 }
 
@@ -10116,7 +10209,6 @@ extension on SourceType {
       case SourceType.userGroup:
         return 'user-group';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -10138,12 +10230,12 @@ extension on String {
       case 'user-group':
         return SourceType.userGroup;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum SourceType');
   }
 }
 
 class StartMigrationResponse {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   StartMigrationResponse({
     this.replicationGroup,
@@ -10162,13 +10254,13 @@ class StartMigrationResponse {
 /// ElastiCache.
 class Subnet {
   /// The Availability Zone associated with the subnet.
-  final AvailabilityZone subnetAvailabilityZone;
+  final AvailabilityZone? subnetAvailabilityZone;
 
   /// The unique identifier for the subnet.
-  final String subnetIdentifier;
+  final String? subnetIdentifier;
 
   /// The outpost ARN of the subnet.
-  final SubnetOutpost subnetOutpost;
+  final SubnetOutpost? subnetOutpost;
 
   Subnet({
     this.subnetAvailabilityZone,
@@ -10191,7 +10283,7 @@ class Subnet {
 /// The ID of the outpost subnet.
 class SubnetOutpost {
   /// The outpost ARN of the subnet.
-  final String subnetOutpostArn;
+  final String? subnetOutpostArn;
 
   SubnetOutpost({
     this.subnetOutpostArn,
@@ -10206,19 +10298,12 @@ class SubnetOutpost {
 /// A cost allocation Tag that can be added to an ElastiCache cluster or
 /// replication group. Tags are composed of a Key/Value pair. A tag with a null
 /// Value is permitted.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class Tag {
   /// The key for the tag. May not be null.
-  @_s.JsonKey(name: 'Key')
-  final String key;
+  final String? key;
 
   /// The tag's value. May be null.
-  @_s.JsonKey(name: 'Value')
-  final String value;
+  final String? value;
 
   Tag({
     this.key,
@@ -10231,7 +10316,14 @@ class Tag {
     );
   }
 
-  Map<String, dynamic> toJson() => _$TagToJson(this);
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Represents the output from the <code>AddTagsToResource</code>,
@@ -10239,7 +10331,7 @@ class Tag {
 /// operations.
 class TagListMessage {
   /// A list of cost allocation tags as key-value pairs.
-  final List<Tag> tagList;
+  final List<Tag>? tagList;
 
   TagListMessage({
     this.tagList,
@@ -10253,7 +10345,7 @@ class TagListMessage {
 }
 
 class TestFailoverResult {
-  final ReplicationGroup replicationGroup;
+  final ReplicationGroup? replicationGroup;
 
   TestFailoverResult({
     this.replicationGroup,
@@ -10269,46 +10361,44 @@ class TestFailoverResult {
 
 /// Filters update actions from the service updates that are in available status
 /// during the time range.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class TimeRangeFilter {
   /// The end time of the time range filter
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'EndTime')
-  final DateTime endTime;
+  final DateTime? endTime;
 
   /// The start time of the time range filter
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'StartTime')
-  final DateTime startTime;
+  final DateTime? startTime;
 
   TimeRangeFilter({
     this.endTime,
     this.startTime,
   });
-  Map<String, dynamic> toJson() => _$TimeRangeFilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    return {
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 /// Update action that has failed to be processed for the corresponding
 /// apply/stop request
 class UnprocessedUpdateAction {
   /// The ID of the cache cluster
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The error message that describes the reason the request was not processed
-  final String errorMessage;
+  final String? errorMessage;
 
   /// The error type for requests that are not processed
-  final String errorType;
+  final String? errorType;
 
   /// The replication group ID
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The unique ID of the service update
-  final String serviceUpdateName;
+  final String? serviceUpdateName;
 
   UnprocessedUpdateAction({
     this.cacheClusterId,
@@ -10331,62 +10421,62 @@ class UnprocessedUpdateAction {
 /// The status of the service update for a specific replication group
 class UpdateAction {
   /// The ID of the cache cluster
-  final String cacheClusterId;
+  final String? cacheClusterId;
 
   /// The status of the service update on the cache node
-  final List<CacheNodeUpdateStatus> cacheNodeUpdateStatus;
+  final List<CacheNodeUpdateStatus>? cacheNodeUpdateStatus;
 
   /// The Elasticache engine to which the update applies. Either Redis or
   /// Memcached
-  final String engine;
+  final String? engine;
 
   /// The estimated length of time for the update to complete
-  final String estimatedUpdateTime;
+  final String? estimatedUpdateTime;
 
   /// The status of the service update on the node group
-  final List<NodeGroupUpdateStatus> nodeGroupUpdateStatus;
+  final List<NodeGroupUpdateStatus>? nodeGroupUpdateStatus;
 
   /// The progress of the service update on the replication group
-  final String nodesUpdated;
+  final String? nodesUpdated;
 
   /// The ID of the replication group
-  final String replicationGroupId;
+  final String? replicationGroupId;
 
   /// The unique ID of the service update
-  final String serviceUpdateName;
+  final String? serviceUpdateName;
 
   /// The recommended date to apply the service update to ensure compliance. For
   /// information on compliance, see <a
   /// href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
   /// Security Updates for Compliance</a>.
-  final DateTime serviceUpdateRecommendedApplyByDate;
+  final DateTime? serviceUpdateRecommendedApplyByDate;
 
   /// The date the update is first available
-  final DateTime serviceUpdateReleaseDate;
+  final DateTime? serviceUpdateReleaseDate;
 
   /// The severity of the service update
-  final ServiceUpdateSeverity serviceUpdateSeverity;
+  final ServiceUpdateSeverity? serviceUpdateSeverity;
 
   /// The status of the service update
-  final ServiceUpdateStatus serviceUpdateStatus;
+  final ServiceUpdateStatus? serviceUpdateStatus;
 
   /// Reflects the nature of the service update
-  final ServiceUpdateType serviceUpdateType;
+  final ServiceUpdateType? serviceUpdateType;
 
   /// If yes, all nodes in the replication group have been updated by the
   /// recommended apply-by date. If no, at least one node in the replication group
   /// have not been updated by the recommended apply-by date. If N/A, the
   /// replication group was created after the recommended apply-by date.
-  final SlaMet slaMet;
+  final SlaMet? slaMet;
 
   /// The date that the service update is available to a replication group
-  final DateTime updateActionAvailableDate;
+  final DateTime? updateActionAvailableDate;
 
   /// The status of the update action
-  final UpdateActionStatus updateActionStatus;
+  final UpdateActionStatus? updateActionStatus;
 
   /// The date when the UpdateActionStatus was last modified
-  final DateTime updateActionStatusModifiedDate;
+  final DateTime? updateActionStatusModifiedDate;
 
   UpdateAction({
     this.cacheClusterId,
@@ -10455,10 +10545,10 @@ class UpdateAction {
 
 class UpdateActionResultsMessage {
   /// Update actions that have been processed successfully
-  final List<ProcessedUpdateAction> processedUpdateActions;
+  final List<ProcessedUpdateAction>? processedUpdateActions;
 
   /// Update actions that haven't been processed successfully
-  final List<UnprocessedUpdateAction> unprocessedUpdateActions;
+  final List<UnprocessedUpdateAction>? unprocessedUpdateActions;
 
   UpdateActionResultsMessage({
     this.processedUpdateActions,
@@ -10483,23 +10573,14 @@ class UpdateActionResultsMessage {
 }
 
 enum UpdateActionStatus {
-  @_s.JsonValue('not-applied')
   notApplied,
-  @_s.JsonValue('waiting-to-start')
   waitingToStart,
-  @_s.JsonValue('in-progress')
   inProgress,
-  @_s.JsonValue('stopping')
   stopping,
-  @_s.JsonValue('stopped')
   stopped,
-  @_s.JsonValue('complete')
   complete,
-  @_s.JsonValue('scheduling')
   scheduling,
-  @_s.JsonValue('scheduled')
   scheduled,
-  @_s.JsonValue('not-applicable')
   notApplicable,
 }
 
@@ -10525,7 +10606,6 @@ extension on UpdateActionStatus {
       case UpdateActionStatus.notApplicable:
         return 'not-applicable';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -10551,7 +10631,7 @@ extension on String {
       case 'not-applicable':
         return UpdateActionStatus.notApplicable;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum UpdateActionStatus');
   }
 }
 
@@ -10560,10 +10640,10 @@ class UpdateActionsMessage {
   /// pagination of results from this operation. If this parameter is specified,
   /// the response includes only records beyond the marker, up to the value
   /// specified by <code>MaxRecords</code>.
-  final String marker;
+  final String? marker;
 
   /// Returns a list of update actions
-  final List<UpdateAction> updateActions;
+  final List<UpdateAction>? updateActions;
 
   UpdateActionsMessage({
     this.marker,
@@ -10583,28 +10663,28 @@ class UpdateActionsMessage {
 
 class User {
   /// The Amazon Resource Name (ARN) of the user.
-  final String arn;
+  final String? arn;
 
   /// Access permissions string used for this user.
-  final String accessString;
+  final String? accessString;
 
   /// Denotes whether the user requires a password to authenticate.
-  final Authentication authentication;
+  final Authentication? authentication;
 
   /// The current supported value is Redis.
-  final String engine;
+  final String? engine;
 
   /// Indicates the user status. Can be "active", "modifying" or "deleting".
-  final String status;
+  final String? status;
 
   /// Returns a list of the user group IDs the user belongs to.
-  final List<String> userGroupIds;
+  final List<String>? userGroupIds;
 
   /// The ID of the user.
-  final String userId;
+  final String? userId;
 
   /// The username of the user.
-  final String userName;
+  final String? userName;
 
   User({
     this.arn,
@@ -10636,26 +10716,26 @@ class User {
 
 class UserGroup {
   /// The Amazon Resource Name (ARN) of the user group.
-  final String arn;
+  final String? arn;
 
   /// The current supported value is Redis.
-  final String engine;
+  final String? engine;
 
   /// A list of updates being applied to the user groups.
-  final UserGroupPendingChanges pendingChanges;
+  final UserGroupPendingChanges? pendingChanges;
 
   /// A list of replication groups that the user group can access.
-  final List<String> replicationGroups;
+  final List<String>? replicationGroups;
 
   /// Indicates user group status. Can be "creating", "active", "modifying",
   /// "deleting".
-  final String status;
+  final String? status;
 
   /// The ID of the user group.
-  final String userGroupId;
+  final String? userGroupId;
 
   /// The list of user IDs that belong to the user group.
-  final List<String> userIds;
+  final List<String>? userIds;
 
   UserGroup({
     this.arn,
@@ -10688,10 +10768,10 @@ class UserGroup {
 /// Returns the updates being applied to the user group.
 class UserGroupPendingChanges {
   /// The list of user IDs to add.
-  final List<String> userIdsToAdd;
+  final List<String>? userIdsToAdd;
 
   /// The list of user IDs to remove.
-  final List<String> userIdsToRemove;
+  final List<String>? userIdsToRemove;
 
   UserGroupPendingChanges({
     this.userIdsToAdd,
@@ -10712,10 +10792,10 @@ class UserGroupPendingChanges {
 /// The status of the user group update.
 class UserGroupsUpdateStatus {
   /// The list of user group IDs to add.
-  final List<String> userGroupIdsToAdd;
+  final List<String>? userGroupIdsToAdd;
 
   /// The list of user group IDs to remove.
-  final List<String> userGroupIdsToRemove;
+  final List<String>? userGroupIdsToRemove;
 
   UserGroupsUpdateStatus({
     this.userGroupIdsToAdd,
@@ -10734,7 +10814,7 @@ class UserGroupsUpdateStatus {
 }
 
 class APICallRateForCustomerExceededFault extends _s.GenericAwsException {
-  APICallRateForCustomerExceededFault({String type, String message})
+  APICallRateForCustomerExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'APICallRateForCustomerExceededFault',
@@ -10742,7 +10822,7 @@ class APICallRateForCustomerExceededFault extends _s.GenericAwsException {
 }
 
 class AuthorizationAlreadyExistsFault extends _s.GenericAwsException {
-  AuthorizationAlreadyExistsFault({String type, String message})
+  AuthorizationAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'AuthorizationAlreadyExistsFault',
@@ -10750,12 +10830,12 @@ class AuthorizationAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class AuthorizationNotFoundFault extends _s.GenericAwsException {
-  AuthorizationNotFoundFault({String type, String message})
+  AuthorizationNotFoundFault({String? type, String? message})
       : super(type: type, code: 'AuthorizationNotFoundFault', message: message);
 }
 
 class CacheClusterAlreadyExistsFault extends _s.GenericAwsException {
-  CacheClusterAlreadyExistsFault({String type, String message})
+  CacheClusterAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheClusterAlreadyExistsFault',
@@ -10763,12 +10843,12 @@ class CacheClusterAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class CacheClusterNotFoundFault extends _s.GenericAwsException {
-  CacheClusterNotFoundFault({String type, String message})
+  CacheClusterNotFoundFault({String? type, String? message})
       : super(type: type, code: 'CacheClusterNotFoundFault', message: message);
 }
 
 class CacheParameterGroupAlreadyExistsFault extends _s.GenericAwsException {
-  CacheParameterGroupAlreadyExistsFault({String type, String message})
+  CacheParameterGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheParameterGroupAlreadyExistsFault',
@@ -10776,7 +10856,7 @@ class CacheParameterGroupAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class CacheParameterGroupNotFoundFault extends _s.GenericAwsException {
-  CacheParameterGroupNotFoundFault({String type, String message})
+  CacheParameterGroupNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheParameterGroupNotFoundFault',
@@ -10784,7 +10864,7 @@ class CacheParameterGroupNotFoundFault extends _s.GenericAwsException {
 }
 
 class CacheParameterGroupQuotaExceededFault extends _s.GenericAwsException {
-  CacheParameterGroupQuotaExceededFault({String type, String message})
+  CacheParameterGroupQuotaExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheParameterGroupQuotaExceededFault',
@@ -10792,7 +10872,7 @@ class CacheParameterGroupQuotaExceededFault extends _s.GenericAwsException {
 }
 
 class CacheSecurityGroupAlreadyExistsFault extends _s.GenericAwsException {
-  CacheSecurityGroupAlreadyExistsFault({String type, String message})
+  CacheSecurityGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSecurityGroupAlreadyExistsFault',
@@ -10800,7 +10880,7 @@ class CacheSecurityGroupAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class CacheSecurityGroupNotFoundFault extends _s.GenericAwsException {
-  CacheSecurityGroupNotFoundFault({String type, String message})
+  CacheSecurityGroupNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSecurityGroupNotFoundFault',
@@ -10808,7 +10888,7 @@ class CacheSecurityGroupNotFoundFault extends _s.GenericAwsException {
 }
 
 class CacheSecurityGroupQuotaExceededFault extends _s.GenericAwsException {
-  CacheSecurityGroupQuotaExceededFault({String type, String message})
+  CacheSecurityGroupQuotaExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSecurityGroupQuotaExceededFault',
@@ -10816,7 +10896,7 @@ class CacheSecurityGroupQuotaExceededFault extends _s.GenericAwsException {
 }
 
 class CacheSubnetGroupAlreadyExistsFault extends _s.GenericAwsException {
-  CacheSubnetGroupAlreadyExistsFault({String type, String message})
+  CacheSubnetGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSubnetGroupAlreadyExistsFault',
@@ -10824,12 +10904,12 @@ class CacheSubnetGroupAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class CacheSubnetGroupInUse extends _s.GenericAwsException {
-  CacheSubnetGroupInUse({String type, String message})
+  CacheSubnetGroupInUse({String? type, String? message})
       : super(type: type, code: 'CacheSubnetGroupInUse', message: message);
 }
 
 class CacheSubnetGroupNotFoundFault extends _s.GenericAwsException {
-  CacheSubnetGroupNotFoundFault({String type, String message})
+  CacheSubnetGroupNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSubnetGroupNotFoundFault',
@@ -10837,7 +10917,7 @@ class CacheSubnetGroupNotFoundFault extends _s.GenericAwsException {
 }
 
 class CacheSubnetGroupQuotaExceededFault extends _s.GenericAwsException {
-  CacheSubnetGroupQuotaExceededFault({String type, String message})
+  CacheSubnetGroupQuotaExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSubnetGroupQuotaExceededFault',
@@ -10845,7 +10925,7 @@ class CacheSubnetGroupQuotaExceededFault extends _s.GenericAwsException {
 }
 
 class CacheSubnetQuotaExceededFault extends _s.GenericAwsException {
-  CacheSubnetQuotaExceededFault({String type, String message})
+  CacheSubnetQuotaExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'CacheSubnetQuotaExceededFault',
@@ -10853,7 +10933,7 @@ class CacheSubnetQuotaExceededFault extends _s.GenericAwsException {
 }
 
 class ClusterQuotaForCustomerExceededFault extends _s.GenericAwsException {
-  ClusterQuotaForCustomerExceededFault({String type, String message})
+  ClusterQuotaForCustomerExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'ClusterQuotaForCustomerExceededFault',
@@ -10861,7 +10941,7 @@ class ClusterQuotaForCustomerExceededFault extends _s.GenericAwsException {
 }
 
 class DefaultUserAssociatedToUserGroupFault extends _s.GenericAwsException {
-  DefaultUserAssociatedToUserGroupFault({String type, String message})
+  DefaultUserAssociatedToUserGroupFault({String? type, String? message})
       : super(
             type: type,
             code: 'DefaultUserAssociatedToUserGroupFault',
@@ -10869,17 +10949,17 @@ class DefaultUserAssociatedToUserGroupFault extends _s.GenericAwsException {
 }
 
 class DefaultUserRequired extends _s.GenericAwsException {
-  DefaultUserRequired({String type, String message})
+  DefaultUserRequired({String? type, String? message})
       : super(type: type, code: 'DefaultUserRequired', message: message);
 }
 
 class DuplicateUserNameFault extends _s.GenericAwsException {
-  DuplicateUserNameFault({String type, String message})
+  DuplicateUserNameFault({String? type, String? message})
       : super(type: type, code: 'DuplicateUserNameFault', message: message);
 }
 
 class GlobalReplicationGroupAlreadyExistsFault extends _s.GenericAwsException {
-  GlobalReplicationGroupAlreadyExistsFault({String type, String message})
+  GlobalReplicationGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'GlobalReplicationGroupAlreadyExistsFault',
@@ -10887,7 +10967,7 @@ class GlobalReplicationGroupAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class GlobalReplicationGroupNotFoundFault extends _s.GenericAwsException {
-  GlobalReplicationGroupNotFoundFault({String type, String message})
+  GlobalReplicationGroupNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'GlobalReplicationGroupNotFoundFault',
@@ -10895,7 +10975,7 @@ class GlobalReplicationGroupNotFoundFault extends _s.GenericAwsException {
 }
 
 class InsufficientCacheClusterCapacityFault extends _s.GenericAwsException {
-  InsufficientCacheClusterCapacityFault({String type, String message})
+  InsufficientCacheClusterCapacityFault({String? type, String? message})
       : super(
             type: type,
             code: 'InsufficientCacheClusterCapacityFault',
@@ -10903,12 +10983,12 @@ class InsufficientCacheClusterCapacityFault extends _s.GenericAwsException {
 }
 
 class InvalidARNFault extends _s.GenericAwsException {
-  InvalidARNFault({String type, String message})
+  InvalidARNFault({String? type, String? message})
       : super(type: type, code: 'InvalidARNFault', message: message);
 }
 
 class InvalidCacheClusterStateFault extends _s.GenericAwsException {
-  InvalidCacheClusterStateFault({String type, String message})
+  InvalidCacheClusterStateFault({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidCacheClusterStateFault',
@@ -10916,7 +10996,7 @@ class InvalidCacheClusterStateFault extends _s.GenericAwsException {
 }
 
 class InvalidCacheParameterGroupStateFault extends _s.GenericAwsException {
-  InvalidCacheParameterGroupStateFault({String type, String message})
+  InvalidCacheParameterGroupStateFault({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidCacheParameterGroupStateFault',
@@ -10924,7 +11004,7 @@ class InvalidCacheParameterGroupStateFault extends _s.GenericAwsException {
 }
 
 class InvalidCacheSecurityGroupStateFault extends _s.GenericAwsException {
-  InvalidCacheSecurityGroupStateFault({String type, String message})
+  InvalidCacheSecurityGroupStateFault({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidCacheSecurityGroupStateFault',
@@ -10932,7 +11012,7 @@ class InvalidCacheSecurityGroupStateFault extends _s.GenericAwsException {
 }
 
 class InvalidGlobalReplicationGroupStateFault extends _s.GenericAwsException {
-  InvalidGlobalReplicationGroupStateFault({String type, String message})
+  InvalidGlobalReplicationGroupStateFault({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidGlobalReplicationGroupStateFault',
@@ -10940,12 +11020,12 @@ class InvalidGlobalReplicationGroupStateFault extends _s.GenericAwsException {
 }
 
 class InvalidKMSKeyFault extends _s.GenericAwsException {
-  InvalidKMSKeyFault({String type, String message})
+  InvalidKMSKeyFault({String? type, String? message})
       : super(type: type, code: 'InvalidKMSKeyFault', message: message);
 }
 
 class InvalidParameterCombinationException extends _s.GenericAwsException {
-  InvalidParameterCombinationException({String type, String message})
+  InvalidParameterCombinationException({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidParameterCombinationException',
@@ -10953,7 +11033,7 @@ class InvalidParameterCombinationException extends _s.GenericAwsException {
 }
 
 class InvalidParameterValueException extends _s.GenericAwsException {
-  InvalidParameterValueException({String type, String message})
+  InvalidParameterValueException({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidParameterValueException',
@@ -10961,7 +11041,7 @@ class InvalidParameterValueException extends _s.GenericAwsException {
 }
 
 class InvalidReplicationGroupStateFault extends _s.GenericAwsException {
-  InvalidReplicationGroupStateFault({String type, String message})
+  InvalidReplicationGroupStateFault({String? type, String? message})
       : super(
             type: type,
             code: 'InvalidReplicationGroupStateFault',
@@ -10969,44 +11049,45 @@ class InvalidReplicationGroupStateFault extends _s.GenericAwsException {
 }
 
 class InvalidSnapshotStateFault extends _s.GenericAwsException {
-  InvalidSnapshotStateFault({String type, String message})
+  InvalidSnapshotStateFault({String? type, String? message})
       : super(type: type, code: 'InvalidSnapshotStateFault', message: message);
 }
 
 class InvalidSubnet extends _s.GenericAwsException {
-  InvalidSubnet({String type, String message})
+  InvalidSubnet({String? type, String? message})
       : super(type: type, code: 'InvalidSubnet', message: message);
 }
 
 class InvalidUserGroupStateFault extends _s.GenericAwsException {
-  InvalidUserGroupStateFault({String type, String message})
+  InvalidUserGroupStateFault({String? type, String? message})
       : super(type: type, code: 'InvalidUserGroupStateFault', message: message);
 }
 
 class InvalidUserStateFault extends _s.GenericAwsException {
-  InvalidUserStateFault({String type, String message})
+  InvalidUserStateFault({String? type, String? message})
       : super(type: type, code: 'InvalidUserStateFault', message: message);
 }
 
 class InvalidVPCNetworkStateFault extends _s.GenericAwsException {
-  InvalidVPCNetworkStateFault({String type, String message})
+  InvalidVPCNetworkStateFault({String? type, String? message})
       : super(
             type: type, code: 'InvalidVPCNetworkStateFault', message: message);
 }
 
 class NoOperationFault extends _s.GenericAwsException {
-  NoOperationFault({String type, String message})
+  NoOperationFault({String? type, String? message})
       : super(type: type, code: 'NoOperationFault', message: message);
 }
 
 class NodeGroupNotFoundFault extends _s.GenericAwsException {
-  NodeGroupNotFoundFault({String type, String message})
+  NodeGroupNotFoundFault({String? type, String? message})
       : super(type: type, code: 'NodeGroupNotFoundFault', message: message);
 }
 
 class NodeGroupsPerReplicationGroupQuotaExceededFault
     extends _s.GenericAwsException {
-  NodeGroupsPerReplicationGroupQuotaExceededFault({String type, String message})
+  NodeGroupsPerReplicationGroupQuotaExceededFault(
+      {String? type, String? message})
       : super(
             type: type,
             code: 'NodeGroupsPerReplicationGroupQuotaExceededFault',
@@ -11014,7 +11095,7 @@ class NodeGroupsPerReplicationGroupQuotaExceededFault
 }
 
 class NodeQuotaForClusterExceededFault extends _s.GenericAwsException {
-  NodeQuotaForClusterExceededFault({String type, String message})
+  NodeQuotaForClusterExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'NodeQuotaForClusterExceededFault',
@@ -11022,7 +11103,7 @@ class NodeQuotaForClusterExceededFault extends _s.GenericAwsException {
 }
 
 class NodeQuotaForCustomerExceededFault extends _s.GenericAwsException {
-  NodeQuotaForCustomerExceededFault({String type, String message})
+  NodeQuotaForCustomerExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'NodeQuotaForCustomerExceededFault',
@@ -11030,7 +11111,7 @@ class NodeQuotaForCustomerExceededFault extends _s.GenericAwsException {
 }
 
 class ReplicationGroupAlreadyExistsFault extends _s.GenericAwsException {
-  ReplicationGroupAlreadyExistsFault({String type, String message})
+  ReplicationGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReplicationGroupAlreadyExistsFault',
@@ -11039,7 +11120,7 @@ class ReplicationGroupAlreadyExistsFault extends _s.GenericAwsException {
 
 class ReplicationGroupAlreadyUnderMigrationFault
     extends _s.GenericAwsException {
-  ReplicationGroupAlreadyUnderMigrationFault({String type, String message})
+  ReplicationGroupAlreadyUnderMigrationFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReplicationGroupAlreadyUnderMigrationFault',
@@ -11047,7 +11128,7 @@ class ReplicationGroupAlreadyUnderMigrationFault
 }
 
 class ReplicationGroupNotFoundFault extends _s.GenericAwsException {
-  ReplicationGroupNotFoundFault({String type, String message})
+  ReplicationGroupNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReplicationGroupNotFoundFault',
@@ -11055,7 +11136,7 @@ class ReplicationGroupNotFoundFault extends _s.GenericAwsException {
 }
 
 class ReplicationGroupNotUnderMigrationFault extends _s.GenericAwsException {
-  ReplicationGroupNotUnderMigrationFault({String type, String message})
+  ReplicationGroupNotUnderMigrationFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReplicationGroupNotUnderMigrationFault',
@@ -11063,7 +11144,7 @@ class ReplicationGroupNotUnderMigrationFault extends _s.GenericAwsException {
 }
 
 class ReservedCacheNodeAlreadyExistsFault extends _s.GenericAwsException {
-  ReservedCacheNodeAlreadyExistsFault({String type, String message})
+  ReservedCacheNodeAlreadyExistsFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReservedCacheNodeAlreadyExistsFault',
@@ -11071,7 +11152,7 @@ class ReservedCacheNodeAlreadyExistsFault extends _s.GenericAwsException {
 }
 
 class ReservedCacheNodeNotFoundFault extends _s.GenericAwsException {
-  ReservedCacheNodeNotFoundFault({String type, String message})
+  ReservedCacheNodeNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReservedCacheNodeNotFoundFault',
@@ -11079,7 +11160,7 @@ class ReservedCacheNodeNotFoundFault extends _s.GenericAwsException {
 }
 
 class ReservedCacheNodeQuotaExceededFault extends _s.GenericAwsException {
-  ReservedCacheNodeQuotaExceededFault({String type, String message})
+  ReservedCacheNodeQuotaExceededFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReservedCacheNodeQuotaExceededFault',
@@ -11087,7 +11168,7 @@ class ReservedCacheNodeQuotaExceededFault extends _s.GenericAwsException {
 }
 
 class ReservedCacheNodesOfferingNotFoundFault extends _s.GenericAwsException {
-  ReservedCacheNodesOfferingNotFoundFault({String type, String message})
+  ReservedCacheNodesOfferingNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'ReservedCacheNodesOfferingNotFoundFault',
@@ -11095,7 +11176,7 @@ class ReservedCacheNodesOfferingNotFoundFault extends _s.GenericAwsException {
 }
 
 class ServiceLinkedRoleNotFoundFault extends _s.GenericAwsException {
-  ServiceLinkedRoleNotFoundFault({String type, String message})
+  ServiceLinkedRoleNotFoundFault({String? type, String? message})
       : super(
             type: type,
             code: 'ServiceLinkedRoleNotFoundFault',
@@ -11103,17 +11184,17 @@ class ServiceLinkedRoleNotFoundFault extends _s.GenericAwsException {
 }
 
 class ServiceUpdateNotFoundFault extends _s.GenericAwsException {
-  ServiceUpdateNotFoundFault({String type, String message})
+  ServiceUpdateNotFoundFault({String? type, String? message})
       : super(type: type, code: 'ServiceUpdateNotFoundFault', message: message);
 }
 
 class SnapshotAlreadyExistsFault extends _s.GenericAwsException {
-  SnapshotAlreadyExistsFault({String type, String message})
+  SnapshotAlreadyExistsFault({String? type, String? message})
       : super(type: type, code: 'SnapshotAlreadyExistsFault', message: message);
 }
 
 class SnapshotFeatureNotSupportedFault extends _s.GenericAwsException {
-  SnapshotFeatureNotSupportedFault({String type, String message})
+  SnapshotFeatureNotSupportedFault({String? type, String? message})
       : super(
             type: type,
             code: 'SnapshotFeatureNotSupportedFault',
@@ -11121,38 +11202,38 @@ class SnapshotFeatureNotSupportedFault extends _s.GenericAwsException {
 }
 
 class SnapshotNotFoundFault extends _s.GenericAwsException {
-  SnapshotNotFoundFault({String type, String message})
+  SnapshotNotFoundFault({String? type, String? message})
       : super(type: type, code: 'SnapshotNotFoundFault', message: message);
 }
 
 class SnapshotQuotaExceededFault extends _s.GenericAwsException {
-  SnapshotQuotaExceededFault({String type, String message})
+  SnapshotQuotaExceededFault({String? type, String? message})
       : super(type: type, code: 'SnapshotQuotaExceededFault', message: message);
 }
 
 class SubnetInUse extends _s.GenericAwsException {
-  SubnetInUse({String type, String message})
+  SubnetInUse({String? type, String? message})
       : super(type: type, code: 'SubnetInUse', message: message);
 }
 
 class SubnetNotAllowedFault extends _s.GenericAwsException {
-  SubnetNotAllowedFault({String type, String message})
+  SubnetNotAllowedFault({String? type, String? message})
       : super(type: type, code: 'SubnetNotAllowedFault', message: message);
 }
 
 class TagNotFoundFault extends _s.GenericAwsException {
-  TagNotFoundFault({String type, String message})
+  TagNotFoundFault({String? type, String? message})
       : super(type: type, code: 'TagNotFoundFault', message: message);
 }
 
 class TagQuotaPerResourceExceeded extends _s.GenericAwsException {
-  TagQuotaPerResourceExceeded({String type, String message})
+  TagQuotaPerResourceExceeded({String? type, String? message})
       : super(
             type: type, code: 'TagQuotaPerResourceExceeded', message: message);
 }
 
 class TestFailoverNotAvailableFault extends _s.GenericAwsException {
-  TestFailoverNotAvailableFault({String type, String message})
+  TestFailoverNotAvailableFault({String? type, String? message})
       : super(
             type: type,
             code: 'TestFailoverNotAvailableFault',
@@ -11160,34 +11241,34 @@ class TestFailoverNotAvailableFault extends _s.GenericAwsException {
 }
 
 class UserAlreadyExistsFault extends _s.GenericAwsException {
-  UserAlreadyExistsFault({String type, String message})
+  UserAlreadyExistsFault({String? type, String? message})
       : super(type: type, code: 'UserAlreadyExistsFault', message: message);
 }
 
 class UserGroupAlreadyExistsFault extends _s.GenericAwsException {
-  UserGroupAlreadyExistsFault({String type, String message})
+  UserGroupAlreadyExistsFault({String? type, String? message})
       : super(
             type: type, code: 'UserGroupAlreadyExistsFault', message: message);
 }
 
 class UserGroupNotFoundFault extends _s.GenericAwsException {
-  UserGroupNotFoundFault({String type, String message})
+  UserGroupNotFoundFault({String? type, String? message})
       : super(type: type, code: 'UserGroupNotFoundFault', message: message);
 }
 
 class UserGroupQuotaExceededFault extends _s.GenericAwsException {
-  UserGroupQuotaExceededFault({String type, String message})
+  UserGroupQuotaExceededFault({String? type, String? message})
       : super(
             type: type, code: 'UserGroupQuotaExceededFault', message: message);
 }
 
 class UserNotFoundFault extends _s.GenericAwsException {
-  UserNotFoundFault({String type, String message})
+  UserNotFoundFault({String? type, String? message})
       : super(type: type, code: 'UserNotFoundFault', message: message);
 }
 
 class UserQuotaExceededFault extends _s.GenericAwsException {
-  UserQuotaExceededFault({String type, String message})
+  UserQuotaExceededFault({String? type, String? message})
       : super(type: type, code: 'UserQuotaExceededFault', message: message);
 }
 

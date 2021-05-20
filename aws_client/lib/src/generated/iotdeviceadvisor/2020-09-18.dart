@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-09-18.g.dart';
 
 /// AWS IoT Core Device Advisor is a cloud-based, fully managed test capability
 /// for validating IoT devices during device software development. Device
@@ -39,10 +32,10 @@ part '2020-09-18.g.dart';
 class IoTDeviceAdvisor {
   final _s.RestJsonProtocol _protocol;
   IoTDeviceAdvisor({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -65,8 +58,8 @@ class IoTDeviceAdvisor {
   /// Parameter [tags] :
   /// The tags to be attached to the suite definition.
   Future<CreateSuiteDefinitionResponse> createSuiteDefinition({
-    SuiteDefinitionConfiguration suiteDefinitionConfiguration,
-    Map<String, String> tags,
+    SuiteDefinitionConfiguration? suiteDefinitionConfiguration,
+    Map<String, String>? tags,
   }) async {
     final $payload = <String, dynamic>{
       if (suiteDefinitionConfiguration != null)
@@ -90,7 +83,7 @@ class IoTDeviceAdvisor {
   /// Parameter [suiteDefinitionId] :
   /// Deletes a Device Advisor test suite with defined suite Id.
   Future<void> deleteSuiteDefinition({
-    @_s.required String suiteDefinitionId,
+    required String suiteDefinitionId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -106,7 +99,6 @@ class IoTDeviceAdvisor {
       requestUri: '/suiteDefinitions/${Uri.encodeComponent(suiteDefinitionId)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteSuiteDefinitionResponse.fromJson(response);
   }
 
   /// Gets information about a Device Advisor test suite.
@@ -121,8 +113,8 @@ class IoTDeviceAdvisor {
   /// Parameter [suiteDefinitionVersion] :
   /// Requests the suite definition version of a test suite.
   Future<GetSuiteDefinitionResponse> getSuiteDefinition({
-    @_s.required String suiteDefinitionId,
-    String suiteDefinitionVersion,
+    required String suiteDefinitionId,
+    String? suiteDefinitionVersion,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -166,8 +158,8 @@ class IoTDeviceAdvisor {
   /// Requests the information about Device Advisor test suite run based on
   /// suite run Id.
   Future<GetSuiteRunResponse> getSuiteRun({
-    @_s.required String suiteDefinitionId,
-    @_s.required String suiteRunId,
+    required String suiteDefinitionId,
+    required String suiteRunId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -208,8 +200,8 @@ class IoTDeviceAdvisor {
   /// Parameter [suiteRunId] :
   /// Device Advisor suite run Id.
   Future<GetSuiteRunReportResponse> getSuiteRunReport({
-    @_s.required String suiteDefinitionId,
-    @_s.required String suiteRunId,
+    required String suiteDefinitionId,
+    required String suiteRunId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -248,8 +240,8 @@ class IoTDeviceAdvisor {
   /// Parameter [nextToken] :
   /// Requests the Device Advisor test suites next token.
   Future<ListSuiteDefinitionsResponse> listSuiteDefinitions({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -298,10 +290,10 @@ class IoTDeviceAdvisor {
   /// Lists the runs of the specified Device Advisor test suite based on suite
   /// definition version.
   Future<ListSuiteRunsResponse> listSuiteRuns({
-    int maxResults,
-    String nextToken,
-    String suiteDefinitionId,
-    String suiteDefinitionVersion,
+    int? maxResults,
+    String? nextToken,
+    String? suiteDefinitionId,
+    String? suiteDefinitionVersion,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -353,7 +345,7 @@ class IoTDeviceAdvisor {
   /// Parameter [resourceArn] :
   /// The ARN of the IoT Device Advisor resource.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -385,9 +377,9 @@ class IoTDeviceAdvisor {
   /// Parameter [nextToken] :
   /// Requests the test cases next token.
   Future<ListTestCasesResponse> listTestCases({
-    bool intendedForQualification,
-    int maxResults,
-    String nextToken,
+    bool? intendedForQualification,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -435,10 +427,10 @@ class IoTDeviceAdvisor {
   /// Parameter [tags] :
   /// The tags to be attached to the suite run.
   Future<StartSuiteRunResponse> startSuiteRun({
-    @_s.required String suiteDefinitionId,
-    String suiteDefinitionVersion,
-    SuiteRunConfiguration suiteRunConfiguration,
-    Map<String, String> tags,
+    required String suiteDefinitionId,
+    String? suiteDefinitionVersion,
+    SuiteRunConfiguration? suiteRunConfiguration,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -483,8 +475,8 @@ class IoTDeviceAdvisor {
   /// Parameter [tags] :
   /// The tags to be attached to the IoT Device Advisor resource.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -504,7 +496,6 @@ class IoTDeviceAdvisor {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// Removes tags from an IoT Device Advisor resource.
@@ -519,8 +510,8 @@ class IoTDeviceAdvisor {
   /// Parameter [tagKeys] :
   /// List of tag keys to remove from the IoT Device Advisor resource.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -532,7 +523,7 @@ class IoTDeviceAdvisor {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -541,7 +532,6 @@ class IoTDeviceAdvisor {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// Updates a Device Advisor test suite.
@@ -555,8 +545,8 @@ class IoTDeviceAdvisor {
   /// Parameter [suiteDefinitionConfiguration] :
   /// Updates a Device Advisor test suite with suite definition configuration.
   Future<UpdateSuiteDefinitionResponse> updateSuiteDefinition({
-    @_s.required String suiteDefinitionId,
-    SuiteDefinitionConfiguration suiteDefinitionConfiguration,
+    required String suiteDefinitionId,
+    SuiteDefinitionConfiguration? suiteDefinitionConfiguration,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
     _s.validateStringLength(
@@ -580,28 +570,18 @@ class IoTDeviceAdvisor {
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateSuiteDefinitionResponse {
   /// Creates a Device Advisor test suite with TimeStamp of when it was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Creates a Device Advisor test suite with Amazon Resource name.
-  @_s.JsonKey(name: 'suiteDefinitionArn')
-  final String suiteDefinitionArn;
+  final String? suiteDefinitionArn;
 
   /// Creates a Device Advisor test suite with suite UUID.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Creates a Device Advisor test suite with suite definition name.
-  @_s.JsonKey(name: 'suiteDefinitionName')
-  final String suiteDefinitionName;
+  final String? suiteDefinitionName;
 
   CreateSuiteDefinitionResponse({
     this.createdAt,
@@ -609,87 +589,78 @@ class CreateSuiteDefinitionResponse {
     this.suiteDefinitionId,
     this.suiteDefinitionName,
   });
-  factory CreateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateSuiteDefinitionResponseFromJson(json);
+  factory CreateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
+    return CreateSuiteDefinitionResponse(
+      createdAt: timeStampFromJson(json['createdAt']),
+      suiteDefinitionArn: json['suiteDefinitionArn'] as String?,
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionName: json['suiteDefinitionName'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteSuiteDefinitionResponse {
   DeleteSuiteDefinitionResponse();
-  factory DeleteSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteSuiteDefinitionResponseFromJson(json);
+  factory DeleteSuiteDefinitionResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteSuiteDefinitionResponse();
+  }
 }
 
 /// Lists all the devices under test
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class DeviceUnderTest {
   /// Lists devices certificate arn
-  @_s.JsonKey(name: 'certificateArn')
-  final String certificateArn;
+  final String? certificateArn;
 
   /// Lists devices thing arn
-  @_s.JsonKey(name: 'thingArn')
-  final String thingArn;
+  final String? thingArn;
 
   DeviceUnderTest({
     this.certificateArn,
     this.thingArn,
   });
-  factory DeviceUnderTest.fromJson(Map<String, dynamic> json) =>
-      _$DeviceUnderTestFromJson(json);
+  factory DeviceUnderTest.fromJson(Map<String, dynamic> json) {
+    return DeviceUnderTest(
+      certificateArn: json['certificateArn'] as String?,
+      thingArn: json['thingArn'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$DeviceUnderTestToJson(this);
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final thingArn = this.thingArn;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (thingArn != null) 'thingArn': thingArn,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetSuiteDefinitionResponse {
   /// Gets the timestamp of the time suite was created with GetSuiteDefinition API
   /// call.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Gets the timestamp of the time suite was modified with GetSuiteDefinition
   /// API call.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'lastModifiedAt')
-  final DateTime lastModifiedAt;
+  final DateTime? lastModifiedAt;
 
   /// Gets latest suite definition version with GetSuiteDefinition API call.
-  @_s.JsonKey(name: 'latestVersion')
-  final String latestVersion;
+  final String? latestVersion;
 
   /// The ARN of the suite definition.
-  @_s.JsonKey(name: 'suiteDefinitionArn')
-  final String suiteDefinitionArn;
+  final String? suiteDefinitionArn;
 
   /// Gets the suite configuration with GetSuiteDefinition API call.
-  @_s.JsonKey(name: 'suiteDefinitionConfiguration')
-  final SuiteDefinitionConfiguration suiteDefinitionConfiguration;
+  final SuiteDefinitionConfiguration? suiteDefinitionConfiguration;
 
   /// Gets suite definition Id with GetSuiteDefinition API call.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Gets suite definition version with GetSuiteDefinition API call.
-  @_s.JsonKey(name: 'suiteDefinitionVersion')
-  final String suiteDefinitionVersion;
+  final String? suiteDefinitionVersion;
 
   /// Tags attached to the suite definition.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetSuiteDefinitionResponse({
     this.createdAt,
@@ -701,85 +672,79 @@ class GetSuiteDefinitionResponse {
     this.suiteDefinitionVersion,
     this.tags,
   });
-  factory GetSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetSuiteDefinitionResponseFromJson(json);
+  factory GetSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
+    return GetSuiteDefinitionResponse(
+      createdAt: timeStampFromJson(json['createdAt']),
+      lastModifiedAt: timeStampFromJson(json['lastModifiedAt']),
+      latestVersion: json['latestVersion'] as String?,
+      suiteDefinitionArn: json['suiteDefinitionArn'] as String?,
+      suiteDefinitionConfiguration: json['suiteDefinitionConfiguration'] != null
+          ? SuiteDefinitionConfiguration.fromJson(
+              json['suiteDefinitionConfiguration'] as Map<String, dynamic>)
+          : null,
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionVersion: json['suiteDefinitionVersion'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetSuiteRunReportResponse {
   /// Gets the download URL of the qualification report.
-  @_s.JsonKey(name: 'qualificationReportDownloadUrl')
-  final String qualificationReportDownloadUrl;
+  final String? qualificationReportDownloadUrl;
 
   GetSuiteRunReportResponse({
     this.qualificationReportDownloadUrl,
   });
-  factory GetSuiteRunReportResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetSuiteRunReportResponseFromJson(json);
+  factory GetSuiteRunReportResponse.fromJson(Map<String, dynamic> json) {
+    return GetSuiteRunReportResponse(
+      qualificationReportDownloadUrl:
+          json['qualificationReportDownloadUrl'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetSuiteRunResponse {
   /// Gets the information about Device Advisor test suite run based on end time.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'endTime')
-  final DateTime endTime;
+  final DateTime? endTime;
 
   /// Gets the information about Device Advisor test suite run based on error.
-  @_s.JsonKey(name: 'errorReason')
-  final String errorReason;
+  final String? errorReason;
 
   /// Gets the information about Device Advisor test suite run based on start
   /// time.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'startTime')
-  final DateTime startTime;
+  final DateTime? startTime;
 
   /// Gets the information about Device Advisor test suite run based on its
   /// status.
-  @_s.JsonKey(name: 'status')
-  final SuiteRunStatus status;
+  final SuiteRunStatus? status;
 
   /// Gets the information about Device Advisor test suite run based on suite
   /// definition Id.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Gets the information about Device Advisor test suite run based on suite
   /// definition version.
-  @_s.JsonKey(name: 'suiteDefinitionVersion')
-  final String suiteDefinitionVersion;
+  final String? suiteDefinitionVersion;
 
   /// The ARN of the suite run.
-  @_s.JsonKey(name: 'suiteRunArn')
-  final String suiteRunArn;
+  final String? suiteRunArn;
 
   /// Gets the information about Device Advisor test suite run based on suite
   /// configuration.
-  @_s.JsonKey(name: 'suiteRunConfiguration')
-  final SuiteRunConfiguration suiteRunConfiguration;
+  final SuiteRunConfiguration? suiteRunConfiguration;
 
   /// Gets the information about Device Advisor test suite run based on suite run
   /// Id.
-  @_s.JsonKey(name: 'suiteRunId')
-  final String suiteRunId;
+  final String? suiteRunId;
 
   /// The tags attached to the suite run.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// Gets the information about Device Advisor test suite run based on test case
   /// runs.
-  @_s.JsonKey(name: 'testResult')
-  final TestResult testResult;
+  final TestResult? testResult;
 
   GetSuiteRunResponse({
     this.endTime,
@@ -794,120 +759,130 @@ class GetSuiteRunResponse {
     this.tags,
     this.testResult,
   });
-  factory GetSuiteRunResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetSuiteRunResponseFromJson(json);
+  factory GetSuiteRunResponse.fromJson(Map<String, dynamic> json) {
+    return GetSuiteRunResponse(
+      endTime: timeStampFromJson(json['endTime']),
+      errorReason: json['errorReason'] as String?,
+      startTime: timeStampFromJson(json['startTime']),
+      status: (json['status'] as String?)?.toSuiteRunStatus(),
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionVersion: json['suiteDefinitionVersion'] as String?,
+      suiteRunArn: json['suiteRunArn'] as String?,
+      suiteRunConfiguration: json['suiteRunConfiguration'] != null
+          ? SuiteRunConfiguration.fromJson(
+              json['suiteRunConfiguration'] as Map<String, dynamic>)
+          : null,
+      suiteRunId: json['suiteRunId'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      testResult: json['testResult'] != null
+          ? TestResult.fromJson(json['testResult'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Show Group Result.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GroupResult {
   /// Show Group Result Id.
-  @_s.JsonKey(name: 'groupId')
-  final String groupId;
+  final String? groupId;
 
   /// Show Group Result Name.
-  @_s.JsonKey(name: 'groupName')
-  final String groupName;
+  final String? groupName;
 
   /// Show Group Result.
-  @_s.JsonKey(name: 'tests')
-  final List<TestCaseRun> tests;
+  final List<TestCaseRun>? tests;
 
   GroupResult({
     this.groupId,
     this.groupName,
     this.tests,
   });
-  factory GroupResult.fromJson(Map<String, dynamic> json) =>
-      _$GroupResultFromJson(json);
+  factory GroupResult.fromJson(Map<String, dynamic> json) {
+    return GroupResult(
+      groupId: json['groupId'] as String?,
+      groupName: json['groupName'] as String?,
+      tests: (json['tests'] as List?)
+          ?.whereNotNull()
+          .map((e) => TestCaseRun.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListSuiteDefinitionsResponse {
   /// Creates a Device Advisor test suite.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// Lists test suite information using List suite definition.
-  @_s.JsonKey(name: 'suiteDefinitionInformationList')
-  final List<SuiteDefinitionInformation> suiteDefinitionInformationList;
+  final List<SuiteDefinitionInformation>? suiteDefinitionInformationList;
 
   ListSuiteDefinitionsResponse({
     this.nextToken,
     this.suiteDefinitionInformationList,
   });
-  factory ListSuiteDefinitionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListSuiteDefinitionsResponseFromJson(json);
+  factory ListSuiteDefinitionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListSuiteDefinitionsResponse(
+      nextToken: json['nextToken'] as String?,
+      suiteDefinitionInformationList: (json['suiteDefinitionInformationList']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              SuiteDefinitionInformation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListSuiteRunsResponse {
   /// Next pagination token for list suite run response.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// Lists the runs of the specified Device Advisor test suite.
-  @_s.JsonKey(name: 'suiteRunsList')
-  final List<SuiteRunInformation> suiteRunsList;
+  final List<SuiteRunInformation>? suiteRunsList;
 
   ListSuiteRunsResponse({
     this.nextToken,
     this.suiteRunsList,
   });
-  factory ListSuiteRunsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListSuiteRunsResponseFromJson(json);
+  factory ListSuiteRunsResponse.fromJson(Map<String, dynamic> json) {
+    return ListSuiteRunsResponse(
+      nextToken: json['nextToken'] as String?,
+      suiteRunsList: (json['suiteRunsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => SuiteRunInformation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
   /// The tags attached to the IoT Device Advisor resource.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
     this.tags,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTestCasesResponse {
   /// Gets the category of test case.
-  @_s.JsonKey(name: 'categories')
-  final List<TestCaseCategory> categories;
+  final List<TestCaseCategory>? categories;
 
   /// Gets the configuration of test group.
-  @_s.JsonKey(name: 'groupConfiguration')
-  final Map<String, String> groupConfiguration;
+  final Map<String, String>? groupConfiguration;
 
   /// Test cases next token response.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// Gets the configuration of root test group.
-  @_s.JsonKey(name: 'rootGroupConfiguration')
-  final Map<String, String> rootGroupConfiguration;
+  final Map<String, String>? rootGroupConfiguration;
 
   ListTestCasesResponse({
     this.categories,
@@ -915,81 +890,115 @@ class ListTestCasesResponse {
     this.nextToken,
     this.rootGroupConfiguration,
   });
-  factory ListTestCasesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTestCasesResponseFromJson(json);
+  factory ListTestCasesResponse.fromJson(Map<String, dynamic> json) {
+    return ListTestCasesResponse(
+      categories: (json['categories'] as List?)
+          ?.whereNotNull()
+          .map((e) => TestCaseCategory.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      groupConfiguration: (json['groupConfiguration'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      nextToken: json['nextToken'] as String?,
+      rootGroupConfiguration:
+          (json['rootGroupConfiguration'] as Map<String, dynamic>?)
+              ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StartSuiteRunResponse {
   /// Starts a Device Advisor test suite run based on suite create time.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Starts a Device Advisor test suite run based on suite run arn.
-  @_s.JsonKey(name: 'suiteRunArn')
-  final String suiteRunArn;
+  final String? suiteRunArn;
 
   /// Starts a Device Advisor test suite run based on suite Run Id.
-  @_s.JsonKey(name: 'suiteRunId')
-  final String suiteRunId;
+  final String? suiteRunId;
 
   StartSuiteRunResponse({
     this.createdAt,
     this.suiteRunArn,
     this.suiteRunId,
   });
-  factory StartSuiteRunResponse.fromJson(Map<String, dynamic> json) =>
-      _$StartSuiteRunResponseFromJson(json);
+  factory StartSuiteRunResponse.fromJson(Map<String, dynamic> json) {
+    return StartSuiteRunResponse(
+      createdAt: timeStampFromJson(json['createdAt']),
+      suiteRunArn: json['suiteRunArn'] as String?,
+      suiteRunId: json['suiteRunId'] as String?,
+    );
+  }
 }
 
 enum Status {
-  @_s.JsonValue('PASS')
   pass,
-  @_s.JsonValue('FAIL')
   fail,
-  @_s.JsonValue('CANCELED')
   canceled,
-  @_s.JsonValue('PENDING')
   pending,
-  @_s.JsonValue('RUNNING')
   running,
-  @_s.JsonValue('PASS_WITH_WARNINGS')
   passWithWarnings,
-  @_s.JsonValue('ERROR')
   error,
 }
 
+extension on Status {
+  String toValue() {
+    switch (this) {
+      case Status.pass:
+        return 'PASS';
+      case Status.fail:
+        return 'FAIL';
+      case Status.canceled:
+        return 'CANCELED';
+      case Status.pending:
+        return 'PENDING';
+      case Status.running:
+        return 'RUNNING';
+      case Status.passWithWarnings:
+        return 'PASS_WITH_WARNINGS';
+      case Status.error:
+        return 'ERROR';
+    }
+  }
+}
+
+extension on String {
+  Status toStatus() {
+    switch (this) {
+      case 'PASS':
+        return Status.pass;
+      case 'FAIL':
+        return Status.fail;
+      case 'CANCELED':
+        return Status.canceled;
+      case 'PENDING':
+        return Status.pending;
+      case 'RUNNING':
+        return Status.running;
+      case 'PASS_WITH_WARNINGS':
+        return Status.passWithWarnings;
+      case 'ERROR':
+        return Status.error;
+    }
+    throw Exception('$this is not known in enum Status');
+  }
+}
+
 /// Gets Suite Definition Configuration.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class SuiteDefinitionConfiguration {
   /// Gets device permission arn.
-  @_s.JsonKey(name: 'devicePermissionRoleArn')
-  final String devicePermissionRoleArn;
+  final String? devicePermissionRoleArn;
 
   /// Gets the devices configured.
-  @_s.JsonKey(name: 'devices')
-  final List<DeviceUnderTest> devices;
+  final List<DeviceUnderTest>? devices;
 
   /// Gets the tests intended for qualification in a suite.
-  @_s.JsonKey(name: 'intendedForQualification')
-  final bool intendedForQualification;
+  final bool? intendedForQualification;
 
   /// Gets test suite root group.
-  @_s.JsonKey(name: 'rootGroup')
-  final String rootGroup;
+  final String? rootGroup;
 
   /// Gets Suite Definition Configuration name.
-  @_s.JsonKey(name: 'suiteDefinitionName')
-  final String suiteDefinitionName;
+  final String? suiteDefinitionName;
 
   SuiteDefinitionConfiguration({
     this.devicePermissionRoleArn,
@@ -998,39 +1007,54 @@ class SuiteDefinitionConfiguration {
     this.rootGroup,
     this.suiteDefinitionName,
   });
-  factory SuiteDefinitionConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$SuiteDefinitionConfigurationFromJson(json);
+  factory SuiteDefinitionConfiguration.fromJson(Map<String, dynamic> json) {
+    return SuiteDefinitionConfiguration(
+      devicePermissionRoleArn: json['devicePermissionRoleArn'] as String?,
+      devices: (json['devices'] as List?)
+          ?.whereNotNull()
+          .map((e) => DeviceUnderTest.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      intendedForQualification: json['intendedForQualification'] as bool?,
+      rootGroup: json['rootGroup'] as String?,
+      suiteDefinitionName: json['suiteDefinitionName'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$SuiteDefinitionConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final devicePermissionRoleArn = this.devicePermissionRoleArn;
+    final devices = this.devices;
+    final intendedForQualification = this.intendedForQualification;
+    final rootGroup = this.rootGroup;
+    final suiteDefinitionName = this.suiteDefinitionName;
+    return {
+      if (devicePermissionRoleArn != null)
+        'devicePermissionRoleArn': devicePermissionRoleArn,
+      if (devices != null) 'devices': devices,
+      if (intendedForQualification != null)
+        'intendedForQualification': intendedForQualification,
+      if (rootGroup != null) 'rootGroup': rootGroup,
+      if (suiteDefinitionName != null)
+        'suiteDefinitionName': suiteDefinitionName,
+    };
+  }
 }
 
 /// Get suite definition information.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SuiteDefinitionInformation {
   /// Gets the information of when the test suite was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Specifies the devices under test.
-  @_s.JsonKey(name: 'defaultDevices')
-  final List<DeviceUnderTest> defaultDevices;
+  final List<DeviceUnderTest>? defaultDevices;
 
   /// Gets the test suites which will be used for qualification.
-  @_s.JsonKey(name: 'intendedForQualification')
-  final bool intendedForQualification;
+  final bool? intendedForQualification;
 
   /// Get suite definition Id.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Get test suite name.
-  @_s.JsonKey(name: 'suiteDefinitionName')
-  final String suiteDefinitionName;
+  final String? suiteDefinitionName;
 
   SuiteDefinitionInformation({
     this.createdAt,
@@ -1039,89 +1063,96 @@ class SuiteDefinitionInformation {
     this.suiteDefinitionId,
     this.suiteDefinitionName,
   });
-  factory SuiteDefinitionInformation.fromJson(Map<String, dynamic> json) =>
-      _$SuiteDefinitionInformationFromJson(json);
+  factory SuiteDefinitionInformation.fromJson(Map<String, dynamic> json) {
+    return SuiteDefinitionInformation(
+      createdAt: timeStampFromJson(json['createdAt']),
+      defaultDevices: (json['defaultDevices'] as List?)
+          ?.whereNotNull()
+          .map((e) => DeviceUnderTest.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      intendedForQualification: json['intendedForQualification'] as bool?,
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionName: json['suiteDefinitionName'] as String?,
+    );
+  }
 }
 
 /// Gets suite run configuration.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class SuiteRunConfiguration {
   /// Gets the primary device for suite run.
-  @_s.JsonKey(name: 'primaryDevice')
-  final DeviceUnderTest primaryDevice;
+  final DeviceUnderTest? primaryDevice;
 
   /// Gets the secondary device for suite run.
-  @_s.JsonKey(name: 'secondaryDevice')
-  final DeviceUnderTest secondaryDevice;
+  final DeviceUnderTest? secondaryDevice;
 
   /// Gets test case list.
-  @_s.JsonKey(name: 'selectedTestList')
-  final List<String> selectedTestList;
+  final List<String>? selectedTestList;
 
   SuiteRunConfiguration({
     this.primaryDevice,
     this.secondaryDevice,
     this.selectedTestList,
   });
-  factory SuiteRunConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$SuiteRunConfigurationFromJson(json);
+  factory SuiteRunConfiguration.fromJson(Map<String, dynamic> json) {
+    return SuiteRunConfiguration(
+      primaryDevice: json['primaryDevice'] != null
+          ? DeviceUnderTest.fromJson(
+              json['primaryDevice'] as Map<String, dynamic>)
+          : null,
+      secondaryDevice: json['secondaryDevice'] != null
+          ? DeviceUnderTest.fromJson(
+              json['secondaryDevice'] as Map<String, dynamic>)
+          : null,
+      selectedTestList: (json['selectedTestList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$SuiteRunConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final primaryDevice = this.primaryDevice;
+    final secondaryDevice = this.secondaryDevice;
+    final selectedTestList = this.selectedTestList;
+    return {
+      if (primaryDevice != null) 'primaryDevice': primaryDevice,
+      if (secondaryDevice != null) 'secondaryDevice': secondaryDevice,
+      if (selectedTestList != null) 'selectedTestList': selectedTestList,
+    };
+  }
 }
 
 /// Get suite run information.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SuiteRunInformation {
   /// Get suite run information based on time suite was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Get suite run information based on end time of the run.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'endAt')
-  final DateTime endAt;
+  final DateTime? endAt;
 
   /// Get suite run information based on result of the test suite run.
-  @_s.JsonKey(name: 'failed')
-  final int failed;
+  final int? failed;
 
   /// Get suite run information based on result of the test suite run.
-  @_s.JsonKey(name: 'passed')
-  final int passed;
+  final int? passed;
 
   /// Get suite run information based on start time of the run.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'startedAt')
-  final DateTime startedAt;
+  final DateTime? startedAt;
 
   /// Get suite run information based on test run status.
-  @_s.JsonKey(name: 'status')
-  final SuiteRunStatus status;
+  final SuiteRunStatus? status;
 
   /// Get suite run information based on suite definition Id.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Get suite run information based on suite definition name.
-  @_s.JsonKey(name: 'suiteDefinitionName')
-  final String suiteDefinitionName;
+  final String? suiteDefinitionName;
 
   /// Get suite run information based on suite definition version.
-  @_s.JsonKey(name: 'suiteDefinitionVersion')
-  final String suiteDefinitionVersion;
+  final String? suiteDefinitionVersion;
 
   /// Get suite run information based on suite run Id.
-  @_s.JsonKey(name: 'suiteRunId')
-  final String suiteRunId;
+  final String? suiteRunId;
 
   SuiteRunInformation({
     this.createdAt,
@@ -1135,156 +1166,181 @@ class SuiteRunInformation {
     this.suiteDefinitionVersion,
     this.suiteRunId,
   });
-  factory SuiteRunInformation.fromJson(Map<String, dynamic> json) =>
-      _$SuiteRunInformationFromJson(json);
+  factory SuiteRunInformation.fromJson(Map<String, dynamic> json) {
+    return SuiteRunInformation(
+      createdAt: timeStampFromJson(json['createdAt']),
+      endAt: timeStampFromJson(json['endAt']),
+      failed: json['failed'] as int?,
+      passed: json['passed'] as int?,
+      startedAt: timeStampFromJson(json['startedAt']),
+      status: (json['status'] as String?)?.toSuiteRunStatus(),
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionName: json['suiteDefinitionName'] as String?,
+      suiteDefinitionVersion: json['suiteDefinitionVersion'] as String?,
+      suiteRunId: json['suiteRunId'] as String?,
+    );
+  }
 }
 
 enum SuiteRunStatus {
-  @_s.JsonValue('PASS')
   pass,
-  @_s.JsonValue('FAIL')
   fail,
-  @_s.JsonValue('CANCELED')
   canceled,
-  @_s.JsonValue('PENDING')
   pending,
-  @_s.JsonValue('RUNNING')
   running,
-  @_s.JsonValue('PASS_WITH_WARNINGS')
   passWithWarnings,
-  @_s.JsonValue('ERROR')
   error,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on SuiteRunStatus {
+  String toValue() {
+    switch (this) {
+      case SuiteRunStatus.pass:
+        return 'PASS';
+      case SuiteRunStatus.fail:
+        return 'FAIL';
+      case SuiteRunStatus.canceled:
+        return 'CANCELED';
+      case SuiteRunStatus.pending:
+        return 'PENDING';
+      case SuiteRunStatus.running:
+        return 'RUNNING';
+      case SuiteRunStatus.passWithWarnings:
+        return 'PASS_WITH_WARNINGS';
+      case SuiteRunStatus.error:
+        return 'ERROR';
+    }
+  }
+}
+
+extension on String {
+  SuiteRunStatus toSuiteRunStatus() {
+    switch (this) {
+      case 'PASS':
+        return SuiteRunStatus.pass;
+      case 'FAIL':
+        return SuiteRunStatus.fail;
+      case 'CANCELED':
+        return SuiteRunStatus.canceled;
+      case 'PENDING':
+        return SuiteRunStatus.pending;
+      case 'RUNNING':
+        return SuiteRunStatus.running;
+      case 'PASS_WITH_WARNINGS':
+        return SuiteRunStatus.passWithWarnings;
+      case 'ERROR':
+        return SuiteRunStatus.error;
+    }
+    throw Exception('$this is not known in enum SuiteRunStatus');
+  }
+}
+
 class TagResourceResponse {
   TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
 }
 
 /// Shows tests in a test group.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TestCase {
   /// Shows test case configuration.
-  @_s.JsonKey(name: 'configuration')
-  final Map<String, String> configuration;
+  final Map<String, String>? configuration;
 
   /// Shows test case name.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Specifies a test.
-  @_s.JsonKey(name: 'test')
-  final TestCaseDefinition test;
+  final TestCaseDefinition? test;
 
   TestCase({
     this.configuration,
     this.name,
     this.test,
   });
-  factory TestCase.fromJson(Map<String, dynamic> json) =>
-      _$TestCaseFromJson(json);
+  factory TestCase.fromJson(Map<String, dynamic> json) {
+    return TestCase(
+      configuration: (json['configuration'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      name: json['name'] as String?,
+      test: json['test'] != null
+          ? TestCaseDefinition.fromJson(json['test'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Gets the test case category.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TestCaseCategory {
   /// Lists all the tests name in the specified category.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Lists all the tests in the specified category.
-  @_s.JsonKey(name: 'tests')
-  final List<TestCase> tests;
+  final List<TestCase>? tests;
 
   TestCaseCategory({
     this.name,
     this.tests,
   });
-  factory TestCaseCategory.fromJson(Map<String, dynamic> json) =>
-      _$TestCaseCategoryFromJson(json);
+  factory TestCaseCategory.fromJson(Map<String, dynamic> json) {
+    return TestCaseCategory(
+      name: json['name'] as String?,
+      tests: (json['tests'] as List?)
+          ?.whereNotNull()
+          .map((e) => TestCase.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Provides test case definition.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TestCaseDefinition {
   /// Provides test case definition Id.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// Provides test case definition version.
-  @_s.JsonKey(name: 'testCaseVersion')
-  final String testCaseVersion;
+  final String? testCaseVersion;
 
   TestCaseDefinition({
     this.id,
     this.testCaseVersion,
   });
-  factory TestCaseDefinition.fromJson(Map<String, dynamic> json) =>
-      _$TestCaseDefinitionFromJson(json);
+  factory TestCaseDefinition.fromJson(Map<String, dynamic> json) {
+    return TestCaseDefinition(
+      id: json['id'] as String?,
+      testCaseVersion: json['testCaseVersion'] as String?,
+    );
+  }
 }
 
 /// Provides test case run.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TestCaseRun {
   /// Provides test case run end time.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'endTime')
-  final DateTime endTime;
+  final DateTime? endTime;
 
   /// Provides test case run failure result.
-  @_s.JsonKey(name: 'failure')
-  final String failure;
+  final String? failure;
 
   /// Provides test case run log Url.
-  @_s.JsonKey(name: 'logUrl')
-  final String logUrl;
+  final String? logUrl;
 
   /// Provides test case run start time.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'startTime')
-  final DateTime startTime;
+  final DateTime? startTime;
 
   /// Provides test case run status.
-  @_s.JsonKey(name: 'status')
-  final Status status;
+  final Status? status;
 
   /// Provides test case run definition Id.
-  @_s.JsonKey(name: 'testCaseDefinitionId')
-  final String testCaseDefinitionId;
+  final String? testCaseDefinitionId;
 
   /// Provides test case run definition Name.
-  @_s.JsonKey(name: 'testCaseDefinitionName')
-  final String testCaseDefinitionName;
+  final String? testCaseDefinitionName;
 
   /// Provides test case run Id.
-  @_s.JsonKey(name: 'testCaseRunId')
-  final String testCaseRunId;
+  final String? testCaseRunId;
 
   /// Provides test case run warnings.
-  @_s.JsonKey(name: 'warnings')
-  final String warnings;
+  final String? warnings;
 
   TestCaseRun({
     this.endTime,
@@ -1297,70 +1353,64 @@ class TestCaseRun {
     this.testCaseRunId,
     this.warnings,
   });
-  factory TestCaseRun.fromJson(Map<String, dynamic> json) =>
-      _$TestCaseRunFromJson(json);
+  factory TestCaseRun.fromJson(Map<String, dynamic> json) {
+    return TestCaseRun(
+      endTime: timeStampFromJson(json['endTime']),
+      failure: json['failure'] as String?,
+      logUrl: json['logUrl'] as String?,
+      startTime: timeStampFromJson(json['startTime']),
+      status: (json['status'] as String?)?.toStatus(),
+      testCaseDefinitionId: json['testCaseDefinitionId'] as String?,
+      testCaseDefinitionName: json['testCaseDefinitionName'] as String?,
+      testCaseRunId: json['testCaseRunId'] as String?,
+      warnings: json['warnings'] as String?,
+    );
+  }
 }
 
 /// Show each group result.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TestResult {
   /// Show each group of test results.
-  @_s.JsonKey(name: 'groups')
-  final List<GroupResult> groups;
+  final List<GroupResult>? groups;
 
   TestResult({
     this.groups,
   });
-  factory TestResult.fromJson(Map<String, dynamic> json) =>
-      _$TestResultFromJson(json);
+  factory TestResult.fromJson(Map<String, dynamic> json) {
+    return TestResult(
+      groups: (json['groups'] as List?)
+          ?.whereNotNull()
+          .map((e) => GroupResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateSuiteDefinitionResponse {
   /// Updates a Device Advisor test suite with TimeStamp of when it was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// Updates a Device Advisor test suite with TimeStamp of when it was updated.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdatedAt')
-  final DateTime lastUpdatedAt;
+  final DateTime? lastUpdatedAt;
 
   /// Updates a Device Advisor test suite with Amazon Resource name.
-  @_s.JsonKey(name: 'suiteDefinitionArn')
-  final String suiteDefinitionArn;
+  final String? suiteDefinitionArn;
 
   /// Updates a Device Advisor test suite with suite UUID.
-  @_s.JsonKey(name: 'suiteDefinitionId')
-  final String suiteDefinitionId;
+  final String? suiteDefinitionId;
 
   /// Updates a Device Advisor test suite with suite definition name.
-  @_s.JsonKey(name: 'suiteDefinitionName')
-  final String suiteDefinitionName;
+  final String? suiteDefinitionName;
 
   /// Updates a Device Advisor test suite with suite definition version.
-  @_s.JsonKey(name: 'suiteDefinitionVersion')
-  final String suiteDefinitionVersion;
+  final String? suiteDefinitionVersion;
 
   UpdateSuiteDefinitionResponse({
     this.createdAt,
@@ -1370,27 +1420,35 @@ class UpdateSuiteDefinitionResponse {
     this.suiteDefinitionName,
     this.suiteDefinitionVersion,
   });
-  factory UpdateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateSuiteDefinitionResponseFromJson(json);
+  factory UpdateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateSuiteDefinitionResponse(
+      createdAt: timeStampFromJson(json['createdAt']),
+      lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
+      suiteDefinitionArn: json['suiteDefinitionArn'] as String?,
+      suiteDefinitionId: json['suiteDefinitionId'] as String?,
+      suiteDefinitionName: json['suiteDefinitionName'] as String?,
+      suiteDefinitionVersion: json['suiteDefinitionVersion'] as String?,
+    );
+  }
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

@@ -3,13 +3,19 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
-    show Uint8ListConverter, Uint8ListListConverter;
+    show
+        rfc822ToJson,
+        iso8601ToJson,
+        unixTimestampToJson,
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
@@ -17,10 +23,10 @@ export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 class XmlAttributes {
   final _s.RestXmlProtocol _protocol;
   XmlAttributes({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestXmlProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -42,7 +48,7 @@ class XmlAttributes {
 }
 
 class OutputShape {
-  final List<ItemShape> listItems;
+  final List<ItemShape>? listItems;
 
   OutputShape({
     this.listItems,
@@ -56,7 +62,7 @@ class OutputShape {
 }
 
 class ItemShape {
-  final ItemDetailShape itemDetail;
+  final ItemDetailShape? itemDetail;
 
   ItemShape({
     this.itemDetail,
@@ -72,15 +78,15 @@ class ItemShape {
 
 class ItemDetailShape {
   final ItemType type;
-  final String id;
+  final String? id;
 
   ItemDetailShape({
-    @_s.required this.type,
+    required this.type,
     this.id,
   });
   factory ItemDetailShape.fromXml(_s.XmlElement elem) {
     return ItemDetailShape(
-      type: _s.extractXmlStringAttribute(elem, 'xsi:type')?.toItemType(),
+      type: _s.extractXmlStringAttribute(elem, 'xsi:type')!.toItemType(),
       id: _s.extractXmlStringValue(elem, 'ID'),
     );
   }
@@ -102,7 +108,6 @@ extension on ItemType {
       case ItemType.type3:
         return 'Type3';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
@@ -116,7 +121,7 @@ extension on String {
       case 'Type3':
         return ItemType.type3;
     }
-    throw Exception('Unknown enum value: $this');
+    throw Exception('$this is not known in enum ItemType');
   }
 }
 

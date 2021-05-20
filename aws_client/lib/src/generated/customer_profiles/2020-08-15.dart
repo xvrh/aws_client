@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-08-15.g.dart';
 
 /// Welcome to the Amazon Connect Customer Profiles API Reference. This guide
 /// provides information about the Amazon Connect Customer Profiles API,
@@ -32,10 +25,10 @@ part '2020-08-15.g.dart';
 class CustomerProfiles {
   final _s.RestJsonProtocol _protocol;
   CustomerProfiles({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -71,10 +64,10 @@ class CustomerProfiles {
   /// Parameter [values] :
   /// A list of key values.
   Future<AddProfileKeyResponse> addProfileKey({
-    @_s.required String domainName,
-    @_s.required String keyName,
-    @_s.required String profileId,
-    @_s.required List<String> values,
+    required String domainName,
+    required String keyName,
+    required String profileId,
+    required List<String> values,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -160,11 +153,11 @@ class CustomerProfiles {
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<CreateDomainResponse> createDomain({
-    @_s.required int defaultExpirationDays,
-    @_s.required String domainName,
-    String deadLetterQueueUrl,
-    String defaultEncryptionKey,
-    Map<String, String> tags,
+    required int defaultExpirationDays,
+    required String domainName,
+    String? deadLetterQueueUrl,
+    String? defaultEncryptionKey,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(defaultExpirationDays, 'defaultExpirationDays');
     _s.validateNumRange(
@@ -296,28 +289,28 @@ class CustomerProfiles {
   /// Parameter [shippingAddress] :
   /// The customer’s shipping address.
   Future<CreateProfileResponse> createProfile({
-    @_s.required String domainName,
-    String accountNumber,
-    String additionalInformation,
-    Address address,
-    Map<String, String> attributes,
-    Address billingAddress,
-    String birthDate,
-    String businessEmailAddress,
-    String businessName,
-    String businessPhoneNumber,
-    String emailAddress,
-    String firstName,
-    Gender gender,
-    String homePhoneNumber,
-    String lastName,
-    Address mailingAddress,
-    String middleName,
-    String mobilePhoneNumber,
-    PartyType partyType,
-    String personalEmailAddress,
-    String phoneNumber,
-    Address shippingAddress,
+    required String domainName,
+    String? accountNumber,
+    String? additionalInformation,
+    Address? address,
+    Map<String, String>? attributes,
+    Address? billingAddress,
+    String? birthDate,
+    String? businessEmailAddress,
+    String? businessName,
+    String? businessPhoneNumber,
+    String? emailAddress,
+    String? firstName,
+    Gender? gender,
+    String? homePhoneNumber,
+    String? lastName,
+    Address? mailingAddress,
+    String? middleName,
+    String? mobilePhoneNumber,
+    PartyType? partyType,
+    String? personalEmailAddress,
+    String? phoneNumber,
+    Address? shippingAddress,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -465,7 +458,7 @@ class CustomerProfiles {
   /// Parameter [domainName] :
   /// The unique name of the domain.
   Future<DeleteDomainResponse> deleteDomain({
-    @_s.required String domainName,
+    required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -504,8 +497,8 @@ class CustomerProfiles {
   /// Parameter [uri] :
   /// The URI of the S3 bucket or any other type of data source.
   Future<DeleteIntegrationResponse> deleteIntegration({
-    @_s.required String domainName,
-    String uri,
+    required String domainName,
+    String? uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -555,8 +548,8 @@ class CustomerProfiles {
   /// Parameter [profileId] :
   /// The unique identifier of a customer profile.
   Future<DeleteProfileResponse> deleteProfile({
-    @_s.required String domainName,
-    @_s.required String profileId,
+    required String domainName,
+    required String profileId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -611,10 +604,10 @@ class CustomerProfiles {
   /// Parameter [values] :
   /// A list of key values.
   Future<DeleteProfileKeyResponse> deleteProfileKey({
-    @_s.required String domainName,
-    @_s.required String keyName,
-    @_s.required String profileId,
-    @_s.required List<String> values,
+    required String domainName,
+    required String keyName,
+    required String profileId,
+    required List<String> values,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -687,10 +680,10 @@ class CustomerProfiles {
   /// Parameter [profileObjectUniqueKey] :
   /// The unique identifier of the profile object generated by the service.
   Future<DeleteProfileObjectResponse> deleteProfileObject({
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
-    @_s.required String profileId,
-    @_s.required String profileObjectUniqueKey,
+    required String domainName,
+    required String objectTypeName,
+    required String profileId,
+    required String profileObjectUniqueKey,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -768,8 +761,8 @@ class CustomerProfiles {
   /// Parameter [objectTypeName] :
   /// The name of the profile object type.
   Future<DeleteProfileObjectTypeResponse> deleteProfileObjectType({
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
+    required String domainName,
+    required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -820,7 +813,7 @@ class CustomerProfiles {
   /// Parameter [domainName] :
   /// A unique name for the domain.
   Future<GetDomainResponse> getDomain({
-    @_s.required String domainName,
+    required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -859,8 +852,8 @@ class CustomerProfiles {
   /// Parameter [uri] :
   /// The URI of the S3 bucket or any other type of data source.
   Future<GetIntegrationResponse> getIntegration({
-    @_s.required String domainName,
-    String uri,
+    required String domainName,
+    String? uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -908,8 +901,8 @@ class CustomerProfiles {
   /// Parameter [objectTypeName] :
   /// The name of the profile object type.
   Future<GetProfileObjectTypeResponse> getProfileObjectType({
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
+    required String domainName,
+    required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -965,7 +958,7 @@ class CustomerProfiles {
   /// Parameter [templateId] :
   /// A unique identifier for the object template.
   Future<GetProfileObjectTypeTemplateResponse> getProfileObjectTypeTemplate({
-    @_s.required String templateId,
+    required String templateId,
   }) async {
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
@@ -1008,9 +1001,9 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// The pagination token from the previous ListAccountIntegrations API call.
   Future<ListAccountIntegrationsResponse> listAccountIntegrations({
-    @_s.required String uri,
-    int maxResults,
-    String nextToken,
+    required String uri,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(uri, 'uri');
     _s.validateStringLength(
@@ -1064,8 +1057,8 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// The pagination token from the previous ListDomain API call.
   Future<ListDomainsResponse> listDomains({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1110,9 +1103,9 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// The pagination token from the previous ListIntegrations API call.
   Future<ListIntegrationsResponse> listIntegrations({
-    @_s.required String domainName,
-    int maxResults,
-    String nextToken,
+    required String domainName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1169,8 +1162,8 @@ class CustomerProfiles {
   /// The pagination token from the previous ListObjectTypeTemplates API call.
   Future<ListProfileObjectTypeTemplatesResponse>
       listProfileObjectTypeTemplates({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1215,9 +1208,9 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// Identifies the next page of results to return.
   Future<ListProfileObjectTypesResponse> listProfileObjectTypes({
-    @_s.required String domainName,
-    int maxResults,
-    String nextToken,
+    required String domainName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1283,11 +1276,11 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// The pagination token from the previous call to ListProfileObjects.
   Future<ListProfileObjectsResponse> listProfileObjects({
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
-    @_s.required String profileId,
-    int maxResults,
-    String nextToken,
+    required String domainName,
+    required String objectTypeName,
+    required String profileId,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1366,7 +1359,7 @@ class CustomerProfiles {
   /// Parameter [resourceArn] :
   /// The ARN of the resource for which you want to view tags.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1414,10 +1407,10 @@ class CustomerProfiles {
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<PutIntegrationResponse> putIntegration({
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
-    @_s.required String uri,
-    Map<String, String> tags,
+    required String domainName,
+    required String objectTypeName,
+    required String uri,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1499,9 +1492,9 @@ class CustomerProfiles {
   /// Parameter [objectTypeName] :
   /// The name of the profile object type.
   Future<PutProfileObjectResponse> putProfileObject({
-    @_s.required String domainName,
-    @_s.required String object,
-    @_s.required String objectTypeName,
+    required String domainName,
+    required String object,
+    required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1597,16 +1590,16 @@ class CustomerProfiles {
   /// Parameter [templateId] :
   /// A unique identifier for the object template.
   Future<PutProfileObjectTypeResponse> putProfileObjectType({
-    @_s.required String description,
-    @_s.required String domainName,
-    @_s.required String objectTypeName,
-    bool allowProfileCreation,
-    String encryptionKey,
-    int expirationDays,
-    Map<String, ObjectTypeField> fields,
-    Map<String, List<ObjectTypeKey>> keys,
-    Map<String, String> tags,
-    String templateId,
+    required String description,
+    required String domainName,
+    required String objectTypeName,
+    bool? allowProfileCreation,
+    String? encryptionKey,
+    int? expirationDays,
+    Map<String, ObjectTypeField>? fields,
+    Map<String, List<ObjectTypeKey>>? keys,
+    Map<String, String>? tags,
+    String? templateId,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
     _s.validateStringLength(
@@ -1715,11 +1708,11 @@ class CustomerProfiles {
   /// Parameter [nextToken] :
   /// The pagination token from the previous SearchProfiles API call.
   Future<SearchProfilesResponse> searchProfiles({
-    @_s.required String domainName,
-    @_s.required String keyName,
-    @_s.required List<String> values,
-    int maxResults,
-    String nextToken,
+    required String domainName,
+    required String keyName,
+    required List<String> values,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1808,8 +1801,8 @@ class CustomerProfiles {
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1835,7 +1828,6 @@ class CustomerProfiles {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// Removes one or more tags from the specified Amazon Connect Customer
@@ -1852,8 +1844,8 @@ class CustomerProfiles {
   /// Parameter [tagKeys] :
   /// The list of tag keys to remove from the resource.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1871,7 +1863,7 @@ class CustomerProfiles {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -1880,7 +1872,6 @@ class CustomerProfiles {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// Updates the properties of a domain, including creating or selecting a dead
@@ -1916,11 +1907,11 @@ class CustomerProfiles {
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<UpdateDomainResponse> updateDomain({
-    @_s.required String domainName,
-    String deadLetterQueueUrl,
-    String defaultEncryptionKey,
-    int defaultExpirationDays,
-    Map<String, String> tags,
+    required String domainName,
+    String? deadLetterQueueUrl,
+    String? defaultEncryptionKey,
+    int? defaultExpirationDays,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -2056,29 +2047,29 @@ class CustomerProfiles {
   /// Parameter [shippingAddress] :
   /// The customer’s shipping address.
   Future<UpdateProfileResponse> updateProfile({
-    @_s.required String domainName,
-    @_s.required String profileId,
-    String accountNumber,
-    String additionalInformation,
-    UpdateAddress address,
-    Map<String, String> attributes,
-    UpdateAddress billingAddress,
-    String birthDate,
-    String businessEmailAddress,
-    String businessName,
-    String businessPhoneNumber,
-    String emailAddress,
-    String firstName,
-    Gender gender,
-    String homePhoneNumber,
-    String lastName,
-    UpdateAddress mailingAddress,
-    String middleName,
-    String mobilePhoneNumber,
-    PartyType partyType,
-    String personalEmailAddress,
-    String phoneNumber,
-    UpdateAddress shippingAddress,
+    required String domainName,
+    required String profileId,
+    String? accountNumber,
+    String? additionalInformation,
+    UpdateAddress? address,
+    Map<String, String>? attributes,
+    UpdateAddress? billingAddress,
+    String? birthDate,
+    String? businessEmailAddress,
+    String? businessName,
+    String? businessPhoneNumber,
+    String? emailAddress,
+    String? firstName,
+    Gender? gender,
+    String? homePhoneNumber,
+    String? lastName,
+    UpdateAddress? mailingAddress,
+    String? middleName,
+    String? mobilePhoneNumber,
+    PartyType? partyType,
+    String? personalEmailAddress,
+    String? phoneNumber,
+    UpdateAddress? shippingAddress,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -2223,75 +2214,60 @@ class CustomerProfiles {
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AddProfileKeyResponse {
   /// A searchable identifier of a customer profile.
-  @_s.JsonKey(name: 'KeyName')
-  final String keyName;
+  final String? keyName;
 
   /// A list of key values.
-  @_s.JsonKey(name: 'Values')
-  final List<String> values;
+  final List<String>? values;
 
   AddProfileKeyResponse({
     this.keyName,
     this.values,
   });
-  factory AddProfileKeyResponse.fromJson(Map<String, dynamic> json) =>
-      _$AddProfileKeyResponseFromJson(json);
+  factory AddProfileKeyResponse.fromJson(Map<String, dynamic> json) {
+    return AddProfileKeyResponse(
+      keyName: json['KeyName'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 }
 
 /// A generic address associated with the customer that is not mailing,
 /// shipping, or billing.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class Address {
   /// The first line of a customer address.
-  @_s.JsonKey(name: 'Address1')
-  final String address1;
+  final String? address1;
 
   /// The second line of a customer address.
-  @_s.JsonKey(name: 'Address2')
-  final String address2;
+  final String? address2;
 
   /// The third line of a customer address.
-  @_s.JsonKey(name: 'Address3')
-  final String address3;
+  final String? address3;
 
   /// The fourth line of a customer address.
-  @_s.JsonKey(name: 'Address4')
-  final String address4;
+  final String? address4;
 
   /// The city in which a customer lives.
-  @_s.JsonKey(name: 'City')
-  final String city;
+  final String? city;
 
   /// The country in which a customer lives.
-  @_s.JsonKey(name: 'Country')
-  final String country;
+  final String? country;
 
   /// The county in which a customer lives.
-  @_s.JsonKey(name: 'County')
-  final String county;
+  final String? county;
 
   /// The postal code of a customer address.
-  @_s.JsonKey(name: 'PostalCode')
-  final String postalCode;
+  final String? postalCode;
 
   /// The province in which a customer lives.
-  @_s.JsonKey(name: 'Province')
-  final String province;
+  final String? province;
 
   /// The state in which a customer lives.
-  @_s.JsonKey(name: 'State')
-  final String state;
+  final String? state;
 
   Address({
     this.address1,
@@ -2305,208 +2281,210 @@ class Address {
     this.province,
     this.state,
   });
-  factory Address.fromJson(Map<String, dynamic> json) =>
-      _$AddressFromJson(json);
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      address1: json['Address1'] as String?,
+      address2: json['Address2'] as String?,
+      address3: json['Address3'] as String?,
+      address4: json['Address4'] as String?,
+      city: json['City'] as String?,
+      country: json['Country'] as String?,
+      county: json['County'] as String?,
+      postalCode: json['PostalCode'] as String?,
+      province: json['Province'] as String?,
+      state: json['State'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$AddressToJson(this);
+  Map<String, dynamic> toJson() {
+    final address1 = this.address1;
+    final address2 = this.address2;
+    final address3 = this.address3;
+    final address4 = this.address4;
+    final city = this.city;
+    final country = this.country;
+    final county = this.county;
+    final postalCode = this.postalCode;
+    final province = this.province;
+    final state = this.state;
+    return {
+      if (address1 != null) 'Address1': address1,
+      if (address2 != null) 'Address2': address2,
+      if (address3 != null) 'Address3': address3,
+      if (address4 != null) 'Address4': address4,
+      if (city != null) 'City': city,
+      if (country != null) 'Country': country,
+      if (county != null) 'County': county,
+      if (postalCode != null) 'PostalCode': postalCode,
+      if (province != null) 'Province': province,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateDomainResponse {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The default number of days until the data within the domain expires.
-  @_s.JsonKey(name: 'DefaultExpirationDays')
   final int defaultExpirationDays;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The URL of the SQS dead letter queue, which is used for reporting errors
   /// associated with ingesting data from third party applications.
-  @_s.JsonKey(name: 'DeadLetterQueueUrl')
-  final String deadLetterQueueUrl;
+  final String? deadLetterQueueUrl;
 
   /// The default encryption key, which is an AWS managed key, is used when no
   /// specific type of encryption key is specified. It is used to encrypt all data
   /// before it is placed in permanent or semi-permanent storage.
-  @_s.JsonKey(name: 'DefaultEncryptionKey')
-  final String defaultEncryptionKey;
+  final String? defaultEncryptionKey;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   CreateDomainResponse({
-    @_s.required this.createdAt,
-    @_s.required this.defaultExpirationDays,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
+    required this.createdAt,
+    required this.defaultExpirationDays,
+    required this.domainName,
+    required this.lastUpdatedAt,
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
     this.tags,
   });
-  factory CreateDomainResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateDomainResponseFromJson(json);
+  factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
+    return CreateDomainResponse(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      defaultExpirationDays: json['DefaultExpirationDays'] as int,
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
+      defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateProfileResponse {
   /// The unique identifier of a customer profile.
-  @_s.JsonKey(name: 'ProfileId')
   final String profileId;
 
   CreateProfileResponse({
-    @_s.required this.profileId,
+    required this.profileId,
   });
-  factory CreateProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateProfileResponseFromJson(json);
+  factory CreateProfileResponse.fromJson(Map<String, dynamic> json) {
+    return CreateProfileResponse(
+      profileId: json['ProfileId'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteDomainResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
   final String message;
 
   DeleteDomainResponse({
-    @_s.required this.message,
+    required this.message,
   });
-  factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteDomainResponseFromJson(json);
+  factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteDomainResponse(
+      message: json['Message'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteIntegrationResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
   final String message;
 
   DeleteIntegrationResponse({
-    @_s.required this.message,
+    required this.message,
   });
-  factory DeleteIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteIntegrationResponseFromJson(json);
+  factory DeleteIntegrationResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteIntegrationResponse(
+      message: json['Message'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteProfileKeyResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
-  final String message;
+  final String? message;
 
   DeleteProfileKeyResponse({
     this.message,
   });
-  factory DeleteProfileKeyResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteProfileKeyResponseFromJson(json);
+  factory DeleteProfileKeyResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteProfileKeyResponse(
+      message: json['Message'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteProfileObjectResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
-  final String message;
+  final String? message;
 
   DeleteProfileObjectResponse({
     this.message,
   });
-  factory DeleteProfileObjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteProfileObjectResponseFromJson(json);
+  factory DeleteProfileObjectResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteProfileObjectResponse(
+      message: json['Message'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteProfileObjectTypeResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
   final String message;
 
   DeleteProfileObjectTypeResponse({
-    @_s.required this.message,
+    required this.message,
   });
-  factory DeleteProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteProfileObjectTypeResponseFromJson(json);
+  factory DeleteProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteProfileObjectTypeResponse(
+      message: json['Message'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteProfileResponse {
   /// A message that indicates the delete request is done.
-  @_s.JsonKey(name: 'Message')
-  final String message;
+  final String? message;
 
   DeleteProfileResponse({
     this.message,
   });
-  factory DeleteProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteProfileResponseFromJson(json);
+  factory DeleteProfileResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteProfileResponse(
+      message: json['Message'] as String?,
+    );
+  }
 }
 
 /// Usage-specific statistics about the domain.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DomainStats {
   /// The number of profiles that you are currently paying for in the domain. If
   /// you have more than 100 objects associated with a single profile, that
   /// profile counts as two profiles. If you have more than 200 objects, that
   /// profile counts as three, and so on.
-  @_s.JsonKey(name: 'MeteringProfileCount')
-  final int meteringProfileCount;
+  final int? meteringProfileCount;
 
   /// The total number of objects in domain.
-  @_s.JsonKey(name: 'ObjectCount')
-  final int objectCount;
+  final int? objectCount;
 
   /// The total number of profiles currently in the domain.
-  @_s.JsonKey(name: 'ProfileCount')
-  final int profileCount;
+  final int? profileCount;
 
   /// The total size, in bytes, of all objects in the domain.
-  @_s.JsonKey(name: 'TotalSize')
-  final int totalSize;
+  final int? totalSize;
 
   DomainStats({
     this.meteringProfileCount,
@@ -2514,29 +2492,62 @@ class DomainStats {
     this.profileCount,
     this.totalSize,
   });
-  factory DomainStats.fromJson(Map<String, dynamic> json) =>
-      _$DomainStatsFromJson(json);
+  factory DomainStats.fromJson(Map<String, dynamic> json) {
+    return DomainStats(
+      meteringProfileCount: json['MeteringProfileCount'] as int?,
+      objectCount: json['ObjectCount'] as int?,
+      profileCount: json['ProfileCount'] as int?,
+      totalSize: json['TotalSize'] as int?,
+    );
+  }
 }
 
 enum FieldContentType {
-  @_s.JsonValue('STRING')
   string,
-  @_s.JsonValue('NUMBER')
   number,
-  @_s.JsonValue('PHONE_NUMBER')
   phoneNumber,
-  @_s.JsonValue('EMAIL_ADDRESS')
   emailAddress,
-  @_s.JsonValue('NAME')
   name,
 }
 
+extension on FieldContentType {
+  String toValue() {
+    switch (this) {
+      case FieldContentType.string:
+        return 'STRING';
+      case FieldContentType.number:
+        return 'NUMBER';
+      case FieldContentType.phoneNumber:
+        return 'PHONE_NUMBER';
+      case FieldContentType.emailAddress:
+        return 'EMAIL_ADDRESS';
+      case FieldContentType.name:
+        return 'NAME';
+    }
+  }
+}
+
+extension on String {
+  FieldContentType toFieldContentType() {
+    switch (this) {
+      case 'STRING':
+        return FieldContentType.string;
+      case 'NUMBER':
+        return FieldContentType.number;
+      case 'PHONE_NUMBER':
+        return FieldContentType.phoneNumber;
+      case 'EMAIL_ADDRESS':
+        return FieldContentType.emailAddress;
+      case 'NAME':
+        return FieldContentType.name;
+    }
+    throw Exception('$this is not known in enum FieldContentType');
+  }
+}
+
 enum Gender {
-  @_s.JsonValue('MALE')
   male,
-  @_s.JsonValue('FEMALE')
   female,
-  @_s.JsonValue('UNSPECIFIED')
   unspecified,
 }
 
@@ -2550,123 +2561,125 @@ extension on Gender {
       case Gender.unspecified:
         return 'UNSPECIFIED';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on String {
+  Gender toGender() {
+    switch (this) {
+      case 'MALE':
+        return Gender.male;
+      case 'FEMALE':
+        return Gender.female;
+      case 'UNSPECIFIED':
+        return Gender.unspecified;
+    }
+    throw Exception('$this is not known in enum Gender');
+  }
+}
+
 class GetDomainResponse {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The URL of the SQS dead letter queue, which is used for reporting errors
   /// associated with ingesting data from third party applications.
-  @_s.JsonKey(name: 'DeadLetterQueueUrl')
-  final String deadLetterQueueUrl;
+  final String? deadLetterQueueUrl;
 
   /// The default encryption key, which is an AWS managed key, is used when no
   /// specific type of encryption key is specified. It is used to encrypt all data
   /// before it is placed in permanent or semi-permanent storage.
-  @_s.JsonKey(name: 'DefaultEncryptionKey')
-  final String defaultEncryptionKey;
+  final String? defaultEncryptionKey;
 
   /// The default number of days until the data within the domain expires.
-  @_s.JsonKey(name: 'DefaultExpirationDays')
-  final int defaultExpirationDays;
+  final int? defaultExpirationDays;
 
   /// Usage-specific statistics about the domain.
-  @_s.JsonKey(name: 'Stats')
-  final DomainStats stats;
+  final DomainStats? stats;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetDomainResponse({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
     this.defaultExpirationDays,
     this.stats,
     this.tags,
   });
-  factory GetDomainResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetDomainResponseFromJson(json);
+  factory GetDomainResponse.fromJson(Map<String, dynamic> json) {
+    return GetDomainResponse(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
+      defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
+      defaultExpirationDays: json['DefaultExpirationDays'] as int?,
+      stats: json['Stats'] != null
+          ? DomainStats.fromJson(json['Stats'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetIntegrationResponse {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// The URI of the S3 bucket or any other type of data source.
-  @_s.JsonKey(name: 'Uri')
   final String uri;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetIntegrationResponse({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
-    @_s.required this.objectTypeName,
-    @_s.required this.uri,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
+    required this.objectTypeName,
+    required this.uri,
     this.tags,
   });
-  factory GetIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetIntegrationResponseFromJson(json);
+  factory GetIntegrationResponse.fromJson(Map<String, dynamic> json) {
+    return GetIntegrationResponse(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      objectTypeName: json['ObjectTypeName'] as String,
+      uri: json['Uri'] as String,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetProfileObjectTypeResponse {
   /// The description of the profile object type.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// Indicates whether a profile should be created when data is received if one
@@ -2675,47 +2688,36 @@ class GetProfileObjectTypeResponse {
   /// service tries to fetch a standard profile and associate this object with the
   /// profile. If it is set to <code>TRUE</code>, and if no match is found, then
   /// the service creates a new standard profile.
-  @_s.JsonKey(name: 'AllowProfileCreation')
-  final bool allowProfileCreation;
+  final bool? allowProfileCreation;
 
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// The customer-provided key to encrypt the profile object that will be created
   /// in this profile object type.
-  @_s.JsonKey(name: 'EncryptionKey')
-  final String encryptionKey;
+  final String? encryptionKey;
 
   /// The number of days until the data in the object expires.
-  @_s.JsonKey(name: 'ExpirationDays')
-  final int expirationDays;
+  final int? expirationDays;
 
   /// A map of the name and ObjectType field.
-  @_s.JsonKey(name: 'Fields')
-  final Map<String, ObjectTypeField> fields;
+  final Map<String, ObjectTypeField>? fields;
 
   /// A list of unique keys that can be used to map data to the profile.
-  @_s.JsonKey(name: 'Keys')
-  final Map<String, List<ObjectTypeKey>> keys;
+  final Map<String, List<ObjectTypeKey>>? keys;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
-  final DateTime lastUpdatedAt;
+  final DateTime? lastUpdatedAt;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// A unique identifier for the object template.
-  @_s.JsonKey(name: 'TemplateId')
-  final String templateId;
+  final String? templateId;
 
   GetProfileObjectTypeResponse({
-    @_s.required this.description,
-    @_s.required this.objectTypeName,
+    required this.description,
+    required this.objectTypeName,
     this.allowProfileCreation,
     this.createdAt,
     this.encryptionKey,
@@ -2726,15 +2728,30 @@ class GetProfileObjectTypeResponse {
     this.tags,
     this.templateId,
   });
-  factory GetProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetProfileObjectTypeResponseFromJson(json);
+  factory GetProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
+    return GetProfileObjectTypeResponse(
+      description: json['Description'] as String,
+      objectTypeName: json['ObjectTypeName'] as String,
+      allowProfileCreation: json['AllowProfileCreation'] as bool?,
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      encryptionKey: json['EncryptionKey'] as String?,
+      expirationDays: json['ExpirationDays'] as int?,
+      fields: (json['Fields'] as Map<String, dynamic>?)?.map((k, e) =>
+          MapEntry(k, ObjectTypeField.fromJson(e as Map<String, dynamic>))),
+      keys: (json['Keys'] as Map<String, dynamic>?)?.map((k, e) => MapEntry(
+          k,
+          (e as List)
+              .whereNotNull()
+              .map((e) => ObjectTypeKey.fromJson(e as Map<String, dynamic>))
+              .toList())),
+      lastUpdatedAt: timeStampFromJson(json['LastUpdatedAt']),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      templateId: json['TemplateId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetProfileObjectTypeTemplateResponse {
   /// Indicates whether a profile should be created when data is received if one
   /// doesn’t exist for an object of this type. The default is <code>FALSE</code>.
@@ -2742,28 +2759,22 @@ class GetProfileObjectTypeTemplateResponse {
   /// service tries to fetch a standard profile and associate this object with the
   /// profile. If it is set to <code>TRUE</code>, and if no match is found, then
   /// the service creates a new standard profile.
-  @_s.JsonKey(name: 'AllowProfileCreation')
-  final bool allowProfileCreation;
+  final bool? allowProfileCreation;
 
   /// A map of the name and ObjectType field.
-  @_s.JsonKey(name: 'Fields')
-  final Map<String, ObjectTypeField> fields;
+  final Map<String, ObjectTypeField>? fields;
 
   /// A list of unique keys that can be used to map data to the profile.
-  @_s.JsonKey(name: 'Keys')
-  final Map<String, List<ObjectTypeKey>> keys;
+  final Map<String, List<ObjectTypeKey>>? keys;
 
   /// The name of the source of the object template.
-  @_s.JsonKey(name: 'SourceName')
-  final String sourceName;
+  final String? sourceName;
 
   /// The source of the object template.
-  @_s.JsonKey(name: 'SourceObject')
-  final String sourceObject;
+  final String? sourceObject;
 
   /// A unique identifier for the object template.
-  @_s.JsonKey(name: 'TemplateId')
-  final String templateId;
+  final String? templateId;
 
   GetProfileObjectTypeTemplateResponse({
     this.allowProfileCreation,
@@ -2774,214 +2785,210 @@ class GetProfileObjectTypeTemplateResponse {
     this.templateId,
   });
   factory GetProfileObjectTypeTemplateResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetProfileObjectTypeTemplateResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return GetProfileObjectTypeTemplateResponse(
+      allowProfileCreation: json['AllowProfileCreation'] as bool?,
+      fields: (json['Fields'] as Map<String, dynamic>?)?.map((k, e) =>
+          MapEntry(k, ObjectTypeField.fromJson(e as Map<String, dynamic>))),
+      keys: (json['Keys'] as Map<String, dynamic>?)?.map((k, e) => MapEntry(
+          k,
+          (e as List)
+              .whereNotNull()
+              .map((e) => ObjectTypeKey.fromJson(e as Map<String, dynamic>))
+              .toList())),
+      sourceName: json['SourceName'] as String?,
+      sourceObject: json['SourceObject'] as String?,
+      templateId: json['TemplateId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListAccountIntegrationsResponse {
   /// The list of ListAccountIntegration instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListIntegrationItem> items;
+  final List<ListIntegrationItem>? items;
 
   /// The pagination token from the previous ListAccountIntegrations API call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListAccountIntegrationsResponse({
     this.items,
     this.nextToken,
   });
-  factory ListAccountIntegrationsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListAccountIntegrationsResponseFromJson(json);
+  factory ListAccountIntegrationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListAccountIntegrationsResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => ListIntegrationItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// An object in a list that represents a domain.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListDomainItem {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListDomainItem({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
     this.tags,
   });
-  factory ListDomainItem.fromJson(Map<String, dynamic> json) =>
-      _$ListDomainItemFromJson(json);
+  factory ListDomainItem.fromJson(Map<String, dynamic> json) {
+    return ListDomainItem(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListDomainsResponse {
   /// The list of ListDomains instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListDomainItem> items;
+  final List<ListDomainItem>? items;
 
   /// The pagination token from the previous ListDomains API call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListDomainsResponse({
     this.items,
     this.nextToken,
   });
-  factory ListDomainsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListDomainsResponseFromJson(json);
+  factory ListDomainsResponse.fromJson(Map<String, dynamic> json) {
+    return ListDomainsResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => ListDomainItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// An integration in list of integrations.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListIntegrationItem {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// The URI of the S3 bucket or any other type of data source.
-  @_s.JsonKey(name: 'Uri')
   final String uri;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListIntegrationItem({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
-    @_s.required this.objectTypeName,
-    @_s.required this.uri,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
+    required this.objectTypeName,
+    required this.uri,
     this.tags,
   });
-  factory ListIntegrationItem.fromJson(Map<String, dynamic> json) =>
-      _$ListIntegrationItemFromJson(json);
+  factory ListIntegrationItem.fromJson(Map<String, dynamic> json) {
+    return ListIntegrationItem(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      objectTypeName: json['ObjectTypeName'] as String,
+      uri: json['Uri'] as String,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListIntegrationsResponse {
   /// The list of ListIntegrations instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListIntegrationItem> items;
+  final List<ListIntegrationItem>? items;
 
   /// The pagination token from the previous ListIntegrations API call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListIntegrationsResponse({
     this.items,
     this.nextToken,
   });
-  factory ListIntegrationsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListIntegrationsResponseFromJson(json);
+  factory ListIntegrationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListIntegrationsResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => ListIntegrationItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// A ProfileObjectType instance.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectTypeItem {
   /// Description of the profile object type.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
-  final DateTime lastUpdatedAt;
+  final DateTime? lastUpdatedAt;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListProfileObjectTypeItem({
-    @_s.required this.description,
-    @_s.required this.objectTypeName,
+    required this.description,
+    required this.objectTypeName,
     this.createdAt,
     this.lastUpdatedAt,
     this.tags,
   });
-  factory ListProfileObjectTypeItem.fromJson(Map<String, dynamic> json) =>
-      _$ListProfileObjectTypeItemFromJson(json);
+  factory ListProfileObjectTypeItem.fromJson(Map<String, dynamic> json) {
+    return ListProfileObjectTypeItem(
+      description: json['Description'] as String,
+      objectTypeName: json['ObjectTypeName'] as String,
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      lastUpdatedAt: timeStampFromJson(json['LastUpdatedAt']),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// A ProfileObjectTypeTemplate in a list of ProfileObjectTypeTemplates.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectTypeTemplateItem {
   /// The name of the source of the object template.
-  @_s.JsonKey(name: 'SourceName')
-  final String sourceName;
+  final String? sourceName;
 
   /// The source of the object template.
-  @_s.JsonKey(name: 'SourceObject')
-  final String sourceObject;
+  final String? sourceObject;
 
   /// A unique identifier for the object template.
-  @_s.JsonKey(name: 'TemplateId')
-  final String templateId;
+  final String? templateId;
 
   ListProfileObjectTypeTemplateItem({
     this.sourceName,
@@ -2989,167 +2996,170 @@ class ListProfileObjectTypeTemplateItem {
     this.templateId,
   });
   factory ListProfileObjectTypeTemplateItem.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListProfileObjectTypeTemplateItemFromJson(json);
+      Map<String, dynamic> json) {
+    return ListProfileObjectTypeTemplateItem(
+      sourceName: json['SourceName'] as String?,
+      sourceObject: json['SourceObject'] as String?,
+      templateId: json['TemplateId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectTypeTemplatesResponse {
   /// The list of ListProfileObjectType template instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListProfileObjectTypeTemplateItem> items;
+  final List<ListProfileObjectTypeTemplateItem>? items;
 
   /// The pagination token from the previous ListObjectTypeTemplates API call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListProfileObjectTypeTemplatesResponse({
     this.items,
     this.nextToken,
   });
   factory ListProfileObjectTypeTemplatesResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListProfileObjectTypeTemplatesResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return ListProfileObjectTypeTemplatesResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => ListProfileObjectTypeTemplateItem.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectTypesResponse {
   /// The list of ListProfileObjectTypes instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListProfileObjectTypeItem> items;
+  final List<ListProfileObjectTypeItem>? items;
 
   /// Identifies the next page of results to return.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListProfileObjectTypesResponse({
     this.items,
     this.nextToken,
   });
-  factory ListProfileObjectTypesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListProfileObjectTypesResponseFromJson(json);
+  factory ListProfileObjectTypesResponse.fromJson(Map<String, dynamic> json) {
+    return ListProfileObjectTypesResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ListProfileObjectTypeItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// A ProfileObject in a list of ProfileObjects.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectsItem {
   /// A JSON representation of a ProfileObject that belongs to a profile.
-  @_s.JsonKey(name: 'Object')
-  final String object;
+  final String? object;
 
   /// Specifies the kind of object being added to a profile, such as
   /// "Salesforce-Account."
-  @_s.JsonKey(name: 'ObjectTypeName')
-  final String objectTypeName;
+  final String? objectTypeName;
 
   /// The unique identifier of the ProfileObject generated by the service.
-  @_s.JsonKey(name: 'ProfileObjectUniqueKey')
-  final String profileObjectUniqueKey;
+  final String? profileObjectUniqueKey;
 
   ListProfileObjectsItem({
     this.object,
     this.objectTypeName,
     this.profileObjectUniqueKey,
   });
-  factory ListProfileObjectsItem.fromJson(Map<String, dynamic> json) =>
-      _$ListProfileObjectsItemFromJson(json);
+  factory ListProfileObjectsItem.fromJson(Map<String, dynamic> json) {
+    return ListProfileObjectsItem(
+      object: json['Object'] as String?,
+      objectTypeName: json['ObjectTypeName'] as String?,
+      profileObjectUniqueKey: json['ProfileObjectUniqueKey'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProfileObjectsResponse {
   /// The list of ListProfileObject instances.
-  @_s.JsonKey(name: 'Items')
-  final List<ListProfileObjectsItem> items;
+  final List<ListProfileObjectsItem>? items;
 
   /// The pagination token from the previous call to ListProfileObjects.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListProfileObjectsResponse({
     this.items,
     this.nextToken,
   });
-  factory ListProfileObjectsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListProfileObjectsResponseFromJson(json);
+  factory ListProfileObjectsResponse.fromJson(Map<String, dynamic> json) {
+    return ListProfileObjectsResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ListProfileObjectsItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
     this.tags,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Represents a field in a ProfileObjectType.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class ObjectTypeField {
   /// The content type of the field. Used for determining equality when searching.
-  @_s.JsonKey(name: 'ContentType')
-  final FieldContentType contentType;
+  final FieldContentType? contentType;
 
   /// A field of a ProfileObject. For example: _source.FirstName, where “_source”
   /// is a ProfileObjectType of a Zendesk user and “FirstName” is a field in that
   /// ObjectType.
-  @_s.JsonKey(name: 'Source')
-  final String source;
+  final String? source;
 
   /// The location of the data in the standard ProfileObject model. For example:
   /// _profile.Address.PostalCode.
-  @_s.JsonKey(name: 'Target')
-  final String target;
+  final String? target;
 
   ObjectTypeField({
     this.contentType,
     this.source,
     this.target,
   });
-  factory ObjectTypeField.fromJson(Map<String, dynamic> json) =>
-      _$ObjectTypeFieldFromJson(json);
+  factory ObjectTypeField.fromJson(Map<String, dynamic> json) {
+    return ObjectTypeField(
+      contentType: (json['ContentType'] as String?)?.toFieldContentType(),
+      source: json['Source'] as String?,
+      target: json['Target'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$ObjectTypeFieldToJson(this);
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final source = this.source;
+    final target = this.target;
+    return {
+      if (contentType != null) 'ContentType': contentType.toValue(),
+      if (source != null) 'Source': source,
+      if (target != null) 'Target': target,
+    };
+  }
 }
 
 /// An object that defines the Key element of a ProfileObject. A Key is a
 /// special element that can be used to search for a customer profile.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class ObjectTypeKey {
   /// The reference for the key name of the fields map.
-  @_s.JsonKey(name: 'FieldNames')
-  final List<String> fieldNames;
+  final List<String>? fieldNames;
 
   /// The types of keys that a ProfileObject can have. Each ProfileObject can have
   /// only 1 UNIQUE key but multiple PROFILE keys. PROFILE means that this key can
@@ -3160,25 +3170,40 @@ class ObjectTypeKey {
   /// used for searching of the profile. A NEW_ONLY key is only used if the
   /// profile does not already exist before the object is ingested, otherwise it
   /// is only used for matching objects to profiles.
-  @_s.JsonKey(name: 'StandardIdentifiers')
-  final List<StandardIdentifier> standardIdentifiers;
+  final List<StandardIdentifier>? standardIdentifiers;
 
   ObjectTypeKey({
     this.fieldNames,
     this.standardIdentifiers,
   });
-  factory ObjectTypeKey.fromJson(Map<String, dynamic> json) =>
-      _$ObjectTypeKeyFromJson(json);
+  factory ObjectTypeKey.fromJson(Map<String, dynamic> json) {
+    return ObjectTypeKey(
+      fieldNames: (json['FieldNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      standardIdentifiers: (json['StandardIdentifiers'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toStandardIdentifier())
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$ObjectTypeKeyToJson(this);
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    final standardIdentifiers = this.standardIdentifiers;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+      if (standardIdentifiers != null)
+        'StandardIdentifiers':
+            standardIdentifiers.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 enum PartyType {
-  @_s.JsonValue('INDIVIDUAL')
   individual,
-  @_s.JsonValue('BUSINESS')
   business,
-  @_s.JsonValue('OTHER')
   other,
 }
 
@@ -3192,107 +3217,93 @@ extension on PartyType {
       case PartyType.other:
         return 'OTHER';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  PartyType toPartyType() {
+    switch (this) {
+      case 'INDIVIDUAL':
+        return PartyType.individual;
+      case 'BUSINESS':
+        return PartyType.business;
+      case 'OTHER':
+        return PartyType.other;
+    }
+    throw Exception('$this is not known in enum PartyType');
   }
 }
 
 /// The standard profile of a customer.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Profile {
   /// A unique account number that you have given to the customer.
-  @_s.JsonKey(name: 'AccountNumber')
-  final String accountNumber;
+  final String? accountNumber;
 
   /// Any additional information relevant to the customer's profile.
-  @_s.JsonKey(name: 'AdditionalInformation')
-  final String additionalInformation;
+  final String? additionalInformation;
 
   /// A generic address associated with the customer that is not mailing,
   /// shipping, or billing.
-  @_s.JsonKey(name: 'Address')
-  final Address address;
+  final Address? address;
 
   /// A key value pair of attributes of a customer profile.
-  @_s.JsonKey(name: 'Attributes')
-  final Map<String, String> attributes;
+  final Map<String, String>? attributes;
 
   /// The customer’s billing address.
-  @_s.JsonKey(name: 'BillingAddress')
-  final Address billingAddress;
+  final Address? billingAddress;
 
   /// The customer’s birth date.
-  @_s.JsonKey(name: 'BirthDate')
-  final String birthDate;
+  final String? birthDate;
 
   /// The customer’s business email address.
-  @_s.JsonKey(name: 'BusinessEmailAddress')
-  final String businessEmailAddress;
+  final String? businessEmailAddress;
 
   /// The name of the customer’s business.
-  @_s.JsonKey(name: 'BusinessName')
-  final String businessName;
+  final String? businessName;
 
   /// The customer’s home phone number.
-  @_s.JsonKey(name: 'BusinessPhoneNumber')
-  final String businessPhoneNumber;
+  final String? businessPhoneNumber;
 
   /// The customer's email address, which has not been specified as a personal or
   /// business address.
-  @_s.JsonKey(name: 'EmailAddress')
-  final String emailAddress;
+  final String? emailAddress;
 
   /// The customer’s first name.
-  @_s.JsonKey(name: 'FirstName')
-  final String firstName;
+  final String? firstName;
 
   /// The gender with which the customer identifies.
-  @_s.JsonKey(name: 'Gender')
-  final Gender gender;
+  final Gender? gender;
 
   /// The customer’s home phone number.
-  @_s.JsonKey(name: 'HomePhoneNumber')
-  final String homePhoneNumber;
+  final String? homePhoneNumber;
 
   /// The customer’s last name.
-  @_s.JsonKey(name: 'LastName')
-  final String lastName;
+  final String? lastName;
 
   /// The customer’s mailing address.
-  @_s.JsonKey(name: 'MailingAddress')
-  final Address mailingAddress;
+  final Address? mailingAddress;
 
   /// The customer’s middle name.
-  @_s.JsonKey(name: 'MiddleName')
-  final String middleName;
+  final String? middleName;
 
   /// The customer’s mobile phone number.
-  @_s.JsonKey(name: 'MobilePhoneNumber')
-  final String mobilePhoneNumber;
+  final String? mobilePhoneNumber;
 
   /// The type of profile used to describe the customer.
-  @_s.JsonKey(name: 'PartyType')
-  final PartyType partyType;
+  final PartyType? partyType;
 
   /// The customer’s personal email address.
-  @_s.JsonKey(name: 'PersonalEmailAddress')
-  final String personalEmailAddress;
+  final String? personalEmailAddress;
 
   /// The customer's phone number, which has not been specified as a mobile, home,
   /// or business number.
-  @_s.JsonKey(name: 'PhoneNumber')
-  final String phoneNumber;
+  final String? phoneNumber;
 
   /// The unique identifier of a customer profile.
-  @_s.JsonKey(name: 'ProfileId')
-  final String profileId;
+  final String? profileId;
 
   /// The customer’s shipping address.
-  @_s.JsonKey(name: 'ShippingAddress')
-  final Address shippingAddress;
+  final Address? shippingAddress;
 
   Profile({
     this.accountNumber,
@@ -3318,83 +3329,103 @@ class Profile {
     this.profileId,
     this.shippingAddress,
   });
-  factory Profile.fromJson(Map<String, dynamic> json) =>
-      _$ProfileFromJson(json);
+  factory Profile.fromJson(Map<String, dynamic> json) {
+    return Profile(
+      accountNumber: json['AccountNumber'] as String?,
+      additionalInformation: json['AdditionalInformation'] as String?,
+      address: json['Address'] != null
+          ? Address.fromJson(json['Address'] as Map<String, dynamic>)
+          : null,
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      billingAddress: json['BillingAddress'] != null
+          ? Address.fromJson(json['BillingAddress'] as Map<String, dynamic>)
+          : null,
+      birthDate: json['BirthDate'] as String?,
+      businessEmailAddress: json['BusinessEmailAddress'] as String?,
+      businessName: json['BusinessName'] as String?,
+      businessPhoneNumber: json['BusinessPhoneNumber'] as String?,
+      emailAddress: json['EmailAddress'] as String?,
+      firstName: json['FirstName'] as String?,
+      gender: (json['Gender'] as String?)?.toGender(),
+      homePhoneNumber: json['HomePhoneNumber'] as String?,
+      lastName: json['LastName'] as String?,
+      mailingAddress: json['MailingAddress'] != null
+          ? Address.fromJson(json['MailingAddress'] as Map<String, dynamic>)
+          : null,
+      middleName: json['MiddleName'] as String?,
+      mobilePhoneNumber: json['MobilePhoneNumber'] as String?,
+      partyType: (json['PartyType'] as String?)?.toPartyType(),
+      personalEmailAddress: json['PersonalEmailAddress'] as String?,
+      phoneNumber: json['PhoneNumber'] as String?,
+      profileId: json['ProfileId'] as String?,
+      shippingAddress: json['ShippingAddress'] != null
+          ? Address.fromJson(json['ShippingAddress'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PutIntegrationResponse {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name of the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// The URI of the S3 bucket or any other type of data source.
-  @_s.JsonKey(name: 'Uri')
   final String uri;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   PutIntegrationResponse({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
-    @_s.required this.objectTypeName,
-    @_s.required this.uri,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
+    required this.objectTypeName,
+    required this.uri,
     this.tags,
   });
-  factory PutIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$PutIntegrationResponseFromJson(json);
+  factory PutIntegrationResponse.fromJson(Map<String, dynamic> json) {
+    return PutIntegrationResponse(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      objectTypeName: json['ObjectTypeName'] as String,
+      uri: json['Uri'] as String,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PutProfileObjectResponse {
   /// The unique identifier of the profile object generated by the service.
-  @_s.JsonKey(name: 'ProfileObjectUniqueKey')
-  final String profileObjectUniqueKey;
+  final String? profileObjectUniqueKey;
 
   PutProfileObjectResponse({
     this.profileObjectUniqueKey,
   });
-  factory PutProfileObjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$PutProfileObjectResponseFromJson(json);
+  factory PutProfileObjectResponse.fromJson(Map<String, dynamic> json) {
+    return PutProfileObjectResponse(
+      profileObjectUniqueKey: json['ProfileObjectUniqueKey'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PutProfileObjectTypeResponse {
   /// Description of the profile object type.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the profile object type.
-  @_s.JsonKey(name: 'ObjectTypeName')
   final String objectTypeName;
 
   /// Indicates whether a profile should be created when data is received if one
@@ -3403,47 +3434,36 @@ class PutProfileObjectTypeResponse {
   /// service tries to fetch a standard profile and associate this object with the
   /// profile. If it is set to <code>TRUE</code>, and if no match is found, then
   /// the service creates a new standard profile.
-  @_s.JsonKey(name: 'AllowProfileCreation')
-  final bool allowProfileCreation;
+  final bool? allowProfileCreation;
 
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// The customer-provided key to encrypt the profile object that will be created
   /// in this profile object type.
-  @_s.JsonKey(name: 'EncryptionKey')
-  final String encryptionKey;
+  final String? encryptionKey;
 
   /// The number of days until the data in the object expires.
-  @_s.JsonKey(name: 'ExpirationDays')
-  final int expirationDays;
+  final int? expirationDays;
 
   /// A map of the name and ObjectType field.
-  @_s.JsonKey(name: 'Fields')
-  final Map<String, ObjectTypeField> fields;
+  final Map<String, ObjectTypeField>? fields;
 
   /// A list of unique keys that can be used to map data to the profile.
-  @_s.JsonKey(name: 'Keys')
-  final Map<String, List<ObjectTypeKey>> keys;
+  final Map<String, List<ObjectTypeKey>>? keys;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
-  final DateTime lastUpdatedAt;
+  final DateTime? lastUpdatedAt;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// A unique identifier for the object template.
-  @_s.JsonKey(name: 'TemplateId')
-  final String templateId;
+  final String? templateId;
 
   PutProfileObjectTypeResponse({
-    @_s.required this.description,
-    @_s.required this.objectTypeName,
+    required this.description,
+    required this.objectTypeName,
     this.allowProfileCreation,
     this.createdAt,
     this.encryptionKey,
@@ -3454,113 +3474,140 @@ class PutProfileObjectTypeResponse {
     this.tags,
     this.templateId,
   });
-  factory PutProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) =>
-      _$PutProfileObjectTypeResponseFromJson(json);
+  factory PutProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
+    return PutProfileObjectTypeResponse(
+      description: json['Description'] as String,
+      objectTypeName: json['ObjectTypeName'] as String,
+      allowProfileCreation: json['AllowProfileCreation'] as bool?,
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      encryptionKey: json['EncryptionKey'] as String?,
+      expirationDays: json['ExpirationDays'] as int?,
+      fields: (json['Fields'] as Map<String, dynamic>?)?.map((k, e) =>
+          MapEntry(k, ObjectTypeField.fromJson(e as Map<String, dynamic>))),
+      keys: (json['Keys'] as Map<String, dynamic>?)?.map((k, e) => MapEntry(
+          k,
+          (e as List)
+              .whereNotNull()
+              .map((e) => ObjectTypeKey.fromJson(e as Map<String, dynamic>))
+              .toList())),
+      lastUpdatedAt: timeStampFromJson(json['LastUpdatedAt']),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      templateId: json['TemplateId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchProfilesResponse {
   /// The list of SearchProfiles instances.
-  @_s.JsonKey(name: 'Items')
-  final List<Profile> items;
+  final List<Profile>? items;
 
   /// The pagination token from the previous SearchProfiles API call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   SearchProfilesResponse({
     this.items,
     this.nextToken,
   });
-  factory SearchProfilesResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchProfilesResponseFromJson(json);
+  factory SearchProfilesResponse.fromJson(Map<String, dynamic> json) {
+    return SearchProfilesResponse(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => Profile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 enum StandardIdentifier {
-  @_s.JsonValue('PROFILE')
   profile,
-  @_s.JsonValue('UNIQUE')
   unique,
-  @_s.JsonValue('SECONDARY')
   secondary,
-  @_s.JsonValue('LOOKUP_ONLY')
   lookupOnly,
-  @_s.JsonValue('NEW_ONLY')
   newOnly,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
-class TagResourceResponse {
-  TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+extension on StandardIdentifier {
+  String toValue() {
+    switch (this) {
+      case StandardIdentifier.profile:
+        return 'PROFILE';
+      case StandardIdentifier.unique:
+        return 'UNIQUE';
+      case StandardIdentifier.secondary:
+        return 'SECONDARY';
+      case StandardIdentifier.lookupOnly:
+        return 'LOOKUP_ONLY';
+      case StandardIdentifier.newOnly:
+        return 'NEW_ONLY';
+    }
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on String {
+  StandardIdentifier toStandardIdentifier() {
+    switch (this) {
+      case 'PROFILE':
+        return StandardIdentifier.profile;
+      case 'UNIQUE':
+        return StandardIdentifier.unique;
+      case 'SECONDARY':
+        return StandardIdentifier.secondary;
+      case 'LOOKUP_ONLY':
+        return StandardIdentifier.lookupOnly;
+      case 'NEW_ONLY':
+        return StandardIdentifier.newOnly;
+    }
+    throw Exception('$this is not known in enum StandardIdentifier');
+  }
+}
+
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
 /// Updates associated with the address properties of a customer profile.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class UpdateAddress {
   /// The first line of a customer address.
-  @_s.JsonKey(name: 'Address1')
-  final String address1;
+  final String? address1;
 
   /// The second line of a customer address.
-  @_s.JsonKey(name: 'Address2')
-  final String address2;
+  final String? address2;
 
   /// The third line of a customer address.
-  @_s.JsonKey(name: 'Address3')
-  final String address3;
+  final String? address3;
 
   /// The fourth line of a customer address.
-  @_s.JsonKey(name: 'Address4')
-  final String address4;
+  final String? address4;
 
   /// The city in which a customer lives.
-  @_s.JsonKey(name: 'City')
-  final String city;
+  final String? city;
 
   /// The country in which a customer lives.
-  @_s.JsonKey(name: 'Country')
-  final String country;
+  final String? country;
 
   /// The county in which a customer lives.
-  @_s.JsonKey(name: 'County')
-  final String county;
+  final String? county;
 
   /// The postal code of a customer address.
-  @_s.JsonKey(name: 'PostalCode')
-  final String postalCode;
+  final String? postalCode;
 
   /// The province in which a customer lives.
-  @_s.JsonKey(name: 'Province')
-  final String province;
+  final String? province;
 
   /// The state in which a customer lives.
-  @_s.JsonKey(name: 'State')
-  final String state;
+  final String? state;
 
   UpdateAddress({
     this.address1,
@@ -3574,100 +3621,117 @@ class UpdateAddress {
     this.province,
     this.state,
   });
-  Map<String, dynamic> toJson() => _$UpdateAddressToJson(this);
+  Map<String, dynamic> toJson() {
+    final address1 = this.address1;
+    final address2 = this.address2;
+    final address3 = this.address3;
+    final address4 = this.address4;
+    final city = this.city;
+    final country = this.country;
+    final county = this.county;
+    final postalCode = this.postalCode;
+    final province = this.province;
+    final state = this.state;
+    return {
+      if (address1 != null) 'Address1': address1,
+      if (address2 != null) 'Address2': address2,
+      if (address3 != null) 'Address3': address3,
+      if (address4 != null) 'Address4': address4,
+      if (city != null) 'City': city,
+      if (country != null) 'Country': country,
+      if (county != null) 'County': county,
+      if (postalCode != null) 'PostalCode': postalCode,
+      if (province != null) 'Province': province,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateDomainResponse {
   /// The timestamp of when the domain was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreatedAt')
   final DateTime createdAt;
 
   /// The unique name for the domain.
-  @_s.JsonKey(name: 'DomainName')
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastUpdatedAt')
   final DateTime lastUpdatedAt;
 
   /// The URL of the SQS dead letter queue, which is used for reporting errors
   /// associated with ingesting data from third party applications.
-  @_s.JsonKey(name: 'DeadLetterQueueUrl')
-  final String deadLetterQueueUrl;
+  final String? deadLetterQueueUrl;
 
   /// The default encryption key, which is an AWS managed key, is used when no
   /// specific type of encryption key is specified. It is used to encrypt all data
   /// before it is placed in permanent or semi-permanent storage.
-  @_s.JsonKey(name: 'DefaultEncryptionKey')
-  final String defaultEncryptionKey;
+  final String? defaultEncryptionKey;
 
   /// The default number of days until the data within the domain expires.
-  @_s.JsonKey(name: 'DefaultExpirationDays')
-  final int defaultExpirationDays;
+  final int? defaultExpirationDays;
 
   /// The tags used to organize, track, or control access for this resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   UpdateDomainResponse({
-    @_s.required this.createdAt,
-    @_s.required this.domainName,
-    @_s.required this.lastUpdatedAt,
+    required this.createdAt,
+    required this.domainName,
+    required this.lastUpdatedAt,
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
     this.defaultExpirationDays,
     this.tags,
   });
-  factory UpdateDomainResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateDomainResponseFromJson(json);
+  factory UpdateDomainResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateDomainResponse(
+      createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
+      domainName: json['DomainName'] as String,
+      lastUpdatedAt:
+          nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
+      deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
+      defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
+      defaultExpirationDays: json['DefaultExpirationDays'] as int?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateProfileResponse {
   /// The unique identifier of a customer profile.
-  @_s.JsonKey(name: 'ProfileId')
   final String profileId;
 
   UpdateProfileResponse({
-    @_s.required this.profileId,
+    required this.profileId,
   });
-  factory UpdateProfileResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateProfileResponseFromJson(json);
+  factory UpdateProfileResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateProfileResponse(
+      profileId: json['ProfileId'] as String,
+    );
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class BadRequestException extends _s.GenericAwsException {
-  BadRequestException({String type, String message})
+  BadRequestException({String? type, String? message})
       : super(type: type, code: 'BadRequestException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ThrottlingException extends _s.GenericAwsException {
-  ThrottlingException({String type, String message})
+  ThrottlingException({String? type, String? message})
       : super(type: type, code: 'ThrottlingException', message: message);
 }
 

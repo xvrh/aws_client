@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-06-24.g.dart';
 
 /// AWS Service Catalog AppRegistry enables organizations to understand the
 /// application context of their AWS resources. AppRegistry provides a
@@ -33,10 +26,10 @@ part '2020-06-24.g.dart';
 class AppRegistry {
   final _s.RestJsonProtocol _protocol;
   AppRegistry({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -65,8 +58,8 @@ class AppRegistry {
   /// The name or ID of the attribute group that holds the attributes to
   /// describe the application.
   Future<AssociateAttributeGroupResponse> associateAttributeGroup({
-    @_s.required String application,
-    @_s.required String attributeGroup,
+    required String application,
+    required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -124,9 +117,9 @@ class AppRegistry {
   /// Parameter [resourceType] :
   /// The type of resource of which the application will be associated.
   Future<AssociateResourceResponse> associateResource({
-    @_s.required String application,
-    @_s.required String resource,
-    @_s.required ResourceType resourceType,
+    required String application,
+    required String resource,
+    required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -174,6 +167,10 @@ class AppRegistry {
   /// May throw [ConflictException].
   /// May throw [InternalServerException].
   ///
+  /// Parameter [name] :
+  /// The name of the application. The name must be unique in the region in
+  /// which you are creating the application.
+  ///
   /// Parameter [clientToken] :
   /// A unique identifier that you provide to ensure idempotency. If you retry a
   /// request that completed successfully using the same client token and the
@@ -181,35 +178,17 @@ class AppRegistry {
   /// actions. If you retry a successful request using the same client token,
   /// but one or more of the parameters are different, the retry fails.
   ///
-  /// Parameter [name] :
-  /// The name of the application. The name must be unique in the region in
-  /// which you are creating the application.
-  ///
   /// Parameter [description] :
   /// The description of the application.
   ///
   /// Parameter [tags] :
   /// Key-value pairs you can use to associate with the application.
   Future<CreateApplicationResponse> createApplication({
-    @_s.required String clientToken,
-    @_s.required String name,
-    String description,
-    Map<String, String> tags,
+    required String name,
+    String? clientToken,
+    String? description,
+    Map<String, String>? tags,
   }) async {
-    ArgumentError.checkNotNull(clientToken, 'clientToken');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -225,14 +204,25 @@ class AppRegistry {
       isRequired: true,
     );
     _s.validateStringLength(
+      'clientToken',
+      clientToken,
+      1,
+      128,
+    );
+    _s.validateStringPattern(
+      'clientToken',
+      clientToken,
+      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
+    );
+    _s.validateStringLength(
       'description',
       description,
       0,
       1024,
     );
     final $payload = <String, dynamic>{
-      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       'name': name,
+      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
       if (tags != null) 'tags': tags,
     };
@@ -259,6 +249,9 @@ class AppRegistry {
   /// A JSON string in the form of nested key-value pairs that represent the
   /// attributes in the group and describes an application and its components.
   ///
+  /// Parameter [name] :
+  /// The name of the attribute group.
+  ///
   /// Parameter [clientToken] :
   /// A unique identifier that you provide to ensure idempotency. If you retry a
   /// request that completed successfully using the same client token and the
@@ -266,20 +259,17 @@ class AppRegistry {
   /// actions. If you retry a successful request using the same client token,
   /// but one or more of the parameters are different, the retry fails.
   ///
-  /// Parameter [name] :
-  /// The name of the attribute group.
-  ///
   /// Parameter [description] :
   /// The description of the attribute group that the user provides.
   ///
   /// Parameter [tags] :
   /// Key-value pairs you can use to associate with the attribute group.
   Future<CreateAttributeGroupResponse> createAttributeGroup({
-    @_s.required String attributes,
-    @_s.required String clientToken,
-    @_s.required String name,
-    String description,
-    Map<String, String> tags,
+    required String attributes,
+    required String name,
+    String? clientToken,
+    String? description,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(attributes, 'attributes');
     _s.validateStringLength(
@@ -293,20 +283,6 @@ class AppRegistry {
       'attributes',
       attributes,
       r'''[\u0009\u000A\u000D\u0020-\u00FF]+''',
-      isRequired: true,
-    );
-    ArgumentError.checkNotNull(clientToken, 'clientToken');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
@@ -324,6 +300,17 @@ class AppRegistry {
       isRequired: true,
     );
     _s.validateStringLength(
+      'clientToken',
+      clientToken,
+      1,
+      128,
+    );
+    _s.validateStringPattern(
+      'clientToken',
+      clientToken,
+      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
+    );
+    _s.validateStringLength(
       'description',
       description,
       0,
@@ -331,8 +318,8 @@ class AppRegistry {
     );
     final $payload = <String, dynamic>{
       'attributes': attributes,
-      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       'name': name,
+      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
       if (tags != null) 'tags': tags,
     };
@@ -356,7 +343,7 @@ class AppRegistry {
   /// Parameter [application] :
   /// The name or ID of the application.
   Future<DeleteApplicationResponse> deleteApplication({
-    @_s.required String application,
+    required String application,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -392,7 +379,7 @@ class AppRegistry {
   /// The name or ID of the attribute group that holds the attributes to
   /// describe the application.
   Future<DeleteAttributeGroupResponse> deleteAttributeGroup({
-    @_s.required String attributeGroup,
+    required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
     _s.validateStringLength(
@@ -432,8 +419,8 @@ class AppRegistry {
   /// The name or ID of the attribute group that holds the attributes to
   /// describe the application.
   Future<DisassociateAttributeGroupResponse> disassociateAttributeGroup({
-    @_s.required String application,
-    @_s.required String attributeGroup,
+    required String application,
+    required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -488,9 +475,9 @@ class AppRegistry {
   /// Parameter [resourceType] :
   /// The type of the resource that is being disassociated.
   Future<DisassociateResourceResponse> disassociateResource({
-    @_s.required String application,
-    @_s.required String resource,
-    @_s.required ResourceType resourceType,
+    required String application,
+    required String resource,
+    required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -546,7 +533,7 @@ class AppRegistry {
   /// Parameter [application] :
   /// The name or ID of the application.
   Future<GetApplicationResponse> getApplication({
-    @_s.required String application,
+    required String application,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -582,7 +569,7 @@ class AppRegistry {
   /// The name or ID of the attribute group that holds the attributes to
   /// describe the application.
   Future<GetAttributeGroupResponse> getAttributeGroup({
-    @_s.required String attributeGroup,
+    required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
     _s.validateStringLength(
@@ -620,8 +607,8 @@ class AppRegistry {
   /// The token to use to get the next page of results after a previous API
   /// call.
   Future<ListApplicationsResponse> listApplications({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -672,9 +659,9 @@ class AppRegistry {
   /// The token to use to get the next page of results after a previous API
   /// call.
   Future<ListAssociatedAttributeGroupsResponse> listAssociatedAttributeGroups({
-    @_s.required String application,
-    int maxResults,
-    String nextToken,
+    required String application,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -740,9 +727,9 @@ class AppRegistry {
   /// The token to use to get the next page of results after a previous API
   /// call.
   Future<ListAssociatedResourcesResponse> listAssociatedResources({
-    @_s.required String application,
-    int maxResults,
-    String nextToken,
+    required String application,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -803,8 +790,8 @@ class AppRegistry {
   /// The token to use to get the next page of results after a previous API
   /// call.
   Future<ListAttributeGroupsResponse> listAttributeGroups({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -846,7 +833,7 @@ class AppRegistry {
   /// Parameter [resourceArn] :
   /// The Amazon resource name (ARN) that specifies the resource.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -889,8 +876,8 @@ class AppRegistry {
   /// Parameter [resourceType] :
   /// The type of resource of which the application will be associated.
   Future<SyncResourceResponse> syncResource({
-    @_s.required String resource,
-    @_s.required ResourceType resourceType,
+    required String resource,
+    required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
     _s.validateStringLength(
@@ -935,8 +922,8 @@ class AppRegistry {
   /// Parameter [tags] :
   /// The new or modified tags for the resource.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -962,7 +949,6 @@ class AppRegistry {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// Removes tags from a resource.
@@ -979,8 +965,8 @@ class AppRegistry {
   /// Parameter [tagKeys] :
   /// A list of the tag keys to remove from the specified resource.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -998,7 +984,7 @@ class AppRegistry {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -1007,7 +993,6 @@ class AppRegistry {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// Updates an existing application with new attributes.
@@ -1026,9 +1011,9 @@ class AppRegistry {
   /// The new name of the application. The name must be unique in the region in
   /// which you are updating the application.
   Future<UpdateApplicationResponse> updateApplication({
-    @_s.required String application,
-    String description,
-    String name,
+    required String application,
+    String? description,
+    String? name,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
     _s.validateStringLength(
@@ -1096,10 +1081,10 @@ class AppRegistry {
   /// The new name of the attribute group. The name must be unique in the region
   /// in which you are updating the attribute group.
   Future<UpdateAttributeGroupResponse> updateAttributeGroup({
-    @_s.required String attributeGroup,
-    String attributes,
-    String description,
-    String name,
+    required String attributeGroup,
+    String? attributes,
+    String? description,
+    String? name,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
     _s.validateStringLength(
@@ -1160,45 +1145,31 @@ class AppRegistry {
 
 /// Represents a Service Catalog AppRegistry application that is the top-level
 /// node in a hierarchy of related cloud resource abstractions.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Application {
   /// The Amazon resource name (ARN) that specifies the application across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the application.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The identifier of the application.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was last
   /// updated.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the application. The name must be unique in the region in which
   /// you are creating the application.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Key-value pairs you can use to associate with the application.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   Application({
     this.arn,
@@ -1209,46 +1180,43 @@ class Application {
     this.name,
     this.tags,
   });
-  factory Application.fromJson(Map<String, dynamic> json) =>
-      _$ApplicationFromJson(json);
+  factory Application.fromJson(Map<String, dynamic> json) {
+    return Application(
+      arn: json['arn'] as String?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Summary of a Service Catalog AppRegistry application.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ApplicationSummary {
   /// The Amazon resource name (ARN) that specifies the application across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the application.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The identifier of the application.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was last
   /// updated.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the application. The name must be unique in the region in which
   /// you are creating the application.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   ApplicationSummary({
     this.arn,
@@ -1258,98 +1226,86 @@ class ApplicationSummary {
     this.lastUpdateTime,
     this.name,
   });
-  factory ApplicationSummary.fromJson(Map<String, dynamic> json) =>
-      _$ApplicationSummaryFromJson(json);
+  factory ApplicationSummary.fromJson(Map<String, dynamic> json) {
+    return ApplicationSummary(
+      arn: json['arn'] as String?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AssociateAttributeGroupResponse {
   /// The Amazon resource name (ARN) of the application that was augmented with
   /// attributes.
-  @_s.JsonKey(name: 'applicationArn')
-  final String applicationArn;
+  final String? applicationArn;
 
   /// The Amazon resource name (ARN) of the attribute group that contains the
   /// application's new attributes.
-  @_s.JsonKey(name: 'attributeGroupArn')
-  final String attributeGroupArn;
+  final String? attributeGroupArn;
 
   AssociateAttributeGroupResponse({
     this.applicationArn,
     this.attributeGroupArn,
   });
-  factory AssociateAttributeGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$AssociateAttributeGroupResponseFromJson(json);
+  factory AssociateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
+    return AssociateAttributeGroupResponse(
+      applicationArn: json['applicationArn'] as String?,
+      attributeGroupArn: json['attributeGroupArn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AssociateResourceResponse {
   /// The Amazon resource name (ARN) of the application that was augmented with
   /// attributes.
-  @_s.JsonKey(name: 'applicationArn')
-  final String applicationArn;
+  final String? applicationArn;
 
   /// The Amazon resource name (ARN) that specifies the resource.
-  @_s.JsonKey(name: 'resourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   AssociateResourceResponse({
     this.applicationArn,
     this.resourceArn,
   });
-  factory AssociateResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$AssociateResourceResponseFromJson(json);
+  factory AssociateResourceResponse.fromJson(Map<String, dynamic> json) {
+    return AssociateResourceResponse(
+      applicationArn: json['applicationArn'] as String?,
+      resourceArn: json['resourceArn'] as String?,
+    );
+  }
 }
 
 /// Represents a Service Catalog AppRegistry attribute group that is rich
 /// metadata which describes an application and its components.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AttributeGroup {
   /// The Amazon resource name (ARN) that specifies the attribute group across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the attribute group that the user provides.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The globally unique attribute group identifier of the attribute group.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was last
   /// updated. This time is the same as the creationTime for a newly created
   /// attribute group.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the attribute group.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Key-value pairs you can use to associate with the attribute group.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   AttributeGroup({
     this.arn,
@@ -1360,46 +1316,43 @@ class AttributeGroup {
     this.name,
     this.tags,
   });
-  factory AttributeGroup.fromJson(Map<String, dynamic> json) =>
-      _$AttributeGroupFromJson(json);
+  factory AttributeGroup.fromJson(Map<String, dynamic> json) {
+    return AttributeGroup(
+      arn: json['arn'] as String?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Summary of a Service Catalog AppRegistry attribute group.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AttributeGroupSummary {
   /// The Amazon resource name (ARN) that specifies the attribute group across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the attribute group that the user provides.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The globally unique attribute group identifier of the attribute group.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was last
   /// updated. This time is the same as the creationTime for a newly created
   /// attribute group.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the attribute group.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   AttributeGroupSummary({
     this.arn,
@@ -1409,167 +1362,153 @@ class AttributeGroupSummary {
     this.lastUpdateTime,
     this.name,
   });
-  factory AttributeGroupSummary.fromJson(Map<String, dynamic> json) =>
-      _$AttributeGroupSummaryFromJson(json);
+  factory AttributeGroupSummary.fromJson(Map<String, dynamic> json) {
+    return AttributeGroupSummary(
+      arn: json['arn'] as String?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateApplicationResponse {
   /// Information about the application.
-  @_s.JsonKey(name: 'application')
-  final Application application;
+  final Application? application;
 
   CreateApplicationResponse({
     this.application,
   });
-  factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateApplicationResponseFromJson(json);
+  factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
+    return CreateApplicationResponse(
+      application: json['application'] != null
+          ? Application.fromJson(json['application'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateAttributeGroupResponse {
   /// Information about the attribute group.
-  @_s.JsonKey(name: 'attributeGroup')
-  final AttributeGroup attributeGroup;
+  final AttributeGroup? attributeGroup;
 
   CreateAttributeGroupResponse({
     this.attributeGroup,
   });
-  factory CreateAttributeGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateAttributeGroupResponseFromJson(json);
+  factory CreateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
+    return CreateAttributeGroupResponse(
+      attributeGroup: json['attributeGroup'] != null
+          ? AttributeGroup.fromJson(
+              json['attributeGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteApplicationResponse {
   /// Information about the deleted application.
-  @_s.JsonKey(name: 'application')
-  final ApplicationSummary application;
+  final ApplicationSummary? application;
 
   DeleteApplicationResponse({
     this.application,
   });
-  factory DeleteApplicationResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteApplicationResponseFromJson(json);
+  factory DeleteApplicationResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteApplicationResponse(
+      application: json['application'] != null
+          ? ApplicationSummary.fromJson(
+              json['application'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteAttributeGroupResponse {
   /// Information about the deleted attribute group.
-  @_s.JsonKey(name: 'attributeGroup')
-  final AttributeGroupSummary attributeGroup;
+  final AttributeGroupSummary? attributeGroup;
 
   DeleteAttributeGroupResponse({
     this.attributeGroup,
   });
-  factory DeleteAttributeGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteAttributeGroupResponseFromJson(json);
+  factory DeleteAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteAttributeGroupResponse(
+      attributeGroup: json['attributeGroup'] != null
+          ? AttributeGroupSummary.fromJson(
+              json['attributeGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DisassociateAttributeGroupResponse {
   /// The Amazon resource name (ARN) that specifies the application.
-  @_s.JsonKey(name: 'applicationArn')
-  final String applicationArn;
+  final String? applicationArn;
 
   /// The Amazon resource name (ARN) that specifies the attribute group.
-  @_s.JsonKey(name: 'attributeGroupArn')
-  final String attributeGroupArn;
+  final String? attributeGroupArn;
 
   DisassociateAttributeGroupResponse({
     this.applicationArn,
     this.attributeGroupArn,
   });
   factory DisassociateAttributeGroupResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$DisassociateAttributeGroupResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return DisassociateAttributeGroupResponse(
+      applicationArn: json['applicationArn'] as String?,
+      attributeGroupArn: json['attributeGroupArn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DisassociateResourceResponse {
   /// The Amazon resource name (ARN) that specifies the application.
-  @_s.JsonKey(name: 'applicationArn')
-  final String applicationArn;
+  final String? applicationArn;
 
   /// The Amazon resource name (ARN) that specifies the resource.
-  @_s.JsonKey(name: 'resourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   DisassociateResourceResponse({
     this.applicationArn,
     this.resourceArn,
   });
-  factory DisassociateResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$DisassociateResourceResponseFromJson(json);
+  factory DisassociateResourceResponse.fromJson(Map<String, dynamic> json) {
+    return DisassociateResourceResponse(
+      applicationArn: json['applicationArn'] as String?,
+      resourceArn: json['resourceArn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetApplicationResponse {
   /// The Amazon resource name (ARN) that specifies the application across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The number of top-level resources that were registered as part of this
   /// application.
-  @_s.JsonKey(name: 'associatedResourceCount')
-  final int associatedResourceCount;
+  final int? associatedResourceCount;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the application.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The identifier of the application.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment when the application was last
   /// updated.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the application. The name must be unique in the region in which
   /// you are creating the application.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Key-value pairs associated with the application.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetApplicationResponse({
     this.arn,
@@ -1581,54 +1520,50 @@ class GetApplicationResponse {
     this.name,
     this.tags,
   });
-  factory GetApplicationResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetApplicationResponseFromJson(json);
+  factory GetApplicationResponse.fromJson(Map<String, dynamic> json) {
+    return GetApplicationResponse(
+      arn: json['arn'] as String?,
+      associatedResourceCount: json['associatedResourceCount'] as int?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetAttributeGroupResponse {
   /// The Amazon resource name (ARN) that specifies the attribute group across
   /// services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// A JSON string in the form of nested key-value pairs that represent the
   /// attributes in the group and describes an application and its components.
-  @_s.JsonKey(name: 'attributes')
-  final String attributes;
+  final String? attributes;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was
   /// created.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'creationTime')
-  final DateTime creationTime;
+  final DateTime? creationTime;
 
   /// The description of the attribute group that the user provides.
-  @_s.JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   /// The identifier of the attribute group.
-  @_s.JsonKey(name: 'id')
-  final String id;
+  final String? id;
 
   /// The ISO-8601 formatted timestamp of the moment the attribute group was last
   /// updated. This time is the same as the creationTime for a newly created
   /// attribute group.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'lastUpdateTime')
-  final DateTime lastUpdateTime;
+  final DateTime? lastUpdateTime;
 
   /// The name of the attribute group.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Key-value pairs associated with the attribute group.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetAttributeGroupResponse({
     this.arn,
@@ -1640,141 +1575,146 @@ class GetAttributeGroupResponse {
     this.name,
     this.tags,
   });
-  factory GetAttributeGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetAttributeGroupResponseFromJson(json);
+  factory GetAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
+    return GetAttributeGroupResponse(
+      arn: json['arn'] as String?,
+      attributes: json['attributes'] as String?,
+      creationTime: timeStampFromJson(json['creationTime']),
+      description: json['description'] as String?,
+      id: json['id'] as String?,
+      lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListApplicationsResponse {
   /// This list of applications.
-  @_s.JsonKey(name: 'applications')
-  final List<ApplicationSummary> applications;
+  final List<ApplicationSummary>? applications;
 
   /// The token to use to get the next page of results after a previous API call.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListApplicationsResponse({
     this.applications,
     this.nextToken,
   });
-  factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListApplicationsResponseFromJson(json);
+  factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListApplicationsResponse(
+      applications: (json['applications'] as List?)
+          ?.whereNotNull()
+          .map((e) => ApplicationSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListAssociatedAttributeGroupsResponse {
   /// A list of attribute group IDs.
-  @_s.JsonKey(name: 'attributeGroups')
-  final List<String> attributeGroups;
+  final List<String>? attributeGroups;
 
   /// The token to use to get the next page of results after a previous API call.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListAssociatedAttributeGroupsResponse({
     this.attributeGroups,
     this.nextToken,
   });
   factory ListAssociatedAttributeGroupsResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListAssociatedAttributeGroupsResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return ListAssociatedAttributeGroupsResponse(
+      attributeGroups: (json['attributeGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListAssociatedResourcesResponse {
   /// The token to use to get the next page of results after a previous API call.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// Information about the resources.
-  @_s.JsonKey(name: 'resources')
-  final List<ResourceInfo> resources;
+  final List<ResourceInfo>? resources;
 
   ListAssociatedResourcesResponse({
     this.nextToken,
     this.resources,
   });
-  factory ListAssociatedResourcesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListAssociatedResourcesResponseFromJson(json);
+  factory ListAssociatedResourcesResponse.fromJson(Map<String, dynamic> json) {
+    return ListAssociatedResourcesResponse(
+      nextToken: json['nextToken'] as String?,
+      resources: (json['resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourceInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListAttributeGroupsResponse {
   /// This list of attribute groups.
-  @_s.JsonKey(name: 'attributeGroups')
-  final List<AttributeGroupSummary> attributeGroups;
+  final List<AttributeGroupSummary>? attributeGroups;
 
   /// The token to use to get the next page of results after a previous API call.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListAttributeGroupsResponse({
     this.attributeGroups,
     this.nextToken,
   });
-  factory ListAttributeGroupsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListAttributeGroupsResponseFromJson(json);
+  factory ListAttributeGroupsResponse.fromJson(Map<String, dynamic> json) {
+    return ListAttributeGroupsResponse(
+      attributeGroups: (json['attributeGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttributeGroupSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
   /// The tags on the resource.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
     this.tags,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Information about the resource.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ResourceInfo {
   /// The Amazon resource name (ARN) that specifies the resource across services.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// The name of the resource.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   ResourceInfo({
     this.arn,
     this.name,
   });
-  factory ResourceInfo.fromJson(Map<String, dynamic> json) =>
-      _$ResourceInfoFromJson(json);
+  factory ResourceInfo.fromJson(Map<String, dynamic> json) {
+    return ResourceInfo(
+      arn: json['arn'] as String?,
+      name: json['name'] as String?,
+    );
+  }
 }
 
 enum ResourceType {
-  @_s.JsonValue('CFN_STACK')
   cfnStack,
 }
 
@@ -1784,118 +1724,136 @@ extension on ResourceType {
       case ResourceType.cfnStack:
         return 'CFN_STACK';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  ResourceType toResourceType() {
+    switch (this) {
+      case 'CFN_STACK':
+        return ResourceType.cfnStack;
+    }
+    throw Exception('$this is not known in enum ResourceType');
   }
 }
 
 enum SyncAction {
-  @_s.JsonValue('START_SYNC')
   startSync,
-  @_s.JsonValue('NO_ACTION')
   noAction,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on SyncAction {
+  String toValue() {
+    switch (this) {
+      case SyncAction.startSync:
+        return 'START_SYNC';
+      case SyncAction.noAction:
+        return 'NO_ACTION';
+    }
+  }
+}
+
+extension on String {
+  SyncAction toSyncAction() {
+    switch (this) {
+      case 'START_SYNC':
+        return SyncAction.startSync;
+      case 'NO_ACTION':
+        return SyncAction.noAction;
+    }
+    throw Exception('$this is not known in enum SyncAction');
+  }
+}
+
 class SyncResourceResponse {
   /// The results of the output if an application is associated with an ARN value,
   /// which could be <code>syncStarted</code> or None.
-  @_s.JsonKey(name: 'actionTaken')
-  final SyncAction actionTaken;
+  final SyncAction? actionTaken;
 
   /// The Amazon resource name (ARN) that specifies the application.
-  @_s.JsonKey(name: 'applicationArn')
-  final String applicationArn;
+  final String? applicationArn;
 
   /// The Amazon resource name (ARN) that specifies the resource.
-  @_s.JsonKey(name: 'resourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   SyncResourceResponse({
     this.actionTaken,
     this.applicationArn,
     this.resourceArn,
   });
-  factory SyncResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$SyncResourceResponseFromJson(json);
+  factory SyncResourceResponse.fromJson(Map<String, dynamic> json) {
+    return SyncResourceResponse(
+      actionTaken: (json['actionTaken'] as String?)?.toSyncAction(),
+      applicationArn: json['applicationArn'] as String?,
+      resourceArn: json['resourceArn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TagResourceResponse {
   TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateApplicationResponse {
   /// The updated information of the application.
-  @_s.JsonKey(name: 'application')
-  final Application application;
+  final Application? application;
 
   UpdateApplicationResponse({
     this.application,
   });
-  factory UpdateApplicationResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateApplicationResponseFromJson(json);
+  factory UpdateApplicationResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateApplicationResponse(
+      application: json['application'] != null
+          ? Application.fromJson(json['application'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateAttributeGroupResponse {
   /// The updated information of the attribute group.
-  @_s.JsonKey(name: 'attributeGroup')
-  final AttributeGroup attributeGroup;
+  final AttributeGroup? attributeGroup;
 
   UpdateAttributeGroupResponse({
     this.attributeGroup,
   });
-  factory UpdateAttributeGroupResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateAttributeGroupResponseFromJson(json);
+  factory UpdateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateAttributeGroupResponse(
+      attributeGroup: json['attributeGroup'] != null
+          ? AttributeGroup.fromJson(
+              json['attributeGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ServiceQuotaExceededException extends _s.GenericAwsException {
-  ServiceQuotaExceededException({String type, String message})
+  ServiceQuotaExceededException({String? type, String? message})
       : super(
             type: type,
             code: 'ServiceQuotaExceededException',
@@ -1903,7 +1861,7 @@ class ServiceQuotaExceededException extends _s.GenericAwsException {
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

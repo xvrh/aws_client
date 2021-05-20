@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-07-14.g.dart';
 
 /// <b>Introduction</b>
 ///
@@ -253,10 +246,10 @@ part '2020-07-14.g.dart';
 class Ivs {
   final _s.RestJsonProtocol _protocol;
   Ivs({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -273,7 +266,7 @@ class Ivs {
   /// Parameter [arns] :
   /// Array of ARNs, one per channel.
   Future<BatchGetChannelResponse> batchGetChannel({
-    @_s.required List<String> arns,
+    required List<String> arns,
   }) async {
     ArgumentError.checkNotNull(arns, 'arns');
     final $payload = <String, dynamic>{
@@ -293,7 +286,7 @@ class Ivs {
   /// Parameter [arns] :
   /// Array of ARNs, one per channel.
   Future<BatchGetStreamKeyResponse> batchGetStreamKey({
-    @_s.required List<String> arns,
+    required List<String> arns,
   }) async {
     ArgumentError.checkNotNull(arns, 'arns');
     final $payload = <String, dynamic>{
@@ -347,11 +340,11 @@ class Ivs {
   /// </ul>
   /// Default: <code>STANDARD</code>.
   Future<CreateChannelResponse> createChannel({
-    bool authorized,
-    ChannelLatencyMode latencyMode,
-    String name,
-    Map<String, String> tags,
-    ChannelType type,
+    bool? authorized,
+    ChannelLatencyMode? latencyMode,
+    String? name,
+    Map<String, String>? tags,
+    ChannelType? type,
   }) async {
     _s.validateStringLength(
       'name',
@@ -401,8 +394,8 @@ class Ivs {
   /// Parameter [tags] :
   /// See <a>Channel$tags</a>.
   Future<CreateStreamKeyResponse> createStreamKey({
-    @_s.required String channelArn,
-    Map<String, String> tags,
+    required String channelArn,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -442,7 +435,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN of the channel to be deleted.
   Future<void> deleteChannel({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -480,7 +473,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN of the key pair to be deleted.
   Future<void> deletePlaybackKeyPair({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -505,7 +498,6 @@ class Ivs {
       requestUri: '/DeletePlaybackKeyPair',
       exceptionFnMap: _exceptionFns,
     );
-    return DeletePlaybackKeyPairResponse.fromJson(response);
   }
 
   /// Deletes the stream key for the specified ARN, so it can no longer be used
@@ -519,7 +511,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN of the stream key to be deleted.
   Future<void> deleteStreamKey({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -556,7 +548,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN of the channel for which the configuration is to be retrieved.
   Future<GetChannelResponse> getChannel({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -596,7 +588,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN of the key pair to be returned.
   Future<GetPlaybackKeyPairResponse> getPlaybackKeyPair({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -634,7 +626,7 @@ class Ivs {
   /// Parameter [channelArn] :
   /// Channel ARN for stream to be accessed.
   Future<GetStreamResponse> getStream({
-    @_s.required String channelArn,
+    required String channelArn,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -671,7 +663,7 @@ class Ivs {
   /// Parameter [arn] :
   /// ARN for the stream key to be retrieved.
   Future<GetStreamKeyResponse> getStreamKey({
-    @_s.required String arn,
+    required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -722,9 +714,9 @@ class Ivs {
   /// Any tags provided with the request are added to the playback key pair
   /// tags.
   Future<ImportPlaybackKeyPairResponse> importPlaybackKeyPair({
-    @_s.required String publicKeyMaterial,
-    String name,
-    Map<String, String> tags,
+    required String publicKeyMaterial,
+    String? name,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(publicKeyMaterial, 'publicKeyMaterial');
     _s.validateStringLength(
@@ -769,9 +761,9 @@ class Ivs {
   /// The first channel to retrieve. This is used for pagination; see the
   /// <code>nextToken</code> response field.
   Future<ListChannelsResponse> listChannels({
-    String filterByName,
-    int maxResults,
-    String nextToken,
+    String? filterByName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateStringLength(
       'filterByName',
@@ -822,8 +814,8 @@ class Ivs {
   /// Parameter [nextToken] :
   /// Maximum number of key pairs to return.
   Future<ListPlaybackKeyPairsResponse> listPlaybackKeyPairs({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -866,9 +858,9 @@ class Ivs {
   /// The first stream key to retrieve. This is used for pagination; see the
   /// <code>nextToken</code> response field.
   Future<ListStreamKeysResponse> listStreamKeys({
-    @_s.required String channelArn,
-    int maxResults,
-    String nextToken,
+    required String channelArn,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -922,8 +914,8 @@ class Ivs {
   /// The first stream to retrieve. This is used for pagination; see the
   /// <code>nextToken</code> response field.
   Future<ListStreamsResponse> listStreams({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -966,9 +958,9 @@ class Ivs {
   /// The first tag to retrieve. This is used for pagination; see the
   /// <code>nextToken</code> response field.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
-    int maxResults,
-    String nextToken,
+    required String resourceArn,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1016,8 +1008,8 @@ class Ivs {
   /// Parameter [metadata] :
   /// Metadata to insert into the stream. Maximum: 1 KB per request.
   Future<void> putMetadata({
-    @_s.required String channelArn,
-    @_s.required String metadata,
+    required String channelArn,
+    required String metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -1064,7 +1056,7 @@ class Ivs {
   /// Parameter [channelArn] :
   /// ARN of the channel for which the stream is to be stopped.
   Future<void> stopStream({
-    @_s.required String channelArn,
+    required String channelArn,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -1089,7 +1081,6 @@ class Ivs {
       requestUri: '/StopStream',
       exceptionFnMap: _exceptionFns,
     );
-    return StopStreamResponse.fromJson(response);
   }
 
   /// Adds or updates tags for the AWS resource with the specified ARN.
@@ -1104,8 +1095,8 @@ class Ivs {
   /// Parameter [tags] :
   /// Array of tags to be added or updated.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1131,7 +1122,6 @@ class Ivs {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// Removes tags from the resource with the specified ARN.
@@ -1146,8 +1136,8 @@ class Ivs {
   /// Parameter [tagKeys] :
   /// Array of tags to be removed.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1165,7 +1155,7 @@ class Ivs {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -1174,7 +1164,6 @@ class Ivs {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// Updates a channel's configuration. This does not affect an ongoing stream
@@ -1219,11 +1208,11 @@ class Ivs {
   /// </ul>
   /// Default: <code>STANDARD</code>.
   Future<UpdateChannelResponse> updateChannel({
-    @_s.required String arn,
-    bool authorized,
-    ChannelLatencyMode latencyMode,
-    String name,
-    ChannelType type,
+    required String arn,
+    bool? authorized,
+    ChannelLatencyMode? latencyMode,
+    String? name,
+    ChannelType? type,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
     _s.validateStringLength(
@@ -1268,108 +1257,99 @@ class Ivs {
 }
 
 /// Error related to a specific channel, specified by its ARN.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchError {
   /// Channel ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Error code.
-  @_s.JsonKey(name: 'code')
-  final String code;
+  final String? code;
 
   /// Error message, determined by the application.
-  @_s.JsonKey(name: 'message')
-  final String message;
+  final String? message;
 
   BatchError({
     this.arn,
     this.code,
     this.message,
   });
-  factory BatchError.fromJson(Map<String, dynamic> json) =>
-      _$BatchErrorFromJson(json);
+  factory BatchError.fromJson(Map<String, dynamic> json) {
+    return BatchError(
+      arn: json['arn'] as String?,
+      code: json['code'] as String?,
+      message: json['message'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchGetChannelResponse {
-  @_s.JsonKey(name: 'channels')
-  final List<Channel> channels;
+  final List<Channel>? channels;
 
   /// Each error object is related to a specific ARN in the request.
-  @_s.JsonKey(name: 'errors')
-  final List<BatchError> errors;
+  final List<BatchError>? errors;
 
   BatchGetChannelResponse({
     this.channels,
     this.errors,
   });
-  factory BatchGetChannelResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchGetChannelResponseFromJson(json);
+  factory BatchGetChannelResponse.fromJson(Map<String, dynamic> json) {
+    return BatchGetChannelResponse(
+      channels: (json['channels'] as List?)
+          ?.whereNotNull()
+          .map((e) => Channel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => BatchError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchGetStreamKeyResponse {
-  @_s.JsonKey(name: 'errors')
-  final List<BatchError> errors;
-  @_s.JsonKey(name: 'streamKeys')
-  final List<StreamKey> streamKeys;
+  final List<BatchError>? errors;
+  final List<StreamKey>? streamKeys;
 
   BatchGetStreamKeyResponse({
     this.errors,
     this.streamKeys,
   });
-  factory BatchGetStreamKeyResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchGetStreamKeyResponseFromJson(json);
+  factory BatchGetStreamKeyResponse.fromJson(Map<String, dynamic> json) {
+    return BatchGetStreamKeyResponse(
+      errors: (json['errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => BatchError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      streamKeys: (json['streamKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => StreamKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Object specifying a channel.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Channel {
   /// Channel ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Whether the channel is authorized.
-  @_s.JsonKey(name: 'authorized')
-  final bool authorized;
+  final bool? authorized;
 
   /// Channel ingest endpoint, part of the definition of an ingest server, used
   /// when you set up streaming software.
-  @_s.JsonKey(name: 'ingestEndpoint')
-  final String ingestEndpoint;
+  final String? ingestEndpoint;
 
   /// Channel latency mode. Default: <code>LOW</code>.
-  @_s.JsonKey(name: 'latencyMode')
-  final ChannelLatencyMode latencyMode;
+  final ChannelLatencyMode? latencyMode;
 
   /// Channel name.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Channel playback URL.
-  @_s.JsonKey(name: 'playbackUrl')
-  final String playbackUrl;
+  final String? playbackUrl;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// Channel type, which determines the allowable resolution and bitrate. <i>If
   /// you exceed the allowable resolution or bitrate, the stream probably will
@@ -1389,8 +1369,7 @@ class Channel {
   /// </li>
   /// </ul>
   /// Default: <code>STANDARD</code>.
-  @_s.JsonKey(name: 'type')
-  final ChannelType type;
+  final ChannelType? type;
 
   Channel({
     this.arn,
@@ -1402,14 +1381,23 @@ class Channel {
     this.tags,
     this.type,
   });
-  factory Channel.fromJson(Map<String, dynamic> json) =>
-      _$ChannelFromJson(json);
+  factory Channel.fromJson(Map<String, dynamic> json) {
+    return Channel(
+      arn: json['arn'] as String?,
+      authorized: json['authorized'] as bool?,
+      ingestEndpoint: json['ingestEndpoint'] as String?,
+      latencyMode: (json['latencyMode'] as String?)?.toChannelLatencyMode(),
+      name: json['name'] as String?,
+      playbackUrl: json['playbackUrl'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      type: (json['type'] as String?)?.toChannelType(),
+    );
+  }
 }
 
 enum ChannelLatencyMode {
-  @_s.JsonValue('NORMAL')
   normal,
-  @_s.JsonValue('LOW')
   low,
 }
 
@@ -1421,36 +1409,37 @@ extension on ChannelLatencyMode {
       case ChannelLatencyMode.low:
         return 'LOW';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  ChannelLatencyMode toChannelLatencyMode() {
+    switch (this) {
+      case 'NORMAL':
+        return ChannelLatencyMode.normal;
+      case 'LOW':
+        return ChannelLatencyMode.low;
+    }
+    throw Exception('$this is not known in enum ChannelLatencyMode');
   }
 }
 
 /// Summary information about a channel.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ChannelSummary {
   /// Channel ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Whether the channel is authorized.
-  @_s.JsonKey(name: 'authorized')
-  final bool authorized;
+  final bool? authorized;
 
   /// Channel latency mode. Default: <code>LOW</code>.
-  @_s.JsonKey(name: 'latencyMode')
-  final ChannelLatencyMode latencyMode;
+  final ChannelLatencyMode? latencyMode;
 
   /// Channel name.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ChannelSummary({
     this.arn,
@@ -1459,14 +1448,20 @@ class ChannelSummary {
     this.name,
     this.tags,
   });
-  factory ChannelSummary.fromJson(Map<String, dynamic> json) =>
-      _$ChannelSummaryFromJson(json);
+  factory ChannelSummary.fromJson(Map<String, dynamic> json) {
+    return ChannelSummary(
+      arn: json['arn'] as String?,
+      authorized: json['authorized'] as bool?,
+      latencyMode: (json['latencyMode'] as String?)?.toChannelLatencyMode(),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 enum ChannelType {
-  @_s.JsonValue('BASIC')
   basic,
-  @_s.JsonValue('STANDARD')
   standard,
 }
 
@@ -1478,273 +1473,265 @@ extension on ChannelType {
       case ChannelType.standard:
         return 'STANDARD';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on String {
+  ChannelType toChannelType() {
+    switch (this) {
+      case 'BASIC':
+        return ChannelType.basic;
+      case 'STANDARD':
+        return ChannelType.standard;
+    }
+    throw Exception('$this is not known in enum ChannelType');
+  }
+}
+
 class CreateChannelResponse {
-  @_s.JsonKey(name: 'channel')
-  final Channel channel;
-  @_s.JsonKey(name: 'streamKey')
-  final StreamKey streamKey;
+  final Channel? channel;
+  final StreamKey? streamKey;
 
   CreateChannelResponse({
     this.channel,
     this.streamKey,
   });
-  factory CreateChannelResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateChannelResponseFromJson(json);
+  factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
+    return CreateChannelResponse(
+      channel: json['channel'] != null
+          ? Channel.fromJson(json['channel'] as Map<String, dynamic>)
+          : null,
+      streamKey: json['streamKey'] != null
+          ? StreamKey.fromJson(json['streamKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateStreamKeyResponse {
   /// Stream key used to authenticate an RTMPS stream for ingestion.
-  @_s.JsonKey(name: 'streamKey')
-  final StreamKey streamKey;
+  final StreamKey? streamKey;
 
   CreateStreamKeyResponse({
     this.streamKey,
   });
-  factory CreateStreamKeyResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateStreamKeyResponseFromJson(json);
+  factory CreateStreamKeyResponse.fromJson(Map<String, dynamic> json) {
+    return CreateStreamKeyResponse(
+      streamKey: json['streamKey'] != null
+          ? StreamKey.fromJson(json['streamKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeletePlaybackKeyPairResponse {
   DeletePlaybackKeyPairResponse();
-  factory DeletePlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeletePlaybackKeyPairResponseFromJson(json);
+  factory DeletePlaybackKeyPairResponse.fromJson(Map<String, dynamic> _) {
+    return DeletePlaybackKeyPairResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetChannelResponse {
-  @_s.JsonKey(name: 'channel')
-  final Channel channel;
+  final Channel? channel;
 
   GetChannelResponse({
     this.channel,
   });
-  factory GetChannelResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetChannelResponseFromJson(json);
+  factory GetChannelResponse.fromJson(Map<String, dynamic> json) {
+    return GetChannelResponse(
+      channel: json['channel'] != null
+          ? Channel.fromJson(json['channel'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetPlaybackKeyPairResponse {
-  @_s.JsonKey(name: 'keyPair')
-  final PlaybackKeyPair keyPair;
+  final PlaybackKeyPair? keyPair;
 
   GetPlaybackKeyPairResponse({
     this.keyPair,
   });
-  factory GetPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetPlaybackKeyPairResponseFromJson(json);
+  factory GetPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) {
+    return GetPlaybackKeyPairResponse(
+      keyPair: json['keyPair'] != null
+          ? PlaybackKeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetStreamKeyResponse {
-  @_s.JsonKey(name: 'streamKey')
-  final StreamKey streamKey;
+  final StreamKey? streamKey;
 
   GetStreamKeyResponse({
     this.streamKey,
   });
-  factory GetStreamKeyResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetStreamKeyResponseFromJson(json);
+  factory GetStreamKeyResponse.fromJson(Map<String, dynamic> json) {
+    return GetStreamKeyResponse(
+      streamKey: json['streamKey'] != null
+          ? StreamKey.fromJson(json['streamKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetStreamResponse {
-  @_s.JsonKey(name: 'stream')
-  final Stream stream;
+  final Stream? stream;
 
   GetStreamResponse({
     this.stream,
   });
-  factory GetStreamResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetStreamResponseFromJson(json);
+  factory GetStreamResponse.fromJson(Map<String, dynamic> json) {
+    return GetStreamResponse(
+      stream: json['stream'] != null
+          ? Stream.fromJson(json['stream'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ImportPlaybackKeyPairResponse {
-  @_s.JsonKey(name: 'keyPair')
-  final PlaybackKeyPair keyPair;
+  final PlaybackKeyPair? keyPair;
 
   ImportPlaybackKeyPairResponse({
     this.keyPair,
   });
-  factory ImportPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) =>
-      _$ImportPlaybackKeyPairResponseFromJson(json);
+  factory ImportPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) {
+    return ImportPlaybackKeyPairResponse(
+      keyPair: json['keyPair'] != null
+          ? PlaybackKeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListChannelsResponse {
   /// List of the matching channels.
-  @_s.JsonKey(name: 'channels')
   final List<ChannelSummary> channels;
 
   /// If there are more channels than <code>maxResults</code>, use
   /// <code>nextToken</code> in the request to get the next set.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListChannelsResponse({
-    @_s.required this.channels,
+    required this.channels,
     this.nextToken,
   });
-  factory ListChannelsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListChannelsResponseFromJson(json);
+  factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
+    return ListChannelsResponse(
+      channels: (json['channels'] as List)
+          .whereNotNull()
+          .map((e) => ChannelSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListPlaybackKeyPairsResponse {
   /// List of key pairs.
-  @_s.JsonKey(name: 'keyPairs')
   final List<PlaybackKeyPairSummary> keyPairs;
 
   /// If there are more key pairs than <code>maxResults</code>, use
   /// <code>nextToken</code> in the request to get the next set.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListPlaybackKeyPairsResponse({
-    @_s.required this.keyPairs,
+    required this.keyPairs,
     this.nextToken,
   });
-  factory ListPlaybackKeyPairsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListPlaybackKeyPairsResponseFromJson(json);
+  factory ListPlaybackKeyPairsResponse.fromJson(Map<String, dynamic> json) {
+    return ListPlaybackKeyPairsResponse(
+      keyPairs: (json['keyPairs'] as List)
+          .whereNotNull()
+          .map(
+              (e) => PlaybackKeyPairSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListStreamKeysResponse {
   /// List of stream keys.
-  @_s.JsonKey(name: 'streamKeys')
   final List<StreamKeySummary> streamKeys;
 
   /// If there are more stream keys than <code>maxResults</code>, use
   /// <code>nextToken</code> in the request to get the next set.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListStreamKeysResponse({
-    @_s.required this.streamKeys,
+    required this.streamKeys,
     this.nextToken,
   });
-  factory ListStreamKeysResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListStreamKeysResponseFromJson(json);
+  factory ListStreamKeysResponse.fromJson(Map<String, dynamic> json) {
+    return ListStreamKeysResponse(
+      streamKeys: (json['streamKeys'] as List)
+          .whereNotNull()
+          .map((e) => StreamKeySummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListStreamsResponse {
   /// List of streams.
-  @_s.JsonKey(name: 'streams')
   final List<StreamSummary> streams;
 
   /// If there are more streams than <code>maxResults</code>, use
   /// <code>nextToken</code> in the request to get the next set.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListStreamsResponse({
-    @_s.required this.streams,
+    required this.streams,
     this.nextToken,
   });
-  factory ListStreamsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListStreamsResponseFromJson(json);
+  factory ListStreamsResponse.fromJson(Map<String, dynamic> json) {
+    return ListStreamsResponse(
+      streams: (json['streams'] as List)
+          .whereNotNull()
+          .map((e) => StreamSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
-  @_s.JsonKey(name: 'tags')
   final Map<String, String> tags;
 
   /// If there are more tags than <code>maxResults</code>, use
   /// <code>nextToken</code> in the request to get the next set.
-  @_s.JsonKey(name: 'nextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListTagsForResourceResponse({
-    @_s.required this.tags,
+    required this.tags,
     this.nextToken,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as Map<String, dynamic>)
+          .map((k, e) => MapEntry(k, e as String)),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
 }
 
 /// A key pair used to sign and validate a playback authorization token.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PlaybackKeyPair {
   /// Key-pair ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Key-pair identifier.
-  @_s.JsonKey(name: 'fingerprint')
-  final String fingerprint;
+  final String? fingerprint;
 
   /// Key-pair name.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   PlaybackKeyPair({
     this.arn,
@@ -1752,81 +1739,70 @@ class PlaybackKeyPair {
     this.name,
     this.tags,
   });
-  factory PlaybackKeyPair.fromJson(Map<String, dynamic> json) =>
-      _$PlaybackKeyPairFromJson(json);
+  factory PlaybackKeyPair.fromJson(Map<String, dynamic> json) {
+    return PlaybackKeyPair(
+      arn: json['arn'] as String?,
+      fingerprint: json['fingerprint'] as String?,
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Summary information about a playback key pair.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PlaybackKeyPairSummary {
   /// Key-pair ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Key-pair name.
-  @_s.JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   PlaybackKeyPairSummary({
     this.arn,
     this.name,
     this.tags,
   });
-  factory PlaybackKeyPairSummary.fromJson(Map<String, dynamic> json) =>
-      _$PlaybackKeyPairSummaryFromJson(json);
+  factory PlaybackKeyPairSummary.fromJson(Map<String, dynamic> json) {
+    return PlaybackKeyPairSummary(
+      arn: json['arn'] as String?,
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StopStreamResponse {
   StopStreamResponse();
-  factory StopStreamResponse.fromJson(Map<String, dynamic> json) =>
-      _$StopStreamResponseFromJson(json);
+  factory StopStreamResponse.fromJson(Map<String, dynamic> _) {
+    return StopStreamResponse();
+  }
 }
 
 /// Specifies a live video stream that has been ingested and distributed.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Stream {
   /// Channel ARN for the stream.
-  @_s.JsonKey(name: 'channelArn')
-  final String channelArn;
+  final String? channelArn;
 
   /// The stream’s health.
-  @_s.JsonKey(name: 'health')
-  final StreamHealth health;
+  final StreamHealth? health;
 
   /// URL of the video master manifest, required by the video player to play the
   /// HLS stream.
-  @_s.JsonKey(name: 'playbackUrl')
-  final String playbackUrl;
+  final String? playbackUrl;
 
   /// ISO-8601 formatted timestamp of the stream’s start.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'startTime')
-  final DateTime startTime;
+  final DateTime? startTime;
 
   /// The stream’s state.
-  @_s.JsonKey(name: 'state')
-  final StreamState state;
+  final StreamState? state;
 
   /// Number of current viewers of the stream.
-  @_s.JsonKey(name: 'viewerCount')
-  final int viewerCount;
+  final int? viewerCount;
 
   Stream({
     this.channelArn,
@@ -1836,40 +1812,64 @@ class Stream {
     this.state,
     this.viewerCount,
   });
-  factory Stream.fromJson(Map<String, dynamic> json) => _$StreamFromJson(json);
+  factory Stream.fromJson(Map<String, dynamic> json) {
+    return Stream(
+      channelArn: json['channelArn'] as String?,
+      health: (json['health'] as String?)?.toStreamHealth(),
+      playbackUrl: json['playbackUrl'] as String?,
+      startTime: timeStampFromJson(json['startTime']),
+      state: (json['state'] as String?)?.toStreamState(),
+      viewerCount: json['viewerCount'] as int?,
+    );
+  }
 }
 
 enum StreamHealth {
-  @_s.JsonValue('HEALTHY')
   healthy,
-  @_s.JsonValue('STARVING')
   starving,
-  @_s.JsonValue('UNKNOWN')
   unknown,
 }
 
+extension on StreamHealth {
+  String toValue() {
+    switch (this) {
+      case StreamHealth.healthy:
+        return 'HEALTHY';
+      case StreamHealth.starving:
+        return 'STARVING';
+      case StreamHealth.unknown:
+        return 'UNKNOWN';
+    }
+  }
+}
+
+extension on String {
+  StreamHealth toStreamHealth() {
+    switch (this) {
+      case 'HEALTHY':
+        return StreamHealth.healthy;
+      case 'STARVING':
+        return StreamHealth.starving;
+      case 'UNKNOWN':
+        return StreamHealth.unknown;
+    }
+    throw Exception('$this is not known in enum StreamHealth');
+  }
+}
+
 /// Object specifying a stream key.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StreamKey {
   /// Stream-key ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Channel ARN for the stream.
-  @_s.JsonKey(name: 'channelArn')
-  final String channelArn;
+  final String? channelArn;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// Stream-key value.
-  @_s.JsonKey(name: 'value')
-  final String value;
+  final String? value;
 
   StreamKey({
     this.arn,
@@ -1877,72 +1877,87 @@ class StreamKey {
     this.tags,
     this.value,
   });
-  factory StreamKey.fromJson(Map<String, dynamic> json) =>
-      _$StreamKeyFromJson(json);
+  factory StreamKey.fromJson(Map<String, dynamic> json) {
+    return StreamKey(
+      arn: json['arn'] as String?,
+      channelArn: json['channelArn'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      value: json['value'] as String?,
+    );
+  }
 }
 
 /// Summary information about a stream key.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StreamKeySummary {
   /// Stream-key ARN.
-  @_s.JsonKey(name: 'arn')
-  final String arn;
+  final String? arn;
 
   /// Channel ARN for the stream.
-  @_s.JsonKey(name: 'channelArn')
-  final String channelArn;
+  final String? channelArn;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   StreamKeySummary({
     this.arn,
     this.channelArn,
     this.tags,
   });
-  factory StreamKeySummary.fromJson(Map<String, dynamic> json) =>
-      _$StreamKeySummaryFromJson(json);
+  factory StreamKeySummary.fromJson(Map<String, dynamic> json) {
+    return StreamKeySummary(
+      arn: json['arn'] as String?,
+      channelArn: json['channelArn'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 enum StreamState {
-  @_s.JsonValue('LIVE')
   live,
-  @_s.JsonValue('OFFLINE')
   offline,
 }
 
+extension on StreamState {
+  String toValue() {
+    switch (this) {
+      case StreamState.live:
+        return 'LIVE';
+      case StreamState.offline:
+        return 'OFFLINE';
+    }
+  }
+}
+
+extension on String {
+  StreamState toStreamState() {
+    switch (this) {
+      case 'LIVE':
+        return StreamState.live;
+      case 'OFFLINE':
+        return StreamState.offline;
+    }
+    throw Exception('$this is not known in enum StreamState');
+  }
+}
+
 /// Summary information about a stream.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StreamSummary {
   /// Channel ARN for the stream.
-  @_s.JsonKey(name: 'channelArn')
-  final String channelArn;
+  final String? channelArn;
 
   /// The stream’s health.
-  @_s.JsonKey(name: 'health')
-  final StreamHealth health;
+  final StreamHealth? health;
 
   /// ISO-8601 formatted timestamp of the stream’s start.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'startTime')
-  final DateTime startTime;
+  final DateTime? startTime;
 
   /// The stream’s state.
-  @_s.JsonKey(name: 'state')
-  final StreamState state;
+  final StreamState? state;
 
   /// Number of current viewers of the stream.
-  @_s.JsonKey(name: 'viewerCount')
-  final int viewerCount;
+  final int? viewerCount;
 
   StreamSummary({
     this.channelArn,
@@ -1951,80 +1966,78 @@ class StreamSummary {
     this.state,
     this.viewerCount,
   });
-  factory StreamSummary.fromJson(Map<String, dynamic> json) =>
-      _$StreamSummaryFromJson(json);
+  factory StreamSummary.fromJson(Map<String, dynamic> json) {
+    return StreamSummary(
+      channelArn: json['channelArn'] as String?,
+      health: (json['health'] as String?)?.toStreamHealth(),
+      startTime: timeStampFromJson(json['startTime']),
+      state: (json['state'] as String?)?.toStreamState(),
+      viewerCount: json['viewerCount'] as int?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TagResourceResponse {
   TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateChannelResponse {
-  @_s.JsonKey(name: 'channel')
-  final Channel channel;
+  final Channel? channel;
 
   UpdateChannelResponse({
     this.channel,
   });
-  factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateChannelResponseFromJson(json);
+  factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateChannelResponse(
+      channel: json['channel'] != null
+          ? Channel.fromJson(json['channel'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class ChannelNotBroadcasting extends _s.GenericAwsException {
-  ChannelNotBroadcasting({String type, String message})
+  ChannelNotBroadcasting({String? type, String? message})
       : super(type: type, code: 'ChannelNotBroadcasting', message: message);
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class PendingVerification extends _s.GenericAwsException {
-  PendingVerification({String type, String message})
+  PendingVerification({String? type, String? message})
       : super(type: type, code: 'PendingVerification', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ServiceQuotaExceededException extends _s.GenericAwsException {
-  ServiceQuotaExceededException({String type, String message})
+  ServiceQuotaExceededException({String? type, String? message})
       : super(
             type: type,
             code: 'ServiceQuotaExceededException',
@@ -2032,17 +2045,17 @@ class ServiceQuotaExceededException extends _s.GenericAwsException {
 }
 
 class StreamUnavailable extends _s.GenericAwsException {
-  StreamUnavailable({String type, String message})
+  StreamUnavailable({String? type, String? message})
       : super(type: type, code: 'StreamUnavailable', message: message);
 }
 
 class ThrottlingException extends _s.GenericAwsException {
-  ThrottlingException({String type, String message})
+  ThrottlingException({String? type, String? message})
       : super(type: type, code: 'ThrottlingException', message: message);
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

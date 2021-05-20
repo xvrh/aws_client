@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2017-07-25.g.dart';
 
 /// AWS Glue DataBrew is a visual, cloud-scale data-preparation service.
 /// DataBrew simplifies data preparation tasks, targeting data issues that are
@@ -34,10 +27,10 @@ part '2017-07-25.g.dart';
 class GlueDataBrew {
   final _s.RestJsonProtocol _protocol;
   GlueDataBrew({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -61,8 +54,8 @@ class GlueDataBrew {
   /// Parameter [recipeVersions] :
   /// An array of version identifiers to be deleted.
   Future<BatchDeleteRecipeVersionResponse> batchDeleteRecipeVersion({
-    @_s.required String name,
-    @_s.required List<String> recipeVersions,
+    required String name,
+    required List<String> recipeVersions,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -99,10 +92,10 @@ class GlueDataBrew {
   /// Parameter [tags] :
   /// Metadata tags to apply to this dataset.
   Future<CreateDatasetResponse> createDataset({
-    @_s.required Input input,
-    @_s.required String name,
-    FormatOptions formatOptions,
-    Map<String, String> tags,
+    required Input input,
+    required String name,
+    FormatOptions? formatOptions,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
@@ -180,17 +173,17 @@ class GlueDataBrew {
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<CreateProfileJobResponse> createProfileJob({
-    @_s.required String datasetName,
-    @_s.required String name,
-    @_s.required S3Location outputLocation,
-    @_s.required String roleArn,
-    String encryptionKeyArn,
-    EncryptionMode encryptionMode,
-    LogSubscription logSubscription,
-    int maxCapacity,
-    int maxRetries,
-    Map<String, String> tags,
-    int timeout,
+    required String datasetName,
+    required String name,
+    required S3Location outputLocation,
+    required String roleArn,
+    String? encryptionKeyArn,
+    EncryptionMode? encryptionMode,
+    LogSubscription? logSubscription,
+    int? maxCapacity,
+    int? maxRetries,
+    Map<String, String>? tags,
+    int? timeout,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
     _s.validateStringLength(
@@ -280,12 +273,12 @@ class GlueDataBrew {
   /// Parameter [tags] :
   /// Metadata tags to apply to this project.
   Future<CreateProjectResponse> createProject({
-    @_s.required String datasetName,
-    @_s.required String name,
-    @_s.required String recipeName,
-    @_s.required String roleArn,
-    Sample sample,
-    Map<String, String> tags,
+    required String datasetName,
+    required String name,
+    required String recipeName,
+    required String roleArn,
+    Sample? sample,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
     _s.validateStringLength(
@@ -356,10 +349,10 @@ class GlueDataBrew {
   /// Parameter [tags] :
   /// Metadata tags to apply to this recipe.
   Future<CreateRecipeResponse> createRecipe({
-    @_s.required String name,
-    @_s.required List<RecipeStep> steps,
-    String description,
-    Map<String, String> tags,
+    required String name,
+    required List<RecipeStep> steps,
+    String? description,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -450,19 +443,19 @@ class GlueDataBrew {
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<CreateRecipeJobResponse> createRecipeJob({
-    @_s.required String name,
-    @_s.required List<Output> outputs,
-    @_s.required String roleArn,
-    String datasetName,
-    String encryptionKeyArn,
-    EncryptionMode encryptionMode,
-    LogSubscription logSubscription,
-    int maxCapacity,
-    int maxRetries,
-    String projectName,
-    RecipeReference recipeReference,
-    Map<String, String> tags,
-    int timeout,
+    required String name,
+    required List<Output> outputs,
+    required String roleArn,
+    String? datasetName,
+    String? encryptionKeyArn,
+    EncryptionMode? encryptionMode,
+    LogSubscription? logSubscription,
+    int? maxCapacity,
+    int? maxRetries,
+    String? projectName,
+    RecipeReference? recipeReference,
+    Map<String, String>? tags,
+    int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -553,10 +546,10 @@ class GlueDataBrew {
   /// Parameter [tags] :
   /// Metadata tags to apply to this schedule.
   Future<CreateScheduleResponse> createSchedule({
-    @_s.required String cronExpression,
-    @_s.required String name,
-    List<String> jobNames,
-    Map<String, String> tags,
+    required String cronExpression,
+    required String name,
+    List<String>? jobNames,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(cronExpression, 'cronExpression');
     _s.validateStringLength(
@@ -597,7 +590,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the dataset to be deleted.
   Future<DeleteDatasetResponse> deleteDataset({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -625,7 +618,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the job to be deleted.
   Future<DeleteJobResponse> deleteJob({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -653,7 +646,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the project to be deleted.
   Future<DeleteProjectResponse> deleteProject({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -683,8 +676,8 @@ class GlueDataBrew {
   /// Parameter [recipeVersion] :
   /// The version of the recipe to be deleted.
   Future<DeleteRecipeVersionResponse> deleteRecipeVersion({
-    @_s.required String name,
-    @_s.required String recipeVersion,
+    required String name,
+    required String recipeVersion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -721,7 +714,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the schedule to be deleted.
   Future<DeleteScheduleResponse> deleteSchedule({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -749,7 +742,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the dataset to be described.
   Future<DescribeDatasetResponse> describeDataset({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -777,7 +770,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the job to be described.
   Future<DescribeJobResponse> describeJob({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -805,7 +798,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the project to be described.
   Future<DescribeProjectResponse> describeProject({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -837,8 +830,8 @@ class GlueDataBrew {
   /// The recipe version identifier. If this parameter isn't specified, then the
   /// latest published version is returned.
   Future<DescribeRecipeResponse> describeRecipe({
-    @_s.required String name,
-    String recipeVersion,
+    required String name,
+    String? recipeVersion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -876,7 +869,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the schedule to be described.
   Future<DescribeScheduleResponse> describeSchedule({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -907,8 +900,8 @@ class GlueDataBrew {
   /// if a previous request was truncated. To get the next set of pages, pass in
   /// the NextToken value from the response object of the previous page call.
   Future<ListDatasetsResponse> listDatasets({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -954,9 +947,9 @@ class GlueDataBrew {
   /// pages, pass in the NextToken value from the response object of the
   /// previous page call.
   Future<ListJobRunsResponse> listJobRuns({
-    @_s.required String name,
-    int maxResults,
-    String nextToken,
+    required String name,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1012,10 +1005,10 @@ class GlueDataBrew {
   /// The name of a project. Using this parameter indicates to return only those
   /// jobs that are associated with the specified project.
   Future<ListJobsResponse> listJobs({
-    String datasetName,
-    int maxResults,
-    String nextToken,
-    String projectName,
+    String? datasetName,
+    int? maxResults,
+    String? nextToken,
+    String? projectName,
   }) async {
     _s.validateStringLength(
       'datasetName',
@@ -1067,8 +1060,8 @@ class GlueDataBrew {
   /// Parameter [nextToken] :
   /// A pagination token that can be used in a subsequent request.
   Future<ListProjectsResponse> listProjects({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1110,9 +1103,9 @@ class GlueDataBrew {
   /// Parameter [nextToken] :
   /// A pagination token that can be used in a subsequent request.
   Future<ListRecipeVersionsResponse> listRecipeVersions({
-    @_s.required String name,
-    int maxResults,
-    String nextToken,
+    required String name,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1135,7 +1128,7 @@ class GlueDataBrew {
       2000,
     );
     final $query = <String, List<String>>{
-      if (name != null) 'name': [name],
+      'name': [name],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -1163,9 +1156,9 @@ class GlueDataBrew {
   /// A version identifier. Using this parameter indicates to return only those
   /// recipes that have this version identifier.
   Future<ListRecipesResponse> listRecipes({
-    int maxResults,
-    String nextToken,
-    String recipeVersion,
+    int? maxResults,
+    String? nextToken,
+    String? recipeVersion,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1213,9 +1206,9 @@ class GlueDataBrew {
   /// Parameter [nextToken] :
   /// A pagination token that can be used in a subsequent request.
   Future<ListSchedulesResponse> listSchedules({
-    String jobName,
-    int maxResults,
-    String nextToken,
+    String? jobName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateStringLength(
       'jobName',
@@ -1260,7 +1253,7 @@ class GlueDataBrew {
   /// The Amazon Resource Name (ARN) string that uniquely identifies the
   /// DataBrew resource.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1292,8 +1285,8 @@ class GlueDataBrew {
   /// A description of the recipe to be published, for this version of the
   /// recipe.
   Future<PublishRecipeResponse> publishRecipe({
-    @_s.required String name,
-    String description,
+    required String name,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1344,12 +1337,12 @@ class GlueDataBrew {
   /// result of steps that have already been applied, so that the resulting view
   /// frame is from earlier in the view frame stack.
   Future<SendProjectSessionActionResponse> sendProjectSessionAction({
-    @_s.required String name,
-    String clientSessionId,
-    bool preview,
-    RecipeStep recipeStep,
-    int stepIndex,
-    ViewFrame viewFrame,
+    required String name,
+    String? clientSessionId,
+    bool? preview,
+    RecipeStep? recipeStep,
+    int? stepIndex,
+    ViewFrame? viewFrame,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1401,7 +1394,7 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the job to be run.
   Future<StartJobRunResponse> startJobRun({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1433,8 +1426,8 @@ class GlueDataBrew {
   /// A value that, if true, enables you to take control of a session, even if a
   /// different client is currently accessing the project.
   Future<StartProjectSessionResponse> startProjectSession({
-    @_s.required String name,
-    bool assumeControl,
+    required String name,
+    bool? assumeControl,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1467,8 +1460,8 @@ class GlueDataBrew {
   /// Parameter [runId] :
   /// The ID of the job run to be stopped.
   Future<StopJobRunResponse> stopJobRun({
-    @_s.required String name,
-    @_s.required String runId,
+    required String name,
+    required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1511,8 +1504,8 @@ class GlueDataBrew {
   /// Parameter [tags] :
   /// One or more tags to be assigned to the resource.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1532,7 +1525,6 @@ class GlueDataBrew {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// Removes metadata tags from an AWS Glue DataBrew resource.
@@ -1548,8 +1540,8 @@ class GlueDataBrew {
   /// Parameter [tagKeys] :
   /// The tag keys (names) of one or more tags to be removed.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -1561,7 +1553,7 @@ class GlueDataBrew {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -1570,7 +1562,6 @@ class GlueDataBrew {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// Modifies the definition of an existing AWS Glue DataBrew dataset in the
@@ -1582,9 +1573,9 @@ class GlueDataBrew {
   /// Parameter [name] :
   /// The name of the dataset to be updated.
   Future<UpdateDatasetResponse> updateDataset({
-    @_s.required Input input,
-    @_s.required String name,
-    FormatOptions formatOptions,
+    required Input input,
+    required String name,
+    FormatOptions? formatOptions,
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
@@ -1653,15 +1644,15 @@ class GlueDataBrew {
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<UpdateProfileJobResponse> updateProfileJob({
-    @_s.required String name,
-    @_s.required S3Location outputLocation,
-    @_s.required String roleArn,
-    String encryptionKeyArn,
-    EncryptionMode encryptionMode,
-    LogSubscription logSubscription,
-    int maxCapacity,
-    int maxRetries,
-    int timeout,
+    required String name,
+    required S3Location outputLocation,
+    required String roleArn,
+    String? encryptionKeyArn,
+    EncryptionMode? encryptionMode,
+    LogSubscription? logSubscription,
+    int? maxCapacity,
+    int? maxRetries,
+    int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1730,9 +1721,9 @@ class GlueDataBrew {
   /// The Amazon Resource Name (ARN) of the IAM role to be assumed for this
   /// request.
   Future<UpdateProjectResponse> updateProject({
-    @_s.required String name,
-    @_s.required String roleArn,
-    Sample sample,
+    required String name,
+    required String roleArn,
+    Sample? sample,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1779,9 +1770,9 @@ class GlueDataBrew {
   /// One or more steps to be performed by the recipe. Each step consists of an
   /// action, and the conditions under which the action should succeed.
   Future<UpdateRecipeResponse> updateRecipe({
-    @_s.required String name,
-    String description,
-    List<RecipeStep> steps,
+    required String name,
+    String? description,
+    List<RecipeStep>? steps,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1858,15 +1849,15 @@ class GlueDataBrew {
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<UpdateRecipeJobResponse> updateRecipeJob({
-    @_s.required String name,
-    @_s.required List<Output> outputs,
-    @_s.required String roleArn,
-    String encryptionKeyArn,
-    EncryptionMode encryptionMode,
-    LogSubscription logSubscription,
-    int maxCapacity,
-    int maxRetries,
-    int timeout,
+    required String name,
+    required List<Output> outputs,
+    required String roleArn,
+    String? encryptionKeyArn,
+    EncryptionMode? encryptionMode,
+    LogSubscription? logSubscription,
+    int? maxCapacity,
+    int? maxRetries,
+    int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1937,9 +1928,9 @@ class GlueDataBrew {
   /// Parameter [jobNames] :
   /// The name or names of one or more jobs to be run for this schedule.
   Future<UpdateScheduleResponse> updateSchedule({
-    @_s.required String cronExpression,
-    @_s.required String name,
-    List<String> jobNames,
+    required String cronExpression,
+    required String name,
+    List<String>? jobNames,
   }) async {
     ArgumentError.checkNotNull(cronExpression, 'cronExpression');
     _s.validateStringLength(
@@ -1971,48 +1962,90 @@ class GlueDataBrew {
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchDeleteRecipeVersionResponse {
   /// The name of the recipe that was modified.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// Errors, if any, that were encountered when deleting the recipe versions.
-  @_s.JsonKey(name: 'Errors')
-  final List<RecipeVersionErrorDetail> errors;
+  final List<RecipeVersionErrorDetail>? errors;
 
   BatchDeleteRecipeVersionResponse({
-    @_s.required this.name,
+    required this.name,
     this.errors,
   });
-  factory BatchDeleteRecipeVersionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$BatchDeleteRecipeVersionResponseFromJson(json);
+  factory BatchDeleteRecipeVersionResponse.fromJson(Map<String, dynamic> json) {
+    return BatchDeleteRecipeVersionResponse(
+      name: json['Name'] as String,
+      errors: (json['Errors'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              RecipeVersionErrorDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 enum CompressionFormat {
-  @_s.JsonValue('GZIP')
   gzip,
-  @_s.JsonValue('LZ4')
   lz4,
-  @_s.JsonValue('SNAPPY')
   snappy,
-  @_s.JsonValue('BZIP2')
   bzip2,
-  @_s.JsonValue('DEFLATE')
   deflate,
-  @_s.JsonValue('LZO')
   lzo,
-  @_s.JsonValue('BROTLI')
   brotli,
-  @_s.JsonValue('ZSTD')
   zstd,
-  @_s.JsonValue('ZLIB')
   zlib,
+}
+
+extension on CompressionFormat {
+  String toValue() {
+    switch (this) {
+      case CompressionFormat.gzip:
+        return 'GZIP';
+      case CompressionFormat.lz4:
+        return 'LZ4';
+      case CompressionFormat.snappy:
+        return 'SNAPPY';
+      case CompressionFormat.bzip2:
+        return 'BZIP2';
+      case CompressionFormat.deflate:
+        return 'DEFLATE';
+      case CompressionFormat.lzo:
+        return 'LZO';
+      case CompressionFormat.brotli:
+        return 'BROTLI';
+      case CompressionFormat.zstd:
+        return 'ZSTD';
+      case CompressionFormat.zlib:
+        return 'ZLIB';
+    }
+  }
+}
+
+extension on String {
+  CompressionFormat toCompressionFormat() {
+    switch (this) {
+      case 'GZIP':
+        return CompressionFormat.gzip;
+      case 'LZ4':
+        return CompressionFormat.lz4;
+      case 'SNAPPY':
+        return CompressionFormat.snappy;
+      case 'BZIP2':
+        return CompressionFormat.bzip2;
+      case 'DEFLATE':
+        return CompressionFormat.deflate;
+      case 'LZO':
+        return CompressionFormat.lzo;
+      case 'BROTLI':
+        return CompressionFormat.brotli;
+      case 'ZSTD':
+        return CompressionFormat.zstd;
+      case 'ZLIB':
+        return CompressionFormat.zlib;
+    }
+    throw Exception('$this is not known in enum CompressionFormat');
+  }
 }
 
 /// Represents an individual condition that evaluates to true or false.
@@ -2024,237 +2057,217 @@ enum CompressionFormat {
 /// multiple <code>ConditionExpression</code> elements. Each condition is
 /// applied to the rows in a dataset first, before the recipe action is
 /// performed.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class ConditionExpression {
   /// A specific condition to apply to a recipe action. For more information, see
   /// <a
   /// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html">Recipe
   /// structure</a> in the <i>AWS Glue DataBrew Developer Guide</i>.
-  @_s.JsonKey(name: 'Condition')
   final String condition;
 
   /// A column to apply this condition to, within an AWS Glue DataBrew dataset.
-  @_s.JsonKey(name: 'TargetColumn')
   final String targetColumn;
 
   /// A value that the condition must evaluate to for the condition to succeed.
-  @_s.JsonKey(name: 'Value')
-  final String value;
+  final String? value;
 
   ConditionExpression({
-    @_s.required this.condition,
-    @_s.required this.targetColumn,
+    required this.condition,
+    required this.targetColumn,
     this.value,
   });
-  factory ConditionExpression.fromJson(Map<String, dynamic> json) =>
-      _$ConditionExpressionFromJson(json);
+  factory ConditionExpression.fromJson(Map<String, dynamic> json) {
+    return ConditionExpression(
+      condition: json['Condition'] as String,
+      targetColumn: json['TargetColumn'] as String,
+      value: json['Value'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$ConditionExpressionToJson(this);
+  Map<String, dynamic> toJson() {
+    final condition = this.condition;
+    final targetColumn = this.targetColumn;
+    final value = this.value;
+    return {
+      'Condition': condition,
+      'TargetColumn': targetColumn,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateDatasetResponse {
   /// The name of the dataset that you created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateDatasetResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateDatasetResponseFromJson(json);
+  factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) {
+    return CreateDatasetResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateProfileJobResponse {
   /// The name of the job that was created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateProfileJobResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateProfileJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateProfileJobResponseFromJson(json);
+  factory CreateProfileJobResponse.fromJson(Map<String, dynamic> json) {
+    return CreateProfileJobResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateProjectResponse {
   /// The name of the project that you created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateProjectResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateProjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateProjectResponseFromJson(json);
+  factory CreateProjectResponse.fromJson(Map<String, dynamic> json) {
+    return CreateProjectResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateRecipeJobResponse {
   /// The name of the job that you created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateRecipeJobResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateRecipeJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateRecipeJobResponseFromJson(json);
+  factory CreateRecipeJobResponse.fromJson(Map<String, dynamic> json) {
+    return CreateRecipeJobResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateRecipeResponse {
   /// The name of the recipe that you created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateRecipeResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateRecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateRecipeResponseFromJson(json);
+  factory CreateRecipeResponse.fromJson(Map<String, dynamic> json) {
+    return CreateRecipeResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateScheduleResponse {
   /// The name of the schedule that was created.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   CreateScheduleResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory CreateScheduleResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateScheduleResponseFromJson(json);
+  factory CreateScheduleResponse.fromJson(Map<String, dynamic> json) {
+    return CreateScheduleResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
 /// Represents how metadata stored in the AWS Glue Data Catalog is defined in an
 /// AWS Glue DataBrew dataset.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class DataCatalogInputDefinition {
   /// The name of a database in the Data Catalog.
-  @_s.JsonKey(name: 'DatabaseName')
   final String databaseName;
 
   /// The name of a database table in the Data Catalog. This table corresponds to
   /// a DataBrew dataset.
-  @_s.JsonKey(name: 'TableName')
   final String tableName;
 
   /// The unique identifier of the AWS account that holds the Data Catalog that
   /// stores the data.
-  @_s.JsonKey(name: 'CatalogId')
-  final String catalogId;
+  final String? catalogId;
 
   /// An Amazon location that AWS Glue Data Catalog can use as a temporary
   /// directory.
-  @_s.JsonKey(name: 'TempDirectory')
-  final S3Location tempDirectory;
+  final S3Location? tempDirectory;
 
   DataCatalogInputDefinition({
-    @_s.required this.databaseName,
-    @_s.required this.tableName,
+    required this.databaseName,
+    required this.tableName,
     this.catalogId,
     this.tempDirectory,
   });
-  factory DataCatalogInputDefinition.fromJson(Map<String, dynamic> json) =>
-      _$DataCatalogInputDefinitionFromJson(json);
+  factory DataCatalogInputDefinition.fromJson(Map<String, dynamic> json) {
+    return DataCatalogInputDefinition(
+      databaseName: json['DatabaseName'] as String,
+      tableName: json['TableName'] as String,
+      catalogId: json['CatalogId'] as String?,
+      tempDirectory: json['TempDirectory'] != null
+          ? S3Location.fromJson(json['TempDirectory'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$DataCatalogInputDefinitionToJson(this);
+  Map<String, dynamic> toJson() {
+    final databaseName = this.databaseName;
+    final tableName = this.tableName;
+    final catalogId = this.catalogId;
+    final tempDirectory = this.tempDirectory;
+    return {
+      'DatabaseName': databaseName,
+      'TableName': tableName,
+      if (catalogId != null) 'CatalogId': catalogId,
+      if (tempDirectory != null) 'TempDirectory': tempDirectory,
+    };
+  }
 }
 
 /// Represents a dataset that can be processed by AWS Glue DataBrew.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Dataset {
   /// Information on how DataBrew can find the dataset, in either the AWS Glue
   /// Data Catalog or Amazon S3.
-  @_s.JsonKey(name: 'Input')
   final Input input;
 
   /// The unique name of the dataset.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The ID of the AWS account that owns the dataset.
-  @_s.JsonKey(name: 'AccountId')
-  final String accountId;
+  final String? accountId;
 
   /// The date and time that the dataset was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (the user name) of the user who created the dataset.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// Options that define how DataBrew interprets the data in the dataset.
-  @_s.JsonKey(name: 'FormatOptions')
-  final FormatOptions formatOptions;
+  final FormatOptions? formatOptions;
 
   /// The identifier (the user name) of the user who last modified the dataset.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The last modification date and time of the dataset.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The unique Amazon Resource Name (ARN) for the dataset.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The location of the data for the dataset, either Amazon S3 or the AWS Glue
   /// Data Catalog.
-  @_s.JsonKey(name: 'Source')
-  final Source source;
+  final Source? source;
 
   /// Metadata tags that have been applied to the dataset.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   Dataset({
-    @_s.required this.input,
-    @_s.required this.name,
+    required this.input,
+    required this.name,
     this.accountId,
     this.createDate,
     this.createdBy,
@@ -2265,149 +2278,134 @@ class Dataset {
     this.source,
     this.tags,
   });
-  factory Dataset.fromJson(Map<String, dynamic> json) =>
-      _$DatasetFromJson(json);
+  factory Dataset.fromJson(Map<String, dynamic> json) {
+    return Dataset(
+      input: Input.fromJson(json['Input'] as Map<String, dynamic>),
+      name: json['Name'] as String,
+      accountId: json['AccountId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      formatOptions: json['FormatOptions'] != null
+          ? FormatOptions.fromJson(
+              json['FormatOptions'] as Map<String, dynamic>)
+          : null,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      source: (json['Source'] as String?)?.toSource(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteDatasetResponse {
   /// The name of the dataset that you deleted.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   DeleteDatasetResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory DeleteDatasetResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteDatasetResponseFromJson(json);
+  factory DeleteDatasetResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteDatasetResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteJobResponse {
   /// The name of the job that you deleted.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   DeleteJobResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory DeleteJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteJobResponseFromJson(json);
+  factory DeleteJobResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteJobResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteProjectResponse {
   /// The name of the project that you deleted.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   DeleteProjectResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory DeleteProjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteProjectResponseFromJson(json);
+  factory DeleteProjectResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteProjectResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteRecipeVersionResponse {
   /// The name of the recipe that was deleted.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The version of the recipe that was deleted.
-  @_s.JsonKey(name: 'RecipeVersion')
   final String recipeVersion;
 
   DeleteRecipeVersionResponse({
-    @_s.required this.name,
-    @_s.required this.recipeVersion,
+    required this.name,
+    required this.recipeVersion,
   });
-  factory DeleteRecipeVersionResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteRecipeVersionResponseFromJson(json);
+  factory DeleteRecipeVersionResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteRecipeVersionResponse(
+      name: json['Name'] as String,
+      recipeVersion: json['RecipeVersion'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteScheduleResponse {
   /// The name of the schedule that was deleted.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   DeleteScheduleResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory DeleteScheduleResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteScheduleResponseFromJson(json);
+  factory DeleteScheduleResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteScheduleResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeDatasetResponse {
-  @_s.JsonKey(name: 'Input')
   final Input input;
 
   /// The name of the dataset.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the dataset was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (user name) of the user who created the dataset.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
-  @_s.JsonKey(name: 'FormatOptions')
-  final FormatOptions formatOptions;
+  final String? createdBy;
+  final FormatOptions? formatOptions;
 
   /// The identifier (user name) of the user who last modified the dataset.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time that the dataset was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The Amazon Resource Name (ARN) of the dataset.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The location of the data for this dataset, Amazon S3 or the AWS Glue Data
   /// Catalog.
-  @_s.JsonKey(name: 'Source')
-  final Source source;
+  final Source? source;
 
   /// Metadata tags associated with this dataset.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   DescribeDatasetResponse({
-    @_s.required this.input,
-    @_s.required this.name,
+    required this.input,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.formatOptions,
@@ -2417,38 +2415,43 @@ class DescribeDatasetResponse {
     this.source,
     this.tags,
   });
-  factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeDatasetResponseFromJson(json);
+  factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeDatasetResponse(
+      input: Input.fromJson(json['Input'] as Map<String, dynamic>),
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      formatOptions: json['FormatOptions'] != null
+          ? FormatOptions.fromJson(
+              json['FormatOptions'] as Map<String, dynamic>)
+          : null,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      source: (json['Source'] as String?)?.toSource(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeJobResponse {
   /// The name of the job.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the job was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (user name) of the user associated with the creation of the
   /// job.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The dataset that the job acts upon.
-  @_s.JsonKey(name: 'DatasetName')
-  final String datasetName;
+  final String? datasetName;
 
   /// The Amazon Resource Name (ARN) of an encryption key that is used to protect
   /// the job.
-  @_s.JsonKey(name: 'EncryptionKeyArn')
-  final String encryptionKeyArn;
+  final String? encryptionKeyArn;
 
   /// The encryption mode for the job, which can be one of the following:
   ///
@@ -2460,59 +2463,45 @@ class DescribeJobResponse {
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'EncryptionMode')
-  final EncryptionMode encryptionMode;
+  final EncryptionMode? encryptionMode;
 
   /// The identifier (user name) of the user who last modified the job.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time that the job was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// A value that indicates whether Amazon CloudWatch logging is enabled for this
   /// job.
-  @_s.JsonKey(name: 'LogSubscription')
-  final LogSubscription logSubscription;
+  final LogSubscription? logSubscription;
 
   /// The maximum number of nodes that AWS Glue DataBrew can consume when the job
   /// processes data.
-  @_s.JsonKey(name: 'MaxCapacity')
-  final int maxCapacity;
+  final int? maxCapacity;
 
   /// The maximum number of times to retry the job after a job run fails.
-  @_s.JsonKey(name: 'MaxRetries')
-  final int maxRetries;
+  final int? maxRetries;
 
   /// One or more artifacts that represent the output from running the job.
-  @_s.JsonKey(name: 'Outputs')
-  final List<Output> outputs;
+  final List<Output>? outputs;
 
   /// The DataBrew project associated with this job.
-  @_s.JsonKey(name: 'ProjectName')
-  final String projectName;
-  @_s.JsonKey(name: 'RecipeReference')
-  final RecipeReference recipeReference;
+  final String? projectName;
+  final RecipeReference? recipeReference;
 
   /// The Amazon Resource Name (ARN) of the job.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The ARN of the AWS Identity and Access Management (IAM) role that was
   /// assumed for this request.
-  @_s.JsonKey(name: 'RoleArn')
-  final String roleArn;
+  final String? roleArn;
 
   /// Metadata tags associated with this job.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
-  @_s.JsonKey(name: 'Timeout')
-  final int timeout;
+  final int? timeout;
 
   /// The job type, which must be one of the following:
   ///
@@ -2526,11 +2515,10 @@ class DescribeJobResponse {
   /// dataset.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'Type')
-  final JobType type;
+  final JobType? type;
 
   DescribeJobResponse({
-    @_s.required this.name,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.datasetName,
@@ -2550,65 +2538,74 @@ class DescribeJobResponse {
     this.timeout,
     this.type,
   });
-  factory DescribeJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeJobResponseFromJson(json);
+  factory DescribeJobResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeJobResponse(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      datasetName: json['DatasetName'] as String?,
+      encryptionKeyArn: json['EncryptionKeyArn'] as String?,
+      encryptionMode: (json['EncryptionMode'] as String?)?.toEncryptionMode(),
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      logSubscription:
+          (json['LogSubscription'] as String?)?.toLogSubscription(),
+      maxCapacity: json['MaxCapacity'] as int?,
+      maxRetries: json['MaxRetries'] as int?,
+      outputs: (json['Outputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => Output.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      projectName: json['ProjectName'] as String?,
+      recipeReference: json['RecipeReference'] != null
+          ? RecipeReference.fromJson(
+              json['RecipeReference'] as Map<String, dynamic>)
+          : null,
+      resourceArn: json['ResourceArn'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      timeout: json['Timeout'] as int?,
+      type: (json['Type'] as String?)?.toJobType(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeProjectResponse {
   /// The name of the project.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the project was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (user name) of the user who created the project.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The dataset associated with the project.
-  @_s.JsonKey(name: 'DatasetName')
-  final String datasetName;
+  final String? datasetName;
 
   /// The identifier (user name) of the user who last modified the project.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time that the project was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The date and time when the project was opened.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'OpenDate')
-  final DateTime openDate;
+  final DateTime? openDate;
 
   /// The identifier (user name) of the user that opened the project for use.
-  @_s.JsonKey(name: 'OpenedBy')
-  final String openedBy;
+  final String? openedBy;
 
   /// The recipe associated with this job.
-  @_s.JsonKey(name: 'RecipeName')
-  final String recipeName;
+  final String? recipeName;
 
   /// The Amazon Resource Name (ARN) of the project.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The ARN of the AWS Identity and Access Management (IAM) role that was
   /// assumed for this request.
-  @_s.JsonKey(name: 'RoleArn')
-  final String roleArn;
-  @_s.JsonKey(name: 'Sample')
-  final Sample sample;
+  final String? roleArn;
+  final Sample? sample;
 
   /// Describes the current state of the session:
   ///
@@ -2623,15 +2620,13 @@ class DescribeProjectResponse {
   /// <code>ASSIGNED</code> - the session is ready for use.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'SessionStatus')
-  final SessionStatus sessionStatus;
+  final SessionStatus? sessionStatus;
 
   /// Metadata tags associated with this project.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   DescribeProjectResponse({
-    @_s.required this.name,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.datasetName,
@@ -2646,74 +2641,72 @@ class DescribeProjectResponse {
     this.sessionStatus,
     this.tags,
   });
-  factory DescribeProjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeProjectResponseFromJson(json);
+  factory DescribeProjectResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeProjectResponse(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      datasetName: json['DatasetName'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      openDate: timeStampFromJson(json['OpenDate']),
+      openedBy: json['OpenedBy'] as String?,
+      recipeName: json['RecipeName'] as String?,
+      resourceArn: json['ResourceArn'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      sample: json['Sample'] != null
+          ? Sample.fromJson(json['Sample'] as Map<String, dynamic>)
+          : null,
+      sessionStatus: (json['SessionStatus'] as String?)?.toSessionStatus(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeRecipeResponse {
   /// The name of the recipe.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the recipe was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (user name) of the user who created the recipe.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The description of the recipe.
-  @_s.JsonKey(name: 'Description')
-  final String description;
+  final String? description;
 
   /// The identifier (user name) of the user who last modified the recipe.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time that the recipe was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The name of the project associated with this recipe.
-  @_s.JsonKey(name: 'ProjectName')
-  final String projectName;
+  final String? projectName;
 
   /// The identifier (user name) of the user who last published the recipe.
-  @_s.JsonKey(name: 'PublishedBy')
-  final String publishedBy;
+  final String? publishedBy;
 
   /// The date and time when the recipe was last published.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'PublishedDate')
-  final DateTime publishedDate;
+  final DateTime? publishedDate;
 
   /// The recipe version identifier.
-  @_s.JsonKey(name: 'RecipeVersion')
-  final String recipeVersion;
+  final String? recipeVersion;
 
   /// The ARN of the recipe.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// One or more steps to be performed by the recipe. Each step consists of an
   /// action, and the conditions under which the action should succeed.
-  @_s.JsonKey(name: 'Steps')
-  final List<RecipeStep> steps;
+  final List<RecipeStep>? steps;
 
   /// Metadata tags associated with this project.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   DescribeRecipeResponse({
-    @_s.required this.name,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.description,
@@ -2727,57 +2720,60 @@ class DescribeRecipeResponse {
     this.steps,
     this.tags,
   });
-  factory DescribeRecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeRecipeResponseFromJson(json);
+  factory DescribeRecipeResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeRecipeResponse(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      description: json['Description'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      projectName: json['ProjectName'] as String?,
+      publishedBy: json['PublishedBy'] as String?,
+      publishedDate: timeStampFromJson(json['PublishedDate']),
+      recipeVersion: json['RecipeVersion'] as String?,
+      resourceArn: json['ResourceArn'] as String?,
+      steps: (json['Steps'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecipeStep.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeScheduleResponse {
   /// The name of the schedule.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the schedule was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (user name) of the user who created the schedule.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The date or dates and time or times, in <code>cron</code> format, when the
   /// jobs are to be run for the schedule.
-  @_s.JsonKey(name: 'CronExpression')
-  final String cronExpression;
+  final String? cronExpression;
 
   /// The name or names of one or more jobs to be run by using the schedule.
-  @_s.JsonKey(name: 'JobNames')
-  final List<String> jobNames;
+  final List<String>? jobNames;
 
   /// The identifier (user name) of the user who last modified the schedule.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time that the schedule was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The Amazon Resource Name (ARN) of the schedule.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// Metadata tags associated with this schedule.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   DescribeScheduleResponse({
-    @_s.required this.name,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.cronExpression,
@@ -2787,14 +2783,27 @@ class DescribeScheduleResponse {
     this.resourceArn,
     this.tags,
   });
-  factory DescribeScheduleResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeScheduleResponseFromJson(json);
+  factory DescribeScheduleResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeScheduleResponse(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      cronExpression: json['CronExpression'] as String?,
+      jobNames: (json['JobNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 enum EncryptionMode {
-  @_s.JsonValue('SSE-KMS')
   sseKms,
-  @_s.JsonValue('SSE-S3')
   sseS3,
 }
 
@@ -2806,121 +2815,150 @@ extension on EncryptionMode {
       case EncryptionMode.sseS3:
         return 'SSE-S3';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  EncryptionMode toEncryptionMode() {
+    switch (this) {
+      case 'SSE-KMS':
+        return EncryptionMode.sseKms;
+      case 'SSE-S3':
+        return EncryptionMode.sseS3;
+    }
+    throw Exception('$this is not known in enum EncryptionMode');
   }
 }
 
 /// Options that define how DataBrew will interpret a Microsoft Excel file, when
 /// creating a dataset from that file.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class ExcelOptions {
   /// Specifies one or more sheet numbers in the Excel file, which will be
   /// included in the dataset.
-  @_s.JsonKey(name: 'SheetIndexes')
-  final List<int> sheetIndexes;
+  final List<int>? sheetIndexes;
 
   /// Specifies one or more named sheets in the Excel file, which will be included
   /// in the dataset.
-  @_s.JsonKey(name: 'SheetNames')
-  final List<String> sheetNames;
+  final List<String>? sheetNames;
 
   ExcelOptions({
     this.sheetIndexes,
     this.sheetNames,
   });
-  factory ExcelOptions.fromJson(Map<String, dynamic> json) =>
-      _$ExcelOptionsFromJson(json);
+  factory ExcelOptions.fromJson(Map<String, dynamic> json) {
+    return ExcelOptions(
+      sheetIndexes: (json['SheetIndexes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as int)
+          .toList(),
+      sheetNames: (json['SheetNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$ExcelOptionsToJson(this);
+  Map<String, dynamic> toJson() {
+    final sheetIndexes = this.sheetIndexes;
+    final sheetNames = this.sheetNames;
+    return {
+      if (sheetIndexes != null) 'SheetIndexes': sheetIndexes,
+      if (sheetNames != null) 'SheetNames': sheetNames,
+    };
+  }
 }
 
 /// Options that define how Microsoft Excel input is to be interpreted by
 /// DataBrew.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class FormatOptions {
   /// Options that define how Excel input is to be interpreted by DataBrew.
-  @_s.JsonKey(name: 'Excel')
-  final ExcelOptions excel;
+  final ExcelOptions? excel;
 
   /// Options that define how JSON input is to be interpreted by DataBrew.
-  @_s.JsonKey(name: 'Json')
-  final JsonOptions json;
+  final JsonOptions? json;
 
   FormatOptions({
     this.excel,
     this.json,
   });
-  factory FormatOptions.fromJson(Map<String, dynamic> json) =>
-      _$FormatOptionsFromJson(json);
+  factory FormatOptions.fromJson(Map<String, dynamic> json) {
+    return FormatOptions(
+      excel: json['Excel'] != null
+          ? ExcelOptions.fromJson(json['Excel'] as Map<String, dynamic>)
+          : null,
+      json: json['Json'] != null
+          ? JsonOptions.fromJson(json['Json'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$FormatOptionsToJson(this);
+  Map<String, dynamic> toJson() {
+    final excel = this.excel;
+    final json = this.json;
+    return {
+      if (excel != null) 'Excel': excel,
+      if (json != null) 'Json': json,
+    };
+  }
 }
 
 /// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
 /// Data Catalog or Amazon S3.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class Input {
   /// The AWS Glue Data Catalog parameters for the data.
-  @_s.JsonKey(name: 'DataCatalogInputDefinition')
-  final DataCatalogInputDefinition dataCatalogInputDefinition;
+  final DataCatalogInputDefinition? dataCatalogInputDefinition;
 
   /// The Amazon S3 location where the data is stored.
-  @_s.JsonKey(name: 'S3InputDefinition')
-  final S3Location s3InputDefinition;
+  final S3Location? s3InputDefinition;
 
   Input({
     this.dataCatalogInputDefinition,
     this.s3InputDefinition,
   });
-  factory Input.fromJson(Map<String, dynamic> json) => _$InputFromJson(json);
+  factory Input.fromJson(Map<String, dynamic> json) {
+    return Input(
+      dataCatalogInputDefinition: json['DataCatalogInputDefinition'] != null
+          ? DataCatalogInputDefinition.fromJson(
+              json['DataCatalogInputDefinition'] as Map<String, dynamic>)
+          : null,
+      s3InputDefinition: json['S3InputDefinition'] != null
+          ? S3Location.fromJson(
+              json['S3InputDefinition'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$InputToJson(this);
+  Map<String, dynamic> toJson() {
+    final dataCatalogInputDefinition = this.dataCatalogInputDefinition;
+    final s3InputDefinition = this.s3InputDefinition;
+    return {
+      if (dataCatalogInputDefinition != null)
+        'DataCatalogInputDefinition': dataCatalogInputDefinition,
+      if (s3InputDefinition != null) 'S3InputDefinition': s3InputDefinition,
+    };
+  }
 }
 
 /// Represents all of the attributes of an AWS Glue DataBrew job.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Job {
   /// The unique name of the job.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The ID of the AWS account that owns the job.
-  @_s.JsonKey(name: 'AccountId')
-  final String accountId;
+  final String? accountId;
 
   /// The date and time that the job was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (the user name) of the user who created the job.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// A dataset that the job is to process.
-  @_s.JsonKey(name: 'DatasetName')
-  final String datasetName;
+  final String? datasetName;
 
   /// The Amazon Resource Name (ARN) of an encryption key that is used to protect
   /// a job.
-  @_s.JsonKey(name: 'EncryptionKeyArn')
-  final String encryptionKeyArn;
+  final String? encryptionKeyArn;
 
   /// The encryption mode for the job, which can be one of the following:
   ///
@@ -2932,60 +2970,46 @@ class Job {
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'EncryptionMode')
-  final EncryptionMode encryptionMode;
+  final EncryptionMode? encryptionMode;
 
   /// The identifier (the user name) of the user who last modified the job.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The modification date and time of the job.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The current status of Amazon CloudWatch logging for the job.
-  @_s.JsonKey(name: 'LogSubscription')
-  final LogSubscription logSubscription;
+  final LogSubscription? logSubscription;
 
   /// The maximum number of nodes that can be consumed when the job processes
   /// data.
-  @_s.JsonKey(name: 'MaxCapacity')
-  final int maxCapacity;
+  final int? maxCapacity;
 
   /// The maximum number of times to retry the job after a job run fails.
-  @_s.JsonKey(name: 'MaxRetries')
-  final int maxRetries;
+  final int? maxRetries;
 
   /// One or more artifacts that represent output from running the job.
-  @_s.JsonKey(name: 'Outputs')
-  final List<Output> outputs;
+  final List<Output>? outputs;
 
   /// The name of the project that the job is associated with.
-  @_s.JsonKey(name: 'ProjectName')
-  final String projectName;
+  final String? projectName;
 
   /// A set of steps that the job runs.
-  @_s.JsonKey(name: 'RecipeReference')
-  final RecipeReference recipeReference;
+  final RecipeReference? recipeReference;
 
   /// The unique Amazon Resource Name (ARN) for the job.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The Amazon Resource Name (ARN) of the role that will be assumed for this
   /// job.
-  @_s.JsonKey(name: 'RoleArn')
-  final String roleArn;
+  final String? roleArn;
 
   /// Metadata tags that have been applied to the job.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
-  @_s.JsonKey(name: 'Timeout')
-  final int timeout;
+  final int? timeout;
 
   /// The job type of the job, which must be one of the following:
   ///
@@ -2999,11 +3023,10 @@ class Job {
   /// dataset.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'Type')
-  final JobType type;
+  final JobType? type;
 
   Job({
-    @_s.required this.name,
+    required this.name,
     this.accountId,
     this.createDate,
     this.createdBy,
@@ -3024,75 +3047,85 @@ class Job {
     this.timeout,
     this.type,
   });
-  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
+  factory Job.fromJson(Map<String, dynamic> json) {
+    return Job(
+      name: json['Name'] as String,
+      accountId: json['AccountId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      datasetName: json['DatasetName'] as String?,
+      encryptionKeyArn: json['EncryptionKeyArn'] as String?,
+      encryptionMode: (json['EncryptionMode'] as String?)?.toEncryptionMode(),
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      logSubscription:
+          (json['LogSubscription'] as String?)?.toLogSubscription(),
+      maxCapacity: json['MaxCapacity'] as int?,
+      maxRetries: json['MaxRetries'] as int?,
+      outputs: (json['Outputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => Output.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      projectName: json['ProjectName'] as String?,
+      recipeReference: json['RecipeReference'] != null
+          ? RecipeReference.fromJson(
+              json['RecipeReference'] as Map<String, dynamic>)
+          : null,
+      resourceArn: json['ResourceArn'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      timeout: json['Timeout'] as int?,
+      type: (json['Type'] as String?)?.toJobType(),
+    );
+  }
 }
 
 /// Represents one run of an AWS Glue DataBrew job.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class JobRun {
   /// The number of times that DataBrew has attempted to run the job.
-  @_s.JsonKey(name: 'Attempt')
-  final int attempt;
+  final int? attempt;
 
   /// The date and time when the job completed processing.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CompletedOn')
-  final DateTime completedOn;
+  final DateTime? completedOn;
 
   /// The name of the dataset for the job to process.
-  @_s.JsonKey(name: 'DatasetName')
-  final String datasetName;
+  final String? datasetName;
 
   /// A message indicating an error (if any) that was encountered when the job
   /// ran.
-  @_s.JsonKey(name: 'ErrorMessage')
-  final String errorMessage;
+  final String? errorMessage;
 
   /// The amount of time, in seconds, during which a job run consumed resources.
-  @_s.JsonKey(name: 'ExecutionTime')
-  final int executionTime;
+  final int? executionTime;
 
   /// The name of the job being processed during this run.
-  @_s.JsonKey(name: 'JobName')
-  final String jobName;
+  final String? jobName;
 
   /// The name of an Amazon CloudWatch log group, where the job writes diagnostic
   /// messages when it runs.
-  @_s.JsonKey(name: 'LogGroupName')
-  final String logGroupName;
+  final String? logGroupName;
 
   /// The current status of Amazon CloudWatch logging for the job run.
-  @_s.JsonKey(name: 'LogSubscription')
-  final LogSubscription logSubscription;
+  final LogSubscription? logSubscription;
 
   /// One or more output artifacts from a job run.
-  @_s.JsonKey(name: 'Outputs')
-  final List<Output> outputs;
+  final List<Output>? outputs;
 
   /// The set of steps processed by the job.
-  @_s.JsonKey(name: 'RecipeReference')
-  final RecipeReference recipeReference;
+  final RecipeReference? recipeReference;
 
   /// The unique identifier of the job run.
-  @_s.JsonKey(name: 'RunId')
-  final String runId;
+  final String? runId;
 
   /// The identifier (the user name) of the user who initiated the job run.
-  @_s.JsonKey(name: 'StartedBy')
-  final String startedBy;
+  final String? startedBy;
 
   /// The date and time when the job run began.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'StartedOn')
-  final DateTime startedOn;
+  final DateTime? startedOn;
 
   /// The current state of the job run entity itself.
-  @_s.JsonKey(name: 'State')
-  final JobRunState state;
+  final JobRunState? state;
 
   JobRun({
     this.attempt,
@@ -3110,244 +3143,323 @@ class JobRun {
     this.startedOn,
     this.state,
   });
-  factory JobRun.fromJson(Map<String, dynamic> json) => _$JobRunFromJson(json);
+  factory JobRun.fromJson(Map<String, dynamic> json) {
+    return JobRun(
+      attempt: json['Attempt'] as int?,
+      completedOn: timeStampFromJson(json['CompletedOn']),
+      datasetName: json['DatasetName'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+      executionTime: json['ExecutionTime'] as int?,
+      jobName: json['JobName'] as String?,
+      logGroupName: json['LogGroupName'] as String?,
+      logSubscription:
+          (json['LogSubscription'] as String?)?.toLogSubscription(),
+      outputs: (json['Outputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => Output.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      recipeReference: json['RecipeReference'] != null
+          ? RecipeReference.fromJson(
+              json['RecipeReference'] as Map<String, dynamic>)
+          : null,
+      runId: json['RunId'] as String?,
+      startedBy: json['StartedBy'] as String?,
+      startedOn: timeStampFromJson(json['StartedOn']),
+      state: (json['State'] as String?)?.toJobRunState(),
+    );
+  }
 }
 
 enum JobRunState {
-  @_s.JsonValue('STARTING')
   starting,
-  @_s.JsonValue('RUNNING')
   running,
-  @_s.JsonValue('STOPPING')
   stopping,
-  @_s.JsonValue('STOPPED')
   stopped,
-  @_s.JsonValue('SUCCEEDED')
   succeeded,
-  @_s.JsonValue('FAILED')
   failed,
-  @_s.JsonValue('TIMEOUT')
   timeout,
 }
 
+extension on JobRunState {
+  String toValue() {
+    switch (this) {
+      case JobRunState.starting:
+        return 'STARTING';
+      case JobRunState.running:
+        return 'RUNNING';
+      case JobRunState.stopping:
+        return 'STOPPING';
+      case JobRunState.stopped:
+        return 'STOPPED';
+      case JobRunState.succeeded:
+        return 'SUCCEEDED';
+      case JobRunState.failed:
+        return 'FAILED';
+      case JobRunState.timeout:
+        return 'TIMEOUT';
+    }
+  }
+}
+
+extension on String {
+  JobRunState toJobRunState() {
+    switch (this) {
+      case 'STARTING':
+        return JobRunState.starting;
+      case 'RUNNING':
+        return JobRunState.running;
+      case 'STOPPING':
+        return JobRunState.stopping;
+      case 'STOPPED':
+        return JobRunState.stopped;
+      case 'SUCCEEDED':
+        return JobRunState.succeeded;
+      case 'FAILED':
+        return JobRunState.failed;
+      case 'TIMEOUT':
+        return JobRunState.timeout;
+    }
+    throw Exception('$this is not known in enum JobRunState');
+  }
+}
+
 enum JobType {
-  @_s.JsonValue('PROFILE')
   profile,
-  @_s.JsonValue('RECIPE')
   recipe,
+}
+
+extension on JobType {
+  String toValue() {
+    switch (this) {
+      case JobType.profile:
+        return 'PROFILE';
+      case JobType.recipe:
+        return 'RECIPE';
+    }
+  }
+}
+
+extension on String {
+  JobType toJobType() {
+    switch (this) {
+      case 'PROFILE':
+        return JobType.profile;
+      case 'RECIPE':
+        return JobType.recipe;
+    }
+    throw Exception('$this is not known in enum JobType');
+  }
 }
 
 /// Represents the JSON-specific options that define how input is to be
 /// interpreted by AWS Glue DataBrew.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class JsonOptions {
   /// A value that specifies whether JSON input contains embedded new line
   /// characters.
-  @_s.JsonKey(name: 'MultiLine')
-  final bool multiLine;
+  final bool? multiLine;
 
   JsonOptions({
     this.multiLine,
   });
-  factory JsonOptions.fromJson(Map<String, dynamic> json) =>
-      _$JsonOptionsFromJson(json);
+  factory JsonOptions.fromJson(Map<String, dynamic> json) {
+    return JsonOptions(
+      multiLine: json['MultiLine'] as bool?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$JsonOptionsToJson(this);
+  Map<String, dynamic> toJson() {
+    final multiLine = this.multiLine;
+    return {
+      if (multiLine != null) 'MultiLine': multiLine,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListDatasetsResponse {
   /// A list of datasets that are defined in the current AWS account.
-  @_s.JsonKey(name: 'Datasets')
   final List<Dataset> datasets;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To obtain the next set of pages, pass in
   /// the NextToken from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListDatasetsResponse({
-    @_s.required this.datasets,
+    required this.datasets,
     this.nextToken,
   });
-  factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListDatasetsResponseFromJson(json);
+  factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) {
+    return ListDatasetsResponse(
+      datasets: (json['Datasets'] as List)
+          .whereNotNull()
+          .map((e) => Dataset.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListJobRunsResponse {
   /// A list of job runs that have occurred for the specified job.
-  @_s.JsonKey(name: 'JobRuns')
   final List<JobRun> jobRuns;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To obtain the next set of pages, pass in
   /// the NextToken from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListJobRunsResponse({
-    @_s.required this.jobRuns,
+    required this.jobRuns,
     this.nextToken,
   });
-  factory ListJobRunsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListJobRunsResponseFromJson(json);
+  factory ListJobRunsResponse.fromJson(Map<String, dynamic> json) {
+    return ListJobRunsResponse(
+      jobRuns: (json['JobRuns'] as List)
+          .whereNotNull()
+          .map((e) => JobRun.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListJobsResponse {
   /// A list of jobs that are defined in the current AWS account.
-  @_s.JsonKey(name: 'Jobs')
   final List<Job> jobs;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To obtain the next set of pages, pass in
   /// the NextToken from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListJobsResponse({
-    @_s.required this.jobs,
+    required this.jobs,
     this.nextToken,
   });
-  factory ListJobsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListJobsResponseFromJson(json);
+  factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
+    return ListJobsResponse(
+      jobs: (json['Jobs'] as List)
+          .whereNotNull()
+          .map((e) => Job.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListProjectsResponse {
   /// A list of projects that are defined in the current AWS account.
-  @_s.JsonKey(name: 'Projects')
   final List<Project> projects;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To get the next set of pages, pass in the
   /// NextToken value from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListProjectsResponse({
-    @_s.required this.projects,
+    required this.projects,
     this.nextToken,
   });
-  factory ListProjectsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListProjectsResponseFromJson(json);
+  factory ListProjectsResponse.fromJson(Map<String, dynamic> json) {
+    return ListProjectsResponse(
+      projects: (json['Projects'] as List)
+          .whereNotNull()
+          .map((e) => Project.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListRecipeVersionsResponse {
   /// A list of versions for the specified recipe.
-  @_s.JsonKey(name: 'Recipes')
   final List<Recipe> recipes;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To get the next set of pages, pass in the
   /// NextToken value from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListRecipeVersionsResponse({
-    @_s.required this.recipes,
+    required this.recipes,
     this.nextToken,
   });
-  factory ListRecipeVersionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListRecipeVersionsResponseFromJson(json);
+  factory ListRecipeVersionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListRecipeVersionsResponse(
+      recipes: (json['Recipes'] as List)
+          .whereNotNull()
+          .map((e) => Recipe.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListRecipesResponse {
   /// A list of recipes that are defined in the current AWS account.
-  @_s.JsonKey(name: 'Recipes')
   final List<Recipe> recipes;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To get the next set of pages, pass in the
   /// NextToken value from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListRecipesResponse({
-    @_s.required this.recipes,
+    required this.recipes,
     this.nextToken,
   });
-  factory ListRecipesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListRecipesResponseFromJson(json);
+  factory ListRecipesResponse.fromJson(Map<String, dynamic> json) {
+    return ListRecipesResponse(
+      recipes: (json['Recipes'] as List)
+          .whereNotNull()
+          .map((e) => Recipe.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListSchedulesResponse {
   /// A list of schedules in the current AWS account.
-  @_s.JsonKey(name: 'Schedules')
   final List<Schedule> schedules;
 
   /// A token generated by DataBrew that specifies where to continue pagination if
   /// a previous request was truncated. To get the next set of pages, pass in the
   /// NextToken value from the response object of the previous page call.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListSchedulesResponse({
-    @_s.required this.schedules,
+    required this.schedules,
     this.nextToken,
   });
-  factory ListSchedulesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListSchedulesResponseFromJson(json);
+  factory ListSchedulesResponse.fromJson(Map<String, dynamic> json) {
+    return ListSchedulesResponse(
+      schedules: (json['Schedules'] as List)
+          .whereNotNull()
+          .map((e) => Schedule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
   /// A list of tags associated with the DataBrew resource.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
     this.tags,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 enum LogSubscription {
-  @_s.JsonValue('ENABLE')
   enable,
-  @_s.JsonValue('DISABLE')
   disable,
 }
 
@@ -3359,139 +3471,180 @@ extension on LogSubscription {
       case LogSubscription.disable:
         return 'DISABLE';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  LogSubscription toLogSubscription() {
+    switch (this) {
+      case 'ENABLE':
+        return LogSubscription.enable;
+      case 'DISABLE':
+        return LogSubscription.disable;
+    }
+    throw Exception('$this is not known in enum LogSubscription');
   }
 }
 
 /// Represents individual output from a particular job run.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class Output {
   /// The location in Amazon S3 where the job writes its output.
-  @_s.JsonKey(name: 'Location')
   final S3Location location;
 
   /// The compression algorithm used to compress the output text of the job.
-  @_s.JsonKey(name: 'CompressionFormat')
-  final CompressionFormat compressionFormat;
+  final CompressionFormat? compressionFormat;
 
   /// The data format of the output of the job.
-  @_s.JsonKey(name: 'Format')
-  final OutputFormat format;
+  final OutputFormat? format;
 
   /// A value that, if true, means that any data in the location specified for
   /// output is overwritten with new output.
-  @_s.JsonKey(name: 'Overwrite')
-  final bool overwrite;
+  final bool? overwrite;
 
   /// The names of one or more partition columns for the output of the job.
-  @_s.JsonKey(name: 'PartitionColumns')
-  final List<String> partitionColumns;
+  final List<String>? partitionColumns;
 
   Output({
-    @_s.required this.location,
+    required this.location,
     this.compressionFormat,
     this.format,
     this.overwrite,
     this.partitionColumns,
   });
-  factory Output.fromJson(Map<String, dynamic> json) => _$OutputFromJson(json);
+  factory Output.fromJson(Map<String, dynamic> json) {
+    return Output(
+      location: S3Location.fromJson(json['Location'] as Map<String, dynamic>),
+      compressionFormat:
+          (json['CompressionFormat'] as String?)?.toCompressionFormat(),
+      format: (json['Format'] as String?)?.toOutputFormat(),
+      overwrite: json['Overwrite'] as bool?,
+      partitionColumns: (json['PartitionColumns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$OutputToJson(this);
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final compressionFormat = this.compressionFormat;
+    final format = this.format;
+    final overwrite = this.overwrite;
+    final partitionColumns = this.partitionColumns;
+    return {
+      'Location': location,
+      if (compressionFormat != null)
+        'CompressionFormat': compressionFormat.toValue(),
+      if (format != null) 'Format': format.toValue(),
+      if (overwrite != null) 'Overwrite': overwrite,
+      if (partitionColumns != null) 'PartitionColumns': partitionColumns,
+    };
+  }
 }
 
 enum OutputFormat {
-  @_s.JsonValue('CSV')
   csv,
-  @_s.JsonValue('JSON')
   json,
-  @_s.JsonValue('PARQUET')
   parquet,
-  @_s.JsonValue('GLUEPARQUET')
   glueparquet,
-  @_s.JsonValue('AVRO')
   avro,
-  @_s.JsonValue('ORC')
   orc,
-  @_s.JsonValue('XML')
   xml,
 }
 
+extension on OutputFormat {
+  String toValue() {
+    switch (this) {
+      case OutputFormat.csv:
+        return 'CSV';
+      case OutputFormat.json:
+        return 'JSON';
+      case OutputFormat.parquet:
+        return 'PARQUET';
+      case OutputFormat.glueparquet:
+        return 'GLUEPARQUET';
+      case OutputFormat.avro:
+        return 'AVRO';
+      case OutputFormat.orc:
+        return 'ORC';
+      case OutputFormat.xml:
+        return 'XML';
+    }
+  }
+}
+
+extension on String {
+  OutputFormat toOutputFormat() {
+    switch (this) {
+      case 'CSV':
+        return OutputFormat.csv;
+      case 'JSON':
+        return OutputFormat.json;
+      case 'PARQUET':
+        return OutputFormat.parquet;
+      case 'GLUEPARQUET':
+        return OutputFormat.glueparquet;
+      case 'AVRO':
+        return OutputFormat.avro;
+      case 'ORC':
+        return OutputFormat.orc;
+      case 'XML':
+        return OutputFormat.xml;
+    }
+    throw Exception('$this is not known in enum OutputFormat');
+  }
+}
+
 /// Represents all of the attributes of an AWS Glue DataBrew project.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Project {
   /// The unique name of a project.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The name of a recipe that will be developed during a project session.
-  @_s.JsonKey(name: 'RecipeName')
   final String recipeName;
 
   /// The ID of the AWS account that owns the project.
-  @_s.JsonKey(name: 'AccountId')
-  final String accountId;
+  final String? accountId;
 
   /// The date and time that the project was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (the user name) of the user who crated the project.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The dataset that the project is to act upon.
-  @_s.JsonKey(name: 'DatasetName')
-  final String datasetName;
+  final String? datasetName;
 
   /// The identifier (user name) of the user who last modified the project.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The last modification date and time for the project.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The date and time when the project was opened.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'OpenDate')
-  final DateTime openDate;
+  final DateTime? openDate;
 
   /// The identifier (the user name) of the user that opened the project for use.
-  @_s.JsonKey(name: 'OpenedBy')
-  final String openedBy;
+  final String? openedBy;
 
   /// The Amazon Resource Name (ARN) for the project.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// The Amazon Resource Name (ARN) of the role that will be assumed for this
   /// project.
-  @_s.JsonKey(name: 'RoleArn')
-  final String roleArn;
+  final String? roleArn;
 
   /// The sample size and sampling type to apply to the data. If this parameter
   /// isn't specified, then the sample will consiste of the first 500 rows from
   /// the dataset.
-  @_s.JsonKey(name: 'Sample')
-  final Sample sample;
+  final Sample? sample;
 
   /// Metadata tags that have been applied to the project.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   Project({
-    @_s.required this.name,
-    @_s.required this.recipeName,
+    required this.name,
+    required this.recipeName,
     this.accountId,
     this.createDate,
     this.createdBy,
@@ -3505,92 +3658,87 @@ class Project {
     this.sample,
     this.tags,
   });
-  factory Project.fromJson(Map<String, dynamic> json) =>
-      _$ProjectFromJson(json);
+  factory Project.fromJson(Map<String, dynamic> json) {
+    return Project(
+      name: json['Name'] as String,
+      recipeName: json['RecipeName'] as String,
+      accountId: json['AccountId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      datasetName: json['DatasetName'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      openDate: timeStampFromJson(json['OpenDate']),
+      openedBy: json['OpenedBy'] as String?,
+      resourceArn: json['ResourceArn'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      sample: json['Sample'] != null
+          ? Sample.fromJson(json['Sample'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PublishRecipeResponse {
   /// The name of the recipe that you published.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   PublishRecipeResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory PublishRecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$PublishRecipeResponseFromJson(json);
+  factory PublishRecipeResponse.fromJson(Map<String, dynamic> json) {
+    return PublishRecipeResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
 /// Represents one or more actions to be performed on an AWS Glue DataBrew
 /// dataset.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Recipe {
   /// The unique name for the recipe.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the recipe was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (the user name) of the user who created the recipe.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The description of the recipe.
-  @_s.JsonKey(name: 'Description')
-  final String description;
+  final String? description;
 
   /// The identifier (user name) of the user who last modified the recipe.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The last modification date and time of the recipe.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The name of the project that the recipe is associated with.
-  @_s.JsonKey(name: 'ProjectName')
-  final String projectName;
+  final String? projectName;
 
   /// The identifier (the user name) of the user who published the recipe.
-  @_s.JsonKey(name: 'PublishedBy')
-  final String publishedBy;
+  final String? publishedBy;
 
   /// The date and time when the recipe was published.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'PublishedDate')
-  final DateTime publishedDate;
+  final DateTime? publishedDate;
 
   /// The identifier for the version for the recipe.
-  @_s.JsonKey(name: 'RecipeVersion')
-  final String recipeVersion;
+  final String? recipeVersion;
 
   /// The Amazon Resource Name (ARN) for the recipe.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// A list of steps that are defined by the recipe.
-  @_s.JsonKey(name: 'Steps')
-  final List<RecipeStep> steps;
+  final List<RecipeStep>? steps;
 
   /// Metadata tags that have been applied to the recipe.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   Recipe({
-    @_s.required this.name,
+    required this.name,
     this.createDate,
     this.createdBy,
     this.description,
@@ -3604,7 +3752,27 @@ class Recipe {
     this.steps,
     this.tags,
   });
-  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    return Recipe(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      description: json['Description'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      projectName: json['ProjectName'] as String?,
+      publishedBy: json['PublishedBy'] as String?,
+      publishedDate: timeStampFromJson(json['PublishedDate']),
+      recipeVersion: json['RecipeVersion'] as String?,
+      resourceArn: json['ResourceArn'] as String?,
+      steps: (json['Steps'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecipeStep.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// Represents a transformation and associated parameters that are used to apply
@@ -3613,64 +3781,67 @@ class Recipe {
 /// structure</a> and <a
 /// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html">ecipe
 /// actions reference</a> .
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class RecipeAction {
   /// The name of a valid DataBrew transformation to be performed on the data.
-  @_s.JsonKey(name: 'Operation')
   final String operation;
 
   /// Contextual parameters for the transformation.
-  @_s.JsonKey(name: 'Parameters')
-  final Map<String, String> parameters;
+  final Map<String, String>? parameters;
 
   RecipeAction({
-    @_s.required this.operation,
+    required this.operation,
     this.parameters,
   });
-  factory RecipeAction.fromJson(Map<String, dynamic> json) =>
-      _$RecipeActionFromJson(json);
+  factory RecipeAction.fromJson(Map<String, dynamic> json) {
+    return RecipeAction(
+      operation: json['Operation'] as String,
+      parameters: (json['Parameters'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$RecipeActionToJson(this);
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    final parameters = this.parameters;
+    return {
+      'Operation': operation,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// Represents all of the attributes of an AWS Glue DataBrew recipe.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class RecipeReference {
   /// The name of the recipe.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The identifier for the version for the recipe.
-  @_s.JsonKey(name: 'RecipeVersion')
-  final String recipeVersion;
+  final String? recipeVersion;
 
   RecipeReference({
-    @_s.required this.name,
+    required this.name,
     this.recipeVersion,
   });
-  factory RecipeReference.fromJson(Map<String, dynamic> json) =>
-      _$RecipeReferenceFromJson(json);
+  factory RecipeReference.fromJson(Map<String, dynamic> json) {
+    return RecipeReference(
+      name: json['Name'] as String,
+      recipeVersion: json['RecipeVersion'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$RecipeReferenceToJson(this);
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final recipeVersion = this.recipeVersion;
+    return {
+      'Name': name,
+      if (recipeVersion != null) 'RecipeVersion': recipeVersion,
+    };
+  }
 }
 
 /// Represents a single step to be performed in an AWS Glue DataBrew recipe.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class RecipeStep {
   /// The particular action to be performed in the recipe step.
-  @_s.JsonKey(name: 'Action')
   final RecipeAction action;
 
   /// One or more conditions that must be met, in order for the recipe step to
@@ -3679,159 +3850,186 @@ class RecipeStep {
   /// All of the conditions in the array must be met. In other words, all of the
   /// conditions must be combined using a logical AND operation.
   /// </note>
-  @_s.JsonKey(name: 'ConditionExpressions')
-  final List<ConditionExpression> conditionExpressions;
+  final List<ConditionExpression>? conditionExpressions;
 
   RecipeStep({
-    @_s.required this.action,
+    required this.action,
     this.conditionExpressions,
   });
-  factory RecipeStep.fromJson(Map<String, dynamic> json) =>
-      _$RecipeStepFromJson(json);
+  factory RecipeStep.fromJson(Map<String, dynamic> json) {
+    return RecipeStep(
+      action: RecipeAction.fromJson(json['Action'] as Map<String, dynamic>),
+      conditionExpressions: (json['ConditionExpressions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConditionExpression.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$RecipeStepToJson(this);
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final conditionExpressions = this.conditionExpressions;
+    return {
+      'Action': action,
+      if (conditionExpressions != null)
+        'ConditionExpressions': conditionExpressions,
+    };
+  }
 }
 
 /// Represents any errors encountered when attempting to delete multiple recipe
 /// versions.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class RecipeVersionErrorDetail {
   /// The HTTP status code for the error.
-  @_s.JsonKey(name: 'ErrorCode')
-  final String errorCode;
+  final String? errorCode;
 
   /// The text of the error message.
-  @_s.JsonKey(name: 'ErrorMessage')
-  final String errorMessage;
+  final String? errorMessage;
 
   /// The identifier for the recipe version associated with this error.
-  @_s.JsonKey(name: 'RecipeVersion')
-  final String recipeVersion;
+  final String? recipeVersion;
 
   RecipeVersionErrorDetail({
     this.errorCode,
     this.errorMessage,
     this.recipeVersion,
   });
-  factory RecipeVersionErrorDetail.fromJson(Map<String, dynamic> json) =>
-      _$RecipeVersionErrorDetailFromJson(json);
+  factory RecipeVersionErrorDetail.fromJson(Map<String, dynamic> json) {
+    return RecipeVersionErrorDetail(
+      errorCode: json['ErrorCode'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+      recipeVersion: json['RecipeVersion'] as String?,
+    );
+  }
 }
 
 /// An Amazon S3 location (bucket name an object key) where DataBrew can read
 /// input data, or write output from a job.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class S3Location {
   /// The S3 bucket name.
-  @_s.JsonKey(name: 'Bucket')
   final String bucket;
 
   /// The unique name of the object in the bucket.
-  @_s.JsonKey(name: 'Key')
-  final String key;
+  final String? key;
 
   S3Location({
-    @_s.required this.bucket,
+    required this.bucket,
     this.key,
   });
-  factory S3Location.fromJson(Map<String, dynamic> json) =>
-      _$S3LocationFromJson(json);
+  factory S3Location.fromJson(Map<String, dynamic> json) {
+    return S3Location(
+      bucket: json['Bucket'] as String,
+      key: json['Key'] as String?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$S3LocationToJson(this);
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      'Bucket': bucket,
+      if (key != null) 'Key': key,
+    };
+  }
 }
 
 /// Represents the sample size and sampling type for AWS Glue DataBrew to use
 /// for interactive data analysis.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class Sample {
   /// The way in which DataBrew obtains rows from a dataset.
-  @_s.JsonKey(name: 'Type')
   final SampleType type;
 
   /// The number of rows in the sample.
-  @_s.JsonKey(name: 'Size')
-  final int size;
+  final int? size;
 
   Sample({
-    @_s.required this.type,
+    required this.type,
     this.size,
   });
-  factory Sample.fromJson(Map<String, dynamic> json) => _$SampleFromJson(json);
+  factory Sample.fromJson(Map<String, dynamic> json) {
+    return Sample(
+      type: (json['Type'] as String).toSampleType(),
+      size: json['Size'] as int?,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$SampleToJson(this);
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final size = this.size;
+    return {
+      'Type': type.toValue(),
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 enum SampleType {
-  @_s.JsonValue('FIRST_N')
   firstN,
-  @_s.JsonValue('LAST_N')
   lastN,
-  @_s.JsonValue('RANDOM')
   random,
 }
 
+extension on SampleType {
+  String toValue() {
+    switch (this) {
+      case SampleType.firstN:
+        return 'FIRST_N';
+      case SampleType.lastN:
+        return 'LAST_N';
+      case SampleType.random:
+        return 'RANDOM';
+    }
+  }
+}
+
+extension on String {
+  SampleType toSampleType() {
+    switch (this) {
+      case 'FIRST_N':
+        return SampleType.firstN;
+      case 'LAST_N':
+        return SampleType.lastN;
+      case 'RANDOM':
+        return SampleType.random;
+    }
+    throw Exception('$this is not known in enum SampleType');
+  }
+}
+
 /// Represents one or more dates and times when a job is to run.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Schedule {
   /// The name of the schedule.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The ID of the AWS account that owns the schedule.
-  @_s.JsonKey(name: 'AccountId')
-  final String accountId;
+  final String? accountId;
 
   /// The date and time that the schedule was created.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'CreateDate')
-  final DateTime createDate;
+  final DateTime? createDate;
 
   /// The identifier (the user name) of the user who created the schedule.
-  @_s.JsonKey(name: 'CreatedBy')
-  final String createdBy;
+  final String? createdBy;
 
   /// The date(s) and time(s), in <code>cron</code> format, when the job will run.
-  @_s.JsonKey(name: 'CronExpression')
-  final String cronExpression;
+  final String? cronExpression;
 
   /// A list of jobs to be run, according to the schedule.
-  @_s.JsonKey(name: 'JobNames')
-  final List<String> jobNames;
+  final List<String>? jobNames;
 
   /// The identifier (the user name) of the user who last modified the schedule.
-  @_s.JsonKey(name: 'LastModifiedBy')
-  final String lastModifiedBy;
+  final String? lastModifiedBy;
 
   /// The date and time when the schedule was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   /// The Amazon Resource Name (ARN) of the schedule.
-  @_s.JsonKey(name: 'ResourceArn')
-  final String resourceArn;
+  final String? resourceArn;
 
   /// Metadata tags that have been applied to the schedule.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   Schedule({
-    @_s.required this.name,
+    required this.name,
     this.accountId,
     this.createDate,
     this.createdBy,
@@ -3842,306 +4040,349 @@ class Schedule {
     this.resourceArn,
     this.tags,
   });
-  factory Schedule.fromJson(Map<String, dynamic> json) =>
-      _$ScheduleFromJson(json);
+  factory Schedule.fromJson(Map<String, dynamic> json) {
+    return Schedule(
+      name: json['Name'] as String,
+      accountId: json['AccountId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      cronExpression: json['CronExpression'] as String?,
+      jobNames: (json['JobNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SendProjectSessionActionResponse {
   /// The name of the project that was affected by the action.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// A unique identifier for the action that was performed.
-  @_s.JsonKey(name: 'ActionId')
-  final int actionId;
+  final int? actionId;
 
   /// A message indicating the result of performing the action.
-  @_s.JsonKey(name: 'Result')
-  final String result;
+  final String? result;
 
   SendProjectSessionActionResponse({
-    @_s.required this.name,
+    required this.name,
     this.actionId,
     this.result,
   });
-  factory SendProjectSessionActionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$SendProjectSessionActionResponseFromJson(json);
+  factory SendProjectSessionActionResponse.fromJson(Map<String, dynamic> json) {
+    return SendProjectSessionActionResponse(
+      name: json['Name'] as String,
+      actionId: json['ActionId'] as int?,
+      result: json['Result'] as String?,
+    );
+  }
 }
 
 enum SessionStatus {
-  @_s.JsonValue('ASSIGNED')
   assigned,
-  @_s.JsonValue('FAILED')
   failed,
-  @_s.JsonValue('INITIALIZING')
   initializing,
-  @_s.JsonValue('PROVISIONING')
   provisioning,
-  @_s.JsonValue('READY')
   ready,
-  @_s.JsonValue('RECYCLING')
   recycling,
-  @_s.JsonValue('ROTATING')
   rotating,
-  @_s.JsonValue('TERMINATED')
   terminated,
-  @_s.JsonValue('TERMINATING')
   terminating,
-  @_s.JsonValue('UPDATING')
   updating,
 }
 
+extension on SessionStatus {
+  String toValue() {
+    switch (this) {
+      case SessionStatus.assigned:
+        return 'ASSIGNED';
+      case SessionStatus.failed:
+        return 'FAILED';
+      case SessionStatus.initializing:
+        return 'INITIALIZING';
+      case SessionStatus.provisioning:
+        return 'PROVISIONING';
+      case SessionStatus.ready:
+        return 'READY';
+      case SessionStatus.recycling:
+        return 'RECYCLING';
+      case SessionStatus.rotating:
+        return 'ROTATING';
+      case SessionStatus.terminated:
+        return 'TERMINATED';
+      case SessionStatus.terminating:
+        return 'TERMINATING';
+      case SessionStatus.updating:
+        return 'UPDATING';
+    }
+  }
+}
+
+extension on String {
+  SessionStatus toSessionStatus() {
+    switch (this) {
+      case 'ASSIGNED':
+        return SessionStatus.assigned;
+      case 'FAILED':
+        return SessionStatus.failed;
+      case 'INITIALIZING':
+        return SessionStatus.initializing;
+      case 'PROVISIONING':
+        return SessionStatus.provisioning;
+      case 'READY':
+        return SessionStatus.ready;
+      case 'RECYCLING':
+        return SessionStatus.recycling;
+      case 'ROTATING':
+        return SessionStatus.rotating;
+      case 'TERMINATED':
+        return SessionStatus.terminated;
+      case 'TERMINATING':
+        return SessionStatus.terminating;
+      case 'UPDATING':
+        return SessionStatus.updating;
+    }
+    throw Exception('$this is not known in enum SessionStatus');
+  }
+}
+
 enum Source {
-  @_s.JsonValue('S3')
   s3,
-  @_s.JsonValue('DATA-CATALOG')
   dataCatalog,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on Source {
+  String toValue() {
+    switch (this) {
+      case Source.s3:
+        return 'S3';
+      case Source.dataCatalog:
+        return 'DATA-CATALOG';
+    }
+  }
+}
+
+extension on String {
+  Source toSource() {
+    switch (this) {
+      case 'S3':
+        return Source.s3;
+      case 'DATA-CATALOG':
+        return Source.dataCatalog;
+    }
+    throw Exception('$this is not known in enum Source');
+  }
+}
+
 class StartJobRunResponse {
   /// A system-generated identifier for this particular job run.
-  @_s.JsonKey(name: 'RunId')
   final String runId;
 
   StartJobRunResponse({
-    @_s.required this.runId,
+    required this.runId,
   });
-  factory StartJobRunResponse.fromJson(Map<String, dynamic> json) =>
-      _$StartJobRunResponseFromJson(json);
+  factory StartJobRunResponse.fromJson(Map<String, dynamic> json) {
+    return StartJobRunResponse(
+      runId: json['RunId'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StartProjectSessionResponse {
   /// The name of the project to be acted upon.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// A system-generated identifier for the session.
-  @_s.JsonKey(name: 'ClientSessionId')
-  final String clientSessionId;
+  final String? clientSessionId;
 
   StartProjectSessionResponse({
-    @_s.required this.name,
+    required this.name,
     this.clientSessionId,
   });
-  factory StartProjectSessionResponse.fromJson(Map<String, dynamic> json) =>
-      _$StartProjectSessionResponseFromJson(json);
+  factory StartProjectSessionResponse.fromJson(Map<String, dynamic> json) {
+    return StartProjectSessionResponse(
+      name: json['Name'] as String,
+      clientSessionId: json['ClientSessionId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class StopJobRunResponse {
   /// The ID of the job run that you stopped.
-  @_s.JsonKey(name: 'RunId')
   final String runId;
 
   StopJobRunResponse({
-    @_s.required this.runId,
+    required this.runId,
   });
-  factory StopJobRunResponse.fromJson(Map<String, dynamic> json) =>
-      _$StopJobRunResponseFromJson(json);
+  factory StopJobRunResponse.fromJson(Map<String, dynamic> json) {
+    return StopJobRunResponse(
+      runId: json['RunId'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TagResourceResponse {
   TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateDatasetResponse {
   /// The name of the dataset that you updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   UpdateDatasetResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory UpdateDatasetResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateDatasetResponseFromJson(json);
+  factory UpdateDatasetResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateDatasetResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateProfileJobResponse {
   /// The name of the job that was updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   UpdateProfileJobResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory UpdateProfileJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateProfileJobResponseFromJson(json);
+  factory UpdateProfileJobResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateProfileJobResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateProjectResponse {
   /// The name of the project that you updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   /// The date and time that the project was last modified.
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'LastModifiedDate')
-  final DateTime lastModifiedDate;
+  final DateTime? lastModifiedDate;
 
   UpdateProjectResponse({
-    @_s.required this.name,
+    required this.name,
     this.lastModifiedDate,
   });
-  factory UpdateProjectResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateProjectResponseFromJson(json);
+  factory UpdateProjectResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateProjectResponse(
+      name: json['Name'] as String,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateRecipeJobResponse {
   /// The name of the job that you updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   UpdateRecipeJobResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory UpdateRecipeJobResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateRecipeJobResponseFromJson(json);
+  factory UpdateRecipeJobResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateRecipeJobResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateRecipeResponse {
   /// The name of the recipe that was updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   UpdateRecipeResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory UpdateRecipeResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateRecipeResponseFromJson(json);
+  factory UpdateRecipeResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateRecipeResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateScheduleResponse {
   /// The name of the schedule that was updated.
-  @_s.JsonKey(name: 'Name')
   final String name;
 
   UpdateScheduleResponse({
-    @_s.required this.name,
+    required this.name,
   });
-  factory UpdateScheduleResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateScheduleResponseFromJson(json);
+  factory UpdateScheduleResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateScheduleResponse(
+      name: json['Name'] as String,
+    );
+  }
 }
 
 /// Represents the data being being transformed during an AWS Glue DataBrew
 /// project session.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class ViewFrame {
   /// The starting index for the range of columns to return in the view frame.
-  @_s.JsonKey(name: 'StartColumnIndex')
   final int startColumnIndex;
 
   /// The number of columns to include in the view frame, beginning with the
   /// <code>StartColumnIndex</code> value and ignoring any columns in the
   /// <code>HiddenColumns</code> list.
-  @_s.JsonKey(name: 'ColumnRange')
-  final int columnRange;
+  final int? columnRange;
 
   /// A list of columns to hide in the view frame.
-  @_s.JsonKey(name: 'HiddenColumns')
-  final List<String> hiddenColumns;
+  final List<String>? hiddenColumns;
 
   ViewFrame({
-    @_s.required this.startColumnIndex,
+    required this.startColumnIndex,
     this.columnRange,
     this.hiddenColumns,
   });
-  Map<String, dynamic> toJson() => _$ViewFrameToJson(this);
+  Map<String, dynamic> toJson() {
+    final startColumnIndex = this.startColumnIndex;
+    final columnRange = this.columnRange;
+    final hiddenColumns = this.hiddenColumns;
+    return {
+      'StartColumnIndex': startColumnIndex,
+      if (columnRange != null) 'ColumnRange': columnRange,
+      if (hiddenColumns != null) 'HiddenColumns': hiddenColumns,
+    };
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ServiceQuotaExceededException extends _s.GenericAwsException {
-  ServiceQuotaExceededException({String type, String message})
+  ServiceQuotaExceededException({String? type, String? message})
       : super(
             type: type,
             code: 'ServiceQuotaExceededException',
@@ -4149,7 +4390,7 @@ class ServiceQuotaExceededException extends _s.GenericAwsException {
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

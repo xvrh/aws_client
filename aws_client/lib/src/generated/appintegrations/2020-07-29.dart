@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,21 +11,13 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-07-29.g.dart';
 
 /// The Amazon AppIntegrations APIs are in preview release and are subject to
 /// change.
@@ -39,10 +32,10 @@ part '2020-07-29.g.dart';
 class AppIntegrations {
   final _s.RestJsonProtocol _protocol;
   AppIntegrations({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -89,12 +82,12 @@ class AppIntegrations {
   /// Parameter [tags] :
   /// One or more tags.
   Future<CreateEventIntegrationResponse> createEventIntegration({
-    @_s.required String eventBridgeBus,
-    @_s.required EventFilter eventFilter,
-    @_s.required String name,
-    String clientToken,
-    String description,
-    Map<String, String> tags,
+    required String eventBridgeBus,
+    required EventFilter eventFilter,
+    required String name,
+    String? clientToken,
+    String? description,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(eventBridgeBus, 'eventBridgeBus');
     _s.validateStringLength(
@@ -179,7 +172,7 @@ class AppIntegrations {
   /// Parameter [name] :
   /// The name of the event integration.
   Future<void> deleteEventIntegration({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -201,7 +194,6 @@ class AppIntegrations {
       requestUri: '/eventIntegrations/${Uri.encodeComponent(name)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteEventIntegrationResponse.fromJson(response);
   }
 
   /// The Amazon AppIntegrations APIs are in preview release and are subject to
@@ -218,7 +210,7 @@ class AppIntegrations {
   /// Parameter [name] :
   /// The name of the event integration.
   Future<GetEventIntegrationResponse> getEventIntegration({
-    @_s.required String name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -265,9 +257,9 @@ class AppIntegrations {
   /// previous response in the next request to retrieve the next set of results.
   Future<ListEventIntegrationAssociationsResponse>
       listEventIntegrationAssociations({
-    @_s.required String eventIntegrationName,
-    int maxResults,
-    String nextToken,
+    required String eventIntegrationName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(eventIntegrationName, 'eventIntegrationName');
     _s.validateStringLength(
@@ -332,8 +324,8 @@ class AppIntegrations {
   /// The token for the next set of results. Use the value returned in the
   /// previous response in the next request to retrieve the next set of results.
   Future<ListEventIntegrationsResponse> listEventIntegrations({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -379,7 +371,7 @@ class AppIntegrations {
   /// Parameter [resourceArn] :
   /// The Amazon Resource Name (ARN) of the resource.
   Future<ListTagsForResourceResponse> listTagsForResource({
-    @_s.required String resourceArn,
+    required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -420,8 +412,8 @@ class AppIntegrations {
   /// Parameter [tags] :
   /// One or more tags.
   Future<void> tagResource({
-    @_s.required String resourceArn,
-    @_s.required Map<String, String> tags,
+    required String resourceArn,
+    required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -447,7 +439,6 @@ class AppIntegrations {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return TagResourceResponse.fromJson(response);
   }
 
   /// The Amazon AppIntegrations APIs are in preview release and are subject to
@@ -466,8 +457,8 @@ class AppIntegrations {
   /// Parameter [tagKeys] :
   /// The tag keys.
   Future<void> untagResource({
-    @_s.required String resourceArn,
-    @_s.required List<String> tagKeys,
+    required String resourceArn,
+    required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
@@ -485,7 +476,7 @@ class AppIntegrations {
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
-      if (tagKeys != null) 'tagKeys': tagKeys,
+      'tagKeys': tagKeys,
     };
     final response = await _protocol.send(
       payload: null,
@@ -494,7 +485,6 @@ class AppIntegrations {
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
-    return UntagResourceResponse.fromJson(response);
   }
 
   /// The Amazon AppIntegrations APIs are in preview release and are subject to
@@ -514,8 +504,8 @@ class AppIntegrations {
   /// Parameter [description] :
   /// The description of the event inegration.
   Future<void> updateEventIntegration({
-    @_s.required String name,
-    String description,
+    required String name,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -551,94 +541,77 @@ class AppIntegrations {
       requestUri: '/eventIntegrations/${Uri.encodeComponent(name)}',
       exceptionFnMap: _exceptionFns,
     );
-    return UpdateEventIntegrationResponse.fromJson(response);
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateEventIntegrationResponse {
   /// The Amazon Resource Name (ARN) of the event integration.
-  @_s.JsonKey(name: 'EventIntegrationArn')
-  final String eventIntegrationArn;
+  final String? eventIntegrationArn;
 
   CreateEventIntegrationResponse({
     this.eventIntegrationArn,
   });
-  factory CreateEventIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateEventIntegrationResponseFromJson(json);
+  factory CreateEventIntegrationResponse.fromJson(Map<String, dynamic> json) {
+    return CreateEventIntegrationResponse(
+      eventIntegrationArn: json['EventIntegrationArn'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteEventIntegrationResponse {
   DeleteEventIntegrationResponse();
-  factory DeleteEventIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteEventIntegrationResponseFromJson(json);
+  factory DeleteEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteEventIntegrationResponse();
+  }
 }
 
 /// The Amazon AppIntegrations APIs are in preview release and are subject to
 /// change.
 ///
 /// The event filter.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class EventFilter {
   /// The source of the events.
-  @_s.JsonKey(name: 'Source')
   final String source;
 
   EventFilter({
-    @_s.required this.source,
+    required this.source,
   });
-  factory EventFilter.fromJson(Map<String, dynamic> json) =>
-      _$EventFilterFromJson(json);
+  factory EventFilter.fromJson(Map<String, dynamic> json) {
+    return EventFilter(
+      source: json['Source'] as String,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$EventFilterToJson(this);
+  Map<String, dynamic> toJson() {
+    final source = this.source;
+    return {
+      'Source': source,
+    };
+  }
 }
 
 /// The Amazon AppIntegrations APIs are in preview release and are subject to
 /// change.
 ///
 /// The event integration.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class EventIntegration {
   /// The event integration description.
-  @_s.JsonKey(name: 'Description')
-  final String description;
+  final String? description;
 
   /// The Amazon Eventbridge bus for the event integration.
-  @_s.JsonKey(name: 'EventBridgeBus')
-  final String eventBridgeBus;
+  final String? eventBridgeBus;
 
   /// The event integration filter.
-  @_s.JsonKey(name: 'EventFilter')
-  final EventFilter eventFilter;
+  final EventFilter? eventFilter;
 
   /// The Amazon Resource Name (ARN) of the event integration.
-  @_s.JsonKey(name: 'EventIntegrationArn')
-  final String eventIntegrationArn;
+  final String? eventIntegrationArn;
 
   /// The name of the event integration.
-  @_s.JsonKey(name: 'Name')
-  final String name;
+  final String? name;
 
   /// The tags.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   EventIntegration({
     this.description,
@@ -648,43 +621,43 @@ class EventIntegration {
     this.name,
     this.tags,
   });
-  factory EventIntegration.fromJson(Map<String, dynamic> json) =>
-      _$EventIntegrationFromJson(json);
+  factory EventIntegration.fromJson(Map<String, dynamic> json) {
+    return EventIntegration(
+      description: json['Description'] as String?,
+      eventBridgeBus: json['EventBridgeBus'] as String?,
+      eventFilter: json['EventFilter'] != null
+          ? EventFilter.fromJson(json['EventFilter'] as Map<String, dynamic>)
+          : null,
+      eventIntegrationArn: json['EventIntegrationArn'] as String?,
+      name: json['Name'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
 /// The Amazon AppIntegrations APIs are in preview release and are subject to
 /// change.
 ///
 /// The event integration association.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class EventIntegrationAssociation {
   /// The metadata associated with the client.
-  @_s.JsonKey(name: 'ClientAssociationMetadata')
-  final Map<String, String> clientAssociationMetadata;
+  final Map<String, String>? clientAssociationMetadata;
 
   /// The identifier for the client that is associated with the event integration.
-  @_s.JsonKey(name: 'ClientId')
-  final String clientId;
+  final String? clientId;
 
   /// The name of the Eventbridge rule.
-  @_s.JsonKey(name: 'EventBridgeRuleName')
-  final String eventBridgeRuleName;
+  final String? eventBridgeRuleName;
 
   /// The Amazon Resource Name (ARN) for the event integration association.
-  @_s.JsonKey(name: 'EventIntegrationAssociationArn')
-  final String eventIntegrationAssociationArn;
+  final String? eventIntegrationAssociationArn;
 
   /// The identifier for the event integration association.
-  @_s.JsonKey(name: 'EventIntegrationAssociationId')
-  final String eventIntegrationAssociationId;
+  final String? eventIntegrationAssociationId;
 
   /// The name of the event integration.
-  @_s.JsonKey(name: 'EventIntegrationName')
-  final String eventIntegrationName;
+  final String? eventIntegrationName;
 
   EventIntegrationAssociation({
     this.clientAssociationMetadata,
@@ -694,39 +667,40 @@ class EventIntegrationAssociation {
     this.eventIntegrationAssociationId,
     this.eventIntegrationName,
   });
-  factory EventIntegrationAssociation.fromJson(Map<String, dynamic> json) =>
-      _$EventIntegrationAssociationFromJson(json);
+  factory EventIntegrationAssociation.fromJson(Map<String, dynamic> json) {
+    return EventIntegrationAssociation(
+      clientAssociationMetadata:
+          (json['ClientAssociationMetadata'] as Map<String, dynamic>?)
+              ?.map((k, e) => MapEntry(k, e as String)),
+      clientId: json['ClientId'] as String?,
+      eventBridgeRuleName: json['EventBridgeRuleName'] as String?,
+      eventIntegrationAssociationArn:
+          json['EventIntegrationAssociationArn'] as String?,
+      eventIntegrationAssociationId:
+          json['EventIntegrationAssociationId'] as String?,
+      eventIntegrationName: json['EventIntegrationName'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetEventIntegrationResponse {
   /// The description of the event integration.
-  @_s.JsonKey(name: 'Description')
-  final String description;
+  final String? description;
 
   /// The Eventbridge bus.
-  @_s.JsonKey(name: 'EventBridgeBus')
-  final String eventBridgeBus;
+  final String? eventBridgeBus;
 
   /// The event filter.
-  @_s.JsonKey(name: 'EventFilter')
-  final EventFilter eventFilter;
+  final EventFilter? eventFilter;
 
   /// The Amazon Resource Name (ARN) for the event integration.
-  @_s.JsonKey(name: 'EventIntegrationArn')
-  final String eventIntegrationArn;
+  final String? eventIntegrationArn;
 
   /// The name of the event integration.
-  @_s.JsonKey(name: 'Name')
-  final String name;
+  final String? name;
 
   /// One or more tags.
-  @_s.JsonKey(name: 'Tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   GetEventIntegrationResponse({
     this.description,
@@ -736,134 +710,133 @@ class GetEventIntegrationResponse {
     this.name,
     this.tags,
   });
-  factory GetEventIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetEventIntegrationResponseFromJson(json);
+  factory GetEventIntegrationResponse.fromJson(Map<String, dynamic> json) {
+    return GetEventIntegrationResponse(
+      description: json['Description'] as String?,
+      eventBridgeBus: json['EventBridgeBus'] as String?,
+      eventFilter: json['EventFilter'] != null
+          ? EventFilter.fromJson(json['EventFilter'] as Map<String, dynamic>)
+          : null,
+      eventIntegrationArn: json['EventIntegrationArn'] as String?,
+      name: json['Name'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListEventIntegrationAssociationsResponse {
   /// The event integration associations.
-  @_s.JsonKey(name: 'EventIntegrationAssociations')
-  final List<EventIntegrationAssociation> eventIntegrationAssociations;
+  final List<EventIntegrationAssociation>? eventIntegrationAssociations;
 
   /// If there are additional results, this is the token for the next set of
   /// results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListEventIntegrationAssociationsResponse({
     this.eventIntegrationAssociations,
     this.nextToken,
   });
   factory ListEventIntegrationAssociationsResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListEventIntegrationAssociationsResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return ListEventIntegrationAssociationsResponse(
+      eventIntegrationAssociations: (json['EventIntegrationAssociations']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              EventIntegrationAssociation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListEventIntegrationsResponse {
   /// The event integrations.
-  @_s.JsonKey(name: 'EventIntegrations')
-  final List<EventIntegration> eventIntegrations;
+  final List<EventIntegration>? eventIntegrations;
 
   /// If there are additional results, this is the token for the next set of
   /// results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListEventIntegrationsResponse({
     this.eventIntegrations,
     this.nextToken,
   });
-  factory ListEventIntegrationsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListEventIntegrationsResponseFromJson(json);
+  factory ListEventIntegrationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListEventIntegrationsResponse(
+      eventIntegrations: (json['EventIntegrations'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventIntegration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTagsForResourceResponse {
   /// Information about the tags.
-  @_s.JsonKey(name: 'tags')
-  final Map<String, String> tags;
+  final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
     this.tags,
   });
-  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTagsForResourceResponseFromJson(json);
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class TagResourceResponse {
   TagResourceResponse();
-  factory TagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$TagResourceResponseFromJson(json);
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UntagResourceResponse {
   UntagResourceResponse();
-  factory UntagResourceResponse.fromJson(Map<String, dynamic> json) =>
-      _$UntagResourceResponseFromJson(json);
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateEventIntegrationResponse {
   UpdateEventIntegrationResponse();
-  factory UpdateEventIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      _$UpdateEventIntegrationResponseFromJson(json);
+  factory UpdateEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
+    return UpdateEventIntegrationResponse();
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class DuplicateResourceException extends _s.GenericAwsException {
-  DuplicateResourceException({String type, String message})
+  DuplicateResourceException({String? type, String? message})
       : super(type: type, code: 'DuplicateResourceException', message: message);
 }
 
 class InternalServiceError extends _s.GenericAwsException {
-  InternalServiceError({String type, String message})
+  InternalServiceError({String? type, String? message})
       : super(type: type, code: 'InternalServiceError', message: message);
 }
 
 class InvalidRequestException extends _s.GenericAwsException {
-  InvalidRequestException({String type, String message})
+  InvalidRequestException({String? type, String? message})
       : super(type: type, code: 'InvalidRequestException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ResourceQuotaExceededException extends _s.GenericAwsException {
-  ResourceQuotaExceededException({String type, String message})
+  ResourceQuotaExceededException({String? type, String? message})
       : super(
             type: type,
             code: 'ResourceQuotaExceededException',
@@ -871,7 +844,7 @@ class ResourceQuotaExceededException extends _s.GenericAwsException {
 }
 
 class ThrottlingException extends _s.GenericAwsException {
-  ThrottlingException({String type, String message})
+  ThrottlingException({String? type, String? message})
       : super(type: type, code: 'ThrottlingException', message: message);
 }
 

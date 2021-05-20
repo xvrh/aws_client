@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,31 +11,23 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-11-19.g.dart';
 
 /// Suite of geospatial services including Maps, Places, Tracking, and
 /// Geofencing
 class Location {
   final _s.RestJsonProtocol _protocol;
   Location({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -73,8 +66,8 @@ class Location {
   /// The name of the tracker resource to be associated with a geofence
   /// collection.
   Future<void> associateTrackerConsumer({
-    @_s.required String consumerArn,
-    @_s.required String trackerName,
+    required String consumerArn,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(consumerArn, 'consumerArn');
     _s.validateStringLength(
@@ -114,7 +107,6 @@ class Location {
           '/tracking/v0/trackers/${Uri.encodeComponent(trackerName)}/consumers',
       exceptionFnMap: _exceptionFns,
     );
-    return AssociateTrackerConsumerResponse.fromJson(response);
   }
 
   /// Deletes a batch of geofences from a geofence collection.
@@ -134,8 +126,8 @@ class Location {
   /// Parameter [geofenceIds] :
   /// The batch of geofences to be deleted.
   Future<BatchDeleteGeofenceResponse> batchDeleteGeofence({
-    @_s.required String collectionName,
-    @_s.required List<String> geofenceIds,
+    required String collectionName,
+    required List<String> geofenceIds,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -182,8 +174,8 @@ class Location {
   /// Contains device details for each device to be evaluated against the given
   /// geofence collection.
   Future<BatchEvaluateGeofencesResponse> batchEvaluateGeofences({
-    @_s.required String collectionName,
-    @_s.required List<DevicePositionUpdate> devicePositionUpdates,
+    required String collectionName,
+    required List<DevicePositionUpdate> devicePositionUpdates,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -237,8 +229,8 @@ class Location {
   /// Parameter [trackerName] :
   /// The tracker resource retrieving the device position.
   Future<BatchGetDevicePositionResponse> batchGetDevicePosition({
-    @_s.required List<String> deviceIds,
-    @_s.required String trackerName,
+    required List<String> deviceIds,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(deviceIds, 'deviceIds');
     ArgumentError.checkNotNull(trackerName, 'trackerName');
@@ -282,8 +274,8 @@ class Location {
   /// Parameter [entries] :
   /// The batch of geofences to be stored in a geofence collection.
   Future<BatchPutGeofenceResponse> batchPutGeofence({
-    @_s.required String collectionName,
-    @_s.required List<BatchPutGeofenceRequestEntry> entries,
+    required String collectionName,
+    required List<BatchPutGeofenceRequestEntry> entries,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -333,8 +325,8 @@ class Location {
   /// Parameter [updates] :
   /// Contains the position update details for each device.
   Future<BatchUpdateDevicePositionResponse> batchUpdateDevicePosition({
-    @_s.required String trackerName,
-    @_s.required List<DevicePositionUpdate> updates,
+    required String trackerName,
+    required List<DevicePositionUpdate> updates,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
     _s.validateStringLength(
@@ -415,9 +407,9 @@ class Location {
   /// Parameter [description] :
   /// An optional description for the geofence collection.
   Future<CreateGeofenceCollectionResponse> createGeofenceCollection({
-    @_s.required String collectionName,
-    @_s.required PricingPlan pricingPlan,
-    String description,
+    required String collectionName,
+    required PricingPlan pricingPlan,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -442,7 +434,7 @@ class Location {
     );
     final $payload = <String, dynamic>{
       'CollectionName': collectionName,
-      'PricingPlan': pricingPlan?.toValue() ?? '',
+      'PricingPlan': pricingPlan.toValue(),
       if (description != null) 'Description': description,
     };
     final response = await _protocol.send(
@@ -516,10 +508,10 @@ class Location {
   /// Parameter [description] :
   /// An optional description for the map resource.
   Future<CreateMapResponse> createMap({
-    @_s.required MapConfiguration configuration,
-    @_s.required String mapName,
-    @_s.required PricingPlan pricingPlan,
-    String description,
+    required MapConfiguration configuration,
+    required String mapName,
+    required PricingPlan pricingPlan,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(configuration, 'configuration');
     ArgumentError.checkNotNull(mapName, 'mapName');
@@ -546,7 +538,7 @@ class Location {
     final $payload = <String, dynamic>{
       'Configuration': configuration,
       'MapName': mapName,
-      'PricingPlan': pricingPlan?.toValue() ?? '',
+      'PricingPlan': pricingPlan.toValue(),
       if (description != null) 'Description': description,
     };
     final response = await _protocol.send(
@@ -626,11 +618,11 @@ class Location {
   /// Parameter [description] :
   /// The optional description for the Place index resource.
   Future<CreatePlaceIndexResponse> createPlaceIndex({
-    @_s.required String dataSource,
-    @_s.required String indexName,
-    @_s.required PricingPlan pricingPlan,
-    DataSourceConfiguration dataSourceConfiguration,
-    String description,
+    required String dataSource,
+    required String indexName,
+    required PricingPlan pricingPlan,
+    DataSourceConfiguration? dataSourceConfiguration,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(dataSource, 'dataSource');
     ArgumentError.checkNotNull(indexName, 'indexName');
@@ -657,7 +649,7 @@ class Location {
     final $payload = <String, dynamic>{
       'DataSource': dataSource,
       'IndexName': indexName,
-      'PricingPlan': pricingPlan?.toValue() ?? '',
+      'PricingPlan': pricingPlan.toValue(),
       if (dataSourceConfiguration != null)
         'DataSourceConfiguration': dataSourceConfiguration,
       if (description != null) 'Description': description,
@@ -723,9 +715,9 @@ class Location {
   /// Parameter [description] :
   /// An optional description for the tracker resource.
   Future<CreateTrackerResponse> createTracker({
-    @_s.required PricingPlan pricingPlan,
-    @_s.required String trackerName,
-    String description,
+    required PricingPlan pricingPlan,
+    required String trackerName,
+    String? description,
   }) async {
     ArgumentError.checkNotNull(pricingPlan, 'pricingPlan');
     ArgumentError.checkNotNull(trackerName, 'trackerName');
@@ -749,7 +741,7 @@ class Location {
       1000,
     );
     final $payload = <String, dynamic>{
-      'PricingPlan': pricingPlan?.toValue() ?? '',
+      'PricingPlan': pricingPlan.toValue(),
       'TrackerName': trackerName,
       if (description != null) 'Description': description,
     };
@@ -778,7 +770,7 @@ class Location {
   /// Parameter [collectionName] :
   /// The name of the geofence collection to be deleted.
   Future<void> deleteGeofenceCollection({
-    @_s.required String collectionName,
+    required String collectionName,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -801,7 +793,6 @@ class Location {
           '/geofencing/v0/collections/${Uri.encodeComponent(collectionName)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteGeofenceCollectionResponse.fromJson(response);
   }
 
   /// Deletes a map resource from your AWS account.
@@ -819,7 +810,7 @@ class Location {
   /// Parameter [mapName] :
   /// The name of the map resource to be deleted.
   Future<void> deleteMap({
-    @_s.required String mapName,
+    required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
     _s.validateStringLength(
@@ -841,7 +832,6 @@ class Location {
       requestUri: '/maps/v0/maps/${Uri.encodeComponent(mapName)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteMapResponse.fromJson(response);
   }
 
   /// Deletes a Place index resource from your AWS account.
@@ -858,7 +848,7 @@ class Location {
   /// Parameter [indexName] :
   /// The name of the Place index resource to be deleted.
   Future<void> deletePlaceIndex({
-    @_s.required String indexName,
+    required String indexName,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
     _s.validateStringLength(
@@ -880,7 +870,6 @@ class Location {
       requestUri: '/places/v0/indexes/${Uri.encodeComponent(indexName)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeletePlaceIndexResponse.fromJson(response);
   }
 
   /// Deletes a tracker resource from your AWS account.
@@ -899,7 +888,7 @@ class Location {
   /// Parameter [trackerName] :
   /// The name of the tracker resource to be deleted.
   Future<void> deleteTracker({
-    @_s.required String trackerName,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
     _s.validateStringLength(
@@ -921,7 +910,6 @@ class Location {
       requestUri: '/tracking/v0/trackers/${Uri.encodeComponent(trackerName)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DeleteTrackerResponse.fromJson(response);
   }
 
   /// Retrieves the geofence collection details.
@@ -935,7 +923,7 @@ class Location {
   /// Parameter [collectionName] :
   /// The name of the geofence collection.
   Future<DescribeGeofenceCollectionResponse> describeGeofenceCollection({
-    @_s.required String collectionName,
+    required String collectionName,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -972,7 +960,7 @@ class Location {
   /// Parameter [mapName] :
   /// The name of the map resource.
   Future<DescribeMapResponse> describeMap({
-    @_s.required String mapName,
+    required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
     _s.validateStringLength(
@@ -1008,7 +996,7 @@ class Location {
   /// Parameter [indexName] :
   /// The name of the Place index resource.
   Future<DescribePlaceIndexResponse> describePlaceIndex({
-    @_s.required String indexName,
+    required String indexName,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
     _s.validateStringLength(
@@ -1044,7 +1032,7 @@ class Location {
   /// Parameter [trackerName] :
   /// The name of the tracker resource.
   Future<DescribeTrackerResponse> describeTracker({
-    @_s.required String trackerName,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
     _s.validateStringLength(
@@ -1097,8 +1085,8 @@ class Location {
   /// Parameter [trackerName] :
   /// The name of the tracker resource to be dissociated from the consumer.
   Future<void> disassociateTrackerConsumer({
-    @_s.required String consumerArn,
-    @_s.required String trackerName,
+    required String consumerArn,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(consumerArn, 'consumerArn');
     _s.validateStringLength(
@@ -1135,7 +1123,6 @@ class Location {
           '/tracking/v0/trackers/${Uri.encodeComponent(trackerName)}/consumers/${Uri.encodeComponent(consumerArn)}',
       exceptionFnMap: _exceptionFns,
     );
-    return DisassociateTrackerConsumerResponse.fromJson(response);
   }
 
   /// Retrieves the latest device position.
@@ -1155,8 +1142,8 @@ class Location {
   /// Parameter [trackerName] :
   /// The tracker resource receiving the position update.
   Future<GetDevicePositionResponse> getDevicePosition({
-    @_s.required String deviceId,
-    @_s.required String trackerName,
+    required String deviceId,
+    required String trackerName,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
     _s.validateStringLength(
@@ -1245,11 +1232,11 @@ class Location {
   /// </li>
   /// </ul>
   Future<GetDevicePositionHistoryResponse> getDevicePositionHistory({
-    @_s.required String deviceId,
-    @_s.required String trackerName,
-    DateTime endTimeExclusive,
-    String nextToken,
-    DateTime startTimeInclusive,
+    required String deviceId,
+    required String trackerName,
+    DateTime? endTimeExclusive,
+    String? nextToken,
+    DateTime? startTimeInclusive,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
     _s.validateStringLength(
@@ -1316,8 +1303,8 @@ class Location {
   /// Parameter [geofenceId] :
   /// The geofence you're retrieving details for.
   Future<GetGeofenceResponse> getGeofence({
-    @_s.required String collectionName,
-    @_s.required String geofenceId,
+    required String collectionName,
+    required String geofenceId,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -1378,9 +1365,9 @@ class Location {
   /// Parameter [mapName] :
   /// The map resource associated with the glyph ﬁle.
   Future<GetMapGlyphsResponse> getMapGlyphs({
-    @_s.required String fontStack,
-    @_s.required String fontUnicodeRange,
-    @_s.required String mapName,
+    required String fontStack,
+    required String fontUnicodeRange,
+    required String mapName,
   }) async {
     ArgumentError.checkNotNull(fontStack, 'fontStack');
     ArgumentError.checkNotNull(fontUnicodeRange, 'fontUnicodeRange');
@@ -1454,8 +1441,8 @@ class Location {
   /// Parameter [mapName] :
   /// The map resource associated with the sprite ﬁle.
   Future<GetMapSpritesResponse> getMapSprites({
-    @_s.required String fileName,
-    @_s.required String mapName,
+    required String fileName,
+    required String mapName,
   }) async {
     ArgumentError.checkNotNull(fileName, 'fileName');
     _s.validateStringPattern(
@@ -1508,7 +1495,7 @@ class Location {
   /// Parameter [mapName] :
   /// The map resource to retrieve the style descriptor from.
   Future<GetMapStyleDescriptorResponse> getMapStyleDescriptor({
-    @_s.required String mapName,
+    required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
     _s.validateStringLength(
@@ -1565,10 +1552,10 @@ class Location {
   /// Parameter [z] :
   /// The zoom value for the map tile.
   Future<GetMapTileResponse> getMapTile({
-    @_s.required String mapName,
-    @_s.required String x,
-    @_s.required String y,
-    @_s.required String z,
+    required String mapName,
+    required String x,
+    required String y,
+    required String z,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
     _s.validateStringLength(
@@ -1637,8 +1624,8 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListGeofenceCollectionsResponse> listGeofenceCollections({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1682,8 +1669,8 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListGeofencesResponse> listGeofences({
-    @_s.required String collectionName,
-    String nextToken,
+    required String collectionName,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -1736,8 +1723,8 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListMapsResponse> listMaps({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1783,8 +1770,8 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListPlaceIndexesResponse> listPlaceIndexes({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1835,9 +1822,9 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListTrackerConsumersResponse> listTrackerConsumers({
-    @_s.required String trackerName,
-    int maxResults,
-    String nextToken,
+    required String trackerName,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
     _s.validateStringLength(
@@ -1897,8 +1884,8 @@ class Location {
   ///
   /// Default value: <code>null</code>
   Future<ListTrackersResponse> listTrackers({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1945,9 +1932,9 @@ class Location {
   /// Parameter [geometry] :
   /// Contains the polygon details to specify the position of the geofence.
   Future<PutGeofenceResponse> putGeofence({
-    @_s.required String collectionName,
-    @_s.required String geofenceId,
-    @_s.required GeofenceGeometry geometry,
+    required String collectionName,
+    required String geofenceId,
+    required GeofenceGeometry geometry,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
     _s.validateStringLength(
@@ -2031,9 +2018,9 @@ class Location {
   ///
   /// Default value: <code>50</code>
   Future<SearchPlaceIndexForPositionResponse> searchPlaceIndexForPosition({
-    @_s.required String indexName,
-    @_s.required List<double> position,
-    int maxResults,
+    required String indexName,
+    required List<double> position,
+    int? maxResults,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
     _s.validateStringLength(
@@ -2170,12 +2157,12 @@ class Location {
   ///
   /// The default: <code>50</code>
   Future<SearchPlaceIndexForTextResponse> searchPlaceIndexForText({
-    @_s.required String indexName,
-    @_s.required String text,
-    List<double> biasPosition,
-    List<double> filterBBox,
-    List<String> filterCountries,
-    int maxResults,
+    required String indexName,
+    required String text,
+    List<double>? biasPosition,
+    List<double>? filterBBox,
+    List<String>? filterCountries,
+    int? maxResults,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
     _s.validateStringLength(
@@ -2223,392 +2210,394 @@ class Location {
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AssociateTrackerConsumerResponse {
   AssociateTrackerConsumerResponse();
-  factory AssociateTrackerConsumerResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$AssociateTrackerConsumerResponseFromJson(json);
+  factory AssociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
+    return AssociateTrackerConsumerResponse();
+  }
 }
 
 /// Contains error details for each geofence that failed to delete from the
 /// geofence collection.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchDeleteGeofenceError {
   /// Contains details associated to the batch error.
-  @_s.JsonKey(name: 'Error')
   final BatchItemError error;
 
   /// The geofence associated with the error message.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   BatchDeleteGeofenceError({
-    @_s.required this.error,
-    @_s.required this.geofenceId,
+    required this.error,
+    required this.geofenceId,
   });
-  factory BatchDeleteGeofenceError.fromJson(Map<String, dynamic> json) =>
-      _$BatchDeleteGeofenceErrorFromJson(json);
+  factory BatchDeleteGeofenceError.fromJson(Map<String, dynamic> json) {
+    return BatchDeleteGeofenceError(
+      error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
+      geofenceId: json['GeofenceId'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchDeleteGeofenceResponse {
   /// Contains error details for each geofence that failed to delete.
-  @_s.JsonKey(name: 'Errors')
   final List<BatchDeleteGeofenceError> errors;
 
   BatchDeleteGeofenceResponse({
-    @_s.required this.errors,
+    required this.errors,
   });
-  factory BatchDeleteGeofenceResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchDeleteGeofenceResponseFromJson(json);
+  factory BatchDeleteGeofenceResponse.fromJson(Map<String, dynamic> json) {
+    return BatchDeleteGeofenceResponse(
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchDeleteGeofenceError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Contains error details for each device that failed to evaluate its position
 /// against the geofences in a given geofence collection.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchEvaluateGeofencesError {
   /// The device associated with the position evaluation error.
-  @_s.JsonKey(name: 'DeviceId')
   final String deviceId;
 
   /// Contains details associated to the batch error.
-  @_s.JsonKey(name: 'Error')
   final BatchItemError error;
 
   /// Specifies a timestamp for when the error occurred in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'SampleTime')
   final DateTime sampleTime;
 
   BatchEvaluateGeofencesError({
-    @_s.required this.deviceId,
-    @_s.required this.error,
-    @_s.required this.sampleTime,
+    required this.deviceId,
+    required this.error,
+    required this.sampleTime,
   });
-  factory BatchEvaluateGeofencesError.fromJson(Map<String, dynamic> json) =>
-      _$BatchEvaluateGeofencesErrorFromJson(json);
+  factory BatchEvaluateGeofencesError.fromJson(Map<String, dynamic> json) {
+    return BatchEvaluateGeofencesError(
+      deviceId: json['DeviceId'] as String,
+      error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
+      sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchEvaluateGeofencesResponse {
   /// Contains error details for each device that failed to evaluate its position
   /// against the given geofence collection.
-  @_s.JsonKey(name: 'Errors')
   final List<BatchEvaluateGeofencesError> errors;
 
   BatchEvaluateGeofencesResponse({
-    @_s.required this.errors,
+    required this.errors,
   });
-  factory BatchEvaluateGeofencesResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchEvaluateGeofencesResponseFromJson(json);
+  factory BatchEvaluateGeofencesResponse.fromJson(Map<String, dynamic> json) {
+    return BatchEvaluateGeofencesResponse(
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchEvaluateGeofencesError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Contains error details for each device that didn't return a position.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchGetDevicePositionError {
   /// The ID of the device that didn't return a position.
-  @_s.JsonKey(name: 'DeviceId')
   final String deviceId;
 
   /// Contains details related to the error code.
-  @_s.JsonKey(name: 'Error')
   final BatchItemError error;
 
   BatchGetDevicePositionError({
-    @_s.required this.deviceId,
-    @_s.required this.error,
+    required this.deviceId,
+    required this.error,
   });
-  factory BatchGetDevicePositionError.fromJson(Map<String, dynamic> json) =>
-      _$BatchGetDevicePositionErrorFromJson(json);
+  factory BatchGetDevicePositionError.fromJson(Map<String, dynamic> json) {
+    return BatchGetDevicePositionError(
+      deviceId: json['DeviceId'] as String,
+      error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchGetDevicePositionResponse {
   /// Contains device position details such as the device ID, position, and
   /// timestamps for when the position was received and sampled.
-  @_s.JsonKey(name: 'DevicePositions')
   final List<DevicePosition> devicePositions;
 
   /// Contains error details for each device that failed to send its position to
   /// the tracker resource.
-  @_s.JsonKey(name: 'Errors')
   final List<BatchGetDevicePositionError> errors;
 
   BatchGetDevicePositionResponse({
-    @_s.required this.devicePositions,
-    @_s.required this.errors,
+    required this.devicePositions,
+    required this.errors,
   });
-  factory BatchGetDevicePositionResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchGetDevicePositionResponseFromJson(json);
+  factory BatchGetDevicePositionResponse.fromJson(Map<String, dynamic> json) {
+    return BatchGetDevicePositionResponse(
+      devicePositions: (json['DevicePositions'] as List)
+          .whereNotNull()
+          .map((e) => DevicePosition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchGetDevicePositionError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Contains the batch request error details associated with the request.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchItemError {
   /// The error code associated with the batch request error.
-  @_s.JsonKey(name: 'Code')
-  final BatchItemErrorCode code;
+  final BatchItemErrorCode? code;
 
   /// A message with the reason for the batch request error.
-  @_s.JsonKey(name: 'Message')
-  final String message;
+  final String? message;
 
   BatchItemError({
     this.code,
     this.message,
   });
-  factory BatchItemError.fromJson(Map<String, dynamic> json) =>
-      _$BatchItemErrorFromJson(json);
+  factory BatchItemError.fromJson(Map<String, dynamic> json) {
+    return BatchItemError(
+      code: (json['Code'] as String?)?.toBatchItemErrorCode(),
+      message: json['Message'] as String?,
+    );
+  }
 }
 
 enum BatchItemErrorCode {
-  @_s.JsonValue('AccessDeniedError')
   accessDeniedError,
-  @_s.JsonValue('ConflictError')
   conflictError,
-  @_s.JsonValue('InternalServerError')
   internalServerError,
-  @_s.JsonValue('ResourceNotFoundError')
   resourceNotFoundError,
-  @_s.JsonValue('ThrottlingError')
   throttlingError,
-  @_s.JsonValue('ValidationError')
   validationError,
+}
+
+extension on BatchItemErrorCode {
+  String toValue() {
+    switch (this) {
+      case BatchItemErrorCode.accessDeniedError:
+        return 'AccessDeniedError';
+      case BatchItemErrorCode.conflictError:
+        return 'ConflictError';
+      case BatchItemErrorCode.internalServerError:
+        return 'InternalServerError';
+      case BatchItemErrorCode.resourceNotFoundError:
+        return 'ResourceNotFoundError';
+      case BatchItemErrorCode.throttlingError:
+        return 'ThrottlingError';
+      case BatchItemErrorCode.validationError:
+        return 'ValidationError';
+    }
+  }
+}
+
+extension on String {
+  BatchItemErrorCode toBatchItemErrorCode() {
+    switch (this) {
+      case 'AccessDeniedError':
+        return BatchItemErrorCode.accessDeniedError;
+      case 'ConflictError':
+        return BatchItemErrorCode.conflictError;
+      case 'InternalServerError':
+        return BatchItemErrorCode.internalServerError;
+      case 'ResourceNotFoundError':
+        return BatchItemErrorCode.resourceNotFoundError;
+      case 'ThrottlingError':
+        return BatchItemErrorCode.throttlingError;
+      case 'ValidationError':
+        return BatchItemErrorCode.validationError;
+    }
+    throw Exception('$this is not known in enum BatchItemErrorCode');
+  }
 }
 
 /// Contains error details for each geofence that failed to be stored in a given
 /// geofence collection.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchPutGeofenceError {
   /// Contains details associated to the batch error.
-  @_s.JsonKey(name: 'Error')
   final BatchItemError error;
 
   /// The geofence associated with the error message.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   BatchPutGeofenceError({
-    @_s.required this.error,
-    @_s.required this.geofenceId,
+    required this.error,
+    required this.geofenceId,
   });
-  factory BatchPutGeofenceError.fromJson(Map<String, dynamic> json) =>
-      _$BatchPutGeofenceErrorFromJson(json);
+  factory BatchPutGeofenceError.fromJson(Map<String, dynamic> json) {
+    return BatchPutGeofenceError(
+      error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
+      geofenceId: json['GeofenceId'] as String,
+    );
+  }
 }
 
 /// Contains geofence details.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class BatchPutGeofenceRequestEntry {
   /// The identifier for the geofence to be stored in a given geofence collection.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   /// The geometry details for the geofence.
-  @_s.JsonKey(name: 'Geometry')
   final GeofenceGeometry geometry;
 
   BatchPutGeofenceRequestEntry({
-    @_s.required this.geofenceId,
-    @_s.required this.geometry,
+    required this.geofenceId,
+    required this.geometry,
   });
-  Map<String, dynamic> toJson() => _$BatchPutGeofenceRequestEntryToJson(this);
+  Map<String, dynamic> toJson() {
+    final geofenceId = this.geofenceId;
+    final geometry = this.geometry;
+    return {
+      'GeofenceId': geofenceId,
+      'Geometry': geometry,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchPutGeofenceResponse {
   /// Contains additional error details for each geofence that failed to be stored
   /// in a geofence collection.
-  @_s.JsonKey(name: 'Errors')
   final List<BatchPutGeofenceError> errors;
 
   /// Contains each geofence that was successfully stored in a geofence
   /// collection.
-  @_s.JsonKey(name: 'Successes')
   final List<BatchPutGeofenceSuccess> successes;
 
   BatchPutGeofenceResponse({
-    @_s.required this.errors,
-    @_s.required this.successes,
+    required this.errors,
+    required this.successes,
   });
-  factory BatchPutGeofenceResponse.fromJson(Map<String, dynamic> json) =>
-      _$BatchPutGeofenceResponseFromJson(json);
+  factory BatchPutGeofenceResponse.fromJson(Map<String, dynamic> json) {
+    return BatchPutGeofenceResponse(
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) => BatchPutGeofenceError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      successes: (json['Successes'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchPutGeofenceSuccess.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Contains a summary of each geofence that was successfully stored in a given
 /// geofence collection.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchPutGeofenceSuccess {
   /// The timestamp for when the geofence was stored in a geofence collection in
   /// <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
   /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The geofence successfully stored in a geofence collection.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   /// The timestamp for when the geofence was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   BatchPutGeofenceSuccess({
-    @_s.required this.createTime,
-    @_s.required this.geofenceId,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.geofenceId,
+    required this.updateTime,
   });
-  factory BatchPutGeofenceSuccess.fromJson(Map<String, dynamic> json) =>
-      _$BatchPutGeofenceSuccessFromJson(json);
+  factory BatchPutGeofenceSuccess.fromJson(Map<String, dynamic> json) {
+    return BatchPutGeofenceSuccess(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      geofenceId: json['GeofenceId'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
 /// Contains error details for each device that failed to update its position.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchUpdateDevicePositionError {
   /// The device associated with the failed location update.
-  @_s.JsonKey(name: 'DeviceId')
   final String deviceId;
 
   /// Contains details related to the error code such as the error code and error
   /// message.
-  @_s.JsonKey(name: 'Error')
   final BatchItemError error;
 
   /// The timestamp for when a position sample was attempted in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'SampleTime')
   final DateTime sampleTime;
 
   BatchUpdateDevicePositionError({
-    @_s.required this.deviceId,
-    @_s.required this.error,
-    @_s.required this.sampleTime,
+    required this.deviceId,
+    required this.error,
+    required this.sampleTime,
   });
-  factory BatchUpdateDevicePositionError.fromJson(Map<String, dynamic> json) =>
-      _$BatchUpdateDevicePositionErrorFromJson(json);
+  factory BatchUpdateDevicePositionError.fromJson(Map<String, dynamic> json) {
+    return BatchUpdateDevicePositionError(
+      deviceId: json['DeviceId'] as String,
+      error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
+      sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class BatchUpdateDevicePositionResponse {
   /// Contains error details for each device that failed to update its position.
-  @_s.JsonKey(name: 'Errors')
   final List<BatchUpdateDevicePositionError> errors;
 
   BatchUpdateDevicePositionResponse({
-    @_s.required this.errors,
+    required this.errors,
   });
   factory BatchUpdateDevicePositionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$BatchUpdateDevicePositionResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return BatchUpdateDevicePositionResponse(
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) => BatchUpdateDevicePositionError.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateGeofenceCollectionResponse {
   /// The Amazon Resource Name (ARN) for the geofence collection resource. Used
   /// when you need to specify a resource across all AWS.
-  @_s.JsonKey(name: 'CollectionArn')
   final String collectionArn;
 
   /// The name for the geofence collection.
-  @_s.JsonKey(name: 'CollectionName')
   final String collectionName;
 
   /// The timestamp for when the geofence collection was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   CreateGeofenceCollectionResponse({
-    @_s.required this.collectionArn,
-    @_s.required this.collectionName,
-    @_s.required this.createTime,
+    required this.collectionArn,
+    required this.collectionName,
+    required this.createTime,
   });
-  factory CreateGeofenceCollectionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$CreateGeofenceCollectionResponseFromJson(json);
+  factory CreateGeofenceCollectionResponse.fromJson(Map<String, dynamic> json) {
+    return CreateGeofenceCollectionResponse(
+      collectionArn: json['CollectionArn'] as String,
+      collectionName: json['CollectionName'] as String,
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateMapResponse {
   /// The timestamp for when the map resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The Amazon Resource Name (ARN) for the map resource. Used when you need to
@@ -2620,82 +2609,77 @@ class CreateMapResponse {
   /// <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'MapArn')
   final String mapArn;
 
   /// The name of the map resource.
-  @_s.JsonKey(name: 'MapName')
   final String mapName;
 
   CreateMapResponse({
-    @_s.required this.createTime,
-    @_s.required this.mapArn,
-    @_s.required this.mapName,
+    required this.createTime,
+    required this.mapArn,
+    required this.mapName,
   });
-  factory CreateMapResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateMapResponseFromJson(json);
+  factory CreateMapResponse.fromJson(Map<String, dynamic> json) {
+    return CreateMapResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      mapArn: json['MapArn'] as String,
+      mapName: json['MapName'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreatePlaceIndexResponse {
   /// The timestamp for when the Place index resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The Amazon Resource Name (ARN) for the Place index resource. Used when you
   /// need to specify a resource across all AWS.
-  @_s.JsonKey(name: 'IndexArn')
   final String indexArn;
 
   /// The name for the Place index resource.
-  @_s.JsonKey(name: 'IndexName')
   final String indexName;
 
   CreatePlaceIndexResponse({
-    @_s.required this.createTime,
-    @_s.required this.indexArn,
-    @_s.required this.indexName,
+    required this.createTime,
+    required this.indexArn,
+    required this.indexName,
   });
-  factory CreatePlaceIndexResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreatePlaceIndexResponseFromJson(json);
+  factory CreatePlaceIndexResponse.fromJson(Map<String, dynamic> json) {
+    return CreatePlaceIndexResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      indexArn: json['IndexArn'] as String,
+      indexName: json['IndexName'] as String,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateTrackerResponse {
   /// The timestamp for when the tracker resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The Amazon Resource Name (ARN) for the tracker resource. Used when you need
   /// to specify a resource across all AWS.
-  @_s.JsonKey(name: 'TrackerArn')
   final String trackerArn;
 
   /// The name of the tracker resource.
-  @_s.JsonKey(name: 'TrackerName')
   final String trackerName;
 
   CreateTrackerResponse({
-    @_s.required this.createTime,
-    @_s.required this.trackerArn,
-    @_s.required this.trackerName,
+    required this.createTime,
+    required this.trackerArn,
+    required this.trackerName,
   });
-  factory CreateTrackerResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateTrackerResponseFromJson(json);
+  factory CreateTrackerResponse.fromJson(Map<String, dynamic> json) {
+    return CreateTrackerResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      trackerArn: json['TrackerArn'] as String,
+      trackerName: json['TrackerName'] as String,
+    );
+  }
 }
 
 /// Specifies the data storage option chosen for requesting Places.
@@ -2710,11 +2694,6 @@ class CreateTrackerResponse {
 /// information, see the <a href="https://aws.amazon.com/service-terms/">AWS
 /// Service Terms</a> for Amazon Location Service.
 /// </note>
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class DataSourceConfiguration {
   /// Specifies how the results of an operation will be stored by the caller.
   ///
@@ -2730,341 +2709,307 @@ class DataSourceConfiguration {
   /// </li>
   /// </ul>
   /// Default value: <code>SingleUse</code>
-  @_s.JsonKey(name: 'IntendedUse')
-  final IntendedUse intendedUse;
+  final IntendedUse? intendedUse;
 
   DataSourceConfiguration({
     this.intendedUse,
   });
-  factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$DataSourceConfigurationFromJson(json);
+  factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
+    return DataSourceConfiguration(
+      intendedUse: (json['IntendedUse'] as String?)?.toIntendedUse(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$DataSourceConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final intendedUse = this.intendedUse;
+    return {
+      if (intendedUse != null) 'IntendedUse': intendedUse.toValue(),
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteGeofenceCollectionResponse {
   DeleteGeofenceCollectionResponse();
-  factory DeleteGeofenceCollectionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$DeleteGeofenceCollectionResponseFromJson(json);
+  factory DeleteGeofenceCollectionResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteGeofenceCollectionResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteMapResponse {
   DeleteMapResponse();
-  factory DeleteMapResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteMapResponseFromJson(json);
+  factory DeleteMapResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteMapResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeletePlaceIndexResponse {
   DeletePlaceIndexResponse();
-  factory DeletePlaceIndexResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeletePlaceIndexResponseFromJson(json);
+  factory DeletePlaceIndexResponse.fromJson(Map<String, dynamic> _) {
+    return DeletePlaceIndexResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DeleteTrackerResponse {
   DeleteTrackerResponse();
-  factory DeleteTrackerResponse.fromJson(Map<String, dynamic> json) =>
-      _$DeleteTrackerResponseFromJson(json);
+  factory DeleteTrackerResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteTrackerResponse();
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeGeofenceCollectionResponse {
   /// The Amazon Resource Name (ARN) for the geofence collection resource. Used
   /// when you need to specify a resource across all AWS.
-  @_s.JsonKey(name: 'CollectionArn')
   final String collectionArn;
 
   /// The name of the geofence collection.
-  @_s.JsonKey(name: 'CollectionName')
   final String collectionName;
 
   /// The timestamp for when the geofence resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The optional description for the geofence collection.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The timestamp for when the geofence collection was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   DescribeGeofenceCollectionResponse({
-    @_s.required this.collectionArn,
-    @_s.required this.collectionName,
-    @_s.required this.createTime,
-    @_s.required this.description,
-    @_s.required this.updateTime,
+    required this.collectionArn,
+    required this.collectionName,
+    required this.createTime,
+    required this.description,
+    required this.updateTime,
   });
   factory DescribeGeofenceCollectionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$DescribeGeofenceCollectionResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return DescribeGeofenceCollectionResponse(
+      collectionArn: json['CollectionArn'] as String,
+      collectionName: json['CollectionName'] as String,
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      description: json['Description'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeMapResponse {
   /// Specifies the map tile style selected from a partner data provider.
-  @_s.JsonKey(name: 'Configuration')
   final MapConfiguration configuration;
 
   /// The timestamp for when the map resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// Specifies the data provider for the associated map tiles.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The optional description for the map resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The Amazon Resource Name (ARN) for the map resource. Used when you need to
   /// specify a resource across all AWS.
-  @_s.JsonKey(name: 'MapArn')
   final String mapArn;
 
   /// The map style selected from an available provider.
-  @_s.JsonKey(name: 'MapName')
   final String mapName;
 
   /// The timestamp for when the map resource was last update in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   DescribeMapResponse({
-    @_s.required this.configuration,
-    @_s.required this.createTime,
-    @_s.required this.dataSource,
-    @_s.required this.description,
-    @_s.required this.mapArn,
-    @_s.required this.mapName,
-    @_s.required this.updateTime,
+    required this.configuration,
+    required this.createTime,
+    required this.dataSource,
+    required this.description,
+    required this.mapArn,
+    required this.mapName,
+    required this.updateTime,
   });
-  factory DescribeMapResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeMapResponseFromJson(json);
+  factory DescribeMapResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeMapResponse(
+      configuration: MapConfiguration.fromJson(
+          json['Configuration'] as Map<String, dynamic>),
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      dataSource: json['DataSource'] as String,
+      description: json['Description'] as String,
+      mapArn: json['MapArn'] as String,
+      mapName: json['MapName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribePlaceIndexResponse {
   /// The timestamp for when the Place index resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The data provider of geospatial data.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The specified data storage option for requesting Places.
-  @_s.JsonKey(name: 'DataSourceConfiguration')
   final DataSourceConfiguration dataSourceConfiguration;
 
   /// The optional description for the Place index resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The Amazon Resource Name (ARN) for the Place index resource. Used when you
   /// need to specify a resource across all AWS.
-  @_s.JsonKey(name: 'IndexArn')
   final String indexArn;
 
   /// The name of the Place index resource being described.
-  @_s.JsonKey(name: 'IndexName')
   final String indexName;
 
   /// The timestamp for when the Place index resource was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   DescribePlaceIndexResponse({
-    @_s.required this.createTime,
-    @_s.required this.dataSource,
-    @_s.required this.dataSourceConfiguration,
-    @_s.required this.description,
-    @_s.required this.indexArn,
-    @_s.required this.indexName,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.dataSource,
+    required this.dataSourceConfiguration,
+    required this.description,
+    required this.indexArn,
+    required this.indexName,
+    required this.updateTime,
   });
-  factory DescribePlaceIndexResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribePlaceIndexResponseFromJson(json);
+  factory DescribePlaceIndexResponse.fromJson(Map<String, dynamic> json) {
+    return DescribePlaceIndexResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      dataSource: json['DataSource'] as String,
+      dataSourceConfiguration: DataSourceConfiguration.fromJson(
+          json['DataSourceConfiguration'] as Map<String, dynamic>),
+      description: json['Description'] as String,
+      indexArn: json['IndexArn'] as String,
+      indexName: json['IndexName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DescribeTrackerResponse {
   /// The timestamp for when the tracker resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The optional description for the tracker resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The Amazon Resource Name (ARN) for the tracker resource. Used when you need
   /// to specify a resource across all AWS.
-  @_s.JsonKey(name: 'TrackerArn')
   final String trackerArn;
 
   /// The name of the tracker resource.
-  @_s.JsonKey(name: 'TrackerName')
   final String trackerName;
 
   /// The timestamp for when the tracker resource was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   DescribeTrackerResponse({
-    @_s.required this.createTime,
-    @_s.required this.description,
-    @_s.required this.trackerArn,
-    @_s.required this.trackerName,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.description,
+    required this.trackerArn,
+    required this.trackerName,
+    required this.updateTime,
   });
-  factory DescribeTrackerResponse.fromJson(Map<String, dynamic> json) =>
-      _$DescribeTrackerResponseFromJson(json);
+  factory DescribeTrackerResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeTrackerResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      description: json['Description'] as String,
+      trackerArn: json['TrackerArn'] as String,
+      trackerName: json['TrackerName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
 /// Contains the device position details.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DevicePosition {
   /// The last known device position.
-  @_s.JsonKey(name: 'Position')
   final List<double> position;
 
   /// The timestamp for when the tracker resource recieved the position in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'ReceivedTime')
   final DateTime receivedTime;
 
   /// The timestamp for when the position was detected and sampled in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'SampleTime')
   final DateTime sampleTime;
 
   /// The device whose position you retrieved.
-  @_s.JsonKey(name: 'DeviceId')
-  final String deviceId;
+  final String? deviceId;
 
   DevicePosition({
-    @_s.required this.position,
-    @_s.required this.receivedTime,
-    @_s.required this.sampleTime,
+    required this.position,
+    required this.receivedTime,
+    required this.sampleTime,
     this.deviceId,
   });
-  factory DevicePosition.fromJson(Map<String, dynamic> json) =>
-      _$DevicePositionFromJson(json);
+  factory DevicePosition.fromJson(Map<String, dynamic> json) {
+    return DevicePosition(
+      position: (json['Position'] as List)
+          .whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      receivedTime:
+          nonNullableTimeStampFromJson(json['ReceivedTime'] as Object),
+      sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
+      deviceId: json['DeviceId'] as String?,
+    );
+  }
 }
 
 /// Contains the position update details for a device.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: false,
-    createToJson: true)
 class DevicePositionUpdate {
   /// The device associated to the position update.
-  @_s.JsonKey(name: 'DeviceId')
   final String deviceId;
 
   /// The latest device position defined in <a
   /// href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a> format:
   /// <code>[Xlongitude, Ylatitude]</code>.
-  @_s.JsonKey(name: 'Position')
   final List<double> position;
 
   /// The timestamp for when the position update was received in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'SampleTime')
   final DateTime sampleTime;
 
   DevicePositionUpdate({
-    @_s.required this.deviceId,
-    @_s.required this.position,
-    @_s.required this.sampleTime,
+    required this.deviceId,
+    required this.position,
+    required this.sampleTime,
   });
-  Map<String, dynamic> toJson() => _$DevicePositionUpdateToJson(this);
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final position = this.position;
+    final sampleTime = this.sampleTime;
+    return {
+      'DeviceId': deviceId,
+      'Position': position,
+      'SampleTime': iso8601ToJson(sampleTime),
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class DisassociateTrackerConsumerResponse {
   DisassociateTrackerConsumerResponse();
-  factory DisassociateTrackerConsumerResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$DisassociateTrackerConsumerResponseFromJson(json);
+  factory DisassociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
+    return DisassociateTrackerConsumerResponse();
+  }
 }
 
 /// Contains the geofence geometry details.
@@ -3073,11 +3018,6 @@ class DisassociateTrackerConsumerResponse {
 /// multipolygons, polygons that are wound clockwise, or that cross the
 /// antimeridian.
 /// </note>
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class GeofenceGeometry {
   /// An array of 1 or more linear rings. A linear ring is an array of 4 or more
   /// vertices, where the first and last vertex are the same to form a closed
@@ -3090,99 +3030,102 @@ class GeofenceGeometry {
   /// around the ring's center, where the left side is the polygon's exterior.
   /// Inner rings must list their vertices in clockwise order, where the left side
   /// is the polygon's interior.
-  @_s.JsonKey(name: 'Polygon')
-  final List<List<List<double>>> polygon;
+  final List<List<List<double>>>? polygon;
 
   GeofenceGeometry({
     this.polygon,
   });
-  factory GeofenceGeometry.fromJson(Map<String, dynamic> json) =>
-      _$GeofenceGeometryFromJson(json);
+  factory GeofenceGeometry.fromJson(Map<String, dynamic> json) {
+    return GeofenceGeometry(
+      polygon: (json['Polygon'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as List)
+              .whereNotNull()
+              .map((e) =>
+                  (e as List).whereNotNull().map((e) => e as double).toList())
+              .toList())
+          .toList(),
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$GeofenceGeometryToJson(this);
+  Map<String, dynamic> toJson() {
+    final polygon = this.polygon;
+    return {
+      if (polygon != null) 'Polygon': polygon,
+    };
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetDevicePositionHistoryResponse {
   /// Contains the position history details for the requested device.
-  @_s.JsonKey(name: 'DevicePositions')
   final List<DevicePosition> devicePositions;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   GetDevicePositionHistoryResponse({
-    @_s.required this.devicePositions,
+    required this.devicePositions,
     this.nextToken,
   });
-  factory GetDevicePositionHistoryResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetDevicePositionHistoryResponseFromJson(json);
+  factory GetDevicePositionHistoryResponse.fromJson(Map<String, dynamic> json) {
+    return GetDevicePositionHistoryResponse(
+      devicePositions: (json['DevicePositions'] as List)
+          .whereNotNull()
+          .map((e) => DevicePosition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetDevicePositionResponse {
   /// The last known device position.
-  @_s.JsonKey(name: 'Position')
   final List<double> position;
 
   /// The timestamp for when the tracker resource recieved the position in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601 </a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'ReceivedTime')
   final DateTime receivedTime;
 
   /// The timestamp for when the position was detected and sampled in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601 </a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'SampleTime')
   final DateTime sampleTime;
 
   /// The device whose position you retrieved.
-  @_s.JsonKey(name: 'DeviceId')
-  final String deviceId;
+  final String? deviceId;
 
   GetDevicePositionResponse({
-    @_s.required this.position,
-    @_s.required this.receivedTime,
-    @_s.required this.sampleTime,
+    required this.position,
+    required this.receivedTime,
+    required this.sampleTime,
     this.deviceId,
   });
-  factory GetDevicePositionResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetDevicePositionResponseFromJson(json);
+  factory GetDevicePositionResponse.fromJson(Map<String, dynamic> json) {
+    return GetDevicePositionResponse(
+      position: (json['Position'] as List)
+          .whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      receivedTime:
+          nonNullableTimeStampFromJson(json['ReceivedTime'] as Object),
+      sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
+      deviceId: json['DeviceId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetGeofenceResponse {
   /// The timestamp for when the geofence collection was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The geofence identifier.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   /// Contains the geofence geometry details describing a polygon.
-  @_s.JsonKey(name: 'Geometry')
   final GeofenceGeometry geometry;
 
   /// Identifies the state of the geofence. A geofence will hold one of the
@@ -3205,214 +3148,187 @@ class GetGeofenceResponse {
   /// <code>DELETING</code> — The geofence is being deleted from the system index.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'Status')
   final String status;
 
   /// The timestamp for when the geofence collection was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   GetGeofenceResponse({
-    @_s.required this.createTime,
-    @_s.required this.geofenceId,
-    @_s.required this.geometry,
-    @_s.required this.status,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.geofenceId,
+    required this.geometry,
+    required this.status,
+    required this.updateTime,
   });
-  factory GetGeofenceResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetGeofenceResponseFromJson(json);
+  factory GetGeofenceResponse.fromJson(Map<String, dynamic> json) {
+    return GetGeofenceResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      geofenceId: json['GeofenceId'] as String,
+      geometry:
+          GeofenceGeometry.fromJson(json['Geometry'] as Map<String, dynamic>),
+      status: json['Status'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetMapGlyphsResponse {
   /// The blob's content type.
-  @Uint8ListConverter()
-  @_s.JsonKey(name: 'Blob')
-  final Uint8List blob;
+  final Uint8List? blob;
 
   /// The map glyph content type. For example,
   /// <code>application/octet-stream</code>.
-  @_s.JsonKey(name: 'Content-Type')
-  final String contentType;
+  final String? contentType;
 
   GetMapGlyphsResponse({
     this.blob,
     this.contentType,
   });
-  factory GetMapGlyphsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetMapGlyphsResponseFromJson(json);
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetMapSpritesResponse {
   /// Contains the body of the sprite sheet or JSON offset ﬁle.
-  @Uint8ListConverter()
-  @_s.JsonKey(name: 'Blob')
-  final Uint8List blob;
+  final Uint8List? blob;
 
   /// The content type of the sprite sheet and offsets. For example, the sprite
   /// sheet content type is <code>image/png</code>, and the sprite offset JSON
   /// document is <code>application/json</code>.
-  @_s.JsonKey(name: 'Content-Type')
-  final String contentType;
+  final String? contentType;
 
   GetMapSpritesResponse({
     this.blob,
     this.contentType,
   });
-  factory GetMapSpritesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetMapSpritesResponseFromJson(json);
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetMapStyleDescriptorResponse {
   /// Contains the body of the style descriptor.
-  @Uint8ListConverter()
-  @_s.JsonKey(name: 'Blob')
-  final Uint8List blob;
+  final Uint8List? blob;
 
   /// The style descriptor's content type. For example,
   /// <code>application/json</code>.
-  @_s.JsonKey(name: 'Content-Type')
-  final String contentType;
+  final String? contentType;
 
   GetMapStyleDescriptorResponse({
     this.blob,
     this.contentType,
   });
-  factory GetMapStyleDescriptorResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetMapStyleDescriptorResponseFromJson(json);
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetMapTileResponse {
   /// Contains Mapbox Vector Tile (MVT) data.
-  @Uint8ListConverter()
-  @_s.JsonKey(name: 'Blob')
-  final Uint8List blob;
+  final Uint8List? blob;
 
   /// The map tile's content type. For example,
   /// <code>application/vnd.mapbox-vector-tile</code>.
-  @_s.JsonKey(name: 'Content-Type')
-  final String contentType;
+  final String? contentType;
 
   GetMapTileResponse({
     this.blob,
     this.contentType,
   });
-  factory GetMapTileResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetMapTileResponseFromJson(json);
 }
 
 enum IntendedUse {
-  @_s.JsonValue('SingleUse')
   singleUse,
-  @_s.JsonValue('Storage')
   storage,
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on IntendedUse {
+  String toValue() {
+    switch (this) {
+      case IntendedUse.singleUse:
+        return 'SingleUse';
+      case IntendedUse.storage:
+        return 'Storage';
+    }
+  }
+}
+
+extension on String {
+  IntendedUse toIntendedUse() {
+    switch (this) {
+      case 'SingleUse':
+        return IntendedUse.singleUse;
+      case 'Storage':
+        return IntendedUse.storage;
+    }
+    throw Exception('$this is not known in enum IntendedUse');
+  }
+}
+
 class ListGeofenceCollectionsResponse {
   /// Lists the geofence collections that exist in your AWS account.
-  @_s.JsonKey(name: 'Entries')
   final List<ListGeofenceCollectionsResponseEntry> entries;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListGeofenceCollectionsResponse({
-    @_s.required this.entries,
+    required this.entries,
     this.nextToken,
   });
-  factory ListGeofenceCollectionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListGeofenceCollectionsResponseFromJson(json);
+  factory ListGeofenceCollectionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListGeofenceCollectionsResponse(
+      entries: (json['Entries'] as List)
+          .whereNotNull()
+          .map((e) => ListGeofenceCollectionsResponseEntry.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// Contains the geofence collection details.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListGeofenceCollectionsResponseEntry {
   /// The name of the geofence collection.
-  @_s.JsonKey(name: 'CollectionName')
   final String collectionName;
 
   /// The timestamp for when the geofence collection was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The description for the geofence collection
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// Specifies a timestamp for when the resource was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   ListGeofenceCollectionsResponseEntry({
-    @_s.required this.collectionName,
-    @_s.required this.createTime,
-    @_s.required this.description,
-    @_s.required this.updateTime,
+    required this.collectionName,
+    required this.createTime,
+    required this.description,
+    required this.updateTime,
   });
   factory ListGeofenceCollectionsResponseEntry.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListGeofenceCollectionsResponseEntryFromJson(json);
+      Map<String, dynamic> json) {
+    return ListGeofenceCollectionsResponseEntry(
+      collectionName: json['CollectionName'] as String,
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      description: json['Description'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
 /// Contains a list of geofences stored in a given geofence collection.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListGeofenceResponseEntry {
   /// The timestamp for when the geofence was stored in a geofence collection in
   /// <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
   /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The geofence identifier.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   /// Contains the geofence geometry details describing a polygon.
-  @_s.JsonKey(name: 'Geometry')
   final GeofenceGeometry geometry;
 
   /// Identifies the state of the geofence. A geofence will hold one of the
@@ -3435,278 +3351,266 @@ class ListGeofenceResponseEntry {
   /// <code>DELETING</code> — The geofence is being deleted from the system index.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'Status')
   final String status;
 
   /// The timestamp for when the geofence was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   ListGeofenceResponseEntry({
-    @_s.required this.createTime,
-    @_s.required this.geofenceId,
-    @_s.required this.geometry,
-    @_s.required this.status,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.geofenceId,
+    required this.geometry,
+    required this.status,
+    required this.updateTime,
   });
-  factory ListGeofenceResponseEntry.fromJson(Map<String, dynamic> json) =>
-      _$ListGeofenceResponseEntryFromJson(json);
+  factory ListGeofenceResponseEntry.fromJson(Map<String, dynamic> json) {
+    return ListGeofenceResponseEntry(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      geofenceId: json['GeofenceId'] as String,
+      geometry:
+          GeofenceGeometry.fromJson(json['Geometry'] as Map<String, dynamic>),
+      status: json['Status'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListGeofencesResponse {
   /// Contains a list of geofences stored in the geofence collection.
-  @_s.JsonKey(name: 'Entries')
   final List<ListGeofenceResponseEntry> entries;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListGeofencesResponse({
-    @_s.required this.entries,
+    required this.entries,
     this.nextToken,
   });
-  factory ListGeofencesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListGeofencesResponseFromJson(json);
+  factory ListGeofencesResponse.fromJson(Map<String, dynamic> json) {
+    return ListGeofencesResponse(
+      entries: (json['Entries'] as List)
+          .whereNotNull()
+          .map((e) =>
+              ListGeofenceResponseEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListMapsResponse {
   /// Contains a list of maps in your AWS account
-  @_s.JsonKey(name: 'Entries')
   final List<ListMapsResponseEntry> entries;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListMapsResponse({
-    @_s.required this.entries,
+    required this.entries,
     this.nextToken,
   });
-  factory ListMapsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListMapsResponseFromJson(json);
+  factory ListMapsResponse.fromJson(Map<String, dynamic> json) {
+    return ListMapsResponse(
+      entries: (json['Entries'] as List)
+          .whereNotNull()
+          .map((e) => ListMapsResponseEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// Contains details of an existing map resource in your AWS account.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListMapsResponseEntry {
   /// The timestamp for when the map resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// Specifies the data provider for the associated map tiles.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The description for the map resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the associated map resource.
-  @_s.JsonKey(name: 'MapName')
   final String mapName;
 
   /// The timestamp for when the map resource was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   ListMapsResponseEntry({
-    @_s.required this.createTime,
-    @_s.required this.dataSource,
-    @_s.required this.description,
-    @_s.required this.mapName,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.dataSource,
+    required this.description,
+    required this.mapName,
+    required this.updateTime,
   });
-  factory ListMapsResponseEntry.fromJson(Map<String, dynamic> json) =>
-      _$ListMapsResponseEntryFromJson(json);
+  factory ListMapsResponseEntry.fromJson(Map<String, dynamic> json) {
+    return ListMapsResponseEntry(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      dataSource: json['DataSource'] as String,
+      description: json['Description'] as String,
+      mapName: json['MapName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListPlaceIndexesResponse {
   /// Lists the Place index resources that exist in your AWS account
-  @_s.JsonKey(name: 'Entries')
   final List<ListPlaceIndexesResponseEntry> entries;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListPlaceIndexesResponse({
-    @_s.required this.entries,
+    required this.entries,
     this.nextToken,
   });
-  factory ListPlaceIndexesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListPlaceIndexesResponseFromJson(json);
+  factory ListPlaceIndexesResponse.fromJson(Map<String, dynamic> json) {
+    return ListPlaceIndexesResponse(
+      entries: (json['Entries'] as List)
+          .whereNotNull()
+          .map((e) =>
+              ListPlaceIndexesResponseEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// A Place index resource listed in your AWS account.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListPlaceIndexesResponseEntry {
   /// The timestamp for when the Place index resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The data provider of geospatial data.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The optional description for the Place index resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the Place index resource.
-  @_s.JsonKey(name: 'IndexName')
   final String indexName;
 
   /// The timestamp for when the Place index resource was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   ListPlaceIndexesResponseEntry({
-    @_s.required this.createTime,
-    @_s.required this.dataSource,
-    @_s.required this.description,
-    @_s.required this.indexName,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.dataSource,
+    required this.description,
+    required this.indexName,
+    required this.updateTime,
   });
-  factory ListPlaceIndexesResponseEntry.fromJson(Map<String, dynamic> json) =>
-      _$ListPlaceIndexesResponseEntryFromJson(json);
+  factory ListPlaceIndexesResponseEntry.fromJson(Map<String, dynamic> json) {
+    return ListPlaceIndexesResponseEntry(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      dataSource: json['DataSource'] as String,
+      description: json['Description'] as String,
+      indexName: json['IndexName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTrackerConsumersResponse {
   /// Contains the list of geofence collection ARNs associated to the tracker
   /// resource.
-  @_s.JsonKey(name: 'ConsumerArns')
   final List<String> consumerArns;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListTrackerConsumersResponse({
-    @_s.required this.consumerArns,
+    required this.consumerArns,
     this.nextToken,
   });
-  factory ListTrackerConsumersResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTrackerConsumersResponseFromJson(json);
+  factory ListTrackerConsumersResponse.fromJson(Map<String, dynamic> json) {
+    return ListTrackerConsumersResponse(
+      consumerArns: (json['ConsumerArns'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTrackersResponse {
   /// Contains tracker resources in your AWS account. Details include tracker
   /// name, description and timestamps for when the tracker was created and last
   /// updated.
-  @_s.JsonKey(name: 'Entries')
   final List<ListTrackersResponseEntry> entries;
 
   /// A pagination token indicating there are additional pages available. You can
   /// use the token in a following request to fetch the next set of results.
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   ListTrackersResponse({
-    @_s.required this.entries,
+    required this.entries,
     this.nextToken,
   });
-  factory ListTrackersResponse.fromJson(Map<String, dynamic> json) =>
-      _$ListTrackersResponseFromJson(json);
+  factory ListTrackersResponse.fromJson(Map<String, dynamic> json) {
+    return ListTrackersResponse(
+      entries: (json['Entries'] as List)
+          .whereNotNull()
+          .map((e) =>
+              ListTrackersResponseEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// Contains the tracker resource details.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListTrackersResponseEntry {
   /// The timestamp for when the tracker resource was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The description for the tracker resource.
-  @_s.JsonKey(name: 'Description')
   final String description;
 
   /// The name of the tracker resource.
-  @_s.JsonKey(name: 'TrackerName')
   final String trackerName;
 
   /// The timestamp for when the position was detected and sampled in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   ListTrackersResponseEntry({
-    @_s.required this.createTime,
-    @_s.required this.description,
-    @_s.required this.trackerName,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.description,
+    required this.trackerName,
+    required this.updateTime,
   });
-  factory ListTrackersResponseEntry.fromJson(Map<String, dynamic> json) =>
-      _$ListTrackersResponseEntryFromJson(json);
+  factory ListTrackersResponseEntry.fromJson(Map<String, dynamic> json) {
+    return ListTrackersResponseEntry(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      description: json['Description'] as String,
+      trackerName: json['TrackerName'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
 /// Specifies the map tile style selected from an available provider.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: true)
 class MapConfiguration {
   /// Specifies the map style selected from an available data provider.
   ///
@@ -3720,75 +3624,67 @@ class MapConfiguration {
   /// Management. See the <a href="https://aws.amazon.com/service-terms/">AWS
   /// Service Terms</a> for Amazon Location Service.
   /// </note>
-  @_s.JsonKey(name: 'Style')
   final String style;
 
   MapConfiguration({
-    @_s.required this.style,
+    required this.style,
   });
-  factory MapConfiguration.fromJson(Map<String, dynamic> json) =>
-      _$MapConfigurationFromJson(json);
+  factory MapConfiguration.fromJson(Map<String, dynamic> json) {
+    return MapConfiguration(
+      style: json['Style'] as String,
+    );
+  }
 
-  Map<String, dynamic> toJson() => _$MapConfigurationToJson(this);
+  Map<String, dynamic> toJson() {
+    final style = this.style;
+    return {
+      'Style': style,
+    };
+  }
 }
 
 /// Contains details about addresses or points of interest that match the search
 /// criteria.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Place {
-  @_s.JsonKey(name: 'Geometry')
   final PlaceGeometry geometry;
 
   /// The numerical portion of an address, such as a building number.
-  @_s.JsonKey(name: 'AddressNumber')
-  final String addressNumber;
+  final String? addressNumber;
 
   /// A country/region specified using <a
   /// href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a> 3-digit
   /// country/region code. For example, <code>CAN</code>.
-  @_s.JsonKey(name: 'Country')
-  final String country;
+  final String? country;
 
   /// The full name and address of the point of interest such as a city, region,
   /// or country. For example, <code>123 Any Street, Any Town, USA</code>.
-  @_s.JsonKey(name: 'Label')
-  final String label;
+  final String? label;
 
   /// A name for a local area, such as a city or town name. For example,
   /// <code>Toronto</code>.
-  @_s.JsonKey(name: 'Municipality')
-  final String municipality;
+  final String? municipality;
 
   /// The name of a community district. For example, <code>Downtown</code>.
-  @_s.JsonKey(name: 'Neighborhood')
-  final String neighborhood;
+  final String? neighborhood;
 
   /// A group of numbers and letters in a country-specific format, which
   /// accompanies the address for the purpose of identifying a location.
-  @_s.JsonKey(name: 'PostalCode')
-  final String postalCode;
+  final String? postalCode;
 
   /// A name for an area or geographical division, such as a province or state
   /// name. For example, <code>British Columbia</code>.
-  @_s.JsonKey(name: 'Region')
-  final String region;
+  final String? region;
 
   /// The name for a street or a road to identify a location. For example,
   /// <code>Main Street</code>.
-  @_s.JsonKey(name: 'Street')
-  final String street;
+  final String? street;
 
   /// A country, or an area that's part of a larger region . For example,
   /// <code>Metro Vancouver</code>.
-  @_s.JsonKey(name: 'SubRegion')
-  final String subRegion;
+  final String? subRegion;
 
   Place({
-    @_s.required this.geometry,
+    required this.geometry,
     this.addressNumber,
     this.country,
     this.label,
@@ -3799,15 +3695,24 @@ class Place {
     this.street,
     this.subRegion,
   });
-  factory Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
+  factory Place.fromJson(Map<String, dynamic> json) {
+    return Place(
+      geometry:
+          PlaceGeometry.fromJson(json['Geometry'] as Map<String, dynamic>),
+      addressNumber: json['AddressNumber'] as String?,
+      country: json['Country'] as String?,
+      label: json['Label'] as String?,
+      municipality: json['Municipality'] as String?,
+      neighborhood: json['Neighborhood'] as String?,
+      postalCode: json['PostalCode'] as String?,
+      region: json['Region'] as String?,
+      street: json['Street'] as String?,
+      subRegion: json['SubRegion'] as String?,
+    );
+  }
 }
 
 /// Places uses a point geometry to specify a location or a Place.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PlaceGeometry {
   /// A single point geometry specifies a location for a Place using <a
   /// href="https://gisgeography.com/wgs84-world-geodetic-system/">WGS 84</a>
@@ -3821,22 +3726,24 @@ class PlaceGeometry {
   /// <i>y</i> — Specifies the y coordinate or latitude.
   /// </li>
   /// </ul>
-  @_s.JsonKey(name: 'Point')
-  final List<double> point;
+  final List<double>? point;
 
   PlaceGeometry({
     this.point,
   });
-  factory PlaceGeometry.fromJson(Map<String, dynamic> json) =>
-      _$PlaceGeometryFromJson(json);
+  factory PlaceGeometry.fromJson(Map<String, dynamic> json) {
+    return PlaceGeometry(
+      point: (json['Point'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
 }
 
 enum PricingPlan {
-  @_s.JsonValue('RequestBasedUsage')
   requestBasedUsage,
-  @_s.JsonValue('MobileAssetTracking')
   mobileAssetTracking,
-  @_s.JsonValue('MobileAssetManagement')
   mobileAssetManagement,
 }
 
@@ -3850,244 +3757,258 @@ extension on PricingPlan {
       case PricingPlan.mobileAssetManagement:
         return 'MobileAssetManagement';
     }
-    throw Exception('Unknown enum value: $this');
   }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
+extension on String {
+  PricingPlan toPricingPlan() {
+    switch (this) {
+      case 'RequestBasedUsage':
+        return PricingPlan.requestBasedUsage;
+      case 'MobileAssetTracking':
+        return PricingPlan.mobileAssetTracking;
+      case 'MobileAssetManagement':
+        return PricingPlan.mobileAssetManagement;
+    }
+    throw Exception('$this is not known in enum PricingPlan');
+  }
+}
+
 class PutGeofenceResponse {
   /// The timestamp for when the geofence was created in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'CreateTime')
   final DateTime createTime;
 
   /// The geofence identifier entered in the request.
-  @_s.JsonKey(name: 'GeofenceId')
   final String geofenceId;
 
   /// The timestamp for when the geofence was last updated in <a
   /// href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a>
   /// format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
-  @IsoDateTimeConverter()
-  @_s.JsonKey(name: 'UpdateTime')
   final DateTime updateTime;
 
   PutGeofenceResponse({
-    @_s.required this.createTime,
-    @_s.required this.geofenceId,
-    @_s.required this.updateTime,
+    required this.createTime,
+    required this.geofenceId,
+    required this.updateTime,
   });
-  factory PutGeofenceResponse.fromJson(Map<String, dynamic> json) =>
-      _$PutGeofenceResponseFromJson(json);
+  factory PutGeofenceResponse.fromJson(Map<String, dynamic> json) {
+    return PutGeofenceResponse(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      geofenceId: json['GeofenceId'] as String,
+      updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
+    );
+  }
 }
 
 /// Specifies a single point of interest, or Place as a result of a search query
 /// obtained from a dataset configured in the Place index Resource.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchForPositionResult {
   /// Contains details about the relevant point of interest.
-  @_s.JsonKey(name: 'Place')
   final Place place;
 
   SearchForPositionResult({
-    @_s.required this.place,
+    required this.place,
   });
-  factory SearchForPositionResult.fromJson(Map<String, dynamic> json) =>
-      _$SearchForPositionResultFromJson(json);
+  factory SearchForPositionResult.fromJson(Map<String, dynamic> json) {
+    return SearchForPositionResult(
+      place: Place.fromJson(json['Place'] as Map<String, dynamic>),
+    );
+  }
 }
 
 /// Contains relevant Places returned by calling
 /// <code>SearchPlaceIndexForText</code>.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchForTextResult {
   /// Contains details about the relevant point of interest.
-  @_s.JsonKey(name: 'Place')
   final Place place;
 
   SearchForTextResult({
-    @_s.required this.place,
+    required this.place,
   });
-  factory SearchForTextResult.fromJson(Map<String, dynamic> json) =>
-      _$SearchForTextResultFromJson(json);
+  factory SearchForTextResult.fromJson(Map<String, dynamic> json) {
+    return SearchForTextResult(
+      place: Place.fromJson(json['Place'] as Map<String, dynamic>),
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchPlaceIndexForPositionResponse {
   /// Returns a list of Places closest to the specified position. Each result
   /// contains additional information about the Places returned.
-  @_s.JsonKey(name: 'Results')
   final List<SearchForPositionResult> results;
 
   /// Contains a summary of the request.
-  @_s.JsonKey(name: 'Summary')
   final SearchPlaceIndexForPositionSummary summary;
 
   SearchPlaceIndexForPositionResponse({
-    @_s.required this.results,
-    @_s.required this.summary,
+    required this.results,
+    required this.summary,
   });
   factory SearchPlaceIndexForPositionResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$SearchPlaceIndexForPositionResponseFromJson(json);
+      Map<String, dynamic> json) {
+    return SearchPlaceIndexForPositionResponse(
+      results: (json['Results'] as List)
+          .whereNotNull()
+          .map((e) =>
+              SearchForPositionResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      summary: SearchPlaceIndexForPositionSummary.fromJson(
+          json['Summary'] as Map<String, dynamic>),
+    );
+  }
 }
 
 /// A summary of the reverse geocoding request sent using
 /// <code>SearchPlaceIndexForPosition</code>.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchPlaceIndexForPositionSummary {
   /// The data provider of geospatial data for the Place index resource.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The position given in the reverse geocoding request.
-  @_s.JsonKey(name: 'Position')
   final List<double> position;
 
   /// An optional parameter. The maximum number of results returned per request.
   ///
   /// Default value: <code>50</code>
-  @_s.JsonKey(name: 'MaxResults')
-  final int maxResults;
+  final int? maxResults;
 
   SearchPlaceIndexForPositionSummary({
-    @_s.required this.dataSource,
-    @_s.required this.position,
+    required this.dataSource,
+    required this.position,
     this.maxResults,
   });
   factory SearchPlaceIndexForPositionSummary.fromJson(
-          Map<String, dynamic> json) =>
-      _$SearchPlaceIndexForPositionSummaryFromJson(json);
+      Map<String, dynamic> json) {
+    return SearchPlaceIndexForPositionSummary(
+      dataSource: json['DataSource'] as String,
+      position: (json['Position'] as List)
+          .whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      maxResults: json['MaxResults'] as int?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchPlaceIndexForTextResponse {
   /// A list of Places closest to the specified position. Each result contains
   /// additional information about the specific point of interest.
-  @_s.JsonKey(name: 'Results')
   final List<SearchForTextResult> results;
 
   /// Contains a summary of the request. Contains the <code>BiasPosition</code>,
   /// <code>DataSource</code>, <code>FilterBBox</code>,
   /// <code>FilterCountries</code>, <code>MaxResults</code>,
   /// <code>ResultBBox</code>, and <code>Text</code>.
-  @_s.JsonKey(name: 'Summary')
   final SearchPlaceIndexForTextSummary summary;
 
   SearchPlaceIndexForTextResponse({
-    @_s.required this.results,
-    @_s.required this.summary,
+    required this.results,
+    required this.summary,
   });
-  factory SearchPlaceIndexForTextResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchPlaceIndexForTextResponseFromJson(json);
+  factory SearchPlaceIndexForTextResponse.fromJson(Map<String, dynamic> json) {
+    return SearchPlaceIndexForTextResponse(
+      results: (json['Results'] as List)
+          .whereNotNull()
+          .map((e) => SearchForTextResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      summary: SearchPlaceIndexForTextSummary.fromJson(
+          json['Summary'] as Map<String, dynamic>),
+    );
+  }
 }
 
 /// A summary of the geocoding request sent using
 /// <code>SearchPlaceIndexForText</code>.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class SearchPlaceIndexForTextSummary {
   /// The data provider of geospatial data for the Place index resource.
-  @_s.JsonKey(name: 'DataSource')
   final String dataSource;
 
   /// The address, name, city or region to be used in the geocoding request. In
   /// free-form text format. For example, <code>Vancouver</code>.
-  @_s.JsonKey(name: 'Text')
   final String text;
 
   /// Contains the coordinates for the bias position entered in the geocoding
   /// request.
-  @_s.JsonKey(name: 'BiasPosition')
-  final List<double> biasPosition;
+  final List<double>? biasPosition;
 
   /// Contains the coordinates for the optional bounding box coordinated entered
   /// in the geocoding request.
-  @_s.JsonKey(name: 'FilterBBox')
-  final List<double> filterBBox;
+  final List<double>? filterBBox;
 
   /// Contains the country filter entered in the geocoding request.
-  @_s.JsonKey(name: 'FilterCountries')
-  final List<String> filterCountries;
+  final List<String>? filterCountries;
 
   /// Contains the maximum number of results indicated for the request.
-  @_s.JsonKey(name: 'MaxResults')
-  final int maxResults;
+  final int? maxResults;
 
   /// A bounding box that contains the search results within the specified area
   /// indicated by <code>FilterBBox</code>. A subset of bounding box specified
   /// using <code>FilterBBox</code>.
-  @_s.JsonKey(name: 'ResultBBox')
-  final List<double> resultBBox;
+  final List<double>? resultBBox;
 
   SearchPlaceIndexForTextSummary({
-    @_s.required this.dataSource,
-    @_s.required this.text,
+    required this.dataSource,
+    required this.text,
     this.biasPosition,
     this.filterBBox,
     this.filterCountries,
     this.maxResults,
     this.resultBBox,
   });
-  factory SearchPlaceIndexForTextSummary.fromJson(Map<String, dynamic> json) =>
-      _$SearchPlaceIndexForTextSummaryFromJson(json);
+  factory SearchPlaceIndexForTextSummary.fromJson(Map<String, dynamic> json) {
+    return SearchPlaceIndexForTextSummary(
+      dataSource: json['DataSource'] as String,
+      text: json['Text'] as String,
+      biasPosition: (json['BiasPosition'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      filterBBox: (json['FilterBBox'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      filterCountries: (json['FilterCountries'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      maxResults: json['MaxResults'] as int?,
+      resultBBox: (json['ResultBBox'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ThrottlingException extends _s.GenericAwsException {
-  ThrottlingException({String type, String message})
+  ThrottlingException({String? type, String? message})
       : super(type: type, code: 'ThrottlingException', message: message);
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 

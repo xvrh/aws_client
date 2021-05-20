@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,17 +11,11 @@ import 'dart:typed_data';
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 import 'flattened_map.meta.dart';
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
@@ -31,9 +26,9 @@ class FlattenedMap {
   final Map<String, _s.Shape> shapes;
 
   FlattenedMap({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
   })  : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -62,7 +57,7 @@ class FlattenedMap {
 }
 
 class OutputShape {
-  final Map<String, String> map;
+  final Map<String, String>? map;
 
   OutputShape({
     this.map,
@@ -72,8 +67,8 @@ class OutputShape {
       map: Map.fromEntries(
         elem.findElements('Map').map(
               (c) => MapEntry(
-                _s.extractXmlStringValue(c, 'key'),
-                _s.extractXmlStringValue(c, 'value'),
+                _s.extractXmlStringValue(c, 'key')!,
+                _s.extractXmlStringValue(c, 'value')!,
               ),
             ),
       ),

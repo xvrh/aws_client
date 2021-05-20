@@ -3,6 +3,7 @@
 // ignore_for_file: unused_import
 // ignore_for_file: unused_local_variable
 // ignore_for_file: unused_shown_name
+// ignore_for_file: camel_case_types
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -10,30 +11,22 @@ import 'dart:typed_data';
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
-        Uint8ListConverter,
-        Uint8ListListConverter,
         rfc822ToJson,
         iso8601ToJson,
         unixTimestampToJson,
-        timeStampFromJson,
-        RfcDateTimeConverter,
-        IsoDateTimeConverter,
-        UnixDateTimeConverter,
-        StringJsonConverter,
-        Base64JsonConverter;
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
 
 export '../../shared/shared.dart' show AwsClientCredentials;
-
-part '2020-03-31.g.dart';
 
 /// This is the <i>AWS Well-Architected Tool API Reference</i>.
 class WellArchitected {
   final _s.RestJsonProtocol _protocol;
   WellArchitected({
-    @_s.required String region,
-    _s.AwsClientCredentials credentials,
-    _s.Client client,
-    String endpointUrl,
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.Client? client,
+    String? endpointUrl,
   }) : _protocol = _s.RestJsonProtocol(
           client: client,
           service: _s.ServiceMetadata(
@@ -54,8 +47,8 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<void> associateLenses({
-    @_s.required List<String> lensAliases,
-    @_s.required String workloadId,
+    required List<String> lensAliases,
+    required String workloadId,
   }) async {
     ArgumentError.checkNotNull(lensAliases, 'lensAliases');
     ArgumentError.checkNotNull(workloadId, 'workloadId');
@@ -87,11 +80,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<CreateMilestoneOutput> createMilestone({
-    @_s.required String clientRequestToken,
-    @_s.required String milestoneName,
-    @_s.required String workloadId,
+    required String milestoneName,
+    required String workloadId,
+    String? clientRequestToken,
   }) async {
-    ArgumentError.checkNotNull(clientRequestToken, 'clientRequestToken');
     ArgumentError.checkNotNull(milestoneName, 'milestoneName');
     _s.validateStringLength(
       'milestoneName',
@@ -108,8 +100,8 @@ class WellArchitected {
       isRequired: true,
     );
     final $payload = <String, dynamic>{
-      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       'MilestoneName': milestoneName,
+      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -137,22 +129,21 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<CreateWorkloadOutput> createWorkload({
-    @_s.required String clientRequestToken,
-    @_s.required String description,
-    @_s.required WorkloadEnvironment environment,
-    @_s.required List<String> lenses,
-    @_s.required String reviewOwner,
-    @_s.required String workloadName,
-    List<String> accountIds,
-    String architecturalDesign,
-    List<String> awsRegions,
-    String industry,
-    String industryType,
-    List<String> nonAwsRegions,
-    String notes,
-    List<String> pillarPriorities,
+    required String description,
+    required WorkloadEnvironment environment,
+    required List<String> lenses,
+    required String reviewOwner,
+    required String workloadName,
+    List<String>? accountIds,
+    String? architecturalDesign,
+    List<String>? awsRegions,
+    String? clientRequestToken,
+    String? industry,
+    String? industryType,
+    List<String>? nonAwsRegions,
+    String? notes,
+    List<String>? pillarPriorities,
   }) async {
-    ArgumentError.checkNotNull(clientRequestToken, 'clientRequestToken');
     ArgumentError.checkNotNull(description, 'description');
     _s.validateStringLength(
       'description',
@@ -204,9 +195,8 @@ class WellArchitected {
       2084,
     );
     final $payload = <String, dynamic>{
-      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       'Description': description,
-      'Environment': environment?.toValue() ?? '',
+      'Environment': environment.toValue(),
       'Lenses': lenses,
       'ReviewOwner': reviewOwner,
       'WorkloadName': workloadName,
@@ -214,6 +204,7 @@ class WellArchitected {
       if (architecturalDesign != null)
         'ArchitecturalDesign': architecturalDesign,
       if (awsRegions != null) 'AwsRegions': awsRegions,
+      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (industry != null) 'Industry': industry,
       if (industryType != null) 'IndustryType': industryType,
       if (nonAwsRegions != null) 'NonAwsRegions': nonAwsRegions,
@@ -247,12 +238,11 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<CreateWorkloadShareOutput> createWorkloadShare({
-    @_s.required String clientRequestToken,
-    @_s.required PermissionType permissionType,
-    @_s.required String sharedWith,
-    @_s.required String workloadId,
+    required PermissionType permissionType,
+    required String sharedWith,
+    required String workloadId,
+    String? clientRequestToken,
   }) async {
-    ArgumentError.checkNotNull(clientRequestToken, 'clientRequestToken');
     ArgumentError.checkNotNull(permissionType, 'permissionType');
     ArgumentError.checkNotNull(sharedWith, 'sharedWith');
     _s.validateStringLength(
@@ -270,9 +260,9 @@ class WellArchitected {
       isRequired: true,
     );
     final $payload = <String, dynamic>{
-      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
-      'PermissionType': permissionType?.toValue() ?? '',
+      'PermissionType': permissionType.toValue(),
       'SharedWith': sharedWith,
+      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -292,10 +282,9 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<void> deleteWorkload({
-    @_s.required String clientRequestToken,
-    @_s.required String workloadId,
+    required String workloadId,
+    String? clientRequestToken,
   }) async {
-    ArgumentError.checkNotNull(clientRequestToken, 'clientRequestToken');
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
       'workloadId',
@@ -325,11 +314,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<void> deleteWorkloadShare({
-    @_s.required String clientRequestToken,
-    @_s.required String shareId,
-    @_s.required String workloadId,
+    required String shareId,
+    required String workloadId,
+    String? clientRequestToken,
   }) async {
-    ArgumentError.checkNotNull(clientRequestToken, 'clientRequestToken');
     ArgumentError.checkNotNull(shareId, 'shareId');
     _s.validateStringPattern(
       'shareId',
@@ -371,8 +359,8 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<void> disassociateLenses({
-    @_s.required List<String> lensAliases,
-    @_s.required String workloadId,
+    required List<String> lensAliases,
+    required String workloadId,
   }) async {
     ArgumentError.checkNotNull(lensAliases, 'lensAliases');
     ArgumentError.checkNotNull(workloadId, 'workloadId');
@@ -402,10 +390,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<GetAnswerOutput> getAnswer({
-    @_s.required String lensAlias,
-    @_s.required String questionId,
-    @_s.required String workloadId,
-    int milestoneNumber,
+    required String lensAlias,
+    required String questionId,
+    required String workloadId,
+    int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -459,9 +447,9 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<GetLensReviewOutput> getLensReview({
-    @_s.required String lensAlias,
-    @_s.required String workloadId,
-    int milestoneNumber,
+    required String lensAlias,
+    required String workloadId,
+    int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -507,9 +495,9 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<GetLensReviewReportOutput> getLensReviewReport({
-    @_s.required String lensAlias,
-    @_s.required String workloadId,
-    int milestoneNumber,
+    required String lensAlias,
+    required String workloadId,
+    int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -558,8 +546,8 @@ class WellArchitected {
   /// Parameter [baseLensVersion] :
   /// The base version of the lens.
   Future<GetLensVersionDifferenceOutput> getLensVersionDifference({
-    @_s.required String baseLensVersion,
-    @_s.required String lensAlias,
+    required String baseLensVersion,
+    required String lensAlias,
   }) async {
     ArgumentError.checkNotNull(baseLensVersion, 'baseLensVersion');
     _s.validateStringLength(
@@ -578,7 +566,7 @@ class WellArchitected {
       isRequired: true,
     );
     final $query = <String, List<String>>{
-      if (baseLensVersion != null) 'BaseLensVersion': [baseLensVersion],
+      'BaseLensVersion': [baseLensVersion],
     };
     final response = await _protocol.send(
       payload: null,
@@ -598,8 +586,8 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<GetMilestoneOutput> getMilestone({
-    @_s.required int milestoneNumber,
-    @_s.required String workloadId,
+    required int milestoneNumber,
+    required String workloadId,
   }) async {
     ArgumentError.checkNotNull(milestoneNumber, 'milestoneNumber');
     _s.validateNumRange(
@@ -634,7 +622,7 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<GetWorkloadOutput> getWorkload({
-    @_s.required String workloadId,
+    required String workloadId,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
@@ -663,12 +651,12 @@ class WellArchitected {
   /// Parameter [maxResults] :
   /// The maximum number of results to return for this request.
   Future<ListAnswersOutput> listAnswers({
-    @_s.required String lensAlias,
-    @_s.required String workloadId,
-    int maxResults,
-    int milestoneNumber,
-    String nextToken,
-    String pillarId,
+    required String lensAlias,
+    required String workloadId,
+    int? maxResults,
+    int? milestoneNumber,
+    String? nextToken,
+    String? pillarId,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -732,12 +720,12 @@ class WellArchitected {
   /// Parameter [maxResults] :
   /// The maximum number of results to return for this request.
   Future<ListLensReviewImprovementsOutput> listLensReviewImprovements({
-    @_s.required String lensAlias,
-    @_s.required String workloadId,
-    int maxResults,
-    int milestoneNumber,
-    String nextToken,
-    String pillarId,
+    required String lensAlias,
+    required String workloadId,
+    int? maxResults,
+    int? milestoneNumber,
+    String? nextToken,
+    String? pillarId,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -798,10 +786,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<ListLensReviewsOutput> listLensReviews({
-    @_s.required String workloadId,
-    int maxResults,
-    int milestoneNumber,
-    String nextToken,
+    required String workloadId,
+    int? maxResults,
+    int? milestoneNumber,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
@@ -845,8 +833,8 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<ListLensesOutput> listLenses({
-    int maxResults,
-    String nextToken,
+    int? maxResults,
+    String? nextToken,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -876,9 +864,9 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<ListMilestonesOutput> listMilestones({
-    @_s.required String workloadId,
-    int maxResults,
-    String nextToken,
+    required String workloadId,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
@@ -917,9 +905,9 @@ class WellArchitected {
   /// Parameter [maxResults] :
   /// The maximum number of results to return for this request.
   Future<ListNotificationsOutput> listNotifications({
-    int maxResults,
-    String nextToken,
-    String workloadId,
+    int? maxResults,
+    String? nextToken,
+    String? workloadId,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -956,9 +944,9 @@ class WellArchitected {
   /// Parameter [maxResults] :
   /// The maximum number of results to return for this request.
   Future<ListShareInvitationsOutput> listShareInvitations({
-    int maxResults,
-    String nextToken,
-    String workloadNamePrefix,
+    int? maxResults,
+    String? nextToken,
+    String? workloadNamePrefix,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1002,10 +990,10 @@ class WellArchitected {
   /// Parameter [sharedWithPrefix] :
   /// The AWS account ID or IAM role with which the workload is shared.
   Future<ListWorkloadSharesOutput> listWorkloadShares({
-    @_s.required String workloadId,
-    int maxResults,
-    String nextToken,
-    String sharedWithPrefix,
+    required String workloadId,
+    int? maxResults,
+    String? nextToken,
+    String? sharedWithPrefix,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
@@ -1051,9 +1039,9 @@ class WellArchitected {
   /// Parameter [maxResults] :
   /// The maximum number of results to return for this request.
   Future<ListWorkloadsOutput> listWorkloads({
-    int maxResults,
-    String nextToken,
-    String workloadNamePrefix,
+    int? maxResults,
+    String? nextToken,
+    String? workloadNamePrefix,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -1090,12 +1078,12 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<UpdateAnswerOutput> updateAnswer({
-    @_s.required String lensAlias,
-    @_s.required String questionId,
-    @_s.required String workloadId,
-    bool isApplicable,
-    String notes,
-    List<String> selectedChoices,
+    required String lensAlias,
+    required String questionId,
+    required String workloadId,
+    bool? isApplicable,
+    String? notes,
+    List<String>? selectedChoices,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -1150,10 +1138,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<UpdateLensReviewOutput> updateLensReview({
-    @_s.required String lensAlias,
-    @_s.required String workloadId,
-    String lensNotes,
-    Map<String, String> pillarNotes,
+    required String lensAlias,
+    required String workloadId,
+    String? lensNotes,
+    Map<String, String>? pillarNotes,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -1202,8 +1190,8 @@ class WellArchitected {
   /// Parameter [shareInvitationId] :
   /// The ID assigned to the share invitation.
   Future<UpdateShareInvitationOutput> updateShareInvitation({
-    @_s.required ShareInvitationAction shareInvitationAction,
-    @_s.required String shareInvitationId,
+    required ShareInvitationAction shareInvitationAction,
+    required String shareInvitationId,
   }) async {
     ArgumentError.checkNotNull(shareInvitationAction, 'shareInvitationAction');
     ArgumentError.checkNotNull(shareInvitationId, 'shareInvitationId');
@@ -1214,7 +1202,7 @@ class WellArchitected {
       isRequired: true,
     );
     final $payload = <String, dynamic>{
-      'ShareInvitationAction': shareInvitationAction?.toValue() ?? '',
+      'ShareInvitationAction': shareInvitationAction.toValue(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1242,21 +1230,21 @@ class WellArchitected {
   /// acknowledgement, access to the workload is restricted until an owner is
   /// added.
   Future<UpdateWorkloadOutput> updateWorkload({
-    @_s.required String workloadId,
-    List<String> accountIds,
-    String architecturalDesign,
-    List<String> awsRegions,
-    String description,
-    WorkloadEnvironment environment,
-    WorkloadImprovementStatus improvementStatus,
-    String industry,
-    String industryType,
-    bool isReviewOwnerUpdateAcknowledged,
-    List<String> nonAwsRegions,
-    String notes,
-    List<String> pillarPriorities,
-    String reviewOwner,
-    String workloadName,
+    required String workloadId,
+    List<String>? accountIds,
+    String? architecturalDesign,
+    List<String>? awsRegions,
+    String? description,
+    WorkloadEnvironment? environment,
+    WorkloadImprovementStatus? improvementStatus,
+    String? industry,
+    String? industryType,
+    bool? isReviewOwnerUpdateAcknowledged,
+    List<String>? nonAwsRegions,
+    String? notes,
+    List<String>? pillarPriorities,
+    String? reviewOwner,
+    String? workloadName,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateStringPattern(
@@ -1344,9 +1332,9 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<UpdateWorkloadShareOutput> updateWorkloadShare({
-    @_s.required PermissionType permissionType,
-    @_s.required String shareId,
-    @_s.required String workloadId,
+    required PermissionType permissionType,
+    required String shareId,
+    required String workloadId,
   }) async {
     ArgumentError.checkNotNull(permissionType, 'permissionType');
     ArgumentError.checkNotNull(shareId, 'shareId');
@@ -1364,7 +1352,7 @@ class WellArchitected {
       isRequired: true,
     );
     final $payload = <String, dynamic>{
-      'PermissionType': permissionType?.toValue() ?? '',
+      'PermissionType': permissionType.toValue(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1385,10 +1373,10 @@ class WellArchitected {
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
   Future<void> upgradeLensReview({
-    @_s.required String lensAlias,
-    @_s.required String milestoneName,
-    @_s.required String workloadId,
-    String clientRequestToken,
+    required String lensAlias,
+    required String milestoneName,
+    required String workloadId,
+    String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
     _s.validateStringLength(
@@ -1428,34 +1416,18 @@ class WellArchitected {
 }
 
 /// An answer of the question.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Answer {
-  @_s.JsonKey(name: 'Choices')
-  final List<Choice> choices;
-  @_s.JsonKey(name: 'HelpfulResourceUrl')
-  final String helpfulResourceUrl;
-  @_s.JsonKey(name: 'ImprovementPlanUrl')
-  final String improvementPlanUrl;
-  @_s.JsonKey(name: 'IsApplicable')
-  final bool isApplicable;
-  @_s.JsonKey(name: 'Notes')
-  final String notes;
-  @_s.JsonKey(name: 'PillarId')
-  final String pillarId;
-  @_s.JsonKey(name: 'QuestionDescription')
-  final String questionDescription;
-  @_s.JsonKey(name: 'QuestionId')
-  final String questionId;
-  @_s.JsonKey(name: 'QuestionTitle')
-  final String questionTitle;
-  @_s.JsonKey(name: 'Risk')
-  final Risk risk;
-  @_s.JsonKey(name: 'SelectedChoices')
-  final List<String> selectedChoices;
+  final List<Choice>? choices;
+  final String? helpfulResourceUrl;
+  final String? improvementPlanUrl;
+  final bool? isApplicable;
+  final String? notes;
+  final String? pillarId;
+  final String? questionDescription;
+  final String? questionId;
+  final String? questionTitle;
+  final Risk? risk;
+  final List<String>? selectedChoices;
 
   Answer({
     this.choices,
@@ -1470,30 +1442,38 @@ class Answer {
     this.risk,
     this.selectedChoices,
   });
-  factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
+  factory Answer.fromJson(Map<String, dynamic> json) {
+    return Answer(
+      choices: (json['Choices'] as List?)
+          ?.whereNotNull()
+          .map((e) => Choice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      helpfulResourceUrl: json['HelpfulResourceUrl'] as String?,
+      improvementPlanUrl: json['ImprovementPlanUrl'] as String?,
+      isApplicable: json['IsApplicable'] as bool?,
+      notes: json['Notes'] as String?,
+      pillarId: json['PillarId'] as String?,
+      questionDescription: json['QuestionDescription'] as String?,
+      questionId: json['QuestionId'] as String?,
+      questionTitle: json['QuestionTitle'] as String?,
+      risk: (json['Risk'] as String?)?.toRisk(),
+      selectedChoices: (json['SelectedChoices'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 }
 
 /// An answer summary of a lens review in a workload.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class AnswerSummary {
-  @_s.JsonKey(name: 'Choices')
-  final List<Choice> choices;
-  @_s.JsonKey(name: 'IsApplicable')
-  final bool isApplicable;
-  @_s.JsonKey(name: 'PillarId')
-  final String pillarId;
-  @_s.JsonKey(name: 'QuestionId')
-  final String questionId;
-  @_s.JsonKey(name: 'QuestionTitle')
-  final String questionTitle;
-  @_s.JsonKey(name: 'Risk')
-  final Risk risk;
-  @_s.JsonKey(name: 'SelectedChoices')
-  final List<String> selectedChoices;
+  final List<Choice>? choices;
+  final bool? isApplicable;
+  final String? pillarId;
+  final String? questionId;
+  final String? questionTitle;
+  final Risk? risk;
+  final List<String>? selectedChoices;
 
   AnswerSummary({
     this.choices,
@@ -1504,116 +1484,135 @@ class AnswerSummary {
     this.risk,
     this.selectedChoices,
   });
-  factory AnswerSummary.fromJson(Map<String, dynamic> json) =>
-      _$AnswerSummaryFromJson(json);
+  factory AnswerSummary.fromJson(Map<String, dynamic> json) {
+    return AnswerSummary(
+      choices: (json['Choices'] as List?)
+          ?.whereNotNull()
+          .map((e) => Choice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isApplicable: json['IsApplicable'] as bool?,
+      pillarId: json['PillarId'] as String?,
+      questionId: json['QuestionId'] as String?,
+      questionTitle: json['QuestionTitle'] as String?,
+      risk: (json['Risk'] as String?)?.toRisk(),
+      selectedChoices: (json['SelectedChoices'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
 }
 
 /// A choice available to answer question.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Choice {
-  @_s.JsonKey(name: 'ChoiceId')
-  final String choiceId;
-  @_s.JsonKey(name: 'Description')
-  final String description;
-  @_s.JsonKey(name: 'Title')
-  final String title;
+  final String? choiceId;
+  final String? description;
+  final String? title;
 
   Choice({
     this.choiceId,
     this.description,
     this.title,
   });
-  factory Choice.fromJson(Map<String, dynamic> json) => _$ChoiceFromJson(json);
+  factory Choice.fromJson(Map<String, dynamic> json) {
+    return Choice(
+      choiceId: json['ChoiceId'] as String?,
+      description: json['Description'] as String?,
+      title: json['Title'] as String?,
+    );
+  }
 }
 
 /// Output of a create milestone call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateMilestoneOutput {
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final int? milestoneNumber;
+  final String? workloadId;
 
   CreateMilestoneOutput({
     this.milestoneNumber,
     this.workloadId,
   });
-  factory CreateMilestoneOutput.fromJson(Map<String, dynamic> json) =>
-      _$CreateMilestoneOutputFromJson(json);
+  factory CreateMilestoneOutput.fromJson(Map<String, dynamic> json) {
+    return CreateMilestoneOutput(
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a create workload call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateWorkloadOutput {
-  @_s.JsonKey(name: 'WorkloadArn')
-  final String workloadArn;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final String? workloadArn;
+  final String? workloadId;
 
   CreateWorkloadOutput({
     this.workloadArn,
     this.workloadId,
   });
-  factory CreateWorkloadOutput.fromJson(Map<String, dynamic> json) =>
-      _$CreateWorkloadOutputFromJson(json);
+  factory CreateWorkloadOutput.fromJson(Map<String, dynamic> json) {
+    return CreateWorkloadOutput(
+      workloadArn: json['WorkloadArn'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Input for Create Workload Share
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class CreateWorkloadShareOutput {
-  @_s.JsonKey(name: 'ShareId')
-  final String shareId;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final String? shareId;
+  final String? workloadId;
 
   CreateWorkloadShareOutput({
     this.shareId,
     this.workloadId,
   });
-  factory CreateWorkloadShareOutput.fromJson(Map<String, dynamic> json) =>
-      _$CreateWorkloadShareOutputFromJson(json);
+  factory CreateWorkloadShareOutput.fromJson(Map<String, dynamic> json) {
+    return CreateWorkloadShareOutput(
+      shareId: json['ShareId'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 enum DifferenceStatus {
-  @_s.JsonValue('UPDATED')
   updated,
-  @_s.JsonValue('NEW')
   $new,
-  @_s.JsonValue('DELETED')
   deleted,
 }
 
+extension on DifferenceStatus {
+  String toValue() {
+    switch (this) {
+      case DifferenceStatus.updated:
+        return 'UPDATED';
+      case DifferenceStatus.$new:
+        return 'NEW';
+      case DifferenceStatus.deleted:
+        return 'DELETED';
+    }
+  }
+}
+
+extension on String {
+  DifferenceStatus toDifferenceStatus() {
+    switch (this) {
+      case 'UPDATED':
+        return DifferenceStatus.updated;
+      case 'NEW':
+        return DifferenceStatus.$new;
+      case 'DELETED':
+        return DifferenceStatus.deleted;
+    }
+    throw Exception('$this is not known in enum DifferenceStatus');
+  }
+}
+
 /// Output of a get answer call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetAnswerOutput {
-  @_s.JsonKey(name: 'Answer')
-  final Answer answer;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final Answer? answer;
+  final String? lensAlias;
+  final int? milestoneNumber;
+  final String? workloadId;
 
   GetAnswerOutput({
     this.answer,
@@ -1621,73 +1620,71 @@ class GetAnswerOutput {
     this.milestoneNumber,
     this.workloadId,
   });
-  factory GetAnswerOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetAnswerOutputFromJson(json);
+  factory GetAnswerOutput.fromJson(Map<String, dynamic> json) {
+    return GetAnswerOutput(
+      answer: json['Answer'] != null
+          ? Answer.fromJson(json['Answer'] as Map<String, dynamic>)
+          : null,
+      lensAlias: json['LensAlias'] as String?,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a get lens review call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetLensReviewOutput {
-  @_s.JsonKey(name: 'LensReview')
-  final LensReview lensReview;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final LensReview? lensReview;
+  final int? milestoneNumber;
+  final String? workloadId;
 
   GetLensReviewOutput({
     this.lensReview,
     this.milestoneNumber,
     this.workloadId,
   });
-  factory GetLensReviewOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetLensReviewOutputFromJson(json);
+  factory GetLensReviewOutput.fromJson(Map<String, dynamic> json) {
+    return GetLensReviewOutput(
+      lensReview: json['LensReview'] != null
+          ? LensReview.fromJson(json['LensReview'] as Map<String, dynamic>)
+          : null,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a get lens review report call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetLensReviewReportOutput {
-  @_s.JsonKey(name: 'LensReviewReport')
-  final LensReviewReport lensReviewReport;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final LensReviewReport? lensReviewReport;
+  final int? milestoneNumber;
+  final String? workloadId;
 
   GetLensReviewReportOutput({
     this.lensReviewReport,
     this.milestoneNumber,
     this.workloadId,
   });
-  factory GetLensReviewReportOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetLensReviewReportOutputFromJson(json);
+  factory GetLensReviewReportOutput.fromJson(Map<String, dynamic> json) {
+    return GetLensReviewReportOutput(
+      lensReviewReport: json['LensReviewReport'] != null
+          ? LensReviewReport.fromJson(
+              json['LensReviewReport'] as Map<String, dynamic>)
+          : null,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetLensVersionDifferenceOutput {
   /// The base version of the lens.
-  @_s.JsonKey(name: 'BaseLensVersion')
-  final String baseLensVersion;
+  final String? baseLensVersion;
 
   /// The latest version of the lens.
-  @_s.JsonKey(name: 'LatestLensVersion')
-  final String latestLensVersion;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'VersionDifferences')
-  final VersionDifferences versionDifferences;
+  final String? latestLensVersion;
+  final String? lensAlias;
+  final VersionDifferences? versionDifferences;
 
   GetLensVersionDifferenceOutput({
     this.baseLensVersion,
@@ -1695,64 +1692,61 @@ class GetLensVersionDifferenceOutput {
     this.lensAlias,
     this.versionDifferences,
   });
-  factory GetLensVersionDifferenceOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetLensVersionDifferenceOutputFromJson(json);
+  factory GetLensVersionDifferenceOutput.fromJson(Map<String, dynamic> json) {
+    return GetLensVersionDifferenceOutput(
+      baseLensVersion: json['BaseLensVersion'] as String?,
+      latestLensVersion: json['LatestLensVersion'] as String?,
+      lensAlias: json['LensAlias'] as String?,
+      versionDifferences: json['VersionDifferences'] != null
+          ? VersionDifferences.fromJson(
+              json['VersionDifferences'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Output of a get milestone call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetMilestoneOutput {
-  @_s.JsonKey(name: 'Milestone')
-  final Milestone milestone;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final Milestone? milestone;
+  final String? workloadId;
 
   GetMilestoneOutput({
     this.milestone,
     this.workloadId,
   });
-  factory GetMilestoneOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetMilestoneOutputFromJson(json);
+  factory GetMilestoneOutput.fromJson(Map<String, dynamic> json) {
+    return GetMilestoneOutput(
+      milestone: json['Milestone'] != null
+          ? Milestone.fromJson(json['Milestone'] as Map<String, dynamic>)
+          : null,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a get workload call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class GetWorkloadOutput {
-  @_s.JsonKey(name: 'Workload')
-  final Workload workload;
+  final Workload? workload;
 
   GetWorkloadOutput({
     this.workload,
   });
-  factory GetWorkloadOutput.fromJson(Map<String, dynamic> json) =>
-      _$GetWorkloadOutputFromJson(json);
+  factory GetWorkloadOutput.fromJson(Map<String, dynamic> json) {
+    return GetWorkloadOutput(
+      workload: json['Workload'] != null
+          ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// An improvement summary of a lens review in a workload.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ImprovementSummary {
-  @_s.JsonKey(name: 'ImprovementPlanUrl')
-  final String improvementPlanUrl;
-  @_s.JsonKey(name: 'PillarId')
-  final String pillarId;
-  @_s.JsonKey(name: 'QuestionId')
-  final String questionId;
-  @_s.JsonKey(name: 'QuestionTitle')
-  final String questionTitle;
-  @_s.JsonKey(name: 'Risk')
-  final Risk risk;
+  final String? improvementPlanUrl;
+  final String? pillarId;
+  final String? questionId;
+  final String? questionTitle;
+  final Risk? risk;
 
   ImprovementSummary({
     this.improvementPlanUrl,
@@ -1761,40 +1755,32 @@ class ImprovementSummary {
     this.questionTitle,
     this.risk,
   });
-  factory ImprovementSummary.fromJson(Map<String, dynamic> json) =>
-      _$ImprovementSummaryFromJson(json);
+  factory ImprovementSummary.fromJson(Map<String, dynamic> json) {
+    return ImprovementSummary(
+      improvementPlanUrl: json['ImprovementPlanUrl'] as String?,
+      pillarId: json['PillarId'] as String?,
+      questionId: json['QuestionId'] as String?,
+      questionTitle: json['QuestionTitle'] as String?,
+      risk: (json['Risk'] as String?)?.toRisk(),
+    );
+  }
 }
 
 /// A lens review of a question.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LensReview {
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'LensName')
-  final String lensName;
+  final String? lensAlias;
+  final String? lensName;
 
   /// The status of the lens.
-  @_s.JsonKey(name: 'LensStatus')
-  final LensStatus lensStatus;
+  final LensStatus? lensStatus;
 
   /// The version of the lens.
-  @_s.JsonKey(name: 'LensVersion')
-  final String lensVersion;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'Notes')
-  final String notes;
-  @_s.JsonKey(name: 'PillarReviewSummaries')
-  final List<PillarReviewSummary> pillarReviewSummaries;
-  @_s.JsonKey(name: 'RiskCounts')
-  final Map<Risk, int> riskCounts;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'UpdatedAt')
-  final DateTime updatedAt;
+  final String? lensVersion;
+  final String? nextToken;
+  final String? notes;
+  final List<PillarReviewSummary>? pillarReviewSummaries;
+  final Map<Risk, int>? riskCounts;
+  final DateTime? updatedAt;
 
   LensReview({
     this.lensAlias,
@@ -1807,54 +1793,54 @@ class LensReview {
     this.riskCounts,
     this.updatedAt,
   });
-  factory LensReview.fromJson(Map<String, dynamic> json) =>
-      _$LensReviewFromJson(json);
+  factory LensReview.fromJson(Map<String, dynamic> json) {
+    return LensReview(
+      lensAlias: json['LensAlias'] as String?,
+      lensName: json['LensName'] as String?,
+      lensStatus: (json['LensStatus'] as String?)?.toLensStatus(),
+      lensVersion: json['LensVersion'] as String?,
+      nextToken: json['NextToken'] as String?,
+      notes: json['Notes'] as String?,
+      pillarReviewSummaries: (json['PillarReviewSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => PillarReviewSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+    );
+  }
 }
 
 /// A report of a lens review.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LensReviewReport {
-  @_s.JsonKey(name: 'Base64String')
-  final String base64String;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
+  final String? base64String;
+  final String? lensAlias;
 
   LensReviewReport({
     this.base64String,
     this.lensAlias,
   });
-  factory LensReviewReport.fromJson(Map<String, dynamic> json) =>
-      _$LensReviewReportFromJson(json);
+  factory LensReviewReport.fromJson(Map<String, dynamic> json) {
+    return LensReviewReport(
+      base64String: json['Base64String'] as String?,
+      lensAlias: json['LensAlias'] as String?,
+    );
+  }
 }
 
 /// A lens review summary of a workload.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LensReviewSummary {
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'LensName')
-  final String lensName;
+  final String? lensAlias;
+  final String? lensName;
 
   /// The status of the lens.
-  @_s.JsonKey(name: 'LensStatus')
-  final LensStatus lensStatus;
+  final LensStatus? lensStatus;
 
   /// The version of the lens.
-  @_s.JsonKey(name: 'LensVersion')
-  final String lensVersion;
-  @_s.JsonKey(name: 'RiskCounts')
-  final Map<Risk, int> riskCounts;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'UpdatedAt')
-  final DateTime updatedAt;
+  final String? lensVersion;
+  final Map<Risk, int>? riskCounts;
+  final DateTime? updatedAt;
 
   LensReviewSummary({
     this.lensAlias,
@@ -1864,36 +1850,60 @@ class LensReviewSummary {
     this.riskCounts,
     this.updatedAt,
   });
-  factory LensReviewSummary.fromJson(Map<String, dynamic> json) =>
-      _$LensReviewSummaryFromJson(json);
+  factory LensReviewSummary.fromJson(Map<String, dynamic> json) {
+    return LensReviewSummary(
+      lensAlias: json['LensAlias'] as String?,
+      lensName: json['LensName'] as String?,
+      lensStatus: (json['LensStatus'] as String?)?.toLensStatus(),
+      lensVersion: json['LensVersion'] as String?,
+      riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+    );
+  }
 }
 
 enum LensStatus {
-  @_s.JsonValue('CURRENT')
   current,
-  @_s.JsonValue('NOT_CURRENT')
   notCurrent,
-  @_s.JsonValue('DEPRECATED')
   deprecated,
 }
 
+extension on LensStatus {
+  String toValue() {
+    switch (this) {
+      case LensStatus.current:
+        return 'CURRENT';
+      case LensStatus.notCurrent:
+        return 'NOT_CURRENT';
+      case LensStatus.deprecated:
+        return 'DEPRECATED';
+    }
+  }
+}
+
+extension on String {
+  LensStatus toLensStatus() {
+    switch (this) {
+      case 'CURRENT':
+        return LensStatus.current;
+      case 'NOT_CURRENT':
+        return LensStatus.notCurrent;
+      case 'DEPRECATED':
+        return LensStatus.deprecated;
+    }
+    throw Exception('$this is not known in enum LensStatus');
+  }
+}
+
 /// A lens summary of a lens.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LensSummary {
-  @_s.JsonKey(name: 'Description')
-  final String description;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'LensName')
-  final String lensName;
+  final String? description;
+  final String? lensAlias;
+  final String? lensName;
 
   /// The version of the lens.
-  @_s.JsonKey(name: 'LensVersion')
-  final String lensVersion;
+  final String? lensVersion;
 
   LensSummary({
     this.description,
@@ -1901,30 +1911,26 @@ class LensSummary {
     this.lensName,
     this.lensVersion,
   });
-  factory LensSummary.fromJson(Map<String, dynamic> json) =>
-      _$LensSummaryFromJson(json);
+  factory LensSummary.fromJson(Map<String, dynamic> json) {
+    return LensSummary(
+      description: json['Description'] as String?,
+      lensAlias: json['LensAlias'] as String?,
+      lensName: json['LensName'] as String?,
+      lensVersion: json['LensVersion'] as String?,
+    );
+  }
 }
 
 /// Lens upgrade summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class LensUpgradeSummary {
   /// The current version of the lens.
-  @_s.JsonKey(name: 'CurrentLensVersion')
-  final String currentLensVersion;
+  final String? currentLensVersion;
 
   /// The latest version of the lens.
-  @_s.JsonKey(name: 'LatestLensVersion')
-  final String latestLensVersion;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadName')
-  final String workloadName;
+  final String? latestLensVersion;
+  final String? lensAlias;
+  final String? workloadId;
+  final String? workloadName;
 
   LensUpgradeSummary({
     this.currentLensVersion,
@@ -1933,27 +1939,24 @@ class LensUpgradeSummary {
     this.workloadId,
     this.workloadName,
   });
-  factory LensUpgradeSummary.fromJson(Map<String, dynamic> json) =>
-      _$LensUpgradeSummaryFromJson(json);
+  factory LensUpgradeSummary.fromJson(Map<String, dynamic> json) {
+    return LensUpgradeSummary(
+      currentLensVersion: json['CurrentLensVersion'] as String?,
+      latestLensVersion: json['LatestLensVersion'] as String?,
+      lensAlias: json['LensAlias'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+      workloadName: json['WorkloadName'] as String?,
+    );
+  }
 }
 
 /// Output of a list answers call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListAnswersOutput {
-  @_s.JsonKey(name: 'AnswerSummaries')
-  final List<AnswerSummary> answerSummaries;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final List<AnswerSummary>? answerSummaries;
+  final String? lensAlias;
+  final int? milestoneNumber;
+  final String? nextToken;
+  final String? workloadId;
 
   ListAnswersOutput({
     this.answerSummaries,
@@ -1962,27 +1965,27 @@ class ListAnswersOutput {
     this.nextToken,
     this.workloadId,
   });
-  factory ListAnswersOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListAnswersOutputFromJson(json);
+  factory ListAnswersOutput.fromJson(Map<String, dynamic> json) {
+    return ListAnswersOutput(
+      answerSummaries: (json['AnswerSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => AnswerSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lensAlias: json['LensAlias'] as String?,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      nextToken: json['NextToken'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a list lens review improvements call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListLensReviewImprovementsOutput {
-  @_s.JsonKey(name: 'ImprovementSummaries')
-  final List<ImprovementSummary> improvementSummaries;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final List<ImprovementSummary>? improvementSummaries;
+  final String? lensAlias;
+  final int? milestoneNumber;
+  final String? nextToken;
+  final String? workloadId;
 
   ListLensReviewImprovementsOutput({
     this.improvementSummaries,
@@ -1991,26 +1994,26 @@ class ListLensReviewImprovementsOutput {
     this.nextToken,
     this.workloadId,
   });
-  factory ListLensReviewImprovementsOutput.fromJson(
-          Map<String, dynamic> json) =>
-      _$ListLensReviewImprovementsOutputFromJson(json);
+  factory ListLensReviewImprovementsOutput.fromJson(Map<String, dynamic> json) {
+    return ListLensReviewImprovementsOutput(
+      improvementSummaries: (json['ImprovementSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => ImprovementSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lensAlias: json['LensAlias'] as String?,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      nextToken: json['NextToken'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a list lens reviews call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListLensReviewsOutput {
-  @_s.JsonKey(name: 'LensReviewSummaries')
-  final List<LensReviewSummary> lensReviewSummaries;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final List<LensReviewSummary>? lensReviewSummaries;
+  final int? milestoneNumber;
+  final String? nextToken;
+  final String? workloadId;
 
   ListLensReviewsOutput({
     this.lensReviewSummaries,
@@ -2018,155 +2021,155 @@ class ListLensReviewsOutput {
     this.nextToken,
     this.workloadId,
   });
-  factory ListLensReviewsOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListLensReviewsOutputFromJson(json);
+  factory ListLensReviewsOutput.fromJson(Map<String, dynamic> json) {
+    return ListLensReviewsOutput(
+      lensReviewSummaries: (json['LensReviewSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => LensReviewSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      nextToken: json['NextToken'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a list lenses call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListLensesOutput {
-  @_s.JsonKey(name: 'LensSummaries')
-  final List<LensSummary> lensSummaries;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final List<LensSummary>? lensSummaries;
+  final String? nextToken;
 
   ListLensesOutput({
     this.lensSummaries,
     this.nextToken,
   });
-  factory ListLensesOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListLensesOutputFromJson(json);
+  factory ListLensesOutput.fromJson(Map<String, dynamic> json) {
+    return ListLensesOutput(
+      lensSummaries: (json['LensSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => LensSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
 }
 
 /// Output of a list milestones call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListMilestonesOutput {
-  @_s.JsonKey(name: 'MilestoneSummaries')
-  final List<MilestoneSummary> milestoneSummaries;
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final List<MilestoneSummary>? milestoneSummaries;
+  final String? nextToken;
+  final String? workloadId;
 
   ListMilestonesOutput({
     this.milestoneSummaries,
     this.nextToken,
     this.workloadId,
   });
-  factory ListMilestonesOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListMilestonesOutputFromJson(json);
+  factory ListMilestonesOutput.fromJson(Map<String, dynamic> json) {
+    return ListMilestonesOutput(
+      milestoneSummaries: (json['MilestoneSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => MilestoneSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListNotificationsOutput {
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// List of lens notification summaries in a workload.
-  @_s.JsonKey(name: 'NotificationSummaries')
-  final List<NotificationSummary> notificationSummaries;
+  final List<NotificationSummary>? notificationSummaries;
 
   ListNotificationsOutput({
     this.nextToken,
     this.notificationSummaries,
   });
-  factory ListNotificationsOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListNotificationsOutputFromJson(json);
+  factory ListNotificationsOutput.fromJson(Map<String, dynamic> json) {
+    return ListNotificationsOutput(
+      nextToken: json['NextToken'] as String?,
+      notificationSummaries: (json['NotificationSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => NotificationSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Input for List Share Invitations
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListShareInvitationsOutput {
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
+  final String? nextToken;
 
   /// List of share invitation summaries in a workload.
-  @_s.JsonKey(name: 'ShareInvitationSummaries')
-  final List<ShareInvitationSummary> shareInvitationSummaries;
+  final List<ShareInvitationSummary>? shareInvitationSummaries;
 
   ListShareInvitationsOutput({
     this.nextToken,
     this.shareInvitationSummaries,
   });
-  factory ListShareInvitationsOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListShareInvitationsOutputFromJson(json);
+  factory ListShareInvitationsOutput.fromJson(Map<String, dynamic> json) {
+    return ListShareInvitationsOutput(
+      nextToken: json['NextToken'] as String?,
+      shareInvitationSummaries: (json['ShareInvitationSummaries'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ShareInvitationSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Input for List Workload Share
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListWorkloadSharesOutput {
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadShareSummaries')
-  final List<WorkloadShareSummary> workloadShareSummaries;
+  final String? nextToken;
+  final String? workloadId;
+  final List<WorkloadShareSummary>? workloadShareSummaries;
 
   ListWorkloadSharesOutput({
     this.nextToken,
     this.workloadId,
     this.workloadShareSummaries,
   });
-  factory ListWorkloadSharesOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListWorkloadSharesOutputFromJson(json);
+  factory ListWorkloadSharesOutput.fromJson(Map<String, dynamic> json) {
+    return ListWorkloadSharesOutput(
+      nextToken: json['NextToken'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+      workloadShareSummaries: (json['WorkloadShareSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => WorkloadShareSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// Output of a list workloads call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ListWorkloadsOutput {
-  @_s.JsonKey(name: 'NextToken')
-  final String nextToken;
-  @_s.JsonKey(name: 'WorkloadSummaries')
-  final List<WorkloadSummary> workloadSummaries;
+  final String? nextToken;
+  final List<WorkloadSummary>? workloadSummaries;
 
   ListWorkloadsOutput({
     this.nextToken,
     this.workloadSummaries,
   });
-  factory ListWorkloadsOutput.fromJson(Map<String, dynamic> json) =>
-      _$ListWorkloadsOutputFromJson(json);
+  factory ListWorkloadsOutput.fromJson(Map<String, dynamic> json) {
+    return ListWorkloadsOutput(
+      nextToken: json['NextToken'] as String?,
+      workloadSummaries: (json['WorkloadSummaries'] as List?)
+          ?.whereNotNull()
+          .map((e) => WorkloadSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// A milestone return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Milestone {
-  @_s.JsonKey(name: 'MilestoneName')
-  final String milestoneName;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'RecordedAt')
-  final DateTime recordedAt;
-  @_s.JsonKey(name: 'Workload')
-  final Workload workload;
+  final String? milestoneName;
+  final int? milestoneNumber;
+  final DateTime? recordedAt;
+  final Workload? workload;
 
   Milestone({
     this.milestoneName,
@@ -2174,26 +2177,24 @@ class Milestone {
     this.recordedAt,
     this.workload,
   });
-  factory Milestone.fromJson(Map<String, dynamic> json) =>
-      _$MilestoneFromJson(json);
+  factory Milestone.fromJson(Map<String, dynamic> json) {
+    return Milestone(
+      milestoneName: json['MilestoneName'] as String?,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      recordedAt: timeStampFromJson(json['RecordedAt']),
+      workload: json['Workload'] != null
+          ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// A milestone summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class MilestoneSummary {
-  @_s.JsonKey(name: 'MilestoneName')
-  final String milestoneName;
-  @_s.JsonKey(name: 'MilestoneNumber')
-  final int milestoneNumber;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'RecordedAt')
-  final DateTime recordedAt;
-  @_s.JsonKey(name: 'WorkloadSummary')
-  final WorkloadSummary workloadSummary;
+  final String? milestoneName;
+  final int? milestoneNumber;
+  final DateTime? recordedAt;
+  final WorkloadSummary? workloadSummary;
 
   MilestoneSummary({
     this.milestoneName,
@@ -2201,45 +2202,73 @@ class MilestoneSummary {
     this.recordedAt,
     this.workloadSummary,
   });
-  factory MilestoneSummary.fromJson(Map<String, dynamic> json) =>
-      _$MilestoneSummaryFromJson(json);
+  factory MilestoneSummary.fromJson(Map<String, dynamic> json) {
+    return MilestoneSummary(
+      milestoneName: json['MilestoneName'] as String?,
+      milestoneNumber: json['MilestoneNumber'] as int?,
+      recordedAt: timeStampFromJson(json['RecordedAt']),
+      workloadSummary: json['WorkloadSummary'] != null
+          ? WorkloadSummary.fromJson(
+              json['WorkloadSummary'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// A notification summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class NotificationSummary {
   /// Summary of lens upgrade.
-  @_s.JsonKey(name: 'LensUpgradeSummary')
-  final LensUpgradeSummary lensUpgradeSummary;
+  final LensUpgradeSummary? lensUpgradeSummary;
 
   /// The type of notification.
-  @_s.JsonKey(name: 'Type')
-  final NotificationType type;
+  final NotificationType? type;
 
   NotificationSummary({
     this.lensUpgradeSummary,
     this.type,
   });
-  factory NotificationSummary.fromJson(Map<String, dynamic> json) =>
-      _$NotificationSummaryFromJson(json);
+  factory NotificationSummary.fromJson(Map<String, dynamic> json) {
+    return NotificationSummary(
+      lensUpgradeSummary: json['LensUpgradeSummary'] != null
+          ? LensUpgradeSummary.fromJson(
+              json['LensUpgradeSummary'] as Map<String, dynamic>)
+          : null,
+      type: (json['Type'] as String?)?.toNotificationType(),
+    );
+  }
 }
 
 enum NotificationType {
-  @_s.JsonValue('LENS_VERSION_UPGRADED')
   lensVersionUpgraded,
-  @_s.JsonValue('LENS_VERSION_DEPRECATED')
   lensVersionDeprecated,
+}
+
+extension on NotificationType {
+  String toValue() {
+    switch (this) {
+      case NotificationType.lensVersionUpgraded:
+        return 'LENS_VERSION_UPGRADED';
+      case NotificationType.lensVersionDeprecated:
+        return 'LENS_VERSION_DEPRECATED';
+    }
+  }
+}
+
+extension on String {
+  NotificationType toNotificationType() {
+    switch (this) {
+      case 'LENS_VERSION_UPGRADED':
+        return NotificationType.lensVersionUpgraded;
+      case 'LENS_VERSION_DEPRECATED':
+        return NotificationType.lensVersionDeprecated;
+    }
+    throw Exception('$this is not known in enum NotificationType');
+  }
 }
 
 /// Permission granted on a workload share.
 enum PermissionType {
-  @_s.JsonValue('READONLY')
   readonly,
-  @_s.JsonValue('CONTRIBUTOR')
   contributor,
 }
 
@@ -2251,51 +2280,54 @@ extension on PermissionType {
       case PermissionType.contributor:
         return 'CONTRIBUTOR';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  PermissionType toPermissionType() {
+    switch (this) {
+      case 'READONLY':
+        return PermissionType.readonly;
+      case 'CONTRIBUTOR':
+        return PermissionType.contributor;
+    }
+    throw Exception('$this is not known in enum PermissionType');
   }
 }
 
 /// A pillar difference return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PillarDifference {
   /// Indicates the type of change to the pillar.
-  @_s.JsonKey(name: 'DifferenceStatus')
-  final DifferenceStatus differenceStatus;
-  @_s.JsonKey(name: 'PillarId')
-  final String pillarId;
+  final DifferenceStatus? differenceStatus;
+  final String? pillarId;
 
   /// List of question differences.
-  @_s.JsonKey(name: 'QuestionDifferences')
-  final List<QuestionDifference> questionDifferences;
+  final List<QuestionDifference>? questionDifferences;
 
   PillarDifference({
     this.differenceStatus,
     this.pillarId,
     this.questionDifferences,
   });
-  factory PillarDifference.fromJson(Map<String, dynamic> json) =>
-      _$PillarDifferenceFromJson(json);
+  factory PillarDifference.fromJson(Map<String, dynamic> json) {
+    return PillarDifference(
+      differenceStatus:
+          (json['DifferenceStatus'] as String?)?.toDifferenceStatus(),
+      pillarId: json['PillarId'] as String?,
+      questionDifferences: (json['QuestionDifferences'] as List?)
+          ?.whereNotNull()
+          .map((e) => QuestionDifference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// A pillar review summary of a lens review.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class PillarReviewSummary {
-  @_s.JsonKey(name: 'Notes')
-  final String notes;
-  @_s.JsonKey(name: 'PillarId')
-  final String pillarId;
-  @_s.JsonKey(name: 'PillarName')
-  final String pillarName;
-  @_s.JsonKey(name: 'RiskCounts')
-  final Map<Risk, int> riskCounts;
+  final String? notes;
+  final String? pillarId;
+  final String? pillarName;
+  final Map<Risk, int>? riskCounts;
 
   PillarReviewSummary({
     this.notes,
@@ -2303,74 +2335,104 @@ class PillarReviewSummary {
     this.pillarName,
     this.riskCounts,
   });
-  factory PillarReviewSummary.fromJson(Map<String, dynamic> json) =>
-      _$PillarReviewSummaryFromJson(json);
+  factory PillarReviewSummary.fromJson(Map<String, dynamic> json) {
+    return PillarReviewSummary(
+      notes: json['Notes'] as String?,
+      pillarId: json['PillarId'] as String?,
+      pillarName: json['PillarName'] as String?,
+      riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+    );
+  }
 }
 
 /// A question difference return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class QuestionDifference {
   /// Indicates the type of change to the question.
-  @_s.JsonKey(name: 'DifferenceStatus')
-  final DifferenceStatus differenceStatus;
-  @_s.JsonKey(name: 'QuestionId')
-  final String questionId;
-  @_s.JsonKey(name: 'QuestionTitle')
-  final String questionTitle;
+  final DifferenceStatus? differenceStatus;
+  final String? questionId;
+  final String? questionTitle;
 
   QuestionDifference({
     this.differenceStatus,
     this.questionId,
     this.questionTitle,
   });
-  factory QuestionDifference.fromJson(Map<String, dynamic> json) =>
-      _$QuestionDifferenceFromJson(json);
+  factory QuestionDifference.fromJson(Map<String, dynamic> json) {
+    return QuestionDifference(
+      differenceStatus:
+          (json['DifferenceStatus'] as String?)?.toDifferenceStatus(),
+      questionId: json['QuestionId'] as String?,
+      questionTitle: json['QuestionTitle'] as String?,
+    );
+  }
 }
 
 /// The risk for a given workload, lens review, pillar, or question.
 enum Risk {
-  @_s.JsonValue('UNANSWERED')
   unanswered,
-  @_s.JsonValue('HIGH')
   high,
-  @_s.JsonValue('MEDIUM')
   medium,
-  @_s.JsonValue('NONE')
   none,
-  @_s.JsonValue('NOT_APPLICABLE')
   notApplicable,
 }
 
+extension on Risk {
+  String toValue() {
+    switch (this) {
+      case Risk.unanswered:
+        return 'UNANSWERED';
+      case Risk.high:
+        return 'HIGH';
+      case Risk.medium:
+        return 'MEDIUM';
+      case Risk.none:
+        return 'NONE';
+      case Risk.notApplicable:
+        return 'NOT_APPLICABLE';
+    }
+  }
+}
+
+extension on String {
+  Risk toRisk() {
+    switch (this) {
+      case 'UNANSWERED':
+        return Risk.unanswered;
+      case 'HIGH':
+        return Risk.high;
+      case 'MEDIUM':
+        return Risk.medium;
+      case 'NONE':
+        return Risk.none;
+      case 'NOT_APPLICABLE':
+        return Risk.notApplicable;
+    }
+    throw Exception('$this is not known in enum Risk');
+  }
+}
+
 /// The share invitation.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ShareInvitation {
   /// The ID assigned to the share invitation.
-  @_s.JsonKey(name: 'ShareInvitationId')
-  final String shareInvitationId;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final String? shareInvitationId;
+  final String? workloadId;
 
   ShareInvitation({
     this.shareInvitationId,
     this.workloadId,
   });
-  factory ShareInvitation.fromJson(Map<String, dynamic> json) =>
-      _$ShareInvitationFromJson(json);
+  factory ShareInvitation.fromJson(Map<String, dynamic> json) {
+    return ShareInvitation(
+      shareInvitationId: json['ShareInvitationId'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Share invitation action taken by contributor.
 enum ShareInvitationAction {
-  @_s.JsonValue('ACCEPT')
   accept,
-  @_s.JsonValue('REJECT')
   reject,
 }
 
@@ -2382,31 +2444,31 @@ extension on ShareInvitationAction {
       case ShareInvitationAction.reject:
         return 'REJECT';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  ShareInvitationAction toShareInvitationAction() {
+    switch (this) {
+      case 'ACCEPT':
+        return ShareInvitationAction.accept;
+      case 'REJECT':
+        return ShareInvitationAction.reject;
+    }
+    throw Exception('$this is not known in enum ShareInvitationAction');
   }
 }
 
 /// A share invitation summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class ShareInvitationSummary {
-  @_s.JsonKey(name: 'PermissionType')
-  final PermissionType permissionType;
+  final PermissionType? permissionType;
 
   /// The ID assigned to the share invitation.
-  @_s.JsonKey(name: 'ShareInvitationId')
-  final String shareInvitationId;
-  @_s.JsonKey(name: 'SharedBy')
-  final String sharedBy;
-  @_s.JsonKey(name: 'SharedWith')
-  final String sharedWith;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadName')
-  final String workloadName;
+  final String? shareInvitationId;
+  final String? sharedBy;
+  final String? sharedWith;
+  final String? workloadId;
+  final String? workloadName;
 
   ShareInvitationSummary({
     this.permissionType,
@@ -2416,162 +2478,184 @@ class ShareInvitationSummary {
     this.workloadId,
     this.workloadName,
   });
-  factory ShareInvitationSummary.fromJson(Map<String, dynamic> json) =>
-      _$ShareInvitationSummaryFromJson(json);
+  factory ShareInvitationSummary.fromJson(Map<String, dynamic> json) {
+    return ShareInvitationSummary(
+      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      shareInvitationId: json['ShareInvitationId'] as String?,
+      sharedBy: json['SharedBy'] as String?,
+      sharedWith: json['SharedWith'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+      workloadName: json['WorkloadName'] as String?,
+    );
+  }
 }
 
 /// The status of a workload share.
 enum ShareStatus {
-  @_s.JsonValue('ACCEPTED')
   accepted,
-  @_s.JsonValue('REJECTED')
   rejected,
-  @_s.JsonValue('PENDING')
   pending,
-  @_s.JsonValue('REVOKED')
   revoked,
-  @_s.JsonValue('EXPIRED')
   expired,
 }
 
+extension on ShareStatus {
+  String toValue() {
+    switch (this) {
+      case ShareStatus.accepted:
+        return 'ACCEPTED';
+      case ShareStatus.rejected:
+        return 'REJECTED';
+      case ShareStatus.pending:
+        return 'PENDING';
+      case ShareStatus.revoked:
+        return 'REVOKED';
+      case ShareStatus.expired:
+        return 'EXPIRED';
+    }
+  }
+}
+
+extension on String {
+  ShareStatus toShareStatus() {
+    switch (this) {
+      case 'ACCEPTED':
+        return ShareStatus.accepted;
+      case 'REJECTED':
+        return ShareStatus.rejected;
+      case 'PENDING':
+        return ShareStatus.pending;
+      case 'REVOKED':
+        return ShareStatus.revoked;
+      case 'EXPIRED':
+        return ShareStatus.expired;
+    }
+    throw Exception('$this is not known in enum ShareStatus');
+  }
+}
+
 /// Output of a update answer call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateAnswerOutput {
-  @_s.JsonKey(name: 'Answer')
-  final Answer answer;
-  @_s.JsonKey(name: 'LensAlias')
-  final String lensAlias;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final Answer? answer;
+  final String? lensAlias;
+  final String? workloadId;
 
   UpdateAnswerOutput({
     this.answer,
     this.lensAlias,
     this.workloadId,
   });
-  factory UpdateAnswerOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateAnswerOutputFromJson(json);
+  factory UpdateAnswerOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateAnswerOutput(
+      answer: json['Answer'] != null
+          ? Answer.fromJson(json['Answer'] as Map<String, dynamic>)
+          : null,
+      lensAlias: json['LensAlias'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
 /// Output of a update lens review call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateLensReviewOutput {
-  @_s.JsonKey(name: 'LensReview')
-  final LensReview lensReview;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
+  final LensReview? lensReview;
+  final String? workloadId;
 
   UpdateLensReviewOutput({
     this.lensReview,
     this.workloadId,
   });
-  factory UpdateLensReviewOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateLensReviewOutputFromJson(json);
+  factory UpdateLensReviewOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateLensReviewOutput(
+      lensReview: json['LensReview'] != null
+          ? LensReview.fromJson(json['LensReview'] as Map<String, dynamic>)
+          : null,
+      workloadId: json['WorkloadId'] as String?,
+    );
+  }
 }
 
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateShareInvitationOutput {
   /// The updated workload share invitation.
-  @_s.JsonKey(name: 'ShareInvitation')
-  final ShareInvitation shareInvitation;
+  final ShareInvitation? shareInvitation;
 
   UpdateShareInvitationOutput({
     this.shareInvitation,
   });
-  factory UpdateShareInvitationOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateShareInvitationOutputFromJson(json);
+  factory UpdateShareInvitationOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateShareInvitationOutput(
+      shareInvitation: json['ShareInvitation'] != null
+          ? ShareInvitation.fromJson(
+              json['ShareInvitation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Output of an update workload call.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateWorkloadOutput {
-  @_s.JsonKey(name: 'Workload')
-  final Workload workload;
+  final Workload? workload;
 
   UpdateWorkloadOutput({
     this.workload,
   });
-  factory UpdateWorkloadOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateWorkloadOutputFromJson(json);
+  factory UpdateWorkloadOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateWorkloadOutput(
+      workload: json['Workload'] != null
+          ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// Input for Update Workload Share
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class UpdateWorkloadShareOutput {
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadShare')
-  final WorkloadShare workloadShare;
+  final String? workloadId;
+  final WorkloadShare? workloadShare;
 
   UpdateWorkloadShareOutput({
     this.workloadId,
     this.workloadShare,
   });
-  factory UpdateWorkloadShareOutput.fromJson(Map<String, dynamic> json) =>
-      _$UpdateWorkloadShareOutputFromJson(json);
+  factory UpdateWorkloadShareOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateWorkloadShareOutput(
+      workloadId: json['WorkloadId'] as String?,
+      workloadShare: json['WorkloadShare'] != null
+          ? WorkloadShare.fromJson(
+              json['WorkloadShare'] as Map<String, dynamic>)
+          : null,
+    );
+  }
 }
 
 /// The differences between the base and latest versions of the lens.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class VersionDifferences {
   /// The differences between the base and latest versions of the lens.
-  @_s.JsonKey(name: 'PillarDifferences')
-  final List<PillarDifference> pillarDifferences;
+  final List<PillarDifference>? pillarDifferences;
 
   VersionDifferences({
     this.pillarDifferences,
   });
-  factory VersionDifferences.fromJson(Map<String, dynamic> json) =>
-      _$VersionDifferencesFromJson(json);
+  factory VersionDifferences.fromJson(Map<String, dynamic> json) {
+    return VersionDifferences(
+      pillarDifferences: (json['PillarDifferences'] as List?)
+          ?.whereNotNull()
+          .map((e) => PillarDifference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
 
 /// A workload return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class Workload {
-  @_s.JsonKey(name: 'AccountIds')
-  final List<String> accountIds;
-  @_s.JsonKey(name: 'ArchitecturalDesign')
-  final String architecturalDesign;
-  @_s.JsonKey(name: 'AwsRegions')
-  final List<String> awsRegions;
-  @_s.JsonKey(name: 'Description')
-  final String description;
-  @_s.JsonKey(name: 'Environment')
-  final WorkloadEnvironment environment;
-  @_s.JsonKey(name: 'ImprovementStatus')
-  final WorkloadImprovementStatus improvementStatus;
-  @_s.JsonKey(name: 'Industry')
-  final String industry;
-  @_s.JsonKey(name: 'IndustryType')
-  final String industryType;
+  final List<String>? accountIds;
+  final String? architecturalDesign;
+  final List<String>? awsRegions;
+  final String? description;
+  final WorkloadEnvironment? environment;
+  final WorkloadImprovementStatus? improvementStatus;
+  final String? industry;
+  final String? industryType;
 
   /// Flag indicating whether the workload owner has acknowledged that the
   /// <i>Review owner</i> field is required.
@@ -2579,38 +2663,22 @@ class Workload {
   /// If a <b>Review owner</b> is not added to the workload within 60 days of
   /// acknowledgement, access to the workload is restricted until an owner is
   /// added.
-  @_s.JsonKey(name: 'IsReviewOwnerUpdateAcknowledged')
-  final bool isReviewOwnerUpdateAcknowledged;
-  @_s.JsonKey(name: 'Lenses')
-  final List<String> lenses;
-  @_s.JsonKey(name: 'NonAwsRegions')
-  final List<String> nonAwsRegions;
-  @_s.JsonKey(name: 'Notes')
-  final String notes;
-  @_s.JsonKey(name: 'Owner')
-  final String owner;
-  @_s.JsonKey(name: 'PillarPriorities')
-  final List<String> pillarPriorities;
-  @_s.JsonKey(name: 'ReviewOwner')
-  final String reviewOwner;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'ReviewRestrictionDate')
-  final DateTime reviewRestrictionDate;
-  @_s.JsonKey(name: 'RiskCounts')
-  final Map<Risk, int> riskCounts;
+  final bool? isReviewOwnerUpdateAcknowledged;
+  final List<String>? lenses;
+  final List<String>? nonAwsRegions;
+  final String? notes;
+  final String? owner;
+  final List<String>? pillarPriorities;
+  final String? reviewOwner;
+  final DateTime? reviewRestrictionDate;
+  final Map<Risk, int>? riskCounts;
 
   /// The ID assigned to the share invitation.
-  @_s.JsonKey(name: 'ShareInvitationId')
-  final String shareInvitationId;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'UpdatedAt')
-  final DateTime updatedAt;
-  @_s.JsonKey(name: 'WorkloadArn')
-  final String workloadArn;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadName')
-  final String workloadName;
+  final String? shareInvitationId;
+  final DateTime? updatedAt;
+  final String? workloadArn;
+  final String? workloadId;
+  final String? workloadName;
 
   Workload({
     this.accountIds,
@@ -2636,15 +2704,55 @@ class Workload {
     this.workloadId,
     this.workloadName,
   });
-  factory Workload.fromJson(Map<String, dynamic> json) =>
-      _$WorkloadFromJson(json);
+  factory Workload.fromJson(Map<String, dynamic> json) {
+    return Workload(
+      accountIds: (json['AccountIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      architecturalDesign: json['ArchitecturalDesign'] as String?,
+      awsRegions: (json['AwsRegions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      description: json['Description'] as String?,
+      environment: (json['Environment'] as String?)?.toWorkloadEnvironment(),
+      improvementStatus:
+          (json['ImprovementStatus'] as String?)?.toWorkloadImprovementStatus(),
+      industry: json['Industry'] as String?,
+      industryType: json['IndustryType'] as String?,
+      isReviewOwnerUpdateAcknowledged:
+          json['IsReviewOwnerUpdateAcknowledged'] as bool?,
+      lenses: (json['Lenses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nonAwsRegions: (json['NonAwsRegions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      notes: json['Notes'] as String?,
+      owner: json['Owner'] as String?,
+      pillarPriorities: (json['PillarPriorities'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      reviewOwner: json['ReviewOwner'] as String?,
+      reviewRestrictionDate: timeStampFromJson(json['ReviewRestrictionDate']),
+      riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+      shareInvitationId: json['ShareInvitationId'] as String?,
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+      workloadArn: json['WorkloadArn'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+      workloadName: json['WorkloadName'] as String?,
+    );
+  }
 }
 
 /// The environment for the workload.
 enum WorkloadEnvironment {
-  @_s.JsonValue('PRODUCTION')
   production,
-  @_s.JsonValue('PREPRODUCTION')
   preproduction,
 }
 
@@ -2656,21 +2764,27 @@ extension on WorkloadEnvironment {
       case WorkloadEnvironment.preproduction:
         return 'PREPRODUCTION';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  WorkloadEnvironment toWorkloadEnvironment() {
+    switch (this) {
+      case 'PRODUCTION':
+        return WorkloadEnvironment.production;
+      case 'PREPRODUCTION':
+        return WorkloadEnvironment.preproduction;
+    }
+    throw Exception('$this is not known in enum WorkloadEnvironment');
   }
 }
 
 /// The improvement status for a workload.
 enum WorkloadImprovementStatus {
-  @_s.JsonValue('NOT_APPLICABLE')
   notApplicable,
-  @_s.JsonValue('NOT_STARTED')
   notStarted,
-  @_s.JsonValue('IN_PROGRESS')
   inProgress,
-  @_s.JsonValue('COMPLETE')
   complete,
-  @_s.JsonValue('RISK_ACKNOWLEDGED')
   riskAcknowledged,
 }
 
@@ -2688,31 +2802,36 @@ extension on WorkloadImprovementStatus {
       case WorkloadImprovementStatus.riskAcknowledged:
         return 'RISK_ACKNOWLEDGED';
     }
-    throw Exception('Unknown enum value: $this');
+  }
+}
+
+extension on String {
+  WorkloadImprovementStatus toWorkloadImprovementStatus() {
+    switch (this) {
+      case 'NOT_APPLICABLE':
+        return WorkloadImprovementStatus.notApplicable;
+      case 'NOT_STARTED':
+        return WorkloadImprovementStatus.notStarted;
+      case 'IN_PROGRESS':
+        return WorkloadImprovementStatus.inProgress;
+      case 'COMPLETE':
+        return WorkloadImprovementStatus.complete;
+      case 'RISK_ACKNOWLEDGED':
+        return WorkloadImprovementStatus.riskAcknowledged;
+    }
+    throw Exception('$this is not known in enum WorkloadImprovementStatus');
   }
 }
 
 /// A workload share return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class WorkloadShare {
-  @_s.JsonKey(name: 'PermissionType')
-  final PermissionType permissionType;
-  @_s.JsonKey(name: 'ShareId')
-  final String shareId;
-  @_s.JsonKey(name: 'SharedBy')
-  final String sharedBy;
-  @_s.JsonKey(name: 'SharedWith')
-  final String sharedWith;
-  @_s.JsonKey(name: 'Status')
-  final ShareStatus status;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadName')
-  final String workloadName;
+  final PermissionType? permissionType;
+  final String? shareId;
+  final String? sharedBy;
+  final String? sharedWith;
+  final ShareStatus? status;
+  final String? workloadId;
+  final String? workloadName;
 
   WorkloadShare({
     this.permissionType,
@@ -2723,25 +2842,25 @@ class WorkloadShare {
     this.workloadId,
     this.workloadName,
   });
-  factory WorkloadShare.fromJson(Map<String, dynamic> json) =>
-      _$WorkloadShareFromJson(json);
+  factory WorkloadShare.fromJson(Map<String, dynamic> json) {
+    return WorkloadShare(
+      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      shareId: json['ShareId'] as String?,
+      sharedBy: json['SharedBy'] as String?,
+      sharedWith: json['SharedWith'] as String?,
+      status: (json['Status'] as String?)?.toShareStatus(),
+      workloadId: json['WorkloadId'] as String?,
+      workloadName: json['WorkloadName'] as String?,
+    );
+  }
 }
 
 /// A workload share summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class WorkloadShareSummary {
-  @_s.JsonKey(name: 'PermissionType')
-  final PermissionType permissionType;
-  @_s.JsonKey(name: 'ShareId')
-  final String shareId;
-  @_s.JsonKey(name: 'SharedWith')
-  final String sharedWith;
-  @_s.JsonKey(name: 'Status')
-  final ShareStatus status;
+  final PermissionType? permissionType;
+  final String? shareId;
+  final String? sharedWith;
+  final ShareStatus? status;
 
   WorkloadShareSummary({
     this.permissionType,
@@ -2749,34 +2868,26 @@ class WorkloadShareSummary {
     this.sharedWith,
     this.status,
   });
-  factory WorkloadShareSummary.fromJson(Map<String, dynamic> json) =>
-      _$WorkloadShareSummaryFromJson(json);
+  factory WorkloadShareSummary.fromJson(Map<String, dynamic> json) {
+    return WorkloadShareSummary(
+      permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
+      shareId: json['ShareId'] as String?,
+      sharedWith: json['SharedWith'] as String?,
+      status: (json['Status'] as String?)?.toShareStatus(),
+    );
+  }
 }
 
 /// A workload summary return object.
-@_s.JsonSerializable(
-    includeIfNull: false,
-    explicitToJson: true,
-    createFactory: true,
-    createToJson: false)
 class WorkloadSummary {
-  @_s.JsonKey(name: 'ImprovementStatus')
-  final WorkloadImprovementStatus improvementStatus;
-  @_s.JsonKey(name: 'Lenses')
-  final List<String> lenses;
-  @_s.JsonKey(name: 'Owner')
-  final String owner;
-  @_s.JsonKey(name: 'RiskCounts')
-  final Map<Risk, int> riskCounts;
-  @UnixDateTimeConverter()
-  @_s.JsonKey(name: 'UpdatedAt')
-  final DateTime updatedAt;
-  @_s.JsonKey(name: 'WorkloadArn')
-  final String workloadArn;
-  @_s.JsonKey(name: 'WorkloadId')
-  final String workloadId;
-  @_s.JsonKey(name: 'WorkloadName')
-  final String workloadName;
+  final WorkloadImprovementStatus? improvementStatus;
+  final List<String>? lenses;
+  final String? owner;
+  final Map<Risk, int>? riskCounts;
+  final DateTime? updatedAt;
+  final String? workloadArn;
+  final String? workloadId;
+  final String? workloadName;
 
   WorkloadSummary({
     this.improvementStatus,
@@ -2788,32 +2899,47 @@ class WorkloadSummary {
     this.workloadId,
     this.workloadName,
   });
-  factory WorkloadSummary.fromJson(Map<String, dynamic> json) =>
-      _$WorkloadSummaryFromJson(json);
+  factory WorkloadSummary.fromJson(Map<String, dynamic> json) {
+    return WorkloadSummary(
+      improvementStatus:
+          (json['ImprovementStatus'] as String?)?.toWorkloadImprovementStatus(),
+      lenses: (json['Lenses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      owner: json['Owner'] as String?,
+      riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+      workloadArn: json['WorkloadArn'] as String?,
+      workloadId: json['WorkloadId'] as String?,
+      workloadName: json['WorkloadName'] as String?,
+    );
+  }
 }
 
 class AccessDeniedException extends _s.GenericAwsException {
-  AccessDeniedException({String type, String message})
+  AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class ConflictException extends _s.GenericAwsException {
-  ConflictException({String type, String message})
+  ConflictException({String? type, String? message})
       : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
-  InternalServerException({String type, String message})
+  InternalServerException({String? type, String? message})
       : super(type: type, code: 'InternalServerException', message: message);
 }
 
 class ResourceNotFoundException extends _s.GenericAwsException {
-  ResourceNotFoundException({String type, String message})
+  ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
 }
 
 class ServiceQuotaExceededException extends _s.GenericAwsException {
-  ServiceQuotaExceededException({String type, String message})
+  ServiceQuotaExceededException({String? type, String? message})
       : super(
             type: type,
             code: 'ServiceQuotaExceededException',
@@ -2821,12 +2947,12 @@ class ServiceQuotaExceededException extends _s.GenericAwsException {
 }
 
 class ThrottlingException extends _s.GenericAwsException {
-  ThrottlingException({String type, String message})
+  ThrottlingException({String? type, String? message})
       : super(type: type, code: 'ThrottlingException', message: message);
 }
 
 class ValidationException extends _s.GenericAwsException {
-  ValidationException({String type, String message})
+  ValidationException({String? type, String? message})
       : super(type: type, code: 'ValidationException', message: message);
 }
 
