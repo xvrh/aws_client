@@ -24,11 +24,11 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// enables you to build distributed web-enabled applications. Applications can
 /// use Amazon SNS to easily push real-time notification messages to interested
 /// subscribers over multiple delivery protocols. For more information about
-/// this product see <a
-/// href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. For
-/// detailed information about Amazon SNS features and their associated API
-/// calls, see the <a href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon
-/// SNS Developer Guide</a>.
+/// this product see the <a href="http://aws.amazon.com/sns/">Amazon SNS product
+/// page</a>. For detailed information about Amazon SNS features and their
+/// associated API calls, see the <a
+/// href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon SNS Developer
+/// Guide</a>.
 class Sns {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
@@ -49,7 +49,7 @@ class Sns {
             .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
 
   /// Adds a statement to a topic's access control policy, granting access for
-  /// the specified AWS accounts to the specified actions.
+  /// the specified accounts to the specified actions.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [InternalErrorException].
@@ -57,9 +57,9 @@ class Sns {
   /// May throw [NotFoundException].
   ///
   /// Parameter [awsAccountId] :
-  /// The AWS account IDs of the users (principals) who will be given access to
-  /// the specified actions. The users must have AWS accounts, but do not need
-  /// to be signed up for this service.
+  /// The account IDs of the users (principals) who will be given access to the
+  /// specified actions. The users must have account, but do not need to be
+  /// signed up for this service.
   ///
   /// Parameter [actionName] :
   /// The action you want to allow for the specified principal(s).
@@ -155,10 +155,10 @@ class Sns {
   ///
   /// Parameter [authenticateOnUnsubscribe] :
   /// Disallows unauthenticated unsubscribes of the subscription. If the value
-  /// of this parameter is <code>true</code> and the request has an AWS
-  /// signature, then only the topic owner and the subscription owner can
-  /// unsubscribe the endpoint. The unsubscribe action requires AWS
-  /// authentication.
+  /// of this parameter is <code>true</code> and the request has an Amazon Web
+  /// Services signature, then only the topic owner and the subscription owner
+  /// can unsubscribe the endpoint. The unsubscribe action requires Amazon Web
+  /// Services authentication.
   Future<ConfirmSubscriptionResponse> confirmSubscription({
     required String token,
     required String topicArn,
@@ -234,7 +234,7 @@ class Sns {
   ///
   /// Parameter [attributes] :
   /// For a list of attributes, see <a
-  /// href="https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html">SetPlatformApplicationAttributes</a>
+  /// href="https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html">SetPlatformApplicationAttributes</a>.
   ///
   /// Parameter [name] :
   /// Application names must be made up of only uppercase and lowercase ASCII
@@ -343,10 +343,67 @@ class Sns {
     return CreateEndpointResponse.fromXml($result);
   }
 
+  /// Adds a destination phone number to an account in the SMS sandbox and sends
+  /// a one-time password (OTP) to that phone number.
+  ///
+  /// When you start using Amazon SNS to send SMS messages, your account is in
+  /// the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+  /// you to try Amazon SNS features without risking your reputation as an SMS
+  /// sender. While your account is in the SMS sandbox, you can use all of the
+  /// features of Amazon SNS. However, you can send SMS messages only to
+  /// verified destination phone numbers. For more information, including how to
+  /// move out of the sandbox to send messages without restrictions, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+  /// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [AuthorizationErrorException].
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidParameterException].
+  /// May throw [OptedOutException].
+  /// May throw [UserErrorException].
+  /// May throw [ThrottledException].
+  ///
+  /// Parameter [phoneNumber] :
+  /// The destination phone number to verify. On verification, Amazon SNS adds
+  /// this phone number to the list of verified phone numbers that you can send
+  /// SMS messages to.
+  ///
+  /// Parameter [languageCode] :
+  /// The language to use for sending the OTP. The default value is
+  /// <code>en-US</code>.
+  Future<void> createSMSSandboxPhoneNumber({
+    required String phoneNumber,
+    LanguageCodeString? languageCode,
+  }) async {
+    ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
+    _s.validateStringLength(
+      'phoneNumber',
+      phoneNumber,
+      0,
+      20,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['PhoneNumber'] = phoneNumber;
+    languageCode?.also((arg) => $request['LanguageCode'] = arg.toValue());
+    await _protocol.send(
+      $request,
+      action: 'CreateSMSSandboxPhoneNumber',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['CreateSMSSandboxPhoneNumberInput'],
+      shapes: shapes,
+      resultWrapper: 'CreateSMSSandboxPhoneNumberResult',
+    );
+  }
+
   /// Creates a topic to which notifications can be published. Users can create
   /// at most 100,000 standard topics (at most 1,000 FIFO topics). For more
   /// information, see <a
-  /// href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html">Creating
+  /// an Amazon SNS topic</a> in the <i>Amazon SNS Developer Guide</i>. This
   /// action is idempotent, so if the requester already owns a topic with the
   /// specified name, that topic's ARN is returned without creating a new topic.
   ///
@@ -394,16 +451,18 @@ class Sns {
   /// </li>
   /// </ul>
   /// The following attribute applies only to <a
-  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side-encryption</a>:
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html">server-side
+  /// encryption</a>:
   ///
   /// <ul>
   /// <li>
-  /// <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master key
-  /// (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+  /// <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+  /// customer master key (CMK) for Amazon SNS or a custom CMK. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key
   /// Terms</a>. For more examples, see <a
   /// href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a>
-  /// in the <i>AWS Key Management Service API Reference</i>.
+  /// in the <i>Key Management Service API Reference</i>.
   /// </li>
   /// </ul>
   /// The following attributes apply only to <a
@@ -435,7 +494,7 @@ class Sns {
   /// the attributes of the message).
   ///
   /// (Optional) To override the generated value, you can specify a value for
-  /// the the <code>MessageDeduplicationId</code> parameter for the
+  /// the <code>MessageDeduplicationId</code> parameter for the
   /// <code>Publish</code> action.
   /// </li>
   /// </ul> </li>
@@ -531,6 +590,54 @@ class Sns {
       exceptionFnMap: _exceptionFns,
       shape: shapes['DeletePlatformApplicationInput'],
       shapes: shapes,
+    );
+  }
+
+  /// Deletes an account's verified or pending phone number from the SMS
+  /// sandbox.
+  ///
+  /// When you start using Amazon SNS to send SMS messages, your account is in
+  /// the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+  /// you to try Amazon SNS features without risking your reputation as an SMS
+  /// sender. While your account is in the SMS sandbox, you can use all of the
+  /// features of Amazon SNS. However, you can send SMS messages only to
+  /// verified destination phone numbers. For more information, including how to
+  /// move out of the sandbox to send messages without restrictions, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+  /// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [AuthorizationErrorException].
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [UserErrorException].
+  /// May throw [ThrottledException].
+  ///
+  /// Parameter [phoneNumber] :
+  /// The destination phone number to delete.
+  Future<void> deleteSMSSandboxPhoneNumber({
+    required String phoneNumber,
+  }) async {
+    ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
+    _s.validateStringLength(
+      'phoneNumber',
+      phoneNumber,
+      0,
+      20,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['PhoneNumber'] = phoneNumber;
+    await _protocol.send(
+      $request,
+      action: 'DeleteSMSSandboxPhoneNumber',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DeleteSMSSandboxPhoneNumberInput'],
+      shapes: shapes,
+      resultWrapper: 'DeleteSMSSandboxPhoneNumberResult',
     );
   }
 
@@ -671,6 +778,38 @@ class Sns {
     return GetSMSAttributesResponse.fromXml($result);
   }
 
+  /// Retrieves the SMS sandbox status for the calling account in the target
+  /// Region.
+  ///
+  /// When you start using Amazon SNS to send SMS messages, your account is in
+  /// the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+  /// you to try Amazon SNS features without risking your reputation as an SMS
+  /// sender. While your account is in the SMS sandbox, you can use all of the
+  /// features of Amazon SNS. However, you can send SMS messages only to
+  /// verified destination phone numbers. For more information, including how to
+  /// move out of the sandbox to send messages without restrictions, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+  /// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [AuthorizationErrorException].
+  /// May throw [InternalErrorException].
+  /// May throw [ThrottledException].
+  Future<GetSMSSandboxAccountStatusResult> getSMSSandboxAccountStatus() async {
+    final $request = <String, dynamic>{};
+    final $result = await _protocol.send(
+      $request,
+      action: 'GetSMSSandboxAccountStatus',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['GetSMSSandboxAccountStatusInput'],
+      shapes: shapes,
+      resultWrapper: 'GetSMSSandboxAccountStatusResult',
+    );
+    return GetSMSSandboxAccountStatusResult.fromXml($result);
+  }
+
   /// Returns all of the properties of a subscription.
   ///
   /// May throw [InvalidParameterException].
@@ -781,6 +920,50 @@ class Sns {
     return ListEndpointsByPlatformApplicationResponse.fromXml($result);
   }
 
+  /// Lists the calling account's dedicated origination numbers and their
+  /// metadata. For more information about origination numbers, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html">Origination
+  /// numbers</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [InternalErrorException].
+  /// May throw [AuthorizationErrorException].
+  /// May throw [ThrottledException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of origination numbers to return.
+  ///
+  /// Parameter [nextToken] :
+  /// Token that the previous <code>ListOriginationNumbers</code> request
+  /// returns.
+  Future<ListOriginationNumbersResult> listOriginationNumbers({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      30,
+    );
+    final $request = <String, dynamic>{};
+    maxResults?.also((arg) => $request['MaxResults'] = arg);
+    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'ListOriginationNumbers',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ListOriginationNumbersRequest'],
+      shapes: shapes,
+      resultWrapper: 'ListOriginationNumbersResult',
+    );
+    return ListOriginationNumbersResult.fromXml($result);
+  }
+
   /// Returns a list of phone numbers that are opted out, meaning you cannot
   /// send SMS messages to them.
   ///
@@ -859,6 +1042,58 @@ class Sns {
       resultWrapper: 'ListPlatformApplicationsResult',
     );
     return ListPlatformApplicationsResponse.fromXml($result);
+  }
+
+  /// Lists the calling account's current verified and pending destination phone
+  /// numbers in the SMS sandbox.
+  ///
+  /// When you start using Amazon SNS to send SMS messages, your account is in
+  /// the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+  /// you to try Amazon SNS features without risking your reputation as an SMS
+  /// sender. While your account is in the SMS sandbox, you can use all of the
+  /// features of Amazon SNS. However, you can send SMS messages only to
+  /// verified destination phone numbers. For more information, including how to
+  /// move out of the sandbox to send messages without restrictions, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+  /// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [AuthorizationErrorException].
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottledException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of phone numbers to return.
+  ///
+  /// Parameter [nextToken] :
+  /// Token that the previous <code>ListSMSSandboxPhoneNumbersInput</code>
+  /// request returns.
+  Future<ListSMSSandboxPhoneNumbersResult> listSMSSandboxPhoneNumbers({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $request = <String, dynamic>{};
+    maxResults?.also((arg) => $request['MaxResults'] = arg);
+    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'ListSMSSandboxPhoneNumbers',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ListSMSSandboxPhoneNumbersInput'],
+      shapes: shapes,
+      resultWrapper: 'ListSMSSandboxPhoneNumbersResult',
+    );
+    return ListSMSSandboxPhoneNumbersResult.fromXml($result);
   }
 
   /// Returns a list of the requester's subscriptions. Each call returns a
@@ -1018,7 +1253,7 @@ class Sns {
   /// May throw [InvalidParameterException].
   ///
   /// Parameter [phoneNumber] :
-  /// The phone number to opt in.
+  /// The phone number to opt in. Use E.164 format.
   Future<void> optInPhoneNumber({
     required String phoneNumber,
   }) async {
@@ -1059,8 +1294,7 @@ class Sns {
   /// href="https://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-custommessage.html">Send
   /// Custom Platform-Specific Payloads in Messages to Mobile Devices</a>.
   /// <important>
-  /// You can publish messages only to topics and endpoints in the same AWS
-  /// Region.
+  /// You can publish messages only to topics and endpoints in the same Region.
   /// </important>
   ///
   /// May throw [InvalidParameterException].
@@ -1458,6 +1692,11 @@ class Sns {
   /// see <a
   /// href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html">Publishing
   /// to a mobile phone</a> in the <i>Amazon SNS Developer Guide</i>.
+  /// <note>
+  /// To use this operation, you must grant the Amazon SNS service principal
+  /// (<code>sns.amazonaws.com</code>) permission to perform the
+  /// <code>s3:ListBucket</code> action.
+  /// </note>
   ///
   /// May throw [InvalidParameterException].
   /// May throw [ThrottledException].
@@ -1552,7 +1791,7 @@ class Sns {
   /// </li>
   /// </ul>
   /// To receive the report, the bucket must have a policy that allows the
-  /// Amazon SNS service principle to perform the <code>s3:PutObject</code> and
+  /// Amazon SNS service principal to perform the <code>s3:PutObject</code> and
   /// <code>s3:GetBucketLocation</code> actions.
   ///
   /// For an example bucket policy and usage report, see <a
@@ -1617,6 +1856,29 @@ class Sns {
   /// dead-letter queue for further analysis or reprocessing.
   /// </li>
   /// </ul>
+  /// The following attribute applies only to Amazon Kinesis Data Firehose
+  /// delivery stream subscriptions:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Permission to write to the Kinesis Data Firehose delivery stream
+  /// </li>
+  /// <li>
+  /// Amazon SNS listed as a trusted entity
+  /// </li>
+  /// </ul>
+  /// Specifying a valid ARN for this attribute is required for Kinesis Data
+  /// Firehose delivery stream subscriptions. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout
+  /// to Kinesis Data Firehose delivery streams</a> in the <i>Amazon SNS
+  /// Developer Guide</i>.
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [subscriptionArn] :
   /// The ARN of the subscription to modify.
@@ -1679,12 +1941,13 @@ class Sns {
   ///
   /// <ul>
   /// <li>
-  /// <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master key
-  /// (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+  /// <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+  /// customer master key (CMK) for Amazon SNS or a custom CMK. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key
   /// Terms</a>. For more examples, see <a
   /// href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a>
-  /// in the <i>AWS Key Management Service API Reference</i>.
+  /// in the <i>Key Management Service API Reference</i>.
   /// </li>
   /// </ul>
   /// The following attribute applies only to <a
@@ -1712,7 +1975,7 @@ class Sns {
   /// the attributes of the message).
   ///
   /// (Optional) To override the generated value, you can specify a value for
-  /// the the <code>MessageDeduplicationId</code> parameter for the
+  /// the <code>MessageDeduplicationId</code> parameter for the
   /// <code>Publish</code> action.
   /// </li>
   /// </ul> </li>
@@ -1747,7 +2010,7 @@ class Sns {
   }
 
   /// Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
-  /// HTTP/S or email, or if the endpoint and the topic are not in the same AWS
+  /// HTTP/S or email, or if the endpoint and the topic are not in the same
   /// account, the endpoint owner must run the <code>ConfirmSubscription</code>
   /// action to confirm the subscription.
   ///
@@ -1765,7 +2028,7 @@ class Sns {
   /// May throw [InvalidSecurityException].
   ///
   /// Parameter [protocol] :
-  /// The protocol you want to use. Supported protocols include:
+  /// The protocol that you want to use. Supported protocols include:
   ///
   /// <ul>
   /// <li>
@@ -1788,11 +2051,15 @@ class Sns {
   /// </li>
   /// <li>
   /// <code>application</code> – delivery of JSON-encoded message to an
-  /// EndpointArn for a mobile app and device.
+  /// EndpointArn for a mobile app and device
   /// </li>
   /// <li>
-  /// <code>lambda</code> – delivery of JSON-encoded message to an Amazon Lambda
-  /// function.
+  /// <code>lambda</code> – delivery of JSON-encoded message to an Lambda
+  /// function
+  /// </li>
+  /// <li>
+  /// <code>firehose</code> – delivery of JSON-encoded message to an Amazon
+  /// Kinesis Data Firehose delivery stream.
   /// </li>
   /// </ul>
   ///
@@ -1803,7 +2070,7 @@ class Sns {
   /// A map of attributes with their corresponding values.
   ///
   /// The following lists the names, descriptions, and values of the special
-  /// request parameters that the <code>SetTopicAttributes</code> action uses:
+  /// request parameters that the <code>Subscribe</code> action uses:
   ///
   /// <ul>
   /// <li>
@@ -1830,6 +2097,29 @@ class Sns {
   /// dead-letter queue for further analysis or reprocessing.
   /// </li>
   /// </ul>
+  /// The following attribute applies only to Amazon Kinesis Data Firehose
+  /// delivery stream subscriptions:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Permission to write to the Kinesis Data Firehose delivery stream
+  /// </li>
+  /// <li>
+  /// Amazon SNS listed as a trusted entity
+  /// </li>
+  /// </ul>
+  /// Specifying a valid ARN for this attribute is required for Kinesis Data
+  /// Firehose delivery stream subscriptions. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout
+  /// to Kinesis Data Firehose delivery streams</a> in the <i>Amazon SNS
+  /// Developer Guide</i>.
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [endpoint] :
   /// The endpoint that you want to receive notifications. Endpoints vary by
@@ -1838,33 +2128,38 @@ class Sns {
   /// <ul>
   /// <li>
   /// For the <code>http</code> protocol, the (public) endpoint is a URL
-  /// beginning with <code>http://</code>
+  /// beginning with <code>http://</code>.
   /// </li>
   /// <li>
   /// For the <code>https</code> protocol, the (public) endpoint is a URL
-  /// beginning with <code>https://</code>
+  /// beginning with <code>https://</code>.
   /// </li>
   /// <li>
-  /// For the <code>email</code> protocol, the endpoint is an email address
+  /// For the <code>email</code> protocol, the endpoint is an email address.
   /// </li>
   /// <li>
-  /// For the <code>email-json</code> protocol, the endpoint is an email address
+  /// For the <code>email-json</code> protocol, the endpoint is an email
+  /// address.
   /// </li>
   /// <li>
   /// For the <code>sms</code> protocol, the endpoint is a phone number of an
-  /// SMS-enabled device
+  /// SMS-enabled device.
   /// </li>
   /// <li>
   /// For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon
-  /// SQS queue
+  /// SQS queue.
   /// </li>
   /// <li>
   /// For the <code>application</code> protocol, the endpoint is the EndpointArn
   /// of a mobile app and device.
   /// </li>
   /// <li>
-  /// For the <code>lambda</code> protocol, the endpoint is the ARN of an Amazon
-  /// Lambda function.
+  /// For the <code>lambda</code> protocol, the endpoint is the ARN of an Lambda
+  /// function.
+  /// </li>
+  /// <li>
+  /// For the <code>firehose</code> protocol, the endpoint is the ARN of an
+  /// Amazon Kinesis Data Firehose delivery stream.
   /// </li>
   /// </ul>
   ///
@@ -1933,8 +2228,8 @@ class Sns {
   /// existing tag.
   /// </li>
   /// <li>
-  /// Tagging actions are limited to 10 TPS per AWS account, per AWS region. If
-  /// your application requires a higher throughput, file a <a
+  /// Tagging actions are limited to 10 TPS per account, per Region. If your
+  /// application requires a higher throughput, file a <a
   /// href="https://console.aws.amazon.com/support/home#/case/create?issueType=technical">technical
   /// support request</a>.
   /// </li>
@@ -1985,7 +2280,7 @@ class Sns {
 
   /// Deletes a subscription. If the subscription requires authentication for
   /// deletion, only the owner of the subscription or the topic's owner can
-  /// unsubscribe, and an AWS signature is required. If the
+  /// unsubscribe, and an Amazon Web Services signature is required. If the
   /// <code>Unsubscribe</code> call does not require authentication and the
   /// requester is not the subscription owner, a final cancellation message is
   /// delivered to the endpoint, so that the endpoint owner can easily
@@ -2065,6 +2360,68 @@ class Sns {
       resultWrapper: 'UntagResourceResult',
     );
   }
+
+  /// Verifies a destination phone number with a one-time password (OTP) for the
+  /// calling account.
+  ///
+  /// When you start using Amazon SNS to send SMS messages, your account is in
+  /// the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
+  /// you to try Amazon SNS features without risking your reputation as an SMS
+  /// sender. While your account is in the SMS sandbox, you can use all of the
+  /// features of Amazon SNS. However, you can send SMS messages only to
+  /// verified destination phone numbers. For more information, including how to
+  /// move out of the sandbox to send messages without restrictions, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+  /// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+  ///
+  /// May throw [AuthorizationErrorException].
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [VerificationException].
+  /// May throw [ThrottledException].
+  ///
+  /// Parameter [oneTimePassword] :
+  /// The OTP sent to the destination number from the
+  /// <code>CreateSMSSandBoxPhoneNumber</code> call.
+  ///
+  /// Parameter [phoneNumber] :
+  /// The destination phone number to verify.
+  Future<void> verifySMSSandboxPhoneNumber({
+    required String oneTimePassword,
+    required String phoneNumber,
+  }) async {
+    ArgumentError.checkNotNull(oneTimePassword, 'oneTimePassword');
+    _s.validateStringLength(
+      'oneTimePassword',
+      oneTimePassword,
+      5,
+      8,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
+    _s.validateStringLength(
+      'phoneNumber',
+      phoneNumber,
+      0,
+      20,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['OneTimePassword'] = oneTimePassword;
+    $request['PhoneNumber'] = phoneNumber;
+    await _protocol.send(
+      $request,
+      action: 'VerifySMSSandboxPhoneNumber',
+      version: '2010-03-31',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['VerifySMSSandboxPhoneNumberInput'],
+      shapes: shapes,
+      resultWrapper: 'VerifySMSSandboxPhoneNumberResult',
+    );
+  }
 }
 
 /// The response from the <code>CheckIfPhoneNumberIsOptedOut</code> action.
@@ -2139,6 +2496,15 @@ class CreatePlatformApplicationResponse {
   }
 }
 
+class CreateSMSSandboxPhoneNumberResult {
+  CreateSMSSandboxPhoneNumberResult();
+  factory CreateSMSSandboxPhoneNumberResult.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return CreateSMSSandboxPhoneNumberResult();
+  }
+}
+
 /// Response from CreateTopic action.
 class CreateTopicResponse {
   /// The Amazon Resource Name (ARN) assigned to the created topic.
@@ -2151,6 +2517,15 @@ class CreateTopicResponse {
     return CreateTopicResponse(
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
+  }
+}
+
+class DeleteSMSSandboxPhoneNumberResult {
+  DeleteSMSSandboxPhoneNumberResult();
+  factory DeleteSMSSandboxPhoneNumberResult.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return DeleteSMSSandboxPhoneNumberResult();
   }
 }
 
@@ -2292,6 +2667,20 @@ class GetSMSAttributesResponse {
   }
 }
 
+class GetSMSSandboxAccountStatusResult {
+  /// Indicates whether the calling account is in the SMS sandbox.
+  final bool isInSandbox;
+
+  GetSMSSandboxAccountStatusResult({
+    required this.isInSandbox,
+  });
+  factory GetSMSSandboxAccountStatusResult.fromXml(_s.XmlElement elem) {
+    return GetSMSSandboxAccountStatusResult(
+      isInSandbox: _s.extractXmlBoolValue(elem, 'IsInSandbox')!,
+    );
+  }
+}
+
 /// Response for GetSubscriptionAttributes action.
 class GetSubscriptionAttributesResponse {
   /// A map of the subscription's attributes. Attributes in this map include the
@@ -2318,7 +2707,7 @@ class GetSubscriptionAttributesResponse {
   /// SNS Message Filtering</a> in the <i>Amazon SNS Developer Guide</i>.
   /// </li>
   /// <li>
-  /// <code>Owner</code> – The AWS account ID of the subscription's owner.
+  /// <code>Owner</code> – The account ID of the subscription's owner.
   /// </li>
   /// <li>
   /// <code>PendingConfirmation</code> – <code>true</code> if the subscription
@@ -2344,6 +2733,29 @@ class GetSubscriptionAttributesResponse {
   /// <li>
   /// <code>TopicArn</code> – The topic ARN that the subscription is associated
   /// with.
+  /// </li>
+  /// </ul>
+  /// The following attribute applies only to Amazon Kinesis Data Firehose
+  /// delivery stream subscriptions:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Permission to write to the Kinesis Data Firehose delivery stream
+  /// </li>
+  /// <li>
+  /// Amazon SNS listed as a trusted entity
+  /// </li>
+  /// </ul>
+  /// Specifying a valid ARN for this attribute is required for Kinesis Data
+  /// Firehose delivery stream subscriptions. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html">Fanout
+  /// to Kinesis Data Firehose delivery streams</a> in the <i>Amazon SNS Developer
+  /// Guide</i>.
   /// </li>
   /// </ul>
   final Map<String, String>? attributes;
@@ -2382,7 +2794,7 @@ class GetTopicAttributesResponse {
   /// <code>email-json</code> endpoints.
   /// </li>
   /// <li>
-  /// <code>Owner</code> – The AWS account ID of the topic's owner.
+  /// <code>Owner</code> – The account ID of the topic's owner.
   /// </li>
   /// <li>
   /// <code>Policy</code> – The JSON serialization of the topic's access control
@@ -2413,12 +2825,13 @@ class GetTopicAttributesResponse {
   ///
   /// <ul>
   /// <li>
-  /// <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master key
-  /// (CMK) for Amazon SNS or a custom CMK. For more information, see <a
+  /// <code>KmsMasterKeyId</code> - The ID of an Amazon Web Services managed
+  /// customer master key (CMK) for Amazon SNS or a custom CMK. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms">Key
   /// Terms</a>. For more examples, see <a
   /// href="https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters">KeyId</a>
-  /// in the <i>AWS Key Management Service API Reference</i>.
+  /// in the <i>Key Management Service API Reference</i>.
   /// </li>
   /// </ul>
   /// The following attributes apply only to <a
@@ -2450,8 +2863,8 @@ class GetTopicAttributesResponse {
   /// the attributes of the message).
   ///
   /// (Optional) To override the generated value, you can specify a value for the
-  /// the <code>MessageDeduplicationId</code> parameter for the
-  /// <code>Publish</code> action.
+  /// <code>MessageDeduplicationId</code> parameter for the <code>Publish</code>
+  /// action.
   /// </li>
   /// </ul> </li>
   /// </ul>
@@ -2475,6 +2888,90 @@ class GetTopicAttributesResponse {
   }
 }
 
+/// Supported language code for sending OTP message
+enum LanguageCodeString {
+  enUs,
+  enGb,
+  es_419,
+  esEs,
+  deDe,
+  frCa,
+  frFr,
+  itIt,
+  jaJp,
+  ptBr,
+  krKr,
+  zhCn,
+  zhTw,
+}
+
+extension on LanguageCodeString {
+  String toValue() {
+    switch (this) {
+      case LanguageCodeString.enUs:
+        return 'en-US';
+      case LanguageCodeString.enGb:
+        return 'en-GB';
+      case LanguageCodeString.es_419:
+        return 'es-419';
+      case LanguageCodeString.esEs:
+        return 'es-ES';
+      case LanguageCodeString.deDe:
+        return 'de-DE';
+      case LanguageCodeString.frCa:
+        return 'fr-CA';
+      case LanguageCodeString.frFr:
+        return 'fr-FR';
+      case LanguageCodeString.itIt:
+        return 'it-IT';
+      case LanguageCodeString.jaJp:
+        return 'ja-JP';
+      case LanguageCodeString.ptBr:
+        return 'pt-BR';
+      case LanguageCodeString.krKr:
+        return 'kr-KR';
+      case LanguageCodeString.zhCn:
+        return 'zh-CN';
+      case LanguageCodeString.zhTw:
+        return 'zh-TW';
+    }
+  }
+}
+
+extension on String {
+  LanguageCodeString toLanguageCodeString() {
+    switch (this) {
+      case 'en-US':
+        return LanguageCodeString.enUs;
+      case 'en-GB':
+        return LanguageCodeString.enGb;
+      case 'es-419':
+        return LanguageCodeString.es_419;
+      case 'es-ES':
+        return LanguageCodeString.esEs;
+      case 'de-DE':
+        return LanguageCodeString.deDe;
+      case 'fr-CA':
+        return LanguageCodeString.frCa;
+      case 'fr-FR':
+        return LanguageCodeString.frFr;
+      case 'it-IT':
+        return LanguageCodeString.itIt;
+      case 'ja-JP':
+        return LanguageCodeString.jaJp;
+      case 'pt-BR':
+        return LanguageCodeString.ptBr;
+      case 'kr-KR':
+        return LanguageCodeString.krKr;
+      case 'zh-CN':
+        return LanguageCodeString.zhCn;
+      case 'zh-TW':
+        return LanguageCodeString.zhTw;
+    }
+    throw Exception('$this is not known in enum LanguageCodeString');
+  }
+}
+
 /// Response for ListEndpointsByPlatformApplication action.
 class ListEndpointsByPlatformApplicationResponse {
   /// Endpoints returned for ListEndpointsByPlatformApplication action.
@@ -2494,6 +2991,30 @@ class ListEndpointsByPlatformApplicationResponse {
       endpoints: _s.extractXmlChild(elem, 'Endpoints')?.let((elem) =>
           elem.findElements('member').map((c) => Endpoint.fromXml(c)).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
+    );
+  }
+}
+
+class ListOriginationNumbersResult {
+  /// A <code>NextToken</code> string is returned when you call the
+  /// <code>ListOriginationNumbers</code> operation if additional pages of records
+  /// are available.
+  final String? nextToken;
+
+  /// A list of the calling account's verified and pending origination numbers.
+  final List<PhoneNumberInformation>? phoneNumbers;
+
+  ListOriginationNumbersResult({
+    this.nextToken,
+    this.phoneNumbers,
+  });
+  factory ListOriginationNumbersResult.fromXml(_s.XmlElement elem) {
+    return ListOriginationNumbersResult(
+      nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
+      phoneNumbers: _s.extractXmlChild(elem, 'PhoneNumbers')?.let((elem) => elem
+          .findElements('member')
+          .map((c) => PhoneNumberInformation.fromXml(c))
+          .toList()),
     );
   }
 }
@@ -2545,6 +3066,31 @@ class ListPlatformApplicationsResponse {
               .findElements('member')
               .map((c) => PlatformApplication.fromXml(c))
               .toList()),
+    );
+  }
+}
+
+class ListSMSSandboxPhoneNumbersResult {
+  /// A list of the calling account's pending and verified phone numbers.
+  final List<SMSSandboxPhoneNumber> phoneNumbers;
+
+  /// A <code>NextToken</code> string is returned when you call the
+  /// <code>ListSMSSandboxPhoneNumbersInput</code> operation if additional pages
+  /// of records are available.
+  final String? nextToken;
+
+  ListSMSSandboxPhoneNumbersResult({
+    required this.phoneNumbers,
+    this.nextToken,
+  });
+  factory ListSMSSandboxPhoneNumbersResult.fromXml(_s.XmlElement elem) {
+    return ListSMSSandboxPhoneNumbersResult(
+      phoneNumbers: _s
+          .extractXmlChild(elem, 'PhoneNumbers')!
+          .findElements('member')
+          .map((c) => SMSSandboxPhoneNumber.fromXml(c))
+          .toList(),
+      nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
 }
@@ -2685,6 +3231,40 @@ class MessageAttributeValue {
   }
 }
 
+/// Enum listing out all supported number capabilities.
+enum NumberCapability {
+  sms,
+  mms,
+  voice,
+}
+
+extension on NumberCapability {
+  String toValue() {
+    switch (this) {
+      case NumberCapability.sms:
+        return 'SMS';
+      case NumberCapability.mms:
+        return 'MMS';
+      case NumberCapability.voice:
+        return 'VOICE';
+    }
+  }
+}
+
+extension on String {
+  NumberCapability toNumberCapability() {
+    switch (this) {
+      case 'SMS':
+        return NumberCapability.sms;
+      case 'MMS':
+        return NumberCapability.mms;
+      case 'VOICE':
+        return NumberCapability.voice;
+    }
+    throw Exception('$this is not known in enum NumberCapability');
+  }
+}
+
 /// The response for the OptInPhoneNumber action.
 class OptInPhoneNumberResponse {
   OptInPhoneNumberResponse();
@@ -2692,6 +3272,51 @@ class OptInPhoneNumberResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return OptInPhoneNumberResponse();
+  }
+}
+
+/// A list of phone numbers and their metadata.
+class PhoneNumberInformation {
+  /// The date and time when the phone number was created.
+  final DateTime? createdAt;
+
+  /// The two-character code for the country or region, in ISO 3166-1 alpha-2
+  /// format.
+  final String? iso2CountryCode;
+
+  /// The capabilities of each phone number.
+  final List<NumberCapability>? numberCapabilities;
+
+  /// The phone number.
+  final String? phoneNumber;
+
+  /// The list of supported routes.
+  final RouteType? routeType;
+
+  /// The status of the phone number.
+  final String? status;
+
+  PhoneNumberInformation({
+    this.createdAt,
+    this.iso2CountryCode,
+    this.numberCapabilities,
+    this.phoneNumber,
+    this.routeType,
+    this.status,
+  });
+  factory PhoneNumberInformation.fromXml(_s.XmlElement elem) {
+    return PhoneNumberInformation(
+      createdAt: _s.extractXmlDateTimeValue(elem, 'CreatedAt'),
+      iso2CountryCode: _s.extractXmlStringValue(elem, 'Iso2CountryCode'),
+      numberCapabilities: _s.extractXmlChild(elem, 'NumberCapabilities')?.let(
+          (elem) => _s
+              .extractXmlStringListValues(elem, 'member')
+              .map((s) => s.toNumberCapability())
+              .toList()),
+      phoneNumber: _s.extractXmlStringValue(elem, 'PhoneNumber'),
+      routeType: _s.extractXmlStringValue(elem, 'RouteType')?.toRouteType(),
+      status: _s.extractXmlStringValue(elem, 'Status'),
+    );
   }
 }
 
@@ -2748,6 +3373,108 @@ class PublishResponse {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+}
+
+/// Enum listing out all supported route types. The following enum values are
+/// supported. 1. Transactional : Non-marketing traffic 2. Promotional :
+/// Marketing 3. Premium : Premium routes for OTP delivery to the carriers
+enum RouteType {
+  transactional,
+  promotional,
+  premium,
+}
+
+extension on RouteType {
+  String toValue() {
+    switch (this) {
+      case RouteType.transactional:
+        return 'Transactional';
+      case RouteType.promotional:
+        return 'Promotional';
+      case RouteType.premium:
+        return 'Premium';
+    }
+  }
+}
+
+extension on String {
+  RouteType toRouteType() {
+    switch (this) {
+      case 'Transactional':
+        return RouteType.transactional;
+      case 'Promotional':
+        return RouteType.promotional;
+      case 'Premium':
+        return RouteType.premium;
+    }
+    throw Exception('$this is not known in enum RouteType');
+  }
+}
+
+/// A verified or pending destination phone number in the SMS sandbox.
+///
+/// When you start using Amazon SNS to send SMS messages, your account is in the
+/// <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for you to
+/// try Amazon SNS features without risking your reputation as an SMS sender.
+/// While your account is in the SMS sandbox, you can use all of the features of
+/// Amazon SNS. However, you can send SMS messages only to verified destination
+/// phone numbers. For more information, including how to move out of the
+/// sandbox to send messages without restrictions, see <a
+/// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+/// sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+class SMSSandboxPhoneNumber {
+  /// The destination phone number.
+  final String? phoneNumber;
+
+  /// The destination phone number's verification status.
+  final SMSSandboxPhoneNumberVerificationStatus? status;
+
+  SMSSandboxPhoneNumber({
+    this.phoneNumber,
+    this.status,
+  });
+  factory SMSSandboxPhoneNumber.fromXml(_s.XmlElement elem) {
+    return SMSSandboxPhoneNumber(
+      phoneNumber: _s.extractXmlStringValue(elem, 'PhoneNumber'),
+      status: _s
+          .extractXmlStringValue(elem, 'Status')
+          ?.toSMSSandboxPhoneNumberVerificationStatus(),
+    );
+  }
+}
+
+/// Enum listing out all supported destination phone number verification
+/// statuses. The following enum values are supported. 1. PENDING : The
+/// destination phone number is pending verification. 2. VERIFIED : The
+/// destination phone number is verified.
+enum SMSSandboxPhoneNumberVerificationStatus {
+  pending,
+  verified,
+}
+
+extension on SMSSandboxPhoneNumberVerificationStatus {
+  String toValue() {
+    switch (this) {
+      case SMSSandboxPhoneNumberVerificationStatus.pending:
+        return 'Pending';
+      case SMSSandboxPhoneNumberVerificationStatus.verified:
+        return 'Verified';
+    }
+  }
+}
+
+extension on String {
+  SMSSandboxPhoneNumberVerificationStatus
+      toSMSSandboxPhoneNumberVerificationStatus() {
+    switch (this) {
+      case 'Pending':
+        return SMSSandboxPhoneNumberVerificationStatus.pending;
+      case 'Verified':
+        return SMSSandboxPhoneNumberVerificationStatus.verified;
+    }
+    throw Exception(
+        '$this is not known in enum SMSSandboxPhoneNumberVerificationStatus');
   }
 }
 
@@ -2878,6 +3605,16 @@ class UntagResourceResponse {
   }
 }
 
+/// The destination phone number's verification status.
+class VerifySMSSandboxPhoneNumberResult {
+  VerifySMSSandboxPhoneNumberResult();
+  factory VerifySMSSandboxPhoneNumberResult.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return VerifySMSSandboxPhoneNumberResult();
+  }
+}
+
 class AuthorizationErrorException extends _s.GenericAwsException {
   AuthorizationErrorException({String? type, String? message})
       : super(
@@ -2960,6 +3697,11 @@ class NotFoundException extends _s.GenericAwsException {
       : super(type: type, code: 'NotFoundException', message: message);
 }
 
+class OptedOutException extends _s.GenericAwsException {
+  OptedOutException({String? type, String? message})
+      : super(type: type, code: 'OptedOutException', message: message);
+}
+
 class PlatformApplicationDisabledException extends _s.GenericAwsException {
   PlatformApplicationDisabledException({String? type, String? message})
       : super(
@@ -3007,6 +3749,21 @@ class TopicLimitExceededException extends _s.GenericAwsException {
             type: type, code: 'TopicLimitExceededException', message: message);
 }
 
+class UserErrorException extends _s.GenericAwsException {
+  UserErrorException({String? type, String? message})
+      : super(type: type, code: 'UserErrorException', message: message);
+}
+
+class ValidationException extends _s.GenericAwsException {
+  ValidationException({String? type, String? message})
+      : super(type: type, code: 'ValidationException', message: message);
+}
+
+class VerificationException extends _s.GenericAwsException {
+  VerificationException({String? type, String? message})
+      : super(type: type, code: 'VerificationException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'AuthorizationErrorException': (type, message) =>
       AuthorizationErrorException(type: type, message: message),
@@ -3038,6 +3795,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       KMSThrottlingException(type: type, message: message),
   'NotFoundException': (type, message) =>
       NotFoundException(type: type, message: message),
+  'OptedOutException': (type, message) =>
+      OptedOutException(type: type, message: message),
   'PlatformApplicationDisabledException': (type, message) =>
       PlatformApplicationDisabledException(type: type, message: message),
   'ResourceNotFoundException': (type, message) =>
@@ -3054,4 +3813,10 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ThrottledException(type: type, message: message),
   'TopicLimitExceededException': (type, message) =>
       TopicLimitExceededException(type: type, message: message),
+  'UserErrorException': (type, message) =>
+      UserErrorException(type: type, message: message),
+  'ValidationException': (type, message) =>
+      ValidationException(type: type, message: message),
+  'VerificationException': (type, message) =>
+      VerificationException(type: type, message: message),
 };

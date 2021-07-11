@@ -57,7 +57,7 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// Amazon Keyspaces (for Apache Cassandra) tables
 /// </li>
 /// <li>
-/// Amazon Managed Streaming for Apache Kafka cluster storage
+/// Amazon Managed Streaming for Apache Kafka broker storage
 /// </li>
 /// </ul>
 /// <b>API Summary</b>
@@ -119,9 +119,9 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html#delete-step-scaling-policy">Delete
-  /// a Step Scaling Policy</a> and <a
+  /// a step scaling policy</a> and <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html#delete-target-tracking-policy">Delete
-  /// a Target Tracking Scaling Policy</a> in the <i>Application Auto Scaling
+  /// a target tracking scaling policy</a> in the <i>Application Auto Scaling
   /// User Guide</i>.
   ///
   /// May throw [ValidationException].
@@ -310,24 +310,12 @@ class ApplicationAutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyName',
-      policyName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
@@ -355,8 +343,8 @@ class ApplicationAutoScaling {
   /// scalable target.
   ///
   /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html#delete-scheduled-action">Delete
-  /// a Scheduled Action</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/scheduled-scaling-additional-cli-commands.html#delete-scheduled-action">Delete
+  /// a scheduled action</a> in the <i>Application Auto Scaling User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [ObjectNotFoundException].
@@ -544,12 +532,6 @@ class ApplicationAutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
     _s.validateStringLength(
@@ -557,12 +539,6 @@ class ApplicationAutoScaling {
       scheduledActionName,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'scheduledActionName',
-      scheduledActionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
@@ -775,12 +751,6 @@ class ApplicationAutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
     final headers = <String, String>{
@@ -832,8 +802,7 @@ class ApplicationAutoScaling {
   ///
   /// Parameter [resourceIds] :
   /// The identifier of the resource associated with the scalable target. This
-  /// string consists of the resource type and unique identifier. If you specify
-  /// a scalable dimension, you must also specify a resource ID.
+  /// string consists of the resource type and unique identifier.
   ///
   /// <ul>
   /// <li>
@@ -999,11 +968,6 @@ class ApplicationAutoScaling {
     ScalableDimension? scalableDimension,
   }) async {
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AnyScaleFrontendService.DescribeScalableTargets'
@@ -1059,8 +1023,7 @@ class ApplicationAutoScaling {
   ///
   /// Parameter [resourceId] :
   /// The identifier of the resource associated with the scaling activity. This
-  /// string consists of the resource type and unique identifier. If you specify
-  /// a scalable dimension, you must also specify a resource ID.
+  /// string consists of the resource type and unique identifier.
   ///
   /// <ul>
   /// <li>
@@ -1226,21 +1189,11 @@ class ApplicationAutoScaling {
     ScalableDimension? scalableDimension,
   }) async {
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1273,9 +1226,9 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html">Target
-  /// Tracking Scaling Policies</a> and <a
+  /// tracking scaling policies</a> and <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html">Step
-  /// Scaling Policies</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// scaling policies</a> in the <i>Application Auto Scaling User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [FailedResourceAccessException].
@@ -1307,8 +1260,7 @@ class ApplicationAutoScaling {
   ///
   /// Parameter [resourceId] :
   /// The identifier of the resource associated with the scaling policy. This
-  /// string consists of the resource type and unique identifier. If you specify
-  /// a scalable dimension, you must also specify a resource ID.
+  /// string consists of the resource type and unique identifier.
   ///
   /// <ul>
   /// <li>
@@ -1475,21 +1427,11 @@ class ApplicationAutoScaling {
     ScalableDimension? scalableDimension,
   }) async {
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1524,7 +1466,9 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">Scheduled
-  /// Scaling</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// scaling</a> and <a
+  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/scheduled-scaling-additional-cli-commands.html">Managing
+  /// scheduled scaling</a> in the <i>Application Auto Scaling User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [InvalidNextTokenException].
@@ -1552,8 +1496,7 @@ class ApplicationAutoScaling {
   ///
   /// Parameter [resourceId] :
   /// The identifier of the resource associated with the scheduled action. This
-  /// string consists of the resource type and unique identifier. If you specify
-  /// a scalable dimension, you must also specify a resource ID.
+  /// string consists of the resource type and unique identifier.
   ///
   /// <ul>
   /// <li>
@@ -1723,21 +1666,11 @@ class ApplicationAutoScaling {
     List<String>? scheduledActionNames,
   }) async {
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1793,9 +1726,9 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html">Target
-  /// Tracking Scaling Policies</a> and <a
+  /// tracking scaling policies</a> and <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html">Step
-  /// Scaling Policies</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// scaling policies</a> in the <i>Application Auto Scaling User Guide</i>.
   /// <note>
   /// If a scalable target is deregistered, the scalable target is no longer
   /// available to execute scaling policies. Any scaling policies that were
@@ -1990,9 +1923,9 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html">Target
-  /// Tracking Scaling Policies</a> and <a
+  /// tracking scaling policies</a> and <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html">Step
-  /// Scaling Policies</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// scaling policies</a> in the <i>Application Auto Scaling User Guide</i>.
   ///
   /// Parameter [stepScalingPolicyConfiguration] :
   /// A step scaling policy.
@@ -2024,24 +1957,12 @@ class ApplicationAutoScaling {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyName',
-      policyName,
-      r'''\p{Print}+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
@@ -2082,7 +2003,7 @@ class ApplicationAutoScaling {
   /// until you have registered the resource as a scalable target.
   ///
   /// When start and end times are specified with a recurring schedule using a
-  /// cron expression or rates, they form the boundaries of when the recurring
+  /// cron expression or rates, they form the boundaries for when the recurring
   /// action starts and stops.
   ///
   /// To update a scheduled action, specify the parameters that you want to
@@ -2091,7 +2012,7 @@ class ApplicationAutoScaling {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">Scheduled
-  /// Scaling</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// scaling</a> in the <i>Application Auto Scaling User Guide</i>.
   /// <note>
   /// If a scalable target is deregistered, the scalable target is no longer
   /// available to run scheduled actions. Any scheduled actions that were
@@ -2274,7 +2195,7 @@ class ApplicationAutoScaling {
   /// <code>custom-resource</code> instead.
   ///
   /// Parameter [endTime] :
-  /// The date and time for the recurring schedule to end.
+  /// The date and time for the recurring schedule to end, in UTC.
   ///
   /// Parameter [scalableTargetAction] :
   /// The new minimum and maximum capacity. You can set both values or just one.
@@ -2298,22 +2219,37 @@ class ApplicationAutoScaling {
   /// Cron expressions - "<code>cron(<i>fields</i>)</code>"
   /// </li>
   /// </ul>
-  /// At expressions are useful for one-time schedules. Specify the time in UTC.
+  /// At expressions are useful for one-time schedules. Cron expressions are
+  /// useful for scheduled actions that run periodically at a specified date and
+  /// time, and rate expressions are useful for scheduled actions that run at a
+  /// regular interval.
+  ///
+  /// At and cron expressions use Universal Coordinated Time (UTC) by default.
+  ///
+  /// The cron format consists of six fields separated by white spaces:
+  /// [Minutes] [Hours] [Day_of_Month] [Month] [Day_of_Week] [Year].
   ///
   /// For rate expressions, <i>value</i> is a positive integer and <i>unit</i>
   /// is <code>minute</code> | <code>minutes</code> | <code>hour</code> |
   /// <code>hours</code> | <code>day</code> | <code>days</code>.
   ///
-  /// For more information about cron expressions, see <a
-  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions">Cron
-  /// Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.
-  ///
-  /// For examples of using these expressions, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">Scheduled
-  /// Scaling</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// For more information and examples, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/examples-scheduled-actions.html">Example
+  /// scheduled actions for Application Auto Scaling</a> in the <i>Application
+  /// Auto Scaling User Guide</i>.
   ///
   /// Parameter [startTime] :
-  /// The date and time for this scheduled action to start.
+  /// The date and time for this scheduled action to start, in UTC.
+  ///
+  /// Parameter [timezone] :
+  /// Specifies the time zone used when setting a scheduled action by using an
+  /// at or cron expression. If a time zone is not provided, UTC is used by
+  /// default.
+  ///
+  /// Valid values are the canonical names of the IANA time zones supported by
+  /// Joda-Time (such as <code>Etc/GMT+9</code> or <code>Pacific/Tahiti</code>).
+  /// For more information, see <a
+  /// href="https://www.joda.org/joda-time/timezones.html">https://www.joda.org/joda-time/timezones.html</a>.
   Future<void> putScheduledAction({
     required String resourceId,
     required ScalableDimension scalableDimension,
@@ -2323,6 +2259,7 @@ class ApplicationAutoScaling {
     ScalableTargetAction? scalableTargetAction,
     String? schedule,
     DateTime? startTime,
+    String? timezone,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
@@ -2330,12 +2267,6 @@ class ApplicationAutoScaling {
       resourceId,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
@@ -2347,12 +2278,6 @@ class ApplicationAutoScaling {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'scheduledActionName',
-      scheduledActionName,
-      r'''(?!((^[ ]+.*)|(.*([\u0000-\u001f]|[\u007f-\u009f]|[:/|])+.*)|(.*[ ]+$))).+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
     _s.validateStringLength(
       'schedule',
@@ -2360,10 +2285,11 @@ class ApplicationAutoScaling {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'schedule',
-      schedule,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
+    _s.validateStringLength(
+      'timezone',
+      timezone,
+      1,
+      1600,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2385,6 +2311,7 @@ class ApplicationAutoScaling {
           'ScalableTargetAction': scalableTargetAction,
         if (schedule != null) 'Schedule': schedule,
         if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+        if (timezone != null) 'Timezone': timezone,
       },
     );
   }
@@ -2587,9 +2514,8 @@ class ApplicationAutoScaling {
   /// Parameter [maxCapacity] :
   /// The maximum value that you plan to scale out to. When a scaling policy is
   /// in effect, Application Auto Scaling can scale out (expand) as needed to
-  /// the maximum capacity limit in response to changing demand.
-  ///
-  /// This parameter is required if you are registering a scalable target.
+  /// the maximum capacity limit in response to changing demand. This property
+  /// is required when registering a new scalable target.
   ///
   /// Although you can specify a large maximum capacity, note that service
   /// quotas may impose lower limits. Each service has its own default quotas
@@ -2604,13 +2530,13 @@ class ApplicationAutoScaling {
   /// Parameter [minCapacity] :
   /// The minimum value that you plan to scale in to. When a scaling policy is
   /// in effect, Application Auto Scaling can scale in (contract) as needed to
-  /// the minimum capacity limit in response to changing demand.
+  /// the minimum capacity limit in response to changing demand. This property
+  /// is required when registering a new scalable target.
   ///
-  /// This parameter is required if you are registering a scalable target. For
-  /// certain resources, the minimum value allowed is 0. This includes Lambda
-  /// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
-  /// clusters, and custom resources. For all other resources, the minimum value
-  /// allowed is 1.
+  /// For certain resources, the minimum value allowed is 0. This includes
+  /// Lambda provisioned concurrency, Spot Fleet, ECS services, Aurora DB
+  /// clusters, EMR clusters, and custom resources. For all other resources, the
+  /// minimum value allowed is 1.
   ///
   /// Parameter [roleARN] :
   /// This parameter is required for services that do not support service-linked
@@ -2622,7 +2548,7 @@ class ApplicationAutoScaling {
   /// uses a service-linked role, which it creates if it does not yet exist. For
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-roles">Application
-  /// Auto Scaling IAM Roles</a>.
+  /// Auto Scaling IAM roles</a>.
   ///
   /// Parameter [suspendedState] :
   /// An embedded object that contains attributes and attribute values that are
@@ -2652,7 +2578,7 @@ class ApplicationAutoScaling {
   /// </ul>
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-suspend-resume-scaling.html">Suspending
-  /// and Resuming Scaling</a> in the <i>Application Auto Scaling User
+  /// and resuming scaling</a> in the <i>Application Auto Scaling User
   /// Guide</i>.
   Future<void> registerScalableTarget({
     required String resourceId,
@@ -2671,12 +2597,6 @@ class ApplicationAutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
     _s.validateStringLength(
@@ -2684,11 +2604,6 @@ class ApplicationAutoScaling {
       roleARN,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'roleARN',
-      roleARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3208,7 +3123,7 @@ extension on String {
 /// namespace and dimension using the CloudWatch metrics dashboard in the
 /// console, follow the procedure in <a
 /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html">Building
-/// Dashboards with CloudWatch</a> in the <i>Application Auto Scaling User
+/// dashboards with CloudWatch</a> in the <i>Application Auto Scaling User
 /// Guide</i>.
 class PredefinedMetricSpecification {
   /// The metric type. The <code>ALBRequestCountPerTarget</code> metric type
@@ -4262,19 +4177,24 @@ class ScheduledAction {
   /// Cron expressions - "<code>cron(<i>fields</i>)</code>"
   /// </li>
   /// </ul>
-  /// At expressions are useful for one-time schedules. Specify the time in UTC.
+  /// At expressions are useful for one-time schedules. Cron expressions are
+  /// useful for scheduled actions that run periodically at a specified date and
+  /// time, and rate expressions are useful for scheduled actions that run at a
+  /// regular interval.
+  ///
+  /// At and cron expressions use Universal Coordinated Time (UTC) by default.
+  ///
+  /// The cron format consists of six fields separated by white spaces: [Minutes]
+  /// [Hours] [Day_of_Month] [Month] [Day_of_Week] [Year].
   ///
   /// For rate expressions, <i>value</i> is a positive integer and <i>unit</i> is
   /// <code>minute</code> | <code>minutes</code> | <code>hour</code> |
   /// <code>hours</code> | <code>day</code> | <code>days</code>.
   ///
-  /// For more information about cron expressions, see <a
-  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions">Cron
-  /// Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.
-  ///
-  /// For examples of using these expressions, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">Scheduled
-  /// Scaling</a> in the <i>Application Auto Scaling User Guide</i>.
+  /// For more information and examples, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/application/userguide/examples-scheduled-actions.html">Example
+  /// scheduled actions for Application Auto Scaling</a> in the <i>Application
+  /// Auto Scaling User Guide</i>.
   final String schedule;
 
   /// The Amazon Resource Name (ARN) of the scheduled action.
@@ -4287,7 +4207,7 @@ class ScheduledAction {
   /// <code>custom-resource</code>.
   final ServiceNamespace serviceNamespace;
 
-  /// The date and time that the action is scheduled to end.
+  /// The date and time that the action is scheduled to end, in UTC.
   final DateTime? endTime;
 
   /// The scalable dimension. This string consists of the service namespace,
@@ -4375,8 +4295,12 @@ class ScheduledAction {
   /// scales in to the maximum capacity.
   final ScalableTargetAction? scalableTargetAction;
 
-  /// The date and time that the action is scheduled to begin.
+  /// The date and time that the action is scheduled to begin, in UTC.
   final DateTime? startTime;
+
+  /// The time zone used when referring to the date and time of a scheduled
+  /// action, when the scheduled action uses an at or cron expression.
+  final String? timezone;
 
   ScheduledAction({
     required this.creationTime,
@@ -4389,6 +4313,7 @@ class ScheduledAction {
     this.scalableDimension,
     this.scalableTargetAction,
     this.startTime,
+    this.timezone,
   });
   factory ScheduledAction.fromJson(Map<String, dynamic> json) {
     return ScheduledAction(
@@ -4408,6 +4333,7 @@ class ScheduledAction {
               json['ScalableTargetAction'] as Map<String, dynamic>)
           : null,
       startTime: timeStampFromJson(json['StartTime']),
+      timezone: json['Timezone'] as String?,
     );
   }
 }
@@ -4663,7 +4589,7 @@ class StepScalingPolicyConfiguration {
   /// Amazon Keyspaces tables
   /// </li>
   /// <li>
-  /// Amazon MSK cluster storage
+  /// Amazon MSK broker storage
   /// </li>
   /// </ul>
   final int? cooldown;
@@ -4779,8 +4705,12 @@ class SuspendedState {
 /// Represents a target tracking scaling policy configuration to use with
 /// Application Auto Scaling.
 class TargetTrackingScalingPolicyConfiguration {
-  /// The target value for the metric. The range is 8.515920e-109 to 1.174271e+108
-  /// (Base 10) or 2e-360 to 2e360 (Base 2).
+  /// The target value for the metric. Although this property accepts numbers of
+  /// type Double, it won't accept values that are either too small or too large.
+  /// Values must be in the range of -2^360 to 2^360. The value must be a valid
+  /// number based on the choice of metric. For example, if the metric is CPU
+  /// utilization, then the target value is a percent value that represents how
+  /// much of the CPU can be used before scaling out.
   final double targetValue;
 
   /// A customized metric. You can specify either a predefined metric or a
@@ -4854,7 +4784,7 @@ class TargetTrackingScalingPolicyConfiguration {
   /// Amazon Keyspaces tables
   /// </li>
   /// <li>
-  /// Amazon MSK cluster storage
+  /// Amazon MSK broker storage
   /// </li>
   /// </ul>
   final int? scaleInCooldown;
@@ -4916,7 +4846,7 @@ class TargetTrackingScalingPolicyConfiguration {
   /// Amazon Keyspaces tables
   /// </li>
   /// <li>
-  /// Amazon MSK cluster storage
+  /// Amazon MSK broker storage
   /// </li>
   /// </ul>
   final int? scaleOutCooldown;

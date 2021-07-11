@@ -76,24 +76,12 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(changeSetId, 'changeSetId');
     _s.validateStringLength(
       'changeSetId',
       changeSetId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'changeSetId',
-      changeSetId,
-      r'''^[\w\-]+$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -137,24 +125,12 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(changeSetId, 'changeSetId');
     _s.validateStringLength(
       'changeSetId',
       changeSetId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'changeSetId',
-      changeSetId,
-      r'''^[\w\-]+$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -198,24 +174,12 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
     _s.validateStringLength(
       'entityId',
       entityId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'entityId',
-      entityId,
-      r'''^[\w\-]+$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -280,12 +244,6 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -297,11 +255,6 @@ class MarketplaceCatalog {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[\w+=.:@\-\/]$''',
     );
     final $payload = <String, dynamic>{
       'Catalog': catalog,
@@ -365,24 +318,12 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityType, 'entityType');
     _s.validateStringLength(
       'entityType',
       entityType,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'entityType',
-      entityType,
-      r'''^[a-zA-Z]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -396,11 +337,6 @@ class MarketplaceCatalog {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[\w+=.:@\-\/]$''',
     );
     final $payload = <String, dynamic>{
       'Catalog': catalog,
@@ -429,9 +365,13 @@ class MarketplaceCatalog {
   ///
   /// For example, you cannot start the ChangeSet described in the <a
   /// href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples">example</a>
-  /// below because it contains two changes to execute the same change type
-  /// (<code>AddRevisions</code>) against the same entity
+  /// later in this topic, because it contains two changes to execute the same
+  /// change type (<code>AddRevisions</code>) against the same entity
   /// (<code>entity-id@1)</code>.
+  ///
+  /// For more information about working with change sets, see <a
+  /// href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets">
+  /// Working with change sets</a>.
   ///
   /// May throw [InternalServiceException].
   /// May throw [AccessDeniedException].
@@ -468,12 +408,6 @@ class MarketplaceCatalog {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalog',
-      catalog,
-      r'''^[a-zA-Z]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(changeSet, 'changeSet');
     _s.validateStringLength(
       'changeSetName',
@@ -481,21 +415,11 @@ class MarketplaceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''^[\w\s+=.:@-]+$''',
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       36,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[\w\-]+$''',
     );
     final $payload = <String, dynamic>{
       'Catalog': catalog,
@@ -547,19 +471,25 @@ class Change {
   /// The entity to be changed.
   final Entity entity;
 
+  /// Optional name for the change.
+  final String? changeName;
+
   Change({
     required this.changeType,
     required this.details,
     required this.entity,
+    this.changeName,
   });
   Map<String, dynamic> toJson() {
     final changeType = this.changeType;
     final details = this.details;
     final entity = this.entity;
+    final changeName = this.changeName;
     return {
       'ChangeType': changeType,
       'Details': details,
       'Entity': entity,
+      if (changeName != null) 'ChangeName': changeName,
     };
   }
 }
@@ -673,6 +603,9 @@ extension on String {
 /// This object is a container for common summary information about the change.
 /// The summary doesn't contain the whole change structure.
 class ChangeSummary {
+  /// Optional name for the change.
+  final String? changeName;
+
   /// The type of the change.
   final String? changeType;
 
@@ -687,6 +620,7 @@ class ChangeSummary {
   final List<ErrorDetail>? errorDetailList;
 
   ChangeSummary({
+    this.changeName,
     this.changeType,
     this.details,
     this.entity,
@@ -694,6 +628,7 @@ class ChangeSummary {
   });
   factory ChangeSummary.fromJson(Map<String, dynamic> json) {
     return ChangeSummary(
+      changeName: json['ChangeName'] as String?,
       changeType: json['ChangeType'] as String?,
       details: json['Details'] as String?,
       entity: json['Entity'] != null
@@ -813,8 +748,8 @@ class DescribeEntityResponse {
   }
 }
 
-/// A product entity contains data that describes your product, its supported
-/// features, and how it can be used or launched by your customer.
+/// An entity contains data that describes your product, its supported features,
+/// and how it can be used or launched by your customer.
 class Entity {
   /// The type of entity.
   final String type;

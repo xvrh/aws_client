@@ -39,9 +39,19 @@ class Rekognition {
 
   /// Compares a face in the <i>source</i> input image with each of the 100
   /// largest faces detected in the <i>target</i> input image.
-  /// <note>
+  ///
   /// If the source image contains multiple faces, the service detects the
   /// largest face and compares it with each face detected in the target image.
+  /// <note>
+  /// CompareFaces uses machine learning algorithms, which are probabilistic. A
+  /// false negative is an incorrect prediction that a face in the target image
+  /// has a low similarity confidence score when compared to the face in the
+  /// source image. To reduce the probability of false negatives, we recommend
+  /// that you compare the target image against multiple source images. If you
+  /// plan to use <code>CompareFaces</code> to make a decision that impacts an
+  /// individual's rights, privacy, or access to services, we recommend that you
+  /// pass the result to a human for review and further validation before taking
+  /// action.
   /// </note>
   /// You pass the input and target images either as base64-encoded image bytes
   /// or as references to images in an Amazon S3 bucket. If you use the AWS CLI
@@ -188,7 +198,9 @@ class Rekognition {
   /// Collection names are case-sensitive.
   /// </note>
   /// This operation requires permissions to perform the
-  /// <code>rekognition:CreateCollection</code> action.
+  /// <code>rekognition:CreateCollection</code> action. If you want to tag your
+  /// collection, you also require permission to perform the
+  /// <code>rekognition:TagResource</code> operation.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [AccessDeniedException].
@@ -196,11 +208,16 @@ class Rekognition {
   /// May throw [ThrottlingException].
   /// May throw [ProvisionedThroughputExceededException].
   /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ServiceQuotaExceededException].
   ///
   /// Parameter [collectionId] :
   /// ID for the collection that you are creating.
+  ///
+  /// Parameter [tags] :
+  /// A set of tags (key-value pairs) that you want to attach to the collection.
   Future<CreateCollectionResponse> createCollection({
     required String collectionId,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(collectionId, 'collectionId');
     _s.validateStringLength(
@@ -208,12 +225,6 @@ class Rekognition {
       collectionId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -228,6 +239,7 @@ class Rekognition {
       headers: headers,
       payload: {
         'CollectionId': collectionId,
+        if (tags != null) 'Tags': tags,
       },
     );
 
@@ -260,12 +272,6 @@ class Rekognition {
       projectName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -313,6 +319,7 @@ class Rekognition {
   /// May throw [InternalServerError].
   /// May throw [ThrottlingException].
   /// May throw [ProvisionedThroughputExceededException].
+  /// May throw [ServiceQuotaExceededException].
   ///
   /// Parameter [outputConfig] :
   /// The Amazon S3 location to store the results of training.
@@ -329,12 +336,29 @@ class Rekognition {
   ///
   /// Parameter [versionName] :
   /// A name for the version of the model. This value must be unique.
+  ///
+  /// Parameter [kmsKeyId] :
+  /// The identifier for your AWS Key Management Service (AWS KMS) customer
+  /// master key (CMK). You can supply the Amazon Resource Name (ARN) of your
+  /// CMK, the ID of your CMK, or an alias for your CMK. The key is used to
+  /// encrypt training and test images copied into the service for model
+  /// training. Your source images are unaffected. The key is also used to
+  /// encrypt training results and manifest files written to the output Amazon
+  /// S3 bucket (<code>OutputConfig</code>).
+  ///
+  /// If you don't specify a value for <code>KmsKeyId</code>, images copied into
+  /// the service are encrypted using a key that AWS owns and manages.
+  ///
+  /// Parameter [tags] :
+  /// A set of tags (key-value pairs) that you want to attach to the model.
   Future<CreateProjectVersionResponse> createProjectVersion({
     required OutputConfig outputConfig,
     required String projectArn,
     required TestingData testingData,
     required TrainingData trainingData,
     required String versionName,
+    String? kmsKeyId,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(projectArn, 'projectArn');
@@ -343,12 +367,6 @@ class Rekognition {
       projectArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectArn',
-      projectArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(testingData, 'testingData');
@@ -361,11 +379,11 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'kmsKeyId',
+      kmsKeyId,
+      1,
+      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -383,6 +401,8 @@ class Rekognition {
         'TestingData': testingData,
         'TrainingData': trainingData,
         'VersionName': versionName,
+        if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+        if (tags != null) 'Tags': tags,
       },
     );
 
@@ -409,6 +429,11 @@ class Rekognition {
   /// <a>StopStreamProcessor</a> to stop processing. You can delete the stream
   /// processor by calling <a>DeleteStreamProcessor</a>.
   ///
+  /// This operation requires permissions to perform the
+  /// <code>rekognition:CreateStreamProcessor</code> action. If you want to tag
+  /// your stream processor, you also require permission to perform the
+  /// <code>rekognition:TagResource</code> operation.
+  ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerError].
   /// May throw [ThrottlingException].
@@ -416,6 +441,7 @@ class Rekognition {
   /// May throw [LimitExceededException].
   /// May throw [ResourceInUseException].
   /// May throw [ProvisionedThroughputExceededException].
+  /// May throw [ServiceQuotaExceededException].
   ///
   /// Parameter [input] :
   /// Kinesis video stream stream that provides the source streaming video. If
@@ -440,12 +466,17 @@ class Rekognition {
   /// Face recognition input parameters to be used by the stream processor.
   /// Includes the collection to use for face recognition and the face
   /// attributes to detect.
+  ///
+  /// Parameter [tags] :
+  /// A set of tags (key-value pairs) that you want to attach to the stream
+  /// processor.
   Future<CreateStreamProcessorResponse> createStreamProcessor({
     required StreamProcessorInput input,
     required String name,
     required StreamProcessorOutput output,
     required String roleArn,
     required StreamProcessorSettings settings,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
@@ -456,20 +487,8 @@ class Rekognition {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(output, 'output');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(settings, 'settings');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -487,6 +506,7 @@ class Rekognition {
         'Output': output,
         'RoleArn': roleArn,
         'Settings': settings,
+        if (tags != null) 'Tags': tags,
       },
     );
 
@@ -518,12 +538,6 @@ class Rekognition {
       collectionId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -574,12 +588,6 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(faceIds, 'faceIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -626,12 +634,6 @@ class Rekognition {
       projectArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectArn',
-      projectArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -685,12 +687,6 @@ class Rekognition {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectVersionArn',
-      projectVersionArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.DeleteProjectVersion'
@@ -736,12 +732,6 @@ class Rekognition {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.DeleteStreamProcessor'
@@ -784,12 +774,6 @@ class Rekognition {
       collectionId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -861,12 +845,6 @@ class Rekognition {
       projectArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectArn',
-      projectArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -985,12 +963,6 @@ class Rekognition {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.DescribeStreamProcessor'
@@ -1085,12 +1057,6 @@ class Rekognition {
       projectVersionArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectVersionArn',
-      projectVersionArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1630,12 +1596,6 @@ class Rekognition {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9A-Za-z]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.GetCelebrityInfo'
@@ -1746,12 +1706,6 @@ class Rekognition {
       jobId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1874,12 +1828,6 @@ class Rekognition {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1971,12 +1919,6 @@ class Rekognition {
       jobId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2089,12 +2031,6 @@ class Rekognition {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2205,12 +2141,6 @@ class Rekognition {
       jobId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2330,12 +2260,6 @@ class Rekognition {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2443,12 +2367,6 @@ class Rekognition {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2546,12 +2464,6 @@ class Rekognition {
       jobId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2797,23 +2709,12 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(image, 'image');
     _s.validateStringLength(
       'externalImageId',
       externalImageId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'externalImageId',
-      externalImageId,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     _s.validateNumRange(
       'maxFaces',
@@ -2943,12 +2844,6 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3033,6 +2928,51 @@ class Rekognition {
     );
 
     return ListStreamProcessorsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns a list of tags in an Amazon Rekognition collection, stream
+  /// processor, or Custom Labels model.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>rekognition:ListTagsForResource</code> action.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerError].
+  /// May throw [ThrottlingException].
+  /// May throw [ProvisionedThroughputExceededException].
+  ///
+  /// Parameter [resourceArn] :
+  /// Amazon Resource Name (ARN) of the model, collection, or stream processor
+  /// that contains the tags that you want a list of.
+  Future<ListTagsForResourceResponse> listTagsForResource({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      20,
+      2048,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'RekognitionService.ListTagsForResource'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceArn': resourceArn,
+      },
+    );
+
+    return ListTagsForResourceResponse.fromJson(jsonResponse.body);
   }
 
   /// Returns an array of celebrities recognized in the input image. For more
@@ -3167,19 +3107,7 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(faceId, 'faceId');
-    _s.validateStringPattern(
-      'faceId',
-      faceId,
-      r'''[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'faceMatchThreshold',
       faceMatchThreshold,
@@ -3239,6 +3167,10 @@ class Rekognition {
   /// the face is to the input face. In the response, the operation also returns
   /// the bounding box (and a confidence level that the bounding box contains a
   /// face) of the face that Amazon Rekognition used for the input image.
+  ///
+  /// If no faces are detected in the input image,
+  /// <code>SearchFacesByImage</code> returns an
+  /// <code>InvalidParameterException</code> error.
   ///
   /// For an example, Searching for a Face Using an Image in the Amazon
   /// Rekognition Developer Guide.
@@ -3318,12 +3250,6 @@ class Rekognition {
       collectionId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(image, 'image');
@@ -3423,21 +3349,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3534,21 +3450,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     _s.validateNumRange(
       'minConfidence',
@@ -3648,21 +3554,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3758,23 +3654,12 @@ class Rekognition {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'collectionId',
-      collectionId,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(video, 'video');
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateNumRange(
       'faceMatchThreshold',
@@ -3787,11 +3672,6 @@ class Rekognition {
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3896,21 +3776,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     _s.validateNumRange(
       'minConfidence',
@@ -4000,21 +3870,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4087,12 +3947,6 @@ class Rekognition {
       projectVersionArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectVersionArn',
-      projectVersionArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4188,21 +4042,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4254,12 +4098,6 @@ class Rekognition {
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_.\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4333,21 +4171,11 @@ class Rekognition {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4401,12 +4229,6 @@ class Rekognition {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectVersionArn',
-      projectVersionArn,
-      r'''(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.StopProjectVersion'
@@ -4449,12 +4271,6 @@ class Rekognition {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_.\-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RekognitionService.StopStreamProcessor'
@@ -4467,6 +4283,107 @@ class Rekognition {
       headers: headers,
       payload: {
         'Name': name,
+      },
+    );
+  }
+
+  /// Adds one or more key-value tags to an Amazon Rekognition collection,
+  /// stream processor, or Custom Labels model. For more information, see <a
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+  /// AWS Resources</a>.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>rekognition:TagResource</code> action.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerError].
+  /// May throw [ThrottlingException].
+  /// May throw [ProvisionedThroughputExceededException].
+  ///
+  /// Parameter [resourceArn] :
+  /// Amazon Resource Name (ARN) of the model, collection, or stream processor
+  /// that you want to assign the tags to.
+  ///
+  /// Parameter [tags] :
+  /// The key-value tags to assign to the resource.
+  Future<void> tagResource({
+    required String resourceArn,
+    required Map<String, String> tags,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      20,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tags, 'tags');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'RekognitionService.TagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceArn': resourceArn,
+        'Tags': tags,
+      },
+    );
+  }
+
+  /// Removes one or more tags from an Amazon Rekognition collection, stream
+  /// processor, or Custom Labels model.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>rekognition:UntagResource</code> action.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerError].
+  /// May throw [ThrottlingException].
+  /// May throw [ProvisionedThroughputExceededException].
+  ///
+  /// Parameter [resourceArn] :
+  /// Amazon Resource Name (ARN) of the model, collection, or stream processor
+  /// that you want to remove the tags from.
+  ///
+  /// Parameter [tagKeys] :
+  /// A list of the tags that you want to remove.
+  Future<void> untagResource({
+    required String resourceArn,
+    required List<String> tagKeys,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      20,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'RekognitionService.UntagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceArn': resourceArn,
+        'TagKeys': tagKeys,
       },
     );
   }
@@ -5678,9 +5595,9 @@ class DetectionFilter {
   /// relative to the video frame width.
   final double? minBoundingBoxWidth;
 
-  /// Sets confidence of word detection. Words with detection confidence below
-  /// this will be excluded from the result. Values should be between 0.5 and 1 as
-  /// Text in Video will not return any result below 0.5.
+  /// Sets the confidence of word detection. Words with detection confidence below
+  /// this will be excluded from the result. Values should be between 50 and 100
+  /// as Text in Video will not return any result below 50.
   final double? minConfidence;
 
   DetectionFilter({
@@ -7492,6 +7409,21 @@ class ListStreamProcessorsResponse {
   }
 }
 
+class ListTagsForResourceResponse {
+  /// A list of key-value tags assigned to the resource.
+  final Map<String, String>? tags;
+
+  ListTagsForResourceResponse({
+    this.tags,
+  });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
 /// Provides information about a single type of unsafe content found in an image
 /// or video. Each type of moderated content has a label within a hierarchical
 /// taxonomy. For more information, see Detecting Unsafe Content in the Amazon
@@ -7926,6 +7858,10 @@ class ProjectVersionDescription {
   /// training is successful.
   final EvaluationResult? evaluationResult;
 
+  /// The identifer for the AWS Key Management Service (AWS KMS) customer master
+  /// key that was used to encrypt the model during training.
+  final String? kmsKeyId;
+
   /// The location of the summary manifest. The summary manifest provides
   /// aggregate data validation results for the training and test datasets.
   final GroundTruthManifest? manifestSummary;
@@ -7959,6 +7895,7 @@ class ProjectVersionDescription {
     this.billableTrainingTimeInSeconds,
     this.creationTimestamp,
     this.evaluationResult,
+    this.kmsKeyId,
     this.manifestSummary,
     this.minInferenceUnits,
     this.outputConfig,
@@ -7978,6 +7915,7 @@ class ProjectVersionDescription {
           ? EvaluationResult.fromJson(
               json['EvaluationResult'] as Map<String, dynamic>)
           : null,
+      kmsKeyId: json['KmsKeyId'] as String?,
       manifestSummary: json['ManifestSummary'] != null
           ? GroundTruthManifest.fromJson(
               json['ManifestSummary'] as Map<String, dynamic>)
@@ -8213,8 +8151,8 @@ class ProtectiveEquipmentSummary {
   final List<int>? personsWithRequiredEquipment;
 
   /// An array of IDs for persons who are not wearing all of the types of PPE
-  /// specified in the RequiredEquipmentTypes field of the detected personal
-  /// protective equipment.
+  /// specified in the <code>RequiredEquipmentTypes</code> field of the detected
+  /// personal protective equipment.
   final List<int>? personsWithoutRequiredEquipment;
 
   ProtectiveEquipmentSummary({
@@ -9171,6 +9109,13 @@ class Sunglasses {
   }
 }
 
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
 /// Information about a technical cue segment. For more information, see
 /// <a>SegmentDetection</a>.
 class TechnicalCueSegment {
@@ -9517,6 +9462,13 @@ class UnindexedFace {
           .map((e) => (e as String).toReason())
           .toList(),
     );
+  }
+}
+
+class UntagResourceResponse {
+  UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
   }
 }
 

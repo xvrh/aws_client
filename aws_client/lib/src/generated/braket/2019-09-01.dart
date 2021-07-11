@@ -189,6 +189,8 @@ class Braket {
   /// May throw [ResourceNotFoundException].
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
+  /// May throw [DeviceOfflineException].
+  /// May throw [DeviceRetiredException].
   /// May throw [InternalServiceException].
   /// May throw [ValidationException].
   ///
@@ -392,7 +394,7 @@ class Braket {
   /// the tags.
   ///
   /// Parameter [tagKeys] :
-  /// pecify the keys for the tags to remove from the resource.
+  /// Specify the keys for the tags to remove from the resource.
   Future<void> untagResource({
     required String resourceArn,
     required List<String> tagKeys,
@@ -477,6 +479,7 @@ class CreateQuantumTaskResponse {
 enum DeviceStatus {
   online,
   offline,
+  retired,
 }
 
 extension on DeviceStatus {
@@ -486,6 +489,8 @@ extension on DeviceStatus {
         return 'ONLINE';
       case DeviceStatus.offline:
         return 'OFFLINE';
+      case DeviceStatus.retired:
+        return 'RETIRED';
     }
   }
 }
@@ -497,6 +502,8 @@ extension on String {
         return DeviceStatus.online;
       case 'OFFLINE':
         return DeviceStatus.offline;
+      case 'RETIRED':
+        return DeviceStatus.retired;
     }
     throw Exception('$this is not known in enum DeviceStatus');
   }
@@ -973,6 +980,11 @@ class DeviceOfflineException extends _s.GenericAwsException {
       : super(type: type, code: 'DeviceOfflineException', message: message);
 }
 
+class DeviceRetiredException extends _s.GenericAwsException {
+  DeviceRetiredException({String? type, String? message})
+      : super(type: type, code: 'DeviceRetiredException', message: message);
+}
+
 class InternalServiceException extends _s.GenericAwsException {
   InternalServiceException({String? type, String? message})
       : super(type: type, code: 'InternalServiceException', message: message);
@@ -1008,6 +1020,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ConflictException(type: type, message: message),
   'DeviceOfflineException': (type, message) =>
       DeviceOfflineException(type: type, message: message),
+  'DeviceRetiredException': (type, message) =>
+      DeviceRetiredException(type: type, message: message),
   'InternalServiceException': (type, message) =>
       InternalServiceException(type: type, message: message),
   'ResourceNotFoundException': (type, message) =>

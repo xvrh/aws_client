@@ -38,6 +38,40 @@ class MediaConnect {
           endpointUrl: endpointUrl,
         );
 
+  /// Adds media streams to an existing flow. After you add a media stream to a
+  /// flow, you can associate it with a source and/or an output that uses the ST
+  /// 2110 JPEG XS or CDI protocol.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [InternalServerErrorException].
+  /// May throw [ForbiddenException].
+  /// May throw [NotFoundException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [TooManyRequestsException].
+  ///
+  /// Parameter [flowArn] :
+  /// The Amazon Resource Name (ARN) of the flow.
+  ///
+  /// Parameter [mediaStreams] :
+  /// The media streams that you want to add to the flow.
+  Future<AddFlowMediaStreamsResponse> addFlowMediaStreams({
+    required String flowArn,
+    required List<AddMediaStreamRequest> mediaStreams,
+  }) async {
+    ArgumentError.checkNotNull(flowArn, 'flowArn');
+    ArgumentError.checkNotNull(mediaStreams, 'mediaStreams');
+    final $payload = <String, dynamic>{
+      'mediaStreams': mediaStreams,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/v1/flows/${Uri.encodeComponent(flowArn)}/mediaStreams',
+      exceptionFnMap: _exceptionFns,
+    );
+    return AddFlowMediaStreamsResponse.fromJson(response);
+  }
+
   /// Adds outputs to an existing flow. You can create up to 50 outputs per
   /// flow.
   ///
@@ -156,6 +190,10 @@ class MediaConnect {
   /// Parameter [entitlements] :
   /// The entitlements that you want to grant on a flow.
   ///
+  /// Parameter [mediaStreams] :
+  /// The media streams that you want to add to the flow. You can associate
+  /// these media streams with sources and outputs on the flow.
+  ///
   /// Parameter [outputs] :
   /// The outputs that you want to add to this flow.
   ///
@@ -165,6 +203,7 @@ class MediaConnect {
     required String name,
     String? availabilityZone,
     List<GrantEntitlementRequest>? entitlements,
+    List<AddMediaStreamRequest>? mediaStreams,
     List<AddOutputRequest>? outputs,
     SetSourceRequest? source,
     FailoverConfig? sourceFailoverConfig,
@@ -176,6 +215,7 @@ class MediaConnect {
       'name': name,
       if (availabilityZone != null) 'availabilityZone': availabilityZone,
       if (entitlements != null) 'entitlements': entitlements,
+      if (mediaStreams != null) 'mediaStreams': mediaStreams,
       if (outputs != null) 'outputs': outputs,
       if (source != null) 'source': source,
       if (sourceFailoverConfig != null)
@@ -583,6 +623,37 @@ class MediaConnect {
     return PurchaseOfferingResponse.fromJson(response);
   }
 
+  /// Removes a media stream from a flow. This action is only available if the
+  /// media stream is not associated with a source or output.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [InternalServerErrorException].
+  /// May throw [ForbiddenException].
+  /// May throw [NotFoundException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [TooManyRequestsException].
+  ///
+  /// Parameter [flowArn] :
+  /// The Amazon Resource Name (ARN) of the flow.
+  ///
+  /// Parameter [mediaStreamName] :
+  /// The name of the media stream that you want to remove.
+  Future<RemoveFlowMediaStreamResponse> removeFlowMediaStream({
+    required String flowArn,
+    required String mediaStreamName,
+  }) async {
+    ArgumentError.checkNotNull(flowArn, 'flowArn');
+    ArgumentError.checkNotNull(mediaStreamName, 'mediaStreamName');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri:
+          '/v1/flows/${Uri.encodeComponent(flowArn)}/mediaStreams/${Uri.encodeComponent(mediaStreamName)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return RemoveFlowMediaStreamResponse.fromJson(response);
+  }
+
   /// Removes an output from an existing flow. This request can be made only on
   /// an output that does not have an entitlement associated with it. If the
   /// output has an entitlement, you must revoke the entitlement instead. When
@@ -918,6 +989,65 @@ class MediaConnect {
     return UpdateFlowEntitlementResponse.fromJson(response);
   }
 
+  /// Updates an existing media stream.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [InternalServerErrorException].
+  /// May throw [ForbiddenException].
+  /// May throw [NotFoundException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [TooManyRequestsException].
+  ///
+  /// Parameter [flowArn] :
+  /// The Amazon Resource Name (ARN) of the flow.
+  ///
+  /// Parameter [mediaStreamName] :
+  /// The name of the media stream that you want to update.
+  ///
+  /// Parameter [attributes] :
+  /// The attributes that you want to assign to the media stream.
+  ///
+  /// Parameter [clockRate] :
+  /// The sample rate (in Hz) for the stream. If the media stream type is video
+  /// or ancillary data, set this value to 90000. If the media stream type is
+  /// audio, set this value to either 48000 or 96000.
+  ///
+  /// Parameter [description] :
+  /// Description
+  ///
+  /// Parameter [mediaStreamType] :
+  /// The type of media stream.
+  ///
+  /// Parameter [videoFormat] :
+  /// The resolution of the video.
+  Future<UpdateFlowMediaStreamResponse> updateFlowMediaStream({
+    required String flowArn,
+    required String mediaStreamName,
+    MediaStreamAttributesRequest? attributes,
+    int? clockRate,
+    String? description,
+    MediaStreamType? mediaStreamType,
+    String? videoFormat,
+  }) async {
+    ArgumentError.checkNotNull(flowArn, 'flowArn');
+    ArgumentError.checkNotNull(mediaStreamName, 'mediaStreamName');
+    final $payload = <String, dynamic>{
+      if (attributes != null) 'attributes': attributes,
+      if (clockRate != null) 'clockRate': clockRate,
+      if (description != null) 'description': description,
+      if (mediaStreamType != null) 'mediaStreamType': mediaStreamType.toValue(),
+      if (videoFormat != null) 'videoFormat': videoFormat,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri:
+          '/v1/flows/${Uri.encodeComponent(flowArn)}/mediaStreams/${Uri.encodeComponent(mediaStreamName)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateFlowMediaStreamResponse.fromJson(response);
+  }
+
   /// Updates an existing flow output.
   ///
   /// May throw [BadRequestException].
@@ -952,6 +1082,17 @@ class MediaConnect {
   /// Parameter [maxLatency] :
   /// The maximum latency in milliseconds for Zixi-based streams.
   ///
+  /// Parameter [mediaStreamOutputConfigurations] :
+  /// The media streams that are associated with the output, and the parameters
+  /// for those associations.
+  ///
+  /// Parameter [minLatency] :
+  /// The minimum latency in milliseconds for SRT-based streams. In streams that
+  /// use the SRT protocol, this value that you set on your MediaConnect source
+  /// or output represents the minimal potential latency of that connection. The
+  /// latency of the stream is set to the highest number between the sender’s
+  /// minimum latency and the receiver’s minimum latency.
+  ///
   /// Parameter [port] :
   /// The port to use when content is distributed to this output.
   ///
@@ -978,6 +1119,9 @@ class MediaConnect {
     String? destination,
     UpdateEncryption? encryption,
     int? maxLatency,
+    List<MediaStreamOutputConfigurationRequest>?
+        mediaStreamOutputConfigurations,
+    int? minLatency,
     int? port,
     Protocol? protocol,
     String? remoteId,
@@ -993,6 +1137,9 @@ class MediaConnect {
       if (destination != null) 'destination': destination,
       if (encryption != null) 'encryption': encryption,
       if (maxLatency != null) 'maxLatency': maxLatency,
+      if (mediaStreamOutputConfigurations != null)
+        'mediaStreamOutputConfigurations': mediaStreamOutputConfigurations,
+      if (minLatency != null) 'minLatency': minLatency,
       if (port != null) 'port': port,
       if (protocol != null) 'protocol': protocol.toValue(),
       if (remoteId != null) 'remoteId': remoteId,
@@ -1048,6 +1195,21 @@ class MediaConnect {
   /// The maximum latency in milliseconds. This parameter applies only to
   /// RIST-based and Zixi-based streams.
   ///
+  /// Parameter [maxSyncBuffer] :
+  /// The size of the buffer (in milliseconds) to use to sync incoming source
+  /// data.
+  ///
+  /// Parameter [mediaStreamSourceConfigurations] :
+  /// The media streams that are associated with the source, and the parameters
+  /// for those associations.
+  ///
+  /// Parameter [minLatency] :
+  /// The minimum latency in milliseconds for SRT-based streams. In streams that
+  /// use the SRT protocol, this value that you set on your MediaConnect source
+  /// or output represents the minimal potential latency of that connection. The
+  /// latency of the stream is set to the highest number between the sender’s
+  /// minimum latency and the receiver’s minimum latency.
+  ///
   /// Parameter [protocol] :
   /// The protocol that is used by the source.
   ///
@@ -1056,7 +1218,7 @@ class MediaConnect {
   /// applies only to Zixi-based streams.
   ///
   /// Parameter [vpcInterfaceName] :
-  /// The name of the VPC Interface to configure this Source with.
+  /// The name of the VPC interface to use for this source.
   ///
   /// Parameter [whitelistCidr] :
   /// The range of IP addresses that should be allowed to contribute content to
@@ -1071,6 +1233,10 @@ class MediaConnect {
     int? ingestPort,
     int? maxBitrate,
     int? maxLatency,
+    int? maxSyncBuffer,
+    List<MediaStreamSourceConfigurationRequest>?
+        mediaStreamSourceConfigurations,
+    int? minLatency,
     Protocol? protocol,
     String? streamId,
     String? vpcInterfaceName,
@@ -1085,6 +1251,10 @@ class MediaConnect {
       if (ingestPort != null) 'ingestPort': ingestPort,
       if (maxBitrate != null) 'maxBitrate': maxBitrate,
       if (maxLatency != null) 'maxLatency': maxLatency,
+      if (maxSyncBuffer != null) 'maxSyncBuffer': maxSyncBuffer,
+      if (mediaStreamSourceConfigurations != null)
+        'mediaStreamSourceConfigurations': mediaStreamSourceConfigurations,
+      if (minLatency != null) 'minLatency': minLatency,
       if (protocol != null) 'protocol': protocol.toValue(),
       if (streamId != null) 'streamId': streamId,
       if (vpcInterfaceName != null) 'vpcInterfaceName': vpcInterfaceName,
@@ -1098,6 +1268,28 @@ class MediaConnect {
       exceptionFnMap: _exceptionFns,
     );
     return UpdateFlowSourceResponse.fromJson(response);
+  }
+}
+
+class AddFlowMediaStreamsResponse {
+  /// The ARN of the flow that you added media streams to.
+  final String? flowArn;
+
+  /// The media streams that you added to the flow.
+  final List<MediaStream>? mediaStreams;
+
+  AddFlowMediaStreamsResponse({
+    this.flowArn,
+    this.mediaStreams,
+  });
+  factory AddFlowMediaStreamsResponse.fromJson(Map<String, dynamic> json) {
+    return AddFlowMediaStreamsResponse(
+      flowArn: json['flowArn'] as String?,
+      mediaStreams: (json['mediaStreams'] as List?)
+          ?.whereNotNull()
+          .map((e) => MediaStream.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
   }
 }
 
@@ -1167,6 +1359,61 @@ class AddFlowVpcInterfacesResponse {
   }
 }
 
+/// The media stream that you want to add to the flow.
+class AddMediaStreamRequest {
+  /// A unique identifier for the media stream.
+  final int mediaStreamId;
+
+  /// A name that helps you distinguish one media stream from another.
+  final String mediaStreamName;
+
+  /// The type of media stream.
+  final MediaStreamType mediaStreamType;
+
+  /// The attributes that you want to assign to the new media stream.
+  final MediaStreamAttributesRequest? attributes;
+
+  /// The sample rate (in Hz) for the stream. If the media stream type is video or
+  /// ancillary data, set this value to 90000. If the media stream type is audio,
+  /// set this value to either 48000 or 96000.
+  final int? clockRate;
+
+  /// A description that can help you quickly identify what your media stream is
+  /// used for.
+  final String? description;
+
+  /// The resolution of the video.
+  final String? videoFormat;
+
+  AddMediaStreamRequest({
+    required this.mediaStreamId,
+    required this.mediaStreamName,
+    required this.mediaStreamType,
+    this.attributes,
+    this.clockRate,
+    this.description,
+    this.videoFormat,
+  });
+  Map<String, dynamic> toJson() {
+    final mediaStreamId = this.mediaStreamId;
+    final mediaStreamName = this.mediaStreamName;
+    final mediaStreamType = this.mediaStreamType;
+    final attributes = this.attributes;
+    final clockRate = this.clockRate;
+    final description = this.description;
+    final videoFormat = this.videoFormat;
+    return {
+      'mediaStreamId': mediaStreamId,
+      'mediaStreamName': mediaStreamName,
+      'mediaStreamType': mediaStreamType.toValue(),
+      if (attributes != null) 'attributes': attributes,
+      if (clockRate != null) 'clockRate': clockRate,
+      if (description != null) 'description': description,
+      if (videoFormat != null) 'videoFormat': videoFormat,
+    };
+  }
+}
+
 /// The output that you want to add to this flow.
 class AddOutputRequest {
   /// The protocol to use for the output.
@@ -1190,6 +1437,18 @@ class AddOutputRequest {
 
   /// The maximum latency in milliseconds for Zixi-based streams.
   final int? maxLatency;
+
+  /// The media streams that are associated with the output, and the parameters
+  /// for those associations.
+  final List<MediaStreamOutputConfigurationRequest>?
+      mediaStreamOutputConfigurations;
+
+  /// The minimum latency in milliseconds for SRT-based streams. In streams that
+  /// use the SRT protocol, this value that you set on your MediaConnect source or
+  /// output represents the minimal potential latency of that connection. The
+  /// latency of the stream is set to the highest number between the sender’s
+  /// minimum latency and the receiver’s minimum latency.
+  final int? minLatency;
 
   /// The name of the output. This value must be unique within the current flow.
   final String? name;
@@ -1217,6 +1476,8 @@ class AddOutputRequest {
     this.destination,
     this.encryption,
     this.maxLatency,
+    this.mediaStreamOutputConfigurations,
+    this.minLatency,
     this.name,
     this.port,
     this.remoteId,
@@ -1231,6 +1492,9 @@ class AddOutputRequest {
     final destination = this.destination;
     final encryption = this.encryption;
     final maxLatency = this.maxLatency;
+    final mediaStreamOutputConfigurations =
+        this.mediaStreamOutputConfigurations;
+    final minLatency = this.minLatency;
     final name = this.name;
     final port = this.port;
     final remoteId = this.remoteId;
@@ -1244,6 +1508,9 @@ class AddOutputRequest {
       if (destination != null) 'destination': destination,
       if (encryption != null) 'encryption': encryption,
       if (maxLatency != null) 'maxLatency': maxLatency,
+      if (mediaStreamOutputConfigurations != null)
+        'mediaStreamOutputConfigurations': mediaStreamOutputConfigurations,
+      if (minLatency != null) 'minLatency': minLatency,
       if (name != null) 'name': name,
       if (port != null) 'port': port,
       if (remoteId != null) 'remoteId': remoteId,
@@ -1285,6 +1552,59 @@ extension on String {
         return Algorithm.aes256;
     }
     throw Exception('$this is not known in enum Algorithm');
+  }
+}
+
+enum Colorimetry {
+  bt601,
+  bt709,
+  bt2020,
+  bt2100,
+  st2065_1,
+  st2065_3,
+  xyz,
+}
+
+extension on Colorimetry {
+  String toValue() {
+    switch (this) {
+      case Colorimetry.bt601:
+        return 'BT601';
+      case Colorimetry.bt709:
+        return 'BT709';
+      case Colorimetry.bt2020:
+        return 'BT2020';
+      case Colorimetry.bt2100:
+        return 'BT2100';
+      case Colorimetry.st2065_1:
+        return 'ST2065-1';
+      case Colorimetry.st2065_3:
+        return 'ST2065-3';
+      case Colorimetry.xyz:
+        return 'XYZ';
+    }
+  }
+}
+
+extension on String {
+  Colorimetry toColorimetry() {
+    switch (this) {
+      case 'BT601':
+        return Colorimetry.bt601;
+      case 'BT709':
+        return Colorimetry.bt709;
+      case 'BT2020':
+        return Colorimetry.bt2020;
+      case 'BT2100':
+        return Colorimetry.bt2100;
+      case 'ST2065-1':
+        return Colorimetry.st2065_1;
+      case 'ST2065-3':
+        return Colorimetry.st2065_3;
+      case 'XYZ':
+        return Colorimetry.xyz;
+    }
+    throw Exception('$this is not known in enum Colorimetry');
   }
 }
 
@@ -1372,6 +1692,73 @@ class DescribeReservationResponse {
   }
 }
 
+/// The transport parameters that are associated with an outbound media stream.
+class DestinationConfiguration {
+  /// The IP address where contents of the media stream will be sent.
+  final String destinationIp;
+
+  /// The port to use when the content of the media stream is distributed to the
+  /// output.
+  final int destinationPort;
+
+  /// The VPC interface that is used for the media stream associated with the
+  /// output.
+  final Interface interface;
+
+  /// The IP address that the receiver requires in order to establish a connection
+  /// with the flow. This value is represented by the elastic network interface IP
+  /// address of the VPC. This field applies only to outputs that use the CDI or
+  /// ST 2110 JPEG XS protocol.
+  final String outboundIp;
+
+  DestinationConfiguration({
+    required this.destinationIp,
+    required this.destinationPort,
+    required this.interface,
+    required this.outboundIp,
+  });
+  factory DestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return DestinationConfiguration(
+      destinationIp: json['destinationIp'] as String,
+      destinationPort: json['destinationPort'] as int,
+      interface: Interface.fromJson(json['interface'] as Map<String, dynamic>),
+      outboundIp: json['outboundIp'] as String,
+    );
+  }
+}
+
+/// The transport parameters that you want to associate with an outbound media
+/// stream.
+class DestinationConfigurationRequest {
+  /// The IP address where you want MediaConnect to send contents of the media
+  /// stream.
+  final String destinationIp;
+
+  /// The port that you want MediaConnect to use when it distributes the media
+  /// stream to the output.
+  final int destinationPort;
+
+  /// The VPC interface that you want to use for the media stream associated with
+  /// the output.
+  final InterfaceRequest interface;
+
+  DestinationConfigurationRequest({
+    required this.destinationIp,
+    required this.destinationPort,
+    required this.interface,
+  });
+  Map<String, dynamic> toJson() {
+    final destinationIp = this.destinationIp;
+    final destinationPort = this.destinationPort;
+    final interface = this.interface;
+    return {
+      'destinationIp': destinationIp,
+      'destinationPort': destinationPort,
+      'interface': interface,
+    };
+  }
+}
+
 enum DurationUnits {
   months,
 }
@@ -1395,15 +1782,140 @@ extension on String {
   }
 }
 
+enum EncoderProfile {
+  main,
+  high,
+}
+
+extension on EncoderProfile {
+  String toValue() {
+    switch (this) {
+      case EncoderProfile.main:
+        return 'main';
+      case EncoderProfile.high:
+        return 'high';
+    }
+  }
+}
+
+extension on String {
+  EncoderProfile toEncoderProfile() {
+    switch (this) {
+      case 'main':
+        return EncoderProfile.main;
+      case 'high':
+        return EncoderProfile.high;
+    }
+    throw Exception('$this is not known in enum EncoderProfile');
+  }
+}
+
+enum EncodingName {
+  jxsv,
+  raw,
+  smpte291,
+  pcm,
+}
+
+extension on EncodingName {
+  String toValue() {
+    switch (this) {
+      case EncodingName.jxsv:
+        return 'jxsv';
+      case EncodingName.raw:
+        return 'raw';
+      case EncodingName.smpte291:
+        return 'smpte291';
+      case EncodingName.pcm:
+        return 'pcm';
+    }
+  }
+}
+
+extension on String {
+  EncodingName toEncodingName() {
+    switch (this) {
+      case 'jxsv':
+        return EncodingName.jxsv;
+      case 'raw':
+        return EncodingName.raw;
+      case 'smpte291':
+        return EncodingName.smpte291;
+      case 'pcm':
+        return EncodingName.pcm;
+    }
+    throw Exception('$this is not known in enum EncodingName');
+  }
+}
+
+/// A collection of parameters that determine how MediaConnect will convert the
+/// content. These fields only apply to outputs on flows that have a CDI source.
+class EncodingParameters {
+  /// A value that is used to calculate compression for an output. The bitrate of
+  /// the output is calculated as follows: Output bitrate = (1 /
+  /// compressionFactor) * (source bitrate) This property only applies to outputs
+  /// that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI
+  /// protocol. Valid values are floating point numbers in the range of 3.0 to
+  /// 10.0, inclusive.
+  final double compressionFactor;
+
+  /// A setting on the encoder that drives compression settings. This property
+  /// only applies to video media streams associated with outputs that use the ST
+  /// 2110 JPEG XS protocol, with a flow source that uses the CDI protocol.
+  final EncoderProfile encoderProfile;
+
+  EncodingParameters({
+    required this.compressionFactor,
+    required this.encoderProfile,
+  });
+  factory EncodingParameters.fromJson(Map<String, dynamic> json) {
+    return EncodingParameters(
+      compressionFactor: json['compressionFactor'] as double,
+      encoderProfile: (json['encoderProfile'] as String).toEncoderProfile(),
+    );
+  }
+}
+
+/// A collection of parameters that determine how MediaConnect will convert the
+/// content. These fields only apply to outputs on flows that have a CDI source.
+class EncodingParametersRequest {
+  /// A value that is used to calculate compression for an output. The bitrate of
+  /// the output is calculated as follows: Output bitrate = (1 /
+  /// compressionFactor) * (source bitrate) This property only applies to outputs
+  /// that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI
+  /// protocol. Valid values are floating point numbers in the range of 3.0 to
+  /// 10.0, inclusive.
+  final double compressionFactor;
+
+  /// A setting on the encoder that drives compression settings. This property
+  /// only applies to video media streams associated with outputs that use the ST
+  /// 2110 JPEG XS protocol, if at least one source on the flow uses the CDI
+  /// protocol.
+  final EncoderProfile encoderProfile;
+
+  EncodingParametersRequest({
+    required this.compressionFactor,
+    required this.encoderProfile,
+  });
+  Map<String, dynamic> toJson() {
+    final compressionFactor = this.compressionFactor;
+    final encoderProfile = this.encoderProfile;
+    return {
+      'compressionFactor': compressionFactor,
+      'encoderProfile': encoderProfile.toValue(),
+    };
+  }
+}
+
 /// Information about the encryption of the flow.
 class Encryption {
-  /// The type of algorithm that is used for the encryption (such as aes128,
-  /// aes192, or aes256).
-  final Algorithm algorithm;
-
   /// The ARN of the role that you created during setup (when you set up AWS
   /// Elemental MediaConnect as a trusted entity).
   final String roleArn;
+
+  /// The type of algorithm that is used for the encryption (such as aes128,
+  /// aes192, or aes256).
+  final Algorithm? algorithm;
 
   /// A 128-bit, 16-byte hex value represented by a 32-character string, to be
   /// used with the key for encrypting content. This parameter is not valid for
@@ -1441,8 +1953,8 @@ class Encryption {
   final String? url;
 
   Encryption({
-    required this.algorithm,
     required this.roleArn,
+    this.algorithm,
     this.constantInitializationVector,
     this.deviceId,
     this.keyType,
@@ -1453,8 +1965,8 @@ class Encryption {
   });
   factory Encryption.fromJson(Map<String, dynamic> json) {
     return Encryption(
-      algorithm: (json['algorithm'] as String).toAlgorithm(),
       roleArn: json['roleArn'] as String,
+      algorithm: (json['algorithm'] as String?)?.toAlgorithm(),
       constantInitializationVector:
           json['constantInitializationVector'] as String?,
       deviceId: json['deviceId'] as String?,
@@ -1467,8 +1979,8 @@ class Encryption {
   }
 
   Map<String, dynamic> toJson() {
-    final algorithm = this.algorithm;
     final roleArn = this.roleArn;
+    final algorithm = this.algorithm;
     final constantInitializationVector = this.constantInitializationVector;
     final deviceId = this.deviceId;
     final keyType = this.keyType;
@@ -1477,8 +1989,8 @@ class Encryption {
     final secretArn = this.secretArn;
     final url = this.url;
     return {
-      'algorithm': algorithm.toValue(),
       'roleArn': roleArn,
+      if (algorithm != null) 'algorithm': algorithm.toValue(),
       if (constantInitializationVector != null)
         'constantInitializationVector': constantInitializationVector,
       if (deviceId != null) 'deviceId': deviceId,
@@ -1577,28 +2089,76 @@ extension on String {
 
 /// The settings for source failover
 class FailoverConfig {
+  /// The type of failover you choose for this flow. MERGE combines the source
+  /// streams into a single stream, allowing graceful recovery from any
+  /// single-source loss. FAILOVER allows switching between different streams.
+  final FailoverMode? failoverMode;
+
   /// Search window time to look for dash-7 packets
   final int? recoveryWindow;
+
+  /// The priority you want to assign to a source. You can have a primary stream
+  /// and a backup stream or two equally prioritized streams.
+  final SourcePriority? sourcePriority;
   final State? state;
 
   FailoverConfig({
+    this.failoverMode,
     this.recoveryWindow,
+    this.sourcePriority,
     this.state,
   });
   factory FailoverConfig.fromJson(Map<String, dynamic> json) {
     return FailoverConfig(
+      failoverMode: (json['failoverMode'] as String?)?.toFailoverMode(),
       recoveryWindow: json['recoveryWindow'] as int?,
+      sourcePriority: json['sourcePriority'] != null
+          ? SourcePriority.fromJson(
+              json['sourcePriority'] as Map<String, dynamic>)
+          : null,
       state: (json['state'] as String?)?.toState(),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final failoverMode = this.failoverMode;
     final recoveryWindow = this.recoveryWindow;
+    final sourcePriority = this.sourcePriority;
     final state = this.state;
     return {
+      if (failoverMode != null) 'failoverMode': failoverMode.toValue(),
       if (recoveryWindow != null) 'recoveryWindow': recoveryWindow,
+      if (sourcePriority != null) 'sourcePriority': sourcePriority,
       if (state != null) 'state': state.toValue(),
     };
+  }
+}
+
+enum FailoverMode {
+  merge,
+  failover,
+}
+
+extension on FailoverMode {
+  String toValue() {
+    switch (this) {
+      case FailoverMode.merge:
+        return 'MERGE';
+      case FailoverMode.failover:
+        return 'FAILOVER';
+    }
+  }
+}
+
+extension on String {
+  FailoverMode toFailoverMode() {
+    switch (this) {
+      case 'MERGE':
+        return FailoverMode.merge;
+      case 'FAILOVER':
+        return FailoverMode.failover;
+    }
+    throw Exception('$this is not known in enum FailoverMode');
   }
 }
 
@@ -1631,6 +2191,11 @@ class Flow {
 
   /// The IP address from which video will be sent to output destinations.
   final String? egressIp;
+
+  /// The media streams that are associated with the flow. After you associate a
+  /// media stream with a source, you can also associate it with outputs on the
+  /// flow.
+  final List<MediaStream>? mediaStreams;
   final FailoverConfig? sourceFailoverConfig;
   final List<Source>? sources;
 
@@ -1647,6 +2212,7 @@ class Flow {
     required this.status,
     this.description,
     this.egressIp,
+    this.mediaStreams,
     this.sourceFailoverConfig,
     this.sources,
     this.vpcInterfaces,
@@ -1668,6 +2234,10 @@ class Flow {
       status: (json['status'] as String).toStatus(),
       description: json['description'] as String?,
       egressIp: json['egressIp'] as String?,
+      mediaStreams: (json['mediaStreams'] as List?)
+          ?.whereNotNull()
+          .map((e) => MediaStream.fromJson(e as Map<String, dynamic>))
+          .toList(),
       sourceFailoverConfig: json['sourceFailoverConfig'] != null
           ? FailoverConfig.fromJson(
               json['sourceFailoverConfig'] as Map<String, dynamic>)
@@ -1681,6 +2251,109 @@ class Flow {
           .map((e) => VpcInterface.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+/// FMTP
+class Fmtp {
+  /// The format of the audio channel.
+  final String? channelOrder;
+
+  /// The format that is used for the representation of color.
+  final Colorimetry? colorimetry;
+
+  /// The frame rate for the video stream, in frames/second. For example:
+  /// 60000/1001. If you specify a whole number, MediaConnect uses a ratio of N/1.
+  /// For example, if you specify 60, MediaConnect uses 60/1 as the
+  /// exactFramerate.
+  final String? exactFramerate;
+
+  /// The pixel aspect ratio (PAR) of the video.
+  final String? par;
+
+  /// The encoding range of the video.
+  final Range? range;
+
+  /// The type of compression that was used to smooth the video’s appearance
+  final ScanMode? scanMode;
+
+  /// The transfer characteristic system (TCS) that is used in the video.
+  final Tcs? tcs;
+
+  Fmtp({
+    this.channelOrder,
+    this.colorimetry,
+    this.exactFramerate,
+    this.par,
+    this.range,
+    this.scanMode,
+    this.tcs,
+  });
+  factory Fmtp.fromJson(Map<String, dynamic> json) {
+    return Fmtp(
+      channelOrder: json['channelOrder'] as String?,
+      colorimetry: (json['colorimetry'] as String?)?.toColorimetry(),
+      exactFramerate: json['exactFramerate'] as String?,
+      par: json['par'] as String?,
+      range: (json['range'] as String?)?.toRange(),
+      scanMode: (json['scanMode'] as String?)?.toScanMode(),
+      tcs: (json['tcs'] as String?)?.toTcs(),
+    );
+  }
+}
+
+/// The settings that you want to use to define the media stream.
+class FmtpRequest {
+  /// The format of the audio channel.
+  final String? channelOrder;
+
+  /// The format that is used for the representation of color.
+  final Colorimetry? colorimetry;
+
+  /// The frame rate for the video stream, in frames/second. For example:
+  /// 60000/1001. If you specify a whole number, MediaConnect uses a ratio of N/1.
+  /// For example, if you specify 60, MediaConnect uses 60/1 as the
+  /// exactFramerate.
+  final String? exactFramerate;
+
+  /// The pixel aspect ratio (PAR) of the video.
+  final String? par;
+
+  /// The encoding range of the video.
+  final Range? range;
+
+  /// The type of compression that was used to smooth the video’s appearance.
+  final ScanMode? scanMode;
+
+  /// The transfer characteristic system (TCS) that is used in the video.
+  final Tcs? tcs;
+
+  FmtpRequest({
+    this.channelOrder,
+    this.colorimetry,
+    this.exactFramerate,
+    this.par,
+    this.range,
+    this.scanMode,
+    this.tcs,
+  });
+  Map<String, dynamic> toJson() {
+    final channelOrder = this.channelOrder;
+    final colorimetry = this.colorimetry;
+    final exactFramerate = this.exactFramerate;
+    final par = this.par;
+    final range = this.range;
+    final scanMode = this.scanMode;
+    final tcs = this.tcs;
+    return {
+      if (channelOrder != null) 'channelOrder': channelOrder,
+      if (colorimetry != null) 'colorimetry': colorimetry.toValue(),
+      if (exactFramerate != null) 'exactFramerate': exactFramerate,
+      if (par != null) 'par': par,
+      if (range != null) 'range': range.toValue(),
+      if (scanMode != null) 'scanMode': scanMode.toValue(),
+      if (tcs != null) 'tcs': tcs.toValue(),
+    };
   }
 }
 
@@ -1764,9 +2437,92 @@ class GrantFlowEntitlementsResponse {
   }
 }
 
+/// The transport parameters that are associated with an incoming media stream.
+class InputConfiguration {
+  /// The IP address that the flow listens on for incoming content for a media
+  /// stream.
+  final String inputIp;
+
+  /// The port that the flow listens on for an incoming media stream.
+  final int inputPort;
+
+  /// The VPC interface where the media stream comes in from.
+  final Interface interface;
+
+  InputConfiguration({
+    required this.inputIp,
+    required this.inputPort,
+    required this.interface,
+  });
+  factory InputConfiguration.fromJson(Map<String, dynamic> json) {
+    return InputConfiguration(
+      inputIp: json['inputIp'] as String,
+      inputPort: json['inputPort'] as int,
+      interface: Interface.fromJson(json['interface'] as Map<String, dynamic>),
+    );
+  }
+}
+
+/// The transport parameters that you want to associate with an incoming media
+/// stream.
+class InputConfigurationRequest {
+  /// The port that you want the flow to listen on for an incoming media stream.
+  final int inputPort;
+
+  /// The VPC interface that you want to use for the incoming media stream.
+  final InterfaceRequest interface;
+
+  InputConfigurationRequest({
+    required this.inputPort,
+    required this.interface,
+  });
+  Map<String, dynamic> toJson() {
+    final inputPort = this.inputPort;
+    final interface = this.interface;
+    return {
+      'inputPort': inputPort,
+      'interface': interface,
+    };
+  }
+}
+
+/// The VPC interface that is used for the media stream associated with the
+/// source or output.
+class Interface {
+  /// The name of the VPC interface.
+  final String name;
+
+  Interface({
+    required this.name,
+  });
+  factory Interface.fromJson(Map<String, dynamic> json) {
+    return Interface(
+      name: json['name'] as String,
+    );
+  }
+}
+
+/// The VPC interface that you want to designate where the media stream is
+/// coming from or going to.
+class InterfaceRequest {
+  /// The name of the VPC interface.
+  final String name;
+
+  InterfaceRequest({
+    required this.name,
+  });
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
+}
+
 enum KeyType {
   speke,
   staticKey,
+  srtPassword,
 }
 
 extension on KeyType {
@@ -1776,6 +2532,8 @@ extension on KeyType {
         return 'speke';
       case KeyType.staticKey:
         return 'static-key';
+      case KeyType.srtPassword:
+        return 'srt-password';
     }
   }
 }
@@ -1787,6 +2545,8 @@ extension on String {
         return KeyType.speke;
       case 'static-key':
         return KeyType.staticKey;
+      case 'srt-password':
+        return KeyType.srtPassword;
     }
     throw Exception('$this is not known in enum KeyType');
   }
@@ -1987,6 +2747,287 @@ class ListedFlow {
   }
 }
 
+/// A single track or stream of media that contains video, audio, or ancillary
+/// data. After you add a media stream to a flow, you can associate it with
+/// sources and outputs on that flow, as long as they use the CDI protocol or
+/// the ST 2110 JPEG XS protocol. Each source or output can consist of one or
+/// many media streams.
+class MediaStream {
+  /// The format type number (sometimes referred to as RTP payload type) of the
+  /// media stream. MediaConnect assigns this value to the media stream. For ST
+  /// 2110 JPEG XS outputs, you need to provide this value to the receiver.
+  final int fmt;
+
+  /// A unique identifier for the media stream.
+  final int mediaStreamId;
+
+  /// A name that helps you distinguish one media stream from another.
+  final String mediaStreamName;
+
+  /// The type of media stream.
+  final MediaStreamType mediaStreamType;
+
+  /// Attributes that are related to the media stream.
+  final MediaStreamAttributes? attributes;
+
+  /// The sample rate for the stream. This value is measured in Hz.
+  final int? clockRate;
+
+  /// A description that can help you quickly identify what your media stream is
+  /// used for.
+  final String? description;
+
+  /// The resolution of the video.
+  final String? videoFormat;
+
+  MediaStream({
+    required this.fmt,
+    required this.mediaStreamId,
+    required this.mediaStreamName,
+    required this.mediaStreamType,
+    this.attributes,
+    this.clockRate,
+    this.description,
+    this.videoFormat,
+  });
+  factory MediaStream.fromJson(Map<String, dynamic> json) {
+    return MediaStream(
+      fmt: json['fmt'] as int,
+      mediaStreamId: json['mediaStreamId'] as int,
+      mediaStreamName: json['mediaStreamName'] as String,
+      mediaStreamType: (json['mediaStreamType'] as String).toMediaStreamType(),
+      attributes: json['attributes'] != null
+          ? MediaStreamAttributes.fromJson(
+              json['attributes'] as Map<String, dynamic>)
+          : null,
+      clockRate: json['clockRate'] as int?,
+      description: json['description'] as String?,
+      videoFormat: json['videoFormat'] as String?,
+    );
+  }
+}
+
+/// Attributes that are related to the media stream.
+class MediaStreamAttributes {
+  /// A set of parameters that define the media stream.
+  final Fmtp fmtp;
+
+  /// The audio language, in a format that is recognized by the receiver.
+  final String? lang;
+
+  MediaStreamAttributes({
+    required this.fmtp,
+    this.lang,
+  });
+  factory MediaStreamAttributes.fromJson(Map<String, dynamic> json) {
+    return MediaStreamAttributes(
+      fmtp: Fmtp.fromJson(json['fmtp'] as Map<String, dynamic>),
+      lang: json['lang'] as String?,
+    );
+  }
+}
+
+/// Attributes that are related to the media stream.
+class MediaStreamAttributesRequest {
+  /// The settings that you want to use to define the media stream.
+  final FmtpRequest? fmtp;
+
+  /// The audio language, in a format that is recognized by the receiver.
+  final String? lang;
+
+  MediaStreamAttributesRequest({
+    this.fmtp,
+    this.lang,
+  });
+  Map<String, dynamic> toJson() {
+    final fmtp = this.fmtp;
+    final lang = this.lang;
+    return {
+      if (fmtp != null) 'fmtp': fmtp,
+      if (lang != null) 'lang': lang,
+    };
+  }
+}
+
+/// The media stream that is associated with the output, and the parameters for
+/// that association.
+class MediaStreamOutputConfiguration {
+  /// The format that was used to encode the data. For ancillary data streams, set
+  /// the encoding name to smpte291. For audio streams, set the encoding name to
+  /// pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG
+  /// XS streams, set the encoding name to jxsv.
+  final EncodingName encodingName;
+
+  /// The name of the media stream.
+  final String mediaStreamName;
+
+  /// The transport parameters that are associated with each outbound media
+  /// stream.
+  final List<DestinationConfiguration>? destinationConfigurations;
+
+  /// Encoding parameters
+  final EncodingParameters? encodingParameters;
+
+  MediaStreamOutputConfiguration({
+    required this.encodingName,
+    required this.mediaStreamName,
+    this.destinationConfigurations,
+    this.encodingParameters,
+  });
+  factory MediaStreamOutputConfiguration.fromJson(Map<String, dynamic> json) {
+    return MediaStreamOutputConfiguration(
+      encodingName: (json['encodingName'] as String).toEncodingName(),
+      mediaStreamName: json['mediaStreamName'] as String,
+      destinationConfigurations: (json['destinationConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DestinationConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      encodingParameters: json['encodingParameters'] != null
+          ? EncodingParameters.fromJson(
+              json['encodingParameters'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// The media stream that you want to associate with the output, and the
+/// parameters for that association.
+class MediaStreamOutputConfigurationRequest {
+  /// The format that will be used to encode the data. For ancillary data streams,
+  /// set the encoding name to smpte291. For audio streams, set the encoding name
+  /// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+  /// JPEG XS streams, set the encoding name to jxsv.
+  final EncodingName encodingName;
+
+  /// The name of the media stream that is associated with the output.
+  final String mediaStreamName;
+
+  /// The transport parameters that you want to associate with the media stream.
+  final List<DestinationConfigurationRequest>? destinationConfigurations;
+
+  /// A collection of parameters that determine how MediaConnect will convert the
+  /// content. These fields only apply to outputs on flows that have a CDI source.
+  final EncodingParametersRequest? encodingParameters;
+
+  MediaStreamOutputConfigurationRequest({
+    required this.encodingName,
+    required this.mediaStreamName,
+    this.destinationConfigurations,
+    this.encodingParameters,
+  });
+  Map<String, dynamic> toJson() {
+    final encodingName = this.encodingName;
+    final mediaStreamName = this.mediaStreamName;
+    final destinationConfigurations = this.destinationConfigurations;
+    final encodingParameters = this.encodingParameters;
+    return {
+      'encodingName': encodingName.toValue(),
+      'mediaStreamName': mediaStreamName,
+      if (destinationConfigurations != null)
+        'destinationConfigurations': destinationConfigurations,
+      if (encodingParameters != null) 'encodingParameters': encodingParameters,
+    };
+  }
+}
+
+/// The media stream that is associated with the source, and the parameters for
+/// that association.
+class MediaStreamSourceConfiguration {
+  /// The format that was used to encode the data. For ancillary data streams, set
+  /// the encoding name to smpte291. For audio streams, set the encoding name to
+  /// pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG
+  /// XS streams, set the encoding name to jxsv.
+  final EncodingName encodingName;
+
+  /// The name of the media stream.
+  final String mediaStreamName;
+
+  /// The transport parameters that are associated with an incoming media stream.
+  final List<InputConfiguration>? inputConfigurations;
+
+  MediaStreamSourceConfiguration({
+    required this.encodingName,
+    required this.mediaStreamName,
+    this.inputConfigurations,
+  });
+  factory MediaStreamSourceConfiguration.fromJson(Map<String, dynamic> json) {
+    return MediaStreamSourceConfiguration(
+      encodingName: (json['encodingName'] as String).toEncodingName(),
+      mediaStreamName: json['mediaStreamName'] as String,
+      inputConfigurations: (json['inputConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => InputConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// The definition of a media stream that you want to associate with the source.
+class MediaStreamSourceConfigurationRequest {
+  /// The format you want to use to encode the data. For ancillary data streams,
+  /// set the encoding name to smpte291. For audio streams, set the encoding name
+  /// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+  /// JPEG XS streams, set the encoding name to jxsv.
+  final EncodingName encodingName;
+
+  /// The name of the media stream.
+  final String mediaStreamName;
+
+  /// The transport parameters that you want to associate with the media stream.
+  final List<InputConfigurationRequest>? inputConfigurations;
+
+  MediaStreamSourceConfigurationRequest({
+    required this.encodingName,
+    required this.mediaStreamName,
+    this.inputConfigurations,
+  });
+  Map<String, dynamic> toJson() {
+    final encodingName = this.encodingName;
+    final mediaStreamName = this.mediaStreamName;
+    final inputConfigurations = this.inputConfigurations;
+    return {
+      'encodingName': encodingName.toValue(),
+      'mediaStreamName': mediaStreamName,
+      if (inputConfigurations != null)
+        'inputConfigurations': inputConfigurations,
+    };
+  }
+}
+
+enum MediaStreamType {
+  video,
+  audio,
+  ancillaryData,
+}
+
+extension on MediaStreamType {
+  String toValue() {
+    switch (this) {
+      case MediaStreamType.video:
+        return 'video';
+      case MediaStreamType.audio:
+        return 'audio';
+      case MediaStreamType.ancillaryData:
+        return 'ancillary-data';
+    }
+  }
+}
+
+extension on String {
+  MediaStreamType toMediaStreamType() {
+    switch (this) {
+      case 'video':
+        return MediaStreamType.video;
+      case 'audio':
+        return MediaStreamType.audio;
+      case 'ancillary-data':
+        return MediaStreamType.ancillaryData;
+    }
+    throw Exception('$this is not known in enum MediaStreamType');
+  }
+}
+
 /// Messages that provide the state of the flow.
 class Messages {
   /// A list of errors that might have been generated from processes on this flow.
@@ -2002,6 +3043,34 @@ class Messages {
           .map((e) => e as String)
           .toList(),
     );
+  }
+}
+
+enum NetworkInterfaceType {
+  ena,
+  efa,
+}
+
+extension on NetworkInterfaceType {
+  String toValue() {
+    switch (this) {
+      case NetworkInterfaceType.ena:
+        return 'ena';
+      case NetworkInterfaceType.efa:
+        return 'efa';
+    }
+  }
+}
+
+extension on String {
+  NetworkInterfaceType toNetworkInterfaceType() {
+    switch (this) {
+      case 'ena':
+        return NetworkInterfaceType.ena;
+      case 'efa':
+        return NetworkInterfaceType.efa;
+    }
+    throw Exception('$this is not known in enum NetworkInterfaceType');
   }
 }
 
@@ -2087,9 +3156,20 @@ class Output {
   /// only on entitled flows.
   final String? entitlementArn;
 
+  /// The IP address that the receiver requires in order to establish a connection
+  /// with the flow. For public networking, the ListenerAddress is represented by
+  /// the elastic IP address of the flow. For private networking, the
+  /// ListenerAddress is represented by the elastic network interface IP address
+  /// of the VPC. This field applies only to outputs that use the Zixi pull or SRT
+  /// listener protocol.
+  final String? listenerAddress;
+
   /// The input ARN of the AWS Elemental MediaLive channel. This parameter is
   /// relevant only for outputs that were added by creating a MediaLive input.
   final String? mediaLiveInputArn;
+
+  /// The configuration for each media stream that is associated with the output.
+  final List<MediaStreamOutputConfiguration>? mediaStreamOutputConfigurations;
 
   /// The port to use when content is distributed to this output.
   final int? port;
@@ -2108,7 +3188,9 @@ class Output {
     this.destination,
     this.encryption,
     this.entitlementArn,
+    this.listenerAddress,
     this.mediaLiveInputArn,
+    this.mediaStreamOutputConfigurations,
     this.port,
     this.transport,
     this.vpcInterfaceAttachment,
@@ -2125,7 +3207,14 @@ class Output {
           ? Encryption.fromJson(json['encryption'] as Map<String, dynamic>)
           : null,
       entitlementArn: json['entitlementArn'] as String?,
+      listenerAddress: json['listenerAddress'] as String?,
       mediaLiveInputArn: json['mediaLiveInputArn'] as String?,
+      mediaStreamOutputConfigurations:
+          (json['mediaStreamOutputConfigurations'] as List?)
+              ?.whereNotNull()
+              .map((e) => MediaStreamOutputConfiguration.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
       port: json['port'] as int?,
       transport: json['transport'] != null
           ? Transport.fromJson(json['transport'] as Map<String, dynamic>)
@@ -2167,6 +3256,9 @@ enum Protocol {
   rtp,
   zixiPull,
   rist,
+  st2110Jpegxs,
+  cdi,
+  srtListener,
 }
 
 extension on Protocol {
@@ -2182,6 +3274,12 @@ extension on Protocol {
         return 'zixi-pull';
       case Protocol.rist:
         return 'rist';
+      case Protocol.st2110Jpegxs:
+        return 'st2110-jpegxs';
+      case Protocol.cdi:
+        return 'cdi';
+      case Protocol.srtListener:
+        return 'srt-listener';
     }
   }
 }
@@ -2199,6 +3297,12 @@ extension on String {
         return Protocol.zixiPull;
       case 'rist':
         return Protocol.rist;
+      case 'st2110-jpegxs':
+        return Protocol.st2110Jpegxs;
+      case 'cdi':
+        return Protocol.cdi;
+      case 'srt-listener':
+        return Protocol.srtListener;
     }
     throw Exception('$this is not known in enum Protocol');
   }
@@ -2215,6 +3319,58 @@ class PurchaseOfferingResponse {
       reservation: json['reservation'] != null
           ? Reservation.fromJson(json['reservation'] as Map<String, dynamic>)
           : null,
+    );
+  }
+}
+
+enum Range {
+  narrow,
+  full,
+  fullprotect,
+}
+
+extension on Range {
+  String toValue() {
+    switch (this) {
+      case Range.narrow:
+        return 'NARROW';
+      case Range.full:
+        return 'FULL';
+      case Range.fullprotect:
+        return 'FULLPROTECT';
+    }
+  }
+}
+
+extension on String {
+  Range toRange() {
+    switch (this) {
+      case 'NARROW':
+        return Range.narrow;
+      case 'FULL':
+        return Range.full;
+      case 'FULLPROTECT':
+        return Range.fullprotect;
+    }
+    throw Exception('$this is not known in enum Range');
+  }
+}
+
+class RemoveFlowMediaStreamResponse {
+  /// The Amazon Resource Name (ARN) of the flow.
+  final String? flowArn;
+
+  /// The name of the media stream that was removed.
+  final String? mediaStreamName;
+
+  RemoveFlowMediaStreamResponse({
+    this.flowArn,
+    this.mediaStreamName,
+  });
+  factory RemoveFlowMediaStreamResponse.fromJson(Map<String, dynamic> json) {
+    return RemoveFlowMediaStreamResponse(
+      flowArn: json['flowArn'] as String?,
+      mediaStreamName: json['mediaStreamName'] as String?,
     );
   }
 }
@@ -2482,6 +3638,39 @@ class RevokeFlowEntitlementResponse {
   }
 }
 
+enum ScanMode {
+  progressive,
+  interlace,
+  progressiveSegmentedFrame,
+}
+
+extension on ScanMode {
+  String toValue() {
+    switch (this) {
+      case ScanMode.progressive:
+        return 'progressive';
+      case ScanMode.interlace:
+        return 'interlace';
+      case ScanMode.progressiveSegmentedFrame:
+        return 'progressive-segmented-frame';
+    }
+  }
+}
+
+extension on String {
+  ScanMode toScanMode() {
+    switch (this) {
+      case 'progressive':
+        return ScanMode.progressive;
+      case 'interlace':
+        return ScanMode.interlace;
+      case 'progressive-segmented-frame':
+        return ScanMode.progressiveSegmentedFrame;
+    }
+    throw Exception('$this is not known in enum ScanMode');
+  }
+}
+
 /// The settings for the source of the flow.
 class SetSourceRequest {
   /// The type of encryption that is used on the content ingested from this
@@ -2506,6 +3695,22 @@ class SetSourceRequest {
   /// The maximum latency in milliseconds. This parameter applies only to
   /// RIST-based and Zixi-based streams.
   final int? maxLatency;
+
+  /// The size of the buffer (in milliseconds) to use to sync incoming source
+  /// data.
+  final int? maxSyncBuffer;
+
+  /// The media streams that are associated with the source, and the parameters
+  /// for those associations.
+  final List<MediaStreamSourceConfigurationRequest>?
+      mediaStreamSourceConfigurations;
+
+  /// The minimum latency in milliseconds for SRT-based streams. In streams that
+  /// use the SRT protocol, this value that you set on your MediaConnect source or
+  /// output represents the minimal potential latency of that connection. The
+  /// latency of the stream is set to the highest number between the sender’s
+  /// minimum latency and the receiver’s minimum latency.
+  final int? minLatency;
 
   /// The name of the source.
   final String? name;
@@ -2532,6 +3737,9 @@ class SetSourceRequest {
     this.ingestPort,
     this.maxBitrate,
     this.maxLatency,
+    this.maxSyncBuffer,
+    this.mediaStreamSourceConfigurations,
+    this.minLatency,
     this.name,
     this.protocol,
     this.streamId,
@@ -2545,6 +3753,10 @@ class SetSourceRequest {
     final ingestPort = this.ingestPort;
     final maxBitrate = this.maxBitrate;
     final maxLatency = this.maxLatency;
+    final maxSyncBuffer = this.maxSyncBuffer;
+    final mediaStreamSourceConfigurations =
+        this.mediaStreamSourceConfigurations;
+    final minLatency = this.minLatency;
     final name = this.name;
     final protocol = this.protocol;
     final streamId = this.streamId;
@@ -2557,6 +3769,10 @@ class SetSourceRequest {
       if (ingestPort != null) 'ingestPort': ingestPort,
       if (maxBitrate != null) 'maxBitrate': maxBitrate,
       if (maxLatency != null) 'maxLatency': maxLatency,
+      if (maxSyncBuffer != null) 'maxSyncBuffer': maxSyncBuffer,
+      if (mediaStreamSourceConfigurations != null)
+        'mediaStreamSourceConfigurations': mediaStreamSourceConfigurations,
+      if (minLatency != null) 'minLatency': minLatency,
       if (name != null) 'name': name,
       if (protocol != null) 'protocol': protocol.toValue(),
       if (streamId != null) 'streamId': streamId,
@@ -2597,10 +3813,14 @@ class Source {
   /// The port that the flow will be listening on for incoming content.
   final int? ingestPort;
 
+  /// The media streams that are associated with the source, and the parameters
+  /// for those associations.
+  final List<MediaStreamSourceConfiguration>? mediaStreamSourceConfigurations;
+
   /// Attributes related to the transport stream that are used in the source.
   final Transport? transport;
 
-  /// The name of the VPC Interface this Source is configured with.
+  /// The name of the VPC interface that is used for this source.
   final String? vpcInterfaceName;
 
   /// The range of IP addresses that should be allowed to contribute content to
@@ -2617,6 +3837,7 @@ class Source {
     this.entitlementArn,
     this.ingestIp,
     this.ingestPort,
+    this.mediaStreamSourceConfigurations,
     this.transport,
     this.vpcInterfaceName,
     this.whitelistCidr,
@@ -2634,12 +3855,41 @@ class Source {
       entitlementArn: json['entitlementArn'] as String?,
       ingestIp: json['ingestIp'] as String?,
       ingestPort: json['ingestPort'] as int?,
+      mediaStreamSourceConfigurations:
+          (json['mediaStreamSourceConfigurations'] as List?)
+              ?.whereNotNull()
+              .map((e) => MediaStreamSourceConfiguration.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
       transport: json['transport'] != null
           ? Transport.fromJson(json['transport'] as Map<String, dynamic>)
           : null,
       vpcInterfaceName: json['vpcInterfaceName'] as String?,
       whitelistCidr: json['whitelistCidr'] as String?,
     );
+  }
+}
+
+/// The priority you want to assign to a source. You can have a primary stream
+/// and a backup stream or two equally prioritized streams.
+class SourcePriority {
+  /// The name of the source you choose as the primary source for this flow.
+  final String? primarySource;
+
+  SourcePriority({
+    this.primarySource,
+  });
+  factory SourcePriority.fromJson(Map<String, dynamic> json) {
+    return SourcePriority(
+      primarySource: json['primarySource'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final primarySource = this.primarySource;
+    return {
+      if (primarySource != null) 'primarySource': primarySource,
+    };
   }
 }
 
@@ -2790,6 +4040,69 @@ class StopFlowResponse {
   }
 }
 
+enum Tcs {
+  sdr,
+  pq,
+  hlg,
+  linear,
+  bt2100linpq,
+  bt2100linhlg,
+  st2065_1,
+  st428_1,
+  density,
+}
+
+extension on Tcs {
+  String toValue() {
+    switch (this) {
+      case Tcs.sdr:
+        return 'SDR';
+      case Tcs.pq:
+        return 'PQ';
+      case Tcs.hlg:
+        return 'HLG';
+      case Tcs.linear:
+        return 'LINEAR';
+      case Tcs.bt2100linpq:
+        return 'BT2100LINPQ';
+      case Tcs.bt2100linhlg:
+        return 'BT2100LINHLG';
+      case Tcs.st2065_1:
+        return 'ST2065-1';
+      case Tcs.st428_1:
+        return 'ST428-1';
+      case Tcs.density:
+        return 'DENSITY';
+    }
+  }
+}
+
+extension on String {
+  Tcs toTcs() {
+    switch (this) {
+      case 'SDR':
+        return Tcs.sdr;
+      case 'PQ':
+        return Tcs.pq;
+      case 'HLG':
+        return Tcs.hlg;
+      case 'LINEAR':
+        return Tcs.linear;
+      case 'BT2100LINPQ':
+        return Tcs.bt2100linpq;
+      case 'BT2100LINHLG':
+        return Tcs.bt2100linhlg;
+      case 'ST2065-1':
+        return Tcs.st2065_1;
+      case 'ST428-1':
+        return Tcs.st428_1;
+      case 'DENSITY':
+        return Tcs.density;
+    }
+    throw Exception('$this is not known in enum Tcs');
+  }
+}
+
 /// Attributes related to the transport stream that are used in a source or
 /// output.
 class Transport {
@@ -2808,6 +4121,17 @@ class Transport {
   /// RIST-based and Zixi-based streams.
   final int? maxLatency;
 
+  /// The size of the buffer (in milliseconds) to use to sync incoming source
+  /// data.
+  final int? maxSyncBuffer;
+
+  /// The minimum latency in milliseconds for SRT-based streams. In streams that
+  /// use the SRT protocol, this value that you set on your MediaConnect source or
+  /// output represents the minimal potential latency of that connection. The
+  /// latency of the stream is set to the highest number between the sender’s
+  /// minimum latency and the receiver’s minimum latency.
+  final int? minLatency;
+
   /// The remote ID for the Zixi-pull stream.
   final String? remoteId;
 
@@ -2823,6 +4147,8 @@ class Transport {
     this.cidrAllowList,
     this.maxBitrate,
     this.maxLatency,
+    this.maxSyncBuffer,
+    this.minLatency,
     this.remoteId,
     this.smoothingLatency,
     this.streamId,
@@ -2836,6 +4162,8 @@ class Transport {
           .toList(),
       maxBitrate: json['maxBitrate'] as int?,
       maxLatency: json['maxLatency'] as int?,
+      maxSyncBuffer: json['maxSyncBuffer'] as int?,
+      minLatency: json['minLatency'] as int?,
       remoteId: json['remoteId'] as String?,
       smoothingLatency: json['smoothingLatency'] as int?,
       streamId: json['streamId'] as String?,
@@ -2926,19 +4254,34 @@ class UpdateEncryption {
 
 /// The settings for source failover
 class UpdateFailoverConfig {
+  /// The type of failover you choose for this flow. MERGE combines the source
+  /// streams into a single stream, allowing graceful recovery from any
+  /// single-source loss. FAILOVER allows switching between different streams.
+  final FailoverMode? failoverMode;
+
   /// Recovery window time to look for dash-7 packets
   final int? recoveryWindow;
+
+  /// The priority you want to assign to a source. You can have a primary stream
+  /// and a backup stream or two equally prioritized streams.
+  final SourcePriority? sourcePriority;
   final State? state;
 
   UpdateFailoverConfig({
+    this.failoverMode,
     this.recoveryWindow,
+    this.sourcePriority,
     this.state,
   });
   Map<String, dynamic> toJson() {
+    final failoverMode = this.failoverMode;
     final recoveryWindow = this.recoveryWindow;
+    final sourcePriority = this.sourcePriority;
     final state = this.state;
     return {
+      if (failoverMode != null) 'failoverMode': failoverMode.toValue(),
       if (recoveryWindow != null) 'recoveryWindow': recoveryWindow,
+      if (sourcePriority != null) 'sourcePriority': sourcePriority,
       if (state != null) 'state': state.toValue(),
     };
   }
@@ -2961,6 +4304,28 @@ class UpdateFlowEntitlementResponse {
           ? Entitlement.fromJson(json['entitlement'] as Map<String, dynamic>)
           : null,
       flowArn: json['flowArn'] as String?,
+    );
+  }
+}
+
+class UpdateFlowMediaStreamResponse {
+  /// The ARN of the flow that is associated with the media stream that you
+  /// updated.
+  final String? flowArn;
+
+  /// The media stream that you updated.
+  final MediaStream? mediaStream;
+
+  UpdateFlowMediaStreamResponse({
+    this.flowArn,
+    this.mediaStream,
+  });
+  factory UpdateFlowMediaStreamResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFlowMediaStreamResponse(
+      flowArn: json['flowArn'] as String?,
+      mediaStream: json['mediaStream'] != null
+          ? MediaStream.fromJson(json['mediaStream'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -3030,6 +4395,9 @@ class VpcInterface {
   /// IDs of the network interfaces created in customer's account by MediaConnect.
   final List<String> networkInterfaceIds;
 
+  /// The type of network interface.
+  final NetworkInterfaceType networkInterfaceType;
+
   /// Role Arn MediaConnect can assumes to create ENIs in customer's account
   final String roleArn;
 
@@ -3042,6 +4410,7 @@ class VpcInterface {
   VpcInterface({
     required this.name,
     required this.networkInterfaceIds,
+    required this.networkInterfaceType,
     required this.roleArn,
     required this.securityGroupIds,
     required this.subnetId,
@@ -3053,6 +4422,8 @@ class VpcInterface {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
+      networkInterfaceType:
+          (json['networkInterfaceType'] as String).toNetworkInterfaceType(),
       roleArn: json['roleArn'] as String,
       securityGroupIds: (json['securityGroupIds'] as List)
           .whereNotNull()
@@ -3100,22 +4471,30 @@ class VpcInterfaceRequest {
   /// Subnet must be in the AZ of the Flow
   final String subnetId;
 
+  /// The type of network interface. If this value is not included in the request,
+  /// MediaConnect uses ENA as the networkInterfaceType.
+  final NetworkInterfaceType? networkInterfaceType;
+
   VpcInterfaceRequest({
     required this.name,
     required this.roleArn,
     required this.securityGroupIds,
     required this.subnetId,
+    this.networkInterfaceType,
   });
   Map<String, dynamic> toJson() {
     final name = this.name;
     final roleArn = this.roleArn;
     final securityGroupIds = this.securityGroupIds;
     final subnetId = this.subnetId;
+    final networkInterfaceType = this.networkInterfaceType;
     return {
       'name': name,
       'roleArn': roleArn,
       'securityGroupIds': securityGroupIds,
       'subnetId': subnetId,
+      if (networkInterfaceType != null)
+        'networkInterfaceType': networkInterfaceType.toValue(),
     };
   }
 }

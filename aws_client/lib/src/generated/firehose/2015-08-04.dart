@@ -213,12 +213,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Firehose_20150804.CreateDeliveryStream'
@@ -306,12 +300,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Firehose_20150804.DeleteDeliveryStream'
@@ -366,22 +354,11 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'exclusiveStartDestinationId',
       exclusiveStartDestinationId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'exclusiveStartDestinationId',
-      exclusiveStartDestinationId,
-      r'''[a-zA-Z0-9-]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -457,11 +434,6 @@ class Firehose {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'exclusiveStartDeliveryStreamName',
-      exclusiveStartDeliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -523,22 +495,11 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'exclusiveStartTagKey',
       exclusiveStartTagKey,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'exclusiveStartTagKey',
-      exclusiveStartTagKey,
-      r'''^(?!aws:)[\p{L}\p{Z}\p{N}_.:\/=+\-@%]*$''',
     );
     _s.validateNumRange(
       'limit',
@@ -632,12 +593,6 @@ class Firehose {
       deliveryStreamName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(record, 'record');
@@ -752,12 +707,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(records, 'records');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -854,12 +803,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Firehose_20150804.StartDeliveryStreamEncryption'
@@ -926,12 +869,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Firehose_20150804.StopDeliveryStreamEncryption'
@@ -985,12 +922,6 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1037,12 +968,6 @@ class Firehose {
       deliveryStreamName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -1155,12 +1080,6 @@ class Firehose {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'currentDeliveryStreamVersionId',
-      currentDeliveryStreamVersionId,
-      r'''[0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deliveryStreamName, 'deliveryStreamName');
     _s.validateStringLength(
       'deliveryStreamName',
@@ -1169,24 +1088,12 @@ class Firehose {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deliveryStreamName',
-      deliveryStreamName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationId, 'destinationId');
     _s.validateStringLength(
       'destinationId',
       destinationId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'destinationId',
-      destinationId,
-      r'''[a-zA-Z0-9-]+''',
       isRequired: true,
     );
     final headers = <String, String>{

@@ -279,6 +279,11 @@ class SecretsManager {
   /// random characters at the end of the ARN.
   /// </note>
   ///
+  /// Parameter [addReplicaRegions] :
+  /// (Optional) Add a list of regions to replicate secrets. Secrets Manager
+  /// replicates the KMSKeyID objects to the list of regions specified in the
+  /// parameter.
+  ///
   /// Parameter [clientRequestToken] :
   /// (Optional) If you include <code>SecretString</code> or
   /// <code>SecretBinary</code>, then an initial version is created as part of
@@ -313,7 +318,7 @@ class SecretsManager {
   /// <li>
   /// If a version with this value already exists and that version's
   /// <code>SecretString</code> and <code>SecretBinary</code> values are
-  /// different from those in the request then the request fails because you
+  /// different from those in the request, then the request fails because you
   /// cannot modify an existing version. Instead, use <a>PutSecretValue</a> to
   /// create a new version.
   /// </li>
@@ -322,6 +327,10 @@ class SecretsManager {
   ///
   /// Parameter [description] :
   /// (Optional) Specifies a user-provided description of the secret.
+  ///
+  /// Parameter [forceOverwriteReplicaSecret] :
+  /// (Optional) If set, the replication overwrites a secret with the same name
+  /// in the destination region.
   ///
   /// Parameter [kmsKeyId] :
   /// (Optional) Specifies the ARN, Key ID, or alias of the AWS KMS customer
@@ -444,8 +453,10 @@ class SecretsManager {
   /// </ul>
   Future<CreateSecretResponse> createSecret({
     required String name,
+    List<ReplicaRegionType>? addReplicaRegions,
     String? clientRequestToken,
     String? description,
+    bool? forceOverwriteReplicaSecret,
     String? kmsKeyId,
     Uint8List? secretBinary,
     String? secretString,
@@ -495,9 +506,12 @@ class SecretsManager {
       headers: headers,
       payload: {
         'Name': name,
+        if (addReplicaRegions != null) 'AddReplicaRegions': addReplicaRegions,
         'ClientRequestToken':
             clientRequestToken ?? _s.generateIdempotencyToken(),
         if (description != null) 'Description': description,
+        if (forceOverwriteReplicaSecret != null)
+          'ForceOverwriteReplicaSecret': forceOverwriteReplicaSecret,
         if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
         if (secretBinary != null) 'SecretBinary': base64Encode(secretBinary),
         if (secretString != null) 'SecretString': secretString,
@@ -526,8 +540,8 @@ class SecretsManager {
   /// To attach a resource policy to a secret, use <a>PutResourcePolicy</a>.
   /// </li>
   /// <li>
-  /// To retrieve the current resource-based policy that's attached to a secret,
-  /// use <a>GetResourcePolicy</a>.
+  /// To retrieve the current resource-based policy attached to a secret, use
+  /// <a>GetResourcePolicy</a>.
   /// </li>
   /// <li>
   /// To list all of the currently available secrets, use <a>ListSecrets</a>.
@@ -537,6 +551,7 @@ class SecretsManager {
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServiceError].
   /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
   ///
   /// Parameter [secretId] :
   /// Specifies the secret that you want to delete the attached resource-based
@@ -590,7 +605,7 @@ class SecretsManager {
     return DeleteResourcePolicyResponse.fromJson(jsonResponse.body);
   }
 
-  /// Deletes an entire secret and all of its versions. You can optionally
+  /// Deletes an entire secret and all of the versions. You can optionally
   /// include a recovery window during which you can restore the secret. If you
   /// don't specify a recovery window value, the operation defaults to 30 days.
   /// Secrets Manager attaches a <code>DeletionDate</code> stamp to the secret
@@ -601,18 +616,17 @@ class SecretsManager {
   /// to remove the <code>DeletionDate</code> and cancel the deletion of the
   /// secret.
   ///
-  /// You cannot access the encrypted secret information in any secret that is
-  /// scheduled for deletion. If you need to access that information, you must
-  /// cancel the deletion with <a>RestoreSecret</a> and then retrieve the
-  /// information.
+  /// You cannot access the encrypted secret information in any secret scheduled
+  /// for deletion. If you need to access that information, you must cancel the
+  /// deletion with <a>RestoreSecret</a> and then retrieve the information.
   /// <note>
   /// <ul>
   /// <li>
   /// There is no explicit operation to delete a version of a secret. Instead,
   /// remove all staging labels from the <code>VersionStage</code> field of a
   /// version. That marks the version as deprecated and allows Secrets Manager
-  /// to delete it as needed. Versions that do not have any staging labels do
-  /// not show up in <a>ListSecretVersionIds</a> unless you specify
+  /// to delete it as needed. Versions without any staging labels do not show up
+  /// in <a>ListSecretVersionIds</a> unless you specify
   /// <code>IncludeDeprecated</code>.
   /// </li>
   /// <li>
@@ -649,8 +663,8 @@ class SecretsManager {
   /// May throw [InternalServiceError].
   ///
   /// Parameter [secretId] :
-  /// Specifies the secret that you want to delete. You can specify either the
-  /// Amazon Resource Name (ARN) or the friendly name of the secret.
+  /// Specifies the secret to delete. You can specify either the Amazon Resource
+  /// Name (ARN) or the friendly name of the secret.
   /// <note>
   /// If you specify an ARN, we generally recommend that you specify a complete
   /// ARN. You can specify a partial ARN too—for example, if you don’t include
@@ -686,15 +700,21 @@ class SecretsManager {
   /// would normally impose with the <code>RecoveryWindowInDays</code>
   /// parameter. If you delete a secret with the
   /// <code>ForceDeleteWithouRecovery</code> parameter, then you have no
-  /// opportunity to recover the secret. It is permanently lost.
+  /// opportunity to recover the secret. You lose the secret permanently.
+  /// </important> <important>
+  /// If you use this parameter and include a previously deleted or nonexistent
+  /// secret, the operation does not return the error
+  /// <code>ResourceNotFoundException</code> in order to correctly handle
+  /// retries.
   /// </important>
   ///
   /// Parameter [recoveryWindowInDays] :
   /// (Optional) Specifies the number of days that Secrets Manager waits before
-  /// it can delete the secret. You can't use both this parameter and the
-  /// <code>ForceDeleteWithoutRecovery</code> parameter in the same API call.
+  /// Secrets Manager can delete the secret. You can't use both this parameter
+  /// and the <code>ForceDeleteWithoutRecovery</code> parameter in the same API
+  /// call.
   ///
-  /// This value can range from 7 to 30 days. The default value is 30.
+  /// This value can range from 7 to 30 days with a default value of 30.
   Future<DeleteSecretResponse> deleteSecret({
     required String secretId,
     bool? forceDeleteWithoutRecovery,
@@ -1078,11 +1098,12 @@ class SecretsManager {
   ///
   /// Parameter [versionId] :
   /// Specifies the unique identifier of the version of the secret that you want
-  /// to retrieve. If you specify this parameter then don't specify
-  /// <code>VersionStage</code>. If you don't specify either a
-  /// <code>VersionStage</code> or <code>VersionId</code> then the default is to
-  /// perform the operation on the version with the <code>VersionStage</code>
-  /// value of <code>AWSCURRENT</code>.
+  /// to retrieve. If you specify both this parameter and
+  /// <code>VersionStage</code>, the two parameters must refer to the same
+  /// secret version. If you don't specify either a <code>VersionStage</code> or
+  /// <code>VersionId</code> then the default is to perform the operation on the
+  /// version with the <code>VersionStage</code> value of
+  /// <code>AWSCURRENT</code>.
   ///
   /// This value is typically a <a
   /// href="https://wikipedia.org/wiki/Universally_unique_identifier">UUID-type</a>
@@ -1093,11 +1114,12 @@ class SecretsManager {
   /// label attached to the version.
   ///
   /// Staging labels are used to keep track of different versions during the
-  /// rotation process. If you use this parameter then don't specify
-  /// <code>VersionId</code>. If you don't specify either a
-  /// <code>VersionStage</code> or <code>VersionId</code>, then the default is
-  /// to perform the operation on the version with the <code>VersionStage</code>
-  /// value of <code>AWSCURRENT</code>.
+  /// rotation process. If you specify both this parameter and
+  /// <code>VersionId</code>, the two parameters must refer to the same secret
+  /// version . If you don't specify either a <code>VersionStage</code> or
+  /// <code>VersionId</code>, then the default is to perform the operation on
+  /// the version with the <code>VersionStage</code> value of
+  /// <code>AWSCURRENT</code>.
   Future<GetSecretValueResponse> getSecretValue({
     required String secretId,
     String? versionId,
@@ -1400,7 +1422,7 @@ class SecretsManager {
   /// <a>GetResourcePolicy</a>.
   /// </li>
   /// <li>
-  /// To delete the resource-based policy that's attached to a secret, use
+  /// To delete the resource-based policy attached to a secret, use
   /// <a>DeleteResourcePolicy</a>.
   /// </li>
   /// <li>
@@ -1416,16 +1438,16 @@ class SecretsManager {
   /// May throw [PublicPolicyException].
   ///
   /// Parameter [resourcePolicy] :
-  /// A JSON-formatted string that's constructed according to the grammar and
-  /// syntax for an AWS resource-based policy. The policy in the string
-  /// identifies who can access or manage this secret and its versions. For
-  /// information on how to format a JSON parameter for the various command line
-  /// tool environments, see <a
+  /// A JSON-formatted string constructed according to the grammar and syntax
+  /// for an AWS resource-based policy. The policy in the string identifies who
+  /// can access or manage this secret and its versions. For information on how
+  /// to format a JSON parameter for the various command line tool environments,
+  /// see <a
   /// href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json">Using
   /// JSON for Parameters</a> in the <i>AWS CLI User Guide</i>.
   ///
   /// Parameter [secretId] :
-  /// Specifies the secret that you want to attach the resource-based policy to.
+  /// Specifies the secret that you want to attach the resource-based policy.
   /// You can specify either the ARN or the friendly name of the secret.
   /// <note>
   /// If you specify an ARN, we generally recommend that you specify a complete
@@ -1448,8 +1470,9 @@ class SecretsManager {
   /// </note>
   ///
   /// Parameter [blockPublicPolicy] :
-  /// Makes an optional API call to Zelkova to validate the Resource Policy to
-  /// prevent broad access to your secret.
+  /// (Optional) If you set the parameter, <code>BlockPublicPolicy</code> to
+  /// true, then you block resource-based policies that allow broad access to
+  /// the secret.
   Future<PutResourcePolicyResponse> putResourcePolicy({
     required String resourcePolicy,
     required String secretId,
@@ -1508,16 +1531,15 @@ class SecretsManager {
   /// to the new version.
   /// </li>
   /// <li>
-  /// If another version of this secret already exists, then this operation does
-  /// not automatically move any staging labels other than those that you
-  /// explicitly specify in the <code>VersionStages</code> parameter.
+  /// If you do not specify a value for VersionStages then Secrets Manager
+  /// automatically moves the staging label <code>AWSCURRENT</code> to this new
+  /// version.
   /// </li>
   /// <li>
   /// If this operation moves the staging label <code>AWSCURRENT</code> from
-  /// another version to this version (because you included it in the
-  /// <code>StagingLabels</code> parameter) then Secrets Manager also
-  /// automatically moves the staging label <code>AWSPREVIOUS</code> to the
-  /// version that <code>AWSCURRENT</code> was removed from.
+  /// another version to this version, then Secrets Manager also automatically
+  /// moves the staging label <code>AWSPREVIOUS</code> to the version that
+  /// <code>AWSCURRENT</code> was removed from.
   /// </li>
   /// <li>
   /// This operation is idempotent. If a version with a <code>VersionId</code>
@@ -1760,6 +1782,102 @@ class SecretsManager {
     );
 
     return PutSecretValueResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Remove regions from replication.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [InternalServiceError].
+  ///
+  /// Parameter [removeReplicaRegions] :
+  /// Remove replication from specific Regions.
+  ///
+  /// Parameter [secretId] :
+  /// Remove a secret by <code>SecretId</code> from replica Regions.
+  Future<RemoveRegionsFromReplicationResponse> removeRegionsFromReplication({
+    required List<String> removeReplicaRegions,
+    required String secretId,
+  }) async {
+    ArgumentError.checkNotNull(removeReplicaRegions, 'removeReplicaRegions');
+    ArgumentError.checkNotNull(secretId, 'secretId');
+    _s.validateStringLength(
+      'secretId',
+      secretId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'secretsmanager.RemoveRegionsFromReplication'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'RemoveReplicaRegions': removeReplicaRegions,
+        'SecretId': secretId,
+      },
+    );
+
+    return RemoveRegionsFromReplicationResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Converts an existing secret to a multi-Region secret and begins
+  /// replication the secret to a list of new regions.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [InternalServiceError].
+  ///
+  /// Parameter [addReplicaRegions] :
+  /// Add Regions to replicate the secret.
+  ///
+  /// Parameter [secretId] :
+  /// Use the <code>Secret Id</code> to replicate a secret to regions.
+  ///
+  /// Parameter [forceOverwriteReplicaSecret] :
+  /// (Optional) If set, Secrets Manager replication overwrites a secret with
+  /// the same name in the destination region.
+  Future<ReplicateSecretToRegionsResponse> replicateSecretToRegions({
+    required List<ReplicaRegionType> addReplicaRegions,
+    required String secretId,
+    bool? forceOverwriteReplicaSecret,
+  }) async {
+    ArgumentError.checkNotNull(addReplicaRegions, 'addReplicaRegions');
+    ArgumentError.checkNotNull(secretId, 'secretId');
+    _s.validateStringLength(
+      'secretId',
+      secretId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'secretsmanager.ReplicateSecretToRegions'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'AddReplicaRegions': addReplicaRegions,
+        'SecretId': secretId,
+        if (forceOverwriteReplicaSecret != null)
+          'ForceOverwriteReplicaSecret': forceOverwriteReplicaSecret,
+      },
+    );
+
+    return ReplicateSecretToRegionsResponse.fromJson(jsonResponse.body);
   }
 
   /// Cancels the scheduled deletion of a secret by removing the
@@ -2019,6 +2137,46 @@ class SecretsManager {
     return RotateSecretResponse.fromJson(jsonResponse.body);
   }
 
+  /// Removes the secret from replication and promotes the secret to a regional
+  /// secret in the replica Region.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [InternalServiceError].
+  ///
+  /// Parameter [secretId] :
+  /// Response to <code>StopReplicationToReplica</code> of a secret, based on
+  /// the <code>SecretId</code>.
+  Future<StopReplicationToReplicaResponse> stopReplicationToReplica({
+    required String secretId,
+  }) async {
+    ArgumentError.checkNotNull(secretId, 'secretId');
+    _s.validateStringLength(
+      'secretId',
+      secretId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'secretsmanager.StopReplicationToReplica'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'SecretId': secretId,
+      },
+    );
+
+    return StopReplicationToReplicaResponse.fromJson(jsonResponse.body);
+  }
+
   /// Attaches one or more tags, each consisting of a key name and a value, to
   /// the specified secret. Tags are part of the secret's overall metadata, and
   /// are not associated with any specific version of the secret. This operation
@@ -2117,8 +2275,8 @@ class SecretsManager {
   /// tool environments, see <a
   /// href="https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json">Using
   /// JSON for Parameters</a> in the <i>AWS CLI User Guide</i>. For the AWS CLI,
-  /// you can also use the syntax: <code>--Tags
-  /// Key="Key1",Value="Value1",Key="Key2",Value="Value2"[,…]</code>
+  /// you can also use the syntax: <code>--Tags Key="Key1",Value="Value1"
+  /// Key="Key2",Value="Value2"[,…]</code>
   Future<void> tagResource({
     required String secretId,
     required List<Tag> tags,
@@ -2684,11 +2842,40 @@ class SecretsManager {
     return UpdateSecretVersionStageResponse.fromJson(jsonResponse.body);
   }
 
-  /// Validates the JSON text of the resource-based policy document attached to
-  /// the specified secret. The JSON request string input and response output
-  /// displays formatted code with white space and line breaks for better
-  /// readability. Submit your input as a single line JSON string. A
-  /// resource-based policy is optional.
+  /// Validates that the resource policy does not grant a wide range of IAM
+  /// principals access to your secret. The JSON request string input and
+  /// response output displays formatted code with white space and line breaks
+  /// for better readability. Submit your input as a single line JSON string. A
+  /// resource-based policy is optional for secrets.
+  ///
+  /// The API performs three checks when validating the secret:
+  ///
+  /// <ul>
+  /// <li>
+  /// Sends a call to <a
+  /// href="https://aws.amazon.com/blogs/security/protect-sensitive-data-in-the-cloud-with-automated-reasoning-zelkova/">Zelkova</a>,
+  /// an automated reasoning engine, to ensure your Resource Policy does not
+  /// allow broad access to your secret.
+  /// </li>
+  /// <li>
+  /// Checks for correct syntax in a policy.
+  /// </li>
+  /// <li>
+  /// Verifies the policy does not lock out a caller.
+  /// </li>
+  /// </ul>
+  /// <b>Minimum Permissions</b>
+  ///
+  /// You must have the permissions required to access the following APIs:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>secretsmanager:PutResourcePolicy</code>
+  /// </li>
+  /// <li>
+  /// <code>secretsmanager:ValidateResourcePolicy</code>
+  /// </li>
+  /// </ul>
   ///
   /// May throw [MalformedPolicyDocumentException].
   /// May throw [ResourceNotFoundException].
@@ -2697,12 +2884,18 @@ class SecretsManager {
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [resourcePolicy] :
-  /// Identifies the Resource Policy attached to the secret.
+  /// A JSON-formatted string constructed according to the grammar and syntax
+  /// for an AWS resource-based policy. The policy in the string identifies who
+  /// can access or manage this secret and its versions. For information on how
+  /// to format a JSON parameter for the various command line tool environments,
+  /// see <a
+  /// href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json">Using
+  /// JSON for Parameters</a> in the <i>AWS CLI User Guide</i>.publi
   ///
   /// Parameter [secretId] :
-  /// The identifier for the secret that you want to validate a resource policy.
-  /// You can specify either the Amazon Resource Name (ARN) or the friendly name
-  /// of the secret.
+  /// (Optional) The identifier of the secret with the resource-based policy you
+  /// want to validate. You can specify either the Amazon Resource Name (ARN) or
+  /// the friendly name of the secret.
   /// <note>
   /// If you specify an ARN, we generally recommend that you specify a complete
   /// ARN. You can specify a partial ARN too—for example, if you don’t include
@@ -2804,6 +2997,10 @@ class CreateSecretResponse {
   /// The friendly name of the secret that you just created.
   final String? name;
 
+  /// Describes a list of replication status objects as <code>InProgress</code>,
+  /// <code>Failed</code> or <code>InSync</code>.
+  final List<ReplicationStatusType>? replicationStatus;
+
   /// The unique identifier associated with the version of the secret you just
   /// created.
   final String? versionId;
@@ -2811,12 +3008,17 @@ class CreateSecretResponse {
   CreateSecretResponse({
     this.arn,
     this.name,
+    this.replicationStatus,
     this.versionId,
   });
   factory CreateSecretResponse.fromJson(Map<String, dynamic> json) {
     return CreateSecretResponse(
       arn: json['ARN'] as String?,
       name: json['Name'] as String?,
+      replicationStatus: (json['ReplicationStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReplicationStatusType.fromJson(e as Map<String, dynamic>))
+          .toList(),
       versionId: json['VersionId'] as String?,
     );
   }
@@ -2852,7 +3054,7 @@ class DeleteSecretResponse {
   /// <code>RecoveryWindowInDays</code>.
   final DateTime? deletionDate;
 
-  /// The friendly name of the secret that is now scheduled for deletion.
+  /// The friendly name of the secret currently scheduled for deletion.
   final String? name;
 
   DeleteSecretResponse({
@@ -2873,7 +3075,7 @@ class DescribeSecretResponse {
   /// The ARN of the secret.
   final String? arn;
 
-  /// The date that the secret was created.
+  /// The date you created the secret.
   final DateTime? createdDate;
 
   /// This value exists if the secret is scheduled for deletion. Some time after
@@ -2902,8 +3104,12 @@ class DescribeSecretResponse {
   /// The last date and time that this secret was modified in any way.
   final DateTime? lastChangedDate;
 
-  /// The most recent date and time that the Secrets Manager rotation process was
-  /// successfully completed. This value is null if the secret has never rotated.
+  /// The last date and time that the rotation process for this secret was
+  /// invoked.
+  ///
+  /// The most recent date and time that the Secrets Manager rotation process
+  /// successfully completed. If the secret doesn't rotate, Secrets Manager
+  /// returns a null value.
   final DateTime? lastRotatedDate;
 
   /// The user-provided friendly name of the secret.
@@ -2911,6 +3117,13 @@ class DescribeSecretResponse {
 
   /// Returns the name of the service that created this secret.
   final String? owningService;
+
+  /// Specifies the primary region for secret replication.
+  final String? primaryRegion;
+
+  /// Describes a list of replication status objects as <code>InProgress</code>,
+  /// <code>Failed</code> or <code>InSync</code>.<code>P</code>
+  final List<ReplicationStatusType>? replicationStatus;
 
   /// Specifies whether automatic rotation is enabled for this secret.
   ///
@@ -2924,7 +3137,7 @@ class DescribeSecretResponse {
   /// <code>RotateSecret</code>.
   final String? rotationLambdaARN;
 
-  /// A structure that contains the rotation configuration for this secret.
+  /// A structure with the rotation configuration for this secret.
   final RotationRulesType? rotationRules;
 
   /// The list of user-defined tags that are associated with the secret. To add
@@ -2954,6 +3167,8 @@ class DescribeSecretResponse {
     this.lastRotatedDate,
     this.name,
     this.owningService,
+    this.primaryRegion,
+    this.replicationStatus,
     this.rotationEnabled,
     this.rotationLambdaARN,
     this.rotationRules,
@@ -2972,6 +3187,11 @@ class DescribeSecretResponse {
       lastRotatedDate: timeStampFromJson(json['LastRotatedDate']),
       name: json['Name'] as String?,
       owningService: json['OwningService'] as String?,
+      primaryRegion: json['PrimaryRegion'] as String?,
+      replicationStatus: (json['ReplicationStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReplicationStatusType.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rotationEnabled: json['RotationEnabled'] as bool?,
       rotationLambdaARN: json['RotationLambdaARN'] as String?,
       rotationRules: json['RotationRules'] != null
@@ -2989,12 +3209,16 @@ class DescribeSecretResponse {
   }
 }
 
-/// Allows you to filter your list of secrets.
+/// Allows you to add filters when you use the search function in Secrets
+/// Manager.
 class Filter {
   /// Filters your list of secrets by a specific key.
   final FilterNameStringType? key;
 
   /// Filters your list of secrets by a specific value.
+  ///
+  /// You can prefix your search value with an exclamation mark (<code>!</code>)
+  /// in order to perform negation filters.
   final List<String>? values;
 
   Filter({
@@ -3016,6 +3240,7 @@ enum FilterNameStringType {
   name,
   tagKey,
   tagValue,
+  primaryRegion,
   all,
 }
 
@@ -3030,6 +3255,8 @@ extension on FilterNameStringType {
         return 'tag-key';
       case FilterNameStringType.tagValue:
         return 'tag-value';
+      case FilterNameStringType.primaryRegion:
+        return 'primary-region';
       case FilterNameStringType.all:
         return 'all';
     }
@@ -3047,6 +3274,8 @@ extension on String {
         return FilterNameStringType.tagKey;
       case 'tag-value':
         return FilterNameStringType.tagValue;
+      case 'primary-region':
+        return FilterNameStringType.primaryRegion;
       case 'all':
         return FilterNameStringType.all;
     }
@@ -3252,8 +3481,7 @@ class PutResourcePolicyResponse {
   /// The ARN of the secret retrieved by the resource-based policy.
   final String? arn;
 
-  /// The friendly name of the secret that the retrieved by the resource-based
-  /// policy.
+  /// The friendly name of the secret retrieved by the resource-based policy.
   final String? name;
 
   PutResourcePolicyResponse({
@@ -3301,6 +3529,117 @@ class PutSecretValueResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+    );
+  }
+}
+
+class RemoveRegionsFromReplicationResponse {
+  /// The secret <code>ARN</code> removed from replication regions.
+  final String? arn;
+
+  /// Describes the remaining replication status after you remove regions from the
+  /// replication list.
+  final List<ReplicationStatusType>? replicationStatus;
+
+  RemoveRegionsFromReplicationResponse({
+    this.arn,
+    this.replicationStatus,
+  });
+  factory RemoveRegionsFromReplicationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return RemoveRegionsFromReplicationResponse(
+      arn: json['ARN'] as String?,
+      replicationStatus: (json['ReplicationStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReplicationStatusType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// (Optional) Custom type consisting of a <code>Region</code> (required) and
+/// the <code>KmsKeyId</code> which can be an <code>ARN</code>, <code>Key
+/// ID</code>, or <code>Alias</code>.
+class ReplicaRegionType {
+  /// Can be an <code>ARN</code>, <code>Key ID</code>, or <code>Alias</code>.
+  final String? kmsKeyId;
+
+  /// Describes a single instance of Region objects.
+  final String? region;
+
+  ReplicaRegionType({
+    this.kmsKeyId,
+    this.region,
+  });
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    final region = this.region;
+    return {
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (region != null) 'Region': region,
+    };
+  }
+}
+
+class ReplicateSecretToRegionsResponse {
+  /// Replicate a secret based on the <code>ReplicaRegionType</code>&gt;
+  /// consisting of a Region(required) and a KMSKeyId (optional) which can be the
+  /// ARN, KeyID, or Alias.
+  final String? arn;
+
+  /// Describes the secret replication status as <code>PENDING</code>,
+  /// <code>SUCCESS</code> or <code>FAIL</code>.
+  final List<ReplicationStatusType>? replicationStatus;
+
+  ReplicateSecretToRegionsResponse({
+    this.arn,
+    this.replicationStatus,
+  });
+  factory ReplicateSecretToRegionsResponse.fromJson(Map<String, dynamic> json) {
+    return ReplicateSecretToRegionsResponse(
+      arn: json['ARN'] as String?,
+      replicationStatus: (json['ReplicationStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReplicationStatusType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// A replication object consisting of a <code>RegionReplicationStatus</code>
+/// object and includes a Region, KMSKeyId, status, and status message.
+class ReplicationStatusType {
+  /// Can be an <code>ARN</code>, <code>Key ID</code>, or <code>Alias</code>.
+  final String? kmsKeyId;
+
+  /// The date that you last accessed the secret in the Region.
+  final DateTime? lastAccessedDate;
+
+  /// The Region where replication occurs.
+  final String? region;
+
+  /// The status can be <code>InProgress</code>, <code>Failed</code>, or
+  /// <code>InSync</code>.
+  final StatusType? status;
+
+  /// Status message such as "<i>Secret with this name already exists in this
+  /// region</i>".
+  final String? statusMessage;
+
+  ReplicationStatusType({
+    this.kmsKeyId,
+    this.lastAccessedDate,
+    this.region,
+    this.status,
+    this.statusMessage,
+  });
+  factory ReplicationStatusType.fromJson(Map<String, dynamic> json) {
+    return ReplicationStatusType(
+      kmsKeyId: json['KmsKeyId'] as String?,
+      lastAccessedDate: timeStampFromJson(json['LastAccessedDate']),
+      region: json['Region'] as String?,
+      status: (json['Status'] as String?)?.toStatusType(),
+      statusMessage: json['StatusMessage'] as String?,
     );
   }
 }
@@ -3418,8 +3757,9 @@ class SecretListEntry {
   /// The last date and time that this secret was modified in any way.
   final DateTime? lastChangedDate;
 
-  /// The last date and time that the rotation process for this secret was
-  /// invoked.
+  /// The most recent date and time that the Secrets Manager rotation process was
+  /// successfully completed. This value is null if the secret hasn't ever
+  /// rotated.
   final DateTime? lastRotatedDate;
 
   /// The friendly name of the secret. You can use forward slashes in the name to
@@ -3431,6 +3771,9 @@ class SecretListEntry {
 
   /// Returns the name of the service that created the secret.
   final String? owningService;
+
+  /// The Region where Secrets Manager originated the secret.
+  final String? primaryRegion;
 
   /// Indicates whether automatic, scheduled rotation is enabled for this secret.
   final bool? rotationEnabled;
@@ -3469,6 +3812,7 @@ class SecretListEntry {
     this.lastRotatedDate,
     this.name,
     this.owningService,
+    this.primaryRegion,
     this.rotationEnabled,
     this.rotationLambdaARN,
     this.rotationRules,
@@ -3487,6 +3831,7 @@ class SecretListEntry {
       lastRotatedDate: timeStampFromJson(json['LastRotatedDate']),
       name: json['Name'] as String?,
       owningService: json['OwningService'] as String?,
+      primaryRegion: json['PrimaryRegion'] as String?,
       rotationEnabled: json['RotationEnabled'] as bool?,
       rotationLambdaARN: json['RotationLambdaARN'] as String?,
       rotationRules: json['RotationRules'] != null
@@ -3565,6 +3910,54 @@ extension on String {
         return SortOrderType.desc;
     }
     throw Exception('$this is not known in enum SortOrderType');
+  }
+}
+
+enum StatusType {
+  inSync,
+  failed,
+  inProgress,
+}
+
+extension on StatusType {
+  String toValue() {
+    switch (this) {
+      case StatusType.inSync:
+        return 'InSync';
+      case StatusType.failed:
+        return 'Failed';
+      case StatusType.inProgress:
+        return 'InProgress';
+    }
+  }
+}
+
+extension on String {
+  StatusType toStatusType() {
+    switch (this) {
+      case 'InSync':
+        return StatusType.inSync;
+      case 'Failed':
+        return StatusType.failed;
+      case 'InProgress':
+        return StatusType.inProgress;
+    }
+    throw Exception('$this is not known in enum StatusType');
+  }
+}
+
+class StopReplicationToReplicaResponse {
+  /// Response <code>StopReplicationToReplica</code> of a secret, based on the
+  /// <code>ARN,</code>.
+  final String? arn;
+
+  StopReplicationToReplicaResponse({
+    this.arn,
+  });
+  factory StopReplicationToReplicaResponse.fromJson(Map<String, dynamic> json) {
+    return StopReplicationToReplicaResponse(
+      arn: json['ARN'] as String?,
+    );
   }
 }
 

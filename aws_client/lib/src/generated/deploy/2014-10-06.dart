@@ -889,6 +889,18 @@ class CodeDeploy {
   /// the tag groups. Cannot be used in the same call as
   /// <code>onPremisesInstanceTagFilters</code>.
   ///
+  /// Parameter [outdatedInstancesStrategy] :
+  /// Indicates what happens when new EC2 instances are launched mid-deployment
+  /// and do not receive the deployed application revision.
+  ///
+  /// If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy
+  /// initiates one or more 'auto-update outdated instances' deployments to
+  /// apply the deployed application revision to the new EC2 instances.
+  ///
+  /// If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate
+  /// a deployment to update the new EC2 instances. This may result in instances
+  /// having different revisions.
+  ///
   /// Parameter [tags] :
   /// The metadata that you apply to CodeDeploy deployment groups to help you
   /// organize and categorize them. Each tag consists of a key and an optional
@@ -916,6 +928,7 @@ class CodeDeploy {
     LoadBalancerInfo? loadBalancerInfo,
     List<TagFilter>? onPremisesInstanceTagFilters,
     OnPremisesTagSet? onPremisesTagSet,
+    OutdatedInstancesStrategy? outdatedInstancesStrategy,
     List<Tag>? tags,
     List<TriggerConfig>? triggerConfigurations,
   }) async {
@@ -973,6 +986,8 @@ class CodeDeploy {
         if (onPremisesInstanceTagFilters != null)
           'onPremisesInstanceTagFilters': onPremisesInstanceTagFilters,
         if (onPremisesTagSet != null) 'onPremisesTagSet': onPremisesTagSet,
+        if (outdatedInstancesStrategy != null)
+          'outdatedInstancesStrategy': outdatedInstancesStrategy.toValue(),
         if (tags != null) 'tags': tags,
         if (triggerConfigurations != null)
           'triggerConfigurations': triggerConfigurations,
@@ -2183,7 +2198,8 @@ class CodeDeploy {
   ///
   /// Parameter [status] :
   /// The result of a Lambda function that validates a deployment lifecycle
-  /// event (<code>Succeeded</code> or <code>Failed</code>).
+  /// event. <code>Succeeded</code> and <code>Failed</code> are the only valid
+  /// values for <code>status</code>.
   Future<PutLifecycleEventHookExecutionStatusOutput>
       putLifecycleEventHookExecutionStatus({
     String? deploymentId,
@@ -2670,6 +2686,18 @@ class CodeDeploy {
   /// Information about an on-premises instance tag set. The deployment group
   /// includes only on-premises instances identified by all the tag groups.
   ///
+  /// Parameter [outdatedInstancesStrategy] :
+  /// Indicates what happens when new EC2 instances are launched mid-deployment
+  /// and do not receive the deployed application revision.
+  ///
+  /// If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy
+  /// initiates one or more 'auto-update outdated instances' deployments to
+  /// apply the deployed application revision to the new EC2 instances.
+  ///
+  /// If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate
+  /// a deployment to update the new EC2 instances. This may result in instances
+  /// having different revisions.
+  ///
   /// Parameter [serviceRoleArn] :
   /// A replacement ARN for the service role, if you want to change it.
   ///
@@ -2695,6 +2723,7 @@ class CodeDeploy {
     String? newDeploymentGroupName,
     List<TagFilter>? onPremisesInstanceTagFilters,
     OnPremisesTagSet? onPremisesTagSet,
+    OutdatedInstancesStrategy? outdatedInstancesStrategy,
     String? serviceRoleArn,
     List<TriggerConfig>? triggerConfigurations,
   }) async {
@@ -2759,6 +2788,8 @@ class CodeDeploy {
         if (onPremisesInstanceTagFilters != null)
           'onPremisesInstanceTagFilters': onPremisesInstanceTagFilters,
         if (onPremisesTagSet != null) 'onPremisesTagSet': onPremisesTagSet,
+        if (outdatedInstancesStrategy != null)
+          'outdatedInstancesStrategy': outdatedInstancesStrategy.toValue(),
         if (serviceRoleArn != null) 'serviceRoleArn': serviceRoleArn,
         if (triggerConfigurations != null)
           'triggerConfigurations': triggerConfigurations,
@@ -3626,6 +3657,7 @@ enum DeploymentCreator {
   autoscaling,
   codeDeployRollback,
   codeDeploy,
+  codeDeployAutoUpdate,
   cloudFormation,
   cloudFormationRollback,
 }
@@ -3641,6 +3673,8 @@ extension on DeploymentCreator {
         return 'codeDeployRollback';
       case DeploymentCreator.codeDeploy:
         return 'CodeDeploy';
+      case DeploymentCreator.codeDeployAutoUpdate:
+        return 'CodeDeployAutoUpdate';
       case DeploymentCreator.cloudFormation:
         return 'CloudFormation';
       case DeploymentCreator.cloudFormationRollback:
@@ -3660,6 +3694,8 @@ extension on String {
         return DeploymentCreator.codeDeployRollback;
       case 'CodeDeploy':
         return DeploymentCreator.codeDeploy;
+      case 'CodeDeployAutoUpdate':
+        return DeploymentCreator.codeDeployAutoUpdate;
       case 'CloudFormation':
         return DeploymentCreator.cloudFormation;
       case 'CloudFormationRollback':
@@ -3739,6 +3775,18 @@ class DeploymentGroupInfo {
   /// tag groups. Cannot be used in the same call as onPremisesInstanceTagFilters.
   final OnPremisesTagSet? onPremisesTagSet;
 
+  /// Indicates what happens when new EC2 instances are launched mid-deployment
+  /// and do not receive the deployed application revision.
+  ///
+  /// If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy
+  /// initiates one or more 'auto-update outdated instances' deployments to apply
+  /// the deployed application revision to the new EC2 instances.
+  ///
+  /// If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate a
+  /// deployment to update the new EC2 instances. This may result in instances
+  /// having different revisions.
+  final OutdatedInstancesStrategy? outdatedInstancesStrategy;
+
   /// A service role Amazon Resource Name (ARN) that grants CodeDeploy permission
   /// to make calls to AWS services on your behalf. For more information, see <a
   /// href="https://docs.aws.amazon.com/codedeploy/latest/userguide/getting-started-create-service-role.html">Create
@@ -3772,6 +3820,7 @@ class DeploymentGroupInfo {
     this.loadBalancerInfo,
     this.onPremisesInstanceTagFilters,
     this.onPremisesTagSet,
+    this.outdatedInstancesStrategy,
     this.serviceRoleArn,
     this.targetRevision,
     this.triggerConfigurations,
@@ -3838,6 +3887,8 @@ class DeploymentGroupInfo {
           ? OnPremisesTagSet.fromJson(
               json['onPremisesTagSet'] as Map<String, dynamic>)
           : null,
+      outdatedInstancesStrategy: (json['outdatedInstancesStrategy'] as String?)
+          ?.toOutdatedInstancesStrategy(),
       serviceRoleArn: json['serviceRoleArn'] as String?,
       targetRevision: json['targetRevision'] != null
           ? RevisionLocation.fromJson(
@@ -3889,6 +3940,10 @@ class DeploymentInfo {
   /// </li>
   /// <li>
   /// <code>codeDeployRollback</code>: A rollback process created the deployment.
+  /// </li>
+  /// <li>
+  /// <code>CodeDeployAutoUpdate</code>: An auto-update process created the
+  /// deployment when it detected outdated EC2 instances.
   /// </li>
   /// </ul>
   final DeploymentCreator? creator;
@@ -3984,6 +4039,7 @@ class DeploymentInfo {
   /// Information about the application revision that was deployed to the
   /// deployment group before the most recent successful deployment.
   final RevisionLocation? previousRevision;
+  final RelatedDeployments? relatedDeployments;
 
   /// Information about the location of stored application artifacts and the
   /// service from which to retrieve them.
@@ -4034,6 +4090,7 @@ class DeploymentInfo {
     this.instanceTerminationWaitTimeStarted,
     this.loadBalancerInfo,
     this.previousRevision,
+    this.relatedDeployments,
     this.revision,
     this.rollbackInfo,
     this.startTime,
@@ -4095,6 +4152,10 @@ class DeploymentInfo {
       previousRevision: json['previousRevision'] != null
           ? RevisionLocation.fromJson(
               json['previousRevision'] as Map<String, dynamic>)
+          : null,
+      relatedDeployments: json['relatedDeployments'] != null
+          ? RelatedDeployments.fromJson(
+              json['relatedDeployments'] as Map<String, dynamic>)
           : null,
       revision: json['revision'] != null
           ? RevisionLocation.fromJson(json['revision'] as Map<String, dynamic>)
@@ -6486,6 +6547,34 @@ class OnPremisesTagSet {
   }
 }
 
+enum OutdatedInstancesStrategy {
+  update,
+  ignore,
+}
+
+extension on OutdatedInstancesStrategy {
+  String toValue() {
+    switch (this) {
+      case OutdatedInstancesStrategy.update:
+        return 'UPDATE';
+      case OutdatedInstancesStrategy.ignore:
+        return 'IGNORE';
+    }
+  }
+}
+
+extension on String {
+  OutdatedInstancesStrategy toOutdatedInstancesStrategy() {
+    switch (this) {
+      case 'UPDATE':
+        return OutdatedInstancesStrategy.update;
+      case 'IGNORE':
+        return OutdatedInstancesStrategy.ignore;
+    }
+    throw Exception('$this is not known in enum OutdatedInstancesStrategy');
+  }
+}
+
 class PutLifecycleEventHookExecutionStatusOutput {
   /// The execution ID of the lifecycle event hook. A hook is specified in the
   /// <code>hooks</code> section of the deployment's AppSpec file.
@@ -6562,6 +6651,32 @@ extension on String {
         return RegistrationStatus.deregistered;
     }
     throw Exception('$this is not known in enum RegistrationStatus');
+  }
+}
+
+/// Information about deployments related to the specified deployment.
+class RelatedDeployments {
+  /// The deployment IDs of 'auto-update outdated instances' deployments triggered
+  /// by this deployment.
+  final List<String>? autoUpdateOutdatedInstancesDeploymentIds;
+
+  /// The deployment ID of the root deployment that triggered this deployment.
+  final String? autoUpdateOutdatedInstancesRootDeploymentId;
+
+  RelatedDeployments({
+    this.autoUpdateOutdatedInstancesDeploymentIds,
+    this.autoUpdateOutdatedInstancesRootDeploymentId,
+  });
+  factory RelatedDeployments.fromJson(Map<String, dynamic> json) {
+    return RelatedDeployments(
+      autoUpdateOutdatedInstancesDeploymentIds:
+          (json['autoUpdateOutdatedInstancesDeploymentIds'] as List?)
+              ?.whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      autoUpdateOutdatedInstancesRootDeploymentId:
+          json['autoUpdateOutdatedInstancesRootDeploymentId'] as String?,
+    );
   }
 }
 

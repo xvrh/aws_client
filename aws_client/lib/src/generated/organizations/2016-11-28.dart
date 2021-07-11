@@ -19,6 +19,83 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
+/// AWS Organizations is a web service that enables you to consolidate your
+/// multiple AWS accounts into an <i>organization</i> and centrally manage your
+/// accounts and their resources.
+///
+/// This guide provides descriptions of the Organizations operations. For more
+/// information about using this service, see the <a
+/// href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html">AWS
+/// Organizations User Guide</a>.
+///
+/// <b>Support and feedback for AWS Organizations</b>
+///
+/// We welcome your feedback. Send your comments to <a
+/// href="mailto:feedback-awsorganizations@amazon.com">feedback-awsorganizations@amazon.com</a>
+/// or post your feedback and questions in the <a
+/// href="http://forums.aws.amazon.com/forum.jspa?forumID=219">AWS Organizations
+/// support forum</a>. For more information about the AWS support forums, see <a
+/// href="http://forums.aws.amazon.com/help.jspa">Forums Help</a>.
+///
+/// <b>Endpoint to call When using the AWS CLI or the AWS SDK</b>
+///
+/// For the current release of Organizations, specify the <code>us-east-1</code>
+/// region for all AWS API and AWS CLI calls made from the commercial AWS
+/// Regions outside of China. If calling from one of the AWS Regions in China,
+/// then specify <code>cn-northwest-1</code>. You can do this in the AWS CLI by
+/// using these parameters and commands:
+///
+/// <ul>
+/// <li>
+/// Use the following parameter with each command to specify both the endpoint
+/// and its region:
+///
+/// <code>--endpoint-url https://organizations.us-east-1.amazonaws.com</code>
+/// <i>(from commercial AWS Regions outside of China)</i>
+///
+/// or
+///
+/// <code>--endpoint-url
+/// https://organizations.cn-northwest-1.amazonaws.com.cn</code> <i>(from AWS
+/// Regions in China)</i>
+/// </li>
+/// <li>
+/// Use the default endpoint, but configure your default region with this
+/// command:
+///
+/// <code>aws configure set default.region us-east-1</code> <i>(from commercial
+/// AWS Regions outside of China)</i>
+///
+/// or
+///
+/// <code>aws configure set default.region cn-northwest-1</code> <i>(from AWS
+/// Regions in China)</i>
+/// </li>
+/// <li>
+/// Use the following parameter with each command to specify the endpoint:
+///
+/// <code>--region us-east-1</code> <i>(from commercial AWS Regions outside of
+/// China)</i>
+///
+/// or
+///
+/// <code>--region cn-northwest-1</code> <i>(from AWS Regions in China)</i>
+/// </li>
+/// </ul>
+/// <b>Recording API Requests</b>
+///
+/// AWS Organizations supports AWS CloudTrail, a service that records AWS API
+/// calls for your AWS account and delivers log files to an Amazon S3 bucket. By
+/// using information collected by AWS CloudTrail, you can determine which
+/// requests the Organizations service received, who made the request and when,
+/// and so on. For more about AWS Organizations and its support for AWS
+/// CloudTrail, see <a
+/// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_incident-response.html#orgs_cloudtrail-integration">Logging
+/// AWS Organizations Events with AWS CloudTrail</a> in the <i>AWS Organizations
+/// User Guide</i>. To learn more about AWS CloudTrail, including how to turn it
+/// on and find your log files, see the <a
+/// href="http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html">AWS
+/// CloudTrail User Guide</a>.
 class Organizations {
   final _s.JsonProtocol _protocol;
   Organizations({
@@ -101,12 +178,6 @@ class Organizations {
       handshakeId,
       0,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'handshakeId',
-      handshakeId,
-      r'''^h-[0-9a-z]{8,32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -212,24 +283,12 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetId, 'targetId');
     _s.validateStringLength(
       'targetId',
       targetId,
       0,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'targetId',
-      targetId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -287,12 +346,6 @@ class Organizations {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'handshakeId',
-      handshakeId,
-      r'''^h-[0-9a-z]{8,32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.CancelHandshake'
@@ -329,8 +382,8 @@ class Organizations {
   /// Check the AWS CloudTrail log for the <code>CreateAccountResult</code>
   /// event. For information on using AWS CloudTrail with AWS Organizations, see
   /// <a
-  /// href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_monitoring.html">Monitoring
-  /// the Activity in Your Organization</a> in the <i>AWS Organizations User
+  /// href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration">Logging
+  /// and monitoring in AWS Organizations</a> in the <i>AWS Organizations User
   /// Guide.</i>
   /// </li>
   /// </ul>
@@ -498,12 +551,6 @@ class Organizations {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountName',
-      accountName,
-      r'''[\u0020-\u007E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(email, 'email');
     _s.validateStringLength(
       'email',
@@ -512,22 +559,11 @@ class Organizations {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'email',
-      email,
-      r'''[^\s@]+@[^\s@]+\.[^\s@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'roleName',
       roleName,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'roleName',
-      roleName,
-      r'''[\w+=,.@-]{1,64}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -796,12 +832,6 @@ class Organizations {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountName',
-      accountName,
-      r'''[\u0020-\u007E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(email, 'email');
     _s.validateStringLength(
       'email',
@@ -810,22 +840,11 @@ class Organizations {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'email',
-      email,
-      r'''[^\s@]+@[^\s@]+\.[^\s@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'roleName',
       roleName,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'roleName',
-      roleName,
-      r'''[\w+=,.@-]{1,64}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -994,24 +1013,12 @@ class Organizations {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\s\S]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parentId, 'parentId');
     _s.validateStringLength(
       'parentId',
       parentId,
       0,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'parentId',
-      parentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1123,12 +1130,6 @@ class Organizations {
       1000000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'content',
-      content,
-      r'''[\s\S]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(description, 'description');
     _s.validateStringLength(
       'description',
@@ -1137,24 +1138,12 @@ class Organizations {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\s\S]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\s\S]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -1216,12 +1205,6 @@ class Organizations {
       handshakeId,
       0,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'handshakeId',
-      handshakeId,
-      r'''^h-[0-9a-z]{8,32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1304,12 +1287,6 @@ class Organizations {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationalUnitId',
-      organizationalUnitId,
-      r'''^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.DeleteOrganizationalUnit'
@@ -1362,12 +1339,6 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.DeletePolicy'
@@ -1395,7 +1366,7 @@ class Organizations {
   /// You can run this action only for AWS services that support this feature.
   /// For a current list of services that support it, see the column <i>Supports
   /// Delegated Administrator</i> in the table at <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html">AWS
+  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html">AWS
   /// Services that you can use with AWS Organizations</a> in the <i>AWS
   /// Organizations User Guide.</i>
   ///
@@ -1437,24 +1408,12 @@ class Organizations {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(servicePrincipal, 'servicePrincipal');
     _s.validateStringLength(
       'servicePrincipal',
       servicePrincipal,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'servicePrincipal',
-      servicePrincipal,
-      r'''[\w+=,.@-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1505,12 +1464,6 @@ class Organizations {
       accountId,
       0,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1566,12 +1519,6 @@ class Organizations {
       createAccountRequestId,
       0,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'createAccountRequestId',
-      createAccountRequestId,
-      r'''^car-[a-z0-9]{8,32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1652,11 +1599,6 @@ class Organizations {
       0,
       100,
     );
-    _s.validateStringPattern(
-      'targetId',
-      targetId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.DescribeEffectivePolicy'
@@ -1711,12 +1653,6 @@ class Organizations {
       handshakeId,
       0,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'handshakeId',
-      handshakeId,
-      r'''^h-[0-9a-z]{8,32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1802,12 +1738,6 @@ class Organizations {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationalUnitId',
-      organizationalUnitId,
-      r'''^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.DescribeOrganizationalUnit'
@@ -1857,12 +1787,6 @@ class Organizations {
       policyId,
       0,
       130,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1965,24 +1889,12 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetId, 'targetId');
     _s.validateStringLength(
       'targetId',
       targetId,
       0,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'targetId',
-      targetId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2010,19 +1922,55 @@ class Organizations {
   /// service can't perform operations on your behalf on any new accounts in
   /// your organization. The service can still perform operations in older
   /// accounts until the service completes its clean-up from AWS Organizations.
-  /// <p/> <important>
-  /// We recommend that you disable integration between AWS Organizations and
-  /// the specified AWS service by using the console or commands that are
-  /// provided by the specified service. Doing so ensures that the other service
-  /// is aware that it can clean up any resources that are required only for the
-  /// integration. How the service cleans up its resources in the organization's
-  /// accounts depends on that service. For more information, see the
-  /// documentation for the other AWS service.
+  /// <important>
+  /// We <b> <i>strongly recommend</i> </b> that you don't use this command to
+  /// disable integration between AWS Organizations and the specified AWS
+  /// service. Instead, use the console or commands that are provided by the
+  /// specified service. This lets the trusted service perform any required
+  /// initialization when enabling trusted access, such as creating any required
+  /// resources and any required clean up of resources when disabling trusted
+  /// access.
+  ///
+  /// For information about how to disable trusted service access to your
+  /// organization using the trusted service, see the <b>Learn more</b> link
+  /// under the <b>Supports Trusted Access</b> column at <a
+  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html">AWS
+  /// services that you can use with AWS Organizations</a>. on this page.
+  ///
+  /// If you disable access by using this command, it causes the following
+  /// actions to occur:
+  ///
+  /// <ul>
+  /// <li>
+  /// The service can no longer create a service-linked role in the accounts in
+  /// your organization. This means that the service can't perform operations on
+  /// your behalf on any new accounts in your organization. The service can
+  /// still perform operations in older accounts until the service completes its
+  /// clean-up from AWS Organizations.
+  /// </li>
+  /// <li>
+  /// The service can no longer perform tasks in the member accounts in the
+  /// organization, unless those operations are explicitly permitted by the IAM
+  /// policies that are attached to your roles. This includes any data
+  /// aggregation from the member accounts to the management account, or to a
+  /// delegated administrator account, where relevant.
+  /// </li>
+  /// <li>
+  /// Some services detect this and clean up any remaining data or resources
+  /// related to the integration, while other services stop accessing the
+  /// organization but leave any historical data and configuration in place to
+  /// support a possible re-enabling of the integration.
+  /// </li>
+  /// </ul>
+  /// Using the other service's console or commands to disable the integration
+  /// ensures that the other service is aware that it can clean up any resources
+  /// that are required only for the integration. How the service cleans up its
+  /// resources in the organization's accounts depends on that service. For more
+  /// information, see the documentation for the other AWS service.
   /// </important>
   /// After you perform the <code>DisableAWSServiceAccess</code> operation, the
   /// specified service can no longer perform operations in your organization's
-  /// accounts unless the operations are explicitly permitted by the IAM
-  /// policies that are attached to your roles.
+  /// accounts
   ///
   /// For more information about integrating other services with AWS
   /// Organizations, including the list of services that work with
@@ -2056,12 +2004,6 @@ class Organizations {
       servicePrincipal,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'servicePrincipal',
-      servicePrincipal,
-      r'''[\w+=,.@-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2156,12 +2098,6 @@ class Organizations {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'rootId',
-      rootId,
-      r'''^r-[0-9a-z]{4,32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.DisablePolicyType'
@@ -2230,12 +2166,6 @@ class Organizations {
       servicePrincipal,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'servicePrincipal',
-      servicePrincipal,
-      r'''[\w+=,.@-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2385,12 +2315,6 @@ class Organizations {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'rootId',
-      rootId,
-      r'''^r-[0-9a-z]{4,32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.EnablePolicyType'
@@ -2509,11 +2433,6 @@ class Organizations {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'notes',
-      notes,
-      r'''[\s\S]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.InviteAccountToOrganization'
@@ -2578,6 +2497,13 @@ class Organizations {
   /// been provided</a> in the <i>AWS Organizations User Guide.</i>
   /// </li>
   /// <li>
+  /// The account that you want to leave must not be a delegated administrator
+  /// account for any AWS service enabled for your organization. If the account
+  /// is a delegated administrator, you must first change the delegated
+  /// administrator account to another account that is remaining in the
+  /// organization.
+  /// </li>
+  /// <li>
   /// You can leave an organization only after you enable IAM user access to
   /// billing in your account. For more information, see <a
   /// href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/grantaccess.html#ControllingAccessWebsite-Activate">Activating
@@ -2588,6 +2514,11 @@ class Organizations {
   /// After the account leaves the organization, all tags that were attached to
   /// the account object in the organization are deleted. AWS accounts outside
   /// of an organization do not support tags.
+  /// </li>
+  /// <li>
+  /// A newly created account has a waiting period before it can be removed from
+  /// its organization. If you get an error that indicates that a wait period is
+  /// required, then try again in a few days.
   /// </li>
   /// </ul> </important>
   ///
@@ -2674,11 +2605,6 @@ class Organizations {
       0,
       100000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2755,11 +2681,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2841,12 +2762,6 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'parentId',
-      parentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2858,11 +2773,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2964,12 +2874,6 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'parentId',
-      parentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2981,11 +2885,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3069,11 +2968,6 @@ class Organizations {
       0,
       100000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.ListCreateAccountStatus'
@@ -3152,21 +3046,11 @@ class Organizations {
       0,
       100000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
-    );
     _s.validateStringLength(
       'servicePrincipal',
       servicePrincipal,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'servicePrincipal',
-      servicePrincipal,
-      r'''[\w+=,.@-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3242,12 +3126,6 @@ class Organizations {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3259,11 +3137,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3354,11 +3227,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3454,11 +3322,6 @@ class Organizations {
       0,
       100000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrganizationsV20161128.ListHandshakesForOrganization'
@@ -3553,12 +3416,6 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'parentId',
-      parentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3570,11 +3427,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3674,12 +3526,6 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'childId',
-      childId,
-      r'''^(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3691,11 +3537,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3796,11 +3637,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3925,12 +3761,6 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'targetId',
-      targetId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3942,11 +3772,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4030,11 +3855,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4126,22 +3946,11 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4224,12 +4033,6 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4241,11 +4044,6 @@ class Organizations {
       nextToken,
       0,
       100000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4342,12 +4140,6 @@ class Organizations {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationParentId, 'destinationParentId');
     _s.validateStringLength(
       'destinationParentId',
@@ -4356,24 +4148,12 @@ class Organizations {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationParentId',
-      destinationParentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceParentId, 'sourceParentId');
     _s.validateStringLength(
       'sourceParentId',
       sourceParentId,
       0,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'sourceParentId',
-      sourceParentId,
-      r'''^(r-[0-9a-z]{4,32})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4402,7 +4182,7 @@ class Organizations {
   /// You can run this action only for AWS services that support this feature.
   /// For a current list of services that support it, see the column <i>Supports
   /// Delegated Administrator</i> in the table at <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html">AWS
+  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html">AWS
   /// Services that you can use with AWS Organizations</a> in the <i>AWS
   /// Organizations User Guide.</i>
   ///
@@ -4439,24 +4219,12 @@ class Organizations {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(servicePrincipal, 'servicePrincipal');
     _s.validateStringLength(
       'servicePrincipal',
       servicePrincipal,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'servicePrincipal',
-      servicePrincipal,
-      r'''[\w+=,.@-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4506,6 +4274,13 @@ class Organizations {
   /// been provided</a> in the <i>AWS Organizations User Guide.</i>
   /// </li>
   /// <li>
+  /// The account that you want to leave must not be a delegated administrator
+  /// account for any AWS service enabled for your organization. If the account
+  /// is a delegated administrator, you must first change the delegated
+  /// administrator account to another account that is remaining in the
+  /// organization.
+  /// </li>
+  /// <li>
   /// After the account leaves the organization, all tags that were attached to
   /// the account object in the organization are deleted. AWS accounts outside
   /// of an organization do not support tags.
@@ -4537,12 +4312,6 @@ class Organizations {
       accountId,
       0,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^\d{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4637,12 +4406,6 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4728,12 +4491,6 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^(r-[0-9a-z]{4,32})|(\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4796,22 +4553,11 @@ class Organizations {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationalUnitId',
-      organizationalUnitId,
-      r'''^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4889,22 +4635,11 @@ class Organizations {
       130,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''^p-[0-9a-zA-Z_]{8,128}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'content',
       content,
       1,
       1000000,
-    );
-    _s.validateStringPattern(
-      'content',
-      content,
-      r'''[\s\S]*''',
     );
     _s.validateStringLength(
       'description',
@@ -4912,21 +4647,11 @@ class Organizations {
       0,
       512,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\s\S]*''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\s\S]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4972,9 +4697,9 @@ class Account {
   /// The Amazon Resource Name (ARN) of the account.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// The email address associated with the AWS account.
@@ -5210,6 +4935,10 @@ enum CreateAccountFailureReason {
   internalFailure,
   govcloudAccountAlreadyExists,
   missingBusinessValidation,
+  failedBusinessValidation,
+  pendingBusinessValidation,
+  invalidIdentityForBusinessValidation,
+  unknownBusinessValidation,
   missingPaymentInstrument,
 }
 
@@ -5232,6 +4961,14 @@ extension on CreateAccountFailureReason {
         return 'GOVCLOUD_ACCOUNT_ALREADY_EXISTS';
       case CreateAccountFailureReason.missingBusinessValidation:
         return 'MISSING_BUSINESS_VALIDATION';
+      case CreateAccountFailureReason.failedBusinessValidation:
+        return 'FAILED_BUSINESS_VALIDATION';
+      case CreateAccountFailureReason.pendingBusinessValidation:
+        return 'PENDING_BUSINESS_VALIDATION';
+      case CreateAccountFailureReason.invalidIdentityForBusinessValidation:
+        return 'INVALID_IDENTITY_FOR_BUSINESS_VALIDATION';
+      case CreateAccountFailureReason.unknownBusinessValidation:
+        return 'UNKNOWN_BUSINESS_VALIDATION';
       case CreateAccountFailureReason.missingPaymentInstrument:
         return 'MISSING_PAYMENT_INSTRUMENT';
     }
@@ -5257,6 +4994,14 @@ extension on String {
         return CreateAccountFailureReason.govcloudAccountAlreadyExists;
       case 'MISSING_BUSINESS_VALIDATION':
         return CreateAccountFailureReason.missingBusinessValidation;
+      case 'FAILED_BUSINESS_VALIDATION':
+        return CreateAccountFailureReason.failedBusinessValidation;
+      case 'PENDING_BUSINESS_VALIDATION':
+        return CreateAccountFailureReason.pendingBusinessValidation;
+      case 'INVALID_IDENTITY_FOR_BUSINESS_VALIDATION':
+        return CreateAccountFailureReason.invalidIdentityForBusinessValidation;
+      case 'UNKNOWN_BUSINESS_VALIDATION':
+        return CreateAccountFailureReason.unknownBusinessValidation;
       case 'MISSING_PAYMENT_INSTRUMENT':
         return CreateAccountFailureReason.missingPaymentInstrument;
     }
@@ -5344,8 +5089,8 @@ class CreateAccountStatus {
   ///
   /// <ul>
   /// <li>
-  /// ACCOUNT_LIMIT_EXCEEDED: The account could not be created because you have
-  /// reached the limit on the number of accounts in your organization.
+  /// ACCOUNT_LIMIT_EXCEEDED: The account couldn't be created because you reached
+  /// the limit on the number of accounts in your organization.
   /// </li>
   /// <li>
   /// CONCURRENT_ACCOUNT_MODIFICATION: You already submitted a request with the
@@ -5356,9 +5101,18 @@ class CreateAccountStatus {
   /// account with that email address already exists.
   /// </li>
   /// <li>
+  /// FAILED_BUSINESS_VALIDATION: The AWS account that owns your organization
+  /// failed to receive business license validation.
+  /// </li>
+  /// <li>
   /// GOVCLOUD_ACCOUNT_ALREADY_EXISTS: The account in the AWS GovCloud (US) Region
   /// could not be created because this Region already includes an account with
   /// that email address.
+  /// </li>
+  /// <li>
+  /// IDENTITY_INVALID_BUSINESS_VALIDATION: The AWS account that owns your
+  /// organization can't complete business license validation because it doesn't
+  /// have valid identity data.
   /// </li>
   /// <li>
   /// INVALID_ADDRESS: The account could not be created because the address you
@@ -5370,7 +5124,8 @@ class CreateAccountStatus {
   /// </li>
   /// <li>
   /// INTERNAL_FAILURE: The account could not be created because of an internal
-  /// failure. Try again later. If the problem persists, contact Customer Support.
+  /// failure. Try again later. If the problem persists, contact AWS Customer
+  /// Support.
   /// </li>
   /// <li>
   /// MISSING_BUSINESS_VALIDATION: The AWS account that owns your organization has
@@ -5379,6 +5134,14 @@ class CreateAccountStatus {
   /// <li>
   /// MISSING_PAYMENT_INSTRUMENT: You must configure the management account with a
   /// valid payment method, such as a credit card.
+  /// </li>
+  /// <li>
+  /// PENDING_BUSINESS_VALIDATION: The AWS account that owns your organization is
+  /// still in the process of completing business license validation.
+  /// </li>
+  /// <li>
+  /// UNKNOWN_BUSINESS_VALIDATION: The AWS account that owns your organization has
+  /// an unknown issue with business license validation.
   /// </li>
   /// </ul>
   final CreateAccountFailureReason? failureReason;
@@ -5399,7 +5162,7 @@ class CreateAccountStatus {
   /// The date and time that the request was made for the account creation.
   final DateTime? requestedTimestamp;
 
-  /// The status of the request.
+  /// The status of the asynchronous request to create an AWS account.
   final CreateAccountState? state;
 
   CreateAccountStatus({
@@ -5568,7 +5331,7 @@ class DelegatedService {
   /// The date that the account became a delegated administrator for this service.
   final DateTime? delegationEnabledDate;
 
-  /// The name of a service that can request an operation for the specified
+  /// The name of an AWS service that can request an operation for the specified
   /// service. This is typically in the form of a URL, such as: <code>
   /// <i>servicename</i>.amazonaws.com</code>.
   final String? servicePrincipal;
@@ -5855,9 +5618,9 @@ class EnabledServicePrincipal {
 /// accounts exchange information as a series of handshake requests and
 /// responses.
 ///
-/// <b>Note:</b> Handshakes that are CANCELED, ACCEPTED, or DECLINED show up in
-/// lists for only 30 days after entering that state After that they are
-/// deleted.
+/// <b>Note:</b> Handshakes that are <code>CANCELED</code>,
+/// <code>ACCEPTED</code>, or <code>DECLINED</code> show up in lists for only 30
+/// days after entering that state After that they are deleted.
 class Handshake {
   /// The type of handshake, indicating what action occurs when the recipient
   /// accepts the handshake. The following handshake types are supported:
@@ -5888,9 +5651,9 @@ class Handshake {
   /// The Amazon Resource Name (ARN) of a handshake.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// The date and time that the handshake expires. If the recipient of the
@@ -6730,9 +6493,9 @@ class Organization {
   /// The Amazon Resource Name (ARN) of an organization.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// <important>
@@ -6764,9 +6527,9 @@ class Organization {
   /// management account for the organization.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? masterAccountArn;
 
   /// The email address that is associated with the AWS account that is designated
@@ -6839,9 +6602,9 @@ class OrganizationalUnit {
   /// The Amazon Resource Name (ARN) of this OU.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// The unique identifier (ID) associated with this OU.
@@ -6970,9 +6733,9 @@ class PolicySummary {
   /// The Amazon Resource Name (ARN) of the policy.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// A boolean value that indicates whether the specified policy is an AWS
@@ -7026,9 +6789,9 @@ class PolicyTargetSummary {
   /// The Amazon Resource Name (ARN) of the policy target.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// The friendly name of the policy target.
@@ -7181,9 +6944,9 @@ class Root {
   /// The Amazon Resource Name (ARN) of the root.
   ///
   /// For more information about ARNs in Organizations, see <a
-  /// href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns">ARN
-  /// Formats Supported by Organizations</a> in the <i>AWS Organizations User
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies">ARN
+  /// Formats Supported by Organizations</a> in the <i>AWS Service Authorization
+  /// Reference</i>.
   final String? arn;
 
   /// The unique identifier (ID) for the root.

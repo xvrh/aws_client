@@ -381,12 +381,6 @@ class XRay {
     required String insightId,
   }) async {
     ArgumentError.checkNotNull(insightId, 'insightId');
-    _s.validateStringPattern(
-      'insightId',
-      insightId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'InsightId': insightId,
     };
@@ -422,12 +416,6 @@ class XRay {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(insightId, 'insightId');
-    _s.validateStringPattern(
-      'insightId',
-      insightId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -486,12 +474,6 @@ class XRay {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(insightId, 'insightId');
-    _s.validateStringPattern(
-      'insightId',
-      insightId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startTime, 'startTime');
     _s.validateStringLength(
       'nextToken',

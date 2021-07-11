@@ -1517,6 +1517,48 @@ class DatabaseMigration {
     return DescribeConnectionsResponse.fromJson(jsonResponse.body);
   }
 
+  /// Returns information about the possible endpoint settings available when
+  /// you create an endpoint for a specific database engine.
+  ///
+  /// Parameter [engineName] :
+  /// The databse engine used for your source or target endpoint.
+  ///
+  /// Parameter [marker] :
+  /// An optional pagination token provided by a previous request. If this
+  /// parameter is specified, the response includes only records beyond the
+  /// marker, up to the value specified by <code>MaxRecords</code>.
+  ///
+  /// Parameter [maxRecords] :
+  /// The maximum number of records to include in the response. If more records
+  /// exist than the specified <code>MaxRecords</code> value, a pagination token
+  /// called a marker is included in the response so that the remaining results
+  /// can be retrieved.
+  Future<DescribeEndpointSettingsResponse> describeEndpointSettings({
+    required String engineName,
+    String? marker,
+    int? maxRecords,
+  }) async {
+    ArgumentError.checkNotNull(engineName, 'engineName');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonDMSv20160101.DescribeEndpointSettings'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'EngineName': engineName,
+        if (marker != null) 'Marker': marker,
+        if (maxRecords != null) 'MaxRecords': maxRecords,
+      },
+    );
+
+    return DescribeEndpointSettingsResponse.fromJson(jsonResponse.body);
+  }
+
   /// Returns information about the type of endpoints available.
   ///
   /// Parameter [filters] :
@@ -3122,8 +3164,8 @@ class DatabaseMigration {
   /// Parameter [tableMappings] :
   /// When using the AWS CLI or boto3, provide the path of the JSON file that
   /// contains the table mappings. Precede the path with <code>file://</code>.
-  /// When working with the DMS API, provide the JSON as the parameter value,
-  /// for example: <code>--table-mappings file://mappingfile.json</code>
+  /// For example, <code>--table-mappings file://mappingfile.json</code>. When
+  /// working with the DMS API, provide the JSON as the parameter value.
   ///
   /// Parameter [taskData] :
   /// Supplemental information that the task requires to migrate the data for
@@ -3180,6 +3222,7 @@ class DatabaseMigration {
   /// May throw [AccessDeniedFault].
   /// May throw [InvalidResourceStateFault].
   /// May throw [ResourceNotFoundFault].
+  /// May throw [KMSKeyNotAccessibleFault].
   ///
   /// Parameter [replicationTaskArn] :
   /// The Amazon Resource Name (ARN) of the task that you want to move.
@@ -3666,6 +3709,7 @@ class DatabaseMigration {
   /// May throw [InvalidResourceStateFault].
   /// May throw [KMSKeyNotAccessibleFault].
   /// May throw [ResourceQuotaExceededFault].
+  /// May throw [AccessDeniedFault].
   ///
   /// Parameter [endpointArn] :
   /// The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -4490,6 +4534,31 @@ class DescribeConnectionsResponse {
       connections: (json['Connections'] as List?)
           ?.whereNotNull()
           .map((e) => Connection.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+}
+
+class DescribeEndpointSettingsResponse {
+  /// Descriptions of the endpoint settings available for your source or target
+  /// database engine.
+  final List<EndpointSetting>? endpointSettings;
+
+  /// An optional pagination token provided by a previous request. If this
+  /// parameter is specified, the response includes only records beyond the
+  /// marker, up to the value specified by <code>MaxRecords</code>.
+  final String? marker;
+
+  DescribeEndpointSettingsResponse({
+    this.endpointSettings,
+    this.marker,
+  });
+  factory DescribeEndpointSettingsResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeEndpointSettingsResponse(
+      endpointSettings: (json['EndpointSettings'] as List?)
+          ?.whereNotNull()
+          .map((e) => EndpointSetting.fromJson(e as Map<String, dynamic>))
           .toList(),
       marker: json['Marker'] as String?,
     );
@@ -5578,6 +5647,99 @@ class Endpoint {
   }
 }
 
+/// Endpoint settings.
+class EndpointSetting {
+  /// The relevance or validity of an endpoint setting for an engine name and its
+  /// endpoint type.
+  final String? applicability;
+
+  /// Enumerated values to use for this endpoint.
+  final List<String>? enumValues;
+
+  /// The maximum value of an endpoint setting that is of type <code>int</code>.
+  final int? intValueMax;
+
+  /// The minimum value of an endpoint setting that is of type <code>int</code>.
+  final int? intValueMin;
+
+  /// The name that you want to give the endpoint settings.
+  final String? name;
+
+  /// A value that marks this endpoint setting as sensitive.
+  final bool? sensitive;
+
+  /// The type of endpoint. Valid values are <code>source</code> and
+  /// <code>target</code>.
+  final EndpointSettingTypeValue? type;
+
+  /// The unit of measure for this endpoint setting.
+  final String? units;
+
+  EndpointSetting({
+    this.applicability,
+    this.enumValues,
+    this.intValueMax,
+    this.intValueMin,
+    this.name,
+    this.sensitive,
+    this.type,
+    this.units,
+  });
+  factory EndpointSetting.fromJson(Map<String, dynamic> json) {
+    return EndpointSetting(
+      applicability: json['Applicability'] as String?,
+      enumValues: (json['EnumValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      intValueMax: json['IntValueMax'] as int?,
+      intValueMin: json['IntValueMin'] as int?,
+      name: json['Name'] as String?,
+      sensitive: json['Sensitive'] as bool?,
+      type: (json['Type'] as String?)?.toEndpointSettingTypeValue(),
+      units: json['Units'] as String?,
+    );
+  }
+}
+
+enum EndpointSettingTypeValue {
+  string,
+  boolean,
+  integer,
+  $enum,
+}
+
+extension on EndpointSettingTypeValue {
+  String toValue() {
+    switch (this) {
+      case EndpointSettingTypeValue.string:
+        return 'string';
+      case EndpointSettingTypeValue.boolean:
+        return 'boolean';
+      case EndpointSettingTypeValue.integer:
+        return 'integer';
+      case EndpointSettingTypeValue.$enum:
+        return 'enum';
+    }
+  }
+}
+
+extension on String {
+  EndpointSettingTypeValue toEndpointSettingTypeValue() {
+    switch (this) {
+      case 'string':
+        return EndpointSettingTypeValue.string;
+      case 'boolean':
+        return EndpointSettingTypeValue.boolean;
+      case 'integer':
+        return EndpointSettingTypeValue.integer;
+      case 'enum':
+        return EndpointSettingTypeValue.$enum;
+    }
+    throw Exception('$this is not known in enum EndpointSettingTypeValue');
+  }
+}
+
 /// Describes an identifiable significant activity that affects a replication
 /// instance or task. This object can provide the message, the available event
 /// categories, the date and source of the event, and the AWS DMS resource type.
@@ -5876,14 +6038,56 @@ class ImportCertificateResponse {
   }
 }
 
+enum KafkaSecurityProtocol {
+  plaintext,
+  sslAuthentication,
+  sslEncryption,
+  saslSsl,
+}
+
+extension on KafkaSecurityProtocol {
+  String toValue() {
+    switch (this) {
+      case KafkaSecurityProtocol.plaintext:
+        return 'plaintext';
+      case KafkaSecurityProtocol.sslAuthentication:
+        return 'ssl-authentication';
+      case KafkaSecurityProtocol.sslEncryption:
+        return 'ssl-encryption';
+      case KafkaSecurityProtocol.saslSsl:
+        return 'sasl-ssl';
+    }
+  }
+}
+
+extension on String {
+  KafkaSecurityProtocol toKafkaSecurityProtocol() {
+    switch (this) {
+      case 'plaintext':
+        return KafkaSecurityProtocol.plaintext;
+      case 'ssl-authentication':
+        return KafkaSecurityProtocol.sslAuthentication;
+      case 'ssl-encryption':
+        return KafkaSecurityProtocol.sslEncryption;
+      case 'sasl-ssl':
+        return KafkaSecurityProtocol.saslSsl;
+    }
+    throw Exception('$this is not known in enum KafkaSecurityProtocol');
+  }
+}
+
 /// Provides information that describes an Apache Kafka endpoint. This
 /// information includes the output format of records applied to the endpoint
 /// and details of transaction and control table data information.
 class KafkaSettings {
-  /// The broker location and port of the Kafka broker that hosts your Kafka
-  /// instance. Specify the broker in the form <code>
-  /// <i>broker-hostname-or-ip</i>:<i>port</i> </code>. For example,
-  /// <code>"ec2-12-345-678-901.compute-1.amazonaws.com:2345"</code>.
+  /// A comma-separated list of one or more broker locations in your Kafka cluster
+  /// that host your Kafka instance. Specify each broker location in the form
+  /// <code> <i>broker-hostname-or-ip</i>:<i>port</i> </code>. For example,
+  /// <code>"ec2-12-345-678-901.compute-1.amazonaws.com:2345"</code>. For more
+  /// information and examples of specifying a list of broker locations, see <a
+  /// href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html">Using
+  /// Apache Kafka as a target for AWS Database Migration Service</a> in the
+  /// <i>AWS Data Migration Service User Guide</i>.
   final String? broker;
 
   /// Shows detailed control information for table definition, column definition,
@@ -5930,6 +6134,39 @@ class KafkaSettings {
   /// same partition, which causes throttling. The default is <code>false</code>.
   final bool? partitionIncludeSchemaTable;
 
+  /// The secure password you created when you first set up your MSK cluster to
+  /// validate a client identity and make an encrypted connection between server
+  /// and client using SASL-SSL authentication.
+  final String? saslPassword;
+
+  /// The secure username you created when you first set up your MSK cluster to
+  /// validate a client identity and make an encrypted connection between server
+  /// and client using SASL-SSL authentication.
+  final String? saslUsername;
+
+  /// Set secure connection to a Kafka target endpoint using Transport Layer
+  /// Security (TLS). Options include <code>ssl-encryption</code>,
+  /// <code>ssl-authentication</code>, and <code>sasl-ssl</code>.
+  /// <code>sasl-ssl</code> requires <code>SaslUsername</code> and
+  /// <code>SaslPassword</code>.
+  final KafkaSecurityProtocol? securityProtocol;
+
+  /// The Amazon Resource Name (ARN) for the private Certification Authority (CA)
+  /// cert that AWS DMS uses to securely connect to your Kafka target endpoint.
+  final String? sslCaCertificateArn;
+
+  /// The Amazon Resource Name (ARN) of the client certificate used to securely
+  /// connect to a Kafka target endpoint.
+  final String? sslClientCertificateArn;
+
+  /// The Amazon Resource Name (ARN) for the client private key used to securely
+  /// connect to a Kafka target endpoint.
+  final String? sslClientKeyArn;
+
+  /// The password for the client private key used to securely connect to a Kafka
+  /// target endpoint.
+  final String? sslClientKeyPassword;
+
   /// The topic to which you migrate the data. If you don't specify a topic, AWS
   /// DMS specifies <code>"kafka-default-topic"</code> as the migration topic.
   final String? topic;
@@ -5944,6 +6181,13 @@ class KafkaSettings {
     this.messageFormat,
     this.messageMaxBytes,
     this.partitionIncludeSchemaTable,
+    this.saslPassword,
+    this.saslUsername,
+    this.securityProtocol,
+    this.sslCaCertificateArn,
+    this.sslClientCertificateArn,
+    this.sslClientKeyArn,
+    this.sslClientKeyPassword,
     this.topic,
   });
   factory KafkaSettings.fromJson(Map<String, dynamic> json) {
@@ -5957,6 +6201,14 @@ class KafkaSettings {
       messageFormat: (json['MessageFormat'] as String?)?.toMessageFormatValue(),
       messageMaxBytes: json['MessageMaxBytes'] as int?,
       partitionIncludeSchemaTable: json['PartitionIncludeSchemaTable'] as bool?,
+      saslPassword: json['SaslPassword'] as String?,
+      saslUsername: json['SaslUsername'] as String?,
+      securityProtocol:
+          (json['SecurityProtocol'] as String?)?.toKafkaSecurityProtocol(),
+      sslCaCertificateArn: json['SslCaCertificateArn'] as String?,
+      sslClientCertificateArn: json['SslClientCertificateArn'] as String?,
+      sslClientKeyArn: json['SslClientKeyArn'] as String?,
+      sslClientKeyPassword: json['SslClientKeyPassword'] as String?,
       topic: json['Topic'] as String?,
     );
   }
@@ -5971,6 +6223,13 @@ class KafkaSettings {
     final messageFormat = this.messageFormat;
     final messageMaxBytes = this.messageMaxBytes;
     final partitionIncludeSchemaTable = this.partitionIncludeSchemaTable;
+    final saslPassword = this.saslPassword;
+    final saslUsername = this.saslUsername;
+    final securityProtocol = this.securityProtocol;
+    final sslCaCertificateArn = this.sslCaCertificateArn;
+    final sslClientCertificateArn = this.sslClientCertificateArn;
+    final sslClientKeyArn = this.sslClientKeyArn;
+    final sslClientKeyPassword = this.sslClientKeyPassword;
     final topic = this.topic;
     return {
       if (broker != null) 'Broker': broker,
@@ -5988,6 +6247,17 @@ class KafkaSettings {
       if (messageMaxBytes != null) 'MessageMaxBytes': messageMaxBytes,
       if (partitionIncludeSchemaTable != null)
         'PartitionIncludeSchemaTable': partitionIncludeSchemaTable,
+      if (saslPassword != null) 'SaslPassword': saslPassword,
+      if (saslUsername != null) 'SaslUsername': saslUsername,
+      if (securityProtocol != null)
+        'SecurityProtocol': securityProtocol.toValue(),
+      if (sslCaCertificateArn != null)
+        'SslCaCertificateArn': sslCaCertificateArn,
+      if (sslClientCertificateArn != null)
+        'SslClientCertificateArn': sslClientCertificateArn,
+      if (sslClientKeyArn != null) 'SslClientKeyArn': sslClientKeyArn,
+      if (sslClientKeyPassword != null)
+        'SslClientKeyPassword': sslClientKeyPassword,
       if (topic != null) 'Topic': topic,
     };
   }
@@ -6166,6 +6436,12 @@ class MicrosoftSQLServerSettings {
   /// Endpoint TCP port.
   final int? port;
 
+  /// Cleans and recreates table metadata information on the replication instance
+  /// when a mismatch occurs. An example is a situation where running an alter DDL
+  /// statement on a table might result in different information about the table
+  /// cached in the replication instance.
+  final bool? querySingleAlwaysOnNode;
+
   /// When this attribute is set to <code>Y</code>, AWS DMS only reads changes
   /// from transaction log backups and doesn't read from the active transaction
   /// log file during ongoing replication. Setting this parameter to
@@ -6226,6 +6502,10 @@ class MicrosoftSQLServerSettings {
   /// source table, you must disable the use BCP for loading table option.
   final bool? useBcpFullLoad;
 
+  /// When this attribute is set to <code>Y</code>, DMS processes third-party
+  /// transaction log backups if they are created in native format.
+  final bool? useThirdPartyBackupDevice;
+
   /// Endpoint connection user name.
   final String? username;
 
@@ -6235,12 +6515,14 @@ class MicrosoftSQLServerSettings {
     this.databaseName,
     this.password,
     this.port,
+    this.querySingleAlwaysOnNode,
     this.readBackupOnly,
     this.safeguardPolicy,
     this.secretsManagerAccessRoleArn,
     this.secretsManagerSecretId,
     this.serverName,
     this.useBcpFullLoad,
+    this.useThirdPartyBackupDevice,
     this.username,
   });
   factory MicrosoftSQLServerSettings.fromJson(Map<String, dynamic> json) {
@@ -6250,6 +6532,7 @@ class MicrosoftSQLServerSettings {
       databaseName: json['DatabaseName'] as String?,
       password: json['Password'] as String?,
       port: json['Port'] as int?,
+      querySingleAlwaysOnNode: json['QuerySingleAlwaysOnNode'] as bool?,
       readBackupOnly: json['ReadBackupOnly'] as bool?,
       safeguardPolicy:
           (json['SafeguardPolicy'] as String?)?.toSafeguardPolicy(),
@@ -6258,6 +6541,7 @@ class MicrosoftSQLServerSettings {
       secretsManagerSecretId: json['SecretsManagerSecretId'] as String?,
       serverName: json['ServerName'] as String?,
       useBcpFullLoad: json['UseBcpFullLoad'] as bool?,
+      useThirdPartyBackupDevice: json['UseThirdPartyBackupDevice'] as bool?,
       username: json['Username'] as String?,
     );
   }
@@ -6268,12 +6552,14 @@ class MicrosoftSQLServerSettings {
     final databaseName = this.databaseName;
     final password = this.password;
     final port = this.port;
+    final querySingleAlwaysOnNode = this.querySingleAlwaysOnNode;
     final readBackupOnly = this.readBackupOnly;
     final safeguardPolicy = this.safeguardPolicy;
     final secretsManagerAccessRoleArn = this.secretsManagerAccessRoleArn;
     final secretsManagerSecretId = this.secretsManagerSecretId;
     final serverName = this.serverName;
     final useBcpFullLoad = this.useBcpFullLoad;
+    final useThirdPartyBackupDevice = this.useThirdPartyBackupDevice;
     final username = this.username;
     return {
       if (bcpPacketSize != null) 'BcpPacketSize': bcpPacketSize,
@@ -6282,6 +6568,8 @@ class MicrosoftSQLServerSettings {
       if (databaseName != null) 'DatabaseName': databaseName,
       if (password != null) 'Password': password,
       if (port != null) 'Port': port,
+      if (querySingleAlwaysOnNode != null)
+        'QuerySingleAlwaysOnNode': querySingleAlwaysOnNode,
       if (readBackupOnly != null) 'ReadBackupOnly': readBackupOnly,
       if (safeguardPolicy != null) 'SafeguardPolicy': safeguardPolicy.toValue(),
       if (secretsManagerAccessRoleArn != null)
@@ -6290,6 +6578,8 @@ class MicrosoftSQLServerSettings {
         'SecretsManagerSecretId': secretsManagerSecretId,
       if (serverName != null) 'ServerName': serverName,
       if (useBcpFullLoad != null) 'UseBcpFullLoad': useBcpFullLoad,
+      if (useThirdPartyBackupDevice != null)
+        'UseThirdPartyBackupDevice': useThirdPartyBackupDevice,
       if (username != null) 'Username': username,
     };
   }
@@ -6606,6 +6896,12 @@ class MySQLSettings {
   /// statement succeeds or fails.
   final String? afterConnectScript;
 
+  /// Adjusts the behavior of DMS when migrating from an SQL Server source
+  /// database that is hosted as part of an Always On availability group cluster.
+  /// If you need DMS to poll all the nodes in the Always On cluster for
+  /// transaction backups, set this attribute to <code>false</code>.
+  final bool? cleanSourceMetadataOnMismatch;
+
   /// Database name for the endpoint.
   final String? databaseName;
 
@@ -6685,6 +6981,7 @@ class MySQLSettings {
 
   MySQLSettings({
     this.afterConnectScript,
+    this.cleanSourceMetadataOnMismatch,
     this.databaseName,
     this.eventsPollInterval,
     this.maxFileSize,
@@ -6701,6 +6998,8 @@ class MySQLSettings {
   factory MySQLSettings.fromJson(Map<String, dynamic> json) {
     return MySQLSettings(
       afterConnectScript: json['AfterConnectScript'] as String?,
+      cleanSourceMetadataOnMismatch:
+          json['CleanSourceMetadataOnMismatch'] as bool?,
       databaseName: json['DatabaseName'] as String?,
       eventsPollInterval: json['EventsPollInterval'] as int?,
       maxFileSize: json['MaxFileSize'] as int?,
@@ -6719,6 +7018,7 @@ class MySQLSettings {
 
   Map<String, dynamic> toJson() {
     final afterConnectScript = this.afterConnectScript;
+    final cleanSourceMetadataOnMismatch = this.cleanSourceMetadataOnMismatch;
     final databaseName = this.databaseName;
     final eventsPollInterval = this.eventsPollInterval;
     final maxFileSize = this.maxFileSize;
@@ -6733,6 +7033,8 @@ class MySQLSettings {
     final username = this.username;
     return {
       if (afterConnectScript != null) 'AfterConnectScript': afterConnectScript,
+      if (cleanSourceMetadataOnMismatch != null)
+        'CleanSourceMetadataOnMismatch': cleanSourceMetadataOnMismatch,
       if (databaseName != null) 'DatabaseName': databaseName,
       if (eventsPollInterval != null) 'EventsPollInterval': eventsPollInterval,
       if (maxFileSize != null) 'MaxFileSize': maxFileSize,
@@ -7088,6 +7390,14 @@ class OracleSettings {
   /// Fully qualified domain name of the endpoint.
   final String? serverName;
 
+  /// Use this attribute to convert <code>SDO_GEOMETRY</code> to
+  /// <code>GEOJSON</code> format. By default, DMS calls the
+  /// <code>SDO2GEOJSON</code> custom function if present and accessible. Or you
+  /// can create your own custom function that mimics the operation of
+  /// <code>SDOGEOJSON</code> and set
+  /// <code>SpatialDataOptionToGeoJsonFunctionName</code> to call it instead.
+  final String? spatialDataOptionToGeoJsonFunctionName;
+
   /// Set this attribute to <code>true</code> in order to use the Binary Reader to
   /// capture change data for an Amazon RDS for Oracle as the source. This tells
   /// the DMS instance to use any specified prefix replacement to access all
@@ -7135,6 +7445,7 @@ class OracleSettings {
     this.securityDbEncryption,
     this.securityDbEncryptionName,
     this.serverName,
+    this.spatialDataOptionToGeoJsonFunctionName,
     this.useAlternateFolderForOnline,
     this.usePathPrefix,
     this.username,
@@ -7176,6 +7487,8 @@ class OracleSettings {
       securityDbEncryption: json['SecurityDbEncryption'] as String?,
       securityDbEncryptionName: json['SecurityDbEncryptionName'] as String?,
       serverName: json['ServerName'] as String?,
+      spatialDataOptionToGeoJsonFunctionName:
+          json['SpatialDataOptionToGeoJsonFunctionName'] as String?,
       useAlternateFolderForOnline: json['UseAlternateFolderForOnline'] as bool?,
       usePathPrefix: json['UsePathPrefix'] as String?,
       username: json['Username'] as String?,
@@ -7216,6 +7529,8 @@ class OracleSettings {
     final securityDbEncryption = this.securityDbEncryption;
     final securityDbEncryptionName = this.securityDbEncryptionName;
     final serverName = this.serverName;
+    final spatialDataOptionToGeoJsonFunctionName =
+        this.spatialDataOptionToGeoJsonFunctionName;
     final useAlternateFolderForOnline = this.useAlternateFolderForOnline;
     final usePathPrefix = this.usePathPrefix;
     final username = this.username;
@@ -7268,6 +7583,9 @@ class OracleSettings {
       if (securityDbEncryptionName != null)
         'SecurityDbEncryptionName': securityDbEncryptionName,
       if (serverName != null) 'ServerName': serverName,
+      if (spatialDataOptionToGeoJsonFunctionName != null)
+        'SpatialDataOptionToGeoJsonFunctionName':
+            spatialDataOptionToGeoJsonFunctionName,
       if (useAlternateFolderForOnline != null)
         'UseAlternateFolderForOnline': useAlternateFolderForOnline,
       if (usePathPrefix != null) 'UsePathPrefix': usePathPrefix,
@@ -9478,7 +9796,7 @@ class S3Settings {
   final String? serverSideEncryptionKmsKeyId;
 
   /// The Amazon Resource Name (ARN) used by the service access IAM role. It is a
-  /// required parameter that enables DMS to write and read objects from an 3S
+  /// required parameter that enables DMS to write and read objects from an S3
   /// bucket.
   final String? serviceAccessRoleArn;
 

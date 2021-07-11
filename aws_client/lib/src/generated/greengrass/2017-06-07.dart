@@ -485,30 +485,31 @@ class Greengrass {
   ///
   /// May throw [BadRequestException].
   ///
+  /// Parameter [name] :
+  /// The name of the group.
+  ///
   /// Parameter [amznClientToken] :
   /// A client token used to correlate requests and responses.
   ///
   /// Parameter [initialVersion] :
   /// Information about the initial version of the group.
   ///
-  /// Parameter [name] :
-  /// The name of the group.
-  ///
   /// Parameter [tags] :
   /// Tag(s) to add to the new resource.
   Future<CreateGroupResponse> createGroup({
+    required String name,
     String? amznClientToken,
     GroupVersion? initialVersion,
-    String? name,
     Map<String, String>? tags,
   }) async {
+    ArgumentError.checkNotNull(name, 'name');
     final headers = <String, String>{
       if (amznClientToken != null)
         'X-Amzn-Client-Token': amznClientToken.toString(),
     };
     final $payload = <String, dynamic>{
+      'Name': name,
       if (initialVersion != null) 'InitialVersion': initialVersion,
-      if (name != null) 'Name': name,
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(

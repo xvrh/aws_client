@@ -19,22 +19,22 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// Amazon Connect is a cloud-based contact center solution that makes it easy
-/// to set up and manage a customer contact center and provide reliable customer
+/// Amazon Connect is a cloud-based contact center solution that you use to set
+/// up and manage a customer contact center and provide reliable customer
 /// engagement at any scale.
 ///
-/// Amazon Connect provides rich metrics and real-time reporting that allow you
-/// to optimize contact routing. You can also resolve customer issues more
-/// efficiently by putting customers in touch with the right agents.
+/// Amazon Connect provides metrics and real-time reporting that enable you to
+/// optimize contact routing. You can also resolve customer issues more
+/// efficiently by getting customers in touch with the appropriate agents.
 ///
 /// There are limits to the number of Amazon Connect resources that you can
-/// create and limits to the number of requests that you can make per second.
-/// For more information, see <a
+/// create. There are also limits to the number of requests that you can make
+/// per second. For more information, see <a
 /// href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">Amazon
 /// Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.
 ///
-/// To connect programmatically to an AWS service, you use an endpoint. For a
-/// list of Amazon Connect endpoints, see <a
+/// You can connect programmatically to an AWS service by using an endpoint. For
+/// a list of Amazon Connect endpoints, see <a
 /// href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html">Amazon
 /// Connect Endpoints</a>.
 /// <note>
@@ -74,7 +74,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [origin] :
   /// The domain to add to your allow list.
@@ -113,6 +114,51 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Allows the specified Amazon Connect instance to access the specified
+  /// Amazon Lex or Amazon Lex V2 bot.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceConflictException].
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [LimitExceededException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [lexV2Bot] :
+  /// The Amazon Lex V2 bot to associate with the instance.
+  Future<void> associateBot({
+    required String instanceId,
+    LexBot? lexBot,
+    LexV2Bot? lexV2Bot,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (lexBot != null) 'LexBot': lexBot,
+      if (lexV2Bot != null) 'LexV2Bot': lexV2Bot,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/instance/${Uri.encodeComponent(instanceId)}/bot',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
   /// Associates a storage resource type for the first time. You can only
   /// associate one type of storage configuration in a single call. This means,
   /// for example, that you can't define an instance with multiple S3 buckets
@@ -120,8 +166,8 @@ class Connect {
   ///
   /// This API does not create a resource that doesn't exist. It only associates
   /// it to the instance. Ensure that the resource being specified in the
-  /// storage configuration, like an Amazon S3 bucket, exists when being used
-  /// for association.
+  /// storage configuration, like an S3 bucket, exists when being used for
+  /// association.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ResourceConflictException].
@@ -131,7 +177,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [resourceType] :
   /// A valid resource type.
@@ -186,7 +233,8 @@ class Connect {
   /// Maximum number of characters allowed is 140.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> associateLambdaFunction({
     required String functionArn,
     required String instanceId,
@@ -234,10 +282,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [lexBot] :
-  /// The Amazon Lex box to associate with the instance.
+  /// The Amazon Lex bot to associate with the instance.
   Future<void> associateLexBot({
     required String instanceId,
     required LexBot lexBot,
@@ -262,6 +311,54 @@ class Connect {
     );
   }
 
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Associates a set of quick connects with a queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [LimitExceededException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [quickConnectIds] :
+  /// The quick connects to associate with this queue.
+  Future<void> associateQueueQuickConnects({
+    required String instanceId,
+    required String queueId,
+    required List<String> quickConnectIds,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    ArgumentError.checkNotNull(quickConnectIds, 'quickConnectIds');
+    final $payload = <String, dynamic>{
+      'QuickConnectIds': quickConnectIds,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/associate-quick-connects',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Associates a set of queues with a routing profile.
   ///
   /// May throw [InvalidRequestException].
@@ -271,7 +368,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [queueConfigs] :
   /// The queues to associate with this routing profile.
@@ -319,7 +417,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [key] :
   /// A valid security key in PEM format.
@@ -436,9 +535,15 @@ class Connect {
   /// change.
   ///
   /// Initiates an Amazon Connect instance with all the supported channels
-  /// enabled. It does not attach any storage (such as Amazon S3, or Kinesis) or
-  /// allow for any configurations on features such as Contact Lens for Amazon
-  /// Connect.
+  /// enabled. It does not attach any storage, such as Amazon Simple Storage
+  /// Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
+  /// configurations on features, such as Contact Lens for Amazon Connect.
+  ///
+  /// Amazon Connect enforces a limit on the total number of instances that you
+  /// can create or delete in 30 days. If you exceed this limit, you will get an
+  /// error message indicating there has been an excessive number of attempts at
+  /// creating or deleting instances. You must wait 30 days before you can
+  /// restart creating and deleting instances in your account.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ServiceQuotaExceededException].
@@ -450,10 +555,10 @@ class Connect {
   /// The type of identity management for your Amazon Connect users.
   ///
   /// Parameter [inboundCallsEnabled] :
-  /// Whether your contact center handles incoming contacts.
+  /// Your contact center handles incoming contacts.
   ///
   /// Parameter [outboundCallsEnabled] :
-  /// Whether your contact center allows outbound calls.
+  /// Your contact center allows outbound calls.
   ///
   /// Parameter [clientToken] :
   /// The idempotency token.
@@ -487,21 +592,11 @@ class Connect {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{10}$''',
-    );
     _s.validateStringLength(
       'instanceAlias',
       instanceAlias,
       1,
       62,
-    );
-    _s.validateStringPattern(
-      'instanceAlias',
-      instanceAlias,
-      r'''^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$''',
     );
     final $payload = <String, dynamic>{
       'IdentityManagementType': identityManagementType.toValue(),
@@ -520,9 +615,6 @@ class Connect {
     return CreateInstanceResponse.fromJson(response);
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Create an AppIntegration association with an Amazon Connect instance.
   ///
   /// May throw [DuplicateResourceException].
@@ -532,7 +624,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [integrationArn] :
   /// The Amazon Resource Name (ARN) of the integration.
@@ -548,6 +641,9 @@ class Connect {
   ///
   /// Parameter [sourceType] :
   /// The type of the data source.
+  ///
+  /// Parameter [tags] :
+  /// One or more tags.
   Future<CreateIntegrationAssociationResponse> createIntegrationAssociation({
     required String instanceId,
     required String integrationArn,
@@ -555,6 +651,7 @@ class Connect {
     required String sourceApplicationName,
     required String sourceApplicationUrl,
     required SourceType sourceType,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     _s.validateStringLength(
@@ -574,12 +671,6 @@ class Connect {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sourceApplicationName',
-      sourceApplicationName,
-      r'''^[a-zA-Z0-9_ -]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceApplicationUrl, 'sourceApplicationUrl');
     _s.validateStringLength(
       'sourceApplicationUrl',
@@ -595,6 +686,7 @@ class Connect {
       'SourceApplicationName': sourceApplicationName,
       'SourceApplicationUrl': sourceApplicationUrl,
       'SourceType': sourceType.toValue(),
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -609,6 +701,99 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Creates a new queue for the specified Amazon Connect instance.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [DuplicateResourceException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [LimitExceededException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [hoursOfOperationId] :
+  /// The identifier for the hours of operation.
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [name] :
+  /// The name of the queue.
+  ///
+  /// Parameter [description] :
+  /// The description of the queue.
+  ///
+  /// Parameter [maxContacts] :
+  /// The maximum number of contacts that can be in the queue before it is
+  /// considered full.
+  ///
+  /// Parameter [outboundCallerConfig] :
+  /// The outbound caller ID name, number, and outbound whisper flow.
+  ///
+  /// Parameter [quickConnectIds] :
+  /// The quick connects available to agents who are working the queue.
+  ///
+  /// Parameter [tags] :
+  /// One or more tags.
+  Future<CreateQueueResponse> createQueue({
+    required String hoursOfOperationId,
+    required String instanceId,
+    required String name,
+    String? description,
+    int? maxContacts,
+    OutboundCallerConfig? outboundCallerConfig,
+    List<String>? quickConnectIds,
+    Map<String, String>? tags,
+  }) async {
+    ArgumentError.checkNotNull(hoursOfOperationId, 'hoursOfOperationId');
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      127,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      250,
+    );
+    _s.validateNumRange(
+      'maxContacts',
+      maxContacts,
+      0,
+      1152921504606846976,
+    );
+    final $payload = <String, dynamic>{
+      'HoursOfOperationId': hoursOfOperationId,
+      'Name': name,
+      if (description != null) 'Description': description,
+      if (maxContacts != null) 'MaxContacts': maxContacts,
+      if (outboundCallerConfig != null)
+        'OutboundCallerConfig': outboundCallerConfig,
+      if (quickConnectIds != null) 'QuickConnectIds': quickConnectIds,
+      if (tags != null) 'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/queues/${Uri.encodeComponent(instanceId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateQueueResponse.fromJson(response);
+  }
+
   /// Creates a quick connect for the specified Amazon Connect instance.
   ///
   /// May throw [InvalidRequestException].
@@ -620,7 +805,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [name] :
   /// The name of the quick connect.
@@ -660,7 +846,7 @@ class Connect {
     _s.validateStringLength(
       'description',
       description,
-      0,
+      1,
       250,
     );
     final $payload = <String, dynamic>{
@@ -695,18 +881,19 @@ class Connect {
   /// Description of the routing profile. Must not be more than 250 characters.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [mediaConcurrencies] :
-  /// The channels agents can handle in the Contact Control Panel (CCP) for this
-  /// routing profile.
+  /// The channels that agents can handle in the Contact Control Panel (CCP) for
+  /// this routing profile.
   ///
   /// Parameter [name] :
   /// The name of the routing profile. Must not be more than 127 characters.
   ///
   /// Parameter [queueConfigs] :
   /// The inbound queues associated with the routing profile. If no queue is
-  /// added, the agent can only make outbound calls.
+  /// added, the agent can make only outbound calls.
   ///
   /// Parameter [tags] :
   /// One or more tags.
@@ -763,9 +950,6 @@ class Connect {
     return CreateRoutingProfileResponse.fromJson(response);
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Creates a use case for an AppIntegration association.
   ///
   /// May throw [DuplicateResourceException].
@@ -775,7 +959,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [integrationAssociationId] :
   /// The identifier for the AppIntegration association.
@@ -783,10 +968,14 @@ class Connect {
   /// Parameter [useCaseType] :
   /// The type of use case to associate to the AppIntegration association. Each
   /// AppIntegration association can have only one of each use case type.
+  ///
+  /// Parameter [tags] :
+  /// One or more tags.
   Future<CreateUseCaseResponse> createUseCase({
     required String instanceId,
     required String integrationAssociationId,
     required UseCaseType useCaseType,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     _s.validateStringLength(
@@ -808,6 +997,7 @@ class Connect {
     ArgumentError.checkNotNull(useCaseType, 'useCaseType');
     final $payload = <String, dynamic>{
       'UseCaseType': useCaseType.toValue(),
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -835,7 +1025,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [phoneConfig] :
   /// The phone settings for the user.
@@ -908,11 +1099,6 @@ class Connect {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,64}$/''',
-    );
     final $payload = <String, dynamic>{
       'PhoneConfig': phoneConfig,
       'RoutingProfileId': routingProfileId,
@@ -944,7 +1130,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [name] :
   /// The name of the user hierarchy group. Must not be more than 100
@@ -985,12 +1172,19 @@ class Connect {
   ///
   /// Deletes the Amazon Connect instance.
   ///
+  /// Amazon Connect enforces a limit on the total number of instances that you
+  /// can create or delete in 30 days. If you exceed this limit, you will get an
+  /// error message indicating there has been an excessive number of attempts at
+  /// creating or deleting instances. You must wait 30 days before you can
+  /// restart creating and deleting instances in your account.
+  ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> deleteInstance({
     required String instanceId,
   }) async {
@@ -1010,9 +1204,6 @@ class Connect {
     );
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Deletes an AppIntegration association from an Amazon Connect instance. The
   /// association must not have any use cases associated with it.
   ///
@@ -1022,7 +1213,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [integrationAssociationId] :
   /// The identifier for the AppIntegration association.
@@ -1056,9 +1248,6 @@ class Connect {
     );
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Deletes a quick connect.
   ///
   /// May throw [InvalidRequestException].
@@ -1068,7 +1257,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [quickConnectId] :
   /// The identifier for the quick connect.
@@ -1094,9 +1284,6 @@ class Connect {
     );
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Deletes a use case from an AppIntegration association.
   ///
   /// May throw [ResourceNotFoundException].
@@ -1105,7 +1292,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [integrationAssociationId] :
   /// The identifier for the AppIntegration association.
@@ -1166,7 +1354,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [userId] :
   /// The identifier of the user.
@@ -1206,7 +1395,8 @@ class Connect {
   /// The identifier of the hierarchy group.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> deleteUserHierarchyGroup({
     required String hierarchyGroupId,
     required String instanceId,
@@ -1280,8 +1470,48 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Describes the hours of operation.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [hoursOfOperationId] :
+  /// The identifier for the hours of operation.
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  Future<DescribeHoursOfOperationResponse> describeHoursOfOperation({
+    required String hoursOfOperationId,
+    required String instanceId,
+  }) async {
+    ArgumentError.checkNotNull(hoursOfOperationId, 'hoursOfOperationId');
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/hours-of-operations/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(hoursOfOperationId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeHoursOfOperationResponse.fromJson(response);
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
   /// Returns the current state of the specified instance identifier. It tracks
-  /// the instance while it is being created and returns an error status if
+  /// the instance while it is being created and returns an error status, if
   /// applicable.
   ///
   /// If an instance is not created successfully, the instance status reason
@@ -1294,7 +1524,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<DescribeInstanceResponse> describeInstance({
     required String instanceId,
   }) async {
@@ -1330,7 +1561,8 @@ class Connect {
   /// The type of attribute.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<DescribeInstanceAttributeResponse> describeInstanceAttribute({
     required InstanceAttributeType attributeType,
     required String instanceId,
@@ -1371,7 +1603,8 @@ class Connect {
   /// type and storage config for the given instance ID.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [resourceType] :
   /// A valid resource type.
@@ -1414,6 +1647,43 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Describes the specified queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  Future<DescribeQueueResponse> describeQueue({
+    required String instanceId,
+    required String queueId,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeQueueResponse.fromJson(response);
+  }
+
   /// Describes the quick connect.
   ///
   /// May throw [InvalidRequestException].
@@ -1423,7 +1693,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [quickConnectId] :
   /// The identifier for the quick connect.
@@ -1459,7 +1730,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile.
@@ -1497,7 +1769,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [userId] :
   /// The identifier of the user account.
@@ -1536,7 +1809,8 @@ class Connect {
   /// The identifier of the hierarchy group.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<DescribeUserHierarchyGroupResponse> describeUserHierarchyGroup({
     required String hierarchyGroupId,
     required String instanceId,
@@ -1570,7 +1844,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<DescribeUserHierarchyStructureResponse>
       describeUserHierarchyStructure({
     required String instanceId,
@@ -1605,7 +1880,8 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [origin] :
   /// The domain URL of the integrated application.
@@ -1645,6 +1921,48 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Revokes authorization from the specified instance to access the specified
+  /// Amazon Lex or Amazon Lex V2 bot.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [lexV2Bot] :
+  /// The Amazon Lex V2 bot to disassociate from the instance.
+  Future<void> disassociateBot({
+    required String instanceId,
+    LexBot? lexBot,
+    LexV2Bot? lexV2Bot,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (lexBot != null) 'LexBot': lexBot,
+      if (lexV2Bot != null) 'LexV2Bot': lexV2Bot,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/instance/${Uri.encodeComponent(instanceId)}/bot',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
   /// Removes the storage type configurations for the specified resource type
   /// and association ID.
   ///
@@ -1659,7 +1977,8 @@ class Connect {
   /// type and storage config for the given instance ID.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [resourceType] :
   /// A valid resource type.
@@ -1701,7 +2020,7 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
-  /// Remove the Lambda function from the drop-down options available in the
+  /// Remove the Lambda function from the dropdown options available in the
   /// relevant contact flow blocks.
   ///
   /// May throw [ResourceNotFoundException].
@@ -1714,7 +2033,8 @@ class Connect {
   /// The Amazon Resource Name (ARN) of the Lambda function being disassociated.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance..
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance..
   Future<void> disassociateLambdaFunction({
     required String functionArn,
     required String instanceId,
@@ -1764,7 +2084,8 @@ class Connect {
   /// The name of the Amazon Lex bot. Maximum character limit of 50.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [lexRegion] :
   /// The Region in which the Amazon Lex bot has been created.
@@ -1810,6 +2131,53 @@ class Connect {
     );
   }
 
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Disassociates a set of quick connects from a queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [quickConnectIds] :
+  /// The quick connects to disassociate from the queue.
+  Future<void> disassociateQueueQuickConnects({
+    required String instanceId,
+    required String queueId,
+    required List<String> quickConnectIds,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    ArgumentError.checkNotNull(quickConnectIds, 'quickConnectIds');
+    final $payload = <String, dynamic>{
+      'QuickConnectIds': quickConnectIds,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/disassociate-quick-connects',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Disassociates a set of queues from a routing profile.
   ///
   /// May throw [InvalidRequestException].
@@ -1819,7 +2187,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [queueReferences] :
   /// The queues to disassociate from this routing profile.
@@ -1869,7 +2238,8 @@ class Connect {
   /// type and storage config for the given instance ID.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> disassociateSecurityKey({
     required String associationId,
     required String instanceId,
@@ -2045,7 +2415,8 @@ class Connect {
   /// supported.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [groupings] :
   /// The grouping applied to the metrics returned. For example, when grouped by
@@ -2058,7 +2429,7 @@ class Connect {
   /// metrics is returned.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2109,6 +2480,14 @@ class Connect {
   }
 
   /// Retrieves a token for federation.
+  /// <note>
+  /// This API doesn't support root users. If you try to invoke
+  /// GetFederationToken with root credentials, an error message similar to the
+  /// following one appears:
+  ///
+  /// <code>Provided identity: Principal: .... User: .... cannot be used for
+  /// federation with Amazon Connect</code>
+  /// </note>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InvalidParameterException].
@@ -2118,7 +2497,8 @@ class Connect {
   /// May throw [DuplicateResourceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<GetFederationTokenResponse> getFederationToken({
     required String instanceId,
   }) async {
@@ -2165,6 +2545,10 @@ class Connect {
   /// or channels included in the filter. You can include both queue IDs and
   /// queue ARNs in the same request. VOICE, CHAT, and TASK channels are
   /// supported.
+  /// <note>
+  /// To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of
+  /// the queue.
+  /// </note>
   ///
   /// Parameter [historicalMetrics] :
   /// The metrics to retrieve. Specify the name, unit, and statistic for each
@@ -2172,7 +2556,10 @@ class Connect {
   /// of each metric, see <a
   /// href="https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html">Historical
   /// Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.
-  /// <dl> <dt>ABANDON_TIME</dt> <dd>
+  /// <note>
+  /// This API does not support a contacts incoming metric (there's no
+  /// CONTACTS_INCOMING metric missing from the documented list).
+  /// </note> <dl> <dt>ABANDON_TIME</dt> <dd>
   /// Unit: SECONDS
   ///
   /// Statistic: AVG
@@ -2269,17 +2656,20 @@ class Connect {
   ///
   /// Statistic: MAX
   /// </dd> <dt>SERVICE_LEVEL</dt> <dd>
+  /// You can include up to 20 SERVICE_LEVEL metrics in a request.
+  ///
   /// Unit: PERCENT
   ///
   /// Statistic: AVG
   ///
-  /// Threshold: Only "Less than" comparisons are supported, with the following
-  /// service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-  /// 600
+  /// Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+  /// to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+  /// enter <code>LT</code> (for "Less than").
   /// </dd> </dl>
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [startTime] :
   /// The timestamp, in UNIX Epoch time format, at which to start the reporting
@@ -2295,13 +2685,11 @@ class Connect {
   /// values returned apply to the metrics for each queue rather than aggregated
   /// for all queues.
   ///
-  /// The only supported grouping is <code>QUEUE</code>.
-  ///
   /// If no grouping is specified, a summary of metrics for all queues is
   /// returned.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2366,10 +2754,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2408,6 +2797,66 @@ class Connect {
     return ListApprovedOriginsResponse.fromJson(response);
   }
 
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// For the specified version of Amazon Lex, returns a paginated list of all
+  /// the Amazon Lex bots currently associated with the instance.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [lexVersion] :
+  /// The version of Amazon Lex or Amazon Lex V2.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return per page.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results. Use the value returned in the
+  /// previous response in the next request to retrieve the next set of results.
+  Future<ListBotsResponse> listBots({
+    required String instanceId,
+    required LexVersion lexVersion,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(lexVersion, 'lexVersion');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      25,
+    );
+    final $query = <String, List<String>>{
+      'lexVersion': [lexVersion.toValue()],
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/instance/${Uri.encodeComponent(instanceId)}/bots',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListBotsResponse.fromJson(response);
+  }
+
   /// Provides information about the contact flows for the specified Amazon
   /// Connect instance.
   ///
@@ -2426,13 +2875,14 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [contactFlowTypes] :
   /// The type of contact flow.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2488,10 +2938,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2542,10 +2993,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2596,13 +3048,14 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [resourceType] :
   /// A valid resource type.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2656,7 +3109,7 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2685,9 +3138,6 @@ class Connect {
     return ListInstancesResponse.fromJson(response);
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Provides summary information about the AppIntegration associations for the
   /// specified Amazon Connect instance.
   ///
@@ -2697,10 +3147,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2742,8 +3193,8 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
-  /// Returns a paginated list of all the Lambda functions that show up in the
-  /// drop-down options in the relevant contact flow blocks.
+  /// Returns a paginated list of all Lambda functions that display in the
+  /// dropdown options in the relevant contact flow blocks.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServiceException].
@@ -2752,10 +3203,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2807,10 +3259,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2863,10 +3316,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -2968,8 +3422,73 @@ class Connect {
     return ListPromptsResponse.fromJson(response);
   }
 
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Lists the quick connects associated with a queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return per page.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results. Use the value returned in the
+  /// previous response in the next request to retrieve the next set of results.
+  Future<ListQueueQuickConnectsResponse> listQueueQuickConnects({
+    required String instanceId,
+    required String queueId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/quick-connects',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListQueueQuickConnectsResponse.fromJson(response);
+  }
+
   /// Provides information about the queues for the specified Amazon Connect
   /// instance.
+  ///
+  /// If you do not specify a <code>QueueTypes</code> parameter, both standard
+  /// and agent queues are returned. This might cause an unexpected truncation
+  /// of results if you have more than 1000 agents and you limit the number of
+  /// results of the API call in code.
   ///
   /// For more information about queues, see <a
   /// href="https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html">Queues:
@@ -2982,10 +3501,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3029,9 +3549,6 @@ class Connect {
     return ListQueuesResponse.fromJson(response);
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Provides information about the quick connects for the specified Amazon
   /// Connect instance.
   ///
@@ -3042,10 +3559,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3091,7 +3609,7 @@ class Connect {
     return ListQuickConnectsResponse.fromJson(response);
   }
 
-  /// List the queues associated with a routing profile.
+  /// Lists the queues associated with a routing profile.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InvalidParameterException].
@@ -3100,13 +3618,14 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3163,10 +3682,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3218,10 +3738,11 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3273,10 +3794,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3343,10 +3865,7 @@ class Connect {
     return ListTagsForResourceResponse.fromJson(response);
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
-  /// List the use cases.
+  /// Lists the use cases.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServiceException].
@@ -3354,13 +3873,14 @@ class Connect {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [integrationAssociationId] :
   /// The identifier for the integration association.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3423,10 +3943,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3475,10 +3996,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [maxResults] :
-  /// The maximimum number of results to return per page.
+  /// The maximum number of results to return per page.
   ///
   /// Parameter [nextToken] :
   /// The token for the next set of results. Use the value returned in the
@@ -3533,7 +4055,8 @@ class Connect {
   /// associated with the first interaction with the contact center.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> resumeContactRecording({
     required String contactId,
     required String initialContactId,
@@ -3581,9 +4104,9 @@ class Connect {
   /// href="https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html">CreateParticipantConnection</a>
   /// API in the Amazon Connect Participant Service.
   ///
-  /// When a new chat contact is successfully created, clients need to subscribe
-  /// to the participant’s connection for the created chat within 5 minutes.
-  /// This is achieved by invoking <a
+  /// When a new chat contact is successfully created, clients must subscribe to
+  /// the participant’s connection for the created chat within 5 minutes. This
+  /// is achieved by invoking <a
   /// href="https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html">CreateParticipantConnection</a>
   /// with WEBSOCKET and CONNECTION_CREDENTIALS.
   ///
@@ -3592,7 +4115,7 @@ class Connect {
   /// <ul>
   /// <li>
   /// API rate limit is exceeded. API TPS throttling returns a
-  /// <code>TooManyRequests</code> exception from the API Gateway.
+  /// <code>TooManyRequests</code> exception.
   /// </li>
   /// <li>
   /// The <a
@@ -3601,7 +4124,7 @@ class Connect {
   /// returns a <code>LimitExceededException</code>.
   /// </li>
   /// </ul>
-  /// For more information about how chat works, see <a
+  /// For more information about chat, see <a
   /// href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html">Chat</a>
   /// in the <i>Amazon Connect Administrator Guide</i>.
   ///
@@ -3622,14 +4145,15 @@ class Connect {
   /// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [participantDetails] :
   /// Information identifying the participant.
   ///
   /// Parameter [attributes] :
   /// A custom key-value pair using an attribute map. The attributes are
-  /// standard Amazon Connect attributes, and can be accessed in contact flows
+  /// standard Amazon Connect attributes. They can be accessed in contact flows
   /// just like any other contact attributes.
   ///
   /// There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -3690,7 +4214,7 @@ class Connect {
     return StartChatContactResponse.fromJson(response);
   }
 
-  /// This API starts recording the contact when the agent joins the call.
+  /// Starts recording the contact when the agent joins the call.
   /// StartContactRecording is a one-time action. For example, if you use
   /// StopContactRecording to stop recording an ongoing call, you can't use
   /// StartContactRecording to restart it. For scenarios where the recording has
@@ -3718,10 +4242,11 @@ class Connect {
   /// associated with the first interaction with the contact center.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [voiceRecordingConfiguration] :
-  /// Who is being recorded.
+  /// The person being recorded.
   Future<void> startContactRecording({
     required String contactId,
     required String initialContactId,
@@ -3768,16 +4293,16 @@ class Connect {
     );
   }
 
-  /// This API places an outbound call to a contact, and then initiates the
-  /// contact flow. It performs the actions in the contact flow that's specified
-  /// (in <code>ContactFlowId</code>).
+  /// Places an outbound call to a contact, and then initiates the contact flow.
+  /// It performs the actions in the contact flow that's specified (in
+  /// <code>ContactFlowId</code>).
   ///
-  /// Agents are not involved in initiating the outbound API (that is, dialing
-  /// the contact). If the contact flow places an outbound call to a contact,
-  /// and then puts the contact in queue, that's when the call is routed to the
-  /// agent, like any other inbound case.
+  /// Agents do not initiate the outbound API, which means that they do not dial
+  /// the contact. If the contact flow places an outbound call to a contact, and
+  /// then puts the contact in queue, the call is then routed to the agent, like
+  /// any other inbound case.
   ///
-  /// There is a 60 second dialing timeout for this operation. If the call is
+  /// There is a 60-second dialing timeout for this operation. If the call is
   /// not connected after 60 seconds, it fails.
   /// <note>
   /// UK numbers with a 447 prefix are not allowed by default. Before you can
@@ -3810,7 +4335,8 @@ class Connect {
   /// The phone number of the customer, in E.164 format.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [attributes] :
   /// A custom key-value pair using an attribute map. The attributes are
@@ -3824,8 +4350,7 @@ class Connect {
   /// Parameter [clientToken] :
   /// A unique, case-sensitive identifier that you provide to ensure the
   /// idempotency of the request. The token is valid for 7 days after creation.
-  /// If a contact is already started, the contact ID is returned. If the
-  /// contact is disconnected, a new contact is started.
+  /// If a contact is already started, the contact ID is returned.
   ///
   /// Parameter [queueId] :
   /// The queue for the call. If you specify a queue, the phone displayed for
@@ -3908,7 +4433,8 @@ class Connect {
   /// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b>
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [name] :
   /// The name of a task that is shown to an agent in the Contact Control Panel
@@ -4020,7 +4546,8 @@ class Connect {
   /// The ID of the contact.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> stopContact({
     required String contactId,
     required String instanceId,
@@ -4053,7 +4580,7 @@ class Connect {
     );
   }
 
-  /// When a contact is being recorded, this API stops recording the call.
+  /// Stops recording a call when a contact is being recorded.
   /// StopContactRecording is a one-time action. If you use StopContactRecording
   /// to stop recording an ongoing call, you can't use StartContactRecording to
   /// restart it. For scenarios where the recording has started and you want to
@@ -4075,7 +4602,8 @@ class Connect {
   /// associated with the first interaction with the contact center.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> stopContactRecording({
     required String contactId,
     required String initialContactId,
@@ -4140,7 +4668,8 @@ class Connect {
   /// associated with the first interaction with the contact center.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> suspendContactRecording({
     required String contactId,
     required String initialContactId,
@@ -4185,8 +4714,8 @@ class Connect {
 
   /// Adds the specified tags to the specified resource.
   ///
-  /// The supported resource types are users, routing profiles, quick connects,
-  /// and contact flows.
+  /// The supported resource types are users, routing profiles, queues, quick
+  /// connects, and contact flows.
   ///
   /// For sample policies that use tags, see <a
   /// href="https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html">Amazon
@@ -4253,28 +4782,31 @@ class Connect {
     );
   }
 
-  /// Creates or updates the contact attributes associated with the specified
-  /// contact.
+  /// Creates or updates user-defined contact attributes associated with the
+  /// specified contact.
   ///
-  /// You can add or update attributes for both ongoing and completed contacts.
-  /// For example, you can update the customer's name or the reason the customer
-  /// called while the call is active, or add notes about steps that the agent
-  /// took during the call that are displayed to the next agent that takes the
-  /// call. You can also update attributes for a contact using data from your
-  /// CRM application and save the data with the contact in Amazon Connect. You
-  /// could also flag calls for additional analysis, such as legal review or
-  /// identifying abusive callers.
+  /// You can create or update user-defined attributes for both ongoing and
+  /// completed contacts. For example, while the call is active, you can update
+  /// the customer's name or the reason the customer called. You can add notes
+  /// about steps that the agent took during the call that display to the next
+  /// agent that takes the call. You can also update attributes for a contact
+  /// using data from your CRM application and save the data with the contact in
+  /// Amazon Connect. You could also flag calls for additional analysis, such as
+  /// legal review or to identify abusive callers.
   ///
   /// Contact attributes are available in Amazon Connect for 24 months, and are
-  /// then deleted.
+  /// then deleted. For information about CTR retention and the maximum size of
+  /// the CTR attributes section, see <a
+  /// href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits">Feature
+  /// specifications</a> in the <i>Amazon Connect Administrator Guide</i>.
   ///
   /// <b>Important:</b> You cannot use the operation to update attributes for
-  /// contacts that occurred prior to the release of the API, September 12,
-  /// 2018. You can update attributes only for contacts that started after the
-  /// release of the API. If you attempt to update attributes for a contact that
-  /// occurred prior to the release of the API, a 400 error is returned. This
-  /// applies also to queued callbacks that were initiated prior to the release
-  /// of the API but are still active in your instance.
+  /// contacts that occurred prior to the release of the API, which was
+  /// September 12, 2018. You can update attributes only for contacts that
+  /// started after the release of the API. If you attempt to update attributes
+  /// for a contact that occurred prior to the release of the API, a 400 error
+  /// is returned. This applies also to queued callbacks that were initiated
+  /// prior to the release of the API but are still active in your instance.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InvalidParameterException].
@@ -4294,7 +4826,8 @@ class Connect {
   /// associated with the first interaction with the contact center.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> updateContactAttributes({
     required Map<String, String> attributes,
     required String initialContactId,
@@ -4469,7 +5002,8 @@ class Connect {
   /// The type of attribute.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [value] :
   /// The value for the attribute. Maximum character limit is 100.
@@ -4524,7 +5058,8 @@ class Connect {
   /// type and storage config for the given instance ID.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [resourceType] :
   /// A valid resource type.
@@ -4571,6 +5106,264 @@ class Connect {
   /// This API is in preview release for Amazon Connect and is subject to
   /// change.
   ///
+  /// Updates the hours of operation for the specified queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [hoursOfOperationId] :
+  /// The identifier for the hours of operation.
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  Future<void> updateQueueHoursOfOperation({
+    required String hoursOfOperationId,
+    required String instanceId,
+    required String queueId,
+  }) async {
+    ArgumentError.checkNotNull(hoursOfOperationId, 'hoursOfOperationId');
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    final $payload = <String, dynamic>{
+      'HoursOfOperationId': hoursOfOperationId,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/hours-of-operation',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Updates the maximum number of contacts allowed in a queue before it is
+  /// considered full.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [maxContacts] :
+  /// The maximum number of contacts that can be in the queue before it is
+  /// considered full.
+  Future<void> updateQueueMaxContacts({
+    required String instanceId,
+    required String queueId,
+    int? maxContacts,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    _s.validateNumRange(
+      'maxContacts',
+      maxContacts,
+      0,
+      1152921504606846976,
+    );
+    final $payload = <String, dynamic>{
+      if (maxContacts != null) 'MaxContacts': maxContacts,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/max-contacts',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Updates the name and description of a queue. At least <code>Name</code> or
+  /// <code>Description</code> must be provided.
+  ///
+  /// May throw [DuplicateResourceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [description] :
+  /// The description of the queue.
+  ///
+  /// Parameter [name] :
+  /// The name of the queue.
+  Future<void> updateQueueName({
+    required String instanceId,
+    required String queueId,
+    String? description,
+    String? name,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      250,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      127,
+    );
+    final $payload = <String, dynamic>{
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/name',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Updates the outbound caller ID name, number, and outbound whisper flow for
+  /// a specified queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [outboundCallerConfig] :
+  /// The outbound caller ID name, number, and outbound whisper flow.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  Future<void> updateQueueOutboundCallerConfig({
+    required String instanceId,
+    required OutboundCallerConfig outboundCallerConfig,
+    required String queueId,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(outboundCallerConfig, 'outboundCallerConfig');
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    final $payload = <String, dynamic>{
+      'OutboundCallerConfig': outboundCallerConfig,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/outbound-caller-config',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This API is in preview release for Amazon Connect and is subject to
+  /// change.
+  ///
+  /// Updates the status of the queue.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServiceException].
+  ///
+  /// Parameter [instanceId] :
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
+  ///
+  /// Parameter [queueId] :
+  /// The identifier for the queue.
+  ///
+  /// Parameter [status] :
+  /// The status of the queue.
+  Future<void> updateQueueStatus({
+    required String instanceId,
+    required String queueId,
+    required QueueStatus status,
+  }) async {
+    ArgumentError.checkNotNull(instanceId, 'instanceId');
+    _s.validateStringLength(
+      'instanceId',
+      instanceId,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queueId, 'queueId');
+    ArgumentError.checkNotNull(status, 'status');
+    final $payload = <String, dynamic>{
+      'Status': status.toValue(),
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/queues/${Uri.encodeComponent(instanceId)}/${Uri.encodeComponent(queueId)}/status',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Updates the configuration settings for the specified quick connect.
   ///
   /// May throw [InvalidRequestException].
@@ -4580,7 +5373,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [quickConnectConfig] :
   /// Information about the configuration settings for the quick connect.
@@ -4614,12 +5408,9 @@ class Connect {
     );
   }
 
-  /// This API is in preview release for Amazon Connect and is subject to
-  /// change.
-  ///
   /// Updates the name and description of a quick connect. The request accepts
-  /// the following data in JSON format. At least Name or Description must be
-  /// provided.
+  /// the following data in JSON format. At least <code>Name</code> or
+  /// <code>Description</code> must be provided.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InvalidParameterException].
@@ -4628,7 +5419,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [quickConnectId] :
   /// The identifier for the quick connect.
@@ -4688,10 +5480,11 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [mediaConcurrencies] :
-  /// The channels agents can handle in the Contact Control Panel (CCP).
+  /// The channels that agents can handle in the Contact Control Panel (CCP).
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile.
@@ -4734,7 +5527,8 @@ class Connect {
   /// The identifier for the default outbound queue.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile.
@@ -4778,7 +5572,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile.
@@ -4839,7 +5634,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [queueConfigs] :
   /// The queues to be updated for this routing profile. Queues must first be
@@ -4884,7 +5680,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [userId] :
   /// The identifier of the user account.
@@ -4930,7 +5727,8 @@ class Connect {
   /// The identifier of the hierarchy group.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [name] :
   /// The name of the hierarchy group. Must not be more than 100 characters.
@@ -4975,7 +5773,8 @@ class Connect {
   /// The hierarchy levels to update.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   Future<void> updateUserHierarchyStructure({
     required HierarchyStructureUpdate hierarchyStructure,
     required String instanceId,
@@ -5003,13 +5802,12 @@ class Connect {
 
   /// Updates the identity information for the specified user.
   /// <important>
-  /// Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
-  /// can change the login credentials of other users by changing their email
-  /// address. This poses a security risk to your organization. They can change
-  /// the email address of a user to the attacker's email address, and then
-  /// reset the password through email. We strongly recommend limiting who has
-  /// the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
-  /// information, see <a
+  /// We strongly recommend limiting who has the ability to invoke
+  /// <code>UpdateUserIdentityInfo</code>. Someone with that ability can change
+  /// the login credentials of other users by changing their email address. This
+  /// poses a security risk to your organization. They can change the email
+  /// address of a user to the attacker's email address, and then reset the
+  /// password through email. For more information, see <a
   /// href="https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html">Best
   /// Practices for Security Profiles</a> in the <i>Amazon Connect Administrator
   /// Guide</i>.
@@ -5025,7 +5823,8 @@ class Connect {
   /// The identity information for the user.
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [userId] :
   /// The identifier of the user account.
@@ -5065,7 +5864,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [phoneConfig] :
   /// Information about phone configuration settings for the user.
@@ -5108,7 +5908,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [routingProfileId] :
   /// The identifier of the routing profile for the user.
@@ -5151,7 +5952,8 @@ class Connect {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [instanceId] :
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   ///
   /// Parameter [securityProfileIds] :
   /// The identifiers of the security profiles for the user.
@@ -5276,7 +6078,7 @@ class ChatMessage {
   /// The content of the chat message.
   final String content;
 
-  /// The type of the content. Supported types are text/plain.
+  /// The type of the content. Supported types are text and plain.
   final String contentType;
 
   ChatMessage({
@@ -5517,6 +6319,25 @@ class CreateIntegrationAssociationResponse {
     return CreateIntegrationAssociationResponse(
       integrationAssociationArn: json['IntegrationAssociationArn'] as String?,
       integrationAssociationId: json['IntegrationAssociationId'] as String?,
+    );
+  }
+}
+
+class CreateQueueResponse {
+  /// The Amazon Resource Name (ARN) of the queue.
+  final String? queueArn;
+
+  /// The identifier for the queue.
+  final String? queueId;
+
+  CreateQueueResponse({
+    this.queueArn,
+    this.queueId,
+  });
+  factory CreateQueueResponse.fromJson(Map<String, dynamic> json) {
+    return CreateQueueResponse(
+      queueArn: json['QueueArn'] as String?,
+      queueId: json['QueueId'] as String?,
     );
   }
 }
@@ -5826,6 +6647,23 @@ class DescribeContactFlowResponse {
   }
 }
 
+class DescribeHoursOfOperationResponse {
+  /// The hours of operation.
+  final HoursOfOperation? hoursOfOperation;
+
+  DescribeHoursOfOperationResponse({
+    this.hoursOfOperation,
+  });
+  factory DescribeHoursOfOperationResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeHoursOfOperationResponse(
+      hoursOfOperation: json['HoursOfOperation'] != null
+          ? HoursOfOperation.fromJson(
+              json['HoursOfOperation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class DescribeInstanceAttributeResponse {
   /// The type of attribute.
   final Attribute? attribute;
@@ -5872,6 +6710,22 @@ class DescribeInstanceStorageConfigResponse {
       storageConfig: json['StorageConfig'] != null
           ? InstanceStorageConfig.fromJson(
               json['StorageConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class DescribeQueueResponse {
+  /// The name of the queue.
+  final Queue? queue;
+
+  DescribeQueueResponse({
+    this.queue,
+  });
+  factory DescribeQueueResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeQueueResponse(
+      queue: json['Queue'] != null
+          ? Queue.fromJson(json['Queue'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -6692,6 +7546,140 @@ class HistoricalMetricResult {
   }
 }
 
+/// Information about of the hours of operation.
+class HoursOfOperation {
+  /// Configuration information for the hours of operation.
+  final List<HoursOfOperationConfig>? config;
+
+  /// The description for the hours of operation.
+  final String? description;
+
+  /// The Amazon Resource Name (ARN) for the hours of operation.
+  final String? hoursOfOperationArn;
+
+  /// The identifier for the hours of operation.
+  final String? hoursOfOperationId;
+
+  /// The name for the hours of operation.
+  final String? name;
+
+  /// One or more tags.
+  final Map<String, String>? tags;
+
+  /// The time zone for the hours of operation.
+  final String? timeZone;
+
+  HoursOfOperation({
+    this.config,
+    this.description,
+    this.hoursOfOperationArn,
+    this.hoursOfOperationId,
+    this.name,
+    this.tags,
+    this.timeZone,
+  });
+  factory HoursOfOperation.fromJson(Map<String, dynamic> json) {
+    return HoursOfOperation(
+      config: (json['Config'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => HoursOfOperationConfig.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      description: json['Description'] as String?,
+      hoursOfOperationArn: json['HoursOfOperationArn'] as String?,
+      hoursOfOperationId: json['HoursOfOperationId'] as String?,
+      name: json['Name'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      timeZone: json['TimeZone'] as String?,
+    );
+  }
+}
+
+/// Contains information about the hours of operation.
+class HoursOfOperationConfig {
+  /// The day that the hours of operation applies to.
+  final HoursOfOperationDays? day;
+
+  /// The end time that your contact center is closes.
+  final HoursOfOperationTimeSlice? endTime;
+
+  /// The start time that your contact center is open.
+  final HoursOfOperationTimeSlice? startTime;
+
+  HoursOfOperationConfig({
+    this.day,
+    this.endTime,
+    this.startTime,
+  });
+  factory HoursOfOperationConfig.fromJson(Map<String, dynamic> json) {
+    return HoursOfOperationConfig(
+      day: (json['Day'] as String?)?.toHoursOfOperationDays(),
+      endTime: json['EndTime'] != null
+          ? HoursOfOperationTimeSlice.fromJson(
+              json['EndTime'] as Map<String, dynamic>)
+          : null,
+      startTime: json['StartTime'] != null
+          ? HoursOfOperationTimeSlice.fromJson(
+              json['StartTime'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+enum HoursOfOperationDays {
+  sunday,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+}
+
+extension on HoursOfOperationDays {
+  String toValue() {
+    switch (this) {
+      case HoursOfOperationDays.sunday:
+        return 'SUNDAY';
+      case HoursOfOperationDays.monday:
+        return 'MONDAY';
+      case HoursOfOperationDays.tuesday:
+        return 'TUESDAY';
+      case HoursOfOperationDays.wednesday:
+        return 'WEDNESDAY';
+      case HoursOfOperationDays.thursday:
+        return 'THURSDAY';
+      case HoursOfOperationDays.friday:
+        return 'FRIDAY';
+      case HoursOfOperationDays.saturday:
+        return 'SATURDAY';
+    }
+  }
+}
+
+extension on String {
+  HoursOfOperationDays toHoursOfOperationDays() {
+    switch (this) {
+      case 'SUNDAY':
+        return HoursOfOperationDays.sunday;
+      case 'MONDAY':
+        return HoursOfOperationDays.monday;
+      case 'TUESDAY':
+        return HoursOfOperationDays.tuesday;
+      case 'WEDNESDAY':
+        return HoursOfOperationDays.wednesday;
+      case 'THURSDAY':
+        return HoursOfOperationDays.thursday;
+      case 'FRIDAY':
+        return HoursOfOperationDays.friday;
+      case 'SATURDAY':
+        return HoursOfOperationDays.saturday;
+    }
+    throw Exception('$this is not known in enum HoursOfOperationDays');
+  }
+}
+
 /// Contains summary information about hours of operation for a contact center.
 class HoursOfOperationSummary {
   /// The Amazon Resource Name (ARN) of the hours of operation.
@@ -6717,6 +7705,26 @@ class HoursOfOperationSummary {
   }
 }
 
+/// The start time or end time for an hours of operation.
+class HoursOfOperationTimeSlice {
+  /// The hours.
+  final int? hours;
+
+  /// The minutes.
+  final int? minutes;
+
+  HoursOfOperationTimeSlice({
+    this.hours,
+    this.minutes,
+  });
+  factory HoursOfOperationTimeSlice.fromJson(Map<String, dynamic> json) {
+    return HoursOfOperationTimeSlice(
+      hours: json['Hours'] as int?,
+      minutes: json['Minutes'] as int?,
+    );
+  }
+}
+
 /// The Amazon Connect instance.
 class Instance {
   /// The Amazon Resource Name (ARN) of the instance.
@@ -6725,7 +7733,8 @@ class Instance {
   /// When the instance was created.
   final DateTime? createdTime;
 
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   final String? id;
 
   /// The identity management type.
@@ -6900,7 +7909,7 @@ class InstanceStorageConfig {
   /// The configuration of the Kinesis video stream.
   final KinesisVideoStreamConfig? kinesisVideoStreamConfig;
 
-  /// The S3 configuration.
+  /// The S3 bucket configuration.
   final S3Config? s3Config;
 
   InstanceStorageConfig({
@@ -7060,7 +8069,8 @@ class InstanceSummary {
 
 /// Contains summary information about the associated AppIntegrations.
 class IntegrationAssociationSummary {
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   final String? instanceId;
 
   /// The Amazon Resource Name (ARN) for the AppIntegration.
@@ -7132,7 +8142,7 @@ extension on String {
   }
 }
 
-/// Configuration information of a Kinesis Firehose delivery stream.
+/// Configuration information of a Kinesis Data Firehose delivery stream.
 class KinesisFirehoseConfig {
   /// The Amazon Resource Name (ARN) of the delivery stream.
   final String firehoseArn;
@@ -7218,7 +8228,7 @@ class KinesisVideoStreamConfig {
 
 /// Configuration information of an Amazon Lex bot.
 class LexBot {
-  /// The Region the Amazon Lex bot was created in.
+  /// The Region that the Amazon Lex bot was created in.
   final String? lexRegion;
 
   /// The name of the Amazon Lex bot.
@@ -7245,6 +8255,79 @@ class LexBot {
   }
 }
 
+/// Configuration information of an Amazon Lex or Amazon Lex V2 bot.
+class LexBotConfig {
+  final LexBot? lexBot;
+
+  /// Configuration information of an Amazon Lex V2 bot.
+  final LexV2Bot? lexV2Bot;
+
+  LexBotConfig({
+    this.lexBot,
+    this.lexV2Bot,
+  });
+  factory LexBotConfig.fromJson(Map<String, dynamic> json) {
+    return LexBotConfig(
+      lexBot: json['LexBot'] != null
+          ? LexBot.fromJson(json['LexBot'] as Map<String, dynamic>)
+          : null,
+      lexV2Bot: json['LexV2Bot'] != null
+          ? LexV2Bot.fromJson(json['LexV2Bot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Configuration information of an Amazon Lex V2 bot.
+class LexV2Bot {
+  /// The Amazon Resource Name (ARN) of the Amazon Lex V2 bot.
+  final String? aliasArn;
+
+  LexV2Bot({
+    this.aliasArn,
+  });
+  factory LexV2Bot.fromJson(Map<String, dynamic> json) {
+    return LexV2Bot(
+      aliasArn: json['AliasArn'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aliasArn = this.aliasArn;
+    return {
+      if (aliasArn != null) 'AliasArn': aliasArn,
+    };
+  }
+}
+
+enum LexVersion {
+  v1,
+  v2,
+}
+
+extension on LexVersion {
+  String toValue() {
+    switch (this) {
+      case LexVersion.v1:
+        return 'V1';
+      case LexVersion.v2:
+        return 'V2';
+    }
+  }
+}
+
+extension on String {
+  LexVersion toLexVersion() {
+    switch (this) {
+      case 'V1':
+        return LexVersion.v1;
+      case 'V2':
+        return LexVersion.v2;
+    }
+    throw Exception('$this is not known in enum LexVersion');
+  }
+}
+
 class ListApprovedOriginsResponse {
   /// If there are additional results, this is the token for the next set of
   /// results.
@@ -7264,6 +8347,30 @@ class ListApprovedOriginsResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+    );
+  }
+}
+
+class ListBotsResponse {
+  /// The names and Regions of the Amazon Lex or Amazon Lex V2 bots associated
+  /// with the specified instance.
+  final List<LexBotConfig>? lexBots;
+
+  /// If there are additional results, this is the token for the next set of
+  /// results.
+  final String? nextToken;
+
+  ListBotsResponse({
+    this.lexBots,
+    this.nextToken,
+  });
+  factory ListBotsResponse.fromJson(Map<String, dynamic> json) {
+    return ListBotsResponse(
+      lexBots: (json['LexBots'] as List?)
+          ?.whereNotNull()
+          .map((e) => LexBotConfig.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
     );
   }
 }
@@ -7436,8 +8543,8 @@ class ListLambdaFunctionsResponse {
 }
 
 class ListLexBotsResponse {
-  /// The the names and regions of the Amazon Lex bots associated with the
-  /// specified instance.
+  /// The names and Regions of the Amazon Lex bots associated with the specified
+  /// instance.
   final List<LexBot>? lexBots;
 
   /// If there are additional results, this is the token for the next set of
@@ -7500,6 +8607,29 @@ class ListPromptsResponse {
       promptSummaryList: (json['PromptSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => PromptSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class ListQueueQuickConnectsResponse {
+  /// If there are additional results, this is the token for the next set of
+  /// results.
+  final String? nextToken;
+
+  /// Information about the quick connects.
+  final List<QuickConnectSummary>? quickConnectSummaryList;
+
+  ListQueueQuickConnectsResponse({
+    this.nextToken,
+    this.quickConnectSummaryList,
+  });
+  factory ListQueueQuickConnectsResponse.fromJson(Map<String, dynamic> json) {
+    return ListQueueQuickConnectsResponse(
+      nextToken: json['NextToken'] as String?,
+      quickConnectSummaryList: (json['QuickConnectSummaryList'] as List?)
+          ?.whereNotNull()
+          .map((e) => QuickConnectSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -7739,6 +8869,12 @@ class MediaConcurrency {
   final Channel channel;
 
   /// The number of contacts an agent can have on a channel simultaneously.
+  ///
+  /// Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of 1.
+  ///
+  /// Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of 10.
+  ///
+  /// Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of 10.
   final int concurrency;
 
   MediaConcurrency({
@@ -7758,6 +8894,44 @@ class MediaConcurrency {
     return {
       'Channel': channel.toValue(),
       'Concurrency': concurrency,
+    };
+  }
+}
+
+/// The outbound caller ID name, number, and outbound whisper flow.
+class OutboundCallerConfig {
+  /// The caller ID name.
+  final String? outboundCallerIdName;
+
+  /// The caller ID number.
+  final String? outboundCallerIdNumberId;
+
+  /// The outbound whisper flow to be used during an outbound call.
+  final String? outboundFlowId;
+
+  OutboundCallerConfig({
+    this.outboundCallerIdName,
+    this.outboundCallerIdNumberId,
+    this.outboundFlowId,
+  });
+  factory OutboundCallerConfig.fromJson(Map<String, dynamic> json) {
+    return OutboundCallerConfig(
+      outboundCallerIdName: json['OutboundCallerIdName'] as String?,
+      outboundCallerIdNumberId: json['OutboundCallerIdNumberId'] as String?,
+      outboundFlowId: json['OutboundFlowId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outboundCallerIdName = this.outboundCallerIdName;
+    final outboundCallerIdNumberId = this.outboundCallerIdNumberId;
+    final outboundFlowId = this.outboundFlowId;
+    return {
+      if (outboundCallerIdName != null)
+        'OutboundCallerIdName': outboundCallerIdName,
+      if (outboundCallerIdNumberId != null)
+        'OutboundCallerIdNumberId': outboundCallerIdNumberId,
+      if (outboundFlowId != null) 'OutboundFlowId': outboundFlowId,
     };
   }
 }
@@ -9121,13 +10295,73 @@ class PromptSummary {
   }
 }
 
+/// Contains information about a queue.
+class Queue {
+  /// The description of the queue.
+  final String? description;
+
+  /// The identifier for the hours of operation.
+  final String? hoursOfOperationId;
+
+  /// The maximum number of contacts that can be in the queue before it is
+  /// considered full.
+  final int? maxContacts;
+
+  /// The name of the queue.
+  final String? name;
+
+  /// The outbound caller ID name, number, and outbound whisper flow.
+  final OutboundCallerConfig? outboundCallerConfig;
+
+  /// The Amazon Resource Name (ARN) for the queue.
+  final String? queueArn;
+
+  /// The identifier for the queue.
+  final String? queueId;
+
+  /// The status of the queue.
+  final QueueStatus? status;
+
+  /// One or more tags.
+  final Map<String, String>? tags;
+
+  Queue({
+    this.description,
+    this.hoursOfOperationId,
+    this.maxContacts,
+    this.name,
+    this.outboundCallerConfig,
+    this.queueArn,
+    this.queueId,
+    this.status,
+    this.tags,
+  });
+  factory Queue.fromJson(Map<String, dynamic> json) {
+    return Queue(
+      description: json['Description'] as String?,
+      hoursOfOperationId: json['HoursOfOperationId'] as String?,
+      maxContacts: json['MaxContacts'] as int?,
+      name: json['Name'] as String?,
+      outboundCallerConfig: json['OutboundCallerConfig'] != null
+          ? OutboundCallerConfig.fromJson(
+              json['OutboundCallerConfig'] as Map<String, dynamic>)
+          : null,
+      queueArn: json['QueueArn'] as String?,
+      queueId: json['QueueId'] as String?,
+      status: (json['Status'] as String?)?.toQueueStatus(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
 /// Contains information about a queue for a quick connect. The contact flow
 /// must be of type Transfer to Queue.
 class QueueQuickConnectConfig {
   /// The identifier of the contact flow.
   final String contactFlowId;
 
-  /// The identifier of the queue.
+  /// The identifier for the queue.
   final String queueId;
 
   QueueQuickConnectConfig({
@@ -9168,6 +10402,34 @@ class QueueReference {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+}
+
+enum QueueStatus {
+  enabled,
+  disabled,
+}
+
+extension on QueueStatus {
+  String toValue() {
+    switch (this) {
+      case QueueStatus.enabled:
+        return 'ENABLED';
+      case QueueStatus.disabled:
+        return 'DISABLED';
+    }
+  }
+}
+
+extension on String {
+  QueueStatus toQueueStatus() {
+    switch (this) {
+      case 'ENABLED':
+        return QueueStatus.enabled;
+      case 'DISABLED':
+        return QueueStatus.disabled;
+    }
+    throw Exception('$this is not known in enum QueueStatus');
   }
 }
 
@@ -9331,13 +10593,13 @@ class QuickConnectConfig {
 
 /// Contains summary information about a quick connect.
 class QuickConnectSummary {
-  /// The Amazon Resource Name (ARN).
+  /// The Amazon Resource Name (ARN) of the quick connect.
   final String? arn;
 
   /// The identifier for the quick connect.
   final String? id;
 
-  /// The name.
+  /// The name of the quick connect.
   final String? name;
 
   /// The type of quick connect. In the Amazon Connect console, when you create a
@@ -9401,8 +10663,7 @@ class Reference {
   /// A valid URL.
   final ReferenceType type;
 
-  /// A formatted URL that will be shown to an agent in the Contact Control Panel
-  /// (CCP)
+  /// A formatted URL that displays to an agent in the Contact Control Panel (CCP)
   final String value;
 
   Reference({
@@ -9457,7 +10718,8 @@ class RoutingProfile {
   /// The description of the routing profile.
   final String? description;
 
-  /// The identifier of the Amazon Connect instance.
+  /// The identifier of the Amazon Connect instance. You can find the instanceId
+  /// in the ARN of the instance.
   final String? instanceId;
 
   /// The channels agents can handle in the Contact Control Panel (CCP) for this
@@ -9559,7 +10821,7 @@ class RoutingProfileQueueConfigSummary {
   /// The Amazon Resource Name (ARN) of the queue.
   final String queueArn;
 
-  /// The identifier of the queue.
+  /// The identifier for the queue.
   final String queueId;
 
   /// The name of the queue.
@@ -9591,7 +10853,7 @@ class RoutingProfileQueueReference {
   /// routing profile.
   final Channel channel;
 
-  /// The identifier of the queue.
+  /// The identifier for the queue.
   final String queueId;
 
   RoutingProfileQueueReference({
@@ -9633,7 +10895,8 @@ class RoutingProfileSummary {
   }
 }
 
-/// Information about the S3 storage type.
+/// Information about the Amazon Simple Storage Service (Amazon S3) storage
+/// type.
 class S3Config {
   /// The S3 bucket name.
   final String bucketName;
@@ -9641,7 +10904,7 @@ class S3Config {
   /// The S3 bucket prefix.
   final String bucketPrefix;
 
-  /// The S3 encryption configuration.
+  /// The Amazon S3 encryption configuration.
   final EncryptionConfig? encryptionConfig;
 
   S3Config({

@@ -324,7 +324,7 @@
           "shape": "RequestError"
         }
       ],
-      "documentation": "<p>The <code>GetAccountBalance</code> operation retrieves the amount of money in your Amazon Mechanical Turk account.</p>",
+      "documentation": "<p>The <code>GetAccountBalance</code> operation retrieves the Prepaid HITs balance in your Amazon Mechanical Turk account if you are a Prepaid Requester. Alternatively, this operation will retrieve the remaining available AWS Billing usage if you have enabled AWS Billing. Note: If you have enabled AWS Billing and still have a remaining Prepaid HITs balance, this balance can be viewed on the My Account page in the Requester console.</p>",
       "idempotent": true
     },
     "GetAssignment": {
@@ -1519,9 +1519,6 @@
         "shape": "EventType"
       }
     },
-    "ExceptionMessage": {
-      "type": "string"
-    },
     "GetAccountBalanceRequest": {
       "type": "structure",
       "members": {}
@@ -2600,19 +2597,6 @@
       "type": "structure",
       "members": {}
     },
-    "RequestError": {
-      "type": "structure",
-      "members": {
-        "Message": {
-          "shape": "ExceptionMessage"
-        },
-        "TurkErrorCode": {
-          "shape": "TurkErrorCode"
-        }
-      },
-      "documentation": "<p>Your request is invalid.</p>",
-      "exception": true
-    },
     "ResultSize": {
       "type": "integer",
       "max": 100,
@@ -2814,20 +2798,6 @@
       "type": "structure",
       "members": {}
     },
-    "ServiceFault": {
-      "type": "structure",
-      "members": {
-        "Message": {
-          "shape": "ExceptionMessage"
-        },
-        "TurkErrorCode": {
-          "shape": "TurkErrorCode"
-        }
-      },
-      "documentation": "<p>Amazon Mechanical Turk is temporarily unable to process your request. Try your call again.</p>",
-      "exception": true,
-      "fault": true
-    },
     "String": {
       "type": "string"
     },
@@ -2839,9 +2809,6 @@
     },
     "Timestamp": {
       "type": "timestamp"
-    },
-    "TurkErrorCode": {
-      "type": "string"
     },
     "UpdateExpirationForHITRequest": {
       "type": "structure",

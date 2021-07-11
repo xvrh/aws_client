@@ -19,10 +19,6 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// <important>
-/// Amazon Augmented AI is in preview release and is subject to change. We do
-/// not recommend using this product in production environments.
-/// </important>
 /// Amazon Augmented AI (Amazon A2I) adds the benefit of human judgment to any
 /// machine learning application. When an AI application can't evaluate data
 /// with a high degree of confidence, human reviewers can take over. This human
@@ -84,6 +80,9 @@ class AugmentedAIRuntime {
 
   /// Deletes the specified human loop for a flow definition.
   ///
+  /// If the human loop was deleted, this operation will return a
+  /// <code>ResourceNotFoundException</code>.
+  ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ThrottlingException].
@@ -102,12 +101,6 @@ class AugmentedAIRuntime {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'humanLoopName',
-      humanLoopName,
-      r'''^[a-z0-9](-*[a-z0-9])*$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -116,7 +109,9 @@ class AugmentedAIRuntime {
     );
   }
 
-  /// Returns information about the specified human loop.
+  /// Returns information about the specified human loop. If the human loop was
+  /// deleted, this operation will return a
+  /// <code>ResourceNotFoundException</code> error.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
@@ -134,12 +129,6 @@ class AugmentedAIRuntime {
       humanLoopName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'humanLoopName',
-      humanLoopName,
-      r'''^[a-z0-9](-*[a-z0-9])*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -198,12 +187,6 @@ class AugmentedAIRuntime {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowDefinitionArn',
-      flowDefinitionArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:flow-definition/.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -215,11 +198,6 @@ class AugmentedAIRuntime {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final $query = <String, List<String>>{
       'FlowDefinitionArn': [flowDefinitionArn],
@@ -278,12 +256,6 @@ class AugmentedAIRuntime {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowDefinitionArn',
-      flowDefinitionArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:flow-definition/.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(humanLoopInput, 'humanLoopInput');
     ArgumentError.checkNotNull(humanLoopName, 'humanLoopName');
     _s.validateStringLength(
@@ -291,12 +263,6 @@ class AugmentedAIRuntime {
       humanLoopName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'humanLoopName',
-      humanLoopName,
-      r'''^[a-z0-9](-*[a-z0-9])*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -332,12 +298,6 @@ class AugmentedAIRuntime {
       humanLoopName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'humanLoopName',
-      humanLoopName,
-      r'''^[a-z0-9](-*[a-z0-9])*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -406,6 +366,9 @@ class DescribeHumanLoopResponse {
   final HumanLoopStatus humanLoopStatus;
 
   /// A failure code that identifies the type of failure.
+  ///
+  /// Possible values: <code>ValidationError</code>, <code>Expired</code>,
+  /// <code>InternalError</code>
   final String? failureCode;
 
   /// The reason why a human loop failed. The failure reason is returned when the

@@ -95,12 +95,6 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.ActivatePipeline'
@@ -142,12 +136,6 @@ class DataPipeline {
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -217,12 +205,6 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uniqueId, 'uniqueId');
     _s.validateStringLength(
       'uniqueId',
@@ -231,22 +213,11 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'uniqueId',
-      uniqueId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -301,12 +272,6 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.DeactivatePipeline'
@@ -349,12 +314,6 @@ class DataPipeline {
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -414,22 +373,11 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'marker',
       marker,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -526,12 +474,6 @@ class DataPipeline {
       20971520,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'expression',
-      expression,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectId, 'objectId');
     _s.validateStringLength(
       'objectId',
@@ -540,24 +482,12 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'objectId',
-      objectId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
     _s.validateStringLength(
       'pipelineId',
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -609,22 +539,11 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'version',
       version,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'version',
-      version,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -664,11 +583,6 @@ class DataPipeline {
       marker,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -743,22 +657,11 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workerGroup',
-      workerGroup,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'hostname',
       hostname,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'hostname',
-      hostname,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -825,12 +728,6 @@ class DataPipeline {
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(pipelineObjects, 'pipelineObjects');
@@ -901,12 +798,6 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sphere, 'sphere');
     _s.validateStringLength(
       'sphere',
@@ -915,22 +806,11 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sphere',
-      sphere,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'marker',
       marker,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -976,12 +856,6 @@ class DataPipeline {
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -1038,12 +912,6 @@ class DataPipeline {
       taskId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1103,33 +971,17 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskrunnerId',
-      taskrunnerId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'hostname',
       hostname,
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'hostname',
-      hostname,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'workerGroup',
       workerGroup,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'workerGroup',
-      workerGroup,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1189,24 +1041,12 @@ class DataPipeline {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     _s.validateStringLength(
       'status',
       status,
       0,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'status',
-      status,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1281,12 +1121,6 @@ class DataPipeline {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(taskStatus, 'taskStatus');
     _s.validateStringLength(
       'errorId',
@@ -1294,21 +1128,11 @@ class DataPipeline {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'errorId',
-      errorId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'errorStackTrace',
       errorStackTrace,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'errorStackTrace',
-      errorStackTrace,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1362,12 +1186,6 @@ class DataPipeline {
       pipelineId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineId',
-      pipelineId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(pipelineObjects, 'pipelineObjects');
@@ -1602,38 +1420,6 @@ class InstanceIdentity {
   }
 }
 
-/// An internal service error occurred.
-class InternalServiceError implements _s.AwsException {
-  /// Description of the error message.
-  final String? message;
-
-  InternalServiceError({
-    this.message,
-  });
-  factory InternalServiceError.fromJson(Map<String, dynamic> json) {
-    return InternalServiceError(
-      message: json['message'] as String?,
-    );
-  }
-}
-
-/// The request was not valid. Verify that your request was properly formatted,
-/// that the signature was generated with the correct credentials, and that you
-/// haven't exceeded any of the service limits for your account.
-class InvalidRequestException implements _s.AwsException {
-  /// Description of the error message.
-  final String? message;
-
-  InvalidRequestException({
-    this.message,
-  });
-  factory InvalidRequestException.fromJson(Map<String, dynamic> json) {
-    return InvalidRequestException(
-      message: json['message'] as String?,
-    );
-  }
-}
-
 /// Contains the output of ListPipelines.
 class ListPipelinesOutput {
   /// The pipeline identifiers. If you require additional information about the
@@ -1858,21 +1644,6 @@ class ParameterValue {
   }
 }
 
-/// The specified pipeline has been deleted.
-class PipelineDeletedException implements _s.AwsException {
-  /// Description of the error message.
-  final String? message;
-
-  PipelineDeletedException({
-    this.message,
-  });
-  factory PipelineDeletedException.fromJson(Map<String, dynamic> json) {
-    return PipelineDeletedException(
-      message: json['message'] as String?,
-    );
-  }
-}
-
 /// Contains pipeline metadata.
 class PipelineDescription {
   /// A list of read-only fields that contain metadata about the pipeline:
@@ -1937,22 +1708,6 @@ class PipelineIdName {
     return PipelineIdName(
       id: json['id'] as String?,
       name: json['name'] as String?,
-    );
-  }
-}
-
-/// The specified pipeline was not found. Verify that you used the correct user
-/// and account identifiers.
-class PipelineNotFoundException implements _s.AwsException {
-  /// Description of the error message.
-  final String? message;
-
-  PipelineNotFoundException({
-    this.message,
-  });
-  factory PipelineNotFoundException.fromJson(Map<String, dynamic> json) {
-    return PipelineNotFoundException(
-      message: json['message'] as String?,
     );
   }
 }
@@ -2214,21 +1969,6 @@ class Tag {
   }
 }
 
-/// The specified task was not found.
-class TaskNotFoundException implements _s.AwsException {
-  /// Description of the error message.
-  final String? message;
-
-  TaskNotFoundException({
-    this.message,
-  });
-  factory TaskNotFoundException.fromJson(Map<String, dynamic> json) {
-    return TaskNotFoundException(
-      message: json['message'] as String?,
-    );
-  }
-}
-
 /// Contains information about a pipeline task that is assigned to a task
 /// runner.
 class TaskObject {
@@ -2378,15 +2118,40 @@ class ValidationWarning {
   }
 }
 
+class InternalServiceError extends _s.GenericAwsException {
+  InternalServiceError({String? type, String? message})
+      : super(type: type, code: 'InternalServiceError', message: message);
+}
+
+class InvalidRequestException extends _s.GenericAwsException {
+  InvalidRequestException({String? type, String? message})
+      : super(type: type, code: 'InvalidRequestException', message: message);
+}
+
+class PipelineDeletedException extends _s.GenericAwsException {
+  PipelineDeletedException({String? type, String? message})
+      : super(type: type, code: 'PipelineDeletedException', message: message);
+}
+
+class PipelineNotFoundException extends _s.GenericAwsException {
+  PipelineNotFoundException({String? type, String? message})
+      : super(type: type, code: 'PipelineNotFoundException', message: message);
+}
+
+class TaskNotFoundException extends _s.GenericAwsException {
+  TaskNotFoundException({String? type, String? message})
+      : super(type: type, code: 'TaskNotFoundException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'InternalServiceError': (type, message) =>
-      InternalServiceError(message: message),
+      InternalServiceError(type: type, message: message),
   'InvalidRequestException': (type, message) =>
-      InvalidRequestException(message: message),
+      InvalidRequestException(type: type, message: message),
   'PipelineDeletedException': (type, message) =>
-      PipelineDeletedException(message: message),
+      PipelineDeletedException(type: type, message: message),
   'PipelineNotFoundException': (type, message) =>
-      PipelineNotFoundException(message: message),
+      PipelineNotFoundException(type: type, message: message),
   'TaskNotFoundException': (type, message) =>
-      TaskNotFoundException(message: message),
+      TaskNotFoundException(type: type, message: message),
 };

@@ -87,12 +87,6 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'registryId',
       registryId,
@@ -159,17 +153,6 @@ class EcrPublic {
       2,
       205,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -244,19 +227,7 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
-    _s.validateStringPattern(
-      'uploadId',
-      uploadId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'registryId',
       registryId,
@@ -291,6 +262,8 @@ class EcrPublic {
   ///
   /// May throw [ServerException].
   /// May throw [InvalidParameterException].
+  /// May throw [InvalidTagParameterException].
+  /// May throw [TooManyTagsException].
   /// May throw [RepositoryAlreadyExistsException].
   /// May throw [LimitExceededException].
   ///
@@ -304,9 +277,16 @@ class EcrPublic {
   /// Parameter [catalogData] :
   /// The details about the repository that are publicly visible in the Amazon
   /// ECR Public Gallery.
+  ///
+  /// Parameter [tags] :
+  /// The metadata that you apply to the repository to help you categorize and
+  /// organize them. Each tag consists of a key and an optional value, both of
+  /// which you define. Tag keys can have a maximum character length of 128
+  /// characters, and tag values can have a maximum length of 256 characters.
   Future<CreateRepositoryResponse> createRepository({
     required String repositoryName,
     RepositoryCatalogDataInput? catalogData,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
     _s.validateStringLength(
@@ -314,12 +294,6 @@ class EcrPublic {
       repositoryName,
       2,
       205,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -335,6 +309,7 @@ class EcrPublic {
       payload: {
         'repositoryName': repositoryName,
         if (catalogData != null) 'catalogData': catalogData,
+        if (tags != null) 'tags': tags,
       },
     );
 
@@ -373,17 +348,6 @@ class EcrPublic {
       2,
       205,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -431,17 +395,6 @@ class EcrPublic {
       2,
       205,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -511,22 +464,11 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -609,22 +551,11 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -759,11 +690,6 @@ class EcrPublic {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SpencerFrontendService.DescribeRepositories'
@@ -856,17 +782,6 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SpencerFrontendService.GetRepositoryCatalogData'
@@ -911,17 +826,6 @@ class EcrPublic {
       2,
       205,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -979,12 +883,6 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'registryId',
       registryId,
@@ -1008,6 +906,38 @@ class EcrPublic {
     );
 
     return InitiateLayerUploadResponse.fromJson(jsonResponse.body);
+  }
+
+  /// List the tags for an Amazon ECR Public resource.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [RepositoryNotFoundException].
+  /// May throw [ServerException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) that identifies the resource for which to
+  /// list the tags. Currently, the supported resource is an Amazon ECR Public
+  /// repository.
+  Future<ListTagsForResourceResponse> listTagsForResource({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'SpencerFrontendService.ListTagsForResource'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'resourceArn': resourceArn,
+      },
+    );
+
+    return ListTagsForResourceResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates or updates the image manifest and tags associated with an image.
@@ -1078,12 +1008,6 @@ class EcrPublic {
       repositoryName,
       2,
       205,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1193,17 +1117,6 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SpencerFrontendService.PutRepositoryCatalogData'
@@ -1276,17 +1189,6 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registryId',
-      registryId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SpencerFrontendService.SetRepositoryPolicy'
@@ -1306,6 +1208,85 @@ class EcrPublic {
     );
 
     return SetRepositoryPolicyResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Associates the specified tags to a resource with the specified
+  /// <code>resourceArn</code>. If existing tags on a resource are not specified
+  /// in the request parameters, they are not changed. When a resource is
+  /// deleted, the tags associated with that resource are deleted as well.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [InvalidTagParameterException].
+  /// May throw [TooManyTagsException].
+  /// May throw [RepositoryNotFoundException].
+  /// May throw [ServerException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the resource to which to add tags.
+  /// Currently, the supported resource is an Amazon ECR Public repository.
+  ///
+  /// Parameter [tags] :
+  /// The tags to add to the resource. A tag is an array of key-value pairs. Tag
+  /// keys can have a maximum character length of 128 characters, and tag values
+  /// can have a maximum length of 256 characters.
+  Future<void> tagResource({
+    required String resourceArn,
+    required List<Tag> tags,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    ArgumentError.checkNotNull(tags, 'tags');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'SpencerFrontendService.TagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'resourceArn': resourceArn,
+        'tags': tags,
+      },
+    );
+  }
+
+  /// Deletes specified tags from a resource.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [InvalidTagParameterException].
+  /// May throw [TooManyTagsException].
+  /// May throw [RepositoryNotFoundException].
+  /// May throw [ServerException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the resource from which to delete tags.
+  /// Currently, the supported resource is an Amazon ECR Public repository.
+  ///
+  /// Parameter [tagKeys] :
+  /// The keys of the tags to be removed.
+  Future<void> untagResource({
+    required String resourceArn,
+    required List<String> tagKeys,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'SpencerFrontendService.UntagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'resourceArn': resourceArn,
+        'tagKeys': tagKeys,
+      },
+    );
   }
 
   /// Uploads an image layer part to Amazon ECR.
@@ -1384,19 +1365,7 @@ class EcrPublic {
       205,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repositoryName',
-      repositoryName,
-      r'''(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
-    _s.validateStringPattern(
-      'uploadId',
-      uploadId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'registryId',
       registryId,
@@ -2147,6 +2116,23 @@ extension on String {
   }
 }
 
+class ListTagsForResourceResponse {
+  /// The tags for the resource.
+  final List<Tag>? tags;
+
+  ListTagsForResourceResponse({
+    this.tags,
+  });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 class PutImageResponse {
   /// Details of the image uploaded.
   final Image? image;
@@ -2602,6 +2588,54 @@ class SetRepositoryPolicyResponse {
   }
 }
 
+/// The metadata that you apply to a resource to help you categorize and
+/// organize them. Each tag consists of a key and an optional value, both of
+/// which you define. Tag keys can have a maximum character length of 128
+/// characters, and tag values can have a maximum length of 256 characters.
+class Tag {
+  /// One part of a key-value pair that make up a tag. A <code>key</code> is a
+  /// general label that acts like a category for more specific tag values.
+  final String? key;
+
+  /// The optional part of a key-value pair that make up a tag. A
+  /// <code>value</code> acts as a descriptor within a tag category (key).
+  final String? value;
+
+  Tag({
+    this.key,
+    this.value,
+  });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
+class UntagResourceResponse {
+  UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
+}
+
 class UploadLayerPartResponse {
   /// The integer value of the last byte received in the request.
   final int? lastByteReceived;
@@ -2678,6 +2712,12 @@ class InvalidParameterException extends _s.GenericAwsException {
       : super(type: type, code: 'InvalidParameterException', message: message);
 }
 
+class InvalidTagParameterException extends _s.GenericAwsException {
+  InvalidTagParameterException({String? type, String? message})
+      : super(
+            type: type, code: 'InvalidTagParameterException', message: message);
+}
+
 class LayerAlreadyExistsException extends _s.GenericAwsException {
   LayerAlreadyExistsException({String? type, String? message})
       : super(
@@ -2745,6 +2785,11 @@ class ServerException extends _s.GenericAwsException {
       : super(type: type, code: 'ServerException', message: message);
 }
 
+class TooManyTagsException extends _s.GenericAwsException {
+  TooManyTagsException({String? type, String? message})
+      : super(type: type, code: 'TooManyTagsException', message: message);
+}
+
 class UnsupportedCommandException extends _s.GenericAwsException {
   UnsupportedCommandException({String? type, String? message})
       : super(
@@ -2773,6 +2818,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidLayerPartException(type: type, message: message),
   'InvalidParameterException': (type, message) =>
       InvalidParameterException(type: type, message: message),
+  'InvalidTagParameterException': (type, message) =>
+      InvalidTagParameterException(type: type, message: message),
   'LayerAlreadyExistsException': (type, message) =>
       LayerAlreadyExistsException(type: type, message: message),
   'LayerPartTooSmallException': (type, message) =>
@@ -2795,6 +2842,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       RepositoryPolicyNotFoundException(type: type, message: message),
   'ServerException': (type, message) =>
       ServerException(type: type, message: message),
+  'TooManyTagsException': (type, message) =>
+      TooManyTagsException(type: type, message: message),
   'UnsupportedCommandException': (type, message) =>
       UnsupportedCommandException(type: type, message: message),
   'UploadNotFoundException': (type, message) =>

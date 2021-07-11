@@ -239,6 +239,89 @@
       ],
       "documentation": "<p>Creates a data source.</p>"
     },
+    "CreateFolder": {
+      "name": "CreateFolder",
+      "http": {
+        "method": "POST",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}"
+      },
+      "input": {
+        "shape": "CreateFolderRequest"
+      },
+      "output": {
+        "shape": "CreateFolderResponse"
+      },
+      "errors": [
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ResourceExistsException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Creates an empty shared folder.</p>"
+    },
+    "CreateFolderMembership": {
+      "name": "CreateFolderMembership",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}"
+      },
+      "input": {
+        "shape": "CreateFolderMembershipRequest"
+      },
+      "output": {
+        "shape": "CreateFolderMembershipResponse"
+      },
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ResourceExistsException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Adds an asset, such as a dashboard, analysis, or dataset into a folder.</p>"
+    },
     "CreateGroup": {
       "name": "CreateGroup",
       "http": {
@@ -765,6 +848,80 @@
         }
       ],
       "documentation": "<p>Deletes the data source permanently. This operation breaks all the datasets that reference the deleted data source.</p>"
+    },
+    "DeleteFolder": {
+      "name": "DeleteFolder",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}"
+      },
+      "input": {
+        "shape": "DeleteFolderRequest"
+      },
+      "output": {
+        "shape": "DeleteFolderResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "PreconditionNotMetException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Deletes an empty folder.</p>"
+    },
+    "DeleteFolderMembership": {
+      "name": "DeleteFolderMembership",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}"
+      },
+      "input": {
+        "shape": "DeleteFolderMembershipRequest"
+      },
+      "output": {
+        "shape": "DeleteFolderMembershipResponse"
+      },
+      "errors": [
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Removes an asset, such as a dashboard, analysis, or dataset, from a folder.</p>"
     },
     "DeleteGroup": {
       "name": "DeleteGroup",
@@ -1449,6 +1606,108 @@
       ],
       "documentation": "<p>Describes the resource permissions for a data source.</p>"
     },
+    "DescribeFolder": {
+      "name": "DescribeFolder",
+      "http": {
+        "method": "GET",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}"
+      },
+      "input": {
+        "shape": "DescribeFolderRequest"
+      },
+      "output": {
+        "shape": "DescribeFolderResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Describes a folder.</p>"
+    },
+    "DescribeFolderPermissions": {
+      "name": "DescribeFolderPermissions",
+      "http": {
+        "method": "GET",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/permissions"
+      },
+      "input": {
+        "shape": "DescribeFolderPermissionsRequest"
+      },
+      "output": {
+        "shape": "DescribeFolderPermissionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Describes permissions for a folder.</p>"
+    },
+    "DescribeFolderResolvedPermissions": {
+      "name": "DescribeFolderResolvedPermissions",
+      "http": {
+        "method": "GET",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/resolved-permissions"
+      },
+      "input": {
+        "shape": "DescribeFolderResolvedPermissionsRequest"
+      },
+      "output": {
+        "shape": "DescribeFolderResolvedPermissionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Describes the folder resolved permissions. Permissions consists of both folder direct permissions and the inherited permissions from the ancestor folders.</p>"
+    },
     "DescribeGroup": {
       "name": "DescribeGroup",
       "http": {
@@ -2078,6 +2337,80 @@
         }
       ],
       "documentation": "<p>Lists data sources in current AWS Region that belong to this AWS account.</p>"
+    },
+    "ListFolderMembers": {
+      "name": "ListFolderMembers",
+      "http": {
+        "method": "GET",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/members"
+      },
+      "input": {
+        "shape": "ListFolderMembersRequest"
+      },
+      "output": {
+        "shape": "ListFolderMembersResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InvalidNextTokenException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>List all assets (<code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>) in a folder. </p>"
+    },
+    "ListFolders": {
+      "name": "ListFolders",
+      "http": {
+        "method": "GET",
+        "requestUri": "/accounts/{AwsAccountId}/folders"
+      },
+      "input": {
+        "shape": "ListFoldersRequest"
+      },
+      "output": {
+        "shape": "ListFoldersResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InvalidNextTokenException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Lists all folders in an account.</p>"
     },
     "ListGroupMemberships": {
       "name": "ListGroupMemberships",
@@ -2770,6 +3103,43 @@
       ],
       "documentation": "<p>Searches for dashboards that belong to a user. </p>"
     },
+    "SearchFolders": {
+      "name": "SearchFolders",
+      "http": {
+        "method": "POST",
+        "requestUri": "/accounts/{AwsAccountId}/search/folders"
+      },
+      "input": {
+        "shape": "SearchFoldersRequest"
+      },
+      "output": {
+        "shape": "SearchFoldersResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "InvalidNextTokenException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Searches the subfolders in a folder.</p>"
+    },
     "TagResource": {
       "name": "TagResource",
       "http": {
@@ -3220,6 +3590,83 @@
         }
       ],
       "documentation": "<p>Updates the permissions to a data source.</p>"
+    },
+    "UpdateFolder": {
+      "name": "UpdateFolder",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}"
+      },
+      "input": {
+        "shape": "UpdateFolderRequest"
+      },
+      "output": {
+        "shape": "UpdateFolderResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceExistsException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Updates the name of a folder.</p>"
+    },
+    "UpdateFolderPermissions": {
+      "name": "UpdateFolderPermissions",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/accounts/{AwsAccountId}/folders/{FolderId}/permissions"
+      },
+      "input": {
+        "shape": "UpdateFolderPermissionsRequest"
+      },
+      "output": {
+        "shape": "UpdateFolderPermissionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "InvalidParameterValueException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "LimitExceededException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "UnsupportedUserEditionException"
+        },
+        {
+          "shape": "InternalFailureException"
+        }
+      ],
+      "documentation": "<p>Updates permissions of a folder.</p>"
     },
     "UpdateGroup": {
       "name": "UpdateGroup",
@@ -3741,8 +4188,7 @@
     "AnalysisName": {
       "type": "string",
       "max": 2048,
-      "min": 1,
-      "pattern": "[\\u0020-\\u00FF]+"
+      "min": 1
     },
     "AnalysisSearchFilter": {
       "type": "structure",
@@ -3767,7 +4213,8 @@
       "member": {
         "shape": "AnalysisSearchFilter"
       },
-      "max": 1
+      "max": 1,
+      "min": 1
     },
     "AnalysisSourceEntity": {
       "type": "structure",
@@ -4509,6 +4956,10 @@
           "shape": "ColumnGroupList",
           "documentation": "<p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>"
         },
+        "FieldFolders": {
+          "shape": "FieldFolderMap",
+          "documentation": "<p>The folder that contains fields and nested subfolders for your dataset.</p>"
+        },
         "Permissions": {
           "shape": "ResourcePermissionList",
           "documentation": "<p>A list of resource permissions on the dataset.</p>"
@@ -4582,7 +5033,7 @@
         },
         "Type": {
           "shape": "DataSourceType",
-          "documentation": "<p>The type of the data source. Currently, the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p>"
+          "documentation": "<p>The type of the data source. Currently, the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p> <p> <code>AMAZON_ELASTICSEARCH</code> is for Amazon managed Elasticsearch Service.</p>"
         },
         "DataSourceParameters": {
           "shape": "DataSourceParameters",
@@ -4633,6 +5084,121 @@
           "shape": "StatusCode",
           "documentation": "<p>The HTTP status of the request.</p>",
           "location": "statusCode"
+        }
+      }
+    },
+    "CreateFolderMembershipRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId",
+        "MemberId",
+        "MemberType"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS Account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "MemberId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The ID of the asset (the dashboard, analysis, or dataset).</p>",
+          "location": "uri",
+          "locationName": "MemberId"
+        },
+        "MemberType": {
+          "shape": "MemberType",
+          "documentation": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>.</p>",
+          "location": "uri",
+          "locationName": "MemberType"
+        }
+      }
+    },
+    "CreateFolderMembershipResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status of the folder membership. If succeeded, the status is <code>SC_OK (200)</code>.</p>"
+        },
+        "FolderMember": {
+          "shape": "FolderMember",
+          "documentation": "<p>Information about the member in the folder.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "CreateFolderRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS Account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "Name": {
+          "shape": "FolderName",
+          "documentation": "<p>The name of the folder.</p>"
+        },
+        "FolderType": {
+          "shape": "FolderType",
+          "documentation": "<p>The type of folder. By default, <code>folderType</code> is <code>SHARED</code>.</p>"
+        },
+        "ParentFolderArn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN) for the parent folder.</p> <p> <code>ParentFolderArn</code> can be null. An empty <code>parentFolderArn</code> creates a root-level folder.</p>"
+        },
+        "Permissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>A structure that describes the principals and the resource-level permissions of a folder.</p> <p>To specify no permissions, omit <code>Permissions</code>.</p>"
+        },
+        "Tags": {
+          "shape": "TagList",
+          "documentation": "<p>Tags for the folder.</p>"
+        }
+      }
+    },
+    "CreateFolderResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status of the newly created folder. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+          "location": "statusCode"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN) for the newly created folder.</p>"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID for the newly created folder.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID for the newly created folder.</p>"
         }
       }
     },
@@ -5320,8 +5886,7 @@
     "DashboardName": {
       "type": "string",
       "max": 2048,
-      "min": 1,
-      "pattern": "[\\u0020-\\u00FF]+"
+      "min": 1
     },
     "DashboardPublishOptions": {
       "type": "structure",
@@ -5367,7 +5932,8 @@
       "member": {
         "shape": "DashboardSearchFilter"
       },
-      "max": 1
+      "max": 1,
+      "min": 1
     },
     "DashboardSourceEntity": {
       "type": "structure",
@@ -5592,6 +6158,10 @@
         "ColumnGroups": {
           "shape": "ColumnGroupList",
           "documentation": "<p>Groupings of columns that work together in certain Amazon QuickSight features. Currently, only geospatial hierarchy is supported.</p>"
+        },
+        "FieldFolders": {
+          "shape": "FieldFolderMap",
+          "documentation": "<p>The folder that contains fields and nested subfolders for your dataset.</p>"
         },
         "RowLevelPermissionDataSet": {
           "shape": "RowLevelPermissionDataSet",
@@ -6231,6 +6801,97 @@
           "shape": "StatusCode",
           "documentation": "<p>The HTTP status of the request.</p>",
           "location": "statusCode"
+        }
+      }
+    },
+    "DeleteFolderMembershipRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId",
+        "MemberId",
+        "MemberType"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS Account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The Folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "MemberId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The ID of the asset (the dashboard, analysis, or dataset) that you want to delete.</p>",
+          "location": "uri",
+          "locationName": "MemberId"
+        },
+        "MemberType": {
+          "shape": "MemberType",
+          "documentation": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code> </p>",
+          "location": "uri",
+          "locationName": "MemberType"
+        }
+      }
+    },
+    "DeleteFolderMembershipResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status of deleting the asset. If succeeded, the status is <code>SC_OK (200)</code>.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "DeleteFolderRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS Account ID for the folder.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        }
+      }
+    },
+    "DeleteFolderResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status of deleting the folder. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+          "location": "statusCode"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name of the deleted folder.</p>"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
         }
       }
     },
@@ -7146,6 +7807,139 @@
         }
       }
     },
+    "DescribeFolderPermissionsRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS Account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        }
+      }
+    },
+    "DescribeFolderPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
+          "location": "statusCode"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN) for the folder.</p>"
+        },
+        "Permissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>Information about the permissions on the folder.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "DescribeFolderRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        }
+      }
+    },
+    "DescribeFolderResolvedPermissionsRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        }
+      }
+    },
+    "DescribeFolderResolvedPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
+          "location": "statusCode"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN).</p>"
+        },
+        "Permissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>Information about the permissions on the dashboard.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "DescribeFolderResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+          "location": "statusCode"
+        },
+        "Folder": {
+          "shape": "Folder",
+          "documentation": "<p>Information about the folder.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
     "DescribeGroupRequest": {
       "type": "structure",
       "required": [
@@ -7724,6 +8518,38 @@
       "max": 4096,
       "min": 1
     },
+    "FieldFolder": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "shape": "FieldFolderDescription",
+          "documentation": "<p>The description for a field folder.</p>"
+        },
+        "columns": {
+          "shape": "FolderColumnList",
+          "documentation": "<p>A folder has a list of columns. A column can only be in one folder.</p>"
+        }
+      },
+      "documentation": "<p>A FieldFolder element is a folder that contains fields and nested subfolders.</p>"
+    },
+    "FieldFolderDescription": {
+      "type": "string",
+      "max": 500
+    },
+    "FieldFolderMap": {
+      "type": "map",
+      "key": {
+        "shape": "FieldFolderPath"
+      },
+      "value": {
+        "shape": "FieldFolder"
+      }
+    },
+    "FieldFolderPath": {
+      "type": "string",
+      "max": 1000,
+      "min": 1
+    },
     "FileFormat": {
       "type": "string",
       "enum": [
@@ -7752,6 +8578,147 @@
       "type": "string",
       "enum": [
         "StringEquals"
+      ]
+    },
+    "Folder": {
+      "type": "structure",
+      "members": {
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The folder Amazon Resource Name (ARN).</p>"
+        },
+        "Name": {
+          "shape": "FolderName",
+          "documentation": "<p>A display name for the folder.</p>"
+        },
+        "FolderType": {
+          "shape": "FolderType",
+          "documentation": "<p>The type of the folder.</p>"
+        },
+        "FolderPath": {
+          "shape": "Path",
+          "documentation": "<p>An array of ancestor folder ARN strings.</p>"
+        },
+        "CreatedTime": {
+          "shape": "Timestamp",
+          "documentation": "<p>The time that the folder was created.</p>"
+        },
+        "LastUpdatedTime": {
+          "shape": "Timestamp",
+          "documentation": "<p>The time that the folder was last updated.</p>"
+        }
+      },
+      "documentation": "<p>A folder.</p>"
+    },
+    "FolderColumnList": {
+      "type": "list",
+      "member": {
+        "shape": "String"
+      },
+      "max": 5000
+    },
+    "FolderFilterAttribute": {
+      "type": "string",
+      "enum": [
+        "PARENT_FOLDER_ARN"
+      ]
+    },
+    "FolderMember": {
+      "type": "structure",
+      "members": {
+        "MemberId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The ID of the asset.</p>"
+        },
+        "MemberType": {
+          "shape": "MemberType",
+          "documentation": "<p>The type of the asset.</p>"
+        }
+      },
+      "documentation": "<p>An asset in a folder, such as a dashboard, analysis, or dataset.</p>"
+    },
+    "FolderMemberList": {
+      "type": "list",
+      "member": {
+        "shape": "MemberIdArnPair"
+      },
+      "max": 100
+    },
+    "FolderName": {
+      "type": "string",
+      "max": 200,
+      "min": 1
+    },
+    "FolderSearchFilter": {
+      "type": "structure",
+      "members": {
+        "Operator": {
+          "shape": "FilterOperator",
+          "documentation": "<p>The comparison operator that you want to use as a filter. For example, <code>\"Operator\": \"StringEquals\"</code>.</p>"
+        },
+        "Name": {
+          "shape": "FolderFilterAttribute",
+          "documentation": "<p>The name of the value that you want to use as a filter. For example, <code>\"Name\": \"PARENT_FOLDER_ARN\"</code>.</p>"
+        },
+        "Value": {
+          "shape": "String",
+          "documentation": "<p>The value of the named item (in this example, <code>PARENT_FOLDER_ARN</code>), that you want to use as a filter. For example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:folder/folderId\"</code>.</p>"
+        }
+      },
+      "documentation": "<p>Searches a folder by a filter.</p>"
+    },
+    "FolderSearchFilterList": {
+      "type": "list",
+      "member": {
+        "shape": "FolderSearchFilter"
+      },
+      "max": 100
+    },
+    "FolderSummary": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN).</p>"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "Name": {
+          "shape": "FolderName",
+          "documentation": "<p>The display name of the folder.</p>"
+        },
+        "FolderType": {
+          "shape": "FolderType",
+          "documentation": "<p>The type of folder.</p>"
+        },
+        "CreatedTime": {
+          "shape": "Timestamp",
+          "documentation": "<p>The time that the folder was created.</p>"
+        },
+        "LastUpdatedTime": {
+          "shape": "Timestamp",
+          "documentation": "<p>The time that the folder was last updated.</p>"
+        }
+      },
+      "documentation": "<p>A summary of the folder. </p>"
+    },
+    "FolderSummaryList": {
+      "type": "list",
+      "member": {
+        "shape": "FolderSummary"
+      },
+      "max": 100
+    },
+    "FolderType": {
+      "type": "string",
+      "enum": [
+        "SHARED"
       ]
     },
     "GeoSpatialColumnGroup": {
@@ -8636,6 +9603,111 @@
           "shape": "StatusCode",
           "documentation": "<p>The HTTP status of the request.</p>",
           "location": "statusCode"
+        }
+      }
+    },
+    "ListFolderMembersRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "documentation": "<p>The maximum number of results to be returned per request.</p>",
+          "box": true,
+          "location": "querystring",
+          "locationName": "max-results"
+        }
+      }
+    },
+    "ListFolderMembersResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
+          "location": "statusCode"
+        },
+        "FolderMemberList": {
+          "shape": "FolderMemberList",
+          "documentation": "<p>A structure that contains all of the folder members (dashboards, analyses, and datasets) in the folder.</p>"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "ListFoldersRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "documentation": "<p>The maximum number of results to be returned per request.</p>",
+          "box": true,
+          "location": "querystring",
+          "locationName": "max-results"
+        }
+      }
+    },
+    "ListFoldersResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
+          "location": "statusCode"
+        },
+        "FolderSummaryList": {
+          "shape": "FolderSummaryList",
+          "documentation": "<p>A structure that contains all of the folders in your AWS account. This structure provides basic information about the folders.</p>"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
         }
       }
     },
@@ -9589,6 +10661,28 @@
       "max": 100,
       "min": 1
     },
+    "MemberIdArnPair": {
+      "type": "structure",
+      "members": {
+        "MemberId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The ID of the member.</p>"
+        },
+        "MemberArn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN) of the member.</p>"
+        }
+      },
+      "documentation": "<p>An object that consists of the member Amazon Resource Name (ARN) and member ID.</p>"
+    },
+    "MemberType": {
+      "type": "string",
+      "enum": [
+        "DASHBOARD",
+        "ANALYSIS",
+        "DATASET"
+      ]
+    },
     "MySqlParameters": {
       "type": "structure",
       "required": [
@@ -9770,6 +10864,14 @@
     "Password": {
       "type": "string",
       "max": 1024,
+      "min": 1
+    },
+    "Path": {
+      "type": "list",
+      "member": {
+        "shape": "Arn"
+      },
+      "max": 10,
       "min": 1
     },
     "PhysicalTable": {
@@ -10016,6 +11118,18 @@
         "CustomPermissionsName": {
           "shape": "RoleName",
           "documentation": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a>UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a QuickSight user. </p> <p>QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning QuickSight users to one of the default security cohorts in QuickSight (admin, author, reader).</p> <p>This feature is available only to QuickSight Enterprise edition subscriptions that use SAML 2.0-Based Federation for Single Sign-On (SSO).</p>"
+        },
+        "ExternalLoginFederationProviderType": {
+          "shape": "String",
+          "documentation": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated AWS Identity and Access Management (IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> </ul>"
+        },
+        "CustomFederationProviderUrl": {
+          "shape": "String",
+          "documentation": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>"
+        },
+        "ExternalLoginId": {
+          "shape": "String",
+          "documentation": "<p>The identity ID for a user in the external login provider.</p>"
         }
       }
     },
@@ -10235,18 +11349,29 @@
       "members": {
         "Namespace": {
           "shape": "Namespace",
-          "documentation": "<p>The namespace associated with the row-level permissions dataset.</p>"
+          "documentation": "<p>The namespace associated with the dataset that contains permissions for RLS.</p>"
         },
         "Arn": {
           "shape": "Arn",
-          "documentation": "<p>The Amazon Resource Name (ARN) of the permission dataset.</p>"
+          "documentation": "<p>The Amazon Resource Name (ARN) of the dataset that contains permissions for RLS.</p>"
         },
         "PermissionPolicy": {
           "shape": "RowLevelPermissionPolicy",
-          "documentation": "<p>Permission policy.</p>"
+          "documentation": "<p>The type of permissions to use when interpretting the permissions for RLS. <code>DENY_ACCESS</code> is included for backward compatibility only.</p>"
+        },
+        "FormatVersion": {
+          "shape": "RowLevelPermissionFormatVersion",
+          "documentation": "<p>The user or group rules associated with the dataset that contains permissions for RLS.</p> <p>By default, <code>FormatVersion</code> is <code>VERSION_1</code>. When <code>FormatVersion</code> is <code>VERSION_1</code>, <code>UserName</code> and <code>GroupName</code> are required. When <code>FormatVersion</code> is <code>VERSION_2</code>, <code>UserARN</code> and <code>GroupARN</code> are required, and <code>Namespace</code> must not exist.</p>"
         }
       },
-      "documentation": "<p>The row-level security configuration for the dataset.</p>"
+      "documentation": "<p>Information about a dataset that contains permissions for row-level security (RLS). The permissions dataset maps fields to users or groups. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/restrict-access-to-a-data-set-using-row-level-security.html\">Using Row-Level Security (RLS) to Restrict Access to a Dataset</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>The option to deny permissions by setting <code>PermissionPolicy</code> to <code>DENY_ACCESS</code> is not supported for new RLS datasets.</p>"
+    },
+    "RowLevelPermissionFormatVersion": {
+      "type": "string",
+      "enum": [
+        "VERSION_1",
+        "VERSION_2"
+      ]
     },
     "RowLevelPermissionPolicy": {
       "type": "string",
@@ -10287,7 +11412,7 @@
       "members": {
         "DataSourceArn": {
           "shape": "Arn",
-          "documentation": "<p>The amazon Resource Name (ARN) for the data source.</p>"
+          "documentation": "<p>The Amazon Resource Name (ARN) for the data source.</p>"
         },
         "UploadSettings": {
           "shape": "UploadSettings",
@@ -10295,10 +11420,10 @@
         },
         "InputColumns": {
           "shape": "InputColumnList",
-          "documentation": "<p>A physical table type for as S3 data source.</p>"
+          "documentation": "<p>A physical table type for an S3 data source.</p> <note> <p>For non-JSON files, only <code>STRING</code> data types are supported in input columns.</p> </note>"
         }
       },
-      "documentation": "<p>A physical table type for as S3 data source.</p>"
+      "documentation": "<p>A physical table type for an S3 data source.</p>"
     },
     "SearchAnalysesRequest": {
       "type": "structure",
@@ -10397,6 +11522,56 @@
         "RequestId": {
           "shape": "String",
           "documentation": "<p>The AWS request ID for this operation.</p>"
+        }
+      }
+    },
+    "SearchFoldersRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "Filters"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "Filters": {
+          "shape": "FolderSearchFilterList",
+          "documentation": "<p>The filters to apply to the search. Currently, you can search only by the parent folder ARN. For example, <code>\"Filters\": [ { \"Name\": \"PARENT_FOLDER_ARN\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:folder/folderId\" } ]</code>.</p>"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "documentation": "<p>The maximum number of results to be returned per request.</p>",
+          "box": true
+        }
+      }
+    },
+    "SearchFoldersResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
+          "location": "statusCode"
+        },
+        "FolderSummaryList": {
+          "shape": "FolderSummaryList",
+          "documentation": "<p>A structure that contains all of the folders in your AWS account. This structure provides basic information about the folders.</p>"
+        },
+        "NextToken": {
+          "shape": "String",
+          "documentation": "<p>The token for the next set of results, or null if there are no more results.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
         }
       }
     },
@@ -10767,8 +11942,7 @@
     "TemplateName": {
       "type": "string",
       "max": 2048,
-      "min": 1,
-      "pattern": "[\\u0020-\\u00FF]+"
+      "min": 1
     },
     "TemplateSourceAnalysis": {
       "type": "structure",
@@ -11865,6 +13039,10 @@
           "shape": "ColumnGroupList",
           "documentation": "<p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>"
         },
+        "FieldFolders": {
+          "shape": "FieldFolderMap",
+          "documentation": "<p>The folder that contains fields and nested subfolders for your dataset.</p>"
+        },
         "RowLevelPermissionDataSet": {
           "shape": "RowLevelPermissionDataSet",
           "documentation": "<p>The row-level security configuration for the data you want to create.</p>"
@@ -12021,6 +13199,108 @@
           "shape": "StatusCode",
           "documentation": "<p>The HTTP status of the request.</p>",
           "location": "statusCode"
+        }
+      }
+    },
+    "UpdateFolderPermissionsRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "GrantPermissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>The permissions that you want to grant on a resource.</p>"
+        },
+        "RevokePermissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>The permissions that you want to revoke from a resource.</p>"
+        }
+      }
+    },
+    "UpdateFolderPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN).</p>"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "Permissions": {
+          "shape": "ResourcePermissionList",
+          "documentation": "<p>Information about the permissions on the dashboard.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
+        }
+      }
+    },
+    "UpdateFolderRequest": {
+      "type": "structure",
+      "required": [
+        "AwsAccountId",
+        "FolderId",
+        "Name"
+      ],
+      "members": {
+        "AwsAccountId": {
+          "shape": "AwsAccountId",
+          "documentation": "<p>The AWS account ID.</p>",
+          "location": "uri",
+          "locationName": "AwsAccountId"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>",
+          "location": "uri",
+          "locationName": "FolderId"
+        },
+        "Name": {
+          "shape": "FolderName",
+          "documentation": "<p>The name of the folder.</p>"
+        }
+      }
+    },
+    "UpdateFolderResponse": {
+      "type": "structure",
+      "members": {
+        "Status": {
+          "shape": "StatusCode",
+          "documentation": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
+          "location": "statusCode"
+        },
+        "Arn": {
+          "shape": "Arn",
+          "documentation": "<p>The Amazon Resource Name (ARN).</p>"
+        },
+        "FolderId": {
+          "shape": "RestrictiveResourceId",
+          "documentation": "<p>The folder ID.</p>"
+        },
+        "RequestId": {
+          "shape": "String",
+          "documentation": "<p>The request ID.</p>"
         }
       }
     },
@@ -12542,6 +13822,18 @@
         "UnapplyCustomPermissions": {
           "shape": "Boolean",
           "documentation": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>"
+        },
+        "ExternalLoginFederationProviderType": {
+          "shape": "String",
+          "documentation": "<p>The type of supported external login provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> <li> <p> <code>NONE</code>: This clears all the previously saved external login information for a user. Use <code> <a>DescribeUser</a> </code> API to check the external login information.</p> </li> </ul>"
+        },
+        "CustomFederationProviderUrl": {
+          "shape": "String",
+          "documentation": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>"
+        },
+        "ExternalLoginId": {
+          "shape": "String",
+          "documentation": "<p>The identity ID for a user in the external login provider.</p>"
         }
       }
     },
@@ -12625,6 +13917,18 @@
         "CustomPermissionsName": {
           "shape": "RoleName",
           "documentation": "<p>The custom permissions profile associated with this user.</p>"
+        },
+        "ExternalLoginFederationProviderType": {
+          "shape": "String",
+          "documentation": "<p>The type of supported external login provider that provides identity to let the user federate into Amazon QuickSight with an associated IAM role. The type can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.</p> </li> </ul>"
+        },
+        "ExternalLoginFederationProviderUrl": {
+          "shape": "String",
+          "documentation": "<p>The URL of the external login provider.</p>"
+        },
+        "ExternalLoginId": {
+          "shape": "String",
+          "documentation": "<p>The identity ID for the user in the external login provider.</p>"
         }
       },
       "documentation": "<p>A registered user of Amazon QuickSight. </p>"

@@ -193,12 +193,6 @@ class AppStream {
     String? destinationImageDescription,
   }) async {
     ArgumentError.checkNotNull(destinationImageName, 'destinationImageName');
-    _s.validateStringPattern(
-      'destinationImageName',
-      destinationImageName,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationRegion, 'destinationRegion');
     _s.validateStringLength(
       'destinationRegion',
@@ -208,12 +202,6 @@ class AppStream {
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceImageName, 'sourceImageName');
-    _s.validateStringPattern(
-      'sourceImageName',
-      sourceImageName,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'destinationImageDescription',
       destinationImageDescription,
@@ -315,6 +303,9 @@ class AppStream {
   /// instance types are available:
   ///
   /// <ul>
+  /// <li>
+  /// stream.standard.small
+  /// </li>
   /// <li>
   /// stream.standard.medium
   /// </li>
@@ -564,12 +555,6 @@ class AppStream {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -581,16 +566,6 @@ class AppStream {
       displayName,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'iamRoleArn',
-      iamRoleArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-    );
-    _s.validateStringPattern(
-      'imageArn',
-      imageArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
     );
     _s.validateStringLength(
       'imageName',
@@ -659,6 +634,9 @@ class AppStream {
   /// instance types are available:
   ///
   /// <ul>
+  /// <li>
+  /// stream.standard.small
+  /// </li>
   /// <li>
   /// stream.standard.medium
   /// </li>
@@ -846,12 +824,6 @@ class AppStream {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'appstreamAgentVersion',
       appstreamAgentVersion,
@@ -869,16 +841,6 @@ class AppStream {
       displayName,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'iamRoleArn',
-      iamRoleArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-    );
-    _s.validateStringPattern(
-      'imageArn',
-      imageArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
     );
     _s.validateStringLength(
       'imageName',
@@ -1040,12 +1002,6 @@ class AppStream {
     List<UserSetting>? userSettings,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -1119,7 +1075,10 @@ class AppStream {
   ///
   /// Parameter [applicationId] :
   /// The name of the application to launch after the session starts. This is
-  /// the name that you specified as <b>Name</b> in the Image Assistant.
+  /// the name that you specified as <b>Name</b> in the Image Assistant. If your
+  /// fleet is enabled for the <b>Desktop</b> stream view, you can also choose
+  /// to launch directly to the operating system desktop. To do so, specify
+  /// <b>Desktop</b>.
   ///
   /// Parameter [sessionContext] :
   /// The session context. For more information, see <a
@@ -1161,12 +1120,6 @@ class AppStream {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[\w+=,.@-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationId',
       applicationId,
@@ -1200,6 +1153,107 @@ class AppStream {
     );
 
     return CreateStreamingURLResult.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a new image with the latest Windows operating system updates,
+  /// driver updates, and AppStream 2.0 agent software.
+  ///
+  /// For more information, see the "Update an Image by Using Managed AppStream
+  /// 2.0 Image Updates" section in <a
+  /// href="https://docs.aws.amazon.com/appstream2/latest/developerguide/administer-images.html">Administer
+  /// Your AppStream 2.0 Images</a>, in the <i>Amazon AppStream 2.0
+  /// Administration Guide</i>.
+  ///
+  /// May throw [LimitExceededException].
+  /// May throw [InvalidAccountStatusException].
+  /// May throw [OperationNotPermittedException].
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConcurrentModificationException].
+  /// May throw [IncompatibleImageException].
+  ///
+  /// Parameter [existingImageName] :
+  /// The name of the image to update.
+  ///
+  /// Parameter [newImageName] :
+  /// The name of the new image. The name must be unique within the AWS account
+  /// and Region.
+  ///
+  /// Parameter [dryRun] :
+  /// Indicates whether to display the status of image update availability
+  /// before AppStream 2.0 initiates the process of creating a new updated
+  /// image. If this value is set to <code>true</code>, AppStream 2.0 displays
+  /// whether image updates are available. If this value is set to
+  /// <code>false</code>, AppStream 2.0 initiates the process of creating a new
+  /// updated image without displaying whether image updates are available.
+  ///
+  /// Parameter [newImageDescription] :
+  /// The description to display for the new image.
+  ///
+  /// Parameter [newImageDisplayName] :
+  /// The name to display for the new image.
+  ///
+  /// Parameter [newImageTags] :
+  /// The tags to associate with the new image. A tag is a key-value pair, and
+  /// the value is optional. For example, Environment=Test. If you do not
+  /// specify a value, Environment=.
+  ///
+  /// Generally allowed characters are: letters, numbers, and spaces
+  /// representable in UTF-8, and the following special characters:
+  ///
+  /// _ . : / = + \ - @
+  ///
+  /// If you do not specify a value, the value is set to an empty string.
+  ///
+  /// For more information about tags, see <a
+  /// href="https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html">Tagging
+  /// Your Resources</a> in the <i>Amazon AppStream 2.0 Administration
+  /// Guide</i>.
+  Future<CreateUpdatedImageResult> createUpdatedImage({
+    required String existingImageName,
+    required String newImageName,
+    bool? dryRun,
+    String? newImageDescription,
+    String? newImageDisplayName,
+    Map<String, String>? newImageTags,
+  }) async {
+    ArgumentError.checkNotNull(existingImageName, 'existingImageName');
+    ArgumentError.checkNotNull(newImageName, 'newImageName');
+    _s.validateStringLength(
+      'newImageDescription',
+      newImageDescription,
+      0,
+      256,
+    );
+    _s.validateStringLength(
+      'newImageDisplayName',
+      newImageDisplayName,
+      0,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'PhotonAdminProxyService.CreateUpdatedImage'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'existingImageName': existingImageName,
+        'newImageName': newImageName,
+        if (dryRun != null) 'dryRun': dryRun,
+        if (newImageDescription != null)
+          'newImageDescription': newImageDescription,
+        if (newImageDisplayName != null)
+          'newImageDisplayName': newImageDisplayName,
+        if (newImageTags != null) 'newImageTags': newImageTags,
+      },
+    );
+
+    return CreateUpdatedImageResult.fromJson(jsonResponse.body);
   }
 
   /// Creates a usage report subscription. Usage reports are generated daily.
@@ -1276,33 +1330,17 @@ class AppStream {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'firstName',
       firstName,
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'firstName',
-      firstName,
-      r'''^[A-Za-z0-9_\-\s]+$''',
-    );
     _s.validateStringLength(
       'lastName',
       lastName,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'lastName',
-      lastName,
-      r'''^[A-Za-z0-9_\-\s]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1403,12 +1441,6 @@ class AppStream {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.DeleteImage'
@@ -1439,12 +1471,6 @@ class AppStream {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.DeleteImageBuilder'
@@ -1481,19 +1507,7 @@ class AppStream {
     required String sharedAccountId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sharedAccountId, 'sharedAccountId');
-    _s.validateStringPattern(
-      'sharedAccountId',
-      sharedAccountId,
-      r'''^\d+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.DeleteImagePermissions'
@@ -1590,12 +1604,6 @@ class AppStream {
       userName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1778,12 +1786,6 @@ class AppStream {
     List<String>? sharedAwsAccountIds,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2119,11 +2121,6 @@ class AppStream {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.DescribeUserStackAssociations'
@@ -2222,12 +2219,6 @@ class AppStream {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.DisableUser'
@@ -2323,12 +2314,6 @@ class AppStream {
       userName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2487,12 +2472,6 @@ class AppStream {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.ListTagsForResource'
@@ -2713,12 +2692,6 @@ class AppStream {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2760,12 +2733,6 @@ class AppStream {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2939,6 +2906,9 @@ class AppStream {
   ///
   /// <ul>
   /// <li>
+  /// stream.standard.small
+  /// </li>
+  /// <li>
   /// stream.standard.medium
   /// </li>
   /// <li>
@@ -3090,16 +3060,6 @@ class AppStream {
       0,
       100,
     );
-    _s.validateStringPattern(
-      'iamRoleArn',
-      iamRoleArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-    );
-    _s.validateStringPattern(
-      'imageArn',
-      imageArn,
-      r'''^arn:aws(?:\-cn|\-iso\-b|\-iso|\-us\-gov)?:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\-]{0,1023}$''',
-    );
     _s.validateStringLength(
       'imageName',
       imageName,
@@ -3180,19 +3140,7 @@ class AppStream {
   }) async {
     ArgumentError.checkNotNull(imagePermissions, 'imagePermissions');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,100}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sharedAccountId, 'sharedAccountId');
-    _s.validateStringPattern(
-      'sharedAccountId',
-      sharedAccountId,
-      r'''^\d+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'PhotonAdminProxyService.UpdateImagePermissions'
@@ -3410,6 +3358,8 @@ enum Action {
   fileUpload,
   fileDownload,
   printingToLocalDevice,
+  domainPasswordSignin,
+  domainSmartCardSignin,
 }
 
 extension on Action {
@@ -3425,6 +3375,10 @@ extension on Action {
         return 'FILE_DOWNLOAD';
       case Action.printingToLocalDevice:
         return 'PRINTING_TO_LOCAL_DEVICE';
+      case Action.domainPasswordSignin:
+        return 'DOMAIN_PASSWORD_SIGNIN';
+      case Action.domainSmartCardSignin:
+        return 'DOMAIN_SMART_CARD_SIGNIN';
     }
   }
 }
@@ -3442,6 +3396,10 @@ extension on String {
         return Action.fileDownload;
       case 'PRINTING_TO_LOCAL_DEVICE':
         return Action.printingToLocalDevice;
+      case 'DOMAIN_PASSWORD_SIGNIN':
+        return Action.domainPasswordSignin;
+      case 'DOMAIN_SMART_CARD_SIGNIN':
+        return Action.domainSmartCardSignin;
     }
     throw Exception('$this is not known in enum Action');
   }
@@ -3786,6 +3744,25 @@ class CreateStreamingURLResult {
     return CreateStreamingURLResult(
       expires: timeStampFromJson(json['Expires']),
       streamingURL: json['StreamingURL'] as String?,
+    );
+  }
+}
+
+class CreateUpdatedImageResult {
+  /// Indicates whether a new image can be created.
+  final bool? canUpdateImage;
+  final Image? image;
+
+  CreateUpdatedImageResult({
+    this.canUpdateImage,
+    this.image,
+  });
+  factory CreateUpdatedImageResult.fromJson(Map<String, dynamic> json) {
+    return CreateUpdatedImageResult(
+      canUpdateImage: json['canUpdateImage'] as bool?,
+      image: json['image'] != null
+          ? Image.fromJson(json['image'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -4254,6 +4231,9 @@ class Fleet {
   ///
   /// <ul>
   /// <li>
+  /// stream.standard.small
+  /// </li>
+  /// <li>
   /// stream.standard.medium
   /// </li>
   /// <li>
@@ -4598,6 +4578,8 @@ enum FleetErrorCode {
   securityGroupsNotFound,
   igwNotAttached,
   iamServiceRoleMissingDescribeSecurityGroupsAction,
+  fleetStopped,
+  fleetInstanceProvisioningFailure,
   domainJoinErrorFileNotFound,
   domainJoinErrorAccessDenied,
   domainJoinErrorLogonFailure,
@@ -4647,6 +4629,10 @@ extension on FleetErrorCode {
         return 'IGW_NOT_ATTACHED';
       case FleetErrorCode.iamServiceRoleMissingDescribeSecurityGroupsAction:
         return 'IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION';
+      case FleetErrorCode.fleetStopped:
+        return 'FLEET_STOPPED';
+      case FleetErrorCode.fleetInstanceProvisioningFailure:
+        return 'FLEET_INSTANCE_PROVISIONING_FAILURE';
       case FleetErrorCode.domainJoinErrorFileNotFound:
         return 'DOMAIN_JOIN_ERROR_FILE_NOT_FOUND';
       case FleetErrorCode.domainJoinErrorAccessDenied:
@@ -4710,6 +4696,10 @@ extension on String {
         return FleetErrorCode.igwNotAttached;
       case 'IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION':
         return FleetErrorCode.iamServiceRoleMissingDescribeSecurityGroupsAction;
+      case 'FLEET_STOPPED':
+        return FleetErrorCode.fleetStopped;
+      case 'FLEET_INSTANCE_PROVISIONING_FAILURE':
+        return FleetErrorCode.fleetInstanceProvisioningFailure;
       case 'DOMAIN_JOIN_ERROR_FILE_NOT_FOUND':
         return FleetErrorCode.domainJoinErrorFileNotFound;
       case 'DOMAIN_JOIN_ERROR_ACCESS_DENIED':
@@ -4839,6 +4829,9 @@ class Image {
   /// Indicates whether an image builder can be launched from this image.
   final bool? imageBuilderSupported;
 
+  /// Describes the errors that are returned when a new image can't be created.
+  final List<ResourceError>? imageErrors;
+
   /// The permissions to provide to the destination AWS account for the specified
   /// image.
   final ImagePermissions? imagePermissions;
@@ -4872,6 +4865,7 @@ class Image {
     this.displayName,
     this.imageBuilderName,
     this.imageBuilderSupported,
+    this.imageErrors,
     this.imagePermissions,
     this.platform,
     this.publicBaseImageReleasedDate,
@@ -4894,6 +4888,10 @@ class Image {
       displayName: json['DisplayName'] as String?,
       imageBuilderName: json['ImageBuilderName'] as String?,
       imageBuilderSupported: json['ImageBuilderSupported'] as bool?,
+      imageErrors: (json['ImageErrors'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourceError.fromJson(e as Map<String, dynamic>))
+          .toList(),
       imagePermissions: json['ImagePermissions'] != null
           ? ImagePermissions.fromJson(
               json['ImagePermissions'] as Map<String, dynamic>)
@@ -4968,6 +4966,9 @@ class ImageBuilder {
   /// available:
   ///
   /// <ul>
+  /// <li>
+  /// stream.standard.small
+  /// </li>
   /// <li>
   /// stream.standard.medium
   /// </li>
@@ -5151,6 +5152,8 @@ enum ImageBuilderState {
   snapshotting,
   deleting,
   failed,
+  updating,
+  pendingQualification,
 }
 
 extension on ImageBuilderState {
@@ -5174,6 +5177,10 @@ extension on ImageBuilderState {
         return 'DELETING';
       case ImageBuilderState.failed:
         return 'FAILED';
+      case ImageBuilderState.updating:
+        return 'UPDATING';
+      case ImageBuilderState.pendingQualification:
+        return 'PENDING_QUALIFICATION';
     }
   }
 }
@@ -5199,6 +5206,10 @@ extension on String {
         return ImageBuilderState.deleting;
       case 'FAILED':
         return ImageBuilderState.failed;
+      case 'UPDATING':
+        return ImageBuilderState.updating;
+      case 'PENDING_QUALIFICATION':
+        return ImageBuilderState.pendingQualification;
     }
     throw Exception('$this is not known in enum ImageBuilderState');
   }
@@ -5288,6 +5299,8 @@ enum ImageState {
   failed,
   copying,
   deleting,
+  creating,
+  importing,
 }
 
 extension on ImageState {
@@ -5303,6 +5316,10 @@ extension on ImageState {
         return 'COPYING';
       case ImageState.deleting:
         return 'DELETING';
+      case ImageState.creating:
+        return 'CREATING';
+      case ImageState.importing:
+        return 'IMPORTING';
     }
   }
 }
@@ -5320,6 +5337,10 @@ extension on String {
         return ImageState.copying;
       case 'DELETING':
         return ImageState.deleting;
+      case 'CREATING':
+        return ImageState.creating;
+      case 'IMPORTING':
+        return ImageState.importing;
     }
     throw Exception('$this is not known in enum ImageState');
   }

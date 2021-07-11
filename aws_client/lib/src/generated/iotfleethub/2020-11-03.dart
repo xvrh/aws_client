@@ -91,12 +91,6 @@ class IoTFleetHub {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''^[ -~]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -105,33 +99,17 @@ class IoTFleetHub {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:[!-~]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationDescription',
       applicationDescription,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'applicationDescription',
-      applicationDescription,
-      r'''^[ -~]*$''',
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     final $payload = <String, dynamic>{
       'applicationName': applicationName,
@@ -180,22 +158,11 @@ class IoTFleetHub {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationId',
-      applicationId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -234,12 +201,6 @@ class IoTFleetHub {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationId',
-      applicationId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -270,11 +231,6 @@ class IoTFleetHub {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+/=]+$''',
     );
     final $query = <String, List<String>>{
       if (nextToken != null) 'nextToken': [nextToken],
@@ -420,22 +376,11 @@ class IoTFleetHub {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationId',
-      applicationId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationDescription',
       applicationDescription,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'applicationDescription',
-      applicationDescription,
-      r'''^[ -~]*$''',
     );
     _s.validateStringLength(
       'applicationName',
@@ -443,21 +388,11 @@ class IoTFleetHub {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''^[ -~]*$''',
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     final $payload = <String, dynamic>{
       if (applicationDescription != null)

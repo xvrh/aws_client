@@ -136,9 +136,9 @@ class Pricing {
 
   /// Returns a list of attribute values. Attibutes are similar to the details
   /// in a Price List API offer file. For a list of available attributes, see <a
-  /// href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs">Offer
+  /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs">Offer
   /// File Definitions</a> in the <a
-  /// href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html">AWS
+  /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html">AWS
   /// Billing and Cost Management User Guide</a>.
   ///
   /// May throw [InternalErrorException].
@@ -303,20 +303,6 @@ class DescribeServicesResponse {
   }
 }
 
-/// The pagination token expired. Try again without a pagination token.
-class ExpiredNextTokenException implements _s.AwsException {
-  final String? message;
-
-  ExpiredNextTokenException({
-    this.message,
-  });
-  factory ExpiredNextTokenException.fromJson(Map<String, dynamic> json) {
-    return ExpiredNextTokenException(
-      message: json['Message'] as String?,
-    );
-  }
-}
-
 /// The constraints that you want all returned products to match.
 class Filter {
   /// The product metadata field that you want to filter on. You can filter by
@@ -439,63 +425,6 @@ class GetProductsResponse {
   }
 }
 
-/// An error on the server occurred during the processing of your request. Try
-/// again later.
-class InternalErrorException implements _s.AwsException {
-  final String? message;
-
-  InternalErrorException({
-    this.message,
-  });
-  factory InternalErrorException.fromJson(Map<String, dynamic> json) {
-    return InternalErrorException(
-      message: json['Message'] as String?,
-    );
-  }
-}
-
-/// The pagination token is invalid. Try again without a pagination token.
-class InvalidNextTokenException implements _s.AwsException {
-  final String? message;
-
-  InvalidNextTokenException({
-    this.message,
-  });
-  factory InvalidNextTokenException.fromJson(Map<String, dynamic> json) {
-    return InvalidNextTokenException(
-      message: json['Message'] as String?,
-    );
-  }
-}
-
-/// One or more parameters had an invalid value.
-class InvalidParameterException implements _s.AwsException {
-  final String? message;
-
-  InvalidParameterException({
-    this.message,
-  });
-  factory InvalidParameterException.fromJson(Map<String, dynamic> json) {
-    return InvalidParameterException(
-      message: json['Message'] as String?,
-    );
-  }
-}
-
-/// The requested resource can't be found.
-class NotFoundException implements _s.AwsException {
-  final String? message;
-
-  NotFoundException({
-    this.message,
-  });
-  factory NotFoundException.fromJson(Map<String, dynamic> json) {
-    return NotFoundException(
-      message: json['Message'] as String?,
-    );
-  }
-}
-
 /// The metadata for a service, such as the service code and available attribute
 /// names.
 class Service {
@@ -520,14 +449,40 @@ class Service {
   }
 }
 
+class ExpiredNextTokenException extends _s.GenericAwsException {
+  ExpiredNextTokenException({String? type, String? message})
+      : super(type: type, code: 'ExpiredNextTokenException', message: message);
+}
+
+class InternalErrorException extends _s.GenericAwsException {
+  InternalErrorException({String? type, String? message})
+      : super(type: type, code: 'InternalErrorException', message: message);
+}
+
+class InvalidNextTokenException extends _s.GenericAwsException {
+  InvalidNextTokenException({String? type, String? message})
+      : super(type: type, code: 'InvalidNextTokenException', message: message);
+}
+
+class InvalidParameterException extends _s.GenericAwsException {
+  InvalidParameterException({String? type, String? message})
+      : super(type: type, code: 'InvalidParameterException', message: message);
+}
+
+class NotFoundException extends _s.GenericAwsException {
+  NotFoundException({String? type, String? message})
+      : super(type: type, code: 'NotFoundException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'ExpiredNextTokenException': (type, message) =>
-      ExpiredNextTokenException(message: message),
+      ExpiredNextTokenException(type: type, message: message),
   'InternalErrorException': (type, message) =>
-      InternalErrorException(message: message),
+      InternalErrorException(type: type, message: message),
   'InvalidNextTokenException': (type, message) =>
-      InvalidNextTokenException(message: message),
+      InvalidNextTokenException(type: type, message: message),
   'InvalidParameterException': (type, message) =>
-      InvalidParameterException(message: message),
-  'NotFoundException': (type, message) => NotFoundException(message: message),
+      InvalidParameterException(type: type, message: message),
+  'NotFoundException': (type, message) =>
+      NotFoundException(type: type, message: message),
 };

@@ -70,11 +70,6 @@ class Prometheus {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[!-~]+''',
-    );
     final $payload = <String, dynamic>{
       if (alias != null) 'alias': alias,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -114,22 +109,11 @@ class Prometheus {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''[0-9A-Za-z][-.0-9A-Z_a-z]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[!-~]+''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -162,12 +146,6 @@ class Prometheus {
       workspaceId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''[0-9A-Za-z][-.0-9A-Z_a-z]*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -260,12 +238,6 @@ class Prometheus {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''[0-9A-Za-z][-.0-9A-Z_a-z]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'alias',
       alias,
@@ -277,11 +249,6 @@ class Prometheus {
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[!-~]+''',
     );
     final $payload = <String, dynamic>{
       if (alias != null) 'alias': alias,

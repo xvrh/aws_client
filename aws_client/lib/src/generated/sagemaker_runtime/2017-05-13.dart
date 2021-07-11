@@ -118,6 +118,11 @@ class SageMakerRuntime {
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html">Capture
   /// Data</a>.
   ///
+  /// Parameter [targetContainerHostname] :
+  /// If the endpoint hosts multiple containers and is configured to use direct
+  /// invocation, this parameter specifies the host name of the container to
+  /// invoke.
+  ///
   /// Parameter [targetModel] :
   /// The model to request for inference when invoking a multi-model endpoint.
   ///
@@ -138,6 +143,7 @@ class SageMakerRuntime {
     String? contentType,
     String? customAttributes,
     String? inferenceId,
+    String? targetContainerHostname,
     String? targetModel,
     String? targetVariant,
   }) async {
@@ -150,22 +156,11 @@ class SageMakerRuntime {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'accept',
       accept,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'accept',
-      accept,
-      r'''\p{ASCII}*''',
     );
     _s.validateStringLength(
       'contentType',
@@ -173,21 +168,11 @@ class SageMakerRuntime {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'contentType',
-      contentType,
-      r'''\p{ASCII}*''',
-    );
     _s.validateStringLength(
       'customAttributes',
       customAttributes,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'customAttributes',
-      customAttributes,
-      r'''\p{ASCII}*''',
     );
     _s.validateStringLength(
       'inferenceId',
@@ -195,10 +180,11 @@ class SageMakerRuntime {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'inferenceId',
-      inferenceId,
-      r'''\A\S[\p{Print}]*\z''',
+    _s.validateStringLength(
+      'targetContainerHostname',
+      targetContainerHostname,
+      0,
+      63,
     );
     _s.validateStringLength(
       'targetModel',
@@ -206,21 +192,11 @@ class SageMakerRuntime {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'targetModel',
-      targetModel,
-      r'''\A\S[\p{Print}]*\z''',
-    );
     _s.validateStringLength(
       'targetVariant',
       targetVariant,
       0,
       63,
-    );
-    _s.validateStringPattern(
-      'targetVariant',
-      targetVariant,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
     );
     final headers = <String, String>{
       if (accept != null) 'Accept': accept.toString(),
@@ -229,6 +205,9 @@ class SageMakerRuntime {
         'X-Amzn-SageMaker-Custom-Attributes': customAttributes.toString(),
       if (inferenceId != null)
         'X-Amzn-SageMaker-Inference-Id': inferenceId.toString(),
+      if (targetContainerHostname != null)
+        'X-Amzn-SageMaker-Target-Container-Hostname':
+            targetContainerHostname.toString(),
       if (targetModel != null)
         'X-Amzn-SageMaker-Target-Model': targetModel.toString(),
       if (targetVariant != null)

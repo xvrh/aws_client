@@ -109,6 +109,159 @@ class FraudDetector {
     return BatchGetVariableResult.fromJson(jsonResponse.body);
   }
 
+  /// Cancels the specified batch prediction job.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServerException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [jobId] :
+  /// The ID of the batch prediction job to cancel.
+  Future<void> cancelBatchPredictionJob({
+    required String jobId,
+  }) async {
+    ArgumentError.checkNotNull(jobId, 'jobId');
+    _s.validateStringLength(
+      'jobId',
+      jobId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSHawksNestServiceFacade.CancelBatchPredictionJob'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'jobId': jobId,
+      },
+    );
+  }
+
+  /// Creates a batch prediction job.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [detectorName] :
+  /// The name of the detector.
+  ///
+  /// Parameter [eventTypeName] :
+  /// The name of the event type.
+  ///
+  /// Parameter [iamRoleArn] :
+  /// The ARN of the IAM role to use for this job request.
+  ///
+  /// Parameter [inputPath] :
+  /// The Amazon S3 location of your training file.
+  ///
+  /// Parameter [jobId] :
+  /// The ID of the batch prediction job.
+  ///
+  /// Parameter [outputPath] :
+  /// The Amazon S3 location of your output file.
+  ///
+  /// Parameter [detectorVersion] :
+  /// The detector version.
+  ///
+  /// Parameter [tags] :
+  /// A collection of key and value pairs.
+  Future<void> createBatchPredictionJob({
+    required String detectorName,
+    required String eventTypeName,
+    required String iamRoleArn,
+    required String inputPath,
+    required String jobId,
+    required String outputPath,
+    String? detectorVersion,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(detectorName, 'detectorName');
+    _s.validateStringLength(
+      'detectorName',
+      detectorName,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(eventTypeName, 'eventTypeName');
+    _s.validateStringLength(
+      'eventTypeName',
+      eventTypeName,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(iamRoleArn, 'iamRoleArn');
+    _s.validateStringLength(
+      'iamRoleArn',
+      iamRoleArn,
+      1,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(inputPath, 'inputPath');
+    _s.validateStringLength(
+      'inputPath',
+      inputPath,
+      1,
+      512,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(jobId, 'jobId');
+    _s.validateStringLength(
+      'jobId',
+      jobId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(outputPath, 'outputPath');
+    _s.validateStringLength(
+      'outputPath',
+      outputPath,
+      1,
+      512,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'detectorVersion',
+      detectorVersion,
+      1,
+      5,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSHawksNestServiceFacade.CreateBatchPredictionJob'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'detectorName': detectorName,
+        'eventTypeName': eventTypeName,
+        'iamRoleArn': iamRoleArn,
+        'inputPath': inputPath,
+        'jobId': jobId,
+        'outputPath': outputPath,
+        if (detectorVersion != null) 'detectorVersion': detectorVersion,
+        if (tags != null) 'tags': tags,
+      },
+    );
+  }
+
   /// Creates a detector version. The detector version starts in a
   /// <code>DRAFT</code> status.
   ///
@@ -165,12 +318,6 @@ class FraudDetector {
       detectorId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(rules, 'rules');
@@ -242,12 +389,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelType, 'modelType');
     _s.validateStringLength(
       'description',
@@ -316,12 +457,6 @@ class FraudDetector {
       modelId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelType, 'modelType');
@@ -395,12 +530,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expression, 'expression');
     _s.validateStringLength(
       'expression',
@@ -417,12 +546,6 @@ class FraudDetector {
       ruleId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'ruleId',
-      ruleId,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -528,6 +651,42 @@ class FraudDetector {
     );
   }
 
+  /// Deletes a batch prediction job.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServerException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [jobId] :
+  /// The ID of the batch prediction job to delete.
+  Future<void> deleteBatchPredictionJob({
+    required String jobId,
+  }) async {
+    ArgumentError.checkNotNull(jobId, 'jobId');
+    _s.validateStringLength(
+      'jobId',
+      jobId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSHawksNestServiceFacade.DeleteBatchPredictionJob'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'jobId': jobId,
+      },
+    );
+  }
+
   /// Deletes the detector. Before deleting a detector, you must first delete
   /// all detector versions and rule versions associated with the detector.
   ///
@@ -551,12 +710,6 @@ class FraudDetector {
       detectorId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -606,24 +759,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(detectorVersionId, 'detectorVersionId');
     _s.validateStringLength(
       'detectorVersionId',
       detectorVersionId,
       1,
       5,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -648,8 +789,8 @@ class FraudDetector {
   /// You cannot delete an entity type that is included in an event type.
   ///
   /// When you delete an entity type, Amazon Fraud Detector permanently deletes
-  /// that entity type from the evaluation history, and the data is no longer
-  /// stored in Amazon Fraud Detector.
+  /// that entity type and the data is no longer stored in Amazon Fraud
+  /// Detector.
   ///
   /// May throw [ValidationException].
   /// May throw [ConflictException].
@@ -667,12 +808,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -694,8 +829,7 @@ class FraudDetector {
   /// Deletes the specified event.
   ///
   /// When you delete an event, Amazon Fraud Detector permanently deletes that
-  /// event from the evaluation history, and the event data is no longer stored
-  /// in Amazon Fraud Detector.
+  /// event and the event data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [InternalServerException].
   /// May throw [ThrottlingException].
@@ -719,24 +853,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventId',
-      eventId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventTypeName, 'eventTypeName');
     _s.validateStringLength(
       'eventTypeName',
       eventTypeName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'eventTypeName',
-      eventTypeName,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -761,8 +883,8 @@ class FraudDetector {
   /// You cannot delete an event type that is used in a detector or a model.
   ///
   /// When you delete an entity type, Amazon Fraud Detector permanently deletes
-  /// that entity type from the evaluation history, and the data is no longer
-  /// stored in Amazon Fraud Detector.
+  /// that entity type and the data is no longer stored in Amazon Fraud
+  /// Detector.
   ///
   /// May throw [ConflictException].
   /// May throw [ValidationException].
@@ -780,12 +902,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -829,12 +945,6 @@ class FraudDetector {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelEndpoint',
-      modelEndpoint,
-      r'''^[0-9A-Za-z_-]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHawksNestServiceFacade.DeleteExternalModel'
@@ -860,8 +970,7 @@ class FraudDetector {
   /// the relevant event ID.
   ///
   /// When you delete a label, Amazon Fraud Detector permanently deletes that
-  /// label from the evaluation history, and the data is no longer stored in
-  /// Amazon Fraud Detector.
+  /// label and the data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [ValidationException].
   /// May throw [ConflictException].
@@ -878,12 +987,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -908,8 +1011,7 @@ class FraudDetector {
   /// provided that they are not associated with a detector version.
   ///
   /// When you delete a model, Amazon Fraud Detector permanently deletes that
-  /// model from the evaluation history, and the data is no longer stored in
-  /// Amazon Fraud Detector.
+  /// model and the data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [ConflictException].
   /// May throw [ValidationException].
@@ -931,12 +1033,6 @@ class FraudDetector {
       modelId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelType, 'modelType');
@@ -963,8 +1059,8 @@ class FraudDetector {
   /// provided that they are not associated with a detector version.
   ///
   /// When you delete a model version, Amazon Fraud Detector permanently deletes
-  /// that model version from the evaluation history, and the data is no longer
-  /// stored in Amazon Fraud Detector.
+  /// that model version and the data is no longer stored in Amazon Fraud
+  /// Detector.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -992,12 +1088,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelType, 'modelType');
     ArgumentError.checkNotNull(modelVersionNumber, 'modelVersionNumber');
     _s.validateStringLength(
@@ -1005,12 +1095,6 @@ class FraudDetector {
       modelVersionNumber,
       3,
       7,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelVersionNumber',
-      modelVersionNumber,
-      r'''^[1-9][0-9]{0,3}\.[0-9]{1,2}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1036,8 +1120,7 @@ class FraudDetector {
   /// You cannot delete an outcome that is used in a rule version.
   ///
   /// When you delete an outcome, Amazon Fraud Detector permanently deletes that
-  /// outcome from the evaluation history, and the data is no longer stored in
-  /// Amazon Fraud Detector.
+  /// outcome and the data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1056,12 +1139,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1084,8 +1161,7 @@ class FraudDetector {
   /// <code>ACTIVE</code> or <code>INACTIVE</code> detector version.
   ///
   /// When you delete a rule, Amazon Fraud Detector permanently deletes that
-  /// rule from the evaluation history, and the data is no longer stored in
-  /// Amazon Fraud Detector.
+  /// rule and the data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [ConflictException].
   /// May throw [ValidationException].
@@ -1122,8 +1198,7 @@ class FraudDetector {
   /// delete these variables manually.
   ///
   /// When you delete a variable, Amazon Fraud Detector permanently deletes that
-  /// variable from the evaluation history, and the data is no longer stored in
-  /// Amazon Fraud Detector.
+  /// variable and the data is no longer stored in Amazon Fraud Detector.
   ///
   /// May throw [ValidationException].
   /// May throw [ConflictException].
@@ -1180,12 +1255,6 @@ class FraudDetector {
       detectorId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1256,21 +1325,11 @@ class FraudDetector {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-    );
     _s.validateStringLength(
       'modelVersionNumber',
       modelVersionNumber,
       3,
       7,
-    );
-    _s.validateStringPattern(
-      'modelVersionNumber',
-      modelVersionNumber,
-      r'''^[1-9][0-9]{0,3}\.[0-9]{1,2}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1293,6 +1352,64 @@ class FraudDetector {
     );
 
     return DescribeModelVersionsResult.fromJson(jsonResponse.body);
+  }
+
+  /// Gets all batch prediction jobs or a specific job if you specify a job ID.
+  /// This is a paginated API. If you provide a null maxResults, this action
+  /// retrieves a maximum of 50 records per page. If you provide a maxResults,
+  /// the value must be between 1 and 50. To get the next page results, provide
+  /// the pagination token from the GetBatchPredictionJobsResponse as part of
+  /// your request. A null pagination token fetches the records from the
+  /// beginning.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServerException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [jobId] :
+  /// The batch prediction job for which to get the details.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects to return for the request.
+  ///
+  /// Parameter [nextToken] :
+  /// The next token from the previous request.
+  Future<GetBatchPredictionJobsResult> getBatchPredictionJobs({
+    String? jobId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateStringLength(
+      'jobId',
+      jobId,
+      1,
+      64,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      50,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSHawksNestServiceFacade.GetBatchPredictionJobs'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (jobId != null) 'jobId': jobId,
+        if (maxResults != null) 'maxResults': maxResults,
+        if (nextToken != null) 'nextToken': nextToken,
+      },
+    );
+
+    return GetBatchPredictionJobsResult.fromJson(jsonResponse.body);
   }
 
   /// Gets a particular detector version.
@@ -1320,24 +1437,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(detectorVersionId, 'detectorVersionId');
     _s.validateStringLength(
       'detectorVersionId',
       detectorVersionId,
       1,
       5,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1391,11 +1496,6 @@ class FraudDetector {
       detectorId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -1461,11 +1561,6 @@ class FraudDetector {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHawksNestServiceFacade.GetEntityTypes'
@@ -1517,6 +1612,34 @@ class FraudDetector {
   /// Names of the event type's variables you defined in Amazon Fraud Detector
   /// to represent data elements and their corresponding values for the event
   /// you are sending for evaluation.
+  /// <important>
+  /// <ul>
+  /// <li>
+  /// You must provide at least one eventVariable
+  /// </li>
+  /// <li>
+  /// If detectorVersion is associated with a modelVersion, you must provide at
+  /// least one associated eventVariable
+  /// </li>
+  /// </ul> </important>
+  /// To ensure highest possible fraud prediction and to simplify your data
+  /// preparation, Amazon Fraud Detector will replace all missing variables or
+  /// values as follows:
+  ///
+  /// <b>For Amazon Fraud Detector trained models:</b>
+  ///
+  /// If a null value is provided explicitly for a variable or if a variable is
+  /// missing, model will replace the null value or the missing variable (no
+  /// variable name in the eventVariables map) with calculated default
+  /// mean/medians for numeric variables and with special values for categorical
+  /// variables.
+  ///
+  /// <b>For External models ( for example, imported SageMaker):</b>
+  ///
+  /// If a null value is provided explicitly for a variable, the model and rules
+  /// will use “null” as the value. If a variable is not provided (no variable
+  /// name in the eventVariables map), model and rules will use the default
+  /// value that is provided for the variable.
   ///
   /// Parameter [detectorVersionId] :
   /// The detector version ID.
@@ -1544,11 +1667,6 @@ class FraudDetector {
       detectorVersionId,
       1,
       5,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1613,11 +1731,6 @@ class FraudDetector {
       name,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1753,11 +1866,6 @@ class FraudDetector {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHawksNestServiceFacade.GetLabels'
@@ -1806,12 +1914,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelType, 'modelType');
     ArgumentError.checkNotNull(modelVersionNumber, 'modelVersionNumber');
     _s.validateStringLength(
@@ -1819,12 +1921,6 @@ class FraudDetector {
       modelVersionNumber,
       3,
       7,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelVersionNumber',
-      modelVersionNumber,
-      r'''^[1-9][0-9]{0,3}\.[0-9]{1,2}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1893,11 +1989,6 @@ class FraudDetector {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHawksNestServiceFacade.GetModels'
@@ -1956,11 +2047,6 @@ class FraudDetector {
       name,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2029,12 +2115,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2047,21 +2127,11 @@ class FraudDetector {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'ruleId',
-      ruleId,
-      r'''^[0-9a-z_-]+$''',
-    );
     _s.validateStringLength(
       'ruleVersion',
       ruleVersion,
       1,
       5,
-    );
-    _s.validateStringPattern(
-      'ruleVersion',
-      ruleVersion,
-      r'''^([1-9][0-9]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2168,12 +2238,6 @@ class FraudDetector {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn\:aws[a-z-]{0,15}\:frauddetector\:[a-z0-9-]{3,20}\:[0-9]{12}\:[^\s]{2,128}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2232,24 +2296,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventTypeName, 'eventTypeName');
     _s.validateStringLength(
       'eventTypeName',
       eventTypeName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'eventTypeName',
-      eventTypeName,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2306,12 +2358,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2384,12 +2430,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2468,12 +2508,6 @@ class FraudDetector {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelEndpoint',
-      modelEndpoint,
-      r'''^[0-9A-Za-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelEndpointStatus, 'modelEndpointStatus');
     ArgumentError.checkNotNull(modelSource, 'modelSource');
     ArgumentError.checkNotNull(outputConfiguration, 'outputConfiguration');
@@ -2520,12 +2554,6 @@ class FraudDetector {
       90,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'kmsEncryptionKeyArn',
-      kmsEncryptionKeyArn,
-      r'''^DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\d{12}:key\/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHawksNestServiceFacade.PutKMSEncryptionKey'
@@ -2569,12 +2597,6 @@ class FraudDetector {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2629,12 +2651,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -2682,12 +2698,6 @@ class FraudDetector {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn\:aws[a-z-]{0,15}\:frauddetector\:[a-z0-9-]{3,20}\:[0-9]{12}\:[^\s]{2,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2727,12 +2737,6 @@ class FraudDetector {
       resourceARN,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn\:aws[a-z-]{0,15}\:frauddetector\:[a-z0-9-]{3,20}\:[0-9]{12}\:[^\s]{2,128}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -2812,24 +2816,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(detectorVersionId, 'detectorVersionId');
     _s.validateStringLength(
       'detectorVersionId',
       detectorVersionId,
       1,
       5,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -2902,24 +2894,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(detectorVersionId, 'detectorVersionId');
     _s.validateStringLength(
       'detectorVersionId',
       detectorVersionId,
       1,
       5,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2972,24 +2952,12 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'detectorId',
-      detectorId,
-      r'''^[0-9a-z_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(detectorVersionId, 'detectorVersionId');
     _s.validateStringLength(
       'detectorVersionId',
       detectorVersionId,
       1,
       5,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'detectorVersionId',
-      detectorVersionId,
-      r'''^([1-9][0-9]*)$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(status, 'status');
@@ -3038,12 +3006,6 @@ class FraudDetector {
       modelId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelType, 'modelType');
@@ -3111,24 +3073,12 @@ class FraudDetector {
       5,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'majorVersionNumber',
-      majorVersionNumber,
-      r'''^([1-9][0-9]*)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelId, 'modelId');
     _s.validateStringLength(
       'modelId',
       modelId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelType, 'modelType');
@@ -3196,12 +3146,6 @@ class FraudDetector {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelId',
-      modelId,
-      r'''^[0-9a-z_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelType, 'modelType');
     ArgumentError.checkNotNull(modelVersionNumber, 'modelVersionNumber');
     _s.validateStringLength(
@@ -3209,12 +3153,6 @@ class FraudDetector {
       modelVersionNumber,
       3,
       7,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelVersionNumber',
-      modelVersionNumber,
-      r'''^[1-9][0-9]{0,3}\.[0-9]{1,2}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(status, 'status');
@@ -3402,6 +3340,54 @@ class FraudDetector {
   }
 }
 
+enum AsyncJobStatus {
+  inProgressInitializing,
+  inProgress,
+  cancelInProgress,
+  canceled,
+  complete,
+  failed,
+}
+
+extension on AsyncJobStatus {
+  String toValue() {
+    switch (this) {
+      case AsyncJobStatus.inProgressInitializing:
+        return 'IN_PROGRESS_INITIALIZING';
+      case AsyncJobStatus.inProgress:
+        return 'IN_PROGRESS';
+      case AsyncJobStatus.cancelInProgress:
+        return 'CANCEL_IN_PROGRESS';
+      case AsyncJobStatus.canceled:
+        return 'CANCELED';
+      case AsyncJobStatus.complete:
+        return 'COMPLETE';
+      case AsyncJobStatus.failed:
+        return 'FAILED';
+    }
+  }
+}
+
+extension on String {
+  AsyncJobStatus toAsyncJobStatus() {
+    switch (this) {
+      case 'IN_PROGRESS_INITIALIZING':
+        return AsyncJobStatus.inProgressInitializing;
+      case 'IN_PROGRESS':
+        return AsyncJobStatus.inProgress;
+      case 'CANCEL_IN_PROGRESS':
+        return AsyncJobStatus.cancelInProgress;
+      case 'CANCELED':
+        return AsyncJobStatus.canceled;
+      case 'COMPLETE':
+        return AsyncJobStatus.complete;
+      case 'FAILED':
+        return AsyncJobStatus.failed;
+    }
+    throw Exception('$this is not known in enum AsyncJobStatus');
+  }
+}
+
 /// Provides the error of the batch create variable API.
 class BatchCreateVariableError {
   /// The error code.
@@ -3492,6 +3478,106 @@ class BatchGetVariableResult {
           .map((e) => Variable.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+/// The batch prediction details.
+class BatchPrediction {
+  /// The ARN of batch prediction job.
+  final String? arn;
+
+  /// Timestamp of when the batch prediction job comleted.
+  final String? completionTime;
+
+  /// The name of the detector.
+  final String? detectorName;
+
+  /// The detector version.
+  final String? detectorVersion;
+
+  /// The name of the event type.
+  final String? eventTypeName;
+
+  /// The reason a batch prediction job failed.
+  final String? failureReason;
+
+  /// The ARN of the IAM role to use for this job request.
+  final String? iamRoleArn;
+
+  /// The Amazon S3 location of your training file.
+  final String? inputPath;
+
+  /// The job ID for the batch prediction.
+  final String? jobId;
+
+  /// Timestamp of most recent heartbeat indicating the batch prediction job was
+  /// making progress.
+  final String? lastHeartbeatTime;
+
+  /// The Amazon S3 location of your output file.
+  final String? outputPath;
+
+  /// The number of records processed by the batch prediction job.
+  final int? processedRecordsCount;
+
+  /// Timestamp of when the batch prediction job started.
+  final String? startTime;
+
+  /// The batch prediction status.
+  final AsyncJobStatus? status;
+
+  /// The total number of records in the batch prediction job.
+  final int? totalRecordsCount;
+
+  BatchPrediction({
+    this.arn,
+    this.completionTime,
+    this.detectorName,
+    this.detectorVersion,
+    this.eventTypeName,
+    this.failureReason,
+    this.iamRoleArn,
+    this.inputPath,
+    this.jobId,
+    this.lastHeartbeatTime,
+    this.outputPath,
+    this.processedRecordsCount,
+    this.startTime,
+    this.status,
+    this.totalRecordsCount,
+  });
+  factory BatchPrediction.fromJson(Map<String, dynamic> json) {
+    return BatchPrediction(
+      arn: json['arn'] as String?,
+      completionTime: json['completionTime'] as String?,
+      detectorName: json['detectorName'] as String?,
+      detectorVersion: json['detectorVersion'] as String?,
+      eventTypeName: json['eventTypeName'] as String?,
+      failureReason: json['failureReason'] as String?,
+      iamRoleArn: json['iamRoleArn'] as String?,
+      inputPath: json['inputPath'] as String?,
+      jobId: json['jobId'] as String?,
+      lastHeartbeatTime: json['lastHeartbeatTime'] as String?,
+      outputPath: json['outputPath'] as String?,
+      processedRecordsCount: json['processedRecordsCount'] as int?,
+      startTime: json['startTime'] as String?,
+      status: (json['status'] as String?)?.toAsyncJobStatus(),
+      totalRecordsCount: json['totalRecordsCount'] as int?,
+    );
+  }
+}
+
+class CancelBatchPredictionJobResult {
+  CancelBatchPredictionJobResult();
+  factory CancelBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
+    return CancelBatchPredictionJobResult();
+  }
+}
+
+class CreateBatchPredictionJobResult {
+  CreateBatchPredictionJobResult();
+  factory CreateBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
+    return CreateBatchPredictionJobResult();
   }
 }
 
@@ -3673,6 +3759,13 @@ class DataValidationMetrics {
           .map((e) => FileValidationMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+class DeleteBatchPredictionJobResult {
+  DeleteBatchPredictionJobResult();
+  factory DeleteBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
+    return DeleteBatchPredictionJobResult();
   }
 }
 
@@ -4183,6 +4276,28 @@ class FileValidationMessage {
       content: json['content'] as String?,
       title: json['title'] as String?,
       type: json['type'] as String?,
+    );
+  }
+}
+
+class GetBatchPredictionJobsResult {
+  /// An array containing the details of each batch prediction job.
+  final List<BatchPrediction>? batchPredictions;
+
+  /// The next token for the subsequent request.
+  final String? nextToken;
+
+  GetBatchPredictionJobsResult({
+    this.batchPredictions,
+    this.nextToken,
+  });
+  factory GetBatchPredictionJobsResult.fromJson(Map<String, dynamic> json) {
+    return GetBatchPredictionJobsResult(
+      batchPredictions: (json['batchPredictions'] as List?)
+          ?.whereNotNull()
+          .map((e) => BatchPrediction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
     );
   }
 }
@@ -4729,6 +4844,31 @@ class ListTagsForResourceResult {
   }
 }
 
+/// The logit metric details.
+class LogitMetric {
+  /// The relative importance of the variable.
+  final double variableImportance;
+
+  /// The name of the variable.
+  final String variableName;
+
+  /// The type of variable.
+  final String variableType;
+
+  LogitMetric({
+    required this.variableImportance,
+    required this.variableName,
+    required this.variableType,
+  });
+  factory LogitMetric.fromJson(Map<String, dynamic> json) {
+    return LogitMetric(
+      variableImportance: json['variableImportance'] as double,
+      variableName: json['variableName'] as String,
+      variableType: json['variableType'] as String,
+    );
+  }
+}
+
 /// Model performance metrics data points.
 class MetricDataPoint {
   /// The false positive rate. This is the percentage of total legitimate events
@@ -5207,6 +5347,7 @@ class ModelVersionDetail {
 enum ModelVersionStatus {
   active,
   inactive,
+  trainingCancelled,
 }
 
 extension on ModelVersionStatus {
@@ -5216,6 +5357,8 @@ extension on ModelVersionStatus {
         return 'ACTIVE';
       case ModelVersionStatus.inactive:
         return 'INACTIVE';
+      case ModelVersionStatus.trainingCancelled:
+        return 'TRAINING_CANCELLED';
     }
   }
 }
@@ -5227,6 +5370,8 @@ extension on String {
         return ModelVersionStatus.active;
       case 'INACTIVE':
         return ModelVersionStatus.inactive;
+      case 'TRAINING_CANCELLED':
+        return ModelVersionStatus.trainingCancelled;
     }
     throw Exception('$this is not known in enum ModelVersionStatus');
   }
@@ -5591,9 +5736,13 @@ class TrainingResult {
   /// The training metric details.
   final TrainingMetrics? trainingMetrics;
 
+  /// The variable importance metrics.
+  final VariableImportanceMetrics? variableImportanceMetrics;
+
   TrainingResult({
     this.dataValidationMetrics,
     this.trainingMetrics,
+    this.variableImportanceMetrics,
   });
   factory TrainingResult.fromJson(Map<String, dynamic> json) {
     return TrainingResult(
@@ -5604,6 +5753,10 @@ class TrainingResult {
       trainingMetrics: json['trainingMetrics'] != null
           ? TrainingMetrics.fromJson(
               json['trainingMetrics'] as Map<String, dynamic>)
+          : null,
+      variableImportanceMetrics: json['variableImportanceMetrics'] != null
+          ? VariableImportanceMetrics.fromJson(
+              json['variableImportanceMetrics'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -5830,6 +5983,24 @@ class VariableEntry {
       if (name != null) 'name': name,
       if (variableType != null) 'variableType': variableType,
     };
+  }
+}
+
+/// The variable importance metrics details.
+class VariableImportanceMetrics {
+  /// List of variable metrics.
+  final List<LogitMetric>? logitMetrics;
+
+  VariableImportanceMetrics({
+    this.logitMetrics,
+  });
+  factory VariableImportanceMetrics.fromJson(Map<String, dynamic> json) {
+    return VariableImportanceMetrics(
+      logitMetrics: (json['LogitMetrics'] as List?)
+          ?.whereNotNull()
+          .map((e) => LogitMetric.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
   }
 }
 

@@ -126,12 +126,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -166,12 +160,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -218,6 +206,9 @@ class Elasticsearch {
   /// Parameter [advancedSecurityOptions] :
   /// Specifies advanced security options.
   ///
+  /// Parameter [autoTuneOptions] :
+  /// Specifies Auto-Tune options.
+  ///
   /// Parameter [cognitoOptions] :
   /// Options to specify the Cognito user and identity pools for Kibana
   /// authentication. For more information, see <a
@@ -257,6 +248,9 @@ class Elasticsearch {
   /// Option to set time, in UTC format, of the daily automated snapshot.
   /// Default value is 0 hours.
   ///
+  /// Parameter [tagList] :
+  /// A list of <code>Tag</code> added during domain creation.
+  ///
   /// Parameter [vPCOptions] :
   /// Options to specify the subnets and security groups for VPC endpoint. For
   /// more information, see <a
@@ -268,6 +262,7 @@ class Elasticsearch {
     String? accessPolicies,
     Map<String, String>? advancedOptions,
     AdvancedSecurityOptionsInput? advancedSecurityOptions,
+    AutoTuneOptionsInput? autoTuneOptions,
     CognitoOptions? cognitoOptions,
     DomainEndpointOptions? domainEndpointOptions,
     EBSOptions? eBSOptions,
@@ -277,6 +272,7 @@ class Elasticsearch {
     Map<LogType, LogPublishingOption>? logPublishingOptions,
     NodeToNodeEncryptionOptions? nodeToNodeEncryptionOptions,
     SnapshotOptions? snapshotOptions,
+    List<Tag>? tagList,
     VPCOptions? vPCOptions,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
@@ -287,18 +283,13 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
       if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
       if (advancedSecurityOptions != null)
         'AdvancedSecurityOptions': advancedSecurityOptions,
+      if (autoTuneOptions != null) 'AutoTuneOptions': autoTuneOptions,
       if (cognitoOptions != null) 'CognitoOptions': cognitoOptions,
       if (domainEndpointOptions != null)
         'DomainEndpointOptions': domainEndpointOptions,
@@ -315,6 +306,7 @@ class Elasticsearch {
       if (nodeToNodeEncryptionOptions != null)
         'NodeToNodeEncryptionOptions': nodeToNodeEncryptionOptions,
       if (snapshotOptions != null) 'SnapshotOptions': snapshotOptions,
+      if (tagList != null) 'TagList': tagList,
       if (vPCOptions != null) 'VPCOptions': vPCOptions,
     };
     final response = await _protocol.send(
@@ -412,12 +404,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'packageName',
-      packageName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageSource, 'packageSource');
     ArgumentError.checkNotNull(packageType, 'packageType');
     _s.validateStringLength(
@@ -460,12 +446,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -571,6 +551,53 @@ class Elasticsearch {
     return DeletePackageResponse.fromJson(response);
   }
 
+  /// Provides scheduled Auto-Tune action details for the Elasticsearch domain,
+  /// such as Auto-Tune action type, description, severity, and scheduled date.
+  ///
+  /// May throw [BaseException].
+  /// May throw [InternalException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [domainName] :
+  /// Specifies the domain name for which you want Auto-Tune action details.
+  ///
+  /// Parameter [maxResults] :
+  /// Set this value to limit the number of results returned. If not specified,
+  /// defaults to 100.
+  ///
+  /// Parameter [nextToken] :
+  /// NextToken is sent in case the earlier API call results contain the
+  /// NextToken. It is used for pagination.
+  Future<DescribeDomainAutoTunesResponse> describeDomainAutoTunes({
+    required String domainName,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(domainName, 'domainName');
+    _s.validateStringLength(
+      'domainName',
+      domainName,
+      3,
+      28,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      100,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/2015-01-01/es/domain/${Uri.encodeComponent(domainName)}/autoTunes',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeDomainAutoTunesResponse.fromJson(response);
+  }
+
   /// Returns domain configuration information about the specified Elasticsearch
   /// domain, including the domain ID, domain endpoint, and domain ARN.
   ///
@@ -590,12 +617,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -628,12 +649,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -707,11 +722,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
     );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
@@ -905,11 +915,6 @@ class Elasticsearch {
       0,
       100,
     );
-    _s.validateStringPattern(
-      'reservedElasticsearchInstanceOfferingId',
-      reservedElasticsearchInstanceOfferingId,
-      r'''\p{XDigit}{8}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{12}''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -959,11 +964,6 @@ class Elasticsearch {
       0,
       100,
     );
-    _s.validateStringPattern(
-      'reservedElasticsearchInstanceId',
-      reservedElasticsearchInstanceId,
-      r'''\p{XDigit}{8}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{12}''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1007,12 +1007,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -1042,11 +1036,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
     );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
@@ -1127,12 +1116,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1171,12 +1154,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1286,11 +1263,6 @@ class Elasticsearch {
       3,
       28,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1377,12 +1349,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1464,12 +1430,6 @@ class Elasticsearch {
     );
     ArgumentError.checkNotNull(reservedElasticsearchInstanceOfferingId,
         'reservedElasticsearchInstanceOfferingId');
-    _s.validateStringPattern(
-      'reservedElasticsearchInstanceOfferingId',
-      reservedElasticsearchInstanceOfferingId,
-      r'''\p{XDigit}{8}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{4}-\p{XDigit}{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'instanceCount',
       instanceCount,
@@ -1569,12 +1529,6 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
     };
@@ -1614,6 +1568,9 @@ class Elasticsearch {
   /// Parameter [advancedSecurityOptions] :
   /// Specifies advanced security options.
   ///
+  /// Parameter [autoTuneOptions] :
+  /// Specifies Auto-Tune options.
+  ///
   /// Parameter [cognitoOptions] :
   /// Options to specify the Cognito user and identity pools for Kibana
   /// authentication. For more information, see <a
@@ -1630,9 +1587,15 @@ class Elasticsearch {
   /// Parameter [elasticsearchClusterConfig] :
   /// The type and number of instances to instantiate for the domain cluster.
   ///
+  /// Parameter [encryptionAtRestOptions] :
+  /// Specifies the Encryption At Rest Options.
+  ///
   /// Parameter [logPublishingOptions] :
   /// Map of <code>LogType</code> and <code>LogPublishingOption</code>, each
   /// containing options to publish a given type of Elasticsearch log.
+  ///
+  /// Parameter [nodeToNodeEncryptionOptions] :
+  /// Specifies the NodeToNodeEncryptionOptions.
   ///
   /// Parameter [snapshotOptions] :
   /// Option to set the time, in UTC format, for the daily automated snapshot.
@@ -1650,11 +1613,14 @@ class Elasticsearch {
     String? accessPolicies,
     Map<String, String>? advancedOptions,
     AdvancedSecurityOptionsInput? advancedSecurityOptions,
+    AutoTuneOptions? autoTuneOptions,
     CognitoOptions? cognitoOptions,
     DomainEndpointOptions? domainEndpointOptions,
     EBSOptions? eBSOptions,
     ElasticsearchClusterConfig? elasticsearchClusterConfig,
+    EncryptionAtRestOptions? encryptionAtRestOptions,
     Map<LogType, LogPublishingOption>? logPublishingOptions,
+    NodeToNodeEncryptionOptions? nodeToNodeEncryptionOptions,
     SnapshotOptions? snapshotOptions,
     VPCOptions? vPCOptions,
   }) async {
@@ -1666,26 +1632,25 @@ class Elasticsearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
       if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
       if (advancedSecurityOptions != null)
         'AdvancedSecurityOptions': advancedSecurityOptions,
+      if (autoTuneOptions != null) 'AutoTuneOptions': autoTuneOptions,
       if (cognitoOptions != null) 'CognitoOptions': cognitoOptions,
       if (domainEndpointOptions != null)
         'DomainEndpointOptions': domainEndpointOptions,
       if (eBSOptions != null) 'EBSOptions': eBSOptions,
       if (elasticsearchClusterConfig != null)
         'ElasticsearchClusterConfig': elasticsearchClusterConfig,
+      if (encryptionAtRestOptions != null)
+        'EncryptionAtRestOptions': encryptionAtRestOptions,
       if (logPublishingOptions != null)
         'LogPublishingOptions':
             logPublishingOptions.map((k, e) => MapEntry(k.toValue(), e)),
+      if (nodeToNodeEncryptionOptions != null)
+        'NodeToNodeEncryptionOptions': nodeToNodeEncryptionOptions,
       if (snapshotOptions != null) 'SnapshotOptions': snapshotOptions,
       if (vPCOptions != null) 'VPCOptions': vPCOptions,
     };
@@ -1779,12 +1744,6 @@ class Elasticsearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(targetVersion, 'targetVersion');
@@ -2032,6 +1991,380 @@ class AssociatePackageResponse {
   }
 }
 
+/// Specifies Auto-Tune type and Auto-Tune action details.
+class AutoTune {
+  /// Specifies details of the Auto-Tune action. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final AutoTuneDetails? autoTuneDetails;
+
+  /// Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION.
+  final AutoTuneType? autoTuneType;
+
+  AutoTune({
+    this.autoTuneDetails,
+    this.autoTuneType,
+  });
+  factory AutoTune.fromJson(Map<String, dynamic> json) {
+    return AutoTune(
+      autoTuneDetails: json['AutoTuneDetails'] != null
+          ? AutoTuneDetails.fromJson(
+              json['AutoTuneDetails'] as Map<String, dynamic>)
+          : null,
+      autoTuneType: (json['AutoTuneType'] as String?)?.toAutoTuneType(),
+    );
+  }
+}
+
+/// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+enum AutoTuneDesiredState {
+  enabled,
+  disabled,
+}
+
+extension on AutoTuneDesiredState {
+  String toValue() {
+    switch (this) {
+      case AutoTuneDesiredState.enabled:
+        return 'ENABLED';
+      case AutoTuneDesiredState.disabled:
+        return 'DISABLED';
+    }
+  }
+}
+
+extension on String {
+  AutoTuneDesiredState toAutoTuneDesiredState() {
+    switch (this) {
+      case 'ENABLED':
+        return AutoTuneDesiredState.enabled;
+      case 'DISABLED':
+        return AutoTuneDesiredState.disabled;
+    }
+    throw Exception('$this is not known in enum AutoTuneDesiredState');
+  }
+}
+
+/// Specifies details of the Auto-Tune action. See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+class AutoTuneDetails {
+  final ScheduledAutoTuneDetails? scheduledAutoTuneDetails;
+
+  AutoTuneDetails({
+    this.scheduledAutoTuneDetails,
+  });
+  factory AutoTuneDetails.fromJson(Map<String, dynamic> json) {
+    return AutoTuneDetails(
+      scheduledAutoTuneDetails: json['ScheduledAutoTuneDetails'] != null
+          ? ScheduledAutoTuneDetails.fromJson(
+              json['ScheduledAutoTuneDetails'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Specifies Auto-Tune maitenance schedule. See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+class AutoTuneMaintenanceSchedule {
+  /// Specifies cron expression for a recurring maintenance schedule. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final String? cronExpressionForRecurrence;
+
+  /// Specifies maintenance schedule duration: duration value and duration unit.
+  /// See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final Duration? duration;
+
+  /// Specifies timestamp at which Auto-Tune maintenance schedule start.
+  final DateTime? startAt;
+
+  AutoTuneMaintenanceSchedule({
+    this.cronExpressionForRecurrence,
+    this.duration,
+    this.startAt,
+  });
+  factory AutoTuneMaintenanceSchedule.fromJson(Map<String, dynamic> json) {
+    return AutoTuneMaintenanceSchedule(
+      cronExpressionForRecurrence:
+          json['CronExpressionForRecurrence'] as String?,
+      duration: json['Duration'] != null
+          ? Duration.fromJson(json['Duration'] as Map<String, dynamic>)
+          : null,
+      startAt: timeStampFromJson(json['StartAt']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cronExpressionForRecurrence = this.cronExpressionForRecurrence;
+    final duration = this.duration;
+    final startAt = this.startAt;
+    return {
+      if (cronExpressionForRecurrence != null)
+        'CronExpressionForRecurrence': cronExpressionForRecurrence,
+      if (duration != null) 'Duration': duration,
+      if (startAt != null) 'StartAt': unixTimestampToJson(startAt),
+    };
+  }
+}
+
+/// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain,
+/// rollback state when disabling Auto-Tune options and list of maintenance
+/// schedules.
+class AutoTuneOptions {
+  /// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+  final AutoTuneDesiredState? desiredState;
+
+  /// Specifies list of maitenance schedules. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final List<AutoTuneMaintenanceSchedule>? maintenanceSchedules;
+
+  /// Specifies the rollback state while disabling Auto-Tune for the domain. Valid
+  /// values are NO_ROLLBACK, DEFAULT_ROLLBACK.
+  final RollbackOnDisable? rollbackOnDisable;
+
+  AutoTuneOptions({
+    this.desiredState,
+    this.maintenanceSchedules,
+    this.rollbackOnDisable,
+  });
+  factory AutoTuneOptions.fromJson(Map<String, dynamic> json) {
+    return AutoTuneOptions(
+      desiredState: (json['DesiredState'] as String?)?.toAutoTuneDesiredState(),
+      maintenanceSchedules: (json['MaintenanceSchedules'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AutoTuneMaintenanceSchedule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      rollbackOnDisable:
+          (json['RollbackOnDisable'] as String?)?.toRollbackOnDisable(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final desiredState = this.desiredState;
+    final maintenanceSchedules = this.maintenanceSchedules;
+    final rollbackOnDisable = this.rollbackOnDisable;
+    return {
+      if (desiredState != null) 'DesiredState': desiredState.toValue(),
+      if (maintenanceSchedules != null)
+        'MaintenanceSchedules': maintenanceSchedules,
+      if (rollbackOnDisable != null)
+        'RollbackOnDisable': rollbackOnDisable.toValue(),
+    };
+  }
+}
+
+/// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain
+/// and list of maintenance schedules.
+class AutoTuneOptionsInput {
+  /// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+  final AutoTuneDesiredState? desiredState;
+
+  /// Specifies list of maitenance schedules. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final List<AutoTuneMaintenanceSchedule>? maintenanceSchedules;
+
+  AutoTuneOptionsInput({
+    this.desiredState,
+    this.maintenanceSchedules,
+  });
+  Map<String, dynamic> toJson() {
+    final desiredState = this.desiredState;
+    final maintenanceSchedules = this.maintenanceSchedules;
+    return {
+      if (desiredState != null) 'DesiredState': desiredState.toValue(),
+      if (maintenanceSchedules != null)
+        'MaintenanceSchedules': maintenanceSchedules,
+    };
+  }
+}
+
+/// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain
+/// and list of maintenance schedules.
+class AutoTuneOptionsOutput {
+  /// Specifies the error message while enabling or disabling the Auto-Tune.
+  final String? errorMessage;
+
+  /// Specifies the <code>AutoTuneState</code> for the Elasticsearch domain.
+  final AutoTuneState? state;
+
+  AutoTuneOptionsOutput({
+    this.errorMessage,
+    this.state,
+  });
+  factory AutoTuneOptionsOutput.fromJson(Map<String, dynamic> json) {
+    return AutoTuneOptionsOutput(
+      errorMessage: json['ErrorMessage'] as String?,
+      state: (json['State'] as String?)?.toAutoTuneState(),
+    );
+  }
+}
+
+/// Specifies the status of Auto-Tune options for the specified Elasticsearch
+/// domain.
+class AutoTuneOptionsStatus {
+  /// Specifies Auto-Tune options for the specified Elasticsearch domain.
+  final AutoTuneOptions? options;
+
+  /// Specifies Status of the Auto-Tune options for the specified Elasticsearch
+  /// domain.
+  final AutoTuneStatus? status;
+
+  AutoTuneOptionsStatus({
+    this.options,
+    this.status,
+  });
+  factory AutoTuneOptionsStatus.fromJson(Map<String, dynamic> json) {
+    return AutoTuneOptionsStatus(
+      options: json['Options'] != null
+          ? AutoTuneOptions.fromJson(json['Options'] as Map<String, dynamic>)
+          : null,
+      status: json['Status'] != null
+          ? AutoTuneStatus.fromJson(json['Status'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Specifies the Auto-Tune state for the Elasticsearch domain. For valid states
+/// see the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a>.
+enum AutoTuneState {
+  enabled,
+  disabled,
+  enableInProgress,
+  disableInProgress,
+  disabledAndRollbackScheduled,
+  disabledAndRollbackInProgress,
+  disabledAndRollbackComplete,
+  disabledAndRollbackError,
+  error,
+}
+
+extension on AutoTuneState {
+  String toValue() {
+    switch (this) {
+      case AutoTuneState.enabled:
+        return 'ENABLED';
+      case AutoTuneState.disabled:
+        return 'DISABLED';
+      case AutoTuneState.enableInProgress:
+        return 'ENABLE_IN_PROGRESS';
+      case AutoTuneState.disableInProgress:
+        return 'DISABLE_IN_PROGRESS';
+      case AutoTuneState.disabledAndRollbackScheduled:
+        return 'DISABLED_AND_ROLLBACK_SCHEDULED';
+      case AutoTuneState.disabledAndRollbackInProgress:
+        return 'DISABLED_AND_ROLLBACK_IN_PROGRESS';
+      case AutoTuneState.disabledAndRollbackComplete:
+        return 'DISABLED_AND_ROLLBACK_COMPLETE';
+      case AutoTuneState.disabledAndRollbackError:
+        return 'DISABLED_AND_ROLLBACK_ERROR';
+      case AutoTuneState.error:
+        return 'ERROR';
+    }
+  }
+}
+
+extension on String {
+  AutoTuneState toAutoTuneState() {
+    switch (this) {
+      case 'ENABLED':
+        return AutoTuneState.enabled;
+      case 'DISABLED':
+        return AutoTuneState.disabled;
+      case 'ENABLE_IN_PROGRESS':
+        return AutoTuneState.enableInProgress;
+      case 'DISABLE_IN_PROGRESS':
+        return AutoTuneState.disableInProgress;
+      case 'DISABLED_AND_ROLLBACK_SCHEDULED':
+        return AutoTuneState.disabledAndRollbackScheduled;
+      case 'DISABLED_AND_ROLLBACK_IN_PROGRESS':
+        return AutoTuneState.disabledAndRollbackInProgress;
+      case 'DISABLED_AND_ROLLBACK_COMPLETE':
+        return AutoTuneState.disabledAndRollbackComplete;
+      case 'DISABLED_AND_ROLLBACK_ERROR':
+        return AutoTuneState.disabledAndRollbackError;
+      case 'ERROR':
+        return AutoTuneState.error;
+    }
+    throw Exception('$this is not known in enum AutoTuneState');
+  }
+}
+
+/// Provides the current status of the Auto-Tune options.
+class AutoTuneStatus {
+  /// Timestamp which tells Auto-Tune options creation date .
+  final DateTime creationDate;
+
+  /// Specifies the <code>AutoTuneState</code> for the Elasticsearch domain.
+  final AutoTuneState state;
+
+  /// Timestamp which tells Auto-Tune options last updated time.
+  final DateTime updateDate;
+
+  /// Specifies the error message while enabling or disabling the Auto-Tune
+  /// options.
+  final String? errorMessage;
+
+  /// Indicates whether the Elasticsearch domain is being deleted.
+  final bool? pendingDeletion;
+
+  /// Specifies the Auto-Tune options latest version.
+  final int? updateVersion;
+
+  AutoTuneStatus({
+    required this.creationDate,
+    required this.state,
+    required this.updateDate,
+    this.errorMessage,
+    this.pendingDeletion,
+    this.updateVersion,
+  });
+  factory AutoTuneStatus.fromJson(Map<String, dynamic> json) {
+    return AutoTuneStatus(
+      creationDate:
+          nonNullableTimeStampFromJson(json['CreationDate'] as Object),
+      state: (json['State'] as String).toAutoTuneState(),
+      updateDate: nonNullableTimeStampFromJson(json['UpdateDate'] as Object),
+      errorMessage: json['ErrorMessage'] as String?,
+      pendingDeletion: json['PendingDeletion'] as bool?,
+      updateVersion: json['UpdateVersion'] as int?,
+    );
+  }
+}
+
+/// Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION.
+enum AutoTuneType {
+  scheduledAction,
+}
+
+extension on AutoTuneType {
+  String toValue() {
+    switch (this) {
+      case AutoTuneType.scheduledAction:
+        return 'SCHEDULED_ACTION';
+    }
+  }
+}
+
+extension on String {
+  AutoTuneType toAutoTuneType() {
+    switch (this) {
+      case 'SCHEDULED_ACTION':
+        return AutoTuneType.scheduledAction;
+    }
+    throw Exception('$this is not known in enum AutoTuneType');
+  }
+}
+
 /// The result of a <code>CancelElasticsearchServiceSoftwareUpdate</code>
 /// operation. Contains the status of the update.
 class CancelElasticsearchServiceSoftwareUpdateResponse {
@@ -2117,6 +2450,28 @@ class CognitoOptionsStatus {
       options: CognitoOptions.fromJson(json['Options'] as Map<String, dynamic>),
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+}
+
+/// Specifies settings for cold storage.
+class ColdStorageOptions {
+  /// True to enable cold storage for an Elasticsearch domain.
+  final bool enabled;
+
+  ColdStorageOptions({
+    required this.enabled,
+  });
+  factory ColdStorageOptions.fromJson(Map<String, dynamic> json) {
+    return ColdStorageOptions(
+      enabled: json['Enabled'] as bool,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      'Enabled': enabled,
+    };
   }
 }
 
@@ -2359,6 +2714,34 @@ extension on String {
         return DeploymentStatus.eligible;
     }
     throw Exception('$this is not known in enum DeploymentStatus');
+  }
+}
+
+/// The result of <code>DescribeDomainAutoTunes</code> request. See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+class DescribeDomainAutoTunesResponse {
+  /// Specifies the list of setting adjustments that Auto-Tune has made to the
+  /// domain. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final List<AutoTune>? autoTunes;
+
+  /// Specifies an identifier to allow retrieval of paginated results.
+  final String? nextToken;
+
+  DescribeDomainAutoTunesResponse({
+    this.autoTunes,
+    this.nextToken,
+  });
+  factory DescribeDomainAutoTunesResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeDomainAutoTunesResponse(
+      autoTunes: (json['AutoTunes'] as List?)
+          ?.whereNotNull()
+          .map((e) => AutoTune.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
   }
 }
 
@@ -2885,6 +3268,43 @@ extension on String {
   }
 }
 
+/// Specifies maintenance schedule duration: duration value and duration unit.
+/// See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+class Duration {
+  /// Specifies the unit of a maintenance schedule duration. Valid value is HOURS.
+  /// See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final TimeUnit? unit;
+
+  /// Integer to specify the value of a maintenance schedule duration. See the <a
+  /// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+  /// target="_blank">Developer Guide</a> for more information.
+  final int? value;
+
+  Duration({
+    this.unit,
+    this.value,
+  });
+  factory Duration.fromJson(Map<String, dynamic> json) {
+    return Duration(
+      unit: (json['Unit'] as String?)?.toTimeUnit(),
+      value: json['Value'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unit = this.unit;
+    final value = this.value;
+    return {
+      if (unit != null) 'Unit': unit.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
 /// Options to enable, disable, and specify the properties of EBS storage
 /// volumes. For more information, see <a
 /// href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs"
@@ -3291,6 +3711,10 @@ extension on String {
 /// Specifies the configuration for the domain cluster, such as the type and
 /// number of instances.
 class ElasticsearchClusterConfig {
+  /// Specifies the <code>ColdStorageOptions</code> configuration for an
+  /// Elasticsearch domain.
+  final ColdStorageOptions? coldStorageOptions;
+
   /// Total number of dedicated master nodes, active and on standby, for the
   /// cluster.
   final int? dedicatedMasterCount;
@@ -3330,6 +3754,7 @@ class ElasticsearchClusterConfig {
   final bool? zoneAwarenessEnabled;
 
   ElasticsearchClusterConfig({
+    this.coldStorageOptions,
     this.dedicatedMasterCount,
     this.dedicatedMasterEnabled,
     this.dedicatedMasterType,
@@ -3343,6 +3768,10 @@ class ElasticsearchClusterConfig {
   });
   factory ElasticsearchClusterConfig.fromJson(Map<String, dynamic> json) {
     return ElasticsearchClusterConfig(
+      coldStorageOptions: json['ColdStorageOptions'] != null
+          ? ColdStorageOptions.fromJson(
+              json['ColdStorageOptions'] as Map<String, dynamic>)
+          : null,
       dedicatedMasterCount: json['DedicatedMasterCount'] as int?,
       dedicatedMasterEnabled: json['DedicatedMasterEnabled'] as bool?,
       dedicatedMasterType:
@@ -3362,6 +3791,7 @@ class ElasticsearchClusterConfig {
   }
 
   Map<String, dynamic> toJson() {
+    final coldStorageOptions = this.coldStorageOptions;
     final dedicatedMasterCount = this.dedicatedMasterCount;
     final dedicatedMasterEnabled = this.dedicatedMasterEnabled;
     final dedicatedMasterType = this.dedicatedMasterType;
@@ -3373,6 +3803,7 @@ class ElasticsearchClusterConfig {
     final zoneAwarenessConfig = this.zoneAwarenessConfig;
     final zoneAwarenessEnabled = this.zoneAwarenessEnabled;
     return {
+      if (coldStorageOptions != null) 'ColdStorageOptions': coldStorageOptions,
       if (dedicatedMasterCount != null)
         'DedicatedMasterCount': dedicatedMasterCount,
       if (dedicatedMasterEnabled != null)
@@ -3427,6 +3858,9 @@ class ElasticsearchDomainConfig {
   /// Specifies <code>AdvancedSecurityOptions</code> for the domain.
   final AdvancedSecurityOptionsStatus? advancedSecurityOptions;
 
+  /// Specifies <code>AutoTuneOptions</code> for the domain.
+  final AutoTuneOptionsStatus? autoTuneOptions;
+
   /// The <code>CognitoOptions</code> for the specified domain. For more
   /// information, see <a
   /// href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
@@ -3471,6 +3905,7 @@ class ElasticsearchDomainConfig {
     this.accessPolicies,
     this.advancedOptions,
     this.advancedSecurityOptions,
+    this.autoTuneOptions,
     this.cognitoOptions,
     this.domainEndpointOptions,
     this.eBSOptions,
@@ -3495,6 +3930,10 @@ class ElasticsearchDomainConfig {
       advancedSecurityOptions: json['AdvancedSecurityOptions'] != null
           ? AdvancedSecurityOptionsStatus.fromJson(
               json['AdvancedSecurityOptions'] as Map<String, dynamic>)
+          : null,
+      autoTuneOptions: json['AutoTuneOptions'] != null
+          ? AutoTuneOptionsStatus.fromJson(
+              json['AutoTuneOptions'] as Map<String, dynamic>)
           : null,
       cognitoOptions: json['CognitoOptions'] != null
           ? CognitoOptionsStatus.fromJson(
@@ -3568,6 +4007,9 @@ class ElasticsearchDomainStatus {
 
   /// The current status of the Elasticsearch domain's advanced security options.
   final AdvancedSecurityOptions? advancedSecurityOptions;
+
+  /// The current status of the Elasticsearch domain's Auto-Tune options.
+  final AutoTuneOptionsOutput? autoTuneOptions;
 
   /// The <code>CognitoOptions</code> for the specified domain. For more
   /// information, see <a
@@ -3643,6 +4085,7 @@ class ElasticsearchDomainStatus {
     this.accessPolicies,
     this.advancedOptions,
     this.advancedSecurityOptions,
+    this.autoTuneOptions,
     this.cognitoOptions,
     this.created,
     this.deleted,
@@ -3673,6 +4116,10 @@ class ElasticsearchDomainStatus {
       advancedSecurityOptions: json['AdvancedSecurityOptions'] != null
           ? AdvancedSecurityOptions.fromJson(
               json['AdvancedSecurityOptions'] as Map<String, dynamic>)
+          : null,
+      autoTuneOptions: json['AutoTuneOptions'] != null
+          ? AutoTuneOptionsOutput.fromJson(
+              json['AutoTuneOptions'] as Map<String, dynamic>)
           : null,
       cognitoOptions: json['CognitoOptions'] != null
           ? CognitoOptions.fromJson(
@@ -5131,6 +5578,36 @@ extension on String {
   }
 }
 
+/// Specifies the rollback state while disabling Auto-Tune for the domain. Valid
+/// values are NO_ROLLBACK, DEFAULT_ROLLBACK.
+enum RollbackOnDisable {
+  noRollback,
+  defaultRollback,
+}
+
+extension on RollbackOnDisable {
+  String toValue() {
+    switch (this) {
+      case RollbackOnDisable.noRollback:
+        return 'NO_ROLLBACK';
+      case RollbackOnDisable.defaultRollback:
+        return 'DEFAULT_ROLLBACK';
+    }
+  }
+}
+
+extension on String {
+  RollbackOnDisable toRollbackOnDisable() {
+    switch (this) {
+      case 'NO_ROLLBACK':
+        return RollbackOnDisable.noRollback;
+      case 'DEFAULT_ROLLBACK':
+        return RollbackOnDisable.defaultRollback;
+    }
+    throw Exception('$this is not known in enum RollbackOnDisable');
+  }
+}
+
 /// Specifies the SAML Identity Provider's information.
 class SAMLIdp {
   /// The unique Entity ID of the application in SAML Identity Provider.
@@ -5249,6 +5726,105 @@ class SAMLOptionsOutput {
       sessionTimeoutMinutes: json['SessionTimeoutMinutes'] as int?,
       subjectKey: json['SubjectKey'] as String?,
     );
+  }
+}
+
+/// Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and
+/// JVM_YOUNG_GEN_TUNING.
+enum ScheduledAutoTuneActionType {
+  jvmHeapSizeTuning,
+  jvmYoungGenTuning,
+}
+
+extension on ScheduledAutoTuneActionType {
+  String toValue() {
+    switch (this) {
+      case ScheduledAutoTuneActionType.jvmHeapSizeTuning:
+        return 'JVM_HEAP_SIZE_TUNING';
+      case ScheduledAutoTuneActionType.jvmYoungGenTuning:
+        return 'JVM_YOUNG_GEN_TUNING';
+    }
+  }
+}
+
+extension on String {
+  ScheduledAutoTuneActionType toScheduledAutoTuneActionType() {
+    switch (this) {
+      case 'JVM_HEAP_SIZE_TUNING':
+        return ScheduledAutoTuneActionType.jvmHeapSizeTuning;
+      case 'JVM_YOUNG_GEN_TUNING':
+        return ScheduledAutoTuneActionType.jvmYoungGenTuning;
+    }
+    throw Exception('$this is not known in enum ScheduledAutoTuneActionType');
+  }
+}
+
+/// Specifies details of the scheduled Auto-Tune action. See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+class ScheduledAutoTuneDetails {
+  /// Specifies Auto-Tune action description.
+  final String? action;
+
+  /// Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and
+  /// JVM_YOUNG_GEN_TUNING.
+  final ScheduledAutoTuneActionType? actionType;
+
+  /// Specifies timestamp for the Auto-Tune action scheduled for the domain.
+  final DateTime? date;
+
+  /// Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH.
+  final ScheduledAutoTuneSeverityType? severity;
+
+  ScheduledAutoTuneDetails({
+    this.action,
+    this.actionType,
+    this.date,
+    this.severity,
+  });
+  factory ScheduledAutoTuneDetails.fromJson(Map<String, dynamic> json) {
+    return ScheduledAutoTuneDetails(
+      action: json['Action'] as String?,
+      actionType:
+          (json['ActionType'] as String?)?.toScheduledAutoTuneActionType(),
+      date: timeStampFromJson(json['Date']),
+      severity:
+          (json['Severity'] as String?)?.toScheduledAutoTuneSeverityType(),
+    );
+  }
+}
+
+/// Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH.
+enum ScheduledAutoTuneSeverityType {
+  low,
+  medium,
+  high,
+}
+
+extension on ScheduledAutoTuneSeverityType {
+  String toValue() {
+    switch (this) {
+      case ScheduledAutoTuneSeverityType.low:
+        return 'LOW';
+      case ScheduledAutoTuneSeverityType.medium:
+        return 'MEDIUM';
+      case ScheduledAutoTuneSeverityType.high:
+        return 'HIGH';
+    }
+  }
+}
+
+extension on String {
+  ScheduledAutoTuneSeverityType toScheduledAutoTuneSeverityType() {
+    switch (this) {
+      case 'LOW':
+        return ScheduledAutoTuneSeverityType.low;
+      case 'MEDIUM':
+        return ScheduledAutoTuneSeverityType.medium;
+      case 'HIGH':
+        return ScheduledAutoTuneSeverityType.high;
+    }
+    throw Exception('$this is not known in enum ScheduledAutoTuneSeverityType');
   }
 }
 
@@ -5498,6 +6074,33 @@ class Tag {
       'Key': key,
       'Value': value,
     };
+  }
+}
+
+/// Specifies the unit of a maintenance schedule duration. Valid value is HOUR.
+/// See the <a
+/// href="https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html"
+/// target="_blank">Developer Guide</a> for more information.
+enum TimeUnit {
+  hours,
+}
+
+extension on TimeUnit {
+  String toValue() {
+    switch (this) {
+      case TimeUnit.hours:
+        return 'HOURS';
+    }
+  }
+}
+
+extension on String {
+  TimeUnit toTimeUnit() {
+    switch (this) {
+      case 'HOURS':
+        return TimeUnit.hours;
+    }
+    throw Exception('$this is not known in enum TimeUnit');
   }
 }
 

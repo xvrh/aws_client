@@ -95,12 +95,6 @@ class MigrationHubConfig {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'homeRegion',
-      homeRegion,
-      r'''^([a-z]+)-([a-z]+)-([0-9]+)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(target, 'target');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -164,21 +158,11 @@ class MigrationHubConfig {
       1,
       50,
     );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^hrc-[a-z0-9]{12}$''',
-    );
     _s.validateStringLength(
       'homeRegion',
       homeRegion,
       1,
       50,
-    );
-    _s.validateStringPattern(
-      'homeRegion',
-      homeRegion,
-      r'''^([a-z]+)-([a-z]+)-([0-9]+)$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -191,11 +175,6 @@ class MigrationHubConfig {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-zA-Z0-9\/\+\=]{0,2048}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

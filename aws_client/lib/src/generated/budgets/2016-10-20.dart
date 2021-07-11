@@ -135,12 +135,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budget, 'budget');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -199,12 +193,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionThreshold, 'actionThreshold');
     ArgumentError.checkNotNull(actionType, 'actionType');
     ArgumentError.checkNotNull(approvalModel, 'approvalModel');
@@ -216,12 +204,6 @@ class Budgets {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(definition, 'definition');
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
     _s.validateStringLength(
@@ -229,12 +211,6 @@ class Budgets {
       executionRoleArn,
       32,
       618,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''^arn:(aws|aws-cn|aws-us-gov|us-iso-east-1|us-isob-east-1):iam::\d{12}:role(\u002F[\u0021-\u007F]+\u002F|\u002F)[\w+=,.@-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notificationType, 'notificationType');
@@ -304,24 +280,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notification, 'notification');
@@ -382,24 +346,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notification, 'notification');
@@ -452,24 +404,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -512,12 +452,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionId, 'actionId');
     _s.validateStringLength(
       'actionId',
@@ -526,24 +460,12 @@ class Budgets {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionId',
-      actionId,
-      r'''^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -599,24 +521,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notification, 'notification');
@@ -675,24 +585,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notification, 'notification');
@@ -747,24 +645,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -808,12 +694,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionId, 'actionId');
     _s.validateStringLength(
       'actionId',
@@ -822,24 +702,12 @@ class Budgets {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionId',
-      actionId,
-      r'''^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -888,12 +756,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionId, 'actionId');
     _s.validateStringLength(
       'actionId',
@@ -902,24 +764,12 @@ class Budgets {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionId',
-      actionId,
-      r'''^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -933,11 +783,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -982,12 +827,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -999,11 +838,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1047,24 +881,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1078,11 +900,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1135,24 +952,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1166,11 +971,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1233,12 +1033,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1250,11 +1044,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1314,24 +1103,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1345,11 +1122,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1414,24 +1186,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(notification, 'notification');
@@ -1446,11 +1206,6 @@ class Budgets {
       nextToken,
       0,
       2147483647,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1503,12 +1258,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionId, 'actionId');
     _s.validateStringLength(
       'actionId',
@@ -1517,24 +1266,12 @@ class Budgets {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionId',
-      actionId,
-      r'''^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(executionType, 'executionType');
@@ -1595,12 +1332,6 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(newBudget, 'newBudget');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1655,24 +1386,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionId, 'actionId');
     _s.validateStringLength(
       'actionId',
       actionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'actionId',
-      actionId,
-      r'''^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
@@ -1683,22 +1402,11 @@ class Budgets {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       32,
       618,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''^arn:(aws|aws-cn|aws-us-gov|us-iso-east-1|us-isob-east-1):iam::\d{12}:role(\u002F[\u0021-\u007F]+\u002F|\u002F)[\w+=,.@-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1761,24 +1469,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(newNotification, 'newNotification');
@@ -1840,24 +1536,12 @@ class Budgets {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(budgetName, 'budgetName');
     _s.validateStringLength(
       'budgetName',
       budgetName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'budgetName',
-      budgetName,
-      r'''[^:\\]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(newSubscriber, 'newSubscriber');

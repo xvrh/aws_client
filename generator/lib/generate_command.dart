@@ -179,7 +179,7 @@ export '../../src/generated/${api.directoryName}/${api.fileBasename}.dart';
 
         if (api.usesQueryProtocol) {
           File('$baseDir/${api.fileBasename}.meta.dart')
-            ..writeAsStringSync(metaContents);
+              .writeAsStringSync(metaContents);
         }
 
         serviceFile.writeAsStringSync(serviceText);

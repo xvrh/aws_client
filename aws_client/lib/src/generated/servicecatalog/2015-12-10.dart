@@ -99,12 +99,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -160,12 +154,6 @@ class ServiceCatalog {
       resourceId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -226,12 +214,6 @@ class ServiceCatalog {
       portfolioId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(principalARN, 'principalARN');
@@ -314,24 +296,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(productId, 'productId');
     _s.validateStringLength(
       'productId',
       productId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -345,11 +315,6 @@ class ServiceCatalog {
       sourcePortfolioId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'sourcePortfolioId',
-      sourcePortfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -416,12 +381,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -431,24 +390,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceActionId, 'serviceActionId');
     _s.validateStringLength(
       'serviceActionId',
       serviceActionId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceActionId',
-      serviceActionId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -703,12 +650,6 @@ class ServiceCatalog {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sourceProductArn',
-      sourceProductArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -721,21 +662,11 @@ class ServiceCatalog {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'targetProductId',
       targetProductId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'targetProductId',
-      targetProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'targetProductName',
@@ -911,24 +842,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(productId, 'productId');
     _s.validateStringLength(
       'productId',
       productId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -956,11 +875,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1067,11 +981,6 @@ class ServiceCatalog {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWS242ServiceCatalogService.CreatePortfolio'
@@ -1169,22 +1078,11 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^[0-9]{12}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1328,11 +1226,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     _s.validateStringLength(
       'supportDescription',
@@ -1478,12 +1371,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionedProductName, 'provisionedProductName');
     _s.validateStringLength(
@@ -1493,12 +1380,6 @@ class ServiceCatalog {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -1506,12 +1387,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1526,21 +1401,11 @@ class ServiceCatalog {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'pathId',
       pathId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'pathId',
-      pathId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1626,12 +1491,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -1643,11 +1502,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1747,12 +1601,6 @@ class ServiceCatalog {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -1770,11 +1618,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1822,24 +1665,12 @@ class ServiceCatalog {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'key',
-      key,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(value, 'value');
     _s.validateStringLength(
       'value',
       value,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'value',
-      value,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1895,12 +1726,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1965,12 +1790,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2045,22 +1864,11 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^[0-9]{12}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2124,12 +1932,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -2190,12 +1992,6 @@ class ServiceCatalog {
       planId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'planId',
-      planId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2266,12 +2062,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -2279,12 +2069,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2344,12 +2128,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2446,12 +2224,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -2509,12 +2281,6 @@ class ServiceCatalog {
       copyProductToken,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'copyProductToken',
-      copyProductToken,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2577,12 +2343,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -2628,12 +2388,6 @@ class ServiceCatalog {
       portfolioShareToken,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'portfolioShareToken',
-      portfolioShareToken,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2705,12 +2459,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     _s.validateNumRange(
       'pageSize',
@@ -2723,11 +2471,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2791,11 +2534,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'name',
@@ -2877,11 +2615,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'name',
       name,
@@ -2893,11 +2626,6 @@ class ServiceCatalog {
       sourcePortfolioId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'sourcePortfolioId',
-      sourcePortfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2952,12 +2680,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3035,21 +2757,11 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3114,12 +2826,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'planId',
-      planId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -3137,11 +2843,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3220,11 +2921,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'productName',
       productName,
@@ -3236,11 +2932,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'provisioningArtifactName',
@@ -3346,11 +3037,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'pathId',
-      pathId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'pathName',
       pathName,
@@ -3363,11 +3049,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'productName',
       productName,
@@ -3379,11 +3060,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'provisioningArtifactName',
@@ -3473,12 +3149,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -3496,11 +3166,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3554,12 +3219,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3627,24 +3286,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceActionId, 'serviceActionId');
     _s.validateStringLength(
       'serviceActionId',
       serviceActionId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceActionId',
-      serviceActionId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3772,12 +3419,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -3833,12 +3474,6 @@ class ServiceCatalog {
       portfolioId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(principalARN, 'principalARN');
@@ -3915,24 +3550,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(productId, 'productId');
     _s.validateStringLength(
       'productId',
       productId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4004,12 +3627,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -4019,24 +3636,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceActionId, 'serviceActionId');
     _s.validateStringLength(
       'serviceActionId',
       serviceActionId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceActionId',
-      serviceActionId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4177,12 +3782,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'planId',
-      planId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -4194,11 +3793,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4275,24 +3869,12 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceActionId, 'serviceActionId');
     _s.validateStringLength(
       'serviceActionId',
       serviceActionId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceActionId',
-      serviceActionId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4306,11 +3888,6 @@ class ServiceCatalog {
       executeToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'executeToken',
-      executeToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4424,32 +4001,17 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     _s.validateStringLength(
       'provisionedProductId',
       provisionedProductId,
       1,
       100,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'provisionedProductName',
       provisionedProductName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4552,12 +4114,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionedProductName, 'provisionedProductName');
     _s.validateStringLength(
@@ -4567,12 +4123,6 @@ class ServiceCatalog {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -4580,12 +4130,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4599,11 +4143,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4687,18 +4226,13 @@ class ServiceCatalog {
       'pageSize',
       pageSize,
       0,
-      20,
+      100,
     );
     _s.validateStringLength(
       'pageToken',
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4765,12 +4299,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -4788,11 +4316,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4862,12 +4385,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -4886,21 +4403,11 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     _s.validateStringLength(
       'productId',
       productId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4969,12 +4476,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -4992,11 +4493,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5088,12 +4584,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -5111,11 +4601,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5192,12 +4677,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -5210,11 +4689,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'organizationParentId',
-      organizationParentId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateNumRange(
       'pageSize',
       pageSize,
@@ -5226,11 +4700,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5295,18 +4764,13 @@ class ServiceCatalog {
       'pageSize',
       pageSize,
       0,
-      20,
+      100,
     );
     _s.validateStringLength(
       'pageToken',
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5371,12 +4835,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -5387,18 +4845,13 @@ class ServiceCatalog {
       'pageSize',
       pageSize,
       0,
-      20,
+      100,
     );
     _s.validateStringLength(
       'pageToken',
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5464,12 +4917,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -5487,11 +4934,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5573,21 +5015,11 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     _s.validateStringLength(
       'provisionProductId',
       provisionProductId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'provisionProductId',
-      provisionProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5645,12 +5077,6 @@ class ServiceCatalog {
       productId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -5724,12 +5150,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceActionId',
-      serviceActionId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -5747,11 +5167,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5833,11 +5248,6 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWS242ServiceCatalogService.ListRecordHistory'
@@ -5913,11 +5323,6 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWS242ServiceCatalogService.ListResourcesForTagOption'
@@ -5986,11 +5391,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6062,12 +5462,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -6075,12 +5469,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -6100,11 +5488,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6177,12 +5560,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -6200,11 +5577,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6260,11 +5632,6 @@ class ServiceCatalog {
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6386,12 +5753,6 @@ class ServiceCatalog {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -6403,11 +5764,6 @@ class ServiceCatalog {
       pathId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'pathId',
-      pathId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'pathName',
@@ -6421,11 +5777,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'productName',
       productName,
@@ -6438,21 +5789,11 @@ class ServiceCatalog {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'provisionToken',
-      provisionToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'provisioningArtifactId',
       provisioningArtifactId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'provisioningArtifactName',
@@ -6549,12 +5890,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -6635,11 +5970,6 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWS242ServiceCatalogService.ScanProvisionedProducts'
@@ -6714,18 +6044,13 @@ class ServiceCatalog {
       'pageSize',
       pageSize,
       0,
-      20,
+      100,
     );
     _s.validateStringLength(
       'pageToken',
       pageToken,
       0,
       2024,
-    );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6822,21 +6147,11 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     _s.validateStringLength(
       'portfolioId',
       portfolioId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6944,11 +6259,6 @@ class ServiceCatalog {
       0,
       2024,
     );
-    _s.validateStringPattern(
-      'pageToken',
-      pageToken,
-      r'''[\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWS242ServiceCatalogService.SearchProvisionedProducts'
@@ -7042,32 +6352,17 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'provisionedProductName',
       provisionedProductName,
       1,
       1224,
     );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}|arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-    );
     _s.validateStringLength(
       'terminateToken',
       terminateToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'terminateToken',
-      terminateToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7197,12 +6492,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -7292,12 +6581,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -7413,22 +6696,11 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portfolioId',
-      portfolioId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^[0-9]{12}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7521,12 +6793,6 @@ class ServiceCatalog {
       id,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -7707,11 +6973,6 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'pathId',
-      pathId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'pathName',
       pathName,
@@ -7723,11 +6984,6 @@ class ServiceCatalog {
       productId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'productName',
@@ -7741,32 +6997,17 @@ class ServiceCatalog {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-    );
     _s.validateStringLength(
       'provisionedProductName',
       provisionedProductName,
       1,
       1224,
     );
-    _s.validateStringPattern(
-      'provisionedProductName',
-      provisionedProductName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}|arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-    );
     _s.validateStringLength(
       'provisioningArtifactId',
       provisioningArtifactId,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
     );
     _s.validateStringLength(
       'provisioningArtifactName',
@@ -7779,11 +7020,6 @@ class ServiceCatalog {
       updateToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7895,12 +7131,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'provisionedProductId',
-      provisionedProductId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionedProductProperties, 'provisionedProductProperties');
     _s.validateStringLength(
@@ -7914,11 +7144,6 @@ class ServiceCatalog {
       idempotencyToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8014,12 +7239,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'productId',
-      productId,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisioningArtifactId, 'provisioningArtifactId');
     _s.validateStringLength(
@@ -8027,12 +7246,6 @@ class ServiceCatalog {
       provisioningArtifactId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'provisioningArtifactId',
-      provisioningArtifactId,
-      r'''^[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -8123,12 +7336,6 @@ class ServiceCatalog {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'acceptLanguage',
       acceptLanguage,
@@ -8146,11 +7353,6 @@ class ServiceCatalog {
       name,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8208,11 +7410,6 @@ class ServiceCatalog {
       value,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'value',
-      value,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

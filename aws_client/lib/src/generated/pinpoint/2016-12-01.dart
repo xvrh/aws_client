@@ -6393,9 +6393,22 @@ class AttributeDimension {
   /// segment if their attribute values match the criteria values.
   final List<String> values;
 
-  /// The type of segment dimension to use. Valid values are: INCLUSIVE, endpoints
-  /// that match the criteria are included in the segment; and, EXCLUSIVE,
-  /// endpoints that match the criteria are excluded from the segment.
+  /// The type of segment dimension to use. Valid values are:
+  /// <ul>
+  /// <li>INCLUSIVE - endpoints that have attributes matching the values are
+  /// included in the segment.</li>
+  /// <li>EXCLUSIVE - endpoints that have attributes matching the values are
+  /// excluded in the segment.</li>
+  /// <li>CONTAINS - endpoints that have attributes' substrings match the values
+  /// are included in the segment.</li>
+  /// <li>BEFORE - endpoints with attributes read as ISO_INSTANT datetimes before
+  /// the value are included in the segment.</li>
+  /// <li>AFTER - endpoints with attributes read as ISO_INSTANT datetimes after
+  /// the value are included in the segment.</li>
+  /// <li>ON - endpoints with attributes read as ISO_INSTANT dates on the value
+  /// are included in the segment. Time is ignored in this comparison.</li>
+  /// <li>BETWEEN - endpoints with attributes read as ISO_INSTANT datetimes
+  /// between the values are included in the segment.</li>
   final AttributeType? attributeType;
 
   AttributeDimension({
@@ -6425,6 +6438,11 @@ class AttributeDimension {
 enum AttributeType {
   inclusive,
   exclusive,
+  contains,
+  before,
+  after,
+  on,
+  between,
 }
 
 extension on AttributeType {
@@ -6434,6 +6452,16 @@ extension on AttributeType {
         return 'INCLUSIVE';
       case AttributeType.exclusive:
         return 'EXCLUSIVE';
+      case AttributeType.contains:
+        return 'CONTAINS';
+      case AttributeType.before:
+        return 'BEFORE';
+      case AttributeType.after:
+        return 'AFTER';
+      case AttributeType.on:
+        return 'ON';
+      case AttributeType.between:
+        return 'BETWEEN';
     }
   }
 }
@@ -6445,6 +6473,16 @@ extension on String {
         return AttributeType.inclusive;
       case 'EXCLUSIVE':
         return AttributeType.exclusive;
+      case 'CONTAINS':
+        return AttributeType.contains;
+      case 'BEFORE':
+        return AttributeType.before;
+      case 'AFTER':
+        return AttributeType.after;
+      case 'ON':
+        return AttributeType.on;
+      case 'BETWEEN':
+        return AttributeType.between;
     }
     throw Exception('$this is not known in enum AttributeType');
   }
@@ -7186,37 +7224,64 @@ class CampaignSmsMessage {
   /// The body of the SMS message.
   final String? body;
 
+  /// The entity ID or Principal Entity (PE) id received from the regulatory body
+  /// for sending SMS in your country.
+  final String? entityId;
+
   /// The SMS message type. Valid values are TRANSACTIONAL (for messages that are
   /// critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL
   /// (for messsages that aren't critical or time-sensitive, such as marketing
   /// messages).
   final MessageType? messageType;
 
+  /// The long code to send the SMS message from. This value should be one of the
+  /// dedicated long codes that's assigned to your AWS account. Although it isn't
+  /// required, we recommend that you specify the long code using an E.164 format
+  /// to ensure prompt and accurate delivery of the message. For example,
+  /// +12065550100.
+  final String? originationNumber;
+
   /// The sender ID to display on recipients' devices when they receive the SMS
   /// message.
   final String? senderId;
 
+  /// The template ID received from the regulatory body for sending SMS in your
+  /// country.
+  final String? templateId;
+
   CampaignSmsMessage({
     this.body,
+    this.entityId,
     this.messageType,
+    this.originationNumber,
     this.senderId,
+    this.templateId,
   });
   factory CampaignSmsMessage.fromJson(Map<String, dynamic> json) {
     return CampaignSmsMessage(
       body: json['Body'] as String?,
+      entityId: json['EntityId'] as String?,
       messageType: (json['MessageType'] as String?)?.toMessageType(),
+      originationNumber: json['OriginationNumber'] as String?,
       senderId: json['SenderId'] as String?,
+      templateId: json['TemplateId'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final entityId = this.entityId;
     final messageType = this.messageType;
+    final originationNumber = this.originationNumber;
     final senderId = this.senderId;
+    final templateId = this.templateId;
     return {
       if (body != null) 'Body': body,
+      if (entityId != null) 'EntityId': entityId,
       if (messageType != null) 'MessageType': messageType.toValue(),
+      if (originationNumber != null) 'OriginationNumber': originationNumber,
       if (senderId != null) 'SenderId': senderId,
+      if (templateId != null) 'TemplateId': templateId,
     };
   }
 }
@@ -11726,18 +11791,24 @@ class JourneyLimits {
   /// unlimited number of times, set this value to 0.
   final int? endpointReentryCap;
 
+  /// Minimum time that must pass before an endpoint can re-enter a given journey.
+  /// The duration should use an ISO 8601 format, such as PT1H.
+  final String? endpointReentryInterval;
+
   /// The maximum number of messages that the journey can send each second.
   final int? messagesPerSecond;
 
   JourneyLimits({
     this.dailyCap,
     this.endpointReentryCap,
+    this.endpointReentryInterval,
     this.messagesPerSecond,
   });
   factory JourneyLimits.fromJson(Map<String, dynamic> json) {
     return JourneyLimits(
       dailyCap: json['DailyCap'] as int?,
       endpointReentryCap: json['EndpointReentryCap'] as int?,
+      endpointReentryInterval: json['EndpointReentryInterval'] as String?,
       messagesPerSecond: json['MessagesPerSecond'] as int?,
     );
   }
@@ -11745,10 +11816,13 @@ class JourneyLimits {
   Map<String, dynamic> toJson() {
     final dailyCap = this.dailyCap;
     final endpointReentryCap = this.endpointReentryCap;
+    final endpointReentryInterval = this.endpointReentryInterval;
     final messagesPerSecond = this.messagesPerSecond;
     return {
       if (dailyCap != null) 'DailyCap': dailyCap,
       if (endpointReentryCap != null) 'EndpointReentryCap': endpointReentryCap,
+      if (endpointReentryInterval != null)
+        'EndpointReentryInterval': endpointReentryInterval,
       if (messagesPerSecond != null) 'MessagesPerSecond': messagesPerSecond,
     };
   }
@@ -11842,6 +11916,9 @@ class JourneyResponse {
   /// for the journey, as a duration in ISO 8601 format.
   final String? refreshFrequency;
 
+  /// Specifies whether a journey should be refreshed on segment update.
+  final bool? refreshOnSegmentUpdate;
+
   /// The schedule settings for the journey.
   final JourneySchedule? schedule;
 
@@ -11884,6 +11961,10 @@ class JourneyResponse {
   /// </ul>
   final State? state;
 
+  /// Specifies whether endpoints in quiet hours should enter a wait till the end
+  /// of their quiet hours.
+  final bool? waitForQuietTime;
+
   /// This object is not used or supported.
   final Map<String, String>? tags;
 
@@ -11898,10 +11979,12 @@ class JourneyResponse {
     this.localTime,
     this.quietTime,
     this.refreshFrequency,
+    this.refreshOnSegmentUpdate,
     this.schedule,
     this.startActivity,
     this.startCondition,
     this.state,
+    this.waitForQuietTime,
     this.tags,
   });
   factory JourneyResponse.fromJson(Map<String, dynamic> json) {
@@ -11921,6 +12004,7 @@ class JourneyResponse {
           ? QuietTime.fromJson(json['QuietTime'] as Map<String, dynamic>)
           : null,
       refreshFrequency: json['RefreshFrequency'] as String?,
+      refreshOnSegmentUpdate: json['RefreshOnSegmentUpdate'] as bool?,
       schedule: json['Schedule'] != null
           ? JourneySchedule.fromJson(json['Schedule'] as Map<String, dynamic>)
           : null,
@@ -11930,6 +12014,7 @@ class JourneyResponse {
               json['StartCondition'] as Map<String, dynamic>)
           : null,
       state: (json['State'] as String?)?.toState(),
+      waitForQuietTime: json['WaitForQuietTime'] as bool?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -11939,11 +12024,22 @@ class JourneyResponse {
 /// Specifies the sender ID and message type for an SMS message that's sent to
 /// participants in a journey.
 class JourneySMSMessage {
+  /// The entity ID or Principal Entity (PE) id received from the regulatory body
+  /// for sending SMS in your country.
+  final String? entityId;
+
   /// The SMS message type. Valid values are TRANSACTIONAL (for messages that are
   /// critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL
   /// (for messsages that aren't critical or time-sensitive, such as marketing
   /// messages).
   final MessageType? messageType;
+
+  /// The long code to send the SMS message from. This value should be one of the
+  /// dedicated long codes that's assigned to your AWS account. Although it isn't
+  /// required, we recommend that you specify the long code using an E.164 format
+  /// to ensure prompt and accurate delivery of the message. For example,
+  /// +12065550100.
+  final String? originationNumber;
 
   /// The sender ID to display as the sender of the message on a recipient's
   /// device. Support for sender IDs varies by country or region. For more
@@ -11952,23 +12048,39 @@ class JourneySMSMessage {
   /// Countries and Regions</a> in the Amazon Pinpoint User Guide.
   final String? senderId;
 
+  /// The template ID received from the regulatory body for sending SMS in your
+  /// country.
+  final String? templateId;
+
   JourneySMSMessage({
+    this.entityId,
     this.messageType,
+    this.originationNumber,
     this.senderId,
+    this.templateId,
   });
   factory JourneySMSMessage.fromJson(Map<String, dynamic> json) {
     return JourneySMSMessage(
+      entityId: json['EntityId'] as String?,
       messageType: (json['MessageType'] as String?)?.toMessageType(),
+      originationNumber: json['OriginationNumber'] as String?,
       senderId: json['SenderId'] as String?,
+      templateId: json['TemplateId'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final entityId = this.entityId;
     final messageType = this.messageType;
+    final originationNumber = this.originationNumber;
     final senderId = this.senderId;
+    final templateId = this.templateId;
     return {
+      if (entityId != null) 'EntityId': entityId,
       if (messageType != null) 'MessageType': messageType.toValue(),
+      if (originationNumber != null) 'OriginationNumber': originationNumber,
       if (senderId != null) 'SenderId': senderId,
+      if (templateId != null) 'TemplateId': templateId,
     };
   }
 }
@@ -12019,7 +12131,8 @@ class JourneySchedule {
 
 /// Changes the status of a journey.
 class JourneyStateRequest {
-  /// The status of the journey. Currently, the only supported value is CANCELLED.
+  /// The status of the journey. Currently, Supported values are ACTIVE, PAUSED,
+  /// and CANCELLED
   ///
   /// If you cancel a journey, Amazon Pinpoint continues to perform activities
   /// that are currently in progress, until those activities are complete. Amazon
@@ -12030,6 +12143,13 @@ class JourneyStateRequest {
   /// After you cancel a journey, you can't add, change, or remove any activities
   /// from the journey. In addition, Amazon Pinpoint stops evaluating the journey
   /// and doesn't perform any activities that haven't started.
+  ///
+  /// When the journey is paused, Amazon Pinpoint continues to perform activities
+  /// that are currently in progress, until those activities are complete.
+  /// Endpoints will stop entering journeys when the journey is paused and will
+  /// resume entering the journey after the journey is resumed. For wait
+  /// activities, wait time is paused when the journey is paused. Currently,
+  /// PAUSED only supports journeys with a segment refresh interval.
   final State? state;
 
   JourneyStateRequest({
@@ -13768,6 +13888,10 @@ class SMSMessage {
   /// The body of the SMS message.
   final String? body;
 
+  /// The entity ID or Principal Entity (PE) id received from the regulatory body
+  /// for sending SMS in your country.
+  final String? entityId;
+
   /// The SMS program name that you provided to AWS Support when you requested
   /// your dedicated number.
   final String? keyword;
@@ -13795,31 +13919,41 @@ class SMSMessage {
   /// default variables with individual address variables.
   final Map<String, List<String>>? substitutions;
 
+  /// The template ID received from the regulatory body for sending SMS in your
+  /// country.
+  final String? templateId;
+
   SMSMessage({
     this.body,
+    this.entityId,
     this.keyword,
     this.mediaUrl,
     this.messageType,
     this.originationNumber,
     this.senderId,
     this.substitutions,
+    this.templateId,
   });
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final entityId = this.entityId;
     final keyword = this.keyword;
     final mediaUrl = this.mediaUrl;
     final messageType = this.messageType;
     final originationNumber = this.originationNumber;
     final senderId = this.senderId;
     final substitutions = this.substitutions;
+    final templateId = this.templateId;
     return {
       if (body != null) 'Body': body,
+      if (entityId != null) 'EntityId': entityId,
       if (keyword != null) 'Keyword': keyword,
       if (mediaUrl != null) 'MediaUrl': mediaUrl,
       if (messageType != null) 'MessageType': messageType.toValue(),
       if (originationNumber != null) 'OriginationNumber': originationNumber,
       if (senderId != null) 'SenderId': senderId,
       if (substitutions != null) 'Substitutions': substitutions,
+      if (templateId != null) 'TemplateId': templateId,
     };
   }
 }
@@ -15027,6 +15161,7 @@ enum State {
   completed,
   cancelled,
   closed,
+  paused,
 }
 
 extension on State {
@@ -15042,6 +15177,8 @@ extension on State {
         return 'CANCELLED';
       case State.closed:
         return 'CLOSED';
+      case State.paused:
+        return 'PAUSED';
     }
   }
 }
@@ -15059,6 +15196,8 @@ extension on String {
         return State.cancelled;
       case 'CLOSED':
         return State.closed;
+      case 'PAUSED':
+        return State.paused;
     }
     throw Exception('$this is not known in enum State');
   }
@@ -16542,6 +16681,9 @@ class WriteJourneyRequest {
   /// for the journey, as a duration in ISO 8601 format.
   final String? refreshFrequency;
 
+  /// Specifies whether a journey should be refreshed on segment update.
+  final bool? refreshOnSegmentUpdate;
+
   /// The schedule settings for the journey.
   final JourneySchedule? schedule;
 
@@ -16566,11 +16708,16 @@ class WriteJourneyRequest {
   /// activities from it.
   /// </li>
   /// </ul>
-  /// The CANCELLED, COMPLETED, and CLOSED values are not supported in requests to
-  /// create or update a journey. To cancel a journey, use the <link
+  /// PAUSED, CANCELLED, COMPLETED, and CLOSED states are not supported in
+  /// requests to create or update a journey. To cancel, pause, or resume a
+  /// journey, use the <link
   /// linkend="apps-application-id-journeys-journey-id-state">Journey State</link>
   /// resource.
   final State? state;
+
+  /// Specifies whether endpoints in quiet hours should enter a wait till the end
+  /// of their quiet hours.
+  final bool? waitForQuietTime;
 
   WriteJourneyRequest({
     required this.name,
@@ -16581,10 +16728,12 @@ class WriteJourneyRequest {
     this.localTime,
     this.quietTime,
     this.refreshFrequency,
+    this.refreshOnSegmentUpdate,
     this.schedule,
     this.startActivity,
     this.startCondition,
     this.state,
+    this.waitForQuietTime,
   });
   Map<String, dynamic> toJson() {
     final name = this.name;
@@ -16595,10 +16744,12 @@ class WriteJourneyRequest {
     final localTime = this.localTime;
     final quietTime = this.quietTime;
     final refreshFrequency = this.refreshFrequency;
+    final refreshOnSegmentUpdate = this.refreshOnSegmentUpdate;
     final schedule = this.schedule;
     final startActivity = this.startActivity;
     final startCondition = this.startCondition;
     final state = this.state;
+    final waitForQuietTime = this.waitForQuietTime;
     return {
       'Name': name,
       if (activities != null) 'Activities': activities,
@@ -16608,10 +16759,13 @@ class WriteJourneyRequest {
       if (localTime != null) 'LocalTime': localTime,
       if (quietTime != null) 'QuietTime': quietTime,
       if (refreshFrequency != null) 'RefreshFrequency': refreshFrequency,
+      if (refreshOnSegmentUpdate != null)
+        'RefreshOnSegmentUpdate': refreshOnSegmentUpdate,
       if (schedule != null) 'Schedule': schedule,
       if (startActivity != null) 'StartActivity': startActivity,
       if (startCondition != null) 'StartCondition': startCondition,
       if (state != null) 'State': state.toValue(),
+      if (waitForQuietTime != null) 'WaitForQuietTime': waitForQuietTime,
     };
   }
 }

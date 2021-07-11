@@ -19,12 +19,12 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
-/// provides additional information. For the service overview, see <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
+/// This is the <i>Lambda API Reference</i>. The Lambda Developer Guide provides
+/// additional information. For the service overview, see <a
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is
 /// Lambda</a>, and for information about how the service works, see <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
-/// Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">Lambda:
+/// How it Works</a> in the <b>Lambda Developer Guide</b>.
 class Lambda {
   final _s.RestJsonProtocol _protocol;
   Lambda({
@@ -43,10 +43,10 @@ class Lambda {
         );
 
   /// Adds permissions to the resource-based policy of a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>. Use this action to grant layer usage permission to other
-  /// accounts. You can grant permission to a single account, all AWS accounts,
-  /// or all accounts in an organization.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>. Use this action to grant layer usage permission to other
+  /// accounts. You can grant permission to a single account, all accounts in an
+  /// organization, or all Amazon Web Services accounts.
   ///
   /// To revoke permission, call <a>RemoveLayerVersionPermission</a> with the
   /// statement ID that you specified when you added it.
@@ -67,7 +67,11 @@ class Lambda {
   /// The name or Amazon Resource Name (ARN) of the layer.
   ///
   /// Parameter [principal] :
-  /// An account ID, or <code>*</code> to grant permission to all AWS accounts.
+  /// An account ID, or <code>*</code> to grant layer usage permission to all
+  /// accounts in an organization, or all Amazon Web Services accounts (if
+  /// <code>organizationId</code> is not specified). For the last case, make
+  /// sure that you really do want all Amazon Web Services accounts to have
+  /// usage permission to this layer.
   ///
   /// Parameter [statementId] :
   /// An identifier that distinguishes the policy from others on the same layer
@@ -94,10 +98,11 @@ class Lambda {
     String? revisionId,
   }) async {
     ArgumentError.checkNotNull(action, 'action');
-    _s.validateStringPattern(
+    _s.validateStringLength(
       'action',
       action,
-      r'''lambda:GetLayerVersion''',
+      0,
+      22,
       isRequired: true,
     );
     ArgumentError.checkNotNull(layerName, 'layerName');
@@ -108,19 +113,7 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
-    _s.validateStringPattern(
-      'principal',
-      principal,
-      r'''\d{12}|\*|arn:(aws[a-zA-Z-]*):iam::\d{12}:root''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
     _s.validateStringLength(
       'statementId',
@@ -129,17 +122,12 @@ class Lambda {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''([a-zA-Z0-9-_]+)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
-    _s.validateStringPattern(
+    _s.validateStringLength(
       'organizationId',
       organizationId,
-      r'''o-[a-z0-9]{10,32}''',
+      0,
+      34,
     );
     final $query = <String, List<String>>{
       if (revisionId != null) 'RevisionId': [revisionId],
@@ -161,20 +149,21 @@ class Lambda {
     return AddLayerVersionPermissionResponse.fromJson(response);
   }
 
-  /// Grants an AWS service or another account permission to use a function. You
-  /// can apply the policy at the function level, or specify a qualifier to
-  /// restrict access to a single version or alias. If you use a qualifier, the
-  /// invoker must use the full Amazon Resource Name (ARN) of that version or
-  /// alias to invoke the function.
+  /// Grants an Amazon Web Services service or another account permission to use
+  /// a function. You can apply the policy at the function level, or specify a
+  /// qualifier to restrict access to a single version or alias. If you use a
+  /// qualifier, the invoker must use the full Amazon Resource Name (ARN) of
+  /// that version or alias to invoke the function.
   ///
   /// To grant permission to another account, specify the account ID as the
-  /// <code>Principal</code>. For AWS services, the principal is a domain-style
-  /// identifier defined by the service, like <code>s3.amazonaws.com</code> or
-  /// <code>sns.amazonaws.com</code>. For AWS services, you can also specify the
-  /// ARN of the associated resource as the <code>SourceArn</code>. If you grant
-  /// permission to a service principal without specifying the source, other
-  /// accounts could potentially configure resources in their account to invoke
-  /// your Lambda function.
+  /// <code>Principal</code>. For Amazon Web Services services, the principal is
+  /// a domain-style identifier defined by the service, like
+  /// <code>s3.amazonaws.com</code> or <code>sns.amazonaws.com</code>. For
+  /// Amazon Web Services services, you can also specify the ARN of the
+  /// associated resource as the <code>SourceArn</code>. If you grant permission
+  /// to a service principal without specifying the source, other accounts could
+  /// potentially configure resources in their account to invoke your Lambda
+  /// function.
   ///
   /// This action adds a statement to a resource-based permissions policy for
   /// the function. For more information about function policies, see <a
@@ -215,9 +204,10 @@ class Lambda {
   /// name, it is limited to 64 characters in length.
   ///
   /// Parameter [principal] :
-  /// The AWS service or account that invokes the function. If you specify a
-  /// service, use <code>SourceArn</code> or <code>SourceAccount</code> to limit
-  /// who can invoke the function through that service.
+  /// The Amazon Web Services service or account that invokes the function. If
+  /// you specify a service, use <code>SourceArn</code> or
+  /// <code>SourceAccount</code> to limit who can invoke the function through
+  /// that service.
   ///
   /// Parameter [statementId] :
   /// A statement identifier that differentiates the statement from others in
@@ -243,8 +233,9 @@ class Lambda {
   /// deleted by its owner and recreated by another account.
   ///
   /// Parameter [sourceArn] :
-  /// For AWS services, the ARN of the AWS resource that invokes the function.
-  /// For example, an Amazon S3 bucket or Amazon SNS topic.
+  /// For Amazon Web Services services, the ARN of the Amazon Web Services
+  /// resource that invokes the function. For example, an Amazon S3 bucket or
+  /// Amazon SNS topic.
   Future<AddPermissionResponse> addPermission({
     required String action,
     required String functionName,
@@ -257,12 +248,6 @@ class Lambda {
     String? sourceArn,
   }) async {
     ArgumentError.checkNotNull(action, 'action');
-    _s.validateStringPattern(
-      'action',
-      action,
-      r'''(lambda:[*]|lambda:[a-zA-Z]+|[*])''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
     _s.validateStringLength(
       'functionName',
@@ -271,19 +256,7 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
-    _s.validateStringPattern(
-      'principal',
-      principal,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
     _s.validateStringLength(
       'statementId',
@@ -292,22 +265,11 @@ class Lambda {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''([a-zA-Z0-9-_]+)''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventSourceToken',
       eventSourceToken,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'eventSourceToken',
-      eventSourceToken,
-      r'''[a-zA-Z0-9._\-]+''',
     );
     _s.validateStringLength(
       'qualifier',
@@ -315,20 +277,11 @@ class Lambda {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
-    );
-    _s.validateStringPattern(
+    _s.validateStringLength(
       'sourceAccount',
       sourceAccount,
-      r'''\d{12}''',
-    );
-    _s.validateStringPattern(
-      'sourceArn',
-      sourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
+      0,
+      12,
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -415,12 +368,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionVersion, 'functionVersion');
     _s.validateStringLength(
       'functionVersion',
@@ -429,24 +376,12 @@ class Lambda {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionVersion',
-      functionVersion,
-      r'''(\$LATEST|[0-9]+)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9-_]+)''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -516,37 +451,41 @@ class Lambda {
     return CreateCodeSigningConfigResponse.fromJson(response);
   }
 
-  /// Creates a mapping between an event source and an AWS Lambda function.
-  /// Lambda reads items from the event source and triggers the function.
+  /// Creates a mapping between an event source and an Lambda function. Lambda
+  /// reads items from the event source and triggers the function.
   ///
-  /// For details about each event source type, see the following topics.
+  /// For details about each event source type, see the following topics. In
+  /// particular, each of the topics describes the required and optional
+  /// parameters for the specific event source.
   ///
   /// <ul>
   /// <li>
-  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html">Using
-  /// AWS Lambda with Amazon DynamoDB</a>
+  /// <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">
+  /// Configuring a Dynamo DB stream as an event source</a>
   /// </li>
   /// <li>
   /// <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html">Using
-  /// AWS Lambda with Amazon Kinesis</a>
-  /// </li>
-  /// <li>
-  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html">Using
-  /// AWS Lambda with Amazon SQS</a>
-  /// </li>
-  /// <li>
-  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html">Using
-  /// AWS Lambda with Amazon MQ</a>
-  /// </li>
-  /// <li>
-  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">Using
-  /// AWS Lambda with Amazon MSK</a>
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">
+  /// Configuring a Kinesis stream as an event source</a>
   /// </li>
   /// <li>
   /// <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">Using
-  /// AWS Lambda with Self-Managed Apache Kafka</a>
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">
+  /// Configuring an SQS queue as an event source</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">
+  /// Configuring an MQ broker as an event source</a>
+  /// </li>
+  /// <li>
+  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">
+  /// Configuring MSK as an event source</a>
+  /// </li>
+  /// <li>
+  /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">
+  /// Configuring Self-Managed Apache Kafka as an event source</a>
   /// </li>
   /// </ul>
   /// The following error handling options are only available for stream sources
@@ -630,11 +569,11 @@ class Lambda {
   /// </ul>
   ///
   /// Parameter [bisectBatchOnFunctionError] :
-  /// (Streams) If the function returns an error, split the batch in two and
-  /// retry.
+  /// (Streams only) If the function returns an error, split the batch in two
+  /// and retry.
   ///
   /// Parameter [destinationConfig] :
-  /// (Streams) An Amazon SQS queue or Amazon SNS topic destination for
+  /// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for
   /// discarded records.
   ///
   /// Parameter [enabled] :
@@ -660,7 +599,7 @@ class Lambda {
   /// </ul>
   ///
   /// Parameter [functionResponseTypes] :
-  /// (Streams) A list of current response type enums applied to the event
+  /// (Streams only) A list of current response type enums applied to the event
   /// source mapping.
   ///
   /// Parameter [maximumBatchingWindowInSeconds] :
@@ -668,16 +607,17 @@ class Lambda {
   /// records before invoking the function, in seconds.
   ///
   /// Parameter [maximumRecordAgeInSeconds] :
-  /// (Streams) Discard records older than the specified age. The default value
-  /// is infinite (-1).
+  /// (Streams only) Discard records older than the specified age. The default
+  /// value is infinite (-1).
   ///
   /// Parameter [maximumRetryAttempts] :
-  /// (Streams) Discard records after the specified number of retries. The
+  /// (Streams only) Discard records after the specified number of retries. The
   /// default value is infinite (-1). When set to infinite (-1), failed records
   /// will be retried until the record expires.
   ///
   /// Parameter [parallelizationFactor] :
-  /// (Streams) The number of batches to process from each shard concurrently.
+  /// (Streams only) The number of batches to process from each shard
+  /// concurrently.
   ///
   /// Parameter [queues] :
   /// (MQ) The name of the Amazon MQ broker destination queue to consume.
@@ -702,8 +642,8 @@ class Lambda {
   /// The name of the Kafka topic.
   ///
   /// Parameter [tumblingWindowInSeconds] :
-  /// (Streams) The duration of a processing window in seconds. The range is
-  /// between 1 second up to 15 minutes.
+  /// (Streams only) The duration in seconds of a processing window. The range
+  /// is between 1 second up to 900 seconds.
   Future<EventSourceMappingConfiguration> createEventSourceMapping({
     required String functionName,
     int? batchSize,
@@ -732,22 +672,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'batchSize',
       batchSize,
       1,
       10000,
-    );
-    _s.validateStringPattern(
-      'eventSourceArn',
-      eventSourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
     );
     _s.validateNumRange(
       'maximumBatchingWindowInSeconds',
@@ -827,8 +756,22 @@ class Lambda {
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role">execution
   /// role</a>. The deployment package is a .zip file archive or container image
   /// that contains your function code. The execution role grants the function
-  /// permission to use AWS services, such as Amazon CloudWatch Logs for log
-  /// streaming and AWS X-Ray for request tracing.
+  /// permission to use Amazon Web Services services, such as Amazon CloudWatch
+  /// Logs for log streaming and X-Ray for request tracing.
+  ///
+  /// You set the package type to <code>Image</code> if the deployment package
+  /// is a <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
+  /// image</a>. For a container image, the code property must include the URI
+  /// of a container image in the Amazon ECR registry. You do not need to
+  /// specify the handler and runtime properties.
+  ///
+  /// You set the package type to <code>Zip</code> if the deployment package is
+  /// a <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
+  /// file archive</a>. For a .zip file archive, the code property specifies the
+  /// location of the .zip file. You must also specify the handler and runtime
+  /// properties.
   ///
   /// When you create a function, Lambda provisions an instance of the function
   /// and its supporting resources. If your function connects to a VPC, this
@@ -863,15 +806,16 @@ class Lambda {
   /// includes set set of signing profiles, which define the trusted publishers
   /// for this function.
   ///
-  /// If another account or an AWS service invokes your function, use
-  /// <a>AddPermission</a> to grant permission by creating a resource-based IAM
-  /// policy. You can grant permissions at the function level, on a version, or
-  /// on an alias.
+  /// If another account or an Amazon Web Services service invokes your
+  /// function, use <a>AddPermission</a> to grant permission by creating a
+  /// resource-based IAM policy. You can grant permissions at the function
+  /// level, on a version, or on an alias.
   ///
   /// To invoke your function directly, use <a>Invoke</a>. To invoke your
-  /// function in response to events in other AWS services, create an event
-  /// source mapping (<a>CreateEventSourceMapping</a>), or configure a function
-  /// trigger in the other service. For more information, see <a
+  /// function in response to events in other Amazon Web Services services,
+  /// create an event source mapping (<a>CreateEventSourceMapping</a>), or
+  /// configure a function trigger in the other service. For more information,
+  /// see <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking
   /// Functions</a>.
   ///
@@ -941,12 +885,14 @@ class Lambda {
   /// Model</a>.
   ///
   /// Parameter [imageConfig] :
-  /// Configuration values that override the container image Dockerfile.
+  /// Container image <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings">configuration
+  /// values</a> that override the values in the container image Dockerfile.
   ///
   /// Parameter [kMSKeyArn] :
-  /// The ARN of the AWS Key Management Service (AWS KMS) key that's used to
-  /// encrypt your function's environment variables. If it's not provided, AWS
-  /// Lambda uses a default service key.
+  /// The ARN of the Amazon Web Services Key Management Service (KMS) key that's
+  /// used to encrypt your function's environment variables. If it's not
+  /// provided, Lambda uses a default service key.
   ///
   /// Parameter [layers] :
   /// A list of <a
@@ -955,9 +901,11 @@ class Lambda {
   /// layer by its ARN, including the version.
   ///
   /// Parameter [memorySize] :
-  /// The amount of memory available to the function at runtime. Increasing the
-  /// function's memory also increases its CPU allocation. The default value is
-  /// 128 MB. The value can be any multiple of 1 MB.
+  /// The amount of <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html">memory
+  /// available to the function</a> at runtime. Increasing the function memory
+  /// also increases its CPU allocation. The default value is 128 MB. The value
+  /// can be any multiple of 1 MB.
   ///
   /// Parameter [packageType] :
   /// The type of deployment package. Set to <code>Image</code> for container
@@ -978,16 +926,20 @@ class Lambda {
   /// Parameter [timeout] :
   /// The amount of time that Lambda allows a function to run before stopping
   /// it. The default is 3 seconds. The maximum allowed value is 900 seconds.
+  /// For additional information, see <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html">Lambda
+  /// execution environment</a>.
   ///
   /// Parameter [tracingConfig] :
   /// Set <code>Mode</code> to <code>Active</code> to sample and trace a subset
-  /// of incoming requests with AWS X-Ray.
+  /// of incoming requests with <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</a>.
   ///
   /// Parameter [vpcConfig] :
-  /// For network connectivity to AWS resources in a VPC, specify a list of
-  /// security groups and subnets in the VPC. When you connect a function to a
-  /// VPC, it can only access resources and the internet through that VPC. For
-  /// more information, see <a
+  /// For network connectivity to Amazon Web Services resources in a VPC,
+  /// specify a list of security groups and subnets in the VPC. When you connect
+  /// a function to a VPC, it can only access resources and the internet through
+  /// that VPC. For more information, see <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">VPC
   /// Settings</a>.
   Future<FunctionConfiguration> createFunction({
@@ -1021,29 +973,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
-    _s.validateStringPattern(
-      'role',
-      role,
-      r'''arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'codeSigningConfigArn',
       codeSigningConfigArn,
       0,
       200,
-    );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
     );
     _s.validateStringLength(
       'description',
@@ -1056,16 +991,6 @@ class Lambda {
       handler,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'handler',
-      handler,
-      r'''[^\s]+''',
-    );
-    _s.validateStringPattern(
-      'kMSKeyArn',
-      kMSKeyArn,
-      r'''(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()''',
     );
     _s.validateNumRange(
       'memorySize',
@@ -1152,24 +1077,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9-_]+)''',
       isRequired: true,
     );
     await _protocol.send(
@@ -1200,12 +1113,6 @@ class Lambda {
       codeSigningConfigArn,
       0,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1252,9 +1159,9 @@ class Lambda {
   /// deleted.
   ///
   /// To delete Lambda event source mappings that invoke a function, use
-  /// <a>DeleteEventSourceMapping</a>. For AWS services and resources that
-  /// invoke your function directly, delete the trigger in the service where you
-  /// originally configured it.
+  /// <a>DeleteEventSourceMapping</a>. For Amazon Web Services services and
+  /// resources that invoke your function directly, delete the trigger in the
+  /// service where you originally configured it.
   ///
   /// May throw [ServiceException].
   /// May throw [ResourceNotFoundException].
@@ -1298,22 +1205,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -1365,12 +1261,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1415,12 +1305,6 @@ class Lambda {
       functionName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     await _protocol.send(
@@ -1478,22 +1362,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -1509,10 +1382,10 @@ class Lambda {
   }
 
   /// Deletes a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>. Deleted versions can no longer be viewed or added to
-  /// functions. To avoid breaking functions, a copy of the version remains in
-  /// Lambda until no functions refer to it.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>. Deleted versions can no longer be viewed or added to functions.
+  /// To avoid breaking functions, a copy of the version remains in Lambda until
+  /// no functions refer to it.
   ///
   /// May throw [ServiceException].
   /// May throw [TooManyRequestsException].
@@ -1532,12 +1405,6 @@ class Lambda {
       layerName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
@@ -1591,24 +1458,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(qualifier, 'qualifier');
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -1626,7 +1481,7 @@ class Lambda {
 
   /// Retrieves details about your account's <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limits</a>
-  /// and usage in an AWS Region.
+  /// and usage in an Amazon Web Services Region.
   ///
   /// May throw [TooManyRequestsException].
   /// May throw [ServiceException].
@@ -1681,24 +1536,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9-_]+)''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1728,12 +1571,6 @@ class Lambda {
       codeSigningConfigArn,
       0,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1816,22 +1653,11 @@ class Lambda {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -1882,12 +1708,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1934,12 +1754,6 @@ class Lambda {
       functionName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2000,22 +1814,11 @@ class Lambda {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -2077,22 +1880,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -2109,9 +1901,9 @@ class Lambda {
   }
 
   /// Returns information about a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>, with a link to download the layer archive that's valid
-  /// for 10 minutes.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>, with a link to download the layer archive that's valid for 10
+  /// minutes.
   ///
   /// May throw [ServiceException].
   /// May throw [InvalidParameterValueException].
@@ -2135,12 +1927,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     final response = await _protocol.send(
       payload: null,
@@ -2153,9 +1939,9 @@ class Lambda {
   }
 
   /// Returns information about a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>, with a link to download the layer archive that's valid
-  /// for 10 minutes.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>, with a link to download the layer archive that's valid for 10
+  /// minutes.
   ///
   /// May throw [ServiceException].
   /// May throw [InvalidParameterValueException].
@@ -2175,12 +1961,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+:[0-9]+''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Arn': [arn],
     };
@@ -2195,9 +1975,8 @@ class Lambda {
   }
 
   /// Returns the permission policy for a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>. For more information, see
-  /// <a>AddLayerVersionPermission</a>.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>. For more information, see <a>AddLayerVersionPermission</a>.
   ///
   /// May throw [ServiceException].
   /// May throw [ResourceNotFoundException].
@@ -2219,12 +1998,6 @@ class Lambda {
       layerName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
@@ -2282,22 +2055,11 @@ class Lambda {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -2356,24 +2118,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(qualifier, 'qualifier');
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -2537,22 +2287,11 @@ class Lambda {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final headers = <String, String>{
       if (clientContext != null)
@@ -2630,12 +2369,6 @@ class Lambda {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(invokeArgs, 'invokeArgs');
     final response = await _protocol.send(
       payload: invokeArgs,
@@ -2698,22 +2431,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'functionVersion',
       functionVersion,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'functionVersion',
-      functionVersion,
-      r'''(\$LATEST|[0-9]+)''',
     );
     _s.validateNumRange(
       'maxItems',
@@ -2836,21 +2558,11 @@ class Lambda {
     String? marker,
     int? maxItems,
   }) async {
-    _s.validateStringPattern(
-      'eventSourceArn',
-      eventSourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
-    );
     _s.validateStringLength(
       'functionName',
       functionName,
       1,
       140,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
     );
     _s.validateNumRange(
       'maxItems',
@@ -2924,12 +2636,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -2956,8 +2662,14 @@ class Lambda {
   ///
   /// Set <code>FunctionVersion</code> to <code>ALL</code> to include all
   /// published versions of each function in addition to the unpublished
-  /// version. To get more information about a function or version, use
+  /// version.
+  /// <note>
+  /// The <code>ListFunctions</code> action returns a subset of the
+  /// <a>FunctionConfiguration</a> fields. To get the additional fields (State,
+  /// StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason,
+  /// LastUpdateStatusReasonCode) for a function or version, use
   /// <a>GetFunction</a>.
+  /// </note>
   ///
   /// May throw [ServiceException].
   /// May throw [TooManyRequestsException].
@@ -2972,25 +2684,22 @@ class Lambda {
   /// retrieve the next page of results.
   ///
   /// Parameter [masterRegion] :
-  /// For Lambda@Edge functions, the AWS Region of the master function. For
-  /// example, <code>us-east-1</code> filters the list of functions to only
-  /// include Lambda@Edge functions replicated from a master function in US East
-  /// (N. Virginia). If specified, you must set <code>FunctionVersion</code> to
+  /// For Lambda@Edge functions, the Region of the master function. For example,
+  /// <code>us-east-1</code> filters the list of functions to only include
+  /// Lambda@Edge functions replicated from a master function in US East (N.
+  /// Virginia). If specified, you must set <code>FunctionVersion</code> to
   /// <code>ALL</code>.
   ///
   /// Parameter [maxItems] :
-  /// The maximum number of functions to return.
+  /// The maximum number of functions to return in the response. Note that
+  /// <code>ListFunctions</code> returns a maximum of 50 items in each response,
+  /// even if you set the number higher.
   Future<ListFunctionsResponse> listFunctions({
     FunctionVersion? functionVersion,
     String? marker,
     String? masterRegion,
     int? maxItems,
   }) async {
-    _s.validateStringPattern(
-      'masterRegion',
-      masterRegion,
-      r'''ALL|[a-z]{2}(-gov)?-[a-z]+-\d{1}''',
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3045,12 +2754,6 @@ class Lambda {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3073,9 +2776,8 @@ class Lambda {
   }
 
   /// Lists the versions of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>. Versions that have been deleted aren't listed. Specify a
-  /// <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>. Versions that have been deleted aren't listed. Specify a <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
   /// identifier</a> to list only versions that indicate that they're compatible
   /// with that runtime.
@@ -3110,12 +2812,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3140,9 +2836,9 @@ class Lambda {
   }
 
   /// Lists <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layers</a> and shows information about the latest version of each.
-  /// Specify a <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layers</a> and shows information about the latest version of each. Specify
+  /// a <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime
   /// identifier</a> to list only layers that indicate that they're compatible
   /// with that runtime.
@@ -3232,12 +2928,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3274,12 +2964,6 @@ class Lambda {
     required String resource,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\d{1}:\d{12}:function:[a-zA-Z0-9-_]+(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3323,7 +3007,9 @@ class Lambda {
   /// retrieve the next page of results.
   ///
   /// Parameter [maxItems] :
-  /// The maximum number of versions to return.
+  /// The maximum number of versions to return. Note that
+  /// <code>ListVersionsByFunction</code> returns a maximum of 50 items in each
+  /// response, even if you set the number higher.
   Future<ListVersionsByFunctionResponse> listVersionsByFunction({
     required String functionName,
     String? marker,
@@ -3335,12 +3021,6 @@ class Lambda {
       functionName,
       1,
       170,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3365,8 +3045,8 @@ class Lambda {
   }
 
   /// Creates an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a> from a ZIP archive. Each time you call
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a> from a ZIP archive. Each time you call
   /// <code>PublishLayerVersion</code> with the same layer name, a new version
   /// is created.
   ///
@@ -3426,12 +3106,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -3468,9 +3142,9 @@ class Lambda {
   /// create a snapshot of your function code and configuration that doesn't
   /// change.
   ///
-  /// AWS Lambda doesn't publish a version if the function's configuration and
-  /// code haven't changed since the last version. Use <a>UpdateFunctionCode</a>
-  /// or <a>UpdateFunctionConfiguration</a> to update the function before
+  /// Lambda doesn't publish a version if the function's configuration and code
+  /// haven't changed since the last version. Use <a>UpdateFunctionCode</a> or
+  /// <a>UpdateFunctionConfiguration</a> to update the function before
   /// publishing a version.
   ///
   /// Clients can invoke versions directly or with an alias. To create an alias,
@@ -3529,12 +3203,6 @@ class Lambda {
       functionName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3602,24 +3270,12 @@ class Lambda {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
     _s.validateStringLength(
       'functionName',
       functionName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -3688,12 +3344,6 @@ class Lambda {
       functionName,
       1,
       140,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -3811,12 +3461,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maximumEventAgeInSeconds',
       maximumEventAgeInSeconds,
@@ -3834,11 +3478,6 @@ class Lambda {
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -3909,12 +3548,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionedConcurrentExecutions, 'provisionedConcurrentExecutions');
     _s.validateNumRange(
@@ -3930,12 +3563,6 @@ class Lambda {
       qualifier,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -3956,9 +3583,8 @@ class Lambda {
   }
 
   /// Removes a statement from the permissions policy for a version of an <a
-  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-  /// Lambda layer</a>. For more information, see
-  /// <a>AddLayerVersionPermission</a>.
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+  /// layer</a>. For more information, see <a>AddLayerVersionPermission</a>.
   ///
   /// May throw [ServiceException].
   /// May throw [ResourceNotFoundException].
@@ -3993,24 +3619,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'layerName',
-      layerName,
-      r'''(arn:[a-zA-Z0-9-]+:lambda:[a-zA-Z0-9-]+:\d{12}:layer:[a-zA-Z0-9-_]+)|[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
     _s.validateStringLength(
       'statementId',
       statementId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''([a-zA-Z0-9-_]+)''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
@@ -4027,8 +3641,9 @@ class Lambda {
     );
   }
 
-  /// Revokes function-use permission from an AWS service or another account.
-  /// You can get the ID of the statement from the output of <a>GetPolicy</a>.
+  /// Revokes function-use permission from an Amazon Web Services service or
+  /// another account. You can get the ID of the statement from the output of
+  /// <a>GetPolicy</a>.
   ///
   /// May throw [ServiceException].
   /// May throw [ResourceNotFoundException].
@@ -4082,12 +3697,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
     _s.validateStringLength(
       'statementId',
@@ -4096,22 +3705,11 @@ class Lambda {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''([a-zA-Z0-9-_.]+)''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'qualifier',
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -4147,12 +3745,6 @@ class Lambda {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\d{1}:\d{12}:function:[a-zA-Z0-9-_]+(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -4185,12 +3777,6 @@ class Lambda {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\d{1}:\d{12}:function:[a-zA-Z0-9-_]+(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -4267,24 +3853,12 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9-_]+)''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4298,11 +3872,6 @@ class Lambda {
       functionVersion,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'functionVersion',
-      functionVersion,
-      r'''(\$LATEST|[0-9]+)''',
     );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
@@ -4353,12 +3922,6 @@ class Lambda {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      r'''arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:code-signing-config:csc-[a-z0-9]{17}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -4381,9 +3944,8 @@ class Lambda {
     return UpdateCodeSigningConfigResponse.fromJson(response);
   }
 
-  /// Updates an event source mapping. You can change the function that AWS
-  /// Lambda invokes, or pause invocation and resume later from the same
-  /// location.
+  /// Updates an event source mapping. You can change the function that Lambda
+  /// invokes, or pause invocation and resume later from the same location.
   ///
   /// The following error handling options are only available for stream sources
   /// (DynamoDB and Kinesis):
@@ -4447,11 +4009,11 @@ class Lambda {
   /// </ul>
   ///
   /// Parameter [bisectBatchOnFunctionError] :
-  /// (Streams) If the function returns an error, split the batch in two and
-  /// retry.
+  /// (Streams only) If the function returns an error, split the batch in two
+  /// and retry.
   ///
   /// Parameter [destinationConfig] :
-  /// (Streams) An Amazon SQS queue or Amazon SNS topic destination for
+  /// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for
   /// discarded records.
   ///
   /// Parameter [enabled] :
@@ -4482,7 +4044,7 @@ class Lambda {
   /// the function name, it's limited to 64 characters in length.
   ///
   /// Parameter [functionResponseTypes] :
-  /// (Streams) A list of current response type enums applied to the event
+  /// (Streams only) A list of current response type enums applied to the event
   /// source mapping.
   ///
   /// Parameter [maximumBatchingWindowInSeconds] :
@@ -4490,24 +4052,25 @@ class Lambda {
   /// records before invoking the function, in seconds.
   ///
   /// Parameter [maximumRecordAgeInSeconds] :
-  /// (Streams) Discard records older than the specified age. The default value
-  /// is infinite (-1).
+  /// (Streams only) Discard records older than the specified age. The default
+  /// value is infinite (-1).
   ///
   /// Parameter [maximumRetryAttempts] :
-  /// (Streams) Discard records after the specified number of retries. The
+  /// (Streams only) Discard records after the specified number of retries. The
   /// default value is infinite (-1). When set to infinite (-1), failed records
   /// will be retried until the record expires.
   ///
   /// Parameter [parallelizationFactor] :
-  /// (Streams) The number of batches to process from each shard concurrently.
+  /// (Streams only) The number of batches to process from each shard
+  /// concurrently.
   ///
   /// Parameter [sourceAccessConfigurations] :
   /// An array of the authentication protocol, or the VPC components to secure
   /// your event source.
   ///
   /// Parameter [tumblingWindowInSeconds] :
-  /// (Streams) The duration of a processing window in seconds. The range is
-  /// between 1 second up to 15 minutes.
+  /// (Streams only) The duration in seconds of a processing window. The range
+  /// is between 1 second up to 900 seconds.
   Future<EventSourceMappingConfiguration> updateEventSourceMapping({
     required String uuid,
     int? batchSize,
@@ -4535,11 +4098,6 @@ class Lambda {
       functionName,
       1,
       140,
-    );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
     );
     _s.validateNumRange(
       'maximumBatchingWindowInSeconds',
@@ -4666,8 +4224,8 @@ class Lambda {
   /// since you last read it.
   ///
   /// Parameter [s3Bucket] :
-  /// An Amazon S3 bucket in the same AWS Region as your function. The bucket
-  /// can be in a different AWS account.
+  /// An Amazon S3 bucket in the same Amazon Web Services Region as your
+  /// function. The bucket can be in a different Amazon Web Services account.
   ///
   /// Parameter [s3Key] :
   /// The Amazon S3 key of the deployment package.
@@ -4677,8 +4235,8 @@ class Lambda {
   /// use.
   ///
   /// Parameter [zipFile] :
-  /// The base64-encoded contents of the deployment package. AWS SDK and AWS CLI
-  /// clients handle the encoding for you.
+  /// The base64-encoded contents of the deployment package. Amazon Web Services
+  /// SDK and Amazon Web Services CLI clients handle the encoding for you.
   Future<FunctionConfiguration> updateFunctionCode({
     required String functionName,
     bool? dryRun,
@@ -4698,22 +4256,11 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       's3Bucket',
       s3Bucket,
       3,
       63,
-    );
-    _s.validateStringPattern(
-      's3Bucket',
-      s3Bucket,
-      r'''^[0-9A-Za-z\.\-_]*(?<!\.)$''',
     );
     _s.validateStringLength(
       's3Key',
@@ -4766,7 +4313,7 @@ class Lambda {
   /// version, only the unpublished version.
   ///
   /// To configure function concurrency, use <a>PutFunctionConcurrency</a>. To
-  /// grant invoke permissions to an account or AWS service, use
+  /// grant invoke permissions to an account or Amazon Web Services service, use
   /// <a>AddPermission</a>.
   ///
   /// May throw [ServiceException].
@@ -4824,12 +4371,15 @@ class Lambda {
   /// Model</a>.
   ///
   /// Parameter [imageConfig] :
-  /// Configuration values that override the container image Dockerfile.
+  /// <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html">Container
+  /// image configuration values</a> that override the values in the container
+  /// image Dockerfile.
   ///
   /// Parameter [kMSKeyArn] :
-  /// The ARN of the AWS Key Management Service (AWS KMS) key that's used to
-  /// encrypt your function's environment variables. If it's not provided, AWS
-  /// Lambda uses a default service key.
+  /// The ARN of the Amazon Web Services Key Management Service (KMS) key that's
+  /// used to encrypt your function's environment variables. If it's not
+  /// provided, Lambda uses a default service key.
   ///
   /// Parameter [layers] :
   /// A list of <a
@@ -4838,9 +4388,11 @@ class Lambda {
   /// layer by its ARN, including the version.
   ///
   /// Parameter [memorySize] :
-  /// The amount of memory available to the function at runtime. Increasing the
-  /// function's memory also increases its CPU allocation. The default value is
-  /// 128 MB. The value can be any multiple of 1 MB.
+  /// The amount of <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html">memory
+  /// available to the function</a> at runtime. Increasing the function memory
+  /// also increases its CPU allocation. The default value is 128 MB. The value
+  /// can be any multiple of 1 MB.
   ///
   /// Parameter [revisionId] :
   /// Only update the function if the revision ID matches the ID that's
@@ -4857,16 +4409,20 @@ class Lambda {
   /// Parameter [timeout] :
   /// The amount of time that Lambda allows a function to run before stopping
   /// it. The default is 3 seconds. The maximum allowed value is 900 seconds.
+  /// For additional information, see <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html">Lambda
+  /// execution environment</a>.
   ///
   /// Parameter [tracingConfig] :
   /// Set <code>Mode</code> to <code>Active</code> to sample and trace a subset
-  /// of incoming requests with AWS X-Ray.
+  /// of incoming requests with <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</a>.
   ///
   /// Parameter [vpcConfig] :
-  /// For network connectivity to AWS resources in a VPC, specify a list of
-  /// security groups and subnets in the VPC. When you connect a function to a
-  /// VPC, it can only access resources and the internet through that VPC. For
-  /// more information, see <a
+  /// For network connectivity to Amazon Web Services resources in a VPC,
+  /// specify a list of security groups and subnets in the VPC. When you connect
+  /// a function to a VPC, it can only access resources and the internet through
+  /// that VPC. For more information, see <a
   /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">VPC
   /// Settings</a>.
   Future<FunctionConfiguration> updateFunctionConfiguration({
@@ -4895,12 +4451,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -4913,26 +4463,11 @@ class Lambda {
       0,
       128,
     );
-    _s.validateStringPattern(
-      'handler',
-      handler,
-      r'''[^\s]+''',
-    );
-    _s.validateStringPattern(
-      'kMSKeyArn',
-      kMSKeyArn,
-      r'''(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()''',
-    );
     _s.validateNumRange(
       'memorySize',
       memorySize,
       128,
       10240,
-    );
-    _s.validateStringPattern(
-      'role',
-      role,
-      r'''arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
     );
     _s.validateNumRange(
       'timeout',
@@ -5043,12 +4578,6 @@ class Lambda {
       140,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\d{1}:)?(\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maximumEventAgeInSeconds',
       maximumEventAgeInSeconds,
@@ -5066,11 +4595,6 @@ class Lambda {
       qualifier,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'qualifier',
-      qualifier,
-      r'''(|[a-zA-Z0-9$_-]+)''',
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -5101,7 +4625,7 @@ class AccountLimit {
   /// extracted.
   final int? codeSizeUnzipped;
 
-  /// The maximum size of a deployment package when it's uploaded directly to AWS
+  /// The maximum size of a deployment package when it's uploaded directly to
   /// Lambda. Use Amazon S3 for larger files.
   final int? codeSizeZipped;
 
@@ -5289,7 +4813,9 @@ class AllowedPublishers {
   }
 }
 
-/// Details about a Code signing configuration.
+/// Details about a <a
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html">Code
+/// signing configuration</a>.
 class CodeSigningConfig {
   /// List of allowed publishers.
   final AllowedPublishers allowedPublishers;
@@ -5333,8 +4859,9 @@ class CodeSigningConfig {
   }
 }
 
-/// Code signing configuration policies specifies the validation failure action
-/// for signature mismatch or expiry.
+/// Code signing configuration <a
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html#config-codesigning-policies">policies</a>
+/// specify the validation failure action for signature mismatch or expiry.
 class CodeSigningPolicies {
   /// Code signing configuration policy for deployment validation failure. If you
   /// set the policy to <code>Enforce</code>, Lambda blocks the deployment request
@@ -5515,9 +5042,14 @@ extension on String {
   }
 }
 
-/// A function's environment variable settings.
+/// A function's environment variable settings. You can use environment
+/// variables to adjust your function's behavior without updating code. An
+/// environment variable is a pair of strings that are stored in a function's
+/// version-specific configuration.
 class Environment {
-  /// Environment variable key-value pairs.
+  /// Environment variable key-value pairs. For more information, see <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">Using
+  /// Lambda environment variables</a>.
   final Map<String, String>? variables;
 
   Environment({
@@ -5576,18 +5108,18 @@ class EnvironmentResponse {
   }
 }
 
-/// A mapping between an AWS resource and an AWS Lambda function. See
-/// <a>CreateEventSourceMapping</a> for details.
+/// A mapping between an Amazon Web Services resource and an Lambda function.
+/// See <a>CreateEventSourceMapping</a> for details.
 class EventSourceMappingConfiguration {
   /// The maximum number of items to retrieve in a single batch.
   final int? batchSize;
 
-  /// (Streams) If the function returns an error, split the batch in two and
+  /// (Streams only) If the function returns an error, split the batch in two and
   /// retry. The default value is false.
   final bool? bisectBatchOnFunctionError;
 
-  /// (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded
-  /// records.
+  /// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for
+  /// discarded records.
   final DestinationConfig? destinationConfig;
 
   /// The Amazon Resource Name (ARN) of the event source.
@@ -5596,33 +5128,34 @@ class EventSourceMappingConfiguration {
   /// The ARN of the Lambda function.
   final String? functionArn;
 
-  /// (Streams) A list of current response type enums applied to the event source
-  /// mapping.
+  /// (Streams only) A list of current response type enums applied to the event
+  /// source mapping.
   final List<FunctionResponseType>? functionResponseTypes;
 
   /// The date that the event source mapping was last updated, or its state
   /// changed.
   final DateTime? lastModified;
 
-  /// The result of the last AWS Lambda invocation of your Lambda function.
+  /// The result of the last Lambda invocation of your Lambda function.
   final String? lastProcessingResult;
 
   /// (Streams and SQS standard queues) The maximum amount of time to gather
   /// records before invoking the function, in seconds. The default value is zero.
   final int? maximumBatchingWindowInSeconds;
 
-  /// (Streams) Discard records older than the specified age. The default value is
-  /// infinite (-1). When set to infinite (-1), failed records are retried until
-  /// the record expires.
+  /// (Streams only) Discard records older than the specified age. The default
+  /// value is -1, which sets the maximum age to infinite. When the value is set
+  /// to infinite, Lambda never discards old records.
   final int? maximumRecordAgeInSeconds;
 
-  /// (Streams) Discard records after the specified number of retries. The default
-  /// value is infinite (-1). When set to infinite (-1), failed records are
-  /// retried until the record expires.
+  /// (Streams only) Discard records after the specified number of retries. The
+  /// default value is -1, which sets the maximum number of retries to infinite.
+  /// When MaximumRetryAttempts is infinite, Lambda retries failed records until
+  /// the record expires in the event source.
   final int? maximumRetryAttempts;
 
-  /// (Streams) The number of batches to process from each shard concurrently. The
-  /// default value is 1.
+  /// (Streams only) The number of batches to process from each shard
+  /// concurrently. The default value is 1.
   final int? parallelizationFactor;
 
   /// (MQ) The name of the Amazon MQ broker destination queue to consume.
@@ -5657,8 +5190,8 @@ class EventSourceMappingConfiguration {
   /// The name of the Kafka topic.
   final List<String>? topics;
 
-  /// (Streams) The duration of a processing window in seconds. The range is
-  /// between 1 second up to 15 minutes.
+  /// (Streams only) The duration in seconds of a processing window. The range is
+  /// between 1 second up to 900 seconds.
   final int? tumblingWindowInSeconds;
 
   /// The identifier of the event source mapping.
@@ -5771,8 +5304,9 @@ extension on String {
   }
 }
 
-/// Details about the connection between a Lambda function and an Amazon EFS
-/// file system.
+/// Details about the connection between a Lambda function and an <a
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html">Amazon
+/// EFS file system</a>.
 class FileSystemConfig {
   /// The Amazon Resource Name (ARN) of the Amazon EFS access point that provides
   /// access to the file system.
@@ -5807,11 +5341,13 @@ class FileSystemConfig {
 /// S3, upload a .zip file archive deployment package directly, or specify the
 /// URI of a container image.
 class FunctionCode {
-  /// URI of a container image in the Amazon ECR registry.
+  /// URI of a <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
+  /// image</a> in the Amazon ECR registry.
   final String? imageUri;
 
-  /// An Amazon S3 bucket in the same AWS Region as your function. The bucket can
-  /// be in a different AWS account.
+  /// An Amazon S3 bucket in the same Amazon Web Services Region as your function.
+  /// The bucket can be in a different Amazon Web Services account.
   final String? s3Bucket;
 
   /// The Amazon S3 key of the deployment package.
@@ -5820,8 +5356,8 @@ class FunctionCode {
   /// For versioned objects, the version of the deployment package object to use.
   final String? s3ObjectVersion;
 
-  /// The base64-encoded contents of the deployment package. AWS SDK and AWS CLI
-  /// clients handle the encoding for you.
+  /// The base64-encoded contents of the deployment package. Amazon Web Services
+  /// SDK and Amazon Web Services CLI clients handle the encoding for you.
   final Uint8List? zipFile;
 
   FunctionCode({
@@ -5891,10 +5427,14 @@ class FunctionConfiguration {
   /// The function's description.
   final String? description;
 
-  /// The function's environment variables.
+  /// The function's <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">environment
+  /// variables</a>.
   final EnvironmentResponse? environment;
 
-  /// Connection settings for an Amazon EFS file system.
+  /// Connection settings for an <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html">Amazon
+  /// EFS file system</a>.
   final List<FileSystemConfig>? fileSystemConfigs;
 
   /// The function's Amazon Resource Name (ARN).
@@ -5973,7 +5513,7 @@ class FunctionConfiguration {
   /// stopping it.
   final int? timeout;
 
-  /// The function's AWS X-Ray tracing configuration.
+  /// The function's X-Ray tracing configuration.
   final TracingConfigResponse? tracingConfig;
 
   /// The version of the Lambda function.
@@ -6449,7 +5989,7 @@ class GetProvisionedConcurrencyConfigResponse {
 
 /// Configuration values that override the container image Dockerfile settings.
 /// See <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html">Container
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms">Container
 /// settings</a>.
 class ImageConfig {
   /// Specifies parameters that you want to pass in with ENTRYPOINT.
@@ -6717,8 +6257,8 @@ extension on String {
 }
 
 /// An <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-/// Lambda layer</a>.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</a>.
 class Layer {
   /// The Amazon Resource Name (ARN) of the function layer.
   final String? arn;
@@ -6749,9 +6289,9 @@ class Layer {
 }
 
 /// A ZIP archive that contains the contents of an <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-/// Lambda layer</a>. You can specify either an Amazon S3 location, or upload a
-/// layer archive directly.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</a>. You can specify either an Amazon S3 location, or upload a layer
+/// archive directly.
 class LayerVersionContentInput {
   /// The Amazon S3 bucket of the layer archive.
   final String? s3Bucket;
@@ -6762,8 +6302,8 @@ class LayerVersionContentInput {
   /// For versioned objects, the version of the layer archive object to use.
   final String? s3ObjectVersion;
 
-  /// The base64-encoded contents of the layer archive. AWS SDK and AWS CLI
-  /// clients handle the encoding for you.
+  /// The base64-encoded contents of the layer archive. Amazon Web Services SDK
+  /// and Amazon Web Services CLI clients handle the encoding for you.
   final Uint8List? zipFile;
 
   LayerVersionContentInput({
@@ -6787,8 +6327,8 @@ class LayerVersionContentInput {
 }
 
 /// Details about a version of an <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-/// Lambda layer</a>.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</a>.
 class LayerVersionContentOutput {
   /// The SHA-256 hash of the layer archive.
   final String? codeSha256;
@@ -6824,8 +6364,8 @@ class LayerVersionContentOutput {
 }
 
 /// Details about a version of an <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-/// Lambda layer</a>.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</a>.
 class LayerVersionsListItem {
   /// The layer's compatible runtimes.
   final List<Runtime>? compatibleRuntimes;
@@ -6870,8 +6410,8 @@ class LayerVersionsListItem {
 }
 
 /// Details about an <a
-/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS
-/// Lambda layer</a>.
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
+/// layer</a>.
 class LayersListItem {
   /// The newest version of the layer.
   final LayerVersionsListItem? latestMatchingVersion;
@@ -7477,6 +7017,7 @@ enum Runtime {
   nodejs8_10,
   nodejs10X,
   nodejs12X,
+  nodejs14X,
   java8,
   java8Al2,
   java11,
@@ -7511,6 +7052,8 @@ extension on Runtime {
         return 'nodejs10.x';
       case Runtime.nodejs12X:
         return 'nodejs12.x';
+      case Runtime.nodejs14X:
+        return 'nodejs14.x';
       case Runtime.java8:
         return 'java8';
       case Runtime.java8Al2:
@@ -7564,6 +7107,8 @@ extension on String {
         return Runtime.nodejs10X;
       case 'nodejs12.x':
         return Runtime.nodejs12X;
+      case 'nodejs14.x':
+        return Runtime.nodejs14X;
       case 'java8':
         return Runtime.java8;
       case 'java8.al2':
@@ -7643,19 +7188,26 @@ class SourceAccessConfiguration {
   /// </li>
   /// <li>
   /// <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda
-  /// connects to these subnets to fetch data from your Kafka cluster.
+  /// connects to these subnets to fetch data from your Self-Managed Apache Kafka
+  /// cluster.
   /// </li>
   /// <li>
   /// <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage
-  /// access to your Kafka brokers.
+  /// access to your Self-Managed Apache Kafka brokers.
   /// </li>
   /// <li>
-  /// <code>SASL_SCRAM_256_AUTH</code> - The ARN of your secret key used for SASL
-  /// SCRAM-256 authentication of your Kafka brokers.
+  /// <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret
+  /// key used for SASL SCRAM-256 authentication of your Self-Managed Apache Kafka
+  /// brokers.
   /// </li>
   /// <li>
-  /// <code>SASL_SCRAM_512_AUTH</code> - The ARN of your secret key used for SASL
-  /// SCRAM-512 authentication of your Kafka brokers.
+  /// <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret
+  /// key used for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka
+  /// brokers.
+  /// </li>
+  /// <li>
+  /// <code>VIRTUAL_HOST</code> - The name of the virtual host in your RabbitMQ
+  /// broker. Lambda will use this host as the event source.
   /// </li>
   /// </ul>
   final SourceAccessType? type;
@@ -7692,6 +7244,7 @@ enum SourceAccessType {
   vpcSecurityGroup,
   saslScram_512Auth,
   saslScram_256Auth,
+  virtualHost,
 }
 
 extension on SourceAccessType {
@@ -7707,6 +7260,8 @@ extension on SourceAccessType {
         return 'SASL_SCRAM_512_AUTH';
       case SourceAccessType.saslScram_256Auth:
         return 'SASL_SCRAM_256_AUTH';
+      case SourceAccessType.virtualHost:
+        return 'VIRTUAL_HOST';
     }
   }
 }
@@ -7724,6 +7279,8 @@ extension on String {
         return SourceAccessType.saslScram_512Auth;
       case 'SASL_SCRAM_256_AUTH':
         return SourceAccessType.saslScram_256Auth;
+      case 'VIRTUAL_HOST':
+        return SourceAccessType.virtualHost;
     }
     throw Exception('$this is not known in enum SourceAccessType');
   }
@@ -7850,8 +7407,10 @@ extension on String {
   }
 }
 
-/// The function's AWS X-Ray tracing configuration. To sample and record
-/// incoming requests, set <code>Mode</code> to <code>Active</code>.
+/// The function's <a
+/// href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray</a>
+/// tracing configuration. To sample and record incoming requests, set
+/// <code>Mode</code> to <code>Active</code>.
 class TracingConfig {
   /// The tracing mode.
   final TracingMode? mode;
@@ -7867,7 +7426,7 @@ class TracingConfig {
   }
 }
 
-/// The function's AWS X-Ray tracing configuration.
+/// The function's X-Ray tracing configuration.
 class TracingConfigResponse {
   /// The tracing mode.
   final TracingMode? mode;

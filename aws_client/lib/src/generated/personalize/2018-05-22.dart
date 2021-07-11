@@ -61,7 +61,7 @@ class Personalize {
   ///
   /// Parameter [roleArn] :
   /// The ARN of the Amazon Identity and Access Management role that has
-  /// permissions to read and write to your input and out Amazon S3 buckets
+  /// permissions to read and write to your input and output Amazon S3 buckets
   /// respectively.
   ///
   /// Parameter [solutionVersionArn] :
@@ -73,7 +73,9 @@ class Personalize {
   ///
   /// Parameter [filterArn] :
   /// The ARN of the filter to apply to the batch inference job. For more
-  /// information on using filters, see Using Filters with Amazon Personalize.
+  /// information on using filters, see <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html">Filtering
+  /// Batch Recommendations</a>..
   ///
   /// Parameter [numResults] :
   /// The number of recommendations to retreive.
@@ -96,12 +98,6 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobOutput, 'jobOutput');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
@@ -109,12 +105,6 @@ class Personalize {
       roleArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(solutionVersionArn, 'solutionVersionArn');
@@ -125,22 +115,11 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'filterArn',
       filterArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'filterArn',
-      filterArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -182,12 +161,16 @@ class Personalize {
   /// the throughput and unit of billing for Amazon Personalize. The minimum
   /// provisioned TPS (<code>minProvisionedTPS</code>) specifies the baseline
   /// throughput provisioned by Amazon Personalize, and thus, the minimum
-  /// billing charge. If your TPS increases beyond
-  /// <code>minProvisionedTPS</code>, Amazon Personalize auto-scales the
-  /// provisioned capacity up and down, but never below
-  /// <code>minProvisionedTPS</code>, to maintain a 70% utilization. There's a
-  /// short time delay while the capacity is increased that might cause loss of
-  /// transactions. It's recommended to start with a low
+  /// billing charge.
+  ///
+  /// If your TPS increases beyond <code>minProvisionedTPS</code>, Amazon
+  /// Personalize auto-scales the provisioned capacity up and down, but never
+  /// below <code>minProvisionedTPS</code>. There's a short time delay while the
+  /// capacity is increased that might cause loss of transactions.
+  ///
+  /// The actual TPS used is calculated as the average requests/second within a
+  /// 5-minute window. You pay for maximum of either the minimum provisioned TPS
+  /// or the actual TPS. We recommend starting with a low
   /// <code>minProvisionedTPS</code>, track your usage using Amazon CloudWatch
   /// metrics, and then increase the <code>minProvisionedTPS</code> as
   /// necessary.
@@ -266,24 +249,12 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(solutionVersionArn, 'solutionVersionArn');
     _s.validateStringLength(
       'solutionVersionArn',
       solutionVersionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -401,12 +372,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datasetType, 'datasetType');
     _s.validateStringLength(
       'datasetType',
@@ -423,24 +388,12 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     _s.validateStringLength(
       'schemaArn',
       schemaArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'schemaArn',
-      schemaArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -462,6 +415,110 @@ class Personalize {
     );
 
     return CreateDatasetResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a job that exports data from your dataset to an Amazon S3 bucket.
+  /// To allow Amazon Personalize to export the training data, you must specify
+  /// an service-linked AWS Identity and Access Management (IAM) role that gives
+  /// Amazon Personalize <code>PutObject</code> permissions for your Amazon S3
+  /// bucket. For information, see <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/export-data.html">Exporting
+  /// a dataset</a> in the Amazon Personalize developer guide.
+  ///
+  /// <b>Status</b>
+  ///
+  /// A dataset export job can be in one of the following states:
+  ///
+  /// <ul>
+  /// <li>
+  /// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+  /// </li>
+  /// </ul>
+  /// To get the status of the export job, call <a>DescribeDatasetExportJob</a>,
+  /// and specify the Amazon Resource Name (ARN) of the dataset export job. The
+  /// dataset export is complete when the status shows as ACTIVE. If the status
+  /// shows as CREATE FAILED, the response includes a <code>failureReason</code>
+  /// key, which describes why the job failed.
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceInUseException].
+  ///
+  /// Parameter [datasetArn] :
+  /// The Amazon Resource Name (ARN) of the dataset that contains the data to
+  /// export.
+  ///
+  /// Parameter [jobName] :
+  /// The name for the dataset export job.
+  ///
+  /// Parameter [jobOutput] :
+  /// The path to the Amazon S3 bucket where the job's output is stored.
+  ///
+  /// Parameter [roleArn] :
+  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+  /// service role that has permissions to add data to your output Amazon S3
+  /// bucket.
+  ///
+  /// Parameter [ingestionMode] :
+  /// The data to export, based on how you imported the data. You can choose to
+  /// export only <code>BULK</code> data that you imported using a dataset
+  /// import job, only <code>PUT</code> data that you imported incrementally
+  /// (using the console, PutEvents, PutUsers and PutItems operations), or
+  /// <code>ALL</code> for both types. The default value is <code>PUT</code>.
+  Future<CreateDatasetExportJobResponse> createDatasetExportJob({
+    required String datasetArn,
+    required String jobName,
+    required DatasetExportJobOutput jobOutput,
+    required String roleArn,
+    IngestionMode? ingestionMode,
+  }) async {
+    ArgumentError.checkNotNull(datasetArn, 'datasetArn');
+    _s.validateStringLength(
+      'datasetArn',
+      datasetArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(jobName, 'jobName');
+    _s.validateStringLength(
+      'jobName',
+      jobName,
+      1,
+      63,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(jobOutput, 'jobOutput');
+    ArgumentError.checkNotNull(roleArn, 'roleArn');
+    _s.validateStringLength(
+      'roleArn',
+      roleArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonPersonalize.CreateDatasetExportJob'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'datasetArn': datasetArn,
+        'jobName': jobName,
+        'jobOutput': jobOutput,
+        'roleArn': roleArn,
+        if (ingestionMode != null) 'ingestionMode': ingestionMode.toValue(),
+      },
+    );
+
+    return CreateDatasetExportJobResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates an empty dataset group. A dataset group contains related datasets
@@ -557,22 +614,11 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -597,11 +643,15 @@ class Personalize {
   /// Creates a job that imports training data from your data source (an Amazon
   /// S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize
   /// to import the training data, you must specify an AWS Identity and Access
-  /// Management (IAM) role that has permission to read from the data source, as
-  /// Amazon Personalize makes a copy of your data and processes it in an
-  /// internal AWS system.
+  /// Management (IAM) service role that has permission to read from the data
+  /// source, as Amazon Personalize makes a copy of your data and processes it
+  /// in an internal AWS system. For information on granting access to your
+  /// Amazon S3 bucket, see <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html">Giving
+  /// Amazon Personalize Access to Amazon S3 Resources</a>.
   /// <important>
-  /// The dataset import job replaces any previous data in the dataset.
+  /// The dataset import job replaces any existing data in the dataset that you
+  /// imported in bulk.
   /// </important>
   /// <b>Status</b>
   ///
@@ -664,12 +714,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobName, 'jobName');
     _s.validateStringLength(
       'jobName',
@@ -678,24 +722,12 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
       roleArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:([a-z\d-]+):iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -719,23 +751,21 @@ class Personalize {
     return CreateDatasetImportJobResponse.fromJson(jsonResponse.body);
   }
 
-  /// Creates an event tracker that you use when sending event data to the
+  /// Creates an event tracker that you use when adding event data to a
   /// specified dataset group using the <a
   /// href="https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html">PutEvents</a>
   /// API.
-  ///
-  /// When Amazon Personalize creates an event tracker, it also creates an
-  /// <i>event-interactions</i> dataset in the dataset group associated with the
-  /// event tracker. The event-interactions dataset stores the event data from
-  /// the <code>PutEvents</code> call. The contents of this dataset are not
-  /// available to the user.
   /// <note>
   /// Only one event tracker can be associated with a dataset group. You will
   /// get an error if you call <code>CreateEventTracker</code> using the same
   /// dataset group as an existing event tracker.
   /// </note>
-  /// When you send event data you include your tracking ID. The tracking ID
-  /// identifies the customer and authorizes the customer to send the data.
+  /// When you create an event tracker, the response includes a tracking ID,
+  /// which you pass as a parameter when you use the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html">PutEvents</a>
+  /// operation. Amazon Personalize then appends the event data to the
+  /// Interactions dataset of the dataset group you specify in your event
+  /// tracker.
   ///
   /// The event tracker can be in one of the following states:
   ///
@@ -789,24 +819,12 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -828,9 +846,7 @@ class Personalize {
     return CreateEventTrackerResponse.fromJson(jsonResponse.body);
   }
 
-  /// Creates a recommendation filter. For more information, see <a
-  /// href="https://docs.aws.amazon.com/personalize/latest/dg/filters.html">Using
-  /// Filters with Amazon Personalize</a>.
+  /// Creates a recommendation filter. For more information, see <a>filter</a>.
   ///
   /// May throw [InvalidInputException].
   /// May throw [ResourceAlreadyExistsException].
@@ -841,18 +857,10 @@ class Personalize {
   /// The ARN of the dataset group that the filter will belong to.
   ///
   /// Parameter [filterExpression] :
-  /// The filter expression that designates the interaction types that the
-  /// filter will filter out. A filter expression must follow the following
-  /// format:
-  ///
-  /// <code>EXCLUDE itemId WHERE INTERACTIONS.event_type in
-  /// ("EVENT_TYPE")</code>
-  ///
-  /// Where "EVENT_TYPE" is the type of event to filter out. To filter out all
-  /// items with any interactions history, set <code>"*"</code> as the
-  /// EVENT_TYPE. For more information, see <a
-  /// href="https://docs.aws.amazon.com/personalize/latest/dg/filters.html">Using
-  /// Filters with Amazon Personalize</a>.
+  /// The filter expression defines which items are included or excluded from
+  /// recommendations. Filter expression must follow specific format rules. For
+  /// information about filter expression structure and syntax, see
+  /// <a>filter-expressions</a>.
   ///
   /// Parameter [name] :
   /// The name of the filter to create.
@@ -869,12 +877,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filterExpression, 'filterExpression');
     _s.validateStringLength(
       'filterExpression',
@@ -889,12 +891,6 @@ class Personalize {
       name,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -958,12 +954,6 @@ class Personalize {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schema, 'schema');
     _s.validateStringLength(
       'schema',
@@ -1011,7 +1001,11 @@ class Personalize {
   /// Amazon Personalize. Alternatively, you can specify
   /// <code>performAutoML</code> and Amazon Personalize will analyze your data
   /// and select the optimum USER_PERSONALIZATION recipe for you.
-  ///
+  /// <note>
+  /// Amazon Personalize doesn't support configuring the
+  /// <code>hpoObjective</code> for solution hyperparameter optimization at this
+  /// time.
+  /// </note>
   /// <b>Status</b>
   ///
   /// A solution can be in one of the following states:
@@ -1070,6 +1064,9 @@ class Personalize {
   /// schema field), this parameter specifies which event type (for example,
   /// 'click' or 'like') is used for training the model.
   ///
+  /// If you do not provide an <code>eventType</code>, Amazon Personalize will
+  /// use all interactions for training with equal weight regardless of type.
+  ///
   /// Parameter [performAutoML] :
   /// Whether to perform automated machine learning (AutoML). The default is
   /// <code>false</code>. For this case, you must specify
@@ -1098,6 +1095,10 @@ class Personalize {
   /// <code>performAutoML</code> is set to true, Amazon Personalize only
   /// evaluates the <code>autoMLConfig</code> section of the solution
   /// configuration.
+  /// <note>
+  /// Amazon Personalize doesn't support configuring the
+  /// <code>hpoObjective</code> at this time.
+  /// </note>
   Future<CreateSolutionResponse> createSolution({
     required String datasetGroupArn,
     required String name,
@@ -1115,24 +1116,12 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9\-_]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1146,11 +1135,6 @@ class Personalize {
       recipeArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'recipeArn',
-      recipeArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1187,7 +1171,22 @@ class Personalize {
   ///
   /// <ul>
   /// <li>
-  /// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+  /// CREATE PENDING
+  /// </li>
+  /// <li>
+  /// CREATE IN_PROGRESS
+  /// </li>
+  /// <li>
+  /// ACTIVE
+  /// </li>
+  /// <li>
+  /// CREATE FAILED
+  /// </li>
+  /// <li>
+  /// CREATE STOPPING
+  /// </li>
+  /// <li>
+  /// CREATE STOPPED
   /// </li>
   /// </ul>
   /// To get the status of the version, call <a>DescribeSolutionVersion</a>.
@@ -1241,8 +1240,11 @@ class Personalize {
   /// <important>
   /// The <code>UPDATE</code> option can only be used when you already have an
   /// active solution version created from the input solution using the
-  /// <code>FULL</code> option and the input solution was trained with the
-  /// <a>native-recipe-hrnn-coldstart</a> recipe.
+  /// <code>FULL</code> option and the input solution was trained with the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html">User-Personalization</a>
+  /// recipe or the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html">HRNN-Coldstart</a>
+  /// recipe.
   /// </important>
   Future<CreateSolutionVersionResponse> createSolutionVersion({
     required String solutionArn,
@@ -1254,12 +1256,6 @@ class Personalize {
       solutionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'solutionArn',
-      solutionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1304,12 +1300,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'campaignArn',
-      campaignArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DeleteCampaign'
@@ -1346,12 +1336,6 @@ class Personalize {
       datasetArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1402,12 +1386,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DeleteDatasetGroup'
@@ -1445,12 +1423,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventTrackerArn',
-      eventTrackerArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DeleteEventTracker'
@@ -1484,12 +1456,6 @@ class Personalize {
       filterArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'filterArn',
-      filterArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1527,12 +1493,6 @@ class Personalize {
       schemaArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'schemaArn',
-      schemaArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1576,12 +1536,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'solutionArn',
-      solutionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DeleteSolution'
@@ -1614,12 +1568,6 @@ class Personalize {
       algorithmArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'algorithmArn',
-      algorithmArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1658,12 +1606,6 @@ class Personalize {
       batchInferenceJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'batchInferenceJobArn',
-      batchInferenceJobArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1717,12 +1659,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'campaignArn',
-      campaignArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeCampaign'
@@ -1760,12 +1696,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeDataset'
@@ -1782,6 +1712,43 @@ class Personalize {
     );
 
     return DescribeDatasetResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Describes the dataset export job created by <a>CreateDatasetExportJob</a>,
+  /// including the export job status.
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [datasetExportJobArn] :
+  /// The Amazon Resource Name (ARN) of the dataset export job to describe.
+  Future<DescribeDatasetExportJobResponse> describeDatasetExportJob({
+    required String datasetExportJobArn,
+  }) async {
+    ArgumentError.checkNotNull(datasetExportJobArn, 'datasetExportJobArn');
+    _s.validateStringLength(
+      'datasetExportJobArn',
+      datasetExportJobArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonPersonalize.DescribeDatasetExportJob'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'datasetExportJobArn': datasetExportJobArn,
+      },
+    );
+
+    return DescribeDatasetExportJobResponse.fromJson(jsonResponse.body);
   }
 
   /// Describes the given dataset group. For more information on dataset groups,
@@ -1801,12 +1768,6 @@ class Personalize {
       datasetGroupArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1844,12 +1805,6 @@ class Personalize {
       datasetImportJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetImportJobArn',
-      datasetImportJobArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1890,12 +1845,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventTrackerArn',
-      eventTrackerArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeEventTracker'
@@ -1933,12 +1882,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'featureTransformationArn',
-      featureTransformationArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeFeatureTransformation'
@@ -1973,12 +1916,6 @@ class Personalize {
       filterArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'filterArn',
-      filterArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2039,12 +1976,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'recipeArn',
-      recipeArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeRecipe'
@@ -2080,12 +2011,6 @@ class Personalize {
       schemaArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'schemaArn',
-      schemaArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2125,12 +2050,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'solutionArn',
-      solutionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.DescribeSolution'
@@ -2166,12 +2085,6 @@ class Personalize {
       solutionVersionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2210,12 +2123,6 @@ class Personalize {
       solutionVersionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2274,11 +2181,6 @@ class Personalize {
       solutionVersionArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2344,11 +2246,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'solutionArn',
-      solutionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.ListCampaigns'
@@ -2367,6 +2264,70 @@ class Personalize {
     );
 
     return ListCampaignsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns a list of dataset export jobs that use the given dataset. When a
+  /// dataset is not specified, all the dataset export jobs associated with the
+  /// account are listed. The response provides the properties for each dataset
+  /// export job, including the Amazon Resource Name (ARN). For more information
+  /// on dataset export jobs, see <a>CreateDatasetExportJob</a>. For more
+  /// information on datasets, see <a>CreateDataset</a>.
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [InvalidNextTokenException].
+  ///
+  /// Parameter [datasetArn] :
+  /// The Amazon Resource Name (ARN) of the dataset to list the dataset export
+  /// jobs for.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of dataset export jobs to return.
+  ///
+  /// Parameter [nextToken] :
+  /// A token returned from the previous call to
+  /// <code>ListDatasetExportJobs</code> for getting the next set of dataset
+  /// export jobs (if they exist).
+  Future<ListDatasetExportJobsResponse> listDatasetExportJobs({
+    String? datasetArn,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateStringLength(
+      'datasetArn',
+      datasetArn,
+      0,
+      256,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      0,
+      1300,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonPersonalize.ListDatasetExportJobs'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (datasetArn != null) 'datasetArn': datasetArn,
+        if (maxResults != null) 'maxResults': maxResults,
+        if (nextToken != null) 'nextToken': nextToken,
+      },
+    );
+
+    return ListDatasetExportJobsResponse.fromJson(jsonResponse.body);
   }
 
   /// Returns a list of dataset groups. The response provides the properties for
@@ -2448,11 +2409,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2515,11 +2471,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2580,11 +2531,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2641,11 +2587,6 @@ class Personalize {
       datasetGroupArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2820,11 +2761,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'solutionArn',
-      solutionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonPersonalize.ListSolutionVersions'
@@ -2874,11 +2810,6 @@ class Personalize {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2909,6 +2840,60 @@ class Personalize {
     );
 
     return ListSolutionsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Stops creating a solution version that is in a state of CREATE_PENDING or
+  /// CREATE IN_PROGRESS.
+  ///
+  /// Depending on the current state of the solution version, the solution
+  /// version state changes as follows:
+  ///
+  /// <ul>
+  /// <li>
+  /// CREATE_PENDING &gt; CREATE_STOPPED
+  ///
+  /// or
+  /// </li>
+  /// <li>
+  /// CREATE_IN_PROGRESS &gt; CREATE_STOPPING &gt; CREATE_STOPPED
+  /// </li>
+  /// </ul>
+  /// You are billed for all of the training completed up until you stop the
+  /// solution version creation. You cannot resume creating a solution version
+  /// once it has been stopped.
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceInUseException].
+  ///
+  /// Parameter [solutionVersionArn] :
+  /// The Amazon Resource Name (ARN) of the solution version you want to stop
+  /// creating.
+  Future<void> stopSolutionVersionCreation({
+    required String solutionVersionArn,
+  }) async {
+    ArgumentError.checkNotNull(solutionVersionArn, 'solutionVersionArn');
+    _s.validateStringLength(
+      'solutionVersionArn',
+      solutionVersionArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonPersonalize.StopSolutionVersionCreation'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'solutionVersionArn': solutionVersionArn,
+      },
+    );
   }
 
   /// Updates a campaign by either deploying a new solution or changing the
@@ -2952,12 +2937,6 @@ class Personalize {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'campaignArn',
-      campaignArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'minProvisionedTPS',
       minProvisionedTPS,
@@ -2969,11 +2948,6 @@ class Personalize {
       solutionVersionArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'solutionVersionArn',
-      solutionVersionArn,
-      r'''arn:([a-z\d-]+):personalize:.*:.*:.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3251,9 +3225,12 @@ class BatchInferenceJob {
 
 /// The configuration details of a batch inference job.
 class BatchInferenceJobConfig {
-  /// A string to string map specifying the inference hyperparameters you wish to
-  /// use for hyperparameter optimization. See
-  /// <a>customizing-solution-config-hpo</a>.
+  /// A string to string map specifying the exploration configuration
+  /// hyperparameters, including <code>explorationWeight</code> and
+  /// <code>explorationItemAgeCutOff</code>, you want to use to configure the
+  /// amount of item exploration Amazon Personalize uses when recommending items.
+  /// See <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html">User-Personalization</a>.
   final Map<String, String>? itemExplorationConfig;
 
   BatchInferenceJobConfig({
@@ -3466,9 +3443,14 @@ class Campaign {
 
 /// The configuration details of a campaign.
 class CampaignConfig {
-  /// A string to string map specifying the inference hyperparameters you wish to
-  /// use for hyperparameter optimization. See
-  /// <a>customizing-solution-config-hpo</a>.
+  /// A string to string map specifying the exploration configuration
+  /// hyperparameters, including <code>explorationWeight</code> and
+  /// <code>explorationItemAgeCutOff</code>, you want to use to configure the
+  /// amount of item exploration Amazon Personalize uses when recommending items.
+  /// Provide <code>itemExplorationConfig</code> data only if your solution uses
+  /// the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html">User-Personalization</a>
+  /// recipe.
   final Map<String, String>? itemExplorationConfig;
 
   CampaignConfig({
@@ -3699,6 +3681,20 @@ class CreateCampaignResponse {
   }
 }
 
+class CreateDatasetExportJobResponse {
+  /// The Amazon Resource Name (ARN) of the dataset export job.
+  final String? datasetExportJobArn;
+
+  CreateDatasetExportJobResponse({
+    this.datasetExportJobArn,
+  });
+  factory CreateDatasetExportJobResponse.fromJson(Map<String, dynamic> json) {
+    return CreateDatasetExportJobResponse(
+      datasetExportJobArn: json['datasetExportJobArn'] as String?,
+    );
+  }
+}
+
 class CreateDatasetGroupResponse {
   /// The Amazon Resource Name (ARN) of the new dataset group.
   final String? datasetGroupArn;
@@ -3823,7 +3819,7 @@ class DataSource {
   /// The path to the Amazon S3 bucket where the data that you want to upload to
   /// your dataset is stored. For example:
   ///
-  /// <code>s3://bucket-name/training-data.csv</code>
+  /// <code>s3://bucket-name/folder-name/</code>
   final String? dataLocation;
 
   DataSource({
@@ -3911,6 +3907,168 @@ class Dataset {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       name: json['name'] as String?,
       schemaArn: json['schemaArn'] as String?,
+      status: json['status'] as String?,
+    );
+  }
+}
+
+/// Describes a job that exports a dataset to an Amazon S3 bucket. For more
+/// information, see <a>CreateDatasetExportJob</a>.
+///
+/// A dataset export job can be in one of the following states:
+///
+/// <ul>
+/// <li>
+/// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+/// </li>
+/// </ul>
+class DatasetExportJob {
+  /// The creation date and time (in Unix time) of the dataset export job.
+  final DateTime? creationDateTime;
+
+  /// The Amazon Resource Name (ARN) of the dataset to export.
+  final String? datasetArn;
+
+  /// The Amazon Resource Name (ARN) of the dataset export job.
+  final String? datasetExportJobArn;
+
+  /// If a dataset export job fails, provides the reason why.
+  final String? failureReason;
+
+  /// The data to export, based on how you imported the data. You can choose to
+  /// export <code>BULK</code> data that you imported using a dataset import job,
+  /// <code>PUT</code> data that you imported incrementally (using the console,
+  /// PutEvents, PutUsers and PutItems operations), or <code>ALL</code> for both
+  /// types. The default value is <code>PUT</code>.
+  final IngestionMode? ingestionMode;
+
+  /// The name of the export job.
+  final String? jobName;
+
+  /// The path to the Amazon S3 bucket where the job's output is stored. For
+  /// example:
+  ///
+  /// <code>s3://bucket-name/folder-name/</code>
+  final DatasetExportJobOutput? jobOutput;
+
+  /// The date and time (in Unix time) the status of the dataset export job was
+  /// last updated.
+  final DateTime? lastUpdatedDateTime;
+
+  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+  /// service role that has permissions to add data to your output Amazon S3
+  /// bucket.
+  final String? roleArn;
+
+  /// The status of the dataset export job.
+  ///
+  /// A dataset export job can be in one of the following states:
+  ///
+  /// <ul>
+  /// <li>
+  /// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+  /// </li>
+  /// </ul>
+  final String? status;
+
+  DatasetExportJob({
+    this.creationDateTime,
+    this.datasetArn,
+    this.datasetExportJobArn,
+    this.failureReason,
+    this.ingestionMode,
+    this.jobName,
+    this.jobOutput,
+    this.lastUpdatedDateTime,
+    this.roleArn,
+    this.status,
+  });
+  factory DatasetExportJob.fromJson(Map<String, dynamic> json) {
+    return DatasetExportJob(
+      creationDateTime: timeStampFromJson(json['creationDateTime']),
+      datasetArn: json['datasetArn'] as String?,
+      datasetExportJobArn: json['datasetExportJobArn'] as String?,
+      failureReason: json['failureReason'] as String?,
+      ingestionMode: (json['ingestionMode'] as String?)?.toIngestionMode(),
+      jobName: json['jobName'] as String?,
+      jobOutput: json['jobOutput'] != null
+          ? DatasetExportJobOutput.fromJson(
+              json['jobOutput'] as Map<String, dynamic>)
+          : null,
+      lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
+      roleArn: json['roleArn'] as String?,
+      status: json['status'] as String?,
+    );
+  }
+}
+
+/// The output configuration parameters of a dataset export job.
+class DatasetExportJobOutput {
+  final S3DataConfig s3DataDestination;
+
+  DatasetExportJobOutput({
+    required this.s3DataDestination,
+  });
+  factory DatasetExportJobOutput.fromJson(Map<String, dynamic> json) {
+    return DatasetExportJobOutput(
+      s3DataDestination: S3DataConfig.fromJson(
+          json['s3DataDestination'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3DataDestination = this.s3DataDestination;
+    return {
+      's3DataDestination': s3DataDestination,
+    };
+  }
+}
+
+/// Provides a summary of the properties of a dataset export job. For a complete
+/// listing, call the <a>DescribeDatasetExportJob</a> API.
+class DatasetExportJobSummary {
+  /// The date and time (in Unix time) that the dataset export job was created.
+  final DateTime? creationDateTime;
+
+  /// The Amazon Resource Name (ARN) of the dataset export job.
+  final String? datasetExportJobArn;
+
+  /// If a dataset export job fails, the reason behind the failure.
+  final String? failureReason;
+
+  /// The name of the dataset export job.
+  final String? jobName;
+
+  /// The date and time (in Unix time) that the dataset export job status was last
+  /// updated.
+  final DateTime? lastUpdatedDateTime;
+
+  /// The status of the dataset export job.
+  ///
+  /// A dataset export job can be in one of the following states:
+  ///
+  /// <ul>
+  /// <li>
+  /// CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED
+  /// </li>
+  /// </ul>
+  final String? status;
+
+  DatasetExportJobSummary({
+    this.creationDateTime,
+    this.datasetExportJobArn,
+    this.failureReason,
+    this.jobName,
+    this.lastUpdatedDateTime,
+    this.status,
+  });
+  factory DatasetExportJobSummary.fromJson(Map<String, dynamic> json) {
+    return DatasetExportJobSummary(
+      creationDateTime: timeStampFromJson(json['creationDateTime']),
+      datasetExportJobArn: json['datasetExportJobArn'] as String?,
+      failureReason: json['failureReason'] as String?,
+      jobName: json['jobName'] as String?,
+      lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       status: json['status'] as String?,
     );
   }
@@ -4129,7 +4287,8 @@ class DatasetImportJobSummary {
   /// The name of the dataset import job.
   final String? jobName;
 
-  /// The date and time (in Unix time) that the dataset was last updated.
+  /// The date and time (in Unix time) that the dataset import job status was last
+  /// updated.
   final DateTime? lastUpdatedDateTime;
 
   /// The status of the dataset import job.
@@ -4482,6 +4641,40 @@ class DescribeCampaignResponse {
     return DescribeCampaignResponse(
       campaign: json['campaign'] != null
           ? Campaign.fromJson(json['campaign'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class DescribeDatasetExportJobResponse {
+  /// Information about the dataset export job, including the status.
+  ///
+  /// The status is one of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// CREATE PENDING
+  /// </li>
+  /// <li>
+  /// CREATE IN_PROGRESS
+  /// </li>
+  /// <li>
+  /// ACTIVE
+  /// </li>
+  /// <li>
+  /// CREATE FAILED
+  /// </li>
+  /// </ul>
+  final DatasetExportJob? datasetExportJob;
+
+  DescribeDatasetExportJobResponse({
+    this.datasetExportJob,
+  });
+  factory DescribeDatasetExportJobResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeDatasetExportJobResponse(
+      datasetExportJob: json['datasetExportJob'] != null
+          ? DatasetExportJob.fromJson(
+              json['datasetExportJob'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -4846,14 +5039,9 @@ class Filter {
   final String? filterArn;
 
   /// Specifies the type of item interactions to filter out of recommendation
-  /// results. The filter expression must follow the following format:
-  ///
-  /// <code>EXCLUDE itemId WHERE INTERACTIONS.event_type in ("EVENT_TYPE")</code>
-  ///
-  /// Where "EVENT_TYPE" is the type of event to filter out. For more information,
-  /// see <a
-  /// href="https://docs.aws.amazon.com/personalize/latest/dg/filters.html">Using
-  /// Filters with Amazon Personalize</a>.
+  /// results. The filter expression must follow specific format rules. For
+  /// information about filter expression structure and syntax, see
+  /// <a>filter-expressions</a>.
   final String? filterExpression;
 
   /// The time at which the filter was last updated.
@@ -4954,14 +5142,16 @@ class GetSolutionMetricsResponse {
   }
 }
 
-/// Describes the properties for hyperparameter optimization (HPO). For use with
-/// the bring-your-own-recipe feature. Do not use for Amazon Personalize native
-/// recipes.
+/// Describes the properties for hyperparameter optimization (HPO).
 class HPOConfig {
   /// The hyperparameters and their allowable ranges.
   final HyperParameterRanges? algorithmHyperParameterRanges;
 
   /// The metric to optimize during HPO.
+  /// <note>
+  /// Amazon Personalize doesn't support configuring the <code>hpoObjective</code>
+  /// at this time.
+  /// </note>
   final HPOObjective? hpoObjective;
 
   /// Describes the resource configuration for HPO.
@@ -5003,6 +5193,10 @@ class HPOConfig {
 }
 
 /// The metric to optimize during hyperparameter optimization (HPO).
+/// <note>
+/// Amazon Personalize doesn't support configuring the <code>hpoObjective</code>
+/// at this time.
+/// </note>
 class HPOObjective {
   /// The name of the metric.
   final String? metricName;
@@ -5129,6 +5323,39 @@ class HyperParameterRanges {
   }
 }
 
+enum IngestionMode {
+  bulk,
+  put,
+  all,
+}
+
+extension on IngestionMode {
+  String toValue() {
+    switch (this) {
+      case IngestionMode.bulk:
+        return 'BULK';
+      case IngestionMode.put:
+        return 'PUT';
+      case IngestionMode.all:
+        return 'ALL';
+    }
+  }
+}
+
+extension on String {
+  IngestionMode toIngestionMode() {
+    switch (this) {
+      case 'BULK':
+        return IngestionMode.bulk;
+      case 'PUT':
+        return IngestionMode.put;
+      case 'ALL':
+        return IngestionMode.all;
+    }
+    throw Exception('$this is not known in enum IngestionMode');
+  }
+}
+
 /// Provides the name and range of an integer-valued hyperparameter.
 class IntegerHyperParameterRange {
   /// The maximum allowable value for the hyperparameter.
@@ -5169,7 +5396,7 @@ class ListBatchInferenceJobsResponse {
   /// A list containing information on each job that is returned.
   final List<BatchInferenceJobSummary>? batchInferenceJobs;
 
-  /// The token to use to retreive the next page of results. The value is
+  /// The token to use to retrieve the next page of results. The value is
   /// <code>null</code> when there are no more results to return.
   final String? nextToken;
 
@@ -5205,6 +5432,29 @@ class ListCampaignsResponse {
       campaigns: (json['campaigns'] as List?)
           ?.whereNotNull()
           .map((e) => CampaignSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
+class ListDatasetExportJobsResponse {
+  /// The list of dataset export jobs.
+  final List<DatasetExportJobSummary>? datasetExportJobs;
+
+  /// A token for getting the next set of dataset export jobs (if they exist).
+  final String? nextToken;
+
+  ListDatasetExportJobsResponse({
+    this.datasetExportJobs,
+    this.nextToken,
+  });
+  factory ListDatasetExportJobsResponse.fromJson(Map<String, dynamic> json) {
+    return ListDatasetExportJobsResponse(
+      datasetExportJobs: (json['datasetExportJobs'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DatasetExportJobSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
@@ -5412,6 +5662,81 @@ class ListSolutionsResponse {
   }
 }
 
+enum ObjectiveSensitivity {
+  low,
+  medium,
+  high,
+  off,
+}
+
+extension on ObjectiveSensitivity {
+  String toValue() {
+    switch (this) {
+      case ObjectiveSensitivity.low:
+        return 'LOW';
+      case ObjectiveSensitivity.medium:
+        return 'MEDIUM';
+      case ObjectiveSensitivity.high:
+        return 'HIGH';
+      case ObjectiveSensitivity.off:
+        return 'OFF';
+    }
+  }
+}
+
+extension on String {
+  ObjectiveSensitivity toObjectiveSensitivity() {
+    switch (this) {
+      case 'LOW':
+        return ObjectiveSensitivity.low;
+      case 'MEDIUM':
+        return ObjectiveSensitivity.medium;
+      case 'HIGH':
+        return ObjectiveSensitivity.high;
+      case 'OFF':
+        return ObjectiveSensitivity.off;
+    }
+    throw Exception('$this is not known in enum ObjectiveSensitivity');
+  }
+}
+
+/// Describes the additional objective for the solution, such as maximizing
+/// streaming minutes or increasing revenue. For more information see <a
+/// href="https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html">Optimizing
+/// a solution</a>.
+class OptimizationObjective {
+  /// The numerical metadata column in an Items dataset related to the
+  /// optimization objective. For example, VIDEO_LENGTH (to maximize streaming
+  /// minutes), or PRICE (to maximize revenue).
+  final String? itemAttribute;
+
+  /// Specifies how Amazon Personalize balances the importance of your
+  /// optimization objective versus relevance.
+  final ObjectiveSensitivity? objectiveSensitivity;
+
+  OptimizationObjective({
+    this.itemAttribute,
+    this.objectiveSensitivity,
+  });
+  factory OptimizationObjective.fromJson(Map<String, dynamic> json) {
+    return OptimizationObjective(
+      itemAttribute: json['itemAttribute'] as String?,
+      objectiveSensitivity:
+          (json['objectiveSensitivity'] as String?)?.toObjectiveSensitivity(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final itemAttribute = this.itemAttribute;
+    final objectiveSensitivity = this.objectiveSensitivity;
+    return {
+      if (itemAttribute != null) 'itemAttribute': itemAttribute,
+      if (objectiveSensitivity != null)
+        'objectiveSensitivity': objectiveSensitivity.toValue(),
+    };
+  }
+}
+
 /// Provides information about a recipe. Each recipe provides an algorithm that
 /// Amazon Personalize uses in model training when you use the
 /// <a>CreateSolution</a> operation.
@@ -5586,7 +5911,8 @@ class Solution {
   final String? datasetGroupArn;
 
   /// The event type (for example, 'click' or 'like') that is used for training
-  /// the model.
+  /// the model. If no <code>eventType</code> is provided, Amazon Personalize uses
+  /// all interactions for training with equal weight regardless of type.
   final String? eventType;
 
   /// The date and time (in Unix time) that the solution was last updated.
@@ -5693,12 +6019,19 @@ class SolutionConfig {
   /// Describes the properties for hyperparameter optimization (HPO).
   final HPOConfig? hpoConfig;
 
+  /// Describes the additional objective for the solution, such as maximizing
+  /// streaming minutes or increasing revenue. For more information see <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html">Optimizing
+  /// a solution</a>.
+  final OptimizationObjective? optimizationObjective;
+
   SolutionConfig({
     this.algorithmHyperParameters,
     this.autoMLConfig,
     this.eventValueThreshold,
     this.featureTransformationParameters,
     this.hpoConfig,
+    this.optimizationObjective,
   });
   factory SolutionConfig.fromJson(Map<String, dynamic> json) {
     return SolutionConfig(
@@ -5715,6 +6048,10 @@ class SolutionConfig {
       hpoConfig: json['hpoConfig'] != null
           ? HPOConfig.fromJson(json['hpoConfig'] as Map<String, dynamic>)
           : null,
+      optimizationObjective: json['optimizationObjective'] != null
+          ? OptimizationObjective.fromJson(
+              json['optimizationObjective'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -5725,6 +6062,7 @@ class SolutionConfig {
     final featureTransformationParameters =
         this.featureTransformationParameters;
     final hpoConfig = this.hpoConfig;
+    final optimizationObjective = this.optimizationObjective;
     return {
       if (algorithmHyperParameters != null)
         'algorithmHyperParameters': algorithmHyperParameters,
@@ -5734,6 +6072,8 @@ class SolutionConfig {
       if (featureTransformationParameters != null)
         'featureTransformationParameters': featureTransformationParameters,
       if (hpoConfig != null) 'hpoConfig': hpoConfig,
+      if (optimizationObjective != null)
+        'optimizationObjective': optimizationObjective,
     };
   }
 }
@@ -5844,6 +6184,12 @@ class SolutionVersion {
   /// <li>
   /// CREATE FAILED
   /// </li>
+  /// <li>
+  /// CREATE STOPPING
+  /// </li>
+  /// <li>
+  /// CREATE STOPPED
+  /// </li>
   /// </ul>
   final String? status;
 
@@ -5852,16 +6198,21 @@ class SolutionVersion {
   /// successfully trains a model.
   final double? trainingHours;
 
-  /// The scope of training used to create the solution version. The
-  /// <code>FULL</code> option trains the solution version based on the entirety
-  /// of the input solution's training data, while the <code>UPDATE</code> option
-  /// processes only the training data that has changed since the creation of the
-  /// last solution version. Choose <code>UPDATE</code> when you want to start
-  /// recommending items added to the dataset without retraining the model.
+  /// The scope of training to be performed when creating the solution version.
+  /// The <code>FULL</code> option trains the solution version based on the
+  /// entirety of the input solution's training data, while the
+  /// <code>UPDATE</code> option processes only the data that has changed in
+  /// comparison to the input solution. Choose <code>UPDATE</code> when you want
+  /// to incrementally update your solution version instead of creating an
+  /// entirely new one.
   /// <important>
-  /// The <code>UPDATE</code> option can only be used after you've created a
-  /// solution version with the <code>FULL</code> option and the training solution
-  /// uses the <a>native-recipe-hrnn-coldstart</a>.
+  /// The <code>UPDATE</code> option can only be used when you already have an
+  /// active solution version created from the input solution using the
+  /// <code>FULL</code> option and the input solution was trained with the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html">User-Personalization</a>
+  /// recipe or the <a
+  /// href="https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html">HRNN-Coldstart</a>
+  /// recipe.
   /// </important>
   final TrainingMode? trainingMode;
 

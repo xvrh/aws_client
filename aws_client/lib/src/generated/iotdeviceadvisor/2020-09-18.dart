@@ -81,7 +81,7 @@ class IoTDeviceAdvisor {
   /// May throw [InternalServerException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Deletes a Device Advisor test suite with defined suite Id.
+  /// Suite definition Id of the test suite to be deleted.
   Future<void> deleteSuiteDefinition({
     required String suiteDefinitionId,
   }) async {
@@ -89,7 +89,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -108,10 +108,10 @@ class IoTDeviceAdvisor {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Requests suite definition Id with GetSuiteDefinition API call.
+  /// Suite definition Id of the test suite to get.
   ///
   /// Parameter [suiteDefinitionVersion] :
-  /// Requests the suite definition version of a test suite.
+  /// Suite definition version of the test suite to get.
   Future<GetSuiteDefinitionResponse> getSuiteDefinition({
     required String suiteDefinitionId,
     String? suiteDefinitionVersion,
@@ -120,7 +120,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -151,12 +151,10 @@ class IoTDeviceAdvisor {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Requests the information about Device Advisor test suite run based on
-  /// suite definition Id.
+  /// Suite definition Id for the test suite run.
   ///
   /// Parameter [suiteRunId] :
-  /// Requests the information about Device Advisor test suite run based on
-  /// suite run Id.
+  /// Suite run Id for the test suite run.
   Future<GetSuiteRunResponse> getSuiteRun({
     required String suiteDefinitionId,
     required String suiteRunId,
@@ -165,7 +163,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -173,7 +171,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteRunId',
       suiteRunId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -195,10 +193,10 @@ class IoTDeviceAdvisor {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Device Advisor suite definition Id.
+  /// Suite definition Id of the test suite.
   ///
   /// Parameter [suiteRunId] :
-  /// Device Advisor suite run Id.
+  /// Suite run Id of the test suite run.
   Future<GetSuiteRunReportResponse> getSuiteRunReport({
     required String suiteDefinitionId,
     required String suiteRunId,
@@ -207,7 +205,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -215,7 +213,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteRunId',
       suiteRunId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -235,10 +233,10 @@ class IoTDeviceAdvisor {
   /// May throw [InternalServerException].
   ///
   /// Parameter [maxResults] :
-  /// Request the list of all the Device Advisor test suites.
+  /// The maximum number of results to return at once.
   ///
   /// Parameter [nextToken] :
-  /// Requests the Device Advisor test suites next token.
+  /// A token used to get the next set of results.
   Future<ListSuiteDefinitionsResponse> listSuiteDefinitions({
     int? maxResults,
     String? nextToken,
@@ -277,18 +275,18 @@ class IoTDeviceAdvisor {
   /// May throw [InternalServerException].
   ///
   /// Parameter [maxResults] :
-  /// MaxResults for list suite run API request.
+  /// The maximum number of results to return at once.
   ///
   /// Parameter [nextToken] :
-  /// Next pagination token for list suite run request.
+  /// A token to retrieve the next set of results.
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Lists the runs of the specified Device Advisor test suite based on suite
+  /// Lists the test suite runs of the specified test suite based on suite
   /// definition Id.
   ///
   /// Parameter [suiteDefinitionVersion] :
-  /// Lists the runs of the specified Device Advisor test suite based on suite
-  /// definition version.
+  /// Must be passed along with suiteDefinitionId. Lists the test suite runs of
+  /// the specified test suite based on suite definition version.
   Future<ListSuiteRunsResponse> listSuiteRuns({
     int? maxResults,
     String? nextToken,
@@ -310,7 +308,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
     );
     _s.validateStringLength(
@@ -364,51 +362,6 @@ class IoTDeviceAdvisor {
     return ListTagsForResourceResponse.fromJson(response);
   }
 
-  /// Lists all the test cases in the test suite.
-  ///
-  /// May throw [InternalServerException].
-  ///
-  /// Parameter [intendedForQualification] :
-  /// Lists all the qualification test cases in the test suite.
-  ///
-  /// Parameter [maxResults] :
-  /// Requests the test cases max results.
-  ///
-  /// Parameter [nextToken] :
-  /// Requests the test cases next token.
-  Future<ListTestCasesResponse> listTestCases({
-    bool? intendedForQualification,
-    int? maxResults,
-    String? nextToken,
-  }) async {
-    _s.validateNumRange(
-      'maxResults',
-      maxResults,
-      1,
-      50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
-    );
-    final $query = <String, List<String>>{
-      if (intendedForQualification != null)
-        'intendedForQualification': [intendedForQualification.toString()],
-      if (maxResults != null) 'maxResults': [maxResults.toString()],
-      if (nextToken != null) 'nextToken': [nextToken],
-    };
-    final response = await _protocol.send(
-      payload: null,
-      method: 'GET',
-      requestUri: '/testCases',
-      queryParams: $query,
-      exceptionFnMap: _exceptionFns,
-    );
-    return ListTestCasesResponse.fromJson(response);
-  }
-
   /// Starts a Device Advisor test suite run.
   ///
   /// May throw [ValidationException].
@@ -416,13 +369,13 @@ class IoTDeviceAdvisor {
   /// May throw [ConflictException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Request to start suite run based on suite definition Id.
+  /// Suite definition Id of the test suite.
   ///
   /// Parameter [suiteDefinitionVersion] :
-  /// Request to start suite run based on suite definition version.
+  /// Suite definition version of the test suite.
   ///
   /// Parameter [suiteRunConfiguration] :
-  /// Request to start suite run based on suite configuration.
+  /// Suite run configuration.
   ///
   /// Parameter [tags] :
   /// The tags to be attached to the suite run.
@@ -436,7 +389,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -461,6 +414,46 @@ class IoTDeviceAdvisor {
       exceptionFnMap: _exceptionFns,
     );
     return StartSuiteRunResponse.fromJson(response);
+  }
+
+  /// Stops a Device Advisor test suite run that is currently running.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [suiteDefinitionId] :
+  /// Suite definition Id of the test suite run to be stopped.
+  ///
+  /// Parameter [suiteRunId] :
+  /// Suite run Id of the test suite run to be stopped.
+  Future<void> stopSuiteRun({
+    required String suiteDefinitionId,
+    required String suiteRunId,
+  }) async {
+    ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
+    _s.validateStringLength(
+      'suiteDefinitionId',
+      suiteDefinitionId,
+      12,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(suiteRunId, 'suiteRunId');
+    _s.validateStringLength(
+      'suiteRunId',
+      suiteRunId,
+      12,
+      36,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'POST',
+      requestUri:
+          '/suiteDefinitions/${Uri.encodeComponent(suiteDefinitionId)}/suiteRuns/${Uri.encodeComponent(suiteRunId)}/stop',
+      exceptionFnMap: _exceptionFns,
+    );
   }
 
   /// Adds to and modifies existing tags of an IoT Device Advisor resource.
@@ -540,7 +533,7 @@ class IoTDeviceAdvisor {
   /// May throw [InternalServerException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Updates a Device Advisor test suite with suite definition id.
+  /// Suite definition Id of the test suite to be updated.
   ///
   /// Parameter [suiteDefinitionConfiguration] :
   /// Updates a Device Advisor test suite with suite definition configuration.
@@ -552,7 +545,7 @@ class IoTDeviceAdvisor {
     _s.validateStringLength(
       'suiteDefinitionId',
       suiteDefinitionId,
-      36,
+      12,
       36,
       isRequired: true,
     );
@@ -636,27 +629,25 @@ class DeviceUnderTest {
 }
 
 class GetSuiteDefinitionResponse {
-  /// Gets the timestamp of the time suite was created with GetSuiteDefinition API
-  /// call.
+  /// Date (in Unix epoch time) when the suite definition was created.
   final DateTime? createdAt;
 
-  /// Gets the timestamp of the time suite was modified with GetSuiteDefinition
-  /// API call.
+  /// Date (in Unix epoch time) when the suite definition was last modified.
   final DateTime? lastModifiedAt;
 
-  /// Gets latest suite definition version with GetSuiteDefinition API call.
+  /// Latest suite definition version of the suite definition.
   final String? latestVersion;
 
   /// The ARN of the suite definition.
   final String? suiteDefinitionArn;
 
-  /// Gets the suite configuration with GetSuiteDefinition API call.
+  /// Suite configuration of the suite definition.
   final SuiteDefinitionConfiguration? suiteDefinitionConfiguration;
 
-  /// Gets suite definition Id with GetSuiteDefinition API call.
+  /// Suite definition Id of the suite definition.
   final String? suiteDefinitionId;
 
-  /// Gets suite definition version with GetSuiteDefinition API call.
+  /// Suite definition version of the suite definition.
   final String? suiteDefinitionVersion;
 
   /// Tags attached to the suite definition.
@@ -691,7 +682,7 @@ class GetSuiteDefinitionResponse {
 }
 
 class GetSuiteRunReportResponse {
-  /// Gets the download URL of the qualification report.
+  /// Download URL of the qualification report.
   final String? qualificationReportDownloadUrl;
 
   GetSuiteRunReportResponse({
@@ -706,44 +697,37 @@ class GetSuiteRunReportResponse {
 }
 
 class GetSuiteRunResponse {
-  /// Gets the information about Device Advisor test suite run based on end time.
+  /// Date (in Unix epoch time) when the test suite run ended.
   final DateTime? endTime;
 
-  /// Gets the information about Device Advisor test suite run based on error.
+  /// Error reason for any test suite run failure.
   final String? errorReason;
 
-  /// Gets the information about Device Advisor test suite run based on start
-  /// time.
+  /// Date (in Unix epoch time) when the test suite run was started.
   final DateTime? startTime;
 
-  /// Gets the information about Device Advisor test suite run based on its
-  /// status.
+  /// Status for the test suite run.
   final SuiteRunStatus? status;
 
-  /// Gets the information about Device Advisor test suite run based on suite
-  /// definition Id.
+  /// Suite definition Id for the test suite run.
   final String? suiteDefinitionId;
 
-  /// Gets the information about Device Advisor test suite run based on suite
-  /// definition version.
+  /// Suite definition version for the test suite run.
   final String? suiteDefinitionVersion;
 
   /// The ARN of the suite run.
   final String? suiteRunArn;
 
-  /// Gets the information about Device Advisor test suite run based on suite
-  /// configuration.
+  /// Suite run configuration for the test suite run.
   final SuiteRunConfiguration? suiteRunConfiguration;
 
-  /// Gets the information about Device Advisor test suite run based on suite run
-  /// Id.
+  /// Suite run Id for the test suite run.
   final String? suiteRunId;
 
   /// The tags attached to the suite run.
   final Map<String, String>? tags;
 
-  /// Gets the information about Device Advisor test suite run based on test case
-  /// runs.
+  /// Test results for the test suite run.
   final TestResult? testResult;
 
   GetSuiteRunResponse({
@@ -784,13 +768,13 @@ class GetSuiteRunResponse {
 
 /// Show Group Result.
 class GroupResult {
-  /// Show Group Result Id.
+  /// Group result Id.
   final String? groupId;
 
-  /// Show Group Result Name.
+  /// Group Result Name.
   final String? groupName;
 
-  /// Show Group Result.
+  /// Tests under Group Result.
   final List<TestCaseRun>? tests;
 
   GroupResult({
@@ -811,10 +795,11 @@ class GroupResult {
 }
 
 class ListSuiteDefinitionsResponse {
-  /// Creates a Device Advisor test suite.
+  /// A token used to get the next set of results.
   final String? nextToken;
 
-  /// Lists test suite information using List suite definition.
+  /// An array of objects that provide summaries of information about the suite
+  /// definitions in the list.
   final List<SuiteDefinitionInformation>? suiteDefinitionInformationList;
 
   ListSuiteDefinitionsResponse({
@@ -835,10 +820,11 @@ class ListSuiteDefinitionsResponse {
 }
 
 class ListSuiteRunsResponse {
-  /// Next pagination token for list suite run response.
+  /// A token to retrieve the next set of results.
   final String? nextToken;
 
-  /// Lists the runs of the specified Device Advisor test suite.
+  /// An array of objects that provide summaries of information about the suite
+  /// runs in the list.
   final List<SuiteRunInformation>? suiteRunsList;
 
   ListSuiteRunsResponse({
@@ -871,49 +857,14 @@ class ListTagsForResourceResponse {
   }
 }
 
-class ListTestCasesResponse {
-  /// Gets the category of test case.
-  final List<TestCaseCategory>? categories;
-
-  /// Gets the configuration of test group.
-  final Map<String, String>? groupConfiguration;
-
-  /// Test cases next token response.
-  final String? nextToken;
-
-  /// Gets the configuration of root test group.
-  final Map<String, String>? rootGroupConfiguration;
-
-  ListTestCasesResponse({
-    this.categories,
-    this.groupConfiguration,
-    this.nextToken,
-    this.rootGroupConfiguration,
-  });
-  factory ListTestCasesResponse.fromJson(Map<String, dynamic> json) {
-    return ListTestCasesResponse(
-      categories: (json['categories'] as List?)
-          ?.whereNotNull()
-          .map((e) => TestCaseCategory.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      groupConfiguration: (json['groupConfiguration'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k, e as String)),
-      nextToken: json['nextToken'] as String?,
-      rootGroupConfiguration:
-          (json['rootGroupConfiguration'] as Map<String, dynamic>?)
-              ?.map((k, e) => MapEntry(k, e as String)),
-    );
-  }
-}
-
 class StartSuiteRunResponse {
-  /// Starts a Device Advisor test suite run based on suite create time.
+  /// Date (in Unix epoch time) when the suite run was created.
   final DateTime? createdAt;
 
-  /// Starts a Device Advisor test suite run based on suite run arn.
+  /// Amazon resource name of the started suite run.
   final String? suiteRunArn;
 
-  /// Starts a Device Advisor test suite run based on suite Run Id.
+  /// Suite Run Id of the started suite run.
   final String? suiteRunId;
 
   StartSuiteRunResponse({
@@ -936,6 +887,8 @@ enum Status {
   canceled,
   pending,
   running,
+  stopping,
+  stopped,
   passWithWarnings,
   error,
 }
@@ -953,6 +906,10 @@ extension on Status {
         return 'PENDING';
       case Status.running:
         return 'RUNNING';
+      case Status.stopping:
+        return 'STOPPING';
+      case Status.stopped:
+        return 'STOPPED';
       case Status.passWithWarnings:
         return 'PASS_WITH_WARNINGS';
       case Status.error:
@@ -974,12 +931,23 @@ extension on String {
         return Status.pending;
       case 'RUNNING':
         return Status.running;
+      case 'STOPPING':
+        return Status.stopping;
+      case 'STOPPED':
+        return Status.stopped;
       case 'PASS_WITH_WARNINGS':
         return Status.passWithWarnings;
       case 'ERROR':
         return Status.error;
     }
     throw Exception('$this is not known in enum Status');
+  }
+}
+
+class StopSuiteRunResponse {
+  StopSuiteRunResponse();
+  factory StopSuiteRunResponse.fromJson(Map<String, dynamic> _) {
+    return StopSuiteRunResponse();
   }
 }
 
@@ -1039,21 +1007,21 @@ class SuiteDefinitionConfiguration {
   }
 }
 
-/// Get suite definition information.
+/// Information about the suite definition.
 class SuiteDefinitionInformation {
-  /// Gets the information of when the test suite was created.
+  /// Date (in Unix epoch time) when the test suite was created.
   final DateTime? createdAt;
 
-  /// Specifies the devices under test.
+  /// Specifies the devices under test for the test suite.
   final List<DeviceUnderTest>? defaultDevices;
 
-  /// Gets the test suites which will be used for qualification.
+  /// Specifies if the test suite is intended for qualification.
   final bool? intendedForQualification;
 
-  /// Get suite definition Id.
+  /// Suite definition Id of the test suite.
   final String? suiteDefinitionId;
 
-  /// Get test suite name.
+  /// Suite name of the test suite.
   final String? suiteDefinitionName;
 
   SuiteDefinitionInformation({
@@ -1082,15 +1050,11 @@ class SuiteRunConfiguration {
   /// Gets the primary device for suite run.
   final DeviceUnderTest? primaryDevice;
 
-  /// Gets the secondary device for suite run.
-  final DeviceUnderTest? secondaryDevice;
-
   /// Gets test case list.
   final List<String>? selectedTestList;
 
   SuiteRunConfiguration({
     this.primaryDevice,
-    this.secondaryDevice,
     this.selectedTestList,
   });
   factory SuiteRunConfiguration.fromJson(Map<String, dynamic> json) {
@@ -1098,10 +1062,6 @@ class SuiteRunConfiguration {
       primaryDevice: json['primaryDevice'] != null
           ? DeviceUnderTest.fromJson(
               json['primaryDevice'] as Map<String, dynamic>)
-          : null,
-      secondaryDevice: json['secondaryDevice'] != null
-          ? DeviceUnderTest.fromJson(
-              json['secondaryDevice'] as Map<String, dynamic>)
           : null,
       selectedTestList: (json['selectedTestList'] as List?)
           ?.whereNotNull()
@@ -1112,46 +1072,44 @@ class SuiteRunConfiguration {
 
   Map<String, dynamic> toJson() {
     final primaryDevice = this.primaryDevice;
-    final secondaryDevice = this.secondaryDevice;
     final selectedTestList = this.selectedTestList;
     return {
       if (primaryDevice != null) 'primaryDevice': primaryDevice,
-      if (secondaryDevice != null) 'secondaryDevice': secondaryDevice,
       if (selectedTestList != null) 'selectedTestList': selectedTestList,
     };
   }
 }
 
-/// Get suite run information.
+/// Information about the suite run.
 class SuiteRunInformation {
-  /// Get suite run information based on time suite was created.
+  /// Date (in Unix epoch time) when the suite run was created.
   final DateTime? createdAt;
 
-  /// Get suite run information based on end time of the run.
+  /// Date (in Unix epoch time) when the suite run ended.
   final DateTime? endAt;
 
-  /// Get suite run information based on result of the test suite run.
+  /// Number of test cases that failed in the suite run.
   final int? failed;
 
-  /// Get suite run information based on result of the test suite run.
+  /// Number of test cases that passed in the suite run.
   final int? passed;
 
-  /// Get suite run information based on start time of the run.
+  /// Date (in Unix epoch time) when the suite run was started.
   final DateTime? startedAt;
 
-  /// Get suite run information based on test run status.
+  /// Status of the suite run.
   final SuiteRunStatus? status;
 
-  /// Get suite run information based on suite definition Id.
+  /// Suite definition Id of the suite run.
   final String? suiteDefinitionId;
 
-  /// Get suite run information based on suite definition name.
+  /// Suite definition name of the suite run.
   final String? suiteDefinitionName;
 
-  /// Get suite run information based on suite definition version.
+  /// Suite definition version of the suite run.
   final String? suiteDefinitionVersion;
 
-  /// Get suite run information based on suite run Id.
+  /// Suite run Id of the suite run.
   final String? suiteRunId;
 
   SuiteRunInformation({
@@ -1188,6 +1146,8 @@ enum SuiteRunStatus {
   canceled,
   pending,
   running,
+  stopping,
+  stopped,
   passWithWarnings,
   error,
 }
@@ -1205,6 +1165,10 @@ extension on SuiteRunStatus {
         return 'PENDING';
       case SuiteRunStatus.running:
         return 'RUNNING';
+      case SuiteRunStatus.stopping:
+        return 'STOPPING';
+      case SuiteRunStatus.stopped:
+        return 'STOPPED';
       case SuiteRunStatus.passWithWarnings:
         return 'PASS_WITH_WARNINGS';
       case SuiteRunStatus.error:
@@ -1226,6 +1190,10 @@ extension on String {
         return SuiteRunStatus.pending;
       case 'RUNNING':
         return SuiteRunStatus.running;
+      case 'STOPPING':
+        return SuiteRunStatus.stopping;
+      case 'STOPPED':
+        return SuiteRunStatus.stopped;
       case 'PASS_WITH_WARNINGS':
         return SuiteRunStatus.passWithWarnings;
       case 'ERROR':
@@ -1239,77 +1207,6 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
-  }
-}
-
-/// Shows tests in a test group.
-class TestCase {
-  /// Shows test case configuration.
-  final Map<String, String>? configuration;
-
-  /// Shows test case name.
-  final String? name;
-
-  /// Specifies a test.
-  final TestCaseDefinition? test;
-
-  TestCase({
-    this.configuration,
-    this.name,
-    this.test,
-  });
-  factory TestCase.fromJson(Map<String, dynamic> json) {
-    return TestCase(
-      configuration: (json['configuration'] as Map<String, dynamic>?)
-          ?.map((k, e) => MapEntry(k, e as String)),
-      name: json['name'] as String?,
-      test: json['test'] != null
-          ? TestCaseDefinition.fromJson(json['test'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-}
-
-/// Gets the test case category.
-class TestCaseCategory {
-  /// Lists all the tests name in the specified category.
-  final String? name;
-
-  /// Lists all the tests in the specified category.
-  final List<TestCase>? tests;
-
-  TestCaseCategory({
-    this.name,
-    this.tests,
-  });
-  factory TestCaseCategory.fromJson(Map<String, dynamic> json) {
-    return TestCaseCategory(
-      name: json['name'] as String?,
-      tests: (json['tests'] as List?)
-          ?.whereNotNull()
-          .map((e) => TestCase.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-}
-
-/// Provides test case definition.
-class TestCaseDefinition {
-  /// Provides test case definition Id.
-  final String? id;
-
-  /// Provides test case definition version.
-  final String? testCaseVersion;
-
-  TestCaseDefinition({
-    this.id,
-    this.testCaseVersion,
-  });
-  factory TestCaseDefinition.fromJson(Map<String, dynamic> json) {
-    return TestCaseDefinition(
-      id: json['id'] as String?,
-      testCaseVersion: json['testCaseVersion'] as String?,
-    );
   }
 }
 
@@ -1394,22 +1291,22 @@ class UntagResourceResponse {
 }
 
 class UpdateSuiteDefinitionResponse {
-  /// Updates a Device Advisor test suite with TimeStamp of when it was created.
+  /// Timestamp of when the test suite was created.
   final DateTime? createdAt;
 
-  /// Updates a Device Advisor test suite with TimeStamp of when it was updated.
+  /// Timestamp of when the test suite was updated.
   final DateTime? lastUpdatedAt;
 
-  /// Updates a Device Advisor test suite with Amazon Resource name.
+  /// Amazon Resource name of the updated test suite.
   final String? suiteDefinitionArn;
 
-  /// Updates a Device Advisor test suite with suite UUID.
+  /// Suite definition Id of the updated test suite.
   final String? suiteDefinitionId;
 
-  /// Updates a Device Advisor test suite with suite definition name.
+  /// Suite definition name of the updated test suite.
   final String? suiteDefinitionName;
 
-  /// Updates a Device Advisor test suite with suite definition version.
+  /// Suite definition version of the updated test suite.
   final String? suiteDefinitionVersion;
 
   UpdateSuiteDefinitionResponse({

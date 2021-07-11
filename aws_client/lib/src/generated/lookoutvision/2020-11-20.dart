@@ -57,7 +57,10 @@ class LookoutForVision {
   /// <code>CreateDataset</code> twice. On the first call, specify
   /// <code>train</code> for the value of <code>DatasetType</code>. On the
   /// second call, specify <code>test</code> for the value of
-  /// <code>DatasetType</code>. of dataset with
+  /// <code>DatasetType</code>.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:CreateDataset</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -112,12 +115,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetType',
-      datasetType,
-      r'''train|test''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -126,22 +123,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -177,6 +163,11 @@ class LookoutForVision {
   /// After training completes, the evaluation metrics are stored at the
   /// location specified in <code>OutputConfig</code>.
   ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:CreateModel</code> operation. If you want to tag your
+  /// model, you also require permission to the
+  /// <code>lookoutvision:TagResource</code> operation.
+  ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
@@ -206,15 +197,21 @@ class LookoutForVision {
   /// A description for the version of the model.
   ///
   /// Parameter [kmsKeyId] :
-  /// The identifier of the AWS Key Management Service (AWS KMS) customer master
-  /// key (CMK) to use for encypting the model. If this parameter is not
-  /// specified, the model is encrypted by a key that AWS owns and manages.
+  /// The identifier for your AWS Key Management Service (AWS KMS) customer
+  /// master key (CMK). The key is used to encrypt training and test images
+  /// copied into the service for model training. Your source images are
+  /// unaffected. If this parameter is not specified, the copied images are
+  /// encrypted by a key that AWS owns and manages.
+  ///
+  /// Parameter [tags] :
+  /// A set of tags (key-value pairs) that you want to attach to the model.
   Future<CreateModelResponse> createModel({
     required OutputConfig outputConfig,
     required String projectName,
     String? clientToken,
-    ModelDescription? description,
+    String? description,
     String? kmsKeyId,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(projectName, 'projectName');
@@ -225,33 +222,23 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      500,
     );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -260,6 +247,7 @@ class LookoutForVision {
       'OutputConfig': outputConfig,
       if (description != null) 'Description': description,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -275,6 +263,9 @@ class LookoutForVision {
   /// Creates an empty Amazon Lookout for Vision project. After you create the
   /// project, add a dataset by calling <a>CreateDataset</a>.
   ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:CreateProject</code> operation.
+  ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
@@ -284,7 +275,7 @@ class LookoutForVision {
   /// May throw [ServiceQuotaExceededException].
   ///
   /// Parameter [projectName] :
-  /// S nsme for the project.
+  /// The name for the project.
   ///
   /// Parameter [clientToken] :
   /// ClientToken is an idempotency token that ensures a call to
@@ -308,22 +299,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -360,9 +340,8 @@ class LookoutForVision {
   /// before you can create a model.
   /// </li>
   /// </ul>
-  /// It might take a while to delete the dataset. To check the current status,
-  /// check the <code>Status</code> field in the response from a call to
-  /// <a>DescribeDataset</a>.
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DeleteDataset</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -403,12 +382,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetType',
-      datasetType,
-      r'''train|test''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -417,22 +390,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -449,6 +411,13 @@ class LookoutForVision {
 
   /// Deletes an Amazon Lookout for Vision model. You can't delete a running
   /// model. To stop a running model, use the <a>StopModel</a> operation.
+  ///
+  /// It might take a few seconds to delete a model. To determine if a model has
+  /// been deleted, call <a>ListProjects</a> and check if the version of the
+  /// model (<code>ModelVersion</code>) is in the <code>Models</code> array.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DeleteModel</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -486,12 +455,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''([1-9][0-9]*|latest)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -500,22 +463,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -537,8 +489,12 @@ class LookoutForVision {
   /// associated with the project. To delete a model use the <a>DeleteModel</a>
   /// operation.
   ///
-  /// The training and test datasets are deleted automatically for you. The
-  /// images referenced by the training and test datasets aren't deleted.
+  /// You also have to delete the dataset(s) associated with the model. For more
+  /// information, see <a>DeleteDataset</a>. The images referenced by the
+  /// training and test datasets aren't deleted.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DeleteProject</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -572,22 +528,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -603,6 +548,9 @@ class LookoutForVision {
   }
 
   /// Describe an Amazon Lookout for Vision dataset.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DescribeDataset</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -632,24 +580,12 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetType',
-      datasetType,
-      r'''train|test''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
       projectName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -663,6 +599,9 @@ class LookoutForVision {
   }
 
   /// Describes a version of an Amazon Lookout for Vision model.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DescribeModel</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -689,24 +628,12 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''([1-9][0-9]*|latest)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
       projectName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -720,6 +647,9 @@ class LookoutForVision {
   }
 
   /// Describes an Amazon Lookout for Vision project.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DescribeProject</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -739,12 +669,6 @@ class LookoutForVision {
       projectName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -768,6 +692,8 @@ class LookoutForVision {
   /// detection units that your model uses. If you are not using a model, use
   /// the <a>StopModel</a> operation to stop your model.
   /// </note>
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:DetectAnomalies</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -805,24 +731,12 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'contentType',
-      contentType,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
     _s.validateStringLength(
       'modelVersion',
       modelVersion,
       1,
       10,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''([1-9][0-9]*|latest)''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(projectName, 'projectName');
@@ -833,14 +747,8 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
-      'content-type': contentType.toString(),
+      'Content-Type': contentType.toString(),
     };
     final response = await _protocol.send(
       payload: body,
@@ -856,6 +764,9 @@ class LookoutForVision {
   /// Lists the JSON Lines within a dataset. An Amazon Lookout for Vision JSON
   /// Line contains the anomaly information for a single image, including the
   /// image location and the assigned label.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:ListDatasetEntries</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -925,12 +836,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetType',
-      datasetType,
-      r'''train|test''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -939,22 +844,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'anomalyClass',
       anomalyClass,
       1,
       10,
-    );
-    _s.validateStringPattern(
-      'anomalyClass',
-      anomalyClass,
-      r'''(normal|anomaly)''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -968,21 +862,11 @@ class LookoutForVision {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-zA-Z0-9\/\+\=]{0,2048}$''',
-    );
     _s.validateStringLength(
       'sourceRefContains',
       sourceRefContains,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'sourceRefContains',
-      sourceRefContains,
-      r'''.*\S.*''',
     );
     final $query = <String, List<String>>{
       if (afterCreationDate != null)
@@ -1007,6 +891,9 @@ class LookoutForVision {
   }
 
   /// Lists the versions of a model in an Amazon Lookout for Vision project.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:ListModels</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1042,12 +929,6 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1059,11 +940,6 @@ class LookoutForVision {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-zA-Z0-9\/\+\=]{0,2048}$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1081,6 +957,9 @@ class LookoutForVision {
   }
 
   /// Lists the Amazon Lookout for Vision projects in your AWS account.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:ListProjects</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1115,11 +994,6 @@ class LookoutForVision {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-zA-Z0-9\/\+\=]{0,2048}$''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1134,9 +1008,47 @@ class LookoutForVision {
     return ListProjectsResponse.fromJson(response);
   }
 
+  /// Returns a list of tags attached to the specified Amazon Lookout for Vision
+  /// model.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:ListTagsForResource</code> operation.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the model for which you want to list
+  /// tags.
+  Future<ListTagsForResourceResponse> listTagsForResource({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      1,
+      1011,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/2020-11-20/tags/${Uri.encodeComponent(resourceArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListTagsForResourceResponse.fromJson(response);
+  }
+
   /// Starts the running of the version of an Amazon Lookout for Vision model.
   /// Starting a model takes a while to complete. To check the current state of
   /// the model, use <a>DescribeModel</a>.
+  ///
+  /// A model is ready to use when its status is <code>HOSTED</code>.
   ///
   /// Once the model is running, you can detect custom labels in new images by
   /// calling <a>DetectAnomalies</a>.
@@ -1144,6 +1056,8 @@ class LookoutForVision {
   /// You are charged for the amount of time that the model is running. To stop
   /// a running model, call <a>StopModel</a>.
   /// </note>
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:StartModel</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1197,12 +1111,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''([1-9][0-9]*|latest)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -1211,22 +1119,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -1245,8 +1142,14 @@ class LookoutForVision {
     return StartModelResponse.fromJson(response);
   }
 
-  /// Stops a running model. The operation might take a while to complete. To
-  /// check the current status, call <a>DescribeModel</a>.
+  /// Stops the hosting of a running model. The operation might take a while to
+  /// complete. To check the current status, call <a>DescribeModel</a>.
+  ///
+  /// After the model hosting stops, the <code>Status</code> of the model is
+  /// <code>TRAINED</code>.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:StopModel</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1284,12 +1187,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''([1-9][0-9]*|latest)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -1298,22 +1195,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -1329,6 +1215,95 @@ class LookoutForVision {
     return StopModelResponse.fromJson(response);
   }
 
+  /// Adds one or more key-value tags to an Amazon Lookout for Vision model. For
+  /// more information, see <i>Tagging a model</i> in the <i>Amazon Lookout for
+  /// Vision Developer Guide</i>.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:TagResource</code> operation.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ServiceQuotaExceededException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the model to assign the tags.
+  ///
+  /// Parameter [tags] :
+  /// The key-value tags to assign to the model.
+  Future<void> tagResource({
+    required String resourceArn,
+    required List<Tag> tags,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      1,
+      1011,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tags, 'tags');
+    final $payload = <String, dynamic>{
+      'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/2020-11-20/tags/${Uri.encodeComponent(resourceArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Removes one or more tags from an Amazon Lookout for Vision model. For more
+  /// information, see <i>Tagging a model</i> in the <i>Amazon Lookout for
+  /// Vision Developer Guide</i>.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:UntagResource</code> operation.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the model from which you want to remove
+  /// tags.
+  ///
+  /// Parameter [tagKeys] :
+  /// A list of the keys of the tags that you want to remove.
+  Future<void> untagResource({
+    required String resourceArn,
+    required List<String> tagKeys,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      1,
+      1011,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    final $query = <String, List<String>>{
+      'tagKeys': tagKeys,
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/2020-11-20/tags/${Uri.encodeComponent(resourceArn)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Adds one or more JSON Line entries to a dataset. A JSON Line includes
   /// information about an image used for training or testing an Amazon Lookout
   /// for Vision model. The following is an example JSON Line.
@@ -1336,6 +1311,9 @@ class LookoutForVision {
   /// Updating a dataset might take a while to complete. To check the current
   /// status, call <a>DescribeDataset</a> and check the <code>Status</code>
   /// field in the response.
+  ///
+  /// This operation requires permissions to perform the
+  /// <code>lookoutvision:UpdateDatasetEntries</code> operation.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1383,12 +1361,6 @@ class LookoutForVision {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetType',
-      datasetType,
-      r'''train|test''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -1397,22 +1369,11 @@ class LookoutForVision {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
@@ -1945,6 +1906,23 @@ class ListProjectsResponse {
   }
 }
 
+class ListTagsForResourceResponse {
+  /// A map of tag keys and values attached to the specified model.
+  final List<Tag>? tags;
+
+  ListTagsForResourceResponse({
+    this.tags,
+  });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 /// Describes an Amazon Lookout for Vision model.
 class ModelDescription {
   /// The unix timestamp for the date and time that the model was created.
@@ -2027,57 +2005,29 @@ class ModelDescription {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    final creationTimestamp = this.creationTimestamp;
-    final description = this.description;
-    final evaluationEndTimestamp = this.evaluationEndTimestamp;
-    final evaluationManifest = this.evaluationManifest;
-    final evaluationResult = this.evaluationResult;
-    final kmsKeyId = this.kmsKeyId;
-    final modelArn = this.modelArn;
-    final modelVersion = this.modelVersion;
-    final outputConfig = this.outputConfig;
-    final performance = this.performance;
-    final status = this.status;
-    final statusMessage = this.statusMessage;
-    return {
-      if (creationTimestamp != null)
-        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
-      if (description != null) 'Description': description,
-      if (evaluationEndTimestamp != null)
-        'EvaluationEndTimestamp': unixTimestampToJson(evaluationEndTimestamp),
-      if (evaluationManifest != null) 'EvaluationManifest': evaluationManifest,
-      if (evaluationResult != null) 'EvaluationResult': evaluationResult,
-      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
-      if (modelArn != null) 'ModelArn': modelArn,
-      if (modelVersion != null) 'ModelVersion': modelVersion,
-      if (outputConfig != null) 'OutputConfig': outputConfig,
-      if (performance != null) 'Performance': performance,
-      if (status != null) 'Status': status.toValue(),
-      if (statusMessage != null) 'StatusMessage': statusMessage,
-    };
-  }
 }
 
 enum ModelHostingStatus {
-  running,
-  starting,
-  stopped,
-  failed,
+  startingHosting,
+  hosted,
+  hostingFailed,
+  stoppingHosting,
+  systemUpdating,
 }
 
 extension on ModelHostingStatus {
   String toValue() {
     switch (this) {
-      case ModelHostingStatus.running:
-        return 'RUNNING';
-      case ModelHostingStatus.starting:
-        return 'STARTING';
-      case ModelHostingStatus.stopped:
-        return 'STOPPED';
-      case ModelHostingStatus.failed:
-        return 'FAILED';
+      case ModelHostingStatus.startingHosting:
+        return 'STARTING_HOSTING';
+      case ModelHostingStatus.hosted:
+        return 'HOSTED';
+      case ModelHostingStatus.hostingFailed:
+        return 'HOSTING_FAILED';
+      case ModelHostingStatus.stoppingHosting:
+        return 'STOPPING_HOSTING';
+      case ModelHostingStatus.systemUpdating:
+        return 'SYSTEM_UPDATING';
     }
   }
 }
@@ -2085,14 +2035,16 @@ extension on ModelHostingStatus {
 extension on String {
   ModelHostingStatus toModelHostingStatus() {
     switch (this) {
-      case 'RUNNING':
-        return ModelHostingStatus.running;
-      case 'STARTING':
-        return ModelHostingStatus.starting;
-      case 'STOPPED':
-        return ModelHostingStatus.stopped;
-      case 'FAILED':
-        return ModelHostingStatus.failed;
+      case 'STARTING_HOSTING':
+        return ModelHostingStatus.startingHosting;
+      case 'HOSTED':
+        return ModelHostingStatus.hosted;
+      case 'HOSTING_FAILED':
+        return ModelHostingStatus.hostingFailed;
+      case 'STOPPING_HOSTING':
+        return ModelHostingStatus.stoppingHosting;
+      case 'SYSTEM_UPDATING':
+        return ModelHostingStatus.systemUpdating;
     }
     throw Exception('$this is not known in enum ModelHostingStatus');
   }
@@ -2112,7 +2064,8 @@ class ModelMetadata {
   /// The version of the model.
   final String? modelVersion;
 
-  /// Performance metrics for the model. Created during training.
+  /// Performance metrics for the model. Not available until training has
+  /// successfully completed.
   final ModelPerformance? performance;
 
   /// The status of the model.
@@ -2168,17 +2121,6 @@ class ModelPerformance {
       precision: json['Precision'] as double?,
       recall: json['Recall'] as double?,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    final f1Score = this.f1Score;
-    final precision = this.precision;
-    final recall = this.recall;
-    return {
-      if (f1Score != null) 'F1Score': f1Score,
-      if (precision != null) 'Precision': precision,
-      if (recall != null) 'Recall': recall,
-    };
   }
 }
 
@@ -2286,15 +2228,6 @@ class OutputS3Object {
       key: json['Key'] as String,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    final bucket = this.bucket;
-    final key = this.key;
-    return {
-      'Bucket': bucket,
-      'Key': key,
-    };
-  }
 }
 
 /// Describe an Amazon Lookout for Vision project. For more information, see
@@ -2356,12 +2289,13 @@ class ProjectMetadata {
   }
 }
 
-/// Information about the location of a manifest file.
+/// Information about the location training output.
 class S3Location {
-  /// The S3 bucket that contain the manifest file.
+  /// The S3 bucket that contains the training output.
   final String bucket;
 
-  /// The path and name of the manifest file with the S3 bucket.
+  /// The path of the folder, within the S3 bucket, that contains the training
+  /// output.
   final String? prefix;
 
   S3Location({
@@ -2410,6 +2344,50 @@ class StopModelResponse {
     return StopModelResponse(
       status: (json['Status'] as String?)?.toModelHostingStatus(),
     );
+  }
+}
+
+/// A key and value pair that is attached to the specified Amazon Lookout for
+/// Vision model.
+class Tag {
+  /// The key of the tag that is attached to the specified model.
+  final String key;
+
+  /// The value of the tag that is attached to the specified model.
+  final String value;
+
+  Tag({
+    required this.key,
+    required this.value,
+  });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
+}
+
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
+class UntagResourceResponse {
+  UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
   }
 }
 

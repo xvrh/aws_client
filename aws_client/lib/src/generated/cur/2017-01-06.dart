@@ -72,11 +72,6 @@ class CostAndUsageReport {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'reportName',
-      reportName,
-      r'''[0-9A-Za-z!\-_.*\'()]+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrigamiServiceGatewayService.DeleteReportDefinition'
@@ -114,11 +109,6 @@ class CostAndUsageReport {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9_\.\-=]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -154,12 +144,6 @@ class CostAndUsageReport {
       reportName,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'reportName',
-      reportName,
-      r'''[0-9A-Za-z!\-_.*\'()]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -484,6 +468,10 @@ class ReportDefinition {
   /// report.
   final List<AdditionalArtifact>? additionalArtifacts;
 
+  /// The Amazon resource name of the billing view. You can get this value by
+  /// using the billing view service public APIs.
+  final String? billingViewArn;
+
   /// Whether you want Amazon Web Services to update your reports after they have
   /// been finalized if Amazon Web Services detects charges related to previous
   /// months. These charges can include refunds, credits, or support fees.
@@ -503,6 +491,7 @@ class ReportDefinition {
     required this.s3Region,
     required this.timeUnit,
     this.additionalArtifacts,
+    this.billingViewArn,
     this.refreshClosedReports,
     this.reportVersioning,
   });
@@ -523,6 +512,7 @@ class ReportDefinition {
           ?.whereNotNull()
           .map((e) => (e as String).toAdditionalArtifact())
           .toList(),
+      billingViewArn: json['BillingViewArn'] as String?,
       refreshClosedReports: json['RefreshClosedReports'] as bool?,
       reportVersioning:
           (json['ReportVersioning'] as String?)?.toReportVersioning(),
@@ -539,6 +529,7 @@ class ReportDefinition {
     final s3Region = this.s3Region;
     final timeUnit = this.timeUnit;
     final additionalArtifacts = this.additionalArtifacts;
+    final billingViewArn = this.billingViewArn;
     final refreshClosedReports = this.refreshClosedReports;
     final reportVersioning = this.reportVersioning;
     return {
@@ -554,6 +545,7 @@ class ReportDefinition {
       if (additionalArtifacts != null)
         'AdditionalArtifacts':
             additionalArtifacts.map((e) => e.toValue()).toList(),
+      if (billingViewArn != null) 'BillingViewArn': billingViewArn,
       if (refreshClosedReports != null)
         'RefreshClosedReports': refreshClosedReports,
       if (reportVersioning != null)

@@ -92,12 +92,6 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
@@ -169,24 +163,12 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
       tableName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -242,12 +224,6 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.DeleteDatabase'
@@ -296,24 +272,12 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
       tableName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -357,12 +321,6 @@ class TimestreamWrite {
       databaseName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -453,24 +411,12 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
       tableName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -573,11 +519,6 @@ class TimestreamWrite {
       databaseName,
       3,
       64,
-    );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -787,12 +728,6 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(kmsKeyId, 'kmsKeyId');
     _s.validateStringLength(
       'kmsKeyId',
@@ -861,12 +796,6 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(retentionProperties, 'retentionProperties');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -874,12 +803,6 @@ class TimestreamWrite {
       tableName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -954,12 +877,6 @@ class TimestreamWrite {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(records, 'records');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -967,12 +884,6 @@ class TimestreamWrite {
       tableName,
       3,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{

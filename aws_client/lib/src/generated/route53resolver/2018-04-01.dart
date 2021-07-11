@@ -21,9 +21,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// When you create a VPC using Amazon VPC, you automatically get DNS resolution
 /// within the VPC from Route 53 Resolver. By default, Resolver answers DNS
-/// queries for VPC domain names such as domain names for EC2 instances or ELB
-/// load balancers. Resolver performs recursive lookups against public name
-/// servers for all other domain names.
+/// queries for VPC domain names such as domain names for EC2 instances or
+/// Elastic Load Balancing load balancers. Resolver performs recursive lookups
+/// against public name servers for all other domain names.
 ///
 /// You can also configure DNS resolution between your VPC and your network over
 /// a Direct Connect or VPN connection:
@@ -54,7 +54,7 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// Route 53 Resolver Forwards DNS Queries from Your VPCs to Your Network</a> in
 /// the <i>Amazon Route 53 Developer Guide</i>.
 ///
-/// Like Amazon VPC, Resolver is regional. In each region where you have VPCs,
+/// Like Amazon VPC, Resolver is Regional. In each Region where you have VPCs,
 /// you can choose whether to forward queries from your VPCs to your network
 /// (outbound queries), from your network to your VPCs (inbound queries), or
 /// both.
@@ -74,6 +74,121 @@ class Route53Resolver {
           credentials: credentials,
           endpointUrl: endpointUrl,
         );
+
+  /// Associates a <a>FirewallRuleGroup</a> with a VPC, to provide DNS filtering
+  /// for the VPC.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [LimitExceededException].
+  /// May throw [ConflictException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group.
+  ///
+  /// Parameter [name] :
+  /// A name that lets you identify the association, to manage and use it.
+  ///
+  /// Parameter [priority] :
+  /// The setting that determines the processing order of the rule group among
+  /// the rule groups that you associate with the specified VPC. DNS Firewall
+  /// filters VPC traffic starting from the rule group with the lowest numeric
+  /// priority setting.
+  ///
+  /// You must specify a unique priority for each rule group that you associate
+  /// with a single VPC. To make it easier to insert rule groups later, leave
+  /// space between the numbers, for example, use 101, 200, and so on. You can
+  /// change the priority setting for a rule group association after you create
+  /// it.
+  ///
+  /// The allowed values for <code>Priority</code> are between 100 and 9900.
+  ///
+  /// Parameter [vpcId] :
+  /// The unique identifier of the VPC that you want to associate with the rule
+  /// group.
+  ///
+  /// Parameter [creatorRequestId] :
+  /// A unique string that identifies the request and that allows failed
+  /// requests to be retried without the risk of running the operation twice.
+  /// <code>CreatorRequestId</code> can be any unique string, for example, a
+  /// date/time stamp.
+  ///
+  /// Parameter [mutationProtection] :
+  /// If enabled, this setting disallows modification or removal of the
+  /// association, to help prevent against accidentally altering DNS firewall
+  /// protections. When you create the association, the default setting is
+  /// <code>DISABLED</code>.
+  ///
+  /// Parameter [tags] :
+  /// A list of the tag keys and values that you want to associate with the rule
+  /// group association.
+  Future<AssociateFirewallRuleGroupResponse> associateFirewallRuleGroup({
+    required String firewallRuleGroupId,
+    required String name,
+    required int priority,
+    required String vpcId,
+    String? creatorRequestId,
+    MutationProtectionStatus? mutationProtection,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(priority, 'priority');
+    ArgumentError.checkNotNull(vpcId, 'vpcId');
+    _s.validateStringLength(
+      'vpcId',
+      vpcId,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'creatorRequestId',
+      creatorRequestId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.AssociateFirewallRuleGroup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupId': firewallRuleGroupId,
+        'Name': name,
+        'Priority': priority,
+        'VpcId': vpcId,
+        'CreatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
+        if (mutationProtection != null)
+          'MutationProtection': mutationProtection.toValue(),
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return AssociateFirewallRuleGroupResponse.fromJson(jsonResponse.body);
+  }
 
   /// Adds IP addresses to an inbound or an outbound Resolver endpoint. If you
   /// want to add more than one IP address, submit one
@@ -259,11 +374,6 @@ class Route53Resolver {
       0,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9\-_' ']+)''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.AssociateResolverRule'
@@ -282,6 +392,313 @@ class Route53Resolver {
     );
 
     return AssociateResolverRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates an empty firewall domain list for use in DNS Firewall rules. You
+  /// can populate the domains for the new list with a file, using
+  /// <a>ImportFirewallDomains</a>, or with domain strings, using
+  /// <a>UpdateFirewallDomains</a>.
+  ///
+  /// May throw [LimitExceededException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [name] :
+  /// A name that lets you identify the domain list to manage and use it.
+  ///
+  /// Parameter [creatorRequestId] :
+  /// A unique string that identifies the request and that allows you to retry
+  /// failed requests without the risk of running the operation twice.
+  /// <code>CreatorRequestId</code> can be any unique string, for example, a
+  /// date/time stamp.
+  ///
+  /// Parameter [tags] :
+  /// A list of the tag keys and values that you want to associate with the
+  /// domain list.
+  Future<CreateFirewallDomainListResponse> createFirewallDomainList({
+    required String name,
+    String? creatorRequestId,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'creatorRequestId',
+      creatorRequestId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.CreateFirewallDomainList'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+        'CreatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return CreateFirewallDomainListResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a single DNS Firewall rule in the specified rule group, using the
+  /// specified domain list.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [LimitExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [action] :
+  /// The action that DNS Firewall should take on a DNS query when it matches
+  /// one of the domains in the rule's domain list:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW</code> - Permit the request to go through.
+  /// </li>
+  /// <li>
+  /// <code>ALERT</code> - Permit the request and send metrics and logs to Cloud
+  /// Watch.
+  /// </li>
+  /// <li>
+  /// <code>BLOCK</code> - Disallow the request. This option requires additional
+  /// details in the rule's <code>BlockResponse</code>.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list that you want to use in the rule.
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group where you want to create
+  /// the rule.
+  ///
+  /// Parameter [name] :
+  /// A name that lets you identify the rule in the rule group.
+  ///
+  /// Parameter [priority] :
+  /// The setting that determines the processing order of the rule in the rule
+  /// group. DNS Firewall processes the rules in a rule group by order of
+  /// priority, starting from the lowest setting.
+  ///
+  /// You must specify a unique priority for each rule in a rule group. To make
+  /// it easier to insert rules later, leave space between the numbers, for
+  /// example, use 100, 200, and so on. You can change the priority setting for
+  /// the rules in a rule group at any time.
+  ///
+  /// Parameter [blockOverrideDnsType] :
+  /// The DNS record's type. This determines the format of the record value that
+  /// you provided in <code>BlockOverrideDomain</code>. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  ///
+  /// This setting is required if the <code>BlockResponse</code> setting is
+  /// <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockOverrideDomain] :
+  /// The custom DNS record to send back in response to the query. Used for the
+  /// rule action <code>BLOCK</code> with a <code>BlockResponse</code> setting
+  /// of <code>OVERRIDE</code>.
+  ///
+  /// This setting is required if the <code>BlockResponse</code> setting is
+  /// <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockOverrideTtl] :
+  /// The recommended amount of time, in seconds, for the DNS resolver or web
+  /// browser to cache the provided override record. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  ///
+  /// This setting is required if the <code>BlockResponse</code> setting is
+  /// <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockResponse] :
+  /// The way that you want DNS Firewall to block the request, used with the
+  /// rule action setting <code>BLOCK</code>.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NODATA</code> - Respond indicating that the query was successful,
+  /// but no response is available for it.
+  /// </li>
+  /// <li>
+  /// <code>NXDOMAIN</code> - Respond indicating that the domain name that's in
+  /// the query doesn't exist.
+  /// </li>
+  /// <li>
+  /// <code>OVERRIDE</code> - Provide a custom override in the response. This
+  /// option requires custom handling details in the rule's
+  /// <code>BlockOverride*</code> settings.
+  /// </li>
+  /// </ul>
+  /// This setting is required if the rule action setting is <code>BLOCK</code>.
+  ///
+  /// Parameter [creatorRequestId] :
+  /// A unique string that identifies the request and that allows you to retry
+  /// failed requests without the risk of running the operation twice.
+  /// <code>CreatorRequestId</code> can be any unique string, for example, a
+  /// date/time stamp.
+  Future<CreateFirewallRuleResponse> createFirewallRule({
+    required Action action,
+    required String firewallDomainListId,
+    required String firewallRuleGroupId,
+    required String name,
+    required int priority,
+    BlockOverrideDnsType? blockOverrideDnsType,
+    String? blockOverrideDomain,
+    int? blockOverrideTtl,
+    BlockResponse? blockResponse,
+    String? creatorRequestId,
+  }) async {
+    ArgumentError.checkNotNull(action, 'action');
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(priority, 'priority');
+    _s.validateStringLength(
+      'blockOverrideDomain',
+      blockOverrideDomain,
+      1,
+      255,
+    );
+    _s.validateNumRange(
+      'blockOverrideTtl',
+      blockOverrideTtl,
+      0,
+      604800,
+    );
+    _s.validateStringLength(
+      'creatorRequestId',
+      creatorRequestId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.CreateFirewallRule'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Action': action.toValue(),
+        'FirewallDomainListId': firewallDomainListId,
+        'FirewallRuleGroupId': firewallRuleGroupId,
+        'Name': name,
+        'Priority': priority,
+        if (blockOverrideDnsType != null)
+          'BlockOverrideDnsType': blockOverrideDnsType.toValue(),
+        if (blockOverrideDomain != null)
+          'BlockOverrideDomain': blockOverrideDomain,
+        if (blockOverrideTtl != null) 'BlockOverrideTtl': blockOverrideTtl,
+        if (blockResponse != null) 'BlockResponse': blockResponse.toValue(),
+        'CreatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
+      },
+    );
+
+    return CreateFirewallRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates an empty DNS Firewall rule group for filtering DNS network traffic
+  /// in a VPC. You can add rules to the new rule group by calling
+  /// <a>CreateFirewallRule</a>.
+  ///
+  /// May throw [LimitExceededException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [name] :
+  /// A name that lets you identify the rule group, to manage and use it.
+  ///
+  /// Parameter [creatorRequestId] :
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice.
+  /// This can be any unique string, for example, a timestamp.
+  ///
+  /// Parameter [tags] :
+  /// A list of the tag keys and values that you want to associate with the rule
+  /// group.
+  Future<CreateFirewallRuleGroupResponse> createFirewallRuleGroup({
+    required String name,
+    String? creatorRequestId,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'creatorRequestId',
+      creatorRequestId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.CreateFirewallRuleGroup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+        'CreatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return CreateFirewallRuleGroupResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates a Resolver endpoint. There are two types of Resolver endpoints,
@@ -308,7 +725,7 @@ class Route53Resolver {
   ///
   /// Parameter [creatorRequestId] :
   /// A unique string that identifies the request and that allows failed
-  /// requests to be retried without the risk of executing the operation twice.
+  /// requests to be retried without the risk of running the operation twice.
   /// <code>CreatorRequestId</code> can be any unique string, for example, a
   /// date/time stamp.
   ///
@@ -370,11 +787,6 @@ class Route53Resolver {
       name,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9\-_' ']+)''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -452,11 +864,11 @@ class Route53Resolver {
   /// </ul>
   ///
   /// Parameter [name] :
-  /// The name that you want to give the query logging configuration
+  /// The name that you want to give the query logging configuration.
   ///
   /// Parameter [creatorRequestId] :
   /// A unique string that identifies the request and that allows failed
-  /// requests to be retried without the risk of executing the operation twice.
+  /// requests to be retried without the risk of running the operation twice.
   /// <code>CreatorRequestId</code> can be any unique string, for example, a
   /// date/time stamp.
   ///
@@ -483,12 +895,6 @@ class Route53Resolver {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9\-_' ']+)''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -534,7 +940,7 @@ class Route53Resolver {
   ///
   /// Parameter [creatorRequestId] :
   /// A unique string that identifies the request and that allows failed
-  /// requests to be retried without the risk of executing the operation twice.
+  /// requests to be retried without the risk of running the operation twice.
   /// <code>CreatorRequestId</code> can be any unique string, for example, a
   /// date/time stamp.
   ///
@@ -576,7 +982,7 @@ class Route53Resolver {
   ///
   /// Parameter [targetIps] :
   /// The IPs that you want Resolver to forward DNS queries to. You can specify
-  /// only IPv4 addresses. Separate IP addresses with a comma.
+  /// only IPv4 addresses. Separate IP addresses with a space.
   ///
   /// <code>TargetIps</code> is available only when the value of <code>Rule
   /// type</code> is <code>FORWARD</code>.
@@ -612,11 +1018,6 @@ class Route53Resolver {
       0,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9\-_' ']+)''',
-    );
     _s.validateStringLength(
       'resolverEndpointId',
       resolverEndpointId,
@@ -646,6 +1047,137 @@ class Route53Resolver {
     );
 
     return CreateResolverRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Deletes the specified domain list.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConflictException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list that you want to delete.
+  Future<DeleteFirewallDomainListResponse> deleteFirewallDomainList({
+    required String firewallDomainListId,
+  }) async {
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.DeleteFirewallDomainList'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallDomainListId': firewallDomainListId,
+      },
+    );
+
+    return DeleteFirewallDomainListResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Deletes the specified firewall rule.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list that's used in the rule.
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group that you want to delete
+  /// the rule from.
+  Future<DeleteFirewallRuleResponse> deleteFirewallRule({
+    required String firewallDomainListId,
+    required String firewallRuleGroupId,
+  }) async {
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.DeleteFirewallRule'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallDomainListId': firewallDomainListId,
+        'FirewallRuleGroupId': firewallRuleGroupId,
+      },
+    );
+
+    return DeleteFirewallRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Deletes the specified firewall rule group.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConflictException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group that you want to delete.
+  Future<DeleteFirewallRuleGroupResponse> deleteFirewallRuleGroup({
+    required String firewallRuleGroupId,
+  }) async {
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.DeleteFirewallRuleGroup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupId': firewallRuleGroupId,
+      },
+    );
+
+    return DeleteFirewallRuleGroupResponse.fromJson(jsonResponse.body);
   }
 
   /// Deletes a Resolver endpoint. The effect of deleting a Resolver endpoint
@@ -798,6 +1330,48 @@ class Route53Resolver {
     return DeleteResolverRuleResponse.fromJson(jsonResponse.body);
   }
 
+  /// Disassociates a <a>FirewallRuleGroup</a> from a VPC, to remove DNS
+  /// filtering from the VPC.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupAssociationId] :
+  /// The identifier of the <a>FirewallRuleGroupAssociation</a>.
+  Future<DisassociateFirewallRuleGroupResponse> disassociateFirewallRuleGroup({
+    required String firewallRuleGroupAssociationId,
+  }) async {
+    ArgumentError.checkNotNull(
+        firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
+    _s.validateStringLength(
+      'firewallRuleGroupAssociationId',
+      firewallRuleGroupAssociationId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.DisassociateFirewallRuleGroup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupAssociationId': firewallRuleGroupAssociationId,
+      },
+    );
+
+    return DisassociateFirewallRuleGroupResponse.fromJson(jsonResponse.body);
+  }
+
   /// Removes IP addresses from an inbound or an outbound Resolver endpoint. If
   /// you want to remove more than one IP address, submit one
   /// <code>DisassociateResolverEndpointIpAddress</code> request for each IP
@@ -856,9 +1430,10 @@ class Route53Resolver {
   /// Disassociates a VPC from a query logging configuration.
   /// <note>
   /// Before you can delete a query logging configuration, you must first
-  /// disassociate all VPCs from the configuration. If you used Resource Access
-  /// Manager (RAM) to share a query logging configuration with other accounts,
-  /// VPCs can be disassociated from the configuration in the following ways:
+  /// disassociate all VPCs from the configuration. If you used AWS Resource
+  /// Access Manager (AWS RAM) to share a query logging configuration with other
+  /// accounts, VPCs can be disassociated from the configuration in the
+  /// following ways:
   ///
   /// <ul>
   /// <li>
@@ -981,6 +1556,206 @@ class Route53Resolver {
     );
 
     return DisassociateResolverRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the configuration of the firewall behavior provided by DNS
+  /// Firewall for a single VPC from Amazon Virtual Private Cloud (Amazon VPC).
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [resourceId] :
+  /// The ID of the VPC from Amazon VPC that the configuration is for.
+  Future<GetFirewallConfigResponse> getFirewallConfig({
+    required String resourceId,
+  }) async {
+    ArgumentError.checkNotNull(resourceId, 'resourceId');
+    _s.validateStringLength(
+      'resourceId',
+      resourceId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.GetFirewallConfig'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceId': resourceId,
+      },
+    );
+
+    return GetFirewallConfigResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the specified firewall domain list.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list.
+  Future<GetFirewallDomainListResponse> getFirewallDomainList({
+    required String firewallDomainListId,
+  }) async {
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.GetFirewallDomainList'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallDomainListId': firewallDomainListId,
+      },
+    );
+
+    return GetFirewallDomainListResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the specified firewall rule group.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group.
+  Future<GetFirewallRuleGroupResponse> getFirewallRuleGroup({
+    required String firewallRuleGroupId,
+  }) async {
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupId': firewallRuleGroupId,
+      },
+    );
+
+    return GetFirewallRuleGroupResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves a firewall rule group association, which enables DNS filtering
+  /// for a VPC with one rule group. A VPC can have more than one firewall rule
+  /// group association, and a rule group can be associated with more than one
+  /// VPC.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupAssociationId] :
+  /// The identifier of the <a>FirewallRuleGroupAssociation</a>.
+  Future<GetFirewallRuleGroupAssociationResponse>
+      getFirewallRuleGroupAssociation({
+    required String firewallRuleGroupAssociationId,
+  }) async {
+    ArgumentError.checkNotNull(
+        firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
+    _s.validateStringLength(
+      'firewallRuleGroupAssociationId',
+      firewallRuleGroupAssociationId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroupAssociation'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupAssociationId': firewallRuleGroupAssociationId,
+      },
+    );
+
+    return GetFirewallRuleGroupAssociationResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns the AWS Identity and Access Management (AWS IAM) policy for
+  /// sharing the specified rule group. You can use the policy to share the rule
+  /// group using AWS Resource Access Manager (AWS RAM).
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [arn] :
+  /// The ARN (Amazon Resource Name) for the rule group.
+  Future<GetFirewallRuleGroupPolicyResponse> getFirewallRuleGroupPolicy({
+    required String arn,
+  }) async {
+    ArgumentError.checkNotNull(arn, 'arn');
+    _s.validateStringLength(
+      'arn',
+      arn,
+      1,
+      255,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroupPolicy'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Arn': arn,
+      },
+    );
+
+    return GetFirewallRuleGroupPolicyResponse.fromJson(jsonResponse.body);
   }
 
   /// Gets DNSSEC validation information for a specified resource.
@@ -1320,6 +2095,540 @@ class Route53Resolver {
     );
 
     return GetResolverRulePolicyResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Imports domain names from a file into a domain list, for use in a DNS
+  /// firewall rule group.
+  ///
+  /// Each domain specification in your domain list must satisfy the following
+  /// requirements:
+  ///
+  /// <ul>
+  /// <li>
+  /// It can optionally start with <code>*</code> (asterisk).
+  /// </li>
+  /// <li>
+  /// With the exception of the optional starting asterisk, it must only contain
+  /// the following characters: <code>A-Z</code>, <code>a-z</code>,
+  /// <code>0-9</code>, <code>-</code> (hyphen).
+  /// </li>
+  /// <li>
+  /// It must be from 1-255 characters in length.
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [LimitExceededException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [domainFileUrl] :
+  /// The fully qualified URL or URI of the file stored in Amazon Simple Storage
+  /// Service (Amazon S3) that contains the list of domains to import.
+  ///
+  /// The file must be in an S3 bucket that's in the same Region as your DNS
+  /// Firewall. The file must be a text file and must contain a single domain
+  /// per line.
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list that you want to modify with the import
+  /// operation.
+  ///
+  /// Parameter [operation] :
+  /// What you want DNS Firewall to do with the domains that are listed in the
+  /// file. This must be set to <code>REPLACE</code>, which updates the domain
+  /// list to exactly match the list in the file.
+  Future<ImportFirewallDomainsResponse> importFirewallDomains({
+    required String domainFileUrl,
+    required String firewallDomainListId,
+    required FirewallDomainImportOperation operation,
+  }) async {
+    ArgumentError.checkNotNull(domainFileUrl, 'domainFileUrl');
+    _s.validateStringLength(
+      'domainFileUrl',
+      domainFileUrl,
+      1,
+      1024,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(operation, 'operation');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ImportFirewallDomains'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'DomainFileUrl': domainFileUrl,
+        'FirewallDomainListId': firewallDomainListId,
+        'Operation': operation.toValue(),
+      },
+    );
+
+    return ImportFirewallDomainsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the firewall configurations that you have defined. DNS Firewall
+  /// uses the configurations to manage firewall behavior for your VPCs.
+  ///
+  /// A single call might return only a partial list of the configurations. For
+  /// information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  Future<ListFirewallConfigsResponse> listFirewallConfigs({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      5,
+      10,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallConfigs'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListFirewallConfigsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the firewall domain lists that you have defined. For each
+  /// firewall domain list, you can retrieve the domains that are defined for a
+  /// list by calling <a>ListFirewallDomains</a>.
+  ///
+  /// A single call to this list operation might return only a partial list of
+  /// the domain lists. For information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  Future<ListFirewallDomainListsResponse> listFirewallDomainLists({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallDomainLists'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListFirewallDomainListsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the domains that you have defined for the specified firewall
+  /// domain list.
+  ///
+  /// A single call might return only a partial list of the domains. For
+  /// information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list whose domains you want to retrieve.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  Future<ListFirewallDomainsResponse> listFirewallDomains({
+    required String firewallDomainListId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      5000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallDomains'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallDomainListId': firewallDomainListId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListFirewallDomainsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the firewall rule group associations that you have defined. Each
+  /// association enables DNS filtering for a VPC with one rule group.
+  ///
+  /// A single call might return only a partial list of the associations. For
+  /// information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group that you want to retrieve
+  /// the associations for. Leave this blank to retrieve associations for any
+  /// rule group.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  ///
+  /// Parameter [priority] :
+  /// The setting that determines the processing order of the rule group among
+  /// the rule groups that are associated with a single VPC. DNS Firewall
+  /// filters VPC traffic starting from the rule group with the lowest numeric
+  /// priority setting.
+  ///
+  /// Parameter [status] :
+  /// The association <code>Status</code> setting that you want DNS Firewall to
+  /// filter on for the list. If you don't specify this, then DNS Firewall
+  /// returns all associations, regardless of status.
+  ///
+  /// Parameter [vpcId] :
+  /// The unique identifier of the VPC that you want to retrieve the
+  /// associations for. Leave this blank to retrieve associations for any VPC.
+  Future<ListFirewallRuleGroupAssociationsResponse>
+      listFirewallRuleGroupAssociations({
+    String? firewallRuleGroupId,
+    int? maxResults,
+    String? nextToken,
+    int? priority,
+    FirewallRuleGroupAssociationStatus? status,
+    String? vpcId,
+  }) async {
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'vpcId',
+      vpcId,
+      1,
+      64,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallRuleGroupAssociations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (firewallRuleGroupId != null)
+          'FirewallRuleGroupId': firewallRuleGroupId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+        if (priority != null) 'Priority': priority,
+        if (status != null) 'Status': status.toValue(),
+        if (vpcId != null) 'VpcId': vpcId,
+      },
+    );
+
+    return ListFirewallRuleGroupAssociationsResponse.fromJson(
+        jsonResponse.body);
+  }
+
+  /// Retrieves the minimal high-level information for the rule groups that you
+  /// have defined.
+  ///
+  /// A single call might return only a partial list of the rule groups. For
+  /// information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  Future<ListFirewallRuleGroupsResponse> listFirewallRuleGroups({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallRuleGroups'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListFirewallRuleGroupsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the firewall rules that you have defined for the specified
+  /// firewall rule group. DNS Firewall uses the rules in a rule group to filter
+  /// DNS network traffic for a VPC.
+  ///
+  /// A single call might return only a partial list of the rules. For
+  /// information, see <code>MaxResults</code>.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group that you want to retrieve
+  /// the rules for.
+  ///
+  /// Parameter [action] :
+  /// Optional additional filter for the rules to retrieve.
+  ///
+  /// The action that DNS Firewall should take on a DNS query when it matches
+  /// one of the domains in the rule's domain list:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW</code> - Permit the request to go through.
+  /// </li>
+  /// <li>
+  /// <code>ALERT</code> - Permit the request to go through but send an alert to
+  /// the logs.
+  /// </li>
+  /// <li>
+  /// <code>BLOCK</code> - Disallow the request. If this is specified,
+  /// additional handling details are provided in the rule's
+  /// <code>BlockResponse</code> setting.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you want Resolver to return for this
+  /// request. If more objects are available, in the response, Resolver provides
+  /// a <code>NextToken</code> value that you can use in a subsequent call to
+  /// get the next batch of objects.
+  ///
+  /// If you don't specify a value for <code>MaxResults</code>, Resolver returns
+  /// up to 100 objects.
+  ///
+  /// Parameter [nextToken] :
+  /// For the first call to this list request, omit this value.
+  ///
+  /// When you request a list of objects, Resolver returns at most the number of
+  /// objects specified in <code>MaxResults</code>. If more objects are
+  /// available for retrieval, Resolver returns a <code>NextToken</code> value
+  /// in the response. To retrieve the next batch of objects, use the token that
+  /// was returned for the prior request in your next request.
+  ///
+  /// Parameter [priority] :
+  /// Optional additional filter for the rules to retrieve.
+  ///
+  /// The setting that determines the processing order of the rules in a rule
+  /// group. DNS Firewall processes the rules in a rule group by order of
+  /// priority, starting from the lowest setting.
+  Future<ListFirewallRulesResponse> listFirewallRules({
+    required String firewallRuleGroupId,
+    Action? action,
+    int? maxResults,
+    String? nextToken,
+    int? priority,
+  }) async {
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.ListFirewallRules'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupId': firewallRuleGroupId,
+        if (action != null) 'Action': action.toValue(),
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+        if (priority != null) 'Priority': priority,
+      },
+    );
+
+    return ListFirewallRulesResponse.fromJson(jsonResponse.body);
   }
 
   /// Lists the configurations for DNSSEC validation that are associated with
@@ -2030,6 +3339,62 @@ class Route53Resolver {
     return ListTagsForResourceResponse.fromJson(jsonResponse.body);
   }
 
+  /// Attaches an AWS Identity and Access Management (AWS IAM) policy for
+  /// sharing the rule group. You can use the policy to share the rule group
+  /// using AWS Resource Access Manager (AWS RAM).
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [arn] :
+  /// The ARN (Amazon Resource Name) for the rule group that you want to share.
+  ///
+  /// Parameter [firewallRuleGroupPolicy] :
+  /// The AWS Identity and Access Management (AWS IAM) policy to attach to the
+  /// rule group.
+  Future<PutFirewallRuleGroupPolicyResponse> putFirewallRuleGroupPolicy({
+    required String arn,
+    required String firewallRuleGroupPolicy,
+  }) async {
+    ArgumentError.checkNotNull(arn, 'arn');
+    _s.validateStringLength(
+      'arn',
+      arn,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(
+        firewallRuleGroupPolicy, 'firewallRuleGroupPolicy');
+    _s.validateStringLength(
+      'firewallRuleGroupPolicy',
+      firewallRuleGroupPolicy,
+      0,
+      5000,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.PutFirewallRuleGroupPolicy'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Arn': arn,
+        'FirewallRuleGroupPolicy': firewallRuleGroupPolicy,
+      },
+    );
+
+    return PutFirewallRuleGroupPolicyResponse.fromJson(jsonResponse.body);
+  }
+
   /// Specifies an AWS account that you want to share a query logging
   /// configuration with, the query logging configuration that you want to
   /// share, and the operations that you want the account to be able to perform
@@ -2335,6 +3700,386 @@ class Route53Resolver {
     );
   }
 
+  /// Updates the configuration of the firewall behavior provided by DNS
+  /// Firewall for a single VPC from Amazon Virtual Private Cloud (Amazon VPC).
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallFailOpen] :
+  /// Determines how Route 53 Resolver handles queries during failures, for
+  /// example when all traffic that is sent to DNS Firewall fails to receive a
+  /// reply.
+  ///
+  /// <ul>
+  /// <li>
+  /// By default, fail open is disabled, which means the failure mode is closed.
+  /// This approach favors security over availability. DNS Firewall blocks
+  /// queries that it is unable to evaluate properly.
+  /// </li>
+  /// <li>
+  /// If you enable this option, the failure mode is open. This approach favors
+  /// availability over security. DNS Firewall allows queries to proceed if it
+  /// is unable to properly evaluate them.
+  /// </li>
+  /// </ul>
+  /// This behavior is only enforced for VPCs that have at least one DNS
+  /// Firewall rule group association.
+  ///
+  /// Parameter [resourceId] :
+  /// The ID of the VPC that the configuration is for.
+  Future<UpdateFirewallConfigResponse> updateFirewallConfig({
+    required FirewallFailOpenStatus firewallFailOpen,
+    required String resourceId,
+  }) async {
+    ArgumentError.checkNotNull(firewallFailOpen, 'firewallFailOpen');
+    ArgumentError.checkNotNull(resourceId, 'resourceId');
+    _s.validateStringLength(
+      'resourceId',
+      resourceId,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.UpdateFirewallConfig'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallFailOpen': firewallFailOpen.toValue(),
+        'ResourceId': resourceId,
+      },
+    );
+
+    return UpdateFirewallConfigResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates the firewall domain list from an array of domain specifications.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [LimitExceededException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [domains] :
+  /// A list of domains to use in the update operation.
+  ///
+  /// Each domain specification in your domain list must satisfy the following
+  /// requirements:
+  ///
+  /// <ul>
+  /// <li>
+  /// It can optionally start with <code>*</code> (asterisk).
+  /// </li>
+  /// <li>
+  /// With the exception of the optional starting asterisk, it must only contain
+  /// the following characters: <code>A-Z</code>, <code>a-z</code>,
+  /// <code>0-9</code>, <code>-</code> (hyphen).
+  /// </li>
+  /// <li>
+  /// It must be from 1-255 characters in length.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list whose domains you want to update.
+  ///
+  /// Parameter [operation] :
+  /// What you want DNS Firewall to do with the domains that you are providing:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ADD</code> - Add the domains to the ones that are already in the
+  /// domain list.
+  /// </li>
+  /// <li>
+  /// <code>REMOVE</code> - Search the domain list for the domains and remove
+  /// them from the list.
+  /// </li>
+  /// <li>
+  /// <code>REPLACE</code> - Update the domain list to exactly match the list
+  /// that you are providing.
+  /// </li>
+  /// </ul>
+  Future<UpdateFirewallDomainsResponse> updateFirewallDomains({
+    required List<String> domains,
+    required String firewallDomainListId,
+    required FirewallDomainUpdateOperation operation,
+  }) async {
+    ArgumentError.checkNotNull(domains, 'domains');
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(operation, 'operation');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.UpdateFirewallDomains'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Domains': domains,
+        'FirewallDomainListId': firewallDomainListId,
+        'Operation': operation.toValue(),
+      },
+    );
+
+    return UpdateFirewallDomainsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates the specified firewall rule.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallDomainListId] :
+  /// The ID of the domain list to use in the rule.
+  ///
+  /// Parameter [firewallRuleGroupId] :
+  /// The unique identifier of the firewall rule group for the rule.
+  ///
+  /// Parameter [action] :
+  /// The action that DNS Firewall should take on a DNS query when it matches
+  /// one of the domains in the rule's domain list:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW</code> - Permit the request to go through.
+  /// </li>
+  /// <li>
+  /// <code>ALERT</code> - Permit the request to go through but send an alert to
+  /// the logs.
+  /// </li>
+  /// <li>
+  /// <code>BLOCK</code> - Disallow the request. This option requires additional
+  /// details in the rule's <code>BlockResponse</code>.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [blockOverrideDnsType] :
+  /// The DNS record's type. This determines the format of the record value that
+  /// you provided in <code>BlockOverrideDomain</code>. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockOverrideDomain] :
+  /// The custom DNS record to send back in response to the query. Used for the
+  /// rule action <code>BLOCK</code> with a <code>BlockResponse</code> setting
+  /// of <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockOverrideTtl] :
+  /// The recommended amount of time, in seconds, for the DNS resolver or web
+  /// browser to cache the provided override record. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  ///
+  /// Parameter [blockResponse] :
+  /// The way that you want DNS Firewall to block the request. Used for the rule
+  /// action setting <code>BLOCK</code>.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NODATA</code> - Respond indicating that the query was successful,
+  /// but no response is available for it.
+  /// </li>
+  /// <li>
+  /// <code>NXDOMAIN</code> - Respond indicating that the domain name that's in
+  /// the query doesn't exist.
+  /// </li>
+  /// <li>
+  /// <code>OVERRIDE</code> - Provide a custom override in the response. This
+  /// option requires custom handling details in the rule's
+  /// <code>BlockOverride*</code> settings.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [name] :
+  /// The name of the rule.
+  ///
+  /// Parameter [priority] :
+  /// The setting that determines the processing order of the rule in the rule
+  /// group. DNS Firewall processes the rules in a rule group by order of
+  /// priority, starting from the lowest setting.
+  ///
+  /// You must specify a unique priority for each rule in a rule group. To make
+  /// it easier to insert rules later, leave space between the numbers, for
+  /// example, use 100, 200, and so on. You can change the priority setting for
+  /// the rules in a rule group at any time.
+  Future<UpdateFirewallRuleResponse> updateFirewallRule({
+    required String firewallDomainListId,
+    required String firewallRuleGroupId,
+    Action? action,
+    BlockOverrideDnsType? blockOverrideDnsType,
+    String? blockOverrideDomain,
+    int? blockOverrideTtl,
+    BlockResponse? blockResponse,
+    String? name,
+    int? priority,
+  }) async {
+    ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
+    _s.validateStringLength(
+      'firewallDomainListId',
+      firewallDomainListId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
+    _s.validateStringLength(
+      'firewallRuleGroupId',
+      firewallRuleGroupId,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'blockOverrideDomain',
+      blockOverrideDomain,
+      1,
+      255,
+    );
+    _s.validateNumRange(
+      'blockOverrideTtl',
+      blockOverrideTtl,
+      0,
+      604800,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.UpdateFirewallRule'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallDomainListId': firewallDomainListId,
+        'FirewallRuleGroupId': firewallRuleGroupId,
+        if (action != null) 'Action': action.toValue(),
+        if (blockOverrideDnsType != null)
+          'BlockOverrideDnsType': blockOverrideDnsType.toValue(),
+        if (blockOverrideDomain != null)
+          'BlockOverrideDomain': blockOverrideDomain,
+        if (blockOverrideTtl != null) 'BlockOverrideTtl': blockOverrideTtl,
+        if (blockResponse != null) 'BlockResponse': blockResponse.toValue(),
+        if (name != null) 'Name': name,
+        if (priority != null) 'Priority': priority,
+      },
+    );
+
+    return UpdateFirewallRuleResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Changes the association of a <a>FirewallRuleGroup</a> with a VPC. The
+  /// association enables DNS filtering for the VPC.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServiceErrorException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [firewallRuleGroupAssociationId] :
+  /// The identifier of the <a>FirewallRuleGroupAssociation</a>.
+  ///
+  /// Parameter [mutationProtection] :
+  /// If enabled, this setting disallows modification or removal of the
+  /// association, to help prevent against accidentally altering DNS firewall
+  /// protections.
+  ///
+  /// Parameter [name] :
+  /// The name of the rule group association.
+  ///
+  /// Parameter [priority] :
+  /// The setting that determines the processing order of the rule group among
+  /// the rule groups that you associate with the specified VPC. DNS Firewall
+  /// filters VPC traffic starting from the rule group with the lowest numeric
+  /// priority setting.
+  ///
+  /// You must specify a unique priority for each rule group that you associate
+  /// with a single VPC. To make it easier to insert rule groups later, leave
+  /// space between the numbers, for example, use 100, 200, and so on. You can
+  /// change the priority setting for a rule group association after you create
+  /// it.
+  Future<UpdateFirewallRuleGroupAssociationResponse>
+      updateFirewallRuleGroupAssociation({
+    required String firewallRuleGroupAssociationId,
+    MutationProtectionStatus? mutationProtection,
+    String? name,
+    int? priority,
+  }) async {
+    ArgumentError.checkNotNull(
+        firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
+    _s.validateStringLength(
+      'firewallRuleGroupAssociationId',
+      firewallRuleGroupAssociationId,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      64,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Route53Resolver.UpdateFirewallRuleGroupAssociation'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FirewallRuleGroupAssociationId': firewallRuleGroupAssociationId,
+        if (mutationProtection != null)
+          'MutationProtection': mutationProtection.toValue(),
+        if (name != null) 'Name': name,
+        if (priority != null) 'Priority': priority,
+      },
+    );
+
+    return UpdateFirewallRuleGroupAssociationResponse.fromJson(
+        jsonResponse.body);
+  }
+
   /// Updates an existing DNSSEC validation configuration. If there is no
   /// existing DNSSEC validation configuration, one is created.
   ///
@@ -2416,11 +4161,6 @@ class Route53Resolver {
       0,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^[0-9]+$)([a-zA-Z0-9\-_' ']+)''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateResolverEndpoint'
@@ -2490,6 +4230,58 @@ class Route53Resolver {
   }
 }
 
+enum Action {
+  allow,
+  block,
+  alert,
+}
+
+extension on Action {
+  String toValue() {
+    switch (this) {
+      case Action.allow:
+        return 'ALLOW';
+      case Action.block:
+        return 'BLOCK';
+      case Action.alert:
+        return 'ALERT';
+    }
+  }
+}
+
+extension on String {
+  Action toAction() {
+    switch (this) {
+      case 'ALLOW':
+        return Action.allow;
+      case 'BLOCK':
+        return Action.block;
+      case 'ALERT':
+        return Action.alert;
+    }
+    throw Exception('$this is not known in enum Action');
+  }
+}
+
+class AssociateFirewallRuleGroupResponse {
+  /// The association that you just created. The association has an ID that you
+  /// can use to identify it in other requests, like update and delete.
+  final FirewallRuleGroupAssociation? firewallRuleGroupAssociation;
+
+  AssociateFirewallRuleGroupResponse({
+    this.firewallRuleGroupAssociation,
+  });
+  factory AssociateFirewallRuleGroupResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateFirewallRuleGroupResponse(
+      firewallRuleGroupAssociation: json['FirewallRuleGroupAssociation'] != null
+          ? FirewallRuleGroupAssociation.fromJson(
+              json['FirewallRuleGroupAssociation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class AssociateResolverEndpointIpAddressResponse {
   /// The response to an <code>AssociateResolverEndpointIpAddress</code> request.
   final ResolverEndpoint? resolverEndpoint;
@@ -2542,6 +4334,112 @@ class AssociateResolverRuleResponse {
       resolverRuleAssociation: json['ResolverRuleAssociation'] != null
           ? ResolverRuleAssociation.fromJson(
               json['ResolverRuleAssociation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+enum BlockOverrideDnsType {
+  cname,
+}
+
+extension on BlockOverrideDnsType {
+  String toValue() {
+    switch (this) {
+      case BlockOverrideDnsType.cname:
+        return 'CNAME';
+    }
+  }
+}
+
+extension on String {
+  BlockOverrideDnsType toBlockOverrideDnsType() {
+    switch (this) {
+      case 'CNAME':
+        return BlockOverrideDnsType.cname;
+    }
+    throw Exception('$this is not known in enum BlockOverrideDnsType');
+  }
+}
+
+enum BlockResponse {
+  nodata,
+  nxdomain,
+  override,
+}
+
+extension on BlockResponse {
+  String toValue() {
+    switch (this) {
+      case BlockResponse.nodata:
+        return 'NODATA';
+      case BlockResponse.nxdomain:
+        return 'NXDOMAIN';
+      case BlockResponse.override:
+        return 'OVERRIDE';
+    }
+  }
+}
+
+extension on String {
+  BlockResponse toBlockResponse() {
+    switch (this) {
+      case 'NODATA':
+        return BlockResponse.nodata;
+      case 'NXDOMAIN':
+        return BlockResponse.nxdomain;
+      case 'OVERRIDE':
+        return BlockResponse.override;
+    }
+    throw Exception('$this is not known in enum BlockResponse');
+  }
+}
+
+class CreateFirewallDomainListResponse {
+  /// The domain list that you just created.
+  final FirewallDomainList? firewallDomainList;
+
+  CreateFirewallDomainListResponse({
+    this.firewallDomainList,
+  });
+  factory CreateFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
+    return CreateFirewallDomainListResponse(
+      firewallDomainList: json['FirewallDomainList'] != null
+          ? FirewallDomainList.fromJson(
+              json['FirewallDomainList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class CreateFirewallRuleGroupResponse {
+  /// A collection of rules used to filter DNS network traffic.
+  final FirewallRuleGroup? firewallRuleGroup;
+
+  CreateFirewallRuleGroupResponse({
+    this.firewallRuleGroup,
+  });
+  factory CreateFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
+    return CreateFirewallRuleGroupResponse(
+      firewallRuleGroup: json['FirewallRuleGroup'] != null
+          ? FirewallRuleGroup.fromJson(
+              json['FirewallRuleGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class CreateFirewallRuleResponse {
+  /// The firewall rule that you just created.
+  final FirewallRule? firewallRule;
+
+  CreateFirewallRuleResponse({
+    this.firewallRule,
+  });
+  factory CreateFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
+    return CreateFirewallRuleResponse(
+      firewallRule: json['FirewallRule'] != null
+          ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -2601,6 +4499,56 @@ class CreateResolverRuleResponse {
   }
 }
 
+class DeleteFirewallDomainListResponse {
+  /// The domain list that you just deleted.
+  final FirewallDomainList? firewallDomainList;
+
+  DeleteFirewallDomainListResponse({
+    this.firewallDomainList,
+  });
+  factory DeleteFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteFirewallDomainListResponse(
+      firewallDomainList: json['FirewallDomainList'] != null
+          ? FirewallDomainList.fromJson(
+              json['FirewallDomainList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class DeleteFirewallRuleGroupResponse {
+  /// A collection of rules used to filter DNS network traffic.
+  final FirewallRuleGroup? firewallRuleGroup;
+
+  DeleteFirewallRuleGroupResponse({
+    this.firewallRuleGroup,
+  });
+  factory DeleteFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteFirewallRuleGroupResponse(
+      firewallRuleGroup: json['FirewallRuleGroup'] != null
+          ? FirewallRuleGroup.fromJson(
+              json['FirewallRuleGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class DeleteFirewallRuleResponse {
+  /// The specification for the firewall rule that you just deleted.
+  final FirewallRule? firewallRule;
+
+  DeleteFirewallRuleResponse({
+    this.firewallRule,
+  });
+  factory DeleteFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteFirewallRuleResponse(
+      firewallRule: json['FirewallRule'] != null
+          ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class DeleteResolverEndpointResponse {
   /// Information about the <code>DeleteResolverEndpoint</code> request, including
   /// the status of the request.
@@ -2650,6 +4598,24 @@ class DeleteResolverRuleResponse {
     return DeleteResolverRuleResponse(
       resolverRule: json['ResolverRule'] != null
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class DisassociateFirewallRuleGroupResponse {
+  /// The firewall rule group association that you just removed.
+  final FirewallRuleGroupAssociation? firewallRuleGroupAssociation;
+
+  DisassociateFirewallRuleGroupResponse({
+    this.firewallRuleGroupAssociation,
+  });
+  factory DisassociateFirewallRuleGroupResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateFirewallRuleGroupResponse(
+      firewallRuleGroupAssociation: json['FirewallRuleGroupAssociation'] != null
+          ? FirewallRuleGroupAssociation.fromJson(
+              json['FirewallRuleGroupAssociation'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -2988,6 +4954,783 @@ class Filter {
   }
 }
 
+/// Configuration of the firewall behavior provided by DNS Firewall for a single
+/// VPC from Amazon Virtual Private Cloud (Amazon VPC).
+class FirewallConfig {
+  /// Determines how DNS Firewall operates during failures, for example when all
+  /// traffic that is sent to DNS Firewall fails to receive a reply.
+  ///
+  /// <ul>
+  /// <li>
+  /// By default, fail open is disabled, which means the failure mode is closed.
+  /// This approach favors security over availability. DNS Firewall returns a
+  /// failure error when it is unable to properly evaluate a query.
+  /// </li>
+  /// <li>
+  /// If you enable this option, the failure mode is open. This approach favors
+  /// availability over security. DNS Firewall allows queries to proceed if it is
+  /// unable to properly evaluate them.
+  /// </li>
+  /// </ul>
+  /// This behavior is only enforced for VPCs that have at least one DNS Firewall
+  /// rule group association.
+  final FirewallFailOpenStatus? firewallFailOpen;
+
+  /// The ID of the firewall configuration.
+  final String? id;
+
+  /// The AWS account ID of the owner of the VPC that this firewall configuration
+  /// applies to.
+  final String? ownerId;
+
+  /// The ID of the VPC that this firewall configuration applies to.
+  final String? resourceId;
+
+  FirewallConfig({
+    this.firewallFailOpen,
+    this.id,
+    this.ownerId,
+    this.resourceId,
+  });
+  factory FirewallConfig.fromJson(Map<String, dynamic> json) {
+    return FirewallConfig(
+      firewallFailOpen:
+          (json['FirewallFailOpen'] as String?)?.toFirewallFailOpenStatus(),
+      id: json['Id'] as String?,
+      ownerId: json['OwnerId'] as String?,
+      resourceId: json['ResourceId'] as String?,
+    );
+  }
+}
+
+enum FirewallDomainImportOperation {
+  replace,
+}
+
+extension on FirewallDomainImportOperation {
+  String toValue() {
+    switch (this) {
+      case FirewallDomainImportOperation.replace:
+        return 'REPLACE';
+    }
+  }
+}
+
+extension on String {
+  FirewallDomainImportOperation toFirewallDomainImportOperation() {
+    switch (this) {
+      case 'REPLACE':
+        return FirewallDomainImportOperation.replace;
+    }
+    throw Exception('$this is not known in enum FirewallDomainImportOperation');
+  }
+}
+
+/// High-level information about a list of firewall domains for use in a
+/// <a>FirewallRule</a>. This is returned by <a>GetFirewallDomainList</a>.
+///
+/// To retrieve the domains that are defined for this domain list, call
+/// <a>ListFirewallDomains</a>.
+class FirewallDomainList {
+  /// The Amazon Resource Name (ARN) of the firewall domain list.
+  final String? arn;
+
+  /// The date and time that the domain list was created, in Unix time format and
+  /// Coordinated Universal Time (UTC).
+  final String? creationTime;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice. This
+  /// can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The number of domain names that are specified in the domain list.
+  final int? domainCount;
+
+  /// The ID of the domain list.
+  final String? id;
+
+  /// The owner of the list, used only for lists that are not managed by you. For
+  /// example, the managed domain list
+  /// <code>AWSManagedDomainsMalwareDomainList</code> has the managed owner name
+  /// <code>Route 53 Resolver DNS Firewall</code>.
+  final String? managedOwnerName;
+
+  /// The date and time that the domain list was last modified, in Unix time
+  /// format and Coordinated Universal Time (UTC).
+  final String? modificationTime;
+
+  /// The name of the domain list.
+  final String? name;
+
+  /// The status of the domain list.
+  final FirewallDomainListStatus? status;
+
+  /// Additional information about the status of the list, if available.
+  final String? statusMessage;
+
+  FirewallDomainList({
+    this.arn,
+    this.creationTime,
+    this.creatorRequestId,
+    this.domainCount,
+    this.id,
+    this.managedOwnerName,
+    this.modificationTime,
+    this.name,
+    this.status,
+    this.statusMessage,
+  });
+  factory FirewallDomainList.fromJson(Map<String, dynamic> json) {
+    return FirewallDomainList(
+      arn: json['Arn'] as String?,
+      creationTime: json['CreationTime'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      domainCount: json['DomainCount'] as int?,
+      id: json['Id'] as String?,
+      managedOwnerName: json['ManagedOwnerName'] as String?,
+      modificationTime: json['ModificationTime'] as String?,
+      name: json['Name'] as String?,
+      status: (json['Status'] as String?)?.toFirewallDomainListStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+}
+
+/// Minimal high-level information for a firewall domain list. The action
+/// <a>ListFirewallDomainLists</a> returns an array of these objects.
+///
+/// To retrieve full information for a firewall domain list, call
+/// <a>GetFirewallDomainList</a> and <a>ListFirewallDomains</a>.
+class FirewallDomainListMetadata {
+  /// The Amazon Resource Name (ARN) of the firewall domain list metadata.
+  final String? arn;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice. This
+  /// can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The ID of the domain list.
+  final String? id;
+
+  /// The owner of the list, used only for lists that are not managed by you. For
+  /// example, the managed domain list
+  /// <code>AWSManagedDomainsMalwareDomainList</code> has the managed owner name
+  /// <code>Route 53 Resolver DNS Firewall</code>.
+  final String? managedOwnerName;
+
+  /// The name of the domain list.
+  final String? name;
+
+  FirewallDomainListMetadata({
+    this.arn,
+    this.creatorRequestId,
+    this.id,
+    this.managedOwnerName,
+    this.name,
+  });
+  factory FirewallDomainListMetadata.fromJson(Map<String, dynamic> json) {
+    return FirewallDomainListMetadata(
+      arn: json['Arn'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      id: json['Id'] as String?,
+      managedOwnerName: json['ManagedOwnerName'] as String?,
+      name: json['Name'] as String?,
+    );
+  }
+}
+
+enum FirewallDomainListStatus {
+  complete,
+  completeImportFailed,
+  importing,
+  deleting,
+  updating,
+}
+
+extension on FirewallDomainListStatus {
+  String toValue() {
+    switch (this) {
+      case FirewallDomainListStatus.complete:
+        return 'COMPLETE';
+      case FirewallDomainListStatus.completeImportFailed:
+        return 'COMPLETE_IMPORT_FAILED';
+      case FirewallDomainListStatus.importing:
+        return 'IMPORTING';
+      case FirewallDomainListStatus.deleting:
+        return 'DELETING';
+      case FirewallDomainListStatus.updating:
+        return 'UPDATING';
+    }
+  }
+}
+
+extension on String {
+  FirewallDomainListStatus toFirewallDomainListStatus() {
+    switch (this) {
+      case 'COMPLETE':
+        return FirewallDomainListStatus.complete;
+      case 'COMPLETE_IMPORT_FAILED':
+        return FirewallDomainListStatus.completeImportFailed;
+      case 'IMPORTING':
+        return FirewallDomainListStatus.importing;
+      case 'DELETING':
+        return FirewallDomainListStatus.deleting;
+      case 'UPDATING':
+        return FirewallDomainListStatus.updating;
+    }
+    throw Exception('$this is not known in enum FirewallDomainListStatus');
+  }
+}
+
+enum FirewallDomainUpdateOperation {
+  add,
+  remove,
+  replace,
+}
+
+extension on FirewallDomainUpdateOperation {
+  String toValue() {
+    switch (this) {
+      case FirewallDomainUpdateOperation.add:
+        return 'ADD';
+      case FirewallDomainUpdateOperation.remove:
+        return 'REMOVE';
+      case FirewallDomainUpdateOperation.replace:
+        return 'REPLACE';
+    }
+  }
+}
+
+extension on String {
+  FirewallDomainUpdateOperation toFirewallDomainUpdateOperation() {
+    switch (this) {
+      case 'ADD':
+        return FirewallDomainUpdateOperation.add;
+      case 'REMOVE':
+        return FirewallDomainUpdateOperation.remove;
+      case 'REPLACE':
+        return FirewallDomainUpdateOperation.replace;
+    }
+    throw Exception('$this is not known in enum FirewallDomainUpdateOperation');
+  }
+}
+
+enum FirewallFailOpenStatus {
+  enabled,
+  disabled,
+}
+
+extension on FirewallFailOpenStatus {
+  String toValue() {
+    switch (this) {
+      case FirewallFailOpenStatus.enabled:
+        return 'ENABLED';
+      case FirewallFailOpenStatus.disabled:
+        return 'DISABLED';
+    }
+  }
+}
+
+extension on String {
+  FirewallFailOpenStatus toFirewallFailOpenStatus() {
+    switch (this) {
+      case 'ENABLED':
+        return FirewallFailOpenStatus.enabled;
+      case 'DISABLED':
+        return FirewallFailOpenStatus.disabled;
+    }
+    throw Exception('$this is not known in enum FirewallFailOpenStatus');
+  }
+}
+
+/// A single firewall rule in a rule group.
+class FirewallRule {
+  /// The action that DNS Firewall should take on a DNS query when it matches one
+  /// of the domains in the rule's domain list:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW</code> - Permit the request to go through.
+  /// </li>
+  /// <li>
+  /// <code>ALERT</code> - Permit the request to go through but send an alert to
+  /// the logs.
+  /// </li>
+  /// <li>
+  /// <code>BLOCK</code> - Disallow the request. If this is specified, additional
+  /// handling details are provided in the rule's <code>BlockResponse</code>
+  /// setting.
+  /// </li>
+  /// </ul>
+  final Action? action;
+
+  /// The DNS record's type. This determines the format of the record value that
+  /// you provided in <code>BlockOverrideDomain</code>. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  final BlockOverrideDnsType? blockOverrideDnsType;
+
+  /// The custom DNS record to send back in response to the query. Used for the
+  /// rule action <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  final String? blockOverrideDomain;
+
+  /// The recommended amount of time, in seconds, for the DNS resolver or web
+  /// browser to cache the provided override record. Used for the rule action
+  /// <code>BLOCK</code> with a <code>BlockResponse</code> setting of
+  /// <code>OVERRIDE</code>.
+  final int? blockOverrideTtl;
+
+  /// The way that you want DNS Firewall to block the request. Used for the rule
+  /// action setting <code>BLOCK</code>.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NODATA</code> - Respond indicating that the query was successful, but
+  /// no response is available for it.
+  /// </li>
+  /// <li>
+  /// <code>NXDOMAIN</code> - Respond indicating that the domain name that's in
+  /// the query doesn't exist.
+  /// </li>
+  /// <li>
+  /// <code>OVERRIDE</code> - Provide a custom override in the response. This
+  /// option requires custom handling details in the rule's
+  /// <code>BlockOverride*</code> settings.
+  /// </li>
+  /// </ul>
+  final BlockResponse? blockResponse;
+
+  /// The date and time that the rule was created, in Unix time format and
+  /// Coordinated Universal Time (UTC).
+  final String? creationTime;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of executing the operation twice.
+  /// This can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The ID of the domain list that's used in the rule.
+  final String? firewallDomainListId;
+
+  /// The unique identifier of the firewall rule group of the rule.
+  final String? firewallRuleGroupId;
+
+  /// The date and time that the rule was last modified, in Unix time format and
+  /// Coordinated Universal Time (UTC).
+  final String? modificationTime;
+
+  /// The name of the rule.
+  final String? name;
+
+  /// The priority of the rule in the rule group. This value must be unique within
+  /// the rule group. DNS Firewall processes the rules in a rule group by order of
+  /// priority, starting from the lowest setting.
+  final int? priority;
+
+  FirewallRule({
+    this.action,
+    this.blockOverrideDnsType,
+    this.blockOverrideDomain,
+    this.blockOverrideTtl,
+    this.blockResponse,
+    this.creationTime,
+    this.creatorRequestId,
+    this.firewallDomainListId,
+    this.firewallRuleGroupId,
+    this.modificationTime,
+    this.name,
+    this.priority,
+  });
+  factory FirewallRule.fromJson(Map<String, dynamic> json) {
+    return FirewallRule(
+      action: (json['Action'] as String?)?.toAction(),
+      blockOverrideDnsType:
+          (json['BlockOverrideDnsType'] as String?)?.toBlockOverrideDnsType(),
+      blockOverrideDomain: json['BlockOverrideDomain'] as String?,
+      blockOverrideTtl: json['BlockOverrideTtl'] as int?,
+      blockResponse: (json['BlockResponse'] as String?)?.toBlockResponse(),
+      creationTime: json['CreationTime'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      firewallDomainListId: json['FirewallDomainListId'] as String?,
+      firewallRuleGroupId: json['FirewallRuleGroupId'] as String?,
+      modificationTime: json['ModificationTime'] as String?,
+      name: json['Name'] as String?,
+      priority: json['Priority'] as int?,
+    );
+  }
+}
+
+/// High-level information for a firewall rule group. A firewall rule group is a
+/// collection of rules that DNS Firewall uses to filter DNS network traffic for
+/// a VPC. To retrieve the rules for the rule group, call
+/// <a>ListFirewallRules</a>.
+class FirewallRuleGroup {
+  /// The ARN (Amazon Resource Name) of the rule group.
+  final String? arn;
+
+  /// The date and time that the rule group was created, in Unix time format and
+  /// Coordinated Universal Time (UTC).
+  final String? creationTime;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice. This
+  /// can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The ID of the rule group.
+  final String? id;
+
+  /// The date and time that the rule group was last modified, in Unix time format
+  /// and Coordinated Universal Time (UTC).
+  final String? modificationTime;
+
+  /// The name of the rule group.
+  final String? name;
+
+  /// The AWS account ID for the account that created the rule group. When a rule
+  /// group is shared with your account, this is the account that has shared the
+  /// rule group with you.
+  final String? ownerId;
+
+  /// The number of rules in the rule group.
+  final int? ruleCount;
+
+  /// Whether the rule group is shared with other AWS accounts, or was shared with
+  /// the current account by another AWS account. Sharing is configured through
+  /// AWS Resource Access Manager (AWS RAM).
+  final ShareStatus? shareStatus;
+
+  /// The status of the domain list.
+  final FirewallRuleGroupStatus? status;
+
+  /// Additional information about the status of the rule group, if available.
+  final String? statusMessage;
+
+  FirewallRuleGroup({
+    this.arn,
+    this.creationTime,
+    this.creatorRequestId,
+    this.id,
+    this.modificationTime,
+    this.name,
+    this.ownerId,
+    this.ruleCount,
+    this.shareStatus,
+    this.status,
+    this.statusMessage,
+  });
+  factory FirewallRuleGroup.fromJson(Map<String, dynamic> json) {
+    return FirewallRuleGroup(
+      arn: json['Arn'] as String?,
+      creationTime: json['CreationTime'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      id: json['Id'] as String?,
+      modificationTime: json['ModificationTime'] as String?,
+      name: json['Name'] as String?,
+      ownerId: json['OwnerId'] as String?,
+      ruleCount: json['RuleCount'] as int?,
+      shareStatus: (json['ShareStatus'] as String?)?.toShareStatus(),
+      status: (json['Status'] as String?)?.toFirewallRuleGroupStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+}
+
+/// An association between a firewall rule group and a VPC, which enables DNS
+/// filtering for the VPC.
+class FirewallRuleGroupAssociation {
+  /// The Amazon Resource Name (ARN) of the firewall rule group association.
+  final String? arn;
+
+  /// The date and time that the association was created, in Unix time format and
+  /// Coordinated Universal Time (UTC).
+  final String? creationTime;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice. This
+  /// can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The unique identifier of the firewall rule group.
+  final String? firewallRuleGroupId;
+
+  /// The identifier for the association.
+  final String? id;
+
+  /// The owner of the association, used only for associations that are not
+  /// managed by you. If you use AWS Firewall Manager to manage your DNS
+  /// Firewalls, then this reports Firewall Manager as the managed owner.
+  final String? managedOwnerName;
+
+  /// The date and time that the association was last modified, in Unix time
+  /// format and Coordinated Universal Time (UTC).
+  final String? modificationTime;
+
+  /// If enabled, this setting disallows modification or removal of the
+  /// association, to help prevent against accidentally altering DNS firewall
+  /// protections.
+  final MutationProtectionStatus? mutationProtection;
+
+  /// The name of the association.
+  final String? name;
+
+  /// The setting that determines the processing order of the rule group among the
+  /// rule groups that are associated with a single VPC. DNS Firewall filters VPC
+  /// traffic starting from rule group with the lowest numeric priority setting.
+  final int? priority;
+
+  /// The current status of the association.
+  final FirewallRuleGroupAssociationStatus? status;
+
+  /// Additional information about the status of the response, if available.
+  final String? statusMessage;
+
+  /// The unique identifier of the VPC that is associated with the rule group.
+  final String? vpcId;
+
+  FirewallRuleGroupAssociation({
+    this.arn,
+    this.creationTime,
+    this.creatorRequestId,
+    this.firewallRuleGroupId,
+    this.id,
+    this.managedOwnerName,
+    this.modificationTime,
+    this.mutationProtection,
+    this.name,
+    this.priority,
+    this.status,
+    this.statusMessage,
+    this.vpcId,
+  });
+  factory FirewallRuleGroupAssociation.fromJson(Map<String, dynamic> json) {
+    return FirewallRuleGroupAssociation(
+      arn: json['Arn'] as String?,
+      creationTime: json['CreationTime'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      firewallRuleGroupId: json['FirewallRuleGroupId'] as String?,
+      id: json['Id'] as String?,
+      managedOwnerName: json['ManagedOwnerName'] as String?,
+      modificationTime: json['ModificationTime'] as String?,
+      mutationProtection:
+          (json['MutationProtection'] as String?)?.toMutationProtectionStatus(),
+      name: json['Name'] as String?,
+      priority: json['Priority'] as int?,
+      status:
+          (json['Status'] as String?)?.toFirewallRuleGroupAssociationStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+}
+
+enum FirewallRuleGroupAssociationStatus {
+  complete,
+  deleting,
+  updating,
+}
+
+extension on FirewallRuleGroupAssociationStatus {
+  String toValue() {
+    switch (this) {
+      case FirewallRuleGroupAssociationStatus.complete:
+        return 'COMPLETE';
+      case FirewallRuleGroupAssociationStatus.deleting:
+        return 'DELETING';
+      case FirewallRuleGroupAssociationStatus.updating:
+        return 'UPDATING';
+    }
+  }
+}
+
+extension on String {
+  FirewallRuleGroupAssociationStatus toFirewallRuleGroupAssociationStatus() {
+    switch (this) {
+      case 'COMPLETE':
+        return FirewallRuleGroupAssociationStatus.complete;
+      case 'DELETING':
+        return FirewallRuleGroupAssociationStatus.deleting;
+      case 'UPDATING':
+        return FirewallRuleGroupAssociationStatus.updating;
+    }
+    throw Exception(
+        '$this is not known in enum FirewallRuleGroupAssociationStatus');
+  }
+}
+
+/// Minimal high-level information for a firewall rule group. The action
+/// <a>ListFirewallRuleGroups</a> returns an array of these objects.
+///
+/// To retrieve full information for a firewall rule group, call
+/// <a>GetFirewallRuleGroup</a> and <a>ListFirewallRules</a>.
+class FirewallRuleGroupMetadata {
+  /// The ARN (Amazon Resource Name) of the rule group.
+  final String? arn;
+
+  /// A unique string defined by you to identify the request. This allows you to
+  /// retry failed requests without the risk of running the operation twice. This
+  /// can be any unique string, for example, a timestamp.
+  final String? creatorRequestId;
+
+  /// The ID of the rule group.
+  final String? id;
+
+  /// The name of the rule group.
+  final String? name;
+
+  /// The AWS account ID for the account that created the rule group. When a rule
+  /// group is shared with your account, this is the account that has shared the
+  /// rule group with you.
+  final String? ownerId;
+
+  /// Whether the rule group is shared with other AWS accounts, or was shared with
+  /// the current account by another AWS account. Sharing is configured through
+  /// AWS Resource Access Manager (AWS RAM).
+  final ShareStatus? shareStatus;
+
+  FirewallRuleGroupMetadata({
+    this.arn,
+    this.creatorRequestId,
+    this.id,
+    this.name,
+    this.ownerId,
+    this.shareStatus,
+  });
+  factory FirewallRuleGroupMetadata.fromJson(Map<String, dynamic> json) {
+    return FirewallRuleGroupMetadata(
+      arn: json['Arn'] as String?,
+      creatorRequestId: json['CreatorRequestId'] as String?,
+      id: json['Id'] as String?,
+      name: json['Name'] as String?,
+      ownerId: json['OwnerId'] as String?,
+      shareStatus: (json['ShareStatus'] as String?)?.toShareStatus(),
+    );
+  }
+}
+
+enum FirewallRuleGroupStatus {
+  complete,
+  deleting,
+  updating,
+}
+
+extension on FirewallRuleGroupStatus {
+  String toValue() {
+    switch (this) {
+      case FirewallRuleGroupStatus.complete:
+        return 'COMPLETE';
+      case FirewallRuleGroupStatus.deleting:
+        return 'DELETING';
+      case FirewallRuleGroupStatus.updating:
+        return 'UPDATING';
+    }
+  }
+}
+
+extension on String {
+  FirewallRuleGroupStatus toFirewallRuleGroupStatus() {
+    switch (this) {
+      case 'COMPLETE':
+        return FirewallRuleGroupStatus.complete;
+      case 'DELETING':
+        return FirewallRuleGroupStatus.deleting;
+      case 'UPDATING':
+        return FirewallRuleGroupStatus.updating;
+    }
+    throw Exception('$this is not known in enum FirewallRuleGroupStatus');
+  }
+}
+
+class GetFirewallConfigResponse {
+  /// Configuration of the firewall behavior provided by DNS Firewall for a single
+  /// VPC from AmazonVPC.
+  final FirewallConfig? firewallConfig;
+
+  GetFirewallConfigResponse({
+    this.firewallConfig,
+  });
+  factory GetFirewallConfigResponse.fromJson(Map<String, dynamic> json) {
+    return GetFirewallConfigResponse(
+      firewallConfig: json['FirewallConfig'] != null
+          ? FirewallConfig.fromJson(
+              json['FirewallConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetFirewallDomainListResponse {
+  /// The domain list that you requested.
+  final FirewallDomainList? firewallDomainList;
+
+  GetFirewallDomainListResponse({
+    this.firewallDomainList,
+  });
+  factory GetFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
+    return GetFirewallDomainListResponse(
+      firewallDomainList: json['FirewallDomainList'] != null
+          ? FirewallDomainList.fromJson(
+              json['FirewallDomainList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetFirewallRuleGroupAssociationResponse {
+  /// The association that you requested.
+  final FirewallRuleGroupAssociation? firewallRuleGroupAssociation;
+
+  GetFirewallRuleGroupAssociationResponse({
+    this.firewallRuleGroupAssociation,
+  });
+  factory GetFirewallRuleGroupAssociationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetFirewallRuleGroupAssociationResponse(
+      firewallRuleGroupAssociation: json['FirewallRuleGroupAssociation'] != null
+          ? FirewallRuleGroupAssociation.fromJson(
+              json['FirewallRuleGroupAssociation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetFirewallRuleGroupPolicyResponse {
+  /// The AWS Identity and Access Management (AWS IAM) policy for sharing the
+  /// specified rule group. You can use the policy to share the rule group using
+  /// AWS Resource Access Manager (AWS RAM).
+  final String? firewallRuleGroupPolicy;
+
+  GetFirewallRuleGroupPolicyResponse({
+    this.firewallRuleGroupPolicy,
+  });
+  factory GetFirewallRuleGroupPolicyResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetFirewallRuleGroupPolicyResponse(
+      firewallRuleGroupPolicy: json['FirewallRuleGroupPolicy'] as String?,
+    );
+  }
+}
+
+class GetFirewallRuleGroupResponse {
+  /// A collection of rules used to filter DNS network traffic.
+  final FirewallRuleGroup? firewallRuleGroup;
+
+  GetFirewallRuleGroupResponse({
+    this.firewallRuleGroup,
+  });
+  factory GetFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
+    return GetFirewallRuleGroupResponse(
+      firewallRuleGroup: json['FirewallRuleGroup'] != null
+          ? FirewallRuleGroup.fromJson(
+              json['FirewallRuleGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class GetResolverDnssecConfigResponse {
   /// The information about a configuration for DNSSEC validation.
   final ResolverDnssecConfig? resolverDNSSECConfig;
@@ -3128,6 +5871,35 @@ class GetResolverRuleResponse {
       resolverRule: json['ResolverRule'] != null
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
           : null,
+    );
+  }
+}
+
+class ImportFirewallDomainsResponse {
+  /// The Id of the firewall domain list that DNS Firewall just updated.
+  final String? id;
+
+  /// The name of the domain list.
+  final String? name;
+
+  ///
+  final FirewallDomainListStatus? status;
+
+  /// Additional information about the status of the list, if available.
+  final String? statusMessage;
+
+  ImportFirewallDomainsResponse({
+    this.id,
+    this.name,
+    this.status,
+    this.statusMessage,
+  });
+  factory ImportFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
+    return ImportFirewallDomainsResponse(
+      id: json['Id'] as String?,
+      name: json['Name'] as String?,
+      status: (json['Status'] as String?)?.toFirewallDomainListStatus(),
+      statusMessage: json['StatusMessage'] as String?,
     );
   }
 }
@@ -3309,6 +6081,171 @@ class IpAddressUpdate {
       if (ipId != null) 'IpId': ipId,
       if (subnetId != null) 'SubnetId': subnetId,
     };
+  }
+}
+
+class ListFirewallConfigsResponse {
+  /// The configurations for the firewall behavior provided by DNS Firewall for
+  /// VPCs from Amazon Virtual Private Cloud (Amazon VPC).
+  final List<FirewallConfig>? firewallConfigs;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallConfigsResponse({
+    this.firewallConfigs,
+    this.nextToken,
+  });
+  factory ListFirewallConfigsResponse.fromJson(Map<String, dynamic> json) {
+    return ListFirewallConfigsResponse(
+      firewallConfigs: (json['FirewallConfigs'] as List?)
+          ?.whereNotNull()
+          .map((e) => FirewallConfig.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListFirewallDomainListsResponse {
+  /// A list of the domain lists that you have defined.
+  ///
+  /// This might be a partial list of the domain lists that you've defined. For
+  /// information, see <code>MaxResults</code>.
+  final List<FirewallDomainListMetadata>? firewallDomainLists;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallDomainListsResponse({
+    this.firewallDomainLists,
+    this.nextToken,
+  });
+  factory ListFirewallDomainListsResponse.fromJson(Map<String, dynamic> json) {
+    return ListFirewallDomainListsResponse(
+      firewallDomainLists: (json['FirewallDomainLists'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              FirewallDomainListMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListFirewallDomainsResponse {
+  /// A list of the domains in the firewall domain list.
+  ///
+  /// This might be a partial list of the domains that you've defined in the
+  /// domain list. For information, see <code>MaxResults</code>.
+  final List<String>? domains;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallDomainsResponse({
+    this.domains,
+    this.nextToken,
+  });
+  factory ListFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
+    return ListFirewallDomainsResponse(
+      domains: (json['Domains'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListFirewallRuleGroupAssociationsResponse {
+  /// A list of your firewall rule group associations.
+  ///
+  /// This might be a partial list of the associations that you have defined. For
+  /// information, see <code>MaxResults</code>.
+  final List<FirewallRuleGroupAssociation>? firewallRuleGroupAssociations;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallRuleGroupAssociationsResponse({
+    this.firewallRuleGroupAssociations,
+    this.nextToken,
+  });
+  factory ListFirewallRuleGroupAssociationsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListFirewallRuleGroupAssociationsResponse(
+      firewallRuleGroupAssociations: (json['FirewallRuleGroupAssociations']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              FirewallRuleGroupAssociation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListFirewallRuleGroupsResponse {
+  /// A list of your firewall rule groups.
+  ///
+  /// This might be a partial list of the rule groups that you have defined. For
+  /// information, see <code>MaxResults</code>.
+  final List<FirewallRuleGroupMetadata>? firewallRuleGroups;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallRuleGroupsResponse({
+    this.firewallRuleGroups,
+    this.nextToken,
+  });
+  factory ListFirewallRuleGroupsResponse.fromJson(Map<String, dynamic> json) {
+    return ListFirewallRuleGroupsResponse(
+      firewallRuleGroups: (json['FirewallRuleGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              FirewallRuleGroupMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListFirewallRulesResponse {
+  /// A list of the rules that you have defined.
+  ///
+  /// This might be a partial list of the firewall rules that you've defined. For
+  /// information, see <code>MaxResults</code>.
+  final List<FirewallRule>? firewallRules;
+
+  /// If objects are still available for retrieval, Resolver returns this token in
+  /// the response. To retrieve the next batch of objects, provide this token in
+  /// your next request.
+  final String? nextToken;
+
+  ListFirewallRulesResponse({
+    this.firewallRules,
+    this.nextToken,
+  });
+  factory ListFirewallRulesResponse.fromJson(Map<String, dynamic> json) {
+    return ListFirewallRulesResponse(
+      firewallRules: (json['FirewallRules'] as List?)
+          ?.whereNotNull()
+          .map((e) => FirewallRule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
   }
 }
 
@@ -3598,6 +6535,49 @@ class ListTagsForResourceResponse {
   }
 }
 
+enum MutationProtectionStatus {
+  enabled,
+  disabled,
+}
+
+extension on MutationProtectionStatus {
+  String toValue() {
+    switch (this) {
+      case MutationProtectionStatus.enabled:
+        return 'ENABLED';
+      case MutationProtectionStatus.disabled:
+        return 'DISABLED';
+    }
+  }
+}
+
+extension on String {
+  MutationProtectionStatus toMutationProtectionStatus() {
+    switch (this) {
+      case 'ENABLED':
+        return MutationProtectionStatus.enabled;
+      case 'DISABLED':
+        return MutationProtectionStatus.disabled;
+    }
+    throw Exception('$this is not known in enum MutationProtectionStatus');
+  }
+}
+
+class PutFirewallRuleGroupPolicyResponse {
+  /// <p/>
+  final bool? returnValue;
+
+  PutFirewallRuleGroupPolicyResponse({
+    this.returnValue,
+  });
+  factory PutFirewallRuleGroupPolicyResponse.fromJson(
+      Map<String, dynamic> json) {
+    return PutFirewallRuleGroupPolicyResponse(
+      returnValue: json['ReturnValue'] as bool?,
+    );
+  }
+}
+
 /// The response to a <code>PutResolverQueryLogConfigPolicy</code> request.
 class PutResolverQueryLogConfigPolicyResponse {
   /// Whether the <code>PutResolverQueryLogConfigPolicy</code> request was
@@ -3741,7 +6721,7 @@ class ResolverEndpoint {
 
   /// A unique string that identifies the request that created the Resolver
   /// endpoint. The <code>CreatorRequestId</code> allows failed requests to be
-  /// retried without the risk of executing the operation twice.
+  /// retried without the risk of running the operation twice.
   final String? creatorRequestId;
 
   /// Indicates whether the Resolver endpoint allows inbound or outbound DNS
@@ -3973,7 +6953,7 @@ class ResolverQueryLogConfig {
 
   /// A unique string that identifies the request that created the query logging
   /// configuration. The <code>CreatorRequestId</code> allows failed requests to
-  /// be retried without the risk of executing the operation twice.
+  /// be retried without the risk of running the operation twice.
   final String? creatorRequestId;
 
   /// The ARN of the resource that you want Resolver to send query logs: an Amazon
@@ -4297,7 +7277,7 @@ class ResolverRule {
 
   /// A unique string that you specified when you created the Resolver rule.
   /// <code>CreatorRequestId</code> identifies the request and allows failed
-  /// requests to be retried without the risk of executing the operation twice.
+  /// requests to be retried without the risk of running the operation twice.
   final String? creatorRequestId;
 
   /// DNS queries for this domain name are forwarded to the IP addresses that are
@@ -4341,7 +7321,7 @@ class ResolverRule {
   /// <code>RECURSIVE</code> for <code>RuleType</code>.
   final RuleTypeOption? ruleType;
 
-  /// Whether the rules is shared and, if so, whether the current account is
+  /// Whether the rule is shared and, if so, whether the current account is
   /// sharing the rule with another account, or another account is sharing the
   /// rule with the current account.
   final ShareStatus? shareStatus;
@@ -4738,6 +7718,87 @@ class UntagResourceResponse {
   }
 }
 
+class UpdateFirewallConfigResponse {
+  /// Configuration of the firewall behavior provided by DNS Firewall for a single
+  /// VPC.
+  final FirewallConfig? firewallConfig;
+
+  UpdateFirewallConfigResponse({
+    this.firewallConfig,
+  });
+  factory UpdateFirewallConfigResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFirewallConfigResponse(
+      firewallConfig: json['FirewallConfig'] != null
+          ? FirewallConfig.fromJson(
+              json['FirewallConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class UpdateFirewallDomainsResponse {
+  /// The ID of the firewall domain list that DNS Firewall just updated.
+  final String? id;
+
+  /// The name of the domain list.
+  final String? name;
+
+  ///
+  final FirewallDomainListStatus? status;
+
+  /// Additional information about the status of the list, if available.
+  final String? statusMessage;
+
+  UpdateFirewallDomainsResponse({
+    this.id,
+    this.name,
+    this.status,
+    this.statusMessage,
+  });
+  factory UpdateFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFirewallDomainsResponse(
+      id: json['Id'] as String?,
+      name: json['Name'] as String?,
+      status: (json['Status'] as String?)?.toFirewallDomainListStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+}
+
+class UpdateFirewallRuleGroupAssociationResponse {
+  /// The association that you just updated.
+  final FirewallRuleGroupAssociation? firewallRuleGroupAssociation;
+
+  UpdateFirewallRuleGroupAssociationResponse({
+    this.firewallRuleGroupAssociation,
+  });
+  factory UpdateFirewallRuleGroupAssociationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateFirewallRuleGroupAssociationResponse(
+      firewallRuleGroupAssociation: json['FirewallRuleGroupAssociation'] != null
+          ? FirewallRuleGroupAssociation.fromJson(
+              json['FirewallRuleGroupAssociation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class UpdateFirewallRuleResponse {
+  /// The firewall rule that you just updated.
+  final FirewallRule? firewallRule;
+
+  UpdateFirewallRuleResponse({
+    this.firewallRule,
+  });
+  factory UpdateFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFirewallRuleResponse(
+      firewallRule: json['FirewallRule'] != null
+          ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class UpdateResolverDnssecConfigResponse {
   /// A complex type that contains settings for the specified DNSSEC
   /// configuration.
@@ -4823,6 +7884,11 @@ class AccessDeniedException extends _s.GenericAwsException {
       : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
+class ConflictException extends _s.GenericAwsException {
+  ConflictException({String? type, String? message})
+      : super(type: type, code: 'ConflictException', message: message);
+}
+
 class InternalServiceErrorException extends _s.GenericAwsException {
   InternalServiceErrorException({String? type, String? message})
       : super(
@@ -4892,9 +7958,16 @@ class UnknownResourceException extends _s.GenericAwsException {
       : super(type: type, code: 'UnknownResourceException', message: message);
 }
 
+class ValidationException extends _s.GenericAwsException {
+  ValidationException({String? type, String? message})
+      : super(type: type, code: 'ValidationException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'AccessDeniedException': (type, message) =>
       AccessDeniedException(type: type, message: message),
+  'ConflictException': (type, message) =>
+      ConflictException(type: type, message: message),
   'InternalServiceErrorException': (type, message) =>
       InternalServiceErrorException(type: type, message: message),
   'InvalidNextTokenException': (type, message) =>
@@ -4921,4 +7994,6 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ThrottlingException(type: type, message: message),
   'UnknownResourceException': (type, message) =>
       UnknownResourceException(type: type, message: message),
+  'ValidationException': (type, message) =>
+      ValidationException(type: type, message: message),
 };

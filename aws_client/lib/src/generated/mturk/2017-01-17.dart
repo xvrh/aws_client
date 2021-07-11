@@ -134,12 +134,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.ApproveAssignment'
@@ -207,24 +201,12 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
     _s.validateStringLength(
       'workerId',
       workerId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -297,12 +279,6 @@ class MTurk {
       hITId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -497,23 +473,12 @@ class MTurk {
     ArgumentError.checkNotNull(description, 'description');
     ArgumentError.checkNotNull(lifetimeInSeconds, 'lifetimeInSeconds');
     ArgumentError.checkNotNull(reward, 'reward');
-    _s.validateStringPattern(
-      'reward',
-      reward,
-      r'''^[0-9]+(\.)?[0-9]{0,2}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(title, 'title');
     _s.validateStringLength(
       'hITLayoutId',
       hITLayoutId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'hITLayoutId',
-      hITLayoutId,
-      r'''^[A-Z0-9]+$''',
     );
     _s.validateStringLength(
       'uniqueRequestToken',
@@ -621,12 +586,6 @@ class MTurk {
         assignmentDurationInSeconds, 'assignmentDurationInSeconds');
     ArgumentError.checkNotNull(description, 'description');
     ArgumentError.checkNotNull(reward, 'reward');
-    _s.validateStringPattern(
-      'reward',
-      reward,
-      r'''^[0-9]+(\.)?[0-9]{0,2}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(title, 'title');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -768,23 +727,12 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITTypeId',
-      hITTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifetimeInSeconds, 'lifetimeInSeconds');
     _s.validateStringLength(
       'hITLayoutId',
       hITLayoutId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'hITLayoutId',
-      hITLayoutId,
-      r'''^[A-Z0-9]+$''',
     );
     _s.validateStringLength(
       'uniqueRequestToken',
@@ -970,12 +918,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.CreateWorkerBlock'
@@ -1037,12 +979,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.DeleteHIT'
@@ -1090,12 +1026,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.DeleteQualificationType'
@@ -1138,12 +1068,6 @@ class MTurk {
       workerId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1194,24 +1118,12 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
     _s.validateStringLength(
       'workerId',
       workerId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1233,8 +1145,13 @@ class MTurk {
     );
   }
 
-  /// The <code>GetAccountBalance</code> operation retrieves the amount of money
-  /// in your Amazon Mechanical Turk account.
+  /// The <code>GetAccountBalance</code> operation retrieves the Prepaid HITs
+  /// balance in your Amazon Mechanical Turk account if you are a Prepaid
+  /// Requester. Alternatively, this operation will retrieve the remaining
+  /// available AWS Billing usage if you have enabled AWS Billing. Note: If you
+  /// have enabled AWS Billing and still have a remaining Prepaid HITs balance,
+  /// this balance can be viewed on the My Account page in the Requester
+  /// console.
   ///
   /// May throw [ServiceFault].
   /// May throw [RequestError].
@@ -1271,12 +1188,6 @@ class MTurk {
       assignmentId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1331,12 +1242,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(questionIdentifier, 'questionIdentifier');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1374,12 +1279,6 @@ class MTurk {
       hITId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1430,24 +1329,12 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
     _s.validateStringLength(
       'workerId',
       workerId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1486,12 +1373,6 @@ class MTurk {
       qualificationTypeId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1560,12 +1441,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1632,21 +1507,11 @@ class MTurk {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
-    );
     _s.validateStringLength(
       'hITId',
       hITId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -1755,12 +1620,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1829,11 +1688,6 @@ class MTurk {
       qualificationTypeId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1970,12 +1824,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2044,11 +1892,6 @@ class MTurk {
       hITTypeId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'hITTypeId',
-      hITTypeId,
-      r'''^[A-Z0-9]+$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2157,12 +2000,6 @@ class MTurk {
       qualificationTypeId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2281,12 +2118,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requesterFeedback, 'requesterFeedback');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2395,19 +2226,7 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentId',
-      assignmentId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(bonusAmount, 'bonusAmount');
-    _s.validateStringPattern(
-      'bonusAmount',
-      bonusAmount,
-      r'''^[0-9]+(\.)?[0-9]{0,2}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(reason, 'reason');
     ArgumentError.checkNotNull(workerId, 'workerId');
     _s.validateStringLength(
@@ -2415,12 +2234,6 @@ class MTurk {
       workerId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workerId',
-      workerId,
-      r'''^A[A-Z0-9]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2518,12 +2331,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateExpirationForHIT'
@@ -2576,12 +2383,6 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateHITReviewStatus'
@@ -2625,24 +2426,12 @@ class MTurk {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hITId',
-      hITId,
-      r'''^[A-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hITTypeId, 'hITTypeId');
     _s.validateStringLength(
       'hITTypeId',
       hITTypeId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hITTypeId',
-      hITTypeId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2699,12 +2488,6 @@ class MTurk {
       hITTypeId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hITTypeId',
-      hITTypeId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2829,12 +2612,6 @@ class MTurk {
       qualificationTypeId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'qualificationTypeId',
-      qualificationTypeId,
-      r'''^[A-Z0-9]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4642,23 +4419,6 @@ class RejectQualificationRequestResponse {
   }
 }
 
-/// Your request is invalid.
-class RequestError implements _s.AwsException {
-  final String? message;
-  final String? turkErrorCode;
-
-  RequestError({
-    this.message,
-    this.turkErrorCode,
-  });
-  factory RequestError.fromJson(Map<String, dynamic> json) {
-    return RequestError(
-      message: json['Message'] as String?,
-      turkErrorCode: json['TurkErrorCode'] as String?,
-    );
-  }
-}
-
 /// Both the AssignmentReviewReport and the HITReviewReport elements contains
 /// the ReviewActionDetail data structure. This structure is returned multiple
 /// times for each action specified in the Review Policy.
@@ -4933,24 +4693,6 @@ class SendTestEventNotificationResponse {
   }
 }
 
-/// Amazon Mechanical Turk is temporarily unable to process your request. Try
-/// your call again.
-class ServiceFault implements _s.AwsException {
-  final String? message;
-  final String? turkErrorCode;
-
-  ServiceFault({
-    this.message,
-    this.turkErrorCode,
-  });
-  factory ServiceFault.fromJson(Map<String, dynamic> json) {
-    return ServiceFault(
-      message: json['Message'] as String?,
-      turkErrorCode: json['TurkErrorCode'] as String?,
-    );
-  }
-}
-
 class UpdateExpirationForHITResponse {
   UpdateExpirationForHITResponse();
   factory UpdateExpirationForHITResponse.fromJson(Map<String, dynamic> _) {
@@ -5017,7 +4759,17 @@ class WorkerBlock {
   }
 }
 
+class RequestError extends _s.GenericAwsException {
+  RequestError({String? type, String? message})
+      : super(type: type, code: 'RequestError', message: message);
+}
+
+class ServiceFault extends _s.GenericAwsException {
+  ServiceFault({String? type, String? message})
+      : super(type: type, code: 'ServiceFault', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
-  'RequestError': (type, message) => RequestError(message: message),
-  'ServiceFault': (type, message) => ServiceFault(message: message),
+  'RequestError': (type, message) => RequestError(type: type, message: message),
+  'ServiceFault': (type, message) => ServiceFault(type: type, message: message),
 };

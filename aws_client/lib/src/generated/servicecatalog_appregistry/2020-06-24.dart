@@ -69,24 +69,12 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
     _s.validateStringLength(
       'attributeGroup',
       attributeGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attributeGroup',
-      attributeGroup,
-      r'''\w+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -129,24 +117,12 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resource, 'resource');
     _s.validateStringLength(
       'resource',
       resource,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''\S+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
@@ -197,22 +173,11 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     _s.validateStringLength(
       'description',
@@ -279,12 +244,6 @@ class AppRegistry {
       8000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'attributes',
-      attributes,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -293,22 +252,11 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     _s.validateStringLength(
       'description',
@@ -353,12 +301,6 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -387,12 +329,6 @@ class AppRegistry {
       attributeGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attributeGroup',
-      attributeGroup,
-      r'''\w+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -430,24 +366,12 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
     _s.validateStringLength(
       'attributeGroup',
       attributeGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attributeGroup',
-      attributeGroup,
-      r'''\w+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -487,24 +411,12 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resource, 'resource');
     _s.validateStringLength(
       'resource',
       resource,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''\S+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
@@ -543,12 +455,6 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -577,12 +483,6 @@ class AppRegistry {
       attributeGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attributeGroup',
-      attributeGroup,
-      r'''\w+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -621,11 +521,6 @@ class AppRegistry {
       nextToken,
       1,
       2024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -671,12 +566,6 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -688,11 +577,6 @@ class AppRegistry {
       nextToken,
       1,
       2024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -739,12 +623,6 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -756,11 +634,6 @@ class AppRegistry {
       nextToken,
       1,
       2024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -805,11 +678,6 @@ class AppRegistry {
       1,
       2024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -841,12 +709,6 @@ class AppRegistry {
       resourceArn,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -885,12 +747,6 @@ class AppRegistry {
       resource,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''\S+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
@@ -933,12 +789,6 @@ class AppRegistry {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -974,12 +824,6 @@ class AppRegistry {
       resourceArn,
       1,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]{2}(-gov)?-[a-z]+-\d{1})?:(\d{12})?:(.*)''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -1023,12 +867,6 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -1040,11 +878,6 @@ class AppRegistry {
       name,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''\w+''',
     );
     final $payload = <String, dynamic>{
       if (description != null) 'description': description,
@@ -1094,22 +927,11 @@ class AppRegistry {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'attributeGroup',
-      attributeGroup,
-      r'''\w+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'attributes',
       attributes,
       1,
       8000,
-    );
-    _s.validateStringPattern(
-      'attributes',
-      attributes,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]+''',
     );
     _s.validateStringLength(
       'description',
@@ -1122,11 +944,6 @@ class AppRegistry {
       name,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''\w+''',
     );
     final $payload = <String, dynamic>{
       if (attributes != null) 'attributes': attributes,

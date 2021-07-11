@@ -62,6 +62,34 @@ class SageMakerFeatureStoreRuntime {
           endpointUrl: endpointUrl,
         );
 
+  /// Retrieves a batch of <code>Records</code> from a
+  /// <code>FeatureGroup</code>.
+  ///
+  /// May throw [ValidationError].
+  /// May throw [InternalFailure].
+  /// May throw [ServiceUnavailable].
+  /// May throw [AccessForbidden].
+  ///
+  /// Parameter [identifiers] :
+  /// A list of <code>FeatureGroup</code> names, with their corresponding
+  /// <code>RecordIdentifier</code> value, and Feature name that have been
+  /// requested to be retrieved in batch.
+  Future<BatchGetRecordResponse> batchGetRecord({
+    required List<BatchGetRecordIdentifier> identifiers,
+  }) async {
+    ArgumentError.checkNotNull(identifiers, 'identifiers');
+    final $payload = <String, dynamic>{
+      'Identifiers': identifiers,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/BatchGetRecord',
+      exceptionFnMap: _exceptionFns,
+    );
+    return BatchGetRecordResponse.fromJson(response);
+  }
+
   /// Deletes a <code>Record</code> from a <code>FeatureGroup</code>. A new
   /// record will show up in the <code>OfflineStore</code> when the
   /// <code>DeleteRecord</code> API is called. This record will have a value of
@@ -96,24 +124,12 @@ class SageMakerFeatureStoreRuntime {
       358400,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventTime',
-      eventTime,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
     _s.validateStringLength(
       'featureGroupName',
       featureGroupName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -123,12 +139,6 @@ class SageMakerFeatureStoreRuntime {
       recordIdentifierValueAsString,
       0,
       358400,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'recordIdentifierValueAsString',
-      recordIdentifierValueAsString,
-      r'''.*''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -178,12 +188,6 @@ class SageMakerFeatureStoreRuntime {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         recordIdentifierValueAsString, 'recordIdentifierValueAsString');
     _s.validateStringLength(
@@ -191,12 +195,6 @@ class SageMakerFeatureStoreRuntime {
       recordIdentifierValueAsString,
       0,
       358400,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'recordIdentifierValueAsString',
-      recordIdentifierValueAsString,
-      r'''.*''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -255,12 +253,6 @@ class SageMakerFeatureStoreRuntime {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(record, 'record');
     final $payload = <String, dynamic>{
       'Record': record,
@@ -270,6 +262,155 @@ class SageMakerFeatureStoreRuntime {
       method: 'PUT',
       requestUri: '/FeatureGroup/${Uri.encodeComponent(featureGroupName)}',
       exceptionFnMap: _exceptionFns,
+    );
+  }
+}
+
+/// The error that has occurred when attempting to retrieve a batch of Records.
+class BatchGetRecordError {
+  /// The error code of an error that has occured when attempting to retrieve a
+  /// batch of Records. For more information on errors, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors">
+  /// Errors</a>.
+  final String errorCode;
+
+  /// The error message of an error that has occured when attempting to retrieve a
+  /// record in the batch.
+  final String errorMessage;
+
+  /// The name of the feature group that the record belongs to.
+  final String featureGroupName;
+
+  /// The value for the <code>RecordIdentifier</code> in string format of a Record
+  /// from a <code>FeatureGroup</code> that is causing an error when attempting to
+  /// be retrieved.
+  final String recordIdentifierValueAsString;
+
+  BatchGetRecordError({
+    required this.errorCode,
+    required this.errorMessage,
+    required this.featureGroupName,
+    required this.recordIdentifierValueAsString,
+  });
+  factory BatchGetRecordError.fromJson(Map<String, dynamic> json) {
+    return BatchGetRecordError(
+      errorCode: json['ErrorCode'] as String,
+      errorMessage: json['ErrorMessage'] as String,
+      featureGroupName: json['FeatureGroupName'] as String,
+      recordIdentifierValueAsString:
+          json['RecordIdentifierValueAsString'] as String,
+    );
+  }
+}
+
+/// The identifier that identifies the batch of Records you are retrieving in a
+/// batch.
+class BatchGetRecordIdentifier {
+  /// A <code>FeatureGroupName</code> containing Records you are retrieving in a
+  /// batch.
+  final String featureGroupName;
+
+  /// The value for a list of record identifiers in string format.
+  final List<String> recordIdentifiersValueAsString;
+
+  /// List of names of Features to be retrieved. If not specified, the latest
+  /// value for all the Features are returned.
+  final List<String>? featureNames;
+
+  BatchGetRecordIdentifier({
+    required this.featureGroupName,
+    required this.recordIdentifiersValueAsString,
+    this.featureNames,
+  });
+  factory BatchGetRecordIdentifier.fromJson(Map<String, dynamic> json) {
+    return BatchGetRecordIdentifier(
+      featureGroupName: json['FeatureGroupName'] as String,
+      recordIdentifiersValueAsString:
+          (json['RecordIdentifiersValueAsString'] as List)
+              .whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      featureNames: (json['FeatureNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final featureGroupName = this.featureGroupName;
+    final recordIdentifiersValueAsString = this.recordIdentifiersValueAsString;
+    final featureNames = this.featureNames;
+    return {
+      'FeatureGroupName': featureGroupName,
+      'RecordIdentifiersValueAsString': recordIdentifiersValueAsString,
+      if (featureNames != null) 'FeatureNames': featureNames,
+    };
+  }
+}
+
+class BatchGetRecordResponse {
+  /// A list of errors that have occured when retrieving a batch of Records.
+  final List<BatchGetRecordError> errors;
+
+  /// A list of Records you requested to be retrieved in batch.
+  final List<BatchGetRecordResultDetail> records;
+
+  /// A unprocessed list of <code>FeatureGroup</code> names, with their
+  /// corresponding <code>RecordIdentifier</code> value, and Feature name.
+  final List<BatchGetRecordIdentifier> unprocessedIdentifiers;
+
+  BatchGetRecordResponse({
+    required this.errors,
+    required this.records,
+    required this.unprocessedIdentifiers,
+  });
+  factory BatchGetRecordResponse.fromJson(Map<String, dynamic> json) {
+    return BatchGetRecordResponse(
+      errors: (json['Errors'] as List)
+          .whereNotNull()
+          .map((e) => BatchGetRecordError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      records: (json['Records'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchGetRecordResultDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      unprocessedIdentifiers: (json['UnprocessedIdentifiers'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BatchGetRecordIdentifier.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// The output of Records that have been retrieved in a batch.
+class BatchGetRecordResultDetail {
+  /// The <code>FeatureGroupName</code> containing Records you retrieved in a
+  /// batch.
+  final String featureGroupName;
+
+  /// The <code>Record</code> retrieved.
+  final List<FeatureValue> record;
+
+  /// The value of the record identifer in string format.
+  final String recordIdentifierValueAsString;
+
+  BatchGetRecordResultDetail({
+    required this.featureGroupName,
+    required this.record,
+    required this.recordIdentifierValueAsString,
+  });
+  factory BatchGetRecordResultDetail.fromJson(Map<String, dynamic> json) {
+    return BatchGetRecordResultDetail(
+      featureGroupName: json['FeatureGroupName'] as String,
+      record: (json['Record'] as List)
+          .whereNotNull()
+          .map((e) => FeatureValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      recordIdentifierValueAsString:
+          json['RecordIdentifierValueAsString'] as String,
     );
   }
 }

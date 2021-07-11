@@ -67,12 +67,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clusterId',
-      clusterId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceFleet, 'instanceFleet');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -113,12 +107,6 @@ class Emr {
       jobFlowId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobFlowId',
-      jobFlowId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -186,12 +174,6 @@ class Emr {
       jobFlowId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobFlowId',
-      jobFlowId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(steps, 'steps');
@@ -289,12 +271,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clusterId',
-      clusterId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stepIds, 'stepIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -344,12 +320,6 @@ class Emr {
       10280,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(securityConfiguration, 'securityConfiguration');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -370,10 +340,6 @@ class Emr {
     return CreateSecurityConfigurationOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Creates a new Amazon EMR Studio.
   ///
   /// May throw [InternalServerException].
@@ -383,6 +349,10 @@ class Emr {
   /// Specifies whether the Studio authenticates users using single sign-on
   /// (SSO) or IAM. Amazon EMR Studio currently only supports SSO
   /// authentication.
+  ///
+  /// Parameter [defaultS3Location] :
+  /// The Amazon S3 location to back up Amazon EMR Studio Workspaces and
+  /// notebook files.
   ///
   /// Parameter [engineSecurityGroupId] :
   /// The ID of the Amazon EMR Studio Engine security group. The Engine security
@@ -398,14 +368,15 @@ class Emr {
   /// services.
   ///
   /// Parameter [subnetIds] :
-  /// A list of subnet IDs to associate with the Studio. The subnets must belong
-  /// to the VPC specified by <code>VpcId</code>. Studio users can create a
-  /// Workspace in any of the specified subnets.
+  /// A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can
+  /// have a maximum of 5 subnets. The subnets must belong to the VPC specified
+  /// by <code>VpcId</code>. Studio users can create a Workspace in any of the
+  /// specified subnets.
   ///
   /// Parameter [userRole] :
-  /// The IAM user role that will be assumed by users and groups logged in to a
-  /// Studio. The permissions attached to this IAM role can be scoped down for
-  /// each user or group using session policies.
+  /// The IAM user role that will be assumed by users and groups logged in to an
+  /// Amazon EMR Studio. The permissions attached to this IAM role can be scoped
+  /// down for each user or group using session policies.
   ///
   /// Parameter [vpcId] :
   /// The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with
@@ -417,21 +388,17 @@ class Emr {
   /// security group, and it must be in the same VPC specified by
   /// <code>VpcId</code>.
   ///
-  /// Parameter [defaultS3Location] :
-  /// The default Amazon S3 location to back up EMR Studio Workspaces and
-  /// notebook files. A Studio user can select an alternative Amazon S3 location
-  /// when creating a Workspace.
-  ///
   /// Parameter [description] :
-  /// A detailed description of the Studio.
+  /// A detailed description of the Amazon EMR Studio.
   ///
   /// Parameter [tags] :
-  /// A list of tags to associate with the Studio. Tags are user-defined
-  /// key-value pairs that consist of a required key string with a maximum of
-  /// 128 characters, and an optional value string with a maximum of 256
-  /// characters.
+  /// A list of tags to associate with the Amazon EMR Studio. Tags are
+  /// user-defined key-value pairs that consist of a required key string with a
+  /// maximum of 128 characters, and an optional value string with a maximum of
+  /// 256 characters.
   Future<CreateStudioOutput> createStudio({
     required AuthMode authMode,
+    required String defaultS3Location,
     required String engineSecurityGroupId,
     required String name,
     required String serviceRole,
@@ -439,23 +406,24 @@ class Emr {
     required String userRole,
     required String vpcId,
     required String workspaceSecurityGroupId,
-    String? defaultS3Location,
     String? description,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(authMode, 'authMode');
+    ArgumentError.checkNotNull(defaultS3Location, 'defaultS3Location');
+    _s.validateStringLength(
+      'defaultS3Location',
+      defaultS3Location,
+      0,
+      10280,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(engineSecurityGroupId, 'engineSecurityGroupId');
     _s.validateStringLength(
       'engineSecurityGroupId',
       engineSecurityGroupId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'engineSecurityGroupId',
-      engineSecurityGroupId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
@@ -466,24 +434,12 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceRole, 'serviceRole');
     _s.validateStringLength(
       'serviceRole',
       serviceRole,
       0,
       10280,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceRole',
-      serviceRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
@@ -495,24 +451,12 @@ class Emr {
       10280,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userRole',
-      userRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vpcId, 'vpcId');
     _s.validateStringLength(
       'vpcId',
       vpcId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vpcId',
-      vpcId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -524,33 +468,11 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workspaceSecurityGroupId',
-      workspaceSecurityGroupId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'defaultS3Location',
-      defaultS3Location,
-      0,
-      10280,
-    );
-    _s.validateStringPattern(
-      'defaultS3Location',
-      defaultS3Location,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -564,6 +486,7 @@ class Emr {
       headers: headers,
       payload: {
         'AuthMode': authMode.toValue(),
+        'DefaultS3Location': defaultS3Location,
         'EngineSecurityGroupId': engineSecurityGroupId,
         'Name': name,
         'ServiceRole': serviceRole,
@@ -571,7 +494,6 @@ class Emr {
         'UserRole': userRole,
         'VpcId': vpcId,
         'WorkspaceSecurityGroupId': workspaceSecurityGroupId,
-        if (defaultS3Location != null) 'DefaultS3Location': defaultS3Location,
         if (description != null) 'Description': description,
         if (tags != null) 'Tags': tags,
       },
@@ -580,10 +502,6 @@ class Emr {
     return CreateStudioOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Maps a user or group to the Amazon EMR Studio specified by
   /// <code>StudioId</code>, and applies a session policy to refine Studio
   /// permissions for that user or group.
@@ -592,7 +510,8 @@ class Emr {
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [identityType] :
-  /// Specifies whether the identity to map to the Studio is a user or a group.
+  /// Specifies whether the identity to map to the Amazon EMR Studio is a user
+  /// or a group.
   ///
   /// Parameter [sessionPolicyArn] :
   /// The Amazon Resource Name (ARN) for the session policy that will be applied
@@ -613,7 +532,7 @@ class Emr {
   ///
   /// Parameter [identityName] :
   /// The name of the user or group. For more information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>. Either
@@ -634,12 +553,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sessionPolicyArn',
-      sessionPolicyArn,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(studioId, 'studioId');
     _s.validateStringLength(
       'studioId',
@@ -648,33 +561,17 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'identityId',
       identityId,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'identityId',
-      identityId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'identityName',
       identityName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'identityName',
-      identityName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -714,12 +611,6 @@ class Emr {
       10280,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ElasticMapReduce.DeleteSecurityConfiguration'
@@ -736,10 +627,6 @@ class Emr {
     );
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Removes an Amazon EMR Studio from the Studio metadata store.
   ///
   /// May throw [InternalServerException].
@@ -758,12 +645,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ElasticMapReduce.DeleteStudio'
@@ -780,18 +661,14 @@ class Emr {
     );
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Removes a user or group from an Amazon EMR Studio.
   ///
   /// May throw [InternalServerError].
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [identityType] :
-  /// Specifies whether the identity to delete from the Studio is a user or a
-  /// group.
+  /// Specifies whether the identity to delete from the Amazon EMR Studio is a
+  /// user or a group.
   ///
   /// Parameter [studioId] :
   /// The ID of the Amazon EMR Studio.
@@ -806,9 +683,9 @@ class Emr {
   /// <code>IdentityName</code> or <code>IdentityId</code> must be specified.
   ///
   /// Parameter [identityName] :
-  /// The name of the user name or group to remove from the Studio. For more
-  /// information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// The name of the user name or group to remove from the Amazon EMR Studio.
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>. Either
@@ -828,33 +705,17 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'identityId',
       identityId,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'identityId',
-      identityId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'identityName',
       identityName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'identityName',
-      identityName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -994,12 +855,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookExecutionId',
-      notebookExecutionId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ElasticMapReduce.DescribeNotebookExecution'
@@ -1035,12 +890,6 @@ class Emr {
       name,
       0,
       10280,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1096,10 +945,6 @@ class Emr {
     return DescribeStepOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Returns details for the specified Amazon EMR Studio including ID, Name,
   /// VPC, Studio access URL, and so on.
   ///
@@ -1117,12 +962,6 @@ class Emr {
       studioId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1195,10 +1034,6 @@ class Emr {
     return GetManagedScalingPolicyOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Fetches mapping details for the specified Amazon EMR Studio and identity
   /// (user or group).
   ///
@@ -1222,7 +1057,7 @@ class Emr {
   ///
   /// Parameter [identityName] :
   /// The name of the user or group to fetch. For more information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>. Either
@@ -1242,33 +1077,17 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'identityId',
       identityId,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'identityId',
-      identityId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'identityName',
       identityName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'identityName',
-      identityName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1598,11 +1417,6 @@ class Emr {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'editorId',
-      editorId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ElasticMapReduce.ListNotebookExecutions'
@@ -1658,7 +1472,7 @@ class Emr {
 
   /// Provides a list of steps for the cluster in reverse order unless you
   /// specify <code>stepIds</code> with the request of filter by
-  /// <code>StepStates</code>. You can specify a maximum of ten
+  /// <code>StepStates</code>. You can specify a maximum of 10
   /// <code>stepIDs</code>.
   ///
   /// May throw [InternalServerException].
@@ -1706,12 +1520,8 @@ class Emr {
     return ListStepsOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
-  /// Returns a list of all user or group session mappings for the EMR Studio
-  /// specified by <code>StudioId</code>.
+  /// Returns a list of all user or group session mappings for the Amazon EMR
+  /// Studio specified by <code>StudioId</code>.
   ///
   /// May throw [InternalServerError].
   /// May throw [InvalidRequestException].
@@ -1737,11 +1547,6 @@ class Emr {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ElasticMapReduce.ListStudioSessionMappings'
@@ -1762,10 +1567,6 @@ class Emr {
     return ListStudioSessionMappingsOutput.fromJson(jsonResponse.body);
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
   /// Returns a list of all Amazon EMR Studios associated with the AWS account.
   /// The list includes details such as ID, Studio Access URL, and creation time
   /// for each Studio.
@@ -1807,7 +1608,7 @@ class Emr {
   ///
   /// Parameter [stepConcurrencyLevel] :
   /// The number of steps that can be executed concurrently. You can specify a
-  /// maximum of 256 steps.
+  /// minimum of 1 step and a maximum of 256 steps.
   Future<ModifyClusterOutput> modifyCluster({
     required String clusterId,
     int? stepConcurrencyLevel,
@@ -2280,7 +2081,7 @@ class Emr {
   /// "mapr-m7" - launch the cluster using MapR M7 Edition.
   /// </li>
   /// <li>
-  /// "hunk" - launch the cluster with the Hunk Big Data Analtics Platform.
+  /// "hunk" - launch the cluster with the Hunk Big Data Analytics Platform.
   /// </li>
   /// <li>
   /// "hue"- launch the cluster with Hue installed.
@@ -2411,22 +2212,11 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'additionalInfo',
       additionalInfo,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'additionalInfo',
-      additionalInfo,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'amiVersion',
@@ -2434,21 +2224,11 @@ class Emr {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'amiVersion',
-      amiVersion,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'autoScalingRole',
       autoScalingRole,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'autoScalingRole',
-      autoScalingRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'customAmiId',
@@ -2456,21 +2236,11 @@ class Emr {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'customAmiId',
-      customAmiId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'jobFlowRole',
       jobFlowRole,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'jobFlowRole',
-      jobFlowRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'logEncryptionKmsKeyId',
@@ -2478,21 +2248,11 @@ class Emr {
       0,
       10280,
     );
-    _s.validateStringPattern(
-      'logEncryptionKmsKeyId',
-      logEncryptionKmsKeyId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'logUri',
       logUri,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'logUri',
-      logUri,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'releaseLabel',
@@ -2500,32 +2260,17 @@ class Emr {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'releaseLabel',
-      releaseLabel,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'securityConfiguration',
       securityConfiguration,
       0,
       10280,
     );
-    _s.validateStringPattern(
-      'securityConfiguration',
-      securityConfiguration,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'serviceRole',
       serviceRole,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'serviceRole',
-      serviceRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2741,12 +2486,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'editorId',
-      editorId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionEngine, 'executionEngine');
     ArgumentError.checkNotNull(relativePath, 'relativePath');
     _s.validateStringLength(
@@ -2754,12 +2493,6 @@ class Emr {
       relativePath,
       0,
       10280,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'relativePath',
-      relativePath,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(serviceRole, 'serviceRole');
@@ -2770,44 +2503,23 @@ class Emr {
       10280,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceRole',
-      serviceRole,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'notebookExecutionName',
       notebookExecutionName,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'notebookExecutionName',
-      notebookExecutionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'notebookInstanceSecurityGroupId',
       notebookInstanceSecurityGroupId,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'notebookInstanceSecurityGroupId',
-      notebookInstanceSecurityGroupId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'notebookParams',
       notebookParams,
       0,
       10280,
-    );
-    _s.validateStringPattern(
-      'notebookParams',
-      notebookParams,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2852,12 +2564,6 @@ class Emr {
       notebookExecutionId,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'notebookExecutionId',
-      notebookExecutionId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2912,10 +2618,84 @@ class Emr {
     );
   }
 
-  /// <note>
-  /// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-  /// subject to change.
-  /// </note>
+  /// Updates an Amazon EMR Studio configuration, including attributes such as
+  /// name, description, and subnets.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [studioId] :
+  /// The ID of the Amazon EMR Studio to update.
+  ///
+  /// Parameter [defaultS3Location] :
+  /// The Amazon S3 location to back up Workspaces and notebook files for the
+  /// Amazon EMR Studio.
+  ///
+  /// Parameter [description] :
+  /// A detailed description to assign to the Amazon EMR Studio.
+  ///
+  /// Parameter [name] :
+  /// A descriptive name for the Amazon EMR Studio.
+  ///
+  /// Parameter [subnetIds] :
+  /// A list of subnet IDs to associate with the Amazon EMR Studio. The list can
+  /// include new subnet IDs, but must also include all of the subnet IDs
+  /// previously associated with the Studio. The list order does not matter. A
+  /// Studio can have a maximum of 5 subnets. The subnets must belong to the
+  /// same VPC as the Studio.
+  Future<void> updateStudio({
+    required String studioId,
+    String? defaultS3Location,
+    String? description,
+    String? name,
+    List<String>? subnetIds,
+  }) async {
+    ArgumentError.checkNotNull(studioId, 'studioId');
+    _s.validateStringLength(
+      'studioId',
+      studioId,
+      0,
+      256,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'defaultS3Location',
+      defaultS3Location,
+      0,
+      10280,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      256,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      256,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'ElasticMapReduce.UpdateStudio'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'StudioId': studioId,
+        if (defaultS3Location != null) 'DefaultS3Location': defaultS3Location,
+        if (description != null) 'Description': description,
+        if (name != null) 'Name': name,
+        if (subnetIds != null) 'SubnetIds': subnetIds,
+      },
+    );
+  }
+
   /// Updates the session policy attached to the user or group for the specified
   /// Amazon EMR Studio.
   ///
@@ -2930,7 +2710,7 @@ class Emr {
   /// specified user or group.
   ///
   /// Parameter [studioId] :
-  /// The ID of the EMR Studio.
+  /// The ID of the Amazon EMR Studio.
   ///
   /// Parameter [identityId] :
   /// The globally unique identifier (GUID) of the user or group. For more
@@ -2943,7 +2723,7 @@ class Emr {
   ///
   /// Parameter [identityName] :
   /// The name of the user or group to update. For more information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>. Either
@@ -2964,12 +2744,6 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sessionPolicyArn',
-      sessionPolicyArn,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(studioId, 'studioId');
     _s.validateStringLength(
       'studioId',
@@ -2978,33 +2752,17 @@ class Emr {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'studioId',
-      studioId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'identityId',
       identityId,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'identityId',
-      identityId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'identityName',
       identityName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'identityName',
-      identityName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5014,7 +4772,7 @@ class HadoopJarStepConfig {
   final String? mainClass;
 
   /// A list of Java properties that are set when the step runs. You can use these
-  /// properties to pass key value pairs to your main function.
+  /// properties to pass key-value pairs to your main function.
   final List<KeyValue>? properties;
 
   HadoopJarStepConfig({
@@ -5289,8 +5047,8 @@ class InstanceFleet {
   final int? targetOnDemandCapacity;
 
   /// The target capacity of Spot units for the instance fleet, which determines
-  /// how many Spot instances to provision. When the instance fleet launches,
-  /// Amazon EMR tries to provision Spot instances as specified by
+  /// how many Spot Instances to provision. When the instance fleet launches,
+  /// Amazon EMR tries to provision Spot Instances as specified by
   /// <a>InstanceTypeConfig</a>. Each instance configuration has a specified
   /// <code>WeightedCapacity</code>. When a Spot instance is provisioned, the
   /// <code>WeightedCapacity</code> units count toward the target capacity. Amazon
@@ -5302,7 +5060,7 @@ class InstanceFleet {
   /// <a>InstanceFleet$ProvisionedSpotCapacity</a> to determine the Spot capacity
   /// units that have been provisioned for the instance fleet.
   /// <note>
-  /// If not specified or set to 0, only On-Demand instances are provisioned for
+  /// If not specified or set to 0, only On-Demand Instances are provisioned for
   /// the instance fleet. At least one of <code>TargetSpotCapacity</code> and
   /// <code>TargetOnDemandCapacity</code> should be greater than 0. For a master
   /// instance fleet, only one of <code>TargetSpotCapacity</code> and
@@ -5355,8 +5113,8 @@ class InstanceFleet {
 /// 4.8.0 and later, excluding 5.0.x versions.
 /// </note>
 class InstanceFleetConfig {
-  /// The node type that the instance fleet hosts. Valid values are
-  /// MASTER,CORE,and TASK.
+  /// The node type that the instance fleet hosts. Valid values are MASTER, CORE,
+  /// and TASK.
   final InstanceFleetType instanceFleetType;
 
   /// The instance type configurations that define the EC2 instances in the
@@ -5782,11 +5540,10 @@ class InstanceGroup {
   /// the value of a CloudWatch metric. See PutAutoScalingPolicy.
   final AutoScalingPolicyDescription? autoScalingPolicy;
 
-  /// The bid price for each EC2 Spot Instance type as defined by
-  /// <code>InstanceType</code>. Expressed in USD. If neither
-  /// <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code>
-  /// is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to
-  /// 100%.
+  /// If specified, indicates that the instance group uses Spot Instances. This is
+  /// the maximum price you are willing to pay for Spot Instances. Specify
+  /// <code>OnDemandPrice</code> to set the amount equal to the On-Demand price,
+  /// or specify an amount in USD.
   final String? bidPrice;
 
   /// <note>
@@ -5923,11 +5680,10 @@ class InstanceGroupConfig {
   /// the value of a CloudWatch metric. See <a>PutAutoScalingPolicy</a>.
   final AutoScalingPolicy? autoScalingPolicy;
 
-  /// The bid price for each EC2 Spot Instance type as defined by
-  /// <code>InstanceType</code>. Expressed in USD. If neither
-  /// <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code>
-  /// is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to
-  /// 100%.
+  /// If specified, indicates that the instance group uses Spot Instances. This is
+  /// the maximum price you are willing to pay for Spot Instances. Specify
+  /// <code>OnDemandPrice</code> to set the amount equal to the On-Demand price,
+  /// or specify an amount in USD.
   final String? bidPrice;
 
   /// <note>
@@ -6007,11 +5763,10 @@ class InstanceGroupDetail {
   /// TERMINATED, and FAILED.
   final InstanceGroupState state;
 
-  /// The bid price for each EC2 Spot Instance type as defined by
-  /// <code>InstanceType</code>. Expressed in USD. If neither
-  /// <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code>
-  /// is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to
-  /// 100%.
+  /// If specified, indicates that the instance group uses Spot Instances. This is
+  /// the maximum price you are willing to pay for Spot Instances. Specify
+  /// <code>OnDemandPrice</code> to set the amount equal to the On-Demand price,
+  /// or specify an amount in USD.
   final String? bidPrice;
 
   /// The date/time the instance group was terminated.
@@ -7470,7 +7225,7 @@ class ListStudioSessionMappingsOutput {
 
   /// A list of session mapping summary objects. Each object includes session
   /// mapping details such as creation time, identity type (user or group), and
-  /// Studio ID.
+  /// Amazon EMR Studio ID.
   final List<SessionMappingSummary>? sessionMappings;
 
   ListStudioSessionMappingsOutput({
@@ -7903,6 +7658,136 @@ class NotebookExecutionSummary {
   }
 }
 
+/// Describes the strategy for using unused Capacity Reservations for fulfilling
+/// On-Demand capacity.
+class OnDemandCapacityReservationOptions {
+  /// Indicates the instance's Capacity Reservation preferences. Possible
+  /// preferences include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>open</code> - The instance can run in any open Capacity Reservation
+  /// that has matching attributes (instance type, platform, Availability Zone).
+  /// </li>
+  /// <li>
+  /// <code>none</code> - The instance avoids running in a Capacity Reservation
+  /// even if one is available. The instance runs as an On-Demand Instance.
+  /// </li>
+  /// </ul>
+  final OnDemandCapacityReservationPreference? capacityReservationPreference;
+
+  /// The ARN of the Capacity Reservation resource group in which to run the
+  /// instance.
+  final String? capacityReservationResourceGroupArn;
+
+  /// Indicates whether to use unused Capacity Reservations for fulfilling
+  /// On-Demand capacity.
+  ///
+  /// If you specify <code>use-capacity-reservations-first</code>, the fleet uses
+  /// unused Capacity Reservations to fulfill On-Demand capacity up to the target
+  /// On-Demand capacity. If multiple instance pools have unused Capacity
+  /// Reservations, the On-Demand allocation strategy (<code>lowest-price</code>)
+  /// is applied. If the number of unused Capacity Reservations is less than the
+  /// On-Demand target capacity, the remaining On-Demand target capacity is
+  /// launched according to the On-Demand allocation strategy
+  /// (<code>lowest-price</code>).
+  ///
+  /// If you do not specify a value, the fleet fulfils the On-Demand capacity
+  /// according to the chosen On-Demand allocation strategy.
+  final OnDemandCapacityReservationUsageStrategy? usageStrategy;
+
+  OnDemandCapacityReservationOptions({
+    this.capacityReservationPreference,
+    this.capacityReservationResourceGroupArn,
+    this.usageStrategy,
+  });
+  factory OnDemandCapacityReservationOptions.fromJson(
+      Map<String, dynamic> json) {
+    return OnDemandCapacityReservationOptions(
+      capacityReservationPreference:
+          (json['CapacityReservationPreference'] as String?)
+              ?.toOnDemandCapacityReservationPreference(),
+      capacityReservationResourceGroupArn:
+          json['CapacityReservationResourceGroupArn'] as String?,
+      usageStrategy: (json['UsageStrategy'] as String?)
+          ?.toOnDemandCapacityReservationUsageStrategy(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationPreference = this.capacityReservationPreference;
+    final capacityReservationResourceGroupArn =
+        this.capacityReservationResourceGroupArn;
+    final usageStrategy = this.usageStrategy;
+    return {
+      if (capacityReservationPreference != null)
+        'CapacityReservationPreference':
+            capacityReservationPreference.toValue(),
+      if (capacityReservationResourceGroupArn != null)
+        'CapacityReservationResourceGroupArn':
+            capacityReservationResourceGroupArn,
+      if (usageStrategy != null) 'UsageStrategy': usageStrategy.toValue(),
+    };
+  }
+}
+
+enum OnDemandCapacityReservationPreference {
+  open,
+  none,
+}
+
+extension on OnDemandCapacityReservationPreference {
+  String toValue() {
+    switch (this) {
+      case OnDemandCapacityReservationPreference.open:
+        return 'open';
+      case OnDemandCapacityReservationPreference.none:
+        return 'none';
+    }
+  }
+}
+
+extension on String {
+  OnDemandCapacityReservationPreference
+      toOnDemandCapacityReservationPreference() {
+    switch (this) {
+      case 'open':
+        return OnDemandCapacityReservationPreference.open;
+      case 'none':
+        return OnDemandCapacityReservationPreference.none;
+    }
+    throw Exception(
+        '$this is not known in enum OnDemandCapacityReservationPreference');
+  }
+}
+
+enum OnDemandCapacityReservationUsageStrategy {
+  useCapacityReservationsFirst,
+}
+
+extension on OnDemandCapacityReservationUsageStrategy {
+  String toValue() {
+    switch (this) {
+      case OnDemandCapacityReservationUsageStrategy
+          .useCapacityReservationsFirst:
+        return 'use-capacity-reservations-first';
+    }
+  }
+}
+
+extension on String {
+  OnDemandCapacityReservationUsageStrategy
+      toOnDemandCapacityReservationUsageStrategy() {
+    switch (this) {
+      case 'use-capacity-reservations-first':
+        return OnDemandCapacityReservationUsageStrategy
+            .useCapacityReservationsFirst;
+    }
+    throw Exception(
+        '$this is not known in enum OnDemandCapacityReservationUsageStrategy');
+  }
+}
+
 enum OnDemandProvisioningAllocationStrategy {
   lowestPrice,
 }
@@ -7936,26 +7821,38 @@ extension on String {
 /// strategy is available in Amazon EMR version 5.12.1 and later.
 /// </note>
 class OnDemandProvisioningSpecification {
-  /// Specifies the strategy to use in launching On-Demand Instance fleets.
-  /// Currently, the only option is lowest-price (the default), which launches the
-  /// lowest price first.
+  /// Specifies the strategy to use in launching On-Demand instance fleets.
+  /// Currently, the only option is <code>lowest-price</code> (the default), which
+  /// launches the lowest price first.
   final OnDemandProvisioningAllocationStrategy allocationStrategy;
+
+  /// The launch specification for On-Demand instances in the instance fleet,
+  /// which determines the allocation strategy.
+  final OnDemandCapacityReservationOptions? capacityReservationOptions;
 
   OnDemandProvisioningSpecification({
     required this.allocationStrategy,
+    this.capacityReservationOptions,
   });
   factory OnDemandProvisioningSpecification.fromJson(
       Map<String, dynamic> json) {
     return OnDemandProvisioningSpecification(
       allocationStrategy: (json['AllocationStrategy'] as String)
           .toOnDemandProvisioningAllocationStrategy(),
+      capacityReservationOptions: json['CapacityReservationOptions'] != null
+          ? OnDemandCapacityReservationOptions.fromJson(
+              json['CapacityReservationOptions'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final allocationStrategy = this.allocationStrategy;
+    final capacityReservationOptions = this.capacityReservationOptions;
     return {
       'AllocationStrategy': allocationStrategy.toValue(),
+      if (capacityReservationOptions != null)
+        'CapacityReservationOptions': capacityReservationOptions,
     };
   }
 }
@@ -8117,7 +8014,7 @@ class PutAutoScalingPolicyOutput {
   /// The automatic scaling policy definition.
   final AutoScalingPolicyDescription? autoScalingPolicy;
 
-  /// The Amazon Resource Name of the cluster.
+  /// The Amazon Resource Name (ARN) of the cluster.
   final String? clusterArn;
 
   /// Specifies the ID of a cluster. The instance group to which the automatic
@@ -8214,10 +8111,10 @@ extension on String {
 
 /// The result of the <a>RunJobFlow</a> operation.
 class RunJobFlowOutput {
-  /// The Amazon Resource Name of the cluster.
+  /// The Amazon Resource Name (ARN) of the cluster.
   final String? clusterArn;
 
-  /// An unique identifier for the job flow.
+  /// A unique identifier for the job flow.
   final String? jobFlowId;
 
   RunJobFlowOutput({
@@ -8466,13 +8363,14 @@ class SessionMappingDetail {
   final String? identityId;
 
   /// The name of the user or group. For more information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>.
   final String? identityName;
 
-  /// Specifies whether the identity mapped to the Studio is a user or a group.
+  /// Specifies whether the identity mapped to the Amazon EMR Studio is a user or
+  /// a group.
   final IdentityType? identityType;
 
   /// The time the session mapping was last modified.
@@ -8518,13 +8416,14 @@ class SessionMappingSummary {
   final String? identityId;
 
   /// The name of the user or group. For more information, see <a
-  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId">UserName</a>
+  /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName">UserName</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName">DisplayName</a>
   /// in the <i>AWS SSO Identity Store API Reference</i>.
   final String? identityName;
 
-  /// Specifies whether the identity mapped to the Studio is a user or a group.
+  /// Specifies whether the identity mapped to the Amazon EMR Studio is a user or
+  /// a group.
   final IdentityType? identityType;
 
   /// The Amazon Resource Name (ARN) of the session policy associated with the
@@ -8707,7 +8606,7 @@ class SpotProvisioningSpecification {
 
   /// The defined duration for Spot Instances (also known as Spot blocks) in
   /// minutes. When specified, the Spot Instance does not terminate before the
-  /// defined duration expires, and defined duration pricing for Spot instances
+  /// defined duration expires, and defined duration pricing for Spot Instances
   /// applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration
   /// period starts as soon as a Spot Instance receives its instance ID. At the
   /// end of the duration, Amazon EC2 marks the Spot Instance for termination and
@@ -9263,18 +9162,18 @@ class StepTimeline {
 /// Details for an Amazon EMR Studio including ID, creation time, name, and so
 /// on.
 class Studio {
-  /// Specifies whether the Studio authenticates users using single sign-on (SSO)
-  /// or IAM.
+  /// Specifies whether the Amazon EMR Studio authenticates users using single
+  /// sign-on (SSO) or IAM.
   final AuthMode? authMode;
 
   /// The time the Amazon EMR Studio was created.
   final DateTime? creationTime;
 
-  /// The default Amazon S3 location to back up Amazon EMR Studio Workspaces and
-  /// notebook files.
+  /// The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook
+  /// files.
   final String? defaultS3Location;
 
-  /// The detailed description of the EMR Studio.
+  /// The detailed description of the Amazon EMR Studio.
   final String? description;
 
   /// The ID of the Engine security group associated with the Amazon EMR Studio.
@@ -9282,16 +9181,16 @@ class Studio {
   /// the Workspace security group.
   final String? engineSecurityGroupId;
 
-  /// The name of the EMR Studio.
+  /// The name of the Amazon EMR Studio.
   final String? name;
 
   /// The name of the IAM role assumed by the Amazon EMR Studio.
   final String? serviceRole;
 
-  /// The Amazon Resource Name (ARN) of the EMR Studio.
+  /// The Amazon Resource Name (ARN) of the Amazon EMR Studio.
   final String? studioArn;
 
-  /// The ID of the EMR Studio.
+  /// The ID of the Amazon EMR Studio.
   final String? studioId;
 
   /// The list of IDs of the subnets associated with the Amazon EMR Studio.
@@ -9307,7 +9206,7 @@ class Studio {
   /// Studio.
   final String? userRole;
 
-  /// The ID of the VPC associated with the EMR Studio.
+  /// The ID of the VPC associated with the Amazon EMR Studio.
   final String? vpcId;
 
   /// The ID of the Workspace security group associated with the Amazon EMR
@@ -9366,7 +9265,7 @@ class StudioSummary {
   /// The time when the Amazon EMR Studio was created.
   final DateTime? creationTime;
 
-  /// The detailed description of the EMR Studio.
+  /// The detailed description of the Amazon EMR Studio.
   final String? description;
 
   /// The name of the Amazon EMR Studio.
@@ -9402,7 +9301,7 @@ class StudioSummary {
   }
 }
 
-/// The list of supported product configurations which allow user-supplied
+/// The list of supported product configurations that allow user-supplied
 /// arguments. EMR accepts these arguments and forwards them to the
 /// corresponding installation script as bootstrap action arguments.
 class SupportedProductConfig {

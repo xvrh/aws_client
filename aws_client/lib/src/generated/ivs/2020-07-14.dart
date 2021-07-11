@@ -22,9 +22,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// <b>Introduction</b>
 ///
 /// The Amazon Interactive Video Service (IVS) API is REST compatible, using a
-/// standard HTTP API and an <a href="http://aws.amazon.com/sns">AWS SNS</a>
-/// event stream for responses. JSON is used for both requests and responses,
-/// including errors.
+/// standard HTTP API and an AWS EventBridge event stream for responses. JSON is
+/// used for both requests and responses, including errors.
 ///
 /// The API is an AWS regional service, currently in these regions: us-west-2,
 /// us-east-1, and eu-west-1.
@@ -85,7 +84,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// <b>Resources</b>
 ///
 /// The following resources contain information about your IVS live stream (see
-/// <a href="https://docs.aws.amazon.com/ivs/latest/userguide/GSIVS.html">
+/// <a
+/// href="https://docs.aws.amazon.com/ivs/latest/userguide/getting-started.html">
 /// Getting Started with Amazon IVS</a>):
 ///
 /// <ul>
@@ -107,6 +107,12 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// playback-authorization token. See the PlaybackKeyPair endpoints for more
 /// information.
 /// </li>
+/// <li>
+/// Recording configuration — Stores configuration related to recording a live
+/// stream and where to store the recorded content. Multiple channels can
+/// reference the same recording configuration. See the Recording Configuration
+/// endpoints for more information.
+/// </li>
 /// </ul>
 /// <b>Tagging</b>
 ///
@@ -126,8 +132,53 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 ///
 /// The Amazon IVS API has these tag-related endpoints: <a>TagResource</a>,
 /// <a>UntagResource</a>, and <a>ListTagsForResource</a>. The following
-/// resources support tagging: Channels, Stream Keys, and Playback Key Pairs.
+/// resources support tagging: Channels, Stream Keys, Playback Key Pairs, and
+/// Recording Configurations.
 ///
+/// <b>Authentication versus Authorization</b>
+///
+/// Note the differences between these concepts:
+///
+/// <ul>
+/// <li>
+/// <i>Authentication</i> is about verifying identity. You need to be
+/// authenticated to sign Amazon IVS API requests.
+/// </li>
+/// <li>
+/// <i>Authorization</i> is about granting permissions. You need to be
+/// authorized to view <a
+/// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Amazon
+/// IVS private channels</a>. (Private channels are channels that are enabled
+/// for "playback authorization.")
+/// </li>
+/// </ul>
+/// <b>Authentication</b>
+///
+/// All Amazon IVS API requests must be authenticated with a signature. The AWS
+/// Command-Line Interface (CLI) and Amazon IVS Player SDKs take care of signing
+/// the underlying API calls for you. However, if your application calls the
+/// Amazon IVS API directly, it’s your responsibility to sign the requests.
+///
+/// You generate a signature using valid AWS credentials that have permission to
+/// perform the requested action. For example, you must sign PutMetadata
+/// requests with a signature generated from an IAM user account that has the
+/// <code>ivs:PutMetadata</code> permission.
+///
+/// For more information:
+///
+/// <ul>
+/// <li>
+/// Authentication and generating signatures — See <a
+/// href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
+/// Requests (AWS Signature Version 4)</a> in the <i>AWS General Reference</i>.
+/// </li>
+/// <li>
+/// Managing Amazon IVS permissions — See <a
+/// href="https://docs.aws.amazon.com/ivs/latest/userguide/security-iam.html">Identity
+/// and Access Management</a> on the Security page of the <i>Amazon IVS User
+/// Guide</i>.
+/// </li>
+/// </ul>
 /// <b>Channel Endpoints</b>
 ///
 /// <ul>
@@ -146,7 +197,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// <li>
 /// <a>ListChannels</a> — Gets summary information about all channels in your
 /// account, in the AWS region where the API request is processed. This list can
-/// be filtered to match a specified string.
+/// be filtered to match a specified name or recording-configuration ARN.
+/// Filters are mutually exclusive and cannot be used together. If you try to
+/// use both filters, you will get an error (409 Conflict Exception).
 /// </li>
 /// <li>
 /// <a>UpdateChannel</a> — Updates a channel's configuration. This does not
@@ -197,25 +250,31 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// further streaming to a channel.
 /// </li>
 /// <li>
-/// <a>PutMetadata</a> — Inserts metadata into an RTMPS stream for the specified
-/// channel. A maximum of 5 requests per second per channel is allowed, each
-/// with a maximum 1KB payload.
+/// <a>PutMetadata</a> — Inserts metadata into the active stream of the
+/// specified channel. A maximum of 5 requests per second per channel is
+/// allowed, each with a maximum 1 KB payload. (If 5 TPS is not sufficient for
+/// your needs, we recommend batching your data into a single PutMetadata call.)
 /// </li>
 /// </ul>
 /// <b>PlaybackKeyPair Endpoints</b>
+///
+/// For more information, see <a
+/// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+/// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
 ///
 /// <ul>
 /// <li>
 /// <a>ImportPlaybackKeyPair</a> — Imports the public portion of a new key pair
 /// and returns its <code>arn</code> and <code>fingerprint</code>. The
 /// <code>privateKey</code> can then be used to generate viewer authorization
-/// tokens, to grant viewers access to authorized channels.
+/// tokens, to grant viewers access to private channels (channels enabled for
+/// playback authorization).
 /// </li>
 /// <li>
 /// <a>GetPlaybackKeyPair</a> — Gets a specified playback authorization key pair
 /// and returns the <code>arn</code> and <code>fingerprint</code>. The
 /// <code>privateKey</code> held by the caller can be used to generate viewer
-/// authorization tokens, to grant viewers access to authorized channels.
+/// authorization tokens, to grant viewers access to private channels.
 /// </li>
 /// <li>
 /// <a>ListPlaybackKeyPairs</a> — Gets summary information about playback key
@@ -225,6 +284,27 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// <a>DeletePlaybackKeyPair</a> — Deletes a specified authorization key pair.
 /// This invalidates future viewer tokens generated using the key pair’s
 /// <code>privateKey</code>.
+/// </li>
+/// </ul>
+/// <b>RecordingConfiguration Endpoints</b>
+///
+/// <ul>
+/// <li>
+/// <a>CreateRecordingConfiguration</a> — Creates a new recording configuration,
+/// used to enable recording to Amazon S3.
+/// </li>
+/// <li>
+/// <a>GetRecordingConfiguration</a> — Gets the recording-configuration metadata
+/// for the specified ARN.
+/// </li>
+/// <li>
+/// <a>ListRecordingConfigurations</a> — Gets summary information about all
+/// recording configurations in your account, in the AWS region where the API
+/// request is processed.
+/// </li>
+/// <li>
+/// <a>DeleteRecordingConfiguration</a> — Deletes the recording configuration
+/// for the specified ARN.
 /// </li>
 /// </ul>
 /// <b>AWS Tags Endpoints</b>
@@ -305,25 +385,36 @@ class Ivs {
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
   /// May throw [ServiceQuotaExceededException].
   /// May throw [PendingVerification].
   ///
   /// Parameter [authorized] :
-  /// Whether the channel is authorized. Default: <code>false</code>.
+  /// Whether the channel is private (enabled for playback authorization).
+  /// Default: <code>false</code>.
   ///
   /// Parameter [latencyMode] :
-  /// Channel latency mode. Default: <code>LOW</code>.
+  /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver
+  /// live video up to Full HD. Use <code>LOW</code> for near-real-time
+  /// interaction with viewers. (Note: In the Amazon IVS console,
+  /// <code>LOW</code> and <code>NORMAL</code> correspond to Ultra-low and
+  /// Standard, respectively.) Default: <code>LOW</code>.
   ///
   /// Parameter [name] :
   /// Channel name.
   ///
+  /// Parameter [recordingConfigurationArn] :
+  /// Recording-configuration ARN. Default: "" (empty string, recording is
+  /// disabled).
+  ///
   /// Parameter [tags] :
-  /// See <a>Channel$tags</a>.
+  /// Array of 1-50 maps, each of the form <code>string:string
+  /// (key:value)</code>.
   ///
   /// Parameter [type] :
   /// Channel type, which determines the allowable resolution and bitrate. <i>If
   /// you exceed the allowable resolution or bitrate, the stream probably will
-  /// disconnect immediately.</i> Valid values:
+  /// disconnect immediately.</i> Default: <code>STANDARD</code>. Valid values:
   ///
   /// <ul>
   /// <li>
@@ -338,11 +429,11 @@ class Ivs {
   /// resolution can be up to 480 and bitrate can be up to 1.5 Mbps.
   /// </li>
   /// </ul>
-  /// Default: <code>STANDARD</code>.
   Future<CreateChannelResponse> createChannel({
     bool? authorized,
     ChannelLatencyMode? latencyMode,
     String? name,
+    String? recordingConfigurationArn,
     Map<String, String>? tags,
     ChannelType? type,
   }) async {
@@ -352,15 +443,18 @@ class Ivs {
       0,
       128,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9-_]*$''',
+    _s.validateStringLength(
+      'recordingConfigurationArn',
+      recordingConfigurationArn,
+      0,
+      128,
     );
     final $payload = <String, dynamic>{
       if (authorized != null) 'authorized': authorized,
       if (latencyMode != null) 'latencyMode': latencyMode.toValue(),
       if (name != null) 'name': name,
+      if (recordingConfigurationArn != null)
+        'recordingConfigurationArn': recordingConfigurationArn,
       if (tags != null) 'tags': tags,
       if (type != null) 'type': type.toValue(),
     };
@@ -371,6 +465,66 @@ class Ivs {
       exceptionFnMap: _exceptionFns,
     );
     return CreateChannelResponse.fromJson(response);
+  }
+
+  /// Creates a new recording configuration, used to enable recording to Amazon
+  /// S3.
+  ///
+  /// <b>Known issue:</b> In the us-east-1 region, if you use the AWS CLI to
+  /// create a recording configuration, it returns success even if the S3 bucket
+  /// is in a different region. In this case, the <code>state</code> of the
+  /// recording configuration is <code>CREATE_FAILED</code> (instead of
+  /// <code>ACTIVE</code>). (In other regions, the CLI correctly returns failure
+  /// if the bucket is in a different region.)
+  ///
+  /// <b>Workaround:</b> Ensure that your S3 bucket is in the same region as the
+  /// recording configuration. If you create a recording configuration in a
+  /// different region as your S3 bucket, delete that recording configuration
+  /// and create a new one with an S3 bucket from the correct region.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  /// May throw [PendingVerification].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [destinationConfiguration] :
+  /// A complex type that contains a destination configuration for where
+  /// recorded video will be stored.
+  ///
+  /// Parameter [name] :
+  /// An arbitrary string (a nickname) that helps the customer identify that
+  /// resource. The value does not need to be unique.
+  ///
+  /// Parameter [tags] :
+  /// Array of 1-50 maps, each of the form <code>string:string
+  /// (key:value)</code>.
+  Future<CreateRecordingConfigurationResponse> createRecordingConfiguration({
+    required DestinationConfiguration destinationConfiguration,
+    String? name,
+    Map<String, String>? tags,
+  }) async {
+    ArgumentError.checkNotNull(
+        destinationConfiguration, 'destinationConfiguration');
+    _s.validateStringLength(
+      'name',
+      name,
+      0,
+      128,
+    );
+    final $payload = <String, dynamic>{
+      'destinationConfiguration': destinationConfiguration,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/CreateRecordingConfiguration',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateRecordingConfigurationResponse.fromJson(response);
   }
 
   /// Creates a stream key, used to initiate a stream, for the specified channel
@@ -392,7 +546,8 @@ class Ivs {
   /// ARN of the channel for which to create the stream key.
   ///
   /// Parameter [tags] :
-  /// See <a>Channel$tags</a>.
+  /// Array of 1-50 maps, each of the form <code>string:string
+  /// (key:value)</code>.
   Future<CreateStreamKeyResponse> createStreamKey({
     required String channelArn,
     Map<String, String>? tags,
@@ -403,12 +558,6 @@ class Ivs {
       channelArn,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -425,6 +574,14 @@ class Ivs {
   }
 
   /// Deletes the specified channel and its associated stream keys.
+  ///
+  /// If you try to delete a live channel, you will get an error (409
+  /// ConflictException). To delete a channel that is live, call
+  /// <a>StopStream</a>, wait for the Amazon EventBridge "Stream End" event (to
+  /// verify that the stream's state was changed from Live to Offline), then
+  /// call DeleteChannel. (See <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html">
+  /// Using EventBridge with Amazon IVS</a>.)
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
@@ -445,12 +602,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -463,7 +614,10 @@ class Ivs {
   }
 
   /// Deletes a specified authorization key pair. This invalidates future viewer
-  /// tokens generated using the key pair’s <code>privateKey</code>.
+  /// tokens generated using the key pair’s <code>privateKey</code>. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+  /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
@@ -483,12 +637,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:playback-key/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -496,6 +644,44 @@ class Ivs {
       payload: $payload,
       method: 'POST',
       requestUri: '/DeletePlaybackKeyPair',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Deletes the recording configuration for the specified ARN.
+  ///
+  /// If you try to delete a recording configuration that is associated with a
+  /// channel, you will get an error (409 ConflictException). To avoid this, for
+  /// all channels that reference the recording configuration, first use
+  /// <a>UpdateChannel</a> to set the <code>recordingConfigurationArn</code>
+  /// field to an empty string, then use DeleteRecordingConfiguration.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [arn] :
+  /// ARN of the recording configuration to be deleted.
+  Future<void> deleteRecordingConfiguration({
+    required String arn,
+  }) async {
+    ArgumentError.checkNotNull(arn, 'arn');
+    _s.validateStringLength(
+      'arn',
+      arn,
+      0,
+      128,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      'arn': arn,
+    };
+    await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/DeleteRecordingConfiguration',
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -519,12 +705,6 @@ class Ivs {
       arn,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:stream-key/[a-zA-Z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -558,12 +738,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -579,7 +753,9 @@ class Ivs {
   /// Gets a specified playback authorization key pair and returns the
   /// <code>arn</code> and <code>fingerprint</code>. The <code>privateKey</code>
   /// held by the caller can be used to generate viewer authorization tokens, to
-  /// grant viewers access to authorized channels.
+  /// grant viewers access to private channels. For more information, see <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+  /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
@@ -598,12 +774,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:playback-key/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -614,6 +784,38 @@ class Ivs {
       exceptionFnMap: _exceptionFns,
     );
     return GetPlaybackKeyPairResponse.fromJson(response);
+  }
+
+  /// Gets the recording configuration for the specified ARN.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [arn] :
+  /// ARN of the recording configuration to be retrieved.
+  Future<GetRecordingConfigurationResponse> getRecordingConfiguration({
+    required String arn,
+  }) async {
+    ArgumentError.checkNotNull(arn, 'arn');
+    _s.validateStringLength(
+      'arn',
+      arn,
+      0,
+      128,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      'arn': arn,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/GetRecordingConfiguration',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetRecordingConfigurationResponse.fromJson(response);
   }
 
   /// Gets information about the active (live) stream on a specified channel.
@@ -634,12 +836,6 @@ class Ivs {
       channelArn,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -673,12 +869,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:stream-key/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -694,7 +884,9 @@ class Ivs {
   /// Imports the public portion of a new key pair and returns its
   /// <code>arn</code> and <code>fingerprint</code>. The <code>privateKey</code>
   /// can then be used to generate viewer authorization tokens, to grant viewers
-  /// access to authorized channels.
+  /// access to private channels. For more information, see <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+  /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [ConflictException].
@@ -725,11 +917,6 @@ class Ivs {
       0,
       128,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9-_]*$''',
-    );
     final $payload = <String, dynamic>{
       'publicKeyMaterial': publicKeyMaterial,
       if (name != null) 'name': name,
@@ -746,22 +933,30 @@ class Ivs {
 
   /// Gets summary information about all channels in your account, in the AWS
   /// region where the API request is processed. This list can be filtered to
-  /// match a specified string.
+  /// match a specified name or recording-configuration ARN. Filters are
+  /// mutually exclusive and cannot be used together. If you try to use both
+  /// filters, you will get an error (409 ConflictException).
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
   ///
   /// Parameter [filterByName] :
   /// Filters the channel list to match the specified name.
   ///
+  /// Parameter [filterByRecordingConfigurationArn] :
+  /// Filters the channel list to match the specified recording-configuration
+  /// ARN.
+  ///
   /// Parameter [maxResults] :
-  /// Maximum number of channels to return.
+  /// Maximum number of channels to return. Default: 50.
   ///
   /// Parameter [nextToken] :
   /// The first channel to retrieve. This is used for pagination; see the
   /// <code>nextToken</code> response field.
   Future<ListChannelsResponse> listChannels({
     String? filterByName,
+    String? filterByRecordingConfigurationArn,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -771,10 +966,11 @@ class Ivs {
       0,
       128,
     );
-    _s.validateStringPattern(
-      'filterByName',
-      filterByName,
-      r'''^[a-zA-Z0-9-_]*$''',
+    _s.validateStringLength(
+      'filterByRecordingConfigurationArn',
+      filterByRecordingConfigurationArn,
+      0,
+      128,
     );
     _s.validateNumRange(
       'maxResults',
@@ -790,6 +986,8 @@ class Ivs {
     );
     final $payload = <String, dynamic>{
       if (filterByName != null) 'filterByName': filterByName,
+      if (filterByRecordingConfigurationArn != null)
+        'filterByRecordingConfigurationArn': filterByRecordingConfigurationArn,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
     };
@@ -802,14 +1000,17 @@ class Ivs {
     return ListChannelsResponse.fromJson(response);
   }
 
-  /// Gets summary information about playback key pairs.
+  /// Gets summary information about playback key pairs. For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
+  /// Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
   ///
   /// Parameter [maxResults] :
   /// The first key pair to retrieve. This is used for pagination; see the
-  /// <code>nextToken</code> response field.
+  /// <code>nextToken</code> response field. Default: 50.
   ///
   /// Parameter [nextToken] :
   /// Maximum number of key pairs to return.
@@ -842,6 +1043,48 @@ class Ivs {
     return ListPlaybackKeyPairsResponse.fromJson(response);
   }
 
+  /// Gets summary information about all recording configurations in your
+  /// account, in the AWS region where the API request is processed.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [maxResults] :
+  /// Maximum number of recording configurations to return. Default: 50.
+  ///
+  /// Parameter [nextToken] :
+  /// The first recording configuration to retrieve. This is used for
+  /// pagination; see the <code>nextToken</code> response field.
+  Future<ListRecordingConfigurationsResponse> listRecordingConfigurations({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      50,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      0,
+      500,
+    );
+    final $payload = <String, dynamic>{
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/ListRecordingConfigurations',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListRecordingConfigurationsResponse.fromJson(response);
+  }
+
   /// Gets summary information about stream keys for the specified channel.
   ///
   /// May throw [ValidationException].
@@ -852,7 +1095,7 @@ class Ivs {
   /// Channel ARN used to filter the list.
   ///
   /// Parameter [maxResults] :
-  /// Maximum number of streamKeys to return.
+  /// Maximum number of streamKeys to return. Default: 50.
   ///
   /// Parameter [nextToken] :
   /// The first stream key to retrieve. This is used for pagination; see the
@@ -868,12 +1111,6 @@ class Ivs {
       channelArn,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -908,7 +1145,7 @@ class Ivs {
   /// May throw [AccessDeniedException].
   ///
   /// Parameter [maxResults] :
-  /// Maximum number of streams to return.
+  /// Maximum number of streams to return. Default: 50.
   ///
   /// Parameter [nextToken] :
   /// The first stream to retrieve. This is used for pagination; see the
@@ -952,7 +1189,7 @@ class Ivs {
   /// The ARN of the resource to be retrieved.
   ///
   /// Parameter [maxResults] :
-  /// Maximum number of tags to return.
+  /// Maximum number of tags to return. Default: 50.
   ///
   /// Parameter [nextToken] :
   /// The first tag to retrieve. This is used for pagination; see the
@@ -970,12 +1207,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:[a-z-]/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -991,9 +1222,12 @@ class Ivs {
     return ListTagsForResourceResponse.fromJson(response);
   }
 
-  /// Inserts metadata into an RTMPS stream for the specified channel. A maximum
-  /// of 5 requests per second per channel is allowed, each with a maximum 1KB
-  /// payload.
+  /// Inserts metadata into the active stream of the specified channel. A
+  /// maximum of 5 requests per second per channel is allowed, each with a
+  /// maximum 1 KB payload. (If 5 TPS is not sufficient for your needs, we
+  /// recommend batching your data into a single PutMetadata call.) Also see <a
+  /// href="https://docs.aws.amazon.com/ivs/latest/userguide/metadata.html">Embedding
+  /// Metadata within a Video Stream</a> in the <i>Amazon IVS User Guide</i>.
   ///
   /// May throw [ThrottlingException].
   /// May throw [ResourceNotFoundException].
@@ -1019,13 +1253,14 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
+    ArgumentError.checkNotNull(metadata, 'metadata');
+    _s.validateStringLength(
+      'metadata',
+      metadata,
+      1,
+      1152921504606846976,
       isRequired: true,
     );
-    ArgumentError.checkNotNull(metadata, 'metadata');
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
       'metadata': metadata,
@@ -1066,12 +1301,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
     };
@@ -1104,12 +1333,6 @@ class Ivs {
       resourceArn,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:[a-z-]/[a-zA-Z0-9-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -1147,12 +1370,6 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:[a-z-]/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1180,18 +1397,27 @@ class Ivs {
   /// ARN of the channel to be updated.
   ///
   /// Parameter [authorized] :
-  /// Whether the channel is authorized. Default: <code>false</code>.
+  /// Whether the channel is private (enabled for playback authorization).
   ///
   /// Parameter [latencyMode] :
-  /// Channel latency mode. Default: <code>LOW</code>.
+  /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver
+  /// live video up to Full HD. Use <code>LOW</code> for near-real-time
+  /// interaction with viewers. (Note: In the Amazon IVS console,
+  /// <code>LOW</code> and <code>NORMAL</code> correspond to Ultra-low and
+  /// Standard, respectively.)
   ///
   /// Parameter [name] :
   /// Channel name.
   ///
+  /// Parameter [recordingConfigurationArn] :
+  /// Recording-configuration ARN. If this is set to an empty string, recording
+  /// is disabled. A value other than an empty string indicates that recording
+  /// is enabled
+  ///
   /// Parameter [type] :
   /// Channel type, which determines the allowable resolution and bitrate. <i>If
   /// you exceed the allowable resolution or bitrate, the stream probably will
-  /// disconnect immediately.</i> Valid values:
+  /// disconnect immediately</i>. Valid values:
   ///
   /// <ul>
   /// <li>
@@ -1206,12 +1432,12 @@ class Ivs {
   /// resolution can be up to 480 and bitrate can be up to 1.5 Mbps.
   /// </li>
   /// </ul>
-  /// Default: <code>STANDARD</code>.
   Future<UpdateChannelResponse> updateChannel({
     required String arn,
     bool? authorized,
     ChannelLatencyMode? latencyMode,
     String? name,
+    String? recordingConfigurationArn,
     ChannelType? type,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
@@ -1222,28 +1448,25 @@ class Ivs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''^arn:aws:[is]vs:[a-z0-9-]+:[0-9]+:channel/[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       0,
       128,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9-_]*$''',
+    _s.validateStringLength(
+      'recordingConfigurationArn',
+      recordingConfigurationArn,
+      0,
+      128,
     );
     final $payload = <String, dynamic>{
       'arn': arn,
       if (authorized != null) 'authorized': authorized,
       if (latencyMode != null) 'latencyMode': latencyMode.toValue(),
       if (name != null) 'name': name,
+      if (recordingConfigurationArn != null)
+        'recordingConfigurationArn': recordingConfigurationArn,
       if (type != null) 'type': type.toValue(),
     };
     final response = await _protocol.send(
@@ -1332,14 +1555,19 @@ class Channel {
   /// Channel ARN.
   final String? arn;
 
-  /// Whether the channel is authorized.
+  /// Whether the channel is private (enabled for playback authorization).
+  /// Default: <code>false</code>.
   final bool? authorized;
 
   /// Channel ingest endpoint, part of the definition of an ingest server, used
   /// when you set up streaming software.
   final String? ingestEndpoint;
 
-  /// Channel latency mode. Default: <code>LOW</code>.
+  /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver live
+  /// video up to Full HD. Use <code>LOW</code> for near-real-time interaction
+  /// with viewers. Default: <code>LOW</code>. (Note: In the Amazon IVS console,
+  /// <code>LOW</code> and <code>NORMAL</code> correspond to Ultra-low and
+  /// Standard, respectively.)
   final ChannelLatencyMode? latencyMode;
 
   /// Channel name.
@@ -1348,12 +1576,17 @@ class Channel {
   /// Channel playback URL.
   final String? playbackUrl;
 
+  /// Recording-configuration ARN. A value other than an empty string indicates
+  /// that recording is enabled. Default: "" (empty string, recording is
+  /// disabled).
+  final String? recordingConfigurationArn;
+
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
   final Map<String, String>? tags;
 
   /// Channel type, which determines the allowable resolution and bitrate. <i>If
   /// you exceed the allowable resolution or bitrate, the stream probably will
-  /// disconnect immediately.</i> Valid values:
+  /// disconnect immediately.</i> Default: <code>STANDARD</code>. Valid values:
   ///
   /// <ul>
   /// <li>
@@ -1368,7 +1601,6 @@ class Channel {
   /// resolution can be up to 480 and bitrate can be up to 1.5 Mbps.
   /// </li>
   /// </ul>
-  /// Default: <code>STANDARD</code>.
   final ChannelType? type;
 
   Channel({
@@ -1378,6 +1610,7 @@ class Channel {
     this.latencyMode,
     this.name,
     this.playbackUrl,
+    this.recordingConfigurationArn,
     this.tags,
     this.type,
   });
@@ -1389,6 +1622,7 @@ class Channel {
       latencyMode: (json['latencyMode'] as String?)?.toChannelLatencyMode(),
       name: json['name'] as String?,
       playbackUrl: json['playbackUrl'] as String?,
+      recordingConfigurationArn: json['recordingConfigurationArn'] as String?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       type: (json['type'] as String?)?.toChannelType(),
@@ -1429,14 +1663,24 @@ class ChannelSummary {
   /// Channel ARN.
   final String? arn;
 
-  /// Whether the channel is authorized.
+  /// Whether the channel is private (enabled for playback authorization).
+  /// Default: <code>false</code>.
   final bool? authorized;
 
-  /// Channel latency mode. Default: <code>LOW</code>.
+  /// Channel latency mode. Use <code>NORMAL</code> to broadcast and deliver live
+  /// video up to Full HD. Use <code>LOW</code> for near-real-time interaction
+  /// with viewers. Default: <code>LOW</code>. (Note: In the Amazon IVS console,
+  /// <code>LOW</code> and <code>NORMAL</code> correspond to Ultra-low and
+  /// Standard, respectively.)
   final ChannelLatencyMode? latencyMode;
 
   /// Channel name.
   final String? name;
+
+  /// Recording-configuration ARN. A value other than an empty string indicates
+  /// that recording is enabled. Default: "" (empty string, recording is
+  /// disabled).
+  final String? recordingConfigurationArn;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
   final Map<String, String>? tags;
@@ -1446,6 +1690,7 @@ class ChannelSummary {
     this.authorized,
     this.latencyMode,
     this.name,
+    this.recordingConfigurationArn,
     this.tags,
   });
   factory ChannelSummary.fromJson(Map<String, dynamic> json) {
@@ -1454,6 +1699,7 @@ class ChannelSummary {
       authorized: json['authorized'] as bool?,
       latencyMode: (json['latencyMode'] as String?)?.toChannelLatencyMode(),
       name: json['name'] as String?,
+      recordingConfigurationArn: json['recordingConfigurationArn'] as String?,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -1508,6 +1754,23 @@ class CreateChannelResponse {
   }
 }
 
+class CreateRecordingConfigurationResponse {
+  final RecordingConfiguration? recordingConfiguration;
+
+  CreateRecordingConfigurationResponse({
+    this.recordingConfiguration,
+  });
+  factory CreateRecordingConfigurationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateRecordingConfigurationResponse(
+      recordingConfiguration: json['recordingConfiguration'] != null
+          ? RecordingConfiguration.fromJson(
+              json['recordingConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class CreateStreamKeyResponse {
   /// Stream key used to authenticate an RTMPS stream for ingestion.
   final StreamKey? streamKey;
@@ -1528,6 +1791,33 @@ class DeletePlaybackKeyPairResponse {
   DeletePlaybackKeyPairResponse();
   factory DeletePlaybackKeyPairResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaybackKeyPairResponse();
+  }
+}
+
+/// A complex type that describes a location where recorded videos will be
+/// stored. Each member represents a type of destination configuration. For
+/// recording, you define one and only one type of destination configuration.
+class DestinationConfiguration {
+  /// An S3 destination configuration where recorded videos will be stored.
+  final S3DestinationConfiguration? s3;
+
+  DestinationConfiguration({
+    this.s3,
+  });
+  factory DestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return DestinationConfiguration(
+      s3: json['s3'] != null
+          ? S3DestinationConfiguration.fromJson(
+              json['s3'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3 = this.s3;
+    return {
+      if (s3 != null) 's3': s3,
+    };
   }
 }
 
@@ -1556,6 +1846,23 @@ class GetPlaybackKeyPairResponse {
     return GetPlaybackKeyPairResponse(
       keyPair: json['keyPair'] != null
           ? PlaybackKeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetRecordingConfigurationResponse {
+  final RecordingConfiguration? recordingConfiguration;
+
+  GetRecordingConfigurationResponse({
+    this.recordingConfiguration,
+  });
+  factory GetRecordingConfigurationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetRecordingConfigurationResponse(
+      recordingConfiguration: json['recordingConfiguration'] != null
+          ? RecordingConfiguration.fromJson(
+              json['recordingConfiguration'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -1653,6 +1960,31 @@ class ListPlaybackKeyPairsResponse {
   }
 }
 
+class ListRecordingConfigurationsResponse {
+  /// List of the matching recording configurations.
+  final List<RecordingConfigurationSummary> recordingConfigurations;
+
+  /// If there are more recording configurations than <code>maxResults</code>, use
+  /// <code>nextToken</code> in the request to get the next set.
+  final String? nextToken;
+
+  ListRecordingConfigurationsResponse({
+    required this.recordingConfigurations,
+    this.nextToken,
+  });
+  factory ListRecordingConfigurationsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListRecordingConfigurationsResponse(
+      recordingConfigurations: (json['recordingConfigurations'] as List)
+          .whereNotNull()
+          .map((e) =>
+              RecordingConfigurationSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
 class ListStreamKeysResponse {
   /// List of stream keys.
   final List<StreamKeySummary> streamKeys;
@@ -1727,7 +2059,8 @@ class PlaybackKeyPair {
   /// Key-pair identifier.
   final String? fingerprint;
 
-  /// Key-pair name.
+  /// An arbitrary string (a nickname) assigned to a playback key pair that helps
+  /// the customer identify that resource. The value does not need to be unique.
   final String? name;
 
   /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
@@ -1755,10 +2088,11 @@ class PlaybackKeyPairSummary {
   /// Key-pair ARN.
   final String? arn;
 
-  /// Key-pair name.
+  /// An arbitrary string (a nickname) assigned to a playback key pair that helps
+  /// the customer identify that resource. The value does not need to be unique.
   final String? name;
 
-  /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>
+  /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
   final Map<String, String>? tags;
 
   PlaybackKeyPairSummary({
@@ -1773,6 +2107,146 @@ class PlaybackKeyPairSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+}
+
+/// An object representing a configuration to record a channel stream.
+class RecordingConfiguration {
+  /// Recording-configuration ARN.
+  final String arn;
+
+  /// A complex type that contains information about where recorded video will be
+  /// stored.
+  final DestinationConfiguration destinationConfiguration;
+
+  /// Indicates the current state of the recording configuration. When the state
+  /// is <code>ACTIVE</code>, the configuration is ready for recording a channel
+  /// stream.
+  final RecordingConfigurationState state;
+
+  /// An arbitrary string (a nickname) assigned to a recording configuration that
+  /// helps the customer identify that resource. The value does not need to be
+  /// unique.
+  final String? name;
+
+  /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
+  final Map<String, String>? tags;
+
+  RecordingConfiguration({
+    required this.arn,
+    required this.destinationConfiguration,
+    required this.state,
+    this.name,
+    this.tags,
+  });
+  factory RecordingConfiguration.fromJson(Map<String, dynamic> json) {
+    return RecordingConfiguration(
+      arn: json['arn'] as String,
+      destinationConfiguration: DestinationConfiguration.fromJson(
+          json['destinationConfiguration'] as Map<String, dynamic>),
+      state: (json['state'] as String).toRecordingConfigurationState(),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
+enum RecordingConfigurationState {
+  creating,
+  createFailed,
+  active,
+}
+
+extension on RecordingConfigurationState {
+  String toValue() {
+    switch (this) {
+      case RecordingConfigurationState.creating:
+        return 'CREATING';
+      case RecordingConfigurationState.createFailed:
+        return 'CREATE_FAILED';
+      case RecordingConfigurationState.active:
+        return 'ACTIVE';
+    }
+  }
+}
+
+extension on String {
+  RecordingConfigurationState toRecordingConfigurationState() {
+    switch (this) {
+      case 'CREATING':
+        return RecordingConfigurationState.creating;
+      case 'CREATE_FAILED':
+        return RecordingConfigurationState.createFailed;
+      case 'ACTIVE':
+        return RecordingConfigurationState.active;
+    }
+    throw Exception('$this is not known in enum RecordingConfigurationState');
+  }
+}
+
+/// Summary information about a RecordingConfiguration.
+class RecordingConfigurationSummary {
+  /// Recording-configuration ARN.
+  final String arn;
+
+  /// A complex type that contains information about where recorded video will be
+  /// stored.
+  final DestinationConfiguration destinationConfiguration;
+
+  /// Indicates the current state of the recording configuration. When the state
+  /// is <code>ACTIVE</code>, the configuration is ready for recording a channel
+  /// stream.
+  final RecordingConfigurationState state;
+
+  /// An arbitrary string (a nickname) assigned to a recording configuration that
+  /// helps the customer identify that resource. The value does not need to be
+  /// unique.
+  final String? name;
+
+  /// Array of 1-50 maps, each of the form <code>string:string (key:value)</code>.
+  final Map<String, String>? tags;
+
+  RecordingConfigurationSummary({
+    required this.arn,
+    required this.destinationConfiguration,
+    required this.state,
+    this.name,
+    this.tags,
+  });
+  factory RecordingConfigurationSummary.fromJson(Map<String, dynamic> json) {
+    return RecordingConfigurationSummary(
+      arn: json['arn'] as String,
+      destinationConfiguration: DestinationConfiguration.fromJson(
+          json['destinationConfiguration'] as Map<String, dynamic>),
+      state: (json['state'] as String).toRecordingConfigurationState(),
+      name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
+/// A complex type that describes an S3 location where recorded videos will be
+/// stored.
+class S3DestinationConfiguration {
+  /// Location (S3 bucket name) where recorded videos will be stored.
+  final String bucketName;
+
+  S3DestinationConfiguration({
+    required this.bucketName,
+  });
+  factory S3DestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return S3DestinationConfiguration(
+      bucketName: json['bucketName'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    return {
+      'bucketName': bucketName,
+    };
   }
 }
 
@@ -1791,8 +2265,8 @@ class Stream {
   /// The stream’s health.
   final StreamHealth? health;
 
-  /// URL of the video master manifest, required by the video player to play the
-  /// HLS stream.
+  /// URL of the master playlist, required by the video player to play the HLS
+  /// stream.
   final String? playbackUrl;
 
   /// ISO-8601 formatted timestamp of the stream’s start.
@@ -1801,7 +2275,8 @@ class Stream {
   /// The stream’s state.
   final StreamState? state;
 
-  /// Number of current viewers of the stream.
+  /// Number of current viewers of the stream. A value of -1 indicates that the
+  /// request timed out; in this case, retry.
   final int? viewerCount;
 
   Stream({
@@ -1956,7 +2431,8 @@ class StreamSummary {
   /// The stream’s state.
   final StreamState? state;
 
-  /// Number of current viewers of the stream.
+  /// Number of current viewers of the stream. A value of -1 indicates that the
+  /// request timed out; in this case, retry.
   final int? viewerCount;
 
   StreamSummary({

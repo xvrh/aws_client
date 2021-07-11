@@ -44,25 +44,112 @@ class MQ {
 
   /// Creates a broker. Note: This API is asynchronous.
   ///
+  /// To create a broker, you must either use the AmazonMQFullAccess IAM policy
+  /// or include the following EC2 permissions in your IAM policy.
+  ///
+  /// <ul>
+  /// <li>
+  /// ec2:CreateNetworkInterface
+  ///
+  /// This permission is required to allow Amazon MQ to create an elastic
+  /// network interface (ENI) on behalf of your account.
+  /// </li>
+  /// <li>
+  /// ec2:CreateNetworkInterfacePermission
+  ///
+  /// This permission is required to attach the ENI to the broker instance.
+  /// </li>
+  /// <li>
+  /// ec2:DeleteNetworkInterface
+  /// </li>
+  /// <li>
+  /// ec2:DeleteNetworkInterfacePermission
+  /// </li>
+  /// <li>
+  /// ec2:DetachNetworkInterface
+  /// </li>
+  /// <li>
+  /// ec2:DescribeInternetGateways
+  /// </li>
+  /// <li>
+  /// ec2:DescribeNetworkInterfaces
+  /// </li>
+  /// <li>
+  /// ec2:DescribeNetworkInterfacePermissions
+  /// </li>
+  /// <li>
+  /// ec2:DescribeRouteTables
+  /// </li>
+  /// <li>
+  /// ec2:DescribeSecurityGroups
+  /// </li>
+  /// <li>
+  /// ec2:DescribeSubnets
+  /// </li>
+  /// <li>
+  /// ec2:DescribeVpcs
+  /// </li>
+  /// </ul>
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/amazon-mq-setting-up.html#create-iam-user">Create
+  /// an IAM User and Get Your AWS Credentials</a> and <a
+  /// href="https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/connecting-to-amazon-mq.html#never-modify-delete-elastic-network-interface">Never
+  /// Modify or Delete the Amazon MQ Elastic Network Interface</a> in the
+  /// <i>Amazon MQ Developer Guide</i>.
+  ///
   /// May throw [BadRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [InternalServerErrorException].
   /// May throw [ConflictException].
   /// May throw [ForbiddenException].
   ///
-  /// Parameter [authenticationStrategy] :
-  /// The authentication strategy used to secure the broker.
-  ///
   /// Parameter [autoMinorVersionUpgrade] :
-  /// Required. Enables automatic upgrades to new minor versions for brokers, as
-  /// Apache releases the versions. The automatic upgrades occur during the
-  /// maintenance window of the broker or after a manual broker reboot.
+  /// Enables automatic upgrades to new minor versions for brokers, as new
+  /// versions are released and supported by Amazon MQ. Automatic upgrades occur
+  /// during the scheduled maintenance window of the broker or after a manual
+  /// broker reboot. Set to true by default, if no value is specified.
   ///
   /// Parameter [brokerName] :
-  /// Required. The name of the broker. This value must be unique in your AWS
+  /// Required. The broker's name. This value must be unique in your AWS
   /// account, 1-50 characters long, must contain only letters, numbers, dashes,
-  /// and underscores, and must not contain whitespaces, brackets, wildcard
+  /// and underscores, and must not contain white spaces, brackets, wildcard
   /// characters, or special characters.
+  ///
+  /// Parameter [deploymentMode] :
+  /// Required. The broker's deployment mode.
+  ///
+  /// Parameter [engineType] :
+  /// Required. The type of broker engine. Currently, Amazon MQ supports
+  /// ACTIVEMQ and RABBITMQ.
+  ///
+  /// Parameter [engineVersion] :
+  /// Required. The broker engine's version. For a list of supported engine
+  /// versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
+  ///
+  /// Parameter [hostInstanceType] :
+  /// Required. The broker's instance type.
+  ///
+  /// Parameter [publiclyAccessible] :
+  /// Enables connections from applications outside of the VPC that hosts the
+  /// broker's subnets. Set to false by default, if no value is provided.
+  ///
+  /// Parameter [users] :
+  /// Required. The list of broker users (persons or applications) who can
+  /// access queues and topics. This value can contain only alphanumeric
+  /// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
+  /// must be 2-100 characters long.
+  /// <important><title>Amazon MQ for RabbitMQ</title>
+  /// When you create an Amazon MQ for RabbitMQ broker, one and only one
+  /// administrative user is accepted and created when a broker is first
+  /// provisioned. All subsequent broker users are created by making RabbitMQ
+  /// API calls directly to brokers or via the RabbitMQ web console.
+  /// </important>
+  ///
+  /// Parameter [authenticationStrategy] :
+  /// Optional. The authentication strategy used to secure the broker. The
+  /// default is SIMPLE.
   ///
   /// Parameter [configuration] :
   /// A list of information about the configuration.
@@ -73,27 +160,12 @@ class MQ {
   /// Universally Unique Identifier (UUID) for the creatorRequestId. You may
   /// omit the creatorRequestId if your application doesn't require idempotency.
   ///
-  /// Parameter [deploymentMode] :
-  /// Required. The deployment mode of the broker.
-  ///
   /// Parameter [encryptionOptions] :
-  /// Encryption options for the broker.
-  ///
-  /// Parameter [engineType] :
-  /// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-  /// ACTIVEMQ and RABBITMQ.
-  ///
-  /// Parameter [engineVersion] :
-  /// Required. The version of the broker engine. For a list of supported engine
-  /// versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
-  ///
-  /// Parameter [hostInstanceType] :
-  /// Required. The broker's instance type.
+  /// Encryption options for the broker. Does not apply to RabbitMQ brokers.
   ///
   /// Parameter [ldapServerMetadata] :
-  /// The metadata of the LDAP server used to authenticate and authorize
-  /// connections to the broker.
+  /// Optional. The metadata of the LDAP server used to authenticate and
+  /// authorize connections to the broker. Does not apply to RabbitMQ brokers.
   ///
   /// Parameter [logs] :
   /// Enables Amazon CloudWatch logging for brokers.
@@ -101,81 +173,87 @@ class MQ {
   /// Parameter [maintenanceWindowStartTime] :
   /// The parameters that determine the WeeklyStartTime.
   ///
-  /// Parameter [publiclyAccessible] :
-  /// Required. Enables connections from applications outside of the VPC that
-  /// hosts the broker's subnets.
-  ///
   /// Parameter [securityGroups] :
-  /// The list of security groups (1 minimum, 5 maximum) that authorizes
-  /// connections to brokers.
+  /// The list of rules (1 minimum, 125 maximum) that authorize connections to
+  /// brokers.
   ///
   /// Parameter [storageType] :
   /// The broker's storage type.
   ///
   /// Parameter [subnetIds] :
   /// The list of groups that define which subnets and IP ranges the broker can
-  /// use from different Availability Zones. A SINGLE_INSTANCE deployment
+  /// use from different Availability Zones. If you specify more than one
+  /// subnet, the subnets must be in different Availability Zones. Amazon MQ
+  /// will not be able to create VPC endpoints for your broker with multiple
+  /// subnets in the same Availability Zone. A SINGLE_INSTANCE deployment
   /// requires one subnet (for example, the default subnet). An
-  /// ACTIVE_STANDBY_MULTI_AZ deployment (ACTIVEMQ) requires two subnets. A
-  /// CLUSTER_MULTI_AZ deployment (RABBITMQ) has no subnet requirements when
-  /// deployed with public accessibility, deployment without public
-  /// accessibility requires at least one subnet.
+  /// ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two
+  /// subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no
+  /// subnet requirements when deployed with public accessibility. Deployment
+  /// without public accessibility requires at least one subnet.
+  /// <important>
+  /// If you specify subnets in a <a
+  /// href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html">shared
+  /// VPC</a> for a RabbitMQ broker, the associated VPC to which the specified
+  /// subnets belong must be owned by your AWS account. Amazon MQ will not be
+  /// able to create VPC endpoints in VPCs that are not owned by your AWS
+  /// account.
+  /// </important>
   ///
   /// Parameter [tags] :
   /// Create tags when creating the broker.
-  ///
-  /// Parameter [users] :
-  /// Required. The list of broker users (persons or applications) who can
-  /// access queues and topics. For RabbitMQ brokers, one and only one
-  /// administrative user is accepted and created when a broker is first
-  /// provisioned. All subsequent broker users are created by making RabbitMQ
-  /// API calls directly to brokers or via the RabbitMQ Web Console. This value
-  /// can contain only alphanumeric characters, dashes, periods, underscores,
-  /// and tildes (- . _ ~). This value must be 2-100 characters long.
   Future<CreateBrokerResponse> createBroker({
+    required bool autoMinorVersionUpgrade,
+    required String brokerName,
+    required DeploymentMode deploymentMode,
+    required EngineType engineType,
+    required String engineVersion,
+    required String hostInstanceType,
+    required bool publiclyAccessible,
+    required List<User> users,
     AuthenticationStrategy? authenticationStrategy,
-    bool? autoMinorVersionUpgrade,
-    String? brokerName,
     ConfigurationId? configuration,
     String? creatorRequestId,
-    DeploymentMode? deploymentMode,
     EncryptionOptions? encryptionOptions,
-    EngineType? engineType,
-    String? engineVersion,
-    String? hostInstanceType,
     LdapServerMetadataInput? ldapServerMetadata,
     Logs? logs,
     WeeklyStartTime? maintenanceWindowStartTime,
-    bool? publiclyAccessible,
     List<String>? securityGroups,
     BrokerStorageType? storageType,
     List<String>? subnetIds,
     Map<String, String>? tags,
-    List<User>? users,
   }) async {
+    ArgumentError.checkNotNull(
+        autoMinorVersionUpgrade, 'autoMinorVersionUpgrade');
+    ArgumentError.checkNotNull(brokerName, 'brokerName');
+    ArgumentError.checkNotNull(deploymentMode, 'deploymentMode');
+    ArgumentError.checkNotNull(engineType, 'engineType');
+    ArgumentError.checkNotNull(engineVersion, 'engineVersion');
+    ArgumentError.checkNotNull(hostInstanceType, 'hostInstanceType');
+    ArgumentError.checkNotNull(publiclyAccessible, 'publiclyAccessible');
+    ArgumentError.checkNotNull(users, 'users');
     final $payload = <String, dynamic>{
+      'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      'brokerName': brokerName,
+      'deploymentMode': deploymentMode.toValue(),
+      'engineType': engineType.toValue(),
+      'engineVersion': engineVersion,
+      'hostInstanceType': hostInstanceType,
+      'publiclyAccessible': publiclyAccessible,
+      'users': users,
       if (authenticationStrategy != null)
         'authenticationStrategy': authenticationStrategy.toValue(),
-      if (autoMinorVersionUpgrade != null)
-        'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
-      if (brokerName != null) 'brokerName': brokerName,
       if (configuration != null) 'configuration': configuration,
       'creatorRequestId': creatorRequestId ?? _s.generateIdempotencyToken(),
-      if (deploymentMode != null) 'deploymentMode': deploymentMode.toValue(),
       if (encryptionOptions != null) 'encryptionOptions': encryptionOptions,
-      if (engineType != null) 'engineType': engineType.toValue(),
-      if (engineVersion != null) 'engineVersion': engineVersion,
-      if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
       if (ldapServerMetadata != null) 'ldapServerMetadata': ldapServerMetadata,
       if (logs != null) 'logs': logs,
       if (maintenanceWindowStartTime != null)
         'maintenanceWindowStartTime': maintenanceWindowStartTime,
-      if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
       if (securityGroups != null) 'securityGroups': securityGroups,
       if (storageType != null) 'storageType': storageType.toValue(),
       if (subnetIds != null) 'subnetIds': subnetIds,
       if (tags != null) 'tags': tags,
-      if (users != null) 'users': users,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -194,38 +272,43 @@ class MQ {
   /// May throw [ConflictException].
   /// May throw [ForbiddenException].
   ///
-  /// Parameter [authenticationStrategy] :
-  /// The authentication strategy associated with the configuration.
-  ///
   /// Parameter [engineType] :
-  /// Required. The type of broker engine. Note: Currently, Amazon MQ supports
+  /// Required. The type of broker engine. Currently, Amazon MQ supports
   /// ACTIVEMQ and RABBITMQ.
   ///
   /// Parameter [engineVersion] :
-  /// Required. The version of the broker engine. For a list of supported engine
-  /// versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// Required. The broker engine's version. For a list of supported engine
+  /// versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   ///
   /// Parameter [name] :
   /// Required. The name of the configuration. This value can contain only
   /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _
   /// ~). This value must be 1-150 characters long.
   ///
+  /// Parameter [authenticationStrategy] :
+  /// Optional. The authentication strategy associated with the configuration.
+  /// The default is SIMPLE.
+  ///
   /// Parameter [tags] :
   /// Create tags when creating the configuration.
   Future<CreateConfigurationResponse> createConfiguration({
+    required EngineType engineType,
+    required String engineVersion,
+    required String name,
     AuthenticationStrategy? authenticationStrategy,
-    EngineType? engineType,
-    String? engineVersion,
-    String? name,
     Map<String, String>? tags,
   }) async {
+    ArgumentError.checkNotNull(engineType, 'engineType');
+    ArgumentError.checkNotNull(engineVersion, 'engineVersion');
+    ArgumentError.checkNotNull(name, 'name');
     final $payload = <String, dynamic>{
+      'engineType': engineType.toValue(),
+      'engineVersion': engineVersion,
+      'name': name,
       if (authenticationStrategy != null)
         'authenticationStrategy': authenticationStrategy.toValue(),
-      if (engineType != null) 'engineType': engineType.toValue(),
-      if (engineVersion != null) 'engineVersion': engineVersion,
-      if (name != null) 'name': name,
       if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
@@ -276,37 +359,38 @@ class MQ {
   /// Parameter [brokerId] :
   /// The unique ID that Amazon MQ generates for the broker.
   ///
+  /// Parameter [password] :
+  /// Required. The password of the user. This value must be at least 12
+  /// characters long, must contain at least 4 unique characters, and must not
+  /// contain commas, colons, or equal signs (,:=).
+  ///
   /// Parameter [username] :
   /// The username of the ActiveMQ user. This value can contain only
   /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _
   /// ~). This value must be 2-100 characters long.
   ///
   /// Parameter [consoleAccess] :
-  /// Enables access to the the ActiveMQ Web Console for the ActiveMQ user.
+  /// Enables access to the ActiveMQ Web Console for the ActiveMQ user.
   ///
   /// Parameter [groups] :
   /// The list of groups (20 maximum) to which the ActiveMQ user belongs. This
   /// value can contain only alphanumeric characters, dashes, periods,
   /// underscores, and tildes (- . _ ~). This value must be 2-100 characters
   /// long.
-  ///
-  /// Parameter [password] :
-  /// Required. The password of the user. This value must be at least 12
-  /// characters long, must contain at least 4 unique characters, and must not
-  /// contain commas.
   Future<void> createUser({
     required String brokerId,
+    required String password,
     required String username,
     bool? consoleAccess,
     List<String>? groups,
-    String? password,
   }) async {
     ArgumentError.checkNotNull(brokerId, 'brokerId');
+    ArgumentError.checkNotNull(password, 'password');
     ArgumentError.checkNotNull(username, 'username');
     final $payload = <String, dynamic>{
+      'password': password,
       if (consoleAccess != null) 'consoleAccess': consoleAccess,
       if (groups != null) 'groups': groups,
-      if (password != null) 'password': password,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -406,10 +490,7 @@ class MQ {
   /// May throw [ForbiddenException].
   ///
   /// Parameter [brokerId] :
-  /// The name of the broker. This value must be unique in your AWS account,
-  /// 1-50 characters long, must contain only letters, numbers, dashes, and
-  /// underscores, and must not contain whitespaces, brackets, wildcard
-  /// characters, or special characters.
+  /// The unique ID that Amazon MQ generates for the broker.
   Future<DescribeBrokerResponse> describeBroker({
     required String brokerId,
   }) async {
@@ -433,8 +514,8 @@ class MQ {
   /// Filter response by engine type.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of engine types that Amazon MQ can return per page (20
-  /// by default). This value must be an integer from 5 to 100.
+  /// The maximum number of brokers that Amazon MQ can return per page (20 by
+  /// default). This value must be an integer from 5 to 100.
   ///
   /// Parameter [nextToken] :
   /// The token that specifies the next page of results Amazon MQ should return.
@@ -478,8 +559,8 @@ class MQ {
   /// Filter response by host instance type.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of instance options that Amazon MQ can return per page
-  /// (20 by default). This value must be an integer from 5 to 100.
+  /// The maximum number of brokers that Amazon MQ can return per page (20 by
+  /// default). This value must be an integer from 5 to 100.
   ///
   /// Parameter [nextToken] :
   /// The token that specifies the next page of results Amazon MQ should return.
@@ -646,8 +727,8 @@ class MQ {
   /// The unique ID that Amazon MQ generates for the configuration.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of configurations that Amazon MQ can return per page
-  /// (20 by default). This value must be an integer from 5 to 100.
+  /// The maximum number of brokers that Amazon MQ can return per page (20 by
+  /// default). This value must be an integer from 5 to 100.
   ///
   /// Parameter [nextToken] :
   /// The token that specifies the next page of results Amazon MQ should return.
@@ -686,8 +767,8 @@ class MQ {
   /// May throw [ForbiddenException].
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of configurations that Amazon MQ can return per page
-  /// (20 by default). This value must be an integer from 5 to 100.
+  /// The maximum number of brokers that Amazon MQ can return per page (20 by
+  /// default). This value must be an integer from 5 to 100.
   ///
   /// Parameter [nextToken] :
   /// The token that specifies the next page of results Amazon MQ should return.
@@ -749,7 +830,7 @@ class MQ {
   /// The unique ID that Amazon MQ generates for the broker.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of ActiveMQ users that can be returned per page (20 by
+  /// The maximum number of brokers that Amazon MQ can return per page (20 by
   /// default). This value must be an integer from 5 to 100.
   ///
   /// Parameter [nextToken] :
@@ -814,32 +895,38 @@ class MQ {
   /// The unique ID that Amazon MQ generates for the broker.
   ///
   /// Parameter [authenticationStrategy] :
-  /// The authentication strategy used to secure the broker.
+  /// Optional. The authentication strategy used to secure the broker. The
+  /// default is SIMPLE.
   ///
   /// Parameter [autoMinorVersionUpgrade] :
-  /// Enables automatic upgrades to new minor versions for brokers, as Apache
-  /// releases the versions. The automatic upgrades occur during the maintenance
-  /// window of the broker or after a manual broker reboot.
+  /// Enables automatic upgrades to new minor versions for brokers, as new
+  /// versions are released and supported by Amazon MQ. Automatic upgrades occur
+  /// during the scheduled maintenance window of the broker or after a manual
+  /// broker reboot.
   ///
   /// Parameter [configuration] :
   /// A list of information about the configuration.
   ///
   /// Parameter [engineVersion] :
-  /// The version of the broker engine. For a list of supported engine versions,
-  /// see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// The broker engine version. For a list of supported engine versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   ///
   /// Parameter [hostInstanceType] :
-  /// The host instance type of the broker to upgrade to. For a list of
-  /// supported instance types, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types
+  /// The broker's host instance type to upgrade to. For a list of supported
+  /// instance types, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types">Broker
+  /// instance types</a>.
   ///
   /// Parameter [ldapServerMetadata] :
-  /// The metadata of the LDAP server used to authenticate and authorize
-  /// connections to the broker.
+  /// Optional. The metadata of the LDAP server used to authenticate and
+  /// authorize connections to the broker. Does not apply to RabbitMQ brokers.
   ///
   /// Parameter [logs] :
   /// Enables Amazon CloudWatch logging for brokers.
+  ///
+  /// Parameter [maintenanceWindowStartTime] :
+  /// The parameters that determine the WeeklyStartTime.
   ///
   /// Parameter [securityGroups] :
   /// The list of security groups (1 minimum, 5 maximum) that authorizes
@@ -853,6 +940,7 @@ class MQ {
     String? hostInstanceType,
     LdapServerMetadataInput? ldapServerMetadata,
     Logs? logs,
+    WeeklyStartTime? maintenanceWindowStartTime,
     List<String>? securityGroups,
   }) async {
     ArgumentError.checkNotNull(brokerId, 'brokerId');
@@ -866,6 +954,8 @@ class MQ {
       if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
       if (ldapServerMetadata != null) 'ldapServerMetadata': ldapServerMetadata,
       if (logs != null) 'logs': logs,
+      if (maintenanceWindowStartTime != null)
+        'maintenanceWindowStartTime': maintenanceWindowStartTime,
       if (securityGroups != null) 'securityGroups': securityGroups,
     };
     final response = await _protocol.send(
@@ -895,12 +985,13 @@ class MQ {
   /// The description of the configuration.
   Future<UpdateConfigurationResponse> updateConfiguration({
     required String configurationId,
-    String? data,
+    required String data,
     String? description,
   }) async {
     ArgumentError.checkNotNull(configurationId, 'configurationId');
+    ArgumentError.checkNotNull(data, 'data');
     final $payload = <String, dynamic>{
-      if (data != null) 'data': data,
+      'data': data,
       if (description != null) 'description': description,
     };
     final response = await _protocol.send(
@@ -924,7 +1015,7 @@ class MQ {
   /// The unique ID that Amazon MQ generates for the broker.
   ///
   /// Parameter [username] :
-  /// Required. The username of the ActiveMQ user. This value can contain only
+  /// The username of the ActiveMQ user. This value can contain only
   /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _
   /// ~). This value must be 2-100 characters long.
   ///
@@ -939,7 +1030,8 @@ class MQ {
   ///
   /// Parameter [password] :
   /// The password of the user. This value must be at least 12 characters long,
-  /// must contain at least 4 unique characters, and must not contain commas.
+  /// must contain at least 4 unique characters, and must not contain commas,
+  /// colons, or equal signs (,:=).
   Future<void> updateUser({
     required String brokerId,
     required String username,
@@ -964,7 +1056,8 @@ class MQ {
   }
 }
 
-/// The authentication strategy used to secure the broker.
+/// Optional. The authentication strategy used to secure the broker. The default
+/// is SIMPLE.
 enum AuthenticationStrategy {
   simple,
   ldap,
@@ -1010,7 +1103,7 @@ class AvailabilityZone {
 
 /// Types of broker engines.
 class BrokerEngineType {
-  /// The type of broker engine.
+  /// The broker's engine type.
   final EngineType? engineType;
 
   /// The list of engine versions.
@@ -1033,14 +1126,14 @@ class BrokerEngineType {
 
 /// Returns information about all brokers.
 class BrokerInstance {
-  /// The URL of the broker's Web Console.
+  /// The brokers web console URL.
   final String? consoleURL;
 
   /// The broker's wire-level protocol endpoints.
   final List<String>? endpoints;
 
   /// The IP address of the Elastic Network Interface (ENI) attached to the
-  /// broker. Does not apply to RabbitMQ brokers
+  /// broker. Does not apply to RabbitMQ brokers.
   final String? ipAddress;
 
   BrokerInstance({
@@ -1065,10 +1158,10 @@ class BrokerInstanceOption {
   /// The list of available az.
   final List<AvailabilityZone>? availabilityZones;
 
-  /// The type of broker engine.
+  /// The broker's engine type.
   final EngineType? engineType;
 
-  /// The type of broker instance.
+  /// The broker's instance type.
   final String? hostInstanceType;
 
   /// The broker's storage type.
@@ -1109,7 +1202,7 @@ class BrokerInstanceOption {
   }
 }
 
-/// The status of the broker.
+/// The broker's status.
 enum BrokerState {
   creationInProgress,
   creationFailed,
@@ -1153,8 +1246,10 @@ extension on String {
   }
 }
 
-/// The broker's storage type. <important>EFS is currently not Supported for
-/// RabbitMQ engine type.</important>
+/// The broker's storage type.
+/// <important>
+/// EFS is not supported for RabbitMQ engine type.
+/// </important>
 enum BrokerStorageType {
   ebs,
   efs,
@@ -1183,54 +1278,54 @@ extension on String {
   }
 }
 
-/// The Amazon Resource Name (ARN) of the broker.
+/// Returns information about all brokers.
 class BrokerSummary {
-  /// The Amazon Resource Name (ARN) of the broker.
+  /// The broker's deployment mode.
+  final DeploymentMode deploymentMode;
+
+  /// The type of broker engine.
+  final EngineType engineType;
+
+  /// The broker's Amazon Resource Name (ARN).
   final String? brokerArn;
 
   /// The unique ID that Amazon MQ generates for the broker.
   final String? brokerId;
 
-  /// The name of the broker. This value must be unique in your AWS account, 1-50
-  /// characters long, must contain only letters, numbers, dashes, and
-  /// underscores, and must not contain whitespaces, brackets, wildcard
-  /// characters, or special characters.
+  /// The broker's name. This value is unique in your AWS account, 1-50 characters
+  /// long, and containing only letters, numbers, dashes, and underscores, and
+  /// must not contain white spaces, brackets, wildcard characters, or special
+  /// characters.
   final String? brokerName;
 
-  /// The status of the broker.
+  /// The broker's status.
   final BrokerState? brokerState;
 
   /// The time when the broker was created.
   final DateTime? created;
 
-  /// Required. The deployment mode of the broker.
-  final DeploymentMode? deploymentMode;
-
-  /// Required. The type of broker engine.
-  final EngineType? engineType;
-
   /// The broker's instance type.
   final String? hostInstanceType;
 
   BrokerSummary({
+    required this.deploymentMode,
+    required this.engineType,
     this.brokerArn,
     this.brokerId,
     this.brokerName,
     this.brokerState,
     this.created,
-    this.deploymentMode,
-    this.engineType,
     this.hostInstanceType,
   });
   factory BrokerSummary.fromJson(Map<String, dynamic> json) {
     return BrokerSummary(
+      deploymentMode: (json['deploymentMode'] as String).toDeploymentMode(),
+      engineType: (json['engineType'] as String).toEngineType(),
       brokerArn: json['brokerArn'] as String?,
       brokerId: json['brokerId'] as String?,
       brokerName: json['brokerName'] as String?,
       brokerState: (json['brokerState'] as String?)?.toBrokerState(),
       created: timeStampFromJson(json['created']),
-      deploymentMode: (json['deploymentMode'] as String?)?.toDeploymentMode(),
-      engineType: (json['engineType'] as String?)?.toEngineType(),
       hostInstanceType: json['hostInstanceType'] as String?,
     );
   }
@@ -1273,89 +1368,91 @@ extension on String {
 /// Returns information about all configurations.
 class Configuration {
   /// Required. The ARN of the configuration.
-  final String? arn;
+  final String arn;
 
-  /// The authentication strategy associated with the configuration.
-  final AuthenticationStrategy? authenticationStrategy;
+  /// Optional. The authentication strategy associated with the configuration. The
+  /// default is SIMPLE.
+  final AuthenticationStrategy authenticationStrategy;
 
   /// Required. The date and time of the configuration revision.
-  final DateTime? created;
+  final DateTime created;
 
   /// Required. The description of the configuration.
-  final String? description;
+  final String description;
 
-  /// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-  /// ACTIVEMQ and RABBITMQ.
-  final EngineType? engineType;
+  /// Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ
+  /// and RABBITMQ.
+  final EngineType engineType;
 
-  /// Required. The version of the broker engine. For a list of supported engine
-  /// versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
-  final String? engineVersion;
+  /// Required. The broker engine's version. For a list of supported engine
+  /// versions, see, <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
+  final String engineVersion;
 
   /// Required. The unique ID that Amazon MQ generates for the configuration.
-  final String? id;
+  final String id;
 
   /// Required. The latest revision of the configuration.
-  final ConfigurationRevision? latestRevision;
+  final ConfigurationRevision latestRevision;
 
   /// Required. The name of the configuration. This value can contain only
   /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~).
   /// This value must be 1-150 characters long.
-  final String? name;
+  final String name;
 
   /// The list of all tags associated with this configuration.
   final Map<String, String>? tags;
 
   Configuration({
-    this.arn,
-    this.authenticationStrategy,
-    this.created,
-    this.description,
-    this.engineType,
-    this.engineVersion,
-    this.id,
-    this.latestRevision,
-    this.name,
+    required this.arn,
+    required this.authenticationStrategy,
+    required this.created,
+    required this.description,
+    required this.engineType,
+    required this.engineVersion,
+    required this.id,
+    required this.latestRevision,
+    required this.name,
     this.tags,
   });
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
-      arn: json['arn'] as String?,
-      authenticationStrategy: (json['authenticationStrategy'] as String?)
-          ?.toAuthenticationStrategy(),
-      created: timeStampFromJson(json['created']),
-      description: json['description'] as String?,
-      engineType: (json['engineType'] as String?)?.toEngineType(),
-      engineVersion: json['engineVersion'] as String?,
-      id: json['id'] as String?,
-      latestRevision: json['latestRevision'] != null
-          ? ConfigurationRevision.fromJson(
-              json['latestRevision'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] as String?,
+      arn: json['arn'] as String,
+      authenticationStrategy:
+          (json['authenticationStrategy'] as String).toAuthenticationStrategy(),
+      created: nonNullableTimeStampFromJson(json['created'] as Object),
+      description: json['description'] as String,
+      engineType: (json['engineType'] as String).toEngineType(),
+      engineVersion: json['engineVersion'] as String,
+      id: json['id'] as String,
+      latestRevision: ConfigurationRevision.fromJson(
+          json['latestRevision'] as Map<String, dynamic>),
+      name: json['name'] as String,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
 }
 
-/// A list of information about the configuration. <important>Does not apply to
-/// RabbitMQ brokers.</important>
+/// A list of information about the configuration.
+/// <important>
+/// Does not apply to RabbitMQ brokers.
+/// </important>
 class ConfigurationId {
   /// Required. The unique ID that Amazon MQ generates for the configuration.
-  final String? id;
+  final String id;
 
   /// The revision number of the configuration.
   final int? revision;
 
   ConfigurationId({
-    this.id,
+    required this.id,
     this.revision,
   });
   factory ConfigurationId.fromJson(Map<String, dynamic> json) {
     return ConfigurationId(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       revision: json['revision'] as int?,
     );
   }
@@ -1364,7 +1461,7 @@ class ConfigurationId {
     final id = this.id;
     final revision = this.revision;
     return {
-      if (id != null) 'id': id,
+      'id': id,
       if (revision != null) 'revision': revision,
     };
   }
@@ -1373,37 +1470,37 @@ class ConfigurationId {
 /// Returns information about the specified configuration revision.
 class ConfigurationRevision {
   /// Required. The date and time of the configuration revision.
-  final DateTime? created;
+  final DateTime created;
+
+  /// Required. The revision number of the configuration.
+  final int revision;
 
   /// The description of the configuration revision.
   final String? description;
 
-  /// Required. The revision number of the configuration.
-  final int? revision;
-
   ConfigurationRevision({
-    this.created,
+    required this.created,
+    required this.revision,
     this.description,
-    this.revision,
   });
   factory ConfigurationRevision.fromJson(Map<String, dynamic> json) {
     return ConfigurationRevision(
-      created: timeStampFromJson(json['created']),
+      created: nonNullableTimeStampFromJson(json['created'] as Object),
+      revision: json['revision'] as int,
       description: json['description'] as String?,
-      revision: json['revision'] as int?,
     );
   }
 }
 
 /// Broker configuration information
 class Configurations {
-  /// The current configuration of the broker.
+  /// The broker's current configuration.
   final ConfigurationId? current;
 
   /// The history of configurations applied to the broker.
   final List<ConfigurationId>? history;
 
-  /// The pending configuration of the broker.
+  /// The broker's pending configuration.
   final ConfigurationId? pending;
 
   Configurations({
@@ -1428,7 +1525,7 @@ class Configurations {
 }
 
 class CreateBrokerResponse {
-  /// The Amazon Resource Name (ARN) of the broker.
+  /// The broker's Amazon Resource Name (ARN).
   final String? brokerArn;
 
   /// The unique ID that Amazon MQ generates for the broker.
@@ -1450,7 +1547,8 @@ class CreateConfigurationResponse {
   /// Required. The Amazon Resource Name (ARN) of the configuration.
   final String? arn;
 
-  /// The authentication strategy associated with the configuration.
+  /// Optional. The authentication strategy associated with the configuration. The
+  /// default is SIMPLE.
   final AuthenticationStrategy? authenticationStrategy;
 
   /// Required. The date and time of the configuration.
@@ -1572,7 +1670,7 @@ class DeleteUserResponse {
   }
 }
 
-/// The deployment mode of the broker.
+/// The broker's deployment mode.
 enum DeploymentMode {
   singleInstance,
   activeStandbyMultiAz,
@@ -1667,15 +1765,17 @@ class DescribeBrokerInstanceOptionsResponse {
 }
 
 class DescribeBrokerResponse {
-  /// The authentication strategy used to secure the broker.
+  /// The authentication strategy used to secure the broker. The default is
+  /// SIMPLE.
   final AuthenticationStrategy? authenticationStrategy;
 
-  /// Required. Enables automatic upgrades to new minor versions for brokers, as
-  /// Apache releases the versions. The automatic upgrades occur during the
-  /// maintenance window of the broker or after a manual broker reboot.
+  /// Enables automatic upgrades to new minor versions for brokers, as new
+  /// versions are released and supported by Amazon MQ. Automatic upgrades occur
+  /// during the scheduled maintenance window of the broker or after a manual
+  /// broker reboot.
   final bool? autoMinorVersionUpgrade;
 
-  /// The Amazon Resource Name (ARN) of the broker.
+  /// The broker's Amazon Resource Name (ARN).
   final String? brokerArn;
 
   /// The unique ID that Amazon MQ generates for the broker.
@@ -1684,13 +1784,13 @@ class DescribeBrokerResponse {
   /// A list of information about allocated brokers.
   final List<BrokerInstance>? brokerInstances;
 
-  /// The name of the broker. This value must be unique in your AWS account, 1-50
+  /// The broker's name. This value must be unique in your AWS account, 1-50
   /// characters long, must contain only letters, numbers, dashes, and
-  /// underscores, and must not contain whitespaces, brackets, wildcard
+  /// underscores, and must not contain white spaces, brackets, wildcard
   /// characters, or special characters.
   final String? brokerName;
 
-  /// The status of the broker.
+  /// The broker's status.
   final BrokerState? brokerState;
 
   /// The list of all revisions for the specified configuration.
@@ -1699,19 +1799,19 @@ class DescribeBrokerResponse {
   /// The time when the broker was created.
   final DateTime? created;
 
-  /// Required. The deployment mode of the broker.
+  /// The broker's deployment mode.
   final DeploymentMode? deploymentMode;
 
-  /// Encryption options for the broker.
+  /// Encryption options for the broker. Does not apply to RabbitMQ brokers.
   final EncryptionOptions? encryptionOptions;
 
-  /// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-  /// ACTIVEMQ and RABBITMQ.
+  /// The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and
+  /// RABBITMQ.
   final EngineType? engineType;
 
-  /// The version of the broker engine. For a list of supported engine versions,
-  /// see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// The broker engine's version. For a list of supported engine versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   final String? engineVersion;
 
   /// The broker's instance type.
@@ -1729,44 +1829,41 @@ class DescribeBrokerResponse {
   final WeeklyStartTime? maintenanceWindowStartTime;
 
   /// The authentication strategy that will be applied when the broker is
-  /// rebooted.
+  /// rebooted. The default is SIMPLE.
   final AuthenticationStrategy? pendingAuthenticationStrategy;
 
-  /// The version of the broker engine to upgrade to. For a list of supported
-  /// engine versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// The broker engine version to upgrade to. For a list of supported engine
+  /// versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   final String? pendingEngineVersion;
 
-  /// The host instance type of the broker to upgrade to. For a list of supported
-  /// instance types, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types
+  /// The broker's host instance type to upgrade to. For a list of supported
+  /// instance types, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types">Broker
+  /// instance types</a>.
   final String? pendingHostInstanceType;
 
   /// The metadata of the LDAP server that will be used to authenticate and
-  /// authorize connections to the broker once it is rebooted.
+  /// authorize connections to the broker after it is rebooted.
   final LdapServerMetadataOutput? pendingLdapServerMetadata;
 
   /// The list of pending security groups to authorize connections to brokers.
   final List<String>? pendingSecurityGroups;
 
-  /// Required. Enables connections from applications outside of the VPC that
-  /// hosts the broker's subnets.
+  /// Enables connections from applications outside of the VPC that hosts the
+  /// broker's subnets.
   final bool? publiclyAccessible;
 
-  /// The list of security groups (1 minimum, 5 maximum) that authorizes
-  /// connections to brokers.
+  /// The list of rules (1 minimum, 125 maximum) that authorize connections to
+  /// brokers.
   final List<String>? securityGroups;
 
   /// The broker's storage type.
   final BrokerStorageType? storageType;
 
   /// The list of groups that define which subnets and IP ranges the broker can
-  /// use from different Availability Zones. A SINGLE_INSTANCE deployment requires
-  /// one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ
-  /// deployment (ACTIVEMQ) requires two subnets. A CLUSTER_MULTI_AZ deployment
-  /// (RABBITMQ) has no subnet requirements when deployed with public
-  /// accessibility, deployment without public accessibility requires at least one
-  /// subnet.
+  /// use from different Availability Zones.
   final List<String>? subnetIds;
 
   /// The list of all tags associated with this broker.
@@ -1879,7 +1976,8 @@ class DescribeConfigurationResponse {
   /// Required. The ARN of the configuration.
   final String? arn;
 
-  /// The authentication strategy associated with the configuration.
+  /// Optional. The authentication strategy associated with the configuration. The
+  /// default is SIMPLE.
   final AuthenticationStrategy? authenticationStrategy;
 
   /// Required. The date and time of the configuration revision.
@@ -1888,13 +1986,14 @@ class DescribeConfigurationResponse {
   /// Required. The description of the configuration.
   final String? description;
 
-  /// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-  /// ACTIVEMQ and RABBITMQ.
+  /// Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ
+  /// and RABBITMQ.
   final EngineType? engineType;
 
-  /// Required. The version of the broker engine. For a list of supported engine
-  /// versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// Required. The broker engine's version. For a list of supported engine
+  /// versions, see, <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   final String? engineVersion;
 
   /// Required. The unique ID that Amazon MQ generates for the configuration.
@@ -2017,14 +2116,19 @@ class DescribeUserResponse {
   }
 }
 
+/// <important>
+/// Does not apply to RabbitMQ brokers.
+/// </important>
 /// Encryption options for the broker.
 class EncryptionOptions {
   /// Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).
+  /// Set to true by default, if no value is provided, for example, for RabbitMQ
+  /// brokers.
   final bool useAwsOwnedKey;
 
-  /// The symmetric customer master key (CMK) to use for the AWS Key Management
-  /// Service (KMS). This key is used to encrypt your data at rest. If not
-  /// provided, Amazon MQ will use a default CMK to encrypt your data.
+  /// The customer master key (CMK) to use for the AWS Key Management Service
+  /// (KMS). This key is used to encrypt your data at rest. If not provided,
+  /// Amazon MQ will use a default CMK to encrypt your data.
   final String? kmsKeyId;
 
   EncryptionOptions({
@@ -2048,8 +2152,7 @@ class EncryptionOptions {
   }
 }
 
-/// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-/// RabbitMQ.
+/// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
 enum EngineType {
   activemq,
   rabbitmq,
@@ -2093,150 +2196,202 @@ class EngineVersion {
   }
 }
 
-/// The metadata of the LDAP server used to authenticate and authorize
+/// Optional. The metadata of the LDAP server used to authenticate and authorize
 /// connections to the broker.
+/// <important>
+/// Does not apply to RabbitMQ brokers.
+/// </important>
 class LdapServerMetadataInput {
-  /// Fully qualified domain name of the LDAP server. Optional failover server.
-  final List<String>? hosts;
+  /// Specifies the location of the LDAP server such as AWS Directory Service for
+  /// Microsoft Active Directory . Optional failover server.
+  final List<String> hosts;
 
-  /// Fully qualified name of the directory to search for a user’s groups.
-  final String? roleBase;
+  /// The distinguished name of the node in the directory information tree (DIT)
+  /// to search for roles or groups. For example, ou=group, ou=corp, dc=corp,
+  /// dc=example, dc=com.
+  final String roleBase;
+
+  /// The LDAP search filter used to find roles within the roleBase. The
+  /// distinguished name of the user matched by userSearchMatching is substituted
+  /// into the {0} placeholder in the search filter. The client's username is
+  /// substituted into the {1} placeholder. For example, if you set this option to
+  /// (member=uid={1})for the user janedoe, the search filter becomes
+  /// (member=uid=janedoe) after string substitution. It matches all role entries
+  /// that have a member attribute equal to uid=janedoe under the subtree selected
+  /// by the roleBase.
+  final String roleSearchMatching;
+
+  /// Service account password. A service account is an account in your LDAP
+  /// server that has access to initiate a connection. For example,
+  /// cn=admin,dc=corp, dc=example,
+  /// dc=com.
+  final String serviceAccountPassword;
+
+  /// Service account username. A service account is an account in your LDAP
+  /// server that has access to initiate a connection. For example,
+  /// cn=admin,dc=corp, dc=example,
+  /// dc=com.
+  final String serviceAccountUsername;
+
+  /// Select a particular subtree of the directory information tree (DIT) to
+  /// search for user entries. The subtree is specified by a DN, which specifies
+  /// the base node of the subtree. For example, by setting this option to
+  /// ou=Users,ou=corp, dc=corp,
+  /// dc=example, dc=com, the search for user entries is restricted to the subtree
+  /// beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.
+  final String userBase;
+
+  /// The LDAP search filter used to find users within the userBase. The client's
+  /// username is substituted into the {0} placeholder in the search filter. For
+  /// example, if this option is set to (uid={0}) and the received username is
+  /// janedoe, the search filter becomes (uid=janedoe) after string substitution.
+  /// It will result in matching an entry like uid=janedoe, ou=Users,ou=corp,
+  /// dc=corp, dc=example,
+  /// dc=com.
+  final String userSearchMatching;
 
   /// Specifies the LDAP attribute that identifies the group name attribute in the
   /// object returned from the group membership query.
   final String? roleName;
 
-  /// The search criteria for groups.
-  final String? roleSearchMatching;
-
   /// The directory search scope for the role. If set to true, scope is to search
-  /// the entire sub-tree.
+  /// the entire subtree.
   final bool? roleSearchSubtree;
-
-  /// Service account password.
-  final String? serviceAccountPassword;
-
-  /// Service account username.
-  final String? serviceAccountUsername;
-
-  /// Fully qualified name of the directory where you want to search for users.
-  final String? userBase;
 
   /// Specifies the name of the LDAP attribute for the user group membership.
   final String? userRoleName;
 
-  /// The search criteria for users.
-  final String? userSearchMatching;
-
   /// The directory search scope for the user. If set to true, scope is to search
-  /// the entire sub-tree.
+  /// the entire subtree.
   final bool? userSearchSubtree;
 
   LdapServerMetadataInput({
-    this.hosts,
-    this.roleBase,
+    required this.hosts,
+    required this.roleBase,
+    required this.roleSearchMatching,
+    required this.serviceAccountPassword,
+    required this.serviceAccountUsername,
+    required this.userBase,
+    required this.userSearchMatching,
     this.roleName,
-    this.roleSearchMatching,
     this.roleSearchSubtree,
-    this.serviceAccountPassword,
-    this.serviceAccountUsername,
-    this.userBase,
     this.userRoleName,
-    this.userSearchMatching,
     this.userSearchSubtree,
   });
   Map<String, dynamic> toJson() {
     final hosts = this.hosts;
     final roleBase = this.roleBase;
-    final roleName = this.roleName;
     final roleSearchMatching = this.roleSearchMatching;
-    final roleSearchSubtree = this.roleSearchSubtree;
     final serviceAccountPassword = this.serviceAccountPassword;
     final serviceAccountUsername = this.serviceAccountUsername;
     final userBase = this.userBase;
-    final userRoleName = this.userRoleName;
     final userSearchMatching = this.userSearchMatching;
+    final roleName = this.roleName;
+    final roleSearchSubtree = this.roleSearchSubtree;
+    final userRoleName = this.userRoleName;
     final userSearchSubtree = this.userSearchSubtree;
     return {
-      if (hosts != null) 'hosts': hosts,
-      if (roleBase != null) 'roleBase': roleBase,
+      'hosts': hosts,
+      'roleBase': roleBase,
+      'roleSearchMatching': roleSearchMatching,
+      'serviceAccountPassword': serviceAccountPassword,
+      'serviceAccountUsername': serviceAccountUsername,
+      'userBase': userBase,
+      'userSearchMatching': userSearchMatching,
       if (roleName != null) 'roleName': roleName,
-      if (roleSearchMatching != null) 'roleSearchMatching': roleSearchMatching,
       if (roleSearchSubtree != null) 'roleSearchSubtree': roleSearchSubtree,
-      if (serviceAccountPassword != null)
-        'serviceAccountPassword': serviceAccountPassword,
-      if (serviceAccountUsername != null)
-        'serviceAccountUsername': serviceAccountUsername,
-      if (userBase != null) 'userBase': userBase,
       if (userRoleName != null) 'userRoleName': userRoleName,
-      if (userSearchMatching != null) 'userSearchMatching': userSearchMatching,
       if (userSearchSubtree != null) 'userSearchSubtree': userSearchSubtree,
     };
   }
 }
 
-/// The metadata of the LDAP server used to authenticate and authorize
+/// Optional. The metadata of the LDAP server used to authenticate and authorize
 /// connections to the broker.
 class LdapServerMetadataOutput {
-  /// Fully qualified domain name of the LDAP server. Optional failover server.
-  final List<String>? hosts;
+  /// Specifies the location of the LDAP server such as AWS Directory Service for
+  /// Microsoft Active Directory . Optional failover server.
+  final List<String> hosts;
 
-  /// Fully qualified name of the directory to search for a user’s groups.
-  final String? roleBase;
+  /// The distinguished name of the node in the directory information tree (DIT)
+  /// to search for roles or groups. For example, ou=group, ou=corp, dc=corp,
+  /// dc=example, dc=com.
+  final String roleBase;
+
+  /// The LDAP search filter used to find roles within the roleBase. The
+  /// distinguished name of the user matched by userSearchMatching is substituted
+  /// into the {0} placeholder in the search filter. The client's username is
+  /// substituted into the {1} placeholder. For example, if you set this option to
+  /// (member=uid={1})for the user janedoe, the search filter becomes
+  /// (member=uid=janedoe) after string substitution. It matches all role entries
+  /// that have a member attribute equal to uid=janedoe under the subtree selected
+  /// by the roleBase.
+  final String roleSearchMatching;
+
+  /// Service account username. A service account is an account in your LDAP
+  /// server that has access to initiate a connection. For example,
+  /// cn=admin,dc=corp, dc=example,
+  /// dc=com.
+  final String serviceAccountUsername;
+
+  /// Select a particular subtree of the directory information tree (DIT) to
+  /// search for user entries. The subtree is specified by a DN, which specifies
+  /// the base node of the subtree. For example, by setting this option to
+  /// ou=Users,ou=corp, dc=corp,
+  /// dc=example, dc=com, the search for user entries is restricted to the subtree
+  /// beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.
+  final String userBase;
+
+  /// The LDAP search filter used to find users within the userBase. The client's
+  /// username is substituted into the {0} placeholder in the search filter. For
+  /// example, if this option is set to (uid={0}) and the received username is
+  /// janedoe, the search filter becomes (uid=janedoe) after string substitution.
+  /// It will result in matching an entry like uid=janedoe, ou=Users,ou=corp,
+  /// dc=corp, dc=example,
+  /// dc=com.
+  final String userSearchMatching;
 
   /// Specifies the LDAP attribute that identifies the group name attribute in the
   /// object returned from the group membership query.
   final String? roleName;
 
-  /// The search criteria for groups.
-  final String? roleSearchMatching;
-
   /// The directory search scope for the role. If set to true, scope is to search
-  /// the entire sub-tree.
+  /// the entire subtree.
   final bool? roleSearchSubtree;
-
-  /// Service account username.
-  final String? serviceAccountUsername;
-
-  /// Fully qualified name of the directory where you want to search for users.
-  final String? userBase;
 
   /// Specifies the name of the LDAP attribute for the user group membership.
   final String? userRoleName;
 
-  /// The search criteria for users.
-  final String? userSearchMatching;
-
   /// The directory search scope for the user. If set to true, scope is to search
-  /// the entire sub-tree.
+  /// the entire subtree.
   final bool? userSearchSubtree;
 
   LdapServerMetadataOutput({
-    this.hosts,
-    this.roleBase,
+    required this.hosts,
+    required this.roleBase,
+    required this.roleSearchMatching,
+    required this.serviceAccountUsername,
+    required this.userBase,
+    required this.userSearchMatching,
     this.roleName,
-    this.roleSearchMatching,
     this.roleSearchSubtree,
-    this.serviceAccountUsername,
-    this.userBase,
     this.userRoleName,
-    this.userSearchMatching,
     this.userSearchSubtree,
   });
   factory LdapServerMetadataOutput.fromJson(Map<String, dynamic> json) {
     return LdapServerMetadataOutput(
-      hosts: (json['hosts'] as List?)
-          ?.whereNotNull()
+      hosts: (json['hosts'] as List)
+          .whereNotNull()
           .map((e) => e as String)
           .toList(),
-      roleBase: json['roleBase'] as String?,
+      roleBase: json['roleBase'] as String,
+      roleSearchMatching: json['roleSearchMatching'] as String,
+      serviceAccountUsername: json['serviceAccountUsername'] as String,
+      userBase: json['userBase'] as String,
+      userSearchMatching: json['userSearchMatching'] as String,
       roleName: json['roleName'] as String?,
-      roleSearchMatching: json['roleSearchMatching'] as String?,
       roleSearchSubtree: json['roleSearchSubtree'] as bool?,
-      serviceAccountUsername: json['serviceAccountUsername'] as String?,
-      userBase: json['userBase'] as String?,
       userRoleName: json['userRoleName'] as String?,
-      userSearchMatching: json['userSearchMatching'] as String?,
       userSearchSubtree: json['userSearchSubtree'] as bool?,
     );
   }
@@ -2356,7 +2511,8 @@ class ListUsersResponse {
   /// To request the first page, leave nextToken empty.
   final String? nextToken;
 
-  /// Required. The list of all ActiveMQ usernames for the specified broker.
+  /// Required. The list of all ActiveMQ usernames for the specified broker. Does
+  /// not apply to RabbitMQ brokers.
   final List<UserSummary>? users;
 
   ListUsersResponse({
@@ -2411,6 +2567,12 @@ class Logs {
 /// The list of information about logs currently enabled and pending to be
 /// deployed for the specified broker.
 class LogsSummary {
+  /// Enables general logging.
+  final bool general;
+
+  /// The location of the CloudWatch Logs log group where general logs are sent.
+  final String generalLogGroup;
+
   /// Enables audit logging. Every user management action made using JMX or the
   /// ActiveMQ Web Console is logged.
   final bool? audit;
@@ -2418,29 +2580,23 @@ class LogsSummary {
   /// The location of the CloudWatch Logs log group where audit logs are sent.
   final String? auditLogGroup;
 
-  /// Enables general logging.
-  final bool? general;
-
-  /// The location of the CloudWatch Logs log group where general logs are sent.
-  final String? generalLogGroup;
-
   /// The list of information about logs pending to be deployed for the specified
   /// broker.
   final PendingLogs? pending;
 
   LogsSummary({
+    required this.general,
+    required this.generalLogGroup,
     this.audit,
     this.auditLogGroup,
-    this.general,
-    this.generalLogGroup,
     this.pending,
   });
   factory LogsSummary.fromJson(Map<String, dynamic> json) {
     return LogsSummary(
+      general: json['general'] as bool,
+      generalLogGroup: json['generalLogGroup'] as String,
       audit: json['audit'] as bool?,
       auditLogGroup: json['auditLogGroup'] as String?,
-      general: json['general'] as bool?,
-      generalLogGroup: json['generalLogGroup'] as String?,
       pending: json['pending'] != null
           ? PendingLogs.fromJson(json['pending'] as Map<String, dynamic>)
           : null,
@@ -2479,26 +2635,26 @@ class RebootBrokerResponse {
 /// Returns information about the XML element or attribute that was sanitized in
 /// the configuration.
 class SanitizationWarning {
+  /// Required. The reason for which the XML elements or attributes were
+  /// sanitized.
+  final SanitizationWarningReason reason;
+
   /// The name of the XML attribute that has been sanitized.
   final String? attributeName;
 
   /// The name of the XML element that has been sanitized.
   final String? elementName;
 
-  /// Required. The reason for which the XML elements or attributes were
-  /// sanitized.
-  final SanitizationWarningReason? reason;
-
   SanitizationWarning({
+    required this.reason,
     this.attributeName,
     this.elementName,
-    this.reason,
   });
   factory SanitizationWarning.fromJson(Map<String, dynamic> json) {
     return SanitizationWarning(
+      reason: (json['reason'] as String).toSanitizationWarningReason(),
       attributeName: json['attributeName'] as String?,
       elementName: json['elementName'] as String?,
-      reason: (json['reason'] as String?)?.toSanitizationWarningReason(),
     );
   }
 }
@@ -2538,10 +2694,13 @@ extension on String {
 }
 
 class UpdateBrokerResponse {
-  /// The authentication strategy used to secure the broker.
+  /// Optional. The authentication strategy used to secure the broker. The default
+  /// is SIMPLE.
   final AuthenticationStrategy? authenticationStrategy;
 
-  /// The new value of automatic upgrades to new minor version for brokers.
+  /// The new boolean value that specifies whether broker engines automatically
+  /// upgrade to new minor versions as new versions are released and supported by
+  /// Amazon MQ.
   final bool? autoMinorVersionUpgrade;
 
   /// Required. The unique ID that Amazon MQ generates for the broker.
@@ -2550,22 +2709,27 @@ class UpdateBrokerResponse {
   /// The ID of the updated configuration.
   final ConfigurationId? configuration;
 
-  /// The version of the broker engine to upgrade to. For a list of supported
-  /// engine versions, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
+  /// The broker engine version to upgrade to. For a list of supported engine
+  /// versions, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
+  /// engines</a>.
   final String? engineVersion;
 
-  /// The host instance type of the broker to upgrade to. For a list of supported
-  /// instance types, see
-  /// https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types
+  /// The broker's host instance type to upgrade to. For a list of supported
+  /// instance types, see <a
+  /// href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types">Broker
+  /// instance types</a>.
   final String? hostInstanceType;
 
-  /// The metadata of the LDAP server used to authenticate and authorize
-  /// connections to the broker.
+  /// Optional. The metadata of the LDAP server used to authenticate and authorize
+  /// connections to the broker. Does not apply to RabbitMQ brokers.
   final LdapServerMetadataOutput? ldapServerMetadata;
 
   /// The list of information about logs to be enabled for the specified broker.
   final Logs? logs;
+
+  /// The parameters that determine the WeeklyStartTime.
+  final WeeklyStartTime? maintenanceWindowStartTime;
 
   /// The list of security groups (1 minimum, 5 maximum) that authorizes
   /// connections to brokers.
@@ -2580,6 +2744,7 @@ class UpdateBrokerResponse {
     this.hostInstanceType,
     this.ldapServerMetadata,
     this.logs,
+    this.maintenanceWindowStartTime,
     this.securityGroups,
   });
   factory UpdateBrokerResponse.fromJson(Map<String, dynamic> json) {
@@ -2600,6 +2765,10 @@ class UpdateBrokerResponse {
           : null,
       logs: json['logs'] != null
           ? Logs.fromJson(json['logs'] as Map<String, dynamic>)
+          : null,
+      maintenanceWindowStartTime: json['maintenanceWindowStartTime'] != null
+          ? WeeklyStartTime.fromJson(
+              json['maintenanceWindowStartTime'] as Map<String, dynamic>)
           : null,
       securityGroups: (json['securityGroups'] as List?)
           ?.whereNotNull()
@@ -2664,43 +2833,53 @@ class UpdateUserResponse {
   }
 }
 
-/// A user associated with the broker.
+/// A user associated with the broker. For RabbitMQ brokers, one and only one
+/// administrative user is accepted and created when a broker is first
+/// provisioned. All subsequent broker users are created by making RabbitMQ API
+/// calls directly to brokers or via the RabbitMQ web console.
 class User {
-  /// Enables access to the ActiveMQ Web Console for the ActiveMQ user (Does not
-  /// apply to RabbitMQ brokers).
+  /// Required. The password of the user. This value must be at least 12
+  /// characters long, must contain at least 4 unique characters, and must not
+  /// contain commas, colons, or equal signs (,:=).
+  final String password;
+
+  /// important><title>Amazon MQ for ActiveMQ</title> <para>For ActiveMQ brokers,
+  /// this value can contain only alphanumeric characters, dashes, periods,
+  /// underscores, and tildes (- . _ ~). This value must be 2-100 characters long.
+  /// /important> <important><title>Amazon MQ for RabbitMQ</title>
+  /// For RabbitMQ brokers, this value can contain only alphanumeric characters,
+  /// dashes, periods, underscores (- . _). This value must not contain a tilde
+  /// (~) character. Amazon MQ prohibts using guest as a valid usename. This value
+  /// must be 2-100 characters long.
+  /// </important></para>
+  final String username;
+
+  /// Enables access to the ActiveMQ Web Console for the ActiveMQ user. Does not
+  /// apply to RabbitMQ brokers.
   final bool? consoleAccess;
 
   /// The list of groups (20 maximum) to which the ActiveMQ user belongs. This
   /// value can contain only alphanumeric characters, dashes, periods,
   /// underscores, and tildes (- . _ ~). This value must be 2-100 characters long.
+  /// Does not apply to RabbitMQ brokers.
   final List<String>? groups;
 
-  /// Required. The password of the broker user. This value must be at least 12
-  /// characters long, must contain at least 4 unique characters, and must not
-  /// contain commas.
-  final String? password;
-
-  /// Required. The username of the broker user. This value can contain only
-  /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~).
-  /// This value must be 2-100 characters long.
-  final String? username;
-
   User({
+    required this.password,
+    required this.username,
     this.consoleAccess,
     this.groups,
-    this.password,
-    this.username,
   });
   Map<String, dynamic> toJson() {
-    final consoleAccess = this.consoleAccess;
-    final groups = this.groups;
     final password = this.password;
     final username = this.username;
+    final consoleAccess = this.consoleAccess;
+    final groups = this.groups;
     return {
+      'password': password,
+      'username': username,
       if (consoleAccess != null) 'consoleAccess': consoleAccess,
       if (groups != null) 'groups': groups,
-      if (password != null) 'password': password,
-      if (username != null) 'username': username,
     };
   }
 }
@@ -2708,6 +2887,9 @@ class User {
 /// Returns information about the status of the changes pending for the ActiveMQ
 /// user.
 class UserPendingChanges {
+  /// Required. The type of change pending for the ActiveMQ user.
+  final ChangeType pendingChange;
+
   /// Enables access to the the ActiveMQ Web Console for the ActiveMQ user.
   final bool? consoleAccess;
 
@@ -2716,44 +2898,41 @@ class UserPendingChanges {
   /// underscores, and tildes (- . _ ~). This value must be 2-100 characters long.
   final List<String>? groups;
 
-  /// Required. The type of change pending for the ActiveMQ user.
-  final ChangeType? pendingChange;
-
   UserPendingChanges({
+    required this.pendingChange,
     this.consoleAccess,
     this.groups,
-    this.pendingChange,
   });
   factory UserPendingChanges.fromJson(Map<String, dynamic> json) {
     return UserPendingChanges(
+      pendingChange: (json['pendingChange'] as String).toChangeType(),
       consoleAccess: json['consoleAccess'] as bool?,
       groups: (json['groups'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
-      pendingChange: (json['pendingChange'] as String?)?.toChangeType(),
     );
   }
 }
 
-/// Returns a list of all broker users.
+/// Returns a list of all broker users. Does not apply to RabbitMQ brokers.
 class UserSummary {
-  /// The type of change pending for the broker user.
-  final ChangeType? pendingChange;
-
   /// Required. The username of the broker user. This value can contain only
   /// alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~).
   /// This value must be 2-100 characters long.
-  final String? username;
+  final String username;
+
+  /// The type of change pending for the broker user.
+  final ChangeType? pendingChange;
 
   UserSummary({
+    required this.username,
     this.pendingChange,
-    this.username,
   });
   factory UserSummary.fromJson(Map<String, dynamic> json) {
     return UserSummary(
+      username: json['username'] as String,
       pendingChange: (json['pendingChange'] as String?)?.toChangeType(),
-      username: json['username'] as String?,
     );
   }
 }
@@ -2762,24 +2941,24 @@ class UserSummary {
 /// apply pending updates or patches to the broker.
 class WeeklyStartTime {
   /// Required. The day of the week.
-  final DayOfWeek? dayOfWeek;
+  final DayOfWeek dayOfWeek;
 
   /// Required. The time, in 24-hour format.
-  final String? timeOfDay;
+  final String timeOfDay;
 
   /// The time zone, UTC by default, in either the Country/City format, or the UTC
   /// offset format.
   final String? timeZone;
 
   WeeklyStartTime({
-    this.dayOfWeek,
-    this.timeOfDay,
+    required this.dayOfWeek,
+    required this.timeOfDay,
     this.timeZone,
   });
   factory WeeklyStartTime.fromJson(Map<String, dynamic> json) {
     return WeeklyStartTime(
-      dayOfWeek: (json['dayOfWeek'] as String?)?.toDayOfWeek(),
-      timeOfDay: json['timeOfDay'] as String?,
+      dayOfWeek: (json['dayOfWeek'] as String).toDayOfWeek(),
+      timeOfDay: json['timeOfDay'] as String,
       timeZone: json['timeZone'] as String?,
     );
   }
@@ -2789,8 +2968,8 @@ class WeeklyStartTime {
     final timeOfDay = this.timeOfDay;
     final timeZone = this.timeZone;
     return {
-      if (dayOfWeek != null) 'dayOfWeek': dayOfWeek.toValue(),
-      if (timeOfDay != null) 'timeOfDay': timeOfDay,
+      'dayOfWeek': dayOfWeek.toValue(),
+      'timeOfDay': timeOfDay,
       if (timeZone != null) 'timeZone': timeZone,
     };
   }

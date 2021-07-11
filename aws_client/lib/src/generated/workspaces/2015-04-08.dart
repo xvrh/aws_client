@@ -73,12 +73,6 @@ class WorkSpaces {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^wsca-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
@@ -133,12 +127,6 @@ class WorkSpaces {
       65,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupIds, 'groupIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -178,12 +166,6 @@ class WorkSpaces {
     required List<IpRuleItem> userRules,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringPattern(
-      'groupId',
-      groupId,
-      r'''wsipg-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userRules, 'userRules');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -259,19 +241,7 @@ class WorkSpaces {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_./()\\-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceImageId, 'sourceImageId');
-    _s.validateStringPattern(
-      'sourceImageId',
-      sourceImageId,
-      r'''wsi-[0-9a-z]{9,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceRegion, 'sourceRegion');
     _s.validateStringLength(
       'sourceRegion',
@@ -280,22 +250,11 @@ class WorkSpaces {
       31,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sourceRegion',
-      sourceRegion,
-      r'''^[-0-9a-z]{1,31}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[a-zA-Z0-9_./() -]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -353,12 +312,6 @@ class WorkSpaces {
       connectionString,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'connectionString',
-      connectionString,
-      r'''^[.0-9a-zA-Z\-]{1,255}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -482,6 +435,86 @@ class WorkSpaces {
     );
   }
 
+  /// Creates the specified WorkSpace bundle. For more information about
+  /// creating WorkSpace bundles, see <a
+  /// href="https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html">
+  /// Create a Custom WorkSpaces Image and Bundle</a>.
+  ///
+  /// May throw [ResourceUnavailableException].
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ResourceLimitExceededException].
+  /// May throw [InvalidParameterValuesException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [bundleDescription] :
+  /// The description of the bundle.
+  ///
+  /// Parameter [bundleName] :
+  /// The name of the bundle.
+  ///
+  /// Parameter [imageId] :
+  /// The identifier of the image that is used to create the bundle.
+  ///
+  /// Parameter [tags] :
+  /// The tags associated with the bundle.
+  /// <note>
+  /// To add tags at the same time when you're creating the bundle, you must
+  /// create an IAM policy that grants your IAM user permissions to use
+  /// <code>workspaces:CreateTags</code>.
+  /// </note>
+  Future<CreateWorkspaceBundleResult> createWorkspaceBundle({
+    required String bundleDescription,
+    required String bundleName,
+    required ComputeType computeType,
+    required String imageId,
+    required UserStorage userStorage,
+    RootStorage? rootStorage,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(bundleDescription, 'bundleDescription');
+    _s.validateStringLength(
+      'bundleDescription',
+      bundleDescription,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(bundleName, 'bundleName');
+    _s.validateStringLength(
+      'bundleName',
+      bundleName,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(computeType, 'computeType');
+    ArgumentError.checkNotNull(imageId, 'imageId');
+    ArgumentError.checkNotNull(userStorage, 'userStorage');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkspacesService.CreateWorkspaceBundle'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'BundleDescription': bundleDescription,
+        'BundleName': bundleName,
+        'ComputeType': computeType,
+        'ImageId': imageId,
+        'UserStorage': userStorage,
+        if (rootStorage != null) 'RootStorage': rootStorage,
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return CreateWorkspaceBundleResult.fromJson(jsonResponse.body);
+  }
+
   /// Creates one or more WorkSpaces.
   ///
   /// This operation is asynchronous and returns before the WorkSpaces are
@@ -553,12 +586,6 @@ class WorkSpaces {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^wsca-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.DeleteConnectionAlias'
@@ -591,12 +618,6 @@ class WorkSpaces {
     required String groupId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringPattern(
-      'groupId',
-      groupId,
-      r'''wsipg-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.DeleteIpGroup'
@@ -655,6 +676,37 @@ class WorkSpaces {
     );
   }
 
+  /// Deletes the specified WorkSpace bundle. For more information about
+  /// deleting WorkSpace bundles, see <a
+  /// href="https://docs.aws.amazon.com/workspaces/latest/adminguide/delete_bundle.html">
+  /// Delete a Custom WorkSpaces Bundle or Image</a>.
+  ///
+  /// May throw [InvalidParameterValuesException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceAssociatedException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [bundleId] :
+  /// The identifier of the bundle.
+  Future<void> deleteWorkspaceBundle({
+    String? bundleId,
+  }) async {
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkspacesService.DeleteWorkspaceBundle'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (bundleId != null) 'BundleId': bundleId,
+      },
+    );
+  }
+
   /// Deletes the specified image from your account. To delete an image, you
   /// must first delete any bundles that are associated with the image and
   /// unshare the image if it is shared with other accounts.
@@ -669,12 +721,6 @@ class WorkSpaces {
     required String imageId,
   }) async {
     ArgumentError.checkNotNull(imageId, 'imageId');
-    _s.validateStringPattern(
-      'imageId',
-      imageId,
-      r'''wsi-[0-9a-z]{9,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.DeleteWorkspaceImage'
@@ -730,12 +776,6 @@ class WorkSpaces {
       directoryId,
       10,
       65,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{8,63}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -872,12 +912,6 @@ class WorkSpaces {
       aliasId,
       13,
       68,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^wsca-[0-9a-z]{8,63}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1084,8 +1118,8 @@ class WorkSpaces {
   /// The owner of the bundles. You cannot combine this parameter with any other
   /// filter.
   ///
-  /// Specify <code>AMAZON</code> to describe the bundles provided by AWS or
-  /// null to describe the bundles that belong to your account.
+  /// To describe the bundles provided by AWS, specify <code>AMAZON</code>. To
+  /// describe the bundles that belong to your account, don't specify a value.
   Future<DescribeWorkspaceBundlesResult> describeWorkspaceBundles({
     List<String>? bundleIds,
     String? nextToken,
@@ -1192,12 +1226,6 @@ class WorkSpaces {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(imageId, 'imageId');
-    _s.validateStringPattern(
-      'imageId',
-      imageId,
-      r'''wsi-[0-9a-z]{9,63}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1299,12 +1327,6 @@ class WorkSpaces {
     required String workspaceId,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''^ws-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.DescribeWorkspaceSnapshots'
@@ -1368,21 +1390,11 @@ class WorkSpaces {
     String? userName,
     List<String>? workspaceIds,
   }) async {
-    _s.validateStringPattern(
-      'bundleId',
-      bundleId,
-      r'''^wsb-[0-9a-z]{8,63}$''',
-    );
     _s.validateStringLength(
       'directoryId',
       directoryId,
       10,
       65,
-    );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{8,63}$''',
     );
     _s.validateNumRange(
       'limit',
@@ -1496,12 +1508,6 @@ class WorkSpaces {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^wsca-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.DisassociateConnectionAlias'
@@ -1541,12 +1547,6 @@ class WorkSpaces {
       directoryId,
       10,
       65,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{8,63}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(groupIds, 'groupIds');
@@ -1623,12 +1623,6 @@ class WorkSpaces {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(ec2ImageId, 'ec2ImageId');
-    _s.validateStringPattern(
-      'ec2ImageId',
-      ec2ImageId,
-      r'''^ami\-([a-f0-9]{8}|[a-f0-9]{17})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(imageDescription, 'imageDescription');
     _s.validateStringLength(
       'imageDescription',
@@ -1637,24 +1631,12 @@ class WorkSpaces {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageDescription',
-      imageDescription,
-      r'''^[a-zA-Z0-9_./() -]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(imageName, 'imageName');
     _s.validateStringLength(
       'imageName',
       imageName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9_./()\\-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(ingestionProcess, 'ingestionProcess');
@@ -1717,12 +1699,6 @@ class WorkSpaces {
   }) async {
     ArgumentError.checkNotNull(
         managementCidrRangeConstraint, 'managementCidrRangeConstraint');
-    _s.validateStringPattern(
-      'managementCidrRangeConstraint',
-      managementCidrRangeConstraint,
-      r'''^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(3[0-2]|[1-2][0-9]|[0-9]))$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1788,19 +1764,7 @@ class WorkSpaces {
     required String sourceWorkspaceId,
   }) async {
     ArgumentError.checkNotNull(bundleId, 'bundleId');
-    _s.validateStringPattern(
-      'bundleId',
-      bundleId,
-      r'''^wsb-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceWorkspaceId, 'sourceWorkspaceId');
-    _s.validateStringPattern(
-      'sourceWorkspaceId',
-      sourceWorkspaceId,
-      r'''^ws-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.MigrateWorkspace'
@@ -1843,11 +1807,6 @@ class WorkSpaces {
     String? dedicatedTenancyManagementCidrRange,
     DedicatedTenancySupportEnum? dedicatedTenancySupport,
   }) async {
-    _s.validateStringPattern(
-      'dedicatedTenancyManagementCidrRange',
-      dedicatedTenancyManagementCidrRange,
-      r'''(^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.0\.0)(\/(16$))$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.ModifyAccount'
@@ -1935,12 +1894,6 @@ class WorkSpaces {
       65,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^d-[0-9a-f]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         selfservicePermissions, 'selfservicePermissions');
     final headers = <String, String>{
@@ -1983,12 +1936,6 @@ class WorkSpaces {
       resourceId,
       10,
       65,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^d-[0-9a-f]{8,63}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -2034,12 +1981,6 @@ class WorkSpaces {
       65,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^d-[0-9a-f]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         workspaceCreationProperties, 'workspaceCreationProperties');
     final headers = <String, String>{
@@ -2082,12 +2023,6 @@ class WorkSpaces {
     required WorkspaceProperties workspaceProperties,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''^ws-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceProperties, 'workspaceProperties');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2128,12 +2063,6 @@ class WorkSpaces {
     required TargetWorkspaceState workspaceState,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''^ws-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceState, 'workspaceState');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2293,12 +2222,6 @@ class WorkSpaces {
       65,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(enableWorkDocs, 'enableWorkDocs');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2345,12 +2268,6 @@ class WorkSpaces {
     required String workspaceId,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringPattern(
-      'workspaceId',
-      workspaceId,
-      r'''^ws-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.RestoreWorkspace'
@@ -2384,12 +2301,6 @@ class WorkSpaces {
     required List<String> userRules,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringPattern(
-      'groupId',
-      groupId,
-      r'''wsipg-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userRules, 'userRules');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2580,12 +2491,6 @@ class WorkSpaces {
       68,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^wsca-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         connectionAliasPermission, 'connectionAliasPermission');
     final headers = <String, String>{
@@ -2624,12 +2529,6 @@ class WorkSpaces {
     required List<IpRuleItem> userRules,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringPattern(
-      'groupId',
-      groupId,
-      r'''wsipg-[0-9a-z]{8,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userRules, 'userRules');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2644,6 +2543,48 @@ class WorkSpaces {
       payload: {
         'GroupId': groupId,
         'UserRules': userRules,
+      },
+    );
+  }
+
+  /// Updates a WorkSpace bundle with a new image. For more information about
+  /// updating WorkSpace bundles, see <a
+  /// href="https://docs.aws.amazon.com/workspaces/latest/adminguide/update-custom-bundle.html">
+  /// Update a Custom WorkSpaces Bundle</a>.
+  /// <important>
+  /// Existing WorkSpaces aren't automatically updated when you update the
+  /// bundle that they're based on. To update existing WorkSpaces that are based
+  /// on a bundle that you've updated, you must either rebuild the WorkSpaces or
+  /// delete and recreate them.
+  /// </important>
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InvalidParameterValuesException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceUnavailableException].
+  ///
+  /// Parameter [bundleId] :
+  /// The identifier of the bundle.
+  ///
+  /// Parameter [imageId] :
+  /// The identifier of the image.
+  Future<void> updateWorkspaceBundle({
+    String? bundleId,
+    String? imageId,
+  }) async {
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkspacesService.UpdateWorkspaceBundle'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (bundleId != null) 'BundleId': bundleId,
+        if (imageId != null) 'ImageId': imageId,
       },
     );
   }
@@ -2706,19 +2647,7 @@ class WorkSpaces {
   }) async {
     ArgumentError.checkNotNull(allowCopyImage, 'allowCopyImage');
     ArgumentError.checkNotNull(imageId, 'imageId');
-    _s.validateStringPattern(
-      'imageId',
-      imageId,
-      r'''wsi-[0-9a-z]{9,63}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sharedAccountId, 'sharedAccountId');
-    _s.validateStringPattern(
-      'sharedAccountId',
-      sharedAccountId,
-      r'''^\d{12}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkspacesService.UpdateWorkspaceImagePermission'
@@ -3016,7 +2945,7 @@ extension on String {
   }
 }
 
-/// Describes the compute type.
+/// Describes the compute type of the bundle.
 class ComputeType {
   /// The compute type.
   final Compute? name;
@@ -3028,6 +2957,13 @@ class ComputeType {
     return ComputeType(
       name: (json['Name'] as String?)?.toCompute(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name.toValue(),
+    };
   }
 }
 
@@ -3260,6 +3196,22 @@ class CreateTagsResult {
   }
 }
 
+class CreateWorkspaceBundleResult {
+  final WorkspaceBundle? workspaceBundle;
+
+  CreateWorkspaceBundleResult({
+    this.workspaceBundle,
+  });
+  factory CreateWorkspaceBundleResult.fromJson(Map<String, dynamic> json) {
+    return CreateWorkspaceBundleResult(
+      workspaceBundle: json['WorkspaceBundle'] != null
+          ? WorkspaceBundle.fromJson(
+              json['WorkspaceBundle'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class CreateWorkspacesResult {
   /// Information about the WorkSpaces that could not be created.
   final List<FailedCreateWorkspaceRequest>? failedRequests;
@@ -3462,6 +3414,13 @@ class DeleteTagsResult {
   }
 }
 
+class DeleteWorkspaceBundleResult {
+  DeleteWorkspaceBundleResult();
+  factory DeleteWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
+    return DeleteWorkspaceBundleResult();
+  }
+}
+
 class DeleteWorkspaceImageResult {
   DeleteWorkspaceImageResult();
   factory DeleteWorkspaceImageResult.fromJson(Map<String, dynamic> _) {
@@ -3480,8 +3439,8 @@ class DescribeAccountModificationsResult {
   /// The list of modifications to the configuration of BYOL.
   final List<AccountModification>? accountModifications;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeAccountModificationsResult({
@@ -3552,8 +3511,8 @@ class DescribeConnectionAliasPermissionsResult {
   /// The permissions associated with a connection alias.
   final List<ConnectionAliasPermission>? connectionAliasPermissions;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeConnectionAliasPermissionsResult({
@@ -3579,8 +3538,8 @@ class DescribeConnectionAliasesResult {
   /// Information about the specified connection aliases.
   final List<ConnectionAlias>? connectionAliases;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeConnectionAliasesResult({
@@ -3599,8 +3558,8 @@ class DescribeConnectionAliasesResult {
 }
 
 class DescribeIpGroupsResult {
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   /// Information about the IP access control groups.
@@ -3642,9 +3601,9 @@ class DescribeWorkspaceBundlesResult {
   /// Information about the bundles.
   final List<WorkspaceBundle>? bundles;
 
-  /// The token to use to retrieve the next set of results, or null if there are
-  /// no more results available. This token is valid for one day and must be used
-  /// within that time frame.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return. This token is valid for one day
+  /// and must be used within that time frame.
   final String? nextToken;
 
   DescribeWorkspaceBundlesResult({
@@ -3666,8 +3625,8 @@ class DescribeWorkspaceDirectoriesResult {
   /// Information about the directories.
   final List<WorkspaceDirectory>? directories;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeWorkspaceDirectoriesResult({
@@ -3693,8 +3652,8 @@ class DescribeWorkspaceImagePermissionsResult {
   /// The identifiers of the AWS accounts that the image has been shared with.
   final List<ImagePermission>? imagePermissions;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeWorkspaceImagePermissionsResult({
@@ -3719,8 +3678,8 @@ class DescribeWorkspaceImagesResult {
   /// Information about the images.
   final List<WorkspaceImage>? images;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   DescribeWorkspaceImagesResult({
@@ -3766,8 +3725,8 @@ class DescribeWorkspaceSnapshotsResult {
 }
 
 class DescribeWorkspacesConnectionStatusResult {
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   /// Information about the connection status of the WorkSpace.
@@ -3791,8 +3750,8 @@ class DescribeWorkspacesConnectionStatusResult {
 }
 
 class DescribeWorkspacesResult {
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   /// Information about the WorkSpaces.
@@ -3981,8 +3940,8 @@ class ListAvailableManagementCidrRangesResult {
   /// The list of available IP address ranges, specified as IPv4 CIDR blocks.
   final List<String>? managementCidrRanges;
 
-  /// The token to use to retrieve the next set of results, or null if no more
-  /// results are available.
+  /// The token to use to retrieve the next page of results. This value is null
+  /// when there are no more results to return.
   final String? nextToken;
 
   ListAvailableManagementCidrRangesResult({
@@ -4327,6 +4286,13 @@ class RootStorage {
       capacity: json['Capacity'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacity = this.capacity;
+    return {
+      if (capacity != null) 'Capacity': capacity,
+    };
+  }
 }
 
 enum RunningMode {
@@ -4640,6 +4606,13 @@ class UpdateRulesOfIpGroupResult {
   }
 }
 
+class UpdateWorkspaceBundleResult {
+  UpdateWorkspaceBundleResult();
+  factory UpdateWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
+    return UpdateWorkspaceBundleResult();
+  }
+}
+
 class UpdateWorkspaceImagePermissionResult {
   UpdateWorkspaceImagePermissionResult();
   factory UpdateWorkspaceImagePermissionResult.fromJson(
@@ -4648,9 +4621,9 @@ class UpdateWorkspaceImagePermissionResult {
   }
 }
 
-/// Describes the user storage for a WorkSpace bundle.
+/// Describes the user volume for a WorkSpace bundle.
 class UserStorage {
-  /// The size of the user storage.
+  /// The size of the user volume.
   final String? capacity;
 
   UserStorage({
@@ -4660,6 +4633,13 @@ class UserStorage {
     return UserStorage(
       capacity: json['Capacity'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacity = this.capacity;
+    return {
+      if (capacity != null) 'Capacity': capacity,
+    };
   }
 }
 
@@ -4782,6 +4762,9 @@ class WorkspaceAccessProperties {
   /// Indicates whether users can use iOS devices to access their WorkSpaces.
   final AccessPropertyValue? deviceTypeIos;
 
+  /// Indicates whether users can use Linux clients to access their WorkSpaces.
+  final AccessPropertyValue? deviceTypeLinux;
+
   /// Indicates whether users can use macOS clients to access their WorkSpaces. To
   /// restrict WorkSpaces access to trusted devices (also known as managed
   /// devices) with valid certificates, specify a value of <code>TRUST</code>. For
@@ -4809,6 +4792,7 @@ class WorkspaceAccessProperties {
     this.deviceTypeAndroid,
     this.deviceTypeChromeOs,
     this.deviceTypeIos,
+    this.deviceTypeLinux,
     this.deviceTypeOsx,
     this.deviceTypeWeb,
     this.deviceTypeWindows,
@@ -4822,6 +4806,8 @@ class WorkspaceAccessProperties {
           (json['DeviceTypeChromeOs'] as String?)?.toAccessPropertyValue(),
       deviceTypeIos:
           (json['DeviceTypeIos'] as String?)?.toAccessPropertyValue(),
+      deviceTypeLinux:
+          (json['DeviceTypeLinux'] as String?)?.toAccessPropertyValue(),
       deviceTypeOsx:
           (json['DeviceTypeOsx'] as String?)?.toAccessPropertyValue(),
       deviceTypeWeb:
@@ -4837,6 +4823,7 @@ class WorkspaceAccessProperties {
     final deviceTypeAndroid = this.deviceTypeAndroid;
     final deviceTypeChromeOs = this.deviceTypeChromeOs;
     final deviceTypeIos = this.deviceTypeIos;
+    final deviceTypeLinux = this.deviceTypeLinux;
     final deviceTypeOsx = this.deviceTypeOsx;
     final deviceTypeWeb = this.deviceTypeWeb;
     final deviceTypeWindows = this.deviceTypeWindows;
@@ -4847,6 +4834,7 @@ class WorkspaceAccessProperties {
       if (deviceTypeChromeOs != null)
         'DeviceTypeChromeOs': deviceTypeChromeOs.toValue(),
       if (deviceTypeIos != null) 'DeviceTypeIos': deviceTypeIos.toValue(),
+      if (deviceTypeLinux != null) 'DeviceTypeLinux': deviceTypeLinux.toValue(),
       if (deviceTypeOsx != null) 'DeviceTypeOsx': deviceTypeOsx.toValue(),
       if (deviceTypeWeb != null) 'DeviceTypeWeb': deviceTypeWeb.toValue(),
       if (deviceTypeWindows != null)
@@ -4859,18 +4847,21 @@ class WorkspaceAccessProperties {
 
 /// Describes a WorkSpace bundle.
 class WorkspaceBundle {
-  /// The bundle identifier.
+  /// The identifier of the bundle.
   final String? bundleId;
 
-  /// The compute type. For more information, see <a
+  /// The compute type of the bundle. For more information, see <a
   /// href="http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles">Amazon
   /// WorkSpaces Bundles</a>.
   final ComputeType? computeType;
 
-  /// A description.
+  /// The time when the bundle was created.
+  final DateTime? creationTime;
+
+  /// The description of the bundle.
   final String? description;
 
-  /// The image identifier of the bundle.
+  /// The identifier of the image that was used to create the bundle.
   final String? imageId;
 
   /// The last time that the bundle was updated.
@@ -4886,12 +4877,13 @@ class WorkspaceBundle {
   /// The size of the root volume.
   final RootStorage? rootStorage;
 
-  /// The size of the user storage.
+  /// The size of the user volume.
   final UserStorage? userStorage;
 
   WorkspaceBundle({
     this.bundleId,
     this.computeType,
+    this.creationTime,
     this.description,
     this.imageId,
     this.lastUpdatedTime,
@@ -4906,6 +4898,7 @@ class WorkspaceBundle {
       computeType: json['ComputeType'] != null
           ? ComputeType.fromJson(json['ComputeType'] as Map<String, dynamic>)
           : null,
+      creationTime: timeStampFromJson(json['CreationTime']),
       description: json['Description'] as String?,
       imageId: json['ImageId'] as String?,
       lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),

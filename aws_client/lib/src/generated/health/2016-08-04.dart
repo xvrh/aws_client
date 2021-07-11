@@ -25,14 +25,28 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// Dashboard</a>. You can use the API operations to get information about AWS
 /// Health events that affect your AWS services and resources.
 /// <note>
-/// You must have a Business or Enterprise support plan from <a
+/// <ul>
+/// <li>
+/// You must have a Business or Enterprise Support plan from <a
 /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a> to use the AWS
 /// Health API. If you call the AWS Health API from an AWS account that doesn't
-/// have a Business or Enterprise support plan, you receive a
+/// have a Business or Enterprise Support plan, you receive a
 /// <code>SubscriptionRequiredException</code> error.
-/// </note>
-/// AWS Health has a single endpoint: health.us-east-1.amazonaws.com (HTTPS).
-/// Use this endpoint to call the AWS Health API operations.
+/// </li>
+/// <li>
+/// You can use the AWS Health endpoint health.us-east-1.amazonaws.com (HTTPS)
+/// to call the AWS Health API operations. AWS Health supports a multi-Region
+/// application architecture and has two regional endpoints in an active-passive
+/// configuration. You can use the high availability endpoint example to
+/// determine which AWS Region is active, so that you can get the latest
+/// information from the API. For more information, see <a
+/// href="https://docs.aws.amazon.com/health/latest/ug/health-api.html">Accessing
+/// the AWS Health API</a> in the <i>AWS Health User Guide</i>.
+/// </li>
+/// </ul> </note>
+/// For authentication of requests, AWS Health uses the <a
+/// href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature
+/// Version 4 Signing Process</a>.
 class Health {
   final _s.JsonProtocol _protocol;
   Health({
@@ -58,7 +72,7 @@ class Health {
   /// Before you can call this operation, you must first enable AWS Health to
   /// work with AWS Organizations. To do this, call the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html">EnableHealthServiceAccessForOrganization</a>
-  /// operation from your organization's master account.
+  /// operation from your organization's management account.
   /// <note>
   /// This API operation uses pagination. Specify the <code>nextToken</code>
   /// parameter in the next request to return more results.
@@ -67,10 +81,13 @@ class Health {
   /// May throw [InvalidPaginationToken].
   ///
   /// Parameter [eventArn] :
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   ///
   /// Parameter [maxResults] :
   /// The maximum number of items to return in one batch, between 10 and 100,
@@ -96,12 +113,6 @@ class Health {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventArn',
-      eventArn,
-      r'''arn:aws(-[a-z]+(-[a-z]+)?)?:health:[^:]*:[^:]*:event(?:/[\w-]+){3}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -113,11 +124,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -151,9 +157,19 @@ class Health {
   /// At least one event ARN is required. Results are sorted by the
   /// <code>lastUpdatedTime</code> of the entity, starting with the most recent.
   /// <note>
+  /// <ul>
+  /// <li>
   /// This API operation uses pagination. Specify the <code>nextToken</code>
   /// parameter in the next request to return more results.
-  /// </note>
+  /// </li>
+  /// <li>
+  /// This operation supports resource-level permissions. You can use this
+  /// operation to allow or deny access to specific AWS Health events. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions">Resource-
+  /// and action-based conditions</a> in the <i>AWS Health User Guide</i>.
+  /// </li>
+  /// </ul> </note>
   ///
   /// May throw [InvalidPaginationToken].
   /// May throw [UnsupportedLocale].
@@ -188,11 +204,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -204,11 +215,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -244,11 +250,21 @@ class Health {
   /// Before you can call this operation, you must first enable AWS Health to
   /// work with AWS Organizations. To do this, call the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html">EnableHealthServiceAccessForOrganization</a>
-  /// operation from your organization's master account.
+  /// operation from your organization's management account.
   /// <note>
+  /// <ul>
+  /// <li>
   /// This API operation uses pagination. Specify the <code>nextToken</code>
   /// parameter in the next request to return more results.
-  /// </note>
+  /// </li>
+  /// <li>
+  /// This operation doesn't support resource-level permissions. You can't use
+  /// this operation to allow or deny access to specific AWS Health events. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions">Resource-
+  /// and action-based conditions</a> in the <i>AWS Health User Guide</i>.
+  /// </li>
+  /// </ul> </note>
   ///
   /// May throw [InvalidPaginationToken].
   /// May throw [UnsupportedLocale].
@@ -286,11 +302,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -302,11 +313,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -405,11 +411,6 @@ class Health {
       4,
       10000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHealth_20160804.DescribeEventAggregates'
@@ -432,17 +433,24 @@ class Health {
   }
 
   /// Returns detailed information about one or more specified events.
-  /// Information includes standard event data (Region, service, and so on, as
-  /// returned by <a
+  /// Information includes standard event data (AWS Region, service, and so on,
+  /// as returned by <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html">DescribeEvents</a>),
   /// a detailed event description, and possible additional metadata that
   /// depends upon the nature of the event. Affected entities are not included.
-  /// To retrieve those, use the <a
+  /// To retrieve the entities, use the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html">DescribeAffectedEntities</a>
   /// operation.
   ///
-  /// If a specified event cannot be retrieved, an error message is returned for
+  /// If a specified event can't be retrieved, an error message is returned for
   /// that event.
+  /// <note>
+  /// This operation supports resource-level permissions. You can use this
+  /// operation to allow or deny access to specific AWS Health events. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions">Resource-
+  /// and action-based conditions</a> in the <i>AWS Health User Guide</i>.
+  /// </note>
   ///
   /// May throw [UnsupportedLocale].
   ///
@@ -465,11 +473,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHealth_20160804.DescribeEventDetails'
@@ -490,41 +493,48 @@ class Health {
   }
 
   /// Returns detailed information about one or more specified events for one or
-  /// more accounts in your organization. Information includes standard event
-  /// data (Region, service, and so on, as returned by <a
-  /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html">DescribeEventsForOrganization</a>),
-  /// a detailed event description, and possible additional metadata that
-  /// depends upon the nature of the event. Affected entities are not included;
-  /// to retrieve those, use the <a
+  /// more AWS accounts in your organization. This information includes standard
+  /// event data (such as the AWS Region and service), an event description, and
+  /// (depending on the event) possible metadata. This operation doesn't return
+  /// affected entities, such as the resources related to the event. To return
+  /// affected entities, use the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html">DescribeAffectedEntitiesForOrganization</a>
   /// operation.
-  ///
+  /// <note>
   /// Before you can call this operation, you must first enable AWS Health to
   /// work with AWS Organizations. To do this, call the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html">EnableHealthServiceAccessForOrganization</a>
-  /// operation from your organization's master account.
-  ///
+  /// operation from your organization's management account.
+  /// </note>
   /// When you call the <code>DescribeEventDetailsForOrganization</code>
-  /// operation, you specify the <code>organizationEventDetailFilters</code>
-  /// object in the request. Depending on the AWS Health event type, note the
-  /// following differences:
+  /// operation, specify the <code>organizationEventDetailFilters</code> object
+  /// in the request. Depending on the AWS Health event type, note the following
+  /// differences:
   ///
   /// <ul>
   /// <li>
-  /// If the event is public, the <code>awsAccountId</code> parameter must be
-  /// empty. If you specify an account ID for a public event, then an error
-  /// message is returned. That's because the event might apply to all AWS
-  /// accounts and isn't specific to an account in your organization.
+  /// To return event details for a public event, you must specify a null value
+  /// for the <code>awsAccountId</code> parameter. If you specify an account ID
+  /// for a public event, AWS Health returns an error message because public
+  /// events aren't specific to an account.
   /// </li>
   /// <li>
-  /// If the event is specific to an account, then you must specify the
-  /// <code>awsAccountId</code> parameter in the request. If you don't specify
-  /// an account ID, an error message returns because the event is specific to
-  /// an AWS account in your organization.
+  /// To return event details for an event that is specific to an account in
+  /// your organization, you must specify the <code>awsAccountId</code>
+  /// parameter in the request. If you don't specify an account ID, AWS Health
+  /// returns an error message because the event is specific to an account in
+  /// your organization.
   /// </li>
   /// </ul>
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html">Event</a>.
+  /// <note>
+  /// This operation doesn't support resource-level permissions. You can't use
+  /// this operation to allow or deny access to specific AWS Health events. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions">Resource-
+  /// and action-based conditions</a> in the <i>AWS Health User Guide</i>.
+  /// </note>
   ///
   /// May throw [UnsupportedLocale].
   ///
@@ -548,11 +558,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSHealth_20160804.DescribeEventDetailsForOrganization'
@@ -573,9 +578,15 @@ class Health {
         jsonResponse.body);
   }
 
-  /// Returns the event types that meet the specified filter criteria. If no
-  /// filter criteria are specified, all event types are returned, in no
-  /// particular order.
+  /// Returns the event types that meet the specified filter criteria. You can
+  /// use this API operation to find information about the AWS Health event,
+  /// such as the category, AWS service, and event code. The metadata for each
+  /// event appears in the <a
+  /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html">EventType</a>
+  /// object.
+  ///
+  /// If you don't specify a filter criteria, the API operation returns all
+  /// event types, in no particular order.
   /// <note>
   /// This API operation uses pagination. Specify the <code>nextToken</code>
   /// parameter in the next request to return more results.
@@ -613,11 +624,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -629,11 +635,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -719,11 +720,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -735,11 +731,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -795,7 +786,7 @@ class Health {
   /// Before you can call this operation, you must first enable AWS Health to
   /// work with AWS Organizations. To do this, call the <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html">EnableHealthServiceAccessForOrganization</a>
-  /// operation from your organization's master AWS account.
+  /// operation from your organization's management account.
   /// <note>
   /// This API operation uses pagination. Specify the <code>nextToken</code>
   /// parameter in the next request to return more results.
@@ -833,11 +824,6 @@ class Health {
       2,
       256,
     );
-    _s.validateStringPattern(
-      'locale',
-      locale,
-      r'''.{2,256}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -849,11 +835,6 @@ class Health {
       nextToken,
       4,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9=/+_.-]{4,10000}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -879,7 +860,7 @@ class Health {
   /// This operation provides status information on enabling or disabling AWS
   /// Health to work with your organization. To call this operation, you must
   /// sign in as an IAM user, assume an IAM role, or sign in as the root user
-  /// (not recommended) in the organization's master account.
+  /// (not recommended) in the organization's management account.
   Future<DescribeHealthServiceStatusForOrganizationResponse>
       describeHealthServiceStatusForOrganization() async {
     final headers = <String, String>{
@@ -902,14 +883,14 @@ class Health {
   /// Disables AWS Health from working with AWS Organizations. To call this
   /// operation, you must sign in as an AWS Identity and Access Management (IAM)
   /// user, assume an IAM role, or sign in as the root user (not recommended) in
-  /// the organization's master AWS account. For more information, see <a
+  /// the organization's management account. For more information, see <a
   /// href="https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html">Aggregating
   /// AWS Health events</a> in the <i>AWS Health User Guide</i>.
   ///
-  /// This operation doesn't remove the service-linked role (SLR) from the AWS
-  /// master account in your organization. You must use the IAM console, API, or
-  /// AWS Command Line Interface (AWS CLI) to remove the SLR. For more
-  /// information, see <a
+  /// This operation doesn't remove the service-linked role from the management
+  /// account in your organization. You must use the IAM console, API, or AWS
+  /// Command Line Interface (AWS CLI) to remove the service-linked role. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role">Deleting
   /// a Service-Linked Role</a> in the <i>IAM User Guide</i>.
   /// <note>
@@ -939,13 +920,33 @@ class Health {
     );
   }
 
-  /// Calling this operation enables AWS Health to work with AWS Organizations.
-  /// This applies a service-linked role (SLR) to the master account in the
-  /// organization. To call this operation, you must sign in as an IAM user,
-  /// assume an IAM role, or sign in as the root user (not recommended) in the
-  /// organization's master account.
+  /// Enables AWS Health to work with AWS Organizations. You can use the
+  /// organizational view feature to aggregate events from all AWS accounts in
+  /// your organization in a centralized location.
   ///
-  /// For more information, see <a
+  /// This operation also creates a service-linked role for the management
+  /// account in the organization.
+  /// <note>
+  /// To call this operation, you must meet the following requirements:
+  ///
+  /// <ul>
+  /// <li>
+  /// You must have a Business or Enterprise Support plan from <a
+  /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a> to use the
+  /// AWS Health API. If you call the AWS Health API from an AWS account that
+  /// doesn't have a Business or Enterprise Support plan, you receive a
+  /// <code>SubscriptionRequiredException</code> error.
+  /// </li>
+  /// <li>
+  /// You must have permission to call this operation from the organization's
+  /// management account. For example IAM policies, see <a
+  /// href="https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html">AWS
+  /// Health identity-based policy examples</a>.
+  /// </li>
+  /// </ul> </note>
+  /// If you don't have the required support plan, you can instead use the AWS
+  /// Health console to enable the organizational view feature. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html">Aggregating
   /// AWS Health events</a> in the <i>AWS Health User Guide</i>.
   ///
@@ -983,10 +984,13 @@ class AffectedEntity {
   /// The ID of the affected entity.
   final String? entityValue;
 
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? eventArn;
 
   /// The most recent time that the entity was updated.
@@ -1388,10 +1392,13 @@ class EntityAggregate {
   /// The number of entities that match the criteria for the specified events.
   final int? count;
 
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? eventArn;
 
   EntityAggregate({
@@ -1483,10 +1490,13 @@ class EntityFilter {
 /// <code>eventScopeCode</code> parameter. For more information, see <a
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html#AWSHealth-Type-Event-eventScopeCode">eventScopeCode</a>.
 class Event {
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? arn;
 
   /// The AWS Availability Zone of the event. For example, us-east-1a.
@@ -1530,7 +1540,7 @@ class Event {
   /// The most recent date and time that the event was updated.
   final DateTime? lastUpdatedTime;
 
-  /// The AWS region name of the event.
+  /// The AWS Region name of the event.
   final String? region;
 
   /// The AWS service that is affected by the event. For example,
@@ -1581,10 +1591,13 @@ class Event {
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html">DescribeAffectedEntitiesForOrganization</a>
 /// operations.
 class EventAccountFilter {
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String eventArn;
 
   /// The 12-digit AWS account numbers that contains the affected entities.
@@ -1683,7 +1696,7 @@ class EventDetails {
 
 /// Error information returned when a <a
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html">DescribeEventDetails</a>
-/// operation cannot find a specified event.
+/// operation can't find a specified event.
 class EventDetailsErrorItem {
   /// A message that describes the error.
   final String? errorMessage;
@@ -1691,10 +1704,13 @@ class EventDetailsErrorItem {
   /// The name of the error.
   final String? errorName;
 
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? eventArn;
 
   EventDetailsErrorItem({
@@ -1717,7 +1733,7 @@ class EventDetailsErrorItem {
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventAggregates.html">DescribeEventAggregates</a>
 /// operations.
 class EventFilter {
-  /// A list of AWS availability zones.
+  /// A list of AWS Availability Zones.
   final List<String>? availabilityZones;
 
   /// A list of dates and times that the event ended.
@@ -1749,7 +1765,7 @@ class EventFilter {
   /// A list of dates and times that the event was last updated.
   final List<DateTimeRange>? lastUpdatedTimes;
 
-  /// A list of AWS regions.
+  /// A list of AWS Regions.
   final List<String>? regions;
 
   /// The AWS services associated with the event. For example, <code>EC2</code>,
@@ -1815,10 +1831,22 @@ class EventFilter {
   }
 }
 
-/// Metadata about a type of event that is reported by AWS Health. Data consists
-/// of the category (for example, <code>issue</code>), the service (for example,
-/// <code>EC2</code>), and the event type code (for example,
-/// <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>).
+/// Contains the metadata about a type of event that is reported by AWS Health.
+/// The <code>EventType</code> shows the category, service, and the event type
+/// code of the event. For example, an <code>issue</code> might be the category,
+/// <code>EC2</code> the service, and
+/// <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code> the event type code.
+///
+/// You can use the <a
+/// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventTypes.html">DescribeEventTypes</a>
+/// API operation to return this information about an event.
+///
+/// You can also use the Amazon CloudWatch Events console to create a rule so
+/// that you can get notified or take action when AWS Health delivers a specific
+/// event to your AWS account. For more information, see <a
+/// href="https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html">Monitor
+/// for AWS Health events with Amazon CloudWatch Events</a> in the <i>AWS Health
+/// User Guide</i>.
 class EventType {
   /// A list of event type category codes (<code>issue</code>,
   /// <code>scheduledChange</code>, or <code>accountNotification</code>).
@@ -1883,7 +1911,7 @@ class EventTypeFilter {
 
 /// Error information returned when a <a
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html">DescribeAffectedEntitiesForOrganization</a>
-/// operation cannot find or process a specific entity.
+/// operation can't find or process a specific entity.
 class OrganizationAffectedEntitiesErrorItem {
   /// The 12-digit AWS account numbers that contains the affected entities.
   final String? awsAccountId;
@@ -1896,10 +1924,13 @@ class OrganizationAffectedEntitiesErrorItem {
   /// The name of the error.
   final String? errorName;
 
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? eventArn;
 
   OrganizationAffectedEntitiesErrorItem({
@@ -1923,10 +1954,13 @@ class OrganizationAffectedEntitiesErrorItem {
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html">DescribeEventsForOrganization</a>
 /// operation.
 class OrganizationEvent {
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? arn;
 
   /// The date and time that the event ended.
@@ -1969,7 +2003,7 @@ class OrganizationEvent {
   /// The AWS Region name of the event.
   final String? region;
 
-  /// The AWS service that is affected by the event. For example, EC2, RDS.
+  /// The AWS service that is affected by the event, such as EC2 and RDS.
   final String? service;
 
   /// The date and time that the event began.
@@ -2048,23 +2082,46 @@ class OrganizationEventDetails {
 
 /// Error information returned when a <a
 /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html">DescribeEventDetailsForOrganization</a>
-/// operation cannot find a specified event.
+/// operation can't find a specified event.
 class OrganizationEventDetailsErrorItem {
   /// Error information returned when a <a
   /// href="https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html">DescribeEventDetailsForOrganization</a>
-  /// operation cannot find a specified event.
+  /// operation can't find a specified event.
   final String? awsAccountId;
 
   /// A message that describes the error.
+  ///
+  /// If you call the <code>DescribeEventDetailsForOrganization</code> operation
+  /// and receive one of the following errors, follow the recommendations in the
+  /// message:
+  ///
+  /// <ul>
+  /// <li>
+  /// We couldn't find a public event that matches your request. To find an event
+  /// that is account specific, you must enter an AWS account ID in the request.
+  /// </li>
+  /// <li>
+  /// We couldn't find an account specific event for the specified AWS account. To
+  /// find an event that is public, you must enter a null value for the AWS
+  /// account ID in the request.
+  /// </li>
+  /// <li>
+  /// Your AWS account doesn't include the AWS Support plan required to use the
+  /// AWS Health API. You must have either a Business or Enterprise Support plan.
+  /// </li>
+  /// </ul>
   final String? errorMessage;
 
   /// The name of the error.
   final String? errorName;
 
-  /// The unique identifier for the event. Format:
+  /// The unique identifier for the event. The event ARN has the
   /// <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-  /// </code>. Example: <code>Example:
-  /// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+  /// </code> format.
+  ///
+  /// For example, an event ARN might look like the following:
+  ///
+  /// <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
   final String? eventArn;
 
   OrganizationEventDetailsErrorItem({

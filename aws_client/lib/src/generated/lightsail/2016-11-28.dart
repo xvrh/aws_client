@@ -72,12 +72,6 @@ class Lightsail {
     required String staticIpName,
   }) async {
     ArgumentError.checkNotNull(staticIpName, 'staticIpName');
-    _s.validateStringPattern(
-      'staticIpName',
-      staticIpName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AllocateStaticIp'
@@ -146,19 +140,7 @@ class Lightsail {
     required String distributionName,
   }) async {
     ArgumentError.checkNotNull(certificateName, 'certificateName');
-    _s.validateStringPattern(
-      'certificateName',
-      certificateName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(distributionName, 'distributionName');
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AttachCertificateToDistribution'
@@ -210,26 +192,8 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(diskPath, 'diskPath');
-    _s.validateStringPattern(
-      'diskPath',
-      diskPath,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AttachDisk'
@@ -289,12 +253,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(instanceNames, 'instanceNames');
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AttachInstancesToLoadBalancer'
@@ -351,19 +309,7 @@ class Lightsail {
     required String loadBalancerName,
   }) async {
     ArgumentError.checkNotNull(certificateName, 'certificateName');
-    _s.validateStringPattern(
-      'certificateName',
-      certificateName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AttachLoadBalancerTlsCertificate'
@@ -403,19 +349,7 @@ class Lightsail {
     required String staticIpName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(staticIpName, 'staticIpName');
-    _s.validateStringPattern(
-      'staticIpName',
-      staticIpName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.AttachStaticIp'
@@ -461,12 +395,6 @@ class Lightsail {
     required PortInfo portInfo,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portInfo, 'portInfo');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -599,17 +527,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(sourceRegion, 'sourceRegion');
     ArgumentError.checkNotNull(targetSnapshotName, 'targetSnapshotName');
-    _s.validateStringPattern(
-      'targetSnapshotName',
-      targetSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'sourceSnapshotName',
-      sourceSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CopySnapshot'
@@ -636,12 +553,14 @@ class Lightsail {
     return CopySnapshotResult.fromJson(jsonResponse.body);
   }
 
-  /// Creates an SSL/TLS certificate for a Amazon Lightsail content delivery
-  /// network (CDN) distribution.
+  /// Creates an SSL/TLS certificate for an Amazon Lightsail content delivery
+  /// network (CDN) distribution and a container service.
   ///
-  /// After the certificate is created, use the
-  /// <code>AttachCertificateToDistribution</code> action to attach the
-  /// certificate to your distribution.
+  /// After the certificate is valid, use the
+  /// <code>AttachCertificateToDistribution</code> action to use the certificate
+  /// and its domains with your distribution. Or use the
+  /// <code>UpdateContainerService</code> action to use the certificate and its
+  /// domains with your container service.
   /// <important>
   /// Only certificates created in the <code>us-east-1</code> AWS Region can be
   /// attached to Lightsail distributions. Lightsail distributions are global
@@ -855,7 +774,7 @@ class Lightsail {
   ///
   /// A Lightsail container service is a compute resource to which you can
   /// deploy containers. For more information, see <a
-  /// href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-containers">Container
+  /// href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-container-services">Container
   /// services in Amazon Lightsail</a> in the <i>Lightsail Dev Guide</i>.
   ///
   /// May throw [ServiceException].
@@ -978,12 +897,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateContainerService'
@@ -1053,12 +966,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateContainerServiceDeployment'
@@ -1088,9 +995,9 @@ class Lightsail {
   /// create a new set of log in credentials.
   /// <note>
   /// You can only push container images to the container service registry of
-  /// your Lightsail account. You cannot pull container images perform any other
-  /// container image management actions on the container service registry of
-  /// your Lightsail account.
+  /// your Lightsail account. You cannot pull container images or perform any
+  /// other container image management actions on the container service
+  /// registry.
   /// </note>
   /// After you push your container images to the container image registry of
   /// your Lightsail account, use the <code>RegisterContainerImage</code> action
@@ -1099,9 +1006,9 @@ class Lightsail {
   /// This action is not required if you install and use the Lightsail Control
   /// (lightsailctl) plugin to push container images to your Lightsail container
   /// service. For more information, see <a
-  /// href="amazon-lightsail-pushing-container-images">Pushing and managing
-  /// container images on your Amazon Lightsail container services</a> in the
-  /// <i>Lightsail Dev Guide</i>.
+  /// href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-pushing-container-images">Pushing
+  /// and managing container images on your Amazon Lightsail container
+  /// services</a> in the <i>Lightsail Dev Guide</i>.
   /// </note>
   ///
   /// May throw [ServiceException].
@@ -1173,19 +1080,7 @@ class Lightsail {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(availabilityZone, 'availabilityZone');
-    _s.validateStringPattern(
-      'availabilityZone',
-      availabilityZone,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sizeInGb, 'sizeInGb');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1342,25 +1237,8 @@ class Lightsail {
     bool? useLatestRestorableAutoSnapshot,
   }) async {
     ArgumentError.checkNotNull(availabilityZone, 'availabilityZone');
-    _s.validateStringPattern(
-      'availabilityZone',
-      availabilityZone,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sizeInGb, 'sizeInGb');
-    _s.validateStringPattern(
-      'diskSnapshotName',
-      diskSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateDiskFromSnapshot'
@@ -1460,22 +1338,6 @@ class Lightsail {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(diskSnapshotName, 'diskSnapshotName');
-    _s.validateStringPattern(
-      'diskSnapshotName',
-      diskSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-    );
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateDiskSnapshot'
@@ -1540,6 +1402,14 @@ class Lightsail {
   /// An array of objects that describe the per-path cache behavior for the
   /// distribution.
   ///
+  /// Parameter [ipAddressType] :
+  /// The IP address type for the distribution.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  ///
+  /// The default value is <code>dualstack</code>.
+  ///
   /// Parameter [tags] :
   /// The tag keys and optional values to add to the distribution during create.
   ///
@@ -1552,17 +1422,12 @@ class Lightsail {
     required InputOrigin origin,
     CacheSettings? cacheBehaviorSettings,
     List<CacheBehaviorPerPath>? cacheBehaviors,
+    IpAddressType? ipAddressType,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(bundleId, 'bundleId');
     ArgumentError.checkNotNull(defaultCacheBehavior, 'defaultCacheBehavior');
     ArgumentError.checkNotNull(distributionName, 'distributionName');
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(origin, 'origin');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1582,6 +1447,7 @@ class Lightsail {
         if (cacheBehaviorSettings != null)
           'cacheBehaviorSettings': cacheBehaviorSettings,
         if (cacheBehaviors != null) 'cacheBehaviors': cacheBehaviors,
+        if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
         if (tags != null) 'tags': tags,
       },
     );
@@ -1610,7 +1476,7 @@ class Lightsail {
   /// You cannot register a new domain name using Lightsail. You must register a
   /// domain name using Amazon Route 53 or another domain name registrar. If you
   /// have already registered your domain, you can enter its name in this
-  /// parameter to manage the DNS records for that domain.
+  /// parameter to manage the DNS records for that domain using Lightsail.
   /// </note>
   ///
   /// Parameter [tags] :
@@ -1727,19 +1593,7 @@ class Lightsail {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceSnapshotName, 'instanceSnapshotName');
-    _s.validateStringPattern(
-      'instanceSnapshotName',
-      instanceSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateInstanceSnapshot'
@@ -1817,6 +1671,14 @@ class Lightsail {
   /// It is now deprecated.
   /// </note>
   ///
+  /// Parameter [ipAddressType] :
+  /// The IP address type for the instance.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  ///
+  /// The default value is <code>dualstack</code>.
+  ///
   /// Parameter [keyPairName] :
   /// The name of your key pair.
   ///
@@ -1845,36 +1707,15 @@ class Lightsail {
     required List<String> instanceNames,
     List<AddOnRequest>? addOns,
     String? customImageName,
+    IpAddressType? ipAddressType,
     String? keyPairName,
     List<Tag>? tags,
     String? userData,
   }) async {
     ArgumentError.checkNotNull(availabilityZone, 'availabilityZone');
     ArgumentError.checkNotNull(blueprintId, 'blueprintId');
-    _s.validateStringPattern(
-      'blueprintId',
-      blueprintId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(bundleId, 'bundleId');
-    _s.validateStringPattern(
-      'bundleId',
-      bundleId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceNames, 'instanceNames');
-    _s.validateStringPattern(
-      'customImageName',
-      customImageName,
-      r'''\w[\w\-]*\w''',
-    );
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateInstances'
@@ -1892,6 +1733,7 @@ class Lightsail {
         'instanceNames': instanceNames,
         if (addOns != null) 'addOns': addOns,
         if (customImageName != null) 'customImageName': customImageName,
+        if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
         if (keyPairName != null) 'keyPairName': keyPairName,
         if (tags != null) 'tags': tags,
         if (userData != null) 'userData': userData,
@@ -1956,6 +1798,14 @@ class Lightsail {
   /// <code>source instance name</code> parameters are mutually exclusive.
   /// </li>
   /// </ul>
+  ///
+  /// Parameter [ipAddressType] :
+  /// The IP address type for the instance.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  ///
+  /// The default value is <code>dualstack</code>.
   ///
   /// Parameter [keyPairName] :
   /// The name for your key pair.
@@ -2050,6 +1900,7 @@ class Lightsail {
     List<AddOnRequest>? addOns,
     Map<String, List<DiskMap>>? attachedDiskMapping,
     String? instanceSnapshotName,
+    IpAddressType? ipAddressType,
     String? keyPairName,
     String? restoreDate,
     String? sourceInstanceName,
@@ -2059,23 +1910,7 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(availabilityZone, 'availabilityZone');
     ArgumentError.checkNotNull(bundleId, 'bundleId');
-    _s.validateStringPattern(
-      'bundleId',
-      bundleId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceNames, 'instanceNames');
-    _s.validateStringPattern(
-      'instanceSnapshotName',
-      instanceSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateInstancesFromSnapshot'
@@ -2095,6 +1930,7 @@ class Lightsail {
           'attachedDiskMapping': attachedDiskMapping,
         if (instanceSnapshotName != null)
           'instanceSnapshotName': instanceSnapshotName,
+        if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
         if (keyPairName != null) 'keyPairName': keyPairName,
         if (restoreDate != null) 'restoreDate': restoreDate,
         if (sourceInstanceName != null)
@@ -2137,12 +1973,6 @@ class Lightsail {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(keyPairName, 'keyPairName');
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateKeyPair'
@@ -2218,6 +2048,14 @@ class Lightsail {
   /// your application if your home page loads slowly or has a lot of media or
   /// scripting on it.
   ///
+  /// Parameter [ipAddressType] :
+  /// The IP address type for the load balancer.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  ///
+  /// The default value is <code>dualstack</code>.
+  ///
   /// Parameter [tags] :
   /// The tag keys and optional values to add to the resource during create.
   ///
@@ -2230,6 +2068,7 @@ class Lightsail {
     String? certificateDomainName,
     String? certificateName,
     String? healthCheckPath,
+    IpAddressType? ipAddressType,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(instancePort, 'instancePort');
@@ -2241,17 +2080,6 @@ class Lightsail {
       isRequired: true,
     );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateName',
-      certificateName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateLoadBalancer'
@@ -2271,6 +2099,7 @@ class Lightsail {
           'certificateDomainName': certificateDomainName,
         if (certificateName != null) 'certificateName': certificateName,
         if (healthCheckPath != null) 'healthCheckPath': healthCheckPath,
+        if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
         if (tags != null) 'tags': tags,
       },
     );
@@ -2278,7 +2107,7 @@ class Lightsail {
     return CreateLoadBalancerResult.fromJson(jsonResponse.body);
   }
 
-  /// Creates a Lightsail load balancer TLS certificate.
+  /// Creates an SSL/TLS certificate for an Amazon Lightsail load balancer.
   ///
   /// TLS is just an updated, more secure version of Secure Socket Layer (SSL).
   ///
@@ -2334,19 +2163,7 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(certificateDomainName, 'certificateDomainName');
     ArgumentError.checkNotNull(certificateName, 'certificateName');
-    _s.validateStringPattern(
-      'certificateName',
-      certificateName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateLoadBalancerTlsCertificate'
@@ -2386,43 +2203,127 @@ class Lightsail {
   /// May throw [UnauthenticatedException].
   ///
   /// Parameter [masterDatabaseName] :
-  /// The name of the master database created when the Lightsail database
-  /// resource is created.
+  /// The meaning of this parameter differs according to the database engine you
+  /// use.
+  ///
+  /// <b>MySQL</b>
+  ///
+  /// The name of the database to create when the Lightsail database resource is
+  /// created. If this parameter isn't specified, no database is created in the
+  /// database resource.
   ///
   /// Constraints:
   ///
   /// <ul>
   /// <li>
-  /// Must contain from 1 to 64 alphanumeric characters.
+  /// Must contain 1 to 64 letters or numbers.
   /// </li>
   /// <li>
-  /// Cannot be a word reserved by the specified database engine
+  /// Must begin with a letter. Subsequent characters can be letters,
+  /// underscores, or digits (0- 9).
+  /// </li>
+  /// <li>
+  /// Can't be a word reserved by the specified database engine.
+  ///
+  /// For more information about reserved words in MySQL, see the Keywords and
+  /// Reserved Words articles for <a
+  /// href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html">MySQL
+  /// 5.6</a>, <a
+  /// href="https://dev.mysql.com/doc/refman/5.7/en/keywords.html">MySQL
+  /// 5.7</a>, and <a
+  /// href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html">MySQL
+  /// 8.0</a>.
+  /// </li>
+  /// </ul>
+  /// <b>PostgreSQL</b>
+  ///
+  /// The name of the database to create when the Lightsail database resource is
+  /// created. If this parameter isn't specified, a database named
+  /// <code>postgres</code> is created in the database resource.
+  ///
+  /// Constraints:
+  ///
+  /// <ul>
+  /// <li>
+  /// Must contain 1 to 63 letters or numbers.
+  /// </li>
+  /// <li>
+  /// Must begin with a letter. Subsequent characters can be letters,
+  /// underscores, or digits (0- 9).
+  /// </li>
+  /// <li>
+  /// Can't be a word reserved by the specified database engine.
+  ///
+  /// For more information about reserved words in PostgreSQL, see the SQL Key
+  /// Words articles for <a
+  /// href="https://www.postgresql.org/docs/9.6/sql-keywords-appendix.html">PostgreSQL
+  /// 9.6</a>, <a
+  /// href="https://www.postgresql.org/docs/10/sql-keywords-appendix.html">PostgreSQL
+  /// 10</a>, <a
+  /// href="https://www.postgresql.org/docs/11/sql-keywords-appendix.html">PostgreSQL
+  /// 11</a>, and <a
+  /// href="https://www.postgresql.org/docs/12/sql-keywords-appendix.html">PostgreSQL
+  /// 12</a>.
   /// </li>
   /// </ul>
   ///
   /// Parameter [masterUsername] :
-  /// The master user name for your new database.
+  /// The name for the master user.
+  ///
+  /// <b>MySQL</b>
   ///
   /// Constraints:
   ///
   /// <ul>
   /// <li>
-  /// Master user name is required.
+  /// Required for MySQL.
   /// </li>
   /// <li>
-  /// Must contain from 1 to 16 alphanumeric characters.
+  /// Must be 1 to 16 letters or numbers. Can contain underscores.
   /// </li>
   /// <li>
-  /// The first character must be a letter.
+  /// First character must be a letter.
   /// </li>
   /// <li>
-  /// Cannot be a reserved word for the database engine you choose.
+  /// Can't be a reserved word for the chosen database engine.
   ///
   /// For more information about reserved words in MySQL 5.6 or 5.7, see the
   /// Keywords and Reserved Words articles for <a
-  /// href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html">MySQL 5.6</a>
-  /// or <a href="https://dev.mysql.com/doc/refman/5.7/en/keywords.html">MySQL
-  /// 5.7</a> respectively.
+  /// href="https://dev.mysql.com/doc/refman/5.6/en/keywords.html">MySQL
+  /// 5.6</a>, <a
+  /// href="https://dev.mysql.com/doc/refman/5.7/en/keywords.html">MySQL
+  /// 5.7</a>, or <a
+  /// href="https://dev.mysql.com/doc/refman/8.0/en/keywords.html">MySQL
+  /// 8.0</a>.
+  /// </li>
+  /// </ul>
+  /// <b>PostgreSQL</b>
+  ///
+  /// Constraints:
+  ///
+  /// <ul>
+  /// <li>
+  /// Required for PostgreSQL.
+  /// </li>
+  /// <li>
+  /// Must be 1 to 63 letters or numbers. Can contain underscores.
+  /// </li>
+  /// <li>
+  /// First character must be a letter.
+  /// </li>
+  /// <li>
+  /// Can't be a reserved word for the chosen database engine.
+  ///
+  /// For more information about reserved words in MySQL 5.6 or 5.7, see the
+  /// Keywords and Reserved Words articles for <a
+  /// href="https://www.postgresql.org/docs/9.6/sql-keywords-appendix.html">PostgreSQL
+  /// 9.6</a>, <a
+  /// href="https://www.postgresql.org/docs/10/sql-keywords-appendix.html">PostgreSQL
+  /// 10</a>, <a
+  /// href="https://www.postgresql.org/docs/11/sql-keywords-appendix.html">PostgreSQL
+  /// 11</a>, and <a
+  /// href="https://www.postgresql.org/docs/12/sql-keywords-appendix.html">PostgreSQL
+  /// 12</a>.
   /// </li>
   /// </ul>
   ///
@@ -2441,7 +2342,7 @@ class Lightsail {
   /// relational database bundles</code> operation.
   ///
   /// Parameter [relationalDatabaseName] :
-  /// The name to use for your new database.
+  /// The name to use for your new Lightsail database resource.
   ///
   /// Constraints:
   ///
@@ -2463,10 +2364,16 @@ class Lightsail {
   /// database Availability Zones</code> parameter to your request.
   ///
   /// Parameter [masterUserPassword] :
-  /// The password for the master user of your new database. The password can
-  /// include any printable ASCII character except "/", """, or "@".
+  /// The password for the master user. The password can include any printable
+  /// ASCII character except "/", """, or "@". It cannot contain spaces.
   ///
-  /// Constraints: Must contain 8 to 41 characters.
+  /// <b>MySQL</b>
+  ///
+  /// Constraints: Must contain from 8 to 41 characters.
+  ///
+  /// <b>PostgreSQL</b>
+  ///
+  /// Constraints: Must contain from 8 to 128 characters.
   ///
   /// Parameter [preferredBackupWindow] :
   /// The daily time range during which automated backups are created for your
@@ -2558,12 +2465,6 @@ class Lightsail {
         relationalDatabaseBundleId, 'relationalDatabaseBundleId');
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateRelationalDatabase'
@@ -2619,7 +2520,7 @@ class Lightsail {
   /// May throw [UnauthenticatedException].
   ///
   /// Parameter [relationalDatabaseName] :
-  /// The name to use for your new database.
+  /// The name to use for your new Lightsail database resource.
   ///
   /// Constraints:
   ///
@@ -2715,22 +2616,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'relationalDatabaseSnapshotName',
-      relationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
-    _s.validateStringPattern(
-      'sourceRelationalDatabaseName',
-      sourceRelationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateRelationalDatabaseFromSnapshot'
@@ -2812,20 +2697,8 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         relationalDatabaseSnapshotName, 'relationalDatabaseSnapshotName');
-    _s.validateStringPattern(
-      'relationalDatabaseSnapshotName',
-      relationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateRelationalDatabaseSnapshot'
@@ -2868,12 +2741,6 @@ class Lightsail {
     required String alarmName,
   }) async {
     ArgumentError.checkNotNull(alarmName, 'alarmName');
-    _s.validateStringPattern(
-      'alarmName',
-      alarmName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteAlarm'
@@ -2917,19 +2784,7 @@ class Lightsail {
     required String resourceName,
   }) async {
     ArgumentError.checkNotNull(date, 'date');
-    _s.validateStringPattern(
-      'date',
-      date,
-      r'''^[0-9]{4}-[0-9]{2}-[0-9]{2}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteAutoSnapshot'
@@ -3075,12 +2930,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteContainerImage'
@@ -3117,12 +2966,6 @@ class Lightsail {
       serviceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3173,12 +3016,6 @@ class Lightsail {
     bool? forceDeleteAddOns,
   }) async {
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteDisk'
@@ -3228,12 +3065,6 @@ class Lightsail {
     required String diskSnapshotName,
   }) async {
     ArgumentError.checkNotNull(diskSnapshotName, 'diskSnapshotName');
-    _s.validateStringPattern(
-      'diskSnapshotName',
-      diskSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteDiskSnapshot'
@@ -3269,11 +3100,6 @@ class Lightsail {
   Future<DeleteDistributionResult> deleteDistribution({
     String? distributionName,
   }) async {
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteDistribution'
@@ -3406,12 +3232,6 @@ class Lightsail {
     bool? forceDeleteAddOns,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteInstance'
@@ -3454,12 +3274,6 @@ class Lightsail {
     required String instanceSnapshotName,
   }) async {
     ArgumentError.checkNotNull(instanceSnapshotName, 'instanceSnapshotName');
-    _s.validateStringPattern(
-      'instanceSnapshotName',
-      instanceSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteInstanceSnapshot'
@@ -3500,12 +3314,6 @@ class Lightsail {
     required String keyPairName,
   }) async {
     ArgumentError.checkNotNull(keyPairName, 'keyPairName');
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteKeyPair'
@@ -3552,12 +3360,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteKnownHostKeys'
@@ -3601,12 +3403,6 @@ class Lightsail {
     required String loadBalancerName,
   }) async {
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteLoadBalancer'
@@ -3662,19 +3458,7 @@ class Lightsail {
     bool? force,
   }) async {
     ArgumentError.checkNotNull(certificateName, 'certificateName');
-    _s.validateStringPattern(
-      'certificateName',
-      certificateName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteLoadBalancerTlsCertificate'
@@ -3751,17 +3535,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'finalRelationalDatabaseSnapshotName',
-      finalRelationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteRelationalDatabase'
@@ -3808,12 +3581,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseSnapshotName, 'relationalDatabaseSnapshotName');
-    _s.validateStringPattern(
-      'relationalDatabaseSnapshotName',
-      relationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteRelationalDatabaseSnapshot'
@@ -3855,12 +3622,6 @@ class Lightsail {
     required String distributionName,
   }) async {
     ArgumentError.checkNotNull(distributionName, 'distributionName');
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DetachCertificateFromDistribution'
@@ -3904,12 +3665,6 @@ class Lightsail {
     required String diskName,
   }) async {
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DetachDisk'
@@ -3961,12 +3716,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(instanceNames, 'instanceNames');
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DetachInstancesFromLoadBalancer'
@@ -4003,12 +3752,6 @@ class Lightsail {
     required String staticIpName,
   }) async {
     ArgumentError.checkNotNull(staticIpName, 'staticIpName');
-    _s.validateStringPattern(
-      'staticIpName',
-      staticIpName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DetachStaticIp'
@@ -4050,12 +3793,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(addOnType, 'addOnType');
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DisableAddOn'
@@ -4123,12 +3860,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(addOnRequest, 'addOnRequest');
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.EnableAddOn'
@@ -4184,12 +3915,6 @@ class Lightsail {
     required String sourceSnapshotName,
   }) async {
     ArgumentError.checkNotNull(sourceSnapshotName, 'sourceSnapshotName');
-    _s.validateStringPattern(
-      'sourceSnapshotName',
-      sourceSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.ExportSnapshot'
@@ -4286,16 +4011,6 @@ class Lightsail {
     String? monitoredResourceName,
     String? pageToken,
   }) async {
-    _s.validateStringPattern(
-      'alarmName',
-      alarmName,
-      r'''\w[\w\-]*\w''',
-    );
-    _s.validateStringPattern(
-      'monitoredResourceName',
-      monitoredResourceName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetAlarms'
@@ -4336,12 +4051,6 @@ class Lightsail {
     required String resourceName,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetAutoSnapshots'
@@ -4662,12 +4371,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerImages'
@@ -4804,12 +4507,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerLog'
@@ -4864,12 +4561,6 @@ class Lightsail {
       serviceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5010,12 +4701,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startTime, 'startTime');
     ArgumentError.checkNotNull(statistics, 'statistics');
     final headers = <String, String>{
@@ -5091,11 +4776,6 @@ class Lightsail {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerServices'
@@ -5130,12 +4810,6 @@ class Lightsail {
     required String diskName,
   }) async {
     ArgumentError.checkNotNull(diskName, 'diskName');
-    _s.validateStringPattern(
-      'diskName',
-      diskName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetDisk'
@@ -5170,12 +4844,6 @@ class Lightsail {
     required String diskSnapshotName,
   }) async {
     ArgumentError.checkNotNull(diskSnapshotName, 'diskSnapshotName');
-    _s.validateStringPattern(
-      'diskSnapshotName',
-      diskSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetDiskSnapshot'
@@ -5321,11 +4989,6 @@ class Lightsail {
       getDistributionLatestCacheReset({
     String? distributionName,
   }) async {
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetDistributionLatestCacheReset'
@@ -5525,12 +5188,6 @@ class Lightsail {
     required MetricUnit unit,
   }) async {
     ArgumentError.checkNotNull(distributionName, 'distributionName');
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(period, 'period');
@@ -5597,11 +5254,6 @@ class Lightsail {
     String? distributionName,
     String? pageToken,
   }) async {
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetDistributions'
@@ -5752,12 +5404,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetInstance'
@@ -5804,12 +5450,6 @@ class Lightsail {
     InstanceAccessProtocol? protocol,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetInstanceAccessDetails'
@@ -6022,12 +5662,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(period, 'period');
     _s.validateNumRange(
@@ -6082,12 +5716,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetInstancePortStates'
@@ -6122,12 +5750,6 @@ class Lightsail {
     required String instanceSnapshotName,
   }) async {
     ArgumentError.checkNotNull(instanceSnapshotName, 'instanceSnapshotName');
-    _s.validateStringPattern(
-      'instanceSnapshotName',
-      instanceSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetInstanceSnapshot'
@@ -6199,12 +5821,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetInstanceState'
@@ -6277,12 +5893,6 @@ class Lightsail {
     required String keyPairName,
   }) async {
     ArgumentError.checkNotNull(keyPairName, 'keyPairName');
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetKeyPair'
@@ -6354,12 +5964,6 @@ class Lightsail {
     required String loadBalancerName,
   }) async {
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetLoadBalancer'
@@ -6592,12 +6196,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(period, 'period');
     _s.validateNumRange(
@@ -6657,12 +6255,6 @@ class Lightsail {
     required String loadBalancerName,
   }) async {
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetLoadBalancerTlsCertificates'
@@ -6736,12 +6328,6 @@ class Lightsail {
     required String operationId,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetOperation'
@@ -6828,12 +6414,6 @@ class Lightsail {
     String? pageToken,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetOperationsForResource'
@@ -6917,12 +6497,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabase'
@@ -7061,12 +6635,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabaseEvents'
@@ -7170,12 +6738,6 @@ class Lightsail {
     ArgumentError.checkNotNull(logStreamName, 'logStreamName');
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabaseLogEvents'
@@ -7218,12 +6780,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabaseLogStreams'
@@ -7278,12 +6834,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -7489,12 +7039,6 @@ class Lightsail {
     );
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startTime, 'startTime');
     ArgumentError.checkNotNull(statistics, 'statistics');
     ArgumentError.checkNotNull(unit, 'unit');
@@ -7555,12 +7099,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabaseParameters'
@@ -7598,12 +7136,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseSnapshotName, 'relationalDatabaseSnapshotName');
-    _s.validateStringPattern(
-      'relationalDatabaseSnapshotName',
-      relationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetRelationalDatabaseSnapshot'
@@ -7699,7 +7231,7 @@ class Lightsail {
     return GetRelationalDatabasesResult.fromJson(jsonResponse.body);
   }
 
-  /// Returns information about a specific static IP.
+  /// Returns information about an Amazon Lightsail static IP.
   ///
   /// May throw [ServiceException].
   /// May throw [InvalidInputException].
@@ -7715,12 +7247,6 @@ class Lightsail {
     required String staticIpName,
   }) async {
     ArgumentError.checkNotNull(staticIpName, 'staticIpName');
-    _s.validateStringPattern(
-      'staticIpName',
-      staticIpName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetStaticIp'
@@ -7796,12 +7322,6 @@ class Lightsail {
     required String publicKeyBase64,
   }) async {
     ArgumentError.checkNotNull(keyPairName, 'keyPairName');
-    _s.validateStringPattern(
-      'keyPairName',
-      keyPairName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(publicKeyBase64, 'publicKeyBase64');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7875,12 +7395,6 @@ class Lightsail {
     required PortInfo portInfo,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portInfo, 'portInfo');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8124,22 +7638,10 @@ class Lightsail {
     TreatMissingData? treatMissingData,
   }) async {
     ArgumentError.checkNotNull(alarmName, 'alarmName');
-    _s.validateStringPattern(
-      'alarmName',
-      alarmName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(comparisonOperator, 'comparisonOperator');
     ArgumentError.checkNotNull(evaluationPeriods, 'evaluationPeriods');
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(monitoredResourceName, 'monitoredResourceName');
-    _s.validateStringPattern(
-      'monitoredResourceName',
-      monitoredResourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(threshold, 'threshold');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8207,12 +7709,6 @@ class Lightsail {
     required List<PortInfo> portInfos,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portInfos, 'portInfos');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8255,12 +7751,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.RebootInstance'
@@ -8302,12 +7792,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.RebootRelationalDatabase'
@@ -8331,9 +7815,9 @@ class Lightsail {
   /// This action is not required if you install and use the Lightsail Control
   /// (lightsailctl) plugin to push container images to your Lightsail container
   /// service. For more information, see <a
-  /// href="amazon-lightsail-pushing-container-images">Pushing and managing
-  /// container images on your Amazon Lightsail container services</a> in the
-  /// <i>Lightsail Dev Guide</i>.
+  /// href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-pushing-container-images">Pushing
+  /// and managing container images on your Amazon Lightsail container
+  /// services</a> in the <i>Lightsail Dev Guide</i>.
   /// </note>
   ///
   /// May throw [ServiceException].
@@ -8390,24 +7874,12 @@ class Lightsail {
       53,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'label',
-      label,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceName, 'serviceName');
     _s.validateStringLength(
       'serviceName',
       serviceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8446,12 +7918,6 @@ class Lightsail {
     required String staticIpName,
   }) async {
     ArgumentError.checkNotNull(staticIpName, 'staticIpName');
-    _s.validateStringPattern(
-      'staticIpName',
-      staticIpName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.ReleaseStaticIp'
@@ -8491,11 +7957,6 @@ class Lightsail {
   Future<ResetDistributionCacheResult> resetDistributionCache({
     String? distributionName,
   }) async {
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.ResetDistributionCache'
@@ -8565,6 +8026,67 @@ class Lightsail {
     return SendContactMethodVerificationResult.fromJson(jsonResponse.body);
   }
 
+  /// Sets the IP address type for an Amazon Lightsail resource.
+  ///
+  /// Use this action to enable dual-stack for a resource, which enables IPv4
+  /// and IPv6 for the specified resource. Alternately, you can use this action
+  /// to disable dual-stack, and enable IPv4 only.
+  ///
+  /// May throw [ServiceException].
+  /// May throw [InvalidInputException].
+  /// May throw [NotFoundException].
+  /// May throw [OperationFailureException].
+  /// May throw [AccessDeniedException].
+  /// May throw [AccountSetupInProgressException].
+  /// May throw [UnauthenticatedException].
+  ///
+  /// Parameter [ipAddressType] :
+  /// The IP address type to set for the specified resource.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  ///
+  /// Parameter [resourceName] :
+  /// The name of the resource for which to set the IP address type.
+  ///
+  /// Parameter [resourceType] :
+  /// The resource type.
+  ///
+  /// The possible values are <code>Distribution</code>, <code>Instance</code>,
+  /// and <code>LoadBalancer</code>.
+  /// <note>
+  /// Distribution-related APIs are available only in the N. Virginia
+  /// (<code>us-east-1</code>) AWS Region. Set your AWS Region configuration to
+  /// <code>us-east-1</code> to create, view, or edit distributions.
+  /// </note>
+  Future<SetIpAddressTypeResult> setIpAddressType({
+    required IpAddressType ipAddressType,
+    required String resourceName,
+    required ResourceType resourceType,
+  }) async {
+    ArgumentError.checkNotNull(ipAddressType, 'ipAddressType');
+    ArgumentError.checkNotNull(resourceName, 'resourceName');
+    ArgumentError.checkNotNull(resourceType, 'resourceType');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'Lightsail_20161128.SetIpAddressType'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ipAddressType': ipAddressType.toValue(),
+        'resourceName': resourceName,
+        'resourceType': resourceType.toValue(),
+      },
+    );
+
+    return SetIpAddressTypeResult.fromJson(jsonResponse.body);
+  }
+
   /// Starts a specific Amazon Lightsail instance from a stopped state. To
   /// restart an instance, use the <code>reboot instance</code> operation.
   /// <note>
@@ -8595,12 +8117,6 @@ class Lightsail {
     required String instanceName,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.StartInstance'
@@ -8644,12 +8160,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.StartRelationalDatabase'
@@ -8707,12 +8217,6 @@ class Lightsail {
     bool? force,
   }) async {
     ArgumentError.checkNotNull(instanceName, 'instanceName');
-    _s.validateStringPattern(
-      'instanceName',
-      instanceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.StopInstance'
@@ -8760,17 +8264,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'relationalDatabaseSnapshotName',
-      relationalDatabaseSnapshotName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.StopRelationalDatabase'
@@ -8827,18 +8320,7 @@ class Lightsail {
     String? resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:(aws[^:]*):([a-zA-Z0-9-]+):([a-z0-9-]+):([0-9]+):([a-zA-Z]+)/([a-zA-Z0-9-]+)$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.TagResource'
@@ -8904,12 +8386,6 @@ class Lightsail {
     required AlarmState state,
   }) async {
     ArgumentError.checkNotNull(alarmName, 'alarmName');
-    _s.validateStringPattern(
-      'alarmName',
-      alarmName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(state, 'state');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8987,18 +8463,7 @@ class Lightsail {
     String? resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringPattern(
-      'resourceName',
-      resourceName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:(aws[^:]*):([a-zA-Z0-9-]+):([a-z0-9-]+):([0-9]+):([a-zA-Z]+)/([a-zA-Z0-9-]+)$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UntagResource'
@@ -9090,12 +8555,6 @@ class Lightsail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceName',
-      serviceName,
-      r'''^[a-z0-9]{1,2}|[a-z0-9][a-z0-9-]+[a-z0-9]$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'scale',
       scale,
@@ -9174,12 +8633,6 @@ class Lightsail {
     InputOrigin? origin,
   }) async {
     ArgumentError.checkNotNull(distributionName, 'distributionName');
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateDistribution'
@@ -9242,11 +8695,6 @@ class Lightsail {
     String? bundleId,
     String? distributionName,
   }) async {
-    _s.validateStringPattern(
-      'distributionName',
-      distributionName,
-      r'''\w[\w\-]*\w''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateDistributionBundle'
@@ -9354,12 +8802,6 @@ class Lightsail {
       isRequired: true,
     );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
-    _s.validateStringPattern(
-      'loadBalancerName',
-      loadBalancerName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateLoadBalancerAttribute'
@@ -9402,7 +8844,7 @@ class Lightsail {
   /// May throw [UnauthenticatedException].
   ///
   /// Parameter [relationalDatabaseName] :
-  /// The name of your database to update.
+  /// The name of your Lightsail database resource to update.
   ///
   /// Parameter [applyImmediately] :
   /// When <code>true</code>, applies changes immediately. When
@@ -9433,10 +8875,16 @@ class Lightsail {
   /// result in an outage.
   ///
   /// Parameter [masterUserPassword] :
-  /// The password for the master user of your database. The password can
-  /// include any printable ASCII character except "/", """, or "@".
+  /// The password for the master user. The password can include any printable
+  /// ASCII character except "/", """, or "@".
   ///
-  /// Constraints: Must contain 8 to 41 characters.
+  /// My<b>SQL</b>
+  ///
+  /// Constraints: Must contain from 8 to 41 characters.
+  ///
+  /// <b>PostgreSQL</b>
+  ///
+  /// Constraints: Must contain from 8 to 128 characters.
   ///
   /// Parameter [preferredBackupWindow] :
   /// The daily time range during which automated backups are created for your
@@ -9515,12 +8963,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateRelationalDatabase'
@@ -9594,12 +9036,6 @@ class Lightsail {
     ArgumentError.checkNotNull(parameters, 'parameters');
     ArgumentError.checkNotNull(
         relationalDatabaseName, 'relationalDatabaseName');
-    _s.validateStringPattern(
-      'relationalDatabaseName',
-      relationalDatabaseName,
-      r'''\w[\w\-]*\w''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateRelationalDatabaseParameters'
@@ -10851,8 +10287,8 @@ class Certificate {
   /// the problem, search for your domain name on the <a
   /// href="https://www.virustotal.com/gui/home/url">VirusTotal</a> website. If
   /// your domain is reported as suspicious, see <a
-  /// href="https://www.google.com/webmasters/hacked/?hl=en">Google Help for
-  /// Hacked Websites</a> to learn what you can do.
+  /// href="https://developers.google.com/web/fundamentals/security/hacked">Google
+  /// Help for Hacked Websites</a> to learn what you can do.
   ///
   /// If you believe that the result is a false positive, notify the organization
   /// that is reporting the domain. VirusTotal is an aggregate of several
@@ -11576,33 +11012,45 @@ class ContainerService {
 
   /// The current state of the container service.
   ///
-  /// The state can be:
+  /// The following container service states are possible:
   ///
   /// <ul>
   /// <li>
-  /// <code>Pending</code> - The container service is being created.
+  /// <code>PENDING</code> - The container service is being created.
   /// </li>
   /// <li>
-  /// <code>Ready</code> - The container service is created but does not have a
-  /// container deployment.
+  /// <code>READY</code> - The container service is running but it does not have
+  /// an active container deployment.
   /// </li>
   /// <li>
-  /// <code>Disabled</code> - The container service is disabled.
-  /// </li>
-  /// <li>
-  /// <code>Updating</code> - The container service capacity or other setting is
-  /// being updated.
-  /// </li>
-  /// <li>
-  /// <code>Deploying</code> - The container service is launching a container
+  /// <code>DEPLOYING</code> - The container service is launching a container
   /// deployment.
   /// </li>
   /// <li>
-  /// <code>Running</code> - The container service is created and it has a
+  /// <code>RUNNING</code> - The container service is running and it has an active
   /// container deployment.
+  /// </li>
+  /// <li>
+  /// <code>UPDATING</code> - The container service capacity or its custom domains
+  /// are being updated.
+  /// </li>
+  /// <li>
+  /// <code>DELETING</code> - The container service is being deleted.
+  /// </li>
+  /// <li>
+  /// <code>DISABLED</code> - The container service is disabled, and its active
+  /// deployment and containers, if any, are shut down.
   /// </li>
   /// </ul>
   final ContainerServiceState? state;
+
+  /// An object that describes the current state of the container service.
+  /// <note>
+  /// The state detail is populated only when a container service is in a
+  /// <code>PENDING</code>, <code>DEPLOYING</code>, or <code>UPDATING</code>
+  /// state.
+  /// </note>
+  final ContainerServiceStateDetail? stateDetail;
 
   /// The tag keys and optional values for the resource. For more information
   /// about tags in Lightsail, see the <a
@@ -11632,6 +11080,7 @@ class ContainerService {
     this.resourceType,
     this.scale,
     this.state,
+    this.stateDetail,
     this.tags,
     this.url,
   });
@@ -11662,6 +11111,10 @@ class ContainerService {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
       scale: json['scale'] as int?,
       state: (json['state'] as String?)?.toContainerServiceState(),
+      stateDetail: json['stateDetail'] != null
+          ? ContainerServiceStateDetail.fromJson(
+              json['stateDetail'] as Map<String, dynamic>)
+          : null,
       tags: (json['tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -11837,14 +11290,17 @@ class ContainerServiceEndpoint {
 /// service.
 class ContainerServiceHealthCheckConfig {
   /// The number of consecutive health checks successes required before moving the
-  /// container to the <code>Healthy</code> state.
+  /// container to the <code>Healthy</code> state. The default value is
+  /// <code>2</code>.
   final int? healthyThreshold;
 
   /// The approximate interval, in seconds, between health checks of an individual
-  /// container. You may specify between 5 and 300 seconds.
+  /// container. You can specify between 5 and 300 seconds. The default value is
+  /// <code>5</code>.
   final int? intervalSeconds;
 
-  /// The path on the container on which to perform the health check.
+  /// The path on the container on which to perform the health check. The default
+  /// value is <code>/</code>.
   final String? path;
 
   /// The HTTP codes to use when checking for a successful response from a
@@ -11852,11 +11308,13 @@ class ContainerServiceHealthCheckConfig {
   final String? successCodes;
 
   /// The amount of time, in seconds, during which no response means a failed
-  /// health check. You may specify between 2 and 60 seconds.
+  /// health check. You can specify between 2 and 60 seconds. The default value is
+  /// <code>2</code>.
   final int? timeoutSeconds;
 
   /// The number of consecutive health check failures required before moving the
-  /// container to the <code>Unhealthy</code> state.
+  /// container to the <code>Unhealthy</code> state. The default value is
+  /// <code>2</code>.
   final int? unhealthyThreshold;
 
   ContainerServiceHealthCheckConfig({
@@ -12123,6 +11581,7 @@ enum ContainerServiceState {
   updating,
   deleting,
   disabled,
+  deploying,
 }
 
 extension on ContainerServiceState {
@@ -12140,6 +11599,8 @@ extension on ContainerServiceState {
         return 'DELETING';
       case ContainerServiceState.disabled:
         return 'DISABLED';
+      case ContainerServiceState.deploying:
+        return 'DEPLOYING';
     }
   }
 }
@@ -12159,8 +11620,152 @@ extension on String {
         return ContainerServiceState.deleting;
       case 'DISABLED':
         return ContainerServiceState.disabled;
+      case 'DEPLOYING':
+        return ContainerServiceState.deploying;
     }
     throw Exception('$this is not known in enum ContainerServiceState');
+  }
+}
+
+/// Describes the current state of a container service.
+class ContainerServiceStateDetail {
+  /// The state code of the container service.
+  ///
+  /// The following state codes are possible:
+  ///
+  /// <ul>
+  /// <li>
+  /// The following state codes are possible if your container service is in a
+  /// <code>DEPLOYING</code> or <code>UPDATING</code> state:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATING_SYSTEM_RESOURCES</code> - The system resources for your
+  /// container service are being created.
+  /// </li>
+  /// <li>
+  /// <code>CREATING_NETWORK_INFRASTRUCTURE</code> - The network infrastructure
+  /// for your container service are being created.
+  /// </li>
+  /// <li>
+  /// <code>PROVISIONING_CERTIFICATE</code> - The SSL/TLS certificate for your
+  /// container service is being created.
+  /// </li>
+  /// <li>
+  /// <code>PROVISIONING_SERVICE</code> - Your container service is being
+  /// provisioned.
+  /// </li>
+  /// <li>
+  /// <code>CREATING_DEPLOYMENT</code> - Your deployment is being created on your
+  /// container service.
+  /// </li>
+  /// <li>
+  /// <code>EVALUATING_HEALTH_CHECK</code> - The health of your deployment is
+  /// being evaluated.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVATING_DEPLOYMENT</code> - Your deployment is being activated.
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// The following state codes are possible if your container service is in a
+  /// <code>PENDING</code> state:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CERTIFICATE_LIMIT_EXCEEDED</code> - The SSL/TLS certificate required
+  /// for your container service exceeds the maximum number of certificates
+  /// allowed for your account.
+  /// </li>
+  /// <li>
+  /// <code>UNKNOWN_ERROR</code> - An error was experienced when your container
+  /// service was being created.
+  /// </li>
+  /// </ul> </li>
+  /// </ul>
+  final ContainerServiceStateDetailCode? code;
+
+  /// A message that provides more information for the state code.
+  /// <note>
+  /// The state detail is populated only when a container service is in a
+  /// <code>PENDING</code>, <code>DEPLOYING</code>, or <code>UPDATING</code>
+  /// state.
+  /// </note>
+  final String? message;
+
+  ContainerServiceStateDetail({
+    this.code,
+    this.message,
+  });
+  factory ContainerServiceStateDetail.fromJson(Map<String, dynamic> json) {
+    return ContainerServiceStateDetail(
+      code: (json['code'] as String?)?.toContainerServiceStateDetailCode(),
+      message: json['message'] as String?,
+    );
+  }
+}
+
+enum ContainerServiceStateDetailCode {
+  creatingSystemResources,
+  creatingNetworkInfrastructure,
+  provisioningCertificate,
+  provisioningService,
+  creatingDeployment,
+  evaluatingHealthCheck,
+  activatingDeployment,
+  certificateLimitExceeded,
+  unknownError,
+}
+
+extension on ContainerServiceStateDetailCode {
+  String toValue() {
+    switch (this) {
+      case ContainerServiceStateDetailCode.creatingSystemResources:
+        return 'CREATING_SYSTEM_RESOURCES';
+      case ContainerServiceStateDetailCode.creatingNetworkInfrastructure:
+        return 'CREATING_NETWORK_INFRASTRUCTURE';
+      case ContainerServiceStateDetailCode.provisioningCertificate:
+        return 'PROVISIONING_CERTIFICATE';
+      case ContainerServiceStateDetailCode.provisioningService:
+        return 'PROVISIONING_SERVICE';
+      case ContainerServiceStateDetailCode.creatingDeployment:
+        return 'CREATING_DEPLOYMENT';
+      case ContainerServiceStateDetailCode.evaluatingHealthCheck:
+        return 'EVALUATING_HEALTH_CHECK';
+      case ContainerServiceStateDetailCode.activatingDeployment:
+        return 'ACTIVATING_DEPLOYMENT';
+      case ContainerServiceStateDetailCode.certificateLimitExceeded:
+        return 'CERTIFICATE_LIMIT_EXCEEDED';
+      case ContainerServiceStateDetailCode.unknownError:
+        return 'UNKNOWN_ERROR';
+    }
+  }
+}
+
+extension on String {
+  ContainerServiceStateDetailCode toContainerServiceStateDetailCode() {
+    switch (this) {
+      case 'CREATING_SYSTEM_RESOURCES':
+        return ContainerServiceStateDetailCode.creatingSystemResources;
+      case 'CREATING_NETWORK_INFRASTRUCTURE':
+        return ContainerServiceStateDetailCode.creatingNetworkInfrastructure;
+      case 'PROVISIONING_CERTIFICATE':
+        return ContainerServiceStateDetailCode.provisioningCertificate;
+      case 'PROVISIONING_SERVICE':
+        return ContainerServiceStateDetailCode.provisioningService;
+      case 'CREATING_DEPLOYMENT':
+        return ContainerServiceStateDetailCode.creatingDeployment;
+      case 'EVALUATING_HEALTH_CHECK':
+        return ContainerServiceStateDetailCode.evaluatingHealthCheck;
+      case 'ACTIVATING_DEPLOYMENT':
+        return ContainerServiceStateDetailCode.activatingDeployment;
+      case 'CERTIFICATE_LIMIT_EXCEEDED':
+        return ContainerServiceStateDetailCode.certificateLimitExceeded;
+      case 'UNKNOWN_ERROR':
+        return ContainerServiceStateDetailCode.unknownError;
+    }
+    throw Exception(
+        '$this is not known in enum ContainerServiceStateDetailCode');
   }
 }
 
@@ -13326,7 +12931,7 @@ class DiskSnapshot {
   /// The name of the disk snapshot (e.g., <code>my-disk-snapshot</code>).
   final String? name;
 
-  /// The progress of the disk snapshot operation.
+  /// The progress of the snapshot.
   final String? progress;
 
   /// The Lightsail resource type (e.g., <code>DiskSnapshot</code>).
@@ -13658,23 +13263,32 @@ class DomainEntry {
   /// </note>
   final Map<String, String>? options;
 
-  /// The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).
+  /// The target IP address (e.g., <code>192.0.2.0</code>), or AWS name server
+  /// (e.g., <code>ns-111.awsdns-22.com.</code>).
   ///
   /// For Lightsail load balancers, the value looks like
   /// <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>.
+  /// For Lightsail distributions, the value looks like
+  /// <code>exampled1182ne.cloudfront.net</code>. For Lightsail container
+  /// services, the value looks like
+  /// <code>container-service-1.example23scljs.us-west-2.cs.amazonlightsail.com</code>.
   /// Be sure to also set <code>isAlias</code> to <code>true</code> when setting
-  /// up an A record for a load balancer.
+  /// up an A record for a Lightsail load balancer, distribution, or container
+  /// service.
   final String? target;
 
-  /// The type of domain entry, such as address (A), canonical name (CNAME), mail
-  /// exchanger (MX), name server (NS), start of authority (SOA), service locator
-  /// (SRV), or text (TXT).
+  /// The type of domain entry, such as address for IPv4 (A), address for IPv6
+  /// (AAAA), canonical name (CNAME), mail exchanger (MX), name server (NS), start
+  /// of authority (SOA), service locator (SRV), or text (TXT).
   ///
   /// The following domain entry types can be used:
   ///
   /// <ul>
   /// <li>
   /// <code>A</code>
+  /// </li>
+  /// <li>
+  /// <code>AAAA</code>
   /// </li>
   /// <li>
   /// <code>CNAME</code>
@@ -15680,8 +15294,14 @@ class Instance {
   /// The size of the vCPU and the amount of RAM for the instance.
   final InstanceHardware? hardware;
 
-  /// The IPv6 address of the instance.
-  final String? ipv6Address;
+  /// The IP address type of the instance.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  final IpAddressType? ipAddressType;
+
+  /// The IPv6 addresses of the instance.
+  final List<String>? ipv6Addresses;
 
   /// A Boolean value indicating whether this instance has a static IP assigned to
   /// it.
@@ -15736,7 +15356,8 @@ class Instance {
     this.bundleId,
     this.createdAt,
     this.hardware,
-    this.ipv6Address,
+    this.ipAddressType,
+    this.ipv6Addresses,
     this.isStaticIp,
     this.location,
     this.name,
@@ -15764,7 +15385,11 @@ class Instance {
       hardware: json['hardware'] != null
           ? InstanceHardware.fromJson(json['hardware'] as Map<String, dynamic>)
           : null,
-      ipv6Address: json['ipv6Address'] as String?,
+      ipAddressType: (json['ipAddressType'] as String?)?.toIpAddressType(),
+      ipv6Addresses: (json['ipv6Addresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       isStaticIp: json['isStaticIp'] as bool?,
       location: json['location'] != null
           ? ResourceLocation.fromJson(json['location'] as Map<String, dynamic>)
@@ -15922,17 +15547,27 @@ class InstanceEntry {
   /// <ul>
   /// <li>
   /// <code>DEFAULT</code> - Use the default firewall settings from the Lightsail
-  /// instance blueprint.
+  /// instance blueprint. If this is specified, then IPv4 and IPv6 will be
+  /// configured for the new instance that is created in Amazon EC2.
   /// </li>
   /// <li>
   /// <code>INSTANCE</code> - Use the configured firewall settings from the source
-  /// Lightsail instance.
+  /// Lightsail instance. If this is specified, the new instance that is created
+  /// in Amazon EC2 will be configured to match the configuration of the source
+  /// Lightsail instance. For example, if the source instance is configured for
+  /// dual-stack (IPv4 and IPv6), then IPv4 and IPv6 will be configured for the
+  /// new instance that is created in Amazon EC2. If the source instance is
+  /// configured for IPv4 only, then only IPv4 will be configured for the new
+  /// instance that is created in Amazon EC2.
   /// </li>
   /// <li>
-  /// <code>NONE</code> - Use the default Amazon EC2 security group.
+  /// <code>NONE</code> - Use the default Amazon EC2 security group. If this is
+  /// specified, then only IPv4 will be configured for the new instance that is
+  /// created in Amazon EC2.
   /// </li>
   /// <li>
-  /// <code>CLOSED</code> - All ports closed.
+  /// <code>CLOSED</code> - All ports closed. If this is specified, then only IPv4
+  /// will be configured for the new instance that is created in Amazon EC2.
   /// </li>
   /// </ul> <note>
   /// If you configured <code>lightsail-connect</code> as a
@@ -16367,10 +16002,12 @@ class InstancePortInfo {
   /// console to connect to your instance.
   final List<String>? cidrListAliases;
 
-  /// The IP address, or range of IP addresses in CIDR notation, that are allowed
-  /// to connect to an instance through the ports, and the protocol. Lightsail
-  /// supports IPv4 addresses.
-  ///
+  /// The IPv4 address, or range of IPv4 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol.
+  /// <note>
+  /// The <code>ipv6Cidrs</code> parameter lists the IPv6 addresses that are
+  /// allowed to connect to an instance.
+  /// </note>
   /// For more information about CIDR block notation, see <a
   /// href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">Classless
   /// Inter-Domain Routing</a> on <i>Wikipedia</i>.
@@ -16388,15 +16025,36 @@ class InstancePortInfo {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP type. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP type for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
   /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP type for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
+  /// </li>
   /// </ul>
   final int? fromPort;
+
+  /// The IPv6 address, or range of IPv6 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol. Only
+  /// devices with an IPv6 address can connect to an instance through IPv6;
+  /// otherwise, IPv4 should be used.
+  /// <note>
+  /// The <code>cidrs</code> parameter lists the IPv4 addresses that are allowed
+  /// to connect to an instance.
+  /// </note>
+  /// For more information about CIDR block notation, see <a
+  /// href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">Classless
+  /// Inter-Domain Routing</a> on <i>Wikipedia</i>.
+  final List<String>? ipv6Cidrs;
 
   /// The IP protocol name.
   ///
@@ -16445,12 +16103,20 @@ class InstancePortInfo {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP code. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP code for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
+  /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP code for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
   /// </li>
   /// </ul>
   final int? toPort;
@@ -16463,6 +16129,7 @@ class InstancePortInfo {
     this.cidrs,
     this.commonName,
     this.fromPort,
+    this.ipv6Cidrs,
     this.protocol,
     this.toPort,
   });
@@ -16482,6 +16149,10 @@ class InstancePortInfo {
           .toList(),
       commonName: json['commonName'] as String?,
       fromPort: json['fromPort'] as int?,
+      ipv6Cidrs: (json['ipv6Cidrs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       protocol: (json['protocol'] as String?)?.toNetworkProtocol(),
       toPort: json['toPort'] as int?,
     );
@@ -16498,10 +16169,12 @@ class InstancePortState {
   /// console to connect to your instance.
   final List<String>? cidrListAliases;
 
-  /// The IP address, or range of IP addresses in CIDR notation, that are allowed
-  /// to connect to an instance through the ports, and the protocol. Lightsail
-  /// supports IPv4 addresses.
-  ///
+  /// The IPv4 address, or range of IPv4 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol.
+  /// <note>
+  /// The <code>ipv6Cidrs</code> parameter lists the IPv6 addresses that are
+  /// allowed to connect to an instance.
+  /// </note>
   /// For more information about CIDR block notation, see <a
   /// href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">Classless
   /// Inter-Domain Routing</a> on <i>Wikipedia</i>.
@@ -16516,15 +16189,36 @@ class InstancePortState {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP type. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP type for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
   /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP type for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
+  /// </li>
   /// </ul>
   final int? fromPort;
+
+  /// The IPv6 address, or range of IPv6 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol. Only
+  /// devices with an IPv6 address can connect to an instance through IPv6;
+  /// otherwise, IPv4 should be used.
+  /// <note>
+  /// The <code>cidrs</code> parameter lists the IPv4 addresses that are allowed
+  /// to connect to an instance.
+  /// </note>
+  /// For more information about CIDR block notation, see <a
+  /// href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">Classless
+  /// Inter-Domain Routing</a> on <i>Wikipedia</i>.
+  final List<String>? ipv6Cidrs;
 
   /// The IP protocol name.
   ///
@@ -16580,12 +16274,20 @@ class InstancePortState {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP code. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP code for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
+  /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP code for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
   /// </li>
   /// </ul>
   final int? toPort;
@@ -16594,6 +16296,7 @@ class InstancePortState {
     this.cidrListAliases,
     this.cidrs,
     this.fromPort,
+    this.ipv6Cidrs,
     this.protocol,
     this.state,
     this.toPort,
@@ -16609,6 +16312,10 @@ class InstancePortState {
           .map((e) => e as String)
           .toList(),
       fromPort: json['fromPort'] as int?,
+      ipv6Cidrs: (json['ipv6Cidrs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       protocol: (json['protocol'] as String?)?.toNetworkProtocol(),
       state: (json['state'] as String?)?.toPortState(),
       toPort: json['toPort'] as int?,
@@ -16658,6 +16365,10 @@ class InstanceSnapshot {
   final String? name;
 
   /// The progress of the snapshot.
+  /// <note>
+  /// This is populated only for disk snapshots, and is <code>null</code> for
+  /// instance snapshots.
+  /// </note>
   final String? progress;
 
   /// The type of resource (usually <code>InstanceSnapshot</code>).
@@ -16813,6 +16524,34 @@ class InstanceState {
   }
 }
 
+enum IpAddressType {
+  dualstack,
+  ipv4,
+}
+
+extension on IpAddressType {
+  String toValue() {
+    switch (this) {
+      case IpAddressType.dualstack:
+        return 'dualstack';
+      case IpAddressType.ipv4:
+        return 'ipv4';
+    }
+  }
+}
+
+extension on String {
+  IpAddressType toIpAddressType() {
+    switch (this) {
+      case 'dualstack':
+        return IpAddressType.dualstack;
+      case 'ipv4':
+        return IpAddressType.ipv4;
+    }
+    throw Exception('$this is not known in enum IpAddressType');
+  }
+}
+
 class IsVpcPeeredResult {
   /// Returns <code>true</code> if the Lightsail VPC is peered; otherwise,
   /// <code>false</code>.
@@ -16928,6 +16667,12 @@ class LightsailDistribution {
   /// The domain name of the distribution.
   final String? domainName;
 
+  /// The IP address type of the distribution.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  final IpAddressType? ipAddressType;
+
   /// Indicates whether the distribution is enabled.
   final bool? isEnabled;
 
@@ -16980,6 +16725,7 @@ class LightsailDistribution {
     this.createdAt,
     this.defaultCacheBehavior,
     this.domainName,
+    this.ipAddressType,
     this.isEnabled,
     this.location,
     this.name,
@@ -17014,6 +16760,7 @@ class LightsailDistribution {
               json['defaultCacheBehavior'] as Map<String, dynamic>)
           : null,
       domainName: json['domainName'] as String?,
+      ipAddressType: (json['ipAddressType'] as String?)?.toIpAddressType(),
       isEnabled: json['isEnabled'] as bool?,
       location: json['location'] != null
           ? ResourceLocation.fromJson(json['location'] as Map<String, dynamic>)
@@ -17061,6 +16808,12 @@ class LoadBalancer {
   /// The port where the load balancer will direct traffic to your Lightsail
   /// instances. For HTTP traffic, it's port 80. For HTTPS traffic, it's port 443.
   final int? instancePort;
+
+  /// The IP address type of the load balancer.
+  ///
+  /// The possible values are <code>ipv4</code> for IPv4 only, and
+  /// <code>dualstack</code> for IPv4 and IPv6.
+  final IpAddressType? ipAddressType;
 
   /// The AWS Region where your load balancer was created (e.g.,
   /// <code>us-east-2a</code>). Lightsail automatically creates your load balancer
@@ -17111,6 +16864,7 @@ class LoadBalancer {
     this.healthCheckPath,
     this.instanceHealthSummary,
     this.instancePort,
+    this.ipAddressType,
     this.location,
     this.name,
     this.protocol,
@@ -17135,6 +16889,7 @@ class LoadBalancer {
           .map((e) => InstanceHealthSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
       instancePort: json['instancePort'] as int?,
+      ipAddressType: (json['ipAddressType'] as String?)?.toIpAddressType(),
       location: json['location'] != null
           ? ResourceLocation.fromJson(json['location'] as Map<String, dynamic>)
           : null,
@@ -17388,8 +17143,8 @@ class LoadBalancerTlsCertificate {
   /// the problem, search for your domain name on the <a
   /// href="https://www.virustotal.com/gui/home/url">VirusTotal</a> website. If
   /// your domain is reported as suspicious, see <a
-  /// href="https://www.google.com/webmasters/hacked/?hl=en">Google Help for
-  /// Hacked Websites</a> to learn what you can do.
+  /// href="https://developers.google.com/web/fundamentals/security/hacked">Google
+  /// Help for Hacked Websites</a> to learn what you can do.
   ///
   /// If you believe that the result is a false positive, notify the organization
   /// that is reporting the domain. VirusTotal is an aggregate of several
@@ -18719,6 +18474,7 @@ enum OperationType {
   attachCertificateToDistribution,
   detachCertificateFromDistribution,
   updateDistributionBundle,
+  setIpAddressType,
   createCertificate,
   deleteCertificate,
   createContainerService,
@@ -18857,6 +18613,8 @@ extension on OperationType {
         return 'DetachCertificateFromDistribution';
       case OperationType.updateDistributionBundle:
         return 'UpdateDistributionBundle';
+      case OperationType.setIpAddressType:
+        return 'SetIpAddressType';
       case OperationType.createCertificate:
         return 'CreateCertificate';
       case OperationType.deleteCertificate:
@@ -19006,6 +18764,8 @@ extension on String {
         return OperationType.detachCertificateFromDistribution;
       case 'UpdateDistributionBundle':
         return OperationType.updateDistributionBundle;
+      case 'SetIpAddressType':
+        return OperationType.setIpAddressType;
       case 'CreateCertificate':
         return OperationType.createCertificate;
       case 'DeleteCertificate':
@@ -19243,10 +19003,12 @@ class PortInfo {
   /// console to connect to your instance.
   final List<String>? cidrListAliases;
 
-  /// The IP address, or range of IP addresses in CIDR notation, that are allowed
-  /// to connect to an instance through the ports, and the protocol. Lightsail
-  /// supports IPv4 addresses.
-  ///
+  /// The IPv4 address, or range of IPv4 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol.
+  /// <note>
+  /// The <code>ipv6Cidrs</code> parameter lists the IPv6 addresses that are
+  /// allowed to connect to an instance.
+  /// </note>
   /// Examples:
   ///
   /// <ul>
@@ -19273,15 +19035,36 @@ class PortInfo {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP type. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP type for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
   /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP type for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
+  /// </li>
   /// </ul>
   final int? fromPort;
+
+  /// The IPv6 address, or range of IPv6 addresses (in CIDR notation) that are
+  /// allowed to connect to an instance through the ports, and the protocol. Only
+  /// devices with an IPv6 address can connect to an instance through IPv6;
+  /// otherwise, IPv4 should be used.
+  /// <note>
+  /// The <code>cidrs</code> parameter lists the IPv4 addresses that are allowed
+  /// to connect to an instance.
+  /// </note>
+  /// For more information about CIDR block notation, see <a
+  /// href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation">Classless
+  /// Inter-Domain Routing</a> on <i>Wikipedia</i>.
+  final List<String>? ipv6Cidrs;
 
   /// The IP protocol name.
   ///
@@ -19330,12 +19113,20 @@ class PortInfo {
   /// TCP and UDP - <code>0</code> to <code>65535</code>
   /// </li>
   /// <li>
-  /// ICMP - The ICMP code. For example, specify <code>8</code> as the
-  /// <code>fromPort</code> (ICMP type), and <code>-1</code> as the
+  /// ICMP - The ICMP code for IPv4 addresses. For example, specify <code>8</code>
+  /// as the <code>fromPort</code> (ICMP type), and <code>-1</code> as the
   /// <code>toPort</code> (ICMP code), to enable ICMP Ping. For more information,
   /// see <a
   /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages">Control
   /// Messages</a> on <i>Wikipedia</i>.
+  /// </li>
+  /// <li>
+  /// ICMPv6 - The ICMP code for IPv6 addresses. For example, specify
+  /// <code>128</code> as the <code>fromPort</code> (ICMPv6 type), and
+  /// <code>0</code> as <code>toPort</code> (ICMPv6 code). For more information,
+  /// see <a
+  /// href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_for_IPv6">Internet
+  /// Control Message Protocol for IPv6</a>.
   /// </li>
   /// </ul>
   final int? toPort;
@@ -19344,6 +19135,7 @@ class PortInfo {
     this.cidrListAliases,
     this.cidrs,
     this.fromPort,
+    this.ipv6Cidrs,
     this.protocol,
     this.toPort,
   });
@@ -19351,12 +19143,14 @@ class PortInfo {
     final cidrListAliases = this.cidrListAliases;
     final cidrs = this.cidrs;
     final fromPort = this.fromPort;
+    final ipv6Cidrs = this.ipv6Cidrs;
     final protocol = this.protocol;
     final toPort = this.toPort;
     return {
       if (cidrListAliases != null) 'cidrListAliases': cidrListAliases,
       if (cidrs != null) 'cidrs': cidrs,
       if (fromPort != null) 'fromPort': fromPort,
+      if (ipv6Cidrs != null) 'ipv6Cidrs': ipv6Cidrs,
       if (protocol != null) 'protocol': protocol.toValue(),
       if (toPort != null) 'toPort': toPort,
     };
@@ -20697,6 +20491,25 @@ class SendContactMethodVerificationResult {
   factory SendContactMethodVerificationResult.fromJson(
       Map<String, dynamic> json) {
     return SendContactMethodVerificationResult(
+      operations: (json['operations'] as List?)
+          ?.whereNotNull()
+          .map((e) => Operation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class SetIpAddressTypeResult {
+  /// An array of objects that describe the result of the action, such as the
+  /// status of the request, the timestamp of the request, and the resources
+  /// affected by the request.
+  final List<Operation>? operations;
+
+  SetIpAddressTypeResult({
+    this.operations,
+  });
+  factory SetIpAddressTypeResult.fromJson(Map<String, dynamic> json) {
+    return SetIpAddressTypeResult(
       operations: (json['operations'] as List?)
           ?.whereNotNull()
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))

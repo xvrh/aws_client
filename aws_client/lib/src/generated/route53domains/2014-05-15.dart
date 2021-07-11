@@ -1562,12 +1562,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^(\d{12})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
       'domainName',

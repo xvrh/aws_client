@@ -20,7 +20,7 @@ import '../../shared/shared.dart'
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// You can use Amazon CloudWatch Logs to monitor, store, and access your log
-/// files from EC2 instances, AWS CloudTrail, or other sources. You can then
+/// files from EC2 instances, AWS CloudTrail, and other sources. You can then
 /// retrieve the associated log data from CloudWatch Logs using the CloudWatch
 /// console, CloudWatch Logs commands in the AWS CLI, CloudWatch Logs API, or
 /// CloudWatch Logs SDK.
@@ -128,12 +128,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Logs_20140328.AssociateKmsKey'
@@ -233,9 +227,9 @@ class CloudWatchLogs {
   /// The name of the log group.
   ///
   /// Parameter [to] :
-  /// The end time of the range for the request, expressed as the number of
-  /// milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later
-  /// than this time are not exported.
+  /// The end time of the range for the request, expreswatchlogsdocused as the
+  /// number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a
+  /// timestamp later than this time are not exported.
   ///
   /// Parameter [destinationPrefix] :
   /// The prefix used as the start of the key for every object exported. If you
@@ -280,12 +274,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(to, 'to');
     _s.validateNumRange(
       'to',
@@ -299,11 +287,6 @@ class CloudWatchLogs {
       logStreamNamePrefix,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'logStreamNamePrefix',
-      logStreamNamePrefix,
-      r'''[^:*]*''',
     );
     _s.validateStringLength(
       'taskName',
@@ -405,12 +388,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
@@ -479,24 +456,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logStreamName, 'logStreamName');
     _s.validateStringLength(
       'logStreamName',
       logStreamName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logStreamName',
-      logStreamName,
-      r'''[^:*]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -538,12 +503,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Logs_20140328.DeleteDestination'
@@ -579,12 +538,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -628,24 +581,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logStreamName, 'logStreamName');
     _s.validateStringLength(
       'logStreamName',
       logStreamName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logStreamName',
-      logStreamName,
-      r'''[^:*]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -689,24 +630,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'filterName',
-      filterName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logGroupName, 'logGroupName');
     _s.validateStringLength(
       'logGroupName',
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -823,12 +752,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Logs_20140328.DeleteRetentionPolicy'
@@ -869,24 +792,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'filterName',
-      filterName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logGroupName, 'logGroupName');
     _s.validateStringLength(
       'logGroupName',
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -933,11 +844,6 @@ class CloudWatchLogs {
       destinationNamePrefix,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'destinationNamePrefix',
-      destinationNamePrefix,
-      r'''[^:*]*''',
     );
     _s.validateNumRange(
       'limit',
@@ -1071,11 +977,6 @@ class CloudWatchLogs {
       1,
       512,
     );
-    _s.validateStringPattern(
-      'logGroupNamePrefix',
-      logGroupNamePrefix,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
@@ -1145,10 +1046,10 @@ class CloudWatchLogs {
   /// If you order the results by event time, you cannot specify the
   /// <code>logStreamNamePrefix</code> parameter.
   ///
-  /// <code>lastEventTimeStamp</code> represents the time of the most recent log
+  /// <code>lastEventTimestamp</code> represents the time of the most recent log
   /// event in the log stream in CloudWatch Logs. This number is expressed as
   /// the number of milliseconds after Jan 1, 1970 00:00:00 UTC.
-  /// <code>lastEventTimeStamp</code> updates on an eventual consistency basis.
+  /// <code>lastEventTimestamp</code> updates on an eventual consistency basis.
   /// It typically updates in less than an hour from ingestion, but in rare
   /// situations might take longer.
   Future<DescribeLogStreamsResponse> describeLogStreams({
@@ -1167,12 +1068,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1184,11 +1079,6 @@ class CloudWatchLogs {
       logStreamNamePrefix,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'logStreamNamePrefix',
-      logStreamNamePrefix,
-      r'''[^:*]*''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -1266,11 +1156,6 @@ class CloudWatchLogs {
       1,
       512,
     );
-    _s.validateStringPattern(
-      'filterNamePrefix',
-      filterNamePrefix,
-      r'''[^:*]*''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1283,32 +1168,17 @@ class CloudWatchLogs {
       1,
       512,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'metricName',
       metricName,
       0,
       255,
     );
-    _s.validateStringPattern(
-      'metricName',
-      metricName,
-      r'''[^:*$]*''',
-    );
     _s.validateStringLength(
       'metricNamespace',
       metricNamespace,
       0,
       255,
-    );
-    _s.validateStringPattern(
-      'metricNamespace',
-      metricNamespace,
-      r'''[^:*$]*''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -1369,11 +1239,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -1446,11 +1311,6 @@ class CloudWatchLogs {
       queryDefinitionNamePrefix,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'queryDefinitionNamePrefix',
-      queryDefinitionNamePrefix,
-      r'''^([^:*\/]+\/?)*[^:*\/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1552,22 +1412,11 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'filterNamePrefix',
       filterNamePrefix,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'filterNamePrefix',
-      filterNamePrefix,
-      r'''[^:*]*''',
     );
     _s.validateNumRange(
       'limit',
@@ -1628,12 +1477,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1725,9 +1568,6 @@ class CloudWatchLogs {
   /// The start of the time range, expressed as the number of milliseconds after
   /// Jan 1, 1970 00:00:00 UTC. Events with a timestamp before this time are not
   /// returned.
-  ///
-  /// If you omit <code>startTime</code> and <code>endTime</code> the most
-  /// recent log events are retrieved, to up 1 MB or 10,000 log events.
   Future<FilterLogEventsResponse> filterLogEvents({
     required String logGroupName,
     int? endTime,
@@ -1745,12 +1585,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1776,11 +1610,6 @@ class CloudWatchLogs {
       logStreamNamePrefix,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'logStreamNamePrefix',
-      logStreamNamePrefix,
-      r'''[^:*]*''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -1887,24 +1716,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logStreamName, 'logStreamName');
     _s.validateStringLength(
       'logStreamName',
       logStreamName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logStreamName',
-      logStreamName,
-      r'''[^:*]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1979,8 +1796,9 @@ class CloudWatchLogs {
   ///
   /// Parameter [time] :
   /// The time to set as the center of the query. If you specify
-  /// <code>time</code>, the 8 minutes before and 8 minutes after this time are
-  /// searched. If you omit <code>time</code>, the past 15 minutes are queried.
+  /// <code>time</code>, the 15 minutes before this time are queries. If you
+  /// omit <code>time</code> the 8 minutes before and 8 minutes after this time
+  /// are searched.
   ///
   /// The <code>time</code> value is specified as epoch time, the number of
   /// seconds since January 1, 1970, 00:00:00 UTC.
@@ -1994,12 +1812,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2137,12 +1949,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Logs_20140328.ListTagsLogGroup'
@@ -2208,12 +2014,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -2256,6 +2056,11 @@ class CloudWatchLogs {
   /// policy document</a> that is used to authorize claims to register a
   /// subscription filter against a given destination.
   ///
+  /// If multiple AWS accounts are sending logs to this destination, each sender
+  /// account must be listed separately in the policy. The policy does not
+  /// support specifying <code>*</code> as the Principal or the use of the
+  /// <code>aws:PrincipalOrgId</code> global key.
+  ///
   /// May throw [InvalidParameterException].
   /// May throw [OperationAbortedException].
   /// May throw [ServiceUnavailableException].
@@ -2285,12 +2090,6 @@ class CloudWatchLogs {
       destinationName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[^:*]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2399,24 +2198,12 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(logStreamName, 'logStreamName');
     _s.validateStringLength(
       'logStreamName',
       logStreamName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logStreamName',
-      logStreamName,
-      r'''[^:*]*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2454,6 +2241,25 @@ class CloudWatchLogs {
   /// The maximum number of metric filters that can be associated with a log
   /// group is 100.
   ///
+  /// When you create a metric filter, you can also optionally assign a unit and
+  /// dimensions to the metric that is created.
+  /// <important>
+  /// Metrics extracted from log events are charged as custom metrics. To
+  /// prevent unexpected high charges, do not specify high-cardinality fields
+  /// such as <code>IPAddress</code> or <code>requestID</code> as dimensions.
+  /// Each different value found for a dimension is treated as a separate metric
+  /// and accrues charges as a separate custom metric.
+  ///
+  /// To help prevent accidental high charges, Amazon disables a metric filter
+  /// if it generates 1000 different name/value pairs for the dimensions that
+  /// you have specified within a certain amount of time.
+  ///
+  /// You can also set up a billing alarm to alert you if your charges are
+  /// higher than expected. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">
+  /// Creating a Billing Alarm to Monitor Your Estimated AWS Charges</a>.
+  /// </important>
+  ///
   /// May throw [InvalidParameterException].
   /// May throw [ResourceNotFoundException].
   /// May throw [OperationAbortedException].
@@ -2485,12 +2291,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'filterName',
-      filterName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filterPattern, 'filterPattern');
     _s.validateStringLength(
       'filterPattern',
@@ -2505,12 +2305,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(metricTransformations, 'metricTransformations');
@@ -2594,12 +2388,6 @@ class CloudWatchLogs {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^([^:*\/]+\/?)*[^:*\/]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(queryString, 'queryString');
@@ -2714,12 +2502,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(retentionInDays, 'retentionInDays');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2766,10 +2548,9 @@ class CloudWatchLogs {
   /// subscription filter, for same-account delivery.
   /// </li>
   /// </ul>
-  /// There can only be one subscription filter associated with a log group. If
-  /// you are updating an existing filter, you must specify the correct name in
-  /// <code>filterName</code>. Otherwise, the call fails because you cannot
-  /// associate a second filter with a log group.
+  /// Each log group can have up to two subscription filters associated with it.
+  /// If you are updating an existing filter, you must specify the correct name
+  /// in <code>filterName</code>.
   ///
   /// To perform a <code>PutSubscriptionFilter</code> operation, you must also
   /// have the <code>iam:PassRole</code> permission.
@@ -2792,6 +2573,11 @@ class CloudWatchLogs {
   /// <li>
   /// A logical destination (specified using an ARN) belonging to a different
   /// account, for cross-account delivery.
+  ///
+  /// If you are setting up a cross-account subscription, the destination must
+  /// have an IAM policy associated with it that allows the sender to send logs
+  /// to the destination. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html">PutDestinationPolicy</a>.
   /// </li>
   /// <li>
   /// An Amazon Kinesis Firehose delivery stream belonging to the same account
@@ -2805,10 +2591,8 @@ class CloudWatchLogs {
   ///
   /// Parameter [filterName] :
   /// A name for the subscription filter. If you are updating an existing
-  /// filter, you must specify the correct name in <code>filterName</code>.
-  /// Otherwise, the call fails because you cannot associate a second filter
-  /// with a log group. To find the name of the filter currently associated with
-  /// a log group, use <a
+  /// filter, you must specify the correct name in <code>filterName</code>. To
+  /// find the name of the filter currently associated with a log group, use <a
   /// href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html">DescribeSubscriptionFilters</a>.
   ///
   /// Parameter [filterPattern] :
@@ -2852,12 +2636,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'filterName',
-      filterName,
-      r'''[^:*]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filterPattern, 'filterPattern');
     _s.validateStringLength(
       'filterPattern',
@@ -2872,12 +2650,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3001,11 +2773,6 @@ class CloudWatchLogs {
       1,
       512,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Logs_20140328.StartQuery'
@@ -3101,12 +2868,6 @@ class CloudWatchLogs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3190,12 +2951,6 @@ class CloudWatchLogs {
       logGroupName,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'logGroupName',
-      logGroupName,
-      r'''[\.\-_/#A-Za-z0-9]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -4098,11 +3853,37 @@ class MetricTransformation {
   /// event. This value can be null.
   final double? defaultValue;
 
+  /// The fields to use as dimensions for the metric. One metric filter can
+  /// include as many as three dimensions.
+  /// <important>
+  /// Metrics extracted from log events are charged as custom metrics. To prevent
+  /// unexpected high charges, do not specify high-cardinality fields such as
+  /// <code>IPAddress</code> or <code>requestID</code> as dimensions. Each
+  /// different value found for a dimension is treated as a separate metric and
+  /// accrues charges as a separate custom metric.
+  ///
+  /// To help prevent accidental high charges, Amazon disables a metric filter if
+  /// it generates 1000 different name/value pairs for the dimensions that you
+  /// have specified within a certain amount of time.
+  ///
+  /// You can also set up a billing alarm to alert you if your charges are higher
+  /// than expected. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">
+  /// Creating a Billing Alarm to Monitor Your Estimated AWS Charges</a>.
+  /// </important>
+  final Map<String, String>? dimensions;
+
+  /// The unit to assign to the metric. If you omit this, the unit is set as
+  /// <code>None</code>.
+  final StandardUnit? unit;
+
   MetricTransformation({
     required this.metricName,
     required this.metricNamespace,
     required this.metricValue,
     this.defaultValue,
+    this.dimensions,
+    this.unit,
   });
   factory MetricTransformation.fromJson(Map<String, dynamic> json) {
     return MetricTransformation(
@@ -4110,6 +3891,9 @@ class MetricTransformation {
       metricNamespace: json['metricNamespace'] as String,
       metricValue: json['metricValue'] as String,
       defaultValue: json['defaultValue'] as double?,
+      dimensions: (json['dimensions'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      unit: (json['unit'] as String?)?.toStandardUnit(),
     );
   }
 
@@ -4118,11 +3902,15 @@ class MetricTransformation {
     final metricNamespace = this.metricNamespace;
     final metricValue = this.metricValue;
     final defaultValue = this.defaultValue;
+    final dimensions = this.dimensions;
+    final unit = this.unit;
     return {
       'metricName': metricName,
       'metricNamespace': metricNamespace,
       'metricValue': metricValue,
       if (defaultValue != null) 'defaultValue': defaultValue,
+      if (dimensions != null) 'dimensions': dimensions,
+      if (unit != null) 'unit': unit.toValue(),
     };
   }
 }
@@ -4364,6 +4152,8 @@ enum QueryStatus {
   complete,
   failed,
   cancelled,
+  timeout,
+  unknown,
 }
 
 extension on QueryStatus {
@@ -4379,6 +4169,10 @@ extension on QueryStatus {
         return 'Failed';
       case QueryStatus.cancelled:
         return 'Cancelled';
+      case QueryStatus.timeout:
+        return 'Timeout';
+      case QueryStatus.unknown:
+        return 'Unknown';
     }
   }
 }
@@ -4396,6 +4190,10 @@ extension on String {
         return QueryStatus.failed;
       case 'Cancelled':
         return QueryStatus.cancelled;
+      case 'Timeout':
+        return QueryStatus.timeout;
+      case 'Unknown':
+        return QueryStatus.unknown;
     }
     throw Exception('$this is not known in enum QueryStatus');
   }
@@ -4496,6 +4294,159 @@ class SearchedLogStream {
       logStreamName: json['logStreamName'] as String?,
       searchedCompletely: json['searchedCompletely'] as bool?,
     );
+  }
+}
+
+enum StandardUnit {
+  seconds,
+  microseconds,
+  milliseconds,
+  bytes,
+  kilobytes,
+  megabytes,
+  gigabytes,
+  terabytes,
+  bits,
+  kilobits,
+  megabits,
+  gigabits,
+  terabits,
+  percent,
+  count,
+  bytesSecond,
+  kilobytesSecond,
+  megabytesSecond,
+  gigabytesSecond,
+  terabytesSecond,
+  bitsSecond,
+  kilobitsSecond,
+  megabitsSecond,
+  gigabitsSecond,
+  terabitsSecond,
+  countSecond,
+  none,
+}
+
+extension on StandardUnit {
+  String toValue() {
+    switch (this) {
+      case StandardUnit.seconds:
+        return 'Seconds';
+      case StandardUnit.microseconds:
+        return 'Microseconds';
+      case StandardUnit.milliseconds:
+        return 'Milliseconds';
+      case StandardUnit.bytes:
+        return 'Bytes';
+      case StandardUnit.kilobytes:
+        return 'Kilobytes';
+      case StandardUnit.megabytes:
+        return 'Megabytes';
+      case StandardUnit.gigabytes:
+        return 'Gigabytes';
+      case StandardUnit.terabytes:
+        return 'Terabytes';
+      case StandardUnit.bits:
+        return 'Bits';
+      case StandardUnit.kilobits:
+        return 'Kilobits';
+      case StandardUnit.megabits:
+        return 'Megabits';
+      case StandardUnit.gigabits:
+        return 'Gigabits';
+      case StandardUnit.terabits:
+        return 'Terabits';
+      case StandardUnit.percent:
+        return 'Percent';
+      case StandardUnit.count:
+        return 'Count';
+      case StandardUnit.bytesSecond:
+        return 'Bytes/Second';
+      case StandardUnit.kilobytesSecond:
+        return 'Kilobytes/Second';
+      case StandardUnit.megabytesSecond:
+        return 'Megabytes/Second';
+      case StandardUnit.gigabytesSecond:
+        return 'Gigabytes/Second';
+      case StandardUnit.terabytesSecond:
+        return 'Terabytes/Second';
+      case StandardUnit.bitsSecond:
+        return 'Bits/Second';
+      case StandardUnit.kilobitsSecond:
+        return 'Kilobits/Second';
+      case StandardUnit.megabitsSecond:
+        return 'Megabits/Second';
+      case StandardUnit.gigabitsSecond:
+        return 'Gigabits/Second';
+      case StandardUnit.terabitsSecond:
+        return 'Terabits/Second';
+      case StandardUnit.countSecond:
+        return 'Count/Second';
+      case StandardUnit.none:
+        return 'None';
+    }
+  }
+}
+
+extension on String {
+  StandardUnit toStandardUnit() {
+    switch (this) {
+      case 'Seconds':
+        return StandardUnit.seconds;
+      case 'Microseconds':
+        return StandardUnit.microseconds;
+      case 'Milliseconds':
+        return StandardUnit.milliseconds;
+      case 'Bytes':
+        return StandardUnit.bytes;
+      case 'Kilobytes':
+        return StandardUnit.kilobytes;
+      case 'Megabytes':
+        return StandardUnit.megabytes;
+      case 'Gigabytes':
+        return StandardUnit.gigabytes;
+      case 'Terabytes':
+        return StandardUnit.terabytes;
+      case 'Bits':
+        return StandardUnit.bits;
+      case 'Kilobits':
+        return StandardUnit.kilobits;
+      case 'Megabits':
+        return StandardUnit.megabits;
+      case 'Gigabits':
+        return StandardUnit.gigabits;
+      case 'Terabits':
+        return StandardUnit.terabits;
+      case 'Percent':
+        return StandardUnit.percent;
+      case 'Count':
+        return StandardUnit.count;
+      case 'Bytes/Second':
+        return StandardUnit.bytesSecond;
+      case 'Kilobytes/Second':
+        return StandardUnit.kilobytesSecond;
+      case 'Megabytes/Second':
+        return StandardUnit.megabytesSecond;
+      case 'Gigabytes/Second':
+        return StandardUnit.gigabytesSecond;
+      case 'Terabytes/Second':
+        return StandardUnit.terabytesSecond;
+      case 'Bits/Second':
+        return StandardUnit.bitsSecond;
+      case 'Kilobits/Second':
+        return StandardUnit.kilobitsSecond;
+      case 'Megabits/Second':
+        return StandardUnit.megabitsSecond;
+      case 'Gigabits/Second':
+        return StandardUnit.gigabitsSecond;
+      case 'Terabits/Second':
+        return StandardUnit.terabitsSecond;
+      case 'Count/Second':
+        return StandardUnit.countSecond;
+      case 'None':
+        return StandardUnit.none;
+    }
+    throw Exception('$this is not known in enum StandardUnit');
   }
 }
 

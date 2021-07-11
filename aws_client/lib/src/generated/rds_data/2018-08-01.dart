@@ -449,6 +449,9 @@ class RdsData {
   ///
   /// Parameter [schema] :
   /// The name of the database schema.
+  /// <note>
+  /// Currently, the <code>schema</code> parameter isn't supported.
+  /// </note>
   ///
   /// Parameter [transactionId] :
   /// The identifier of a transaction that was started by using the
@@ -792,17 +795,17 @@ class CommitTransactionResponse {
 }
 
 enum DecimalReturnType {
-  doubleOrLong,
   string,
+  doubleOrLong,
 }
 
 extension on DecimalReturnType {
   String toValue() {
     switch (this) {
-      case DecimalReturnType.doubleOrLong:
-        return 'DOUBLE_OR_LONG';
       case DecimalReturnType.string:
         return 'STRING';
+      case DecimalReturnType.doubleOrLong:
+        return 'DOUBLE_OR_LONG';
     }
   }
 }
@@ -810,10 +813,10 @@ extension on DecimalReturnType {
 extension on String {
   DecimalReturnType toDecimalReturnType() {
     switch (this) {
-      case 'DOUBLE_OR_LONG':
-        return DecimalReturnType.doubleOrLong;
       case 'STRING':
         return DecimalReturnType.string;
+      case 'DOUBLE_OR_LONG':
+        return DecimalReturnType.doubleOrLong;
     }
     throw Exception('$this is not known in enum DecimalReturnType');
   }
@@ -1069,18 +1072,21 @@ class SqlParameter {
   final String? name;
 
   /// A hint that specifies the correct object type for data type mapping.
-  ///
-  /// <b>Values:</b>
+  /// Possible values are as follows:
   ///
   /// <ul>
+  /// <li>
+  /// <code>DATE</code> - The corresponding <code>String</code> parameter value is
+  /// sent as an object of <code>DATE</code> type to the database. The accepted
+  /// format is <code>YYYY-MM-DD</code>.
+  /// </li>
   /// <li>
   /// <code>DECIMAL</code> - The corresponding <code>String</code> parameter value
   /// is sent as an object of <code>DECIMAL</code> type to the database.
   /// </li>
   /// <li>
-  /// <code>TIMESTAMP</code> - The corresponding <code>String</code> parameter
-  /// value is sent as an object of <code>TIMESTAMP</code> type to the database.
-  /// The accepted format is <code>YYYY-MM-DD HH:MM:SS[.FFF]</code>.
+  /// <code>JSON</code> - The corresponding <code>String</code> parameter value is
+  /// sent as an object of <code>JSON</code> type to the database.
   /// </li>
   /// <li>
   /// <code>TIME</code> - The corresponding <code>String</code> parameter value is
@@ -1088,9 +1094,13 @@ class SqlParameter {
   /// format is <code>HH:MM:SS[.FFF]</code>.
   /// </li>
   /// <li>
-  /// <code>DATE</code> - The corresponding <code>String</code> parameter value is
-  /// sent as an object of <code>DATE</code> type to the database. The accepted
-  /// format is <code>YYYY-MM-DD</code>.
+  /// <code>TIMESTAMP</code> - The corresponding <code>String</code> parameter
+  /// value is sent as an object of <code>TIMESTAMP</code> type to the database.
+  /// The accepted format is <code>YYYY-MM-DD HH:MM:SS[.FFF]</code>.
+  /// </li>
+  /// <li>
+  /// <code>UUID</code> - The corresponding <code>String</code> parameter value is
+  /// sent as an object of <code>UUID</code> type to the database.
   /// </li>
   /// </ul>
   final TypeHint? typeHint;
@@ -1158,23 +1168,29 @@ class StructValue {
 }
 
 enum TypeHint {
-  date,
-  decimal,
-  time,
+  json,
+  uuid,
   timestamp,
+  date,
+  time,
+  decimal,
 }
 
 extension on TypeHint {
   String toValue() {
     switch (this) {
-      case TypeHint.date:
-        return 'DATE';
-      case TypeHint.decimal:
-        return 'DECIMAL';
-      case TypeHint.time:
-        return 'TIME';
+      case TypeHint.json:
+        return 'JSON';
+      case TypeHint.uuid:
+        return 'UUID';
       case TypeHint.timestamp:
         return 'TIMESTAMP';
+      case TypeHint.date:
+        return 'DATE';
+      case TypeHint.time:
+        return 'TIME';
+      case TypeHint.decimal:
+        return 'DECIMAL';
     }
   }
 }
@@ -1182,14 +1198,18 @@ extension on TypeHint {
 extension on String {
   TypeHint toTypeHint() {
     switch (this) {
-      case 'DATE':
-        return TypeHint.date;
-      case 'DECIMAL':
-        return TypeHint.decimal;
-      case 'TIME':
-        return TypeHint.time;
+      case 'JSON':
+        return TypeHint.json;
+      case 'UUID':
+        return TypeHint.uuid;
       case 'TIMESTAMP':
         return TypeHint.timestamp;
+      case 'DATE':
+        return TypeHint.date;
+      case 'TIME':
+        return TypeHint.time;
+      case 'DECIMAL':
+        return TypeHint.decimal;
     }
     throw Exception('$this is not known in enum TypeHint');
   }

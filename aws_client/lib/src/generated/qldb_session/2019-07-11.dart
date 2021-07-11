@@ -87,6 +87,7 @@ class QldbSession {
   /// May throw [OccConflictException].
   /// May throw [RateExceededException].
   /// May throw [LimitExceededException].
+  /// May throw [CapacityExceededException].
   ///
   /// Parameter [abortTransaction] :
   /// Command to abort the current transaction.
@@ -132,11 +133,6 @@ class QldbSession {
       sessionToken,
       4,
       1024,
-    );
-    _s.validateStringPattern(
-      'sessionToken',
-      sessionToken,
-      r'''^[A-Za-z-0-9+/=]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -397,10 +393,10 @@ class FetchPageResult {
 
 /// Contains I/O usage metrics for a command that was invoked.
 class IOUsage {
-  /// The number of read I/O requests that the command performed.
+  /// The number of read I/O requests that the command made.
   final int? readIOs;
 
-  /// The number of write I/O requests that the command performed.
+  /// The number of write I/O requests that the command made.
   final int? writeIOs;
 
   IOUsage({
@@ -580,8 +576,8 @@ class StartTransactionResult {
 /// captures timing information between the times when it receives the request
 /// and when it sends the corresponding response.
 class TimingInformation {
-  /// The amount of time that was taken for the command to finish processing,
-  /// measured in milliseconds.
+  /// The amount of time that QLDB spent on processing the command, measured in
+  /// milliseconds.
   final int? processingTimeMilliseconds;
 
   TimingInformation({
@@ -630,6 +626,11 @@ class BadRequestException extends _s.GenericAwsException {
       : super(type: type, code: 'BadRequestException', message: message);
 }
 
+class CapacityExceededException extends _s.GenericAwsException {
+  CapacityExceededException({String? type, String? message})
+      : super(type: type, code: 'CapacityExceededException', message: message);
+}
+
 class InvalidSessionException extends _s.GenericAwsException {
   InvalidSessionException({String? type, String? message})
       : super(type: type, code: 'InvalidSessionException', message: message);
@@ -653,6 +654,8 @@ class RateExceededException extends _s.GenericAwsException {
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'BadRequestException': (type, message) =>
       BadRequestException(type: type, message: message),
+  'CapacityExceededException': (type, message) =>
+      CapacityExceededException(type: type, message: message),
   'InvalidSessionException': (type, message) =>
       InvalidSessionException(type: type, message: message),
   'LimitExceededException': (type, message) =>

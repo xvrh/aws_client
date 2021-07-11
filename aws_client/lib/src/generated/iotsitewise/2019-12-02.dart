@@ -19,16 +19,15 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// Welcome to the AWS IoT SiteWise API Reference. AWS IoT SiteWise is an AWS
-/// service that connects <a
+/// Welcome to the IoT SiteWise API Reference. IoT SiteWise is an Amazon Web
+/// Services service that connects <a
 /// href="https://en.wikipedia.org/wiki/Internet_of_things#Industrial_applications">Industrial
-/// Internet of Things (IIoT)</a> devices to the power of the AWS Cloud. For
-/// more information, see the <a
-/// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/">AWS IoT
-/// SiteWise User Guide</a>. For information about AWS IoT SiteWise quotas, see
-/// <a
+/// Internet of Things (IIoT)</a> devices to the power of the Amazon Web
+/// Services Cloud. For more information, see the <a
+/// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/">IoT
+/// SiteWise User Guide</a>. For information about IoT SiteWise quotas, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-/// in the <i>AWS IoT SiteWise User Guide</i>.
+/// in the <i>IoT SiteWise User Guide</i>.
 class IoTSiteWise {
   final _s.RestJsonProtocol _protocol;
   IoTSiteWise({
@@ -50,7 +49,7 @@ class IoTSiteWise {
   /// Associates a child asset with the given parent asset through a hierarchy
   /// defined in the parent asset's model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/add-associated-assets.html">Associating
-  /// assets</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -70,7 +69,7 @@ class IoTSiteWise {
   /// different groupings of assets to be formed that all come from the same
   /// asset model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -90,24 +89,12 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(childAssetId, 'childAssetId');
     _s.validateStringLength(
       'childAssetId',
       childAssetId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'childAssetId',
-      childAssetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(hierarchyId, 'hierarchyId');
@@ -118,22 +105,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hierarchyId',
-      hierarchyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'childAssetId': childAssetId,
@@ -148,8 +124,7 @@ class IoTSiteWise {
     );
   }
 
-  /// Associates a group (batch) of assets with an AWS IoT SiteWise Monitor
-  /// project.
+  /// Associates a group (batch) of assets with an IoT SiteWise Monitor project.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -181,22 +156,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetIds': assetIds,
@@ -212,7 +176,7 @@ class IoTSiteWise {
     return BatchAssociateProjectAssetsResponse.fromJson(response);
   }
 
-  /// Disassociates a group (batch) of assets from an AWS IoT SiteWise Monitor
+  /// Disassociates a group (batch) of assets from an IoT SiteWise Monitor
   /// project.
   ///
   /// May throw [InvalidRequestException].
@@ -245,22 +209,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetIds': assetIds,
@@ -276,10 +229,10 @@ class IoTSiteWise {
     return BatchDisassociateProjectAssetsResponse.fromJson(response);
   }
 
-  /// Sends a list of asset property values to AWS IoT SiteWise. Each value is a
+  /// Sends a list of asset property values to IoT SiteWise. Each value is a
   /// timestamp-quality-value (TQV) data point. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ingest-api.html">Ingesting
-  /// data using the API</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// data using the API</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// To identify an asset property, you must specify one of the following:
   ///
@@ -294,22 +247,22 @@ class IoTSiteWise {
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html">UpdateAssetProperty</a>.
   /// </li>
   /// </ul> <important>
-  /// With respect to Unix epoch time, AWS IoT SiteWise accepts only TQVs that
-  /// have a timestamp of no more than 7 days in the past and no more than 5
-  /// minutes in the future. AWS IoT SiteWise rejects timestamps outside of the
-  /// inclusive range of [-7 days, +5 minutes] and returns a
+  /// With respect to Unix epoch time, IoT SiteWise accepts only TQVs that have
+  /// a timestamp of no more than 7 days in the past and no more than 10 minutes
+  /// in the future. IoT SiteWise rejects timestamps outside of the inclusive
+  /// range of [-7 days, +10 minutes] and returns a
   /// <code>TimestampOutOfRangeException</code> error.
   ///
-  /// For each asset property, AWS IoT SiteWise overwrites TQVs with duplicate
+  /// For each asset property, IoT SiteWise overwrites TQVs with duplicate
   /// timestamps unless the newer TQV has a different quality. For example, if
   /// you store a TQV <code>{T1, GOOD, V1}</code>, then storing <code>{T1, GOOD,
   /// V2}</code> replaces the existing TQV.
   /// </important>
-  /// AWS IoT SiteWise authorizes access to each
+  /// IoT SiteWise authorizes access to each
   /// <code>BatchPutAssetPropertyValue</code> entry individually. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-batchputassetpropertyvalue-action">BatchPutAssetPropertyValue
-  /// authorization</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// authorization</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -338,9 +291,9 @@ class IoTSiteWise {
     return BatchPutAssetPropertyValueResponse.fromJson(response);
   }
 
-  /// Creates an access policy that grants the specified identity (AWS SSO user,
-  /// AWS SSO group, or IAM user) access to the specified AWS IoT SiteWise
-  /// Monitor portal or project resource.
+  /// Creates an access policy that grants the specified identity (Amazon Web
+  /// Services SSO user, Amazon Web Services SSO group, or IAM user) access to
+  /// the specified IoT SiteWise Monitor portal or project resource.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -349,16 +302,16 @@ class IoTSiteWise {
   /// May throw [LimitExceededException].
   ///
   /// Parameter [accessPolicyIdentity] :
-  /// The identity for this access policy. Choose an AWS SSO user, an AWS SSO
-  /// group, or an IAM user.
+  /// The identity for this access policy. Choose an Amazon Web Services SSO
+  /// user, an Amazon Web Services SSO group, or an IAM user.
   ///
   /// Parameter [accessPolicyPermission] :
   /// The permission level for this access policy. Note that a project
   /// <code>ADMINISTRATOR</code> is also known as a project owner.
   ///
   /// Parameter [accessPolicyResource] :
-  /// The AWS IoT SiteWise Monitor resource for this access policy. Choose
-  /// either a portal or a project.
+  /// The IoT SiteWise Monitor resource for this access policy. Choose either a
+  /// portal or a project.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -369,8 +322,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the access policy. For
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateAccessPolicyResponse> createAccessPolicy({
     required Identity accessPolicyIdentity,
     required Permission accessPolicyPermission,
@@ -387,11 +339,6 @@ class IoTSiteWise {
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
@@ -412,7 +359,7 @@ class IoTSiteWise {
   /// Creates an asset from an existing asset model. For more information, see
   /// <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-assets.html">Creating
-  /// assets</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceAlreadyExistsException].
@@ -437,8 +384,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the asset. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateAssetResponse> createAsset({
     required String assetModelId,
     required String assetName,
@@ -453,12 +399,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetModelId',
-      assetModelId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetName, 'assetName');
     _s.validateStringLength(
       'assetName',
@@ -467,22 +407,11 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetName',
-      assetName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetModelId': assetModelId,
@@ -505,7 +434,7 @@ class IoTSiteWise {
   /// asset created from a model inherits the asset model's property and
   /// hierarchy definitions. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/define-models.html">Defining
-  /// asset models</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// asset models</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceAlreadyExistsException].
@@ -533,22 +462,22 @@ class IoTSiteWise {
   /// asset model whose assets can be children of any other assets created from
   /// this asset model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// You can specify up to 10 hierarchies per asset model. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [assetModelProperties] :
   /// The property definitions of the asset model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html">Asset
-  /// properties</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// properties</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// You can specify up to 200 properties per asset model. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -559,8 +488,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the asset model. For
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateAssetModelResponse> createAssetModel({
     required String assetModelName,
     List<AssetModelCompositeModelDefinition>? assetModelCompositeModels,
@@ -578,33 +506,17 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetModelName',
-      assetModelName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'assetModelDescription',
       assetModelDescription,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'assetModelDescription',
-      assetModelDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetModelName': assetModelName,
@@ -628,7 +540,7 @@ class IoTSiteWise {
     return CreateAssetModelResponse.fromJson(response);
   }
 
-  /// Creates a dashboard in an AWS IoT SiteWise Monitor project.
+  /// Creates a dashboard in an IoT SiteWise Monitor project.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -640,7 +552,7 @@ class IoTSiteWise {
   /// The dashboard definition specified in a JSON literal. For detailed
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html">Creating
-  /// dashboards (CLI)</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// dashboards (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [dashboardName] :
   /// A friendly name for the dashboard.
@@ -660,8 +572,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the dashboard. For
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateDashboardResponse> createDashboard({
     required String dashboardDefinition,
     required String dashboardName,
@@ -678,24 +589,12 @@ class IoTSiteWise {
       204800,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardDefinition',
-      dashboardDefinition,
-      r'''.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardName, 'dashboardName');
     _s.validateStringLength(
       'dashboardName',
       dashboardName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardName',
-      dashboardName,
-      r'''[^\u0000-\u001F\u007F]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(projectId, 'projectId');
@@ -706,33 +605,17 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
-    );
     _s.validateStringLength(
       'dashboardDescription',
       dashboardDescription,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'dashboardDescription',
-      dashboardDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
     );
     final $payload = <String, dynamic>{
       'dashboardDefinition': dashboardDefinition,
@@ -753,10 +636,10 @@ class IoTSiteWise {
   }
 
   /// Creates a gateway, which is a virtual or edge device that delivers
-  /// industrial data streams from local servers to AWS IoT SiteWise. For more
+  /// industrial data streams from local servers to IoT SiteWise. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html">Ingesting
-  /// data using a gateway</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// data using a gateway</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceAlreadyExistsException].
@@ -774,8 +657,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the gateway. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateGatewayResponse> createGateway({
     required String gatewayName,
     required GatewayPlatform gatewayPlatform,
@@ -787,12 +669,6 @@ class IoTSiteWise {
       gatewayName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gatewayName',
-      gatewayName,
-      r'''[^\u0000-\u001F\u007F]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(gatewayPlatform, 'gatewayPlatform');
@@ -810,14 +686,14 @@ class IoTSiteWise {
     return CreateGatewayResponse.fromJson(response);
   }
 
-  /// Creates a portal, which can contain projects and dashboards. AWS IoT
-  /// SiteWise Monitor uses AWS SSO or IAM to authenticate portal users and
-  /// manage user permissions.
+  /// Creates a portal, which can contain projects and dashboards. IoT SiteWise
+  /// Monitor uses Amazon Web Services SSO or IAM to authenticate portal users
+  /// and manage user permissions.
   /// <note>
   /// Before you can sign in to a new portal, you must add at least one identity
   /// to that portal. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins">Adding
-  /// or removing portal administrators</a> in the <i>AWS IoT SiteWise User
+  /// or removing portal administrators</a> in the <i>IoT SiteWise User
   /// Guide</i>.
   /// </note>
   ///
@@ -828,7 +704,7 @@ class IoTSiteWise {
   /// May throw [LimitExceededException].
   ///
   /// Parameter [portalContactEmail] :
-  /// The AWS administrator's contact email address.
+  /// The Amazon Web Services administrator's contact email address.
   ///
   /// Parameter [portalName] :
   /// A friendly name for the portal.
@@ -836,16 +712,34 @@ class IoTSiteWise {
   /// Parameter [roleArn] :
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
-  /// of a service role that allows the portal's users to access your AWS IoT
+  /// of a service role that allows the portal's users to access your IoT
   /// SiteWise resources on your behalf. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html">Using
-  /// service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// service roles for IoT SiteWise Monitor</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
+  ///
+  /// Parameter [alarms] :
+  /// Contains the configuration information of an alarm created in an IoT
+  /// SiteWise Monitor portal. You can use the alarm to monitor an asset
+  /// property and get notified when the asset property value is outside a
+  /// specified range. For more information, see <a
+  /// href="https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html">Monitoring
+  /// with alarms</a> in the <i>IoT SiteWise Application Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
   /// idempotency of the request. Don't reuse this client token if a new
   /// idempotent request is required.
+  ///
+  /// Parameter [notificationSenderEmail] :
+  /// The email address that sends alarm notifications.
+  /// <important>
+  /// If you use the <a
+  /// href="https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html">IoT
+  /// Events managed Lambda function</a> to manage your emails, you must <a
+  /// href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html">verify
+  /// the sender email address in Amazon SES</a>.
+  /// </important>
   ///
   /// Parameter [portalAuthMode] :
   /// The service to use to authenticate users to the portal. Choose from the
@@ -853,17 +747,19 @@ class IoTSiteWise {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSO</code> – The portal uses AWS Single Sign-On to authenticate
-  /// users and manage user permissions. Before you can create a portal that
-  /// uses AWS SSO, you must enable AWS SSO. For more information, see <a
+  /// <code>SSO</code> – The portal uses Amazon Web Services Single Sign On to
+  /// authenticate users and manage user permissions. Before you can create a
+  /// portal that uses Amazon Web Services SSO, you must enable Amazon Web
+  /// Services SSO. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso">Enabling
-  /// AWS SSO</a> in the <i>AWS IoT SiteWise User Guide</i>. This option is only
-  /// available in AWS Regions other than the China Regions.
+  /// Amazon Web Services SSO</a> in the <i>IoT SiteWise User Guide</i>. This
+  /// option is only available in Amazon Web Services Regions other than the
+  /// China Regions.
   /// </li>
   /// <li>
-  /// <code>IAM</code> – The portal uses AWS Identity and Access Management
-  /// (IAM) to authenticate users and manage user permissions. This option is
-  /// only available in the China Regions.
+  /// <code>IAM</code> – The portal uses Identity and Access Management to
+  /// authenticate users and manage user permissions. This option is only
+  /// available in the China Regions.
   /// </li>
   /// </ul>
   /// You can't change this value after you create a portal.
@@ -881,13 +777,14 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the portal. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreatePortalResponse> createPortal({
     required String portalContactEmail,
     required String portalName,
     required String roleArn,
+    Alarms? alarms,
     String? clientToken,
+    String? notificationSenderEmail,
     AuthMode? portalAuthMode,
     String? portalDescription,
     ImageFile? portalLogoImageFile,
@@ -901,24 +798,12 @@ class IoTSiteWise {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalContactEmail',
-      portalContactEmail,
-      r'''[^@]+@[^@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portalName, 'portalName');
     _s.validateStringLength(
       'portalName',
       portalName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'portalName',
-      portalName,
-      r'''[^\u0000-\u001F\u007F]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
@@ -929,22 +814,17 @@ class IoTSiteWise {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
+    _s.validateStringLength(
+      'notificationSenderEmail',
+      notificationSenderEmail,
+      1,
+      255,
     );
     _s.validateStringLength(
       'portalDescription',
@@ -952,16 +832,14 @@ class IoTSiteWise {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'portalDescription',
-      portalDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     final $payload = <String, dynamic>{
       'portalContactEmail': portalContactEmail,
       'portalName': portalName,
       'roleArn': roleArn,
+      if (alarms != null) 'alarms': alarms,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
+      if (notificationSenderEmail != null)
+        'notificationSenderEmail': notificationSenderEmail,
       if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.toValue(),
       if (portalDescription != null) 'portalDescription': portalDescription,
       if (portalLogoImageFile != null)
@@ -1003,8 +881,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the project. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<CreateProjectResponse> createProject({
     required String portalId,
     required String projectName,
@@ -1020,12 +897,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalId',
-      portalId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -1034,33 +905,17 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
-    );
     _s.validateStringLength(
       'projectDescription',
       projectDescription,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'projectDescription',
-      projectDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
     );
     final $payload = <String, dynamic>{
       'portalId': portalId,
@@ -1079,8 +934,8 @@ class IoTSiteWise {
   }
 
   /// Deletes an access policy that grants the specified identity access to the
-  /// specified AWS IoT SiteWise Monitor resource. You can use this operation to
-  /// revoke access to an AWS IoT SiteWise Monitor resource.
+  /// specified IoT SiteWise Monitor resource. You can use this operation to
+  /// revoke access to an IoT SiteWise Monitor resource.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1106,22 +961,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accessPolicyId',
-      accessPolicyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1138,7 +982,7 @@ class IoTSiteWise {
   /// Deletes an asset. This action can't be undone. For more information, see
   /// <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html">Deleting
-  /// assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets and models</a> in the <i>IoT SiteWise User Guide</i>.
   /// <note>
   /// You can't delete an asset that's associated to another asset. For more
   /// information, see <a
@@ -1170,22 +1014,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1206,7 +1039,7 @@ class IoTSiteWise {
   /// contains a property formula expression that depends on the asset model
   /// that you want to delete. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html">Deleting
-  /// assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets and models</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1233,22 +1066,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetModelId',
-      assetModelId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1263,7 +1085,7 @@ class IoTSiteWise {
     return DeleteAssetModelResponse.fromJson(response);
   }
 
-  /// Deletes a dashboard from AWS IoT SiteWise Monitor.
+  /// Deletes a dashboard from IoT SiteWise Monitor.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1289,22 +1111,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1318,8 +1129,8 @@ class IoTSiteWise {
     );
   }
 
-  /// Deletes a gateway from AWS IoT SiteWise. When you delete a gateway, some
-  /// of the gateway's files remain in your gateway's file system.
+  /// Deletes a gateway from IoT SiteWise. When you delete a gateway, some of
+  /// the gateway's files remain in your gateway's file system.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1339,12 +1150,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gatewayId',
-      gatewayId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1353,7 +1158,7 @@ class IoTSiteWise {
     );
   }
 
-  /// Deletes a portal from AWS IoT SiteWise Monitor.
+  /// Deletes a portal from IoT SiteWise Monitor.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1380,22 +1185,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalId',
-      portalId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1410,7 +1204,7 @@ class IoTSiteWise {
     return DeletePortalResponse.fromJson(response);
   }
 
-  /// Deletes a project from AWS IoT SiteWise Monitor.
+  /// Deletes a project from IoT SiteWise Monitor.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1436,22 +1230,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
@@ -1465,8 +1248,8 @@ class IoTSiteWise {
     );
   }
 
-  /// Describes an access policy, which specifies an identity's access to an AWS
-  /// IoT SiteWise Monitor portal or project.
+  /// Describes an access policy, which specifies an identity's access to an IoT
+  /// SiteWise Monitor portal or project.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1484,12 +1267,6 @@ class IoTSiteWise {
       accessPolicyId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accessPolicyId',
-      accessPolicyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1521,12 +1298,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1554,12 +1325,6 @@ class IoTSiteWise {
       assetModelId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'assetModelId',
-      assetModelId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1604,24 +1369,12 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
     _s.validateStringLength(
       'propertyId',
       propertyId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'propertyId',
-      propertyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1654,12 +1407,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1670,10 +1417,10 @@ class IoTSiteWise {
   }
 
   /// Retrieves information about the default encryption configuration for the
-  /// AWS account in the default or specified region. For more information, see
-  /// <a
+  /// Amazon Web Services account in the default or specified Region. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html">Key
-  /// management</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// management</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -1709,12 +1456,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gatewayId',
-      gatewayId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1727,8 +1468,8 @@ class IoTSiteWise {
   /// Retrieves information about a gateway capability configuration. Each
   /// gateway capability defines data sources for a gateway. A capability
   /// configuration can contain multiple data source configurations. If you
-  /// define OPC-UA sources for a gateway in the AWS IoT SiteWise console, all
-  /// of your OPC-UA sources are stored in one capability configuration. To list
+  /// define OPC-UA sources for a gateway in the IoT SiteWise console, all of
+  /// your OPC-UA sources are stored in one capability configuration. To list
   /// all capability configurations for a gateway, use <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html">DescribeGateway</a>.
   ///
@@ -1739,7 +1480,7 @@ class IoTSiteWise {
   ///
   /// Parameter [capabilityNamespace] :
   /// The namespace of the capability configuration. For example, if you
-  /// configure OPC-UA sources from the AWS IoT SiteWise console, your OPC-UA
+  /// configure OPC-UA sources from the IoT SiteWise console, your OPC-UA
   /// capability configuration has the namespace
   /// <code>iotsitewise:opcuacollector:version</code>, where
   /// <code>version</code> is a number such as <code>1</code>.
@@ -1759,24 +1500,12 @@ class IoTSiteWise {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'capabilityNamespace',
-      capabilityNamespace,
-      r'''^[a-zA-Z]+:[a-zA-Z]+:[0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
     _s.validateStringLength(
       'gatewayId',
       gatewayId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gatewayId',
-      gatewayId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1789,7 +1518,7 @@ class IoTSiteWise {
     return DescribeGatewayCapabilityConfigurationResponse.fromJson(response);
   }
 
-  /// Retrieves the current AWS IoT SiteWise logging options.
+  /// Retrieves the current IoT SiteWise logging options.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ThrottlingException].
@@ -1825,12 +1554,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalId',
-      portalId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1860,12 +1583,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1873,6 +1590,25 @@ class IoTSiteWise {
       exceptionFnMap: _exceptionFns,
     );
     return DescribeProjectResponse.fromJson(response);
+  }
+
+  /// Retrieves information about the storage configuration for IoT SiteWise.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalFailureException].
+  /// May throw [ThrottlingException].
+  /// May throw [LimitExceededException].
+  /// May throw [ConflictingOperationException].
+  Future<DescribeStorageConfigurationResponse>
+      describeStorageConfiguration() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/configuration/account/storage',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeStorageConfigurationResponse.fromJson(response);
   }
 
   /// Disassociates a child asset from the given parent asset through a
@@ -1896,7 +1632,7 @@ class IoTSiteWise {
   /// asset model. You can use the hierarchy ID to identify the correct asset to
   /// disassociate. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -1916,24 +1652,12 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(childAssetId, 'childAssetId');
     _s.validateStringLength(
       'childAssetId',
       childAssetId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'childAssetId',
-      childAssetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(hierarchyId, 'hierarchyId');
@@ -1944,22 +1668,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hierarchyId',
-      hierarchyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'childAssetId': childAssetId,
@@ -1976,7 +1689,7 @@ class IoTSiteWise {
 
   /// Gets aggregated values for an asset property. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates">Querying
-  /// aggregates</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// aggregates</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// To identify an asset property, you must specify one of the following:
   ///
@@ -2016,7 +1729,7 @@ class IoTSiteWise {
   /// The ID of the asset.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 100
   ///
@@ -2024,12 +1737,12 @@ class IoTSiteWise {
   /// The token to be used for the next set of paginated results.
   ///
   /// Parameter [propertyAlias] :
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
+  /// The alias that identifies the property, such as an OPC-UA server data
+  /// stream path (for example,
   /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise
   /// User Guide</i>.
   ///
   /// Parameter [propertyId] :
@@ -2065,23 +1778,12 @@ class IoTSiteWise {
       2,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resolution',
-      resolution,
-      r'''1m|1h|1d''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startDate, 'startDate');
     _s.validateStringLength(
       'assetId',
       assetId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2093,12 +1795,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     _s.validateStringLength(
       'propertyAlias',
@@ -2106,21 +1803,11 @@ class IoTSiteWise {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'propertyAlias',
-      propertyAlias,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     _s.validateStringLength(
       'propertyId',
       propertyId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'propertyId',
-      propertyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     final $query = <String, List<String>>{
       'aggregateTypes': aggregateTypes.map((e) => e.toValue()).toList(),
@@ -2148,7 +1835,7 @@ class IoTSiteWise {
 
   /// Gets an asset property's current value. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values">Querying
-  /// current values</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// current values</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// To identify an asset property, you must specify one of the following:
   ///
@@ -2174,12 +1861,12 @@ class IoTSiteWise {
   /// The ID of the asset.
   ///
   /// Parameter [propertyAlias] :
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
+  /// The alias that identifies the property, such as an OPC-UA server data
+  /// stream path (for example,
   /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise
   /// User Guide</i>.
   ///
   /// Parameter [propertyId] :
@@ -2195,32 +1882,17 @@ class IoTSiteWise {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-    );
     _s.validateStringLength(
       'propertyAlias',
       propertyAlias,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'propertyAlias',
-      propertyAlias,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     _s.validateStringLength(
       'propertyId',
       propertyId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'propertyId',
-      propertyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     final $query = <String, List<String>>{
       if (assetId != null) 'assetId': [assetId],
@@ -2240,7 +1912,7 @@ class IoTSiteWise {
   /// Gets the history of an asset property's values. For more information, see
   /// <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values">Querying
-  /// historical values</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// historical values</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// To identify an asset property, you must specify one of the following:
   ///
@@ -2270,7 +1942,7 @@ class IoTSiteWise {
   /// expressed in seconds in Unix epoch time.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 100
   ///
@@ -2278,12 +1950,12 @@ class IoTSiteWise {
   /// The token to be used for the next set of paginated results.
   ///
   /// Parameter [propertyAlias] :
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
+  /// The alias that identifies the property, such as an OPC-UA server data
+  /// stream path (for example,
   /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise
   /// User Guide</i>.
   ///
   /// Parameter [propertyId] :
@@ -2317,11 +1989,6 @@ class IoTSiteWise {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2332,12 +1999,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     _s.validateStringLength(
       'propertyAlias',
@@ -2345,21 +2007,11 @@ class IoTSiteWise {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'propertyAlias',
-      propertyAlias,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     _s.validateStringLength(
       'propertyId',
       propertyId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'propertyId',
-      propertyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     final $query = <String, List<String>>{
       if (assetId != null) 'assetId': [assetId],
@@ -2384,9 +2036,199 @@ class IoTSiteWise {
     return GetAssetPropertyValueHistoryResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of access policies for an identity (an AWS SSO
-  /// user, an AWS SSO group, or an IAM user) or an AWS IoT SiteWise Monitor
-  /// resource (a portal or project).
+  /// Get interpolated values for an asset property for a specified time
+  /// interval, during a period of time. For example, you can use the this
+  /// operation to return the interpolated temperature values for a wind turbine
+  /// every 24 hours over a duration of 7 days.
+  ///
+  /// To identify an asset property, you must specify one of the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// The <code>assetId</code> and <code>propertyId</code> of an asset property.
+  /// </li>
+  /// <li>
+  /// A <code>propertyAlias</code>, which is a data stream alias (for example,
+  /// <code>/company/windfarm/3/turbine/7/temperature</code>). To define an
+  /// asset property's alias, see <a
+  /// href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html">UpdateAssetProperty</a>.
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalFailureException].
+  /// May throw [ThrottlingException].
+  /// May throw [ServiceUnavailableException].
+  ///
+  /// Parameter [endTimeInSeconds] :
+  /// The inclusive end of the range from which to interpolate data, expressed
+  /// in seconds in Unix epoch time.
+  ///
+  /// Parameter [intervalInSeconds] :
+  /// The time interval in seconds over which to interpolate data. Each interval
+  /// starts when the previous one ends.
+  ///
+  /// Parameter [quality] :
+  /// The quality of the asset property value. You can use this parameter as a
+  /// filter to choose only the asset property values that have a specific
+  /// quality.
+  ///
+  /// Parameter [startTimeInSeconds] :
+  /// The exclusive start of the range from which to interpolate data, expressed
+  /// in seconds in Unix epoch time.
+  ///
+  /// Parameter [type] :
+  /// The interpolation type.
+  ///
+  /// Valid values: <code>LINEAR_INTERPOLATION</code>
+  ///
+  /// Parameter [assetId] :
+  /// The ID of the asset.
+  ///
+  /// Parameter [endTimeOffsetInNanos] :
+  /// The nanosecond offset converted from <code>endTimeInSeconds</code>.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return for each paginated request. If not
+  /// specified, the default value is 10.
+  ///
+  /// Parameter [nextToken] :
+  /// The token to be used for the next set of paginated results.
+  ///
+  /// Parameter [propertyAlias] :
+  /// The alias that identifies the property, such as an OPC-UA server data
+  /// stream path (for example,
+  /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise
+  /// User Guide</i>.
+  ///
+  /// Parameter [propertyId] :
+  /// The ID of the asset property.
+  ///
+  /// Parameter [startTimeOffsetInNanos] :
+  /// The nanosecond offset converted from <code>startTimeInSeconds</code>.
+  Future<GetInterpolatedAssetPropertyValuesResponse>
+      getInterpolatedAssetPropertyValues({
+    required int endTimeInSeconds,
+    required int intervalInSeconds,
+    required Quality quality,
+    required int startTimeInSeconds,
+    required String type,
+    String? assetId,
+    int? endTimeOffsetInNanos,
+    int? maxResults,
+    String? nextToken,
+    String? propertyAlias,
+    String? propertyId,
+    int? startTimeOffsetInNanos,
+  }) async {
+    ArgumentError.checkNotNull(endTimeInSeconds, 'endTimeInSeconds');
+    _s.validateNumRange(
+      'endTimeInSeconds',
+      endTimeInSeconds,
+      1,
+      31556889864403200,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(intervalInSeconds, 'intervalInSeconds');
+    _s.validateNumRange(
+      'intervalInSeconds',
+      intervalInSeconds,
+      1,
+      320000000,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(quality, 'quality');
+    ArgumentError.checkNotNull(startTimeInSeconds, 'startTimeInSeconds');
+    _s.validateNumRange(
+      'startTimeInSeconds',
+      startTimeInSeconds,
+      1,
+      31556889864403200,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(type, 'type');
+    _s.validateStringLength(
+      'type',
+      type,
+      1,
+      256,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'assetId',
+      assetId,
+      36,
+      36,
+    );
+    _s.validateNumRange(
+      'endTimeOffsetInNanos',
+      endTimeOffsetInNanos,
+      0,
+      999999999,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      4096,
+    );
+    _s.validateStringLength(
+      'propertyAlias',
+      propertyAlias,
+      1,
+      2048,
+    );
+    _s.validateStringLength(
+      'propertyId',
+      propertyId,
+      36,
+      36,
+    );
+    _s.validateNumRange(
+      'startTimeOffsetInNanos',
+      startTimeOffsetInNanos,
+      0,
+      999999999,
+    );
+    final $query = <String, List<String>>{
+      'endTimeInSeconds': [endTimeInSeconds.toString()],
+      'intervalInSeconds': [intervalInSeconds.toString()],
+      'quality': [quality.toValue()],
+      'startTimeInSeconds': [startTimeInSeconds.toString()],
+      'type': [type],
+      if (assetId != null) 'assetId': [assetId],
+      if (endTimeOffsetInNanos != null)
+        'endTimeOffsetInNanos': [endTimeOffsetInNanos.toString()],
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+      if (propertyAlias != null) 'propertyAlias': [propertyAlias],
+      if (propertyId != null) 'propertyId': [propertyId],
+      if (startTimeOffsetInNanos != null)
+        'startTimeOffsetInNanos': [startTimeOffsetInNanos.toString()],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/properties/interpolated',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetInterpolatedAssetPropertyValuesResponse.fromJson(response);
+  }
+
+  /// Retrieves a paginated list of access policies for an identity (an Amazon
+  /// Web Services SSO user, an Amazon Web Services SSO group, or an IAM user)
+  /// or an IoT SiteWise Monitor resource (a portal or project).
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -2403,11 +2245,12 @@ class IoTSiteWise {
   /// <code>USER</code> or <code>GROUP</code> for <code>identityType</code>.
   ///
   /// Parameter [identityType] :
-  /// The type of identity (AWS SSO user, AWS SSO group, or IAM user). This
-  /// parameter is required if you specify <code>identityId</code>.
+  /// The type of identity (Amazon Web Services SSO user, Amazon Web Services
+  /// SSO group, or IAM user). This parameter is required if you specify
+  /// <code>identityId</code>.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2436,21 +2279,11 @@ class IoTSiteWise {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'iamArn',
-      iamArn,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'identityId',
       identityId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'identityId',
-      identityId,
-      r'''\S+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2462,23 +2295,13 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     _s.validateStringLength(
       'resourceId',
       resourceId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     final $query = <String, List<String>>{
       if (iamArn != null) 'iamArn': [iamArn],
@@ -2506,7 +2329,7 @@ class IoTSiteWise {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2526,12 +2349,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2573,7 +2391,7 @@ class IoTSiteWise {
   /// </ul>
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Parameter [nextToken] :
   /// The token to be used for the next set of paginated results.
@@ -2591,12 +2409,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(traversalType, 'traversalType');
     _s.validateNumRange(
       'maxResults',
@@ -2608,12 +2420,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       'traversalType': [traversalType.toValue()],
@@ -2676,7 +2483,7 @@ class IoTSiteWise {
   /// Default: <code>ALL</code>
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2694,11 +2501,6 @@ class IoTSiteWise {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'assetModelId',
-      assetModelId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2709,12 +2511,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (assetModelId != null) 'assetModelId': [assetModelId],
@@ -2765,10 +2562,10 @@ class IoTSiteWise {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2805,22 +2602,11 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'hierarchyId',
       hierarchyId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'hierarchyId',
-      hierarchyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2832,12 +2618,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (hierarchyId != null) 'hierarchyId': [hierarchyId],
@@ -2856,7 +2637,7 @@ class IoTSiteWise {
     return ListAssociatedAssetsResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of dashboards for an AWS IoT SiteWise Monitor
+  /// Retrieves a paginated list of dashboards for an IoT SiteWise Monitor
   /// project.
   ///
   /// May throw [InvalidRequestException].
@@ -2867,7 +2648,7 @@ class IoTSiteWise {
   /// The ID of the project.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2886,12 +2667,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2902,12 +2677,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       'projectId': [projectId],
@@ -2931,7 +2701,7 @@ class IoTSiteWise {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2951,12 +2721,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2972,14 +2737,14 @@ class IoTSiteWise {
     return ListGatewaysResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of AWS IoT SiteWise Monitor portals.
+  /// Retrieves a paginated list of IoT SiteWise Monitor portals.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
   /// May throw [ThrottlingException].
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -2999,12 +2764,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3020,7 +2780,7 @@ class IoTSiteWise {
     return ListPortalsResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of assets associated with an AWS IoT SiteWise
+  /// Retrieves a paginated list of assets associated with an IoT SiteWise
   /// Monitor project.
   ///
   /// May throw [InvalidRequestException].
@@ -3031,7 +2791,7 @@ class IoTSiteWise {
   /// The ID of the project.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -3050,12 +2810,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3066,12 +2820,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3087,8 +2836,7 @@ class IoTSiteWise {
     return ListProjectAssetsResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of projects for an AWS IoT SiteWise Monitor
-  /// portal.
+  /// Retrieves a paginated list of projects for an IoT SiteWise Monitor portal.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -3098,7 +2846,7 @@ class IoTSiteWise {
   /// The ID of the portal.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of results to be returned per paginated request.
+  /// The maximum number of results to return for each paginated request.
   ///
   /// Default: 50
   ///
@@ -3117,12 +2865,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalId',
-      portalId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3133,12 +2875,7 @@ class IoTSiteWise {
       'nextToken',
       nextToken,
       1,
-      2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[A-Za-z0-9+/=]+''',
+      4096,
     );
     final $query = <String, List<String>>{
       'portalId': [portalId],
@@ -3155,7 +2892,7 @@ class IoTSiteWise {
     return ListProjectsResponse.fromJson(response);
   }
 
-  /// Retrieves the list of tags for an AWS IoT SiteWise resource.
+  /// Retrieves the list of tags for an IoT SiteWise resource.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -3193,10 +2930,10 @@ class IoTSiteWise {
     return ListTagsForResourceResponse.fromJson(response);
   }
 
-  /// Sets the default encryption configuration for the AWS account. For more
-  /// information, see <a
+  /// Sets the default encryption configuration for the Amazon Web Services
+  /// account. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html">Key
-  /// management</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// management</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -3208,9 +2945,8 @@ class IoTSiteWise {
   /// The type of encryption used for the encryption configuration.
   ///
   /// Parameter [kmsKeyId] :
-  /// The Key ID of the customer managed customer master key (CMK) used for AWS
-  /// KMS encryption. This is required if you use
-  /// <code>KMS_BASED_ENCRYPTION</code>.
+  /// The Key ID of the customer managed customer master key (CMK) used for KMS
+  /// encryption. This is required if you use <code>KMS_BASED_ENCRYPTION</code>.
   Future<PutDefaultEncryptionConfigurationResponse>
       putDefaultEncryptionConfiguration({
     required EncryptionType encryptionType,
@@ -3236,7 +2972,7 @@ class IoTSiteWise {
     return PutDefaultEncryptionConfigurationResponse.fromJson(response);
   }
 
-  /// Sets logging options for AWS IoT SiteWise.
+  /// Sets logging options for IoT SiteWise.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ThrottlingException].
@@ -3261,7 +2997,55 @@ class IoTSiteWise {
     );
   }
 
-  /// Adds tags to an AWS IoT SiteWise resource. If a tag already exists for the
+  /// Configures storage settings for IoT SiteWise.
+  ///
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalFailureException].
+  /// May throw [ThrottlingException].
+  /// May throw [LimitExceededException].
+  /// May throw [ConflictingOperationException].
+  ///
+  /// Parameter [storageType] :
+  /// The type of storage that you specified for your data. The storage type can
+  /// be one of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise replicates your data
+  /// into a service managed database.
+  /// </li>
+  /// <li>
+  /// <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise replicates your data into
+  /// a service managed database and saves a copy of your raw data and metadata
+  /// in an Amazon S3 object that you specified.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [multiLayerStorage] :
+  /// Identifies a storage destination. If you specified
+  /// <code>MULTI_LAYER_STORAGE</code> for the storage type, you must specify a
+  /// <code>MultiLayerStorage</code> object.
+  Future<PutStorageConfigurationResponse> putStorageConfiguration({
+    required StorageType storageType,
+    MultiLayerStorage? multiLayerStorage,
+  }) async {
+    ArgumentError.checkNotNull(storageType, 'storageType');
+    final $payload = <String, dynamic>{
+      'storageType': storageType.toValue(),
+      if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/configuration/account/storage',
+      exceptionFnMap: _exceptionFns,
+    );
+    return PutStorageConfigurationResponse.fromJson(response);
+  }
+
+  /// Adds tags to an IoT SiteWise resource. If a tag already exists for the
   /// resource, this operation updates the tag's value.
   ///
   /// May throw [InvalidRequestException].
@@ -3282,8 +3066,7 @@ class IoTSiteWise {
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   Future<void> tagResource({
     required String resourceArn,
     required Map<String, String> tags,
@@ -3312,7 +3095,7 @@ class IoTSiteWise {
     );
   }
 
-  /// Removes a tag from an AWS IoT SiteWise resource.
+  /// Removes a tag from an IoT SiteWise resource.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalFailureException].
@@ -3356,7 +3139,7 @@ class IoTSiteWise {
   }
 
   /// Updates an existing access policy that specifies an identity's access to
-  /// an AWS IoT SiteWise Monitor portal or project resource.
+  /// an IoT SiteWise Monitor portal or project resource.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -3367,16 +3150,16 @@ class IoTSiteWise {
   /// The ID of the access policy.
   ///
   /// Parameter [accessPolicyIdentity] :
-  /// The identity for this access policy. Choose an AWS SSO user, an AWS SSO
-  /// group, or an IAM user.
+  /// The identity for this access policy. Choose an Amazon Web Services SSO
+  /// user, an Amazon Web Services SSO group, or an IAM user.
   ///
   /// Parameter [accessPolicyPermission] :
   /// The permission level for this access policy. Note that a project
   /// <code>ADMINISTRATOR</code> is also known as a project owner.
   ///
   /// Parameter [accessPolicyResource] :
-  /// The AWS IoT SiteWise Monitor resource for this access policy. Choose
-  /// either a portal or a project.
+  /// The IoT SiteWise Monitor resource for this access policy. Choose either a
+  /// portal or a project.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -3397,12 +3180,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accessPolicyId',
-      accessPolicyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(accessPolicyIdentity, 'accessPolicyIdentity');
     ArgumentError.checkNotNull(
         accessPolicyPermission, 'accessPolicyPermission');
@@ -3412,11 +3189,6 @@ class IoTSiteWise {
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
@@ -3434,7 +3206,7 @@ class IoTSiteWise {
 
   /// Updates an asset's name. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html">Updating
-  /// assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets and models</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceAlreadyExistsException].
@@ -3466,12 +3238,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetName, 'assetName');
     _s.validateStringLength(
       'assetName',
@@ -3480,22 +3246,11 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetName',
-      assetName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetName': assetName,
@@ -3514,7 +3269,7 @@ class IoTSiteWise {
   /// model. Each asset created from the model inherits the updated asset
   /// model's property and hierarchy definitions. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html">Updating
-  /// assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// assets and models</a> in the <i>IoT SiteWise User Guide</i>.
   /// <important>
   /// This operation overwrites the existing model with the provided model. To
   /// avoid deleting your asset model's properties or hierarchies, you must
@@ -3522,9 +3277,9 @@ class IoTSiteWise {
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html">DescribeAssetModel</a>.
   ///
-  /// If you remove a property from an asset model, AWS IoT SiteWise deletes all
+  /// If you remove a property from an asset model, IoT SiteWise deletes all
   /// previous data for that property. If you remove a hierarchy definition from
-  /// an asset model, AWS IoT SiteWise disassociates every asset associated with
+  /// an asset model, IoT SiteWise disassociates every asset associated with
   /// that hierarchy. You can't change the type or data type of an existing
   /// property.
   /// </important>
@@ -3558,23 +3313,23 @@ class IoTSiteWise {
   /// specifies an asset model whose assets can be children of any other assets
   /// created from this asset model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// You can specify up to 10 hierarchies per asset model. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [assetModelProperties] :
   /// The updated property definitions of the asset model. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html">Asset
-  /// properties</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// properties</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// You can specify up to 200 properties per asset model. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
@@ -3597,12 +3352,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetModelId',
-      assetModelId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetModelName, 'assetModelName');
     _s.validateStringLength(
       'assetModelName',
@@ -3611,33 +3360,17 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetModelName',
-      assetModelName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'assetModelDescription',
       assetModelDescription,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'assetModelDescription',
-      assetModelDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
     );
     final $payload = <String, dynamic>{
       'assetModelName': assetModelName,
@@ -3687,23 +3420,22 @@ class IoTSiteWise {
   /// idempotent request is required.
   ///
   /// Parameter [propertyAlias] :
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
+  /// The alias that identifies the property, such as an OPC-UA server data
+  /// stream path (for example,
   /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise
   /// User Guide</i>.
   ///
   /// If you omit this parameter, the alias is removed from the property.
   ///
   /// Parameter [propertyNotificationState] :
   /// The MQTT notification state (enabled or disabled) for this asset property.
-  /// When the notification state is enabled, AWS IoT SiteWise publishes
-  /// property value updates to a unique MQTT topic. For more information, see
-  /// <a
+  /// When the notification state is enabled, IoT SiteWise publishes property
+  /// value updates to a unique MQTT topic. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html">Interacting
-  /// with other services</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// with other services</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// If you omit this parameter, the notification state is set to
   /// <code>DISABLED</code>.
@@ -3722,12 +3454,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assetId',
-      assetId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
     _s.validateStringLength(
       'propertyId',
@@ -3736,33 +3462,17 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'propertyId',
-      propertyId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
-    );
     _s.validateStringLength(
       'propertyAlias',
       propertyAlias,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'propertyAlias',
-      propertyAlias,
-      r'''[^\u0000-\u001F\u007F]+''',
     );
     final $payload = <String, dynamic>{
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -3779,7 +3489,7 @@ class IoTSiteWise {
     );
   }
 
-  /// Updates an AWS IoT SiteWise Monitor dashboard.
+  /// Updates an IoT SiteWise Monitor dashboard.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -3790,7 +3500,7 @@ class IoTSiteWise {
   /// The new dashboard definition, as specified in a JSON literal. For detailed
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html">Creating
-  /// dashboards (CLI)</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// dashboards (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [dashboardId] :
   /// The ID of the dashboard to update.
@@ -3820,24 +3530,12 @@ class IoTSiteWise {
       204800,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardDefinition',
-      dashboardDefinition,
-      r'''.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dashboardName, 'dashboardName');
@@ -3848,33 +3546,17 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardName',
-      dashboardName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
-    );
     _s.validateStringLength(
       'dashboardDescription',
       dashboardDescription,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'dashboardDescription',
-      dashboardDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
     );
     final $payload = <String, dynamic>{
       'dashboardDefinition': dashboardDefinition,
@@ -3916,24 +3598,12 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gatewayId',
-      gatewayId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayName, 'gatewayName');
     _s.validateStringLength(
       'gatewayName',
       gatewayName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gatewayName',
-      gatewayName,
-      r'''[^\u0000-\u001F\u007F]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -3950,7 +3620,7 @@ class IoTSiteWise {
   /// Updates a gateway capability configuration or defines a new capability
   /// configuration. Each gateway capability defines data sources for a gateway.
   /// A capability configuration can contain multiple data source
-  /// configurations. If you define OPC-UA sources for a gateway in the AWS IoT
+  /// configurations. If you define OPC-UA sources for a gateway in the IoT
   /// SiteWise console, all of your OPC-UA sources are stored in one capability
   /// configuration. To list all capability configurations for a gateway, use <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html">DescribeGateway</a>.
@@ -3966,12 +3636,12 @@ class IoTSiteWise {
   /// The JSON document that defines the configuration for the gateway
   /// capability. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/configure-sources.html#configure-source-cli">Configuring
-  /// data sources (CLI)</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// data sources (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
   ///
   /// Parameter [capabilityNamespace] :
   /// The namespace of the gateway capability configuration to be updated. For
-  /// example, if you configure OPC-UA sources from the AWS IoT SiteWise
-  /// console, your OPC-UA capability configuration has the namespace
+  /// example, if you configure OPC-UA sources from the IoT SiteWise console,
+  /// your OPC-UA capability configuration has the namespace
   /// <code>iotsitewise:opcuacollector:version</code>, where
   /// <code>version</code> is a number such as <code>1</code>.
   ///
@@ -4000,24 +3670,12 @@ class IoTSiteWise {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'capabilityNamespace',
-      capabilityNamespace,
-      r'''^[a-zA-Z]+:[a-zA-Z]+:[0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
     _s.validateStringLength(
       'gatewayId',
       gatewayId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gatewayId',
-      gatewayId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -4034,7 +3692,7 @@ class IoTSiteWise {
     return UpdateGatewayCapabilityConfigurationResponse.fromJson(response);
   }
 
-  /// Updates an AWS IoT SiteWise Monitor portal.
+  /// Updates an IoT SiteWise Monitor portal.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -4043,7 +3701,7 @@ class IoTSiteWise {
   /// May throw [ConflictingOperationException].
   ///
   /// Parameter [portalContactEmail] :
-  /// The AWS administrator's contact email address.
+  /// The Amazon Web Services administrator's contact email address.
   ///
   /// Parameter [portalId] :
   /// The ID of the portal to update.
@@ -4054,16 +3712,27 @@ class IoTSiteWise {
   /// Parameter [roleArn] :
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
-  /// of a service role that allows the portal's users to access your AWS IoT
+  /// of a service role that allows the portal's users to access your IoT
   /// SiteWise resources on your behalf. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html">Using
-  /// service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// service roles for IoT SiteWise Monitor</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
+  ///
+  /// Parameter [alarms] :
+  /// Contains the configuration information of an alarm created in an IoT
+  /// SiteWise Monitor portal. You can use the alarm to monitor an asset
+  /// property and get notified when the asset property value is outside a
+  /// specified range. For more information, see <a
+  /// href="https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html">Monitoring
+  /// with alarms</a> in the <i>IoT SiteWise Application Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// A unique case-sensitive identifier that you can provide to ensure the
   /// idempotency of the request. Don't reuse this client token if a new
   /// idempotent request is required.
+  ///
+  /// Parameter [notificationSenderEmail] :
+  /// The email address that sends alarm notifications.
   ///
   /// Parameter [portalDescription] :
   /// A new description for the portal.
@@ -4072,7 +3741,9 @@ class IoTSiteWise {
     required String portalId,
     required String portalName,
     required String roleArn,
+    Alarms? alarms,
     String? clientToken,
+    String? notificationSenderEmail,
     String? portalDescription,
     Image? portalLogoImage,
   }) async {
@@ -4084,24 +3755,12 @@ class IoTSiteWise {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalContactEmail',
-      portalContactEmail,
-      r'''[^@]+@[^@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portalId, 'portalId');
     _s.validateStringLength(
       'portalId',
       portalId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'portalId',
-      portalId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(portalName, 'portalName');
@@ -4112,12 +3771,6 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'portalName',
-      portalName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -4126,22 +3779,17 @@ class IoTSiteWise {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
+    _s.validateStringLength(
+      'notificationSenderEmail',
+      notificationSenderEmail,
+      1,
+      255,
     );
     _s.validateStringLength(
       'portalDescription',
@@ -4149,16 +3797,14 @@ class IoTSiteWise {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'portalDescription',
-      portalDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
-    );
     final $payload = <String, dynamic>{
       'portalContactEmail': portalContactEmail,
       'portalName': portalName,
       'roleArn': roleArn,
+      if (alarms != null) 'alarms': alarms,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
+      if (notificationSenderEmail != null)
+        'notificationSenderEmail': notificationSenderEmail,
       if (portalDescription != null) 'portalDescription': portalDescription,
       if (portalLogoImage != null) 'portalLogoImage': portalLogoImage,
     };
@@ -4171,7 +3817,7 @@ class IoTSiteWise {
     return UpdatePortalResponse.fromJson(response);
   }
 
-  /// Updates an AWS IoT SiteWise Monitor project.
+  /// Updates an IoT SiteWise Monitor project.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceNotFoundException].
@@ -4205,12 +3851,6 @@ class IoTSiteWise {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectId',
-      projectId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
     _s.validateStringLength(
       'projectName',
@@ -4219,33 +3859,17 @@ class IoTSiteWise {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''[^\u0000-\u001F\u007F]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''\S{36,64}''',
-    );
     _s.validateStringLength(
       'projectDescription',
       projectDescription,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'projectDescription',
-      projectDescription,
-      r'''[^\u0000-\u001F\u007F]+''',
     );
     final $payload = <String, dynamic>{
       'projectName': projectName,
@@ -4261,20 +3885,21 @@ class IoTSiteWise {
   }
 }
 
-/// Contains an access policy that defines an identity's access to an AWS IoT
+/// Contains an access policy that defines an identity's access to an IoT
 /// SiteWise Monitor resource.
 class AccessPolicySummary {
   /// The ID of the access policy.
   final String id;
 
-  /// The identity (an AWS SSO user, an AWS SSO group, or an IAM user).
+  /// The identity (an Amazon Web Services SSO user, an Amazon Web Services SSO
+  /// group, or an IAM user).
   final Identity identity;
 
   /// The permissions for the access policy. Note that a project
   /// <code>ADMINISTRATOR</code> is also known as a project owner.
   final Permission permission;
 
-  /// The AWS IoT SiteWise Monitor resource (a portal or project).
+  /// The IoT SiteWise Monitor resource (a portal or project).
   final Resource resource;
 
   /// The date the access policy was created, in Unix epoch time.
@@ -4414,6 +4039,49 @@ class Aggregates {
       standardDeviation: json['standardDeviation'] as double?,
       sum: json['sum'] as double?,
     );
+  }
+}
+
+/// Contains the configuration information of an alarm created in an IoT
+/// SiteWise Monitor portal. You can use the alarm to monitor an asset property
+/// and get notified when the asset property value is outside a specified range.
+/// For more information, see <a
+/// href="https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html">Monitoring
+/// with alarms</a> in the <i>IoT SiteWise Application Guide</i>.
+class Alarms {
+  /// The <a
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
+  /// of the IAM role that allows the alarm to perform actions and access Amazon
+  /// Web Services resources and services, such as IoT Events.
+  final String alarmRoleArn;
+
+  /// The <a
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
+  /// of the Lambda function that manages alarm notifications. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html">Managing
+  /// alarm notifications</a> in the <i>IoT Events Developer Guide</i>.
+  final String? notificationLambdaArn;
+
+  Alarms({
+    required this.alarmRoleArn,
+    this.notificationLambdaArn,
+  });
+  factory Alarms.fromJson(Map<String, dynamic> json) {
+    return Alarms(
+      alarmRoleArn: json['alarmRoleArn'] as String,
+      notificationLambdaArn: json['notificationLambdaArn'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmRoleArn = this.alarmRoleArn;
+    final notificationLambdaArn = this.notificationLambdaArn;
+    return {
+      'alarmRoleArn': alarmRoleArn,
+      if (notificationLambdaArn != null)
+        'notificationLambdaArn': notificationLambdaArn,
+    };
   }
 }
 
@@ -4863,7 +4531,7 @@ extension on String {
 /// Contains current status information for an asset model. For more
 /// information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html">Asset
-/// and model states</a> in the <i>AWS IoT SiteWise User Guide</i>.
+/// and model states</a> in the <i>IoT SiteWise User Guide</i>.
 class AssetModelStatus {
   /// The current state of the asset model.
   final AssetModelState state;
@@ -4900,7 +4568,7 @@ class AssetModelSummary {
   /// The asset model description.
   final String description;
 
-  /// The ID of the asset model (used with AWS IoT SiteWise APIs).
+  /// The ID of the asset model (used with IoT SiteWise APIs).
   final String id;
 
   /// The date the asset model was last updated, in Unix epoch time.
@@ -4947,13 +4615,12 @@ class AssetProperty {
   /// The name of the property.
   final String name;
 
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
-  /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
-  /// information, see <a
+  /// The alias that identifies the property, such as an OPC-UA server data stream
+  /// path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>).
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
   final String? alias;
 
   /// The data type of the structure for this property. This parameter exists on
@@ -5136,7 +4803,7 @@ extension on String {
 /// Contains information about the current status of an asset. For more
 /// information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html">Asset
-/// and model states</a> in the <i>AWS IoT SiteWise User Guide</i>.
+/// and model states</a> in the <i>IoT SiteWise User Guide</i>.
 class AssetStatus {
   /// The current status of the asset.
   final AssetState state;
@@ -5280,13 +4947,13 @@ class AssociatedAssetsSummary {
 
 /// Contains an asset attribute property. For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#attributes">Attributes</a>
-/// in the <i>AWS IoT SiteWise User Guide</i>.
+/// in the <i>IoT SiteWise User Guide</i>.
 class Attribute {
   /// The default value of the asset model property attribute. All assets that you
   /// create from the asset model contain this attribute value. You can update an
   /// attribute's value after you create an asset. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-attribute-values.html">Updating
-  /// attribute values</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// attribute values</a> in the <i>IoT SiteWise User Guide</i>.
   final String? defaultValue;
 
   Attribute({
@@ -5569,7 +5236,7 @@ class CompositeModelProperty {
   }
 }
 
-/// Contains the details of an AWS IoT SiteWise configuration error.
+/// Contains the details of an IoT SiteWise configuration error.
 class ConfigurationErrorDetails {
   /// The error code.
   final ErrorCode code;
@@ -5676,7 +5343,7 @@ class CreateAssetModelResponse {
   /// <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code>
   final String assetModelArn;
 
-  /// The ID of the asset model. You can use this ID when you call other AWS IoT
+  /// The ID of the asset model. You can use this ID when you call other IoT
   /// SiteWise APIs.
   final String assetModelId;
 
@@ -5707,8 +5374,8 @@ class CreateAssetResponse {
   /// <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code>
   final String assetArn;
 
-  /// The ID of the asset. This ID uniquely identifies the asset within AWS IoT
-  /// SiteWise and can be used with other AWS IoT SiteWise APIs.
+  /// The ID of the asset. This ID uniquely identifies the asset within IoT
+  /// SiteWise and can be used with other IoT SiteWise APIs.
   final String assetId;
 
   /// The status of the asset, which contains a state (<code>CREATING</code> after
@@ -5761,8 +5428,8 @@ class CreateGatewayResponse {
   /// <code>arn:${Partition}:iotsitewise:${Region}:${Account}:gateway/${GatewayId}</code>
   final String gatewayArn;
 
-  /// The ID of the gateway device. You can use this ID when you call other AWS
-  /// IoT SiteWise APIs.
+  /// The ID of the gateway device. You can use this ID when you call other IoT
+  /// SiteWise APIs.
   final String gatewayId;
 
   CreateGatewayResponse({
@@ -5788,17 +5455,18 @@ class CreatePortalResponse {
   /// The ID of the created portal.
   final String portalId;
 
-  /// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-  /// access portals that use AWS SSO for authentication. For portals that use IAM
-  /// for authentication, you must use the AWS IoT SiteWise console to get a URL
-  /// that you can use to access the portal.
+  /// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+  /// portals that use Amazon Web Services SSO for authentication. For portals
+  /// that use IAM for authentication, you must use the IoT SiteWise console to
+  /// get a URL that you can use to access the portal.
   final String portalStartUrl;
 
   /// The status of the portal, which contains a state (<code>CREATING</code>
   /// after successfully calling this operation) and any error message.
   final PortalStatus portalStatus;
 
-  /// The associated AWS SSO application ID, if the portal uses AWS SSO.
+  /// The associated Amazon Web Services SSO application ID, if the portal uses
+  /// Amazon Web Services SSO.
   final String ssoApplicationId;
 
   CreatePortalResponse({
@@ -5840,6 +5508,43 @@ class CreateProjectResponse {
       projectArn: json['projectArn'] as String,
       projectId: json['projectId'] as String,
     );
+  }
+}
+
+/// Contains information about a customer managed Amazon S3 bucket.
+class CustomerManagedS3Storage {
+  /// The <a
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
+  /// of the Identity and Access Management role that allows IoT SiteWise to send
+  /// data to Amazon S3.
+  final String roleArn;
+
+  /// The <a
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
+  /// of the Amazon S3 object. For more information about how to find the ARN for
+  /// an Amazon S3 object, see <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-arn-format.html">Amazon
+  /// S3 resources</a> in the <i>Amazon Simple Storage Service User Guide</i>.
+  final String s3ResourceArn;
+
+  CustomerManagedS3Storage({
+    required this.roleArn,
+    required this.s3ResourceArn,
+  });
+  factory CustomerManagedS3Storage.fromJson(Map<String, dynamic> json) {
+    return CustomerManagedS3Storage(
+      roleArn: json['roleArn'] as String,
+      s3ResourceArn: json['s3ResourceArn'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleArn = this.roleArn;
+    final s3ResourceArn = this.s3ResourceArn;
+    return {
+      'roleArn': roleArn,
+      's3ResourceArn': s3ResourceArn,
+    };
   }
 }
 
@@ -5961,8 +5666,8 @@ class DescribeAccessPolicyResponse {
   /// The ID of the access policy.
   final String accessPolicyId;
 
-  /// The identity (AWS SSO user, AWS SSO group, or IAM user) to which this access
-  /// policy applies.
+  /// The identity (Amazon Web Services SSO user, Amazon Web Services SSO group,
+  /// or IAM user) to which this access policy applies.
   final Identity accessPolicyIdentity;
 
   /// The date the access policy was last updated, in Unix epoch time.
@@ -5972,8 +5677,8 @@ class DescribeAccessPolicyResponse {
   /// is also known as a project owner.
   final Permission accessPolicyPermission;
 
-  /// The AWS IoT SiteWise Monitor resource (portal or project) to which this
-  /// access policy provides access.
+  /// The IoT SiteWise Monitor resource (portal or project) to which this access
+  /// policy provides access.
   final Resource accessPolicyResource;
 
   DescribeAccessPolicyResponse({
@@ -6225,7 +5930,7 @@ class DescribeDashboardResponse {
 
   /// The dashboard's definition JSON literal. For detailed information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html">Creating
-  /// dashboards (CLI)</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// dashboards (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
   final String dashboardDefinition;
 
   /// The ID of the dashboard.
@@ -6278,8 +5983,8 @@ class DescribeDefaultEncryptionConfigurationResponse {
   /// The type of encryption used for the encryption configuration.
   final EncryptionType encryptionType;
 
-  /// The key ARN of the customer managed customer master key (CMK) used for AWS
-  /// KMS encryption if you use <code>KMS_BASED_ENCRYPTION</code>.
+  /// The key ARN of the customer managed customer master key (CMK) used for KMS
+  /// encryption if you use <code>KMS_BASED_ENCRYPTION</code>.
   final String? kmsKeyArn;
 
   DescribeDefaultEncryptionConfigurationResponse({
@@ -6302,7 +6007,7 @@ class DescribeGatewayCapabilityConfigurationResponse {
   /// The JSON document that defines the gateway capability's configuration. For
   /// more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/configure-sources.html#configure-source-cli">Configuring
-  /// data sources (CLI)</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// data sources (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
   final String capabilityConfiguration;
 
   /// The namespace of the gateway capability.
@@ -6430,12 +6135,13 @@ class DescribePortalResponse {
   /// <code>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</code>
   final String portalArn;
 
-  /// The AWS SSO application generated client ID (used with AWS SSO APIs). AWS
-  /// IoT SiteWise includes <code>portalClientId</code> for only portals that use
-  /// AWS SSO to authenticate users.
+  /// The Amazon Web Services SSO application generated client ID (used with
+  /// Amazon Web Services SSO APIs). IoT SiteWise includes
+  /// <code>portalClientId</code> for only portals that use Amazon Web Services
+  /// SSO to authenticate users.
   final String portalClientId;
 
-  /// The AWS administrator's contact email address.
+  /// The Amazon Web Services administrator's contact email address.
   final String portalContactEmail;
 
   /// The date the portal was created, in Unix epoch time.
@@ -6450,15 +6156,22 @@ class DescribePortalResponse {
   /// The name of the portal.
   final String portalName;
 
-  /// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-  /// access portals that use AWS SSO for authentication. For portals that use IAM
-  /// for authentication, you must use the AWS IoT SiteWise console to get a URL
-  /// that you can use to access the portal.
+  /// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+  /// portals that use Amazon Web Services SSO for authentication. For portals
+  /// that use IAM for authentication, you must use the IoT SiteWise console to
+  /// get a URL that you can use to access the portal.
   final String portalStartUrl;
 
   /// The current status of the portal, which contains a state and any error
   /// message.
   final PortalStatus portalStatus;
+
+  /// Contains the configuration information of an alarm created in an IoT
+  /// SiteWise Monitor portal.
+  final Alarms? alarms;
+
+  /// The email address that sends alarm notifications.
+  final String? notificationSenderEmail;
 
   /// The service to use to authenticate users to the portal.
   final AuthMode? portalAuthMode;
@@ -6471,11 +6184,11 @@ class DescribePortalResponse {
 
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
-  /// of the service role that allows the portal's users to access your AWS IoT
+  /// of the service role that allows the portal's users to access your IoT
   /// SiteWise resources on your behalf. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html">Using
-  /// service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// service roles for IoT SiteWise Monitor</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
   final String? roleArn;
 
   DescribePortalResponse({
@@ -6488,6 +6201,8 @@ class DescribePortalResponse {
     required this.portalName,
     required this.portalStartUrl,
     required this.portalStatus,
+    this.alarms,
+    this.notificationSenderEmail,
     this.portalAuthMode,
     this.portalDescription,
     this.portalLogoImageLocation,
@@ -6507,6 +6222,10 @@ class DescribePortalResponse {
       portalStartUrl: json['portalStartUrl'] as String,
       portalStatus:
           PortalStatus.fromJson(json['portalStatus'] as Map<String, dynamic>),
+      alarms: json['alarms'] != null
+          ? Alarms.fromJson(json['alarms'] as Map<String, dynamic>)
+          : null,
+      notificationSenderEmail: json['notificationSenderEmail'] as String?,
       portalAuthMode: (json['portalAuthMode'] as String?)?.toAuthMode(),
       portalDescription: json['portalDescription'] as String?,
       portalLogoImageLocation: json['portalLogoImageLocation'] != null
@@ -6568,6 +6287,52 @@ class DescribeProjectResponse {
   }
 }
 
+class DescribeStorageConfigurationResponse {
+  final ConfigurationStatus configurationStatus;
+
+  /// The type of storage that you specified for your data. The storage type can
+  /// be one of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise replicates your data
+  /// into a service managed database.
+  /// </li>
+  /// <li>
+  /// <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise replicates your data into a
+  /// service managed database and saves a copy of your raw data and metadata in
+  /// an Amazon S3 object that you specified.
+  /// </li>
+  /// </ul>
+  final StorageType storageType;
+
+  /// The date the storage configuration was last updated, in Unix epoch time.
+  final DateTime? lastUpdateDate;
+
+  /// Contains information about the storage destination.
+  final MultiLayerStorage? multiLayerStorage;
+
+  DescribeStorageConfigurationResponse({
+    required this.configurationStatus,
+    required this.storageType,
+    this.lastUpdateDate,
+    this.multiLayerStorage,
+  });
+  factory DescribeStorageConfigurationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeStorageConfigurationResponse(
+      configurationStatus: ConfigurationStatus.fromJson(
+          json['configurationStatus'] as Map<String, dynamic>),
+      storageType: (json['storageType'] as String).toStorageType(),
+      lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
+      multiLayerStorage: json['multiLayerStorage'] != null
+          ? MultiLayerStorage.fromJson(
+              json['multiLayerStorage'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 enum EncryptionType {
   sitewiseDefaultEncryption,
   kmsBasedEncryption,
@@ -6624,7 +6389,7 @@ extension on String {
   }
 }
 
-/// Contains the details of an AWS IoT SiteWise error.
+/// Contains the details of an IoT SiteWise error.
 class ErrorDetails {
   /// The error code.
   final ErrorCode code;
@@ -6676,7 +6441,7 @@ class ExpressionVariable {
 /// Contains a summary of a gateway capability configuration.
 class GatewayCapabilitySummary {
   /// The namespace of the capability configuration. For example, if you configure
-  /// OPC-UA sources from the AWS IoT SiteWise console, your OPC-UA capability
+  /// OPC-UA sources from the IoT SiteWise console, your OPC-UA capability
   /// configuration has the namespace
   /// <code>iotsitewise:opcuacollector:version</code>, where <code>version</code>
   /// is a number such as <code>1</code>.
@@ -6715,7 +6480,7 @@ class GatewayCapabilitySummary {
 
 /// Contains a gateway's platform information.
 class GatewayPlatform {
-  /// A gateway that runs on AWS IoT Greengrass.
+  /// A gateway that runs on IoT Greengrass.
   final Greengrass greengrass;
 
   GatewayPlatform({
@@ -6845,13 +6610,38 @@ class GetAssetPropertyValueResponse {
   }
 }
 
-/// Contains details for a gateway that runs on AWS IoT Greengrass. To create a
-/// gateway that runs on AWS IoT Greengrass, you must add the IoT SiteWise
-/// connector to a Greengrass group and deploy it. Your Greengrass group must
-/// also have permissions to upload data to AWS IoT SiteWise. For more
-/// information, see <a
+class GetInterpolatedAssetPropertyValuesResponse {
+  /// The requested interpolated values.
+  final List<InterpolatedAssetPropertyValue> interpolatedAssetPropertyValues;
+
+  /// The token for the next set of results, or null if there are no additional
+  /// results.
+  final String? nextToken;
+
+  GetInterpolatedAssetPropertyValuesResponse({
+    required this.interpolatedAssetPropertyValues,
+    this.nextToken,
+  });
+  factory GetInterpolatedAssetPropertyValuesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetInterpolatedAssetPropertyValuesResponse(
+      interpolatedAssetPropertyValues:
+          (json['interpolatedAssetPropertyValues'] as List)
+              .whereNotNull()
+              .map((e) => InterpolatedAssetPropertyValue.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
+/// Contains details for a gateway that runs on IoT Greengrass. To create a
+/// gateway that runs on IoT Greengrass, you must add the IoT SiteWise connector
+/// to a Greengrass group and deploy it. Your Greengrass group must also have
+/// permissions to upload data to IoT SiteWise. For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html">Ingesting
-/// data using a gateway</a> in the <i>AWS IoT SiteWise User Guide</i>.
+/// data using a gateway</a> in the <i>IoT SiteWise User Guide</i>.
 class Greengrass {
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
@@ -6860,7 +6650,7 @@ class Greengrass {
   /// href="https://docs.aws.amazon.com/greengrass/latest/apireference/listgroups-get.html">ListGroups</a>
   /// and <a
   /// href="https://docs.aws.amazon.com/greengrass/latest/apireference/getgroup-get.html">GetGroup</a>
-  /// in the <i>AWS IoT Greengrass API Reference</i>.
+  /// in the <i>IoT Greengrass API Reference</i>.
   final String groupArn;
 
   Greengrass({
@@ -6882,7 +6672,7 @@ class Greengrass {
 
 /// Contains information for a group identity in an access policy.
 class GroupIdentity {
-  /// The AWS SSO ID of the group.
+  /// The Amazon Web Services SSO ID of the group.
   final String id;
 
   GroupIdentity({
@@ -6902,7 +6692,34 @@ class GroupIdentity {
   }
 }
 
-/// Contains information about an AWS Identity and Access Management (IAM) user.
+/// Contains information about an Identity and Access Management role. For more
+/// information, see <a
+/// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+/// roles</a> in the <i>IAM User Guide</i>.
+class IAMRoleIdentity {
+  /// The ARN of the IAM role. For more information, see <a
+  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html">IAM
+  /// ARNs</a> in the <i>IAM User Guide</i>.
+  final String arn;
+
+  IAMRoleIdentity({
+    required this.arn,
+  });
+  factory IAMRoleIdentity.fromJson(Map<String, dynamic> json) {
+    return IAMRoleIdentity(
+      arn: json['arn'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
+  }
+}
+
+/// Contains information about an Identity and Access Management user.
 class IAMUserIdentity {
   /// The ARN of the IAM user. For more information, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html">IAM
@@ -6931,24 +6748,30 @@ class IAMUserIdentity {
   }
 }
 
-/// Contains an identity that can access an AWS IoT SiteWise Monitor resource.
+/// Contains an identity that can access an IoT SiteWise Monitor resource.
 /// <note>
-/// Currently, you can't use AWS APIs to retrieve AWS SSO identity IDs. You can
-/// find the AWS SSO identity IDs in the URL of user and group pages in the <a
-/// href="https://console.aws.amazon.com/singlesignon">AWS SSO console</a>.
+/// Currently, you can't use Amazon Web Services APIs to retrieve Amazon Web
+/// Services SSO identity IDs. You can find the Amazon Web Services SSO identity
+/// IDs in the URL of user and group pages in the <a
+/// href="https://console.aws.amazon.com/singlesignon">Amazon Web Services SSO
+/// console</a>.
 /// </note>
 class Identity {
-  /// An AWS SSO group identity.
+  /// An Amazon Web Services SSO group identity.
   final GroupIdentity? group;
+
+  /// An IAM role identity.
+  final IAMRoleIdentity? iamRole;
 
   /// An IAM user identity.
   final IAMUserIdentity? iamUser;
 
-  /// An AWS SSO user identity.
+  /// An Amazon Web Services SSO user identity.
   final UserIdentity? user;
 
   Identity({
     this.group,
+    this.iamRole,
     this.iamUser,
     this.user,
   });
@@ -6956,6 +6779,9 @@ class Identity {
     return Identity(
       group: json['group'] != null
           ? GroupIdentity.fromJson(json['group'] as Map<String, dynamic>)
+          : null,
+      iamRole: json['iamRole'] != null
+          ? IAMRoleIdentity.fromJson(json['iamRole'] as Map<String, dynamic>)
           : null,
       iamUser: json['iamUser'] != null
           ? IAMUserIdentity.fromJson(json['iamUser'] as Map<String, dynamic>)
@@ -6968,10 +6794,12 @@ class Identity {
 
   Map<String, dynamic> toJson() {
     final group = this.group;
+    final iamRole = this.iamRole;
     final iamUser = this.iamUser;
     final user = this.user;
     return {
       if (group != null) 'group': group,
+      if (iamRole != null) 'iamRole': iamRole,
       if (iamUser != null) 'iamUser': iamUser,
       if (user != null) 'user': user,
     };
@@ -7088,8 +6916,7 @@ extension on String {
   }
 }
 
-/// Contains an image that is uploaded to AWS IoT SiteWise and available at a
-/// URL.
+/// Contains an image that is uploaded to IoT SiteWise and available at a URL.
 class ImageLocation {
   /// The ID of the image.
   final String id;
@@ -7106,6 +6933,24 @@ class ImageLocation {
     return ImageLocation(
       id: json['id'] as String,
       url: json['url'] as String,
+    );
+  }
+}
+
+/// Contains information about an interpolated asset property value.
+class InterpolatedAssetPropertyValue {
+  final TimeInNanos timestamp;
+  final Variant value;
+
+  InterpolatedAssetPropertyValue({
+    required this.timestamp,
+    required this.value,
+  });
+  factory InterpolatedAssetPropertyValue.fromJson(Map<String, dynamic> json) {
+    return InterpolatedAssetPropertyValue(
+      timestamp:
+          TimeInNanos.fromJson(json['timestamp'] as Map<String, dynamic>),
+      value: Variant.fromJson(json['value'] as Map<String, dynamic>),
     );
   }
 }
@@ -7374,8 +7219,7 @@ class ListTagsForResourceResponse {
   /// The list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html">Tagging
-  /// your AWS IoT SiteWise resources</a> in the <i>AWS IoT SiteWise User
-  /// Guide</i>.
+  /// your IoT SiteWise resources</a> in the <i>IoT SiteWise User Guide</i>.
   final Map<String, String>? tags;
 
   ListTagsForResourceResponse({
@@ -7424,7 +7268,7 @@ extension on String {
 
 /// Contains logging options.
 class LoggingOptions {
-  /// The AWS IoT SiteWise logging verbosity level.
+  /// The IoT SiteWise logging verbosity level.
   final LoggingLevel level;
 
   LoggingOptions({
@@ -7444,10 +7288,9 @@ class LoggingOptions {
   }
 }
 
-/// Contains an asset measurement property. This structure is empty. For more
-/// information, see <a
+/// Contains an asset measurement property. For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#measurements">Measurements</a>
-/// in the <i>AWS IoT SiteWise User Guide</i>.
+/// in the <i>IoT SiteWise User Guide</i>.
 class Measurement {
   Measurement();
   factory Measurement.fromJson(Map<String, dynamic> _) {
@@ -7471,7 +7314,7 @@ class Measurement {
 ///
 /// For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#metrics">Metrics</a>
-/// in the <i>AWS IoT SiteWise User Guide</i>.
+/// in the <i>IoT SiteWise User Guide</i>.
 class Metric {
   /// The mathematical expression that defines the metric aggregation function.
   /// You can specify up to 10 variables per expression. You can specify up to 10
@@ -7479,14 +7322,14 @@ class Metric {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   final String expression;
 
   /// The list of variables used in the expression.
   final List<ExpressionVariable> variables;
 
-  /// The window (time interval) over which AWS IoT SiteWise computes the metric's
-  /// aggregation expression. AWS IoT SiteWise computes one data point per
+  /// The window (time interval) over which IoT SiteWise computes the metric's
+  /// aggregation expression. IoT SiteWise computes one data point per
   /// <code>window</code>.
   final MetricWindow window;
 
@@ -7576,7 +7419,7 @@ extension on String {
   }
 }
 
-/// Contains AWS IoT SiteWise Monitor error details.
+/// Contains IoT SiteWise Monitor error details.
 class MonitorErrorDetails {
   /// The error code.
   final MonitorErrorCode? code;
@@ -7593,6 +7436,29 @@ class MonitorErrorDetails {
       code: (json['code'] as String?)?.toMonitorErrorCode(),
       message: json['message'] as String?,
     );
+  }
+}
+
+/// Contains information about the storage destination.
+class MultiLayerStorage {
+  /// Contains information about a customer managed Amazon S3 bucket.
+  final CustomerManagedS3Storage customerManagedS3Storage;
+
+  MultiLayerStorage({
+    required this.customerManagedS3Storage,
+  });
+  factory MultiLayerStorage.fromJson(Map<String, dynamic> json) {
+    return MultiLayerStorage(
+      customerManagedS3Storage: CustomerManagedS3Storage.fromJson(
+          json['customerManagedS3Storage'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerManagedS3Storage = this.customerManagedS3Storage;
+    return {
+      'customerManagedS3Storage': customerManagedS3Storage,
+    };
   }
 }
 
@@ -7624,7 +7490,7 @@ extension on String {
   }
 }
 
-/// Identifies an AWS IoT SiteWise Monitor portal.
+/// Identifies an IoT SiteWise Monitor portal.
 class PortalResource {
   /// The ID of the portal.
   final String id;
@@ -7719,10 +7585,10 @@ class PortalSummary {
   /// The name of the portal.
   final String name;
 
-  /// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-  /// access portals that use AWS SSO for authentication. For portals that use IAM
-  /// for authentication, you must use the AWS IoT SiteWise console to get a URL
-  /// that you can use to access the portal.
+  /// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+  /// portals that use Amazon Web Services SSO for authentication. For portals
+  /// that use IAM for authentication, you must use the IoT SiteWise console to
+  /// get a URL that you can use to access the portal.
   final String startUrl;
   final PortalStatus status;
 
@@ -7737,11 +7603,11 @@ class PortalSummary {
 
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
-  /// of the service role that allows the portal's users to access your AWS IoT
+  /// of the service role that allows the portal's users to access your IoT
   /// SiteWise resources on your behalf. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html">Using
-  /// service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// service roles for IoT SiteWise Monitor</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
   final String? roleArn;
 
   PortalSummary({
@@ -7768,7 +7634,7 @@ class PortalSummary {
   }
 }
 
-/// Identifies a specific AWS IoT SiteWise Monitor project.
+/// Identifies a specific IoT SiteWise Monitor project.
 class ProjectResource {
   /// The ID of the project.
   final String id;
@@ -7836,13 +7702,12 @@ class Property {
   /// The name of the property.
   final String name;
 
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
-  /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
-  /// information, see <a
+  /// The alias that identifies the property, such as an OPC-UA server data stream
+  /// path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>).
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
   final String? alias;
 
   /// The asset property's notification topic and state. For more information, see
@@ -7929,15 +7794,15 @@ extension on String {
 }
 
 /// Contains asset property value notification information. When the
-/// notification state is enabled, AWS IoT SiteWise publishes property value
-/// updates to a unique MQTT topic. For more information, see <a
+/// notification state is enabled, IoT SiteWise publishes property value updates
+/// to a unique MQTT topic. For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html">Interacting
-/// with other services</a> in the <i>AWS IoT SiteWise User Guide</i>.
+/// with other services</a> in the <i>IoT SiteWise User Guide</i>.
 class PropertyNotification {
   /// The current notification state.
   final PropertyNotificationState state;
 
-  /// The MQTT topic to which AWS IoT SiteWise publishes property value update
+  /// The MQTT topic to which IoT SiteWise publishes property value update
   /// notifications.
   final String topic;
 
@@ -8059,13 +7924,12 @@ class PutAssetPropertyValueEntry {
   /// The ID of the asset to update.
   final String? assetId;
 
-  /// The property alias that identifies the property, such as an OPC-UA server
-  /// data stream path (for example,
-  /// <code>/company/windfarm/3/turbine/7/temperature</code>). For more
-  /// information, see <a
+  /// The alias that identifies the property, such as an OPC-UA server data stream
+  /// path (for example, <code>/company/windfarm/3/turbine/7/temperature</code>).
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
-  /// industrial data streams to asset properties</a> in the <i>AWS IoT SiteWise
-  /// User Guide</i>.
+  /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User
+  /// Guide</i>.
   final String? propertyAlias;
 
   /// The ID of the asset property for this entry.
@@ -8103,7 +7967,7 @@ class PutDefaultEncryptionConfigurationResponse {
   /// The type of encryption used for the encryption configuration.
   final EncryptionType encryptionType;
 
-  /// The Key ARN of the AWS KMS CMK used for AWS KMS encryption if you use
+  /// The Key ARN of the KMS CMK used for KMS encryption if you use
   /// <code>KMS_BASED_ENCRYPTION</code>.
   final String? kmsKeyArn;
 
@@ -8127,6 +7991,46 @@ class PutLoggingOptionsResponse {
   PutLoggingOptionsResponse();
   factory PutLoggingOptionsResponse.fromJson(Map<String, dynamic> _) {
     return PutLoggingOptionsResponse();
+  }
+}
+
+class PutStorageConfigurationResponse {
+  final ConfigurationStatus configurationStatus;
+
+  /// The type of storage that you specified for your data. The storage type can
+  /// be one of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise replicates your data
+  /// into a service managed database.
+  /// </li>
+  /// <li>
+  /// <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise replicates your data into a
+  /// service managed database and saves a copy of your raw data and metadata in
+  /// an Amazon S3 object that you specified.
+  /// </li>
+  /// </ul>
+  final StorageType storageType;
+
+  /// Contains information about the storage destination.
+  final MultiLayerStorage? multiLayerStorage;
+
+  PutStorageConfigurationResponse({
+    required this.configurationStatus,
+    required this.storageType,
+    this.multiLayerStorage,
+  });
+  factory PutStorageConfigurationResponse.fromJson(Map<String, dynamic> json) {
+    return PutStorageConfigurationResponse(
+      configurationStatus: ConfigurationStatus.fromJson(
+          json['configurationStatus'] as Map<String, dynamic>),
+      storageType: (json['storageType'] as String).toStorageType(),
+      multiLayerStorage: json['multiLayerStorage'] != null
+          ? MultiLayerStorage.fromJson(
+              json['multiLayerStorage'] as Map<String, dynamic>)
+          : null,
+    );
   }
 }
 
@@ -8163,7 +8067,7 @@ extension on String {
   }
 }
 
-/// Contains an AWS IoT SiteWise Monitor resource ID for a portal or project.
+/// Contains an IoT SiteWise Monitor resource ID for a portal or project.
 class Resource {
   /// A portal resource.
   final PortalResource? portal;
@@ -8221,6 +8125,34 @@ extension on String {
         return ResourceType.project;
     }
     throw Exception('$this is not known in enum ResourceType');
+  }
+}
+
+enum StorageType {
+  sitewiseDefaultStorage,
+  multiLayerStorage,
+}
+
+extension on StorageType {
+  String toValue() {
+    switch (this) {
+      case StorageType.sitewiseDefaultStorage:
+        return 'SITEWISE_DEFAULT_STORAGE';
+      case StorageType.multiLayerStorage:
+        return 'MULTI_LAYER_STORAGE';
+    }
+  }
+}
+
+extension on String {
+  StorageType toStorageType() {
+    switch (this) {
+      case 'SITEWISE_DEFAULT_STORAGE':
+        return StorageType.sitewiseDefaultStorage;
+      case 'MULTI_LAYER_STORAGE':
+        return StorageType.multiLayerStorage;
+    }
+    throw Exception('$this is not known in enum StorageType');
   }
 }
 
@@ -8298,7 +8230,7 @@ extension on String {
 ///
 /// For more information, see <a
 /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#transforms">Transforms</a>
-/// in the <i>AWS IoT SiteWise User Guide</i>.
+/// in the <i>IoT SiteWise User Guide</i>.
 class Transform {
   /// The mathematical expression that defines the transformation function. You
   /// can specify up to 10 variables per expression. You can specify up to 10
@@ -8306,7 +8238,7 @@ class Transform {
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html">Quotas</a>
-  /// in the <i>AWS IoT SiteWise User Guide</i>.
+  /// in the <i>IoT SiteWise User Guide</i>.
   final String expression;
 
   /// The list of variables used in the expression.
@@ -8393,15 +8325,14 @@ extension on String {
 class TumblingWindow {
   /// The time interval for the tumbling window. Note that <code>w</code>
   /// represents weeks, <code>d</code> represents days, <code>h</code> represents
-  /// hours, and <code>m</code> represents minutes. AWS IoT SiteWise computes the
+  /// hours, and <code>m</code> represents minutes. IoT SiteWise computes the
   /// <code>1w</code> interval the end of Sunday at midnight each week (UTC), the
   /// <code>1d</code> interval at the end of each day at midnight (UTC), the
   /// <code>1h</code> interval at the end of each hour, and so on.
   ///
-  /// When AWS IoT SiteWise aggregates data points for metric computations, the
-  /// start of each interval is exclusive and the end of each interval is
-  /// inclusive. AWS IoT SiteWise places the computed data point at the end of the
-  /// interval.
+  /// When IoT SiteWise aggregates data points for metric computations, the start
+  /// of each interval is exclusive and the end of each interval is inclusive. IoT
+  /// SiteWise places the computed data point at the end of the interval.
   final String interval;
 
   TumblingWindow({
@@ -8538,7 +8469,7 @@ class UpdateProjectResponse {
 
 /// Contains information for a user identity in an access policy.
 class UserIdentity {
-  /// The AWS SSO ID of the user.
+  /// The Amazon Web Services SSO ID of the user.
   final String id;
 
   UserIdentity({
@@ -8572,7 +8503,7 @@ class VariableValue {
   /// <code>propertyId</code>. For example, you might have separately grouped
   /// assets that come from the same asset model. For more information, see <a
   /// href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
-  /// hierarchies</a> in the <i>AWS IoT SiteWise User Guide</i>.
+  /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
   final String? hierarchyId;
 
   VariableValue({

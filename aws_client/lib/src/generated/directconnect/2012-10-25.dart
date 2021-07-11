@@ -511,6 +511,87 @@ class DirectConnect {
     return Connection.fromJson(jsonResponse.body);
   }
 
+  /// Associates a MAC Security (MACsec) Connection Key Name (CKN)/ Connectivity
+  /// Association Key (CAK) pair with an AWS Direct Connect dedicated
+  /// connection.
+  ///
+  /// You must supply either the <code>secretARN,</code> or the CKN/CAK
+  /// (<code>ckn</code> and <code>cak</code>) pair in the request.
+  ///
+  /// For information about MAC Security (MACsec) key considerations, see <a
+  /// href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-key-consideration">MACsec
+  /// pre-shared CKN/CAK key considerations </a> in the <i>AWS Direct Connect
+  /// User Guide</i>.
+  ///
+  /// May throw [DirectConnectServerException].
+  /// May throw [DirectConnectClientException].
+  ///
+  /// Parameter [connectionId] :
+  /// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG
+  /// (dxlag-xxxx).
+  ///
+  /// You can use <a>DescribeConnections</a> or <a>DescribeLags</a> to retrieve
+  /// connection ID.
+  ///
+  /// Parameter [cak] :
+  /// The MAC Security (MACsec) CAK to associate with the dedicated connection.
+  ///
+  /// You can create the CKN/CAK pair using an industry standard tool.
+  ///
+  /// The valid values are 64 hexadecimal characters (0-9, A-E).
+  ///
+  /// If you use this request parameter, you must use the <code>ckn</code>
+  /// request parameter and not use the <code>secretARN</code> request
+  /// parameter.
+  ///
+  /// Parameter [ckn] :
+  /// The MAC Security (MACsec) CKN to associate with the dedicated connection.
+  ///
+  /// You can create the CKN/CAK pair using an industry standard tool.
+  ///
+  /// The valid values are 64 hexadecimal characters (0-9, A-E).
+  ///
+  /// If you use this request parameter, you must use the <code>cak</code>
+  /// request parameter and not use the <code>secretARN</code> request
+  /// parameter.
+  ///
+  /// Parameter [secretARN] :
+  /// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key to
+  /// associate with the dedicated connection.
+  ///
+  /// You can use <a>DescribeConnections</a> or <a>DescribeLags</a> to retrieve
+  /// the MAC Security (MACsec) secret key.
+  ///
+  /// If you use this request parameter, you do not use the <code>ckn</code> and
+  /// <code>cak</code> request parameters.
+  Future<AssociateMacSecKeyResponse> associateMacSecKey({
+    required String connectionId,
+    String? cak,
+    String? ckn,
+    String? secretARN,
+  }) async {
+    ArgumentError.checkNotNull(connectionId, 'connectionId');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'OvertureService.AssociateMacSecKey'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'connectionId': connectionId,
+        if (cak != null) 'cak': cak,
+        if (ckn != null) 'ckn': ckn,
+        if (secretARN != null) 'secretARN': secretARN,
+      },
+    );
+
+    return AssociateMacSecKeyResponse.fromJson(jsonResponse.body);
+  }
+
   /// Associates a virtual interface with a specified link aggregation group
   /// (LAG) or connection. Connectivity to AWS is temporarily interrupted as the
   /// virtual interface is being migrated. If the target connection or LAG has
@@ -729,7 +810,7 @@ class DirectConnect {
   /// IPv6 addresses; you cannot specify custom IPv6 addresses.
   ///
   /// For a public virtual interface, the Autonomous System Number (ASN) must be
-  /// private or already whitelisted for the virtual interface.
+  /// private or already on the allow list for the virtual interface.
   ///
   /// May throw [DirectConnectServerException].
   /// May throw [DirectConnectClientException].
@@ -798,6 +879,15 @@ class DirectConnect {
   /// Parameter [providerName] :
   /// The name of the service provider associated with the requested connection.
   ///
+  /// Parameter [requestMACSec] :
+  /// Indicates whether you want the connection to support MAC Security
+  /// (MACsec).
+  ///
+  /// MAC Security (MACsec) is only available on dedicated connections. For
+  /// information about MAC Security (MACsec) prerequisties, see <a
+  /// href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites">MACsec
+  /// prerequisties</a> in the <i>AWS Direct Connect User Guide</i>.
+  ///
   /// Parameter [tags] :
   /// The tags to associate with the lag.
   Future<Connection> createConnection({
@@ -806,6 +896,7 @@ class DirectConnect {
     required String location,
     String? lagId,
     String? providerName,
+    bool? requestMACSec,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(bandwidth, 'bandwidth');
@@ -827,6 +918,7 @@ class DirectConnect {
         'location': location,
         if (lagId != null) 'lagId': lagId,
         if (providerName != null) 'providerName': providerName,
+        if (requestMACSec != null) 'requestMACSec': requestMACSec,
         if (tags != null) 'tags': tags,
       },
     );
@@ -1139,6 +1231,16 @@ class DirectConnect {
   /// Parameter [providerName] :
   /// The name of the service provider associated with the LAG.
   ///
+  /// Parameter [requestMACSec] :
+  /// Indicates whether the connection will support MAC Security (MACsec).
+  /// <note>
+  /// All connections in the LAG must be capable of supporting MAC Security
+  /// (MACsec). For information about MAC Security (MACsec) prerequisties, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites">MACsec
+  /// prerequisties</a> in the <i>AWS Direct Connect User Guide</i>.
+  /// </note>
+  ///
   /// Parameter [tags] :
   /// The tags to associate with the LAG.
   Future<Lag> createLag({
@@ -1149,6 +1251,7 @@ class DirectConnect {
     List<Tag>? childConnectionTags,
     String? connectionId,
     String? providerName,
+    bool? requestMACSec,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(connectionsBandwidth, 'connectionsBandwidth');
@@ -1174,6 +1277,7 @@ class DirectConnect {
           'childConnectionTags': childConnectionTags,
         if (connectionId != null) 'connectionId': connectionId,
         if (providerName != null) 'providerName': providerName,
+        if (requestMACSec != null) 'requestMACSec': requestMACSec,
         if (tags != null) 'tags': tags,
       },
     );
@@ -1798,13 +1902,39 @@ class DirectConnect {
   }
 
   /// Lists the associations between your Direct Connect gateways and virtual
-  /// private gateways. You must specify a Direct Connect gateway, a virtual
-  /// private gateway, or both. If you specify a Direct Connect gateway, the
-  /// response contains all virtual private gateways associated with the Direct
-  /// Connect gateway. If you specify a virtual private gateway, the response
-  /// contains all Direct Connect gateways associated with the virtual private
-  /// gateway. If you specify both, the response contains the association
-  /// between the Direct Connect gateway and the virtual private gateway.
+  /// private gateways and transit gateways. You must specify one of the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// A Direct Connect gateway
+  ///
+  /// The response contains all virtual private gateways and transit gateways
+  /// associated with the Direct Connect gateway.
+  /// </li>
+  /// <li>
+  /// A virtual private gateway
+  ///
+  /// The response contains the Direct Connect gateway.
+  /// </li>
+  /// <li>
+  /// A transit gateway
+  ///
+  /// The response contains the Direct Connect gateway.
+  /// </li>
+  /// <li>
+  /// A Direct Connect gateway and a virtual private gateway
+  ///
+  /// The response contains the association between the Direct Connect gateway
+  /// and virtual private gateway.
+  /// </li>
+  /// <li>
+  /// A Direct Connect gateway and a transit gateway
+  ///
+  /// The response contains the association between the Direct Connect gateway
+  /// and transit gateway.
+  /// </li>
+  /// </ul>
   ///
   /// May throw [DirectConnectServerException].
   /// May throw [DirectConnectClientException].
@@ -1830,7 +1960,7 @@ class DirectConnect {
   /// The token provided in the previous call to retrieve the next page.
   ///
   /// Parameter [virtualGatewayId] :
-  /// The ID of the virtual private gateway.
+  /// The ID of the virtual private gateway or transit gateway.
   Future<DescribeDirectConnectGatewayAssociationsResult>
       describeDirectConnectGatewayAssociations({
     String? associatedGatewayId,
@@ -2325,6 +2455,49 @@ class DirectConnect {
     return Connection.fromJson(jsonResponse.body);
   }
 
+  /// Removes the association between a MAC Security (MACsec) security key and
+  /// an AWS Direct Connect dedicated connection.
+  ///
+  /// May throw [DirectConnectServerException].
+  /// May throw [DirectConnectClientException].
+  ///
+  /// Parameter [connectionId] :
+  /// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG
+  /// (dxlag-xxxx).
+  ///
+  /// You can use <a>DescribeConnections</a> or <a>DescribeLags</a> to retrieve
+  /// connection ID.
+  ///
+  /// Parameter [secretARN] :
+  /// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.
+  ///
+  /// You can use <a>DescribeConnections</a> to retrieve the ARN of the MAC
+  /// Security (MACsec) secret key.
+  Future<DisassociateMacSecKeyResponse> disassociateMacSecKey({
+    required String connectionId,
+    required String secretARN,
+  }) async {
+    ArgumentError.checkNotNull(connectionId, 'connectionId');
+    ArgumentError.checkNotNull(secretARN, 'secretARN');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'OvertureService.DisassociateMacSecKey'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'connectionId': connectionId,
+        'secretARN': secretARN,
+      },
+    );
+
+    return DisassociateMacSecKeyResponse.fromJson(jsonResponse.body);
+  }
+
   /// Lists the virtual interface failover test history.
   ///
   /// May throw [DirectConnectServerException].
@@ -2545,6 +2718,61 @@ class DirectConnect {
     );
   }
 
+  /// Updates the AWS Direct Connect dedicated connection configuration.
+  ///
+  /// You can update the following parameters for a connection:
+  ///
+  /// <ul>
+  /// <li>
+  /// The connection name
+  /// </li>
+  /// <li>
+  /// The connection's MAC Security (MACsec) encryption mode.
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [DirectConnectServerException].
+  /// May throw [DirectConnectClientException].
+  ///
+  /// Parameter [connectionId] :
+  /// The ID of the dedicated connection.
+  ///
+  /// You can use <a>DescribeConnections</a> to retrieve the connection ID.
+  ///
+  /// Parameter [connectionName] :
+  /// The name of the connection.
+  ///
+  /// Parameter [encryptionMode] :
+  /// The connection MAC Security (MACsec) encryption mode.
+  ///
+  /// The valid values are <code>no_encrypt</code>, <code>should_encrypt</code>,
+  /// and <code>must_encrypt</code>.
+  Future<Connection> updateConnection({
+    required String connectionId,
+    String? connectionName,
+    String? encryptionMode,
+  }) async {
+    ArgumentError.checkNotNull(connectionId, 'connectionId');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'OvertureService.UpdateConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'connectionId': connectionId,
+        if (connectionName != null) 'connectionName': connectionName,
+        if (encryptionMode != null) 'encryptionMode': encryptionMode,
+      },
+    );
+
+    return Connection.fromJson(jsonResponse.body);
+  }
+
   /// Updates the specified attributes of the Direct Connect gateway
   /// association.
   ///
@@ -2595,7 +2823,7 @@ class DirectConnect {
 
   /// Updates the attributes of the specified link aggregation group (LAG).
   ///
-  /// You can update the following attributes:
+  /// You can update the following LAG attributes:
   ///
   /// <ul>
   /// <li>
@@ -2605,19 +2833,30 @@ class DirectConnect {
   /// The value for the minimum number of connections that must be operational
   /// for the LAG itself to be operational.
   /// </li>
-  /// </ul>
-  /// When you create a LAG, the default value for the minimum number of
-  /// operational connections is zero (0). If you update this value and the
-  /// number of operational connections falls below the specified value, the LAG
-  /// automatically goes down to avoid over-utilization of the remaining
-  /// connections. Adjust this value with care, as it could force the LAG down
-  /// if it is set higher than the current number of operational connections.
+  /// <li>
+  /// The LAG's MACsec encryption mode.
+  ///
+  /// AWS assigns this value to each connection which is part of the LAG.
+  /// </li>
+  /// <li>
+  /// The tags
+  /// </li>
+  /// </ul> <note>
+  /// If you adjust the threshold value for the minimum number of operational
+  /// connections, ensure that the new value does not cause the LAG to fall
+  /// below the threshold and become non-operational.
+  /// </note>
   ///
   /// May throw [DirectConnectServerException].
   /// May throw [DirectConnectClientException].
   ///
   /// Parameter [lagId] :
   /// The ID of the LAG.
+  ///
+  /// Parameter [encryptionMode] :
+  /// The LAG MAC Security (MACsec) encryption mode.
+  ///
+  /// AWS applies the value to all connections which are part of the LAG.
   ///
   /// Parameter [lagName] :
   /// The name of the LAG.
@@ -2627,6 +2866,7 @@ class DirectConnect {
   /// the LAG itself to be operational.
   Future<Lag> updateLag({
     required String lagId,
+    String? encryptionMode,
     String? lagName,
     int? minimumLinks,
   }) async {
@@ -2643,6 +2883,7 @@ class DirectConnect {
       headers: headers,
       payload: {
         'lagId': lagId,
+        if (encryptionMode != null) 'encryptionMode': encryptionMode,
         if (lagName != null) 'lagName': lagName,
         if (minimumLinks != null) 'minimumLinks': minimumLinks,
       },
@@ -2756,6 +2997,30 @@ class AllocateTransitVirtualInterfaceResult {
           ? VirtualInterface.fromJson(
               json['virtualInterface'] as Map<String, dynamic>)
           : null,
+    );
+  }
+}
+
+class AssociateMacSecKeyResponse {
+  /// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG
+  /// (dxlag-xxxx).
+  final String? connectionId;
+
+  /// The MAC Security (MACsec) security keys associated with the dedicated
+  /// connection.
+  final List<MacSecKey>? macSecKeys;
+
+  AssociateMacSecKeyResponse({
+    this.connectionId,
+    this.macSecKeys,
+  });
+  factory AssociateMacSecKeyResponse.fromJson(Map<String, dynamic> json) {
+    return AssociateMacSecKeyResponse(
+      connectionId: json['connectionId'] as String?,
+      macSecKeys: (json['macSecKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -3244,6 +3509,12 @@ class Connection {
   /// </ul>
   final ConnectionState? connectionState;
 
+  /// The MAC Security (MACsec) connection encryption mode.
+  ///
+  /// The valid values are <code>no_encrypt</code>, <code>should_encrypt</code>,
+  /// and <code>must_encrypt</code>.
+  final String? encryptionMode;
+
   /// Indicates whether the connection supports a secondary BGP peer in the same
   /// address family (IPv4/IPv6).
   final HasLogicalRedundancy? hasLogicalRedundancy;
@@ -3260,12 +3531,24 @@ class Connection {
   /// The location of the connection.
   final String? location;
 
+  /// Indicates whether the connection supports MAC Security (MACsec).
+  final bool? macSecCapable;
+
+  /// The MAC Security (MACsec) security keys associated with the connection.
+  final List<MacSecKey>? macSecKeys;
+
   /// The ID of the AWS account that owns the connection.
   final String? ownerAccount;
 
   /// The name of the AWS Direct Connect service provider associated with the
   /// connection.
   final String? partnerName;
+
+  /// The MAC Security (MACsec) port link status of the connection.
+  ///
+  /// The valid values are <code>Encryption Up</code>, which means that there is
+  /// an active Connection Key Name, or <code>Encryption Down</code>.
+  final String? portEncryptionStatus;
 
   /// The name of the service provider associated with the connection.
   final String? providerName;
@@ -3286,13 +3569,17 @@ class Connection {
     this.connectionId,
     this.connectionName,
     this.connectionState,
+    this.encryptionMode,
     this.hasLogicalRedundancy,
     this.jumboFrameCapable,
     this.lagId,
     this.loaIssueTime,
     this.location,
+    this.macSecCapable,
+    this.macSecKeys,
     this.ownerAccount,
     this.partnerName,
+    this.portEncryptionStatus,
     this.providerName,
     this.region,
     this.tags,
@@ -3307,14 +3594,21 @@ class Connection {
       connectionName: json['connectionName'] as String?,
       connectionState:
           (json['connectionState'] as String?)?.toConnectionState(),
+      encryptionMode: json['encryptionMode'] as String?,
       hasLogicalRedundancy:
           (json['hasLogicalRedundancy'] as String?)?.toHasLogicalRedundancy(),
       jumboFrameCapable: json['jumboFrameCapable'] as bool?,
       lagId: json['lagId'] as String?,
       loaIssueTime: timeStampFromJson(json['loaIssueTime']),
       location: json['location'] as String?,
+      macSecCapable: json['macSecCapable'] as bool?,
+      macSecKeys: (json['macSecKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
       ownerAccount: json['ownerAccount'] as String?,
       partnerName: json['partnerName'] as String?,
+      portEncryptionStatus: json['portEncryptionStatus'] as String?,
       providerName: json['providerName'] as String?,
       region: json['region'] as String?,
       tags: (json['tags'] as List?)
@@ -4307,6 +4601,30 @@ extension on String {
   }
 }
 
+class DisassociateMacSecKeyResponse {
+  /// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG
+  /// (dxlag-xxxx).
+  final String? connectionId;
+
+  /// The MAC Security (MACsec) security keys no longer associated with the
+  /// dedicated connection.
+  final List<MacSecKey>? macSecKeys;
+
+  DisassociateMacSecKeyResponse({
+    this.connectionId,
+    this.macSecKeys,
+  });
+  factory DisassociateMacSecKeyResponse.fromJson(Map<String, dynamic> json) {
+    return DisassociateMacSecKeyResponse(
+      connectionId: json['connectionId'] as String?,
+      macSecKeys: (json['macSecKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 enum GatewayType {
   virtualPrivateGateway,
   transitGateway,
@@ -4570,6 +4888,12 @@ class Lag {
   /// possible values are 1Gbps and 10Gbps.
   final String? connectionsBandwidth;
 
+  /// The LAG MAC Security (MACsec) encryption mode.
+  ///
+  /// The valid values are <code>no_encrypt</code>, <code>should_encrypt</code>,
+  /// and <code>must_encrypt</code>.
+  final String? encryptionMode;
+
   /// Indicates whether the LAG supports a secondary BGP peer in the same address
   /// family (IPv4/IPv6).
   final HasLogicalRedundancy? hasLogicalRedundancy;
@@ -4615,6 +4939,12 @@ class Lag {
   /// The location of the LAG.
   final String? location;
 
+  /// Indicates whether the LAG supports MAC Security (MACsec).
+  final bool? macSecCapable;
+
+  /// The MAC Security (MACsec) security keys associated with the LAG.
+  final List<MacSecKey>? macSecKeys;
+
   /// The minimum number of physical dedicated connections that must be
   /// operational for the LAG itself to be operational.
   final int? minimumLinks;
@@ -4641,12 +4971,15 @@ class Lag {
     this.awsDeviceV2,
     this.connections,
     this.connectionsBandwidth,
+    this.encryptionMode,
     this.hasLogicalRedundancy,
     this.jumboFrameCapable,
     this.lagId,
     this.lagName,
     this.lagState,
     this.location,
+    this.macSecCapable,
+    this.macSecKeys,
     this.minimumLinks,
     this.numberOfConnections,
     this.ownerAccount,
@@ -4664,6 +4997,7 @@ class Lag {
           .map((e) => Connection.fromJson(e as Map<String, dynamic>))
           .toList(),
       connectionsBandwidth: json['connectionsBandwidth'] as String?,
+      encryptionMode: json['encryptionMode'] as String?,
       hasLogicalRedundancy:
           (json['hasLogicalRedundancy'] as String?)?.toHasLogicalRedundancy(),
       jumboFrameCapable: json['jumboFrameCapable'] as bool?,
@@ -4671,6 +5005,11 @@ class Lag {
       lagName: json['lagName'] as String?,
       lagState: (json['lagState'] as String?)?.toLagState(),
       location: json['location'] as String?,
+      macSecCapable: json['macSecCapable'] as bool?,
+      macSecKeys: (json['macSecKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
       minimumLinks: json['minimumLinks'] as int?,
       numberOfConnections: json['numberOfConnections'] as int?,
       ownerAccount: json['ownerAccount'] as String?,
@@ -4827,6 +5166,9 @@ extension on String {
 
 /// Information about an AWS Direct Connect location.
 class Location {
+  /// The available MAC Security (MACsec) port speeds for the location.
+  final List<String>? availableMacSecPortSpeeds;
+
   /// The available port speeds for the location.
   final List<String>? availablePortSpeeds;
 
@@ -4844,6 +5186,7 @@ class Location {
   final String? region;
 
   Location({
+    this.availableMacSecPortSpeeds,
     this.availablePortSpeeds,
     this.availableProviders,
     this.locationCode,
@@ -4852,6 +5195,10 @@ class Location {
   });
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
+      availableMacSecPortSpeeds: (json['availableMacSecPortSpeeds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       availablePortSpeeds: (json['availablePortSpeeds'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -4880,6 +5227,58 @@ class Locations {
           ?.whereNotNull()
           .map((e) => Location.fromJson(e as Map<String, dynamic>))
           .toList(),
+    );
+  }
+}
+
+/// Information about the MAC Security (MACsec) secret key.
+class MacSecKey {
+  /// The Connection Key Name (CKN) for the MAC Security secret key.
+  final String? ckn;
+
+  /// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.
+  final String? secretARN;
+
+  /// The date that the MAC Security (MACsec) secret key takes effect. The value
+  /// is displayed in UTC format.
+  final String? startOn;
+
+  /// The state of the MAC Security (MACsec) secret key.
+  ///
+  /// The possible values are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>associating</code>: The MAC Security (MACsec) secret key is being
+  /// validated and not yet associated with the connection or LAG.
+  /// </li>
+  /// <li>
+  /// <code>associated</code>: The MAC Security (MACsec) secret key is validated
+  /// and associated with the connection or LAG.
+  /// </li>
+  /// <li>
+  /// <code>disassociating</code>: The MAC Security (MACsec) secret key is being
+  /// disassociated from the connection or LAG
+  /// </li>
+  /// <li>
+  /// <code>disassociated</code>: The MAC Security (MACsec) secret key is no
+  /// longer associated with the connection or LAG.
+  /// </li>
+  /// </ul>
+  final String? state;
+
+  MacSecKey({
+    this.ckn,
+    this.secretARN,
+    this.startOn,
+    this.state,
+  });
+  factory MacSecKey.fromJson(Map<String, dynamic> json) {
+    return MacSecKey(
+      ckn: json['ckn'] as String?,
+      secretARN: json['secretARN'] as String?,
+      startOn: json['startOn'] as String?,
+      state: json['state'] as String?,
     );
   }
 }

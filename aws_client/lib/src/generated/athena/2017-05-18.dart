@@ -141,8 +141,13 @@ class Athena {
   ///
   /// Parameter [type] :
   /// The type of data catalog to create: <code>LAMBDA</code> for a federated
-  /// catalog, <code>GLUE</code> for AWS Glue Catalog, or <code>HIVE</code> for
-  /// an external hive metastore.
+  /// catalog or <code>HIVE</code> for an external hive metastore.
+  /// <note>
+  /// Do not use the <code>GLUE</code> type. This refers to the
+  /// <code>AwsDataCatalog</code> that already exists in your account, of which
+  /// you can have only one. Specifying the <code>GLUE</code> type will result
+  /// in an <code>INVALID_INPUT</code> error.
+  /// </note>
   ///
   /// Parameter [description] :
   /// A description of the data catalog to be created.
@@ -181,9 +186,6 @@ class Athena {
   /// <code>function=<i>lambda_arn</i> </code>
   /// </li>
   /// </ul> </li>
-  /// <li>
-  /// The <code>GLUE</code> type has no parameters.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [tags] :
@@ -201,12 +203,6 @@ class Athena {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -317,11 +313,6 @@ class Athena {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.CreateNamedQuery'
@@ -344,6 +335,70 @@ class Athena {
     );
 
     return CreateNamedQueryOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a prepared statement for use with SQL queries in Athena.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [queryStatement] :
+  /// The query string for the prepared statement.
+  ///
+  /// Parameter [statementName] :
+  /// The name of the prepared statement.
+  ///
+  /// Parameter [workGroup] :
+  /// The name of the workgroup to which the prepared statement belongs.
+  ///
+  /// Parameter [description] :
+  /// The description of the prepared statement.
+  Future<void> createPreparedStatement({
+    required String queryStatement,
+    required String statementName,
+    required String workGroup,
+    String? description,
+  }) async {
+    ArgumentError.checkNotNull(queryStatement, 'queryStatement');
+    _s.validateStringLength(
+      'queryStatement',
+      queryStatement,
+      1,
+      262144,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(statementName, 'statementName');
+    _s.validateStringLength(
+      'statementName',
+      statementName,
+      1,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(workGroup, 'workGroup');
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.CreatePreparedStatement'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'QueryStatement': queryStatement,
+        'StatementName': statementName,
+        'WorkGroup': workGroup,
+        if (description != null) 'Description': description,
+      },
+    );
   }
 
   /// Creates a workgroup with the specified name.
@@ -376,12 +431,6 @@ class Athena {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -423,12 +472,6 @@ class Athena {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -478,6 +521,48 @@ class Athena {
     );
   }
 
+  /// Deletes the prepared statement with the specified name from the specified
+  /// workgroup.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [statementName] :
+  /// The name of the prepared statement to delete.
+  ///
+  /// Parameter [workGroup] :
+  /// The workgroup to which the statement to be deleted belongs.
+  Future<void> deletePreparedStatement({
+    required String statementName,
+    required String workGroup,
+  }) async {
+    ArgumentError.checkNotNull(statementName, 'statementName');
+    _s.validateStringLength(
+      'statementName',
+      statementName,
+      1,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(workGroup, 'workGroup');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.DeletePreparedStatement'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'StatementName': statementName,
+        'WorkGroup': workGroup,
+      },
+    );
+  }
+
   /// Deletes the workgroup with the specified name. The primary workgroup
   /// cannot be deleted.
   ///
@@ -489,18 +574,12 @@ class Athena {
   ///
   /// Parameter [recursiveDeleteOption] :
   /// The option to delete the workgroup and its contents even if the workgroup
-  /// contains any named queries.
+  /// contains any named queries or query executions.
   Future<void> deleteWorkGroup({
     required String workGroup,
     bool? recursiveDeleteOption,
   }) async {
     ArgumentError.checkNotNull(workGroup, 'workGroup');
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.DeleteWorkGroup'
@@ -537,12 +616,6 @@ class Athena {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.GetDataCatalog'
@@ -561,7 +634,7 @@ class Athena {
     return GetDataCatalogOutput.fromJson(jsonResponse.body);
   }
 
-  /// Returns a database object for the specfied database and data catalog.
+  /// Returns a database object for the specified database and data catalog.
   ///
   /// May throw [InternalServerException].
   /// May throw [InvalidRequestException].
@@ -582,12 +655,6 @@ class Athena {
       catalogName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'catalogName',
-      catalogName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
@@ -645,6 +712,50 @@ class Athena {
     );
 
     return GetNamedQueryOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the prepared statement with the specified name from the
+  /// specified workgroup.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [statementName] :
+  /// The name of the prepared statement to retrieve.
+  ///
+  /// Parameter [workGroup] :
+  /// The workgroup to which the statement to be retrieved belongs.
+  Future<GetPreparedStatementOutput> getPreparedStatement({
+    required String statementName,
+    required String workGroup,
+  }) async {
+    ArgumentError.checkNotNull(statementName, 'statementName');
+    _s.validateStringLength(
+      'statementName',
+      statementName,
+      1,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(workGroup, 'workGroup');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.GetPreparedStatement'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'StatementName': statementName,
+        'WorkGroup': workGroup,
+      },
+    );
+
+    return GetPreparedStatementOutput.fromJson(jsonResponse.body);
   }
 
   /// Returns information about a single execution of a query if you have access
@@ -777,12 +888,6 @@ class Athena {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalogName',
-      catalogName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
     _s.validateStringLength(
       'databaseName',
@@ -830,12 +935,6 @@ class Athena {
     required String workGroup,
   }) async {
     ArgumentError.checkNotNull(workGroup, 'workGroup');
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.GetWorkGroup'
@@ -932,12 +1031,6 @@ class Athena {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'catalogName',
-      catalogName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -968,6 +1061,55 @@ class Athena {
     );
 
     return ListDatabasesOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Returns a list of engine versions that are available to choose from,
+  /// including the Auto option.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of engine versions to return in this request.
+  ///
+  /// Parameter [nextToken] :
+  /// A token generated by the Athena service that specifies where to continue
+  /// pagination if a previous request was truncated. To obtain the next set of
+  /// pages, pass in the <code>NextToken</code> from the response object of the
+  /// previous page call.
+  Future<ListEngineVersionsOutput> listEngineVersions({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      10,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.ListEngineVersions'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListEngineVersionsOutput.fromJson(jsonResponse.body);
   }
 
   /// Provides a list of available query IDs only for queries saved in the
@@ -1012,11 +1154,6 @@ class Athena {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.ListNamedQueries'
@@ -1035,6 +1172,60 @@ class Athena {
     );
 
     return ListNamedQueriesOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Lists the prepared statements in the specfied workgroup.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [workGroup] :
+  /// The workgroup to list the prepared statements for.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return in this request.
+  ///
+  /// Parameter [nextToken] :
+  /// A token generated by the Athena service that specifies where to continue
+  /// pagination if a previous request was truncated. To obtain the next set of
+  /// pages, pass in the <code>NextToken</code> from the response object of the
+  /// previous page call.
+  Future<ListPreparedStatementsOutput> listPreparedStatements({
+    required String workGroup,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(workGroup, 'workGroup');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      50,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.ListPreparedStatements'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'WorkGroup': workGroup,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListPreparedStatementsOutput.fromJson(jsonResponse.body);
   }
 
   /// Provides a list of available query execution IDs for the queries in the
@@ -1078,11 +1269,6 @@ class Athena {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1141,12 +1327,6 @@ class Athena {
       catalogName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'catalogName',
-      catalogName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
@@ -1370,11 +1550,6 @@ class Athena {
       32,
       128,
     );
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonAthena.StartQueryExecution'
@@ -1541,8 +1716,14 @@ class Athena {
   ///
   /// Parameter [type] :
   /// Specifies the type of data catalog to update. Specify <code>LAMBDA</code>
-  /// for a federated catalog, <code>GLUE</code> for AWS Glue Catalog, or
-  /// <code>HIVE</code> for an external hive metastore.
+  /// for a federated catalog or <code>HIVE</code> for an external hive
+  /// metastore.
+  /// <note>
+  /// Do not use the <code>GLUE</code> type. This refers to the
+  /// <code>AwsDataCatalog</code> that already exists in your account, of which
+  /// you can have only one. Specifying the <code>GLUE</code> type will result
+  /// in an <code>INVALID_INPUT</code> error.
+  /// </note>
   ///
   /// Parameter [description] :
   /// New or modified text that describes the data catalog.
@@ -1581,9 +1762,6 @@ class Athena {
   /// <code>function=<i>lambda_arn</i> </code>
   /// </li>
   /// </ul> </li>
-  /// <li>
-  /// The <code>GLUE</code> type has no parameters.
-  /// </li>
   /// </ul>
   Future<void> updateDataCatalog({
     required String name,
@@ -1597,12 +1775,6 @@ class Athena {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -1631,6 +1803,71 @@ class Athena {
     );
   }
 
+  /// Updates a prepared statement.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [queryStatement] :
+  /// The query string for the prepared statement.
+  ///
+  /// Parameter [statementName] :
+  /// The name of the prepared statement.
+  ///
+  /// Parameter [workGroup] :
+  /// The workgroup for the prepared statement.
+  ///
+  /// Parameter [description] :
+  /// The description of the prepared statement.
+  Future<void> updatePreparedStatement({
+    required String queryStatement,
+    required String statementName,
+    required String workGroup,
+    String? description,
+  }) async {
+    ArgumentError.checkNotNull(queryStatement, 'queryStatement');
+    _s.validateStringLength(
+      'queryStatement',
+      queryStatement,
+      1,
+      262144,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(statementName, 'statementName');
+    _s.validateStringLength(
+      'statementName',
+      statementName,
+      1,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(workGroup, 'workGroup');
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonAthena.UpdatePreparedStatement'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'QueryStatement': queryStatement,
+        'StatementName': statementName,
+        'WorkGroup': workGroup,
+        if (description != null) 'Description': description,
+      },
+    );
+  }
+
   /// Updates the workgroup with the specified name. The workgroup's name cannot
   /// be changed.
   ///
@@ -1655,12 +1892,6 @@ class Athena {
     WorkGroupState? state,
   }) async {
     ArgumentError.checkNotNull(workGroup, 'workGroup');
-    _s.validateStringPattern(
-      'workGroup',
-      workGroup,
-      r'''[a-zA-Z0-9._-]{1,128}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -1882,6 +2113,13 @@ class CreateNamedQueryOutput {
   }
 }
 
+class CreatePreparedStatementOutput {
+  CreatePreparedStatementOutput();
+  factory CreatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
+    return CreatePreparedStatementOutput();
+  }
+}
+
 class CreateWorkGroupOutput {
   CreateWorkGroupOutput();
   factory CreateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
@@ -1896,9 +2134,10 @@ class DataCatalog {
   /// hyphen characters.
   final String name;
 
-  /// The type of data catalog: <code>LAMBDA</code> for a federated catalog,
-  /// <code>GLUE</code> for AWS Glue Catalog, or <code>HIVE</code> for an external
-  /// hive metastore.
+  /// The type of data catalog: <code>LAMBDA</code> for a federated catalog or
+  /// <code>HIVE</code> for an external hive metastore. <code>GLUE</code> refers
+  /// to the <code>AwsDataCatalog</code> that already exists in your account, of
+  /// which you can have only one.
   final DataCatalogType type;
 
   /// An optional description of the data catalog.
@@ -1937,9 +2176,6 @@ class DataCatalog {
   /// <code>function=<i>lambda_arn</i> </code>
   /// </li>
   /// </ul> </li>
-  /// <li>
-  /// The <code>GLUE</code> type has no parameters.
-  /// </li>
   /// </ul>
   final Map<String, String>? parameters;
 
@@ -2069,6 +2305,13 @@ class DeleteNamedQueryOutput {
   }
 }
 
+class DeletePreparedStatementOutput {
+  DeletePreparedStatementOutput();
+  factory DeletePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
+    return DeletePreparedStatementOutput();
+  }
+}
+
 class DeleteWorkGroupOutput {
   DeleteWorkGroupOutput();
   factory DeleteWorkGroupOutput.fromJson(Map<String, dynamic> _) {
@@ -2150,6 +2393,45 @@ extension on String {
   }
 }
 
+/// The Athena engine version for running queries.
+class EngineVersion {
+  /// Read only. The engine version on which the query runs. If the user requests
+  /// a valid engine version other than Auto, the effective engine version is the
+  /// same as the engine version that the user requested. If the user requests
+  /// Auto, the effective engine version is chosen by Athena. When a request to
+  /// update the engine version is made by a <code>CreateWorkGroup</code> or
+  /// <code>UpdateWorkGroup</code> operation, the
+  /// <code>EffectiveEngineVersion</code> field is ignored.
+  final String? effectiveEngineVersion;
+
+  /// The engine version requested by the user. Possible values are determined by
+  /// the output of <code>ListEngineVersions</code>, including Auto. The default
+  /// is Auto.
+  final String? selectedEngineVersion;
+
+  EngineVersion({
+    this.effectiveEngineVersion,
+    this.selectedEngineVersion,
+  });
+  factory EngineVersion.fromJson(Map<String, dynamic> json) {
+    return EngineVersion(
+      effectiveEngineVersion: json['EffectiveEngineVersion'] as String?,
+      selectedEngineVersion: json['SelectedEngineVersion'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effectiveEngineVersion = this.effectiveEngineVersion;
+    final selectedEngineVersion = this.selectedEngineVersion;
+    return {
+      if (effectiveEngineVersion != null)
+        'EffectiveEngineVersion': effectiveEngineVersion,
+      if (selectedEngineVersion != null)
+        'SelectedEngineVersion': selectedEngineVersion,
+    };
+  }
+}
+
 class GetDataCatalogOutput {
   /// The data catalog returned.
   final DataCatalog? dataCatalog;
@@ -2193,6 +2475,23 @@ class GetNamedQueryOutput {
     return GetNamedQueryOutput(
       namedQuery: json['NamedQuery'] != null
           ? NamedQuery.fromJson(json['NamedQuery'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetPreparedStatementOutput {
+  /// The name of the prepared statement that was retrieved.
+  final PreparedStatement? preparedStatement;
+
+  GetPreparedStatementOutput({
+    this.preparedStatement,
+  });
+  factory GetPreparedStatementOutput.fromJson(Map<String, dynamic> json) {
+    return GetPreparedStatementOutput(
+      preparedStatement: json['PreparedStatement'] != null
+          ? PreparedStatement.fromJson(
+              json['PreparedStatement'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -2327,6 +2626,31 @@ class ListDatabasesOutput {
   }
 }
 
+class ListEngineVersionsOutput {
+  /// A list of engine versions that are available to choose from.
+  final List<EngineVersion>? engineVersions;
+
+  /// A token generated by the Athena service that specifies where to continue
+  /// pagination if a previous request was truncated. To obtain the next set of
+  /// pages, pass in the <code>NextToken</code> from the response object of the
+  /// previous page call.
+  final String? nextToken;
+
+  ListEngineVersionsOutput({
+    this.engineVersions,
+    this.nextToken,
+  });
+  factory ListEngineVersionsOutput.fromJson(Map<String, dynamic> json) {
+    return ListEngineVersionsOutput(
+      engineVersions: (json['EngineVersions'] as List?)
+          ?.whereNotNull()
+          .map((e) => EngineVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
 class ListNamedQueriesOutput {
   /// The list of unique query IDs.
   final List<String>? namedQueryIds;
@@ -2348,6 +2672,32 @@ class ListNamedQueriesOutput {
           .map((e) => e as String)
           .toList(),
       nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListPreparedStatementsOutput {
+  /// A token generated by the Athena service that specifies where to continue
+  /// pagination if a previous request was truncated. To obtain the next set of
+  /// pages, pass in the <code>NextToken</code> from the response object of the
+  /// previous page call.
+  final String? nextToken;
+
+  /// The list of prepared statements for the workgroup.
+  final List<PreparedStatementSummary>? preparedStatements;
+
+  ListPreparedStatementsOutput({
+    this.nextToken,
+    this.preparedStatements,
+  });
+  factory ListPreparedStatementsOutput.fromJson(Map<String, dynamic> json) {
+    return ListPreparedStatementsOutput(
+      nextToken: json['NextToken'] as String?,
+      preparedStatements: (json['PreparedStatements'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              PreparedStatementSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -2428,8 +2778,8 @@ class ListWorkGroupsOutput {
   /// previous page call.
   final String? nextToken;
 
-  /// The list of workgroups, including their names, descriptions, creation times,
-  /// and states.
+  /// A list of <a>WorkGroupSummary</a> objects that include the names,
+  /// descriptions, creation times, and states for each workgroup.
   final List<WorkGroupSummary>? workGroups;
 
   ListWorkGroupsOutput({
@@ -2488,8 +2838,66 @@ class NamedQuery {
   }
 }
 
+/// A prepared SQL statement for use with Athena.
+class PreparedStatement {
+  /// The description of the prepared statement.
+  final String? description;
+
+  /// The last modified time of the prepared statement.
+  final DateTime? lastModifiedTime;
+
+  /// The query string for the prepared statement.
+  final String? queryStatement;
+
+  /// The name of the prepared statement.
+  final String? statementName;
+
+  /// The name of the workgroup to which the prepared statement belongs.
+  final String? workGroupName;
+
+  PreparedStatement({
+    this.description,
+    this.lastModifiedTime,
+    this.queryStatement,
+    this.statementName,
+    this.workGroupName,
+  });
+  factory PreparedStatement.fromJson(Map<String, dynamic> json) {
+    return PreparedStatement(
+      description: json['Description'] as String?,
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      queryStatement: json['QueryStatement'] as String?,
+      statementName: json['StatementName'] as String?,
+      workGroupName: json['WorkGroupName'] as String?,
+    );
+  }
+}
+
+/// The name and last modified time of the prepared statement.
+class PreparedStatementSummary {
+  /// The last modified time of the prepared statement.
+  final DateTime? lastModifiedTime;
+
+  /// The name of the prepared statement.
+  final String? statementName;
+
+  PreparedStatementSummary({
+    this.lastModifiedTime,
+    this.statementName,
+  });
+  factory PreparedStatementSummary.fromJson(Map<String, dynamic> json) {
+    return PreparedStatementSummary(
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      statementName: json['StatementName'] as String?,
+    );
+  }
+}
+
 /// Information about a single instance of a query execution.
 class QueryExecution {
+  /// The engine version that executed the query.
+  final EngineVersion? engineVersion;
+
   /// The SQL query statements which the query execution ran.
   final String? query;
 
@@ -2526,6 +2934,7 @@ class QueryExecution {
   final String? workGroup;
 
   QueryExecution({
+    this.engineVersion,
     this.query,
     this.queryExecutionContext,
     this.queryExecutionId,
@@ -2537,6 +2946,10 @@ class QueryExecution {
   });
   factory QueryExecution.fromJson(Map<String, dynamic> json) {
     return QueryExecution(
+      engineVersion: json['EngineVersion'] != null
+          ? EngineVersion.fromJson(
+              json['EngineVersion'] as Map<String, dynamic>)
+          : null,
       query: json['Query'] as String?,
       queryExecutionContext: json['QueryExecutionContext'] != null
           ? QueryExecutionContext.fromJson(
@@ -3145,6 +3558,13 @@ class UpdateDataCatalogOutput {
   }
 }
 
+class UpdatePreparedStatementOutput {
+  UpdatePreparedStatementOutput();
+  factory UpdatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
+    return UpdatePreparedStatementOutput();
+  }
+}
+
 class UpdateWorkGroupOutput {
   UpdateWorkGroupOutput();
   factory UpdateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
@@ -3226,6 +3646,11 @@ class WorkGroupConfiguration {
   /// Settings Override Client-Side Settings</a>.
   final bool? enforceWorkGroupConfiguration;
 
+  /// The engine version that all queries running on the workgroup use. Queries on
+  /// the <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the
+  /// preview engine regardless of this setting.
+  final EngineVersion? engineVersion;
+
   /// Indicates that the Amazon CloudWatch metrics are enabled for the workgroup.
   final bool? publishCloudWatchMetricsEnabled;
 
@@ -3255,6 +3680,7 @@ class WorkGroupConfiguration {
   WorkGroupConfiguration({
     this.bytesScannedCutoffPerQuery,
     this.enforceWorkGroupConfiguration,
+    this.engineVersion,
     this.publishCloudWatchMetricsEnabled,
     this.requesterPaysEnabled,
     this.resultConfiguration,
@@ -3264,6 +3690,10 @@ class WorkGroupConfiguration {
       bytesScannedCutoffPerQuery: json['BytesScannedCutoffPerQuery'] as int?,
       enforceWorkGroupConfiguration:
           json['EnforceWorkGroupConfiguration'] as bool?,
+      engineVersion: json['EngineVersion'] != null
+          ? EngineVersion.fromJson(
+              json['EngineVersion'] as Map<String, dynamic>)
+          : null,
       publishCloudWatchMetricsEnabled:
           json['PublishCloudWatchMetricsEnabled'] as bool?,
       requesterPaysEnabled: json['RequesterPaysEnabled'] as bool?,
@@ -3277,6 +3707,7 @@ class WorkGroupConfiguration {
   Map<String, dynamic> toJson() {
     final bytesScannedCutoffPerQuery = this.bytesScannedCutoffPerQuery;
     final enforceWorkGroupConfiguration = this.enforceWorkGroupConfiguration;
+    final engineVersion = this.engineVersion;
     final publishCloudWatchMetricsEnabled =
         this.publishCloudWatchMetricsEnabled;
     final requesterPaysEnabled = this.requesterPaysEnabled;
@@ -3286,6 +3717,7 @@ class WorkGroupConfiguration {
         'BytesScannedCutoffPerQuery': bytesScannedCutoffPerQuery,
       if (enforceWorkGroupConfiguration != null)
         'EnforceWorkGroupConfiguration': enforceWorkGroupConfiguration,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
       if (publishCloudWatchMetricsEnabled != null)
         'PublishCloudWatchMetricsEnabled': publishCloudWatchMetricsEnabled,
       if (requesterPaysEnabled != null)
@@ -3314,6 +3746,13 @@ class WorkGroupConfigurationUpdates {
   /// Settings Override Client-Side Settings</a>.
   final bool? enforceWorkGroupConfiguration;
 
+  /// The engine version requested when a workgroup is updated. After the update,
+  /// all queries on the workgroup run on the requested engine version. If no
+  /// value was previously set, the default is Auto. Queries on the
+  /// <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the preview
+  /// engine regardless of this setting.
+  final EngineVersion? engineVersion;
+
   /// Indicates whether this workgroup enables publishing metrics to Amazon
   /// CloudWatch.
   final bool? publishCloudWatchMetricsEnabled;
@@ -3341,6 +3780,7 @@ class WorkGroupConfigurationUpdates {
   WorkGroupConfigurationUpdates({
     this.bytesScannedCutoffPerQuery,
     this.enforceWorkGroupConfiguration,
+    this.engineVersion,
     this.publishCloudWatchMetricsEnabled,
     this.removeBytesScannedCutoffPerQuery,
     this.requesterPaysEnabled,
@@ -3349,6 +3789,7 @@ class WorkGroupConfigurationUpdates {
   Map<String, dynamic> toJson() {
     final bytesScannedCutoffPerQuery = this.bytesScannedCutoffPerQuery;
     final enforceWorkGroupConfiguration = this.enforceWorkGroupConfiguration;
+    final engineVersion = this.engineVersion;
     final publishCloudWatchMetricsEnabled =
         this.publishCloudWatchMetricsEnabled;
     final removeBytesScannedCutoffPerQuery =
@@ -3360,6 +3801,7 @@ class WorkGroupConfigurationUpdates {
         'BytesScannedCutoffPerQuery': bytesScannedCutoffPerQuery,
       if (enforceWorkGroupConfiguration != null)
         'EnforceWorkGroupConfiguration': enforceWorkGroupConfiguration,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
       if (publishCloudWatchMetricsEnabled != null)
         'PublishCloudWatchMetricsEnabled': publishCloudWatchMetricsEnabled,
       if (removeBytesScannedCutoffPerQuery != null)
@@ -3409,6 +3851,11 @@ class WorkGroupSummary {
   /// The workgroup description.
   final String? description;
 
+  /// The engine version setting for all queries on the workgroup. Queries on the
+  /// <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the preview
+  /// engine regardless of this setting.
+  final EngineVersion? engineVersion;
+
   /// The name of the workgroup.
   final String? name;
 
@@ -3418,6 +3865,7 @@ class WorkGroupSummary {
   WorkGroupSummary({
     this.creationTime,
     this.description,
+    this.engineVersion,
     this.name,
     this.state,
   });
@@ -3425,6 +3873,10 @@ class WorkGroupSummary {
     return WorkGroupSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
       description: json['Description'] as String?,
+      engineVersion: json['EngineVersion'] != null
+          ? EngineVersion.fromJson(
+              json['EngineVersion'] as Map<String, dynamic>)
+          : null,
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toWorkGroupState(),
     );

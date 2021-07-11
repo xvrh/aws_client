@@ -181,7 +181,21 @@ class PI {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(groupBy, 'groupBy');
     ArgumentError.checkNotNull(identifier, 'identifier');
+    _s.validateStringLength(
+      'identifier',
+      identifier,
+      0,
+      256,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(metric, 'metric');
+    _s.validateStringLength(
+      'metric',
+      metric,
+      0,
+      256,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(serviceType, 'serviceType');
     ArgumentError.checkNotNull(startTime, 'startTime');
     _s.validateNumRange(
@@ -189,6 +203,12 @@ class PI {
       maxResults,
       0,
       20,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -216,6 +236,100 @@ class PI {
     );
 
     return DescribeDimensionKeysResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Get the attributes of the specified dimension group for a DB instance or
+  /// data source. For example, if you specify a SQL ID,
+  /// <code>GetDimensionKeyDetails</code> retrieves the full text of the
+  /// dimension <code>db.sql.statement</code> associated with this ID. This
+  /// operation is useful because <code>GetResourceMetrics</code> and
+  /// <code>DescribeDimensionKeys</code> don't support retrieval of large SQL
+  /// statement text.
+  ///
+  /// May throw [InvalidArgumentException].
+  /// May throw [InternalServiceError].
+  /// May throw [NotAuthorizedException].
+  ///
+  /// Parameter [group] :
+  /// The name of the dimension group. The only valid value is
+  /// <code>db.sql</code>. Performance Insights searches the specified group for
+  /// the dimension group ID.
+  ///
+  /// Parameter [groupIdentifier] :
+  /// The ID of the dimension group from which to retrieve dimension details.
+  /// For dimension group <code>db.sql</code>, the group ID is
+  /// <code>db.sql.id</code>.
+  ///
+  /// Parameter [identifier] :
+  /// The ID for a data source from which to gather dimension data. This ID must
+  /// be immutable and unique within an AWS Region. When a DB instance is the
+  /// data source, specify its <code>DbiResourceId</code> value. For example,
+  /// specify <code>db-ABCDEFGHIJKLMNOPQRSTU1VW2X</code>.
+  ///
+  /// Parameter [serviceType] :
+  /// The AWS service for which Performance Insights returns data. The only
+  /// valid value is <code>RDS</code>.
+  ///
+  /// Parameter [requestedDimensions] :
+  /// A list of dimensions to retrieve the detail data for within the given
+  /// dimension group. For the dimension group <code>db.sql</code>, specify
+  /// either the full dimension name <code>db.sql.statement</code> or the short
+  /// dimension name <code>statement</code>. If you don't specify this
+  /// parameter, Performance Insights returns all dimension data within the
+  /// specified dimension group.
+  Future<GetDimensionKeyDetailsResponse> getDimensionKeyDetails({
+    required String group,
+    required String groupIdentifier,
+    required String identifier,
+    required ServiceType serviceType,
+    List<String>? requestedDimensions,
+  }) async {
+    ArgumentError.checkNotNull(group, 'group');
+    _s.validateStringLength(
+      'group',
+      group,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(groupIdentifier, 'groupIdentifier');
+    _s.validateStringLength(
+      'groupIdentifier',
+      groupIdentifier,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(identifier, 'identifier');
+    _s.validateStringLength(
+      'identifier',
+      identifier,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(serviceType, 'serviceType');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'PerformanceInsightsv20180227.GetDimensionKeyDetails'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Group': group,
+        'GroupIdentifier': groupIdentifier,
+        'Identifier': identifier,
+        'ServiceType': serviceType.toValue(),
+        if (requestedDimensions != null)
+          'RequestedDimensions': requestedDimensions,
+      },
+    );
+
+    return GetDimensionKeyDetailsResponse.fromJson(jsonResponse.body);
   }
 
   /// Retrieve Performance Insights metrics for a set of data sources, over a
@@ -311,6 +425,13 @@ class PI {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(identifier, 'identifier');
+    _s.validateStringLength(
+      'identifier',
+      identifier,
+      0,
+      256,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(metricQueries, 'metricQueries');
     ArgumentError.checkNotNull(serviceType, 'serviceType');
     ArgumentError.checkNotNull(startTime, 'startTime');
@@ -319,6 +440,12 @@ class PI {
       maxResults,
       0,
       20,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -415,6 +542,39 @@ class DescribeDimensionKeysResponse {
           .map((e) => ResponsePartitionKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+enum DetailStatus {
+  available,
+  processing,
+  unavailable,
+}
+
+extension on DetailStatus {
+  String toValue() {
+    switch (this) {
+      case DetailStatus.available:
+        return 'AVAILABLE';
+      case DetailStatus.processing:
+        return 'PROCESSING';
+      case DetailStatus.unavailable:
+        return 'UNAVAILABLE';
+    }
+  }
+}
+
+extension on String {
+  DetailStatus toDetailStatus() {
+    switch (this) {
+      case 'AVAILABLE':
+        return DetailStatus.available;
+      case 'PROCESSING':
+        return DetailStatus.processing;
+      case 'UNAVAILABLE':
+        return DetailStatus.unavailable;
+    }
+    throw Exception('$this is not known in enum DetailStatus');
   }
 }
 
@@ -590,6 +750,68 @@ class DimensionKeyDescription {
           .map((e) => e as double)
           .toList(),
       total: json['Total'] as double?,
+    );
+  }
+}
+
+/// An object that describes the details for a specified dimension.
+class DimensionKeyDetail {
+  /// The full name of the dimension. The full name includes the group name and
+  /// key name. The only valid value is <code>db.sql.statement</code>.
+  final String? dimension;
+
+  /// The status of the dimension detail data. Possible values include the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>AVAILABLE</code> - The dimension detail data is ready to be retrieved.
+  /// </li>
+  /// <li>
+  /// <code>PROCESSING</code> - The dimension detail data isn't ready to be
+  /// retrieved because more processing time is required. If the requested detail
+  /// data for <code>db.sql.statement</code> has the status
+  /// <code>PROCESSING</code>, Performance Insights returns the truncated query.
+  /// </li>
+  /// <li>
+  /// <code>UNAVAILABLE</code> - The dimension detail data could not be collected
+  /// successfully.
+  /// </li>
+  /// </ul>
+  final DetailStatus? status;
+
+  /// The value of the dimension detail data. For the
+  /// <code>db.sql.statement</code> dimension, this value is either the full or
+  /// truncated SQL query, depending on the return status.
+  final String? value;
+
+  DimensionKeyDetail({
+    this.dimension,
+    this.status,
+    this.value,
+  });
+  factory DimensionKeyDetail.fromJson(Map<String, dynamic> json) {
+    return DimensionKeyDetail(
+      dimension: json['Dimension'] as String?,
+      status: (json['Status'] as String?)?.toDetailStatus(),
+      value: json['Value'] as String?,
+    );
+  }
+}
+
+class GetDimensionKeyDetailsResponse {
+  /// The details for the requested dimensions.
+  final List<DimensionKeyDetail>? dimensions;
+
+  GetDimensionKeyDetailsResponse({
+    this.dimensions,
+  });
+  factory GetDimensionKeyDetailsResponse.fromJson(Map<String, dynamic> json) {
+    return GetDimensionKeyDetailsResponse(
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => DimensionKeyDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }

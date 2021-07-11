@@ -196,24 +196,12 @@ class Synthetics {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       21,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(runtimeVersion, 'runtimeVersion');
@@ -312,12 +300,6 @@ class Synthetics {
       name,
       1,
       21,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -487,12 +469,6 @@ class Synthetics {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -531,12 +507,6 @@ class Synthetics {
       name,
       1,
       21,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -587,12 +557,6 @@ class Synthetics {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:canary:[0-9a-z_\-]{1,21}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -624,12 +588,6 @@ class Synthetics {
       name,
       1,
       21,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -667,12 +625,6 @@ class Synthetics {
       name,
       1,
       21,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -725,12 +677,6 @@ class Synthetics {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:canary:[0-9a-z_\-]{1,21}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -768,12 +714,6 @@ class Synthetics {
       resourceArn,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\d{1}:\d{12}:canary:[0-9a-z_\-]{1,21}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -888,22 +828,11 @@ class Synthetics {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9a-z_\-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
     );
     _s.validateNumRange(
       'failureRetentionPeriodInDays',

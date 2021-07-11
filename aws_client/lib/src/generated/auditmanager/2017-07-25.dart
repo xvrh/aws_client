@@ -105,24 +105,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -167,24 +155,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(evidenceIds, 'evidenceIds');
@@ -228,12 +204,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         createDelegationRequests, 'createDelegationRequests');
     final $payload = <String, dynamic>{
@@ -272,12 +242,6 @@ class AuditManager {
       assessmentId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(delegationIds, 'delegationIds');
@@ -324,24 +288,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(evidenceIds, 'evidenceIds');
@@ -393,12 +345,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
     _s.validateStringLength(
       'controlId',
@@ -407,24 +353,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
       controlSetId,
       1,
       300,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(manualEvidence, 'manualEvidence');
@@ -485,24 +419,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'frameworkId',
-      frameworkId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       300,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\w\W\s\S]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(roles, 'roles');
@@ -512,11 +434,6 @@ class AuditManager {
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'assessmentReportsDestination': assessmentReportsDestination,
@@ -555,11 +472,15 @@ class AuditManager {
   ///
   /// Parameter [description] :
   /// An optional description for the new custom framework.
+  ///
+  /// Parameter [tags] :
+  /// The tags associated with the framework.
   Future<CreateAssessmentFrameworkResponse> createAssessmentFramework({
     required List<CreateAssessmentFrameworkControlSet> controlSets,
     required String name,
     String? complianceType,
     String? description,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(controlSets, 'controlSets');
     ArgumentError.checkNotNull(name, 'name');
@@ -570,22 +491,11 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'complianceType',
       complianceType,
       0,
       100,
-    );
-    _s.validateStringPattern(
-      'complianceType',
-      complianceType,
-      r'''^[\w\W\s\S]*$''',
     );
     _s.validateStringLength(
       'description',
@@ -593,16 +503,12 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
-    );
     final $payload = <String, dynamic>{
       'controlSets': controlSets,
       'name': name,
       if (complianceType != null) 'complianceType': complianceType,
       if (description != null) 'description': description,
+      if (tags != null) 'tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -641,12 +547,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -655,22 +555,11 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9-_\.]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'name': name,
@@ -693,8 +582,7 @@ class AuditManager {
   /// May throw [InternalServerException].
   ///
   /// Parameter [controlMappingSources] :
-  /// The data source that determines from where AWS Audit Manager collects
-  /// evidence for the control.
+  /// The data mapping sources for the specified control.
   ///
   /// Parameter [name] :
   /// The name of the control.
@@ -731,22 +619,11 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'actionPlanInstructions',
       actionPlanInstructions,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'actionPlanInstructions',
-      actionPlanInstructions,
-      r'''^[\w\W\s\S]*$''',
     );
     _s.validateStringLength(
       'actionPlanTitle',
@@ -754,32 +631,17 @@ class AuditManager {
       0,
       300,
     );
-    _s.validateStringPattern(
-      'actionPlanTitle',
-      actionPlanTitle,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'testingInformation',
       testingInformation,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'testingInformation',
-      testingInformation,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'controlMappingSources': controlMappingSources,
@@ -820,12 +682,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -852,12 +708,6 @@ class AuditManager {
       frameworkId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'frameworkId',
-      frameworkId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -892,24 +742,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assessmentReportId, 'assessmentReportId');
     _s.validateStringLength(
       'assessmentReportId',
       assessmentReportId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'assessmentReportId',
-      assessmentReportId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -939,12 +777,6 @@ class AuditManager {
       controlId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -990,11 +822,6 @@ class AuditManager {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'adminAccountId',
-      adminAccountId,
-      r'''^[0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       if (adminAccountId != null) 'adminAccountId': adminAccountId,
     };
@@ -1031,24 +858,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1096,12 +911,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1129,12 +938,6 @@ class AuditManager {
       frameworkId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'frameworkId',
-      frameworkId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1170,24 +973,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assessmentReportId, 'assessmentReportId');
     _s.validateStringLength(
       'assessmentReportId',
       assessmentReportId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'assessmentReportId',
-      assessmentReportId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1237,33 +1028,17 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'controlId',
       controlId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
     );
     _s.validateStringLength(
       'controlSetId',
       controlSetId,
       1,
       300,
-    );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -1276,11 +1051,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (controlId != null) 'controlId': [controlId],
@@ -1319,12 +1089,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1361,11 +1125,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1413,24 +1172,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
       controlSetId,
       1,
       300,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
@@ -1441,24 +1188,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceId, 'evidenceId');
     _s.validateStringLength(
       'evidenceId',
       evidenceId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceId',
-      evidenceId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1509,12 +1244,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
@@ -1523,24 +1252,12 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1554,11 +1271,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1604,12 +1316,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
@@ -1618,24 +1324,12 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
     _s.validateStringLength(
       'evidenceFolderId',
       evidenceFolderId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'evidenceFolderId',
-      evidenceFolderId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1679,12 +1373,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1696,11 +1384,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1756,12 +1439,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
     _s.validateStringLength(
       'controlId',
@@ -1770,24 +1447,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
       controlSetId,
       1,
       300,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1801,11 +1466,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1842,6 +1502,7 @@ class AuditManager {
 
   /// Returns a list of the in-scope AWS services for the specified assessment.
   ///
+  /// May throw [AccessDeniedException].
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   Future<GetServicesInScopeResponse> getServicesInScope() async {
@@ -1908,11 +1569,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
-    );
     final $query = <String, List<String>>{
       'frameworkType': [frameworkType.toValue()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1956,11 +1612,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2002,11 +1653,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2054,11 +1700,6 @@ class AuditManager {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
     );
     final $query = <String, List<String>>{
       'controlType': [controlType.toValue()],
@@ -2109,11 +1750,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
-    );
     final $query = <String, List<String>>{
       'source': [source.toValue()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2157,11 +1793,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9+\/=]*$''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2195,12 +1826,6 @@ class AuditManager {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:.*:auditmanager:.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2232,21 +1857,11 @@ class AuditManager {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'delegatedAdminAccount',
-      delegatedAdminAccount,
-      r'''^[0-9]{12}$''',
-    );
     _s.validateStringLength(
       'kmsKey',
       kmsKey,
       7,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKey',
-      kmsKey,
-      r'''^arn:.*:kms:.*|DEFAULT''',
     );
     final $payload = <String, dynamic>{
       if (delegatedAdminAccount != null)
@@ -2284,12 +1899,6 @@ class AuditManager {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'adminAccountId',
-      adminAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'adminAccountId': adminAccountId,
     };
@@ -2325,12 +1934,6 @@ class AuditManager {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:.*:auditmanager:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -2364,12 +1967,6 @@ class AuditManager {
       resourceArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:.*:auditmanager:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -2426,12 +2023,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     _s.validateStringLength(
       'assessmentDescription',
@@ -2439,21 +2030,11 @@ class AuditManager {
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'assessmentDescription',
-      assessmentDescription,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'assessmentName',
       assessmentName,
       1,
       300,
-    );
-    _s.validateStringPattern(
-      'assessmentName',
-      assessmentName,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'scope': scope,
@@ -2509,24 +2090,12 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
     _s.validateStringLength(
       'controlId',
       controlId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
@@ -2537,22 +2106,11 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'commentBody',
       commentBody,
       0,
       500,
-    );
-    _s.validateStringPattern(
-      'commentBody',
-      commentBody,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       if (commentBody != null) 'commentBody': commentBody,
@@ -2601,12 +2159,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(comment, 'comment');
     _s.validateStringLength(
       'comment',
@@ -2615,24 +2167,12 @@ class AuditManager {
       350,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'comment',
-      comment,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
     _s.validateStringLength(
       'controlSetId',
       controlSetId,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'controlSetId',
-      controlSetId,
-      r'''.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(status, 'status');
@@ -2688,12 +2228,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'frameworkId',
-      frameworkId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -2702,33 +2236,17 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'complianceType',
       complianceType,
       0,
       100,
     );
-    _s.validateStringPattern(
-      'complianceType',
-      complianceType,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'controlSets': controlSets,
@@ -2769,12 +2287,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assessmentId',
-      assessmentId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     final $payload = <String, dynamic>{
       'status': status.toValue(),
@@ -2799,8 +2311,7 @@ class AuditManager {
   /// The identifier for the specified control.
   ///
   /// Parameter [controlMappingSources] :
-  /// The data source that determines from where AWS Audit Manager collects
-  /// evidence for the control.
+  /// The data mapping sources for the specified control.
   ///
   /// Parameter [name] :
   /// The name of the control to be updated.
@@ -2833,12 +2344,6 @@ class AuditManager {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'controlId',
-      controlId,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlMappingSources, 'controlMappingSources');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -2848,22 +2353,11 @@ class AuditManager {
       300,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\w\W\s\S]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'actionPlanInstructions',
       actionPlanInstructions,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'actionPlanInstructions',
-      actionPlanInstructions,
-      r'''^[\w\W\s\S]*$''',
     );
     _s.validateStringLength(
       'actionPlanTitle',
@@ -2871,32 +2365,17 @@ class AuditManager {
       0,
       300,
     );
-    _s.validateStringPattern(
-      'actionPlanTitle',
-      actionPlanTitle,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\w\W\s\S]*$''',
-    );
     _s.validateStringLength(
       'testingInformation',
       testingInformation,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'testingInformation',
-      testingInformation,
-      r'''^[\w\W\s\S]*$''',
     );
     final $payload = <String, dynamic>{
       'controlMappingSources': controlMappingSources,
@@ -2946,21 +2425,11 @@ class AuditManager {
       7,
       2048,
     );
-    _s.validateStringPattern(
-      'kmsKey',
-      kmsKey,
-      r'''^arn:.*:kms:.*|DEFAULT''',
-    );
     _s.validateStringLength(
       'snsTopic',
       snsTopic,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'snsTopic',
-      snsTopic,
-      r'''^arn:.*:sns:.*''',
     );
     final $payload = <String, dynamic>{
       if (defaultAssessmentReportsDestination != null)
@@ -3000,12 +2469,6 @@ class AuditManager {
       s3RelativePath,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      's3RelativePath',
-      s3RelativePath,
-      r'''^(S|s)3:\/\/[a-zA-Z0-9-_\/.]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -3490,6 +2953,9 @@ class AssessmentFramework {
 
 /// The metadata associated with a standard or custom framework.
 class AssessmentFrameworkMetadata {
+  /// The Amazon Resource Name (ARN) of the framework.
+  final String? arn;
+
   /// The compliance type that the new custom framework supports, such as CIS or
   /// HIPAA.
   final String? complianceType;
@@ -3522,6 +2988,7 @@ class AssessmentFrameworkMetadata {
   final FrameworkType? type;
 
   AssessmentFrameworkMetadata({
+    this.arn,
     this.complianceType,
     this.controlSetsCount,
     this.controlsCount,
@@ -3535,6 +3002,7 @@ class AssessmentFrameworkMetadata {
   });
   factory AssessmentFrameworkMetadata.fromJson(Map<String, dynamic> json) {
     return AssessmentFrameworkMetadata(
+      arn: json['arn'] as String?,
       complianceType: json['complianceType'] as String?,
       controlSetsCount: json['controlSetsCount'] as int?,
       controlsCount: json['controlsCount'] as int?,
@@ -4116,7 +3584,7 @@ class BatchImportEvidenceToAssessmentControlError {
   final String? errorCode;
 
   /// The error message returned by the
-  /// <code>BatchImportEvidenceToAssessmentControlError</code> API.
+  /// <code>BatchImportEvidenceToAssessmentControl</code> API.
   final String? errorMessage;
 
   /// Manual evidence that cannot be collected automatically by AWS Audit Manager.
@@ -4210,7 +3678,8 @@ class Control {
   /// The data mapping sources for the specified control.
   final List<ControlMappingSource>? controlMappingSources;
 
-  /// The data mapping sources for the specified control.
+  /// The data source that determines from where AWS Audit Manager collects
+  /// evidence for the control.
   final String? controlSources;
 
   /// Specifies when the control was created.
@@ -4612,23 +4081,23 @@ class CreateAssessmentFrameworkControl {
 /// A <code>controlSet</code> entity that represents a collection of controls in
 /// AWS Audit Manager. This does not contain the control set ID.
 class CreateAssessmentFrameworkControlSet {
+  /// The name of the specified control set.
+  final String name;
+
   /// The list of controls within the control set. This does not contain the
   /// control set ID.
   final List<CreateAssessmentFrameworkControl>? controls;
 
-  /// The name of the specified control set.
-  final String? name;
-
   CreateAssessmentFrameworkControlSet({
+    required this.name,
     this.controls,
-    this.name,
   });
   Map<String, dynamic> toJson() {
-    final controls = this.controls;
     final name = this.name;
+    final controls = this.controls;
     return {
+      'name': name,
       if (controls != null) 'controls': controls,
-      if (name != null) 'name': name,
     };
   }
 }
@@ -5026,7 +4495,7 @@ class DisassociateAssessmentReportEvidenceFolderResponse {
 /// the requirements specified by a control. Examples of evidence include change
 /// activity triggered by a user, or a system configuration snapshot.
 class Evidence {
-  /// Specifies whether the evidence is inclded in the assessment report.
+  /// Specifies whether the evidence is included in the assessment report.
   final String? assessmentReportSelection;
 
   /// The names and values used by the evidence event, including an attribute name
@@ -5159,6 +4628,9 @@ class Framework {
   /// The name of the specified framework.
   final String? name;
 
+  /// The tags associated with the framework.
+  final Map<String, String>? tags;
+
   /// The framework type, such as custom or standard.
   final FrameworkType? type;
 
@@ -5175,6 +4647,7 @@ class Framework {
     this.lastUpdatedBy,
     this.logo,
     this.name,
+    this.tags,
     this.type,
   });
   factory Framework.fromJson(Map<String, dynamic> json) {
@@ -5194,6 +4667,8 @@ class Framework {
       lastUpdatedBy: json['lastUpdatedBy'] as String?,
       logo: json['logo'] as String?,
       name: json['name'] as String?,
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
       type: (json['type'] as String?)?.toFrameworkType(),
     );
   }
@@ -5305,14 +4780,19 @@ class GetAssessmentReportUrlResponse {
 
 class GetAssessmentResponse {
   final Assessment? assessment;
+  final Role? userRole;
 
   GetAssessmentResponse({
     this.assessment,
+    this.userRole,
   });
   factory GetAssessmentResponse.fromJson(Map<String, dynamic> json) {
     return GetAssessmentResponse(
       assessment: json['assessment'] != null
           ? Assessment.fromJson(json['assessment'] as Map<String, dynamic>)
+          : null,
+      userRole: json['userRole'] != null
+          ? Role.fromJson(json['userRole'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -5885,8 +5365,8 @@ class Resource {
   }
 }
 
-/// The wrapper that contains AWS Audit Manager role information, such as the
-/// role type and IAM Amazon Resource Name (ARN).
+/// The wrapper that contains the AWS Audit Manager role information of the
+/// current user, such as the role type and IAM Amazon Resource Name (ARN).
 class Role {
   /// The Amazon Resource Name (ARN) of the IAM role.
   final String? roleArn;
@@ -6139,13 +5619,15 @@ extension on String {
   }
 }
 
-/// The keyword to search for in AWS CloudTrail logs.
+/// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS
+/// Security Hub checks, and AWS API names.
 class SourceKeyword {
   /// The method of input for the specified keyword.
   final KeywordInputType? keywordInputType;
 
-  /// The value of the keyword used to search AWS CloudTrail logs when mapping a
-  /// control data source.
+  /// The value of the keyword used to search AWS CloudTrail logs, AWS Config
+  /// rules, AWS Security Hub checks, and AWS API names when mapping a control
+  /// data source.
   final String? keywordValue;
 
   SourceKeyword({
@@ -6316,28 +5798,28 @@ class UpdateAssessmentControlSetStatusResponse {
 /// A <code>controlSet</code> entity that represents a collection of controls in
 /// AWS Audit Manager. This does not contain the control set ID.
 class UpdateAssessmentFrameworkControlSet {
+  /// The name of the control set.
+  final String name;
+
   /// The list of controls contained within the control set.
   final List<CreateAssessmentFrameworkControl>? controls;
 
   /// The unique identifier for the control set.
   final String? id;
 
-  /// The name of the control set.
-  final String? name;
-
   UpdateAssessmentFrameworkControlSet({
+    required this.name,
     this.controls,
     this.id,
-    this.name,
   });
   Map<String, dynamic> toJson() {
+    final name = this.name;
     final controls = this.controls;
     final id = this.id;
-    final name = this.name;
     return {
+      'name': name,
       if (controls != null) 'controls': controls,
       if (id != null) 'id': id,
-      if (name != null) 'name': name,
     };
   }
 }

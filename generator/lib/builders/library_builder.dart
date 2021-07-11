@@ -142,19 +142,6 @@ ${builder.constructor()}
               "_s.validateNumRange('$name', $name, $min, $max, $isRequired);");
         }
       }
-
-      final pattern = member.shapeClass?.pattern;
-
-      if (pattern != null) {
-        var variable = name;
-        if (member.enumeration != null ||
-            member.shapeClass.enumeration != null) {
-          variable = '$name${member.isRequired ? '' : '?'}.toValue()';
-        }
-        final isRequired = member.isRequired ? 'isRequired: true,' : '';
-        writeln(
-            "_s.validateStringPattern('$name', $variable, r'''$pattern''', $isRequired);");
-      }
     }
 
     writeln(builder.operationContent(operation));

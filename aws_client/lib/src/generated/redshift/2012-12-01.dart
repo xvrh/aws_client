@@ -108,6 +108,82 @@ class Redshift {
     return AcceptReservedNodeExchangeOutputMessage.fromXml($result);
   }
 
+  /// Adds a partner integration to a cluster. This operation authorizes a
+  /// partner to push status updates for the specified database. To complete the
+  /// integration, you also set up the integration on the partner website.
+  ///
+  /// May throw [PartnerNotFoundFault].
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [UnauthorizedPartnerIntegrationFault].
+  ///
+  /// Parameter [accountId] :
+  /// The AWS account ID that owns the cluster.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster that receives data from the partner.
+  ///
+  /// Parameter [databaseName] :
+  /// The name of the database that receives data from the partner.
+  ///
+  /// Parameter [partnerName] :
+  /// The name of the partner that is authorized to send data.
+  Future<PartnerIntegrationOutputMessage> addPartner({
+    required String accountId,
+    required String clusterIdentifier,
+    required String databaseName,
+    required String partnerName,
+  }) async {
+    ArgumentError.checkNotNull(accountId, 'accountId');
+    _s.validateStringLength(
+      'accountId',
+      accountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      63,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(databaseName, 'databaseName');
+    _s.validateStringLength(
+      'databaseName',
+      databaseName,
+      0,
+      127,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(partnerName, 'partnerName');
+    _s.validateStringLength(
+      'partnerName',
+      partnerName,
+      0,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['AccountId'] = accountId;
+    $request['ClusterIdentifier'] = clusterIdentifier;
+    $request['DatabaseName'] = databaseName;
+    $request['PartnerName'] = partnerName;
+    final $result = await _protocol.send(
+      $request,
+      action: 'AddPartner',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['PartnerIntegrationInputMessage'],
+      shapes: shapes,
+      resultWrapper: 'AddPartnerResult',
+    );
+    return PartnerIntegrationOutputMessage.fromXml($result);
+  }
+
   /// Adds an inbound (ingress) rule to an Amazon Redshift security group.
   /// Depending on whether the application accessing your cluster is running on
   /// the Internet or an Amazon EC2 instance, you can authorize inbound access
@@ -205,6 +281,60 @@ class Redshift {
       resultWrapper: 'AuthorizeClusterSecurityGroupIngressResult',
     );
     return AuthorizeClusterSecurityGroupIngressResult.fromXml($result);
+  }
+
+  /// Grants access to a cluster.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [EndpointAuthorizationsPerClusterLimitExceededFault].
+  /// May throw [UnsupportedOperationFault].
+  /// May throw [EndpointAuthorizationAlreadyExistsFault].
+  /// May throw [InvalidAuthorizationStateFault].
+  /// May throw [InvalidClusterStateFault].
+  ///
+  /// Parameter [account] :
+  /// The AWS account ID to grant access to.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster to grant access to.
+  ///
+  /// Parameter [vpcIds] :
+  /// The virtual private cloud (VPC) identifiers to grant access to.
+  Future<EndpointAuthorization> authorizeEndpointAccess({
+    required String account,
+    String? clusterIdentifier,
+    List<String>? vpcIds,
+  }) async {
+    ArgumentError.checkNotNull(account, 'account');
+    _s.validateStringLength(
+      'account',
+      account,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+    );
+    final $request = <String, dynamic>{};
+    $request['Account'] = account;
+    clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
+    vpcIds?.also((arg) => $request['VpcIds'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'AuthorizeEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['AuthorizeEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'AuthorizeEndpointAccessResult',
+    );
+    return EndpointAuthorization.fromXml($result);
   }
 
   /// Authorizes the specified AWS customer account to restore the specified
@@ -654,11 +784,32 @@ class Redshift {
   ///
   /// Default: <code>true</code>
   ///
+  /// Parameter [aquaConfigurationStatus] :
+  /// The value represents how the cluster is configured to use AQUA (Advanced
+  /// Query Accelerator) when it is created. Possible values include the
+  /// following.
+  ///
+  /// <ul>
+  /// <li>
+  /// enabled - Use AQUA if it is available for the current AWS Region and
+  /// Amazon Redshift node type.
+  /// </li>
+  /// <li>
+  /// disabled - Don't use AQUA.
+  /// </li>
+  /// <li>
+  /// auto - Amazon Redshift determines whether to use AQUA.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [automatedSnapshotRetentionPeriod] :
   /// The number of days that automated snapshots are retained. If the value is
   /// 0, automated snapshots are disabled. Even if automated snapshots are
   /// disabled, you can still create manual snapshots when you want with
   /// <a>CreateClusterSnapshot</a>.
+  ///
+  /// You can't disable automated snapshots for RA3 node types. Set the
+  /// automated retention period from 1-35 days.
   ///
   /// Default: <code>1</code>
   ///
@@ -893,6 +1044,7 @@ class Redshift {
     required String nodeType,
     String? additionalInfo,
     bool? allowVersionUpgrade,
+    AquaConfigurationStatus? aquaConfigurationStatus,
     int? automatedSnapshotRetentionPeriod,
     String? availabilityZone,
     bool? availabilityZoneRelocation,
@@ -1042,6 +1194,8 @@ class Redshift {
     $request['NodeType'] = nodeType;
     additionalInfo?.also((arg) => $request['AdditionalInfo'] = arg);
     allowVersionUpgrade?.also((arg) => $request['AllowVersionUpgrade'] = arg);
+    aquaConfigurationStatus
+        ?.also((arg) => $request['AquaConfigurationStatus'] = arg.toValue());
     automatedSnapshotRetentionPeriod
         ?.also((arg) => $request['AutomatedSnapshotRetentionPeriod'] = arg);
     availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
@@ -1458,6 +1612,95 @@ class Redshift {
     return CreateClusterSubnetGroupResult.fromXml($result);
   }
 
+  /// Creates a Redshift-managed VPC endpoint.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [AccessToClusterDeniedFault].
+  /// May throw [EndpointsPerClusterLimitExceededFault].
+  /// May throw [EndpointsPerAuthorizationLimitExceededFault].
+  /// May throw [InvalidClusterSecurityGroupStateFault].
+  /// May throw [ClusterSubnetGroupNotFoundFault].
+  /// May throw [EndpointAlreadyExistsFault].
+  /// May throw [UnsupportedOperationFault].
+  /// May throw [InvalidClusterStateFault].
+  /// May throw [UnauthorizedOperation].
+  ///
+  /// Parameter [endpointName] :
+  /// The Redshift-managed VPC endpoint name.
+  ///
+  /// An endpoint name must contain 1-30 characters. Valid characters are A-Z,
+  /// a-z, 0-9, and hyphen(-). The first character must be a letter. The name
+  /// can't contain two consecutive hyphens or end with a hyphen.
+  ///
+  /// Parameter [subnetGroupName] :
+  /// The subnet group from which Amazon Redshift chooses the subnet to deploy
+  /// the endpoint.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster to access.
+  ///
+  /// Parameter [resourceOwner] :
+  /// The AWS account ID of the owner of the cluster. This is only required if
+  /// the cluster is in another AWS account.
+  ///
+  /// Parameter [vpcSecurityGroupIds] :
+  /// The security group that defines the ports, protocols, and sources for
+  /// inbound traffic that you are authorizing into your endpoint.
+  Future<EndpointAccess> createEndpointAccess({
+    required String endpointName,
+    required String subnetGroupName,
+    String? clusterIdentifier,
+    String? resourceOwner,
+    List<String>? vpcSecurityGroupIds,
+  }) async {
+    ArgumentError.checkNotNull(endpointName, 'endpointName');
+    _s.validateStringLength(
+      'endpointName',
+      endpointName,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(subnetGroupName, 'subnetGroupName');
+    _s.validateStringLength(
+      'subnetGroupName',
+      subnetGroupName,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'resourceOwner',
+      resourceOwner,
+      0,
+      2147483647,
+    );
+    final $request = <String, dynamic>{};
+    $request['EndpointName'] = endpointName;
+    $request['SubnetGroupName'] = subnetGroupName;
+    clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
+    resourceOwner?.also((arg) => $request['ResourceOwner'] = arg);
+    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'CreateEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['CreateEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'CreateEndpointAccessResult',
+    );
+    return EndpointAccess.fromXml($result);
+  }
+
   /// Creates an Amazon Redshift event notification subscription. This action
   /// requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by
   /// either the Amazon Redshift console, the Amazon SNS console, or the Amazon
@@ -1630,8 +1873,9 @@ class Redshift {
   /// Redshift HSM configuration that provides a cluster the information needed
   /// to store and use encryption keys in the HSM. For more information, go to
   /// <a
-  /// href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html">Hardware
-  /// Security Modules</a> in the Amazon Redshift Cluster Management Guide.
+  /// href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html#working-with-HSM">Hardware
+  /// Security Modules</a> in the <i>Amazon Redshift Cluster Management
+  /// Guide</i>.
   ///
   /// May throw [HsmClientCertificateAlreadyExistsFault].
   /// May throw [HsmClientCertificateQuotaExceededFault].
@@ -2509,6 +2753,43 @@ class Redshift {
     );
   }
 
+  /// Deletes a Redshift-managed VPC endpoint.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidEndpointStateFault].
+  /// May throw [InvalidClusterSecurityGroupStateFault].
+  /// May throw [EndpointNotFoundFault].
+  /// May throw [InvalidClusterStateFault].
+  ///
+  /// Parameter [endpointName] :
+  /// The Redshift-managed VPC endpoint to delete.
+  Future<EndpointAccess> deleteEndpointAccess({
+    required String endpointName,
+  }) async {
+    ArgumentError.checkNotNull(endpointName, 'endpointName');
+    _s.validateStringLength(
+      'endpointName',
+      endpointName,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['EndpointName'] = endpointName;
+    final $result = await _protocol.send(
+      $request,
+      action: 'DeleteEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DeleteEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'DeleteEndpointAccessResult',
+    );
+    return EndpointAccess.fromXml($result);
+  }
+
   /// Deletes an Amazon Redshift event notification subscription.
   ///
   /// May throw [SubscriptionNotFoundFault].
@@ -2606,6 +2887,81 @@ class Redshift {
       shape: shapes['DeleteHsmConfigurationMessage'],
       shapes: shapes,
     );
+  }
+
+  /// Deletes a partner integration from a cluster. Data can still flow to the
+  /// cluster until the integration is deleted at the partner's website.
+  ///
+  /// May throw [PartnerNotFoundFault].
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [UnauthorizedPartnerIntegrationFault].
+  ///
+  /// Parameter [accountId] :
+  /// The AWS account ID that owns the cluster.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster that receives data from the partner.
+  ///
+  /// Parameter [databaseName] :
+  /// The name of the database that receives data from the partner.
+  ///
+  /// Parameter [partnerName] :
+  /// The name of the partner that is authorized to send data.
+  Future<PartnerIntegrationOutputMessage> deletePartner({
+    required String accountId,
+    required String clusterIdentifier,
+    required String databaseName,
+    required String partnerName,
+  }) async {
+    ArgumentError.checkNotNull(accountId, 'accountId');
+    _s.validateStringLength(
+      'accountId',
+      accountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      63,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(databaseName, 'databaseName');
+    _s.validateStringLength(
+      'databaseName',
+      databaseName,
+      0,
+      127,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(partnerName, 'partnerName');
+    _s.validateStringLength(
+      'partnerName',
+      partnerName,
+      0,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['AccountId'] = accountId;
+    $request['ClusterIdentifier'] = clusterIdentifier;
+    $request['DatabaseName'] = databaseName;
+    $request['PartnerName'] = partnerName;
+    final $result = await _protocol.send(
+      $request,
+      action: 'DeletePartner',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['PartnerIntegrationInputMessage'],
+      shapes: shapes,
+      resultWrapper: 'DeletePartnerResult',
+    );
+    return PartnerIntegrationOutputMessage.fromXml($result);
   }
 
   /// Deletes a scheduled action.
@@ -3789,6 +4145,169 @@ class Redshift {
     return DescribeDefaultClusterParametersResult.fromXml($result);
   }
 
+  /// Describes a Redshift-managed VPC endpoint.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidClusterStateFault].
+  /// May throw [EndpointNotFoundFault].
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier associated with the described endpoint.
+  ///
+  /// Parameter [endpointName] :
+  /// The name of the endpoint to be described.
+  ///
+  /// Parameter [marker] :
+  /// An optional pagination token provided by a previous
+  /// <code>DescribeEndpointAccess</code> request. If this parameter is
+  /// specified, the response includes only records beyond the marker, up to the
+  /// value specified by the <code>MaxRecords</code> parameter.
+  ///
+  /// Parameter [maxRecords] :
+  /// The maximum number of records to include in the response. If more records
+  /// exist than the specified <code>MaxRecords</code> value, a pagination token
+  /// called a <code>Marker</code> is included in the response so that the
+  /// remaining results can be retrieved.
+  ///
+  /// Parameter [resourceOwner] :
+  /// The AWS account ID of the owner of the cluster.
+  ///
+  /// Parameter [vpcId] :
+  /// The virtual private cloud (VPC) identifier with access to the cluster.
+  Future<EndpointAccessList> describeEndpointAccess({
+    String? clusterIdentifier,
+    String? endpointName,
+    String? marker,
+    int? maxRecords,
+    String? resourceOwner,
+    String? vpcId,
+  }) async {
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'endpointName',
+      endpointName,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'marker',
+      marker,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'resourceOwner',
+      resourceOwner,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'vpcId',
+      vpcId,
+      0,
+      2147483647,
+    );
+    final $request = <String, dynamic>{};
+    clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
+    endpointName?.also((arg) => $request['EndpointName'] = arg);
+    marker?.also((arg) => $request['Marker'] = arg);
+    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    resourceOwner?.also((arg) => $request['ResourceOwner'] = arg);
+    vpcId?.also((arg) => $request['VpcId'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'DescribeEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DescribeEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'DescribeEndpointAccessResult',
+    );
+    return EndpointAccessList.fromXml($result);
+  }
+
+  /// Describes an endpoint authorization.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [UnsupportedOperationFault].
+  ///
+  /// Parameter [account] :
+  /// The AWS account ID of either the cluster owner (grantor) or grantee. If
+  /// <code>Grantee</code> parameter is true, then the <code>Account</code>
+  /// value is of the grantor.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster to access.
+  ///
+  /// Parameter [grantee] :
+  /// Indicates whether to check authorization from a grantor or grantee point
+  /// of view. If true, Amazon Redshift returns endpoint authorizations that
+  /// you've been granted. If false (default), checks authorization from a
+  /// grantor point of view.
+  ///
+  /// Parameter [marker] :
+  /// An optional pagination token provided by a previous
+  /// <code>DescribeEndpointAuthorization</code> request. If this parameter is
+  /// specified, the response includes only records beyond the marker, up to the
+  /// value specified by the <code>MaxRecords</code> parameter.
+  ///
+  /// Parameter [maxRecords] :
+  /// The maximum number of records to include in the response. If more records
+  /// exist than the specified <code>MaxRecords</code> value, a pagination token
+  /// called a <code>Marker</code> is included in the response so that the
+  /// remaining results can be retrieved.
+  Future<EndpointAuthorizationList> describeEndpointAuthorization({
+    String? account,
+    String? clusterIdentifier,
+    bool? grantee,
+    String? marker,
+    int? maxRecords,
+  }) async {
+    _s.validateStringLength(
+      'account',
+      account,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'marker',
+      marker,
+      0,
+      2147483647,
+    );
+    final $request = <String, dynamic>{};
+    account?.also((arg) => $request['Account'] = arg);
+    clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
+    grantee?.also((arg) => $request['Grantee'] = arg);
+    marker?.also((arg) => $request['Marker'] = arg);
+    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'DescribeEndpointAuthorization',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DescribeEndpointAuthorizationMessage'],
+      shapes: shapes,
+      resultWrapper: 'DescribeEndpointAuthorizationResult',
+    );
+    return EndpointAuthorizationList.fromXml($result);
+  }
+
   /// Displays a list of event categories for all event source types, or for a
   /// specified source type. For a list of the event categories and source
   /// types, go to <a
@@ -4496,6 +5015,79 @@ class Redshift {
       resultWrapper: 'DescribeOrderableClusterOptionsResult',
     );
     return OrderableClusterOptionsMessage.fromXml($result);
+  }
+
+  /// Returns information about the partner integrations defined for a cluster.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [UnauthorizedPartnerIntegrationFault].
+  ///
+  /// Parameter [accountId] :
+  /// The AWS account ID that owns the cluster.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster whose partner integration is being
+  /// described.
+  ///
+  /// Parameter [databaseName] :
+  /// The name of the database whose partner integration is being described. If
+  /// database name is not specified, then all databases in the cluster are
+  /// described.
+  ///
+  /// Parameter [partnerName] :
+  /// The name of the partner that is being described. If partner name is not
+  /// specified, then all partner integrations are described.
+  Future<DescribePartnersOutputMessage> describePartners({
+    required String accountId,
+    required String clusterIdentifier,
+    String? databaseName,
+    String? partnerName,
+  }) async {
+    ArgumentError.checkNotNull(accountId, 'accountId');
+    _s.validateStringLength(
+      'accountId',
+      accountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      63,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'databaseName',
+      databaseName,
+      0,
+      127,
+    );
+    _s.validateStringLength(
+      'partnerName',
+      partnerName,
+      0,
+      255,
+    );
+    final $request = <String, dynamic>{};
+    $request['AccountId'] = accountId;
+    $request['ClusterIdentifier'] = clusterIdentifier;
+    databaseName?.also((arg) => $request['DatabaseName'] = arg);
+    partnerName?.also((arg) => $request['PartnerName'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'DescribePartners',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DescribePartnersInputMessage'],
+      shapes: shapes,
+      resultWrapper: 'DescribePartnersResult',
+    );
+    return DescribePartnersOutputMessage.fromXml($result);
   }
 
   /// Returns a list of the available reserved node offerings by Amazon Redshift
@@ -5314,6 +5906,7 @@ class Redshift {
   /// the specified Amazon Redshift cluster.
   ///
   /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidClusterStateFault].
   ///
   /// Parameter [clusterIdentifier] :
   /// The identifier of the cluster on which logging is to be stopped.
@@ -5852,6 +6445,61 @@ class Redshift {
     return GetReservedNodeExchangeOfferingsOutputMessage.fromXml($result);
   }
 
+  /// Modifies whether a cluster can use AQUA (Advanced Query Accelerator).
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidClusterStateFault].
+  /// May throw [UnsupportedOperationFault].
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The identifier of the cluster to be modified.
+  ///
+  /// Parameter [aquaConfigurationStatus] :
+  /// The new value of AQUA configuration status. Possible values include the
+  /// following.
+  ///
+  /// <ul>
+  /// <li>
+  /// enabled - Use AQUA if it is available for the current AWS Region and
+  /// Amazon Redshift node type.
+  /// </li>
+  /// <li>
+  /// disabled - Don't use AQUA.
+  /// </li>
+  /// <li>
+  /// auto - Amazon Redshift determines whether to use AQUA.
+  /// </li>
+  /// </ul>
+  Future<ModifyAquaOutputMessage> modifyAquaConfiguration({
+    required String clusterIdentifier,
+    AquaConfigurationStatus? aquaConfigurationStatus,
+  }) async {
+    ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['ClusterIdentifier'] = clusterIdentifier;
+    aquaConfigurationStatus
+        ?.also((arg) => $request['AquaConfigurationStatus'] = arg.toValue());
+    final $result = await _protocol.send(
+      $request,
+      action: 'ModifyAquaConfiguration',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ModifyAquaInputMessage'],
+      shapes: shapes,
+      resultWrapper: 'ModifyAquaConfigurationResult',
+    );
+    return ModifyAquaOutputMessage.fromXml($result);
+  }
+
   /// Modifies the settings for a cluster.
   ///
   /// You can also change node type and the number of nodes to scale up or down
@@ -5907,6 +6555,9 @@ class Redshift {
   /// If you decrease the automated snapshot retention period from its current
   /// value, existing automated snapshots that fall outside of the new retention
   /// period will be immediately deleted.
+  ///
+  /// You can't disable automated snapshots for RA3 node types. Set the
+  /// automated retention period from 1-35 days.
   ///
   /// Default: Uses existing setting.
   ///
@@ -6708,6 +7359,50 @@ class Redshift {
     return ModifyClusterSubnetGroupResult.fromXml($result);
   }
 
+  /// Modifies a Redshift-managed VPC endpoint.
+  ///
+  /// May throw [InvalidClusterSecurityGroupStateFault].
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidEndpointStateFault].
+  /// May throw [EndpointNotFoundFault].
+  /// May throw [InvalidClusterStateFault].
+  /// May throw [UnauthorizedOperation].
+  ///
+  /// Parameter [endpointName] :
+  /// The endpoint to be modified.
+  ///
+  /// Parameter [vpcSecurityGroupIds] :
+  /// The complete list of VPC security groups associated with the endpoint
+  /// after the endpoint is modified.
+  Future<EndpointAccess> modifyEndpointAccess({
+    required String endpointName,
+    List<String>? vpcSecurityGroupIds,
+  }) async {
+    ArgumentError.checkNotNull(endpointName, 'endpointName');
+    _s.validateStringLength(
+      'endpointName',
+      endpointName,
+      0,
+      2147483647,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['EndpointName'] = endpointName;
+    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'ModifyEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ModifyEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'ModifyEndpointAccessResult',
+    );
+    return EndpointAccess.fromXml($result);
+  }
+
   /// Modifies an existing Amazon Redshift event notification subscription.
   ///
   /// May throw [SubscriptionNotFoundFault].
@@ -7479,11 +8174,32 @@ class Redshift {
   ///
   /// Default: <code>true</code>
   ///
+  /// Parameter [aquaConfigurationStatus] :
+  /// The value represents how the cluster is configured to use AQUA (Advanced
+  /// Query Accelerator) after the cluster is restored. Possible values include
+  /// the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// enabled - Use AQUA if it is available for the current AWS Region and
+  /// Amazon Redshift node type.
+  /// </li>
+  /// <li>
+  /// disabled - Don't use AQUA.
+  /// </li>
+  /// <li>
+  /// auto - Amazon Redshift determines whether to use AQUA.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [automatedSnapshotRetentionPeriod] :
   /// The number of days that automated snapshots are retained. If the value is
   /// 0, automated snapshots are disabled. Even if automated snapshots are
   /// disabled, you can still create manual snapshots when you want with
   /// <a>CreateClusterSnapshot</a>.
+  ///
+  /// You can't disable automated snapshots for RA3 node types. Set the
+  /// automated retention period from 1-35 days.
   ///
   /// Default: The value selected for the cluster from which the snapshot was
   /// taken.
@@ -7658,6 +8374,7 @@ class Redshift {
     required String snapshotIdentifier,
     String? additionalInfo,
     bool? allowVersionUpgrade,
+    AquaConfigurationStatus? aquaConfigurationStatus,
     int? automatedSnapshotRetentionPeriod,
     String? availabilityZone,
     bool? availabilityZoneRelocation,
@@ -7787,6 +8504,8 @@ class Redshift {
     $request['SnapshotIdentifier'] = snapshotIdentifier;
     additionalInfo?.also((arg) => $request['AdditionalInfo'] = arg);
     allowVersionUpgrade?.also((arg) => $request['AllowVersionUpgrade'] = arg);
+    aquaConfigurationStatus
+        ?.also((arg) => $request['AquaConfigurationStatus'] = arg.toValue());
     automatedSnapshotRetentionPeriod
         ?.also((arg) => $request['AutomatedSnapshotRetentionPeriod'] = arg);
     availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
@@ -7875,6 +8594,11 @@ class Redshift {
   /// Parameter [sourceTableName] :
   /// The name of the source table to restore from.
   ///
+  /// Parameter [enableCaseSensitiveIdentifier] :
+  /// Indicates whether name identifiers for database, schema, and table are
+  /// case sensitive. If <code>true</code>, the names are case sensitive. If
+  /// <code>false</code> (default), the names are not case sensitive.
+  ///
   /// Parameter [sourceSchemaName] :
   /// The name of the source schema that contains the table to restore from. If
   /// you do not specify a <code>SourceSchemaName</code> value, the default is
@@ -7892,6 +8616,7 @@ class Redshift {
     required String snapshotIdentifier,
     required String sourceDatabaseName,
     required String sourceTableName,
+    bool? enableCaseSensitiveIdentifier,
     String? sourceSchemaName,
     String? targetDatabaseName,
     String? targetSchemaName,
@@ -7960,6 +8685,8 @@ class Redshift {
     $request['SnapshotIdentifier'] = snapshotIdentifier;
     $request['SourceDatabaseName'] = sourceDatabaseName;
     $request['SourceTableName'] = sourceTableName;
+    enableCaseSensitiveIdentifier
+        ?.also((arg) => $request['EnableCaseSensitiveIdentifier'] = arg);
     sourceSchemaName?.also((arg) => $request['SourceSchemaName'] = arg);
     targetDatabaseName?.also((arg) => $request['TargetDatabaseName'] = arg);
     targetSchemaName?.also((arg) => $request['TargetSchemaName'] = arg);
@@ -8101,6 +8828,67 @@ class Redshift {
     return RevokeClusterSecurityGroupIngressResult.fromXml($result);
   }
 
+  /// Revokes access to a cluster.
+  ///
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [InvalidEndpointStateFault].
+  /// May throw [InvalidClusterSecurityGroupStateFault].
+  /// May throw [EndpointNotFoundFault].
+  /// May throw [EndpointAuthorizationNotFoundFault].
+  /// May throw [InvalidAuthorizationStateFault].
+  /// May throw [InvalidClusterStateFault].
+  ///
+  /// Parameter [account] :
+  /// The AWS account ID whose access is to be revoked.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster to revoke access from.
+  ///
+  /// Parameter [force] :
+  /// Indicates whether to force the revoke action. If true, the
+  /// Redshift-managed VPC endpoints associated with the endpoint authorization
+  /// are also deleted.
+  ///
+  /// Parameter [vpcIds] :
+  /// The virtual private cloud (VPC) identifiers for which access is to be
+  /// revoked.
+  Future<EndpointAuthorization> revokeEndpointAccess({
+    String? account,
+    String? clusterIdentifier,
+    bool? force,
+    List<String>? vpcIds,
+  }) async {
+    _s.validateStringLength(
+      'account',
+      account,
+      0,
+      2147483647,
+    );
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      2147483647,
+    );
+    final $request = <String, dynamic>{};
+    account?.also((arg) => $request['Account'] = arg);
+    clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
+    force?.also((arg) => $request['Force'] = arg);
+    vpcIds?.also((arg) => $request['VpcIds'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'RevokeEndpointAccess',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['RevokeEndpointAccessMessage'],
+      shapes: shapes,
+      resultWrapper: 'RevokeEndpointAccessResult',
+    );
+    return EndpointAuthorization.fromXml($result);
+  }
+
   /// Removes the ability of the specified AWS customer account to restore the
   /// specified snapshot. If the account is currently restoring the snapshot,
   /// the restore will run to completion.
@@ -8210,6 +8998,99 @@ class Redshift {
       resultWrapper: 'RotateEncryptionKeyResult',
     );
     return RotateEncryptionKeyResult.fromXml($result);
+  }
+
+  /// Updates the status of a partner integration.
+  ///
+  /// May throw [PartnerNotFoundFault].
+  /// May throw [ClusterNotFoundFault].
+  /// May throw [UnauthorizedPartnerIntegrationFault].
+  ///
+  /// Parameter [accountId] :
+  /// The AWS account ID that owns the cluster.
+  ///
+  /// Parameter [clusterIdentifier] :
+  /// The cluster identifier of the cluster whose partner integration status is
+  /// being updated.
+  ///
+  /// Parameter [databaseName] :
+  /// The name of the database whose partner integration status is being
+  /// updated.
+  ///
+  /// Parameter [partnerName] :
+  /// The name of the partner whose integration status is being updated.
+  ///
+  /// Parameter [status] :
+  /// The value of the updated status.
+  ///
+  /// Parameter [statusMessage] :
+  /// The status message provided by the partner.
+  Future<PartnerIntegrationOutputMessage> updatePartnerStatus({
+    required String accountId,
+    required String clusterIdentifier,
+    required String databaseName,
+    required String partnerName,
+    required PartnerIntegrationStatus status,
+    String? statusMessage,
+  }) async {
+    ArgumentError.checkNotNull(accountId, 'accountId');
+    _s.validateStringLength(
+      'accountId',
+      accountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateStringLength(
+      'clusterIdentifier',
+      clusterIdentifier,
+      0,
+      63,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(databaseName, 'databaseName');
+    _s.validateStringLength(
+      'databaseName',
+      databaseName,
+      0,
+      127,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(partnerName, 'partnerName');
+    _s.validateStringLength(
+      'partnerName',
+      partnerName,
+      0,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(status, 'status');
+    _s.validateStringLength(
+      'statusMessage',
+      statusMessage,
+      0,
+      262144,
+    );
+    final $request = <String, dynamic>{};
+    $request['AccountId'] = accountId;
+    $request['ClusterIdentifier'] = clusterIdentifier;
+    $request['DatabaseName'] = databaseName;
+    $request['PartnerName'] = partnerName;
+    $request['Status'] = status.toValue();
+    statusMessage?.also((arg) => $request['StatusMessage'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'UpdatePartnerStatus',
+      version: '2012-12-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['UpdatePartnerStatusInputMessage'],
+      shapes: shapes,
+      resultWrapper: 'UpdatePartnerStatusResult',
+    );
+    return PartnerIntegrationOutputMessage.fromXml($result);
   }
 }
 
@@ -8325,6 +9206,121 @@ extension on String {
   }
 }
 
+/// The AQUA (Advanced Query Accelerator) configuration of the cluster.
+class AquaConfiguration {
+  /// The value represents how the cluster is configured to use AQUA. Possible
+  /// values include the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// enabled - Use AQUA if it is available for the current AWS Region and Amazon
+  /// Redshift node type.
+  /// </li>
+  /// <li>
+  /// disabled - Don't use AQUA.
+  /// </li>
+  /// <li>
+  /// auto - Amazon Redshift determines whether to use AQUA.
+  /// </li>
+  /// </ul>
+  final AquaConfigurationStatus? aquaConfigurationStatus;
+
+  /// The value indicates the status of AQUA on the cluster. Possible values
+  /// include the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// enabled - AQUA is enabled.
+  /// </li>
+  /// <li>
+  /// disabled - AQUA is not enabled.
+  /// </li>
+  /// <li>
+  /// applying - AQUA status is being applied.
+  /// </li>
+  /// </ul>
+  final AquaStatus? aquaStatus;
+
+  AquaConfiguration({
+    this.aquaConfigurationStatus,
+    this.aquaStatus,
+  });
+  factory AquaConfiguration.fromXml(_s.XmlElement elem) {
+    return AquaConfiguration(
+      aquaConfigurationStatus: _s
+          .extractXmlStringValue(elem, 'AquaConfigurationStatus')
+          ?.toAquaConfigurationStatus(),
+      aquaStatus: _s.extractXmlStringValue(elem, 'AquaStatus')?.toAquaStatus(),
+    );
+  }
+}
+
+enum AquaConfigurationStatus {
+  enabled,
+  disabled,
+  auto,
+}
+
+extension on AquaConfigurationStatus {
+  String toValue() {
+    switch (this) {
+      case AquaConfigurationStatus.enabled:
+        return 'enabled';
+      case AquaConfigurationStatus.disabled:
+        return 'disabled';
+      case AquaConfigurationStatus.auto:
+        return 'auto';
+    }
+  }
+}
+
+extension on String {
+  AquaConfigurationStatus toAquaConfigurationStatus() {
+    switch (this) {
+      case 'enabled':
+        return AquaConfigurationStatus.enabled;
+      case 'disabled':
+        return AquaConfigurationStatus.disabled;
+      case 'auto':
+        return AquaConfigurationStatus.auto;
+    }
+    throw Exception('$this is not known in enum AquaConfigurationStatus');
+  }
+}
+
+enum AquaStatus {
+  enabled,
+  disabled,
+  applying,
+}
+
+extension on AquaStatus {
+  String toValue() {
+    switch (this) {
+      case AquaStatus.enabled:
+        return 'enabled';
+      case AquaStatus.disabled:
+        return 'disabled';
+      case AquaStatus.applying:
+        return 'applying';
+    }
+  }
+}
+
+extension on String {
+  AquaStatus toAquaStatus() {
+    switch (this) {
+      case 'enabled':
+        return AquaStatus.enabled;
+      case 'disabled':
+        return AquaStatus.disabled;
+      case 'applying':
+        return AquaStatus.applying;
+    }
+    throw Exception('$this is not known in enum AquaStatus');
+  }
+}
+
 /// Describes an attribute value.
 class AttributeValueTarget {
   /// The value of the attribute.
@@ -8337,6 +9333,34 @@ class AttributeValueTarget {
     return AttributeValueTarget(
       attributeValue: _s.extractXmlStringValue(elem, 'AttributeValue'),
     );
+  }
+}
+
+enum AuthorizationStatus {
+  authorized,
+  revoking,
+}
+
+extension on AuthorizationStatus {
+  String toValue() {
+    switch (this) {
+      case AuthorizationStatus.authorized:
+        return 'Authorized';
+      case AuthorizationStatus.revoking:
+        return 'Revoking';
+    }
+  }
+}
+
+extension on String {
+  AuthorizationStatus toAuthorizationStatus() {
+    switch (this) {
+      case 'Authorized':
+        return AuthorizationStatus.authorized;
+      case 'Revoking':
+        return AuthorizationStatus.revoking;
+    }
+    throw Exception('$this is not known in enum AuthorizationStatus');
   }
 }
 
@@ -8448,6 +9472,9 @@ class Cluster {
   /// upgrades will be applied automatically to the cluster during the maintenance
   /// window.
   final bool? allowVersionUpgrade;
+
+  /// The AQUA (Advanced Query Accelerator) configuration of the cluster.
+  final AquaConfiguration? aquaConfiguration;
 
   /// The number of days that automatic cluster snapshots are retained.
   final int? automatedSnapshotRetentionPeriod;
@@ -8729,6 +9756,9 @@ class Cluster {
   /// The list of tags for the cluster.
   final List<Tag>? tags;
 
+  /// The total storage capacity of the cluster in megabytes.
+  final int? totalStorageCapacityInMegaBytes;
+
   /// The identifier of the VPC the cluster is in, if the cluster is in a VPC.
   final String? vpcId;
 
@@ -8739,6 +9769,7 @@ class Cluster {
 
   Cluster({
     this.allowVersionUpgrade,
+    this.aquaConfiguration,
     this.automatedSnapshotRetentionPeriod,
     this.availabilityZone,
     this.availabilityZoneRelocationStatus,
@@ -8784,12 +9815,16 @@ class Cluster {
     this.snapshotScheduleIdentifier,
     this.snapshotScheduleState,
     this.tags,
+    this.totalStorageCapacityInMegaBytes,
     this.vpcId,
     this.vpcSecurityGroups,
   });
   factory Cluster.fromXml(_s.XmlElement elem) {
     return Cluster(
       allowVersionUpgrade: _s.extractXmlBoolValue(elem, 'AllowVersionUpgrade'),
+      aquaConfiguration: _s
+          .extractXmlChild(elem, 'AquaConfiguration')
+          ?.let((e) => AquaConfiguration.fromXml(e)),
       automatedSnapshotRetentionPeriod:
           _s.extractXmlIntValue(elem, 'AutomatedSnapshotRetentionPeriod'),
       availabilityZone: _s.extractXmlStringValue(elem, 'AvailabilityZone'),
@@ -8890,6 +9925,8 @@ class Cluster {
           ?.toScheduleState(),
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
+      totalStorageCapacityInMegaBytes:
+          _s.extractXmlIntValue(elem, 'TotalStorageCapacityInMegaBytes'),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
       vpcSecurityGroups: _s.extractXmlChild(elem, 'VpcSecurityGroups')?.let(
           (elem) => elem
@@ -9935,6 +10972,25 @@ class DescribeDefaultClusterParametersResult {
   }
 }
 
+class DescribePartnersOutputMessage {
+  /// A list of partner integrations.
+  final List<PartnerIntegrationInfo>? partnerIntegrationInfoList;
+
+  DescribePartnersOutputMessage({
+    this.partnerIntegrationInfoList,
+  });
+  factory DescribePartnersOutputMessage.fromXml(_s.XmlElement elem) {
+    return DescribePartnersOutputMessage(
+      partnerIntegrationInfoList: _s
+          .extractXmlChild(elem, 'PartnerIntegrationInfoList')
+          ?.let((elem) => elem
+              .findElements('PartnerIntegrationInfo')
+              .map((c) => PartnerIntegrationInfo.fromXml(c))
+              .toList()),
+    );
+  }
+}
+
 class DescribeSnapshotSchedulesOutputMessage {
   /// A value that indicates the starting point for the next set of response
   /// records in a subsequent request. If a value is returned in a response, you
@@ -10054,7 +11110,7 @@ class Endpoint {
   final int? port;
 
   /// Describes a connection endpoint.
-  final List<SpartaProxyVpcEndpoint>? vpcEndpoints;
+  final List<VpcEndpoint>? vpcEndpoints;
 
   Endpoint({
     this.address,
@@ -10066,9 +11122,186 @@ class Endpoint {
       address: _s.extractXmlStringValue(elem, 'Address'),
       port: _s.extractXmlIntValue(elem, 'Port'),
       vpcEndpoints: _s.extractXmlChild(elem, 'VpcEndpoints')?.let((elem) => elem
-          .findElements('SpartaProxyVpcEndpoint')
-          .map((c) => SpartaProxyVpcEndpoint.fromXml(c))
+          .findElements('VpcEndpoint')
+          .map((c) => VpcEndpoint.fromXml(c))
           .toList()),
+    );
+  }
+}
+
+/// Describes a Redshift-managed VPC endpoint.
+class EndpointAccess {
+  /// The DNS address of the endpoint.
+  final String? address;
+
+  /// The cluster identifier of the cluster associated with the endpoint.
+  final String? clusterIdentifier;
+
+  /// The time (UTC) that the endpoint was created.
+  final DateTime? endpointCreateTime;
+
+  /// The name of the endpoint.
+  final String? endpointName;
+
+  /// The status of the endpoint.
+  final String? endpointStatus;
+
+  /// The port number on which the cluster accepts incoming connections.
+  final int? port;
+
+  /// The AWS account ID of the owner of the cluster.
+  final String? resourceOwner;
+
+  /// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+  final String? subnetGroupName;
+  final VpcEndpoint? vpcEndpoint;
+
+  /// The security groups associated with the endpoint.
+  final List<VpcSecurityGroupMembership>? vpcSecurityGroups;
+
+  EndpointAccess({
+    this.address,
+    this.clusterIdentifier,
+    this.endpointCreateTime,
+    this.endpointName,
+    this.endpointStatus,
+    this.port,
+    this.resourceOwner,
+    this.subnetGroupName,
+    this.vpcEndpoint,
+    this.vpcSecurityGroups,
+  });
+  factory EndpointAccess.fromXml(_s.XmlElement elem) {
+    return EndpointAccess(
+      address: _s.extractXmlStringValue(elem, 'Address'),
+      clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier'),
+      endpointCreateTime:
+          _s.extractXmlDateTimeValue(elem, 'EndpointCreateTime'),
+      endpointName: _s.extractXmlStringValue(elem, 'EndpointName'),
+      endpointStatus: _s.extractXmlStringValue(elem, 'EndpointStatus'),
+      port: _s.extractXmlIntValue(elem, 'Port'),
+      resourceOwner: _s.extractXmlStringValue(elem, 'ResourceOwner'),
+      subnetGroupName: _s.extractXmlStringValue(elem, 'SubnetGroupName'),
+      vpcEndpoint: _s
+          .extractXmlChild(elem, 'VpcEndpoint')
+          ?.let((e) => VpcEndpoint.fromXml(e)),
+      vpcSecurityGroups: _s.extractXmlChild(elem, 'VpcSecurityGroups')?.let(
+          (elem) => elem
+              .findElements('VpcSecurityGroup')
+              .map((c) => VpcSecurityGroupMembership.fromXml(c))
+              .toList()),
+    );
+  }
+}
+
+class EndpointAccessList {
+  /// The list of endpoints with access to the cluster.
+  final List<EndpointAccess>? endpointAccessList;
+
+  /// An optional pagination token provided by a previous
+  /// <code>DescribeEndpointAccess</code> request. If this parameter is specified,
+  /// the response includes only records beyond the marker, up to the value
+  /// specified by the <code>MaxRecords</code> parameter.
+  final String? marker;
+
+  EndpointAccessList({
+    this.endpointAccessList,
+    this.marker,
+  });
+  factory EndpointAccessList.fromXml(_s.XmlElement elem) {
+    return EndpointAccessList(
+      endpointAccessList: _s.extractXmlChild(elem, 'EndpointAccessList')?.let(
+          (elem) => elem
+              .findElements('member')
+              .map((c) => EndpointAccess.fromXml(c))
+              .toList()),
+      marker: _s.extractXmlStringValue(elem, 'Marker'),
+    );
+  }
+}
+
+/// Describes an endpoint authorization for authorizing Redshift-managed VPC
+/// endpoint access to a cluster across AWS accounts.
+class EndpointAuthorization {
+  /// Indicates whether all VPCs in the grantee account are allowed access to the
+  /// cluster.
+  final bool? allowedAllVPCs;
+
+  /// The VPCs allowed access to the cluster.
+  final List<String>? allowedVPCs;
+
+  /// The time (UTC) when the authorization was created.
+  final DateTime? authorizeTime;
+
+  /// The cluster identifier.
+  final String? clusterIdentifier;
+
+  /// The status of the cluster.
+  final String? clusterStatus;
+
+  /// The number of Redshift-managed VPC endpoints created for the authorization.
+  final int? endpointCount;
+
+  /// The AWS account ID of the grantee of the cluster.
+  final String? grantee;
+
+  /// The AWS account ID of the cluster owner.
+  final String? grantor;
+
+  /// The status of the authorization action.
+  final AuthorizationStatus? status;
+
+  EndpointAuthorization({
+    this.allowedAllVPCs,
+    this.allowedVPCs,
+    this.authorizeTime,
+    this.clusterIdentifier,
+    this.clusterStatus,
+    this.endpointCount,
+    this.grantee,
+    this.grantor,
+    this.status,
+  });
+  factory EndpointAuthorization.fromXml(_s.XmlElement elem) {
+    return EndpointAuthorization(
+      allowedAllVPCs: _s.extractXmlBoolValue(elem, 'AllowedAllVPCs'),
+      allowedVPCs: _s
+          .extractXmlChild(elem, 'AllowedVPCs')
+          ?.let((elem) => _s.extractXmlStringListValues(elem, 'VpcIdentifier')),
+      authorizeTime: _s.extractXmlDateTimeValue(elem, 'AuthorizeTime'),
+      clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier'),
+      clusterStatus: _s.extractXmlStringValue(elem, 'ClusterStatus'),
+      endpointCount: _s.extractXmlIntValue(elem, 'EndpointCount'),
+      grantee: _s.extractXmlStringValue(elem, 'Grantee'),
+      grantor: _s.extractXmlStringValue(elem, 'Grantor'),
+      status: _s.extractXmlStringValue(elem, 'Status')?.toAuthorizationStatus(),
+    );
+  }
+}
+
+class EndpointAuthorizationList {
+  /// The authorizations to an endpoint.
+  final List<EndpointAuthorization>? endpointAuthorizationList;
+
+  /// An optional pagination token provided by a previous
+  /// <code>DescribeEndpointAuthorization</code> request. If this parameter is
+  /// specified, the response includes only records beyond the marker, up to the
+  /// value specified by the <code>MaxRecords</code> parameter.
+  final String? marker;
+
+  EndpointAuthorizationList({
+    this.endpointAuthorizationList,
+    this.marker,
+  });
+  factory EndpointAuthorizationList.fromXml(_s.XmlElement elem) {
+    return EndpointAuthorizationList(
+      endpointAuthorizationList: _s
+          .extractXmlChild(elem, 'EndpointAuthorizationList')
+          ?.let((elem) => elem
+              .findElements('member')
+              .map((c) => EndpointAuthorization.fromXml(c))
+              .toList()),
+      marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
 }
@@ -10682,6 +11915,22 @@ extension on String {
   }
 }
 
+class ModifyAquaOutputMessage {
+  /// The updated AQUA configuration of the cluster.
+  final AquaConfiguration? aquaConfiguration;
+
+  ModifyAquaOutputMessage({
+    this.aquaConfiguration,
+  });
+  factory ModifyAquaOutputMessage.fromXml(_s.XmlElement elem) {
+    return ModifyAquaOutputMessage(
+      aquaConfiguration: _s
+          .extractXmlChild(elem, 'AquaConfiguration')
+          ?.let((e) => AquaConfiguration.fromXml(e)),
+    );
+  }
+}
+
 class ModifyClusterDbRevisionResult {
   final Cluster? cluster;
 
@@ -10792,6 +12041,36 @@ class ModifySnapshotCopyRetentionPeriodResult {
     return ModifySnapshotCopyRetentionPeriodResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
+    );
+  }
+}
+
+/// Describes a network interface.
+class NetworkInterface {
+  /// The Availability Zone.
+  final String? availabilityZone;
+
+  /// The network interface identifier.
+  final String? networkInterfaceId;
+
+  /// The IPv4 address of the network interface within the subnet.
+  final String? privateIpAddress;
+
+  /// The subnet identifier.
+  final String? subnetId;
+
+  NetworkInterface({
+    this.availabilityZone,
+    this.networkInterfaceId,
+    this.privateIpAddress,
+    this.subnetId,
+  });
+  factory NetworkInterface.fromXml(_s.XmlElement elem) {
+    return NetworkInterface(
+      availabilityZone: _s.extractXmlStringValue(elem, 'AvailabilityZone'),
+      networkInterfaceId: _s.extractXmlStringValue(elem, 'NetworkInterfaceId'),
+      privateIpAddress: _s.extractXmlStringValue(elem, 'PrivateIpAddress'),
+      subnetId: _s.extractXmlStringValue(elem, 'SubnetId'),
     );
   }
 }
@@ -11078,7 +12357,9 @@ class Parameter {
   /// The name of the parameter.
   final String? parameterName;
 
-  /// The value of the parameter.
+  /// The value of the parameter. If <code>ParameterName</code> is
+  /// <code>wlm_json_configuration</code>, then the maximum size of
+  /// <code>ParameterValue</code> is 8000 characters.
   final String? parameterValue;
 
   /// The source of the parameter value, such as "engine-default" or "user".
@@ -11161,6 +12442,106 @@ extension on String {
         return ParameterApplyType.dynamic;
     }
     throw Exception('$this is not known in enum ParameterApplyType');
+  }
+}
+
+/// Describes a partner integration.
+class PartnerIntegrationInfo {
+  /// The date (UTC) that the partner integration was created.
+  final DateTime? createdAt;
+
+  /// The name of the database that receives data from a partner.
+  final String? databaseName;
+
+  /// The name of the partner.
+  final String? partnerName;
+
+  /// The partner integration status.
+  final PartnerIntegrationStatus? status;
+
+  /// The status message provided by the partner.
+  final String? statusMessage;
+
+  /// The date (UTC) that the partner integration status was last updated by the
+  /// partner.
+  final DateTime? updatedAt;
+
+  PartnerIntegrationInfo({
+    this.createdAt,
+    this.databaseName,
+    this.partnerName,
+    this.status,
+    this.statusMessage,
+    this.updatedAt,
+  });
+  factory PartnerIntegrationInfo.fromXml(_s.XmlElement elem) {
+    return PartnerIntegrationInfo(
+      createdAt: _s.extractXmlDateTimeValue(elem, 'CreatedAt'),
+      databaseName: _s.extractXmlStringValue(elem, 'DatabaseName'),
+      partnerName: _s.extractXmlStringValue(elem, 'PartnerName'),
+      status: _s
+          .extractXmlStringValue(elem, 'Status')
+          ?.toPartnerIntegrationStatus(),
+      statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
+      updatedAt: _s.extractXmlDateTimeValue(elem, 'UpdatedAt'),
+    );
+  }
+}
+
+class PartnerIntegrationOutputMessage {
+  /// The name of the database that receives data from the partner.
+  final String? databaseName;
+
+  /// The name of the partner that is authorized to send data.
+  final String? partnerName;
+
+  PartnerIntegrationOutputMessage({
+    this.databaseName,
+    this.partnerName,
+  });
+  factory PartnerIntegrationOutputMessage.fromXml(_s.XmlElement elem) {
+    return PartnerIntegrationOutputMessage(
+      databaseName: _s.extractXmlStringValue(elem, 'DatabaseName'),
+      partnerName: _s.extractXmlStringValue(elem, 'PartnerName'),
+    );
+  }
+}
+
+enum PartnerIntegrationStatus {
+  active,
+  inactive,
+  runtimeFailure,
+  connectionFailure,
+}
+
+extension on PartnerIntegrationStatus {
+  String toValue() {
+    switch (this) {
+      case PartnerIntegrationStatus.active:
+        return 'Active';
+      case PartnerIntegrationStatus.inactive:
+        return 'Inactive';
+      case PartnerIntegrationStatus.runtimeFailure:
+        return 'RuntimeFailure';
+      case PartnerIntegrationStatus.connectionFailure:
+        return 'ConnectionFailure';
+    }
+  }
+}
+
+extension on String {
+  PartnerIntegrationStatus toPartnerIntegrationStatus() {
+    switch (this) {
+      case 'Active':
+        return PartnerIntegrationStatus.active;
+      case 'Inactive':
+        return PartnerIntegrationStatus.inactive;
+      case 'RuntimeFailure':
+        return PartnerIntegrationStatus.runtimeFailure;
+      case 'ConnectionFailure':
+        return PartnerIntegrationStatus.connectionFailure;
+    }
+    throw Exception('$this is not known in enum PartnerIntegrationStatus');
   }
 }
 
@@ -12855,23 +14236,6 @@ extension on String {
   }
 }
 
-/// The connection endpoint for connecting an Amazon Redshift cluster through
-/// the proxy.
-class SpartaProxyVpcEndpoint {
-  /// The connection endpoint ID for connecting an Amazon Redshift cluster through
-  /// the proxy.
-  final String? vpcEndpointId;
-
-  SpartaProxyVpcEndpoint({
-    this.vpcEndpointId,
-  });
-  factory SpartaProxyVpcEndpoint.fromXml(_s.XmlElement elem) {
-    return SpartaProxyVpcEndpoint(
-      vpcEndpointId: _s.extractXmlStringValue(elem, 'VpcEndpointId'),
-    );
-  }
-}
-
 /// Describes a subnet.
 class Subnet {
   /// <p/>
@@ -13484,6 +14848,38 @@ extension on String {
   }
 }
 
+/// The connection endpoint for connecting to an Amazon Redshift cluster through
+/// the proxy.
+class VpcEndpoint {
+  /// One or more network interfaces of the endpoint. Also known as an interface
+  /// endpoint.
+  final List<NetworkInterface>? networkInterfaces;
+
+  /// The connection endpoint ID for connecting an Amazon Redshift cluster through
+  /// the proxy.
+  final String? vpcEndpointId;
+
+  /// The VPC identifier that the endpoint is associated.
+  final String? vpcId;
+
+  VpcEndpoint({
+    this.networkInterfaces,
+    this.vpcEndpointId,
+    this.vpcId,
+  });
+  factory VpcEndpoint.fromXml(_s.XmlElement elem) {
+    return VpcEndpoint(
+      networkInterfaces: _s.extractXmlChild(elem, 'NetworkInterfaces')?.let(
+          (elem) => elem
+              .findElements('NetworkInterface')
+              .map((c) => NetworkInterface.fromXml(c))
+              .toList()),
+      vpcEndpointId: _s.extractXmlStringValue(elem, 'VpcEndpointId'),
+      vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
+    );
+  }
+}
+
 /// Describes the members of a VPC security group.
 class VpcSecurityGroupMembership {
   /// The status of the VPC security group.
@@ -13502,6 +14898,11 @@ class VpcSecurityGroupMembership {
       vpcSecurityGroupId: _s.extractXmlStringValue(elem, 'VpcSecurityGroupId'),
     );
   }
+}
+
+class AccessToClusterDeniedFault extends _s.GenericAwsException {
+  AccessToClusterDeniedFault({String? type, String? message})
+      : super(type: type, code: 'AccessToClusterDeniedFault', message: message);
 }
 
 class AccessToSnapshotDeniedFault extends _s.GenericAwsException {
@@ -13697,6 +15098,59 @@ class DependentServiceUnavailableFault extends _s.GenericAwsException {
             message: message);
 }
 
+class EndpointAlreadyExistsFault extends _s.GenericAwsException {
+  EndpointAlreadyExistsFault({String? type, String? message})
+      : super(type: type, code: 'EndpointAlreadyExistsFault', message: message);
+}
+
+class EndpointAuthorizationAlreadyExistsFault extends _s.GenericAwsException {
+  EndpointAuthorizationAlreadyExistsFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'EndpointAuthorizationAlreadyExistsFault',
+            message: message);
+}
+
+class EndpointAuthorizationNotFoundFault extends _s.GenericAwsException {
+  EndpointAuthorizationNotFoundFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'EndpointAuthorizationNotFoundFault',
+            message: message);
+}
+
+class EndpointAuthorizationsPerClusterLimitExceededFault
+    extends _s.GenericAwsException {
+  EndpointAuthorizationsPerClusterLimitExceededFault(
+      {String? type, String? message})
+      : super(
+            type: type,
+            code: 'EndpointAuthorizationsPerClusterLimitExceededFault',
+            message: message);
+}
+
+class EndpointNotFoundFault extends _s.GenericAwsException {
+  EndpointNotFoundFault({String? type, String? message})
+      : super(type: type, code: 'EndpointNotFoundFault', message: message);
+}
+
+class EndpointsPerAuthorizationLimitExceededFault
+    extends _s.GenericAwsException {
+  EndpointsPerAuthorizationLimitExceededFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'EndpointsPerAuthorizationLimitExceededFault',
+            message: message);
+}
+
+class EndpointsPerClusterLimitExceededFault extends _s.GenericAwsException {
+  EndpointsPerClusterLimitExceededFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'EndpointsPerClusterLimitExceededFault',
+            message: message);
+}
+
 class EventSubscriptionQuotaExceededFault extends _s.GenericAwsException {
   EventSubscriptionQuotaExceededFault({String? type, String? message})
       : super(
@@ -13783,6 +15237,14 @@ class InsufficientS3BucketPolicyFault extends _s.GenericAwsException {
             message: message);
 }
 
+class InvalidAuthorizationStateFault extends _s.GenericAwsException {
+  InvalidAuthorizationStateFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'InvalidAuthorizationStateFault',
+            message: message);
+}
+
 class InvalidClusterParameterGroupStateFault extends _s.GenericAwsException {
   InvalidClusterParameterGroupStateFault({String? type, String? message})
       : super(
@@ -13844,6 +15306,11 @@ class InvalidClusterTrackFault extends _s.GenericAwsException {
 class InvalidElasticIpFault extends _s.GenericAwsException {
   InvalidElasticIpFault({String? type, String? message})
       : super(type: type, code: 'InvalidElasticIpFault', message: message);
+}
+
+class InvalidEndpointStateFault extends _s.GenericAwsException {
+  InvalidEndpointStateFault({String? type, String? message})
+      : super(type: type, code: 'InvalidEndpointStateFault', message: message);
 }
 
 class InvalidHsmClientCertificateStateFault extends _s.GenericAwsException {
@@ -13966,6 +15433,11 @@ class NumberOfNodesQuotaExceededFault extends _s.GenericAwsException {
             type: type,
             code: 'NumberOfNodesQuotaExceededFault',
             message: message);
+}
+
+class PartnerNotFoundFault extends _s.GenericAwsException {
+  PartnerNotFoundFault({String? type, String? message})
+      : super(type: type, code: 'PartnerNotFoundFault', message: message);
 }
 
 class ReservedNodeAlreadyExistsFault extends _s.GenericAwsException {
@@ -14212,6 +15684,14 @@ class UnauthorizedOperation extends _s.GenericAwsException {
       : super(type: type, code: 'UnauthorizedOperation', message: message);
 }
 
+class UnauthorizedPartnerIntegrationFault extends _s.GenericAwsException {
+  UnauthorizedPartnerIntegrationFault({String? type, String? message})
+      : super(
+            type: type,
+            code: 'UnauthorizedPartnerIntegrationFault',
+            message: message);
+}
+
 class UnknownSnapshotCopyRegionFault extends _s.GenericAwsException {
   UnknownSnapshotCopyRegionFault({String? type, String? message})
       : super(
@@ -14242,6 +15722,8 @@ class UsageLimitNotFoundFault extends _s.GenericAwsException {
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{
+  'AccessToClusterDeniedFault': (type, message) =>
+      AccessToClusterDeniedFault(type: type, message: message),
   'AccessToSnapshotDeniedFault': (type, message) =>
       AccessToSnapshotDeniedFault(type: type, message: message),
   'AuthorizationAlreadyExistsFault': (type, message) =>
@@ -14297,6 +15779,21 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       DependentServiceRequestThrottlingFault(type: type, message: message),
   'DependentServiceUnavailableFault': (type, message) =>
       DependentServiceUnavailableFault(type: type, message: message),
+  'EndpointAlreadyExistsFault': (type, message) =>
+      EndpointAlreadyExistsFault(type: type, message: message),
+  'EndpointAuthorizationAlreadyExistsFault': (type, message) =>
+      EndpointAuthorizationAlreadyExistsFault(type: type, message: message),
+  'EndpointAuthorizationNotFoundFault': (type, message) =>
+      EndpointAuthorizationNotFoundFault(type: type, message: message),
+  'EndpointAuthorizationsPerClusterLimitExceededFault': (type, message) =>
+      EndpointAuthorizationsPerClusterLimitExceededFault(
+          type: type, message: message),
+  'EndpointNotFoundFault': (type, message) =>
+      EndpointNotFoundFault(type: type, message: message),
+  'EndpointsPerAuthorizationLimitExceededFault': (type, message) =>
+      EndpointsPerAuthorizationLimitExceededFault(type: type, message: message),
+  'EndpointsPerClusterLimitExceededFault': (type, message) =>
+      EndpointsPerClusterLimitExceededFault(type: type, message: message),
   'EventSubscriptionQuotaExceededFault': (type, message) =>
       EventSubscriptionQuotaExceededFault(type: type, message: message),
   'HsmClientCertificateAlreadyExistsFault': (type, message) =>
@@ -14319,6 +15816,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InsufficientClusterCapacityFault(type: type, message: message),
   'InsufficientS3BucketPolicyFault': (type, message) =>
       InsufficientS3BucketPolicyFault(type: type, message: message),
+  'InvalidAuthorizationStateFault': (type, message) =>
+      InvalidAuthorizationStateFault(type: type, message: message),
   'InvalidClusterParameterGroupStateFault': (type, message) =>
       InvalidClusterParameterGroupStateFault(type: type, message: message),
   'InvalidClusterSecurityGroupStateFault': (type, message) =>
@@ -14337,6 +15836,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidClusterTrackFault(type: type, message: message),
   'InvalidElasticIpFault': (type, message) =>
       InvalidElasticIpFault(type: type, message: message),
+  'InvalidEndpointStateFault': (type, message) =>
+      InvalidEndpointStateFault(type: type, message: message),
   'InvalidHsmClientCertificateStateFault': (type, message) =>
       InvalidHsmClientCertificateStateFault(type: type, message: message),
   'InvalidHsmConfigurationStateFault': (type, message) =>
@@ -14375,6 +15876,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       NumberOfNodesPerClusterLimitExceededFault(type: type, message: message),
   'NumberOfNodesQuotaExceededFault': (type, message) =>
       NumberOfNodesQuotaExceededFault(type: type, message: message),
+  'PartnerNotFoundFault': (type, message) =>
+      PartnerNotFoundFault(type: type, message: message),
   'ReservedNodeAlreadyExistsFault': (type, message) =>
       ReservedNodeAlreadyExistsFault(type: type, message: message),
   'ReservedNodeAlreadyMigratedFault': (type, message) =>
@@ -14447,6 +15950,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       TagLimitExceededFault(type: type, message: message),
   'UnauthorizedOperation': (type, message) =>
       UnauthorizedOperation(type: type, message: message),
+  'UnauthorizedPartnerIntegrationFault': (type, message) =>
+      UnauthorizedPartnerIntegrationFault(type: type, message: message),
   'UnknownSnapshotCopyRegionFault': (type, message) =>
       UnknownSnapshotCopyRegionFault(type: type, message: message),
   'UnsupportedOperationFault': (type, message) =>

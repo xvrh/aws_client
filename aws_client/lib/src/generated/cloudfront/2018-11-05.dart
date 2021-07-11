@@ -1347,12 +1347,6 @@ class CloudFront {
     required String resource,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Resource': [resource],
     };
@@ -1385,12 +1379,6 @@ class CloudFront {
     required Tags tags,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'Resource': [resource],
@@ -1421,12 +1409,6 @@ class CloudFront {
     required TagKeys tagKeys,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'Resource': [resource],

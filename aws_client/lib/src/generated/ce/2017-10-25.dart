@@ -129,23 +129,24 @@ class CostExplorer {
     required String name,
     required CostCategoryRuleVersion ruleVersion,
     required List<CostCategoryRule> rules,
+    String? defaultValue,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^(?! )[\p{L}\p{N}\p{Z}-_]*(?<! )$''',
+      50,
       isRequired: true,
     );
     ArgumentError.checkNotNull(ruleVersion, 'ruleVersion');
     ArgumentError.checkNotNull(rules, 'rules');
+    _s.validateStringLength(
+      'defaultValue',
+      defaultValue,
+      1,
+      50,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSInsightsIndexService.CreateCostCategoryDefinition'
@@ -160,6 +161,7 @@ class CostExplorer {
         'Name': name,
         'RuleVersion': ruleVersion.toValue(),
         'Rules': rules,
+        if (defaultValue != null) 'DefaultValue': defaultValue,
       },
     );
 
@@ -182,12 +184,6 @@ class CostExplorer {
       monitorArn,
       0,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitorArn',
-      monitorArn,
-      r'''[\S\s]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -225,12 +221,6 @@ class CostExplorer {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'subscriptionArn',
-      subscriptionArn,
-      r'''[\S\s]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSInsightsIndexService.DeleteAnomalySubscription'
@@ -264,12 +254,6 @@ class CostExplorer {
       costCategoryArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'costCategoryArn',
-      costCategoryArn,
-      r'''arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:[-a-zA-Z0-9/:_]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -320,22 +304,11 @@ class CostExplorer {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'costCategoryArn',
-      costCategoryArn,
-      r'''arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:[-a-zA-Z0-9/:_]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'effectiveOn',
       effectiveOn,
       20,
       25,
-    );
-    _s.validateStringPattern(
-      'effectiveOn',
-      effectiveOn,
-      r'''^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(([+-]\d\d:\d\d)|Z)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -401,21 +374,11 @@ class CostExplorer {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'monitorArn',
-      monitorArn,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -467,11 +430,6 @@ class CostExplorer {
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -525,21 +483,11 @@ class CostExplorer {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'monitorArn',
-      monitorArn,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -583,6 +531,13 @@ class CostExplorer {
   /// May throw [InvalidNextTokenException].
   /// May throw [RequestChangedException].
   ///
+  /// Parameter [granularity] :
+  /// Sets the AWS cost granularity to <code>MONTHLY</code> or
+  /// <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code>
+  /// isn't set, the response object doesn't include the
+  /// <code>Granularity</code>, either <code>MONTHLY</code> or
+  /// <code>DAILY</code>, or <code>HOURLY</code>.
+  ///
   /// Parameter [metrics] :
   /// Which metrics are returned in the query. For more information about
   /// blended and unblended rates, see <a
@@ -621,13 +576,6 @@ class CostExplorer {
   /// dimension filters. For more information, see <a
   /// href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html">Expression</a>.
   ///
-  /// Parameter [granularity] :
-  /// Sets the AWS cost granularity to <code>MONTHLY</code> or
-  /// <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code>
-  /// isn't set, the response object doesn't include the
-  /// <code>Granularity</code>, either <code>MONTHLY</code> or
-  /// <code>DAILY</code>, or <code>HOURLY</code>.
-  ///
   /// Parameter [groupBy] :
   /// You can group AWS costs using up to two different groups, either
   /// dimensions, tag keys, cost categories, or any two group by types.
@@ -646,13 +594,14 @@ class CostExplorer {
   /// the response from a previous call has more results than the maximum page
   /// size.
   Future<GetCostAndUsageResponse> getCostAndUsage({
+    required Granularity granularity,
     required List<String> metrics,
     required DateInterval timePeriod,
     Expression? filter,
-    Granularity? granularity,
     List<GroupDefinition>? groupBy,
     String? nextPageToken,
   }) async {
+    ArgumentError.checkNotNull(granularity, 'granularity');
     ArgumentError.checkNotNull(metrics, 'metrics');
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
     _s.validateStringLength(
@@ -660,11 +609,6 @@ class CostExplorer {
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -677,10 +621,10 @@ class CostExplorer {
       // TODO queryParams
       headers: headers,
       payload: {
+        'Granularity': granularity.toValue(),
         'Metrics': metrics,
         'TimePeriod': timePeriod,
         if (filter != null) 'Filter': filter,
-        if (granularity != null) 'Granularity': granularity.toValue(),
         if (groupBy != null) 'GroupBy': groupBy,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
       },
@@ -728,6 +672,12 @@ class CostExplorer {
   /// <code>"SERVICE = Amazon Elastic Compute Cloud - Compute"</code> in the
   /// filter.
   ///
+  /// Parameter [granularity] :
+  /// Sets the AWS cost granularity to <code>MONTHLY</code>, <code>DAILY</code>,
+  /// or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the
+  /// response object doesn't include the <code>Granularity</code>,
+  /// <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>.
+  ///
   /// Parameter [timePeriod] :
   /// Sets the start and end dates for retrieving Amazon Web Services costs. The
   /// range must be within the last 14 days (the start date cannot be earlier
@@ -736,12 +686,6 @@ class CostExplorer {
   /// and <code>end</code> is <code>2017-05-01</code>, then the cost and usage
   /// data is retrieved from <code>2017-01-01</code> up to and including
   /// <code>2017-04-30</code> but not including <code>2017-05-01</code>.
-  ///
-  /// Parameter [granularity] :
-  /// Sets the AWS cost granularity to <code>MONTHLY</code>, <code>DAILY</code>,
-  /// or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the
-  /// response object doesn't include the <code>Granularity</code>,
-  /// <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>.
   ///
   /// Parameter [groupBy] :
   /// You can group Amazon Web Services costs using up to two different groups:
@@ -775,24 +719,20 @@ class CostExplorer {
   /// size.
   Future<GetCostAndUsageWithResourcesResponse> getCostAndUsageWithResources({
     required Expression filter,
+    required Granularity granularity,
     required DateInterval timePeriod,
-    Granularity? granularity,
     List<GroupDefinition>? groupBy,
     List<String>? metrics,
     String? nextPageToken,
   }) async {
     ArgumentError.checkNotNull(filter, 'filter');
+    ArgumentError.checkNotNull(granularity, 'granularity');
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -806,8 +746,8 @@ class CostExplorer {
       headers: headers,
       payload: {
         'Filter': filter,
+        'Granularity': granularity.toValue(),
         'TimePeriod': timePeriod,
-        if (granularity != null) 'Granularity': granularity.toValue(),
         if (groupBy != null) 'GroupBy': groupBy,
         if (metrics != null) 'Metrics': metrics,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
@@ -815,6 +755,136 @@ class CostExplorer {
     );
 
     return GetCostAndUsageWithResourcesResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves an array of Cost Category names and values incurred cost.
+  /// <note>
+  /// If some Cost Category names and values are not associated with any cost,
+  /// they will not be returned by this API.
+  /// </note>
+  ///
+  /// May throw [LimitExceededException].
+  /// May throw [BillExpirationException].
+  /// May throw [DataUnavailableException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [RequestChangedException].
+  ///
+  /// Parameter [maxResults] :
+  /// This field is only used when <code>SortBy</code> is provided in the
+  /// request.
+  ///
+  /// The maximum number of objects that to be returned for this request. If
+  /// <code>MaxResults</code> is not specified with <code>SortBy</code>, the
+  /// request will return 1000 results as the default value for this parameter.
+  ///
+  /// For <code>GetCostCategories</code>, MaxResults has an upper limit of 1000.
+  ///
+  /// Parameter [nextPageToken] :
+  /// If the number of objects that are still available for retrieval exceeds
+  /// the limit, AWS returns a NextPageToken value in the response. To retrieve
+  /// the next batch of objects, provide the NextPageToken from the prior call
+  /// in your next request.
+  ///
+  /// Parameter [searchString] :
+  /// The value that you want to search the filter values for.
+  ///
+  /// If you do not specify a <code>CostCategoryName</code>,
+  /// <code>SearchString</code> will be used to filter Cost Category names that
+  /// match the <code>SearchString</code> pattern. If you do specifiy a
+  /// <code>CostCategoryName</code>, <code>SearchString</code> will be used to
+  /// filter Cost Category values that match the <code>SearchString</code>
+  /// pattern.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The key represents cost and usage metrics. The following values are
+  /// supported:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>BlendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetAmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetUnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UsageQuantity</code>
+  /// </li>
+  /// <li>
+  /// <code>NormalizedUsageAmount</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
+  ///
+  /// When using <code>SortBy</code>, <code>NextPageToken</code> and
+  /// <code>SearchString</code> are not supported.
+  Future<GetCostCategoriesResponse> getCostCategories({
+    required DateInterval timePeriod,
+    String? costCategoryName,
+    Expression? filter,
+    int? maxResults,
+    String? nextPageToken,
+    String? searchString,
+    List<SortDefinition>? sortBy,
+  }) async {
+    ArgumentError.checkNotNull(timePeriod, 'timePeriod');
+    _s.validateStringLength(
+      'costCategoryName',
+      costCategoryName,
+      1,
+      50,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextPageToken',
+      nextPageToken,
+      0,
+      8192,
+    );
+    _s.validateStringLength(
+      'searchString',
+      searchString,
+      0,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSInsightsIndexService.GetCostCategories'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'TimePeriod': timePeriod,
+        if (costCategoryName != null) 'CostCategoryName': costCategoryName,
+        if (filter != null) 'Filter': filter,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextPageToken != null) 'NextPageToken': nextPageToken,
+        if (searchString != null) 'SearchString': searchString,
+        if (sortBy != null) 'SortBy': sortBy,
+      },
+    );
+
+    return GetCostCategoriesResponse.fromJson(jsonResponse.body);
   }
 
   /// Retrieves a forecast for how much Amazon Web Services predicts that you
@@ -864,8 +934,81 @@ class CostExplorer {
   /// error.
   ///
   /// Parameter [filter] :
-  /// The filters that you want to use to filter your forecast. Cost Explorer
-  /// API supports all of the Cost Explorer filters.
+  /// The filters that you want to use to filter your forecast. The
+  /// <code>GetCostForecast</code> API supports filtering by the following
+  /// dimensions:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>AZ</code>
+  /// </li>
+  /// <li>
+  /// <code>INSTANCE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>LINKED_ACCOUNT</code>
+  /// </li>
+  /// <li>
+  /// <code>LINKED_ACCOUNT_NAME</code>
+  /// </li>
+  /// <li>
+  /// <code>OPERATION</code>
+  /// </li>
+  /// <li>
+  /// <code>PURCHASE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>REGION</code>
+  /// </li>
+  /// <li>
+  /// <code>SERVICE</code>
+  /// </li>
+  /// <li>
+  /// <code>USAGE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>USAGE_TYPE_GROUP</code>
+  /// </li>
+  /// <li>
+  /// <code>RECORD_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>OPERATING_SYSTEM</code>
+  /// </li>
+  /// <li>
+  /// <code>TENANCY</code>
+  /// </li>
+  /// <li>
+  /// <code>SCOPE</code>
+  /// </li>
+  /// <li>
+  /// <code>PLATFORM</code>
+  /// </li>
+  /// <li>
+  /// <code>SUBSCRIPTION_ID</code>
+  /// </li>
+  /// <li>
+  /// <code>LEGAL_ENTITY_NAME</code>
+  /// </li>
+  /// <li>
+  /// <code>DEPLOYMENT_OPTION</code>
+  /// </li>
+  /// <li>
+  /// <code>DATABASE_ENGINE</code>
+  /// </li>
+  /// <li>
+  /// <code>INSTANCE_TYPE_FAMILY</code>
+  /// </li>
+  /// <li>
+  /// <code>BILLING_ENTITY</code>
+  /// </li>
+  /// <li>
+  /// <code>RESERVATION_ID</code>
+  /// </li>
+  /// <li>
+  /// <code>SAVINGS_PLAN_ARN</code>
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [predictionIntervalLevel] :
   /// Cost Explorer always returns the mean forecast as a single point. You can
@@ -1078,6 +1221,15 @@ class CostExplorer {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [maxResults] :
+  /// This field is only used when SortBy is provided in the request. The
+  /// maximum number of objects that to be returned for this request. If
+  /// MaxResults is not specified with SortBy, the request will return 1000
+  /// results as the default value for this parameter.
+  ///
+  /// For <code>GetDimensionValues</code>, MaxResults has an upper limit of
+  /// 1000.
+  ///
   /// Parameter [nextPageToken] :
   /// The token to retrieve the next set of results. AWS provides the token when
   /// the response from a previous call has more results than the maximum page
@@ -1085,36 +1237,72 @@ class CostExplorer {
   ///
   /// Parameter [searchString] :
   /// The value that you want to search the filter values for.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The key represents cost and usage metrics. The following values are
+  /// supported:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>BlendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetAmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetUnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UsageQuantity</code>
+  /// </li>
+  /// <li>
+  /// <code>NormalizedUsageAmount</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
+  ///
+  /// When you specify a <code>SortBy</code> paramater, the context must be
+  /// <code>COST_AND_USAGE</code>. Further, when using <code>SortBy</code>,
+  /// <code>NextPageToken</code> and <code>SearchString</code> are not
+  /// supported.
   Future<GetDimensionValuesResponse> getDimensionValues({
     required Dimension dimension,
     required DateInterval timePeriod,
     Context? context,
+    Expression? filter,
+    int? maxResults,
     String? nextPageToken,
     String? searchString,
+    List<SortDefinition>? sortBy,
   }) async {
     ArgumentError.checkNotNull(dimension, 'dimension');
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'searchString',
       searchString,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'searchString',
-      searchString,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1130,8 +1318,11 @@ class CostExplorer {
         'Dimension': dimension.toValue(),
         'TimePeriod': timePeriod,
         if (context != null) 'Context': context.toValue(),
+        if (filter != null) 'Filter': filter,
+        if (maxResults != null) 'MaxResults': maxResults,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
         if (searchString != null) 'SearchString': searchString,
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -1302,6 +1493,11 @@ class CostExplorer {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you returned for this request. If more
+  /// objects are available, in the response, AWS provides a NextPageToken value
+  /// that you can use in a subsequent call to get the next batch of objects.
+  ///
   /// Parameter [metrics] :
   /// The measurement that you want your reservation coverage reported in.
   ///
@@ -1312,25 +1508,68 @@ class CostExplorer {
   /// The token to retrieve the next set of results. AWS provides the token when
   /// the response from a previous call has more results than the maximum page
   /// size.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The following values are supported for <code>Key</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>OnDemandCost</code>
+  /// </li>
+  /// <li>
+  /// <code>CoverageHoursPercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>OnDemandHours</code>
+  /// </li>
+  /// <li>
+  /// <code>ReservedHours</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalRunningHours</code>
+  /// </li>
+  /// <li>
+  /// <code>CoverageNormalizedUnitsPercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>OnDemandNormalizedUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>ReservedNormalizedUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalRunningNormalizedUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>Time</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
   Future<GetReservationCoverageResponse> getReservationCoverage({
     required DateInterval timePeriod,
     Expression? filter,
     Granularity? granularity,
     List<GroupDefinition>? groupBy,
+    int? maxResults,
     List<String>? metrics,
     String? nextPageToken,
+    SortDefinition? sortBy,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1347,8 +1586,10 @@ class CostExplorer {
         if (filter != null) 'Filter': filter,
         if (granularity != null) 'Granularity': granularity.toValue(),
         if (groupBy != null) 'GroupBy': groupBy,
+        if (maxResults != null) 'MaxResults': maxResults,
         if (metrics != null) 'Metrics': metrics,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -1419,6 +1660,7 @@ class CostExplorer {
     required String service,
     String? accountId,
     AccountScope? accountScope,
+    Expression? filter,
     LookbackPeriodInDays? lookbackPeriodInDays,
     String? nextPageToken,
     int? pageSize,
@@ -1434,33 +1676,17 @@ class CostExplorer {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'service',
-      service,
-      r'''[\S\s]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'accountId',
       accountId,
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     _s.validateNumRange(
       'pageSize',
@@ -1483,6 +1709,7 @@ class CostExplorer {
         'Service': service,
         if (accountId != null) 'AccountId': accountId,
         if (accountScope != null) 'AccountScope': accountScope.toValue(),
+        if (filter != null) 'Filter': filter,
         if (lookbackPeriodInDays != null)
           'LookbackPeriodInDays': lookbackPeriodInDays.toValue(),
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
@@ -1575,28 +1802,97 @@ class CostExplorer {
   /// Parameter [groupBy] :
   /// Groups only by <code>SUBSCRIPTION_ID</code>. Metadata is included.
   ///
+  /// Parameter [maxResults] :
+  /// The maximum number of objects that you returned for this request. If more
+  /// objects are available, in the response, AWS provides a NextPageToken value
+  /// that you can use in a subsequent call to get the next batch of objects.
+  ///
   /// Parameter [nextPageToken] :
   /// The token to retrieve the next set of results. AWS provides the token when
   /// the response from a previous call has more results than the maximum page
   /// size.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The following values are supported for <code>Key</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>UtilizationPercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>UtilizationPercentageInUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>PurchasedHours</code>
+  /// </li>
+  /// <li>
+  /// <code>PurchasedUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalActualHours</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalActualUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>UnusedHours</code>
+  /// </li>
+  /// <li>
+  /// <code>UnusedUnits</code>
+  /// </li>
+  /// <li>
+  /// <code>OnDemandCostOfRIHoursUsed</code>
+  /// </li>
+  /// <li>
+  /// <code>NetRISavings</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalPotentialRISavings</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedUpfrontFee</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedRecurringFee</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalAmortizedFee</code>
+  /// </li>
+  /// <li>
+  /// <code>RICostForUnusedHours</code>
+  /// </li>
+  /// <li>
+  /// <code>RealizedSavings</code>
+  /// </li>
+  /// <li>
+  /// <code>UnrealizedSavings</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
   Future<GetReservationUtilizationResponse> getReservationUtilization({
     required DateInterval timePeriod,
     Expression? filter,
     Granularity? granularity,
     List<GroupDefinition>? groupBy,
+    int? maxResults,
     String? nextPageToken,
+    SortDefinition? sortBy,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1613,7 +1909,9 @@ class CostExplorer {
         if (filter != null) 'Filter': filter,
         if (granularity != null) 'Granularity': granularity.toValue(),
         if (groupBy != null) 'GroupBy': groupBy,
+        if (maxResults != null) 'MaxResults': maxResults,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -1667,22 +1965,11 @@ class CostExplorer {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'service',
-      service,
-      r'''[\S\s]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     _s.validateNumRange(
       'pageSize',
@@ -1796,6 +2083,37 @@ class CostExplorer {
   /// The token to retrieve the next set of results. Amazon Web Services
   /// provides the token when the response from a previous call has more results
   /// than the maximum page size.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The following values are supported for <code>Key</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SpendCoveredBySavingsPlan</code>
+  /// </li>
+  /// <li>
+  /// <code>OnDemandCost</code>
+  /// </li>
+  /// <li>
+  /// <code>CoveragePercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalCost</code>
+  /// </li>
+  /// <li>
+  /// <code>InstanceFamily</code>
+  /// </li>
+  /// <li>
+  /// <code>Region</code>
+  /// </li>
+  /// <li>
+  /// <code>Service</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
   Future<GetSavingsPlansCoverageResponse> getSavingsPlansCoverage({
     required DateInterval timePeriod,
     Expression? filter,
@@ -1804,6 +2122,7 @@ class CostExplorer {
     int? maxResults,
     List<String>? metrics,
     String? nextToken,
+    SortDefinition? sortBy,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
     _s.validateNumRange(
@@ -1817,11 +2136,6 @@ class CostExplorer {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1841,6 +2155,7 @@ class CostExplorer {
         if (maxResults != null) 'MaxResults': maxResults,
         if (metrics != null) 'Metrics': metrics,
         if (nextToken != null) 'NextToken': nextToken,
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -1917,11 +2232,6 @@ class CostExplorer {
       nextPageToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
     );
     _s.validateNumRange(
       'pageSize',
@@ -2010,10 +2320,36 @@ class CostExplorer {
   ///
   /// The <code>GetSavingsPlansUtilization</code> operation supports only
   /// <code>DAILY</code> and <code>MONTHLY</code> granularities.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The following values are supported for <code>Key</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>UtilizationPercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>UsedCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>UnusedCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>NetSavings</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
   Future<GetSavingsPlansUtilizationResponse> getSavingsPlansUtilization({
     required DateInterval timePeriod,
     Expression? filter,
     Granularity? granularity,
+    SortDefinition? sortBy,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
     final headers = <String, String>{
@@ -2030,6 +2366,7 @@ class CostExplorer {
         'TimePeriod': timePeriod,
         if (filter != null) 'Filter': filter,
         if (granularity != null) 'Granularity': granularity.toValue(),
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -2058,6 +2395,9 @@ class CostExplorer {
   /// <code>Start</code> date must be within 13 months. The <code>End</code>
   /// date must be after the <code>Start</code> date, and before the current
   /// date. Future dates can't be used as an <code>End</code> date.
+  ///
+  /// Parameter [dataType] :
+  /// The data type.
   ///
   /// Parameter [filter] :
   /// Filters Savings Plans utilization coverage data for active Savings Plans
@@ -2093,12 +2433,45 @@ class CostExplorer {
   /// The token to retrieve the next set of results. Amazon Web Services
   /// provides the token when the response from a previous call has more results
   /// than the maximum page size.
+  ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The following values are supported for <code>Key</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>UtilizationPercentage</code>
+  /// </li>
+  /// <li>
+  /// <code>TotalCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>UsedCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>UnusedCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>NetSavings</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedRecurringCommitment</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedUpfrontCommitment</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
   Future<GetSavingsPlansUtilizationDetailsResponse>
       getSavingsPlansUtilizationDetails({
     required DateInterval timePeriod,
+    List<SavingsPlansDataType>? dataType,
     Expression? filter,
     int? maxResults,
     String? nextToken,
+    SortDefinition? sortBy,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
     _s.validateNumRange(
@@ -2113,11 +2486,6 @@ class CostExplorer {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2131,9 +2499,12 @@ class CostExplorer {
       headers: headers,
       payload: {
         'TimePeriod': timePeriod,
+        if (dataType != null)
+          'DataType': dataType.map((e) => e.toValue()).toList(),
         if (filter != null) 'Filter': filter,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
+        if (sortBy != null) 'SortBy': sortBy,
       },
     );
 
@@ -2158,6 +2529,14 @@ class CostExplorer {
   /// <code>2017-01-01</code> up to and including <code>2017-04-30</code> but
   /// not including <code>2017-05-01</code>.
   ///
+  /// Parameter [maxResults] :
+  /// This field is only used when SortBy is provided in the request. The
+  /// maximum number of objects that to be returned for this request. If
+  /// MaxResults is not specified with SortBy, the request will return 1000
+  /// results as the default value for this parameter.
+  ///
+  /// For <code>GetTags</code>, MaxResults has an upper limit of 1000.
+  ///
   /// Parameter [nextPageToken] :
   /// The token to retrieve the next set of results. AWS provides the token when
   /// the response from a previous call has more results than the maximum page
@@ -2166,47 +2545,76 @@ class CostExplorer {
   /// Parameter [searchString] :
   /// The value that you want to search for.
   ///
+  /// Parameter [sortBy] :
+  /// The value by which you want to sort the data.
+  ///
+  /// The key represents cost and usage metrics. The following values are
+  /// supported:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>BlendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>AmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetAmortizedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>NetUnblendedCost</code>
+  /// </li>
+  /// <li>
+  /// <code>UsageQuantity</code>
+  /// </li>
+  /// <li>
+  /// <code>NormalizedUsageAmount</code>
+  /// </li>
+  /// </ul>
+  /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or
+  /// <code>DESCENDING</code>.
+  ///
+  /// When using <code>SortBy</code>, <code>NextPageToken</code> and
+  /// <code>SearchString</code> are not supported.
+  ///
   /// Parameter [tagKey] :
   /// The key of the tag that you want to return values for.
   Future<GetTagsResponse> getTags({
     required DateInterval timePeriod,
+    Expression? filter,
+    int? maxResults,
     String? nextPageToken,
     String? searchString,
+    List<SortDefinition>? sortBy,
     String? tagKey,
   }) async {
     ArgumentError.checkNotNull(timePeriod, 'timePeriod');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
     _s.validateStringLength(
       'nextPageToken',
       nextPageToken,
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextPageToken',
-      nextPageToken,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'searchString',
       searchString,
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'searchString',
-      searchString,
-      r'''[\S\s]*''',
-    );
     _s.validateStringLength(
       'tagKey',
       tagKey,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'tagKey',
-      tagKey,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2220,8 +2628,11 @@ class CostExplorer {
       headers: headers,
       payload: {
         'TimePeriod': timePeriod,
+        if (filter != null) 'Filter': filter,
+        if (maxResults != null) 'MaxResults': maxResults,
         if (nextPageToken != null) 'NextPageToken': nextPageToken,
         if (searchString != null) 'SearchString': searchString,
+        if (sortBy != null) 'SortBy': sortBy,
         if (tagKey != null) 'TagKey': tagKey,
       },
     );
@@ -2270,8 +2681,81 @@ class CostExplorer {
   /// validation error.
   ///
   /// Parameter [filter] :
-  /// The filters that you want to use to filter your forecast. Cost Explorer
-  /// API supports all of the Cost Explorer filters.
+  /// The filters that you want to use to filter your forecast. The
+  /// <code>GetUsageForecast</code> API supports filtering by the following
+  /// dimensions:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>AZ</code>
+  /// </li>
+  /// <li>
+  /// <code>INSTANCE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>LINKED_ACCOUNT</code>
+  /// </li>
+  /// <li>
+  /// <code>LINKED_ACCOUNT_NAME</code>
+  /// </li>
+  /// <li>
+  /// <code>OPERATION</code>
+  /// </li>
+  /// <li>
+  /// <code>PURCHASE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>REGION</code>
+  /// </li>
+  /// <li>
+  /// <code>SERVICE</code>
+  /// </li>
+  /// <li>
+  /// <code>USAGE_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>USAGE_TYPE_GROUP</code>
+  /// </li>
+  /// <li>
+  /// <code>RECORD_TYPE</code>
+  /// </li>
+  /// <li>
+  /// <code>OPERATING_SYSTEM</code>
+  /// </li>
+  /// <li>
+  /// <code>TENANCY</code>
+  /// </li>
+  /// <li>
+  /// <code>SCOPE</code>
+  /// </li>
+  /// <li>
+  /// <code>PLATFORM</code>
+  /// </li>
+  /// <li>
+  /// <code>SUBSCRIPTION_ID</code>
+  /// </li>
+  /// <li>
+  /// <code>LEGAL_ENTITY_NAME</code>
+  /// </li>
+  /// <li>
+  /// <code>DEPLOYMENT_OPTION</code>
+  /// </li>
+  /// <li>
+  /// <code>DATABASE_ENGINE</code>
+  /// </li>
+  /// <li>
+  /// <code>INSTANCE_TYPE_FAMILY</code>
+  /// </li>
+  /// <li>
+  /// <code>BILLING_ENTITY</code>
+  /// </li>
+  /// <li>
+  /// <code>RESERVATION_ID</code>
+  /// </li>
+  /// <li>
+  /// <code>SAVINGS_PLAN_ARN</code>
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [predictionIntervalLevel] :
   /// Cost Explorer always returns the mean forecast as a single point. You can
@@ -2351,11 +2835,6 @@ class CostExplorer {
       20,
       25,
     );
-    _s.validateStringPattern(
-      'effectiveOn',
-      effectiveOn,
-      r'''^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(([+-]\d\d:\d\d)|Z)$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2367,11 +2846,6 @@ class CostExplorer {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2413,12 +2887,6 @@ class CostExplorer {
       anomalyId,
       0,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'anomalyId',
-      anomalyId,
-      r'''[\S\s]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(feedback, 'feedback');
@@ -2464,22 +2932,11 @@ class CostExplorer {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'monitorArn',
-      monitorArn,
-      r'''[\S\s]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'monitorName',
       monitorName,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'monitorName',
-      monitorName,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2540,22 +2997,11 @@ class CostExplorer {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'subscriptionArn',
-      subscriptionArn,
-      r'''[\S\s]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'subscriptionName',
       subscriptionName,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'subscriptionName',
-      subscriptionName,
-      r'''[\S\s]*''',
     );
     _s.validateNumRange(
       'threshold',
@@ -2606,6 +3052,7 @@ class CostExplorer {
     required String costCategoryArn,
     required CostCategoryRuleVersion ruleVersion,
     required List<CostCategoryRule> rules,
+    String? defaultValue,
   }) async {
     ArgumentError.checkNotNull(costCategoryArn, 'costCategoryArn');
     _s.validateStringLength(
@@ -2615,14 +3062,14 @@ class CostExplorer {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'costCategoryArn',
-      costCategoryArn,
-      r'''arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:[-a-zA-Z0-9/:_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleVersion, 'ruleVersion');
     ArgumentError.checkNotNull(rules, 'rules');
+    _s.validateStringLength(
+      'defaultValue',
+      defaultValue,
+      1,
+      50,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSInsightsIndexService.UpdateCostCategoryDefinition'
@@ -2637,6 +3084,7 @@ class CostExplorer {
         'CostCategoryArn': costCategoryArn,
         'RuleVersion': ruleVersion.toValue(),
         'Rules': rules,
+        if (defaultValue != null) 'DefaultValue': defaultValue,
       },
     );
 
@@ -3049,6 +3497,7 @@ class CostCategory {
   /// line item, then the first rule to match is used to determine that Cost
   /// Category value.
   final List<CostCategoryRule> rules;
+  final String? defaultValue;
 
   /// The Cost Category's effective end date.
   final String? effectiveEnd;
@@ -3063,6 +3512,7 @@ class CostCategory {
     required this.name,
     required this.ruleVersion,
     required this.rules,
+    this.defaultValue,
     this.effectiveEnd,
     this.processingStatus,
   });
@@ -3076,6 +3526,7 @@ class CostCategory {
           .whereNotNull()
           .map((e) => CostCategoryRule.fromJson(e as Map<String, dynamic>))
           .toList(),
+      defaultValue: json['DefaultValue'] as String?,
       effectiveEnd: json['EffectiveEnd'] as String?,
       processingStatus: (json['ProcessingStatus'] as List?)
           ?.whereNotNull()
@@ -3083,6 +3534,78 @@ class CostCategory {
               CostCategoryProcessingStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+/// When creating or updating a cost category, you can define the
+/// <code>CostCategoryRule</code> rule type as <code>INHERITED_VALUE</code>.
+/// This rule type adds the flexibility of defining a rule that dynamically
+/// inherits the cost category value from the dimension value defined by
+/// <code>CostCategoryInheritedValueDimension</code>. For example, if you wanted
+/// to dynamically group costs based on the value of a specific tag key, you
+/// would first choose an inherited value rule type, then choose the tag
+/// dimension and specify the tag key to use.
+class CostCategoryInheritedValueDimension {
+  /// The key to extract cost category values.
+  final String? dimensionKey;
+
+  /// The name of dimension for which to group costs.
+  ///
+  /// If you specify <code>LINKED_ACCOUNT_NAME</code>, the cost category value
+  /// will be based on account name. If you specify <code>TAG</code>, the cost
+  /// category value will be based on the value of the specified tag key.
+  final CostCategoryInheritedValueDimensionName? dimensionName;
+
+  CostCategoryInheritedValueDimension({
+    this.dimensionKey,
+    this.dimensionName,
+  });
+  factory CostCategoryInheritedValueDimension.fromJson(
+      Map<String, dynamic> json) {
+    return CostCategoryInheritedValueDimension(
+      dimensionKey: json['DimensionKey'] as String?,
+      dimensionName: (json['DimensionName'] as String?)
+          ?.toCostCategoryInheritedValueDimensionName(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensionKey = this.dimensionKey;
+    final dimensionName = this.dimensionName;
+    return {
+      if (dimensionKey != null) 'DimensionKey': dimensionKey,
+      if (dimensionName != null) 'DimensionName': dimensionName.toValue(),
+    };
+  }
+}
+
+enum CostCategoryInheritedValueDimensionName {
+  linkedAccountName,
+  tag,
+}
+
+extension on CostCategoryInheritedValueDimensionName {
+  String toValue() {
+    switch (this) {
+      case CostCategoryInheritedValueDimensionName.linkedAccountName:
+        return 'LINKED_ACCOUNT_NAME';
+      case CostCategoryInheritedValueDimensionName.tag:
+        return 'TAG';
+    }
+  }
+}
+
+extension on String {
+  CostCategoryInheritedValueDimensionName
+      toCostCategoryInheritedValueDimensionName() {
+    switch (this) {
+      case 'LINKED_ACCOUNT_NAME':
+        return CostCategoryInheritedValueDimensionName.linkedAccountName;
+      case 'TAG':
+        return CostCategoryInheritedValueDimensionName.tag;
+    }
+    throw Exception(
+        '$this is not known in enum CostCategoryInheritedValueDimensionName');
   }
 }
 
@@ -3116,6 +3639,7 @@ class CostCategoryProcessingStatus {
 class CostCategoryReference {
   /// The unique identifier for your Cost Category.
   final String? costCategoryArn;
+  final String? defaultValue;
 
   /// The Cost Category's effective end date.
   final String? effectiveEnd;
@@ -3136,6 +3660,7 @@ class CostCategoryReference {
 
   CostCategoryReference({
     this.costCategoryArn,
+    this.defaultValue,
     this.effectiveEnd,
     this.effectiveStart,
     this.name,
@@ -3146,6 +3671,7 @@ class CostCategoryReference {
   factory CostCategoryReference.fromJson(Map<String, dynamic> json) {
     return CostCategoryReference(
       costCategoryArn: json['CostCategoryArn'] as String?,
+      defaultValue: json['DefaultValue'] as String?,
       effectiveEnd: json['EffectiveEnd'] as String?,
       effectiveStart: json['EffectiveStart'] as String?,
       name: json['Name'] as String?,
@@ -3167,6 +3693,10 @@ class CostCategoryReference {
 /// line item, then the first rule to match is used to determine that Cost
 /// Category value.
 class CostCategoryRule {
+  /// The value the line item will be categorized as, if the line item contains
+  /// the matched dimension.
+  final CostCategoryInheritedValueDimension? inheritedValue;
+
   /// An <a
   /// href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html">Expression</a>
   /// object used to categorize costs. This supports dimensions, tags, and nested
@@ -3183,27 +3713,78 @@ class CostCategoryRule {
   /// a detailed comparison, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-cost-categories.html#cost-categories-terms">Term
   /// Comparisons</a> in the <i>AWS Billing and Cost Management User Guide</i>.
-  final Expression rule;
-  final String value;
+  final Expression? rule;
+
+  /// You can define the <code>CostCategoryRule</code> rule type as either
+  /// <code>REGULAR</code> or <code>INHERITED_VALUE</code>. The
+  /// <code>INHERITED_VALUE</code> rule type adds the flexibility of defining a
+  /// rule that dynamically inherits the cost category value from the dimension
+  /// value defined by <code>CostCategoryInheritedValueDimension</code>. For
+  /// example, if you wanted to dynamically group costs based on the value of a
+  /// specific tag key, you would first choose an inherited value rule type, then
+  /// choose the tag dimension and specify the tag key to use.
+  final CostCategoryRuleType? type;
+  final String? value;
 
   CostCategoryRule({
-    required this.rule,
-    required this.value,
+    this.inheritedValue,
+    this.rule,
+    this.type,
+    this.value,
   });
   factory CostCategoryRule.fromJson(Map<String, dynamic> json) {
     return CostCategoryRule(
-      rule: Expression.fromJson(json['Rule'] as Map<String, dynamic>),
-      value: json['Value'] as String,
+      inheritedValue: json['InheritedValue'] != null
+          ? CostCategoryInheritedValueDimension.fromJson(
+              json['InheritedValue'] as Map<String, dynamic>)
+          : null,
+      rule: json['Rule'] != null
+          ? Expression.fromJson(json['Rule'] as Map<String, dynamic>)
+          : null,
+      type: (json['Type'] as String?)?.toCostCategoryRuleType(),
+      value: json['Value'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final inheritedValue = this.inheritedValue;
     final rule = this.rule;
+    final type = this.type;
     final value = this.value;
     return {
-      'Rule': rule,
-      'Value': value,
+      if (inheritedValue != null) 'InheritedValue': inheritedValue,
+      if (rule != null) 'Rule': rule,
+      if (type != null) 'Type': type.toValue(),
+      if (value != null) 'Value': value,
     };
+  }
+}
+
+enum CostCategoryRuleType {
+  regular,
+  inheritedValue,
+}
+
+extension on CostCategoryRuleType {
+  String toValue() {
+    switch (this) {
+      case CostCategoryRuleType.regular:
+        return 'REGULAR';
+      case CostCategoryRuleType.inheritedValue:
+        return 'INHERITED_VALUE';
+    }
+  }
+}
+
+extension on String {
+  CostCategoryRuleType toCostCategoryRuleType() {
+    switch (this) {
+      case 'REGULAR':
+        return CostCategoryRuleType.regular;
+      case 'INHERITED_VALUE':
+        return CostCategoryRuleType.inheritedValue;
+    }
+    throw Exception('$this is not known in enum CostCategoryRuleType');
   }
 }
 
@@ -3283,12 +3864,22 @@ extension on String {
 }
 
 /// The Cost Categories values used for filtering the costs.
+///
+/// If <code>Values</code> and <code>Key</code> are not specified, the
+/// <code>ABSENT</code> <code>MatchOption</code> is applied to all Cost
+/// Categories. That is, filtering on resources that are not mapped to any Cost
+/// Categories.
+///
+/// If <code>Values</code> is provided and <code>Key</code> is not specified,
+/// the <code>ABSENT</code> <code>MatchOption</code> is applied to the Cost
+/// Categories <code>Key</code> only. That is, filtering on resources without
+/// the given Cost Categories key.
 class CostCategoryValues {
   final String? key;
 
   /// The match options that you can use to filter your results. MatchOptions is
-  /// only applicable for only applicable for actions related to cost category.
-  /// The default values for <code>MatchOptions</code> is <code>EQUALS</code> and
+  /// only applicable for actions related to cost category. The default values for
+  /// <code>MatchOptions</code> is <code>EQUALS</code> and
   /// <code>CASE_SENSITIVE</code>.
   final List<MatchOption>? matchOptions;
 
@@ -3613,18 +4204,18 @@ class CurrentInstance {
   }
 }
 
-/// The time period that you want the usage and costs for.
+/// The time period of the request.
 class DateInterval {
-  /// The end of the time period that you want the usage and costs for. The end
-  /// date is exclusive. For example, if <code>end</code> is
-  /// <code>2017-05-01</code>, AWS retrieves cost and usage data from the start
-  /// date up to, but not including, <code>2017-05-01</code>.
+  /// The end of the time period. The end date is exclusive. For example, if
+  /// <code>end</code> is <code>2017-05-01</code>, AWS retrieves cost and usage
+  /// data from the start date up to, but not including, <code>2017-05-01</code>.
   final String end;
 
-  /// The beginning of the time period that you want the usage and costs for. The
-  /// start date is inclusive. For example, if <code>start</code> is
-  /// <code>2017-01-01</code>, AWS retrieves cost and usage data starting at
-  /// <code>2017-01-01</code> up to the end date.
+  /// The beginning of the time period. The start date is inclusive. For example,
+  /// if <code>start</code> is <code>2017-01-01</code>, AWS retrieves cost and
+  /// usage data starting at <code>2017-01-01</code> up to the end date. The start
+  /// date must be equal to or no later than the current date to avoid a
+  /// validation error.
   final String start;
 
   DateInterval({
@@ -3729,6 +4320,8 @@ enum Dimension {
   savingsPlansType,
   savingsPlanArn,
   paymentOption,
+  agreementEndDateTimeAfter,
+  agreementEndDateTimeBefore,
 }
 
 extension on Dimension {
@@ -3792,6 +4385,10 @@ extension on Dimension {
         return 'SAVINGS_PLAN_ARN';
       case Dimension.paymentOption:
         return 'PAYMENT_OPTION';
+      case Dimension.agreementEndDateTimeAfter:
+        return 'AGREEMENT_END_DATE_TIME_AFTER';
+      case Dimension.agreementEndDateTimeBefore:
+        return 'AGREEMENT_END_DATE_TIME_BEFORE';
     }
   }
 }
@@ -3857,6 +4454,10 @@ extension on String {
         return Dimension.savingsPlanArn;
       case 'PAYMENT_OPTION':
         return Dimension.paymentOption;
+      case 'AGREEMENT_END_DATE_TIME_AFTER':
+        return Dimension.agreementEndDateTimeAfter;
+      case 'AGREEMENT_END_DATE_TIME_BEFORE':
+        return Dimension.agreementEndDateTimeBefore;
     }
     throw Exception('$this is not known in enum Dimension');
   }
@@ -3930,6 +4531,37 @@ class DimensionValuesWithAttributes {
       attributes: (json['Attributes'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
       value: json['Value'] as String?,
+    );
+  }
+}
+
+/// The field that contains a list of disk (local storage) metrics associated
+/// with the current instance.
+class DiskResourceUtilization {
+  /// The maximum read throughput operations per second.
+  final String? diskReadBytesPerSecond;
+
+  /// The maximum number of read operations per second.
+  final String? diskReadOpsPerSecond;
+
+  /// The maximum write throughput operations per second.
+  final String? diskWriteBytesPerSecond;
+
+  /// The maximum number of write operations per second.
+  final String? diskWriteOpsPerSecond;
+
+  DiskResourceUtilization({
+    this.diskReadBytesPerSecond,
+    this.diskReadOpsPerSecond,
+    this.diskWriteBytesPerSecond,
+    this.diskWriteOpsPerSecond,
+  });
+  factory DiskResourceUtilization.fromJson(Map<String, dynamic> json) {
+    return DiskResourceUtilization(
+      diskReadBytesPerSecond: json['DiskReadBytesPerSecond'] as String?,
+      diskReadOpsPerSecond: json['DiskReadOpsPerSecond'] as String?,
+      diskWriteBytesPerSecond: json['DiskWriteBytesPerSecond'] as String?,
+      diskWriteOpsPerSecond: json['DiskWriteOpsPerSecond'] as String?,
     );
   }
 }
@@ -4075,6 +4707,10 @@ class EC2ResourceDetails {
 
 /// Utilization metrics of the instance.
 class EC2ResourceUtilization {
+  /// The field that contains a list of disk (local storage) metrics associated
+  /// with the current instance.
+  final DiskResourceUtilization? diskResourceUtilization;
+
   /// The EBS field that contains a list of EBS metrics associated with the
   /// current instance.
   final EBSResourceUtilization? eBSResourceUtilization;
@@ -4089,14 +4725,24 @@ class EC2ResourceUtilization {
   /// measure EBS storage).
   final String? maxStorageUtilizationPercentage;
 
+  /// The network field that contains a list of network metrics associated with
+  /// the current instance.
+  final NetworkResourceUtilization? networkResourceUtilization;
+
   EC2ResourceUtilization({
+    this.diskResourceUtilization,
     this.eBSResourceUtilization,
     this.maxCpuUtilizationPercentage,
     this.maxMemoryUtilizationPercentage,
     this.maxStorageUtilizationPercentage,
+    this.networkResourceUtilization,
   });
   factory EC2ResourceUtilization.fromJson(Map<String, dynamic> json) {
     return EC2ResourceUtilization(
+      diskResourceUtilization: json['DiskResourceUtilization'] != null
+          ? DiskResourceUtilization.fromJson(
+              json['DiskResourceUtilization'] as Map<String, dynamic>)
+          : null,
       eBSResourceUtilization: json['EBSResourceUtilization'] != null
           ? EBSResourceUtilization.fromJson(
               json['EBSResourceUtilization'] as Map<String, dynamic>)
@@ -4107,6 +4753,10 @@ class EC2ResourceUtilization {
           json['MaxMemoryUtilizationPercentage'] as String?,
       maxStorageUtilizationPercentage:
           json['MaxStorageUtilizationPercentage'] as String?,
+      networkResourceUtilization: json['NetworkResourceUtilization'] != null
+          ? NetworkResourceUtilization.fromJson(
+              json['NetworkResourceUtilization'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -4252,11 +4902,15 @@ class ElastiCacheInstanceDetails {
 /// "Values": [ "DataTransfer" ] } } </code>
 /// </li>
 /// </ul> <note>
-/// For <code>GetRightsizingRecommendation</code> action, a combination of OR
-/// and NOT is not supported. OR is not supported between different dimensions,
-/// or dimensions and tags. NOT operators aren't supported. Dimensions are also
-/// limited to <code>LINKED_ACCOUNT</code>, <code>REGION</code>, or
-/// <code>RIGHTSIZING_TYPE</code>.
+/// For the <code>GetRightsizingRecommendation</code> action, a combination of
+/// OR and NOT is not supported. OR is not supported between different
+/// dimensions, or dimensions and tags. NOT operators aren't supported.
+/// Dimensions are also limited to <code>LINKED_ACCOUNT</code>,
+/// <code>REGION</code>, or <code>RIGHTSIZING_TYPE</code>.
+///
+/// For the <code>GetReservationPurchaseRecommendation</code> action, only NOT
+/// is supported. AND and OR are not supported. Dimensions are limited to
+/// <code>LINKED_ACCOUNT</code>.
 /// </note>
 class Expression {
   /// Return results that match both <code>Dimension</code> objects.
@@ -4326,6 +4980,104 @@ class Expression {
       if (or != null) 'Or': or,
       if (tags != null) 'Tags': tags,
     };
+  }
+}
+
+enum FindingReasonCode {
+  cpuOverProvisioned,
+  cpuUnderProvisioned,
+  memoryOverProvisioned,
+  memoryUnderProvisioned,
+  ebsThroughputOverProvisioned,
+  ebsThroughputUnderProvisioned,
+  ebsIopsOverProvisioned,
+  ebsIopsUnderProvisioned,
+  networkBandwidthOverProvisioned,
+  networkBandwidthUnderProvisioned,
+  networkPpsOverProvisioned,
+  networkPpsUnderProvisioned,
+  diskIopsOverProvisioned,
+  diskIopsUnderProvisioned,
+  diskThroughputOverProvisioned,
+  diskThroughputUnderProvisioned,
+}
+
+extension on FindingReasonCode {
+  String toValue() {
+    switch (this) {
+      case FindingReasonCode.cpuOverProvisioned:
+        return 'CPU_OVER_PROVISIONED';
+      case FindingReasonCode.cpuUnderProvisioned:
+        return 'CPU_UNDER_PROVISIONED';
+      case FindingReasonCode.memoryOverProvisioned:
+        return 'MEMORY_OVER_PROVISIONED';
+      case FindingReasonCode.memoryUnderProvisioned:
+        return 'MEMORY_UNDER_PROVISIONED';
+      case FindingReasonCode.ebsThroughputOverProvisioned:
+        return 'EBS_THROUGHPUT_OVER_PROVISIONED';
+      case FindingReasonCode.ebsThroughputUnderProvisioned:
+        return 'EBS_THROUGHPUT_UNDER_PROVISIONED';
+      case FindingReasonCode.ebsIopsOverProvisioned:
+        return 'EBS_IOPS_OVER_PROVISIONED';
+      case FindingReasonCode.ebsIopsUnderProvisioned:
+        return 'EBS_IOPS_UNDER_PROVISIONED';
+      case FindingReasonCode.networkBandwidthOverProvisioned:
+        return 'NETWORK_BANDWIDTH_OVER_PROVISIONED';
+      case FindingReasonCode.networkBandwidthUnderProvisioned:
+        return 'NETWORK_BANDWIDTH_UNDER_PROVISIONED';
+      case FindingReasonCode.networkPpsOverProvisioned:
+        return 'NETWORK_PPS_OVER_PROVISIONED';
+      case FindingReasonCode.networkPpsUnderProvisioned:
+        return 'NETWORK_PPS_UNDER_PROVISIONED';
+      case FindingReasonCode.diskIopsOverProvisioned:
+        return 'DISK_IOPS_OVER_PROVISIONED';
+      case FindingReasonCode.diskIopsUnderProvisioned:
+        return 'DISK_IOPS_UNDER_PROVISIONED';
+      case FindingReasonCode.diskThroughputOverProvisioned:
+        return 'DISK_THROUGHPUT_OVER_PROVISIONED';
+      case FindingReasonCode.diskThroughputUnderProvisioned:
+        return 'DISK_THROUGHPUT_UNDER_PROVISIONED';
+    }
+  }
+}
+
+extension on String {
+  FindingReasonCode toFindingReasonCode() {
+    switch (this) {
+      case 'CPU_OVER_PROVISIONED':
+        return FindingReasonCode.cpuOverProvisioned;
+      case 'CPU_UNDER_PROVISIONED':
+        return FindingReasonCode.cpuUnderProvisioned;
+      case 'MEMORY_OVER_PROVISIONED':
+        return FindingReasonCode.memoryOverProvisioned;
+      case 'MEMORY_UNDER_PROVISIONED':
+        return FindingReasonCode.memoryUnderProvisioned;
+      case 'EBS_THROUGHPUT_OVER_PROVISIONED':
+        return FindingReasonCode.ebsThroughputOverProvisioned;
+      case 'EBS_THROUGHPUT_UNDER_PROVISIONED':
+        return FindingReasonCode.ebsThroughputUnderProvisioned;
+      case 'EBS_IOPS_OVER_PROVISIONED':
+        return FindingReasonCode.ebsIopsOverProvisioned;
+      case 'EBS_IOPS_UNDER_PROVISIONED':
+        return FindingReasonCode.ebsIopsUnderProvisioned;
+      case 'NETWORK_BANDWIDTH_OVER_PROVISIONED':
+        return FindingReasonCode.networkBandwidthOverProvisioned;
+      case 'NETWORK_BANDWIDTH_UNDER_PROVISIONED':
+        return FindingReasonCode.networkBandwidthUnderProvisioned;
+      case 'NETWORK_PPS_OVER_PROVISIONED':
+        return FindingReasonCode.networkPpsOverProvisioned;
+      case 'NETWORK_PPS_UNDER_PROVISIONED':
+        return FindingReasonCode.networkPpsUnderProvisioned;
+      case 'DISK_IOPS_OVER_PROVISIONED':
+        return FindingReasonCode.diskIopsOverProvisioned;
+      case 'DISK_IOPS_UNDER_PROVISIONED':
+        return FindingReasonCode.diskIopsUnderProvisioned;
+      case 'DISK_THROUGHPUT_OVER_PROVISIONED':
+        return FindingReasonCode.diskThroughputOverProvisioned;
+      case 'DISK_THROUGHPUT_UNDER_PROVISIONED':
+        return FindingReasonCode.diskThroughputUnderProvisioned;
+    }
+    throw Exception('$this is not known in enum FindingReasonCode');
   }
 }
 
@@ -4438,6 +5190,10 @@ class GetAnomalySubscriptionsResponse {
 }
 
 class GetCostAndUsageResponse {
+  /// The attributes that apply to a specific dimension value. For example, if the
+  /// value is a linked account, the attribute is that account name.
+  final List<DimensionValuesWithAttributes>? dimensionValueAttributes;
+
   /// The groups that are specified by the <code>Filter</code> or
   /// <code>GroupBy</code> parameters in the request.
   final List<GroupDefinition>? groupDefinitions;
@@ -4451,12 +5207,18 @@ class GetCostAndUsageResponse {
   final List<ResultByTime>? resultsByTime;
 
   GetCostAndUsageResponse({
+    this.dimensionValueAttributes,
     this.groupDefinitions,
     this.nextPageToken,
     this.resultsByTime,
   });
   factory GetCostAndUsageResponse.fromJson(Map<String, dynamic> json) {
     return GetCostAndUsageResponse(
+      dimensionValueAttributes: (json['DimensionValueAttributes'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DimensionValuesWithAttributes.fromJson(e as Map<String, dynamic>))
+          .toList(),
       groupDefinitions: (json['GroupDefinitions'] as List?)
           ?.whereNotNull()
           .map((e) => GroupDefinition.fromJson(e as Map<String, dynamic>))
@@ -4471,6 +5233,10 @@ class GetCostAndUsageResponse {
 }
 
 class GetCostAndUsageWithResourcesResponse {
+  /// The attributes that apply to a specific dimension value. For example, if the
+  /// value is a linked account, the attribute is that account name.
+  final List<DimensionValuesWithAttributes>? dimensionValueAttributes;
+
   /// The groups that are specified by the <code>Filter</code> or
   /// <code>GroupBy</code> parameters in the request.
   final List<GroupDefinition>? groupDefinitions;
@@ -4484,6 +5250,7 @@ class GetCostAndUsageWithResourcesResponse {
   final List<ResultByTime>? resultsByTime;
 
   GetCostAndUsageWithResourcesResponse({
+    this.dimensionValueAttributes,
     this.groupDefinitions,
     this.nextPageToken,
     this.resultsByTime,
@@ -4491,6 +5258,11 @@ class GetCostAndUsageWithResourcesResponse {
   factory GetCostAndUsageWithResourcesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCostAndUsageWithResourcesResponse(
+      dimensionValueAttributes: (json['DimensionValueAttributes'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DimensionValuesWithAttributes.fromJson(e as Map<String, dynamic>))
+          .toList(),
       groupDefinitions: (json['GroupDefinitions'] as List?)
           ?.whereNotNull()
           .map((e) => GroupDefinition.fromJson(e as Map<String, dynamic>))
@@ -4500,6 +5272,52 @@ class GetCostAndUsageWithResourcesResponse {
           ?.whereNotNull()
           .map((e) => ResultByTime.fromJson(e as Map<String, dynamic>))
           .toList(),
+    );
+  }
+}
+
+class GetCostCategoriesResponse {
+  /// The number of objects returned.
+  final int returnSize;
+
+  /// The total number of objects.
+  final int totalSize;
+
+  /// The names of the Cost Categories.
+  final List<String>? costCategoryNames;
+
+  /// The Cost Category values.
+  ///
+  /// <code>CostCategoryValues</code> are not returned if
+  /// <code>CostCategoryName</code> is not specified in the request.
+  final List<String>? costCategoryValues;
+
+  /// If the number of objects that are still available for retrieval exceeds the
+  /// limit, AWS returns a NextPageToken value in the response. To retrieve the
+  /// next batch of objects, provide the marker from the prior call in your next
+  /// request.
+  final String? nextPageToken;
+
+  GetCostCategoriesResponse({
+    required this.returnSize,
+    required this.totalSize,
+    this.costCategoryNames,
+    this.costCategoryValues,
+    this.nextPageToken,
+  });
+  factory GetCostCategoriesResponse.fromJson(Map<String, dynamic> json) {
+    return GetCostCategoriesResponse(
+      returnSize: json['ReturnSize'] as int,
+      totalSize: json['TotalSize'] as int,
+      costCategoryNames: (json['CostCategoryNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      costCategoryValues: (json['CostCategoryValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextPageToken: json['NextPageToken'] as String?,
     );
   }
 }
@@ -5287,6 +6105,7 @@ extension on String {
 
 enum MatchOption {
   equals,
+  absent,
   startsWith,
   endsWith,
   contains,
@@ -5299,6 +6118,8 @@ extension on MatchOption {
     switch (this) {
       case MatchOption.equals:
         return 'EQUALS';
+      case MatchOption.absent:
+        return 'ABSENT';
       case MatchOption.startsWith:
         return 'STARTS_WITH';
       case MatchOption.endsWith:
@@ -5318,6 +6139,8 @@ extension on String {
     switch (this) {
       case 'EQUALS':
         return MatchOption.equals;
+      case 'ABSENT':
+        return MatchOption.absent;
       case 'STARTS_WITH':
         return MatchOption.startsWith;
       case 'ENDS_WITH':
@@ -5475,6 +6298,37 @@ extension on String {
   }
 }
 
+/// The network field that contains a list of network metrics associated with
+/// the current instance.
+class NetworkResourceUtilization {
+  /// The network ingress throughput utilization measured in Bytes per second.
+  final String? networkInBytesPerSecond;
+
+  /// The network outgress throughput utilization measured in Bytes per second.
+  final String? networkOutBytesPerSecond;
+
+  /// The network ingress packets measured in packets per second.
+  final String? networkPacketsInPerSecond;
+
+  /// The network outgress packets measured in packets per second.
+  final String? networkPacketsOutPerSecond;
+
+  NetworkResourceUtilization({
+    this.networkInBytesPerSecond,
+    this.networkOutBytesPerSecond,
+    this.networkPacketsInPerSecond,
+    this.networkPacketsOutPerSecond,
+  });
+  factory NetworkResourceUtilization.fromJson(Map<String, dynamic> json) {
+    return NetworkResourceUtilization(
+      networkInBytesPerSecond: json['NetworkInBytesPerSecond'] as String?,
+      networkOutBytesPerSecond: json['NetworkOutBytesPerSecond'] as String?,
+      networkPacketsInPerSecond: json['NetworkPacketsInPerSecond'] as String?,
+      networkPacketsOutPerSecond: json['NetworkPacketsOutPerSecond'] as String?,
+    );
+  }
+}
+
 enum NumericOperator {
   equal,
   greaterThanOrEqual,
@@ -5596,6 +6450,49 @@ extension on String {
         return PaymentOption.heavyUtilization;
     }
     throw Exception('$this is not known in enum PaymentOption');
+  }
+}
+
+enum PlatformDifference {
+  hypervisor,
+  networkInterface,
+  storageInterface,
+  instanceStoreAvailability,
+  virtualizationType,
+}
+
+extension on PlatformDifference {
+  String toValue() {
+    switch (this) {
+      case PlatformDifference.hypervisor:
+        return 'HYPERVISOR';
+      case PlatformDifference.networkInterface:
+        return 'NETWORK_INTERFACE';
+      case PlatformDifference.storageInterface:
+        return 'STORAGE_INTERFACE';
+      case PlatformDifference.instanceStoreAvailability:
+        return 'INSTANCE_STORE_AVAILABILITY';
+      case PlatformDifference.virtualizationType:
+        return 'VIRTUALIZATION_TYPE';
+    }
+  }
+}
+
+extension on String {
+  PlatformDifference toPlatformDifference() {
+    switch (this) {
+      case 'HYPERVISOR':
+        return PlatformDifference.hypervisor;
+      case 'NETWORK_INTERFACE':
+        return PlatformDifference.networkInterface;
+      case 'STORAGE_INTERFACE':
+        return PlatformDifference.storageInterface;
+      case 'INSTANCE_STORE_AVAILABILITY':
+        return PlatformDifference.instanceStoreAvailability;
+      case 'VIRTUALIZATION_TYPE':
+        return PlatformDifference.virtualizationType;
+    }
+    throw Exception('$this is not known in enum PlatformDifference');
   }
 }
 
@@ -5758,6 +6655,12 @@ class ReservationAggregates {
   /// after November 11, 2017.
   final String? purchasedUnits;
 
+  /// The cost of unused hours for your reservation.
+  final String? rICostForUnusedHours;
+
+  /// The realized savings due to purchasing and using a reservation.
+  final String? realizedSavings;
+
   /// The total number of reservation hours that you used.
   final String? totalActualHours;
 
@@ -5771,6 +6674,9 @@ class ReservationAggregates {
 
   /// How much you could save if you use your entire reservation.
   final String? totalPotentialRISavings;
+
+  /// The unrealized savings due to purchasing and using a reservation.
+  final String? unrealizedSavings;
 
   /// The number of reservation hours that you didn't use.
   final String? unusedHours;
@@ -5795,10 +6701,13 @@ class ReservationAggregates {
     this.onDemandCostOfRIHoursUsed,
     this.purchasedHours,
     this.purchasedUnits,
+    this.rICostForUnusedHours,
+    this.realizedSavings,
     this.totalActualHours,
     this.totalActualUnits,
     this.totalAmortizedFee,
     this.totalPotentialRISavings,
+    this.unrealizedSavings,
     this.unusedHours,
     this.unusedUnits,
     this.utilizationPercentage,
@@ -5812,10 +6721,13 @@ class ReservationAggregates {
       onDemandCostOfRIHoursUsed: json['OnDemandCostOfRIHoursUsed'] as String?,
       purchasedHours: json['PurchasedHours'] as String?,
       purchasedUnits: json['PurchasedUnits'] as String?,
+      rICostForUnusedHours: json['RICostForUnusedHours'] as String?,
+      realizedSavings: json['RealizedSavings'] as String?,
       totalActualHours: json['TotalActualHours'] as String?,
       totalActualUnits: json['TotalActualUnits'] as String?,
       totalAmortizedFee: json['TotalAmortizedFee'] as String?,
       totalPotentialRISavings: json['TotalPotentialRISavings'] as String?,
+      unrealizedSavings: json['UnrealizedSavings'] as String?,
       unusedHours: json['UnusedHours'] as String?,
       unusedUnits: json['UnusedUnits'] as String?,
       utilizationPercentage: json['UtilizationPercentage'] as String?,
@@ -6216,6 +7128,11 @@ class RightsizingRecommendation {
   /// Context regarding the current instance.
   final CurrentInstance? currentInstance;
 
+  /// The list of possible reasons why the recommendation is generated such as
+  /// under or over utilization of specific metrics (for example, CPU, Memory,
+  /// Network).
+  final List<FindingReasonCode>? findingReasonCodes;
+
   /// Details for modification recommendations.
   final ModifyRecommendationDetail? modifyRecommendationDetail;
 
@@ -6228,6 +7145,7 @@ class RightsizingRecommendation {
   RightsizingRecommendation({
     this.accountId,
     this.currentInstance,
+    this.findingReasonCodes,
     this.modifyRecommendationDetail,
     this.rightsizingType,
     this.terminateRecommendationDetail,
@@ -6239,6 +7157,10 @@ class RightsizingRecommendation {
           ? CurrentInstance.fromJson(
               json['CurrentInstance'] as Map<String, dynamic>)
           : null,
+      findingReasonCodes: (json['FindingReasonCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toFindingReasonCode())
+          .toList(),
       modifyRecommendationDetail: json['ModifyRecommendationDetail'] != null
           ? ModifyRecommendationDetail.fromJson(
               json['ModifyRecommendationDetail'] as Map<String, dynamic>)
@@ -6506,6 +7428,44 @@ class SavingsPlansCoverageData {
       spendCoveredBySavingsPlans: json['SpendCoveredBySavingsPlans'] as String?,
       totalCost: json['TotalCost'] as String?,
     );
+  }
+}
+
+enum SavingsPlansDataType {
+  attributes,
+  utilization,
+  amortizedCommitment,
+  savings,
+}
+
+extension on SavingsPlansDataType {
+  String toValue() {
+    switch (this) {
+      case SavingsPlansDataType.attributes:
+        return 'ATTRIBUTES';
+      case SavingsPlansDataType.utilization:
+        return 'UTILIZATION';
+      case SavingsPlansDataType.amortizedCommitment:
+        return 'AMORTIZED_COMMITMENT';
+      case SavingsPlansDataType.savings:
+        return 'SAVINGS';
+    }
+  }
+}
+
+extension on String {
+  SavingsPlansDataType toSavingsPlansDataType() {
+    switch (this) {
+      case 'ATTRIBUTES':
+        return SavingsPlansDataType.attributes;
+      case 'UTILIZATION':
+        return SavingsPlansDataType.utilization;
+      case 'AMORTIZED_COMMITMENT':
+        return SavingsPlansDataType.amortizedCommitment;
+      case 'SAVINGS':
+        return SavingsPlansDataType.savings;
+    }
+    throw Exception('$this is not known in enum SavingsPlansDataType');
   }
 }
 
@@ -7040,6 +8000,56 @@ class ServiceSpecification {
   }
 }
 
+/// The details of how to sort the data.
+class SortDefinition {
+  /// The key by which to sort the data.
+  final String key;
+
+  /// The order in which to sort the data.
+  final SortOrder? sortOrder;
+
+  SortDefinition({
+    required this.key,
+    this.sortOrder,
+  });
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final sortOrder = this.sortOrder;
+    return {
+      'Key': key,
+      if (sortOrder != null) 'SortOrder': sortOrder.toValue(),
+    };
+  }
+}
+
+enum SortOrder {
+  ascending,
+  descending,
+}
+
+extension on SortOrder {
+  String toValue() {
+    switch (this) {
+      case SortOrder.ascending:
+        return 'ASCENDING';
+      case SortOrder.descending:
+        return 'DESCENDING';
+    }
+  }
+}
+
+extension on String {
+  SortOrder toSortOrder() {
+    switch (this) {
+      case 'ASCENDING':
+        return SortOrder.ascending;
+      case 'DESCENDING':
+        return SortOrder.descending;
+    }
+    throw Exception('$this is not known in enum SortOrder');
+  }
+}
+
 /// The recipient of <code>AnomalySubscription</code> notifications.
 class Subscriber {
   /// The email address or SNS Amazon Resource Name (ARN), depending on the
@@ -7136,6 +8146,7 @@ extension on String {
 enum SupportedSavingsPlansType {
   computeSp,
   ec2InstanceSp,
+  sagemakerSp,
 }
 
 extension on SupportedSavingsPlansType {
@@ -7145,6 +8156,8 @@ extension on SupportedSavingsPlansType {
         return 'COMPUTE_SP';
       case SupportedSavingsPlansType.ec2InstanceSp:
         return 'EC2_INSTANCE_SP';
+      case SupportedSavingsPlansType.sagemakerSp:
+        return 'SAGEMAKER_SP';
     }
   }
 }
@@ -7156,12 +8169,23 @@ extension on String {
         return SupportedSavingsPlansType.computeSp;
       case 'EC2_INSTANCE_SP':
         return SupportedSavingsPlansType.ec2InstanceSp;
+      case 'SAGEMAKER_SP':
+        return SupportedSavingsPlansType.sagemakerSp;
     }
     throw Exception('$this is not known in enum SupportedSavingsPlansType');
   }
 }
 
 /// The values that are available for a tag.
+///
+/// If <code>Values</code> and <code>Key</code> are not specified, the
+/// <code>ABSENT</code> <code>MatchOption</code> is applied to all tags. That
+/// is, filtering on resources with no tags.
+///
+/// If <code>Values</code> is provided and <code>Key</code> is not specified,
+/// the <code>ABSENT</code> <code>MatchOption</code> is applied to the tag
+/// <code>Key</code> only. That is, filtering on resources without the given tag
+/// key.
 class TagValues {
   /// The key for the tag.
   final String? key;
@@ -7224,6 +8248,11 @@ class TargetInstance {
   /// Expected utilization metrics for target instance type.
   final ResourceUtilization? expectedResourceUtilization;
 
+  /// Explains the actions you might need to take in order to successfully migrate
+  /// your workloads from the current instance type to the recommended instance
+  /// type.
+  final List<PlatformDifference>? platformDifferences;
+
   /// Details on the target instance type.
   final ResourceDetails? resourceDetails;
 
@@ -7233,6 +8262,7 @@ class TargetInstance {
     this.estimatedMonthlyCost,
     this.estimatedMonthlySavings,
     this.expectedResourceUtilization,
+    this.platformDifferences,
     this.resourceDetails,
   });
   factory TargetInstance.fromJson(Map<String, dynamic> json) {
@@ -7245,6 +8275,10 @@ class TargetInstance {
           ? ResourceUtilization.fromJson(
               json['ExpectedResourceUtilization'] as Map<String, dynamic>)
           : null,
+      platformDifferences: (json['PlatformDifferences'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toPlatformDifference())
+          .toList(),
       resourceDetails: json['ResourceDetails'] != null
           ? ResourceDetails.fromJson(
               json['ResourceDetails'] as Map<String, dynamic>)

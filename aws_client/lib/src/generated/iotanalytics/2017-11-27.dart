@@ -117,12 +117,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messages, 'messages');
     final $payload = <String, dynamic>{
       'channelName': channelName,
@@ -161,12 +155,6 @@ class IoTAnalytics {
       pipelineName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(reprocessingId, 'reprocessingId');
@@ -217,12 +205,6 @@ class IoTAnalytics {
       channelName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -318,12 +300,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'actions': actions,
       'datasetName': datasetName,
@@ -375,12 +351,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'versionId',
       versionId,
@@ -399,7 +369,9 @@ class IoTAnalytics {
     return CreateDatasetContentResponse.fromJson(response);
   }
 
-  /// Creates a data store, which is a repository for messages.
+  /// Creates a data store, which is a repository for messages. Only data stores
+  /// that are used to save pipeline data can be configured with
+  /// <code>ParquetConfiguration</code>.
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ResourceAlreadyExistsException].
@@ -410,6 +382,9 @@ class IoTAnalytics {
   ///
   /// Parameter [datastoreName] :
   /// The name of the data store.
+  ///
+  /// Parameter [datastorePartitions] :
+  /// Contains information about the partitions in a data store.
   ///
   /// Parameter [datastoreStorage] :
   /// Where data store data is stored. You can choose one of
@@ -435,6 +410,7 @@ class IoTAnalytics {
   /// Metadata which can be used to manage the data store.
   Future<CreateDatastoreResponse> createDatastore({
     required String datastoreName,
+    DatastorePartitions? datastorePartitions,
     DatastoreStorage? datastoreStorage,
     FileFormatConfiguration? fileFormatConfiguration,
     RetentionPeriod? retentionPeriod,
@@ -448,14 +424,10 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datastoreName',
-      datastoreName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'datastoreName': datastoreName,
+      if (datastorePartitions != null)
+        'datastorePartitions': datastorePartitions,
       if (datastoreStorage != null) 'datastoreStorage': datastoreStorage,
       if (fileFormatConfiguration != null)
         'fileFormatConfiguration': fileFormatConfiguration,
@@ -517,12 +489,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'pipelineActivities': pipelineActivities,
       'pipelineName': pipelineName,
@@ -558,12 +524,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -594,12 +554,6 @@ class IoTAnalytics {
       datasetName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     await _protocol.send(
@@ -636,12 +590,6 @@ class IoTAnalytics {
       datasetName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -683,12 +631,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datastoreName',
-      datastoreName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -716,12 +658,6 @@ class IoTAnalytics {
       pipelineName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     await _protocol.send(
@@ -759,12 +695,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (includeStatistics != null)
         'includeStatistics': [includeStatistics.toString()],
@@ -798,12 +728,6 @@ class IoTAnalytics {
       datasetName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -840,12 +764,6 @@ class IoTAnalytics {
       datastoreName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datastoreName',
-      datastoreName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -900,12 +818,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -941,12 +853,6 @@ class IoTAnalytics {
       datasetName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1047,12 +953,6 @@ class IoTAnalytics {
       datasetName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1329,12 +1229,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxMessages',
       maxMessages,
@@ -1398,12 +1292,6 @@ class IoTAnalytics {
       pipelineName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1537,12 +1425,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelName',
-      channelName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (channelStorage != null) 'channelStorage': channelStorage,
       if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
@@ -1613,12 +1495,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'actions': actions,
       if (contentDeliveryRules != null)
@@ -1681,12 +1557,6 @@ class IoTAnalytics {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datastoreName',
-      datastoreName,
-      r'''^[a-zA-Z0-9_]+$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (datastoreStorage != null) 'datastoreStorage': datastoreStorage,
       if (fileFormatConfiguration != null)
@@ -1740,12 +1610,6 @@ class IoTAnalytics {
       pipelineName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9_]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1961,6 +1825,11 @@ class ChannelActivity {
 class ChannelMessages {
   /// Specifies one or more keys that identify the Amazon Simple Storage Service
   /// (Amazon S3) objects that save your channel messages.
+  ///
+  /// You must use the full path for the key.
+  ///
+  /// Example path: <code>channel/mychannel/__dt=2020-02-29
+  /// 00:00:00/1582940490000_1582940520000_123456789012_mychannel_0_2118.0.json.gz</code>
   final List<String>? s3Paths;
 
   ChannelMessages({
@@ -3050,6 +2919,9 @@ class Datastore {
   /// When the data store was created.
   final DateTime? creationTime;
 
+  /// Contains information about the partitions in a data store.
+  final DatastorePartitions? datastorePartitions;
+
   /// Contains the configuration information of file formats. AWS IoT Analytics
   /// data stores support JSON and <a
   /// href="https://parquet.apache.org/">Parquet</a>.
@@ -3099,6 +2971,7 @@ class Datastore {
   Datastore({
     this.arn,
     this.creationTime,
+    this.datastorePartitions,
     this.fileFormatConfiguration,
     this.lastMessageArrivalTime,
     this.lastUpdateTime,
@@ -3111,6 +2984,10 @@ class Datastore {
     return Datastore(
       arn: json['arn'] as String?,
       creationTime: timeStampFromJson(json['creationTime']),
+      datastorePartitions: json['datastorePartitions'] != null
+          ? DatastorePartitions.fromJson(
+              json['datastorePartitions'] as Map<String, dynamic>)
+          : null,
       fileFormatConfiguration: json['fileFormatConfiguration'] != null
           ? FileFormatConfiguration.fromJson(
               json['fileFormatConfiguration'] as Map<String, dynamic>)
@@ -3155,6 +3032,66 @@ class DatastoreActivity {
     return {
       'datastoreName': datastoreName,
       'name': name,
+    };
+  }
+}
+
+/// A single partition in a data store.
+class DatastorePartition {
+  /// A partition defined by an <code>attributeName</code>.
+  final Partition? attributePartition;
+
+  /// A partition defined by an <code>attributeName</code> and a timestamp format.
+  final TimestampPartition? timestampPartition;
+
+  DatastorePartition({
+    this.attributePartition,
+    this.timestampPartition,
+  });
+  factory DatastorePartition.fromJson(Map<String, dynamic> json) {
+    return DatastorePartition(
+      attributePartition: json['attributePartition'] != null
+          ? Partition.fromJson(
+              json['attributePartition'] as Map<String, dynamic>)
+          : null,
+      timestampPartition: json['timestampPartition'] != null
+          ? TimestampPartition.fromJson(
+              json['timestampPartition'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributePartition = this.attributePartition;
+    final timestampPartition = this.timestampPartition;
+    return {
+      if (attributePartition != null) 'attributePartition': attributePartition,
+      if (timestampPartition != null) 'timestampPartition': timestampPartition,
+    };
+  }
+}
+
+/// Contains information about partitions in a data store.
+class DatastorePartitions {
+  /// A list of partitions in a data store.
+  final List<DatastorePartition>? partitions;
+
+  DatastorePartitions({
+    this.partitions,
+  });
+  factory DatastorePartitions.fromJson(Map<String, dynamic> json) {
+    return DatastorePartitions(
+      partitions: (json['partitions'] as List?)
+          ?.whereNotNull()
+          .map((e) => DatastorePartition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final partitions = this.partitions;
+    return {
+      if (partitions != null) 'partitions': partitions,
     };
   }
 }
@@ -3286,6 +3223,9 @@ class DatastoreSummary {
   /// The name of the data store.
   final String? datastoreName;
 
+  /// Contains information about the partitions in a data store.
+  final DatastorePartitions? datastorePartitions;
+
   /// Where data store data is stored.
   final DatastoreStorageSummary? datastoreStorage;
 
@@ -3311,6 +3251,7 @@ class DatastoreSummary {
   DatastoreSummary({
     this.creationTime,
     this.datastoreName,
+    this.datastorePartitions,
     this.datastoreStorage,
     this.fileFormatType,
     this.lastMessageArrivalTime,
@@ -3321,6 +3262,10 @@ class DatastoreSummary {
     return DatastoreSummary(
       creationTime: timeStampFromJson(json['creationTime']),
       datastoreName: json['datastoreName'] as String?,
+      datastorePartitions: json['datastorePartitions'] != null
+          ? DatastorePartitions.fromJson(
+              json['datastorePartitions'] as Map<String, dynamic>)
+          : null,
       datastoreStorage: json['datastoreStorage'] != null
           ? DatastoreStorageSummary.fromJson(
               json['datastoreStorage'] as Map<String, dynamic>)
@@ -4268,6 +4213,28 @@ class ParquetConfiguration {
   }
 }
 
+/// A single partition.
+class Partition {
+  /// The attribute name of the partition.
+  final String attributeName;
+
+  Partition({
+    required this.attributeName,
+  });
+  factory Partition.fromJson(Map<String, dynamic> json) {
+    return Partition(
+      attributeName: json['attributeName'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    return {
+      'attributeName': attributeName,
+    };
+  }
+}
+
 /// Contains information about a pipeline.
 class Pipeline {
   /// The activities that perform transformations on the messages.
@@ -4801,7 +4768,7 @@ class SchemaDefinition {
   /// Specifies one or more columns that store your data.
   ///
   /// Each schema can have up to 100 columns. Each column can have up to 100
-  /// nested types
+  /// nested types.
   final List<Column>? columns;
 
   SchemaDefinition({
@@ -4990,6 +4957,35 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+}
+
+/// A partition defined by a timestamp.
+class TimestampPartition {
+  /// The attribute name of the partition defined by a timestamp.
+  final String attributeName;
+
+  /// The timestamp format of a partition defined by a timestamp.
+  final String? timestampFormat;
+
+  TimestampPartition({
+    required this.attributeName,
+    this.timestampFormat,
+  });
+  factory TimestampPartition.fromJson(Map<String, dynamic> json) {
+    return TimestampPartition(
+      attributeName: json['attributeName'] as String,
+      timestampFormat: json['timestampFormat'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final timestampFormat = this.timestampFormat;
+    return {
+      'attributeName': attributeName,
+      if (timestampFormat != null) 'timestampFormat': timestampFormat,
+    };
   }
 }
 

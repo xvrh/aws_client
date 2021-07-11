@@ -23,12 +23,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// container management service that makes it easy to run, stop, and manage
 /// Docker containers on a cluster. You can host your cluster on a serverless
 /// infrastructure that is managed by Amazon ECS by launching your services or
-/// tasks using the Fargate launch type. For more control, you can host your
-/// tasks on a cluster of Amazon Elastic Compute Cloud (Amazon EC2) instances
-/// that you manage by using the EC2 launch type. For more information about
-/// launch types, see <a
-/// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-/// ECS Launch Types</a>.
+/// tasks on AWS Fargate. For more control, you can host your tasks on a cluster
+/// of Amazon Elastic Compute Cloud (Amazon EC2) instances that you manage.
 class Ecs {
   final _s.JsonProtocol _protocol;
   Ecs({
@@ -159,12 +155,15 @@ class Ecs {
   ///
   /// Parameter [capacityProviders] :
   /// The short name of one or more capacity providers to associate with the
-  /// cluster.
+  /// cluster. A capacity provider must be associated with a cluster before it
+  /// can be included as part of the default capacity provider strategy of the
+  /// cluster or used in a capacity provider strategy when calling the
+  /// <a>CreateService</a> or <a>RunTask</a> actions.
   ///
   /// If specifying a capacity provider that uses an Auto Scaling group, the
   /// capacity provider must already be created and not already associated with
-  /// another cluster. New capacity providers can be created with the
-  /// <a>CreateCapacityProvider</a> API operation.
+  /// another cluster. New Auto Scaling group capacity providers can be created
+  /// with the <a>CreateCapacityProvider</a> API operation.
   ///
   /// To use a AWS Fargate capacity provider, specify either the
   /// <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity providers. The
@@ -178,31 +177,17 @@ class Ecs {
   /// Parameter [clusterName] :
   /// The name of your cluster. If you do not specify a name for your cluster,
   /// you create a cluster named <code>default</code>. Up to 255 letters
-  /// (uppercase and lowercase), numbers, and hyphens are allowed.
+  /// (uppercase and lowercase), numbers, underscores, and hyphens are allowed.
+  ///
+  /// Parameter [configuration] :
+  /// The execute command configuration for the cluster.
   ///
   /// Parameter [defaultCapacityProviderStrategy] :
-  /// The capacity provider strategy to use by default for the cluster.
-  ///
-  /// When creating a service or running a task on a cluster, if no capacity
-  /// provider or launch type is specified then the default capacity provider
-  /// strategy for the cluster is used.
-  ///
-  /// A capacity provider strategy consists of one or more capacity providers
-  /// along with the <code>base</code> and <code>weight</code> to assign to
-  /// them. A capacity provider must be associated with the cluster to be used
-  /// in a capacity provider strategy. The <a>PutClusterCapacityProviders</a>
-  /// API is used to associate a capacity provider with a cluster. Only capacity
-  /// providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can
-  /// be used.
-  ///
-  /// If specifying a capacity provider that uses an Auto Scaling group, the
-  /// capacity provider must already be created. New capacity providers can be
-  /// created with the <a>CreateCapacityProvider</a> API operation.
-  ///
-  /// To use a AWS Fargate capacity provider, specify either the
-  /// <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity providers. The
-  /// AWS Fargate capacity providers are available to all accounts and only need
-  /// to be associated with a cluster to be used.
+  /// The capacity provider strategy to set as the default for the cluster. When
+  /// a default capacity provider strategy is set for a cluster, when calling
+  /// the <a>RunTask</a> or <a>CreateService</a> APIs wtih no capacity provider
+  /// strategy or launch type specified, the default capacity provider strategy
+  /// for the cluster is used.
   ///
   /// If a default capacity provider strategy is not defined for a cluster
   /// during creation, it can be defined later with the
@@ -255,6 +240,7 @@ class Ecs {
   Future<CreateClusterResponse> createCluster({
     List<String>? capacityProviders,
     String? clusterName,
+    ClusterConfiguration? configuration,
     List<CapacityProviderStrategyItem>? defaultCapacityProviderStrategy,
     List<ClusterSetting>? settings,
     List<Tag>? tags,
@@ -272,6 +258,7 @@ class Ecs {
       payload: {
         if (capacityProviders != null) 'capacityProviders': capacityProviders,
         if (clusterName != null) 'clusterName': clusterName,
+        if (configuration != null) 'configuration': configuration,
         if (defaultCapacityProviderStrategy != null)
           'defaultCapacityProviderStrategy': defaultCapacityProviderStrategy,
         if (settings != null) 'settings': settings,
@@ -426,39 +413,18 @@ class Ecs {
   ///
   /// Parameter [serviceName] :
   /// The name of your service. Up to 255 letters (uppercase and lowercase),
-  /// numbers, and hyphens are allowed. Service names must be unique within a
-  /// cluster, but you can have similarly named services in multiple clusters
-  /// within a Region or across multiple Regions.
+  /// numbers, underscores, and hyphens are allowed. Service names must be
+  /// unique within a cluster, but you can have similarly named services in
+  /// multiple clusters within a Region or across multiple Regions.
   ///
   /// Parameter [capacityProviderStrategy] :
   /// The capacity provider strategy to use for the service.
-  ///
-  /// A capacity provider strategy consists of one or more capacity providers
-  /// along with the <code>base</code> and <code>weight</code> to assign to
-  /// them. A capacity provider must be associated with the cluster to be used
-  /// in a capacity provider strategy. The <a>PutClusterCapacityProviders</a>
-  /// API is used to associate a capacity provider with a cluster. Only capacity
-  /// providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can
-  /// be used.
   ///
   /// If a <code>capacityProviderStrategy</code> is specified, the
   /// <code>launchType</code> parameter must be omitted. If no
   /// <code>capacityProviderStrategy</code> or <code>launchType</code> is
   /// specified, the <code>defaultCapacityProviderStrategy</code> for the
   /// cluster is used.
-  ///
-  /// If specifying a capacity provider that uses an Auto Scaling group, the
-  /// capacity provider must already be created. New capacity providers can be
-  /// created with the <a>CreateCapacityProvider</a> API operation.
-  ///
-  /// To use a AWS Fargate capacity provider, specify either the
-  /// <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity providers. The
-  /// AWS Fargate capacity providers are available to all accounts and only need
-  /// to be associated with a cluster to be used.
-  ///
-  /// The <a>PutClusterCapacityProviders</a> API operation is used to update the
-  /// list of available capacity providers for a cluster after the cluster is
-  /// created.
   ///
   /// Parameter [clientToken] :
   /// Unique, case-sensitive identifier that you provide to ensure the
@@ -474,7 +440,8 @@ class Ecs {
   /// deployment and the ordering of stopping and starting tasks.
   ///
   /// Parameter [deploymentController] :
-  /// The deployment controller to use for the service.
+  /// The deployment controller to use for the service. If no deployment
+  /// controller is specified, the default value of <code>ECS</code> is used.
   ///
   /// Parameter [desiredCount] :
   /// The number of instantiations of the specified task definition to place and
@@ -492,6 +459,11 @@ class Ecs {
   /// Your Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
   ///
+  /// Parameter [enableExecuteCommand] :
+  /// Whether or not the execute command functionality is enabled for the
+  /// service. If <code>true</code>, this enables execute command functionality
+  /// on all containers in the service tasks.
+  ///
   /// Parameter [healthCheckGracePeriodSeconds] :
   /// The period of time, in seconds, that the Amazon ECS service scheduler
   /// should ignore unhealthy Elastic Load Balancing target health checks after
@@ -508,12 +480,29 @@ class Ecs {
   /// they have time to come up.
   ///
   /// Parameter [launchType] :
-  /// The launch type on which to run your service. For more information, see <a
+  /// The infrastructure on which to run your service. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   ///
-  /// If a <code>launchType</code> is specified, the
+  /// The <code>FARGATE</code> launch type runs your tasks on AWS Fargate
+  /// On-Demand infrastructure.
+  /// <note>
+  /// Fargate Spot infrastructure is available for use but a capacity provider
+  /// strategy must be used. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html">AWS
+  /// Fargate capacity providers</a> in the <i>Amazon ECS User Guide for AWS
+  /// Fargate</i>.
+  /// </note>
+  /// The <code>EC2</code> launch type runs your tasks on Amazon EC2 instances
+  /// registered to your cluster.
+  ///
+  /// The <code>EXTERNAL</code> launch type runs your tasks on your on-premise
+  /// server or virtual machine (VM) capacity registered to your cluster.
+  ///
+  /// A service can use either a launch type or a capacity provider strategy. If
+  /// a <code>launchType</code> is specified, the
   /// <code>capacityProviderStrategy</code> parameter must be omitted.
   ///
   /// Parameter [loadBalancers] :
@@ -529,7 +518,7 @@ class Ecs {
   /// service. The service-linked role is required for services that make use of
   /// multiple target groups. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html">Using
-  /// Service-Linked Roles for Amazon ECS</a> in the <i>Amazon Elastic Container
+  /// service-linked roles for Amazon ECS</a> in the <i>Amazon Elastic Container
   /// Service Developer Guide</i>.
   ///
   /// If the service is using the <code>CODE_DEPLOY</code> deployment
@@ -580,7 +569,7 @@ class Ecs {
   /// their own elastic network interface, and it is not supported for other
   /// network modes. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html">Task
-  /// Networking</a> in the <i>Amazon Elastic Container Service Developer
+  /// networking</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   ///
   /// Parameter [placementConstraints] :
@@ -598,7 +587,7 @@ class Ecs {
   /// type. If one isn't specified, the <code>LATEST</code> platform version is
   /// used by default. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">AWS
-  /// Fargate Platform Versions</a> in the <i>Amazon Elastic Container Service
+  /// Fargate platform versions</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
   ///
   /// Parameter [propagateTags] :
@@ -625,7 +614,7 @@ class Ecs {
   /// groups, or Elastic Inference accelerators in which case you should not
   /// specify a role here. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html">Using
-  /// Service-Linked Roles for Amazon ECS</a> in the <i>Amazon Elastic Container
+  /// service-linked roles for Amazon ECS</a> in the <i>Amazon Elastic Container
   /// Service Developer Guide</i>.
   /// </important>
   /// If your specified role has a path other than <code>/</code>, then you must
@@ -634,7 +623,7 @@ class Ecs {
   /// has a path of <code>/foo/</code> then you would specify
   /// <code>/foo/bar</code> as the role name. For more information, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names">Friendly
-  /// Names and Paths</a> in the <i>IAM User Guide</i>.
+  /// names and paths</a> in the <i>IAM User Guide</i>.
   ///
   /// Parameter [schedulingStrategy] :
   /// The scheduling strategy to use for the service. For more information, see
@@ -669,15 +658,13 @@ class Ecs {
   /// </ul>
   ///
   /// Parameter [serviceRegistries] :
-  /// The details of the service discovery registries to assign to this service.
-  /// For more information, see <a
+  /// The details of the service discovery registry to associate with this
+  /// service. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
-  /// Discovery</a>.
+  /// discovery</a>.
   /// <note>
-  /// Service discovery is supported for Fargate tasks if you are using platform
-  /// version v1.1.0 or later. For more information, see <a
-  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">AWS
-  /// Fargate Platform Versions</a>.
+  /// Each service may be associated with one service registry. Multiple service
+  /// registries per service isn't supported.
   /// </note>
   ///
   /// Parameter [tags] :
@@ -736,6 +723,7 @@ class Ecs {
     DeploymentController? deploymentController,
     int? desiredCount,
     bool? enableECSManagedTags,
+    bool? enableExecuteCommand,
     int? healthCheckGracePeriodSeconds,
     LaunchType? launchType,
     List<LoadBalancer>? loadBalancers,
@@ -774,6 +762,8 @@ class Ecs {
         if (desiredCount != null) 'desiredCount': desiredCount,
         if (enableECSManagedTags != null)
           'enableECSManagedTags': enableECSManagedTags,
+        if (enableExecuteCommand != null)
+          'enableExecuteCommand': enableExecuteCommand,
         if (healthCheckGracePeriodSeconds != null)
           'healthCheckGracePeriodSeconds': healthCheckGracePeriodSeconds,
         if (launchType != null) 'launchType': launchType.toValue(),
@@ -882,11 +872,18 @@ class Ecs {
   /// set. The supported load balancer types are either an Application Load
   /// Balancer or a Network Load Balancer.
   ///
+  /// Parameter [networkConfiguration] :
+  /// An object representing the network configuration for a task set.
+  ///
   /// Parameter [platformVersion] :
   /// The platform version that the tasks in the task set should use. A platform
   /// version is specified only for tasks using the Fargate launch type. If one
   /// isn't specified, the <code>LATEST</code> platform version is used by
   /// default.
+  ///
+  /// Parameter [scale] :
+  /// A floating-point percentage of the desired number of tasks to place and
+  /// keep running in the task set.
   ///
   /// Parameter [serviceRegistries] :
   /// The details of the service discovery registries to assign to this task
@@ -1501,9 +1498,8 @@ class Ecs {
   /// assumed.
   ///
   /// Parameter [include] :
-  /// Whether to include additional information about your clusters in the
-  /// response. If this field is omitted, the attachments, statistics, and tags
-  /// are not included.
+  /// Whether to include additional information about the clusters in the
+  /// response. If this field is omitted, this information isn't included.
   ///
   /// If <code>ATTACHMENTS</code> is specified, the attachments for the
   /// container instances or tasks within the cluster are included.
@@ -1511,35 +1507,9 @@ class Ecs {
   /// If <code>SETTINGS</code> is specified, the settings for the cluster are
   /// included.
   ///
-  /// If <code>STATISTICS</code> is specified, the following additional
-  /// information, separated by launch type, is included:
+  /// If <code>STATISTICS</code> is specified, the task and service count is
+  /// included, separated by launch type.
   ///
-  /// <ul>
-  /// <li>
-  /// runningEC2TasksCount
-  /// </li>
-  /// <li>
-  /// runningFargateTasksCount
-  /// </li>
-  /// <li>
-  /// pendingEC2TasksCount
-  /// </li>
-  /// <li>
-  /// pendingFargateTasksCount
-  /// </li>
-  /// <li>
-  /// activeEC2ServiceCount
-  /// </li>
-  /// <li>
-  /// activeFargateServiceCount
-  /// </li>
-  /// <li>
-  /// drainingEC2ServiceCount
-  /// </li>
-  /// <li>
-  /// drainingFargateServiceCount
-  /// </li>
-  /// </ul>
   /// If <code>TAGS</code> is specified, the metadata tags associated with the
   /// cluster are included.
   Future<DescribeClustersResponse> describeClusters({
@@ -1566,9 +1536,8 @@ class Ecs {
     return DescribeClustersResponse.fromJson(jsonResponse.body);
   }
 
-  /// Describes Amazon Elastic Container Service container instances. Returns
-  /// metadata about registered and remaining resources on each container
-  /// instance requested.
+  /// Describes one or more container instances. Returns metadata about each
+  /// container instance requested.
   ///
   /// May throw [ServerException].
   /// May throw [ClientException].
@@ -1868,6 +1837,64 @@ class Ecs {
     return DiscoverPollEndpointResponse.fromJson(jsonResponse.body);
   }
 
+  /// Runs a command remotely on a container within a task.
+  ///
+  /// May throw [ServerException].
+  /// May throw [ClientException].
+  /// May throw [InvalidParameterException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ClusterNotFoundException].
+  /// May throw [TargetNotConnectedException].
+  ///
+  /// Parameter [command] :
+  /// The command to run on the container.
+  ///
+  /// Parameter [interactive] :
+  /// Use this flag to run your command in interactive mode.
+  ///
+  /// Parameter [task] :
+  /// The Amazon Resource Name (ARN) or ID of the task the container is part of.
+  ///
+  /// Parameter [cluster] :
+  /// The Amazon Resource Name (ARN) or short name of the cluster the task is
+  /// running in. If you do not specify a cluster, the default cluster is
+  /// assumed.
+  ///
+  /// Parameter [container] :
+  /// The name of the container to execute the command on. A container name only
+  /// needs to be specified for tasks containing multiple containers.
+  Future<ExecuteCommandResponse> executeCommand({
+    required String command,
+    required bool interactive,
+    required String task,
+    String? cluster,
+    String? container,
+  }) async {
+    ArgumentError.checkNotNull(command, 'command');
+    ArgumentError.checkNotNull(interactive, 'interactive');
+    ArgumentError.checkNotNull(task, 'task');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonEC2ContainerServiceV20141113.ExecuteCommand'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'command': command,
+        'interactive': interactive,
+        'task': task,
+        if (cluster != null) 'cluster': cluster,
+        if (container != null) 'container': container,
+      },
+    );
+
+    return ExecuteCommandResponse.fromJson(jsonResponse.body);
+  }
+
   /// Lists the account settings for a specified principal.
   ///
   /// May throw [ServerException].
@@ -1911,6 +1938,10 @@ class Ecs {
   /// The ARN of the principal, which can be an IAM user, IAM role, or the root
   /// user. If this field is omitted, the account settings are listed only for
   /// the authenticated user.
+  /// <note>
+  /// Federated users assume the account setting of the root user and can't have
+  /// explicit account settings set for them.
+  /// </note>
   ///
   /// Parameter [value] :
   /// The value of the account settings with which to filter results. You must
@@ -2162,7 +2193,8 @@ class Ecs {
     return ListContainerInstancesResponse.fromJson(jsonResponse.body);
   }
 
-  /// Lists the services that are running in a specified cluster.
+  /// Returns a list of services. You can filter the results by cluster, launch
+  /// type, and scheduling strategy.
   ///
   /// May throw [ServerException].
   /// May throw [ClientException].
@@ -2170,12 +2202,13 @@ class Ecs {
   /// May throw [ClusterNotFoundException].
   ///
   /// Parameter [cluster] :
-  /// The short name or full Amazon Resource Name (ARN) of the cluster that
-  /// hosts the services to list. If you do not specify a cluster, the default
-  /// cluster is assumed.
+  /// The short name or full Amazon Resource Name (ARN) of the cluster to use
+  /// when filtering the <code>ListServices</code> results. If you do not
+  /// specify a cluster, the default cluster is assumed.
   ///
   /// Parameter [launchType] :
-  /// The launch type for the services to list.
+  /// The launch type to use when filtering the <code>ListServices</code>
+  /// results.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of service results returned by
@@ -2200,7 +2233,8 @@ class Ecs {
   /// </note>
   ///
   /// Parameter [schedulingStrategy] :
-  /// The scheduling strategy for services to list.
+  /// The scheduling strategy to use when filtering the
+  /// <code>ListServices</code> results.
   Future<ListServicesResponse> listServices({
     String? cluster,
     LaunchType? launchType,
@@ -2430,10 +2464,9 @@ class Ecs {
     return ListTaskDefinitionsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Returns a list of tasks for a specified cluster. You can filter the
-  /// results by family name, by a particular container instance, or by the
-  /// desired status of the task with the <code>family</code>,
-  /// <code>containerInstance</code>, and <code>desiredStatus</code> parameters.
+  /// Returns a list of tasks. You can filter the results by cluster, task
+  /// definition family, container instance, launch type, what IAM principal
+  /// started the task, or by the desired status of the task.
   ///
   /// Recently stopped tasks might appear in the returned results. Currently,
   /// stopped tasks appear in the returned results for at least one hour.
@@ -2445,18 +2478,18 @@ class Ecs {
   /// May throw [ServiceNotFoundException].
   ///
   /// Parameter [cluster] :
-  /// The short name or full Amazon Resource Name (ARN) of the cluster that
-  /// hosts the tasks to list. If you do not specify a cluster, the default
-  /// cluster is assumed.
+  /// The short name or full Amazon Resource Name (ARN) of the cluster to use
+  /// when filtering the <code>ListTasks</code> results. If you do not specify a
+  /// cluster, the default cluster is assumed.
   ///
   /// Parameter [containerInstance] :
-  /// The container instance ID or full ARN of the container instance with which
-  /// to filter the <code>ListTasks</code> results. Specifying a
+  /// The container instance ID or full ARN of the container instance to use
+  /// when filtering the <code>ListTasks</code> results. Specifying a
   /// <code>containerInstance</code> limits the results to tasks that belong to
   /// that container instance.
   ///
   /// Parameter [desiredStatus] :
-  /// The task desired status with which to filter the <code>ListTasks</code>
+  /// The task desired status to use when filtering the <code>ListTasks</code>
   /// results. Specifying a <code>desiredStatus</code> of <code>STOPPED</code>
   /// limits the results to tasks that Amazon ECS has set the desired status to
   /// <code>STOPPED</code>. This can be useful for debugging tasks that are not
@@ -2471,12 +2504,12 @@ class Ecs {
   /// </note>
   ///
   /// Parameter [family] :
-  /// The name of the family with which to filter the <code>ListTasks</code>
-  /// results. Specifying a <code>family</code> limits the results to tasks that
-  /// belong to that family.
+  /// The name of the task definition family to use when filtering the
+  /// <code>ListTasks</code> results. Specifying a <code>family</code> limits
+  /// the results to tasks that belong to that family.
   ///
   /// Parameter [launchType] :
-  /// The launch type for services to list.
+  /// The launch type to use when filtering the <code>ListTasks</code> results.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of task results returned by <code>ListTasks</code> in
@@ -2501,7 +2534,7 @@ class Ecs {
   /// </note>
   ///
   /// Parameter [serviceName] :
-  /// The name of the service with which to filter the <code>ListTasks</code>
+  /// The name of the service to use when filtering the <code>ListTasks</code>
   /// results. Specifying a <code>serviceName</code> limits the results to tasks
   /// that belong to that service.
   ///
@@ -2610,6 +2643,10 @@ class Ecs {
   /// all IAM users, IAM roles, and the root user of the account unless an IAM
   /// user or role explicitly overrides these settings. If this field is
   /// omitted, the setting is changed only for the authenticated user.
+  /// <note>
+  /// Federated users assume the account setting of the root user and can't have
+  /// explicit account settings set for them.
+  /// </note>
   Future<PutAccountSettingResponse> putAccountSetting({
     required SettingName name,
     required String value,
@@ -2993,7 +3030,8 @@ class Ecs {
   /// You must specify a <code>family</code> for a task definition, which allows
   /// you to track multiple versions of the same task definition. The
   /// <code>family</code> is used as a name for your task definition. Up to 255
-  /// letters (uppercase and lowercase), numbers, and hyphens are allowed.
+  /// letters (uppercase and lowercase), numbers, underscores, and hyphens are
+  /// allowed.
   ///
   /// Parameter [cpu] :
   /// The number of CPU units used by the task. It can be expressed as an
@@ -3035,6 +3073,18 @@ class Ecs {
   /// and 30720 (30 GB) in increments of 1024 (1 GB)
   /// </li>
   /// </ul>
+  ///
+  /// Parameter [ephemeralStorage] :
+  /// The amount of ephemeral storage to allocate for the task. This parameter
+  /// is used to expand the total amount of ephemeral storage available, beyond
+  /// the default amount, for tasks hosted on AWS Fargate. For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html">Fargate
+  /// task storage</a> in the <i>Amazon ECS User Guide for AWS Fargate</i>.
+  /// <note>
+  /// This parameter is only supported for tasks hosted on AWS Fargate using
+  /// platform version <code>1.4.0</code> or later.
+  /// </note>
   ///
   /// Parameter [executionRoleArn] :
   /// The Amazon Resource Name (ARN) of the task execution role that grants the
@@ -3086,8 +3136,8 @@ class Ecs {
   /// <code>systemControls</code> will apply to all containers within a task.
   /// </li>
   /// </ul> <note>
-  /// This parameter is not supported for Windows containers or tasks using the
-  /// Fargate launch type.
+  /// This parameter is not supported for Windows containers or tasks run on AWS
+  /// Fargate.
   /// </note>
   ///
   /// Parameter [memory] :
@@ -3198,8 +3248,8 @@ class Ecs {
   /// href="https://docs.docker.com/engine/security/security/">Docker
   /// security</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks using the
-  /// Fargate launch type.
+  /// This parameter is not supported for Windows containers or tasks run on AWS
+  /// Fargate.
   /// </note>
   ///
   /// Parameter [placementConstraints] :
@@ -3207,11 +3257,25 @@ class Ecs {
   /// specify a maximum of 10 constraints per task (this limit includes
   /// constraints in the task definition and those specified at runtime).
   ///
+  /// Parameter [proxyConfiguration] :
+  /// The configuration details for the App Mesh proxy.
+  ///
+  /// For tasks hosted on Amazon EC2 instances, the container instances require
+  /// at least version <code>1.26.0</code> of the container agent and at least
+  /// version <code>1.26.0-1</code> of the <code>ecs-init</code> package to
+  /// enable a proxy configuration. If your container instances are launched
+  /// from the Amazon ECS-optimized AMI version <code>20190301</code> or later,
+  /// then they contain the required versions of the container agent and
+  /// <code>ecs-init</code>. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html">Amazon
+  /// ECS-optimized AMI versions</a> in the <i>Amazon Elastic Container Service
+  /// Developer Guide</i>.
+  ///
   /// Parameter [requiresCompatibilities] :
   /// The task launch type that Amazon ECS should validate the task definition
-  /// against. This ensures that the task definition parameters are compatible
-  /// with the specified launch type. If no value is specified, it defaults to
-  /// <code>EC2</code>.
+  /// against. A client exception is returned if the task definition doesn't
+  /// validate against the compatibilities specified. If no value is specified,
+  /// the parameter is omitted from the response.
   ///
   /// Parameter [tags] :
   /// The metadata that you apply to the task definition to help you categorize
@@ -3268,6 +3332,7 @@ class Ecs {
     required List<ContainerDefinition> containerDefinitions,
     required String family,
     String? cpu,
+    EphemeralStorage? ephemeralStorage,
     String? executionRoleArn,
     List<InferenceAccelerator>? inferenceAccelerators,
     IpcMode? ipcMode,
@@ -3298,6 +3363,7 @@ class Ecs {
         'containerDefinitions': containerDefinitions,
         'family': family,
         if (cpu != null) 'cpu': cpu,
+        if (ephemeralStorage != null) 'ephemeralStorage': ephemeralStorage,
         if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
         if (inferenceAccelerators != null)
           'inferenceAccelerators': inferenceAccelerators,
@@ -3377,32 +3443,11 @@ class Ecs {
   /// Parameter [capacityProviderStrategy] :
   /// The capacity provider strategy to use for the task.
   ///
-  /// A capacity provider strategy consists of one or more capacity providers
-  /// along with the <code>base</code> and <code>weight</code> to assign to
-  /// them. A capacity provider must be associated with the cluster to be used
-  /// in a capacity provider strategy. The <a>PutClusterCapacityProviders</a>
-  /// API is used to associate a capacity provider with a cluster. Only capacity
-  /// providers with an <code>ACTIVE</code> or <code>UPDATING</code> status can
-  /// be used.
-  ///
   /// If a <code>capacityProviderStrategy</code> is specified, the
   /// <code>launchType</code> parameter must be omitted. If no
   /// <code>capacityProviderStrategy</code> or <code>launchType</code> is
   /// specified, the <code>defaultCapacityProviderStrategy</code> for the
   /// cluster is used.
-  ///
-  /// If specifying a capacity provider that uses an Auto Scaling group, the
-  /// capacity provider must already be created. New capacity providers can be
-  /// created with the <a>CreateCapacityProvider</a> API operation.
-  ///
-  /// To use a AWS Fargate capacity provider, specify either the
-  /// <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity providers. The
-  /// AWS Fargate capacity providers are available to all accounts and only need
-  /// to be associated with a cluster to be used.
-  ///
-  /// The <a>PutClusterCapacityProviders</a> API operation is used to update the
-  /// list of available capacity providers for a cluster after the cluster is
-  /// created.
   ///
   /// Parameter [cluster] :
   /// The short name or full Amazon Resource Name (ARN) of the cluster on which
@@ -3420,18 +3465,40 @@ class Ecs {
   /// Your Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
   ///
+  /// Parameter [enableExecuteCommand] :
+  /// Whether or not to enable the execute command functionality for the
+  /// containers in this task. If <code>true</code>, this enables execute
+  /// command functionality on all containers in the task.
+  ///
   /// Parameter [group] :
   /// The name of the task group to associate with the task. The default value
   /// is the family name of the task definition (for example,
   /// family:my-family-name).
   ///
   /// Parameter [launchType] :
-  /// The launch type on which to run your task. For more information, see <a
+  /// The infrastructure on which to run your standalone task. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   ///
-  /// If a <code>launchType</code> is specified, the
+  /// The <code>FARGATE</code> launch type runs your tasks on AWS Fargate
+  /// On-Demand infrastructure.
+  /// <note>
+  /// Fargate Spot infrastructure is available for use but a capacity provider
+  /// strategy must be used. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html">AWS
+  /// Fargate capacity providers</a> in the <i>Amazon ECS User Guide for AWS
+  /// Fargate</i>.
+  /// </note>
+  /// The <code>EC2</code> launch type runs your tasks on Amazon EC2 instances
+  /// registered to your cluster.
+  ///
+  /// The <code>EXTERNAL</code> launch type runs your tasks on your on-premise
+  /// server or virtual machine (VM) capacity registered to your cluster.
+  ///
+  /// A task can use either a launch type or a capacity provider strategy. If a
+  /// <code>launchType</code> is specified, the
   /// <code>capacityProviderStrategy</code> parameter must be omitted.
   ///
   /// Parameter [networkConfiguration] :
@@ -3545,6 +3612,7 @@ class Ecs {
     String? cluster,
     int? count,
     bool? enableECSManagedTags,
+    bool? enableExecuteCommand,
     String? group,
     LaunchType? launchType,
     NetworkConfiguration? networkConfiguration,
@@ -3576,6 +3644,8 @@ class Ecs {
         if (count != null) 'count': count,
         if (enableECSManagedTags != null)
           'enableECSManagedTags': enableECSManagedTags,
+        if (enableExecuteCommand != null)
+          'enableExecuteCommand': enableExecuteCommand,
         if (group != null) 'group': group,
         if (launchType != null) 'launchType': launchType.toValue(),
         if (networkConfiguration != null)
@@ -3630,6 +3700,11 @@ class Ecs {
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging
   /// Your Amazon ECS Resources</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
+  ///
+  /// Parameter [enableExecuteCommand] :
+  /// Whether or not the execute command functionality is enabled for the task.
+  /// If <code>true</code>, this enables execute command functionality on all
+  /// containers in the task.
   ///
   /// Parameter [group] :
   /// The name of the task group to associate with the task. The default value
@@ -3719,6 +3794,7 @@ class Ecs {
     required String taskDefinition,
     String? cluster,
     bool? enableECSManagedTags,
+    bool? enableExecuteCommand,
     String? group,
     NetworkConfiguration? networkConfiguration,
     TaskOverride? overrides,
@@ -3745,6 +3821,8 @@ class Ecs {
         if (cluster != null) 'cluster': cluster,
         if (enableECSManagedTags != null)
           'enableECSManagedTags': enableECSManagedTags,
+        if (enableExecuteCommand != null)
+          'enableExecuteCommand': enableExecuteCommand,
         if (group != null) 'group': group,
         if (networkConfiguration != null)
           'networkConfiguration': networkConfiguration,
@@ -3958,6 +4036,9 @@ class Ecs {
   /// Parameter [executionStoppedAt] :
   /// The Unix timestamp for when the task execution stopped.
   ///
+  /// Parameter [managedAgents] :
+  /// The details for the managed agent associated with the task.
+  ///
   /// Parameter [pullStartedAt] :
   /// The Unix timestamp for when the container image pull began.
   ///
@@ -3977,6 +4058,7 @@ class Ecs {
     String? cluster,
     List<ContainerStateChange>? containers,
     DateTime? executionStoppedAt,
+    List<ManagedAgentStateChange>? managedAgents,
     DateTime? pullStartedAt,
     DateTime? pullStoppedAt,
     String? reason,
@@ -3999,6 +4081,7 @@ class Ecs {
         if (containers != null) 'containers': containers,
         if (executionStoppedAt != null)
           'executionStoppedAt': unixTimestampToJson(executionStoppedAt),
+        if (managedAgents != null) 'managedAgents': managedAgents,
         if (pullStartedAt != null)
           'pullStartedAt': unixTimestampToJson(pullStartedAt),
         if (pullStoppedAt != null)
@@ -4132,11 +4215,11 @@ class Ecs {
   /// May throw [InvalidParameterException].
   ///
   /// Parameter [autoScalingGroupProvider] :
-  /// The name of the capacity provider to update.
-  ///
-  /// Parameter [name] :
   /// An object representing the parameters to update for the Auto Scaling group
   /// capacity provider.
+  ///
+  /// Parameter [name] :
+  /// The name of the capacity provider to update.
   Future<UpdateCapacityProviderResponse> updateCapacityProvider({
     required AutoScalingGroupProviderUpdate autoScalingGroupProvider,
     required String name,
@@ -4162,6 +4245,47 @@ class Ecs {
     );
 
     return UpdateCapacityProviderResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates the cluster.
+  ///
+  /// May throw [ServerException].
+  /// May throw [ClientException].
+  /// May throw [ClusterNotFoundException].
+  /// May throw [InvalidParameterException].
+  ///
+  /// Parameter [cluster] :
+  /// The name of the cluster to modify the settings for.
+  ///
+  /// Parameter [configuration] :
+  /// The execute command configuration for the cluster.
+  ///
+  /// Parameter [settings] :
+  /// The cluster settings for your cluster.
+  Future<UpdateClusterResponse> updateCluster({
+    required String cluster,
+    ClusterConfiguration? configuration,
+    List<ClusterSetting>? settings,
+  }) async {
+    ArgumentError.checkNotNull(cluster, 'cluster');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonEC2ContainerServiceV20141113.UpdateCluster'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'cluster': cluster,
+        if (configuration != null) 'configuration': configuration,
+        if (settings != null) 'settings': settings,
+      },
+    );
+
+    return UpdateClusterResponse.fromJson(jsonResponse.body);
   }
 
   /// Modifies the settings to use for a cluster.
@@ -4209,13 +4333,21 @@ class Ecs {
   /// or services on the container instance. The process for updating the agent
   /// differs depending on whether your container instance was launched with the
   /// Amazon ECS-optimized AMI or another operating system.
-  ///
-  /// <code>UpdateContainerAgent</code> requires the Amazon ECS-optimized AMI or
-  /// Amazon Linux with the <code>ecs-init</code> service installed and running.
-  /// For help updating the Amazon ECS container agent on other operating
-  /// systems, see <a
+  /// <note>
+  /// The <code>UpdateContainerAgent</code> API isn't supported for container
+  /// instances using the Amazon ECS-optimized Amazon Linux 2 (arm64) AMI. To
+  /// update the container agent, you can update the <code>ecs-init</code>
+  /// package which will update the agent. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/agent-update-ecs-ami.html">Updating
+  /// the Amazon ECS container agent</a> in the <i>Amazon Elastic Container
+  /// Service Developer Guide</i>.
+  /// </note>
+  /// The <code>UpdateContainerAgent</code> API requires an Amazon ECS-optimized
+  /// AMI or Amazon Linux AMI with the <code>ecs-init</code> service installed
+  /// and running. For help updating the Amazon ECS container agent on other
+  /// operating systems, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent">Manually
-  /// Updating the Amazon ECS Container Agent</a> in the <i>Amazon Elastic
+  /// updating the Amazon ECS container agent</a> in the <i>Amazon Elastic
   /// Container Service Developer Guide</i>.
   ///
   /// May throw [ServerException].
@@ -4559,6 +4691,14 @@ class Ecs {
   /// The number of instantiations of the task to place and keep running in your
   /// service.
   ///
+  /// Parameter [enableExecuteCommand] :
+  /// If <code>true</code>, this enables execute command functionality on all
+  /// task containers.
+  ///
+  /// If you do not want to override the value that was set when the service was
+  /// created, you can set this to <code>null</code> when performing this
+  /// action.
+  ///
   /// Parameter [forceNewDeployment] :
   /// Whether to force a new deployment of the service. Deployments are not
   /// forced by default. You can use this option to trigger a new deployment
@@ -4578,6 +4718,9 @@ class Ecs {
   /// check status. This grace period can prevent the ECS service scheduler from
   /// marking tasks as unhealthy and stopping them before they have time to come
   /// up.
+  ///
+  /// Parameter [networkConfiguration] :
+  /// An object representing the network configuration for the service.
   ///
   /// Parameter [placementConstraints] :
   /// An array of task placement constraint objects to update the service to
@@ -4621,6 +4764,7 @@ class Ecs {
     String? cluster,
     DeploymentConfiguration? deploymentConfiguration,
     int? desiredCount,
+    bool? enableExecuteCommand,
     bool? forceNewDeployment,
     int? healthCheckGracePeriodSeconds,
     NetworkConfiguration? networkConfiguration,
@@ -4648,6 +4792,8 @@ class Ecs {
         if (deploymentConfiguration != null)
           'deploymentConfiguration': deploymentConfiguration,
         if (desiredCount != null) 'desiredCount': desiredCount,
+        if (enableExecuteCommand != null)
+          'enableExecuteCommand': enableExecuteCommand,
         if (forceNewDeployment != null)
           'forceNewDeployment': forceNewDeployment,
         if (healthCheckGracePeriodSeconds != null)
@@ -4744,6 +4890,10 @@ class Ecs {
   /// Parameter [cluster] :
   /// The short name or full Amazon Resource Name (ARN) of the cluster that
   /// hosts the service that the task set exists in.
+  ///
+  /// Parameter [scale] :
+  /// A floating-point percentage of the desired number of tasks to place and
+  /// keep running in the task set.
   ///
   /// Parameter [service] :
   /// The short name or full Amazon Resource Name (ARN) of the service that the
@@ -5035,6 +5185,7 @@ class AutoScalingGroupProvider {
 
 /// The details of the Auto Scaling group capacity provider to update.
 class AutoScalingGroupProviderUpdate {
+  /// The managed scaling settings for the Auto Scaling group capacity provider.
   final ManagedScaling? managedScaling;
 
   /// The managed termination protection setting to use for the Auto Scaling group
@@ -5275,26 +5426,57 @@ extension on String {
   }
 }
 
-/// The details of a capacity provider strategy.
+/// The details of a capacity provider strategy. A capacity provider strategy
+/// can be set when using the <a>RunTask</a> or <a>CreateCluster</a> APIs or as
+/// the default capacity provider strategy for a cluster with the
+/// <a>CreateCluster</a> API.
+///
+/// Only capacity providers that are already associated with a cluster and have
+/// an <code>ACTIVE</code> or <code>UPDATING</code> status can be used in a
+/// capacity provider strategy. The <a>PutClusterCapacityProviders</a> API is
+/// used to associate a capacity provider with a cluster.
+///
+/// If specifying a capacity provider that uses an Auto Scaling group, the
+/// capacity provider must already be created. New Auto Scaling group capacity
+/// providers can be created with the <a>CreateCapacityProvider</a> API
+/// operation.
+///
+/// To use a AWS Fargate capacity provider, specify either the
+/// <code>FARGATE</code> or <code>FARGATE_SPOT</code> capacity providers. The
+/// AWS Fargate capacity providers are available to all accounts and only need
+/// to be associated with a cluster to be used in a capacity provider strategy.
 class CapacityProviderStrategyItem {
   /// The short name of the capacity provider.
   final String capacityProvider;
 
   /// The <i>base</i> value designates how many tasks, at a minimum, to run on the
   /// specified capacity provider. Only one capacity provider in a capacity
-  /// provider strategy can have a <i>base</i> defined.
+  /// provider strategy can have a <i>base</i> defined. If no value is specified,
+  /// the default value of <code>0</code> is used.
   final int? base;
 
   /// The <i>weight</i> value designates the relative percentage of the total
   /// number of tasks launched that should use the specified capacity provider.
+  /// The <code>weight</code> value is taken into consideration after the
+  /// <code>base</code> value, if defined, is satisfied.
   ///
-  /// For example, if you have a strategy that contains two capacity providers and
-  /// both have a weight of <code>1</code>, then when the <code>base</code> is
-  /// satisfied, the tasks will be split evenly across the two capacity providers.
-  /// Using that same logic, if you specify a weight of <code>1</code> for
-  /// <i>capacityProviderA</i> and a weight of <code>4</code> for
-  /// <i>capacityProviderB</i>, then for every one task that is run using
-  /// <i>capacityProviderA</i>, four tasks would use <i>capacityProviderB</i>.
+  /// If no <code>weight</code> value is specified, the default value of
+  /// <code>0</code> is used. When multiple capacity providers are specified
+  /// within a capacity provider strategy, at least one of the capacity providers
+  /// must have a weight value greater than zero and any capacity providers with a
+  /// weight of <code>0</code> will not be used to place tasks. If you specify
+  /// multiple capacity providers in a strategy that all have a weight of
+  /// <code>0</code>, any <code>RunTask</code> or <code>CreateService</code>
+  /// actions using the capacity provider strategy will fail.
+  ///
+  /// An example scenario for using weights is defining a strategy that contains
+  /// two capacity providers and both have a weight of <code>1</code>, then when
+  /// the <code>base</code> is satisfied, the tasks will be split evenly across
+  /// the two capacity providers. Using that same logic, if you specify a weight
+  /// of <code>1</code> for <i>capacityProviderA</i> and a weight of
+  /// <code>4</code> for <i>capacityProviderB</i>, then for every one task that is
+  /// run using <i>capacityProviderA</i>, four tasks would use
+  /// <i>capacityProviderB</i>.
   final int? weight;
 
   CapacityProviderStrategyItem({
@@ -5409,6 +5591,9 @@ class Cluster {
 
   /// A user-generated string that you use to identify your cluster.
   final String? clusterName;
+
+  /// The execute command configuration for the cluster.
+  final ClusterConfiguration? configuration;
 
   /// The default capacity provider strategy for the cluster. When services or
   /// tasks are run in the cluster with no launch type or capacity provider
@@ -5530,6 +5715,7 @@ class Cluster {
     this.capacityProviders,
     this.clusterArn,
     this.clusterName,
+    this.configuration,
     this.defaultCapacityProviderStrategy,
     this.pendingTasksCount,
     this.registeredContainerInstancesCount,
@@ -5553,6 +5739,10 @@ class Cluster {
           .toList(),
       clusterArn: json['clusterArn'] as String?,
       clusterName: json['clusterName'] as String?,
+      configuration: json['configuration'] != null
+          ? ClusterConfiguration.fromJson(
+              json['configuration'] as Map<String, dynamic>)
+          : null,
       defaultCapacityProviderStrategy: (json['defaultCapacityProviderStrategy']
               as List?)
           ?.whereNotNull()
@@ -5580,8 +5770,35 @@ class Cluster {
   }
 }
 
+/// The execute command configuration for the cluster.
+class ClusterConfiguration {
+  /// The details of the execute command configuration.
+  final ExecuteCommandConfiguration? executeCommandConfiguration;
+
+  ClusterConfiguration({
+    this.executeCommandConfiguration,
+  });
+  factory ClusterConfiguration.fromJson(Map<String, dynamic> json) {
+    return ClusterConfiguration(
+      executeCommandConfiguration: json['executeCommandConfiguration'] != null
+          ? ExecuteCommandConfiguration.fromJson(
+              json['executeCommandConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executeCommandConfiguration = this.executeCommandConfiguration;
+    return {
+      if (executeCommandConfiguration != null)
+        'executeCommandConfiguration': executeCommandConfiguration,
+    };
+  }
+}
+
 enum ClusterField {
   attachments,
+  configurations,
   settings,
   statistics,
   tags,
@@ -5592,6 +5809,8 @@ extension on ClusterField {
     switch (this) {
       case ClusterField.attachments:
         return 'ATTACHMENTS';
+      case ClusterField.configurations:
+        return 'CONFIGURATIONS';
       case ClusterField.settings:
         return 'SETTINGS';
       case ClusterField.statistics:
@@ -5607,6 +5826,8 @@ extension on String {
     switch (this) {
       case 'ATTACHMENTS':
         return ClusterField.attachments;
+      case 'CONFIGURATIONS':
+        return ClusterField.configurations;
       case 'SETTINGS':
         return ClusterField.settings;
       case 'STATISTICS':
@@ -5681,6 +5902,7 @@ extension on String {
 enum Compatibility {
   ec2,
   fargate,
+  external,
 }
 
 extension on Compatibility {
@@ -5690,6 +5912,8 @@ extension on Compatibility {
         return 'EC2';
       case Compatibility.fargate:
         return 'FARGATE';
+      case Compatibility.external:
+        return 'EXTERNAL';
     }
   }
 }
@@ -5701,6 +5925,8 @@ extension on String {
         return Compatibility.ec2;
       case 'FARGATE':
         return Compatibility.fargate;
+      case 'EXTERNAL':
+        return Compatibility.external;
     }
     throw Exception('$this is not known in enum Compatibility');
   }
@@ -5768,6 +5994,9 @@ class Container {
   /// The last known status of the container.
   final String? lastStatus;
 
+  /// The details of any Amazon ECS managed agents associated with the container.
+  final List<ManagedAgent>? managedAgents;
+
   /// The hard limit (in MiB) of memory set for the container.
   final String? memory;
 
@@ -5802,6 +6031,7 @@ class Container {
     this.image,
     this.imageDigest,
     this.lastStatus,
+    this.managedAgents,
     this.memory,
     this.memoryReservation,
     this.name,
@@ -5824,6 +6054,10 @@ class Container {
       image: json['image'] as String?,
       imageDigest: json['imageDigest'] as String?,
       lastStatus: json['lastStatus'] as String?,
+      managedAgents: (json['managedAgents'] as List?)
+          ?.whereNotNull()
+          .map((e) => ManagedAgent.fromJson(e as Map<String, dynamic>))
+          .toList(),
       memory: json['memory'] as String?,
       memoryReservation: json['memoryReservation'] as String?,
       name: json['name'] as String?,
@@ -5985,8 +6219,7 @@ class ContainerDefinition {
   /// a container</a> section of the <a
   /// href="https://docs.docker.com/engine/api/v1.35/">Docker Remote API</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final bool? disableNetworking;
 
@@ -5999,8 +6232,7 @@ class ContainerDefinition {
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final List<String>? dnsSearchDomains;
 
@@ -6013,8 +6245,7 @@ class ContainerDefinition {
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final List<String>? dnsServers;
 
@@ -6121,9 +6352,6 @@ class ContainerDefinition {
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html">Specifying
   /// Environment Variables</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
-  ///
-  /// This field is not valid for containers in tasks using the Fargate launch
-  /// type.
   final List<EnvironmentFile>? environmentFiles;
 
   /// If the <code>essential</code> parameter of a container is marked as
@@ -6252,8 +6480,8 @@ class ContainerDefinition {
   /// if the network mode of a task definition is <code>bridge</code>. The
   /// <code>name:internalName</code> construct is analogous to
   /// <code>name:alias</code> in Docker links. Up to 255 letters (uppercase and
-  /// lowercase), numbers, and hyphens are allowed. For more information about
-  /// linking Docker containers, go to <a
+  /// lowercase), numbers, underscores, and hyphens are allowed. For more
+  /// information about linking Docker containers, go to <a
   /// href="https://docs.docker.com/network/links/">Legacy container links</a> in
   /// the Docker documentation. This parameter maps to <code>Links</code> in the
   /// <a
@@ -6264,8 +6492,7 @@ class ContainerDefinition {
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note> <important>
   /// Containers that are collocated on a single container instance may be able to
   /// communicate with each other without requiring links or host port mappings.
@@ -6401,8 +6628,8 @@ class ContainerDefinition {
   /// The name of a container. If you are linking multiple containers together in
   /// a task definition, the <code>name</code> of one container can be entered in
   /// the <code>links</code> of another container to connect the containers. Up to
-  /// 255 letters (uppercase and lowercase), numbers, and hyphens are allowed.
-  /// This parameter maps to <code>name</code> in the <a
+  /// 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are
+  /// allowed. This parameter maps to <code>name</code> in the <a
   /// href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
   /// a container</a> section of the <a
   /// href="https://docs.docker.com/engine/api/v1.35/">Docker Remote API</a> and
@@ -6454,8 +6681,8 @@ class ContainerDefinition {
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks using the
-  /// Fargate launch type.
+  /// This parameter is not supported for Windows containers or tasks run on AWS
+  /// Fargate.
   /// </note>
   final bool? privileged;
 
@@ -6479,8 +6706,7 @@ class ContainerDefinition {
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final bool? readonlyRootFilesystem;
 
@@ -6592,13 +6818,20 @@ class ContainerDefinition {
   /// the <code>--ulimit</code> option to <a
   /// href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
   /// run</a>. Valid naming values are displayed in the <a>Ulimit</a> data type.
+  ///
+  /// Amazon ECS tasks hosted on Fargate use the default resource limit values set
+  /// by the operating system with the exception of the <code>nofile</code>
+  /// resource limit parameter which Fargate overrides. The <code>nofile</code>
+  /// resource limit sets a restriction on the number of open files that a
+  /// container can use. The default <code>nofile</code> soft limit is
+  /// <code>1024</code> and hard limit is <code>4096</code>.
+  ///
   /// This parameter requires version 1.18 of the Docker Remote API or greater on
   /// your container instance. To check the Docker Remote API version on your
   /// container instance, log in to your container instance and run the following
   /// command: <code>sudo docker version --format '{{.Server.APIVersion}}'</code>
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final List<Ulimit>? ulimits;
 
@@ -6638,8 +6871,7 @@ class ContainerDefinition {
   /// <code>uid:group</code>
   /// </li>
   /// </ul> <note>
-  /// This parameter is not supported for Windows containers or tasks that use the
-  /// awsvpc network mode.
+  /// This parameter is not supported for Windows containers.
   /// </note>
   final String? user;
 
@@ -7013,7 +7245,9 @@ class ContainerInstance {
   /// <code>arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID</code>.
   final String? containerInstanceArn;
 
-  /// The EC2 instance ID of the container instance.
+  /// The ID of the container instance. For Amazon EC2 instances, this value is
+  /// the Amazon EC2 instance ID. For external instances, this value is the AWS
+  /// Systems Manager managed instance ID.
   final String? ec2InstanceId;
 
   /// The number of tasks on the container instance that are in the
@@ -7466,6 +7700,10 @@ class CreateServiceResponse {
 }
 
 class CreateTaskSetResponse {
+  /// Information about a set of Amazon ECS tasks in either an AWS CodeDeploy or
+  /// an <code>EXTERNAL</code> deployment. A task set includes details such as the
+  /// desired number of tasks, how many tasks are running, and whether the task
+  /// set serves production traffic.
   final TaskSet? taskSet;
 
   CreateTaskSetResponse({
@@ -7515,6 +7753,7 @@ class DeleteAttributesResponse {
 }
 
 class DeleteCapacityProviderResponse {
+  /// The details of the capacity provider.
   final CapacityProvider? capacityProvider;
 
   DeleteCapacityProviderResponse({
@@ -7563,6 +7802,7 @@ class DeleteServiceResponse {
 }
 
 class DeleteTaskSetResponse {
+  /// Details about the task set.
   final TaskSet? taskSet;
 
   DeleteTaskSetResponse({
@@ -8630,11 +8870,11 @@ class EFSVolumeConfiguration {
 /// they are processed from the top down. It is recommended to use unique
 /// variable names. For more information, see <a
 /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html">Specifying
-/// Environment Variables</a> in the <i>Amazon Elastic Container Service
+/// environment variables</a> in the <i>Amazon Elastic Container Service
 /// Developer Guide</i>.
 ///
-/// This field is not valid for containers in tasks using the Fargate launch
-/// type.
+/// This field is only valid for containers in Fargate tasks that use platform
+/// version <code>1.4.0</code> or later.
 class EnvironmentFile {
   /// The file type to use. The only supported value is <code>s3</code>.
   final EnvironmentFileType type;
@@ -8684,6 +8924,239 @@ extension on String {
         return EnvironmentFileType.s3;
     }
     throw Exception('$this is not known in enum EnvironmentFileType');
+  }
+}
+
+/// The amount of ephemeral storage to allocate for the task. This parameter is
+/// used to expand the total amount of ephemeral storage available, beyond the
+/// default amount, for tasks hosted on AWS Fargate. For more information, see
+/// <a
+/// href="https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html">Fargate
+/// task storage</a> in the <i>Amazon ECS User Guide for AWS Fargate</i>.
+/// <note>
+/// This parameter is only supported for tasks hosted on AWS Fargate using
+/// platform version <code>1.4.0</code> or later.
+/// </note>
+class EphemeralStorage {
+  /// The total amount, in GiB, of ephemeral storage to set for the task. The
+  /// minimum supported value is <code>21</code> GiB and the maximum supported
+  /// value is <code>200</code> GiB.
+  final int sizeInGiB;
+
+  EphemeralStorage({
+    required this.sizeInGiB,
+  });
+  factory EphemeralStorage.fromJson(Map<String, dynamic> json) {
+    return EphemeralStorage(
+      sizeInGiB: json['sizeInGiB'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sizeInGiB = this.sizeInGiB;
+    return {
+      'sizeInGiB': sizeInGiB,
+    };
+  }
+}
+
+/// The details of the execute command configuration.
+class ExecuteCommandConfiguration {
+  /// Specify an AWS Key Management Service key ID to encrypt the data between the
+  /// local client and the container.
+  final String? kmsKeyId;
+
+  /// The log configuration for the results of the execute command actions. The
+  /// logs can be sent to CloudWatch Logs or an Amazon S3 bucket. When
+  /// <code>logging=OVERRIDE</code> is specified, a <code>logConfiguration</code>
+  /// must be provided.
+  final ExecuteCommandLogConfiguration? logConfiguration;
+
+  /// The log setting to use for redirecting logs for your execute command
+  /// results. The following log settings are available.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NONE</code>: The execute command session is not logged.
+  /// </li>
+  /// <li>
+  /// <code>DEFAULT</code>: The <code>awslogs</code> configuration in the task
+  /// definition is used. If no logging parameter is specified, it defaults to
+  /// this value. If no <code>awslogs</code> log driver is configured in the task
+  /// definition, the output won't be logged.
+  /// </li>
+  /// <li>
+  /// <code>OVERRIDE</code>: Specify the logging details as a part of
+  /// <code>logConfiguration</code>. If the <code>OVERRIDE</code> logging option
+  /// is specified, the <code>logConfiguration</code> is required.
+  /// </li>
+  /// </ul>
+  final ExecuteCommandLogging? logging;
+
+  ExecuteCommandConfiguration({
+    this.kmsKeyId,
+    this.logConfiguration,
+    this.logging,
+  });
+  factory ExecuteCommandConfiguration.fromJson(Map<String, dynamic> json) {
+    return ExecuteCommandConfiguration(
+      kmsKeyId: json['kmsKeyId'] as String?,
+      logConfiguration: json['logConfiguration'] != null
+          ? ExecuteCommandLogConfiguration.fromJson(
+              json['logConfiguration'] as Map<String, dynamic>)
+          : null,
+      logging: (json['logging'] as String?)?.toExecuteCommandLogging(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    final logConfiguration = this.logConfiguration;
+    final logging = this.logging;
+    return {
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (logConfiguration != null) 'logConfiguration': logConfiguration,
+      if (logging != null) 'logging': logging.toValue(),
+    };
+  }
+}
+
+/// The log configuration for the results of the execute command actions. The
+/// logs can be sent to CloudWatch Logs or an Amazon S3 bucket.
+class ExecuteCommandLogConfiguration {
+  /// Whether or not to enable encryption on the CloudWatch logs. If not
+  /// specified, encryption will be disabled.
+  final bool? cloudWatchEncryptionEnabled;
+
+  /// The name of the CloudWatch log group to send logs to.
+  /// <note>
+  /// The CloudWatch log group must already be created.
+  /// </note>
+  final String? cloudWatchLogGroupName;
+
+  /// The name of the S3 bucket to send logs to.
+  /// <note>
+  /// The S3 bucket must already be created.
+  /// </note>
+  final String? s3BucketName;
+
+  /// Whether or not to enable encryption on the CloudWatch logs. If not
+  /// specified, encryption will be disabled.
+  final bool? s3EncryptionEnabled;
+
+  /// An optional folder in the S3 bucket to place logs in.
+  final String? s3KeyPrefix;
+
+  ExecuteCommandLogConfiguration({
+    this.cloudWatchEncryptionEnabled,
+    this.cloudWatchLogGroupName,
+    this.s3BucketName,
+    this.s3EncryptionEnabled,
+    this.s3KeyPrefix,
+  });
+  factory ExecuteCommandLogConfiguration.fromJson(Map<String, dynamic> json) {
+    return ExecuteCommandLogConfiguration(
+      cloudWatchEncryptionEnabled: json['cloudWatchEncryptionEnabled'] as bool?,
+      cloudWatchLogGroupName: json['cloudWatchLogGroupName'] as String?,
+      s3BucketName: json['s3BucketName'] as String?,
+      s3EncryptionEnabled: json['s3EncryptionEnabled'] as bool?,
+      s3KeyPrefix: json['s3KeyPrefix'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchEncryptionEnabled = this.cloudWatchEncryptionEnabled;
+    final cloudWatchLogGroupName = this.cloudWatchLogGroupName;
+    final s3BucketName = this.s3BucketName;
+    final s3EncryptionEnabled = this.s3EncryptionEnabled;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    return {
+      if (cloudWatchEncryptionEnabled != null)
+        'cloudWatchEncryptionEnabled': cloudWatchEncryptionEnabled,
+      if (cloudWatchLogGroupName != null)
+        'cloudWatchLogGroupName': cloudWatchLogGroupName,
+      if (s3BucketName != null) 's3BucketName': s3BucketName,
+      if (s3EncryptionEnabled != null)
+        's3EncryptionEnabled': s3EncryptionEnabled,
+      if (s3KeyPrefix != null) 's3KeyPrefix': s3KeyPrefix,
+    };
+  }
+}
+
+enum ExecuteCommandLogging {
+  none,
+  $default,
+  override,
+}
+
+extension on ExecuteCommandLogging {
+  String toValue() {
+    switch (this) {
+      case ExecuteCommandLogging.none:
+        return 'NONE';
+      case ExecuteCommandLogging.$default:
+        return 'DEFAULT';
+      case ExecuteCommandLogging.override:
+        return 'OVERRIDE';
+    }
+  }
+}
+
+extension on String {
+  ExecuteCommandLogging toExecuteCommandLogging() {
+    switch (this) {
+      case 'NONE':
+        return ExecuteCommandLogging.none;
+      case 'DEFAULT':
+        return ExecuteCommandLogging.$default;
+      case 'OVERRIDE':
+        return ExecuteCommandLogging.override;
+    }
+    throw Exception('$this is not known in enum ExecuteCommandLogging');
+  }
+}
+
+class ExecuteCommandResponse {
+  /// The Amazon Resource Name (ARN) of the cluster.
+  final String? clusterArn;
+
+  /// The Amazon Resource Name (ARN) of the container.
+  final String? containerArn;
+
+  /// The name of the container.
+  final String? containerName;
+
+  /// Whether or not the execute command session is running in interactive mode.
+  /// Amazon ECS only supports initiating interactive sessions, so you must
+  /// specify <code>true</code> for this value.
+  final bool? interactive;
+
+  /// The details of the SSM session that was created for this instance of
+  /// execute-command.
+  final Session? session;
+
+  /// The Amazon Resource Name (ARN) of the task.
+  final String? taskArn;
+
+  ExecuteCommandResponse({
+    this.clusterArn,
+    this.containerArn,
+    this.containerName,
+    this.interactive,
+    this.session,
+    this.taskArn,
+  });
+  factory ExecuteCommandResponse.fromJson(Map<String, dynamic> json) {
+    return ExecuteCommandResponse(
+      clusterArn: json['clusterArn'] as String?,
+      containerArn: json['containerArn'] as String?,
+      containerName: json['containerName'] as String?,
+      interactive: json['interactive'] as bool?,
+      session: json['session'] != null
+          ? Session.fromJson(json['session'] as Map<String, dynamic>)
+          : null,
+      taskArn: json['taskArn'] as String?,
+    );
   }
 }
 
@@ -8825,6 +9298,10 @@ class FirelensConfiguration {
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html#firelens-taskdef">Creating
   /// a Task Definition that Uses a FireLens Configuration</a> in the <i>Amazon
   /// Elastic Container Service Developer Guide</i>.
+  /// <note>
+  /// Tasks hosted on AWS Fargate only support the <code>file</code> configuration
+  /// file type.
+  /// </note>
   final Map<String, String>? options;
 
   FirelensConfiguration({
@@ -9334,6 +9811,7 @@ class KeyValuePair {
 enum LaunchType {
   ec2,
   fargate,
+  external,
 }
 
 extension on LaunchType {
@@ -9343,6 +9821,8 @@ extension on LaunchType {
         return 'EC2';
       case LaunchType.fargate:
         return 'FARGATE';
+      case LaunchType.external:
+        return 'EXTERNAL';
     }
   }
 }
@@ -9354,6 +9834,8 @@ extension on String {
         return LaunchType.ec2;
       case 'FARGATE':
         return LaunchType.fargate;
+      case 'EXTERNAL':
+        return LaunchType.external;
     }
     throw Exception('$this is not known in enum LaunchType');
   }
@@ -9994,6 +10476,94 @@ extension on String {
   }
 }
 
+/// Details about the managed agent status for the container.
+class ManagedAgent {
+  /// The Unix timestamp for when the managed agent was last started.
+  final DateTime? lastStartedAt;
+
+  /// The last known status of the managed agent.
+  final String? lastStatus;
+
+  /// The name of the managed agent. When the execute command feature is enabled,
+  /// the managed agent name is <code>ExecuteCommandAgent</code>.
+  final ManagedAgentName? name;
+
+  /// The reason for why the managed agent is in the state it is in.
+  final String? reason;
+
+  ManagedAgent({
+    this.lastStartedAt,
+    this.lastStatus,
+    this.name,
+    this.reason,
+  });
+  factory ManagedAgent.fromJson(Map<String, dynamic> json) {
+    return ManagedAgent(
+      lastStartedAt: timeStampFromJson(json['lastStartedAt']),
+      lastStatus: json['lastStatus'] as String?,
+      name: (json['name'] as String?)?.toManagedAgentName(),
+      reason: json['reason'] as String?,
+    );
+  }
+}
+
+enum ManagedAgentName {
+  executeCommandAgent,
+}
+
+extension on ManagedAgentName {
+  String toValue() {
+    switch (this) {
+      case ManagedAgentName.executeCommandAgent:
+        return 'ExecuteCommandAgent';
+    }
+  }
+}
+
+extension on String {
+  ManagedAgentName toManagedAgentName() {
+    switch (this) {
+      case 'ExecuteCommandAgent':
+        return ManagedAgentName.executeCommandAgent;
+    }
+    throw Exception('$this is not known in enum ManagedAgentName');
+  }
+}
+
+/// An object representing a change in state for a managed agent.
+class ManagedAgentStateChange {
+  /// The name of the container associated with the managed agent.
+  final String containerName;
+
+  /// The name of the managed agent.
+  final ManagedAgentName managedAgentName;
+
+  /// The status of the managed agent.
+  final String status;
+
+  /// The reason for the status of the managed agent.
+  final String? reason;
+
+  ManagedAgentStateChange({
+    required this.containerName,
+    required this.managedAgentName,
+    required this.status,
+    this.reason,
+  });
+  Map<String, dynamic> toJson() {
+    final containerName = this.containerName;
+    final managedAgentName = this.managedAgentName;
+    final status = this.status;
+    final reason = this.reason;
+    return {
+      'containerName': containerName,
+      'managedAgentName': managedAgentName.toValue(),
+      'status': status,
+      if (reason != null) 'reason': reason,
+    };
+  }
+}
+
 /// The managed scaling settings for the Auto Scaling group capacity provider.
 ///
 /// When managed scaling is enabled, Amazon ECS manages the scale-in and
@@ -10540,7 +11110,10 @@ extension on String {
 /// <code>host</code> network mode, exposed ports should be specified using
 /// <code>containerPort</code>. The <code>hostPort</code> can be left blank or
 /// it must be the same value as the <code>containerPort</code>.
-///
+/// <note>
+/// You cannot expose the same container port for multiple protocols. An error
+/// will be returned if this is attempted
+/// </note>
 /// After a task reaches the <code>RUNNING</code> status, manual and automatic
 /// host and container port assignments are visible in the
 /// <code>networkBindings</code> section of <a>DescribeTasks</a> API responses.
@@ -10763,6 +11336,7 @@ extension on String {
 }
 
 class PutAccountSettingDefaultResponse {
+  /// The current setting for a resource.
   final Setting? setting;
 
   PutAccountSettingDefaultResponse({
@@ -10811,6 +11385,7 @@ class PutAttributesResponse {
 }
 
 class PutClusterCapacityProvidersResponse {
+  /// Details about the cluster.
   final Cluster? cluster;
 
   PutClusterCapacityProvidersResponse({
@@ -11267,6 +11842,11 @@ class Service {
   /// Developer Guide</i>.
   final bool? enableECSManagedTags;
 
+  /// Whether or not the execute command functionality is enabled for the service.
+  /// If <code>true</code>, the execute command functionality is enabled for all
+  /// containers in tasks as part of the service.
+  final bool? enableExecuteCommand;
+
   /// The event stream for your service. A maximum of 100 of the latest events are
   /// displayed.
   final List<ServiceEvent>? events;
@@ -11276,11 +11856,10 @@ class Service {
   /// has first started.
   final int? healthCheckGracePeriodSeconds;
 
-  /// The launch type on which your service is running. If no value is specified,
-  /// it will default to <code>EC2</code>. Valid values include <code>EC2</code>
-  /// and <code>FARGATE</code>. For more information, see <a
+  /// The infrastructure on which your service is running. For more information,
+  /// see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final LaunchType? launchType;
 
@@ -11358,9 +11937,9 @@ class Service {
   final String? serviceArn;
 
   /// The name of your service. Up to 255 letters (uppercase and lowercase),
-  /// numbers, and hyphens are allowed. Service names must be unique within a
-  /// cluster, but you can have similarly named services in multiple clusters
-  /// within a Region or across multiple Regions.
+  /// numbers, underscores, and hyphens are allowed. Service names must be unique
+  /// within a cluster, but you can have similarly named services in multiple
+  /// clusters within a Region or across multiple Regions.
   final String? serviceName;
 
   /// The details of the service discovery registries to assign to this service.
@@ -11432,6 +12011,7 @@ class Service {
     this.deployments,
     this.desiredCount,
     this.enableECSManagedTags,
+    this.enableExecuteCommand,
     this.events,
     this.healthCheckGracePeriodSeconds,
     this.launchType,
@@ -11477,6 +12057,7 @@ class Service {
           .toList(),
       desiredCount: json['desiredCount'] as int?,
       enableECSManagedTags: json['enableECSManagedTags'] as bool?,
+      enableExecuteCommand: json['enableExecuteCommand'] as bool?,
       events: (json['events'] as List?)
           ?.whereNotNull()
           .map((e) => ServiceEvent.fromJson(e as Map<String, dynamic>))
@@ -11635,6 +12216,33 @@ class ServiceRegistry {
       if (port != null) 'port': port,
       if (registryArn != null) 'registryArn': registryArn,
     };
+  }
+}
+
+/// The details of the execute command session.
+class Session {
+  /// The ID of the execute command session.
+  final String? sessionId;
+
+  /// A URL back to managed agent on the container that the SSM Session Manager
+  /// client uses to send commands and receive output from the container.
+  final String? streamUrl;
+
+  /// An encrypted token value containing session and caller information. Used to
+  /// authenticate the connection to the container.
+  final String? tokenValue;
+
+  Session({
+    this.sessionId,
+    this.streamUrl,
+    this.tokenValue,
+  });
+  factory Session.fromJson(Map<String, dynamic> json) {
+    return Session(
+      sessionId: json['sessionId'] as String?,
+      streamUrl: json['streamUrl'] as String?,
+      tokenValue: json['tokenValue'] as String?,
+    );
   }
 }
 
@@ -12083,6 +12691,14 @@ class Task {
   /// Lifecycle</a>.
   final String? desiredStatus;
 
+  /// Whether or not execute command functionality is enabled for this task. If
+  /// <code>true</code>, this enables execute command functionality on all
+  /// containers in the task.
+  final bool? enableExecuteCommand;
+
+  /// The ephemeral storage settings for the task.
+  final EphemeralStorage? ephemeralStorage;
+
   /// The Unix timestamp for when the task execution stopped.
   final DateTime? executionStoppedAt;
 
@@ -12113,9 +12729,10 @@ class Task {
   /// Lifecycle</a>.
   final String? lastStatus;
 
-  /// The launch type on which your task is running. For more information, see <a
+  /// The infrastructure on which your task is running. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final LaunchType? launchType;
 
@@ -12263,6 +12880,8 @@ class Task {
     this.cpu,
     this.createdAt,
     this.desiredStatus,
+    this.enableExecuteCommand,
+    this.ephemeralStorage,
     this.executionStoppedAt,
     this.group,
     this.healthStatus,
@@ -12308,6 +12927,11 @@ class Task {
       cpu: json['cpu'] as String?,
       createdAt: timeStampFromJson(json['createdAt']),
       desiredStatus: json['desiredStatus'] as String?,
+      enableExecuteCommand: json['enableExecuteCommand'] as bool?,
+      ephemeralStorage: json['ephemeralStorage'] != null
+          ? EphemeralStorage.fromJson(
+              json['ephemeralStorage'] as Map<String, dynamic>)
+          : null,
       executionStoppedAt: timeStampFromJson(json['executionStoppedAt']),
       group: json['group'] as String?,
       healthStatus: (json['healthStatus'] as String?)?.toHealthStatus(),
@@ -12347,9 +12971,10 @@ class Task {
 /// related to launching the task definition through an Amazon ECS service or
 /// task.
 class TaskDefinition {
-  /// The launch type to use with your task. For more information, see <a
+  /// The task launch types the task definition validated against during task
+  /// definition registration. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final List<Compatibility>? compatibilities;
 
@@ -12390,6 +13015,13 @@ class TaskDefinition {
   /// </li>
   /// </ul>
   final String? cpu;
+
+  /// The Unix timestamp for when the task definition was deregistered.
+  final DateTime? deregisteredAt;
+
+  /// The ephemeral storage settings to use for tasks run with the task
+  /// definition.
+  final EphemeralStorage? ephemeralStorage;
 
   /// The Amazon Resource Name (ARN) of the task execution role that grants the
   /// Amazon ECS container agent permission to make AWS API calls on your behalf.
@@ -12448,23 +13080,23 @@ class TaskDefinition {
   /// <code>systemControls</code> will apply to all containers within a task.
   /// </li>
   /// </ul> <note>
-  /// This parameter is not supported for Windows containers or tasks using the
-  /// Fargate launch type.
+  /// This parameter is not supported for Windows containers or tasks run on AWS
+  /// Fargate.
   /// </note>
   final IpcMode? ipcMode;
 
   /// The amount (in MiB) of memory used by the task.
   ///
-  /// If using the EC2 launch type, you must specify either a task-level memory
-  /// value or a container-level memory value. This field is optional and any
-  /// value can be used. If a task-level memory value is specified then the
-  /// container-level memory value is optional. For more information regarding
-  /// container-level memory and memory reservation, see <a
+  /// If your tasks will be run on Amazon EC2 instances, you must specify either a
+  /// task-level memory value or a container-level memory value. This field is
+  /// optional and any value can be used. If a task-level memory value is
+  /// specified then the container-level memory value is optional. For more
+  /// information regarding container-level memory and memory reservation, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html">ContainerDefinition</a>.
   ///
-  /// If using the Fargate launch type, this field is required and you must use
-  /// one of the following values, which determines your range of valid values for
-  /// the <code>cpu</code> parameter:
+  /// If your tasks will be run on AWS Fargate, this field is required and you
+  /// must use one of the following values, which determines your range of valid
+  /// values for the <code>cpu</code> parameter:
   ///
   /// <ul>
   /// <li>
@@ -12557,13 +13189,15 @@ class TaskDefinition {
   /// see <a href="https://docs.docker.com/engine/security/security/">Docker
   /// security</a>.
   /// <note>
-  /// This parameter is not supported for Windows containers or tasks using the
-  /// Fargate launch type.
+  /// This parameter is not supported for Windows containers or tasks run on AWS
+  /// Fargate.
   /// </note>
   final PidMode? pidMode;
 
-  /// An array of placement constraint objects to use for tasks. This field is not
-  /// valid if you are using the Fargate launch type for your task.
+  /// An array of placement constraint objects to use for tasks.
+  /// <note>
+  /// This parameter is not supported for tasks run on AWS Fargate.
+  /// </note>
   final List<TaskDefinitionPlacementConstraint>? placementConstraints;
 
   /// The configuration details for the App Mesh proxy.
@@ -12579,13 +13213,29 @@ class TaskDefinition {
   /// Developer Guide</i>.
   final ProxyConfiguration? proxyConfiguration;
 
-  /// The container instance attributes required by your task. This field is not
-  /// valid if you are using the Fargate launch type for your task.
+  /// The Unix timestamp for when the task definition was registered.
+  final DateTime? registeredAt;
+
+  /// The principal that registered the task definition.
+  final String? registeredBy;
+
+  /// The container instance attributes required by your task. When an Amazon EC2
+  /// instance is registered to your cluster, the Amazon ECS container agent
+  /// assigns some standard attributes to the instance. You can apply custom
+  /// attributes, specified as key-value pairs using the Amazon ECS console or the
+  /// <a>PutAttributes</a> API. These attributes are used when considering task
+  /// placement for tasks hosted on Amazon EC2 instances. For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+  /// in the <i>Amazon Elastic Container Service Developer Guide</i>.
+  /// <note>
+  /// This parameter is not supported for tasks run on AWS Fargate.
+  /// </note>
   final List<Attribute>? requiresAttributes;
 
-  /// The launch type the task requires. If no value is specified, it will default
-  /// to <code>EC2</code>. Valid values include <code>EC2</code> and
-  /// <code>FARGATE</code>.
+  /// The task launch types the task definition was validated against. To
+  /// determine which task launch types the task definition is validated for, see
+  /// the <a>TaskDefinition$compatibilities</a> parameter.
   final List<Compatibility>? requiresCompatibilities;
 
   /// The revision of the task in a particular family. The revision is a version
@@ -12614,25 +13264,27 @@ class TaskDefinition {
   /// ECS-optimized Windows AMI. Your containers must also run some configuration
   /// code in order to take advantage of the feature. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows_task_IAM_roles.html">Windows
-  /// IAM Roles for Tasks</a> in the <i>Amazon Elastic Container Service Developer
+  /// IAM roles for tasks</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final String? taskRoleArn;
 
-  /// The list of volume definitions for the task.
-  ///
-  /// If your tasks are using the Fargate launch type, the <code>host</code> and
-  /// <code>sourcePath</code> parameters are not supported.
-  ///
-  /// For more information about volume definition parameters and defaults, see <a
-  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html">Amazon
-  /// ECS Task Definitions</a> in the <i>Amazon Elastic Container Service
+  /// The list of data volume definitions for the task. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html">Using
+  /// data volumes in tasks</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
+  /// <note>
+  /// The <code>host</code> and <code>sourcePath</code> parameters are not
+  /// supported for tasks run on AWS Fargate.
+  /// </note>
   final List<Volume>? volumes;
 
   TaskDefinition({
     this.compatibilities,
     this.containerDefinitions,
     this.cpu,
+    this.deregisteredAt,
+    this.ephemeralStorage,
     this.executionRoleArn,
     this.family,
     this.inferenceAccelerators,
@@ -12642,6 +13294,8 @@ class TaskDefinition {
     this.pidMode,
     this.placementConstraints,
     this.proxyConfiguration,
+    this.registeredAt,
+    this.registeredBy,
     this.requiresAttributes,
     this.requiresCompatibilities,
     this.revision,
@@ -12661,6 +13315,11 @@ class TaskDefinition {
           .map((e) => ContainerDefinition.fromJson(e as Map<String, dynamic>))
           .toList(),
       cpu: json['cpu'] as String?,
+      deregisteredAt: timeStampFromJson(json['deregisteredAt']),
+      ephemeralStorage: json['ephemeralStorage'] != null
+          ? EphemeralStorage.fromJson(
+              json['ephemeralStorage'] as Map<String, dynamic>)
+          : null,
       executionRoleArn: json['executionRoleArn'] as String?,
       family: json['family'] as String?,
       inferenceAccelerators: (json['inferenceAccelerators'] as List?)
@@ -12680,6 +13339,8 @@ class TaskDefinition {
           ? ProxyConfiguration.fromJson(
               json['proxyConfiguration'] as Map<String, dynamic>)
           : null,
+      registeredAt: timeStampFromJson(json['registeredAt']),
+      registeredBy: json['registeredBy'] as String?,
       requiresAttributes: (json['requiresAttributes'] as List?)
           ?.whereNotNull()
           .map((e) => Attribute.fromJson(e as Map<String, dynamic>))
@@ -12759,17 +13420,16 @@ extension on String {
 /// An object representing a constraint on task placement in the task
 /// definition. For more information, see <a
 /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html">Task
-/// Placement Constraints</a> in the <i>Amazon Elastic Container Service
+/// placement constraints</a> in the <i>Amazon Elastic Container Service
 /// Developer Guide</i>.
 /// <note>
-/// If you are using the Fargate launch type, task placement constraints are not
-/// supported.
+/// Task placement constraints are not supported for tasks run on AWS Fargate.
 /// </note>
 class TaskDefinitionPlacementConstraint {
   /// A cluster query language expression to apply to the constraint. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html">Cluster
-  /// Query Language</a> in the <i>Amazon Elastic Container Service Developer
+  /// query language</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final String? expression;
 
@@ -12884,6 +13544,13 @@ class TaskOverride {
   /// The cpu override for the task.
   final String? cpu;
 
+  /// The ephemeral storage setting override for the task.
+  /// <note>
+  /// This parameter is only supported for tasks hosted on AWS Fargate using
+  /// platform version <code>1.4.0</code> or later.
+  /// </note>
+  final EphemeralStorage? ephemeralStorage;
+
   /// The Amazon Resource Name (ARN) of the task execution IAM role override for
   /// the task.
   final String? executionRoleArn;
@@ -12902,6 +13569,7 @@ class TaskOverride {
   TaskOverride({
     this.containerOverrides,
     this.cpu,
+    this.ephemeralStorage,
     this.executionRoleArn,
     this.inferenceAcceleratorOverrides,
     this.memory,
@@ -12914,6 +13582,10 @@ class TaskOverride {
           .map((e) => ContainerOverride.fromJson(e as Map<String, dynamic>))
           .toList(),
       cpu: json['cpu'] as String?,
+      ephemeralStorage: json['ephemeralStorage'] != null
+          ? EphemeralStorage.fromJson(
+              json['ephemeralStorage'] as Map<String, dynamic>)
+          : null,
       executionRoleArn: json['executionRoleArn'] as String?,
       inferenceAcceleratorOverrides: (json['inferenceAcceleratorOverrides']
               as List?)
@@ -12929,6 +13601,7 @@ class TaskOverride {
   Map<String, dynamic> toJson() {
     final containerOverrides = this.containerOverrides;
     final cpu = this.cpu;
+    final ephemeralStorage = this.ephemeralStorage;
     final executionRoleArn = this.executionRoleArn;
     final inferenceAcceleratorOverrides = this.inferenceAcceleratorOverrides;
     final memory = this.memory;
@@ -12936,6 +13609,7 @@ class TaskOverride {
     return {
       if (containerOverrides != null) 'containerOverrides': containerOverrides,
       if (cpu != null) 'cpu': cpu,
+      if (ephemeralStorage != null) 'ephemeralStorage': ephemeralStorage,
       if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
       if (inferenceAcceleratorOverrides != null)
         'inferenceAcceleratorOverrides': inferenceAcceleratorOverrides,
@@ -12982,7 +13656,7 @@ class TaskSet {
   /// The launch type the tasks in the task set are using. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">Amazon
-  /// ECS Launch Types</a> in the <i>Amazon Elastic Container Service Developer
+  /// ECS launch types</a> in the <i>Amazon Elastic Container Service Developer
   /// Guide</i>.
   final LaunchType? launchType;
 
@@ -12999,12 +13673,11 @@ class TaskSet {
   /// is restarted after being in the <code>STOPPED</code> state.
   final int? pendingCount;
 
-  /// The platform version on which the tasks in the task set are running. A
-  /// platform version is only specified for tasks using the Fargate launch type.
-  /// If one is not specified, the <code>LATEST</code> platform version is used by
-  /// default. For more information, see <a
+  /// The AWS Fargate platform version on which the tasks in the task set are
+  /// running. A platform version is only specified for tasks run on AWS Fargate.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">AWS
-  /// Fargate Platform Versions</a> in the <i>Amazon Elastic Container Service
+  /// Fargate platform versions</a> in the <i>Amazon Elastic Container Service
   /// Developer Guide</i>.
   final String? platformVersion;
 
@@ -13023,7 +13696,7 @@ class TaskSet {
   /// The details of the service discovery registries to assign to this task set.
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html">Service
-  /// Discovery</a>.
+  /// discovery</a>.
   final List<ServiceRegistry>? serviceRegistries;
 
   /// The stability status, which indicates whether the task set has reached a
@@ -13323,6 +13996,13 @@ extension on String {
 }
 
 /// The <code>ulimit</code> settings to pass to the container.
+///
+/// Amazon ECS tasks hosted on Fargate use the default resource limit values set
+/// by the operating system with the exception of the <code>nofile</code>
+/// resource limit parameter which Fargate overrides. The <code>nofile</code>
+/// resource limit sets a restriction on the number of open files that a
+/// container can use. The default <code>nofile</code> soft limit is
+/// <code>1024</code> and hard limit is <code>4096</code>.
 class Ulimit {
   /// The hard limit for the ulimit type.
   final int hardLimit;
@@ -13459,6 +14139,7 @@ class UntagResourceResponse {
 }
 
 class UpdateCapacityProviderResponse {
+  /// Details about the capacity provider.
   final CapacityProvider? capacityProvider;
 
   UpdateCapacityProviderResponse({
@@ -13474,7 +14155,24 @@ class UpdateCapacityProviderResponse {
   }
 }
 
+class UpdateClusterResponse {
+  /// Details about the cluster.
+  final Cluster? cluster;
+
+  UpdateClusterResponse({
+    this.cluster,
+  });
+  factory UpdateClusterResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateClusterResponse(
+      cluster: json['cluster'] != null
+          ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class UpdateClusterSettingsResponse {
+  /// Details about the cluster
   final Cluster? cluster;
 
   UpdateClusterSettingsResponse({
@@ -13533,6 +14231,7 @@ class UpdateContainerInstancesStateResponse {
 }
 
 class UpdateServicePrimaryTaskSetResponse {
+  /// Details about the task set.
   final TaskSet? taskSet;
 
   UpdateServicePrimaryTaskSetResponse({
@@ -13565,6 +14264,7 @@ class UpdateServiceResponse {
 }
 
 class UpdateTaskSetResponse {
+  /// Details about the task set.
   final TaskSet? taskSet;
 
   UpdateTaskSetResponse({
@@ -13629,10 +14329,13 @@ class VersionInfo {
 /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_data_volumes.html">Using
 /// Data Volumes in Tasks</a>.
 class Volume {
-  /// This parameter is specified when you are using Docker volumes. Docker
-  /// volumes are only supported when you are using the EC2 launch type. Windows
-  /// containers only support the use of the <code>local</code> driver. To use
-  /// bind mounts, specify the <code>host</code> parameter instead.
+  /// This parameter is specified when you are using Docker volumes.
+  ///
+  /// Windows containers only support the use of the <code>local</code> driver. To
+  /// use bind mounts, specify the <code>host</code> parameter instead.
+  /// <note>
+  /// Docker volumes are not supported by tasks run on AWS Fargate.
+  /// </note>
   final DockerVolumeConfiguration? dockerVolumeConfiguration;
 
   /// This parameter is specified when you are using an Amazon Elastic File System
@@ -13659,8 +14362,8 @@ class Volume {
   final HostVolumeProperties? host;
 
   /// The name of the volume. Up to 255 letters (uppercase and lowercase),
-  /// numbers, and hyphens are allowed. This name is referenced in the
-  /// <code>sourceVolume</code> parameter of container definition
+  /// numbers, underscores, and hyphens are allowed. This name is referenced in
+  /// the <code>sourceVolume</code> parameter of container definition
   /// <code>mountPoints</code>.
   final String? name;
 
@@ -13860,6 +14563,12 @@ class ServiceNotFoundException extends _s.GenericAwsException {
       : super(type: type, code: 'ServiceNotFoundException', message: message);
 }
 
+class TargetNotConnectedException extends _s.GenericAwsException {
+  TargetNotConnectedException({String? type, String? message})
+      : super(
+            type: type, code: 'TargetNotConnectedException', message: message);
+}
+
 class TargetNotFoundException extends _s.GenericAwsException {
   TargetNotFoundException({String? type, String? message})
       : super(type: type, code: 'TargetNotFoundException', message: message);
@@ -13921,6 +14630,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ServiceNotActiveException(type: type, message: message),
   'ServiceNotFoundException': (type, message) =>
       ServiceNotFoundException(type: type, message: message),
+  'TargetNotConnectedException': (type, message) =>
+      TargetNotConnectedException(type: type, message: message),
   'TargetNotFoundException': (type, message) =>
       TargetNotFoundException(type: type, message: message),
   'TaskSetNotFoundException': (type, message) =>

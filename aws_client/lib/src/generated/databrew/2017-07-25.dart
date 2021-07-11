@@ -19,11 +19,11 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// AWS Glue DataBrew is a visual, cloud-scale data-preparation service.
-/// DataBrew simplifies data preparation tasks, targeting data issues that are
-/// hard to spot and time-consuming to fix. DataBrew empowers users of all
-/// technical levels to visualize the data and perform one-click data
-/// transformations, with no coding required.
+/// Glue DataBrew is a visual, cloud-scale data-preparation service. DataBrew
+/// simplifies data preparation tasks, targeting data issues that are hard to
+/// spot and time-consuming to fix. DataBrew empowers users of all technical
+/// levels to visualize the data and perform one-click data transformations,
+/// with no coding required.
 class GlueDataBrew {
   final _s.RestJsonProtocol _protocol;
   GlueDataBrew({
@@ -44,15 +44,59 @@ class GlueDataBrew {
 
   /// Deletes one or more versions of a recipe at a time.
   ///
+  /// The entire request will be rejected if:
+  ///
+  /// <ul>
+  /// <li>
+  /// The recipe does not exist.
+  /// </li>
+  /// <li>
+  /// There is an invalid version identifier in the list of versions.
+  /// </li>
+  /// <li>
+  /// The version list is empty.
+  /// </li>
+  /// <li>
+  /// The version list size exceeds 50.
+  /// </li>
+  /// <li>
+  /// The version list contains duplicate entries.
+  /// </li>
+  /// </ul>
+  /// The request will complete successfully, but with partial failures, if:
+  ///
+  /// <ul>
+  /// <li>
+  /// A version does not exist.
+  /// </li>
+  /// <li>
+  /// A version is being used by a job.
+  /// </li>
+  /// <li>
+  /// You specify <code>LATEST_WORKING</code>, but it's being used by a project.
+  /// </li>
+  /// <li>
+  /// The version fails to be deleted.
+  /// </li>
+  /// </ul>
+  /// The <code>LATEST_WORKING</code> version will only be deleted if the recipe
+  /// has no other versions. If you try to delete <code>LATEST_WORKING</code>
+  /// while other versions exist (or if they can't be deleted), then
+  /// <code>LATEST_WORKING</code> will be listed as partial failure in the
+  /// response.
+  ///
   /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
-  /// The name of the recipe to be modified.
+  /// The name of the recipe whose versions are to be deleted.
   ///
   /// Parameter [recipeVersions] :
-  /// An array of version identifiers to be deleted.
+  /// An array of version identifiers, for the recipe versions to be deleted.
+  /// You can specify numeric versions (<code>X.Y</code>) or
+  /// <code>LATEST_WORKING</code>. <code>LATEST_PUBLISHED</code> is not
+  /// supported.
   Future<BatchDeleteRecipeVersionResponse> batchDeleteRecipeVersion({
     required String name,
     required List<String> recipeVersions,
@@ -79,7 +123,7 @@ class GlueDataBrew {
     return BatchDeleteRecipeVersionResponse.fromJson(response);
   }
 
-  /// Creates a new AWS Glue DataBrew dataset for this AWS account.
+  /// Creates a new DataBrew dataset.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ConflictException].
@@ -87,14 +131,25 @@ class GlueDataBrew {
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
-  /// The name of the dataset to be created.
+  /// The name of the dataset to be created. Valid characters are alphanumeric
+  /// (A-Z, a-z, 0-9), hyphen (-), period (.), and space.
+  ///
+  /// Parameter [format] :
+  /// The file format of a dataset that is created from an Amazon S3 file or
+  /// folder.
+  ///
+  /// Parameter [pathOptions] :
+  /// A set of options that defines how DataBrew interprets an Amazon S3 path of
+  /// the dataset.
   ///
   /// Parameter [tags] :
   /// Metadata tags to apply to this dataset.
   Future<CreateDatasetResponse> createDataset({
     required Input input,
     required String name,
+    InputFormat? format,
     FormatOptions? formatOptions,
+    PathOptions? pathOptions,
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(input, 'input');
@@ -109,7 +164,9 @@ class GlueDataBrew {
     final $payload = <String, dynamic>{
       'Input': input,
       'Name': name,
+      if (format != null) 'Format': format.toValue(),
       if (formatOptions != null) 'FormatOptions': formatOptions,
+      if (pathOptions != null) 'PathOptions': pathOptions,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -121,20 +178,24 @@ class GlueDataBrew {
     return CreateDatasetResponse.fromJson(response);
   }
 
-  /// Creates a new job to profile an AWS Glue DataBrew dataset that exists in
-  /// the current AWS account.
+  /// Creates a new job to analyze a dataset and create its data profile.
   ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [datasetName] :
   /// The name of the dataset that this job is to act upon.
   ///
   /// Parameter [name] :
-  /// The name of the job to be created.
+  /// The name of the job to be created. Valid characters are alphanumeric (A-Z,
+  /// a-z, 0-9), hyphen (-), period (.), and space.
   ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role to be assumed for this request.
+  /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+  /// role to be assumed when DataBrew runs the job.
   ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
@@ -145,8 +206,8 @@ class GlueDataBrew {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - para&gt;<code>SSE-KMS</code> - server-side
-  /// encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - <code>SSE-KMS</code> - Server-side encryption with
+  /// KMS-managed keys.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon
@@ -154,10 +215,15 @@ class GlueDataBrew {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [jobSample] :
+  /// Sample configuration for profile jobs only. Determines the number of rows
+  /// on which the profile job will be executed. If a JobSample value is not
+  /// provided, the default value will be used. The default value is CUSTOM_ROWS
+  /// for the mode parameter and 20000 for the size parameter.
+  ///
   /// Parameter [logSubscription] :
-  /// A value that enables or disables Amazon CloudWatch logging for the current
-  /// AWS account. If logging is enabled, CloudWatch writes one log stream for
-  /// each job run.
+  /// Enables or disables Amazon CloudWatch logging for the job. If logging is
+  /// enabled, CloudWatch writes one log stream for each job run.
   ///
   /// Parameter [maxCapacity] :
   /// The maximum number of nodes that DataBrew can use when the job processes
@@ -179,6 +245,7 @@ class GlueDataBrew {
     required String roleArn,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
+    JobSample? jobSample,
     LogSubscription? logSubscription,
     int? maxCapacity,
     int? maxRetries,
@@ -235,6 +302,7 @@ class GlueDataBrew {
       'RoleArn': roleArn,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (jobSample != null) 'JobSample': jobSample,
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
@@ -250,7 +318,7 @@ class GlueDataBrew {
     return CreateProfileJobResponse.fromJson(response);
   }
 
-  /// Creates a new AWS Glue DataBrew project in the current AWS account.
+  /// Creates a new DataBrew project.
   ///
   /// May throw [ConflictException].
   /// May throw [InternalServerException].
@@ -258,17 +326,18 @@ class GlueDataBrew {
   /// May throw [ValidationException].
   ///
   /// Parameter [datasetName] :
-  /// The name of the dataset to associate this project with.
+  /// The name of an existing dataset to associate this project with.
   ///
   /// Parameter [name] :
-  /// A unique name for the new project.
+  /// A unique name for the new project. Valid characters are alphanumeric (A-Z,
+  /// a-z, 0-9), hyphen (-), period (.), and space.
   ///
   /// Parameter [recipeName] :
   /// The name of an existing recipe to associate with the project.
   ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role to be assumed for this request.
+  /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+  /// role to be assumed for this request.
   ///
   /// Parameter [tags] :
   /// Metadata tags to apply to this project.
@@ -329,14 +398,15 @@ class GlueDataBrew {
     return CreateProjectResponse.fromJson(response);
   }
 
-  /// Creates a new AWS Glue DataBrew recipe for the current AWS account.
+  /// Creates a new DataBrew recipe.
   ///
   /// May throw [ConflictException].
   /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
-  /// A unique name for the recipe.
+  /// A unique name for the recipe. Valid characters are alphanumeric (A-Z, a-z,
+  /// 0-9), hyphen (-), period (.), and space.
   ///
   /// Parameter [steps] :
   /// An array containing the steps to be performed by the recipe. Each recipe
@@ -384,21 +454,26 @@ class GlueDataBrew {
     return CreateRecipeResponse.fromJson(response);
   }
 
-  /// Creates a new job for an existing AWS Glue DataBrew recipe in the current
-  /// AWS account. You can create a standalone job using either a project, or a
-  /// combination of a recipe and a dataset.
+  /// Creates a new job to transform input data, using steps defined in an
+  /// existing Glue DataBrew recipe
   ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
-  /// A unique name for the job.
-  ///
-  /// Parameter [outputs] :
-  /// One or more artifacts that represent the output from running the job.
+  /// A unique name for the job. Valid characters are alphanumeric (A-Z, a-z,
+  /// 0-9), hyphen (-), period (.), and space.
   ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role to be assumed for this request.
+  /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+  /// role to be assumed when DataBrew runs the job.
+  ///
+  /// Parameter [dataCatalogOutputs] :
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
   ///
   /// Parameter [datasetName] :
   /// The name of the dataset that this job processes.
@@ -412,7 +487,7 @@ class GlueDataBrew {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon
@@ -421,9 +496,8 @@ class GlueDataBrew {
   /// </ul>
   ///
   /// Parameter [logSubscription] :
-  /// A value that enables or disables Amazon CloudWatch logging for the current
-  /// AWS account. If logging is enabled, CloudWatch writes one log stream for
-  /// each job run.
+  /// Enables or disables Amazon CloudWatch logging for the job. If logging is
+  /// enabled, CloudWatch writes one log stream for each job run.
   ///
   /// Parameter [maxCapacity] :
   /// The maximum number of nodes that DataBrew can consume when the job
@@ -432,26 +506,30 @@ class GlueDataBrew {
   /// Parameter [maxRetries] :
   /// The maximum number of times to retry the job after a job run fails.
   ///
+  /// Parameter [outputs] :
+  /// One or more artifacts that represent the output from running the job.
+  ///
   /// Parameter [projectName] :
   /// Either the name of an existing project, or a combination of a recipe and a
   /// dataset to associate with the recipe.
   ///
   /// Parameter [tags] :
-  /// Metadata tags to apply to this job dataset.
+  /// Metadata tags to apply to this job.
   ///
   /// Parameter [timeout] :
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<CreateRecipeJobResponse> createRecipeJob({
     required String name,
-    required List<Output> outputs,
     required String roleArn,
+    List<DataCatalogOutput>? dataCatalogOutputs,
     String? datasetName,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
     LogSubscription? logSubscription,
     int? maxCapacity,
     int? maxRetries,
+    List<Output>? outputs,
     String? projectName,
     RecipeReference? recipeReference,
     Map<String, String>? tags,
@@ -465,7 +543,6 @@ class GlueDataBrew {
       240,
       isRequired: true,
     );
-    ArgumentError.checkNotNull(outputs, 'outputs');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -506,14 +583,15 @@ class GlueDataBrew {
     );
     final $payload = <String, dynamic>{
       'Name': name,
-      'Outputs': outputs,
       'RoleArn': roleArn,
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
+      if (outputs != null) 'Outputs': outputs,
       if (projectName != null) 'ProjectName': projectName,
       if (recipeReference != null) 'RecipeReference': recipeReference,
       if (tags != null) 'Tags': tags,
@@ -528,17 +606,22 @@ class GlueDataBrew {
     return CreateRecipeJobResponse.fromJson(response);
   }
 
-  /// Creates a new schedule for one or more AWS Glue DataBrew jobs. Jobs can be
-  /// run at a specific date and time, or at regular intervals.
+  /// Creates a new schedule for one or more DataBrew jobs. Jobs can be run at a
+  /// specific date and time, or at regular intervals.
   ///
+  /// May throw [ConflictException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [cronExpression] :
-  /// The date or dates and time or times, in <code>cron</code> format, when the
-  /// jobs are to be run.
+  /// The date or dates and time or times when the jobs are to be run. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html">Cron
+  /// expressions</a> in the <i>Glue DataBrew Developer Guide</i>.
   ///
   /// Parameter [name] :
-  /// A unique name for the schedule.
+  /// A unique name for the schedule. Valid characters are alphanumeric (A-Z,
+  /// a-z, 0-9), hyphen (-), period (.), and space.
   ///
   /// Parameter [jobNames] :
   /// The name or names of one or more jobs to be run.
@@ -582,8 +665,9 @@ class GlueDataBrew {
     return CreateScheduleResponse.fromJson(response);
   }
 
-  /// Deletes a dataset from AWS Glue DataBrew.
+  /// Deletes a dataset from DataBrew.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
@@ -609,9 +693,9 @@ class GlueDataBrew {
     return DeleteDatasetResponse.fromJson(response);
   }
 
-  /// Deletes the specified AWS Glue DataBrew job from the current AWS account.
-  /// The job can be for a recipe or for a profile.
+  /// Deletes the specified DataBrew job.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
@@ -637,9 +721,9 @@ class GlueDataBrew {
     return DeleteJobResponse.fromJson(response);
   }
 
-  /// Deletes an existing AWS Glue DataBrew project from the current AWS
-  /// account.
+  /// Deletes an existing DataBrew project.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
@@ -665,16 +749,19 @@ class GlueDataBrew {
     return DeleteProjectResponse.fromJson(response);
   }
 
-  /// Deletes a single version of an AWS Glue DataBrew recipe.
+  /// Deletes a single version of a DataBrew recipe.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
-  /// The name of the recipe to be deleted.
+  /// The name of the recipe.
   ///
   /// Parameter [recipeVersion] :
-  /// The version of the recipe to be deleted.
+  /// The version of the recipe to be deleted. You can specify a numeric
+  /// versions (<code>X.Y</code>) or <code>LATEST_WORKING</code>.
+  /// <code>LATEST_PUBLISHED</code> is not supported.
   Future<DeleteRecipeVersionResponse> deleteRecipeVersion({
     required String name,
     required String recipeVersion,
@@ -705,8 +792,7 @@ class GlueDataBrew {
     return DeleteRecipeVersionResponse.fromJson(response);
   }
 
-  /// Deletes the specified AWS Glue DataBrew schedule from the current AWS
-  /// account.
+  /// Deletes the specified DataBrew schedule.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -733,8 +819,7 @@ class GlueDataBrew {
     return DeleteScheduleResponse.fromJson(response);
   }
 
-  /// Returns the definition of a specific AWS Glue DataBrew dataset that is in
-  /// the current AWS account.
+  /// Returns the definition of a specific DataBrew dataset.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -761,8 +846,7 @@ class GlueDataBrew {
     return DescribeDatasetResponse.fromJson(response);
   }
 
-  /// Returns the definition of a specific AWS Glue DataBrew job that is in the
-  /// current AWS account.
+  /// Returns the definition of a specific DataBrew job.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -789,8 +873,47 @@ class GlueDataBrew {
     return DescribeJobResponse.fromJson(response);
   }
 
-  /// Returns the definition of a specific AWS Glue DataBrew project that is in
-  /// the current AWS account.
+  /// Represents one run of a DataBrew job.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [name] :
+  /// The name of the job being processed during this run.
+  ///
+  /// Parameter [runId] :
+  /// The unique identifier of the job run.
+  Future<DescribeJobRunResponse> describeJobRun({
+    required String name,
+    required String runId,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      240,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(runId, 'runId');
+    _s.validateStringLength(
+      'runId',
+      runId,
+      1,
+      255,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/jobs/${Uri.encodeComponent(name)}/jobRun/${Uri.encodeComponent(runId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeJobRunResponse.fromJson(response);
+  }
+
+  /// Returns the definition of a specific DataBrew project.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -817,8 +940,8 @@ class GlueDataBrew {
     return DescribeProjectResponse.fromJson(response);
   }
 
-  /// Returns the definition of a specific AWS Glue DataBrew recipe that is in
-  /// the current AWS account.
+  /// Returns the definition of a specific DataBrew recipe corresponding to a
+  /// particular version.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -860,8 +983,7 @@ class GlueDataBrew {
     return DescribeRecipeResponse.fromJson(response);
   }
 
-  /// Returns the definition of a specific AWS Glue DataBrew schedule that is in
-  /// the current AWS account.
+  /// Returns the definition of a specific DataBrew schedule.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -888,7 +1010,7 @@ class GlueDataBrew {
     return DescribeScheduleResponse.fromJson(response);
   }
 
-  /// Lists all of the AWS Glue DataBrew datasets for the current AWS account.
+  /// Lists all of the DataBrew datasets.
   ///
   /// May throw [ValidationException].
   ///
@@ -896,9 +1018,7 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A token generated by DataBrew that specifies where to continue pagination
-  /// if a previous request was truncated. To get the next set of pages, pass in
-  /// the NextToken value from the response object of the previous page call.
+  /// The token returned by a previous call to retrieve the next set of results.
   Future<ListDatasetsResponse> listDatasets({
     int? maxResults,
     String? nextToken,
@@ -929,8 +1049,7 @@ class GlueDataBrew {
     return ListDatasetsResponse.fromJson(response);
   }
 
-  /// Lists all of the previous runs of a particular AWS Glue DataBrew job in
-  /// the current AWS account.
+  /// Lists all of the previous runs of a particular DataBrew job.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -942,10 +1061,7 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A token generated by AWS Glue DataBrew that specifies where to continue
-  /// pagination if a previous request was truncated. To get the next set of
-  /// pages, pass in the NextToken value from the response object of the
-  /// previous page call.
+  /// The token returned by a previous call to retrieve the next set of results.
   Future<ListJobRunsResponse> listJobRuns({
     required String name,
     int? maxResults,
@@ -985,7 +1101,7 @@ class GlueDataBrew {
     return ListJobRunsResponse.fromJson(response);
   }
 
-  /// Lists the AWS Glue DataBrew jobs in the current AWS account.
+  /// Lists all of the DataBrew jobs that are defined.
   ///
   /// May throw [ValidationException].
   ///
@@ -1050,7 +1166,7 @@ class GlueDataBrew {
     return ListJobsResponse.fromJson(response);
   }
 
-  /// Lists all of the DataBrew projects in the current AWS account.
+  /// Lists all of the DataBrew projects that are defined.
   ///
   /// May throw [ValidationException].
   ///
@@ -1058,7 +1174,7 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A pagination token that can be used in a subsequent request.
+  /// The token returned by a previous call to retrieve the next set of results.
   Future<ListProjectsResponse> listProjects({
     int? maxResults,
     String? nextToken,
@@ -1089,8 +1205,8 @@ class GlueDataBrew {
     return ListProjectsResponse.fromJson(response);
   }
 
-  /// Lists all of the versions of a particular AWS Glue DataBrew recipe in the
-  /// current AWS account.
+  /// Lists the versions of a particular DataBrew recipe, except for
+  /// <code>LATEST_WORKING</code>.
   ///
   /// May throw [ValidationException].
   ///
@@ -1101,7 +1217,7 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A pagination token that can be used in a subsequent request.
+  /// The token returned by a previous call to retrieve the next set of results.
   Future<ListRecipeVersionsResponse> listRecipeVersions({
     required String name,
     int? maxResults,
@@ -1142,7 +1258,7 @@ class GlueDataBrew {
     return ListRecipeVersionsResponse.fromJson(response);
   }
 
-  /// Lists all of the AWS Glue DataBrew recipes in the current AWS account.
+  /// Lists all of the DataBrew recipes that are defined.
   ///
   /// May throw [ValidationException].
   ///
@@ -1150,11 +1266,15 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A pagination token that can be used in a subsequent request.
+  /// The token returned by a previous call to retrieve the next set of results.
   ///
   /// Parameter [recipeVersion] :
-  /// A version identifier. Using this parameter indicates to return only those
-  /// recipes that have this version identifier.
+  /// Return only those recipes with a version identifier of
+  /// <code>LATEST_WORKING</code> or <code>LATEST_PUBLISHED</code>. If
+  /// <code>RecipeVersion</code> is omitted, <code>ListRecipes</code> returns
+  /// all of the <code>LATEST_PUBLISHED</code> recipe versions.
+  ///
+  /// Valid values: <code>LATEST_WORKING</code> | <code>LATEST_PUBLISHED</code>
   Future<ListRecipesResponse> listRecipes({
     int? maxResults,
     String? nextToken,
@@ -1193,7 +1313,7 @@ class GlueDataBrew {
     return ListRecipesResponse.fromJson(response);
   }
 
-  /// Lists the AWS Glue DataBrew schedules in the current AWS account.
+  /// Lists the DataBrew schedules that are defined.
   ///
   /// May throw [ValidationException].
   ///
@@ -1204,7 +1324,7 @@ class GlueDataBrew {
   /// The maximum number of results to return in this request.
   ///
   /// Parameter [nextToken] :
-  /// A pagination token that can be used in a subsequent request.
+  /// The token returned by a previous call to retrieve the next set of results.
   Future<ListSchedulesResponse> listSchedules({
     String? jobName,
     int? maxResults,
@@ -1243,7 +1363,7 @@ class GlueDataBrew {
     return ListSchedulesResponse.fromJson(response);
   }
 
-  /// Lists all the tags for an AWS Glue DataBrew resource.
+  /// Lists all the tags for a DataBrew resource.
   ///
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
@@ -1272,11 +1392,11 @@ class GlueDataBrew {
     return ListTagsForResourceResponse.fromJson(response);
   }
 
-  /// Publishes a new major version of an AWS Glue DataBrew recipe that exists
-  /// in the current AWS account.
+  /// Publishes a new version of a DataBrew recipe.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   ///
   /// Parameter [name] :
   /// The name of the recipe to be published.
@@ -1314,8 +1434,8 @@ class GlueDataBrew {
     return PublishRecipeResponse.fromJson(response);
   }
 
-  /// Performs a recipe step within an interactive AWS Glue DataBrew session
-  /// that's currently open.
+  /// Performs a recipe step within an interactive DataBrew session that's
+  /// currently open.
   ///
   /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
@@ -1329,8 +1449,7 @@ class GlueDataBrew {
   /// ready for work. The action will be performed on this session.
   ///
   /// Parameter [preview] :
-  /// Returns the result of the recipe step, without applying it. The result
-  /// isn't added to the view frame stack.
+  /// If true, the result of the recipe step will be returned, but not applied.
   ///
   /// Parameter [stepIndex] :
   /// The index from which to preview a step. This index is used to preview the
@@ -1358,11 +1477,6 @@ class GlueDataBrew {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'clientSessionId',
-      clientSessionId,
-      r'''^[a-zA-Z0-9][a-zA-Z0-9-]*$''',
-    );
     _s.validateNumRange(
       'stepIndex',
       stepIndex,
@@ -1386,9 +1500,11 @@ class GlueDataBrew {
     return SendProjectSessionActionResponse.fromJson(response);
   }
 
-  /// Runs an AWS Glue DataBrew job that exists in the current AWS account.
+  /// Runs a DataBrew job.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
@@ -1413,10 +1529,12 @@ class GlueDataBrew {
     return StartJobRunResponse.fromJson(response);
   }
 
-  /// Creates an interactive session, enabling you to manipulate an AWS Glue
+  /// Creates an interactive session, enabling you to manipulate data in a
   /// DataBrew project.
   ///
+  /// May throw [ConflictException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
@@ -1449,7 +1567,7 @@ class GlueDataBrew {
     return StartProjectSessionResponse.fromJson(response);
   }
 
-  /// Stops the specified job from running in the current AWS account.
+  /// Stops a particular run of a job.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -1489,8 +1607,8 @@ class GlueDataBrew {
     return StopJobRunResponse.fromJson(response);
   }
 
-  /// Adds metadata tags to an AWS Glue DataBrew resource, such as a dataset,
-  /// job, project, or recipe.
+  /// Adds metadata tags to a DataBrew resource, such as a dataset, project,
+  /// recipe, job, or schedule.
   ///
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
@@ -1527,15 +1645,15 @@ class GlueDataBrew {
     );
   }
 
-  /// Removes metadata tags from an AWS Glue DataBrew resource.
+  /// Removes metadata tags from a DataBrew resource.
   ///
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [resourceArn] :
-  /// An DataBrew resource from which you want to remove a tag or tags. The
-  /// value for this parameter is an Amazon Resource Name (ARN).
+  /// A DataBrew resource from which you want to remove a tag or tags. The value
+  /// for this parameter is an Amazon Resource Name (ARN).
   ///
   /// Parameter [tagKeys] :
   /// The tag keys (names) of one or more tags to be removed.
@@ -1564,18 +1682,28 @@ class GlueDataBrew {
     );
   }
 
-  /// Modifies the definition of an existing AWS Glue DataBrew dataset in the
-  /// current AWS account.
+  /// Modifies the definition of an existing DataBrew dataset.
   ///
+  /// May throw [AccessDeniedException].
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
   /// The name of the dataset to be updated.
+  ///
+  /// Parameter [format] :
+  /// The file format of a dataset that is created from an Amazon S3 file or
+  /// folder.
+  ///
+  /// Parameter [pathOptions] :
+  /// A set of options that defines how DataBrew interprets an Amazon S3 path of
+  /// the dataset.
   Future<UpdateDatasetResponse> updateDataset({
     required Input input,
     required String name,
+    InputFormat? format,
     FormatOptions? formatOptions,
+    PathOptions? pathOptions,
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
@@ -1588,7 +1716,9 @@ class GlueDataBrew {
     );
     final $payload = <String, dynamic>{
       'Input': input,
+      if (format != null) 'Format': format.toValue(),
       if (formatOptions != null) 'FormatOptions': formatOptions,
+      if (pathOptions != null) 'PathOptions': pathOptions,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1599,17 +1729,18 @@ class GlueDataBrew {
     return UpdateDatasetResponse.fromJson(response);
   }
 
-  /// Modifies the definition of an existing AWS Glue DataBrew job in the
-  /// current AWS account.
+  /// Modifies the definition of an existing profile job.
   ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
   /// The name of the job to be updated.
   ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role to be assumed for this request.
+  /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+  /// role to be assumed when DataBrew runs the job.
   ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
@@ -1620,7 +1751,7 @@ class GlueDataBrew {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon
@@ -1628,14 +1759,20 @@ class GlueDataBrew {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [jobSample] :
+  /// Sample configuration for Profile Jobs only. Determines the number of rows
+  /// on which the Profile job will be executed. If a JobSample value is not
+  /// provided for profile jobs, the default value will be used. The default
+  /// value is CUSTOM_ROWS for the mode parameter and 20000 for the size
+  /// parameter.
+  ///
   /// Parameter [logSubscription] :
-  /// A value that enables or disables Amazon CloudWatch logging for the current
-  /// AWS account. If logging is enabled, CloudWatch writes one log stream for
-  /// each job run.
+  /// Enables or disables Amazon CloudWatch logging for the job. If logging is
+  /// enabled, CloudWatch writes one log stream for each job run.
   ///
   /// Parameter [maxCapacity] :
-  /// The maximum number of nodes that DataBrew can use when the job processes
-  /// data.
+  /// The maximum number of compute nodes that DataBrew can use when the job
+  /// processes data.
   ///
   /// Parameter [maxRetries] :
   /// The maximum number of times to retry the job after a job run fails.
@@ -1649,6 +1786,7 @@ class GlueDataBrew {
     required String roleArn,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
+    JobSample? jobSample,
     LogSubscription? logSubscription,
     int? maxCapacity,
     int? maxRetries,
@@ -1694,6 +1832,7 @@ class GlueDataBrew {
       'RoleArn': roleArn,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (jobSample != null) 'JobSample': jobSample,
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
@@ -1708,8 +1847,7 @@ class GlueDataBrew {
     return UpdateProfileJobResponse.fromJson(response);
   }
 
-  /// Modifies the definition of an existing AWS Glue DataBrew project in the
-  /// current AWS account.
+  /// Modifies the definition of an existing DataBrew project.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
@@ -1754,8 +1892,8 @@ class GlueDataBrew {
     return UpdateProjectResponse.fromJson(response);
   }
 
-  /// Modifies the definition of the latest working version of an AWS Glue
-  /// DataBrew recipe in the current AWS account.
+  /// Modifies the definition of the <code>LATEST_WORKING</code> version of a
+  /// DataBrew recipe.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
@@ -1801,20 +1939,22 @@ class GlueDataBrew {
     return UpdateRecipeResponse.fromJson(response);
   }
 
-  /// Modifies the definition of an existing AWS Glue DataBrew recipe job in the
-  /// current AWS account.
+  /// Modifies the definition of an existing DataBrew recipe job.
   ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
   /// May throw [ValidationException].
   ///
   /// Parameter [name] :
   /// The name of the job to update.
   ///
-  /// Parameter [outputs] :
-  /// One or more artifacts that represent the output from running the job.
-  ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role to be assumed for this request.
+  /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+  /// role to be assumed when DataBrew runs the job.
+  ///
+  /// Parameter [dataCatalogOutputs] :
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
   ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
@@ -1825,7 +1965,7 @@ class GlueDataBrew {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon
@@ -1834,9 +1974,8 @@ class GlueDataBrew {
   /// </ul>
   ///
   /// Parameter [logSubscription] :
-  /// A value that enables or disables Amazon CloudWatch logging for the current
-  /// AWS account. If logging is enabled, CloudWatch writes one log stream for
-  /// each job run.
+  /// Enables or disables Amazon CloudWatch logging for the job. If logging is
+  /// enabled, CloudWatch writes one log stream for each job run.
   ///
   /// Parameter [maxCapacity] :
   /// The maximum number of nodes that DataBrew can consume when the job
@@ -1845,18 +1984,22 @@ class GlueDataBrew {
   /// Parameter [maxRetries] :
   /// The maximum number of times to retry the job after a job run fails.
   ///
+  /// Parameter [outputs] :
+  /// One or more artifacts that represent the output from running the job.
+  ///
   /// Parameter [timeout] :
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
   Future<UpdateRecipeJobResponse> updateRecipeJob({
     required String name,
-    required List<Output> outputs,
     required String roleArn,
+    List<DataCatalogOutput>? dataCatalogOutputs,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
     LogSubscription? logSubscription,
     int? maxCapacity,
     int? maxRetries,
+    List<Output>? outputs,
     int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
@@ -1867,7 +2010,6 @@ class GlueDataBrew {
       240,
       isRequired: true,
     );
-    ArgumentError.checkNotNull(outputs, 'outputs');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -1895,13 +2037,14 @@ class GlueDataBrew {
       1152921504606846976,
     );
     final $payload = <String, dynamic>{
-      'Outputs': outputs,
       'RoleArn': roleArn,
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
+      if (outputs != null) 'Outputs': outputs,
       if (timeout != null) 'Timeout': timeout,
     };
     final response = await _protocol.send(
@@ -1913,14 +2056,17 @@ class GlueDataBrew {
     return UpdateRecipeJobResponse.fromJson(response);
   }
 
-  /// Modifies the definition of an existing AWS Glue DataBrew schedule in the
-  /// current AWS account.
+  /// Modifies the definition of an existing DataBrew schedule.
   ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ServiceQuotaExceededException].
   /// May throw [ValidationException].
   ///
   /// Parameter [cronExpression] :
-  /// The date or dates and time or times, in <code>cron</code> format, when the
-  /// jobs are to be run.
+  /// The date or dates and time or times when the jobs are to be run. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html">Cron
+  /// expressions</a> in the <i>Glue DataBrew Developer Guide</i>.
   ///
   /// Parameter [name] :
   /// The name of the schedule to update.
@@ -1966,7 +2112,8 @@ class BatchDeleteRecipeVersionResponse {
   /// The name of the recipe that was modified.
   final String name;
 
-  /// Errors, if any, that were encountered when deleting the recipe versions.
+  /// Errors, if any, that occurred while attempting to delete the recipe
+  /// versions.
   final List<RecipeVersionErrorDetail>? errors;
 
   BatchDeleteRecipeVersionResponse({
@@ -2050,7 +2197,7 @@ extension on String {
 
 /// Represents an individual condition that evaluates to true or false.
 ///
-/// Conditions are used with recipe actions: The action is only performed for
+/// Conditions are used with recipe actions. The action is only performed for
 /// column values where the condition evaluates to true.
 ///
 /// If a recipe requires more than one condition, then the recipe must specify
@@ -2060,11 +2207,11 @@ extension on String {
 class ConditionExpression {
   /// A specific condition to apply to a recipe action. For more information, see
   /// <a
-  /// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html">Recipe
-  /// structure</a> in the <i>AWS Glue DataBrew Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/recipes.html#recipes.structure">Recipe
+  /// structure</a> in the <i>Glue DataBrew Developer Guide</i>.
   final String condition;
 
-  /// A column to apply this condition to, within an AWS Glue DataBrew dataset.
+  /// A column to apply this condition to.
   final String targetColumn;
 
   /// A value that the condition must evaluate to for the condition to succeed.
@@ -2179,8 +2326,63 @@ class CreateScheduleResponse {
   }
 }
 
-/// Represents how metadata stored in the AWS Glue Data Catalog is defined in an
-/// AWS Glue DataBrew dataset.
+/// Represents a set of options that define how DataBrew will read a
+/// comma-separated value (CSV) file when creating a dataset from that file.
+class CsvOptions {
+  /// A single character that specifies the delimiter being used in the CSV file.
+  final String? delimiter;
+
+  /// A variable that specifies whether the first row in the file is parsed as the
+  /// header. If this value is false, column names are auto-generated.
+  final bool? headerRow;
+
+  CsvOptions({
+    this.delimiter,
+    this.headerRow,
+  });
+  factory CsvOptions.fromJson(Map<String, dynamic> json) {
+    return CsvOptions(
+      delimiter: json['Delimiter'] as String?,
+      headerRow: json['HeaderRow'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delimiter = this.delimiter;
+    final headerRow = this.headerRow;
+    return {
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (headerRow != null) 'HeaderRow': headerRow,
+    };
+  }
+}
+
+/// Represents a set of options that define how DataBrew will write a
+/// comma-separated value (CSV) file.
+class CsvOutputOptions {
+  /// A single character that specifies the delimiter used to create CSV job
+  /// output.
+  final String? delimiter;
+
+  CsvOutputOptions({
+    this.delimiter,
+  });
+  factory CsvOutputOptions.fromJson(Map<String, dynamic> json) {
+    return CsvOutputOptions(
+      delimiter: json['Delimiter'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delimiter = this.delimiter;
+    return {
+      if (delimiter != null) 'Delimiter': delimiter,
+    };
+  }
+}
+
+/// Represents how metadata stored in the Glue Data Catalog is defined in a
+/// DataBrew dataset.
 class DataCatalogInputDefinition {
   /// The name of a database in the Data Catalog.
   final String databaseName;
@@ -2189,12 +2391,11 @@ class DataCatalogInputDefinition {
   /// a DataBrew dataset.
   final String tableName;
 
-  /// The unique identifier of the AWS account that holds the Data Catalog that
-  /// stores the data.
+  /// The unique identifier of the Amazon Web Services account that holds the Data
+  /// Catalog that stores the data.
   final String? catalogId;
 
-  /// An Amazon location that AWS Glue Data Catalog can use as a temporary
-  /// directory.
+  /// Represents an Amazon location where DataBrew can store intermediate results.
   final S3Location? tempDirectory;
 
   DataCatalogInputDefinition({
@@ -2228,38 +2429,185 @@ class DataCatalogInputDefinition {
   }
 }
 
-/// Represents a dataset that can be processed by AWS Glue DataBrew.
+/// Represents options that specify how and where DataBrew writes the output
+/// generated by recipe jobs.
+class DataCatalogOutput {
+  /// The name of a database in the Data Catalog.
+  final String databaseName;
+
+  /// The name of a table in the Data Catalog.
+  final String tableName;
+
+  /// The unique identifier of the AWS account that holds the Data Catalog that
+  /// stores the data.
+  final String? catalogId;
+
+  /// Represents options that specify how and where DataBrew writes the database
+  /// output generated by recipe jobs.
+  final DatabaseTableOutputOptions? databaseOptions;
+
+  /// A value that, if true, means that any data in the location specified for
+  /// output is overwritten with new output. Not supported with DatabaseOptions.
+  final bool? overwrite;
+
+  /// Represents options that specify how and where DataBrew writes the S3 output
+  /// generated by recipe jobs.
+  final S3TableOutputOptions? s3Options;
+
+  DataCatalogOutput({
+    required this.databaseName,
+    required this.tableName,
+    this.catalogId,
+    this.databaseOptions,
+    this.overwrite,
+    this.s3Options,
+  });
+  factory DataCatalogOutput.fromJson(Map<String, dynamic> json) {
+    return DataCatalogOutput(
+      databaseName: json['DatabaseName'] as String,
+      tableName: json['TableName'] as String,
+      catalogId: json['CatalogId'] as String?,
+      databaseOptions: json['DatabaseOptions'] != null
+          ? DatabaseTableOutputOptions.fromJson(
+              json['DatabaseOptions'] as Map<String, dynamic>)
+          : null,
+      overwrite: json['Overwrite'] as bool?,
+      s3Options: json['S3Options'] != null
+          ? S3TableOutputOptions.fromJson(
+              json['S3Options'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseName = this.databaseName;
+    final tableName = this.tableName;
+    final catalogId = this.catalogId;
+    final databaseOptions = this.databaseOptions;
+    final overwrite = this.overwrite;
+    final s3Options = this.s3Options;
+    return {
+      'DatabaseName': databaseName,
+      'TableName': tableName,
+      if (catalogId != null) 'CatalogId': catalogId,
+      if (databaseOptions != null) 'DatabaseOptions': databaseOptions,
+      if (overwrite != null) 'Overwrite': overwrite,
+      if (s3Options != null) 'S3Options': s3Options,
+    };
+  }
+}
+
+/// Connection information for dataset input files stored in a database.
+class DatabaseInputDefinition {
+  /// The table within the target database.
+  final String databaseTableName;
+
+  /// The Glue Connection that stores the connection information for the target
+  /// database.
+  final String glueConnectionName;
+  final S3Location? tempDirectory;
+
+  DatabaseInputDefinition({
+    required this.databaseTableName,
+    required this.glueConnectionName,
+    this.tempDirectory,
+  });
+  factory DatabaseInputDefinition.fromJson(Map<String, dynamic> json) {
+    return DatabaseInputDefinition(
+      databaseTableName: json['DatabaseTableName'] as String,
+      glueConnectionName: json['GlueConnectionName'] as String,
+      tempDirectory: json['TempDirectory'] != null
+          ? S3Location.fromJson(json['TempDirectory'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseTableName = this.databaseTableName;
+    final glueConnectionName = this.glueConnectionName;
+    final tempDirectory = this.tempDirectory;
+    return {
+      'DatabaseTableName': databaseTableName,
+      'GlueConnectionName': glueConnectionName,
+      if (tempDirectory != null) 'TempDirectory': tempDirectory,
+    };
+  }
+}
+
+/// Represents options that specify how and where DataBrew writes the database
+/// output generated by recipe jobs.
+class DatabaseTableOutputOptions {
+  /// A prefix for the name of a table DataBrew will create in the database.
+  final String tableName;
+
+  /// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+  /// can store intermediate results.
+  final S3Location? tempDirectory;
+
+  DatabaseTableOutputOptions({
+    required this.tableName,
+    this.tempDirectory,
+  });
+  factory DatabaseTableOutputOptions.fromJson(Map<String, dynamic> json) {
+    return DatabaseTableOutputOptions(
+      tableName: json['TableName'] as String,
+      tempDirectory: json['TempDirectory'] != null
+          ? S3Location.fromJson(json['TempDirectory'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableName = this.tableName;
+    final tempDirectory = this.tempDirectory;
+    return {
+      'TableName': tableName,
+      if (tempDirectory != null) 'TempDirectory': tempDirectory,
+    };
+  }
+}
+
+/// Represents a dataset that can be processed by DataBrew.
 class Dataset {
-  /// Information on how DataBrew can find the dataset, in either the AWS Glue
-  /// Data Catalog or Amazon S3.
+  /// Information on how DataBrew can find the dataset, in either the Glue Data
+  /// Catalog or Amazon S3.
   final Input input;
 
   /// The unique name of the dataset.
   final String name;
 
-  /// The ID of the AWS account that owns the dataset.
+  /// The ID of the Amazon Web Services account that owns the dataset.
   final String? accountId;
 
   /// The date and time that the dataset was created.
   final DateTime? createDate;
 
-  /// The identifier (the user name) of the user who created the dataset.
+  /// The Amazon Resource Name (ARN) of the user who created the dataset.
   final String? createdBy;
 
-  /// Options that define how DataBrew interprets the data in the dataset.
+  /// The file format of a dataset that is created from an Amazon S3 file or
+  /// folder.
+  final InputFormat? format;
+
+  /// A set of options that define how DataBrew interprets the data in the
+  /// dataset.
   final FormatOptions? formatOptions;
 
-  /// The identifier (the user name) of the user who last modified the dataset.
+  /// The Amazon Resource Name (ARN) of the user who last modified the dataset.
   final String? lastModifiedBy;
 
   /// The last modification date and time of the dataset.
   final DateTime? lastModifiedDate;
 
+  /// A set of options that defines how DataBrew interprets an Amazon S3 path of
+  /// the dataset.
+  final PathOptions? pathOptions;
+
   /// The unique Amazon Resource Name (ARN) for the dataset.
   final String? resourceArn;
 
-  /// The location of the data for the dataset, either Amazon S3 or the AWS Glue
-  /// Data Catalog.
+  /// The location of the data for the dataset, either Amazon S3 or the Glue Data
+  /// Catalog.
   final Source? source;
 
   /// Metadata tags that have been applied to the dataset.
@@ -2271,9 +2619,11 @@ class Dataset {
     this.accountId,
     this.createDate,
     this.createdBy,
+    this.format,
     this.formatOptions,
     this.lastModifiedBy,
     this.lastModifiedDate,
+    this.pathOptions,
     this.resourceArn,
     this.source,
     this.tags,
@@ -2285,17 +2635,124 @@ class Dataset {
       accountId: json['AccountId'] as String?,
       createDate: timeStampFromJson(json['CreateDate']),
       createdBy: json['CreatedBy'] as String?,
+      format: (json['Format'] as String?)?.toInputFormat(),
       formatOptions: json['FormatOptions'] != null
           ? FormatOptions.fromJson(
               json['FormatOptions'] as Map<String, dynamic>)
           : null,
       lastModifiedBy: json['LastModifiedBy'] as String?,
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      pathOptions: json['PathOptions'] != null
+          ? PathOptions.fromJson(json['PathOptions'] as Map<String, dynamic>)
+          : null,
       resourceArn: json['ResourceArn'] as String?,
       source: (json['Source'] as String?)?.toSource(),
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+}
+
+/// Represents a dataset paramater that defines type and conditions for a
+/// parameter in the Amazon S3 path of the dataset.
+class DatasetParameter {
+  /// The name of the parameter that is used in the dataset's Amazon S3 path.
+  final String name;
+
+  /// The type of the dataset parameter, can be one of a 'String', 'Number' or
+  /// 'Datetime'.
+  final ParameterType type;
+
+  /// Optional boolean value that defines whether the captured value of this
+  /// parameter should be used to create a new column in a dataset.
+  final bool? createColumn;
+
+  /// Additional parameter options such as a format and a timezone. Required for
+  /// datetime parameters.
+  final DatetimeOptions? datetimeOptions;
+
+  /// The optional filter expression structure to apply additional matching
+  /// criteria to the parameter.
+  final FilterExpression? filter;
+
+  DatasetParameter({
+    required this.name,
+    required this.type,
+    this.createColumn,
+    this.datetimeOptions,
+    this.filter,
+  });
+  factory DatasetParameter.fromJson(Map<String, dynamic> json) {
+    return DatasetParameter(
+      name: json['Name'] as String,
+      type: (json['Type'] as String).toParameterType(),
+      createColumn: json['CreateColumn'] as bool?,
+      datetimeOptions: json['DatetimeOptions'] != null
+          ? DatetimeOptions.fromJson(
+              json['DatetimeOptions'] as Map<String, dynamic>)
+          : null,
+      filter: json['Filter'] != null
+          ? FilterExpression.fromJson(json['Filter'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final createColumn = this.createColumn;
+    final datetimeOptions = this.datetimeOptions;
+    final filter = this.filter;
+    return {
+      'Name': name,
+      'Type': type.toValue(),
+      if (createColumn != null) 'CreateColumn': createColumn,
+      if (datetimeOptions != null) 'DatetimeOptions': datetimeOptions,
+      if (filter != null) 'Filter': filter,
+    };
+  }
+}
+
+/// Represents additional options for correct interpretation of datetime
+/// parameters used in the Amazon S3 path of a dataset.
+class DatetimeOptions {
+  /// Required option, that defines the datetime format used for a date parameter
+  /// in the Amazon S3 path. Should use only supported datetime specifiers and
+  /// separation characters, all literal a-z or A-Z characters should be escaped
+  /// with single quotes. E.g. "MM.dd.yyyy-'at'-HH:mm".
+  final String format;
+
+  /// Optional value for a non-US locale code, needed for correct interpretation
+  /// of some date formats.
+  final String? localeCode;
+
+  /// Optional value for a timezone offset of the datetime parameter value in the
+  /// Amazon S3 path. Shouldn't be used if Format for this parameter includes
+  /// timezone fields. If no offset specified, UTC is assumed.
+  final String? timezoneOffset;
+
+  DatetimeOptions({
+    required this.format,
+    this.localeCode,
+    this.timezoneOffset,
+  });
+  factory DatetimeOptions.fromJson(Map<String, dynamic> json) {
+    return DatetimeOptions(
+      format: json['Format'] as String,
+      localeCode: json['LocaleCode'] as String?,
+      timezoneOffset: json['TimezoneOffset'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final localeCode = this.localeCode;
+    final timezoneOffset = this.timezoneOffset;
+    return {
+      'Format': format,
+      if (localeCode != null) 'LocaleCode': localeCode,
+      if (timezoneOffset != null) 'TimezoneOffset': timezoneOffset,
+    };
   }
 }
 
@@ -2385,6 +2842,10 @@ class DescribeDatasetResponse {
 
   /// The identifier (user name) of the user who created the dataset.
   final String? createdBy;
+
+  /// The file format of a dataset that is created from an Amazon S3 file or
+  /// folder.
+  final InputFormat? format;
   final FormatOptions? formatOptions;
 
   /// The identifier (user name) of the user who last modified the dataset.
@@ -2393,10 +2854,14 @@ class DescribeDatasetResponse {
   /// The date and time that the dataset was last modified.
   final DateTime? lastModifiedDate;
 
+  /// A set of options that defines how DataBrew interprets an Amazon S3 path of
+  /// the dataset.
+  final PathOptions? pathOptions;
+
   /// The Amazon Resource Name (ARN) of the dataset.
   final String? resourceArn;
 
-  /// The location of the data for this dataset, Amazon S3 or the AWS Glue Data
+  /// The location of the data for this dataset, Amazon S3 or the Glue Data
   /// Catalog.
   final Source? source;
 
@@ -2408,9 +2873,11 @@ class DescribeDatasetResponse {
     required this.name,
     this.createDate,
     this.createdBy,
+    this.format,
     this.formatOptions,
     this.lastModifiedBy,
     this.lastModifiedDate,
+    this.pathOptions,
     this.resourceArn,
     this.source,
     this.tags,
@@ -2421,12 +2888,16 @@ class DescribeDatasetResponse {
       name: json['Name'] as String,
       createDate: timeStampFromJson(json['CreateDate']),
       createdBy: json['CreatedBy'] as String?,
+      format: (json['Format'] as String?)?.toInputFormat(),
       formatOptions: json['FormatOptions'] != null
           ? FormatOptions.fromJson(
               json['FormatOptions'] as Map<String, dynamic>)
           : null,
       lastModifiedBy: json['LastModifiedBy'] as String?,
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      pathOptions: json['PathOptions'] != null
+          ? PathOptions.fromJson(json['PathOptions'] as Map<String, dynamic>)
+          : null,
       resourceArn: json['ResourceArn'] as String?,
       source: (json['Source'] as String?)?.toSource(),
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2446,6 +2917,10 @@ class DescribeJobResponse {
   /// job.
   final String? createdBy;
 
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
+  final List<DataCatalogOutput>? dataCatalogOutputs;
+
   /// The dataset that the job acts upon.
   final String? datasetName;
 
@@ -2457,7 +2932,7 @@ class DescribeJobResponse {
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.
@@ -2465,17 +2940,20 @@ class DescribeJobResponse {
   /// </ul>
   final EncryptionMode? encryptionMode;
 
+  /// Sample configuration for profile jobs only. Determines the number of rows on
+  /// which the profile job will be executed.
+  final JobSample? jobSample;
+
   /// The identifier (user name) of the user who last modified the job.
   final String? lastModifiedBy;
 
   /// The date and time that the job was last modified.
   final DateTime? lastModifiedDate;
 
-  /// A value that indicates whether Amazon CloudWatch logging is enabled for this
-  /// job.
+  /// Indicates whether Amazon CloudWatch logging is enabled for this job.
   final LogSubscription? logSubscription;
 
-  /// The maximum number of nodes that AWS Glue DataBrew can consume when the job
+  /// The maximum number of compute nodes that DataBrew can consume when the job
   /// processes data.
   final int? maxCapacity;
 
@@ -2492,8 +2970,8 @@ class DescribeJobResponse {
   /// The Amazon Resource Name (ARN) of the job.
   final String? resourceArn;
 
-  /// The ARN of the AWS Identity and Access Management (IAM) role that was
-  /// assumed for this request.
+  /// The ARN of the Identity and Access Management (IAM) role to be assumed when
+  /// DataBrew runs the job.
   final String? roleArn;
 
   /// Metadata tags associated with this job.
@@ -2521,9 +2999,11 @@ class DescribeJobResponse {
     required this.name,
     this.createDate,
     this.createdBy,
+    this.dataCatalogOutputs,
     this.datasetName,
     this.encryptionKeyArn,
     this.encryptionMode,
+    this.jobSample,
     this.lastModifiedBy,
     this.lastModifiedDate,
     this.logSubscription,
@@ -2543,9 +3023,16 @@ class DescribeJobResponse {
       name: json['Name'] as String,
       createDate: timeStampFromJson(json['CreateDate']),
       createdBy: json['CreatedBy'] as String?,
+      dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
       datasetName: json['DatasetName'] as String?,
       encryptionKeyArn: json['EncryptionKeyArn'] as String?,
       encryptionMode: (json['EncryptionMode'] as String?)?.toEncryptionMode(),
+      jobSample: json['JobSample'] != null
+          ? JobSample.fromJson(json['JobSample'] as Map<String, dynamic>)
+          : null,
       lastModifiedBy: json['LastModifiedBy'] as String?,
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
       logSubscription:
@@ -2567,6 +3054,111 @@ class DescribeJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       timeout: json['Timeout'] as int?,
       type: (json['Type'] as String?)?.toJobType(),
+    );
+  }
+}
+
+class DescribeJobRunResponse {
+  /// The name of the job being processed during this run.
+  final String jobName;
+
+  /// The number of times that DataBrew has attempted to run the job.
+  final int? attempt;
+
+  /// The date and time when the job completed processing.
+  final DateTime? completedOn;
+
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
+  final List<DataCatalogOutput>? dataCatalogOutputs;
+
+  /// The name of the dataset for the job to process.
+  final String? datasetName;
+
+  /// A message indicating an error (if any) that was encountered when the job
+  /// ran.
+  final String? errorMessage;
+
+  /// The amount of time, in seconds, during which the job run consumed resources.
+  final int? executionTime;
+
+  /// Sample configuration for profile jobs only. Determines the number of rows on
+  /// which the profile job will be executed. If a JobSample value is not
+  /// provided, the default value will be used. The default value is CUSTOM_ROWS
+  /// for the mode parameter and 20000 for the size parameter.
+  final JobSample? jobSample;
+
+  /// The name of an Amazon CloudWatch log group, where the job writes diagnostic
+  /// messages when it runs.
+  final String? logGroupName;
+
+  /// The current status of Amazon CloudWatch logging for the job run.
+  final LogSubscription? logSubscription;
+
+  /// One or more output artifacts from a job run.
+  final List<Output>? outputs;
+  final RecipeReference? recipeReference;
+
+  /// The unique identifier of the job run.
+  final String? runId;
+
+  /// The Amazon Resource Name (ARN) of the user who started the job run.
+  final String? startedBy;
+
+  /// The date and time when the job run began.
+  final DateTime? startedOn;
+
+  /// The current state of the job run entity itself.
+  final JobRunState? state;
+
+  DescribeJobRunResponse({
+    required this.jobName,
+    this.attempt,
+    this.completedOn,
+    this.dataCatalogOutputs,
+    this.datasetName,
+    this.errorMessage,
+    this.executionTime,
+    this.jobSample,
+    this.logGroupName,
+    this.logSubscription,
+    this.outputs,
+    this.recipeReference,
+    this.runId,
+    this.startedBy,
+    this.startedOn,
+    this.state,
+  });
+  factory DescribeJobRunResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeJobRunResponse(
+      jobName: json['JobName'] as String,
+      attempt: json['Attempt'] as int?,
+      completedOn: timeStampFromJson(json['CompletedOn']),
+      dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      datasetName: json['DatasetName'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+      executionTime: json['ExecutionTime'] as int?,
+      jobSample: json['JobSample'] != null
+          ? JobSample.fromJson(json['JobSample'] as Map<String, dynamic>)
+          : null,
+      logGroupName: json['LogGroupName'] as String?,
+      logSubscription:
+          (json['LogSubscription'] as String?)?.toLogSubscription(),
+      outputs: (json['Outputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => Output.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      recipeReference: json['RecipeReference'] != null
+          ? RecipeReference.fromJson(
+              json['RecipeReference'] as Map<String, dynamic>)
+          : null,
+      runId: json['RunId'] as String?,
+      startedBy: json['StartedBy'] as String?,
+      startedOn: timeStampFromJson(json['StartedOn']),
+      state: (json['State'] as String?)?.toJobRunState(),
     );
   }
 }
@@ -2602,8 +3194,8 @@ class DescribeProjectResponse {
   /// The Amazon Resource Name (ARN) of the project.
   final String? resourceArn;
 
-  /// The ARN of the AWS Identity and Access Management (IAM) role that was
-  /// assumed for this request.
+  /// The ARN of the Identity and Access Management (IAM) role to be assumed when
+  /// DataBrew runs the job.
   final String? roleArn;
   final Sample? sample;
 
@@ -2753,8 +3345,10 @@ class DescribeScheduleResponse {
   /// The identifier (user name) of the user who created the schedule.
   final String? createdBy;
 
-  /// The date or dates and time or times, in <code>cron</code> format, when the
-  /// jobs are to be run for the schedule.
+  /// The date or dates and time or times when the jobs are to be run for the
+  /// schedule. For more information, see <a
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html">Cron
+  /// expressions</a> in the <i>Glue DataBrew Developer Guide</i>.
   final String? cronExpression;
 
   /// The name or names of one or more jobs to be run by using the schedule.
@@ -2830,23 +3424,29 @@ extension on String {
   }
 }
 
-/// Options that define how DataBrew will interpret a Microsoft Excel file, when
-/// creating a dataset from that file.
+/// Represents a set of options that define how DataBrew will interpret a
+/// Microsoft Excel file when creating a dataset from that file.
 class ExcelOptions {
-  /// Specifies one or more sheet numbers in the Excel file, which will be
-  /// included in the dataset.
+  /// A variable that specifies whether the first row in the file is parsed as the
+  /// header. If this value is false, column names are auto-generated.
+  final bool? headerRow;
+
+  /// One or more sheet numbers in the Excel file that will be included in the
+  /// dataset.
   final List<int>? sheetIndexes;
 
-  /// Specifies one or more named sheets in the Excel file, which will be included
-  /// in the dataset.
+  /// One or more named sheets in the Excel file that will be included in the
+  /// dataset.
   final List<String>? sheetNames;
 
   ExcelOptions({
+    this.headerRow,
     this.sheetIndexes,
     this.sheetNames,
   });
   factory ExcelOptions.fromJson(Map<String, dynamic> json) {
     return ExcelOptions(
+      headerRow: json['HeaderRow'] as bool?,
       sheetIndexes: (json['SheetIndexes'] as List?)
           ?.whereNotNull()
           .map((e) => e as int)
@@ -2859,18 +3459,102 @@ class ExcelOptions {
   }
 
   Map<String, dynamic> toJson() {
+    final headerRow = this.headerRow;
     final sheetIndexes = this.sheetIndexes;
     final sheetNames = this.sheetNames;
     return {
+      if (headerRow != null) 'HeaderRow': headerRow,
       if (sheetIndexes != null) 'SheetIndexes': sheetIndexes,
       if (sheetNames != null) 'SheetNames': sheetNames,
     };
   }
 }
 
-/// Options that define how Microsoft Excel input is to be interpreted by
-/// DataBrew.
+/// Represents a limit imposed on number of Amazon S3 files that should be
+/// selected for a dataset from a connected Amazon S3 path.
+class FilesLimit {
+  /// The number of Amazon S3 files to select.
+  final int maxFiles;
+
+  /// A criteria to use for Amazon S3 files sorting before their selection. By
+  /// default uses DESCENDING order, i.e. most recent files are selected first.
+  /// Anotherpossible value is ASCENDING.
+  final Order? order;
+
+  /// A criteria to use for Amazon S3 files sorting before their selection. By
+  /// default uses LAST_MODIFIED_DATE as a sorting criteria. Currently it's the
+  /// only allowed value.
+  final OrderedBy? orderedBy;
+
+  FilesLimit({
+    required this.maxFiles,
+    this.order,
+    this.orderedBy,
+  });
+  factory FilesLimit.fromJson(Map<String, dynamic> json) {
+    return FilesLimit(
+      maxFiles: json['MaxFiles'] as int,
+      order: (json['Order'] as String?)?.toOrder(),
+      orderedBy: (json['OrderedBy'] as String?)?.toOrderedBy(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxFiles = this.maxFiles;
+    final order = this.order;
+    final orderedBy = this.orderedBy;
+    return {
+      'MaxFiles': maxFiles,
+      if (order != null) 'Order': order.toValue(),
+      if (orderedBy != null) 'OrderedBy': orderedBy.toValue(),
+    };
+  }
+}
+
+/// Represents a structure for defining parameter conditions. Supported
+/// conditions are described here: <a
+/// href="https://docs-aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets">Supported
+/// conditions for dynamic datasets</a> in the <i>Glue DataBrew Developer
+/// Guide</i>.
+class FilterExpression {
+  /// The expression which includes condition names followed by substitution
+  /// variables, possibly grouped and combined with other conditions. For example,
+  /// "(starts_with :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or
+  /// ends_with :suffix2)". Substitution variables should start with ':' symbol.
+  final String expression;
+
+  /// The map of substitution variable names to their values used in this filter
+  /// expression.
+  final Map<String, String> valuesMap;
+
+  FilterExpression({
+    required this.expression,
+    required this.valuesMap,
+  });
+  factory FilterExpression.fromJson(Map<String, dynamic> json) {
+    return FilterExpression(
+      expression: json['Expression'] as String,
+      valuesMap: (json['ValuesMap'] as Map<String, dynamic>)
+          .map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    final valuesMap = this.valuesMap;
+    return {
+      'Expression': expression,
+      'ValuesMap': valuesMap,
+    };
+  }
+}
+
+/// Represents a set of options that define the structure of either
+/// comma-separated value (CSV), Excel, or JSON input.
 class FormatOptions {
+  /// Options that define how CSV input is to be interpreted by DataBrew.
+  final CsvOptions? csv;
+
   /// Options that define how Excel input is to be interpreted by DataBrew.
   final ExcelOptions? excel;
 
@@ -2878,11 +3562,15 @@ class FormatOptions {
   final JsonOptions? json;
 
   FormatOptions({
+    this.csv,
     this.excel,
     this.json,
   });
   factory FormatOptions.fromJson(Map<String, dynamic> json) {
     return FormatOptions(
+      csv: json['Csv'] != null
+          ? CsvOptions.fromJson(json['Csv'] as Map<String, dynamic>)
+          : null,
       excel: json['Excel'] != null
           ? ExcelOptions.fromJson(json['Excel'] as Map<String, dynamic>)
           : null,
@@ -2893,26 +3581,32 @@ class FormatOptions {
   }
 
   Map<String, dynamic> toJson() {
+    final csv = this.csv;
     final excel = this.excel;
     final json = this.json;
     return {
+      if (csv != null) 'Csv': csv,
       if (excel != null) 'Excel': excel,
       if (json != null) 'Json': json,
     };
   }
 }
 
-/// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
+/// Represents information on how DataBrew can find data, in either the Glue
 /// Data Catalog or Amazon S3.
 class Input {
-  /// The AWS Glue Data Catalog parameters for the data.
+  /// The Glue Data Catalog parameters for the data.
   final DataCatalogInputDefinition? dataCatalogInputDefinition;
+
+  /// Connection information for dataset input files stored in a database.
+  final DatabaseInputDefinition? databaseInputDefinition;
 
   /// The Amazon S3 location where the data is stored.
   final S3Location? s3InputDefinition;
 
   Input({
     this.dataCatalogInputDefinition,
+    this.databaseInputDefinition,
     this.s3InputDefinition,
   });
   factory Input.fromJson(Map<String, dynamic> json) {
@@ -2920,6 +3614,10 @@ class Input {
       dataCatalogInputDefinition: json['DataCatalogInputDefinition'] != null
           ? DataCatalogInputDefinition.fromJson(
               json['DataCatalogInputDefinition'] as Map<String, dynamic>)
+          : null,
+      databaseInputDefinition: json['DatabaseInputDefinition'] != null
+          ? DatabaseInputDefinition.fromJson(
+              json['DatabaseInputDefinition'] as Map<String, dynamic>)
           : null,
       s3InputDefinition: json['S3InputDefinition'] != null
           ? S3Location.fromJson(
@@ -2930,41 +3628,88 @@ class Input {
 
   Map<String, dynamic> toJson() {
     final dataCatalogInputDefinition = this.dataCatalogInputDefinition;
+    final databaseInputDefinition = this.databaseInputDefinition;
     final s3InputDefinition = this.s3InputDefinition;
     return {
       if (dataCatalogInputDefinition != null)
         'DataCatalogInputDefinition': dataCatalogInputDefinition,
+      if (databaseInputDefinition != null)
+        'DatabaseInputDefinition': databaseInputDefinition,
       if (s3InputDefinition != null) 'S3InputDefinition': s3InputDefinition,
     };
   }
 }
 
-/// Represents all of the attributes of an AWS Glue DataBrew job.
+enum InputFormat {
+  csv,
+  json,
+  parquet,
+  excel,
+}
+
+extension on InputFormat {
+  String toValue() {
+    switch (this) {
+      case InputFormat.csv:
+        return 'CSV';
+      case InputFormat.json:
+        return 'JSON';
+      case InputFormat.parquet:
+        return 'PARQUET';
+      case InputFormat.excel:
+        return 'EXCEL';
+    }
+  }
+}
+
+extension on String {
+  InputFormat toInputFormat() {
+    switch (this) {
+      case 'CSV':
+        return InputFormat.csv;
+      case 'JSON':
+        return InputFormat.json;
+      case 'PARQUET':
+        return InputFormat.parquet;
+      case 'EXCEL':
+        return InputFormat.excel;
+    }
+    throw Exception('$this is not known in enum InputFormat');
+  }
+}
+
+/// Represents all of the attributes of a DataBrew job.
 class Job {
   /// The unique name of the job.
   final String name;
 
-  /// The ID of the AWS account that owns the job.
+  /// The ID of the Amazon Web Services account that owns the job.
   final String? accountId;
 
   /// The date and time that the job was created.
   final DateTime? createDate;
 
-  /// The identifier (the user name) of the user who created the job.
+  /// The Amazon Resource Name (ARN) of the user who created the job.
   final String? createdBy;
+
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
+  final List<DataCatalogOutput>? dataCatalogOutputs;
 
   /// A dataset that the job is to process.
   final String? datasetName;
 
   /// The Amazon Resource Name (ARN) of an encryption key that is used to protect
-  /// a job.
+  /// the job output. For more information, see <a
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/encryption-security-configuration.html">Encrypting
+  /// data written by DataBrew jobs</a>
   final String? encryptionKeyArn;
 
   /// The encryption mode for the job, which can be one of the following:
   ///
   /// <ul>
   /// <li>
-  /// <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.
+  /// <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
   /// </li>
   /// <li>
   /// <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.
@@ -2972,7 +3717,13 @@ class Job {
   /// </ul>
   final EncryptionMode? encryptionMode;
 
-  /// The identifier (the user name) of the user who last modified the job.
+  /// A sample configuration for profile jobs only, which determines the number of
+  /// rows on which the profile job is run. If a <code>JobSample</code> value
+  /// isn't provided, the default value is used. The default value is CUSTOM_ROWS
+  /// for the mode parameter and 20,000 for the size parameter.
+  final JobSample? jobSample;
+
+  /// The Amazon Resource Name (ARN) of the user who last modified the job.
   final String? lastModifiedBy;
 
   /// The modification date and time of the job.
@@ -3000,8 +3751,7 @@ class Job {
   /// The unique Amazon Resource Name (ARN) for the job.
   final String? resourceArn;
 
-  /// The Amazon Resource Name (ARN) of the role that will be assumed for this
-  /// job.
+  /// The Amazon Resource Name (ARN) of the role to be assumed for this job.
   final String? roleArn;
 
   /// Metadata tags that have been applied to the job.
@@ -3030,9 +3780,11 @@ class Job {
     this.accountId,
     this.createDate,
     this.createdBy,
+    this.dataCatalogOutputs,
     this.datasetName,
     this.encryptionKeyArn,
     this.encryptionMode,
+    this.jobSample,
     this.lastModifiedBy,
     this.lastModifiedDate,
     this.logSubscription,
@@ -3053,9 +3805,16 @@ class Job {
       accountId: json['AccountId'] as String?,
       createDate: timeStampFromJson(json['CreateDate']),
       createdBy: json['CreatedBy'] as String?,
+      dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
       datasetName: json['DatasetName'] as String?,
       encryptionKeyArn: json['EncryptionKeyArn'] as String?,
       encryptionMode: (json['EncryptionMode'] as String?)?.toEncryptionMode(),
+      jobSample: json['JobSample'] != null
+          ? JobSample.fromJson(json['JobSample'] as Map<String, dynamic>)
+          : null,
       lastModifiedBy: json['LastModifiedBy'] as String?,
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
       logSubscription:
@@ -3081,13 +3840,17 @@ class Job {
   }
 }
 
-/// Represents one run of an AWS Glue DataBrew job.
+/// Represents one run of a DataBrew job.
 class JobRun {
   /// The number of times that DataBrew has attempted to run the job.
   final int? attempt;
 
   /// The date and time when the job completed processing.
   final DateTime? completedOn;
+
+  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// running the job.
+  final List<DataCatalogOutput>? dataCatalogOutputs;
 
   /// The name of the dataset for the job to process.
   final String? datasetName;
@@ -3101,6 +3864,12 @@ class JobRun {
 
   /// The name of the job being processed during this run.
   final String? jobName;
+
+  /// A sample configuration for profile jobs only, which determines the number of
+  /// rows on which the profile job is run. If a <code>JobSample</code> value
+  /// isn't provided, the default is used. The default value is CUSTOM_ROWS for
+  /// the mode parameter and 20,000 for the size parameter.
+  final JobSample? jobSample;
 
   /// The name of an Amazon CloudWatch log group, where the job writes diagnostic
   /// messages when it runs.
@@ -3118,7 +3887,7 @@ class JobRun {
   /// The unique identifier of the job run.
   final String? runId;
 
-  /// The identifier (the user name) of the user who initiated the job run.
+  /// The Amazon Resource Name (ARN) of the user who initiated the job run.
   final String? startedBy;
 
   /// The date and time when the job run began.
@@ -3130,10 +3899,12 @@ class JobRun {
   JobRun({
     this.attempt,
     this.completedOn,
+    this.dataCatalogOutputs,
     this.datasetName,
     this.errorMessage,
     this.executionTime,
     this.jobName,
+    this.jobSample,
     this.logGroupName,
     this.logSubscription,
     this.outputs,
@@ -3147,10 +3918,17 @@ class JobRun {
     return JobRun(
       attempt: json['Attempt'] as int?,
       completedOn: timeStampFromJson(json['CompletedOn']),
+      dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
       datasetName: json['DatasetName'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
       executionTime: json['ExecutionTime'] as int?,
       jobName: json['JobName'] as String?,
+      jobSample: json['JobSample'] != null
+          ? JobSample.fromJson(json['JobSample'] as Map<String, dynamic>)
+          : null,
       logGroupName: json['LogGroupName'] as String?,
       logSubscription:
           (json['LogSubscription'] as String?)?.toLogSubscription(),
@@ -3223,6 +4001,53 @@ extension on String {
   }
 }
 
+/// A sample configuration for profile jobs only, which determines the number of
+/// rows on which the profile job is run. If a <code>JobSample</code> value
+/// isn't provided, the default is used. The default value is CUSTOM_ROWS for
+/// the mode parameter and 20,000 for the size parameter.
+class JobSample {
+  /// A value that determines whether the profile job is run on the entire dataset
+  /// or a specified number of rows. This value must be one of the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// FULL_DATASET - The profile job is run on the entire dataset.
+  /// </li>
+  /// <li>
+  /// CUSTOM_ROWS - The profile job is run on the number of rows specified in the
+  /// <code>Size</code> parameter.
+  /// </li>
+  /// </ul>
+  final SampleMode? mode;
+
+  /// The <code>Size</code> parameter is only required when the mode is
+  /// CUSTOM_ROWS. The profile job is run on the specified number of rows. The
+  /// maximum value for size is Long.MAX_VALUE.
+  ///
+  /// Long.MAX_VALUE = 9223372036854775807
+  final int? size;
+
+  JobSample({
+    this.mode,
+    this.size,
+  });
+  factory JobSample.fromJson(Map<String, dynamic> json) {
+    return JobSample(
+      mode: (json['Mode'] as String?)?.toSampleMode(),
+      size: json['Size'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mode = this.mode;
+    final size = this.size;
+    return {
+      if (mode != null) 'Mode': mode.toValue(),
+      if (size != null) 'Size': size,
+    };
+  }
+}
+
 enum JobType {
   profile,
   recipe,
@@ -3252,7 +4077,7 @@ extension on String {
 }
 
 /// Represents the JSON-specific options that define how input is to be
-/// interpreted by AWS Glue DataBrew.
+/// interpreted by Glue DataBrew.
 class JsonOptions {
   /// A value that specifies whether JSON input contains embedded new line
   /// characters.
@@ -3276,12 +4101,11 @@ class JsonOptions {
 }
 
 class ListDatasetsResponse {
-  /// A list of datasets that are defined in the current AWS account.
+  /// A list of datasets that are defined.
   final List<Dataset> datasets;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To obtain the next set of pages, pass in
-  /// the NextToken from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListDatasetsResponse({
@@ -3303,9 +4127,8 @@ class ListJobRunsResponse {
   /// A list of job runs that have occurred for the specified job.
   final List<JobRun> jobRuns;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To obtain the next set of pages, pass in
-  /// the NextToken from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListJobRunsResponse({
@@ -3324,12 +4147,11 @@ class ListJobRunsResponse {
 }
 
 class ListJobsResponse {
-  /// A list of jobs that are defined in the current AWS account.
+  /// A list of jobs that are defined.
   final List<Job> jobs;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To obtain the next set of pages, pass in
-  /// the NextToken from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListJobsResponse({
@@ -3348,12 +4170,11 @@ class ListJobsResponse {
 }
 
 class ListProjectsResponse {
-  /// A list of projects that are defined in the current AWS account.
+  /// A list of projects that are defined .
   final List<Project> projects;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To get the next set of pages, pass in the
-  /// NextToken value from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListProjectsResponse({
@@ -3375,9 +4196,8 @@ class ListRecipeVersionsResponse {
   /// A list of versions for the specified recipe.
   final List<Recipe> recipes;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To get the next set of pages, pass in the
-  /// NextToken value from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListRecipeVersionsResponse({
@@ -3396,12 +4216,11 @@ class ListRecipeVersionsResponse {
 }
 
 class ListRecipesResponse {
-  /// A list of recipes that are defined in the current AWS account.
+  /// A list of recipes that are defined.
   final List<Recipe> recipes;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To get the next set of pages, pass in the
-  /// NextToken value from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListRecipesResponse({
@@ -3420,12 +4239,11 @@ class ListRecipesResponse {
 }
 
 class ListSchedulesResponse {
-  /// A list of schedules in the current AWS account.
+  /// A list of schedules that are defined.
   final List<Schedule> schedules;
 
-  /// A token generated by DataBrew that specifies where to continue pagination if
-  /// a previous request was truncated. To get the next set of pages, pass in the
-  /// NextToken value from the response object of the previous page call.
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
   final String? nextToken;
 
   ListSchedulesResponse({
@@ -3486,7 +4304,59 @@ extension on String {
   }
 }
 
-/// Represents individual output from a particular job run.
+enum Order {
+  descending,
+  ascending,
+}
+
+extension on Order {
+  String toValue() {
+    switch (this) {
+      case Order.descending:
+        return 'DESCENDING';
+      case Order.ascending:
+        return 'ASCENDING';
+    }
+  }
+}
+
+extension on String {
+  Order toOrder() {
+    switch (this) {
+      case 'DESCENDING':
+        return Order.descending;
+      case 'ASCENDING':
+        return Order.ascending;
+    }
+    throw Exception('$this is not known in enum Order');
+  }
+}
+
+enum OrderedBy {
+  lastModifiedDate,
+}
+
+extension on OrderedBy {
+  String toValue() {
+    switch (this) {
+      case OrderedBy.lastModifiedDate:
+        return 'LAST_MODIFIED_DATE';
+    }
+  }
+}
+
+extension on String {
+  OrderedBy toOrderedBy() {
+    switch (this) {
+      case 'LAST_MODIFIED_DATE':
+        return OrderedBy.lastModifiedDate;
+    }
+    throw Exception('$this is not known in enum OrderedBy');
+  }
+}
+
+/// Represents options that specify how and where DataBrew writes the output
+/// generated by recipe jobs or profile jobs.
 class Output {
   /// The location in Amazon S3 where the job writes its output.
   final S3Location location;
@@ -3496,6 +4366,9 @@ class Output {
 
   /// The data format of the output of the job.
   final OutputFormat? format;
+
+  /// Represents options that define how DataBrew formats job output files.
+  final OutputFormatOptions? formatOptions;
 
   /// A value that, if true, means that any data in the location specified for
   /// output is overwritten with new output.
@@ -3508,6 +4381,7 @@ class Output {
     required this.location,
     this.compressionFormat,
     this.format,
+    this.formatOptions,
     this.overwrite,
     this.partitionColumns,
   });
@@ -3517,6 +4391,10 @@ class Output {
       compressionFormat:
           (json['CompressionFormat'] as String?)?.toCompressionFormat(),
       format: (json['Format'] as String?)?.toOutputFormat(),
+      formatOptions: json['FormatOptions'] != null
+          ? OutputFormatOptions.fromJson(
+              json['FormatOptions'] as Map<String, dynamic>)
+          : null,
       overwrite: json['Overwrite'] as bool?,
       partitionColumns: (json['PartitionColumns'] as List?)
           ?.whereNotNull()
@@ -3529,6 +4407,7 @@ class Output {
     final location = this.location;
     final compressionFormat = this.compressionFormat;
     final format = this.format;
+    final formatOptions = this.formatOptions;
     final overwrite = this.overwrite;
     final partitionColumns = this.partitionColumns;
     return {
@@ -3536,6 +4415,7 @@ class Output {
       if (compressionFormat != null)
         'CompressionFormat': compressionFormat.toValue(),
       if (format != null) 'Format': format.toValue(),
+      if (formatOptions != null) 'FormatOptions': formatOptions,
       if (overwrite != null) 'Overwrite': overwrite,
       if (partitionColumns != null) 'PartitionColumns': partitionColumns,
     };
@@ -3595,7 +4475,113 @@ extension on String {
   }
 }
 
-/// Represents all of the attributes of an AWS Glue DataBrew project.
+/// Represents a set of options that define the structure of comma-separated
+/// (CSV) job output.
+class OutputFormatOptions {
+  /// Represents a set of options that define the structure of comma-separated
+  /// value (CSV) job output.
+  final CsvOutputOptions? csv;
+
+  OutputFormatOptions({
+    this.csv,
+  });
+  factory OutputFormatOptions.fromJson(Map<String, dynamic> json) {
+    return OutputFormatOptions(
+      csv: json['Csv'] != null
+          ? CsvOutputOptions.fromJson(json['Csv'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final csv = this.csv;
+    return {
+      if (csv != null) 'Csv': csv,
+    };
+  }
+}
+
+enum ParameterType {
+  datetime,
+  number,
+  string,
+}
+
+extension on ParameterType {
+  String toValue() {
+    switch (this) {
+      case ParameterType.datetime:
+        return 'Datetime';
+      case ParameterType.number:
+        return 'Number';
+      case ParameterType.string:
+        return 'String';
+    }
+  }
+}
+
+extension on String {
+  ParameterType toParameterType() {
+    switch (this) {
+      case 'Datetime':
+        return ParameterType.datetime;
+      case 'Number':
+        return ParameterType.number;
+      case 'String':
+        return ParameterType.string;
+    }
+    throw Exception('$this is not known in enum ParameterType');
+  }
+}
+
+/// Represents a set of options that define how DataBrew selects files for a
+/// given Amazon S3 path in a dataset.
+class PathOptions {
+  /// If provided, this structure imposes a limit on a number of files that should
+  /// be selected.
+  final FilesLimit? filesLimit;
+
+  /// If provided, this structure defines a date range for matching Amazon S3
+  /// objects based on their LastModifiedDate attribute in Amazon S3.
+  final FilterExpression? lastModifiedDateCondition;
+
+  /// A structure that maps names of parameters used in the Amazon S3 path of a
+  /// dataset to their definitions.
+  final Map<String, DatasetParameter>? parameters;
+
+  PathOptions({
+    this.filesLimit,
+    this.lastModifiedDateCondition,
+    this.parameters,
+  });
+  factory PathOptions.fromJson(Map<String, dynamic> json) {
+    return PathOptions(
+      filesLimit: json['FilesLimit'] != null
+          ? FilesLimit.fromJson(json['FilesLimit'] as Map<String, dynamic>)
+          : null,
+      lastModifiedDateCondition: json['LastModifiedDateCondition'] != null
+          ? FilterExpression.fromJson(
+              json['LastModifiedDateCondition'] as Map<String, dynamic>)
+          : null,
+      parameters: (json['Parameters'] as Map<String, dynamic>?)?.map((k, e) =>
+          MapEntry(k, DatasetParameter.fromJson(e as Map<String, dynamic>))),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filesLimit = this.filesLimit;
+    final lastModifiedDateCondition = this.lastModifiedDateCondition;
+    final parameters = this.parameters;
+    return {
+      if (filesLimit != null) 'FilesLimit': filesLimit,
+      if (lastModifiedDateCondition != null)
+        'LastModifiedDateCondition': lastModifiedDateCondition,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
+}
+
+/// Represents all of the attributes of a DataBrew project.
 class Project {
   /// The unique name of a project.
   final String name;
@@ -3603,19 +4589,19 @@ class Project {
   /// The name of a recipe that will be developed during a project session.
   final String recipeName;
 
-  /// The ID of the AWS account that owns the project.
+  /// The ID of the Amazon Web Services account that owns the project.
   final String? accountId;
 
   /// The date and time that the project was created.
   final DateTime? createDate;
 
-  /// The identifier (the user name) of the user who crated the project.
+  /// The Amazon Resource Name (ARN) of the user who crated the project.
   final String? createdBy;
 
   /// The dataset that the project is to act upon.
   final String? datasetName;
 
-  /// The identifier (user name) of the user who last modified the project.
+  /// The Amazon Resource Name (ARN) of the user who last modified the project.
   final String? lastModifiedBy;
 
   /// The last modification date and time for the project.
@@ -3624,7 +4610,7 @@ class Project {
   /// The date and time when the project was opened.
   final DateTime? openDate;
 
-  /// The identifier (the user name) of the user that opened the project for use.
+  /// The Amazon Resource Name (ARN) of the user that opened the project for use.
   final String? openedBy;
 
   /// The Amazon Resource Name (ARN) for the project.
@@ -3635,8 +4621,8 @@ class Project {
   final String? roleArn;
 
   /// The sample size and sampling type to apply to the data. If this parameter
-  /// isn't specified, then the sample will consiste of the first 500 rows from
-  /// the dataset.
+  /// isn't specified, then the sample consists of the first 500 rows from the
+  /// dataset.
   final Sample? sample;
 
   /// Metadata tags that have been applied to the project.
@@ -3695,8 +4681,7 @@ class PublishRecipeResponse {
   }
 }
 
-/// Represents one or more actions to be performed on an AWS Glue DataBrew
-/// dataset.
+/// Represents one or more actions to be performed on a DataBrew dataset.
 class Recipe {
   /// The unique name for the recipe.
   final String name;
@@ -3704,13 +4689,13 @@ class Recipe {
   /// The date and time that the recipe was created.
   final DateTime? createDate;
 
-  /// The identifier (the user name) of the user who created the recipe.
+  /// The Amazon Resource Name (ARN) of the user who created the recipe.
   final String? createdBy;
 
   /// The description of the recipe.
   final String? description;
 
-  /// The identifier (user name) of the user who last modified the recipe.
+  /// The Amazon Resource Name (ARN) of the user who last modified the recipe.
   final String? lastModifiedBy;
 
   /// The last modification date and time of the recipe.
@@ -3719,13 +4704,29 @@ class Recipe {
   /// The name of the project that the recipe is associated with.
   final String? projectName;
 
-  /// The identifier (the user name) of the user who published the recipe.
+  /// The Amazon Resource Name (ARN) of the user who published the recipe.
   final String? publishedBy;
 
   /// The date and time when the recipe was published.
   final DateTime? publishedDate;
 
-  /// The identifier for the version for the recipe.
+  /// The identifier for the version for the recipe. Must be one of the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Numeric version (<code>X.Y</code>) - <code>X</code> and <code>Y</code> stand
+  /// for major and minor version numbers. The maximum length of each is 6 digits,
+  /// and neither can be negative values. Both <code>X</code> and <code>Y</code>
+  /// are required, and "0.0" isn't a valid version.
+  /// </li>
+  /// <li>
+  /// <code>LATEST_WORKING</code> - the most recent valid version being developed
+  /// in a DataBrew project.
+  /// </li>
+  /// <li>
+  /// <code>LATEST_PUBLISHED</code> - the most recent published version.
+  /// </li>
+  /// </ul>
   final String? recipeVersion;
 
   /// The Amazon Resource Name (ARN) for the recipe.
@@ -3776,11 +4777,9 @@ class Recipe {
 }
 
 /// Represents a transformation and associated parameters that are used to apply
-/// a change to an AWS Glue DataBrew dataset. For more information, see <a
-/// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html">Recipe
-/// structure</a> and <a
-/// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html">ecipe
-/// actions reference</a> .
+/// a change to a DataBrew dataset. For more information, see <a
+/// href="https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html">Recipe
+/// actions reference</a>.
 class RecipeAction {
   /// The name of a valid DataBrew transformation to be performed on the data.
   final String operation;
@@ -3810,7 +4809,7 @@ class RecipeAction {
   }
 }
 
-/// Represents all of the attributes of an AWS Glue DataBrew recipe.
+/// Represents the name and version of a DataBrew recipe.
 class RecipeReference {
   /// The name of the recipe.
   final String name;
@@ -3839,13 +4838,12 @@ class RecipeReference {
   }
 }
 
-/// Represents a single step to be performed in an AWS Glue DataBrew recipe.
+/// Represents a single step from a DataBrew recipe to be performed.
 class RecipeStep {
   /// The particular action to be performed in the recipe step.
   final RecipeAction action;
 
-  /// One or more conditions that must be met, in order for the recipe step to
-  /// succeed.
+  /// One or more conditions that must be met for the recipe step to succeed.
   /// <note>
   /// All of the conditions in the array must be met. In other words, all of the
   /// conditions must be combined using a logical AND operation.
@@ -3903,10 +4901,10 @@ class RecipeVersionErrorDetail {
   }
 }
 
-/// An Amazon S3 location (bucket name an object key) where DataBrew can read
-/// input data, or write output from a job.
+/// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+/// can read input data, or write output from a job.
 class S3Location {
-  /// The S3 bucket name.
+  /// The Amazon S3 bucket name.
   final String bucket;
 
   /// The unique name of the object in the bucket.
@@ -3933,8 +4931,32 @@ class S3Location {
   }
 }
 
-/// Represents the sample size and sampling type for AWS Glue DataBrew to use
-/// for interactive data analysis.
+/// Represents options that specify how and where DataBrew writes the S3 output
+/// generated by recipe jobs.
+class S3TableOutputOptions {
+  /// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+  /// can write output from a job.
+  final S3Location location;
+
+  S3TableOutputOptions({
+    required this.location,
+  });
+  factory S3TableOutputOptions.fromJson(Map<String, dynamic> json) {
+    return S3TableOutputOptions(
+      location: S3Location.fromJson(json['Location'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    return {
+      'Location': location,
+    };
+  }
+}
+
+/// Represents the sample size and sampling type for DataBrew to use for
+/// interactive data analysis.
 class Sample {
   /// The way in which DataBrew obtains rows from a dataset.
   final SampleType type;
@@ -3960,6 +4982,34 @@ class Sample {
       'Type': type.toValue(),
       if (size != null) 'Size': size,
     };
+  }
+}
+
+enum SampleMode {
+  fullDataset,
+  customRows,
+}
+
+extension on SampleMode {
+  String toValue() {
+    switch (this) {
+      case SampleMode.fullDataset:
+        return 'FULL_DATASET';
+      case SampleMode.customRows:
+        return 'CUSTOM_ROWS';
+    }
+  }
+}
+
+extension on String {
+  SampleMode toSampleMode() {
+    switch (this) {
+      case 'FULL_DATASET':
+        return SampleMode.fullDataset;
+      case 'CUSTOM_ROWS':
+        return SampleMode.customRows;
+    }
+    throw Exception('$this is not known in enum SampleMode');
   }
 }
 
@@ -4001,22 +5051,24 @@ class Schedule {
   /// The name of the schedule.
   final String name;
 
-  /// The ID of the AWS account that owns the schedule.
+  /// The ID of the Amazon Web Services account that owns the schedule.
   final String? accountId;
 
   /// The date and time that the schedule was created.
   final DateTime? createDate;
 
-  /// The identifier (the user name) of the user who created the schedule.
+  /// The Amazon Resource Name (ARN) of the user who created the schedule.
   final String? createdBy;
 
-  /// The date(s) and time(s), in <code>cron</code> format, when the job will run.
+  /// The dates and times when the job is to run. For more information, see <a
+  /// href="https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html">Cron
+  /// expressions</a> in the <i>Glue DataBrew Developer Guide</i>.
   final String? cronExpression;
 
   /// A list of jobs to be run, according to the schedule.
   final List<String>? jobNames;
 
-  /// The identifier (the user name) of the user who last modified the schedule.
+  /// The Amazon Resource Name (ARN) of the user who last modified the schedule.
   final String? lastModifiedBy;
 
   /// The date and time when the schedule was last modified.
@@ -4155,6 +5207,7 @@ extension on String {
 enum Source {
   s3,
   dataCatalog,
+  database,
 }
 
 extension on Source {
@@ -4164,6 +5217,8 @@ extension on Source {
         return 'S3';
       case Source.dataCatalog:
         return 'DATA-CATALOG';
+      case Source.database:
+        return 'DATABASE';
     }
   }
 }
@@ -4175,6 +5230,8 @@ extension on String {
         return Source.s3;
       case 'DATA-CATALOG':
         return Source.dataCatalog;
+      case 'DATABASE':
+        return Source.database;
     }
     throw Exception('$this is not known in enum Source');
   }
@@ -4330,8 +5387,7 @@ class UpdateScheduleResponse {
   }
 }
 
-/// Represents the data being being transformed during an AWS Glue DataBrew
-/// project session.
+/// Represents the data being transformed during an action.
 class ViewFrame {
   /// The starting index for the range of columns to return in the view frame.
   final int startColumnIndex;

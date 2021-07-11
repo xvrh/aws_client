@@ -112,24 +112,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^r-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -198,12 +186,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.AssociateMemberToGroup'
@@ -254,12 +236,6 @@ class WorkMail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''[A-Za-z0-9-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
@@ -268,22 +244,11 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[\x21-\x7e]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -337,12 +302,6 @@ class WorkMail {
       254,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'alias',
-      alias,
-      r'''[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z-]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
     _s.validateStringLength(
       'entityId',
@@ -357,12 +316,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -412,24 +365,12 @@ class WorkMail {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -449,6 +390,134 @@ class WorkMail {
     );
 
     return CreateGroupResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a new mobile device access rule for the specified Amazon WorkMail
+  /// organization.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [LimitExceededException].
+  /// May throw [OrganizationNotFoundException].
+  /// May throw [OrganizationStateException].
+  ///
+  /// Parameter [effect] :
+  /// The effect of the rule when it matches. Allowed values are
+  /// <code>ALLOW</code> or <code>DENY</code>.
+  ///
+  /// Parameter [name] :
+  /// The rule name.
+  ///
+  /// Parameter [organizationId] :
+  /// The Amazon WorkMail organization under which the rule will be created.
+  ///
+  /// Parameter [clientToken] :
+  /// The idempotency token for the client request.
+  ///
+  /// Parameter [description] :
+  /// The rule description.
+  ///
+  /// Parameter [deviceModels] :
+  /// Device models that the rule will match.
+  ///
+  /// Parameter [deviceOperatingSystems] :
+  /// Device operating systems that the rule will match.
+  ///
+  /// Parameter [deviceTypes] :
+  /// Device types that the rule will match.
+  ///
+  /// Parameter [deviceUserAgents] :
+  /// Device user agents that the rule will match.
+  ///
+  /// Parameter [notDeviceModels] :
+  /// Device models that the rule <b>will not</b> match. All other device models
+  /// will match.
+  ///
+  /// Parameter [notDeviceOperatingSystems] :
+  /// Device operating systems that the rule <b>will not</b> match. All other
+  /// device operating systems will match.
+  ///
+  /// Parameter [notDeviceTypes] :
+  /// Device types that the rule <b>will not</b> match. All other device types
+  /// will match.
+  ///
+  /// Parameter [notDeviceUserAgents] :
+  /// Device user agents that the rule <b>will not</b> match. All other device
+  /// user agents will match.
+  Future<CreateMobileDeviceAccessRuleResponse> createMobileDeviceAccessRule({
+    required MobileDeviceAccessRuleEffect effect,
+    required String name,
+    required String organizationId,
+    String? clientToken,
+    String? description,
+    List<String>? deviceModels,
+    List<String>? deviceOperatingSystems,
+    List<String>? deviceTypes,
+    List<String>? deviceUserAgents,
+    List<String>? notDeviceModels,
+    List<String>? notDeviceOperatingSystems,
+    List<String>? notDeviceTypes,
+    List<String>? notDeviceUserAgents,
+  }) async {
+    ArgumentError.checkNotNull(effect, 'effect');
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(organizationId, 'organizationId');
+    _s.validateStringLength(
+      'organizationId',
+      organizationId,
+      34,
+      34,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clientToken',
+      clientToken,
+      1,
+      128,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      256,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkMailService.CreateMobileDeviceAccessRule'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Effect': effect.toValue(),
+        'Name': name,
+        'OrganizationId': organizationId,
+        'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
+        if (description != null) 'Description': description,
+        if (deviceModels != null) 'DeviceModels': deviceModels,
+        if (deviceOperatingSystems != null)
+          'DeviceOperatingSystems': deviceOperatingSystems,
+        if (deviceTypes != null) 'DeviceTypes': deviceTypes,
+        if (deviceUserAgents != null) 'DeviceUserAgents': deviceUserAgents,
+        if (notDeviceModels != null) 'NotDeviceModels': notDeviceModels,
+        if (notDeviceOperatingSystems != null)
+          'NotDeviceOperatingSystems': notDeviceOperatingSystems,
+        if (notDeviceTypes != null) 'NotDeviceTypes': notDeviceTypes,
+        if (notDeviceUserAgents != null)
+          'NotDeviceUserAgents': notDeviceUserAgents,
+      },
+    );
+
+    return CreateMobileDeviceAccessRuleResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates a new Amazon WorkMail organization. Optionally, you can choose to
@@ -517,44 +586,23 @@ class WorkMail {
       62,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'alias',
-      alias,
-      r'''^(?!d-)([\da-zA-Z]+)([-][\da-zA-Z]+)*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[\x21-\x7e]+''',
-    );
     _s.validateStringLength(
       'directoryId',
       directoryId,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'directoryId',
-      directoryId,
-      r'''^d-[0-9a-f]{10}$''',
     );
     _s.validateStringLength(
       'kmsKeyArn',
       kmsKeyArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyArn',
-      kmsKeyArn,
-      r'''arn:aws:kms:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -613,24 +661,12 @@ class WorkMail {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\w\-.]+(@[a-zA-Z0-9.\-]+\.[a-zA-Z0-9-]{2,})?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -701,12 +737,6 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\w\-.]+(@[a-zA-Z0-9.\-]+\.[a-zA-Z0-9-]{2,})?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
@@ -715,24 +745,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
     _s.validateStringLength(
       'password',
       password,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -778,24 +796,12 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -848,12 +854,6 @@ class WorkMail {
       254,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'alias',
-      alias,
-      r'''[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z-]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
     _s.validateStringLength(
       'entityId',
@@ -868,12 +868,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -927,12 +921,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -999,12 +987,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteMailboxPermissions'
@@ -1018,6 +1000,56 @@ class WorkMail {
       payload: {
         'EntityId': entityId,
         'GranteeId': granteeId,
+        'OrganizationId': organizationId,
+      },
+    );
+  }
+
+  /// Deletes a mobile device access rule for the specified Amazon WorkMail
+  /// organization.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [OrganizationNotFoundException].
+  /// May throw [OrganizationStateException].
+  ///
+  /// Parameter [mobileDeviceAccessRuleId] :
+  /// The identifier of the rule to be deleted.
+  ///
+  /// Parameter [organizationId] :
+  /// The Amazon WorkMail organization under which the rule will be deleted.
+  Future<void> deleteMobileDeviceAccessRule({
+    required String mobileDeviceAccessRuleId,
+    required String organizationId,
+  }) async {
+    ArgumentError.checkNotNull(
+        mobileDeviceAccessRuleId, 'mobileDeviceAccessRuleId');
+    _s.validateStringLength(
+      'mobileDeviceAccessRuleId',
+      mobileDeviceAccessRuleId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(organizationId, 'organizationId');
+    _s.validateStringLength(
+      'organizationId',
+      organizationId,
+      34,
+      34,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkMailService.DeleteMobileDeviceAccessRule'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
         'OrganizationId': organizationId,
       },
     );
@@ -1056,22 +1088,11 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[\x21-\x7e]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1118,24 +1139,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^r-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1178,24 +1187,12 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9_-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1245,12 +1242,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(userId, 'userId');
@@ -1315,12 +1306,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeregisterFromWorkMail'
@@ -1370,12 +1355,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeGroup'
@@ -1419,24 +1398,12 @@ class WorkMail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''[A-Za-z0-9-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1475,12 +1442,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1526,24 +1487,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^r-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1587,12 +1536,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(userId, 'userId');
@@ -1661,24 +1604,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^r-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1747,12 +1678,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DisassociateMemberFromGroup'
@@ -1806,12 +1731,6 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'action',
-      action,
-      r'''[a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ipAddress, 'ipAddress');
     _s.validateStringLength(
       'ipAddress',
@@ -1820,24 +1739,12 @@ class WorkMail {
       15,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ipAddress',
-      ipAddress,
-      r'''^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(userId, 'userId');
@@ -1889,12 +1796,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetDefaultRetentionPolicy'
@@ -1937,12 +1838,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
     _s.validateStringLength(
       'userId',
@@ -1970,6 +1865,91 @@ class WorkMail {
     return GetMailboxDetailsResponse.fromJson(jsonResponse.body);
   }
 
+  /// Simulates the effect of the mobile device access rules for the given
+  /// attributes of a sample access event. Use this method to test the effects
+  /// of the current set of mobile device access rules for the Amazon WorkMail
+  /// organization for a particular user's attributes.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [OrganizationNotFoundException].
+  /// May throw [OrganizationStateException].
+  ///
+  /// Parameter [organizationId] :
+  /// The Amazon WorkMail organization to simulate the access effect for.
+  ///
+  /// Parameter [deviceModel] :
+  /// Device model the simulated user will report.
+  ///
+  /// Parameter [deviceOperatingSystem] :
+  /// Device operating system the simulated user will report.
+  ///
+  /// Parameter [deviceType] :
+  /// Device type the simulated user will report.
+  ///
+  /// Parameter [deviceUserAgent] :
+  /// Device user agent the simulated user will report.
+  Future<GetMobileDeviceAccessEffectResponse> getMobileDeviceAccessEffect({
+    required String organizationId,
+    String? deviceModel,
+    String? deviceOperatingSystem,
+    String? deviceType,
+    String? deviceUserAgent,
+  }) async {
+    ArgumentError.checkNotNull(organizationId, 'organizationId');
+    _s.validateStringLength(
+      'organizationId',
+      organizationId,
+      34,
+      34,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'deviceModel',
+      deviceModel,
+      1,
+      256,
+    );
+    _s.validateStringLength(
+      'deviceOperatingSystem',
+      deviceOperatingSystem,
+      1,
+      256,
+    );
+    _s.validateStringLength(
+      'deviceType',
+      deviceType,
+      1,
+      256,
+    );
+    _s.validateStringLength(
+      'deviceUserAgent',
+      deviceUserAgent,
+      1,
+      256,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkMailService.GetMobileDeviceAccessEffect'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'OrganizationId': organizationId,
+        if (deviceModel != null) 'DeviceModel': deviceModel,
+        if (deviceOperatingSystem != null)
+          'DeviceOperatingSystem': deviceOperatingSystem,
+        if (deviceType != null) 'DeviceType': deviceType,
+        if (deviceUserAgent != null) 'DeviceUserAgent': deviceUserAgent,
+      },
+    );
+
+    return GetMobileDeviceAccessEffectResponse.fromJson(jsonResponse.body);
+  }
+
   /// Lists the access control rules for the specified organization.
   ///
   /// May throw [OrganizationNotFoundException].
@@ -1986,12 +1966,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2055,12 +2029,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2072,11 +2040,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2143,12 +2106,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2160,11 +2117,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2216,12 +2168,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2233,11 +2179,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2287,12 +2228,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2304,11 +2239,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2374,12 +2304,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2391,11 +2315,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2416,6 +2335,44 @@ class WorkMail {
     );
 
     return ListMailboxPermissionsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Lists the mobile device access rules for the specified Amazon WorkMail
+  /// organization.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [OrganizationNotFoundException].
+  /// May throw [OrganizationStateException].
+  ///
+  /// Parameter [organizationId] :
+  /// The Amazon WorkMail organization for which to list the rules.
+  Future<ListMobileDeviceAccessRulesResponse> listMobileDeviceAccessRules({
+    required String organizationId,
+  }) async {
+    ArgumentError.checkNotNull(organizationId, 'organizationId');
+    _s.validateStringLength(
+      'organizationId',
+      organizationId,
+      34,
+      34,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkMailService.ListMobileDeviceAccessRules'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'OrganizationId': organizationId,
+      },
+    );
+
+    return ListMobileDeviceAccessRulesResponse.fromJson(jsonResponse.body);
   }
 
   /// Returns summaries of the customer's organizations.
@@ -2443,11 +2400,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2504,12 +2456,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
@@ -2529,11 +2475,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2584,12 +2525,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2601,11 +2536,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2690,12 +2620,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2707,11 +2631,6 @@ class WorkMail {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S\s]*|[a-zA-Z0-9/+=]{1,1024}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2799,12 +2718,6 @@ class WorkMail {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(effect, 'effect');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -2814,24 +2727,12 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2918,12 +2819,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionValues, 'permissionValues');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2981,12 +2876,6 @@ class WorkMail {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
@@ -2995,33 +2884,17 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       256,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\w\d\s\S\-!?=,.;:'_]+''',
-    );
     _s.validateStringLength(
       'id',
       id,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9_-]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3089,12 +2962,6 @@ class WorkMail {
       254,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'email',
-      email,
-      r'''[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z-]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
     _s.validateStringLength(
       'entityId',
@@ -3109,12 +2976,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3169,24 +3030,12 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
     _s.validateStringLength(
       'password',
       password,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(userId, 'userId');
@@ -3278,24 +3127,12 @@ class WorkMail {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'kmsKeyArn',
-      kmsKeyArn,
-      r'''arn:aws:kms:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
     _s.validateStringLength(
       'organizationId',
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
@@ -3314,12 +3151,6 @@ class WorkMail {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      's3BucketName',
-      s3BucketName,
-      r'''[A-Za-z0-9.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(s3Prefix, 's3Prefix');
     _s.validateStringLength(
       's3Prefix',
@@ -3328,33 +3159,17 @@ class WorkMail {
       1023,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      's3Prefix',
-      s3Prefix,
-      r'''[A-Za-z0-9!_.*'()/-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[\x21-\x7e]+''',
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1023,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\S\s]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3502,12 +3317,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
     _s.validateStringLength(
       'userId',
@@ -3530,6 +3339,135 @@ class WorkMail {
         'MailboxQuota': mailboxQuota,
         'OrganizationId': organizationId,
         'UserId': userId,
+      },
+    );
+  }
+
+  /// Updates a mobile device access rule for the specified Amazon WorkMail
+  /// organization.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [EntityNotFoundException].
+  /// May throw [OrganizationNotFoundException].
+  /// May throw [OrganizationStateException].
+  ///
+  /// Parameter [effect] :
+  /// The effect of the rule when it matches. Allowed values are
+  /// <code>ALLOW</code> or <code>DENY</code>.
+  ///
+  /// Parameter [mobileDeviceAccessRuleId] :
+  /// The identifier of the rule to be updated.
+  ///
+  /// Parameter [name] :
+  /// The updated rule name.
+  ///
+  /// Parameter [organizationId] :
+  /// The Amazon WorkMail organization under which the rule will be updated.
+  ///
+  /// Parameter [description] :
+  /// The updated rule description.
+  ///
+  /// Parameter [deviceModels] :
+  /// Device models that the updated rule will match.
+  ///
+  /// Parameter [deviceOperatingSystems] :
+  /// Device operating systems that the updated rule will match.
+  ///
+  /// Parameter [deviceTypes] :
+  /// Device types that the updated rule will match.
+  ///
+  /// Parameter [deviceUserAgents] :
+  /// User agents that the updated rule will match.
+  ///
+  /// Parameter [notDeviceModels] :
+  /// Device models that the updated rule <b>will not</b> match. All other
+  /// device models will match.
+  ///
+  /// Parameter [notDeviceOperatingSystems] :
+  /// Device operating systems that the updated rule <b>will not</b> match. All
+  /// other device operating systems will match.
+  ///
+  /// Parameter [notDeviceTypes] :
+  /// Device types that the updated rule <b>will not</b> match. All other device
+  /// types will match.
+  ///
+  /// Parameter [notDeviceUserAgents] :
+  /// User agents that the updated rule <b>will not</b> match. All other user
+  /// agents will match.
+  Future<void> updateMobileDeviceAccessRule({
+    required MobileDeviceAccessRuleEffect effect,
+    required String mobileDeviceAccessRuleId,
+    required String name,
+    required String organizationId,
+    String? description,
+    List<String>? deviceModels,
+    List<String>? deviceOperatingSystems,
+    List<String>? deviceTypes,
+    List<String>? deviceUserAgents,
+    List<String>? notDeviceModels,
+    List<String>? notDeviceOperatingSystems,
+    List<String>? notDeviceTypes,
+    List<String>? notDeviceUserAgents,
+  }) async {
+    ArgumentError.checkNotNull(effect, 'effect');
+    ArgumentError.checkNotNull(
+        mobileDeviceAccessRuleId, 'mobileDeviceAccessRuleId');
+    _s.validateStringLength(
+      'mobileDeviceAccessRuleId',
+      mobileDeviceAccessRuleId,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(organizationId, 'organizationId');
+    _s.validateStringLength(
+      'organizationId',
+      organizationId,
+      34,
+      34,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      1,
+      256,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'WorkMailService.UpdateMobileDeviceAccessRule'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Effect': effect.toValue(),
+        'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
+        'Name': name,
+        'OrganizationId': organizationId,
+        if (description != null) 'Description': description,
+        if (deviceModels != null) 'DeviceModels': deviceModels,
+        if (deviceOperatingSystems != null)
+          'DeviceOperatingSystems': deviceOperatingSystems,
+        if (deviceTypes != null) 'DeviceTypes': deviceTypes,
+        if (deviceUserAgents != null) 'DeviceUserAgents': deviceUserAgents,
+        if (notDeviceModels != null) 'NotDeviceModels': notDeviceModels,
+        if (notDeviceOperatingSystems != null)
+          'NotDeviceOperatingSystems': notDeviceOperatingSystems,
+        if (notDeviceTypes != null) 'NotDeviceTypes': notDeviceTypes,
+        if (notDeviceUserAgents != null)
+          'NotDeviceUserAgents': notDeviceUserAgents,
       },
     );
   }
@@ -3573,12 +3511,6 @@ class WorkMail {
       254,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'email',
-      email,
-      r'''[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]+\.[a-zA-Z-]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
     _s.validateStringLength(
       'entityId',
@@ -3593,12 +3525,6 @@ class WorkMail {
       organizationId,
       34,
       34,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3661,12 +3587,6 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''^m-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
@@ -3675,22 +3595,11 @@ class WorkMail {
       34,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^r-[0-9a-f]{32}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       20,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\w\-.]+(@[a-zA-Z0-9.\-]+\.[a-zA-Z0-9-]{2,})?''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3913,6 +3822,21 @@ class CreateGroupResponse {
   }
 }
 
+class CreateMobileDeviceAccessRuleResponse {
+  /// The identifier for the newly created mobile device access rule.
+  final String? mobileDeviceAccessRuleId;
+
+  CreateMobileDeviceAccessRuleResponse({
+    this.mobileDeviceAccessRuleId,
+  });
+  factory CreateMobileDeviceAccessRuleResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateMobileDeviceAccessRuleResponse(
+      mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
+    );
+  }
+}
+
 class CreateOrganizationResponse {
   /// The organization ID.
   final String? organizationId;
@@ -4001,6 +3925,14 @@ class DeleteMailboxPermissionsResponse {
   DeleteMailboxPermissionsResponse();
   factory DeleteMailboxPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMailboxPermissionsResponse();
+  }
+}
+
+class DeleteMobileDeviceAccessRuleResponse {
+  DeleteMobileDeviceAccessRuleResponse();
+  factory DeleteMobileDeviceAccessRuleResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DeleteMobileDeviceAccessRuleResponse();
   }
 }
 
@@ -4566,6 +4498,33 @@ class GetMailboxDetailsResponse {
   }
 }
 
+class GetMobileDeviceAccessEffectResponse {
+  /// The effect of the simulated access, <code>ALLOW</code> or <code>DENY</code>,
+  /// after evaluating mobile device access rules in the Amazon WorkMail
+  /// organization for the simulated user parameters.
+  final MobileDeviceAccessRuleEffect? effect;
+
+  /// A list of the rules which matched the simulated user input and produced the
+  /// effect.
+  final List<MobileDeviceAccessMatchedRule>? matchedRules;
+
+  GetMobileDeviceAccessEffectResponse({
+    this.effect,
+    this.matchedRules,
+  });
+  factory GetMobileDeviceAccessEffectResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetMobileDeviceAccessEffectResponse(
+      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      matchedRules: (json['MatchedRules'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              MobileDeviceAccessMatchedRule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 /// The representation of an Amazon WorkMail group.
 class Group {
   /// The date indicating when the group was disabled from Amazon WorkMail use.
@@ -4732,6 +4691,26 @@ class ListMailboxPermissionsResponse {
       permissions: (json['Permissions'] as List?)
           ?.whereNotNull()
           .map((e) => Permission.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class ListMobileDeviceAccessRulesResponse {
+  /// The list of mobile device access rules that exist under the specified Amazon
+  /// WorkMail organization.
+  final List<MobileDeviceAccessRule>? rules;
+
+  ListMobileDeviceAccessRulesResponse({
+    this.rules,
+  });
+  factory ListMobileDeviceAccessRulesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListMobileDeviceAccessRulesResponse(
+      rules: (json['Rules'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => MobileDeviceAccessRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -5009,6 +4988,163 @@ extension on String {
         return MemberType.user;
     }
     throw Exception('$this is not known in enum MemberType');
+  }
+}
+
+/// The rule that a simulated user matches.
+class MobileDeviceAccessMatchedRule {
+  /// Identifier of the rule that a simulated user matches.
+  final String? mobileDeviceAccessRuleId;
+
+  /// Name of a rule that a simulated user matches.
+  final String? name;
+
+  MobileDeviceAccessMatchedRule({
+    this.mobileDeviceAccessRuleId,
+    this.name,
+  });
+  factory MobileDeviceAccessMatchedRule.fromJson(Map<String, dynamic> json) {
+    return MobileDeviceAccessMatchedRule(
+      mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
+      name: json['Name'] as String?,
+    );
+  }
+}
+
+/// A rule that controls access to mobile devices for an Amazon WorkMail group.
+class MobileDeviceAccessRule {
+  /// The date and time at which an access rule was created.
+  final DateTime? dateCreated;
+
+  /// The date and time at which an access rule was modified.
+  final DateTime? dateModified;
+
+  /// The description of a mobile access rule.
+  final String? description;
+
+  /// Device models that a rule will match.
+  final List<String>? deviceModels;
+
+  /// Device operating systems that a rule will match.
+  final List<String>? deviceOperatingSystems;
+
+  /// Device types that a rule will match.
+  final List<String>? deviceTypes;
+
+  /// Device user agents that a rule will match.
+  final List<String>? deviceUserAgents;
+
+  /// The effect of the rule when it matches. Allowed values are
+  /// <code>ALLOW</code> or <code>DENY</code>.
+  final MobileDeviceAccessRuleEffect? effect;
+
+  /// The ID assigned to a mobile access rule.
+  final String? mobileDeviceAccessRuleId;
+
+  /// The name of a mobile access rule.
+  final String? name;
+
+  /// Device models that a rule <b>will not</b> match. All other device models
+  /// will match.
+  final List<String>? notDeviceModels;
+
+  /// Device operating systems that a rule <b>will not</b> match. All other device
+  /// types will match.
+  final List<String>? notDeviceOperatingSystems;
+
+  /// Device types that a rule <b>will not</b> match. All other device types will
+  /// match.
+  final List<String>? notDeviceTypes;
+
+  /// Device user agents that a rule <b>will not</b> match. All other device user
+  /// agents will match.
+  final List<String>? notDeviceUserAgents;
+
+  MobileDeviceAccessRule({
+    this.dateCreated,
+    this.dateModified,
+    this.description,
+    this.deviceModels,
+    this.deviceOperatingSystems,
+    this.deviceTypes,
+    this.deviceUserAgents,
+    this.effect,
+    this.mobileDeviceAccessRuleId,
+    this.name,
+    this.notDeviceModels,
+    this.notDeviceOperatingSystems,
+    this.notDeviceTypes,
+    this.notDeviceUserAgents,
+  });
+  factory MobileDeviceAccessRule.fromJson(Map<String, dynamic> json) {
+    return MobileDeviceAccessRule(
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateModified: timeStampFromJson(json['DateModified']),
+      description: json['Description'] as String?,
+      deviceModels: (json['DeviceModels'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      deviceOperatingSystems: (json['DeviceOperatingSystems'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      deviceTypes: (json['DeviceTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      deviceUserAgents: (json['DeviceUserAgents'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      effect: (json['Effect'] as String?)?.toMobileDeviceAccessRuleEffect(),
+      mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
+      name: json['Name'] as String?,
+      notDeviceModels: (json['NotDeviceModels'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      notDeviceOperatingSystems: (json['NotDeviceOperatingSystems'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      notDeviceTypes: (json['NotDeviceTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      notDeviceUserAgents: (json['NotDeviceUserAgents'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+}
+
+enum MobileDeviceAccessRuleEffect {
+  allow,
+  deny,
+}
+
+extension on MobileDeviceAccessRuleEffect {
+  String toValue() {
+    switch (this) {
+      case MobileDeviceAccessRuleEffect.allow:
+        return 'ALLOW';
+      case MobileDeviceAccessRuleEffect.deny:
+        return 'DENY';
+    }
+  }
+}
+
+extension on String {
+  MobileDeviceAccessRuleEffect toMobileDeviceAccessRuleEffect() {
+    switch (this) {
+      case 'ALLOW':
+        return MobileDeviceAccessRuleEffect.allow;
+      case 'DENY':
+        return MobileDeviceAccessRuleEffect.deny;
+    }
+    throw Exception('$this is not known in enum MobileDeviceAccessRuleEffect');
   }
 }
 
@@ -5319,6 +5455,14 @@ class UpdateMailboxQuotaResponse {
   UpdateMailboxQuotaResponse();
   factory UpdateMailboxQuotaResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMailboxQuotaResponse();
+  }
+}
+
+class UpdateMobileDeviceAccessRuleResponse {
+  UpdateMobileDeviceAccessRuleResponse();
+  factory UpdateMobileDeviceAccessRuleResponse.fromJson(
+      Map<String, dynamic> _) {
+    return UpdateMobileDeviceAccessRuleResponse();
   }
 }
 

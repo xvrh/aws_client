@@ -86,12 +86,6 @@ class S3Outposts {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'outpostId',
-      outpostId,
-      r'''^(op-[a-f0-9]{17}|\d{12}|ec2)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(securityGroupId, 'securityGroupId');
     _s.validateStringLength(
       'securityGroupId',
@@ -100,24 +94,12 @@ class S3Outposts {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'securityGroupId',
-      securityGroupId,
-      r'''^sg-([0-9a-f]{8}|[0-9a-f]{17})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetId, 'subnetId');
     _s.validateStringLength(
       'subnetId',
       subnetId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'subnetId',
-      subnetId,
-      r'''^subnet-([0-9a-f]{8}|[0-9a-f]{17})$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -176,24 +158,12 @@ class S3Outposts {
       500,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointId',
-      endpointId,
-      r'''^[a-zA-Z0-9]{19}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outpostId, 'outpostId');
     _s.validateStringLength(
       'outpostId',
       outpostId,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'outpostId',
-      outpostId,
-      r'''^(op-[a-f0-9]{17}|\d{12}|ec2)$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -254,11 +224,6 @@ class S3Outposts {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z0-9\+\:\/\=\?\#-_]+$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],

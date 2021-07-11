@@ -59,17 +59,26 @@ class Macie2 {
   /// Parameter [invitationId] :
   /// The unique identifier for the invitation to accept.
   ///
+  /// Parameter [administratorAccountId] :
+  /// The Amazon Web Services account ID for the account that sent the
+  /// invitation.
+  ///
   /// Parameter [masterAccount] :
-  /// The AWS account ID for the account that sent the invitation.
+  /// (Deprecated) The Amazon Web Services account ID for the account that sent
+  /// the invitation. This property has been replaced by the
+  /// administratorAccountId property and is retained only for backward
+  /// compatibility.
   Future<void> acceptInvitation({
     required String invitationId,
-    required String masterAccount,
+    String? administratorAccountId,
+    String? masterAccount,
   }) async {
     ArgumentError.checkNotNull(invitationId, 'invitationId');
-    ArgumentError.checkNotNull(masterAccount, 'masterAccount');
     final $payload = <String, dynamic>{
       'invitationId': invitationId,
-      'masterAccount': masterAccount,
+      if (administratorAccountId != null)
+        'administratorAccountId': administratorAccountId,
+      if (masterAccount != null) 'masterAccount': masterAccount,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -238,21 +247,21 @@ class Macie2 {
   /// An array that lists specific character sequences (ignore words) to exclude
   /// from the results. If the text matched by the regular expression is the
   /// same as any string in this array, Amazon Macie ignores it. The array can
-  /// contain as many as 10 ignore words. Each ignore word can contain 4 - 90
+  /// contain as many as 10 ignore words. Each ignore word can contain 4-90
   /// characters. Ignore words are case sensitive.
   ///
   /// Parameter [keywords] :
   /// An array that lists specific character sequences (keywords), one of which
   /// must be within proximity (maximumMatchDistance) of the regular expression
   /// to match. The array can contain as many as 50 keywords. Each keyword can
-  /// contain 4 - 90 characters. Keywords aren't case sensitive.
+  /// contain 3-90 characters. Keywords aren't case sensitive.
   ///
   /// Parameter [maximumMatchDistance] :
   /// The maximum number of characters that can exist between text that matches
   /// the regex pattern and the character sequences specified by the keywords
   /// array. Macie includes or excludes a result based on the proximity of a
-  /// keyword to text that matches the regex pattern. The distance can be 1 -
-  /// 300 characters. The default value is 50.
+  /// keyword to text that matches the regex pattern. The distance can be 1-300
+  /// characters. The default value is 50.
   ///
   /// Parameter [name] :
   /// A custom name for the custom data identifier. The name can contain as many
@@ -399,13 +408,13 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [accountIds] :
-  /// An array that lists AWS account IDs, one for each account to send the
-  /// invitation to.
+  /// An array that lists Amazon Web Services account IDs, one for each account
+  /// to send the invitation to.
   ///
   /// Parameter [disableEmailNotification] :
   /// Specifies whether to send an email notification to the root user of each
   /// account that the invitation will be sent to. This notification is in
-  /// addition to an alert that the root user receives in AWS Personal Health
+  /// addition to an alert that the root user receives in Personal Health
   /// Dashboard. To send an email notification to the root user of each account,
   /// set this value to true.
   ///
@@ -433,7 +442,7 @@ class Macie2 {
     return CreateInvitationsResponse.fromJson(response);
   }
 
-  /// Associates an account with an Amazon Macie master account.
+  /// Associates an account with an Amazon Macie administrator account.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -444,7 +453,7 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [account] :
-  /// The details for the account to associate with the master account.
+  /// The details of the account to associate with the administrator account.
   ///
   /// Parameter [tags] :
   /// A map of key-value pairs that specifies the tags to associate with the
@@ -512,8 +521,8 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [accountIds] :
-  /// An array that lists AWS account IDs, one for each account that sent an
-  /// invitation to decline.
+  /// An array that lists Amazon Web Services account IDs, one for each account
+  /// that sent an invitation to decline.
   Future<DeclineInvitationsResponse> declineInvitations({
     required List<String> accountIds,
   }) async {
@@ -592,8 +601,8 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [accountIds] :
-  /// An array that lists AWS account IDs, one for each account that sent an
-  /// invitation to delete.
+  /// An array that lists Amazon Web Services account IDs, one for each account
+  /// that sent an invitation to delete.
   Future<DeleteInvitationsResponse> deleteInvitations({
     required List<String> accountIds,
   }) async {
@@ -610,8 +619,8 @@ class Macie2 {
     return DeleteInvitationsResponse.fromJson(response);
   }
 
-  /// Deletes the association between an Amazon Macie master account and an
-  /// account.
+  /// Deletes the association between an Amazon Macie administrator account and
+  /// an account.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -706,7 +715,8 @@ class Macie2 {
     return DescribeClassificationJobResponse.fromJson(response);
   }
 
-  /// Retrieves the Amazon Macie configuration settings for an AWS organization.
+  /// Retrieves the Amazon Macie configuration settings for an Amazon Web
+  /// Services organization.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -746,7 +756,7 @@ class Macie2 {
   }
 
   /// Disables an account as the delegated Amazon Macie administrator account
-  /// for an AWS organization.
+  /// for an Amazon Web Services organization.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -757,7 +767,8 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [adminAccountId] :
-  /// The AWS account ID of the delegated administrator account.
+  /// The Amazon Web Services account ID of the delegated Amazon Macie
+  /// administrator account.
   Future<void> disableOrganizationAdminAccount({
     required String adminAccountId,
   }) async {
@@ -774,7 +785,29 @@ class Macie2 {
     );
   }
 
-  /// Disassociates a member account from its Amazon Macie master account.
+  /// Disassociates a member account from its Amazon Macie administrator
+  /// account.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  Future<void> disassociateFromAdministratorAccount() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'POST',
+      requestUri: '/administrator/disassociate',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// (Deprecated) Disassociates a member account from its Amazon Macie
+  /// administrator account. This operation has been replaced by the <link
+  /// linkend="DisassociateFromAdministratorAccount">DisassociateFromAdministratorAccount</link>
+  /// operation.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -792,7 +825,7 @@ class Macie2 {
     );
   }
 
-  /// Disassociates an Amazon Macie master account from a member account.
+  /// Disassociates an Amazon Macie administrator account from a member account.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -834,12 +867,12 @@ class Macie2 {
   ///
   /// Parameter [findingPublishingFrequency] :
   /// Specifies how often to publish updates to policy findings for the account.
-  /// This includes publishing updates to AWS Security Hub and Amazon
-  /// EventBridge (formerly called Amazon CloudWatch Events).
+  /// This includes publishing updates to Security Hub and Amazon EventBridge
+  /// (formerly called Amazon CloudWatch Events).
   ///
   /// Parameter [status] :
-  /// Specifies the status for the account. To enable Amazon Macie and start all
-  /// Amazon Macie activities for the account, set this value to ENABLED.
+  /// Specifies the new status for the account. To enable Amazon Macie and start
+  /// all Macie activities for the account, set this value to ENABLED.
   Future<void> enableMacie({
     String? clientToken,
     FindingPublishingFrequency? findingPublishingFrequency,
@@ -860,7 +893,7 @@ class Macie2 {
   }
 
   /// Designates an account as the delegated Amazon Macie administrator account
-  /// for an AWS organization.
+  /// for an Amazon Web Services organization.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -871,8 +904,8 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [adminAccountId] :
-  /// The AWS account ID for the account to designate as the delegated Amazon
-  /// Macie administrator account for the organization.
+  /// The Amazon Web Services account ID for the account to designate as the
+  /// delegated Amazon Macie administrator account for the organization.
   ///
   /// Parameter [clientToken] :
   /// A unique, case-sensitive token that you provide to ensure the idempotency
@@ -894,6 +927,26 @@ class Macie2 {
     );
   }
 
+  /// Retrieves information about the Amazon Macie administrator account for an
+  /// account.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  Future<GetAdministratorAccountResponse> getAdministratorAccount() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/administrator',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetAdministratorAccountResponse.fromJson(response);
+  }
+
   /// Retrieves (queries) aggregated statistical data for all the S3 buckets
   /// that Amazon Macie monitors and analyzes.
   ///
@@ -906,7 +959,7 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [accountId] :
-  /// The unique identifier for the AWS account.
+  /// The unique identifier for the Amazon Web Services account.
   Future<GetBucketStatisticsResponse> getBucketStatistics({
     String? accountId,
   }) async {
@@ -1091,6 +1144,27 @@ class Macie2 {
     return GetFindingsFilterResponse.fromJson(response);
   }
 
+  /// Retrieves the configuration settings for publishing findings to Security
+  /// Hub.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  Future<GetFindingsPublicationConfigurationResponse>
+      getFindingsPublicationConfiguration() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/findings-publication-configuration',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetFindingsPublicationConfigurationResponse.fromJson(response);
+  }
+
   /// Retrieves the count of Amazon Macie membership invitations that were
   /// received by an account.
   ///
@@ -1131,8 +1205,10 @@ class Macie2 {
     return GetMacieSessionResponse.fromJson(response);
   }
 
-  /// Retrieves information about the Amazon Macie master account for an
-  /// account.
+  /// (Deprecated) Retrieves information about the Amazon Macie administrator
+  /// account for an account. This operation has been replaced by the <link
+  /// linkend="GetAdministratorAccount">GetAdministratorAccount</link>
+  /// operation.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1151,8 +1227,8 @@ class Macie2 {
     return GetMasterAccountResponse.fromJson(response);
   }
 
-  /// Retrieves information about a member account that's associated with an
-  /// Amazon Macie master account.
+  /// Retrieves information about an account that's associated with an Amazon
+  /// Macie administrator account.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1191,8 +1267,8 @@ class Macie2 {
   ///
   /// Parameter [filterBy] :
   /// An array of objects, one for each condition to use to filter the query
-  /// results. If the array contains more than one object, Amazon Macie uses an
-  /// AND operator to join the conditions specified by the objects.
+  /// results. If you specify more than one condition, Amazon Macie uses an AND
+  /// operator to join the conditions.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of items to include in each page of the response.
@@ -1203,17 +1279,25 @@ class Macie2 {
   ///
   /// Parameter [sortBy] :
   /// The criteria to use to sort the query results.
+  ///
+  /// Parameter [timeRange] :
+  /// The inclusive time period to query usage data for. Valid values are:
+  /// MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS,
+  /// for the preceding 30 days. If you don't specify a value, Amazon Macie
+  /// provides usage data for the preceding 30 days.
   Future<GetUsageStatisticsResponse> getUsageStatistics({
     List<UsageStatisticsFilter>? filterBy,
     int? maxResults,
     String? nextToken,
     UsageStatisticsSortBy? sortBy,
+    TimeRange? timeRange,
   }) async {
     final $payload = <String, dynamic>{
       if (filterBy != null) 'filterBy': filterBy,
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
       if (sortBy != null) 'sortBy': sortBy,
+      if (timeRange != null) 'timeRange': timeRange.toValue(),
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1233,11 +1317,24 @@ class Macie2 {
   /// May throw [ResourceNotFoundException].
   /// May throw [ThrottlingException].
   /// May throw [ConflictException].
-  Future<GetUsageTotalsResponse> getUsageTotals() async {
+  ///
+  /// Parameter [timeRange] :
+  /// The inclusive time period to retrieve the data for. Valid values are:
+  /// MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS,
+  /// for the preceding 30 days. If you don't specify a value for this
+  /// parameter, Amazon Macie provides aggregated usage data for the preceding
+  /// 30 days.
+  Future<GetUsageTotalsResponse> getUsageTotals({
+    String? timeRange,
+  }) async {
+    final $query = <String, List<String>>{
+      if (timeRange != null) 'timeRange': [timeRange],
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri: '/usage',
+      queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
     return GetUsageTotalsResponse.fromJson(response);
@@ -1448,7 +1545,7 @@ class Macie2 {
   }
 
   /// Retrieves information about the accounts that are associated with an
-  /// Amazon Macie master account.
+  /// Amazon Macie administrator account.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1468,9 +1565,9 @@ class Macie2 {
   ///
   /// Parameter [onlyAssociated] :
   /// Specifies which accounts to include in the response, based on the status
-  /// of an account's relationship with the master account. By default, the
-  /// response includes only current member accounts. To include all accounts,
-  /// set the value for this parameter to false.
+  /// of an account's relationship with the administrator account. By default,
+  /// the response includes only current member accounts. To include all
+  /// accounts, set this value to false.
   Future<ListMembersResponse> listMembers({
     int? maxResults,
     String? nextToken,
@@ -1498,7 +1595,7 @@ class Macie2 {
   }
 
   /// Retrieves information about the delegated Amazon Macie administrator
-  /// account for an AWS organization.
+  /// account for an Amazon Web Services organization.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1590,6 +1687,87 @@ class Macie2 {
     return PutClassificationExportConfigurationResponse.fromJson(response);
   }
 
+  /// Updates the configuration settings for publishing findings to Security
+  /// Hub.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  ///
+  /// Parameter [clientToken] :
+  /// A unique, case-sensitive token that you provide to ensure the idempotency
+  /// of the request.
+  ///
+  /// Parameter [securityHubConfiguration] :
+  /// The configuration settings that determine which findings to publish to
+  /// Security Hub.
+  Future<void> putFindingsPublicationConfiguration({
+    String? clientToken,
+    SecurityHubConfiguration? securityHubConfiguration,
+  }) async {
+    final $payload = <String, dynamic>{
+      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
+      if (securityHubConfiguration != null)
+        'securityHubConfiguration': securityHubConfiguration,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/findings-publication-configuration',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Retrieves (queries) statistical data and other information about Amazon
+  /// Web Services resources that Amazon Macie monitors and analyzes.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  ///
+  /// Parameter [bucketCriteria] :
+  /// The filter conditions that determine which S3 buckets to include or
+  /// exclude from the query results.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of items to include in each page of the response. The
+  /// default value is 50.
+  ///
+  /// Parameter [nextToken] :
+  /// The nextToken string that specifies which page of results to return in a
+  /// paginated response.
+  ///
+  /// Parameter [sortCriteria] :
+  /// The criteria to use to sort the results.
+  Future<SearchResourcesResponse> searchResources({
+    SearchResourcesBucketCriteria? bucketCriteria,
+    int? maxResults,
+    String? nextToken,
+    SearchResourcesSortCriteria? sortCriteria,
+  }) async {
+    final $payload = <String, dynamic>{
+      if (bucketCriteria != null) 'bucketCriteria': bucketCriteria,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (sortCriteria != null) 'sortCriteria': sortCriteria,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/datasources/search-resources',
+      exceptionFnMap: _exceptionFns,
+    );
+    return SearchResourcesResponse.fromJson(response);
+  }
+
   /// Adds or updates one or more tags (keys and values) that are associated
   /// with a classification job, custom data identifier, findings filter, or
   /// member account.
@@ -1644,21 +1822,21 @@ class Macie2 {
   /// An array that lists specific character sequences (ignore words) to exclude
   /// from the results. If the text matched by the regular expression is the
   /// same as any string in this array, Amazon Macie ignores it. The array can
-  /// contain as many as 10 ignore words. Each ignore word can contain 4 - 90
+  /// contain as many as 10 ignore words. Each ignore word can contain 4-90
   /// characters. Ignore words are case sensitive.
   ///
   /// Parameter [keywords] :
   /// An array that lists specific character sequences (keywords), one of which
   /// must be within proximity (maximumMatchDistance) of the regular expression
   /// to match. The array can contain as many as 50 keywords. Each keyword can
-  /// contain 4 - 90 characters. Keywords aren't case sensitive.
+  /// contain 3-90 characters. Keywords aren't case sensitive.
   ///
   /// Parameter [maximumMatchDistance] :
   /// The maximum number of characters that can exist between text that matches
   /// the regex pattern and the character sequences specified by the keywords
   /// array. Macie includes or excludes a result based on the proximity of a
-  /// keyword to text that matches the regex pattern. The distance can be 1 -
-  /// 300 characters. The default value is 50.
+  /// keyword to text that matches the regex pattern. The distance can be 1-300
+  /// characters. The default value is 50.
   Future<TestCustomDataIdentifierResponse> testCustomDataIdentifier({
     required String regex,
     required String sampleText,
@@ -1751,9 +1929,9 @@ class Macie2 {
   /// </li>
   /// <li>
   /// USER_PAUSED - Pauses the job temporarily. This value is valid only if the
-  /// job's current status is IDLE or RUNNING. If you specify this value and the
-  /// job's current status is RUNNING, Macie immediately begins to pause all
-  /// processing tasks for the job.
+  /// job's current status is IDLE, PAUSED, or RUNNING. If you specify this
+  /// value and the job's current status is RUNNING, Macie immediately begins to
+  /// pause all processing tasks for the job.
   ///
   /// If you pause a one-time job and you don't resume it within 30 days, the
   /// job expires and Macie cancels the job. If you pause a recurring job when
@@ -1799,6 +1977,10 @@ class Macie2 {
   /// archive) the findings; and, NOOP, don't perform any action on the
   /// findings.
   ///
+  /// Parameter [clientToken] :
+  /// A unique, case-sensitive token that you provide to ensure the idempotency
+  /// of the request.
+  ///
   /// Parameter [description] :
   /// A custom description of the filter. The description can contain as many as
   /// 512 characters.
@@ -1827,6 +2009,7 @@ class Macie2 {
   Future<UpdateFindingsFilterResponse> updateFindingsFilter({
     required String id,
     FindingsFilterAction? action,
+    String? clientToken,
     String? description,
     FindingCriteria? findingCriteria,
     String? name,
@@ -1835,6 +2018,7 @@ class Macie2 {
     ArgumentError.checkNotNull(id, 'id');
     final $payload = <String, dynamic>{
       if (action != null) 'action': action.toValue(),
+      'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
       if (findingCriteria != null) 'findingCriteria': findingCriteria,
       if (name != null) 'name': name,
@@ -1862,13 +2046,13 @@ class Macie2 {
   ///
   /// Parameter [findingPublishingFrequency] :
   /// Specifies how often to publish updates to policy findings for the account.
-  /// This includes publishing updates to AWS Security Hub and Amazon
-  /// EventBridge (formerly called Amazon CloudWatch Events).
+  /// This includes publishing updates to Security Hub and Amazon EventBridge
+  /// (formerly called Amazon CloudWatch Events).
   ///
   /// Parameter [status] :
-  /// Specifies whether to change the status of the account. Valid values are:
-  /// ENABLED, resume all Amazon Macie activities for the account; and, PAUSED,
-  /// suspend all Macie activities for the account.
+  /// Specifies a new status for the account. Valid values are: ENABLED, resume
+  /// all Amazon Macie activities for the account; and, PAUSED, suspend all
+  /// Macie activities for the account.
   Future<void> updateMacieSession({
     FindingPublishingFrequency? findingPublishingFrequency,
     MacieStatus? status,
@@ -1886,7 +2070,7 @@ class Macie2 {
     );
   }
 
-  /// Enables an Amazon Macie master account to suspend or re-enable a member
+  /// Enables an Amazon Macie administrator to suspend or re-enable a member
   /// account.
   ///
   /// May throw [ValidationException].
@@ -1922,7 +2106,8 @@ class Macie2 {
     );
   }
 
-  /// Updates the Amazon Macie configuration settings for an AWS organization.
+  /// Updates the Amazon Macie configuration settings for an Amazon Web Services
+  /// organization.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -1933,8 +2118,8 @@ class Macie2 {
   /// May throw [ConflictException].
   ///
   /// Parameter [autoEnable] :
-  /// Specifies whether Amazon Macie is enabled automatically for each account,
-  /// when the account is added to the AWS organization.
+  /// Specifies whether to enable Amazon Macie automatically for each account,
+  /// when the account is added to the Amazon Web Services organization.
   Future<void> updateOrganizationConfiguration({
     required bool autoEnable,
   }) async {
@@ -1981,10 +2166,10 @@ class AccessControlList {
   }
 }
 
-/// Specifies details for an account to associate with an Amazon Macie master
-/// account.
+/// Specifies the details of an account to associate with an Amazon Macie
+/// administrator account.
 class AccountDetail {
-  /// The AWS account ID for the account.
+  /// The Amazon Web Services account ID for the account.
   final String accountId;
 
   /// The email address for the account.
@@ -2004,10 +2189,11 @@ class AccountDetail {
   }
 }
 
-/// Provides information about account-level permissions settings that apply to
-/// an S3 bucket.
+/// Provides information about the account-level permissions settings that apply
+/// to an S3 bucket.
 class AccountLevelPermissions {
-  /// The block public access settings for the bucket.
+  /// The block public access settings for the Amazon Web Services account that
+  /// owns the bucket.
   final BlockPublicAccess? blockPublicAccess;
 
   AccountLevelPermissions({
@@ -2024,12 +2210,12 @@ class AccountLevelPermissions {
 }
 
 /// Provides information about the delegated Amazon Macie administrator account
-/// for an AWS organization.
+/// for an Amazon Web Services organization.
 class AdminAccount {
-  /// The AWS account ID for the account.
+  /// The Amazon Web Services account ID for the account.
   final String? accountId;
 
-  /// The current status of the account as a delegated administrator of Amazon
+  /// The current status of the account as the delegated administrator of Amazon
   /// Macie for the organization.
   final AdminStatus? status;
 
@@ -2046,7 +2232,7 @@ class AdminAccount {
 }
 
 /// The current status of an account as the delegated Amazon Macie administrator
-/// account for an AWS organization.
+/// account for an Amazon Web Services organization. Possible values are:
 enum AdminStatus {
   enabled,
   disablingInProgress,
@@ -2075,6 +2261,40 @@ extension on String {
   }
 }
 
+enum AllowsUnencryptedObjectUploads {
+  $true,
+  $false,
+  unknown,
+}
+
+extension on AllowsUnencryptedObjectUploads {
+  String toValue() {
+    switch (this) {
+      case AllowsUnencryptedObjectUploads.$true:
+        return 'TRUE';
+      case AllowsUnencryptedObjectUploads.$false:
+        return 'FALSE';
+      case AllowsUnencryptedObjectUploads.unknown:
+        return 'UNKNOWN';
+    }
+  }
+}
+
+extension on String {
+  AllowsUnencryptedObjectUploads toAllowsUnencryptedObjectUploads() {
+    switch (this) {
+      case 'TRUE':
+        return AllowsUnencryptedObjectUploads.$true;
+      case 'FALSE':
+        return AllowsUnencryptedObjectUploads.$false;
+      case 'UNKNOWN':
+        return AllowsUnencryptedObjectUploads.unknown;
+    }
+    throw Exception(
+        '$this is not known in enum AllowsUnencryptedObjectUploads');
+  }
+}
+
 /// Provides information about an API operation that an entity invoked for an
 /// affected resource.
 class ApiCallDetails {
@@ -2082,7 +2302,7 @@ class ApiCallDetails {
   /// finding.
   final String? api;
 
-  /// The URL of the AWS service that provides the operation, for example:
+  /// The URL of the Amazon Web Service that provides the operation, for example:
   /// s3.amazonaws.com.
   final String? apiServiceName;
 
@@ -2112,14 +2332,14 @@ class ApiCallDetails {
 
 /// Provides information about an identity that performed an action on an
 /// affected resource by using temporary security credentials. The credentials
-/// were obtained using the AssumeRole operation of the AWS Security Token
-/// Service (AWS STS) API.
+/// were obtained using the AssumeRole operation of the Security Token Service
+/// (STS) API.
 class AssumedRole {
-  /// The AWS access key ID that identifies the credentials.
+  /// The Amazon Web Services access key ID that identifies the credentials.
   final String? accessKeyId;
 
-  /// The unique identifier for the AWS account that owns the entity that was used
-  /// to get the credentials.
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// entity that was used to get the credentials.
   final String? accountId;
 
   /// The Amazon Resource Name (ARN) of the entity that was used to get the
@@ -2154,11 +2374,12 @@ class AssumedRole {
   }
 }
 
-/// Provides information about an AWS account and entity that performed an
-/// action on an affected resource. The action was performed using the
-/// credentials for an AWS account other than your own account.
+/// Provides information about an Amazon Web Services account and entity that
+/// performed an action on an affected resource. The action was performed using
+/// the credentials for an Amazon Web Services account other than your own
+/// account.
 class AwsAccount {
-  /// The unique identifier for the AWS account.
+  /// The unique identifier for the Amazon Web Services account.
   final String? accountId;
 
   /// The unique identifier for the entity that performed the action.
@@ -2176,10 +2397,10 @@ class AwsAccount {
   }
 }
 
-/// Provides information about an AWS service that performed an action on an
-/// affected resource.
+/// Provides information about an Amazon Web Service that performed an action on
+/// an affected resource.
 class AwsService {
-  /// The name of the AWS service that performed the action.
+  /// The name of the Amazon Web Service that performed the action.
   final String? invokedBy;
 
   AwsService({
@@ -2268,9 +2489,9 @@ class BatchGetCustomDataIdentifiersResponse {
 /// Provides information about the block public access settings for an S3
 /// bucket. These settings can apply to a bucket at the account level or bucket
 /// level. For detailed information about each setting, see <a
-/// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">Using
-/// Amazon S3 block public access</a> in the <i>Amazon Simple Storage Service
-/// Developer Guide</i>.
+/// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html">Blocking
+/// public access to your Amazon S3 storage</a> in the <i>Amazon Simple Storage
+/// Service User Guide</i>.
 class BlockPublicAccess {
   /// Specifies whether Amazon S3 blocks public access control lists (ACLs) for
   /// the bucket and objects in the bucket.
@@ -2339,53 +2560,66 @@ class BucketCountByEffectivePermission {
 }
 
 /// Provides information about the number of S3 buckets that use certain types
-/// of server-side encryption or don't encrypt objects by default.
+/// of server-side encryption by default or don't encrypt new objects by
+/// default. For detailed information about these settings, see <a
+/// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html">Setting
+/// default server-side encryption behavior for Amazon S3 buckets</a> in the
+/// <i>Amazon Simple Storage Service User Guide</i>.
 class BucketCountByEncryptionType {
-  /// The total number of buckets that use an AWS Key Management Service (AWS KMS)
-  /// customer master key (CMK) by default to encrypt objects. These buckets use
-  /// AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS
-  /// (SSE-KMS) encryption.
+  /// The total number of buckets that use an Key Management Service (KMS)
+  /// customer master key (CMK) to encrypt new objects by default. These buckets
+  /// use Amazon Web Services managed KMS encryption (AWS-KMS) or customer managed
+  /// KMS encryption (SSE-KMS) by default.
   final int? kmsManaged;
 
-  /// The total number of buckets that use an Amazon S3 managed key by default to
-  /// encrypt objects. These buckets use Amazon S3 managed (SSE-S3) encryption.
+  /// The total number of buckets that use an Amazon S3 managed key to encrypt new
+  /// objects by default. These buckets use Amazon S3 managed encryption (SSE-S3)
+  /// by default.
   final int? s3Managed;
 
-  /// The total number of buckets that don't encrypt objects by default. Default
-  /// encryption is disabled for these buckets.
+  /// The total number of buckets that don't encrypt new objects by default.
+  /// Default encryption is disabled for these buckets.
   final int? unencrypted;
+
+  /// The total number of buckets that Amazon Macie doesn't have current
+  /// encryption metadata for. Macie can't provide current data about the default
+  /// encryption settings for these buckets.
+  final int? unknown;
 
   BucketCountByEncryptionType({
     this.kmsManaged,
     this.s3Managed,
     this.unencrypted,
+    this.unknown,
   });
   factory BucketCountByEncryptionType.fromJson(Map<String, dynamic> json) {
     return BucketCountByEncryptionType(
       kmsManaged: json['kmsManaged'] as int?,
       s3Managed: json['s3Managed'] as int?,
       unencrypted: json['unencrypted'] as int?,
+      unknown: json['unknown'] as int?,
     );
   }
 }
 
-/// Provides information about the number of S3 buckets that are shared with
-/// other AWS accounts.
+/// Provides information about the number of S3 buckets that are or aren't
+/// shared with other Amazon Web Services accounts.
 class BucketCountBySharedAccessType {
-  /// The total number of buckets that are shared with an AWS account that isn't
-  /// part of the same Amazon Macie organization.
+  /// The total number of buckets that are shared with an Amazon Web Services
+  /// account that isn't part of the same Amazon Macie organization.
   final int? external;
 
-  /// The total number of buckets that are shared with an AWS account that's part
-  /// of the same Amazon Macie organization.
+  /// The total number of buckets that are shared with an Amazon Web Services
+  /// account that's part of the same Amazon Macie organization.
   final int? internal;
 
-  /// The total number of buckets that aren't shared with other AWS accounts.
+  /// The total number of buckets that aren't shared with other Amazon Web
+  /// Services accounts.
   final int? notShared;
 
   /// The total number of buckets that Amazon Macie wasn't able to evaluate shared
   /// access settings for. Macie can't determine whether these buckets are shared
-  /// with other AWS accounts.
+  /// with other Amazon Web Services accounts.
   final int? unknown;
 
   BucketCountBySharedAccessType({
@@ -2399,6 +2633,46 @@ class BucketCountBySharedAccessType {
       external: json['external'] as int?,
       internal: json['internal'] as int?,
       notShared: json['notShared'] as int?,
+      unknown: json['unknown'] as int?,
+    );
+  }
+}
+
+/// Provides information about the number of S3 buckets whose bucket policies do
+/// or don't require server-side encryption of objects when objects are uploaded
+/// to the buckets.
+class BucketCountPolicyAllowsUnencryptedObjectUploads {
+  /// The total number of buckets that don't have a bucket policy or have a bucket
+  /// policy that doesn't require server-side encryption of new objects. If a
+  /// bucket policy exists, the policy doesn't require PutObject requests to
+  /// include the x-amz-server-side-encryption header and it doesn't require the
+  /// value for that header to be AES256 or aws:kms.
+  final int? allowsUnencryptedObjectUploads;
+
+  /// The total number of buckets whose bucket policies require server-side
+  /// encryption of new objects. PutObject requests for these buckets must include
+  /// the x-amz-server-side-encryption header and the value for that header must
+  /// be AES256 or aws:kms.
+  final int? deniesUnencryptedObjectUploads;
+
+  /// The total number of buckets that Amazon Macie wasn't able to evaluate
+  /// server-side encryption requirements for. Macie can't determine whether the
+  /// bucket policies for these buckets require server-side encryption of new
+  /// objects.
+  final int? unknown;
+
+  BucketCountPolicyAllowsUnencryptedObjectUploads({
+    this.allowsUnencryptedObjectUploads,
+    this.deniesUnencryptedObjectUploads,
+    this.unknown,
+  });
+  factory BucketCountPolicyAllowsUnencryptedObjectUploads.fromJson(
+      Map<String, dynamic> json) {
+    return BucketCountPolicyAllowsUnencryptedObjectUploads(
+      allowsUnencryptedObjectUploads:
+          json['allowsUnencryptedObjectUploads'] as int?,
+      deniesUnencryptedObjectUploads:
+          json['deniesUnencryptedObjectUploads'] as int?,
       unknown: json['unknown'] as int?,
     );
   }
@@ -2499,8 +2773,33 @@ class BucketLevelPermissions {
 /// Provides information about an S3 bucket that Amazon Macie monitors and
 /// analyzes.
 class BucketMetadata {
-  /// The unique identifier for the AWS account that owns the bucket.
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// bucket.
   final String? accountId;
+
+  /// Specifies whether the bucket policy for the bucket requires server-side
+  /// encryption of objects when objects are uploaded to the bucket. Possible
+  /// values are:
+  ///
+  /// <ul>
+  /// <li>
+  /// FALSE - The bucket policy requires server-side encryption of new objects.
+  /// PutObject requests must include the x-amz-server-side-encryption header and
+  /// the value for that header must be AES256 or aws:kms.
+  /// </li>
+  /// <li>
+  /// TRUE - The bucket doesn't have a bucket policy or it has a bucket policy
+  /// that doesn't require server-side encryption of new objects. If a bucket
+  /// policy exists, it doesn't require PutObject requests to include the
+  /// x-amz-server-side-encryption header and it doesn't require the value for
+  /// that header to be AES256 or aws:kms.
+  /// </li>
+  /// <li>
+  /// UNKNOWN - Amazon Macie can't determine whether the bucket policy requires
+  /// server-side encryption of new objects.
+  /// </li>
+  /// </ul>
+  final AllowsUnencryptedObjectUploads? allowsUnencryptedObjectUploads;
 
   /// The Amazon Resource Name (ARN) of the bucket.
   final String? bucketArn;
@@ -2520,6 +2819,11 @@ class BucketMetadata {
   /// The total storage size, in bytes, of the objects that Amazon Macie can
   /// analyze in the bucket. These objects use a supported storage class and have
   /// a file name extension for a supported file or storage format.
+  ///
+  /// If versioning is enabled for the bucket, Macie calculates this value based
+  /// on the size of the latest version of each applicable object in the bucket.
+  /// This value doesn't reflect the storage size of all versions of each
+  /// applicable object in the bucket.
   final int? classifiableSizeInBytes;
 
   /// Specifies whether any one-time or recurring classification jobs are
@@ -2528,7 +2832,8 @@ class BucketMetadata {
   final JobDetails? jobDetails;
 
   /// The date and time, in UTC and extended ISO 8601 format, when Amazon Macie
-  /// most recently retrieved data about the bucket from Amazon S3.
+  /// most recently retrieved both bucket and object metadata from Amazon S3 for
+  /// the bucket.
   final DateTime? lastUpdated;
 
   /// The total number of objects in the bucket.
@@ -2539,32 +2844,38 @@ class BucketMetadata {
   /// objects that aren't encrypted or use client-side encryption.
   final ObjectCountByEncryptionType? objectCountByEncryptionType;
 
-  /// Specifies whether the bucket is publicly accessible. If this value is true,
-  /// an access control list (ACL), bucket policy, or block public access settings
-  /// allow the bucket to be accessed by the general public.
+  /// Specifies whether the bucket is publicly accessible due to the combination
+  /// of permissions settings that apply to the bucket, and provides information
+  /// about those settings.
   final BucketPublicAccess? publicAccess;
 
-  /// The AWS Region that hosts the bucket.
+  /// The Amazon Web Services Region that hosts the bucket.
   final String? region;
 
   /// Specifies whether the bucket is configured to replicate one or more objects
-  /// to buckets for other AWS accounts and, if so, which accounts.
+  /// to buckets for other Amazon Web Services accounts and, if so, which
+  /// accounts.
   final ReplicationDetails? replicationDetails;
 
-  /// Specifies whether the bucket is shared with another AWS account. Possible
-  /// values are:
+  /// Specifies whether the bucket encrypts new objects by default and, if so, the
+  /// type of server-side encryption that's used.
+  final BucketServerSideEncryption? serverSideEncryption;
+
+  /// Specifies whether the bucket is shared with another Amazon Web Services
+  /// account. Possible values are:
   ///
   /// <ul>
   /// <li>
-  /// EXTERNAL - The bucket is shared with an AWS account that isn't part of the
-  /// same Amazon Macie organization.
+  /// EXTERNAL - The bucket is shared with an Amazon Web Services account that
+  /// isn't part of the same Amazon Macie organization.
   /// </li>
   /// <li>
-  /// INTERNAL - The bucket is shared with an AWS account that's part of the same
-  /// Amazon Macie organization.
+  /// INTERNAL - The bucket is shared with an Amazon Web Services account that's
+  /// part of the same Amazon Macie organization.
   /// </li>
   /// <li>
-  /// NOT_SHARED - The bucket isn't shared with other AWS accounts.
+  /// NOT_SHARED - The bucket isn't shared with other Amazon Web Services
+  /// accounts.
   /// </li>
   /// <li>
   /// UNKNOWN - Amazon Macie wasn't able to evaluate the shared access settings
@@ -2574,9 +2885,20 @@ class BucketMetadata {
   final SharedAccess? sharedAccess;
 
   /// The total storage size, in bytes, of the bucket.
+  ///
+  /// If versioning is enabled for the bucket, Amazon Macie calculates this value
+  /// based on the size of the latest version of each object in the bucket. This
+  /// value doesn't reflect the storage size of all versions of each object in the
+  /// bucket.
   final int? sizeInBytes;
 
-  /// The total compressed storage size, in bytes, of the bucket.
+  /// The total storage size, in bytes, of the objects that are compressed (.gz,
+  /// .gzip, .zip) files in the bucket.
+  ///
+  /// If versioning is enabled for the bucket, Macie calculates this value based
+  /// on the size of the latest version of each applicable object in the bucket.
+  /// This value doesn't reflect the storage size of all versions of each
+  /// applicable object in the bucket.
   final int? sizeInBytesCompressed;
 
   /// An array that specifies the tags (keys and values) that are associated with
@@ -2598,6 +2920,7 @@ class BucketMetadata {
 
   BucketMetadata({
     this.accountId,
+    this.allowsUnencryptedObjectUploads,
     this.bucketArn,
     this.bucketCreatedAt,
     this.bucketName,
@@ -2610,6 +2933,7 @@ class BucketMetadata {
     this.publicAccess,
     this.region,
     this.replicationDetails,
+    this.serverSideEncryption,
     this.sharedAccess,
     this.sizeInBytes,
     this.sizeInBytesCompressed,
@@ -2621,6 +2945,9 @@ class BucketMetadata {
   factory BucketMetadata.fromJson(Map<String, dynamic> json) {
     return BucketMetadata(
       accountId: json['accountId'] as String?,
+      allowsUnencryptedObjectUploads:
+          (json['allowsUnencryptedObjectUploads'] as String?)
+              ?.toAllowsUnencryptedObjectUploads(),
       bucketArn: json['bucketArn'] as String?,
       bucketCreatedAt: timeStampFromJson(json['bucketCreatedAt']),
       bucketName: json['bucketName'] as String?,
@@ -2643,6 +2970,10 @@ class BucketMetadata {
       replicationDetails: json['replicationDetails'] != null
           ? ReplicationDetails.fromJson(
               json['replicationDetails'] as Map<String, dynamic>)
+          : null,
+      serverSideEncryption: json['serverSideEncryption'] != null
+          ? BucketServerSideEncryption.fromJson(
+              json['serverSideEncryption'] as Map<String, dynamic>)
           : null,
       sharedAccess: (json['sharedAccess'] as String?)?.toSharedAccess(),
       sizeInBytes: json['sizeInBytes'] as int?,
@@ -2693,7 +3024,7 @@ class BucketPermissionConfiguration {
   }
 }
 
-/// Provides information about the permissions settings of a bucket policy for
+/// Provides information about the permissions settings of the bucket policy for
 /// an S3 bucket.
 class BucketPolicy {
   /// Specifies whether the bucket policy allows the general public to have read
@@ -2736,7 +3067,7 @@ class BucketPublicAccess {
   /// </ul>
   final EffectivePermission? effectivePermission;
 
-  /// The account-level and bucket-level permissions for the bucket.
+  /// The account-level and bucket-level permissions settings for the bucket.
   final BucketPermissionConfiguration? permissionConfiguration;
 
   BucketPublicAccess({
@@ -2755,17 +3086,63 @@ class BucketPublicAccess {
   }
 }
 
+/// Provides information about the default server-side encryption settings for
+/// an S3 bucket. For detailed information about these settings, see <a
+/// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html">Setting
+/// default server-side encryption behavior for Amazon S3 buckets</a> in the
+/// <i>Amazon Simple Storage Service User Guide</i>.
+class BucketServerSideEncryption {
+  /// The Amazon Resource Name (ARN) or unique identifier (key ID) for the Key
+  /// Management Service (KMS) customer master key (CMK) that's used by default to
+  /// encrypt objects that are added to the bucket. This value is null if the
+  /// bucket uses an Amazon S3 managed key to encrypt new objects or the bucket
+  /// doesn't encrypt new objects by default.
+  final String? kmsMasterKeyId;
+
+  /// The type of server-side encryption that's used by default when storing new
+  /// objects in the bucket. Possible values are:
+  ///
+  /// <ul>
+  /// <li>
+  /// AES256 - New objects are encrypted with an Amazon S3 managed key and use
+  /// Amazon S3 managed encryption (SSE-S3).
+  /// </li>
+  /// <li>
+  /// aws:kms - New objects are encrypted with an KMS CMK, specified by the
+  /// kmsMasterKeyId property, and use Amazon Web Services managed KMS encryption
+  /// (AWS-KMS) or customer managed KMS encryption (SSE-KMS).
+  /// </li>
+  /// <li>
+  /// NONE - New objects aren't encrypted by default. Default encryption is
+  /// disabled for the bucket.
+  /// </li>
+  /// </ul>
+  final Type? type;
+
+  BucketServerSideEncryption({
+    this.kmsMasterKeyId,
+    this.type,
+  });
+  factory BucketServerSideEncryption.fromJson(Map<String, dynamic> json) {
+    return BucketServerSideEncryption(
+      kmsMasterKeyId: json['kmsMasterKeyId'] as String?,
+      type: (json['type'] as String?)?.toType(),
+    );
+  }
+}
+
 /// Specifies criteria for sorting the results of a query for information about
 /// S3 buckets.
 class BucketSortCriteria {
-  /// The name of the property to sort the results by. This value can be the name
-  /// of any property that Amazon Macie defines as bucket metadata, such as
-  /// bucketName or accountId.
+  /// The name of the bucket property to sort the results by. This value can be
+  /// one of the following properties that Amazon Macie defines as bucket
+  /// metadata: accountId, bucketName, classifiableObjectCount,
+  /// classifiableSizeInBytes, objectCount, or sizeInBytes.
   final String? attributeName;
 
-  /// The sort order to apply to the results, based on the value for the property
-  /// specified by the attributeName property. Valid values are: ASC, sort the
-  /// results in ascending order; and, DESC, sort the results in descending order.
+  /// The sort order to apply to the results, based on the value specified by the
+  /// attributeName property. Valid values are: ASC, sort the results in ascending
+  /// order; and, DESC, sort the results in descending order.
   final OrderBy? orderBy;
 
   BucketSortCriteria({
@@ -2786,19 +3163,20 @@ class BucketSortCriteria {
 /// Excel workbook, CSV file, or TSV file.
 class Cell {
   /// The location of the cell, as an absolute cell reference, that contains the
-  /// data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel
-  /// workbook. This value is null for CSV and TSV files.
+  /// sensitive data, for example Sheet2!C5 for cell C5 on Sheet2 in a Microsoft
+  /// Excel workbook. This value is null for CSV and TSV files.
   final String? cellReference;
 
-  /// The column number of the column that contains the data. For a Microsoft
-  /// Excel workbook, this value correlates to the alphabetical character(s) for a
-  /// column identifier. For example, 1 for column A, 2 for column B, and so on.
+  /// The column number of the column that contains the sensitive data. For a
+  /// Microsoft Excel workbook, this value correlates to the alphabetical
+  /// character(s) for a column identifier, for example: 1 for column A, 2 for
+  /// column B, and so on.
   final int? column;
 
-  /// The name of the column that contains the data, if available.
+  /// The name of the column that contains the sensitive data, if available.
   final String? columnName;
 
-  /// The row number of the row that contains the data.
+  /// The row number of the row that contains the sensitive data.
   final int? row;
 
   Cell({
@@ -2833,7 +3211,7 @@ class ClassificationDetails {
   /// The unique identifier for the classification job that produced the finding.
   final String? jobId;
 
-  /// The status and other details for the finding.
+  /// The status and other details of the finding.
   final ClassificationResult? result;
 
   ClassificationDetails({
@@ -2952,18 +3330,17 @@ class ClassificationResultStatus {
   ///
   /// <ul>
   /// <li>
-  /// COMPLETE - Amazon Macie successfully completed its analysis of the object
+  /// COMPLETE - Amazon Macie successfully completed its analysis of the S3 object
   /// that the finding applies to.
   /// </li>
   /// <li>
-  /// PARTIAL - Macie analyzed only a subset of the data in the object that the
+  /// PARTIAL - Macie analyzed only a subset of the data in the S3 object that the
   /// finding applies to. For example, the object is an archive file that contains
   /// files in an unsupported format.
   /// </li>
   /// <li>
-  /// SKIPPED - Macie wasn't able to analyze the object that the finding applies
-  /// to. For example, the object is a malformed file or a file that uses an
-  /// unsupported format.
+  /// SKIPPED - Macie wasn't able to analyze the S3 object that the finding
+  /// applies to. For example, the object is a file in an unsupported format.
   /// </li>
   /// </ul>
   final String? code;
@@ -3059,7 +3436,7 @@ class CreateInvitationsResponse {
 
 class CreateMemberResponse {
   /// The Amazon Resource Name (ARN) of the account that was associated with the
-  /// master account.
+  /// administrator account.
   final String? arn;
 
   CreateMemberResponse({
@@ -3076,6 +3453,72 @@ class CreateSampleFindingsResponse {
   CreateSampleFindingsResponse();
   factory CreateSampleFindingsResponse.fromJson(Map<String, dynamic> _) {
     return CreateSampleFindingsResponse();
+  }
+}
+
+/// Specifies one or more property- and tag-based conditions that define
+/// criteria for including or excluding S3 buckets from a classification job.
+class CriteriaBlockForJob {
+  /// An array of conditions, one for each condition that determines which buckets
+  /// to include or exclude from the job. If you specify more than one condition,
+  /// Amazon Macie uses AND logic to join the conditions.
+  final List<CriteriaForJob>? and;
+
+  CriteriaBlockForJob({
+    this.and,
+  });
+  factory CriteriaBlockForJob.fromJson(Map<String, dynamic> json) {
+    return CriteriaBlockForJob(
+      and: (json['and'] as List?)
+          ?.whereNotNull()
+          .map((e) => CriteriaForJob.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    return {
+      if (and != null) 'and': and,
+    };
+  }
+}
+
+/// Specifies a property- or tag-based condition that defines criteria for
+/// including or excluding S3 buckets from a classification job.
+class CriteriaForJob {
+  /// A property-based condition that defines a property, operator, and one or
+  /// more values for including or excluding buckets from the job.
+  final SimpleCriterionForJob? simpleCriterion;
+
+  /// A tag-based condition that defines an operator and tag keys, tag values, or
+  /// tag key and value pairs for including or excluding buckets from the job.
+  final TagCriterionForJob? tagCriterion;
+
+  CriteriaForJob({
+    this.simpleCriterion,
+    this.tagCriterion,
+  });
+  factory CriteriaForJob.fromJson(Map<String, dynamic> json) {
+    return CriteriaForJob(
+      simpleCriterion: json['simpleCriterion'] != null
+          ? SimpleCriterionForJob.fromJson(
+              json['simpleCriterion'] as Map<String, dynamic>)
+          : null,
+      tagCriterion: json['tagCriterion'] != null
+          ? TagCriterionForJob.fromJson(
+              json['tagCriterion'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final simpleCriterion = this.simpleCriterion;
+    final tagCriterion = this.tagCriterion;
+    return {
+      if (simpleCriterion != null) 'simpleCriterion': simpleCriterion,
+      if (tagCriterion != null) 'tagCriterion': tagCriterion,
+    };
   }
 }
 
@@ -3167,8 +3610,8 @@ class CriterionAdditionalProperties {
   }
 }
 
-/// The type of currency that data for a usage metric is reported in. Possible
-/// values are:
+/// The type of currency that the data for an Amazon Macie usage metric is
+/// reported in. Possible values are:
 enum Currency {
   usd,
 }
@@ -3558,7 +4001,7 @@ class DescribeClassificationJobResponse {
   /// The custom name of the job.
   final String? name;
 
-  /// The S3 buckets that the job is configured to analyze, and the scope of that
+  /// The S3 buckets that contain the objects to analyze, and the scope of that
   /// analysis.
   final S3JobDefinition? s3JobDefinition;
 
@@ -3649,11 +4092,11 @@ class DescribeClassificationJobResponse {
 
 class DescribeOrganizationConfigurationResponse {
   /// Specifies whether Amazon Macie is enabled automatically for accounts that
-  /// are added to the AWS organization.
+  /// are added to the Amazon Web Services organization.
   final bool? autoEnable;
 
   /// Specifies whether the maximum number of Amazon Macie member accounts are
-  /// part of the AWS organization.
+  /// part of the Amazon Web Services organization.
   final bool? maxAccountLimitReached;
 
   DescribeOrganizationConfigurationResponse({
@@ -3681,6 +4124,14 @@ class DisableOrganizationAdminAccountResponse {
   factory DisableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
+  }
+}
+
+class DisassociateFromAdministratorAccountResponse {
+  DisassociateFromAdministratorAccountResponse();
+  factory DisassociateFromAdministratorAccountResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DisassociateFromAdministratorAccountResponse();
   }
 }
 
@@ -3803,7 +4254,7 @@ extension on String {
   }
 }
 
-/// The source of an error, issue, or delay. Possible values are:
+/// The source of an issue or delay. Possible values are:
 enum ErrorCode {
   clientError,
   internalError,
@@ -3834,14 +4285,14 @@ extension on String {
 
 /// Provides information about an identity that performed an action on an
 /// affected resource by using temporary security credentials. The credentials
-/// were obtained using the GetFederationToken operation of the AWS Security
-/// Token Service (AWS STS) API.
+/// were obtained using the GetFederationToken operation of the Security Token
+/// Service (STS) API.
 class FederatedUser {
-  /// The AWS access key ID that identifies the credentials.
+  /// The Amazon Web Services access key ID that identifies the credentials.
   final String? accessKeyId;
 
-  /// The unique identifier for the AWS account that owns the entity that was used
-  /// to get the credentials.
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// entity that was used to get the credentials.
   final String? accountId;
 
   /// The Amazon Resource Name (ARN) of the entity that was used to get the
@@ -3878,11 +4329,11 @@ class FederatedUser {
 
 /// Provides the details of a finding.
 class Finding {
-  /// The unique identifier for the AWS account that the finding applies to. This
-  /// is typically the account that owns the affected resource.
+  /// The unique identifier for the Amazon Web Services account that the finding
+  /// applies to. This is typically the account that owns the affected resource.
   final String? accountId;
 
-  /// Specifies whether the finding is archived.
+  /// Specifies whether the finding is archived (suppressed).
   final bool? archived;
 
   /// The category of the finding. Possible values are: CLASSIFICATION, for a
@@ -3909,14 +4360,14 @@ class Finding {
   /// Macie generates and assigns to a finding when it creates the finding.
   final String? id;
 
-  /// The AWS partition that Amazon Macie created the finding in.
+  /// The Amazon Web Services partition that Amazon Macie created the finding in.
   final String? partition;
 
   /// The details of a policy finding. This value is null for a sensitive data
   /// finding.
   final PolicyDetails? policyDetails;
 
-  /// The AWS Region that Amazon Macie created the finding in.
+  /// The Amazon Web Services Region that Amazon Macie created the finding in.
   final String? region;
 
   /// The resources that the finding applies to.
@@ -4149,9 +4600,12 @@ class FindingCriteria {
 }
 
 /// The frequency with which Amazon Macie publishes updates to policy findings
-/// for an account. This includes publishing updates to AWS Security Hub and
-/// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
-/// are:
+/// for an account. This includes publishing updates to Security Hub and Amazon
+/// EventBridge (formerly called Amazon CloudWatch Events). For more
+/// information, see <a
+/// href="https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html">Monitoring
+/// and processing findings</a> in the <i>Amazon Macie User Guide</i>. Valid
+/// values are:
 enum FindingPublishingFrequency {
   fifteenMinutes,
   oneHour,
@@ -4384,6 +4838,25 @@ class FindingsFilterListItem {
   }
 }
 
+class GetAdministratorAccountResponse {
+  /// The Amazon Web Services account ID for the administrator account. If the
+  /// accounts are associated by a Macie membership invitation, this object also
+  /// provides details about the invitation that was sent to establish the
+  /// relationship between the accounts.
+  final Invitation? administrator;
+
+  GetAdministratorAccountResponse({
+    this.administrator,
+  });
+  factory GetAdministratorAccountResponse.fromJson(Map<String, dynamic> json) {
+    return GetAdministratorAccountResponse(
+      administrator: json['administrator'] != null
+          ? Invitation.fromJson(json['administrator'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class GetBucketStatisticsResponse {
   /// The total number of buckets.
   final int? bucketCount;
@@ -4392,12 +4865,18 @@ class GetBucketStatisticsResponse {
   /// combination of permissions settings for each bucket.
   final BucketCountByEffectivePermission? bucketCountByEffectivePermission;
 
-  /// The total number of buckets, grouped by server-side encryption type. This
-  /// object also reports the total number of buckets that don't encrypt objects
-  /// by default.
+  /// The total number of buckets that use certain types of server-side encryption
+  /// to encrypt new objects by default. This object also reports the total number
+  /// of buckets that don't encrypt new objects by default.
   final BucketCountByEncryptionType? bucketCountByEncryptionType;
 
-  /// The total number of buckets that are shared with another AWS account.
+  /// The total number of buckets whose bucket policies do or don't require
+  /// server-side encryption of objects when objects are uploaded to the buckets.
+  final BucketCountPolicyAllowsUnencryptedObjectUploads?
+      bucketCountByObjectEncryptionRequirement;
+
+  /// The total number of buckets that are or aren't shared with another Amazon
+  /// Web Services account.
   final BucketCountBySharedAccessType? bucketCountBySharedAccessType;
 
   /// The total number of objects that Amazon Macie can analyze in the buckets.
@@ -4408,19 +4887,36 @@ class GetBucketStatisticsResponse {
   /// The total storage size, in bytes, of all the objects that Amazon Macie can
   /// analyze in the buckets. These objects use a supported storage class and have
   /// a file name extension for a supported file or storage format.
+  ///
+  /// If versioning is enabled for any of the buckets, Macie calculates this value
+  /// based on the size of the latest version of each applicable object in those
+  /// buckets. This value doesn't reflect the storage size of all versions of all
+  /// applicable objects in the buckets.
   final int? classifiableSizeInBytes;
 
   /// The date and time, in UTC and extended ISO 8601 format, when Amazon Macie
-  /// most recently retrieved data about the buckets from Amazon S3.
+  /// most recently retrieved both bucket and object metadata from Amazon S3 for
+  /// the buckets.
   final DateTime? lastUpdated;
 
   /// The total number of objects in the buckets.
   final int? objectCount;
 
   /// The total storage size, in bytes, of the buckets.
+  ///
+  /// If versioning is enabled for any of the buckets, Macie calculates this value
+  /// based on the size of the latest version of each object in those buckets.
+  /// This value doesn't reflect the storage size of all versions of the objects
+  /// in the buckets.
   final int? sizeInBytes;
 
-  /// The total compressed storage size, in bytes, of the buckets.
+  /// The total storage size, in bytes, of the objects that are compressed (.gz,
+  /// .gzip, .zip) files in the buckets.
+  ///
+  /// If versioning is enabled for any of the buckets, Macie calculates this value
+  /// based on the size of the latest version of each applicable object in those
+  /// buckets. This value doesn't reflect the storage size of all versions of the
+  /// applicable objects in the buckets.
   final int? sizeInBytesCompressed;
 
   /// The total number of objects that Amazon Macie can't analyze in the buckets.
@@ -4428,7 +4924,7 @@ class GetBucketStatisticsResponse {
   /// extension for a supported file or storage format.
   final ObjectLevelStatistics? unclassifiableObjectCount;
 
-  /// The total storage size, in bytes, of all the objects that Amazon Macie can't
+  /// The total storage size, in bytes, of the objects that Amazon Macie can't
   /// analyze in the buckets. These objects don't use a supported storage class or
   /// don't have a file name extension for a supported file or storage format.
   final ObjectLevelStatistics? unclassifiableObjectSizeInBytes;
@@ -4437,6 +4933,7 @@ class GetBucketStatisticsResponse {
     this.bucketCount,
     this.bucketCountByEffectivePermission,
     this.bucketCountByEncryptionType,
+    this.bucketCountByObjectEncryptionRequirement,
     this.bucketCountBySharedAccessType,
     this.classifiableObjectCount,
     this.classifiableSizeInBytes,
@@ -4460,6 +4957,12 @@ class GetBucketStatisticsResponse {
           ? BucketCountByEncryptionType.fromJson(
               json['bucketCountByEncryptionType'] as Map<String, dynamic>)
           : null,
+      bucketCountByObjectEncryptionRequirement:
+          json['bucketCountByObjectEncryptionRequirement'] != null
+              ? BucketCountPolicyAllowsUnencryptedObjectUploads.fromJson(
+                  json['bucketCountByObjectEncryptionRequirement']
+                      as Map<String, dynamic>)
+              : null,
       bucketCountBySharedAccessType:
           json['bucketCountBySharedAccessType'] != null
               ? BucketCountBySharedAccessType.fromJson(
@@ -4664,6 +5167,25 @@ class GetFindingsFilterResponse {
   }
 }
 
+class GetFindingsPublicationConfigurationResponse {
+  /// The configuration settings that determine which findings are published to
+  /// Security Hub.
+  final SecurityHubConfiguration? securityHubConfiguration;
+
+  GetFindingsPublicationConfigurationResponse({
+    this.securityHubConfiguration,
+  });
+  factory GetFindingsPublicationConfigurationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetFindingsPublicationConfigurationResponse(
+      securityHubConfiguration: json['securityHubConfiguration'] != null
+          ? SecurityHubConfiguration.fromJson(
+              json['securityHubConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class GetFindingsResponse {
   /// An array of objects, one for each finding that meets the criteria specified
   /// in the request.
@@ -4702,23 +5224,24 @@ class GetMacieSessionResponse {
   /// Macie account was created.
   final DateTime? createdAt;
 
-  /// The frequency with which Amazon Macie publishes updates to policy findings
-  /// for the account. This includes publishing updates to AWS Security Hub and
-  /// Amazon EventBridge (formerly called Amazon CloudWatch Events).
+  /// The frequency with which Macie publishes updates to policy findings for the
+  /// account. This includes publishing updates to Security Hub and Amazon
+  /// EventBridge (formerly called Amazon CloudWatch Events).
   final FindingPublishingFrequency? findingPublishingFrequency;
 
-  /// The Amazon Resource Name (ARN) of the service-linked role that allows Amazon
-  /// Macie to monitor and analyze data in AWS resources for the account.
+  /// The Amazon Resource Name (ARN) of the service-linked role that allows Macie
+  /// to monitor and analyze data in Amazon Web Services resources for the
+  /// account.
   final String? serviceRole;
 
-  /// The current status of the Amazon Macie account. Possible values are: PAUSED,
-  /// the account is enabled but all Amazon Macie activities are suspended
-  /// (paused) for the account; and, ENABLED, the account is enabled and all
-  /// Amazon Macie activities are enabled for the account.
+  /// The current status of the Macie account. Possible values are: PAUSED, the
+  /// account is enabled but all Macie activities are suspended (paused) for the
+  /// account; and, ENABLED, the account is enabled and all Macie activities are
+  /// enabled for the account.
   final MacieStatus? status;
 
   /// The date and time, in UTC and extended ISO 8601 format, of the most recent
-  /// change to the status of the Amazon Macie account.
+  /// change to the status of the Macie account.
   final DateTime? updatedAt;
 
   GetMacieSessionResponse({
@@ -4742,10 +5265,10 @@ class GetMacieSessionResponse {
 }
 
 class GetMasterAccountResponse {
-  /// The AWS account ID for the master account. If the accounts are associated by
-  /// a Macie membership invitation, this object also provides details about the
-  /// invitation that was sent and accepted to establish the relationship between
-  /// the accounts.
+  /// (Deprecated) The Amazon Web Services account ID for the administrator
+  /// account. If the accounts are associated by a Macie membership invitation,
+  /// this object also provides details about the invitation that was sent to
+  /// establish the relationship between the accounts.
   final Invitation? master;
 
   GetMasterAccountResponse({
@@ -4761,8 +5284,11 @@ class GetMasterAccountResponse {
 }
 
 class GetMemberResponse {
-  /// The AWS account ID for the account.
+  /// The Amazon Web Services account ID for the account.
   final String? accountId;
+
+  /// The Amazon Web Services account ID for the administrator account.
+  final String? administratorAccountId;
 
   /// The Amazon Resource Name (ARN) of the account.
   final String? arn;
@@ -4775,11 +5301,13 @@ class GetMemberResponse {
   /// Macie invitation hasn't been sent to the account.
   final DateTime? invitedAt;
 
-  /// The AWS account ID for the master account.
+  /// (Deprecated) The Amazon Web Services account ID for the administrator
+  /// account. This property has been replaced by the administratorAccountId
+  /// property and is retained only for backward compatibility.
   final String? masterAccountId;
 
-  /// The current status of the relationship between the account and the master
-  /// account.
+  /// The current status of the relationship between the account and the
+  /// administrator account.
   final RelationshipStatus? relationshipStatus;
 
   /// A map of key-value pairs that identifies the tags (keys and values) that are
@@ -4787,12 +5315,13 @@ class GetMemberResponse {
   final Map<String, String>? tags;
 
   /// The date and time, in UTC and extended ISO 8601 format, of the most recent
-  /// change to the status of the relationship between the account and the master
-  /// account.
+  /// change to the status of the relationship between the account and the
+  /// administrator account.
   final DateTime? updatedAt;
 
   GetMemberResponse({
     this.accountId,
+    this.administratorAccountId,
     this.arn,
     this.email,
     this.invitedAt,
@@ -4804,6 +5333,7 @@ class GetMemberResponse {
   factory GetMemberResponse.fromJson(Map<String, dynamic> json) {
     return GetMemberResponse(
       accountId: json['accountId'] as String?,
+      administratorAccountId: json['administratorAccountId'] as String?,
       arn: json['arn'] as String?,
       email: json['email'] as String?,
       invitedAt: timeStampFromJson(json['invitedAt']),
@@ -4827,9 +5357,15 @@ class GetUsageStatisticsResponse {
   /// the request.
   final List<UsageRecord>? records;
 
+  /// The inclusive time period that the usage data applies to. Possible values
+  /// are: MONTH_TO_DATE, for the current calendar month to date; and,
+  /// PAST_30_DAYS, for the preceding 30 days.
+  final TimeRange? timeRange;
+
   GetUsageStatisticsResponse({
     this.nextToken,
     this.records,
+    this.timeRange,
   });
   factory GetUsageStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageStatisticsResponse(
@@ -4838,20 +5374,28 @@ class GetUsageStatisticsResponse {
           ?.whereNotNull()
           .map((e) => UsageRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
+      timeRange: (json['timeRange'] as String?)?.toTimeRange(),
     );
   }
 }
 
 class GetUsageTotalsResponse {
+  /// The inclusive time period that the usage data applies to. Possible values
+  /// are: MONTH_TO_DATE, for the current calendar month to date; and,
+  /// PAST_30_DAYS, for the preceding 30 days.
+  final TimeRange? timeRange;
+
   /// An array of objects that contains the results of the query. Each object
   /// contains the data for a specific usage metric.
   final List<UsageTotal>? usageTotals;
 
   GetUsageTotalsResponse({
+    this.timeRange,
     this.usageTotals,
   });
   factory GetUsageTotalsResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageTotalsResponse(
+      timeRange: (json['timeRange'] as String?)?.toTimeRange(),
       usageTotals: (json['usageTotals'] as List?)
           ?.whereNotNull()
           .map((e) => UsageTotal.fromJson(e as Map<String, dynamic>))
@@ -4920,11 +5464,11 @@ class GroupCount {
   }
 }
 
-/// Provides information about an AWS Identity and Access Management (IAM) user
-/// who performed an action on an affected resource.
+/// Provides information about an Identity and Access Management (IAM) user who
+/// performed an action on an affected resource.
 class IamUser {
-  /// The unique identifier for the AWS account that's associated with the IAM
-  /// user who performed the action.
+  /// The unique identifier for the Amazon Web Services account that's associated
+  /// with the IAM user who performed the action.
   final String? accountId;
 
   /// The Amazon Resource Name (ARN) of the principal that performed the action.
@@ -4957,7 +5501,7 @@ class IamUser {
 /// Provides information about an Amazon Macie membership invitation that was
 /// received by an account.
 class Invitation {
-  /// The AWS account ID for the account that sent the invitation.
+  /// The Amazon Web Services account ID for the account that sent the invitation.
   final String? accountId;
 
   /// The unique identifier for the invitation. Amazon Macie uses this identifier
@@ -5200,6 +5744,7 @@ enum JobComparator {
   lte,
   ne,
   contains,
+  startsWith,
 }
 
 extension on JobComparator {
@@ -5219,6 +5764,8 @@ extension on JobComparator {
         return 'NE';
       case JobComparator.contains:
         return 'CONTAINS';
+      case JobComparator.startsWith:
+        return 'STARTS_WITH';
     }
   }
 }
@@ -5240,6 +5787,8 @@ extension on String {
         return JobComparator.ne;
       case 'CONTAINS':
         return JobComparator.contains;
+      case 'STARTS_WITH':
+        return JobComparator.startsWith;
     }
     throw Exception('$this is not known in enum JobComparator');
   }
@@ -5254,13 +5803,17 @@ class JobDetails {
   ///
   /// <ul>
   /// <li>
-  /// TRUE - One or more jobs is configured to analyze data in the bucket, and at
-  /// least one of those jobs has a status other than CANCELLED.
+  /// TRUE - The bucket is explicitly included in the bucket definition
+  /// (S3BucketDefinitionForJob) for one or more jobs and at least one of those
+  /// jobs has a status other than CANCELLED. Or the bucket matched the bucket
+  /// criteria (S3BucketCriteriaForJob) for at least one job that previously ran.
   /// </li>
   /// <li>
-  /// FALSE - No jobs are configured to analyze data in the bucket, or all the
-  /// jobs that are configured to analyze data in the bucket have a status of
-  /// CANCELLED.
+  /// FALSE - The bucket isn't explicitly included in the bucket definition
+  /// (S3BucketDefinitionForJob) for any jobs, all the jobs that explicitly
+  /// include the bucket in their bucket definitions have a status of CANCELLED,
+  /// or the bucket didn't match the bucket criteria (S3BucketCriteriaForJob) for
+  /// any jobs that previously ran.
   /// </li>
   /// <li>
   /// UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job
@@ -5275,13 +5828,18 @@ class JobDetails {
   ///
   /// <ul>
   /// <li>
-  /// TRUE - One or more recurring jobs is configured to analyze data in the
-  /// bucket, and at least one of those jobs has a status other than CANCELLED.
+  /// TRUE - The bucket is explicitly included in the bucket definition
+  /// (S3BucketDefinitionForJob) for one or more recurring jobs or the bucket
+  /// matches the bucket criteria (S3BucketCriteriaForJob) for one or more
+  /// recurring jobs. At least one of those jobs has a status other than
+  /// CANCELLED.
   /// </li>
   /// <li>
-  /// FALSE - No recurring jobs are configured to analyze data in the bucket, or
-  /// all the recurring jobs that are configured to analyze data in the bucket
-  /// have a status of CANCELLED.
+  /// FALSE - The bucket isn't explicitly included in the bucket definition
+  /// (S3BucketDefinitionForJob) for any recurring jobs, the bucket doesn't match
+  /// the bucket criteria (S3BucketCriteriaForJob) for any recurring jobs, or all
+  /// the recurring jobs that are configured to analyze data in the bucket have a
+  /// status of CANCELLED.
   /// </li>
   /// <li>
   /// UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job
@@ -5290,20 +5848,20 @@ class JobDetails {
   /// </ul>
   final IsMonitoredByJob? isMonitoredByJob;
 
-  /// The unique identifier for the job that ran most recently (either the latest
-  /// run of a recurring job or the only run of a one-time job) and is configured
-  /// to analyze data in the bucket.
+  /// The unique identifier for the job that ran most recently and is configured
+  /// to analyze data in the bucket, either the latest run of a recurring job or
+  /// the only run of a one-time job.
   ///
-  /// This value is null if the value for the isDefinedInJob property is FALSE or
-  /// UNKNOWN.
+  /// This value is typically null if the value for the isDefinedInJob property is
+  /// FALSE or UNKNOWN.
   final String? lastJobId;
 
   /// The date and time, in UTC and extended ISO 8601 format, when the job
   /// (lastJobId) started. If the job is a recurring job, this value indicates
   /// when the most recent run started.
   ///
-  /// This value is null if the value for the isDefinedInJob property is FALSE or
-  /// UNKNOWN.
+  /// This value is typically null if the value for the isDefinedInJob property is
+  /// FALSE or UNKNOWN.
   final DateTime? lastJobRunTime;
 
   JobDetails({
@@ -5369,14 +5927,16 @@ class JobScheduleFrequency {
 }
 
 /// Specifies a property- or tag-based condition that defines criteria for
-/// including or excluding objects from a classification job.
+/// including or excluding S3 objects from a classification job. A JobScopeTerm
+/// object can contain only one simpleScopeTerm object or one tagScopeTerm
+/// object.
 class JobScopeTerm {
   /// A property-based condition that defines a property, operator, and one or
-  /// more values for including or excluding an object from the job.
+  /// more values for including or excluding objects from the job.
   final SimpleScopeTerm? simpleScopeTerm;
 
   /// A tag-based condition that defines the operator and tag keys or tag key and
-  /// value pairs for including or excluding an object from the job.
+  /// value pairs for including or excluding objects from the job.
   final TagScopeTerm? tagScopeTerm;
 
   JobScopeTerm({
@@ -5406,12 +5966,11 @@ class JobScopeTerm {
 }
 
 /// Specifies one or more property- and tag-based conditions that define
-/// criteria for including or excluding objects from a classification job. If
-/// you specify more than one condition, Amazon Macie uses an AND operator to
-/// join the conditions.
+/// criteria for including or excluding S3 objects from a classification job.
 class JobScopingBlock {
-  /// An array of conditions, one for each condition that determines which objects
-  /// to include or exclude from the job.
+  /// An array of conditions, one for each property- or tag-based condition that
+  /// determines which objects to include or exclude from the job. If you specify
+  /// more than one condition, Amazon Macie uses AND logic to join the conditions.
   final List<JobScopeTerm>? and;
 
   JobScopingBlock({
@@ -5486,7 +6045,18 @@ extension on String {
 /// Provides information about a classification job, including the current
 /// status of the job.
 class JobSummary {
-  /// The S3 buckets that the job is configured to analyze.
+  /// The property- and tag-based conditions that determine which S3 buckets are
+  /// included or excluded from the job's analysis. Each time the job runs, the
+  /// job uses these criteria to determine which buckets to analyze. A job's
+  /// definition can contain a bucketCriteria object or a bucketDefinitions array,
+  /// not both.
+  final S3BucketCriteriaForJob? bucketCriteria;
+
+  /// An array of objects, one for each Amazon Web Services account that owns
+  /// specific S3 buckets for the job to analyze. Each object specifies the
+  /// account ID for an account and one or more buckets to analyze for that
+  /// account. A job's definition can contain a bucketDefinitions array or a
+  /// bucketCriteria object, not both.
   final List<S3BucketDefinitionForJob>? bucketDefinitions;
 
   /// The date and time, in UTC and extended ISO 8601 format, when the job was
@@ -5557,6 +6127,7 @@ class JobSummary {
   final UserPausedDetails? userPausedDetails;
 
   JobSummary({
+    this.bucketCriteria,
     this.bucketDefinitions,
     this.createdAt,
     this.jobId,
@@ -5568,6 +6139,10 @@ class JobSummary {
   });
   factory JobSummary.fromJson(Map<String, dynamic> json) {
     return JobSummary(
+      bucketCriteria: json['bucketCriteria'] != null
+          ? S3BucketCriteriaForJob.fromJson(
+              json['bucketCriteria'] as Map<String, dynamic>)
+          : null,
       bucketDefinitions: (json['bucketDefinitions'] as List?)
           ?.whereNotNull()
           .map((e) =>
@@ -5643,9 +6218,10 @@ class KeyValuePair {
 }
 
 /// Specifies whether any account- or bucket-level access errors occurred when a
-/// classification job ran. For example, the job is configured to analyze data
-/// for a member account that was suspended, or the job is configured to analyze
-/// an S3 bucket that Amazon Macie isn't allowed to access.
+/// classification job ran. For information about using logging data to
+/// investigate these errors, see <a
+/// href="https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-monitor-cw-logs.html">Monitoring
+/// sensitive data discovery jobs</a> in the <i>Amazon Macie User Guide</i>.
 class LastRunErrorStatus {
   /// Specifies whether any account- or bucket-level access errors occurred when
   /// the job ran. For a recurring job, this value indicates the error status of
@@ -5984,9 +6560,9 @@ class ListJobsSortCriteria {
 }
 
 class ListMembersResponse {
-  /// An array of objects, one for each account that's associated with the master
-  /// account and meets the criteria specified by the onlyAssociated request
-  /// parameter.
+  /// An array of objects, one for each account that's associated with the
+  /// administrator account and meets the criteria specified by the onlyAssociated
+  /// request parameter.
   final List<Member>? members;
 
   /// The string to use in a subsequent request to get the next page of results in
@@ -6079,11 +6655,141 @@ extension on String {
   }
 }
 
-/// Provides information about an account that's associated with an Amazon Macie
-/// master account.
-class Member {
-  /// The AWS account ID for the account.
+/// Provides statistical data and other information about an S3 bucket that
+/// Amazon Macie monitors and analyzes.
+class MatchingBucket {
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// bucket.
   final String? accountId;
+
+  /// The name of the bucket.
+  final String? bucketName;
+
+  /// The total number of objects that Amazon Macie can analyze in the bucket.
+  /// These objects use a supported storage class and have a file name extension
+  /// for a supported file or storage format.
+  final int? classifiableObjectCount;
+
+  /// The total storage size, in bytes, of the objects that Amazon Macie can
+  /// analyze in the bucket. These objects use a supported storage class and have
+  /// a file name extension for a supported file or storage format.
+  ///
+  /// If versioning is enabled for the bucket, Macie calculates this value based
+  /// on the size of the latest version of each applicable object in the bucket.
+  /// This value doesn't reflect the storage size of all versions of each
+  /// applicable object in the bucket.
+  final int? classifiableSizeInBytes;
+
+  /// Specifies whether any one-time or recurring classification jobs are
+  /// configured to analyze objects in the bucket, and, if so, the details of the
+  /// job that ran most recently.
+  final JobDetails? jobDetails;
+
+  /// The total number of objects in the bucket.
+  final int? objectCount;
+
+  /// The total number of objects that are in the bucket, grouped by server-side
+  /// encryption type. This includes a grouping that reports the total number of
+  /// objects that aren't encrypted or use client-side encryption.
+  final ObjectCountByEncryptionType? objectCountByEncryptionType;
+
+  /// The total storage size, in bytes, of the bucket.
+  ///
+  /// If versioning is enabled for the bucket, Amazon Macie calculates this value
+  /// based on the size of the latest version of each object in the bucket. This
+  /// value doesn't reflect the storage size of all versions of each object in the
+  /// bucket.
+  final int? sizeInBytes;
+
+  /// The total storage size, in bytes, of the objects that are compressed (.gz,
+  /// .gzip, .zip) files in the bucket.
+  ///
+  /// If versioning is enabled for the bucket, Macie calculates this value based
+  /// on the size of the latest version of each applicable object in the bucket.
+  /// This value doesn't reflect the storage size of all versions of each
+  /// applicable object in the bucket.
+  final int? sizeInBytesCompressed;
+
+  /// The total number of objects that Amazon Macie can't analyze in the bucket.
+  /// These objects don't use a supported storage class or don't have a file name
+  /// extension for a supported file or storage format.
+  final ObjectLevelStatistics? unclassifiableObjectCount;
+
+  /// The total storage size, in bytes, of the objects that Amazon Macie can't
+  /// analyze in the bucket. These objects don't use a supported storage class or
+  /// don't have a file name extension for a supported file or storage format.
+  final ObjectLevelStatistics? unclassifiableObjectSizeInBytes;
+
+  MatchingBucket({
+    this.accountId,
+    this.bucketName,
+    this.classifiableObjectCount,
+    this.classifiableSizeInBytes,
+    this.jobDetails,
+    this.objectCount,
+    this.objectCountByEncryptionType,
+    this.sizeInBytes,
+    this.sizeInBytesCompressed,
+    this.unclassifiableObjectCount,
+    this.unclassifiableObjectSizeInBytes,
+  });
+  factory MatchingBucket.fromJson(Map<String, dynamic> json) {
+    return MatchingBucket(
+      accountId: json['accountId'] as String?,
+      bucketName: json['bucketName'] as String?,
+      classifiableObjectCount: json['classifiableObjectCount'] as int?,
+      classifiableSizeInBytes: json['classifiableSizeInBytes'] as int?,
+      jobDetails: json['jobDetails'] != null
+          ? JobDetails.fromJson(json['jobDetails'] as Map<String, dynamic>)
+          : null,
+      objectCount: json['objectCount'] as int?,
+      objectCountByEncryptionType: json['objectCountByEncryptionType'] != null
+          ? ObjectCountByEncryptionType.fromJson(
+              json['objectCountByEncryptionType'] as Map<String, dynamic>)
+          : null,
+      sizeInBytes: json['sizeInBytes'] as int?,
+      sizeInBytesCompressed: json['sizeInBytesCompressed'] as int?,
+      unclassifiableObjectCount: json['unclassifiableObjectCount'] != null
+          ? ObjectLevelStatistics.fromJson(
+              json['unclassifiableObjectCount'] as Map<String, dynamic>)
+          : null,
+      unclassifiableObjectSizeInBytes:
+          json['unclassifiableObjectSizeInBytes'] != null
+              ? ObjectLevelStatistics.fromJson(
+                  json['unclassifiableObjectSizeInBytes']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+}
+
+/// Provides statistical data and other information about an Amazon Web Services
+/// resource that Amazon Macie monitors and analyzes.
+class MatchingResource {
+  /// The details of an S3 bucket that Amazon Macie monitors and analyzes.
+  final MatchingBucket? matchingBucket;
+
+  MatchingResource({
+    this.matchingBucket,
+  });
+  factory MatchingResource.fromJson(Map<String, dynamic> json) {
+    return MatchingResource(
+      matchingBucket: json['matchingBucket'] != null
+          ? MatchingBucket.fromJson(
+              json['matchingBucket'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Provides information about an account that's associated with an Amazon Macie
+/// administrator account.
+class Member {
+  /// The Amazon Web Services account ID for the account.
+  final String? accountId;
+
+  /// The Amazon Web Services account ID for the administrator account.
+  final String? administratorAccountId;
 
   /// The Amazon Resource Name (ARN) of the account.
   final String? arn;
@@ -6096,11 +6802,13 @@ class Member {
   /// Macie invitation hasn't been sent to the account.
   final DateTime? invitedAt;
 
-  /// The AWS account ID for the master account.
+  /// (Deprecated) The Amazon Web Services account ID for the administrator
+  /// account. This property has been replaced by the administratorAccountId
+  /// property and is retained only for backward compatibility.
   final String? masterAccountId;
 
-  /// The current status of the relationship between the account and the master
-  /// account.
+  /// The current status of the relationship between the account and the
+  /// administrator account.
   final RelationshipStatus? relationshipStatus;
 
   /// A map of key-value pairs that identifies the tags (keys and values) that are
@@ -6108,12 +6816,13 @@ class Member {
   final Map<String, String>? tags;
 
   /// The date and time, in UTC and extended ISO 8601 format, of the most recent
-  /// change to the status of the relationship between the account and the master
-  /// account.
+  /// change to the status of the relationship between the account and the
+  /// administrator account.
   final DateTime? updatedAt;
 
   Member({
     this.accountId,
+    this.administratorAccountId,
     this.arn,
     this.email,
     this.invitedAt,
@@ -6125,6 +6834,7 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['accountId'] as String?,
+      administratorAccountId: json['administratorAccountId'] as String?,
       arn: json['arn'] as String?,
       email: json['email'] as String?,
       invitedAt: timeStampFromJson(json['invitedAt']),
@@ -6143,9 +6853,11 @@ class MonthlySchedule {
   /// The numeric day of the month when Amazon Macie runs the job. This value can
   /// be an integer from 1 through 31.
   ///
-  /// If this value exceeds the number of days in a certain month, Macie runs the
-  /// job on the last day of that month. For example, if this value is 31 and a
-  /// month has only 30 days, Macie runs the job on day 30 of that month.
+  /// If this value exceeds the number of days in a certain month, Macie doesn't
+  /// run the job that month. Macie runs the job only during months that have the
+  /// specified day. For example, if this value is 31 and a month has only 30
+  /// days, Macie doesn't run the job that month. To run the job every month,
+  /// specify a value that's less than 29.
   final int? dayOfMonth;
 
   MonthlySchedule({
@@ -6169,28 +6881,35 @@ class MonthlySchedule {
 /// and use certain types of server-side encryption, use client-side encryption,
 /// or aren't encrypted.
 class ObjectCountByEncryptionType {
-  /// The total number of objects that are encrypted using a customer-managed key.
-  /// The objects use customer-provided server-side (SSE-C) encryption.
+  /// The total number of objects that are encrypted with a customer-managed key.
+  /// The objects use customer-provided server-side encryption (SSE-C).
   final int? customerManaged;
 
-  /// The total number of objects that are encrypted using an AWS Key Management
-  /// Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS
-  /// KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.
+  /// The total number of objects that are encrypted with an Key Management
+  /// Service (KMS) customer master key (CMK). The objects use Amazon Web Services
+  /// managed KMS encryption (AWS-KMS) or customer managed KMS encryption
+  /// (SSE-KMS).
   final int? kmsManaged;
 
-  /// The total number of objects that are encrypted using an Amazon S3 managed
-  /// key. The objects use Amazon S3 managed (SSE-S3) encryption.
+  /// The total number of objects that are encrypted with an Amazon S3 managed
+  /// key. The objects use Amazon S3 managed encryption (SSE-S3).
   final int? s3Managed;
 
   /// The total number of objects that aren't encrypted or use client-side
   /// encryption.
   final int? unencrypted;
 
+  /// The total number of objects that Amazon Macie doesn't have current
+  /// encryption metadata for. Macie can't provide current data about the
+  /// encryption settings for these objects.
+  final int? unknown;
+
   ObjectCountByEncryptionType({
     this.customerManaged,
     this.kmsManaged,
     this.s3Managed,
     this.unencrypted,
+    this.unknown,
   });
   factory ObjectCountByEncryptionType.fromJson(Map<String, dynamic> json) {
     return ObjectCountByEncryptionType(
@@ -6198,15 +6917,18 @@ class ObjectCountByEncryptionType {
       kmsManaged: json['kmsManaged'] as int?,
       s3Managed: json['s3Managed'] as int?,
       unencrypted: json['unencrypted'] as int?,
+      unknown: json['unknown'] as int?,
     );
   }
 }
 
 /// Provides information about the total storage size (in bytes) or number of
 /// objects that Amazon Macie can't analyze in one or more S3 buckets. In a
-/// BucketMetadata object, this data is for a specific bucket. In a
-/// GetBucketStatisticsResponse object, this data is aggregated for all the
-/// buckets in the query results.
+/// BucketMetadata or MatchingBucket object, this data is for a specific bucket.
+/// In a GetBucketStatisticsResponse object, this data is aggregated for all the
+/// buckets in the query results. If versioning is enabled for a bucket, total
+/// storage size values are based on the size of the latest version of each
+/// applicable object in the bucket.
 class ObjectLevelStatistics {
   /// The total storage size (in bytes) or number of objects that Amazon Macie
   /// can't analyze because the objects don't have a file name extension for a
@@ -6236,46 +6958,48 @@ class ObjectLevelStatistics {
   }
 }
 
-/// Provides the location of 1-15 occurrences of sensitive data that was
+/// Specifies the location of 1-15 occurrences of sensitive data that was
 /// detected by managed data identifiers or a custom data identifier and
 /// produced a sensitive data finding.
 class Occurrences {
   /// An array of objects, one for each occurrence of sensitive data in a
-  /// Microsoft Excel workbook, CSV file, or TSV file. Each object specifies the
-  /// cell or field that contains the data. This value is null for all other types
-  /// of files.
+  /// Microsoft Excel workbook, CSV file, or TSV file. This value is null for all
+  /// other types of files.
+  ///
+  /// Each Cell object specifies a cell or field that contains the sensitive data.
   final List<Cell>? cells;
 
   /// An array of objects, one for each occurrence of sensitive data in a
-  /// Microsoft Word document or non-binary text file, such as an HTML, JSON, TXT,
-  /// or XML file. Each object specifies the line that contains the data, and the
-  /// position of the data on that line.
+  /// non-binary text file, such as an HTML, TXT, or XML file. Each Range object
+  /// specifies a line or inclusive range of lines that contains the sensitive
+  /// data, and the position of the data on the specified line or lines.
   ///
   /// This value is often null for file types that are supported by Cell, Page, or
-  /// Record objects. Exceptions are the locations of: data in unstructured
-  /// sections of an otherwise structured file, such as a comment in a file; and,
-  /// data in a malformed file that Amazon Macie analyzes as plain text.
+  /// Record objects. Exceptions are the location of sensitive data in:
+  /// unstructured sections of an otherwise structured file, such as a comment in
+  /// a file; a malformed file that Amazon Macie analyzes as plain text; and, a
+  /// CSV or TSV file that has any column names that contain sensitive data.
   final List<Range>? lineRanges;
 
-  /// An array of objects, one for each occurrence of sensitive data in a binary
-  /// text file. Each object specifies the position of the data relative to the
-  /// beginning of the file.
-  ///
-  /// This value is typically null. For binary text files, Amazon Macie adds
-  /// location data to a lineRanges.Range or Page object, depending on the file
-  /// type.
+  /// Reserved for future use.
   final List<Range>? offsetRanges;
 
   /// An array of objects, one for each occurrence of sensitive data in an Adobe
-  /// Portable Document Format file. Each object specifies the page that contains
-  /// the data, and the position of the data on that page. This value is null for
-  /// all other types of files.
+  /// Portable Document Format file. This value is null for all other types of
+  /// files.
+  ///
+  /// Each Page object specifies a page that contains the sensitive data.
   final List<Page>? pages;
 
   /// An array of objects, one for each occurrence of sensitive data in an Apache
-  /// Avro object container or Apache Parquet file. Each object specifies the
-  /// record index and the path to the field in the record that contains the data.
+  /// Avro object container, Apache Parquet file, JSON file, or JSON Lines file.
   /// This value is null for all other types of files.
+  ///
+  /// For an Avro object container or Parquet file, each Record object specifies a
+  /// record index and the path to a field in a record that contains the sensitive
+  /// data. For a JSON or JSON Lines file, each Record object specifies the path
+  /// to a field or array that contains the sensitive data. For a JSON Lines file,
+  /// it also specifies the index of the line that contains the data.
   final List<Record>? records;
 
   Occurrences({
@@ -6342,13 +7066,13 @@ extension on String {
 /// Specifies the location of an occurrence of sensitive data in an Adobe
 /// Portable Document Format file.
 class Page {
-  /// The line that contains the data, and the position of the data on that line.
+  /// Reserved for future use.
   final Range? lineRange;
 
-  /// The position of the data on the page, relative to the beginning of the page.
+  /// Reserved for future use.
   final Range? offsetRange;
 
-  /// The page number of the page that contains the data.
+  /// The page number of the page that contains the sensitive data.
   final int? pageNumber;
 
   Page({
@@ -6412,50 +7136,28 @@ class PutClassificationExportConfigurationResponse {
   }
 }
 
-/// Provides details about the location of an occurrence of sensitive data in an
-/// Adobe Portable Document Format file, Microsoft Word document, or non-binary
-/// text file.
+class PutFindingsPublicationConfigurationResponse {
+  PutFindingsPublicationConfigurationResponse();
+  factory PutFindingsPublicationConfigurationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return PutFindingsPublicationConfigurationResponse();
+  }
+}
+
+/// Specifies the location of an occurrence of sensitive data in a non-binary
+/// text file, such as an HTML, TXT, or XML file.
 class Range {
-  /// Possible values are:
-  ///
-  /// <ul>
-  /// <li>
-  /// In an Occurrences.lineRanges array, the number of lines from the beginning
-  /// of the file to the end of the sensitive data.
-  /// </li>
-  /// <li>
-  /// In an Occurrences.offsetRanges array, the number of characters from the
-  /// beginning of the file to the end of the sensitive data.
-  /// </li>
-  /// <li>
-  /// In a Page object, the number of lines (lineRange) or characters
-  /// (offsetRange) from the beginning of the page to the end of the sensitive
-  /// data.
-  /// </li>
-  /// </ul>
+  /// The number of lines from the beginning of the file to the end of the
+  /// sensitive data.
   final int? end;
 
-  /// Possible values are:
-  ///
-  /// <ul>
-  /// <li>
-  /// In an Occurrences.lineRanges array, the number of lines from the beginning
-  /// of the file to the beginning of the sensitive data.
-  /// </li>
-  /// <li>
-  /// In an Occurrences.offsetRanges array, the number of characters from the
-  /// beginning of the file to the beginning of the sensitive data.
-  /// </li>
-  /// <li>
-  /// In a Page object, the number of lines (lineRange) or characters
-  /// (offsetRange) from the beginning of the page to the beginning of the
+  /// The number of lines from the beginning of the file to the beginning of the
   /// sensitive data.
-  /// </li>
-  /// </ul>
   final int? start;
 
-  /// The column number for the column that contains the data, if the file
-  /// contains structured data.
+  /// The number of characters, with spaces and starting from 1, from the
+  /// beginning of the first line that contains the sensitive data (start) to the
+  /// beginning of the sensitive data.
   final int? startColumn;
 
   Range({
@@ -6473,19 +7175,27 @@ class Range {
 }
 
 /// Specifies the location of an occurrence of sensitive data in an Apache Avro
-/// object container or Apache Parquet file.
+/// object container, Apache Parquet file, JSON file, or JSON Lines file.
 class Record {
-  /// The path, as a JSONPath expression, to the field in the record that contains
-  /// the data.
+  /// The path, as a JSONPath expression, to the sensitive data. For an Avro
+  /// object container or Parquet file, this is the path to the field in the
+  /// record (recordIndex) that contains the data. For a JSON or JSON Lines file,
+  /// this is the path to the field or array that contains the data. If the data
+  /// is a value in an array, the path also indicates which value contains the
+  /// data.
   ///
-  /// If the name of an element exceeds 20 characters, Amazon Macie truncates the
-  /// name by removing characters from the beginning of the name. If the resulting
-  /// full path exceeds 250 characters, Macie also truncates the path, starting
-  /// with the first element in the path, until the path contains 250 or fewer
-  /// characters.
+  /// If Amazon Macie detects sensitive data in the name of any element in the
+  /// path, Macie omits this field. If the name of an element exceeds 20
+  /// characters, Macie truncates the name by removing characters from the
+  /// beginning of the name. If the resulting full path exceeds 250 characters,
+  /// Macie also truncates the path, starting with the first element in the path,
+  /// until the path contains 250 or fewer characters.
   final String? jsonPath;
 
-  /// The record index, starting from 0, for the record that contains the data.
+  /// For an Avro object container or Parquet file, the record index, starting
+  /// from 0, for the record that contains the sensitive data. For a JSON Lines
+  /// file, the line index, starting from 0, for the line that contains the
+  /// sensitive data. This value is always 0 for JSON files.
   final int? recordIndex;
 
   Record({
@@ -6501,7 +7211,8 @@ class Record {
 }
 
 /// The current status of the relationship between an account and an associated
-/// Amazon Macie master account (<i>inviter account</i>). Possible values are:
+/// Amazon Macie administrator account (<i>inviter account</i>). Possible values
+/// are:
 enum RelationshipStatus {
   enabled,
   paused,
@@ -6571,19 +7282,21 @@ extension on String {
 }
 
 /// Provides information about settings that define whether one or more objects
-/// in an S3 bucket are replicated to S3 buckets for other AWS accounts and, if
-/// so, which accounts.
+/// in an S3 bucket are replicated to S3 buckets for other Amazon Web Services
+/// accounts and, if so, which accounts.
 class ReplicationDetails {
   /// Specifies whether the bucket is configured to replicate one or more objects
   /// to any destination.
   final bool? replicated;
 
   /// Specifies whether the bucket is configured to replicate one or more objects
-  /// to an AWS account that isn't part of the same Amazon Macie organization.
+  /// to an Amazon Web Services account that isn't part of the same Amazon Macie
+  /// organization.
   final bool? replicatedExternally;
 
-  /// An array of AWS account IDs, one for each AWS account that the bucket is
-  /// configured to replicate one or more objects to.
+  /// An array of Amazon Web Services account IDs, one for each Amazon Web
+  /// Services account that the bucket is configured to replicate one or more
+  /// objects to.
   final List<String>? replicationAccounts;
 
   ReplicationDetails({
@@ -6605,12 +7318,10 @@ class ReplicationDetails {
 
 /// Provides information about the resources that a finding applies to.
 class ResourcesAffected {
-  /// An array of objects, one for each S3 bucket that the finding applies to.
-  /// Each object provides a set of metadata about an affected S3 bucket.
+  /// The details of the S3 bucket that the finding applies to.
   final S3Bucket? s3Bucket;
 
-  /// An array of objects, one for each S3 object that the finding applies to.
-  /// Each object provides a set of metadata about an affected S3 object.
+  /// The details of the S3 object that the finding applies to.
   final S3Object? s3Object;
 
   ResourcesAffected({
@@ -6629,8 +7340,32 @@ class ResourcesAffected {
   }
 }
 
-/// Provides information about an S3 bucket that a finding applies to.
+/// Provides information about the S3 bucket that a finding applies to.
 class S3Bucket {
+  /// Specifies whether the bucket policy for the bucket requires server-side
+  /// encryption of objects when objects are uploaded to the bucket. Possible
+  /// values are:
+  ///
+  /// <ul>
+  /// <li>
+  /// FALSE - The bucket policy requires server-side encryption of new objects.
+  /// PutObject requests must include the x-amz-server-side-encryption header and
+  /// the value for that header must be AES256 or aws:kms.
+  /// </li>
+  /// <li>
+  /// TRUE - The bucket doesn't have a bucket policy or it has a bucket policy
+  /// that doesn't require server-side encryption of new objects. If a bucket
+  /// policy exists, it doesn't require PutObject requests to include the
+  /// x-amz-server-side-encryption header and it doesn't require the value for
+  /// that header to be AES256 or aws:kms.
+  /// </li>
+  /// <li>
+  /// UNKNOWN - Amazon Macie can't determine whether the bucket policy requires
+  /// server-side encryption of objects.
+  /// </li>
+  /// </ul>
+  final AllowsUnencryptedObjectUploads? allowsUnencryptedObjectUploads;
+
   /// The Amazon Resource Name (ARN) of the bucket.
   final String? arn;
 
@@ -6645,7 +7380,8 @@ class S3Bucket {
   /// The name of the bucket.
   final String? name;
 
-  /// The display name and account identifier for the user who owns the bucket.
+  /// The display name and Amazon Web Services account ID for the user who owns
+  /// the bucket.
   final S3BucketOwner? owner;
 
   /// The permissions settings that determine whether the bucket is publicly
@@ -6656,6 +7392,7 @@ class S3Bucket {
   final List<KeyValuePair>? tags;
 
   S3Bucket({
+    this.allowsUnencryptedObjectUploads,
     this.arn,
     this.createdAt,
     this.defaultServerSideEncryption,
@@ -6666,6 +7403,9 @@ class S3Bucket {
   });
   factory S3Bucket.fromJson(Map<String, dynamic> json) {
     return S3Bucket(
+      allowsUnencryptedObjectUploads:
+          (json['allowsUnencryptedObjectUploads'] as String?)
+              ?.toAllowsUnencryptedObjectUploads(),
       arn: json['arn'] as String?,
       createdAt: timeStampFromJson(json['createdAt']),
       defaultServerSideEncryption: json['defaultServerSideEncryption'] != null
@@ -6688,27 +7428,65 @@ class S3Bucket {
   }
 }
 
-/// Specifies which AWS account owns the S3 buckets that a classification job
-/// analyzes, and the buckets to analyze for the account.
+/// Specifies property- and tag-based conditions that define criteria for
+/// including or excluding S3 buckets from a classification job. Exclude
+/// conditions take precedence over include conditions.
+class S3BucketCriteriaForJob {
+  /// The property- and tag-based conditions that determine which buckets to
+  /// exclude from the job.
+  final CriteriaBlockForJob? excludes;
+
+  /// The property- and tag-based conditions that determine which buckets to
+  /// include in the job.
+  final CriteriaBlockForJob? includes;
+
+  S3BucketCriteriaForJob({
+    this.excludes,
+    this.includes,
+  });
+  factory S3BucketCriteriaForJob.fromJson(Map<String, dynamic> json) {
+    return S3BucketCriteriaForJob(
+      excludes: json['excludes'] != null
+          ? CriteriaBlockForJob.fromJson(
+              json['excludes'] as Map<String, dynamic>)
+          : null,
+      includes: json['includes'] != null
+          ? CriteriaBlockForJob.fromJson(
+              json['includes'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final excludes = this.excludes;
+    final includes = this.includes;
+    return {
+      if (excludes != null) 'excludes': excludes,
+      if (includes != null) 'includes': includes,
+    };
+  }
+}
+
+/// Specifies an Amazon Web Services account that owns S3 buckets for a
+/// classification job to analyze, and one or more specific buckets to analyze
+/// for that account.
 class S3BucketDefinitionForJob {
-  /// The unique identifier for the AWS account that owns the buckets. If you
-  /// specify this value and don't specify a value for the buckets array, the job
-  /// analyzes objects in all the buckets that are owned by the account and meet
-  /// other conditions specified for the job.
-  final String? accountId;
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// buckets.
+  final String accountId;
 
   /// An array that lists the names of the buckets.
-  final List<String>? buckets;
+  final List<String> buckets;
 
   S3BucketDefinitionForJob({
-    this.accountId,
-    this.buckets,
+    required this.accountId,
+    required this.buckets,
   });
   factory S3BucketDefinitionForJob.fromJson(Map<String, dynamic> json) {
     return S3BucketDefinitionForJob(
-      accountId: json['accountId'] as String?,
-      buckets: (json['buckets'] as List?)
-          ?.whereNotNull()
+      accountId: json['accountId'] as String,
+      buckets: (json['buckets'] as List)
+          .whereNotNull()
           .map((e) => e as String)
           .toList(),
     );
@@ -6718,8 +7496,8 @@ class S3BucketDefinitionForJob {
     final accountId = this.accountId;
     final buckets = this.buckets;
     return {
-      if (accountId != null) 'accountId': accountId,
-      if (buckets != null) 'buckets': buckets,
+      'accountId': accountId,
+      'buckets': buckets,
     };
   }
 }
@@ -6729,7 +7507,7 @@ class S3BucketOwner {
   /// The display name of the user who owns the bucket.
   final String? displayName;
 
-  /// The AWS account ID for the user who owns the bucket.
+  /// The Amazon Web Services account ID for the user who owns the bucket.
   final String? id;
 
   S3BucketOwner({
@@ -6750,9 +7528,10 @@ class S3Destination {
   /// The name of the bucket.
   final String bucketName;
 
-  /// The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS)
-  /// customer master key (CMK) to use for encryption of the results. This must be
-  /// the ARN of an existing CMK that's in the same AWS Region as the bucket.
+  /// The Amazon Resource Name (ARN) of the Key Management Service (KMS) customer
+  /// master key (CMK) to use for encryption of the results. This must be the ARN
+  /// of an existing CMK that's in the same Amazon Web Services Region as the
+  /// bucket.
   final String kmsKeyArn;
 
   /// The path prefix to use in the path to the location in the bucket. This
@@ -6785,23 +7564,42 @@ class S3Destination {
 }
 
 /// Specifies which S3 buckets contain the objects that a classification job
-/// analyzes, and the scope of that analysis.
+/// analyzes, and the scope of that analysis. The bucket specification can be
+/// static (bucketDefinitions) or dynamic (bucketCriteria). If it's static, the
+/// job analyzes objects in the same predefined set of buckets each time the job
+/// runs. If it's dynamic, the job analyzes objects in any buckets that match
+/// the specified criteria each time the job starts to run.
 class S3JobDefinition {
-  /// An array of objects, one for each AWS account that owns buckets to analyze.
-  /// Each object specifies the account ID for an account and one or more buckets
-  /// to analyze for the account.
+  /// The property- and tag-based conditions that determine which S3 buckets to
+  /// include or exclude from the analysis. Each time the job runs, the job uses
+  /// these criteria to determine which buckets contain objects to analyze. A
+  /// job's definition can contain a bucketCriteria object or a bucketDefinitions
+  /// array, not both.
+  final S3BucketCriteriaForJob? bucketCriteria;
+
+  /// An array of objects, one for each Amazon Web Services account that owns
+  /// specific S3 buckets to analyze. Each object specifies the account ID for an
+  /// account and one or more buckets to analyze for that account. A job's
+  /// definition can contain a bucketDefinitions array or a bucketCriteria object,
+  /// not both.
   final List<S3BucketDefinitionForJob>? bucketDefinitions;
 
-  /// The property- and tag-based conditions that determine which objects to
-  /// include or exclude from the analysis.
+  /// The property- and tag-based conditions that determine which S3 objects to
+  /// include or exclude from the analysis. Each time the job runs, the job uses
+  /// these criteria to determine which objects to analyze.
   final Scoping? scoping;
 
   S3JobDefinition({
+    this.bucketCriteria,
     this.bucketDefinitions,
     this.scoping,
   });
   factory S3JobDefinition.fromJson(Map<String, dynamic> json) {
     return S3JobDefinition(
+      bucketCriteria: json['bucketCriteria'] != null
+          ? S3BucketCriteriaForJob.fromJson(
+              json['bucketCriteria'] as Map<String, dynamic>)
+          : null,
       bucketDefinitions: (json['bucketDefinitions'] as List?)
           ?.whereNotNull()
           .map((e) =>
@@ -6814,16 +7612,18 @@ class S3JobDefinition {
   }
 
   Map<String, dynamic> toJson() {
+    final bucketCriteria = this.bucketCriteria;
     final bucketDefinitions = this.bucketDefinitions;
     final scoping = this.scoping;
     return {
+      if (bucketCriteria != null) 'bucketCriteria': bucketCriteria,
       if (bucketDefinitions != null) 'bucketDefinitions': bucketDefinitions,
       if (scoping != null) 'scoping': scoping,
     };
   }
 }
 
-/// Provides information about an S3 object that a finding applies to.
+/// Provides information about the S3 object that a finding applies to.
 class S3Object {
   /// The Amazon Resource Name (ARN) of the bucket that contains the object.
   final String? bucketArn;
@@ -6851,7 +7651,7 @@ class S3Object {
   /// of permissions settings that apply to the object.
   final bool? publicAccess;
 
-  /// The type of server-side encryption that's used for the object.
+  /// The type of server-side encryption that's used to encrypt the object.
   final ServerSideEncryption? serverSideEncryption;
 
   /// The total storage size, in bytes, of the object.
@@ -6904,29 +7704,26 @@ class S3Object {
   }
 }
 
-/// The property to use in a condition that determines which objects are
-/// analyzed by a classification job. Valid values are:
+/// The property to use in a condition that determines whether an S3 object is
+/// included or excluded from a classification job. Valid values are:
 enum ScopeFilterKey {
-  bucketCreationDate,
   objectExtension,
   objectLastModifiedDate,
   objectSize,
-  tag,
+  objectKey,
 }
 
 extension on ScopeFilterKey {
   String toValue() {
     switch (this) {
-      case ScopeFilterKey.bucketCreationDate:
-        return 'BUCKET_CREATION_DATE';
       case ScopeFilterKey.objectExtension:
         return 'OBJECT_EXTENSION';
       case ScopeFilterKey.objectLastModifiedDate:
         return 'OBJECT_LAST_MODIFIED_DATE';
       case ScopeFilterKey.objectSize:
         return 'OBJECT_SIZE';
-      case ScopeFilterKey.tag:
-        return 'TAG';
+      case ScopeFilterKey.objectKey:
+        return 'OBJECT_KEY';
     }
   }
 }
@@ -6934,31 +7731,28 @@ extension on ScopeFilterKey {
 extension on String {
   ScopeFilterKey toScopeFilterKey() {
     switch (this) {
-      case 'BUCKET_CREATION_DATE':
-        return ScopeFilterKey.bucketCreationDate;
       case 'OBJECT_EXTENSION':
         return ScopeFilterKey.objectExtension;
       case 'OBJECT_LAST_MODIFIED_DATE':
         return ScopeFilterKey.objectLastModifiedDate;
       case 'OBJECT_SIZE':
         return ScopeFilterKey.objectSize;
-      case 'TAG':
-        return ScopeFilterKey.tag;
+      case 'OBJECT_KEY':
+        return ScopeFilterKey.objectKey;
     }
     throw Exception('$this is not known in enum ScopeFilterKey');
   }
 }
 
-/// Specifies one or more property- and tag-based conditions that refine the
-/// scope of a classification job. These conditions define criteria that
-/// determine which objects a job analyzes. Exclude conditions take precedence
-/// over include conditions.
+/// Specifies one or more property- and tag-based conditions that define
+/// criteria for including or excluding S3 objects from a classification job.
+/// Exclude conditions take precedence over include conditions.
 class Scoping {
-  /// The property- or tag-based conditions that determine which objects to
+  /// The property- and tag-based conditions that determine which objects to
   /// exclude from the analysis.
   final JobScopingBlock? excludes;
 
-  /// The property- or tag-based conditions that determine which objects to
+  /// The property- and tag-based conditions that determine which objects to
   /// include in the analysis.
   final JobScopingBlock? includes;
 
@@ -6987,13 +7781,391 @@ class Scoping {
   }
 }
 
+/// Specifies property- and tag-based conditions that define filter criteria for
+/// including or excluding S3 buckets from the query results. Exclude conditions
+/// take precedence over include conditions.
+class SearchResourcesBucketCriteria {
+  /// The property- and tag-based conditions that determine which buckets to
+  /// exclude from the results.
+  final SearchResourcesCriteriaBlock? excludes;
+
+  /// The property- and tag-based conditions that determine which buckets to
+  /// include in the results.
+  final SearchResourcesCriteriaBlock? includes;
+
+  SearchResourcesBucketCriteria({
+    this.excludes,
+    this.includes,
+  });
+  Map<String, dynamic> toJson() {
+    final excludes = this.excludes;
+    final includes = this.includes;
+    return {
+      if (excludes != null) 'excludes': excludes,
+      if (includes != null) 'includes': includes,
+    };
+  }
+}
+
+/// The operator to use in a condition that filters the results of a query.
+/// Valid values are:
+enum SearchResourcesComparator {
+  eq,
+  ne,
+}
+
+extension on SearchResourcesComparator {
+  String toValue() {
+    switch (this) {
+      case SearchResourcesComparator.eq:
+        return 'EQ';
+      case SearchResourcesComparator.ne:
+        return 'NE';
+    }
+  }
+}
+
+extension on String {
+  SearchResourcesComparator toSearchResourcesComparator() {
+    switch (this) {
+      case 'EQ':
+        return SearchResourcesComparator.eq;
+      case 'NE':
+        return SearchResourcesComparator.ne;
+    }
+    throw Exception('$this is not known in enum SearchResourcesComparator');
+  }
+}
+
+/// Specifies a property- or tag-based filter condition for including or
+/// excluding Amazon Web Services resources from the query results.
+class SearchResourcesCriteria {
+  /// A property-based condition that defines a property, operator, and one or
+  /// more values for including or excluding resources from the results.
+  final SearchResourcesSimpleCriterion? simpleCriterion;
+
+  /// A tag-based condition that defines an operator and tag keys, tag values, or
+  /// tag key and value pairs for including or excluding resources from the
+  /// results.
+  final SearchResourcesTagCriterion? tagCriterion;
+
+  SearchResourcesCriteria({
+    this.simpleCriterion,
+    this.tagCriterion,
+  });
+  Map<String, dynamic> toJson() {
+    final simpleCriterion = this.simpleCriterion;
+    final tagCriterion = this.tagCriterion;
+    return {
+      if (simpleCriterion != null) 'simpleCriterion': simpleCriterion,
+      if (tagCriterion != null) 'tagCriterion': tagCriterion,
+    };
+  }
+}
+
+/// Specifies property- and tag-based conditions that define filter criteria for
+/// including or excluding Amazon Web Services resources from the query results.
+class SearchResourcesCriteriaBlock {
+  /// An array of objects, one for each property- or tag-based condition that
+  /// includes or excludes resources from the query results. If you specify more
+  /// than one condition, Amazon Macie uses AND logic to join the conditions.
+  final List<SearchResourcesCriteria>? and;
+
+  SearchResourcesCriteriaBlock({
+    this.and,
+  });
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    return {
+      if (and != null) 'and': and,
+    };
+  }
+}
+
+class SearchResourcesResponse {
+  /// An array of objects, one for each resource that meets the filter criteria
+  /// specified in the request.
+  final List<MatchingResource>? matchingResources;
+
+  /// The string to use in a subsequent request to get the next page of results in
+  /// a paginated response. This value is null if there are no additional pages.
+  final String? nextToken;
+
+  SearchResourcesResponse({
+    this.matchingResources,
+    this.nextToken,
+  });
+  factory SearchResourcesResponse.fromJson(Map<String, dynamic> json) {
+    return SearchResourcesResponse(
+      matchingResources: (json['matchingResources'] as List?)
+          ?.whereNotNull()
+          .map((e) => MatchingResource.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
+/// Specifies a property-based filter condition that determines which Amazon Web
+/// Services resources are included or excluded from the query results.
+class SearchResourcesSimpleCriterion {
+  /// The operator to use in the condition. Valid values are EQ (equals) and NE
+  /// (not equals).
+  final SearchResourcesComparator? comparator;
+
+  /// The property to use in the condition.
+  final SearchResourcesSimpleCriterionKey? key;
+
+  /// An array that lists one or more values to use in the condition. If you
+  /// specify multiple values, Amazon Macie uses OR logic to join the values.
+  /// Valid values for each supported property (key) are:
+  ///
+  /// <ul>
+  /// <li>
+  /// ACCOUNT_ID - A string that represents the unique identifier for the Amazon
+  /// Web Services account that owns the resource.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated
+  /// value that Macie defines for the <a
+  /// href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission">BucketPublicAccess.effectivePermission</a>
+  /// property of an S3 bucket.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_NAME - A string that represents the name of an S3 bucket.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that
+  /// Macie defines for the <a
+  /// href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess">BucketMetadata.sharedAccess</a>
+  /// property of an S3 bucket.
+  /// </li>
+  /// </ul>
+  /// Values are case sensitive. Also, Macie doesn't support use of partial values
+  /// or wildcard characters in values.
+  final List<String>? values;
+
+  SearchResourcesSimpleCriterion({
+    this.comparator,
+    this.key,
+    this.values,
+  });
+  Map<String, dynamic> toJson() {
+    final comparator = this.comparator;
+    final key = this.key;
+    final values = this.values;
+    return {
+      if (comparator != null) 'comparator': comparator.toValue(),
+      if (key != null) 'key': key.toValue(),
+      if (values != null) 'values': values,
+    };
+  }
+}
+
+/// The property to use in a condition that filters the query results. Valid
+/// values are:
+enum SearchResourcesSimpleCriterionKey {
+  accountId,
+  s3BucketName,
+  s3BucketEffectivePermission,
+  s3BucketSharedAccess,
+}
+
+extension on SearchResourcesSimpleCriterionKey {
+  String toValue() {
+    switch (this) {
+      case SearchResourcesSimpleCriterionKey.accountId:
+        return 'ACCOUNT_ID';
+      case SearchResourcesSimpleCriterionKey.s3BucketName:
+        return 'S3_BUCKET_NAME';
+      case SearchResourcesSimpleCriterionKey.s3BucketEffectivePermission:
+        return 'S3_BUCKET_EFFECTIVE_PERMISSION';
+      case SearchResourcesSimpleCriterionKey.s3BucketSharedAccess:
+        return 'S3_BUCKET_SHARED_ACCESS';
+    }
+  }
+}
+
+extension on String {
+  SearchResourcesSimpleCriterionKey toSearchResourcesSimpleCriterionKey() {
+    switch (this) {
+      case 'ACCOUNT_ID':
+        return SearchResourcesSimpleCriterionKey.accountId;
+      case 'S3_BUCKET_NAME':
+        return SearchResourcesSimpleCriterionKey.s3BucketName;
+      case 'S3_BUCKET_EFFECTIVE_PERMISSION':
+        return SearchResourcesSimpleCriterionKey.s3BucketEffectivePermission;
+      case 'S3_BUCKET_SHARED_ACCESS':
+        return SearchResourcesSimpleCriterionKey.s3BucketSharedAccess;
+    }
+    throw Exception(
+        '$this is not known in enum SearchResourcesSimpleCriterionKey');
+  }
+}
+
+/// The property to sort the query results by. Valid values are:
+enum SearchResourcesSortAttributeName {
+  accountId,
+  resourceName,
+  s3ClassifiableObjectCount,
+  s3ClassifiableSizeInBytes,
+}
+
+extension on SearchResourcesSortAttributeName {
+  String toValue() {
+    switch (this) {
+      case SearchResourcesSortAttributeName.accountId:
+        return 'ACCOUNT_ID';
+      case SearchResourcesSortAttributeName.resourceName:
+        return 'RESOURCE_NAME';
+      case SearchResourcesSortAttributeName.s3ClassifiableObjectCount:
+        return 'S3_CLASSIFIABLE_OBJECT_COUNT';
+      case SearchResourcesSortAttributeName.s3ClassifiableSizeInBytes:
+        return 'S3_CLASSIFIABLE_SIZE_IN_BYTES';
+    }
+  }
+}
+
+extension on String {
+  SearchResourcesSortAttributeName toSearchResourcesSortAttributeName() {
+    switch (this) {
+      case 'ACCOUNT_ID':
+        return SearchResourcesSortAttributeName.accountId;
+      case 'RESOURCE_NAME':
+        return SearchResourcesSortAttributeName.resourceName;
+      case 'S3_CLASSIFIABLE_OBJECT_COUNT':
+        return SearchResourcesSortAttributeName.s3ClassifiableObjectCount;
+      case 'S3_CLASSIFIABLE_SIZE_IN_BYTES':
+        return SearchResourcesSortAttributeName.s3ClassifiableSizeInBytes;
+    }
+    throw Exception(
+        '$this is not known in enum SearchResourcesSortAttributeName');
+  }
+}
+
+/// Specifies criteria for sorting the results of a query for information about
+/// Amazon Web Services resources that Amazon Macie monitors and analyzes.
+class SearchResourcesSortCriteria {
+  /// The property to sort the results by.
+  final SearchResourcesSortAttributeName? attributeName;
+
+  /// The sort order to apply to the results, based on the value for the property
+  /// specified by the attributeName property. Valid values are: ASC, sort the
+  /// results in ascending order; and, DESC, sort the results in descending order.
+  final OrderBy? orderBy;
+
+  SearchResourcesSortCriteria({
+    this.attributeName,
+    this.orderBy,
+  });
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final orderBy = this.orderBy;
+    return {
+      if (attributeName != null) 'attributeName': attributeName.toValue(),
+      if (orderBy != null) 'orderBy': orderBy.toValue(),
+    };
+  }
+}
+
+/// Specifies a tag-based filter condition that determines which Amazon Web
+/// Services resources are included or excluded from the query results.
+class SearchResourcesTagCriterion {
+  /// The operator to use in the condition. Valid values are EQ (equals) and NE
+  /// (not equals).
+  final SearchResourcesComparator? comparator;
+
+  /// The tag keys, tag values, or tag key and value pairs to use in the
+  /// condition.
+  final List<SearchResourcesTagCriterionPair>? tagValues;
+
+  SearchResourcesTagCriterion({
+    this.comparator,
+    this.tagValues,
+  });
+  Map<String, dynamic> toJson() {
+    final comparator = this.comparator;
+    final tagValues = this.tagValues;
+    return {
+      if (comparator != null) 'comparator': comparator.toValue(),
+      if (tagValues != null) 'tagValues': tagValues,
+    };
+  }
+}
+
+/// Specifies a tag key, a tag value, or a tag key and value (as a pair) to use
+/// in a tag-based filter condition for a query. Tag keys and values are case
+/// sensitive. Also, Amazon Macie doesn't support use of partial values or
+/// wildcard characters in tag-based filter conditions.
+class SearchResourcesTagCriterionPair {
+  /// The value for the tag key to use in the condition.
+  final String? key;
+
+  /// The tag value to use in the condition.
+  final String? value;
+
+  SearchResourcesTagCriterionPair({
+    this.key,
+    this.value,
+  });
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
+}
+
+/// Specifies configuration settings that determine which findings are published
+/// to Security Hub automatically. For information about how Macie publishes
+/// findings to Security Hub, see <a
+/// href="https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html">Amazon
+/// Macie integration with Security Hub</a> in the <i>Amazon Macie User
+/// Guide</i>.
+class SecurityHubConfiguration {
+  /// Specifies whether to publish sensitive data findings to Security Hub. If you
+  /// set this value to true, Amazon Macie automatically publishes all sensitive
+  /// data findings that weren't suppressed by a findings filter. The default
+  /// value is false.
+  final bool publishClassificationFindings;
+
+  /// Specifies whether to publish policy findings to Security Hub. If you set
+  /// this value to true, Amazon Macie automatically publishes all new and updated
+  /// policy findings that weren't suppressed by a findings filter. The default
+  /// value is true.
+  final bool publishPolicyFindings;
+
+  SecurityHubConfiguration({
+    required this.publishClassificationFindings,
+    required this.publishPolicyFindings,
+  });
+  factory SecurityHubConfiguration.fromJson(Map<String, dynamic> json) {
+    return SecurityHubConfiguration(
+      publishClassificationFindings:
+          json['publishClassificationFindings'] as bool,
+      publishPolicyFindings: json['publishPolicyFindings'] as bool,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publishClassificationFindings = this.publishClassificationFindings;
+    final publishPolicyFindings = this.publishPolicyFindings;
+    return {
+      'publishClassificationFindings': publishClassificationFindings,
+      'publishPolicyFindings': publishPolicyFindings,
+    };
+  }
+}
+
 /// Provides information about the category, types, and occurrences of sensitive
 /// data that produced a sensitive data finding.
 class SensitiveDataItem {
   /// The category of sensitive data that was detected. For example: CREDENTIALS,
-  /// for credentials data such as private keys or AWS secret keys;
-  /// FINANCIAL_INFORMATION, for financial data such as credit card numbers; or,
-  /// PERSONAL_INFORMATION, for personal health information, such as health
+  /// for credentials data such as private keys or Amazon Web Services secret
+  /// keys; FINANCIAL_INFORMATION, for financial data such as credit card numbers;
+  /// or, PERSONAL_INFORMATION, for personal health information, such as health
   /// insurance identification numbers, or personally identifiable information,
   /// such as driver's license identification numbers.
   final SensitiveDataItemCategory? category;
@@ -7068,13 +8240,14 @@ extension on String {
 /// bucket or S3 object.
 class ServerSideEncryption {
   /// The server-side encryption algorithm that's used when storing data in the
-  /// bucket or object. If encryption is disabled for the bucket or object, this
-  /// value is NONE.
+  /// bucket or object. If default encryption is disabled for the bucket or the
+  /// object isn't encrypted using server-side encryption, this value is NONE.
   final EncryptionType? encryptionType;
 
-  /// The unique identifier for the AWS Key Management Service (AWS KMS) master
-  /// key that's used to encrypt the bucket or object. This value is null if AWS
-  /// KMS isn't used to encrypt the bucket or object.
+  /// The Amazon Resource Name (ARN) or unique identifier (key ID) for the Key
+  /// Management Service (KMS) customer master key (CMK) that's used to encrypt
+  /// data in the bucket or the object. If an KMS CMK isn't used, this value is
+  /// null.
   final String? kmsMasterKeyId;
 
   ServerSideEncryption({
@@ -7089,7 +8262,7 @@ class ServerSideEncryption {
   }
 }
 
-/// Specifies a current quota for an account.
+/// Specifies a current quota for an Amazon Macie account.
 class ServiceLimit {
   /// Specifies whether the account has met the quota that corresponds to the
   /// metric specified by the UsageByAccount.type field in the response.
@@ -7171,8 +8344,8 @@ class SessionContextAttributes {
 /// Provides information about the source and type of temporary security
 /// credentials that were issued to an entity.
 class SessionIssuer {
-  /// The unique identifier for the AWS account that owns the entity that was used
-  /// to get the credentials.
+  /// The unique identifier for the Amazon Web Services account that owns the
+  /// entity that was used to get the credentials.
   final String? accountId;
 
   /// The Amazon Resource Name (ARN) of the source account, IAM user, or role that
@@ -7305,10 +8478,117 @@ extension on String {
   }
 }
 
-/// Specifies a property-based condition that determines whether an object is
+/// Specifies a property-based condition that determines whether an S3 bucket is
+/// included or excluded from a classification job.
+class SimpleCriterionForJob {
+  /// The operator to use in the condition. Valid values are EQ (equals) and NE
+  /// (not equals).
+  final JobComparator? comparator;
+
+  /// The property to use in the condition.
+  final SimpleCriterionKeyForJob? key;
+
+  /// An array that lists one or more values to use in the condition. If you
+  /// specify multiple values, Amazon Macie uses OR logic to join the values.
+  /// Valid values for each supported property (key) are:
+  ///
+  /// <ul>
+  /// <li>
+  /// ACCOUNT_ID - A string that represents the unique identifier for the Amazon
+  /// Web Services account that owns the bucket.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated
+  /// value that Macie defines for the <a
+  /// href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission">BucketPublicAccess.effectivePermission</a>
+  /// property of a bucket.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_NAME - A string that represents the name of a bucket.
+  /// </li>
+  /// <li>
+  /// S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that
+  /// Macie defines for the <a
+  /// href="https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess">BucketMetadata.sharedAccess</a>
+  /// property of a bucket.
+  /// </li>
+  /// </ul>
+  /// Values are case sensitive. Also, Macie doesn't support use of partial values
+  /// or wildcard characters in these values.
+  final List<String>? values;
+
+  SimpleCriterionForJob({
+    this.comparator,
+    this.key,
+    this.values,
+  });
+  factory SimpleCriterionForJob.fromJson(Map<String, dynamic> json) {
+    return SimpleCriterionForJob(
+      comparator: (json['comparator'] as String?)?.toJobComparator(),
+      key: (json['key'] as String?)?.toSimpleCriterionKeyForJob(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comparator = this.comparator;
+    final key = this.key;
+    final values = this.values;
+    return {
+      if (comparator != null) 'comparator': comparator.toValue(),
+      if (key != null) 'key': key.toValue(),
+      if (values != null) 'values': values,
+    };
+  }
+}
+
+/// The property to use in a condition that determines whether an S3 bucket is
+/// included or excluded from a classification job. Valid values are:
+enum SimpleCriterionKeyForJob {
+  accountId,
+  s3BucketName,
+  s3BucketEffectivePermission,
+  s3BucketSharedAccess,
+}
+
+extension on SimpleCriterionKeyForJob {
+  String toValue() {
+    switch (this) {
+      case SimpleCriterionKeyForJob.accountId:
+        return 'ACCOUNT_ID';
+      case SimpleCriterionKeyForJob.s3BucketName:
+        return 'S3_BUCKET_NAME';
+      case SimpleCriterionKeyForJob.s3BucketEffectivePermission:
+        return 'S3_BUCKET_EFFECTIVE_PERMISSION';
+      case SimpleCriterionKeyForJob.s3BucketSharedAccess:
+        return 'S3_BUCKET_SHARED_ACCESS';
+    }
+  }
+}
+
+extension on String {
+  SimpleCriterionKeyForJob toSimpleCriterionKeyForJob() {
+    switch (this) {
+      case 'ACCOUNT_ID':
+        return SimpleCriterionKeyForJob.accountId;
+      case 'S3_BUCKET_NAME':
+        return SimpleCriterionKeyForJob.s3BucketName;
+      case 'S3_BUCKET_EFFECTIVE_PERMISSION':
+        return SimpleCriterionKeyForJob.s3BucketEffectivePermission;
+      case 'S3_BUCKET_SHARED_ACCESS':
+        return SimpleCriterionKeyForJob.s3BucketSharedAccess;
+    }
+    throw Exception('$this is not known in enum SimpleCriterionKeyForJob');
+  }
+}
+
+/// Specifies a property-based condition that determines whether an S3 object is
 /// included or excluded from a classification job.
 class SimpleScopeTerm {
-  /// The operator to use in the condition. Valid operators for each supported
+  /// The operator to use in the condition. Valid values for each supported
   /// property (key) are:
   ///
   /// <ul>
@@ -7316,13 +8596,13 @@ class SimpleScopeTerm {
   /// OBJECT_EXTENSION - EQ (equals) or NE (not equals)
   /// </li>
   /// <li>
+  /// OBJECT_KEY - STARTS_WITH
+  /// </li>
+  /// <li>
   /// OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS
   /// </li>
   /// <li>
   /// OBJECT_SIZE - Any operator except CONTAINS
-  /// </li>
-  /// <li>
-  /// TAG - EQ (equals) or NE (not equals)
   /// </li>
   /// </ul>
   final JobComparator? comparator;
@@ -7331,15 +8611,21 @@ class SimpleScopeTerm {
   final ScopeFilterKey? key;
 
   /// An array that lists the values to use in the condition. If the value for the
-  /// key property is OBJECT_EXTENSION, this array can specify multiple values and
-  /// Amazon Macie uses an OR operator to join the values. Otherwise, this array
-  /// can specify only one value. Valid values for each supported property (key)
-  /// are:
+  /// key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify
+  /// multiple values and Amazon Macie uses OR logic to join the values.
+  /// Otherwise, this array can specify only one value.
+  ///
+  /// Valid values for each supported property (key) are:
   ///
   /// <ul>
   /// <li>
   /// OBJECT_EXTENSION - A string that represents the file name extension of an
-  /// object. For example: doc, docx, pdf
+  /// object. For example: docx or pdf
+  /// </li>
+  /// <li>
+  /// OBJECT_KEY - A string that represents the key prefix (folder name or path)
+  /// of an object. For example: logs or awslogs/eventlogs. This value applies a
+  /// condition to objects whose keys (names) begin with the specified value.
   /// </li>
   /// <li>
   /// OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601
@@ -7350,12 +8636,9 @@ class SimpleScopeTerm {
   /// OBJECT_SIZE - An integer that represents the storage size (in bytes) of an
   /// object.
   /// </li>
-  /// <li>
-  /// TAG - A string that represents a tag key for an object. For advanced
-  /// options, use a TagScopeTerm object, instead of a SimpleScopeTerm object, to
-  /// define a tag-based condition for the job.
-  /// </li>
   /// </ul>
+  /// Macie doesn't support use of wildcard characters in these values. Also,
+  /// string values are case sensitive.
   final List<String>? values;
 
   SimpleScopeTerm({
@@ -7487,6 +8770,75 @@ extension on String {
   }
 }
 
+/// Specifies a tag-based condition that determines whether an S3 bucket is
+/// included or excluded from a classification job.
+class TagCriterionForJob {
+  /// The operator to use in the condition. Valid values are EQ (equals) and NE
+  /// (not equals).
+  final JobComparator? comparator;
+
+  /// The tag keys, tag values, or tag key and value pairs to use in the
+  /// condition.
+  final List<TagCriterionPairForJob>? tagValues;
+
+  TagCriterionForJob({
+    this.comparator,
+    this.tagValues,
+  });
+  factory TagCriterionForJob.fromJson(Map<String, dynamic> json) {
+    return TagCriterionForJob(
+      comparator: (json['comparator'] as String?)?.toJobComparator(),
+      tagValues: (json['tagValues'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => TagCriterionPairForJob.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comparator = this.comparator;
+    final tagValues = this.tagValues;
+    return {
+      if (comparator != null) 'comparator': comparator.toValue(),
+      if (tagValues != null) 'tagValues': tagValues,
+    };
+  }
+}
+
+/// Specifies a tag key, a tag value, or a tag key and value (as a pair) to use
+/// in a tag-based condition that determines whether an S3 bucket is included or
+/// excluded from a classification job. Tag keys and values are case sensitive.
+/// Also, Amazon Macie doesn't support use of partial values or wildcard
+/// characters in tag-based conditions.
+class TagCriterionPairForJob {
+  /// The value for the tag key to use in the condition.
+  final String? key;
+
+  /// The tag value to use in the condition.
+  final String? value;
+
+  TagCriterionPairForJob({
+    this.key,
+    this.value,
+  });
+  factory TagCriterionPairForJob.fromJson(Map<String, dynamic> json) {
+    return TagCriterionPairForJob(
+      key: json['key'] as String?,
+      value: json['value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
+}
+
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
@@ -7494,17 +8846,19 @@ class TagResourceResponse {
   }
 }
 
-/// Specifies a tag-based condition that determines whether an object is
+/// Specifies a tag-based condition that determines whether an S3 object is
 /// included or excluded from a classification job.
 class TagScopeTerm {
-  /// The operator to use in the condition. Valid operators are EQ (equals) or NE
+  /// The operator to use in the condition. Valid values are EQ (equals) or NE
   /// (not equals).
   final JobComparator? comparator;
 
-  /// The tag key to use in the condition.
+  /// The object property to use in the condition. The only valid value is TAG.
   final String? key;
 
-  /// The tag keys or tag key and value pairs to use in the condition.
+  /// The tag keys or tag key and value pairs to use in the condition. To specify
+  /// only tag keys in a condition, specify the keys in this array and set the
+  /// value for each associated tag value to an empty string.
   final List<TagValuePair>? tagValues;
 
   /// The type of object to apply the condition to.
@@ -7567,7 +8921,10 @@ extension on String {
 }
 
 /// Specifies a tag key or tag key and value pair to use in a tag-based
-/// condition for a classification job.
+/// condition that determines whether an S3 object is included or excluded from
+/// a classification job. Tag keys and values are case sensitive. Also, Amazon
+/// Macie doesn't support use of partial values or wildcard characters in
+/// tag-based conditions.
 class TagValuePair {
   /// The value for the tag key to use in the condition.
   final String? key;
@@ -7613,6 +8970,69 @@ class TestCustomDataIdentifierResponse {
   }
 }
 
+/// An inclusive time period that Amazon Macie usage data applies to. Possible
+/// values are:
+enum TimeRange {
+  monthToDate,
+  past_30Days,
+}
+
+extension on TimeRange {
+  String toValue() {
+    switch (this) {
+      case TimeRange.monthToDate:
+        return 'MONTH_TO_DATE';
+      case TimeRange.past_30Days:
+        return 'PAST_30_DAYS';
+    }
+  }
+}
+
+extension on String {
+  TimeRange toTimeRange() {
+    switch (this) {
+      case 'MONTH_TO_DATE':
+        return TimeRange.monthToDate;
+      case 'PAST_30_DAYS':
+        return TimeRange.past_30Days;
+    }
+    throw Exception('$this is not known in enum TimeRange');
+  }
+}
+
+enum Type {
+  none,
+  aes256,
+  awsKms,
+}
+
+extension on Type {
+  String toValue() {
+    switch (this) {
+      case Type.none:
+        return 'NONE';
+      case Type.aes256:
+        return 'AES256';
+      case Type.awsKms:
+        return 'aws:kms';
+    }
+  }
+}
+
+extension on String {
+  Type toType() {
+    switch (this) {
+      case 'NONE':
+        return Type.none;
+      case 'AES256':
+        return Type.aes256;
+      case 'aws:kms':
+        return Type.awsKms;
+    }
+    throw Exception('$this is not known in enum Type');
+  }
+}
+
 enum Unit {
   terabytes,
 }
@@ -7639,7 +9059,8 @@ extension on String {
 /// Provides information about an account-related request that hasn't been
 /// processed.
 class UnprocessedAccount {
-  /// The AWS account ID for the account that the request applies to.
+  /// The Amazon Web Services account ID for the account that the request applies
+  /// to.
   final String? accountId;
 
   /// The source of the issue or delay in processing the request.
@@ -7718,8 +9139,7 @@ class UpdateOrganizationConfigurationResponse {
 }
 
 /// Provides data for a specific usage metric and the corresponding quota for an
-/// account. The value for the metric is an aggregated value that reports usage
-/// during the past 30 days.
+/// Amazon Macie account.
 class UsageByAccount {
   /// The type of currency that the value for the metric (estimatedCost) is
   /// reported in.
@@ -7733,8 +9153,8 @@ class UsageByAccount {
   final ServiceLimit? serviceLimit;
 
   /// The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for
-  /// monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing
-  /// sensitive data.
+  /// monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing S3
+  /// objects to detect sensitive data.
   final UsageType? type;
 
   UsageByAccount({
@@ -7755,9 +9175,10 @@ class UsageByAccount {
   }
 }
 
-/// Provides quota and aggregated usage data for an account.
+/// Provides quota and aggregated usage data for an Amazon Macie account.
 class UsageRecord {
-  /// The unique identifier for the AWS account that the data applies to.
+  /// The unique identifier for the Amazon Web Services account that the data
+  /// applies to.
   final String? accountId;
 
   /// The date and time, in UTC and extended ISO 8601 format, when the free trial
@@ -7786,8 +9207,8 @@ class UsageRecord {
   }
 }
 
-/// Specifies a condition for filtering the results of a query for account
-/// quotas and usage data.
+/// Specifies a condition for filtering the results of a query for quota and
+/// usage data for one or more Amazon Macie accounts.
 class UsageStatisticsFilter {
   /// The operator to use in the condition. If the value for the key property is
   /// accountId, this value must be CONTAINS. If the value for the key property is
@@ -7806,25 +9227,18 @@ class UsageStatisticsFilter {
   ///
   /// <ul>
   /// <li>
-  /// accountId - The unique identifier for an AWS account.
+  /// accountId - The unique identifier for an Amazon Web Services account.
   /// </li>
-  /// </ul>
-  /// <ul>
   /// <li>
   /// freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format,
   /// when the free trial started for an account.
   /// </li>
-  /// </ul>
-  /// <ul>
   /// <li>
   /// serviceLimit - A Boolean (true or false) value that indicates whether an
   /// account has reached its monthly quota.
   /// </li>
-  /// </ul>
-  /// <ul>
   /// <li>
-  /// total - A string that represents the current, estimated month-to-date cost
-  /// for an account.
+  /// total - A string that represents the current estimated cost for an account.
   /// </li>
   /// </ul>
   final List<String>? values;
@@ -7847,7 +9261,7 @@ class UsageStatisticsFilter {
 }
 
 /// The operator to use in a condition that filters the results of a query for
-/// account quotas and usage data. Valid values are:
+/// Amazon Macie account quotas and usage data. Valid values are:
 enum UsageStatisticsFilterComparator {
   gt,
   gte,
@@ -7903,7 +9317,7 @@ extension on String {
 }
 
 /// The field to use in a condition that filters the results of a query for
-/// account quotas and usage data. Valid values are:
+/// Amazon Macie account quotas and usage data. Valid values are:
 enum UsageStatisticsFilterKey {
   accountId,
   serviceLimit,
@@ -7942,8 +9356,8 @@ extension on String {
   }
 }
 
-/// Specifies criteria for sorting the results of a query for account quotas and
-/// usage data.
+/// Specifies criteria for sorting the results of a query for Amazon Macie
+/// account quotas and usage data.
 class UsageStatisticsSortBy {
   /// The field to sort the results by.
   final UsageStatisticsSortKey? key;
@@ -7967,8 +9381,8 @@ class UsageStatisticsSortBy {
   }
 }
 
-/// The field to use to sort the results of a query for account quotas and usage
-/// data. Valid values are:
+/// The field to use to sort the results of a query for Amazon Macie account
+/// quotas and usage data. Valid values are:
 enum UsageStatisticsSortKey {
   accountId,
   total,
@@ -8007,8 +9421,10 @@ extension on String {
   }
 }
 
-/// Provides aggregated data for a usage metric. The value for the metric
-/// reports usage data for an account during the past 30 days.
+/// Provides aggregated data for an Amazon Macie usage metric. The value for the
+/// metric reports estimated usage data for an account for the preceding 30 days
+/// or the current calendar month to date, depending on the time period
+/// (timeRange) specified in the request.
 class UsageTotal {
   /// The type of currency that the value for the metric (estimatedCost) is
   /// reported in.
@@ -8018,8 +9434,8 @@ class UsageTotal {
   final String? estimatedCost;
 
   /// The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for
-  /// monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing
-  /// sensitive data.
+  /// monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing S3
+  /// objects to detect sensitive data.
   final UsageType? type;
 
   UsageTotal({
@@ -8036,7 +9452,8 @@ class UsageTotal {
   }
 }
 
-/// The name of a usage metric for an account. Possible values are:
+/// The name of an Amazon Macie usage metric for an account. Possible values
+/// are:
 enum UsageType {
   dataInventoryEvaluation,
   sensitiveDataDiscovery,
@@ -8069,31 +9486,30 @@ extension on String {
 /// that performed an action on an affected resource.
 class UserIdentity {
   /// If the action was performed with temporary security credentials that were
-  /// obtained using the AssumeRole operation of the AWS Security Token Service
-  /// (AWS STS) API, the identifiers, session context, and other details about the
-  /// identity.
+  /// obtained using the AssumeRole operation of the Security Token Service (STS)
+  /// API, the identifiers, session context, and other details about the identity.
   final AssumedRole? assumedRole;
 
-  /// If the action was performed using the credentials for another AWS account,
-  /// the details of that account.
+  /// If the action was performed using the credentials for another Amazon Web
+  /// Services account, the details of that account.
   final AwsAccount? awsAccount;
 
-  /// If the action was performed by an AWS account that belongs to an AWS
-  /// service, the name of the service.
+  /// If the action was performed by an Amazon Web Services account that belongs
+  /// to an Amazon Web Service, the name of the service.
   final AwsService? awsService;
 
   /// If the action was performed with temporary security credentials that were
-  /// obtained using the GetFederationToken operation of the AWS Security Token
-  /// Service (AWS STS) API, the identifiers, session context, and other details
-  /// about the identity.
+  /// obtained using the GetFederationToken operation of the Security Token
+  /// Service (STS) API, the identifiers, session context, and other details about
+  /// the identity.
   final FederatedUser? federatedUser;
 
-  /// If the action was performed using the credentials for an AWS Identity and
-  /// Access Management (IAM) user, the name and other details about the user.
+  /// If the action was performed using the credentials for an Identity and Access
+  /// Management (IAM) user, the name and other details about the user.
   final IamUser? iamUser;
 
-  /// If the action was performed using the credentials for your AWS account, the
-  /// details of your account.
+  /// If the action was performed using the credentials for your Amazon Web
+  /// Services account, the details of your account.
   final UserIdentityRoot? root;
 
   /// The type of entity that performed the action.
@@ -8134,11 +9550,11 @@ class UserIdentity {
   }
 }
 
-/// Provides information about an AWS account and entity that performed an
-/// action on an affected resource. The action was performed using the
-/// credentials for your AWS account.
+/// Provides information about an Amazon Web Services account and entity that
+/// performed an action on an affected resource. The action was performed using
+/// the credentials for your Amazon Web Services account.
 class UserIdentityRoot {
-  /// The unique identifier for the AWS account.
+  /// The unique identifier for the Amazon Web Services account.
   final String? accountId;
 
   /// The Amazon Resource Name (ARN) of the principal that performed the action.
@@ -8225,10 +9641,9 @@ class UserPausedDetails {
   /// run will expire and be cancelled if you don't resume it first.
   final DateTime? jobExpiresAt;
 
-  /// The Amazon Resource Name (ARN) of the AWS Health event that Amazon Macie
-  /// sent to notify you of the job or job run's pending expiration and
-  /// cancellation. This value is null if a job has been paused for less than 23
-  /// days.
+  /// The Amazon Resource Name (ARN) of the Health event that Amazon Macie sent to
+  /// notify you of the job or job run's pending expiration and cancellation. This
+  /// value is null if a job has been paused for less than 23 days.
   final String? jobImminentExpirationHealthEventArn;
 
   /// The date and time, in UTC and extended ISO 8601 format, when you paused the

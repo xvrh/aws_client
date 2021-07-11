@@ -178,8 +178,8 @@ class Backup {
   /// Parameter [backupVaultName] :
   /// The name of a logical container where backups are stored. Backup vaults
   /// are identified by names that are unique to the account used to create them
-  /// and the AWS Region where they are created. They consist of lowercase
-  /// letters, numbers, and hyphens.
+  /// and the AWS Region where they are created. They consist of letters,
+  /// numbers, and hyphens.
   ///
   /// Parameter [backupVaultTags] :
   /// Metadata that you can assign to help organize the resources that you
@@ -200,12 +200,6 @@ class Backup {
     String? encryptionKeyArn,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (backupVaultTags != null) 'BackupVaultTags': backupVaultTags,
       if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
@@ -317,12 +311,6 @@ class Backup {
     required String backupVaultName,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -348,12 +336,6 @@ class Backup {
     required String backupVaultName,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -365,9 +347,14 @@ class Backup {
 
   /// Deletes the recovery point specified by a recovery point ID.
   ///
+  /// If the recovery point ID belongs to a continuous backup, calling this
+  /// endpoint deletes the existing continuous backup and stops future
+  /// continuous backup.
+  ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterValueException].
   /// May throw [MissingParameterValueException].
+  /// May throw [InvalidResourceStateException].
   /// May throw [ServiceUnavailableException].
   /// May throw [InvalidRequestException].
   ///
@@ -386,12 +373,6 @@ class Backup {
     required String recoveryPointArn,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
     await _protocol.send(
       payload: null,
@@ -472,8 +453,10 @@ class Backup {
     return DescribeCopyJobOutput.fromJson(response);
   }
 
-  /// The current feature settings for the AWS Account.
+  /// Describes the global settings of the AWS account, including whether it is
+  /// opted in to cross-account backup.
   ///
+  /// May throw [InvalidRequestException].
   /// May throw [ServiceUnavailableException].
   Future<DescribeGlobalSettingsOutput> describeGlobalSettings() async {
     final response = await _protocol.send(
@@ -533,12 +516,6 @@ class Backup {
     required String recoveryPointArn,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
     final response = await _protocol.send(
       payload: null,
@@ -592,6 +569,42 @@ class Backup {
     return DescribeRestoreJobOutput.fromJson(response);
   }
 
+  /// Deletes the specified continuous backup recovery point from AWS Backup and
+  /// releases control of that continuous backup to the source service, such as
+  /// Amazon RDS. The source service will continue to create and retain
+  /// continuous backups using the lifecycle that you specified in your original
+  /// backup plan.
+  ///
+  /// Does not support snapshot backup recovery points.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingParameterValueException].
+  /// May throw [InvalidResourceStateException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [backupVaultName] :
+  /// The unique name of an AWS Backup vault. Required.
+  ///
+  /// Parameter [recoveryPointArn] :
+  /// An Amazon Resource Name (ARN) that uniquely identifies an AWS Backup
+  /// recovery point. Required.
+  Future<void> disassociateRecoveryPoint({
+    required String backupVaultName,
+    required String recoveryPointArn,
+  }) async {
+    ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
+    ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
+    await _protocol.send(
+      payload: null,
+      method: 'POST',
+      requestUri:
+          '/backup-vaults/${Uri.encodeComponent(backupVaultName)}/recovery-points/${Uri.encodeComponent(recoveryPointArn)}/disassociate',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Returns the backup plan that is specified by the plan ID as a backup
   /// template.
   ///
@@ -617,8 +630,8 @@ class Backup {
   }
 
   /// Returns <code>BackupPlan</code> details for the specified
-  /// <code>BackupPlanId</code>. Returns the body of a backup plan in JSON
-  /// format, in addition to plan metadata.
+  /// <code>BackupPlanId</code>. The details are the body of a backup plan in
+  /// JSON format, in addition to plan metadata.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterValueException].
@@ -747,12 +760,6 @@ class Backup {
     required String backupVaultName,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -779,12 +786,6 @@ class Backup {
     required String backupVaultName,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -819,12 +820,6 @@ class Backup {
     required String recoveryPointArn,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
     final response = await _protocol.send(
       payload: null,
@@ -849,7 +844,10 @@ class Backup {
     return GetSupportedResourceTypesOutput.fromJson(response);
   }
 
-  /// Returns a list of existing backup jobs for an authenticated account.
+  /// Returns a list of existing backup jobs for an authenticated account for
+  /// the last 30 days. For a longer period of time, consider using these <a
+  /// href="https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html">monitoring
+  /// tools</a>.
   ///
   /// May throw [InvalidParameterValueException].
   /// May throw [ServiceUnavailableException].
@@ -857,6 +855,9 @@ class Backup {
   /// Parameter [byAccountId] :
   /// The account ID to list the jobs from. Returns only backup jobs associated
   /// with the specified account ID.
+  ///
+  /// If used from an AWS Organizations management account, passing
+  /// <code>*</code> returns all jobs across the organization.
   ///
   /// Parameter [byBackupVaultName] :
   /// Returns only backup jobs that will be stored in the specified backup
@@ -894,6 +895,9 @@ class Backup {
   /// <code>RDS</code> for Amazon Relational Database Service
   /// </li>
   /// <li>
+  /// <code>Aurora</code> for Amazon Aurora
+  /// </li>
+  /// <li>
   /// <code>Storage Gateway</code> for AWS Storage Gateway
   /// </li>
   /// </ul>
@@ -920,21 +924,6 @@ class Backup {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'byAccountId',
-      byAccountId,
-      r'''^[0-9]{12}$''',
-    );
-    _s.validateStringPattern(
-      'byBackupVaultName',
-      byBackupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-    );
-    _s.validateStringPattern(
-      'byResourceType',
-      byResourceType,
-      r'''^[a-zA-Z0-9\-\_\.]{1,50}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1230,6 +1219,9 @@ class Backup {
   /// <code>RDS</code> for Amazon Relational Database Service
   /// </li>
   /// <li>
+  /// <code>Aurora</code> for Amazon Aurora
+  /// </li>
+  /// <li>
   /// <code>Storage Gateway</code> for AWS Storage Gateway
   /// </li>
   /// </ul>
@@ -1256,16 +1248,6 @@ class Backup {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'byAccountId',
-      byAccountId,
-      r'''^[0-9]{12}$''',
-    );
-    _s.validateStringPattern(
-      'byResourceType',
-      byResourceType,
-      r'''^[a-zA-Z0-9\-\_\.]{1,50}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1387,17 +1369,6 @@ class Backup {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'byResourceType',
-      byResourceType,
-      r'''^[a-zA-Z0-9\-\_\.]{1,50}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1510,11 +1481,6 @@ class Backup {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'byAccountId',
-      byAccountId,
-      r'''^[0-9]{12}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1615,12 +1581,6 @@ class Backup {
     String? policy,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (policy != null) 'Policy': policy,
     };
@@ -1662,12 +1622,6 @@ class Backup {
   }) async {
     ArgumentError.checkNotNull(backupVaultEvents, 'backupVaultEvents');
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sNSTopicArn, 'sNSTopicArn');
     final $payload = <String, dynamic>{
       'BackupVaultEvents': backupVaultEvents.map((e) => e.toValue()).toList(),
@@ -1715,9 +1669,11 @@ class Backup {
   /// is not enabled by default.
   ///
   /// Parameter [completeWindowMinutes] :
-  /// A value in minutes after a backup job is successfully started before it
-  /// must be completed or it will be canceled by AWS Backup. This value is
-  /// optional.
+  /// A value in minutes during which a successfully started backup must
+  /// complete, or else AWS Backup will cancel the job. This value is optional.
+  /// This value begins counting down from when the backup was scheduled. It
+  /// does not add additional time for <code>StartWindowMinutes</code>, or if
+  /// the backup started later than scheduled.
   ///
   /// Parameter [idempotencyToken] :
   /// A customer chosen string that can be used to distinguish between calls to
@@ -1734,13 +1690,16 @@ class Backup {
   /// “transition to cold after days” setting cannot be changed after a backup
   /// has been transitioned to cold.
   ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
+  ///
   /// Parameter [recoveryPointTags] :
   /// To help organize your resources, you can assign your own metadata to the
   /// resources that you create. Each tag is a key-value pair.
   ///
   /// Parameter [startWindowMinutes] :
   /// A value in minutes after a backup is scheduled before a job will be
-  /// canceled if it doesn't start successfully. This value is optional.
+  /// canceled if it doesn't start successfully. This value is optional, and the
+  /// default is 8 hours.
   Future<StartBackupJobOutput> startBackupJob({
     required String backupVaultName,
     required String iamRoleArn,
@@ -1753,12 +1712,6 @@ class Backup {
     int? startWindowMinutes,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(iamRoleArn, 'iamRoleArn');
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     final $payload = <String, dynamic>{
@@ -1784,11 +1737,14 @@ class Backup {
 
   /// Starts a job to create a one-time copy of the specified resource.
   ///
+  /// Does not support continuous backups.
+  ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterValueException].
   /// May throw [MissingParameterValueException].
   /// May throw [ServiceUnavailableException].
   /// May throw [LimitExceededException].
+  /// May throw [InvalidRequestException].
   ///
   /// Parameter [destinationBackupVaultArn] :
   /// An Amazon Resource Name (ARN) that uniquely identifies a destination
@@ -1826,12 +1782,6 @@ class Backup {
     ArgumentError.checkNotNull(iamRoleArn, 'iamRoleArn');
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
     ArgumentError.checkNotNull(sourceBackupVaultName, 'sourceBackupVaultName');
-    _s.validateStringPattern(
-      'sourceBackupVaultName',
-      sourceBackupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DestinationBackupVaultArn': destinationBackupVaultArn,
       'IamRoleArn': iamRoleArn,
@@ -1904,10 +1854,10 @@ class Backup {
   /// the recovery point is restored to a new Amazon EFS file system.
   /// </li>
   /// <li>
-  /// <code>ItemsToRestore </code>: A serialized list of up to five strings
-  /// where each string is a file path. Use <code>ItemsToRestore</code> to
-  /// restore specific files or directories rather than the entire file system.
-  /// This parameter is optional.
+  /// <code>ItemsToRestore </code>: An array of one to five strings where each
+  /// string is a file path. Use <code>ItemsToRestore</code> to restore specific
+  /// files or directories rather than the entire file system. This parameter is
+  /// optional. For example, <code>"itemsToRestore":"[\"/my.test\"]"</code>.
   /// </li>
   /// </ul>
   ///
@@ -1940,6 +1890,9 @@ class Backup {
   /// <code>RDS</code> for Amazon Relational Database Service
   /// </li>
   /// <li>
+  /// <code>Aurora</code> for Amazon Aurora
+  /// </li>
+  /// <li>
   /// <code>Storage Gateway</code> for AWS Storage Gateway
   /// </li>
   /// </ul>
@@ -1953,11 +1906,6 @@ class Backup {
     ArgumentError.checkNotNull(iamRoleArn, 'iamRoleArn');
     ArgumentError.checkNotNull(metadata, 'metadata');
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
-    _s.validateStringPattern(
-      'resourceType',
-      resourceType,
-      r'''^[a-zA-Z0-9\-\_\.]{1,50}$''',
-    );
     final $payload = <String, dynamic>{
       'IamRoleArn': iamRoleArn,
       'Metadata': metadata,
@@ -2093,7 +2041,7 @@ class Backup {
     return UpdateBackupPlanOutput.fromJson(response);
   }
 
-  /// Updates the current global settings for the AWS Account. Use the
+  /// Updates the current global settings for the AWS account. Use the
   /// <code>DescribeGlobalSettings</code> API to determine the current settings.
   ///
   /// May throw [ServiceUnavailableException].
@@ -2129,6 +2077,10 @@ class Backup {
   /// “transition to cold after days” setting cannot be changed after a backup
   /// has been transitioned to cold.
   ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
+  ///
+  /// Does not support continuous backups.
+  ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterValueException].
   /// May throw [MissingParameterValueException].
@@ -2161,12 +2113,6 @@ class Backup {
     Lifecycle? lifecycle,
   }) async {
     ArgumentError.checkNotNull(backupVaultName, 'backupVaultName');
-    _s.validateStringPattern(
-      'backupVaultName',
-      backupVaultName,
-      r'''^[a-zA-Z0-9\-\_]{2,50}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recoveryPointArn, 'recoveryPointArn');
     final $payload = <String, dynamic>{
       if (lifecycle != null) 'Lifecycle': lifecycle,
@@ -2233,8 +2179,12 @@ class AdvancedBackupSetting {
   /// a VSS-Enabled Windows Backup</a>.
   final Map<String, String>? backupOptions;
 
-  /// The type of AWS resource to be backed up. For VSS Windows backups, the only
-  /// supported resource type is Amazon EC2.
+  /// Specifies an object containing resource type and backup options. The only
+  /// supported resource type is Amazon EC2 instances with Windows VSS. For an
+  /// CloudFormation example, see the <a
+  /// href="https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html">sample
+  /// CloudFormation template to enable Windows VSS</a> in the <i>AWS Backup User
+  /// Guide</i>.
   ///
   /// Valid values: <code>EC2</code>.
   final String? resourceType;
@@ -2325,8 +2275,11 @@ class BackupJob {
   /// 12:11:30.087 AM.
   final DateTime? expectedCompletionDate;
 
-  /// Specifies the IAM role ARN used to create the target recovery point; for
-  /// example, <code>arn:aws:iam::123456789012:role/S3Access</code>.
+  /// Specifies the IAM role ARN used to create the target recovery point. IAM
+  /// roles other than the default role must include either <code>AWSBackup</code>
+  /// or <code>AwsBackup</code> in the role name. For example,
+  /// <code>arn:aws:iam::123456789012:role/AWSBackupRDSAccess</code>. Role names
+  /// without those strings lack permissions to perform backup jobs.
   final String? iamRoleArn;
 
   /// Contains an estimated percentage complete of a job at the time the job
@@ -2651,6 +2604,11 @@ class BackupRule {
   /// the copy operation.
   final List<CopyAction>? copyActions;
 
+  /// Specifies whether AWS Backup creates continuous backups. True causes AWS
+  /// Backup to create continuous backups capable of point-in-time restore (PITR).
+  /// False (or not specified) causes AWS Backup to create snapshot backups.
+  final bool? enableContinuousBackup;
+
   /// The lifecycle defines when a protected resource is transitioned to cold
   /// storage and when it expires. AWS Backup transitions and expires backups
   /// automatically according to the lifecycle that you define.
@@ -2660,6 +2618,8 @@ class BackupRule {
   /// days greater than the “transition to cold after days” setting. The
   /// “transition to cold after days” setting cannot be changed after a backup has
   /// been transitioned to cold.
+  ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
   final Lifecycle? lifecycle;
 
   /// An array of key-value pair strings that are assigned to resources that are
@@ -2688,6 +2648,7 @@ class BackupRule {
     required this.targetBackupVaultName,
     this.completionWindowMinutes,
     this.copyActions,
+    this.enableContinuousBackup,
     this.lifecycle,
     this.recoveryPointTags,
     this.ruleId,
@@ -2703,6 +2664,7 @@ class BackupRule {
           ?.whereNotNull()
           .map((e) => CopyAction.fromJson(e as Map<String, dynamic>))
           .toList(),
+      enableContinuousBackup: json['EnableContinuousBackup'] as bool?,
       lifecycle: json['Lifecycle'] != null
           ? Lifecycle.fromJson(json['Lifecycle'] as Map<String, dynamic>)
           : null,
@@ -2734,6 +2696,11 @@ class BackupRuleInput {
   /// the copy operation.
   final List<CopyAction>? copyActions;
 
+  /// Specifies whether AWS Backup creates continuous backups. True causes AWS
+  /// Backup to create continuous backups capable of point-in-time restore (PITR).
+  /// False (or not specified) causes AWS Backup to create snapshot backups.
+  final bool? enableContinuousBackup;
+
   /// The lifecycle defines when a protected resource is transitioned to cold
   /// storage and when it expires. AWS Backup will transition and expire backups
   /// automatically according to the lifecycle that you define.
@@ -2743,6 +2710,8 @@ class BackupRuleInput {
   /// days greater than the “transition to cold after days” setting. The
   /// “transition to cold after days” setting cannot be changed after a backup has
   /// been transitioned to cold.
+  ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
   final Lifecycle? lifecycle;
 
   /// To help organize your resources, you can assign your own metadata to the
@@ -2761,6 +2730,7 @@ class BackupRuleInput {
     required this.targetBackupVaultName,
     this.completionWindowMinutes,
     this.copyActions,
+    this.enableContinuousBackup,
     this.lifecycle,
     this.recoveryPointTags,
     this.scheduleExpression,
@@ -2771,6 +2741,7 @@ class BackupRuleInput {
     final targetBackupVaultName = this.targetBackupVaultName;
     final completionWindowMinutes = this.completionWindowMinutes;
     final copyActions = this.copyActions;
+    final enableContinuousBackup = this.enableContinuousBackup;
     final lifecycle = this.lifecycle;
     final recoveryPointTags = this.recoveryPointTags;
     final scheduleExpression = this.scheduleExpression;
@@ -2781,6 +2752,8 @@ class BackupRuleInput {
       if (completionWindowMinutes != null)
         'CompletionWindowMinutes': completionWindowMinutes,
       if (copyActions != null) 'CopyActions': copyActions,
+      if (enableContinuousBackup != null)
+        'EnableContinuousBackup': enableContinuousBackup,
       if (lifecycle != null) 'Lifecycle': lifecycle,
       if (recoveryPointTags != null) 'RecoveryPointTags': recoveryPointTags,
       if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
@@ -2801,7 +2774,8 @@ class BackupSelection {
 
   /// An array of conditions used to specify a set of resources to assign to a
   /// backup plan; for example, <code>"StringEquals":
-  /// {"ec2:ResourceTag/Department": "accounting"</code>.
+  /// {"ec2:ResourceTag/Department": "accounting"</code>. Assigns the backup plan
+  /// to every resource with at least one matching tag.
   final List<Condition>? listOfTags;
 
   /// An array of strings that contain Amazon Resource Names (ARNs) of resources
@@ -3045,6 +3019,8 @@ class BackupVaultListMember {
 /// days greater than the “transition to cold after days” setting. The
 /// “transition to cold after days” setting cannot be changed after a backup has
 /// been transitioned to cold.
+///
+/// Only Amazon EFS file system backups can be transitioned to cold storage.
 class CalculatedLifecycle {
   /// A timestamp that specifies when to delete a recovery point.
   final DateTime? deleteAt;
@@ -3661,7 +3637,7 @@ class DescribeGlobalSettingsOutput {
   /// A list of resources along with the opt-in preferences for the account.
   final Map<String, String>? globalSettings;
 
-  /// The date and time that the global settings was last updated. This update is
+  /// The date and time that the global settings were last updated. This update is
   /// in Unix format and Coordinated Universal Time (UTC). The value of
   /// <code>LastUpdateTime</code> is accurate to milliseconds. For example, the
   /// value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
@@ -3773,6 +3749,8 @@ class DescribeRecoveryPointOutput {
   /// 90 days greater than the “transition to cold after days” setting. The
   /// “transition to cold after days” setting cannot be changed after a backup has
   /// been transitioned to cold.
+  ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
   final Lifecycle? lifecycle;
 
   /// An ARN that uniquely identifies a recovery point; for example,
@@ -4254,6 +4232,9 @@ class GetSupportedResourceTypesOutput {
   /// <code>RDS</code> for Amazon Relational Database Service
   /// </li>
   /// <li>
+  /// <code>Aurora</code> for Amazon Aurora
+  /// </li>
+  /// <li>
   /// <code>Storage Gateway</code> for AWS Storage Gateway
   /// </li>
   /// </ul>
@@ -4280,6 +4261,8 @@ class GetSupportedResourceTypesOutput {
 /// setting must be 90 days greater than the “transition to cold after days”
 /// setting. The “transition to cold after days” setting cannot be changed after
 /// a backup has been transitioned to cold.
+///
+/// Only Amazon EFS file system backups can be transitioned to cold storage.
 class Lifecycle {
   /// Specifies the number of days after creation that a recovery point is
   /// deleted. Must be greater than 90 days plus
@@ -4728,6 +4711,8 @@ class RecoveryPointByBackupVault {
   /// days greater than the “transition to cold after days” setting. The
   /// “transition to cold after days” setting cannot be changed after a backup has
   /// been transitioned to cold.
+  ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
   final Lifecycle? lifecycle;
 
   /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for
@@ -5065,7 +5050,7 @@ class StartBackupJobOutput {
   /// Uniquely identifies a request to AWS Backup to back up a resource.
   final String? backupJobId;
 
-  /// The date and time that a backup job is started, in Unix format and
+  /// The date and time that a backup job is created, in Unix format and
   /// Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is
   /// accurate to milliseconds. For example, the value 1516925490.087 represents
   /// Friday, January 26, 2018 12:11:30.087 AM.
@@ -5093,7 +5078,7 @@ class StartCopyJobOutput {
   /// Uniquely identifies a copy job.
   final String? copyJobId;
 
-  /// The date and time that a copy job is started, in Unix format and Coordinated
+  /// The date and time that a copy job is created, in Unix format and Coordinated
   /// Universal Time (UTC). The value of <code>CreationDate</code> is accurate to
   /// milliseconds. For example, the value 1516925490.087 represents Friday,
   /// January 26, 2018 12:11:30.087 AM.
@@ -5219,6 +5204,8 @@ class UpdateRecoveryPointLifecycleOutput {
   /// days greater than the “transition to cold after days” setting. The
   /// “transition to cold after days” setting cannot be changed after a backup has
   /// been transitioned to cold.
+  ///
+  /// Only Amazon EFS file system backups can be transitioned to cold storage.
   final Lifecycle? lifecycle;
 
   /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for
@@ -5271,6 +5258,14 @@ class InvalidRequestException extends _s.GenericAwsException {
       : super(type: type, code: 'InvalidRequestException', message: message);
 }
 
+class InvalidResourceStateException extends _s.GenericAwsException {
+  InvalidResourceStateException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'InvalidResourceStateException',
+            message: message);
+}
+
 class LimitExceededException extends _s.GenericAwsException {
   LimitExceededException({String? type, String? message})
       : super(type: type, code: 'LimitExceededException', message: message);
@@ -5304,6 +5299,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidParameterValueException(type: type, message: message),
   'InvalidRequestException': (type, message) =>
       InvalidRequestException(type: type, message: message),
+  'InvalidResourceStateException': (type, message) =>
+      InvalidResourceStateException(type: type, message: message),
   'LimitExceededException': (type, message) =>
       LimitExceededException(type: type, message: message),
   'MissingParameterValueException': (type, message) =>

@@ -39,10 +39,10 @@ class Kendra {
         );
 
   /// Removes one or more documents from an index. The documents must have been
-  /// added with the <a>BatchPutDocument</a> operation.
+  /// added with the <code>BatchPutDocument</code> operation.
   ///
   /// The documents are deleted asynchronously. You can see the progress of the
-  /// deletion by using AWS CloudWatch. Any error messages releated to the
+  /// deletion by using AWS CloudWatch. Any error messages related to the
   /// processing of the batch are sent to you CloudWatch log.
   ///
   /// May throw [ValidationException].
@@ -71,12 +71,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSKendraFrontendService.BatchDeleteDocument'
@@ -96,6 +90,72 @@ class Kendra {
     );
 
     return BatchDeleteDocumentResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns the indexing status for one or more documents submitted with the
+  /// <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html">
+  /// BatchPutDocument</a> operation.
+  ///
+  /// When you use the <code>BatchPutDocument</code> operation, documents are
+  /// indexed asynchronously. You can use the
+  /// <code>BatchGetDocumentStatus</code> operation to get the current status of
+  /// a list of documents so that you can determine if they have been
+  /// successfully indexed.
+  ///
+  /// You can also use the <code>BatchGetDocumentStatus</code> operation to
+  /// check the status of the <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html">
+  /// BatchDeleteDocument</a> operation. When a document is deleted from the
+  /// index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [documentInfoList] :
+  /// A list of <code>DocumentInfo</code> objects that identify the documents
+  /// for which to get the status. You identify the documents by their document
+  /// ID and optional attributes.
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index to add documents to. The index ID is returned
+  /// by the <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html">
+  /// CreateIndex </a> operation.
+  Future<BatchGetDocumentStatusResponse> batchGetDocumentStatus({
+    required List<DocumentInfo> documentInfoList,
+    required String indexId,
+  }) async {
+    ArgumentError.checkNotNull(documentInfoList, 'documentInfoList');
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.BatchGetDocumentStatus'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'DocumentInfoList': documentInfoList,
+        'IndexId': indexId,
+      },
+    );
+
+    return BatchGetDocumentStatusResponse.fromJson(jsonResponse.body);
   }
 
   /// Adds one or more documents to an index.
@@ -121,6 +181,12 @@ class Kendra {
   /// Parameter [documents] :
   /// One or more documents to add to the index.
   ///
+  /// Documents can include custom attributes. For example, 'DataSourceId' and
+  /// 'DataSourceSyncJobId' are custom attributes that provide information on
+  /// the synchronization of documents running on a data source. Note,
+  /// 'DataSourceSyncJobId' could be an optional custom attribute as Amazon
+  /// Kendra will use the ID of a running sync job.
+  ///
   /// Documents have the following file size limits.
   ///
   /// <ul>
@@ -140,7 +206,7 @@ class Kendra {
   ///
   /// Parameter [indexId] :
   /// The identifier of the index to add the documents to. You need to create
-  /// the index first using the <a>CreateIndex</a> operation.
+  /// the index first using the <code>CreateIndex</code> operation.
   ///
   /// Parameter [roleArn] :
   /// The Amazon Resource Name (ARN) of a role that is allowed to run the
@@ -161,22 +227,11 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -196,6 +251,50 @@ class Kendra {
     );
 
     return BatchPutDocumentResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Clears existing query suggestions from an index.
+  ///
+  /// This deletes existing suggestions only, not the queries in the query log.
+  /// After you clear suggestions, Amazon Kendra learns new suggestions based on
+  /// new queries added to the query log from the time you cleared suggestions.
+  /// If you do not see any new suggestions, then please allow Amazon Kendra to
+  /// collect enough queries to learn new suggestions.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ConflictException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index you want to clear query suggestions from.
+  Future<void> clearQuerySuggestions({
+    required String indexId,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.ClearQuerySuggestions'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+      },
+    );
   }
 
   /// Creates a data source that you use to with an Amazon Kendra index.
@@ -292,24 +391,12 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       1000,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -325,21 +412,11 @@ class Kendra {
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -434,12 +511,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -448,24 +519,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(s3Path, 's3Path');
@@ -480,11 +539,6 @@ class Kendra {
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -513,12 +567,13 @@ class Kendra {
 
   /// Creates a new Amazon Kendra index. Index creation is an asynchronous
   /// operation. To determine if index creation has completed, check the
-  /// <code>Status</code> field returned from a call to . The
-  /// <code>Status</code> field is set to <code>ACTIVE</code> when the index is
-  /// ready to use.
+  /// <code>Status</code> field returned from a call to
+  /// <code>DescribeIndex</code>. The <code>Status</code> field is set to
+  /// <code>ACTIVE</code> when the index is ready to use.
   ///
-  /// Once the index is active you can index your documents using the operation
-  /// or using one of the supported data sources.
+  /// Once the index is active you can index your documents using the
+  /// <code>BatchPutDocument</code> operation or using one of the supported data
+  /// sources.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceAlreadyExistException].
@@ -554,6 +609,10 @@ class Kendra {
   ///
   /// The <code>Edition</code> parameter is optional. If you don't supply a
   /// value, the default is <code>ENTERPRISE_EDITION</code>.
+  ///
+  /// For more information on quota limits for enterprise and developer
+  /// editions, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas</a>.
   ///
   /// Parameter [serverSideEncryptionConfiguration] :
   /// The identifier of the AWS KMS customer managed key (CMK) to use to encrypt
@@ -597,24 +656,12 @@ class Kendra {
       1000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -628,11 +675,6 @@ class Kendra {
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -662,6 +704,138 @@ class Kendra {
     );
 
     return CreateIndexResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a block list to exlcude certain queries from suggestions.
+  ///
+  /// Any query that contains words or phrases specified in the block list is
+  /// blocked or filtered out from being shown as a suggestion.
+  ///
+  /// You need to provide the file location of your block list text file in your
+  /// S3 bucket. In your text file, enter each block word or phrase on a
+  /// separate line.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index you want to create a query suggestions block
+  /// list for.
+  ///
+  /// Parameter [name] :
+  /// A user friendly name for the block list.
+  ///
+  /// For example, the block list named 'offensive-words' includes all offensive
+  /// words that could appear in user queries and need to be blocked from
+  /// suggestions.
+  ///
+  /// Parameter [roleArn] :
+  /// The IAM (Identity and Access Management) role used by Amazon Kendra to
+  /// access the block list text file in your S3 bucket.
+  ///
+  /// You need permissions to the role ARN (Amazon Resource Name). The role
+  /// needs S3 read permissions to your file in S3 and needs to give STS
+  /// (Security Token Service) assume role permissions to Amazon Kendra.
+  ///
+  /// Parameter [sourceS3Path] :
+  /// The S3 path to your block list text file in your S3 bucket.
+  ///
+  /// Each block word or phrase should be on a separate line in a text file.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  ///
+  /// Parameter [clientToken] :
+  /// A token that you provide to identify the request to create a query
+  /// suggestions block list.
+  ///
+  /// Parameter [description] :
+  /// A user-friendly description for the block list.
+  ///
+  /// For example, the description "List of all offensive words that can appear
+  /// in user queries and need to be blocked from suggestions."
+  ///
+  /// Parameter [tags] :
+  /// A tag that you can assign to a block list that categorizes the block list.
+  Future<CreateQuerySuggestionsBlockListResponse>
+      createQuerySuggestionsBlockList({
+    required String indexId,
+    required String name,
+    required String roleArn,
+    required S3Path sourceS3Path,
+    String? clientToken,
+    String? description,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      100,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(roleArn, 'roleArn');
+    _s.validateStringLength(
+      'roleArn',
+      roleArn,
+      1,
+      1284,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(sourceS3Path, 'sourceS3Path');
+    _s.validateStringLength(
+      'clientToken',
+      clientToken,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      1000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.CreateQuerySuggestionsBlockList'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+        'Name': name,
+        'RoleArn': roleArn,
+        'SourceS3Path': sourceS3Path,
+        'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
+        if (description != null) 'Description': description,
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return CreateQuerySuggestionsBlockListResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates a thesaurus for an index. The thesaurus contains a list of
@@ -718,12 +892,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -732,24 +900,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceS3Path, 'sourceS3Path');
@@ -764,11 +920,6 @@ class Kendra {
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -796,8 +947,9 @@ class Kendra {
 
   /// Deletes an Amazon Kendra data source. An exception is not thrown if the
   /// data source is already being deleted. While the data source is being
-  /// deleted, the <code>Status</code> field returned by a call to the operation
-  /// is set to <code>DELETING</code>. For more information, see <a
+  /// deleted, the <code>Status</code> field returned by a call to the
+  /// <code>DescribeDataSource</code> operation is set to <code>DELETING</code>.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html">Deleting
   /// Data Sources</a>.
   ///
@@ -825,24 +977,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -888,24 +1028,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -927,8 +1055,8 @@ class Kendra {
 
   /// Deletes an existing Amazon Kendra index. An exception is not thrown if the
   /// index is already being deleted. While the index is being deleted, the
-  /// <code>Status</code> field returned by a call to the <a>DescribeIndex</a>
-  /// operation is set to <code>DELETING</code>.
+  /// <code>Status</code> field returned by a call to the
+  /// <code>DescribeIndex</code> operation is set to <code>DELETING</code>.
   ///
   /// May throw [ValidationException].
   /// May throw [ConflictException].
@@ -950,12 +1078,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSKendraFrontendService.DeleteIndex'
@@ -968,6 +1090,61 @@ class Kendra {
       headers: headers,
       payload: {
         'Id': id,
+      },
+    );
+  }
+
+  /// Deletes a block list used for query suggestions for an index.
+  ///
+  /// A deleted block list might not take effect right away. Amazon Kendra needs
+  /// to refresh the entire suggestions list to add back the queries that were
+  /// previously blocked.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [id] :
+  /// The unique identifier of the block list that needs to be deleted.
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the you want to delete a block list from.
+  Future<void> deleteQuerySuggestionsBlockList({
+    required String id,
+    required String indexId,
+  }) async {
+    ArgumentError.checkNotNull(id, 'id');
+    _s.validateStringLength(
+      'id',
+      id,
+      36,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.DeleteQuerySuggestionsBlockList'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Id': id,
+        'IndexId': indexId,
       },
     );
   }
@@ -998,24 +1175,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1060,24 +1225,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1124,24 +1277,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1184,12 +1325,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSKendraFrontendService.DescribeIndex'
@@ -1206,6 +1341,107 @@ class Kendra {
     );
 
     return DescribeIndexResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Describes a block list used for query suggestions for an index.
+  ///
+  /// This is used to check the current settings that are applied to a block
+  /// list.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [id] :
+  /// The unique identifier of the block list.
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index for the block list.
+  Future<DescribeQuerySuggestionsBlockListResponse>
+      describeQuerySuggestionsBlockList({
+    required String id,
+    required String indexId,
+  }) async {
+    ArgumentError.checkNotNull(id, 'id');
+    _s.validateStringLength(
+      'id',
+      id,
+      36,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target':
+          'AWSKendraFrontendService.DescribeQuerySuggestionsBlockList'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Id': id,
+        'IndexId': indexId,
+      },
+    );
+
+    return DescribeQuerySuggestionsBlockListResponse.fromJson(
+        jsonResponse.body);
+  }
+
+  /// Describes the settings of query suggestions for an index.
+  ///
+  /// This is used to check the current settings applied to query suggestions.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index you want to describe query suggestions
+  /// settings for.
+  Future<DescribeQuerySuggestionsConfigResponse>
+      describeQuerySuggestionsConfig({
+    required String indexId,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.DescribeQuerySuggestionsConfig'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+      },
+    );
+
+    return DescribeQuerySuggestionsConfigResponse.fromJson(jsonResponse.body);
   }
 
   /// Describes an existing Amazon Kendra thesaurus.
@@ -1233,24 +1469,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1270,6 +1494,66 @@ class Kendra {
     );
 
     return DescribeThesaurusResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Fetches the queries that are suggested to your users.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index you want to get query suggestions from.
+  ///
+  /// Parameter [queryText] :
+  /// The text of a user's query to generate query suggestions.
+  ///
+  /// A query is suggested if the query prefix matches what a user starts to
+  /// type as their query.
+  ///
+  /// Amazon Kendra does not show any suggestions if a user types fewer than two
+  /// characters or more than 60 characters. A query must also have at least one
+  /// search result and contain at least one word of more than four characters.
+  ///
+  /// Parameter [maxSuggestionsCount] :
+  /// The maximum number of query suggestions you want to show to your users.
+  Future<GetQuerySuggestionsResponse> getQuerySuggestions({
+    required String indexId,
+    required String queryText,
+    int? maxSuggestionsCount,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(queryText, 'queryText');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.GetQuerySuggestions'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+        'QueryText': queryText,
+        if (maxSuggestionsCount != null)
+          'MaxSuggestionsCount': maxSuggestionsCount,
+      },
+    );
+
+    return GetQuerySuggestionsResponse.fromJson(jsonResponse.body);
   }
 
   /// Gets statistics about synchronizing Amazon Kendra with a data source.
@@ -1320,24 +1604,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1407,12 +1679,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1475,12 +1741,6 @@ class Kendra {
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1565,6 +1825,80 @@ class Kendra {
     return ListIndicesResponse.fromJson(jsonResponse.body);
   }
 
+  /// Lists the block lists used for query suggestions for an index.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index for a list of all block lists that exist for
+  /// that index.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of block lists to return.
+  ///
+  /// Parameter [nextToken] :
+  /// If the previous response was incomplete (because there is more data to
+  /// retrieve), Amazon Kendra returns a pagination token in the response. You
+  /// can use this pagination token to retrieve the next set of block lists
+  /// (<code>BlockListSummaryItems</code>).
+  Future<ListQuerySuggestionsBlockListsResponse>
+      listQuerySuggestionsBlockLists({
+    required String indexId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      800,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.ListQuerySuggestionsBlockLists'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListQuerySuggestionsBlockListsResponse.fromJson(jsonResponse.body);
+  }
+
   /// Gets a list of tags associated with a specified resource. Indexes, FAQs,
   /// and data sources can have tags associated with them.
   ///
@@ -1638,12 +1972,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1712,7 +2040,7 @@ class Kendra {
   ///
   /// Parameter [indexId] :
   /// The unique identifier of the index to search. The identifier is returned
-  /// in the response from the operation.
+  /// in the response from the <code>CreateIndex</code> operation.
   ///
   /// Parameter [queryText] :
   /// The text to search for.
@@ -1726,6 +2054,22 @@ class Kendra {
   /// The <code>AttributeFilter</code> parameter enables you to create a set of
   /// filtering rules that a document must satisfy to be included in the query
   /// results.
+  ///
+  /// Parameter [documentRelevanceOverrideConfigurations] :
+  /// Overrides relevance tuning configurations of fields or attributes set at
+  /// the index level.
+  ///
+  /// If you use this API to override the relevance tuning configured at the
+  /// index level, but there is no relevance tuning configured at the index
+  /// level, then Amazon Kendra does not apply any relevance tuning.
+  ///
+  /// If there is relevance tuning configured at the index level, but you do not
+  /// use this API to override any relevance tuning in the index, then Amazon
+  /// Kendra uses the relevance tuning that is configured at the index level.
+  ///
+  /// If there is relevance tuning configured for fields at the index level, but
+  /// you use this API to override only some of these fields, then for the
+  /// fields you did not override, the importance is set to 1.
   ///
   /// Parameter [facets] :
   /// An array of documents attributes. Amazon Kendra returns a count for each
@@ -1773,6 +2117,8 @@ class Kendra {
     required String indexId,
     required String queryText,
     AttributeFilter? attributeFilter,
+    List<DocumentRelevanceConfiguration>?
+        documentRelevanceOverrideConfigurations,
     List<Facet>? facets,
     int? pageNumber,
     int? pageSize,
@@ -1790,12 +2136,6 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(queryText, 'queryText');
     _s.validateStringLength(
       'queryText',
@@ -1804,22 +2144,11 @@ class Kendra {
       1000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'queryText',
-      queryText,
-      r'''^\P{C}*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'visitorId',
       visitorId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'visitorId',
-      visitorId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1835,6 +2164,9 @@ class Kendra {
         'IndexId': indexId,
         'QueryText': queryText,
         if (attributeFilter != null) 'AttributeFilter': attributeFilter,
+        if (documentRelevanceOverrideConfigurations != null)
+          'DocumentRelevanceOverrideConfigurations':
+              documentRelevanceOverrideConfigurations,
         if (facets != null) 'Facets': facets,
         if (pageNumber != null) 'PageNumber': pageNumber,
         if (pageSize != null) 'PageSize': pageSize,
@@ -1881,24 +2213,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1947,24 +2267,12 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
       indexId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1999,7 +2307,8 @@ class Kendra {
   ///
   /// Parameter [queryId] :
   /// The identifier of the specific query for which you are submitting
-  /// feedback. The query ID is returned in the response to the operation.
+  /// feedback. The query ID is returned in the response to the
+  /// <code>Query</code> operation.
   ///
   /// Parameter [clickFeedbackItems] :
   /// Tells Amazon Kendra that a particular search result link was chosen by the
@@ -2022,24 +2331,12 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(queryId, 'queryId');
     _s.validateStringLength(
       'queryId',
       queryId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'queryId',
-      queryId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2200,12 +2497,6 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
@@ -2214,44 +2505,23 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2289,7 +2559,7 @@ class Kendra {
   /// The identifier of the index to update.
   ///
   /// Parameter [capacityUnits] :
-  /// Sets the number of addtional storage and query capacity units that should
+  /// Sets the number of additional storage and query capacity units that should
   /// be used by the index. You can change the capacity of the index up to 5
   /// times per day.
   ///
@@ -2332,44 +2602,23 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2394,6 +2643,247 @@ class Kendra {
           'UserContextPolicy': userContextPolicy.toValue(),
         if (userTokenConfigurations != null)
           'UserTokenConfigurations': userTokenConfigurations,
+      },
+    );
+  }
+
+  /// Updates a block list used for query suggestions for an index.
+  ///
+  /// Updates to a block list might not take effect right away. Amazon Kendra
+  /// needs to refresh the entire suggestions list to apply any updates to the
+  /// block list. Other changes not related to the block list apply immediately.
+  ///
+  /// If a block list is updating, then you need to wait for the first update to
+  /// finish before submitting another update.
+  ///
+  /// Amazon Kendra supports partial updates, so you only need to provide the
+  /// fields you want to update.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [id] :
+  /// The unique identifier of a block list.
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index for a block list.
+  ///
+  /// Parameter [description] :
+  /// The description for a block list.
+  ///
+  /// Parameter [name] :
+  /// The name of a block list.
+  ///
+  /// Parameter [roleArn] :
+  /// The IAM (Identity and Access Management) role used to access the block
+  /// list text file in S3.
+  ///
+  /// Parameter [sourceS3Path] :
+  /// The S3 path where your block list text file sits in S3.
+  ///
+  /// If you update your block list and provide the same path to the block list
+  /// text file in S3, then Amazon Kendra reloads the file to refresh the block
+  /// list. Amazon Kendra does not automatically refresh your block list. You
+  /// need to call the <code>UpdateQuerySuggestionsBlockList</code> API to
+  /// refresh you block list.
+  ///
+  /// If you update your block list, then Amazon Kendra asynchronously refreshes
+  /// all query suggestions with the latest content in the S3 file. This means
+  /// changes might not take effect immediately.
+  Future<void> updateQuerySuggestionsBlockList({
+    required String id,
+    required String indexId,
+    String? description,
+    String? name,
+    String? roleArn,
+    S3Path? sourceS3Path,
+  }) async {
+    ArgumentError.checkNotNull(id, 'id');
+    _s.validateStringLength(
+      'id',
+      id,
+      36,
+      36,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      1000,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'roleArn',
+      roleArn,
+      1,
+      1284,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.UpdateQuerySuggestionsBlockList'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Id': id,
+        'IndexId': indexId,
+        if (description != null) 'Description': description,
+        if (name != null) 'Name': name,
+        if (roleArn != null) 'RoleArn': roleArn,
+        if (sourceS3Path != null) 'SourceS3Path': sourceS3Path,
+      },
+    );
+  }
+
+  /// Updates the settings of query suggestions for an index.
+  ///
+  /// Amazon Kendra supports partial updates, so you only need to provide the
+  /// fields you want to update.
+  ///
+  /// If an update is currently processing (i.e. 'happening'), you need to wait
+  /// for the update to finish before making another update.
+  ///
+  /// Updates to query suggestions settings might not take effect right away.
+  /// The time for your updated settings to take effect depends on the updates
+  /// made and the number of search queries in your index.
+  ///
+  /// You can still enable/disable query suggestions at any time.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [indexId] :
+  /// The identifier of the index you want to update query suggestions settings
+  /// for.
+  ///
+  /// Parameter [includeQueriesWithoutUserInformation] :
+  /// <code>TRUE</code> to include queries without user information (i.e. all
+  /// queries, irrespective of the user), otherwise <code>FALSE</code> to only
+  /// include queries with user information.
+  ///
+  /// If you pass user information to Amazon Kendra along with the queries, you
+  /// can set this flag to <code>FALSE</code> and instruct Amazon Kendra to only
+  /// consider queries with user information.
+  ///
+  /// If you set to <code>FALSE</code>, Amazon Kendra only considers queries
+  /// searched at least <code>MinimumQueryCount</code> times across
+  /// <code>MinimumNumberOfQueryingUsers</code> unique users for suggestions.
+  ///
+  /// If you set to <code>TRUE</code>, Amazon Kendra ignores all user
+  /// information and learns from all queries.
+  ///
+  /// Parameter [minimumNumberOfQueryingUsers] :
+  /// The minimum number of unique users who must search a query in order for
+  /// the query to be eligible to suggest to your users.
+  ///
+  /// Increasing this number might decrease the number of suggestions. However,
+  /// this ensures a query is searched by many users and is truly popular to
+  /// suggest to users.
+  ///
+  /// How you tune this setting depends on your specific needs.
+  ///
+  /// Parameter [minimumQueryCount] :
+  /// The the minimum number of times a query must be searched in order to be
+  /// eligible to suggest to your users.
+  ///
+  /// Decreasing this number increases the number of suggestions. However, this
+  /// affects the quality of suggestions as it sets a low bar for a query to be
+  /// considered popular to suggest to users.
+  ///
+  /// How you tune this setting depends on your specific needs.
+  ///
+  /// Parameter [mode] :
+  /// Set the mode to <code>ENABLED</code> or <code>LEARN_ONLY</code>.
+  ///
+  /// By default, Amazon Kendra enables query suggestions.
+  /// <code>LEARN_ONLY</code> mode allows you to turn off query suggestions. You
+  /// can to update this at any time.
+  ///
+  /// In <code>LEARN_ONLY</code> mode, Amazon Kendra continues to learn from new
+  /// queries to keep suggestions up to date for when you are ready to switch to
+  /// ENABLED mode again.
+  ///
+  /// Parameter [queryLogLookBackWindowInDays] :
+  /// How recent your queries are in your query log time window.
+  ///
+  /// The time window is the number of days from current day to past days.
+  ///
+  /// By default, Amazon Kendra sets this to 180.
+  Future<void> updateQuerySuggestionsConfig({
+    required String indexId,
+    bool? includeQueriesWithoutUserInformation,
+    int? minimumNumberOfQueryingUsers,
+    int? minimumQueryCount,
+    Mode? mode,
+    int? queryLogLookBackWindowInDays,
+  }) async {
+    ArgumentError.checkNotNull(indexId, 'indexId');
+    _s.validateStringLength(
+      'indexId',
+      indexId,
+      36,
+      36,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'minimumNumberOfQueryingUsers',
+      minimumNumberOfQueryingUsers,
+      1,
+      10000,
+    );
+    _s.validateNumRange(
+      'minimumQueryCount',
+      minimumQueryCount,
+      1,
+      10000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSKendraFrontendService.UpdateQuerySuggestionsConfig'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IndexId': indexId,
+        if (includeQueriesWithoutUserInformation != null)
+          'IncludeQueriesWithoutUserInformation':
+              includeQueriesWithoutUserInformation,
+        if (minimumNumberOfQueryingUsers != null)
+          'MinimumNumberOfQueryingUsers': minimumNumberOfQueryingUsers,
+        if (minimumQueryCount != null) 'MinimumQueryCount': minimumQueryCount,
+        if (mode != null) 'Mode': mode.toValue(),
+        if (queryLogLookBackWindowInDays != null)
+          'QueryLogLookBackWindowInDays': queryLogLookBackWindowInDays,
       },
     );
   }
@@ -2437,12 +2927,6 @@ class Kendra {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexId, 'indexId');
     _s.validateStringLength(
       'indexId',
@@ -2451,22 +2935,11 @@ class Kendra {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'indexId',
-      indexId,
-      r'''[a-zA-Z0-9][a-zA-Z0-9-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^\P{C}*$''',
     );
     _s.validateStringLength(
       'name',
@@ -2474,21 +2947,11 @@ class Kendra {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9][a-zA-Z0-9_-]*''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       1284,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2543,7 +3006,7 @@ class AclConfiguration {
   /// A list of groups, separated by semi-colons, that filters a query response
   /// based on user context. The document is only returned to users that are in
   /// one of the groups specified in the <code>UserContext</code> field of the
-  /// <a>Query</a> operation.
+  /// <code>Query</code> operation.
   final String allowedGroupsColumnName;
 
   AclConfiguration({
@@ -2728,6 +3191,87 @@ class AttributeFilter {
   }
 }
 
+/// Provides the configuration information to connect to websites that require
+/// user authentication.
+class AuthenticationConfiguration {
+  /// The list of configuration information that's required to connect to and
+  /// crawl a website host using basic authentication credentials.
+  ///
+  /// The list includes the name and port number of the website host.
+  final List<BasicAuthenticationConfiguration>? basicAuthentication;
+
+  AuthenticationConfiguration({
+    this.basicAuthentication,
+  });
+  factory AuthenticationConfiguration.fromJson(Map<String, dynamic> json) {
+    return AuthenticationConfiguration(
+      basicAuthentication: (json['BasicAuthentication'] as List?)
+          ?.whereNotNull()
+          .map((e) => BasicAuthenticationConfiguration.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final basicAuthentication = this.basicAuthentication;
+    return {
+      if (basicAuthentication != null)
+        'BasicAuthentication': basicAuthentication,
+    };
+  }
+}
+
+/// Provides the configuration information to connect to websites that require
+/// basic user authentication.
+class BasicAuthenticationConfiguration {
+  /// Your secret ARN, which you can create in <a
+  /// href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS
+  /// Secrets Manager</a>
+  ///
+  /// You use a secret if basic authentication credentials are required to connect
+  /// to a website. The secret stores your credentials of user name and password.
+  final String credentials;
+
+  /// The name of the website host you want to connect to using authentication
+  /// credentials.
+  ///
+  /// For example, the host name of https://a.example.com/page1.html is
+  /// "a.example.com".
+  final String host;
+
+  /// The port number of the website host you want to connect to using
+  /// authentication credentials.
+  ///
+  /// For example, the port for https://a.example.com/page1.html is 443, the
+  /// standard port for HTTPS.
+  final int port;
+
+  BasicAuthenticationConfiguration({
+    required this.credentials,
+    required this.host,
+    required this.port,
+  });
+  factory BasicAuthenticationConfiguration.fromJson(Map<String, dynamic> json) {
+    return BasicAuthenticationConfiguration(
+      credentials: json['Credentials'] as String,
+      host: json['Host'] as String,
+      port: json['Port'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final host = this.host;
+    final port = this.port;
+    return {
+      'Credentials': credentials,
+      'Host': host,
+      'Port': port,
+    };
+  }
+}
+
 class BatchDeleteDocumentResponse {
   /// A list of documents that could not be removed from the index. Each entry
   /// contains an error message that indicates why the document couldn't be
@@ -2749,7 +3293,7 @@ class BatchDeleteDocumentResponse {
 }
 
 /// Provides information about documents that could not be removed from an index
-/// by the <a>BatchDeleteDocument</a> operation.
+/// by the <code>BatchDeleteDocument</code> operation.
 class BatchDeleteDocumentResponseFailedDocument {
   /// The error code for why the document couldn't be removed from the index.
   final ErrorCode? errorCode;
@@ -2771,6 +3315,63 @@ class BatchDeleteDocumentResponseFailedDocument {
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
       errorMessage: json['ErrorMessage'] as String?,
       id: json['Id'] as String?,
+    );
+  }
+}
+
+class BatchGetDocumentStatusResponse {
+  /// The status of documents. The status indicates if the document is waiting to
+  /// be indexed, is in the process of indexing, has completed indexing, or failed
+  /// indexing. If a document failed indexing, the status provides the reason why.
+  final List<Status>? documentStatusList;
+
+  /// A list of documents that Amazon Kendra couldn't get the status for. The list
+  /// includes the ID of the document and the reason that the status couldn't be
+  /// found.
+  final List<BatchGetDocumentStatusResponseError>? errors;
+
+  BatchGetDocumentStatusResponse({
+    this.documentStatusList,
+    this.errors,
+  });
+  factory BatchGetDocumentStatusResponse.fromJson(Map<String, dynamic> json) {
+    return BatchGetDocumentStatusResponse(
+      documentStatusList: (json['DocumentStatusList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Status.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errors: (json['Errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => BatchGetDocumentStatusResponseError.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// Provides a response when the status of a document could not be retrieved.
+class BatchGetDocumentStatusResponseError {
+  /// The unique identifier of the document whose status could not be retrieved.
+  final String? documentId;
+
+  /// Indicates the source of the error.
+  final ErrorCode? errorCode;
+
+  /// States that the API could not get the status of a document. This could be
+  /// because the request is not valid or there is a system error.
+  final String? errorMessage;
+
+  BatchGetDocumentStatusResponseError({
+    this.documentId,
+    this.errorCode,
+    this.errorMessage,
+  });
+  factory BatchGetDocumentStatusResponseError.fromJson(
+      Map<String, dynamic> json) {
+    return BatchGetDocumentStatusResponseError(
+      documentId: json['DocumentId'] as String?,
+      errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
+      errorMessage: json['ErrorMessage'] as String?,
     );
   }
 }
@@ -2826,15 +3427,28 @@ class BatchPutDocumentResponseFailedDocument {
   }
 }
 
-/// Specifies capacity units configured for your index. You can add and remove
-/// capacity units to tune an index to your requirements.
+/// Specifies capacity units configured for your enterprise edition index. You
+/// can add and remove capacity units to tune an index to your requirements.
 class CapacityUnitsConfiguration {
-  /// The amount of extra query capacity for an index. Each capacity unit provides
-  /// 0.5 queries per second and 40,000 queries per day.
+  /// The amount of extra query capacity for an index and <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html">GetQuerySuggestions</a>
+  /// capacity.
+  ///
+  /// A single extra capacity unit for an index provides 0.1 queries per second or
+  /// approximately 8,000 queries per day.
+  ///
+  /// <code>GetQuerySuggestions</code> capacity is five times the provisioned
+  /// query capacity for an index, or the base capacity of 2.5 calls per second,
+  /// whichever is higher. For example, the base capacity for an index is 0.1
+  /// queries per second, and <code>GetQuerySuggestions</code> capacity has a base
+  /// of 2.5 calls per second. If you add another 0.1 queries per second to total
+  /// 0.2 queries per second for an index, the <code>GetQuerySuggestions</code>
+  /// capacity is 2.5 calls per second (higher than five times 0.2 queries per
+  /// second).
   final int queryCapacityUnits;
 
-  /// The amount of extra storage capacity for an index. Each capacity unit
-  /// provides 150 Gb of storage space or 500,000 documents, whichever is reached
+  /// The amount of extra storage capacity for an index. A single capacity unit
+  /// provides 30 GB of storage space or 100,000 documents, whichever is reached
   /// first.
   final int storageCapacityUnits;
 
@@ -2860,8 +3474,8 @@ class CapacityUnitsConfiguration {
 }
 
 /// Gathers information about when a particular result was clicked by a user.
-/// Your application uses the <a>SubmitFeedback</a> operation to provide click
-/// information.
+/// Your application uses the <code>SubmitFeedback</code> operation to provide
+/// click information.
 class ClickFeedback {
   /// The Unix timestamp of the date and time that the result was clicked.
   final DateTime clickTime;
@@ -2901,7 +3515,7 @@ class ColumnConfiguration {
 
   /// An array of objects that map database column names to the corresponding
   /// fields in an index. You must first create the fields in the index using the
-  /// <a>UpdateIndex</a> operation.
+  /// <code>UpdateIndex</code> operation.
   final List<DataSourceToIndexFieldMapping>? fieldMappings;
 
   ColumnConfiguration({
@@ -3064,11 +3678,13 @@ extension on String {
 /// Defines the mapping between a field in the Confluence data source to a
 /// Amazon Kendra index field.
 ///
-/// You must first create the index field using the operation.
+/// You must first create the index field using the <code>UpdateIndex</code>
+/// operation.
 class ConfluenceAttachmentToIndexFieldMapping {
   /// The name of the field in the data source.
   ///
-  /// You must first create the index field using the operation.
+  /// You must first create the index field using the <code>UpdateIndex</code>
+  /// operation.
   final ConfluenceAttachmentFieldName? dataSourceFieldName;
 
   /// The format for date fields in the data source. If the field specified in
@@ -3110,7 +3726,8 @@ class ConfluenceAttachmentToIndexFieldMapping {
 
 /// Specifies the blog settings for the Confluence data source. Blogs are always
 /// indexed unless filtered from the index by the <code>ExclusionPatterns</code>
-/// or <code>InclusionPatterns</code> fields in the data type.
+/// or <code>InclusionPatterns</code> fields in the
+/// <code>ConfluenceConfiguration</code> type.
 class ConfluenceBlogConfiguration {
   /// Defines how blog metadata fields should be mapped to index fields. Before
   /// you can map a field, you must first create an index field with a matching
@@ -3207,7 +3824,8 @@ extension on String {
 /// Defines the mapping between a blog field in the Confluence data source to a
 /// Amazon Kendra index field.
 ///
-/// You must first create the index field using the operation.
+/// You must first create the index field using the <code>UpdateIndex</code>
+/// operation.
 class ConfluenceBlogToIndexFieldMapping {
   /// The name of the field in the data source.
   final ConfluenceBlogFieldName? dataSourceFieldName;
@@ -3496,7 +4114,8 @@ extension on String {
 /// Defines the mapping between a field in the Confluence data source to a
 /// Amazon Kendra index field.
 ///
-/// You must first create the index field using the operation.
+/// You must first create the index field using the <code>UpdateIndex</code>
+/// operation.
 class ConfluencePageToIndexFieldMapping {
   /// The name of the field in the data source.
   final ConfluencePageFieldName? dataSourceFieldName;
@@ -3659,7 +4278,8 @@ extension on String {
 /// Defines the mapping between a field in the Confluence data source to a
 /// Amazon Kendra index field.
 ///
-/// You must first create the index field using the operation.
+/// You must first create the index field using the <code>UpdateIndex</code>
+/// operation.
 class ConfluenceSpaceToIndexFieldMapping {
   /// The name of the field in the data source.
   final ConfluenceSpaceFieldName? dataSourceFieldName;
@@ -3873,6 +4493,21 @@ class CreateIndexResponse {
   }
 }
 
+class CreateQuerySuggestionsBlockListResponse {
+  /// The unique identifier of the created block list.
+  final String? id;
+
+  CreateQuerySuggestionsBlockListResponse({
+    this.id,
+  });
+  factory CreateQuerySuggestionsBlockListResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateQuerySuggestionsBlockListResponse(
+      id: json['Id'] as String?,
+    );
+  }
+}
+
 class CreateThesaurusResponse {
   /// The unique identifier of the thesaurus.
   final String? id;
@@ -3918,6 +4553,7 @@ class DataSourceConfiguration {
   /// Provides information necessary to create a data source connector for a
   /// Microsoft SharePoint site.
   final SharePointConfiguration? sharePointConfiguration;
+  final WebCrawlerConfiguration? webCrawlerConfiguration;
 
   DataSourceConfiguration({
     this.confluenceConfiguration,
@@ -3928,6 +4564,7 @@ class DataSourceConfiguration {
     this.salesforceConfiguration,
     this.serviceNowConfiguration,
     this.sharePointConfiguration,
+    this.webCrawlerConfiguration,
   });
   factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSourceConfiguration(
@@ -3963,6 +4600,10 @@ class DataSourceConfiguration {
           ? SharePointConfiguration.fromJson(
               json['SharePointConfiguration'] as Map<String, dynamic>)
           : null,
+      webCrawlerConfiguration: json['WebCrawlerConfiguration'] != null
+          ? WebCrawlerConfiguration.fromJson(
+              json['WebCrawlerConfiguration'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -3975,6 +4616,7 @@ class DataSourceConfiguration {
     final salesforceConfiguration = this.salesforceConfiguration;
     final serviceNowConfiguration = this.serviceNowConfiguration;
     final sharePointConfiguration = this.sharePointConfiguration;
+    final webCrawlerConfiguration = this.webCrawlerConfiguration;
     return {
       if (confluenceConfiguration != null)
         'ConfluenceConfiguration': confluenceConfiguration,
@@ -3991,6 +4633,8 @@ class DataSourceConfiguration {
         'ServiceNowConfiguration': serviceNowConfiguration,
       if (sharePointConfiguration != null)
         'SharePointConfiguration': sharePointConfiguration,
+      if (webCrawlerConfiguration != null)
+        'WebCrawlerConfiguration': webCrawlerConfiguration,
     };
   }
 }
@@ -4038,7 +4682,8 @@ extension on String {
   }
 }
 
-/// Summary information for a Amazon Kendra data source. Returned in a call to .
+/// Summary information for a Amazon Kendra data source. Returned in a call to
+/// the <code>DescribeDataSource</code> operation.
 class DataSourceSummary {
   /// The UNIX datetime that the data source was created.
   final DateTime? createdAt;
@@ -4049,7 +4694,7 @@ class DataSourceSummary {
   /// The name of the data source.
   final String? name;
 
-  /// The status of the data source. When the status is <code>ATIVE</code> the
+  /// The status of the data source. When the status is <code>ACTIVE</code> the
   /// data source is ready to use.
   final DataSourceStatus? status;
 
@@ -4150,18 +4795,27 @@ class DataSourceSyncJobMetricTarget {
   final String dataSourceId;
 
   /// The ID of the sync job that is running on the data source.
-  final String dataSourceSyncJobId;
+  ///
+  /// If the ID of a sync job is not provided and there is a sync job running,
+  /// then the ID of this sync job is used and metrics are generated for this sync
+  /// job.
+  ///
+  /// If the ID of a sync job is not provided and there is no sync job running,
+  /// then no metrics are generated and documents are indexed/deleted at the index
+  /// level without sync job metrics included.
+  final String? dataSourceSyncJobId;
 
   DataSourceSyncJobMetricTarget({
     required this.dataSourceId,
-    required this.dataSourceSyncJobId,
+    this.dataSourceSyncJobId,
   });
   Map<String, dynamic> toJson() {
     final dataSourceId = this.dataSourceId;
     final dataSourceSyncJobId = this.dataSourceSyncJobId;
     return {
       'DataSourceId': dataSourceId,
-      'DataSourceSyncJobId': dataSourceSyncJobId,
+      if (dataSourceSyncJobId != null)
+        'DataSourceSyncJobId': dataSourceSyncJobId,
     };
   }
 }
@@ -4262,7 +4916,8 @@ extension on String {
 }
 
 /// Maps a column or attribute in the data source to an index field. You must
-/// first create the fields in the index using the <a>UpdateIndex</a> operation.
+/// first create the fields in the index using the <code>UpdateIndex</code>
+/// operation.
 class DataSourceToIndexFieldMapping {
   /// The name of the column or attribute in the data source.
   final String dataSourceFieldName;
@@ -4308,6 +4963,7 @@ enum DataSourceType {
   custom,
   confluence,
   googledrive,
+  webcrawler,
 }
 
 extension on DataSourceType {
@@ -4331,6 +4987,8 @@ extension on DataSourceType {
         return 'CONFLUENCE';
       case DataSourceType.googledrive:
         return 'GOOGLEDRIVE';
+      case DataSourceType.webcrawler:
+        return 'WEBCRAWLER';
     }
   }
 }
@@ -4356,6 +5014,8 @@ extension on String {
         return DataSourceType.confluence;
       case 'GOOGLEDRIVE':
         return DataSourceType.googledrive;
+      case 'WEBCRAWLER':
+        return DataSourceType.webcrawler;
     }
     throw Exception('$this is not known in enum DataSourceType');
   }
@@ -4655,7 +5315,7 @@ class DescribeFaqResponse {
 }
 
 class DescribeIndexResponse {
-  /// For enterprise edtion indexes, you can choose to use additional capacity to
+  /// For Enterprise edition indexes, you can choose to use additional capacity to
   /// meet the needs of your application. This contains the capacity units used
   /// for the index. A 0 for the query capacity or the storage capacity indicates
   /// that the index is using the default capacity for the index.
@@ -4767,6 +5427,173 @@ class DescribeIndexResponse {
           .map(
               (e) => UserTokenConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
+    );
+  }
+}
+
+class DescribeQuerySuggestionsBlockListResponse {
+  /// Shows the date-time a block list for query suggestions was last created.
+  final DateTime? createdAt;
+
+  /// Shows the description for the block list.
+  final String? description;
+
+  /// Shows the error message with details when there are issues in processing the
+  /// block list.
+  final String? errorMessage;
+
+  /// Shows the current size of the block list text file in S3.
+  final int? fileSizeBytes;
+
+  /// Shows the unique identifier of the block list.
+  final String? id;
+
+  /// Shows the identifier of the index for the block list.
+  final String? indexId;
+
+  /// Shows the current number of valid, non-empty words or phrases in the block
+  /// list text file.
+  final int? itemCount;
+
+  /// Shows the name of the block list.
+  final String? name;
+
+  /// Shows the current IAM (Identity and Access Management) role used by Amazon
+  /// Kendra to access the block list text file in S3.
+  ///
+  /// The role needs S3 read permissions to your file in S3 and needs to give STS
+  /// (Security Token Service) assume role permissions to Amazon Kendra.
+  final String? roleArn;
+
+  /// Shows the current S3 path to your block list text file in your S3 bucket.
+  ///
+  /// Each block word or phrase should be on a separate line in a text file.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  final S3Path? sourceS3Path;
+
+  /// Shows whether the current status of the block list is <code>ACTIVE</code> or
+  /// <code>INACTIVE</code>.
+  final QuerySuggestionsBlockListStatus? status;
+
+  /// Shows the date-time a block list for query suggestions was last updated.
+  final DateTime? updatedAt;
+
+  DescribeQuerySuggestionsBlockListResponse({
+    this.createdAt,
+    this.description,
+    this.errorMessage,
+    this.fileSizeBytes,
+    this.id,
+    this.indexId,
+    this.itemCount,
+    this.name,
+    this.roleArn,
+    this.sourceS3Path,
+    this.status,
+    this.updatedAt,
+  });
+  factory DescribeQuerySuggestionsBlockListResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeQuerySuggestionsBlockListResponse(
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      description: json['Description'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+      fileSizeBytes: json['FileSizeBytes'] as int?,
+      id: json['Id'] as String?,
+      indexId: json['IndexId'] as String?,
+      itemCount: json['ItemCount'] as int?,
+      name: json['Name'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      sourceS3Path: json['SourceS3Path'] != null
+          ? S3Path.fromJson(json['SourceS3Path'] as Map<String, dynamic>)
+          : null,
+      status: (json['Status'] as String?)?.toQuerySuggestionsBlockListStatus(),
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+    );
+  }
+}
+
+class DescribeQuerySuggestionsConfigResponse {
+  /// Shows whether Amazon Kendra uses all queries or only uses queries that
+  /// include user information to generate query suggestions.
+  final bool? includeQueriesWithoutUserInformation;
+
+  /// Shows the date-time query suggestions for an index was last cleared.
+  ///
+  /// After you clear suggestions, Amazon Kendra learns new suggestions based on
+  /// new queries added to the query log from the time you cleared suggestions.
+  /// Amazon Kendra only considers re-occurences of a query from the time you
+  /// cleared suggestions.
+  final DateTime? lastClearTime;
+
+  /// Shows the date-time query suggestions for an index was last updated.
+  final DateTime? lastSuggestionsBuildTime;
+
+  /// Shows the minimum number of unique users who must search a query in order
+  /// for the query to be eligible to suggest to your users.
+  final int? minimumNumberOfQueryingUsers;
+
+  /// Shows the minimum number of times a query must be searched in order for the
+  /// query to be eligible to suggest to your users.
+  final int? minimumQueryCount;
+
+  /// Shows whether query suggestions are currently in <code>ENABLED</code> mode
+  /// or <code>LEARN_ONLY</code> mode.
+  ///
+  /// By default, Amazon Kendra enables query suggestions.<code>LEARN_ONLY</code>
+  /// turns off query suggestions for your users. You can change the mode using
+  /// the <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html">UpdateQuerySuggestionsConfig</a>
+  /// operation.
+  final Mode? mode;
+
+  /// Shows how recent your queries are in your query log time window (in days).
+  final int? queryLogLookBackWindowInDays;
+
+  /// Shows whether the status of query suggestions settings is currently Active
+  /// or Updating.
+  ///
+  /// Active means the current settings apply and Updating means your changed
+  /// settings are in the process of applying.
+  final QuerySuggestionsStatus? status;
+
+  /// Shows the current total count of query suggestions for an index.
+  ///
+  /// This count can change when you update your query suggestions settings, if
+  /// you filter out certain queries from suggestions using a block list, and as
+  /// the query log accumulates more queries for Amazon Kendra to learn from.
+  final int? totalSuggestionsCount;
+
+  DescribeQuerySuggestionsConfigResponse({
+    this.includeQueriesWithoutUserInformation,
+    this.lastClearTime,
+    this.lastSuggestionsBuildTime,
+    this.minimumNumberOfQueryingUsers,
+    this.minimumQueryCount,
+    this.mode,
+    this.queryLogLookBackWindowInDays,
+    this.status,
+    this.totalSuggestionsCount,
+  });
+  factory DescribeQuerySuggestionsConfigResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeQuerySuggestionsConfigResponse(
+      includeQueriesWithoutUserInformation:
+          json['IncludeQueriesWithoutUserInformation'] as bool?,
+      lastClearTime: timeStampFromJson(json['LastClearTime']),
+      lastSuggestionsBuildTime:
+          timeStampFromJson(json['LastSuggestionsBuildTime']),
+      minimumNumberOfQueryingUsers:
+          json['MinimumNumberOfQueryingUsers'] as int?,
+      minimumQueryCount: json['MinimumQueryCount'] as int?,
+      mode: (json['Mode'] as String?)?.toMode(),
+      queryLogLookBackWindowInDays:
+          json['QueryLogLookBackWindowInDays'] as int?,
+      status: (json['Status'] as String?)?.toQuerySuggestionsStatus(),
+      totalSuggestionsCount: json['TotalSuggestionsCount'] as int?,
     );
   }
 }
@@ -4947,6 +5774,10 @@ class DocumentAttribute {
 /// a custom attribute.
 class DocumentAttributeValue {
   /// A date expressed as an ISO 8601 string.
+  ///
+  /// It is important for the time zone to be included in the ISO 8601 date-time
+  /// format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format
+  /// for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.
   final DateTime? dateValue;
 
   /// A long integer value.
@@ -5053,6 +5884,58 @@ extension on String {
   }
 }
 
+/// Identifies a document for which to retrieve status information
+class DocumentInfo {
+  /// The unique identifier of the document.
+  final String documentId;
+
+  /// Attributes that identify a specific version of a document to check.
+  ///
+  /// The only valid attributes are:
+  ///
+  /// <ul>
+  /// <li>
+  /// version
+  /// </li>
+  /// <li>
+  /// datasourceId
+  /// </li>
+  /// <li>
+  /// jobExecutionId
+  /// </li>
+  /// </ul>
+  /// The attributes follow these rules:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>dataSourceId</code> and <code>jobExecutionId</code> must be used
+  /// together.
+  /// </li>
+  /// <li>
+  /// <code>version</code> is ignored if <code>dataSourceId</code> and
+  /// <code>jobExecutionId</code> are not provided.
+  /// </li>
+  /// <li>
+  /// If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided,
+  /// but <code>version</code> is not, the version defaults to "0".
+  /// </li>
+  /// </ul>
+  final List<DocumentAttribute>? attributes;
+
+  DocumentInfo({
+    required this.documentId,
+    this.attributes,
+  });
+  Map<String, dynamic> toJson() {
+    final documentId = this.documentId;
+    final attributes = this.attributes;
+    return {
+      'DocumentId': documentId,
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
+}
+
 /// Specifies the properties of a custom index field.
 class DocumentMetadataConfiguration {
   /// The name of the index field.
@@ -5098,6 +5981,75 @@ class DocumentMetadataConfiguration {
       if (relevance != null) 'Relevance': relevance,
       if (search != null) 'Search': search,
     };
+  }
+}
+
+/// Overrides the document relevance properties of a custom index field.
+class DocumentRelevanceConfiguration {
+  /// The name of the tuning configuration to override document relevance at the
+  /// index level.
+  final String name;
+  final Relevance relevance;
+
+  DocumentRelevanceConfiguration({
+    required this.name,
+    required this.relevance,
+  });
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final relevance = this.relevance;
+    return {
+      'Name': name,
+      'Relevance': relevance,
+    };
+  }
+}
+
+enum DocumentStatus {
+  notFound,
+  processing,
+  indexed,
+  updated,
+  failed,
+  updateFailed,
+}
+
+extension on DocumentStatus {
+  String toValue() {
+    switch (this) {
+      case DocumentStatus.notFound:
+        return 'NOT_FOUND';
+      case DocumentStatus.processing:
+        return 'PROCESSING';
+      case DocumentStatus.indexed:
+        return 'INDEXED';
+      case DocumentStatus.updated:
+        return 'UPDATED';
+      case DocumentStatus.failed:
+        return 'FAILED';
+      case DocumentStatus.updateFailed:
+        return 'UPDATE_FAILED';
+    }
+  }
+}
+
+extension on String {
+  DocumentStatus toDocumentStatus() {
+    switch (this) {
+      case 'NOT_FOUND':
+        return DocumentStatus.notFound;
+      case 'PROCESSING':
+        return DocumentStatus.processing;
+      case 'INDEXED':
+        return DocumentStatus.indexed;
+      case 'UPDATED':
+        return DocumentStatus.updated;
+      case 'FAILED':
+        return DocumentStatus.failed;
+      case 'UPDATE_FAILED':
+        return DocumentStatus.updateFailed;
+    }
+    throw Exception('$this is not known in enum DocumentStatus');
   }
 }
 
@@ -5341,6 +6293,28 @@ class FaqSummary {
   }
 }
 
+class GetQuerySuggestionsResponse {
+  /// The unique identifier for a list of query suggestions for an index.
+  final String? querySuggestionsId;
+
+  /// A list of query suggestions for an index.
+  final List<Suggestion>? suggestions;
+
+  GetQuerySuggestionsResponse({
+    this.querySuggestionsId,
+    this.suggestions,
+  });
+  factory GetQuerySuggestionsResponse.fromJson(Map<String, dynamic> json) {
+    return GetQuerySuggestionsResponse(
+      querySuggestionsId: json['QuerySuggestionsId'] as String?,
+      suggestions: (json['Suggestions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Suggestion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 /// Provides configuration information for data sources that connect to Google
 /// Drive.
 class GoogleDriveConfiguration {
@@ -5380,7 +6354,7 @@ class GoogleDriveConfiguration {
   ///
   /// If you are using the console, you can define index fields when creating the
   /// mapping. If you are using the API, you must first create the field using the
-  /// <a>UpdateIndex</a> operation.
+  /// <code>UpdateIndex</code> operation.
   final List<DataSourceToIndexFieldMapping>? fieldMappings;
 
   /// A list of regular expression patterns that apply to path on Google Drive.
@@ -5880,6 +6854,39 @@ class ListIndicesResponse {
   }
 }
 
+class ListQuerySuggestionsBlockListsResponse {
+  /// Summary items for a block list.
+  ///
+  /// This includes summary items on the block list ID, block list name, when the
+  /// block list was created, when the block list was last updated, and the count
+  /// of block words/phrases in the block list.
+  ///
+  /// For information on the current quota limits for block lists, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+  /// Amazon Kendra</a>.
+  final List<QuerySuggestionsBlockListSummary>? blockListSummaryItems;
+
+  /// If the response is truncated, Amazon Kendra returns this token that you can
+  /// use in the subsequent request to retrieve the next set of block lists.
+  final String? nextToken;
+
+  ListQuerySuggestionsBlockListsResponse({
+    this.blockListSummaryItems,
+    this.nextToken,
+  });
+  factory ListQuerySuggestionsBlockListsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListQuerySuggestionsBlockListsResponse(
+      blockListSummaryItems: (json['BlockListSummaryItems'] as List?)
+          ?.whereNotNull()
+          .map((e) => QuerySuggestionsBlockListSummary.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
 class ListTagsForResourceResponse {
   /// A list of tags associated with the index, FAQ, or data source.
   final List<Tag>? tags;
@@ -5917,6 +6924,34 @@ class ListThesauriResponse {
           .map((e) => ThesaurusSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+enum Mode {
+  enabled,
+  learnOnly,
+}
+
+extension on Mode {
+  String toValue() {
+    switch (this) {
+      case Mode.enabled:
+        return 'ENABLED';
+      case Mode.learnOnly:
+        return 'LEARN_ONLY';
+    }
+  }
+}
+
+extension on String {
+  Mode toMode() {
+    switch (this) {
+      case 'ENABLED':
+        return Mode.enabled;
+      case 'LEARN_ONLY':
+        return Mode.learnOnly;
+    }
+    throw Exception('$this is not known in enum Mode');
   }
 }
 
@@ -6135,6 +7170,57 @@ extension on String {
   }
 }
 
+/// Provides the configuration information for a web proxy to connect to website
+/// hosts.
+class ProxyConfiguration {
+  /// The name of the website host you want to connect to via a web proxy server.
+  ///
+  /// For example, the host name of https://a.example.com/page1.html is
+  /// "a.example.com".
+  final String host;
+
+  /// The port number of the website host you want to connect to via a web proxy
+  /// server.
+  ///
+  /// For example, the port for https://a.example.com/page1.html is 443, the
+  /// standard port for HTTPS.
+  final int port;
+
+  /// Your secret ARN, which you can create in <a
+  /// href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS
+  /// Secrets Manager</a>
+  ///
+  /// The credentials are optional. You use a secret if web proxy credentials are
+  /// required to connect to a website host. Amazon Kendra currently support basic
+  /// authentication to connect to a web proxy server. The secret stores your
+  /// credentials.
+  final String? credentials;
+
+  ProxyConfiguration({
+    required this.host,
+    required this.port,
+    this.credentials,
+  });
+  factory ProxyConfiguration.fromJson(Map<String, dynamic> json) {
+    return ProxyConfiguration(
+      host: json['Host'] as String,
+      port: json['Port'] as int,
+      credentials: json['Credentials'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final host = this.host;
+    final port = this.port;
+    final credentials = this.credentials;
+    return {
+      'Host': host,
+      'Port': port,
+      if (credentials != null) 'Credentials': credentials,
+    };
+  }
+}
+
 enum QueryIdentifiersEnclosingOption {
   doubleQuotes,
   none,
@@ -6334,6 +7420,132 @@ extension on String {
   }
 }
 
+enum QuerySuggestionsBlockListStatus {
+  active,
+  creating,
+  deleting,
+  updating,
+  activeButUpdateFailed,
+  failed,
+}
+
+extension on QuerySuggestionsBlockListStatus {
+  String toValue() {
+    switch (this) {
+      case QuerySuggestionsBlockListStatus.active:
+        return 'ACTIVE';
+      case QuerySuggestionsBlockListStatus.creating:
+        return 'CREATING';
+      case QuerySuggestionsBlockListStatus.deleting:
+        return 'DELETING';
+      case QuerySuggestionsBlockListStatus.updating:
+        return 'UPDATING';
+      case QuerySuggestionsBlockListStatus.activeButUpdateFailed:
+        return 'ACTIVE_BUT_UPDATE_FAILED';
+      case QuerySuggestionsBlockListStatus.failed:
+        return 'FAILED';
+    }
+  }
+}
+
+extension on String {
+  QuerySuggestionsBlockListStatus toQuerySuggestionsBlockListStatus() {
+    switch (this) {
+      case 'ACTIVE':
+        return QuerySuggestionsBlockListStatus.active;
+      case 'CREATING':
+        return QuerySuggestionsBlockListStatus.creating;
+      case 'DELETING':
+        return QuerySuggestionsBlockListStatus.deleting;
+      case 'UPDATING':
+        return QuerySuggestionsBlockListStatus.updating;
+      case 'ACTIVE_BUT_UPDATE_FAILED':
+        return QuerySuggestionsBlockListStatus.activeButUpdateFailed;
+      case 'FAILED':
+        return QuerySuggestionsBlockListStatus.failed;
+    }
+    throw Exception(
+        '$this is not known in enum QuerySuggestionsBlockListStatus');
+  }
+}
+
+/// Summary information on a query suggestions block list.
+///
+/// This includes information on the block list ID, block list name, when the
+/// block list was created, when the block list was last updated, and the count
+/// of block words/phrases in the block list.
+///
+/// For information on the current quota limits for block lists, see <a
+/// href="https://docs.aws.amazon.com/kendra/latest/dg/quotas.html">Quotas for
+/// Amazon Kendra</a>.
+class QuerySuggestionsBlockListSummary {
+  /// The date-time summary information for a query suggestions block list was
+  /// last created.
+  final DateTime? createdAt;
+
+  /// The identifier of a block list.
+  final String? id;
+
+  /// The number of items in the block list file.
+  final int? itemCount;
+
+  /// The name of the block list.
+  final String? name;
+
+  /// The status of the block list.
+  final QuerySuggestionsBlockListStatus? status;
+
+  /// The date-time the block list was last updated.
+  final DateTime? updatedAt;
+
+  QuerySuggestionsBlockListSummary({
+    this.createdAt,
+    this.id,
+    this.itemCount,
+    this.name,
+    this.status,
+    this.updatedAt,
+  });
+  factory QuerySuggestionsBlockListSummary.fromJson(Map<String, dynamic> json) {
+    return QuerySuggestionsBlockListSummary(
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      id: json['Id'] as String?,
+      itemCount: json['ItemCount'] as int?,
+      name: json['Name'] as String?,
+      status: (json['Status'] as String?)?.toQuerySuggestionsBlockListStatus(),
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+    );
+  }
+}
+
+enum QuerySuggestionsStatus {
+  active,
+  updating,
+}
+
+extension on QuerySuggestionsStatus {
+  String toValue() {
+    switch (this) {
+      case QuerySuggestionsStatus.active:
+        return 'ACTIVE';
+      case QuerySuggestionsStatus.updating:
+        return 'UPDATING';
+    }
+  }
+}
+
+extension on String {
+  QuerySuggestionsStatus toQuerySuggestionsStatus() {
+    switch (this) {
+      case 'ACTIVE':
+        return QuerySuggestionsStatus.active;
+      case 'UPDATING':
+        return QuerySuggestionsStatus.updating;
+    }
+    throw Exception('$this is not known in enum QuerySuggestionsStatus');
+  }
+}
+
 enum ReadAccessType {
   allow,
   deny,
@@ -6449,8 +7661,8 @@ class Relevance {
 }
 
 /// Provides feedback on how relevant a document is to a search. Your
-/// application uses the <a>SubmitFeedback</a> operation to provide relevance
-/// information.
+/// application uses the <code>SubmitFeedback</code> operation to provide
+/// relevance information.
 class RelevanceFeedback {
   /// Whether to document was relevant or not relevant to the search.
   final RelevanceType relevanceValue;
@@ -6518,18 +7730,49 @@ class S3DataSourceConfiguration {
   /// document that matches an inclusion prefix or inclusion pattern also matches
   /// an exclusion pattern, the document is not indexed.
   ///
-  /// For more information about glob patterns, see <a
-  /// href="https://en.wikipedia.org/wiki/Glob_(programming)">glob
-  /// (programming)</a> in <i>Wikipedia</i>.
+  /// Some <a
+  /// href="https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters">examples</a>
+  /// are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <i>*.png , *.jpg</i> will exclude all PNG and JPEG image files in a
+  /// directory (files with the extensions .png and .jpg).
+  /// </li>
+  /// <li>
+  /// <i>*internal*</i> will exclude all files in a directory that contain
+  /// 'internal' in the file name, such as 'internal', 'internal_only',
+  /// 'company_internal'.
+  /// </li>
+  /// <li>
+  /// <i>**/*internal*</i> will exclude all internal-related files in a directory
+  /// and its subdirectories.
+  /// </li>
+  /// </ul>
   final List<String>? exclusionPatterns;
 
   /// A list of glob patterns for documents that should be indexed. If a document
   /// that matches an inclusion pattern also matches an exclusion pattern, the
   /// document is not indexed.
   ///
-  /// For more information about glob patterns, see <a
-  /// href="https://en.wikipedia.org/wiki/Glob_(programming)">glob
-  /// (programming)</a> in <i>Wikipedia</i>.
+  /// Some <a
+  /// href="https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters">examples</a>
+  /// are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <i>*.txt</i> will include all text files in a directory (files with the
+  /// extension .txt).
+  /// </li>
+  /// <li>
+  /// <i>**/*.txt</i> will include all text files in a directory and its
+  /// subdirectories.
+  /// </li>
+  /// <li>
+  /// <i>*tax*</i> will include all files in a directory that contain 'tax' in the
+  /// file name, such as 'tax', 'taxes', 'income_tax'.
+  /// </li>
+  /// </ul>
   final List<String>? inclusionPatterns;
 
   /// A list of S3 prefixes for the documents that should be included in the
@@ -6629,7 +7872,7 @@ class SalesforceChatterFeedConfiguration {
   final String documentDataFieldName;
 
   /// The name of the column in the Salesforce FeedItem table that contains the
-  /// title of the document. This is typically the <code>Title</code> collumn.
+  /// title of the document. This is typically the <code>Title</code> column.
   final String? documentTitleFieldName;
 
   /// Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.
@@ -6772,7 +8015,7 @@ class SalesforceConfiguration {
   /// The regex is applied to the name of the attached file.
   final List<String>? includeAttachmentFilePatterns;
 
-  /// Specifies configuration information for the knowlege article types that
+  /// Specifies configuration information for the knowledge article types that
   /// Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and
   /// the standard fields of knowledge articles, or the custom fields of custom
   /// knowledge articles, but not both.
@@ -6921,7 +8164,7 @@ class SalesforceCustomKnowledgeArticleTypeConfiguration {
   }
 }
 
-/// Specifies configuration information for the knowlege article types that
+/// Specifies configuration information for the knowledge article types that
 /// Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and
 /// the standard fields of knowledge articles, or the custom fields of custom
 /// knowledge articles, but not both
@@ -7101,7 +8344,7 @@ class SalesforceStandardObjectAttachmentConfiguration {
   }
 }
 
-/// Specifies confguration information for indexing a single standard object.
+/// Specifies configuration information for indexing a single standard object.
 class SalesforceStandardObjectConfiguration {
   /// The name of the field in the standard object table that contains the
   /// document contents.
@@ -7111,7 +8354,7 @@ class SalesforceStandardObjectConfiguration {
   final SalesforceStandardObjectName name;
 
   /// The name of the field in the standard object table that contains the
-  /// document titleB.
+  /// document title.
   final String? documentTitleFieldName;
 
   /// One or more objects that map fields in the standard object to Amazon Kendra
@@ -7365,6 +8608,65 @@ class Search {
   }
 }
 
+/// Provides the configuration information of the seed or starting point URLs to
+/// crawl.
+///
+/// <i>When selecting websites to index, you must adhere to the <a
+/// href="https://aws.amazon.com/aup/">Amazon Acceptable Use Policy</a> and all
+/// other Amazon terms. Remember that you must only use the Amazon Kendra web
+/// crawler to index your own webpages, or webpages that you have authorization
+/// to index.</i>
+class SeedUrlConfiguration {
+  /// The list of seed or starting point URLs of the websites you want to crawl.
+  ///
+  /// The list can include a maximum of 100 seed URLs.
+  final List<String> seedUrls;
+
+  /// You can choose one of the following modes:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>HOST_ONLY</code> – crawl only the website host names. For example, if
+  /// the seed URL is "abc.example.com", then only URLs with host name
+  /// "abc.example.com" are crawled.
+  /// </li>
+  /// <li>
+  /// <code>SUBDOMAINS</code> – crawl the website host names with subdomains. For
+  /// example, if the seed URL is "abc.example.com", then "a.abc.example.com" and
+  /// "b.abc.example.com" are also crawled.
+  /// </li>
+  /// <li>
+  /// <code>EVERYTHING</code> – crawl the website host names with subdomains and
+  /// other domains that the webpages link to.
+  /// </li>
+  /// </ul>
+  /// The default mode is set to <code>HOST_ONLY</code>.
+  final WebCrawlerMode? webCrawlerMode;
+
+  SeedUrlConfiguration({
+    required this.seedUrls,
+    this.webCrawlerMode,
+  });
+  factory SeedUrlConfiguration.fromJson(Map<String, dynamic> json) {
+    return SeedUrlConfiguration(
+      seedUrls: (json['SeedUrls'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      webCrawlerMode: (json['WebCrawlerMode'] as String?)?.toWebCrawlerMode(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final seedUrls = this.seedUrls;
+    final webCrawlerMode = this.webCrawlerMode;
+    return {
+      'SeedUrls': seedUrls,
+      if (webCrawlerMode != null) 'WebCrawlerMode': webCrawlerMode.toValue(),
+    };
+  }
+}
+
 /// Provides the identifier of the AWS KMS customer master key (CMK) used to
 /// encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support
 /// asymmetric CMKs.
@@ -7388,6 +8690,34 @@ class ServerSideEncryptionConfiguration {
     return {
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
     };
+  }
+}
+
+enum ServiceNowAuthenticationType {
+  httpBasic,
+  oauth2,
+}
+
+extension on ServiceNowAuthenticationType {
+  String toValue() {
+    switch (this) {
+      case ServiceNowAuthenticationType.httpBasic:
+        return 'HTTP_BASIC';
+      case ServiceNowAuthenticationType.oauth2:
+        return 'OAUTH2';
+    }
+  }
+}
+
+extension on String {
+  ServiceNowAuthenticationType toServiceNowAuthenticationType() {
+    switch (this) {
+      case 'HTTP_BASIC':
+        return ServiceNowAuthenticationType.httpBasic;
+      case 'OAUTH2':
+        return ServiceNowAuthenticationType.oauth2;
+    }
+    throw Exception('$this is not known in enum ServiceNowAuthenticationType');
   }
 }
 
@@ -7436,6 +8766,22 @@ class ServiceNowConfiguration {
   /// <code>OTHERS</code>.
   final ServiceNowBuildVersionType serviceNowBuildVersion;
 
+  /// Determines the type of authentication used to connect to the ServiceNow
+  /// instance. If you choose <code>HTTP_BASIC</code>, Amazon Kendra is
+  /// authenticated using the user name and password provided in the AWS Secrets
+  /// Manager secret in the <code>SecretArn</code> field. When you choose
+  /// <code>OAUTH2</code>, Amazon Kendra is authenticated using the OAuth token
+  /// and secret provided in the Secrets Manager secret, and the user name and
+  /// password are used to determine which information Amazon Kendra has access
+  /// to.
+  ///
+  /// When you use <code>OAUTH2</code> authentication, you must generate a token
+  /// and a client secret using the ServiceNow console. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html">Using
+  /// a ServiceNow data source</a>.
+  final ServiceNowAuthenticationType? authenticationType;
+
   /// Provides configuration information for crawling knowledge articles in the
   /// ServiceNow site.
   final ServiceNowKnowledgeArticleConfiguration? knowledgeArticleConfiguration;
@@ -7448,6 +8794,7 @@ class ServiceNowConfiguration {
     required this.hostUrl,
     required this.secretArn,
     required this.serviceNowBuildVersion,
+    this.authenticationType,
     this.knowledgeArticleConfiguration,
     this.serviceCatalogConfiguration,
   });
@@ -7457,6 +8804,8 @@ class ServiceNowConfiguration {
       secretArn: json['SecretArn'] as String,
       serviceNowBuildVersion: (json['ServiceNowBuildVersion'] as String)
           .toServiceNowBuildVersionType(),
+      authenticationType: (json['AuthenticationType'] as String?)
+          ?.toServiceNowAuthenticationType(),
       knowledgeArticleConfiguration:
           json['KnowledgeArticleConfiguration'] != null
               ? ServiceNowKnowledgeArticleConfiguration.fromJson(
@@ -7473,12 +8822,15 @@ class ServiceNowConfiguration {
     final hostUrl = this.hostUrl;
     final secretArn = this.secretArn;
     final serviceNowBuildVersion = this.serviceNowBuildVersion;
+    final authenticationType = this.authenticationType;
     final knowledgeArticleConfiguration = this.knowledgeArticleConfiguration;
     final serviceCatalogConfiguration = this.serviceCatalogConfiguration;
     return {
       'HostUrl': hostUrl,
       'SecretArn': secretArn,
       'ServiceNowBuildVersion': serviceNowBuildVersion.toValue(),
+      if (authenticationType != null)
+        'AuthenticationType': authenticationType.toValue(),
       if (knowledgeArticleConfiguration != null)
         'KnowledgeArticleConfiguration': knowledgeArticleConfiguration,
       if (serviceCatalogConfiguration != null)
@@ -7511,6 +8863,16 @@ class ServiceNowKnowledgeArticleConfiguration {
   /// create the index field before you map the field.
   final List<DataSourceToIndexFieldMapping>? fieldMappings;
 
+  /// A query that selects the knowledge articles to index. The query can return
+  /// articles from multiple knowledge bases, and the knowledge bases can be
+  /// public or private.
+  ///
+  /// The query string must be one generated by the ServiceNow console. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/kendra/latest/dg/servicenow-query.html">Specifying
+  /// documents to index with a query</a>.
+  final String? filterQuery;
+
   /// List of regular expressions applied to knowledge articles. Items that don't
   /// match the inclusion pattern are not indexed. The regex is applied to the
   /// field specified in the <code>PatternTargetField</code>.
@@ -7522,6 +8884,7 @@ class ServiceNowKnowledgeArticleConfiguration {
     this.documentTitleFieldName,
     this.excludeAttachmentFilePatterns,
     this.fieldMappings,
+    this.filterQuery,
     this.includeAttachmentFilePatterns,
   });
   factory ServiceNowKnowledgeArticleConfiguration.fromJson(
@@ -7540,6 +8903,7 @@ class ServiceNowKnowledgeArticleConfiguration {
           .map((e) =>
               DataSourceToIndexFieldMapping.fromJson(e as Map<String, dynamic>))
           .toList(),
+      filterQuery: json['FilterQuery'] as String?,
       includeAttachmentFilePatterns:
           (json['IncludeAttachmentFilePatterns'] as List?)
               ?.whereNotNull()
@@ -7554,6 +8918,7 @@ class ServiceNowKnowledgeArticleConfiguration {
     final documentTitleFieldName = this.documentTitleFieldName;
     final excludeAttachmentFilePatterns = this.excludeAttachmentFilePatterns;
     final fieldMappings = this.fieldMappings;
+    final filterQuery = this.filterQuery;
     final includeAttachmentFilePatterns = this.includeAttachmentFilePatterns;
     return {
       'DocumentDataFieldName': documentDataFieldName,
@@ -7563,6 +8928,7 @@ class ServiceNowKnowledgeArticleConfiguration {
       if (excludeAttachmentFilePatterns != null)
         'ExcludeAttachmentFilePatterns': excludeAttachmentFilePatterns,
       if (fieldMappings != null) 'FieldMappings': fieldMappings,
+      if (filterQuery != null) 'FilterQuery': filterQuery,
       if (includeAttachmentFilePatterns != null)
         'IncludeAttachmentFilePatterns': includeAttachmentFilePatterns,
     };
@@ -7584,14 +8950,24 @@ class ServiceNowServiceCatalogConfiguration {
   /// field.
   final String? documentTitleFieldName;
 
-  /// Determines the types of file attachments that are excluded from the index.
+  /// A list of regular expression patterns. Documents that match the patterns are
+  /// excluded from the index. Documents that don't match the patterns are
+  /// included in the index. If a document matches both an exclusion pattern and
+  /// an inclusion pattern, the document is not included in the index.
+  ///
+  /// The regex is applied to the file name of the attachment.
   final List<String>? excludeAttachmentFilePatterns;
 
   /// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
   /// create the index field before you map the field.
   final List<DataSourceToIndexFieldMapping>? fieldMappings;
 
-  /// Determines the types of file attachments that are included in the index.
+  /// A list of regular expression patterns. Documents that match the patterns are
+  /// included in the index. Documents that don't match the patterns are excluded
+  /// from the index. If a document matches both an exclusion pattern and an
+  /// inclusion pattern, the document is not included in the index.
+  ///
+  /// The regex is applied to the file name of the attachment.
   final List<String>? includeAttachmentFilePatterns;
 
   ServiceNowServiceCatalogConfiguration({
@@ -7689,8 +9065,8 @@ class SharePointConfiguration {
 
   /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map
   /// Microsoft SharePoint attributes to custom fields in the Amazon Kendra index.
-  /// You must first create the index fields using the operation before you map
-  /// SharePoint attributes. For more information, see <a
+  /// You must first create the index fields using the <code>UpdateIndex</code>
+  /// operation before you map SharePoint attributes. For more information, see <a
   /// href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
   /// Data Source Fields</a>.
   final List<DataSourceToIndexFieldMapping>? fieldMappings;
@@ -7702,6 +9078,7 @@ class SharePointConfiguration {
   ///
   /// The regex is applied to the display URL of the SharePoint document.
   final List<String>? inclusionPatterns;
+  final S3Path? sslCertificateS3Path;
 
   /// Set to <code>TRUE</code> to use the Microsoft SharePoint change log to
   /// determine the documents that need to be updated in the index. Depending on
@@ -7721,6 +9098,7 @@ class SharePointConfiguration {
     this.exclusionPatterns,
     this.fieldMappings,
     this.inclusionPatterns,
+    this.sslCertificateS3Path,
     this.useChangeLog,
     this.vpcConfiguration,
   });
@@ -7749,6 +9127,10 @@ class SharePointConfiguration {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+      sslCertificateS3Path: json['SslCertificateS3Path'] != null
+          ? S3Path.fromJson(
+              json['SslCertificateS3Path'] as Map<String, dynamic>)
+          : null,
       useChangeLog: json['UseChangeLog'] as bool?,
       vpcConfiguration: json['VpcConfiguration'] != null
           ? DataSourceVpcConfiguration.fromJson(
@@ -7767,6 +9149,7 @@ class SharePointConfiguration {
     final exclusionPatterns = this.exclusionPatterns;
     final fieldMappings = this.fieldMappings;
     final inclusionPatterns = this.inclusionPatterns;
+    final sslCertificateS3Path = this.sslCertificateS3Path;
     final useChangeLog = this.useChangeLog;
     final vpcConfiguration = this.vpcConfiguration;
     return {
@@ -7780,6 +9163,8 @@ class SharePointConfiguration {
       if (exclusionPatterns != null) 'ExclusionPatterns': exclusionPatterns,
       if (fieldMappings != null) 'FieldMappings': fieldMappings,
       if (inclusionPatterns != null) 'InclusionPatterns': inclusionPatterns,
+      if (sslCertificateS3Path != null)
+        'SslCertificateS3Path': sslCertificateS3Path,
       if (useChangeLog != null) 'UseChangeLog': useChangeLog,
       if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
     };
@@ -7787,12 +9172,18 @@ class SharePointConfiguration {
 }
 
 enum SharePointVersion {
+  sharepoint_2013,
+  sharepoint_2016,
   sharepointOnline,
 }
 
 extension on SharePointVersion {
   String toValue() {
     switch (this) {
+      case SharePointVersion.sharepoint_2013:
+        return 'SHAREPOINT_2013';
+      case SharePointVersion.sharepoint_2016:
+        return 'SHAREPOINT_2016';
       case SharePointVersion.sharepointOnline:
         return 'SHAREPOINT_ONLINE';
     }
@@ -7802,10 +9193,47 @@ extension on SharePointVersion {
 extension on String {
   SharePointVersion toSharePointVersion() {
     switch (this) {
+      case 'SHAREPOINT_2013':
+        return SharePointVersion.sharepoint_2013;
+      case 'SHAREPOINT_2016':
+        return SharePointVersion.sharepoint_2016;
       case 'SHAREPOINT_ONLINE':
         return SharePointVersion.sharepointOnline;
     }
     throw Exception('$this is not known in enum SharePointVersion');
+  }
+}
+
+/// Provides the configuration information of the sitemap URLs to crawl.
+///
+/// <i>When selecting websites to index, you must adhere to the <a
+/// href="https://aws.amazon.com/aup/">Amazon Acceptable Use Policy</a> and all
+/// other Amazon terms. Remember that you must only use the Amazon Kendra web
+/// crawler to index your own webpages, or webpages that you have authorization
+/// to index.</i>
+class SiteMapsConfiguration {
+  /// The list of sitemap URLs of the websites you want to crawl.
+  ///
+  /// The list can include a maximum of three sitemap URLs.
+  final List<String> siteMaps;
+
+  SiteMapsConfiguration({
+    required this.siteMaps,
+  });
+  factory SiteMapsConfiguration.fromJson(Map<String, dynamic> json) {
+    return SiteMapsConfiguration(
+      siteMaps: (json['SiteMaps'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final siteMaps = this.siteMaps;
+    return {
+      'SiteMaps': siteMaps,
+    };
   }
 }
 
@@ -7956,6 +9384,131 @@ class StartDataSourceSyncJobResponse {
   factory StartDataSourceSyncJobResponse.fromJson(Map<String, dynamic> json) {
     return StartDataSourceSyncJobResponse(
       executionId: json['ExecutionId'] as String?,
+    );
+  }
+}
+
+/// Provides information about the status of documents submitted for indexing.
+class Status {
+  /// The unique identifier of the document.
+  final String? documentId;
+
+  /// The current status of a document.
+  ///
+  /// If the document was submitted for deletion, the status is
+  /// <code>NOT_FOUND</code> after the document is deleted.
+  final DocumentStatus? documentStatus;
+
+  /// Indicates the source of the error.
+  final String? failureCode;
+
+  /// Provides detailed information about why the document couldn't be indexed.
+  /// Use this information to correct the error before you resubmit the document
+  /// for indexing.
+  final String? failureReason;
+
+  Status({
+    this.documentId,
+    this.documentStatus,
+    this.failureCode,
+    this.failureReason,
+  });
+  factory Status.fromJson(Map<String, dynamic> json) {
+    return Status(
+      documentId: json['DocumentId'] as String?,
+      documentStatus: (json['DocumentStatus'] as String?)?.toDocumentStatus(),
+      failureCode: json['FailureCode'] as String?,
+      failureReason: json['FailureReason'] as String?,
+    );
+  }
+}
+
+/// A single query suggestion.
+class Suggestion {
+  /// The unique UUID (universally unique identifier) of a single query
+  /// suggestion.
+  final String? id;
+
+  /// The value for the unique UUID (universally unique identifier) of a single
+  /// query suggestion.
+  ///
+  /// The value is the text string of a suggestion.
+  final SuggestionValue? value;
+
+  Suggestion({
+    this.id,
+    this.value,
+  });
+  factory Suggestion.fromJson(Map<String, dynamic> json) {
+    return Suggestion(
+      id: json['Id'] as String?,
+      value: json['Value'] != null
+          ? SuggestionValue.fromJson(json['Value'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// The text highlights for a single query suggestion.
+class SuggestionHighlight {
+  /// The zero-based location in the response string where the highlight starts.
+  final int? beginOffset;
+
+  /// The zero-based location in the response string where the highlight ends.
+  final int? endOffset;
+
+  SuggestionHighlight({
+    this.beginOffset,
+    this.endOffset,
+  });
+  factory SuggestionHighlight.fromJson(Map<String, dynamic> json) {
+    return SuggestionHighlight(
+      beginOffset: json['BeginOffset'] as int?,
+      endOffset: json['EndOffset'] as int?,
+    );
+  }
+}
+
+/// Provides text and information about where to highlight the query suggestion
+/// text.
+class SuggestionTextWithHighlights {
+  /// The beginning and end of the query suggestion text that should be
+  /// highlighted.
+  final List<SuggestionHighlight>? highlights;
+
+  /// The query suggestion text to display to the user.
+  final String? text;
+
+  SuggestionTextWithHighlights({
+    this.highlights,
+    this.text,
+  });
+  factory SuggestionTextWithHighlights.fromJson(Map<String, dynamic> json) {
+    return SuggestionTextWithHighlights(
+      highlights: (json['Highlights'] as List?)
+          ?.whereNotNull()
+          .map((e) => SuggestionHighlight.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      text: json['Text'] as String?,
+    );
+  }
+}
+
+/// The <code>SuggestionTextWithHighlights</code> structure information.
+class SuggestionValue {
+  /// The <code>SuggestionTextWithHighlights</code> structure that contains the
+  /// query suggestion text and highlights.
+  final SuggestionTextWithHighlights? text;
+
+  SuggestionValue({
+    this.text,
+  });
+  factory SuggestionValue.fromJson(Map<String, dynamic> json) {
+    return SuggestionValue(
+      text: json['Text'] != null
+          ? SuggestionTextWithHighlights.fromJson(
+              json['Text'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -8155,6 +9708,60 @@ class UntagResourceResponse {
   }
 }
 
+/// Provides the configuration information of the URLs to crawl.
+///
+/// <i>When selecting websites to index, you must adhere to the <a
+/// href="https://aws.amazon.com/aup/">Amazon Acceptable Use Policy</a> and all
+/// other Amazon terms. Remember that you must only use the Amazon Kendra web
+/// crawler to index your own webpages, or webpages that you have authorization
+/// to index.</i>
+class Urls {
+  /// Provides the configuration of the seed or starting point URLs of the
+  /// websites you want to crawl.
+  ///
+  /// You can choose to crawl only the website host names, or the website host
+  /// names with subdomains, or the website host names with subdomains and other
+  /// domains that the webpages link to.
+  ///
+  /// You can list up to 100 seed URLs.
+  final SeedUrlConfiguration? seedUrlConfiguration;
+
+  /// Provides the configuration of the sitemap URLs of the websites you want to
+  /// crawl.
+  ///
+  /// Only URLs belonging to the same website host names are crawled. You can list
+  /// up to three sitemap URLs.
+  final SiteMapsConfiguration? siteMapsConfiguration;
+
+  Urls({
+    this.seedUrlConfiguration,
+    this.siteMapsConfiguration,
+  });
+  factory Urls.fromJson(Map<String, dynamic> json) {
+    return Urls(
+      seedUrlConfiguration: json['SeedUrlConfiguration'] != null
+          ? SeedUrlConfiguration.fromJson(
+              json['SeedUrlConfiguration'] as Map<String, dynamic>)
+          : null,
+      siteMapsConfiguration: json['SiteMapsConfiguration'] != null
+          ? SiteMapsConfiguration.fromJson(
+              json['SiteMapsConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final seedUrlConfiguration = this.seedUrlConfiguration;
+    final siteMapsConfiguration = this.siteMapsConfiguration;
+    return {
+      if (seedUrlConfiguration != null)
+        'SeedUrlConfiguration': seedUrlConfiguration,
+      if (siteMapsConfiguration != null)
+        'SiteMapsConfiguration': siteMapsConfiguration,
+    };
+  }
+}
+
 /// Provides information about the user context for a Amazon Kendra index.
 class UserContext {
   /// The user context token. It must be a JWT or a JSON token.
@@ -8233,6 +9840,197 @@ class UserTokenConfiguration {
       if (jwtTokenTypeConfiguration != null)
         'JwtTokenTypeConfiguration': jwtTokenTypeConfiguration,
     };
+  }
+}
+
+/// Provides the configuration information required for Amazon Kendra web
+/// crawler.
+class WebCrawlerConfiguration {
+  /// Specifies the seed or starting point URLs of the websites or the sitemap
+  /// URLs of the websites you want to crawl.
+  ///
+  /// You can include website subdomains. You can list up to 100 seed URLs and up
+  /// to three sitemap URLs.
+  ///
+  /// <i>When selecting websites to index, you must adhere to the <a
+  /// href="https://aws.amazon.com/aup/">Amazon Acceptable Use Policy</a> and all
+  /// other Amazon terms. Remember that you must only use the Amazon Kendra web
+  /// crawler to index your own webpages, or webpages that you have authorization
+  /// to index.</i>
+  final Urls urls;
+
+  /// Provides configuration information required to connect to websites using
+  /// authentication.
+  ///
+  /// You can connect to websites using basic authentication of user name and
+  /// password.
+  ///
+  /// You must provide the website host name and port number. For example, the
+  /// host name of https://a.example.com/page1.html is "a.example.com" and the
+  /// port is 443, the standard port for HTTPS. You use a secret in <a
+  /// href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS
+  /// Secrets Manager</a> to store your authentication credentials.
+  final AuthenticationConfiguration? authenticationConfiguration;
+
+  /// Specifies the number of levels in a website that you want to crawl.
+  ///
+  /// The first level begins from the website seed or starting point URL. For
+  /// example, if a website has 3 levels – index level (i.e. seed in this
+  /// example), sections level, and subsections level – and you are only
+  /// interested in crawling information up to the sections level (i.e. levels
+  /// 0-1), you can set your depth to 1.
+  ///
+  /// The default crawl depth is set to 2.
+  final int? crawlDepth;
+
+  /// The maximum size (in MB) of a webpage or attachment to crawl.
+  ///
+  /// Files larger than this size (in MB) are skipped/not crawled.
+  ///
+  /// The default maximum size of a webpage or attachment is set to 50 MB.
+  final double? maxContentSizePerPageInMegaBytes;
+
+  /// The maximum number of URLs on a webpage to include when crawling a website.
+  /// This number is per webpage.
+  ///
+  /// As a website’s webpages are crawled, any URLs the webpages link to are also
+  /// crawled. URLs on a webpage are crawled in order of appearance.
+  ///
+  /// The default maximum links per page is 100.
+  final int? maxLinksPerPage;
+
+  /// The maximum number of URLs crawled per website host per minute.
+  ///
+  /// A minimum of one URL is required.
+  ///
+  /// The default maximum number of URLs crawled per website host per minute is
+  /// 300.
+  final int? maxUrlsPerMinuteCrawlRate;
+
+  /// Provides configuration information required to connect to your internal
+  /// websites via a web proxy.
+  ///
+  /// You must provide the website host name and port number. For example, the
+  /// host name of https://a.example.com/page1.html is "a.example.com" and the
+  /// port is 443, the standard port for HTTPS.
+  ///
+  /// Web proxy credentials are optional and you can use them to connect to a web
+  /// proxy server that requires basic authentication. To store web proxy
+  /// credentials, you use a secret in <a
+  /// href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS
+  /// Secrets Manager</a>.
+  final ProxyConfiguration? proxyConfiguration;
+
+  /// The regular expression pattern to exclude certain URLs to crawl.
+  ///
+  /// If there is a regular expression pattern to include certain URLs that
+  /// conflicts with the exclude pattern, the exclude pattern takes precedence.
+  final List<String>? urlExclusionPatterns;
+
+  /// The regular expression pattern to include certain URLs to crawl.
+  ///
+  /// If there is a regular expression pattern to exclude certain URLs that
+  /// conflicts with the include pattern, the exclude pattern takes precedence.
+  final List<String>? urlInclusionPatterns;
+
+  WebCrawlerConfiguration({
+    required this.urls,
+    this.authenticationConfiguration,
+    this.crawlDepth,
+    this.maxContentSizePerPageInMegaBytes,
+    this.maxLinksPerPage,
+    this.maxUrlsPerMinuteCrawlRate,
+    this.proxyConfiguration,
+    this.urlExclusionPatterns,
+    this.urlInclusionPatterns,
+  });
+  factory WebCrawlerConfiguration.fromJson(Map<String, dynamic> json) {
+    return WebCrawlerConfiguration(
+      urls: Urls.fromJson(json['Urls'] as Map<String, dynamic>),
+      authenticationConfiguration: json['AuthenticationConfiguration'] != null
+          ? AuthenticationConfiguration.fromJson(
+              json['AuthenticationConfiguration'] as Map<String, dynamic>)
+          : null,
+      crawlDepth: json['CrawlDepth'] as int?,
+      maxContentSizePerPageInMegaBytes:
+          json['MaxContentSizePerPageInMegaBytes'] as double?,
+      maxLinksPerPage: json['MaxLinksPerPage'] as int?,
+      maxUrlsPerMinuteCrawlRate: json['MaxUrlsPerMinuteCrawlRate'] as int?,
+      proxyConfiguration: json['ProxyConfiguration'] != null
+          ? ProxyConfiguration.fromJson(
+              json['ProxyConfiguration'] as Map<String, dynamic>)
+          : null,
+      urlExclusionPatterns: (json['UrlExclusionPatterns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      urlInclusionPatterns: (json['UrlInclusionPatterns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final urls = this.urls;
+    final authenticationConfiguration = this.authenticationConfiguration;
+    final crawlDepth = this.crawlDepth;
+    final maxContentSizePerPageInMegaBytes =
+        this.maxContentSizePerPageInMegaBytes;
+    final maxLinksPerPage = this.maxLinksPerPage;
+    final maxUrlsPerMinuteCrawlRate = this.maxUrlsPerMinuteCrawlRate;
+    final proxyConfiguration = this.proxyConfiguration;
+    final urlExclusionPatterns = this.urlExclusionPatterns;
+    final urlInclusionPatterns = this.urlInclusionPatterns;
+    return {
+      'Urls': urls,
+      if (authenticationConfiguration != null)
+        'AuthenticationConfiguration': authenticationConfiguration,
+      if (crawlDepth != null) 'CrawlDepth': crawlDepth,
+      if (maxContentSizePerPageInMegaBytes != null)
+        'MaxContentSizePerPageInMegaBytes': maxContentSizePerPageInMegaBytes,
+      if (maxLinksPerPage != null) 'MaxLinksPerPage': maxLinksPerPage,
+      if (maxUrlsPerMinuteCrawlRate != null)
+        'MaxUrlsPerMinuteCrawlRate': maxUrlsPerMinuteCrawlRate,
+      if (proxyConfiguration != null) 'ProxyConfiguration': proxyConfiguration,
+      if (urlExclusionPatterns != null)
+        'UrlExclusionPatterns': urlExclusionPatterns,
+      if (urlInclusionPatterns != null)
+        'UrlInclusionPatterns': urlInclusionPatterns,
+    };
+  }
+}
+
+enum WebCrawlerMode {
+  hostOnly,
+  subdomains,
+  everything,
+}
+
+extension on WebCrawlerMode {
+  String toValue() {
+    switch (this) {
+      case WebCrawlerMode.hostOnly:
+        return 'HOST_ONLY';
+      case WebCrawlerMode.subdomains:
+        return 'SUBDOMAINS';
+      case WebCrawlerMode.everything:
+        return 'EVERYTHING';
+    }
+  }
+}
+
+extension on String {
+  WebCrawlerMode toWebCrawlerMode() {
+    switch (this) {
+      case 'HOST_ONLY':
+        return WebCrawlerMode.hostOnly;
+      case 'SUBDOMAINS':
+        return WebCrawlerMode.subdomains;
+      case 'EVERYTHING':
+        return WebCrawlerMode.everything;
+    }
+    throw Exception('$this is not known in enum WebCrawlerMode');
   }
 }
 

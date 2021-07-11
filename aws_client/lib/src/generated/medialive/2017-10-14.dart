@@ -286,6 +286,9 @@ class MediaLive {
   ///
   /// Parameter [tags] :
   /// A collection of key-value pairs.
+  ///
+  /// Parameter [vpc] :
+  /// Settings for VPC output
   Future<CreateChannelResponse> createChannel({
     CdiInputSpecification? cdiInputSpecification,
     ChannelClass? channelClass,
@@ -299,6 +302,7 @@ class MediaLive {
     String? reserved,
     String? roleArn,
     Map<String, String>? tags,
+    VpcOutputSettings? vpc,
   }) async {
     final $payload = <String, dynamic>{
       if (cdiInputSpecification != null)
@@ -314,6 +318,7 @@ class MediaLive {
       if (reserved != null) 'reserved': reserved,
       if (roleArn != null) 'roleArn': roleArn,
       if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -534,6 +539,43 @@ class MediaLive {
       exceptionFnMap: _exceptionFns,
     );
     return CreateMultiplexProgramResponse.fromJson(response);
+  }
+
+  /// Create a partner input
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [InternalServerErrorException].
+  /// May throw [ForbiddenException].
+  /// May throw [BadGatewayException].
+  /// May throw [GatewayTimeoutException].
+  /// May throw [TooManyRequestsException].
+  ///
+  /// Parameter [inputId] :
+  /// Unique ID of the input.
+  ///
+  /// Parameter [requestId] :
+  /// Unique identifier of the request to ensure the request is handled
+  /// exactly once in case of retries.
+  ///
+  /// Parameter [tags] :
+  /// A collection of key-value pairs.
+  Future<CreatePartnerInputResponse> createPartnerInput({
+    required String inputId,
+    String? requestId,
+    Map<String, String>? tags,
+  }) async {
+    ArgumentError.checkNotNull(inputId, 'inputId');
+    final $payload = <String, dynamic>{
+      'requestId': requestId ?? _s.generateIdempotencyToken(),
+      if (tags != null) 'tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/prod/inputs/${Uri.encodeComponent(inputId)}/partners',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreatePartnerInputResponse.fromJson(response);
   }
 
   /// Create tags for a resource
@@ -1700,16 +1742,21 @@ class MediaLive {
   /// Parameter [targetCustomerId] :
   /// The AWS account ID (12 digits) for the recipient of the device transfer.
   ///
+  /// Parameter [targetRegion] :
+  /// The target AWS region to transfer the device.
+  ///
   /// Parameter [transferMessage] :
   /// An optional message for the recipient. Maximum 280 characters.
   Future<void> transferInputDevice({
     required String inputDeviceId,
     String? targetCustomerId,
+    String? targetRegion,
     String? transferMessage,
   }) async {
     ArgumentError.checkNotNull(inputDeviceId, 'inputDeviceId');
     final $payload = <String, dynamic>{
       if (targetCustomerId != null) 'targetCustomerId': targetCustomerId,
+      if (targetRegion != null) 'targetRegion': targetRegion,
       if (transferMessage != null) 'transferMessage': transferMessage,
     };
     final response = await _protocol.send(
@@ -2746,6 +2793,30 @@ class AncillarySourceSettings {
   }
 }
 
+/// Archive Cdn Settings
+class ArchiveCdnSettings {
+  final ArchiveS3Settings? archiveS3Settings;
+
+  ArchiveCdnSettings({
+    this.archiveS3Settings,
+  });
+  factory ArchiveCdnSettings.fromJson(Map<String, dynamic> json) {
+    return ArchiveCdnSettings(
+      archiveS3Settings: json['archiveS3Settings'] != null
+          ? ArchiveS3Settings.fromJson(
+              json['archiveS3Settings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final archiveS3Settings = this.archiveS3Settings;
+    return {
+      if (archiveS3Settings != null) 'archiveS3Settings': archiveS3Settings,
+    };
+  }
+}
+
 /// Archive Container Settings
 class ArchiveContainerSettings {
   final M2tsSettings? m2tsSettings;
@@ -2781,27 +2852,37 @@ class ArchiveGroupSettings {
   /// A directory and base filename where archive files should be written.
   final OutputLocationRef destination;
 
+  /// Parameters that control interactions with the CDN.
+  final ArchiveCdnSettings? archiveCdnSettings;
+
   /// Number of seconds to write to archive file before closing and starting a new
   /// one.
   final int? rolloverInterval;
 
   ArchiveGroupSettings({
     required this.destination,
+    this.archiveCdnSettings,
     this.rolloverInterval,
   });
   factory ArchiveGroupSettings.fromJson(Map<String, dynamic> json) {
     return ArchiveGroupSettings(
       destination: OutputLocationRef.fromJson(
           json['destination'] as Map<String, dynamic>),
+      archiveCdnSettings: json['archiveCdnSettings'] != null
+          ? ArchiveCdnSettings.fromJson(
+              json['archiveCdnSettings'] as Map<String, dynamic>)
+          : null,
       rolloverInterval: json['rolloverInterval'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final destination = this.destination;
+    final archiveCdnSettings = this.archiveCdnSettings;
     final rolloverInterval = this.rolloverInterval;
     return {
       'destination': destination,
+      if (archiveCdnSettings != null) 'archiveCdnSettings': archiveCdnSettings,
       if (rolloverInterval != null) 'rolloverInterval': rolloverInterval,
     };
   }
@@ -2842,6 +2923,28 @@ class ArchiveOutputSettings {
       'containerSettings': containerSettings,
       if (extension != null) 'extension': extension,
       if (nameModifier != null) 'nameModifier': nameModifier,
+    };
+  }
+}
+
+/// Archive S3 Settings
+class ArchiveS3Settings {
+  /// Specify the canned ACL to apply to each S3 request. Defaults to none.
+  final S3CannedAcl? cannedAcl;
+
+  ArchiveS3Settings({
+    this.cannedAcl,
+  });
+  factory ArchiveS3Settings.fromJson(Map<String, dynamic> json) {
+    return ArchiveS3Settings(
+      cannedAcl: (json['cannedAcl'] as String?)?.toS3CannedAcl(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cannedAcl = this.cannedAcl;
+    return {
+      if (cannedAcl != null) 'cannedAcl': cannedAcl.toValue(),
     };
   }
 }
@@ -4891,6 +4994,79 @@ class CaptionLanguageMapping {
   }
 }
 
+/// Caption Rectangle
+class CaptionRectangle {
+  /// See the description in leftOffset.
+  /// For height, specify the entire height of the rectangle as a percentage of
+  /// the underlying frame height. For example, \"80\" means the rectangle height
+  /// is 80% of the underlying frame height. The topOffset and rectangleHeight
+  /// must add up to 100% or less.
+  /// This field corresponds to tts:extent - Y in the TTML standard.
+  final double height;
+
+  /// Applies only if you plan to convert these source captions to EBU-TT-D or
+  /// TTML in an output. (Make sure to leave the default if you don't have either
+  /// of these formats in the output.) You can define a display rectangle for the
+  /// captions that is smaller than the underlying video frame. You define the
+  /// rectangle by specifying the position of the left edge, top edge, bottom
+  /// edge, and right edge of the rectangle, all within the underlying video
+  /// frame. The units for the measurements are percentages.
+  /// If you specify a value for one of these fields, you must specify a value for
+  /// all of them.
+  /// For leftOffset, specify the position of the left edge of the rectangle, as a
+  /// percentage of the underlying frame width, and relative to the left edge of
+  /// the frame. For example, \"10\" means the measurement is 10% of the
+  /// underlying frame width. The rectangle left edge starts at that position from
+  /// the left edge of the frame.
+  /// This field corresponds to tts:origin - X in the TTML standard.
+  final double leftOffset;
+
+  /// See the description in leftOffset.
+  /// For topOffset, specify the position of the top edge of the rectangle, as a
+  /// percentage of the underlying frame height, and relative to the top edge of
+  /// the frame. For example, \"10\" means the measurement is 10% of the
+  /// underlying frame height. The rectangle top edge starts at that position from
+  /// the top edge of the frame.
+  /// This field corresponds to tts:origin - Y in the TTML standard.
+  final double topOffset;
+
+  /// See the description in leftOffset.
+  /// For width, specify the entire width of the rectangle as a percentage of the
+  /// underlying frame width. For example, \"80\" means the rectangle width is 80%
+  /// of the underlying frame width. The leftOffset and rectangleWidth must add up
+  /// to 100% or less.
+  /// This field corresponds to tts:extent - X in the TTML standard.
+  final double width;
+
+  CaptionRectangle({
+    required this.height,
+    required this.leftOffset,
+    required this.topOffset,
+    required this.width,
+  });
+  factory CaptionRectangle.fromJson(Map<String, dynamic> json) {
+    return CaptionRectangle(
+      height: json['height'] as double,
+      leftOffset: json['leftOffset'] as double,
+      topOffset: json['topOffset'] as double,
+      width: json['width'] as double,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final height = this.height;
+    final leftOffset = this.leftOffset;
+    final topOffset = this.topOffset;
+    final width = this.width;
+    return {
+      'height': height,
+      'leftOffset': leftOffset,
+      'topOffset': topOffset,
+      'width': width,
+    };
+  }
+}
+
 /// Output groups for this Live Event. Output groups contain information about
 /// where streams should be distributed.
 class CaptionSelector {
@@ -5124,6 +5300,9 @@ class Channel {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   Channel({
     this.arn,
     this.cdiInputSpecification,
@@ -5141,6 +5320,7 @@ class Channel {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
@@ -5182,6 +5362,10 @@ class Channel {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -5350,6 +5534,9 @@ class ChannelSummary {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   ChannelSummary({
     this.arn,
     this.cdiInputSpecification,
@@ -5365,6 +5552,7 @@ class ChannelSummary {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory ChannelSummary.fromJson(Map<String, dynamic> json) {
     return ChannelSummary(
@@ -5398,6 +5586,10 @@ class ChannelSummary {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -5498,6 +5690,22 @@ class CreateMultiplexResponse {
   }
 }
 
+/// Placeholder documentation for CreatePartnerInputResponse
+class CreatePartnerInputResponse {
+  final Input? input;
+
+  CreatePartnerInputResponse({
+    this.input,
+  });
+  factory CreatePartnerInputResponse.fromJson(Map<String, dynamic> json) {
+    return CreatePartnerInputResponse(
+      input: json['input'] != null
+          ? Input.fromJson(json['input'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 /// Placeholder documentation for DeleteChannelResponse
 class DeleteChannelResponse {
   /// The unique arn of the channel.
@@ -5547,6 +5755,9 @@ class DeleteChannelResponse {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   DeleteChannelResponse({
     this.arn,
     this.cdiInputSpecification,
@@ -5564,6 +5775,7 @@ class DeleteChannelResponse {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory DeleteChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteChannelResponse(
@@ -5605,6 +5817,10 @@ class DeleteChannelResponse {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -5912,6 +6128,9 @@ class DescribeChannelResponse {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   DescribeChannelResponse({
     this.arn,
     this.cdiInputSpecification,
@@ -5929,6 +6148,7 @@ class DescribeChannelResponse {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory DescribeChannelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelResponse(
@@ -5970,6 +6190,10 @@ class DescribeChannelResponse {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -6115,6 +6339,9 @@ class DescribeInputResponse {
   /// Settings for the input devices.
   final List<InputDeviceSettings>? inputDevices;
 
+  /// A list of IDs for all Inputs which are partners of this one.
+  final List<String>? inputPartnerIds;
+
   /// Certain pull input sources can be dynamic, meaning that they can have their
   /// URL's dynamically changes
   /// during input switch actions. Presently, this functionality only works with
@@ -6149,6 +6376,7 @@ class DescribeInputResponse {
     this.id,
     this.inputClass,
     this.inputDevices,
+    this.inputPartnerIds,
     this.inputSourceType,
     this.mediaConnectFlows,
     this.name,
@@ -6175,6 +6403,10 @@ class DescribeInputResponse {
       inputDevices: (json['inputDevices'] as List?)
           ?.whereNotNull()
           .map((e) => InputDeviceSettings.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      inputPartnerIds: (json['inputPartnerIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
           .toList(),
       inputSourceType:
           (json['inputSourceType'] as String?)?.toInputSourceType(),
@@ -7189,25 +7421,84 @@ extension on String {
   }
 }
 
+/// Dvb Sub Ocr Language
+enum DvbSubOcrLanguage {
+  deu,
+  eng,
+  fra,
+  nld,
+  por,
+  spa,
+}
+
+extension on DvbSubOcrLanguage {
+  String toValue() {
+    switch (this) {
+      case DvbSubOcrLanguage.deu:
+        return 'DEU';
+      case DvbSubOcrLanguage.eng:
+        return 'ENG';
+      case DvbSubOcrLanguage.fra:
+        return 'FRA';
+      case DvbSubOcrLanguage.nld:
+        return 'NLD';
+      case DvbSubOcrLanguage.por:
+        return 'POR';
+      case DvbSubOcrLanguage.spa:
+        return 'SPA';
+    }
+  }
+}
+
+extension on String {
+  DvbSubOcrLanguage toDvbSubOcrLanguage() {
+    switch (this) {
+      case 'DEU':
+        return DvbSubOcrLanguage.deu;
+      case 'ENG':
+        return DvbSubOcrLanguage.eng;
+      case 'FRA':
+        return DvbSubOcrLanguage.fra;
+      case 'NLD':
+        return DvbSubOcrLanguage.nld;
+      case 'POR':
+        return DvbSubOcrLanguage.por;
+      case 'SPA':
+        return DvbSubOcrLanguage.spa;
+    }
+    throw Exception('$this is not known in enum DvbSubOcrLanguage');
+  }
+}
+
 /// Dvb Sub Source Settings
 class DvbSubSourceSettings {
+  /// If you will configure a WebVTT caption description that references this
+  /// caption selector, use this field to
+  /// provide the language to consider when translating the image-based source to
+  /// text.
+  final DvbSubOcrLanguage? ocrLanguage;
+
   /// When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source
   /// content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed
   /// through, regardless of selectors.
   final int? pid;
 
   DvbSubSourceSettings({
+    this.ocrLanguage,
     this.pid,
   });
   factory DvbSubSourceSettings.fromJson(Map<String, dynamic> json) {
     return DvbSubSourceSettings(
+      ocrLanguage: (json['ocrLanguage'] as String?)?.toDvbSubOcrLanguage(),
       pid: json['pid'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final ocrLanguage = this.ocrLanguage;
     final pid = this.pid;
     return {
+      if (ocrLanguage != null) 'ocrLanguage': ocrLanguage.toValue(),
       if (pid != null) 'pid': pid,
     };
   }
@@ -7901,6 +8192,11 @@ extension on String {
 
 /// Ebu Tt DDestination Settings
 class EbuTtDDestinationSettings {
+  /// Applies only if you plan to convert these source captions to EBU-TT-D or
+  /// TTML in an output. Complete this field if you want to include the name of
+  /// the copyright holder in the copyright metadata tag in the TTML
+  final String? copyrightHolder;
+
   /// Specifies how to handle the gap between the lines (in multi-line captions).
   ///
   /// - enabled: Fill with the captions background color (as specified in the
@@ -7936,12 +8232,14 @@ class EbuTtDDestinationSettings {
   final EbuTtDDestinationStyleControl? styleControl;
 
   EbuTtDDestinationSettings({
+    this.copyrightHolder,
     this.fillLineGap,
     this.fontFamily,
     this.styleControl,
   });
   factory EbuTtDDestinationSettings.fromJson(Map<String, dynamic> json) {
     return EbuTtDDestinationSettings(
+      copyrightHolder: json['copyrightHolder'] as String?,
       fillLineGap:
           (json['fillLineGap'] as String?)?.toEbuTtDFillLineGapControl(),
       fontFamily: json['fontFamily'] as String?,
@@ -7951,10 +8249,12 @@ class EbuTtDDestinationSettings {
   }
 
   Map<String, dynamic> toJson() {
+    final copyrightHolder = this.copyrightHolder;
     final fillLineGap = this.fillLineGap;
     final fontFamily = this.fontFamily;
     final styleControl = this.styleControl;
     return {
+      if (copyrightHolder != null) 'copyrightHolder': copyrightHolder,
       if (fillLineGap != null) 'fillLineGap': fillLineGap.toValue(),
       if (fontFamily != null) 'fontFamily': fontFamily,
       if (styleControl != null) 'styleControl': styleControl.toValue(),
@@ -8182,6 +8482,9 @@ class EncoderSettings {
   /// Configuration settings that apply to the event as a whole.
   final GlobalConfiguration? globalConfiguration;
 
+  /// Settings for motion graphics.
+  final MotionGraphicsConfiguration? motionGraphicsConfiguration;
+
   /// Nielsen configuration settings.
   final NielsenConfiguration? nielsenConfiguration;
 
@@ -8196,6 +8499,7 @@ class EncoderSettings {
     this.captionDescriptions,
     this.featureActivations,
     this.globalConfiguration,
+    this.motionGraphicsConfiguration,
     this.nielsenConfiguration,
   });
   factory EncoderSettings.fromJson(Map<String, dynamic> json) {
@@ -8238,6 +8542,10 @@ class EncoderSettings {
           ? GlobalConfiguration.fromJson(
               json['globalConfiguration'] as Map<String, dynamic>)
           : null,
+      motionGraphicsConfiguration: json['motionGraphicsConfiguration'] != null
+          ? MotionGraphicsConfiguration.fromJson(
+              json['motionGraphicsConfiguration'] as Map<String, dynamic>)
+          : null,
       nielsenConfiguration: json['nielsenConfiguration'] != null
           ? NielsenConfiguration.fromJson(
               json['nielsenConfiguration'] as Map<String, dynamic>)
@@ -8256,6 +8564,7 @@ class EncoderSettings {
     final captionDescriptions = this.captionDescriptions;
     final featureActivations = this.featureActivations;
     final globalConfiguration = this.globalConfiguration;
+    final motionGraphicsConfiguration = this.motionGraphicsConfiguration;
     final nielsenConfiguration = this.nielsenConfiguration;
     return {
       'audioDescriptions': audioDescriptions,
@@ -8270,6 +8579,8 @@ class EncoderSettings {
       if (featureActivations != null) 'featureActivations': featureActivations,
       if (globalConfiguration != null)
         'globalConfiguration': globalConfiguration,
+      if (motionGraphicsConfiguration != null)
+        'motionGraphicsConfiguration': motionGraphicsConfiguration,
       if (nielsenConfiguration != null)
         'nielsenConfiguration': nielsenConfiguration,
     };
@@ -8747,6 +9058,31 @@ extension on String {
   }
 }
 
+/// Frame Capture Cdn Settings
+class FrameCaptureCdnSettings {
+  final FrameCaptureS3Settings? frameCaptureS3Settings;
+
+  FrameCaptureCdnSettings({
+    this.frameCaptureS3Settings,
+  });
+  factory FrameCaptureCdnSettings.fromJson(Map<String, dynamic> json) {
+    return FrameCaptureCdnSettings(
+      frameCaptureS3Settings: json['frameCaptureS3Settings'] != null
+          ? FrameCaptureS3Settings.fromJson(
+              json['frameCaptureS3Settings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final frameCaptureS3Settings = this.frameCaptureS3Settings;
+    return {
+      if (frameCaptureS3Settings != null)
+        'frameCaptureS3Settings': frameCaptureS3Settings,
+    };
+  }
+}
+
 /// Frame Capture Group Settings
 class FrameCaptureGroupSettings {
   /// The destination for the frame capture files. Either the URI for an Amazon S3
@@ -8759,21 +9095,44 @@ class FrameCaptureGroupSettings {
   /// (which is always .jpg).  For example, curling-low.00001.jpg
   final OutputLocationRef destination;
 
+  /// Parameters that control interactions with the CDN.
+  final FrameCaptureCdnSettings? frameCaptureCdnSettings;
+
   FrameCaptureGroupSettings({
     required this.destination,
+    this.frameCaptureCdnSettings,
   });
   factory FrameCaptureGroupSettings.fromJson(Map<String, dynamic> json) {
     return FrameCaptureGroupSettings(
       destination: OutputLocationRef.fromJson(
           json['destination'] as Map<String, dynamic>),
+      frameCaptureCdnSettings: json['frameCaptureCdnSettings'] != null
+          ? FrameCaptureCdnSettings.fromJson(
+              json['frameCaptureCdnSettings'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final destination = this.destination;
+    final frameCaptureCdnSettings = this.frameCaptureCdnSettings;
     return {
       'destination': destination,
+      if (frameCaptureCdnSettings != null)
+        'frameCaptureCdnSettings': frameCaptureCdnSettings,
     };
+  }
+}
+
+/// Frame Capture Hls Settings
+class FrameCaptureHlsSettings {
+  FrameCaptureHlsSettings();
+  factory FrameCaptureHlsSettings.fromJson(Map<String, dynamic> _) {
+    return FrameCaptureHlsSettings();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8829,23 +9188,45 @@ class FrameCaptureOutputSettings {
   }
 }
 
+/// Frame Capture S3 Settings
+class FrameCaptureS3Settings {
+  /// Specify the canned ACL to apply to each S3 request. Defaults to none.
+  final S3CannedAcl? cannedAcl;
+
+  FrameCaptureS3Settings({
+    this.cannedAcl,
+  });
+  factory FrameCaptureS3Settings.fromJson(Map<String, dynamic> json) {
+    return FrameCaptureS3Settings(
+      cannedAcl: (json['cannedAcl'] as String?)?.toS3CannedAcl(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cannedAcl = this.cannedAcl;
+    return {
+      if (cannedAcl != null) 'cannedAcl': cannedAcl.toValue(),
+    };
+  }
+}
+
 /// Frame Capture Settings
 class FrameCaptureSettings {
   /// The frequency at which to capture frames for inclusion in the output. May be
   /// specified in either seconds or milliseconds, as specified by
   /// captureIntervalUnits.
-  final int captureInterval;
+  final int? captureInterval;
 
   /// Unit for the frame capture interval.
   final FrameCaptureIntervalUnit? captureIntervalUnits;
 
   FrameCaptureSettings({
-    required this.captureInterval,
+    this.captureInterval,
     this.captureIntervalUnits,
   });
   factory FrameCaptureSettings.fromJson(Map<String, dynamic> json) {
     return FrameCaptureSettings(
-      captureInterval: json['captureInterval'] as int,
+      captureInterval: json['captureInterval'] as int?,
       captureIntervalUnits: (json['captureIntervalUnits'] as String?)
           ?.toFrameCaptureIntervalUnit(),
     );
@@ -8855,7 +9236,7 @@ class FrameCaptureSettings {
     final captureInterval = this.captureInterval;
     final captureIntervalUnits = this.captureIntervalUnits;
     return {
-      'captureInterval': captureInterval,
+      if (captureInterval != null) 'captureInterval': captureInterval,
       if (captureIntervalUnits != null)
         'captureIntervalUnits': captureIntervalUnits.toValue(),
     };
@@ -9069,6 +9450,7 @@ extension on String {
 
 /// H264 Adaptive Quantization
 enum H264AdaptiveQuantization {
+  auto,
   high,
   higher,
   low,
@@ -9080,6 +9462,8 @@ enum H264AdaptiveQuantization {
 extension on H264AdaptiveQuantization {
   String toValue() {
     switch (this) {
+      case H264AdaptiveQuantization.auto:
+        return 'AUTO';
       case H264AdaptiveQuantization.high:
         return 'HIGH';
       case H264AdaptiveQuantization.higher:
@@ -9099,6 +9483,8 @@ extension on H264AdaptiveQuantization {
 extension on String {
   H264AdaptiveQuantization toH264AdaptiveQuantization() {
     switch (this) {
+      case 'AUTO':
+        return H264AdaptiveQuantization.auto;
       case 'HIGH':
         return H264AdaptiveQuantization.high;
       case 'HIGHER':
@@ -9730,8 +10116,15 @@ extension on String {
 
 /// H264 Settings
 class H264Settings {
-  /// Adaptive quantization. Allows intra-frame quantizers to vary to improve
-  /// visual quality.
+  /// Enables or disables adaptive quantization, which is a technique MediaLive
+  /// can apply to video on a frame-by-frame basis to produce more compression
+  /// without losing quality. There are three types of adaptive quantization:
+  /// flicker, spatial, and temporal. Set the field in one of these ways: Set to
+  /// Auto. Recommended. For each type of AQ, MediaLive will determine if AQ is
+  /// needed, and if so, the appropriate strength. Set a strength (a value other
+  /// than Auto or Disable). This strength will apply to any of the AQ fields that
+  /// you choose to enable. Set to Disabled to disable all types of adaptive
+  /// quantization.
   final H264AdaptiveQuantization? adaptiveQuantization;
 
   /// Indicates that AFD values will be written into the output stream.  If
@@ -9769,8 +10162,16 @@ class H264Settings {
   /// Only valid when afdSignaling is set to 'Fixed'.
   final FixedAfd? fixedAfd;
 
-  /// If set to enabled, adjust quantization within each frame to reduce flicker
-  /// or 'pop' on I-frames.
+  /// Flicker AQ makes adjustments within each frame to reduce flicker or 'pop' on
+  /// I-frames. The value to enter in this field depends on the value in the
+  /// Adaptive quantization field: If you have set the Adaptive quantization field
+  /// to Auto, MediaLive ignores any value in this field. MediaLive will determine
+  /// if flicker AQ is appropriate and will apply the appropriate strength. If you
+  /// have set the Adaptive quantization field to a strength, you can set this
+  /// field to Enabled or Disabled. Enabled: MediaLive will apply flicker AQ using
+  /// the specified strength. Disabled: MediaLive won't apply flicker AQ. If you
+  /// have set the Adaptive quantization to Disabled, MediaLive ignores any value
+  /// in this field and doesn't apply flicker AQ.
   final H264FlickerAq? flickerAq;
 
   /// This setting applies only when scan type is "interlaced." It controls
@@ -9874,12 +10275,17 @@ class H264Settings {
   final H264QualityLevel? qualityLevel;
 
   /// Controls the target quality for the video encode. Applies only when the rate
-  /// control mode is QVBR. Set values for the QVBR quality level field and Max
-  /// bitrate field that suit your most important viewing devices. Recommended
-  /// values are:
+  /// control mode is QVBR. You can set a target quality or you can let MediaLive
+  /// determine the best quality. To set a target quality, enter values in the
+  /// QVBR quality level field and the Max bitrate field. Enter values that suit
+  /// your most important viewing devices. Recommended values are:
   /// - Primary screen: Quality level: 8 to 10. Max bitrate: 4M
   /// - PC or tablet: Quality level: 7. Max bitrate: 1.5M to 3M
   /// - Smartphone: Quality level: 6. Max bitrate: 1M to 1.5M
+  /// To let MediaLive decide, leave the QVBR quality level field empty, and in
+  /// Max bitrate enter the maximum rate you want in the video. For more
+  /// information, see the section called "Video - rate control mode" in the
+  /// MediaLive user guide
   final int? qvbrQualityLevel;
 
   /// Rate control mode.
@@ -9922,11 +10328,19 @@ class H264Settings {
   final int? slices;
 
   /// Softness. Selects quantizer matrix, larger values reduce high-frequency
-  /// content in the encoded image.
+  /// content in the encoded image.  If not set to zero, must be greater than 15.
   final int? softness;
 
-  /// If set to enabled, adjust quantization within each frame based on spatial
-  /// variation of content complexity.
+  /// Spatial AQ makes adjustments within each frame based on spatial variation of
+  /// content complexity. The value to enter in this field depends on the value in
+  /// the Adaptive quantization field: If you have set the Adaptive quantization
+  /// field to Auto, MediaLive ignores any value in this field. MediaLive will
+  /// determine if spatial AQ is appropriate and will apply the appropriate
+  /// strength. If you have set the Adaptive quantization field to a strength, you
+  /// can set this field to Enabled or Disabled. Enabled: MediaLive will apply
+  /// spatial AQ using the specified strength. Disabled: MediaLive won't apply
+  /// spatial AQ. If you have set the Adaptive quantization to Disabled, MediaLive
+  /// ignores any value in this field and doesn't apply spatial AQ.
   final H264SpatialAq? spatialAq;
 
   /// If set to fixed, use gopNumBFrames B-frames per sub-GOP. If set to dynamic,
@@ -9937,8 +10351,16 @@ class H264Settings {
   /// Produces a bitstream compliant with SMPTE RP-2027.
   final H264Syntax? syntax;
 
-  /// If set to enabled, adjust quantization within each frame based on temporal
-  /// variation of content complexity.
+  /// Temporal makes adjustments within each frame based on temporal variation of
+  /// content complexity. The value to enter in this field depends on the value in
+  /// the Adaptive quantization field: If you have set the Adaptive quantization
+  /// field to Auto, MediaLive ignores any value in this field. MediaLive will
+  /// determine if temporal AQ is appropriate and will apply the appropriate
+  /// strength. If you have set the Adaptive quantization field to a strength, you
+  /// can set this field to Enabled or Disabled. Enabled: MediaLive will apply
+  /// temporal AQ using the specified strength. Disabled: MediaLive won't apply
+  /// temporal AQ. If you have set the Adaptive quantization to Disabled,
+  /// MediaLive ignores any value in this field and doesn't apply temporal AQ.
   final H264TemporalAq? temporalAq;
 
   /// Determines how timecodes should be inserted into the video elementary
@@ -10293,6 +10715,7 @@ extension on String {
 
 /// H265 Adaptive Quantization
 enum H265AdaptiveQuantization {
+  auto,
   high,
   higher,
   low,
@@ -10304,6 +10727,8 @@ enum H265AdaptiveQuantization {
 extension on H265AdaptiveQuantization {
   String toValue() {
     switch (this) {
+      case H265AdaptiveQuantization.auto:
+        return 'AUTO';
       case H265AdaptiveQuantization.high:
         return 'HIGH';
       case H265AdaptiveQuantization.higher:
@@ -10323,6 +10748,8 @@ extension on H265AdaptiveQuantization {
 extension on String {
   H265AdaptiveQuantization toH265AdaptiveQuantization() {
     switch (this) {
+      case 'AUTO':
+        return H265AdaptiveQuantization.auto;
       case 'HIGH':
         return H265AdaptiveQuantization.high;
       case 'HIGHER':
@@ -11381,12 +11808,14 @@ class HlsCdnSettings {
   final HlsAkamaiSettings? hlsAkamaiSettings;
   final HlsBasicPutSettings? hlsBasicPutSettings;
   final HlsMediaStoreSettings? hlsMediaStoreSettings;
+  final HlsS3Settings? hlsS3Settings;
   final HlsWebdavSettings? hlsWebdavSettings;
 
   HlsCdnSettings({
     this.hlsAkamaiSettings,
     this.hlsBasicPutSettings,
     this.hlsMediaStoreSettings,
+    this.hlsS3Settings,
     this.hlsWebdavSettings,
   });
   factory HlsCdnSettings.fromJson(Map<String, dynamic> json) {
@@ -11403,6 +11832,10 @@ class HlsCdnSettings {
           ? HlsMediaStoreSettings.fromJson(
               json['hlsMediaStoreSettings'] as Map<String, dynamic>)
           : null,
+      hlsS3Settings: json['hlsS3Settings'] != null
+          ? HlsS3Settings.fromJson(
+              json['hlsS3Settings'] as Map<String, dynamic>)
+          : null,
       hlsWebdavSettings: json['hlsWebdavSettings'] != null
           ? HlsWebdavSettings.fromJson(
               json['hlsWebdavSettings'] as Map<String, dynamic>)
@@ -11414,6 +11847,7 @@ class HlsCdnSettings {
     final hlsAkamaiSettings = this.hlsAkamaiSettings;
     final hlsBasicPutSettings = this.hlsBasicPutSettings;
     final hlsMediaStoreSettings = this.hlsMediaStoreSettings;
+    final hlsS3Settings = this.hlsS3Settings;
     final hlsWebdavSettings = this.hlsWebdavSettings;
     return {
       if (hlsAkamaiSettings != null) 'hlsAkamaiSettings': hlsAkamaiSettings,
@@ -11421,6 +11855,7 @@ class HlsCdnSettings {
         'hlsBasicPutSettings': hlsBasicPutSettings,
       if (hlsMediaStoreSettings != null)
         'hlsMediaStoreSettings': hlsMediaStoreSettings,
+      if (hlsS3Settings != null) 'hlsS3Settings': hlsS3Settings,
       if (hlsWebdavSettings != null) 'hlsWebdavSettings': hlsWebdavSettings,
     };
   }
@@ -12184,11 +12619,18 @@ class HlsInputSettings {
   /// segment fails.
   final int? retryInterval;
 
+  /// Identifies the source for the SCTE-35 messages that MediaLive will ingest.
+  /// Messages can be ingested from the content segments (in the stream) or from
+  /// tags in the playlist (the HLS manifest). MediaLive ignores SCTE-35
+  /// information in the source that is not selected.
+  final HlsScte35SourceType? scte35Source;
+
   HlsInputSettings({
     this.bandwidth,
     this.bufferSegments,
     this.retries,
     this.retryInterval,
+    this.scte35Source,
   });
   factory HlsInputSettings.fromJson(Map<String, dynamic> json) {
     return HlsInputSettings(
@@ -12196,6 +12638,7 @@ class HlsInputSettings {
       bufferSegments: json['bufferSegments'] as int?,
       retries: json['retries'] as int?,
       retryInterval: json['retryInterval'] as int?,
+      scte35Source: (json['scte35Source'] as String?)?.toHlsScte35SourceType(),
     );
   }
 
@@ -12204,11 +12647,13 @@ class HlsInputSettings {
     final bufferSegments = this.bufferSegments;
     final retries = this.retries;
     final retryInterval = this.retryInterval;
+    final scte35Source = this.scte35Source;
     return {
       if (bandwidth != null) 'bandwidth': bandwidth,
       if (bufferSegments != null) 'bufferSegments': bufferSegments,
       if (retries != null) 'retries': retries,
       if (retryInterval != null) 'retryInterval': retryInterval,
+      if (scte35Source != null) 'scte35Source': scte35Source.toValue(),
     };
   }
 }
@@ -12580,6 +13025,57 @@ extension on String {
   }
 }
 
+/// Hls S3 Settings
+class HlsS3Settings {
+  /// Specify the canned ACL to apply to each S3 request. Defaults to none.
+  final S3CannedAcl? cannedAcl;
+
+  HlsS3Settings({
+    this.cannedAcl,
+  });
+  factory HlsS3Settings.fromJson(Map<String, dynamic> json) {
+    return HlsS3Settings(
+      cannedAcl: (json['cannedAcl'] as String?)?.toS3CannedAcl(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cannedAcl = this.cannedAcl;
+    return {
+      if (cannedAcl != null) 'cannedAcl': cannedAcl.toValue(),
+    };
+  }
+}
+
+/// Hls Scte35 Source Type
+enum HlsScte35SourceType {
+  manifest,
+  segments,
+}
+
+extension on HlsScte35SourceType {
+  String toValue() {
+    switch (this) {
+      case HlsScte35SourceType.manifest:
+        return 'MANIFEST';
+      case HlsScte35SourceType.segments:
+        return 'SEGMENTS';
+    }
+  }
+}
+
+extension on String {
+  HlsScte35SourceType toHlsScte35SourceType() {
+    switch (this) {
+      case 'MANIFEST':
+        return HlsScte35SourceType.manifest;
+      case 'SEGMENTS':
+        return HlsScte35SourceType.segments;
+    }
+    throw Exception('$this is not known in enum HlsScte35SourceType');
+  }
+}
+
 /// Hls Segmentation Mode
 enum HlsSegmentationMode {
   useInputSegmentation,
@@ -12613,11 +13109,13 @@ extension on String {
 class HlsSettings {
   final AudioOnlyHlsSettings? audioOnlyHlsSettings;
   final Fmp4HlsSettings? fmp4HlsSettings;
+  final FrameCaptureHlsSettings? frameCaptureHlsSettings;
   final StandardHlsSettings? standardHlsSettings;
 
   HlsSettings({
     this.audioOnlyHlsSettings,
     this.fmp4HlsSettings,
+    this.frameCaptureHlsSettings,
     this.standardHlsSettings,
   });
   factory HlsSettings.fromJson(Map<String, dynamic> json) {
@@ -12630,6 +13128,10 @@ class HlsSettings {
           ? Fmp4HlsSettings.fromJson(
               json['fmp4HlsSettings'] as Map<String, dynamic>)
           : null,
+      frameCaptureHlsSettings: json['frameCaptureHlsSettings'] != null
+          ? FrameCaptureHlsSettings.fromJson(
+              json['frameCaptureHlsSettings'] as Map<String, dynamic>)
+          : null,
       standardHlsSettings: json['standardHlsSettings'] != null
           ? StandardHlsSettings.fromJson(
               json['standardHlsSettings'] as Map<String, dynamic>)
@@ -12640,11 +13142,14 @@ class HlsSettings {
   Map<String, dynamic> toJson() {
     final audioOnlyHlsSettings = this.audioOnlyHlsSettings;
     final fmp4HlsSettings = this.fmp4HlsSettings;
+    final frameCaptureHlsSettings = this.frameCaptureHlsSettings;
     final standardHlsSettings = this.standardHlsSettings;
     return {
       if (audioOnlyHlsSettings != null)
         'audioOnlyHlsSettings': audioOnlyHlsSettings,
       if (fmp4HlsSettings != null) 'fmp4HlsSettings': fmp4HlsSettings,
+      if (frameCaptureHlsSettings != null)
+        'frameCaptureHlsSettings': frameCaptureHlsSettings,
       if (standardHlsSettings != null)
         'standardHlsSettings': standardHlsSettings,
     };
@@ -12852,6 +13357,18 @@ class HlsWebdavSettings {
   }
 }
 
+/// Html Motion Graphics Settings
+class HtmlMotionGraphicsSettings {
+  HtmlMotionGraphicsSettings();
+  factory HtmlMotionGraphicsSettings.fromJson(Map<String, dynamic> _) {
+    return HtmlMotionGraphicsSettings();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
 /// When set to "standard", an I-Frame only playlist will be written out for
 /// each video output in the output group. This I-Frame only playlist will
 /// contain byte range offsets pointing to the I-frame(s) in each segment.
@@ -12924,6 +13441,9 @@ class Input {
   /// Settings for the input devices.
   final List<InputDeviceSettings>? inputDevices;
 
+  /// A list of IDs for all Inputs which are partners of this one.
+  final List<String>? inputPartnerIds;
+
   /// Certain pull input sources can be dynamic, meaning that they can have their
   /// URL's dynamically changes
   /// during input switch actions. Presently, this functionality only works with
@@ -12958,6 +13478,7 @@ class Input {
     this.id,
     this.inputClass,
     this.inputDevices,
+    this.inputPartnerIds,
     this.inputSourceType,
     this.mediaConnectFlows,
     this.name,
@@ -12984,6 +13505,10 @@ class Input {
       inputDevices: (json['inputDevices'] as List?)
           ?.whereNotNull()
           .map((e) => InputDeviceSettings.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      inputPartnerIds: (json['inputPartnerIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
           .toList(),
       inputSourceType:
           (json['inputSourceType'] as String?)?.toInputSourceType(),
@@ -16653,6 +17178,150 @@ class MediaPackageOutputSettings {
   }
 }
 
+/// Settings to specify the rendering of motion graphics into the video stream.
+class MotionGraphicsActivateScheduleActionSettings {
+  /// Duration (in milliseconds) that motion graphics should render on to the
+  /// video stream. Leaving out this property or setting to 0 will result in
+  /// rendering continuing until a deactivate action is processed.
+  final int? duration;
+
+  /// Key used to extract the password from EC2 Parameter store
+  final String? passwordParam;
+
+  /// URI of the HTML5 content to be rendered into the live stream.
+  final String? url;
+
+  /// Documentation update needed
+  final String? username;
+
+  MotionGraphicsActivateScheduleActionSettings({
+    this.duration,
+    this.passwordParam,
+    this.url,
+    this.username,
+  });
+  factory MotionGraphicsActivateScheduleActionSettings.fromJson(
+      Map<String, dynamic> json) {
+    return MotionGraphicsActivateScheduleActionSettings(
+      duration: json['duration'] as int?,
+      passwordParam: json['passwordParam'] as String?,
+      url: json['url'] as String?,
+      username: json['username'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final duration = this.duration;
+    final passwordParam = this.passwordParam;
+    final url = this.url;
+    final username = this.username;
+    return {
+      if (duration != null) 'duration': duration,
+      if (passwordParam != null) 'passwordParam': passwordParam,
+      if (url != null) 'url': url,
+      if (username != null) 'username': username,
+    };
+  }
+}
+
+/// Motion Graphics Configuration
+class MotionGraphicsConfiguration {
+  /// Motion Graphics Settings
+  final MotionGraphicsSettings motionGraphicsSettings;
+  final MotionGraphicsInsertion? motionGraphicsInsertion;
+
+  MotionGraphicsConfiguration({
+    required this.motionGraphicsSettings,
+    this.motionGraphicsInsertion,
+  });
+  factory MotionGraphicsConfiguration.fromJson(Map<String, dynamic> json) {
+    return MotionGraphicsConfiguration(
+      motionGraphicsSettings: MotionGraphicsSettings.fromJson(
+          json['motionGraphicsSettings'] as Map<String, dynamic>),
+      motionGraphicsInsertion: (json['motionGraphicsInsertion'] as String?)
+          ?.toMotionGraphicsInsertion(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final motionGraphicsSettings = this.motionGraphicsSettings;
+    final motionGraphicsInsertion = this.motionGraphicsInsertion;
+    return {
+      'motionGraphicsSettings': motionGraphicsSettings,
+      if (motionGraphicsInsertion != null)
+        'motionGraphicsInsertion': motionGraphicsInsertion.toValue(),
+    };
+  }
+}
+
+/// Settings to specify the ending of rendering motion graphics into the video
+/// stream.
+class MotionGraphicsDeactivateScheduleActionSettings {
+  MotionGraphicsDeactivateScheduleActionSettings();
+  factory MotionGraphicsDeactivateScheduleActionSettings.fromJson(
+      Map<String, dynamic> _) {
+    return MotionGraphicsDeactivateScheduleActionSettings();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// Motion Graphics Insertion
+enum MotionGraphicsInsertion {
+  disabled,
+  enabled,
+}
+
+extension on MotionGraphicsInsertion {
+  String toValue() {
+    switch (this) {
+      case MotionGraphicsInsertion.disabled:
+        return 'DISABLED';
+      case MotionGraphicsInsertion.enabled:
+        return 'ENABLED';
+    }
+  }
+}
+
+extension on String {
+  MotionGraphicsInsertion toMotionGraphicsInsertion() {
+    switch (this) {
+      case 'DISABLED':
+        return MotionGraphicsInsertion.disabled;
+      case 'ENABLED':
+        return MotionGraphicsInsertion.enabled;
+    }
+    throw Exception('$this is not known in enum MotionGraphicsInsertion');
+  }
+}
+
+/// Motion Graphics Settings
+class MotionGraphicsSettings {
+  final HtmlMotionGraphicsSettings? htmlMotionGraphicsSettings;
+
+  MotionGraphicsSettings({
+    this.htmlMotionGraphicsSettings,
+  });
+  factory MotionGraphicsSettings.fromJson(Map<String, dynamic> json) {
+    return MotionGraphicsSettings(
+      htmlMotionGraphicsSettings: json['htmlMotionGraphicsSettings'] != null
+          ? HtmlMotionGraphicsSettings.fromJson(
+              json['htmlMotionGraphicsSettings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final htmlMotionGraphicsSettings = this.htmlMotionGraphicsSettings;
+    return {
+      if (htmlMotionGraphicsSettings != null)
+        'htmlMotionGraphicsSettings': htmlMotionGraphicsSettings,
+    };
+  }
+}
+
 /// Mp2 Coding Mode
 enum Mp2CodingMode {
   codingMode_1_0,
@@ -18800,12 +19469,21 @@ class PipelineDetail {
   /// pipeline.
   final String? activeInputSwitchActionName;
 
+  /// The name of the motion graphics activate action that occurred most recently
+  /// and that resulted in the current graphics URI for this pipeline.
+  final String? activeMotionGraphicsActionName;
+
+  /// The current URI being used for HTML5 motion graphics for this pipeline.
+  final String? activeMotionGraphicsUri;
+
   /// Pipeline ID
   final String? pipelineId;
 
   PipelineDetail({
     this.activeInputAttachmentName,
     this.activeInputSwitchActionName,
+    this.activeMotionGraphicsActionName,
+    this.activeMotionGraphicsUri,
     this.pipelineId,
   });
   factory PipelineDetail.fromJson(Map<String, dynamic> json) {
@@ -18813,6 +19491,9 @@ class PipelineDetail {
       activeInputAttachmentName: json['activeInputAttachmentName'] as String?,
       activeInputSwitchActionName:
           json['activeInputSwitchActionName'] as String?,
+      activeMotionGraphicsActionName:
+          json['activeMotionGraphicsActionName'] as String?,
+      activeMotionGraphicsUri: json['activeMotionGraphicsUri'] as String?,
       pipelineId: json['pipelineId'] as String?,
     );
   }
@@ -19362,10 +20043,12 @@ extension on String {
   }
 }
 
-/// Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'
+/// Special features, 'ADVANCED_AUDIO' 'AUDIO_NORMALIZATION' 'MGHD' or 'MGUHD'
 enum ReservationSpecialFeature {
   advancedAudio,
   audioNormalization,
+  mghd,
+  mguhd,
 }
 
 extension on ReservationSpecialFeature {
@@ -19375,6 +20058,10 @@ extension on ReservationSpecialFeature {
         return 'ADVANCED_AUDIO';
       case ReservationSpecialFeature.audioNormalization:
         return 'AUDIO_NORMALIZATION';
+      case ReservationSpecialFeature.mghd:
+        return 'MGHD';
+      case ReservationSpecialFeature.mguhd:
+        return 'MGUHD';
     }
   }
 }
@@ -19386,6 +20073,10 @@ extension on String {
         return ReservationSpecialFeature.advancedAudio;
       case 'AUDIO_NORMALIZATION':
         return ReservationSpecialFeature.audioNormalization;
+      case 'MGHD':
+        return ReservationSpecialFeature.mghd;
+      case 'MGUHD':
+        return ReservationSpecialFeature.mguhd;
     }
     throw Exception('$this is not known in enum ReservationSpecialFeature');
   }
@@ -19734,6 +20425,45 @@ class RtmpOutputSettings {
   }
 }
 
+/// S3 Canned Acl
+enum S3CannedAcl {
+  authenticatedRead,
+  bucketOwnerFullControl,
+  bucketOwnerRead,
+  publicRead,
+}
+
+extension on S3CannedAcl {
+  String toValue() {
+    switch (this) {
+      case S3CannedAcl.authenticatedRead:
+        return 'AUTHENTICATED_READ';
+      case S3CannedAcl.bucketOwnerFullControl:
+        return 'BUCKET_OWNER_FULL_CONTROL';
+      case S3CannedAcl.bucketOwnerRead:
+        return 'BUCKET_OWNER_READ';
+      case S3CannedAcl.publicRead:
+        return 'PUBLIC_READ';
+    }
+  }
+}
+
+extension on String {
+  S3CannedAcl toS3CannedAcl() {
+    switch (this) {
+      case 'AUTHENTICATED_READ':
+        return S3CannedAcl.authenticatedRead;
+      case 'BUCKET_OWNER_FULL_CONTROL':
+        return S3CannedAcl.bucketOwnerFullControl;
+      case 'BUCKET_OWNER_READ':
+        return S3CannedAcl.bucketOwnerRead;
+      case 'PUBLIC_READ':
+        return S3CannedAcl.publicRead;
+    }
+    throw Exception('$this is not known in enum S3CannedAcl');
+  }
+}
+
 /// Contains information on a single schedule action.
 class ScheduleAction {
   /// The name of the action, must be unique within the schedule. This name
@@ -19791,6 +20521,14 @@ class ScheduleActionSettings {
   /// Action to switch the input
   final InputSwitchScheduleActionSettings? inputSwitchSettings;
 
+  /// Action to activate a motion graphics image overlay
+  final MotionGraphicsActivateScheduleActionSettings?
+      motionGraphicsImageActivateSettings;
+
+  /// Action to deactivate a motion graphics image overlay
+  final MotionGraphicsDeactivateScheduleActionSettings?
+      motionGraphicsImageDeactivateSettings;
+
   /// Action to pause or unpause one or both channel pipelines
   final PauseStateScheduleActionSettings? pauseStateSettings;
 
@@ -19816,6 +20554,8 @@ class ScheduleActionSettings {
     this.hlsTimedMetadataSettings,
     this.inputPrepareSettings,
     this.inputSwitchSettings,
+    this.motionGraphicsImageActivateSettings,
+    this.motionGraphicsImageDeactivateSettings,
     this.pauseStateSettings,
     this.scte35ReturnToNetworkSettings,
     this.scte35SpliceInsertSettings,
@@ -19841,6 +20581,18 @@ class ScheduleActionSettings {
           ? InputSwitchScheduleActionSettings.fromJson(
               json['inputSwitchSettings'] as Map<String, dynamic>)
           : null,
+      motionGraphicsImageActivateSettings:
+          json['motionGraphicsImageActivateSettings'] != null
+              ? MotionGraphicsActivateScheduleActionSettings.fromJson(
+                  json['motionGraphicsImageActivateSettings']
+                      as Map<String, dynamic>)
+              : null,
+      motionGraphicsImageDeactivateSettings:
+          json['motionGraphicsImageDeactivateSettings'] != null
+              ? MotionGraphicsDeactivateScheduleActionSettings.fromJson(
+                  json['motionGraphicsImageDeactivateSettings']
+                      as Map<String, dynamic>)
+              : null,
       pauseStateSettings: json['pauseStateSettings'] != null
           ? PauseStateScheduleActionSettings.fromJson(
               json['pauseStateSettings'] as Map<String, dynamic>)
@@ -19875,6 +20627,10 @@ class ScheduleActionSettings {
     final hlsTimedMetadataSettings = this.hlsTimedMetadataSettings;
     final inputPrepareSettings = this.inputPrepareSettings;
     final inputSwitchSettings = this.inputSwitchSettings;
+    final motionGraphicsImageActivateSettings =
+        this.motionGraphicsImageActivateSettings;
+    final motionGraphicsImageDeactivateSettings =
+        this.motionGraphicsImageDeactivateSettings;
     final pauseStateSettings = this.pauseStateSettings;
     final scte35ReturnToNetworkSettings = this.scte35ReturnToNetworkSettings;
     final scte35SpliceInsertSettings = this.scte35SpliceInsertSettings;
@@ -19890,6 +20646,12 @@ class ScheduleActionSettings {
         'inputPrepareSettings': inputPrepareSettings,
       if (inputSwitchSettings != null)
         'inputSwitchSettings': inputSwitchSettings,
+      if (motionGraphicsImageActivateSettings != null)
+        'motionGraphicsImageActivateSettings':
+            motionGraphicsImageActivateSettings,
+      if (motionGraphicsImageDeactivateSettings != null)
+        'motionGraphicsImageDeactivateSettings':
+            motionGraphicsImageDeactivateSettings,
       if (pauseStateSettings != null) 'pauseStateSettings': pauseStateSettings,
       if (scte35ReturnToNetworkSettings != null)
         'scte35ReturnToNetworkSettings': scte35ReturnToNetworkSettings,
@@ -20057,8 +20819,63 @@ class Scte27DestinationSettings {
   }
 }
 
+/// Scte27 Ocr Language
+enum Scte27OcrLanguage {
+  deu,
+  eng,
+  fra,
+  nld,
+  por,
+  spa,
+}
+
+extension on Scte27OcrLanguage {
+  String toValue() {
+    switch (this) {
+      case Scte27OcrLanguage.deu:
+        return 'DEU';
+      case Scte27OcrLanguage.eng:
+        return 'ENG';
+      case Scte27OcrLanguage.fra:
+        return 'FRA';
+      case Scte27OcrLanguage.nld:
+        return 'NLD';
+      case Scte27OcrLanguage.por:
+        return 'POR';
+      case Scte27OcrLanguage.spa:
+        return 'SPA';
+    }
+  }
+}
+
+extension on String {
+  Scte27OcrLanguage toScte27OcrLanguage() {
+    switch (this) {
+      case 'DEU':
+        return Scte27OcrLanguage.deu;
+      case 'ENG':
+        return Scte27OcrLanguage.eng;
+      case 'FRA':
+        return Scte27OcrLanguage.fra;
+      case 'NLD':
+        return Scte27OcrLanguage.nld;
+      case 'POR':
+        return Scte27OcrLanguage.por;
+      case 'SPA':
+        return Scte27OcrLanguage.spa;
+    }
+    throw Exception('$this is not known in enum Scte27OcrLanguage');
+  }
+}
+
 /// Scte27 Source Settings
 class Scte27SourceSettings {
+  /// If you will configure a WebVTT caption description that references this
+  /// caption selector, use this field to
+  /// provide the language to consider when translating the image-based source to
+  /// text.
+  final Scte27OcrLanguage? ocrLanguage;
+
   /// The pid field is used in conjunction with the caption selector languageCode
   /// field as follows:
   /// - Specify PID and Language: Extracts captions from that PID; the language is
@@ -20071,17 +20888,21 @@ class Scte27SourceSettings {
   final int? pid;
 
   Scte27SourceSettings({
+    this.ocrLanguage,
     this.pid,
   });
   factory Scte27SourceSettings.fromJson(Map<String, dynamic> json) {
     return Scte27SourceSettings(
+      ocrLanguage: (json['ocrLanguage'] as String?)?.toScte27OcrLanguage(),
       pid: json['pid'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final ocrLanguage = this.ocrLanguage;
     final pid = this.pid;
     return {
+      if (ocrLanguage != null) 'ocrLanguage': ocrLanguage.toValue(),
       if (pid != null) 'pid': pid,
     };
   }
@@ -21139,6 +21960,9 @@ class StartChannelResponse {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   StartChannelResponse({
     this.arn,
     this.cdiInputSpecification,
@@ -21156,6 +21980,7 @@ class StartChannelResponse {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory StartChannelResponse.fromJson(Map<String, dynamic> json) {
     return StartChannelResponse(
@@ -21197,6 +22022,10 @@ class StartChannelResponse {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -21515,6 +22344,9 @@ class StopChannelResponse {
   /// A collection of key-value pairs.
   final Map<String, String>? tags;
 
+  /// Settings for VPC output
+  final VpcOutputSettingsDescription? vpc;
+
   StopChannelResponse({
     this.arn,
     this.cdiInputSpecification,
@@ -21532,6 +22364,7 @@ class StopChannelResponse {
     this.roleArn,
     this.state,
     this.tags,
+    this.vpc,
   });
   factory StopChannelResponse.fromJson(Map<String, dynamic> json) {
     return StopChannelResponse(
@@ -21573,6 +22406,10 @@ class StopChannelResponse {
       state: (json['state'] as String?)?.toChannelState(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      vpc: json['vpc'] != null
+          ? VpcOutputSettingsDescription.fromJson(
+              json['vpc'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -21697,6 +22534,9 @@ class TeletextDestinationSettings {
 
 /// Teletext Source Settings
 class TeletextSourceSettings {
+  /// Optionally defines a region where TTML style captions will be displayed
+  final CaptionRectangle? outputRectangle;
+
   /// Specifies the teletext page number within the data stream from which to
   /// extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for
   /// passthrough. Should be specified as a hexadecimal string with no "0x"
@@ -21704,17 +22544,24 @@ class TeletextSourceSettings {
   final String? pageNumber;
 
   TeletextSourceSettings({
+    this.outputRectangle,
     this.pageNumber,
   });
   factory TeletextSourceSettings.fromJson(Map<String, dynamic> json) {
     return TeletextSourceSettings(
+      outputRectangle: json['outputRectangle'] != null
+          ? CaptionRectangle.fromJson(
+              json['outputRectangle'] as Map<String, dynamic>)
+          : null,
       pageNumber: json['pageNumber'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final outputRectangle = this.outputRectangle;
     final pageNumber = this.pageNumber;
     return {
+      if (outputRectangle != null) 'outputRectangle': outputRectangle,
       if (pageNumber != null) 'pageNumber': pageNumber,
     };
   }
@@ -22670,6 +23517,9 @@ class VideoSelector {
   /// determine if any conversion will be performed.
   final VideoSelectorColorSpace? colorSpace;
 
+  /// Color space settings
+  final VideoSelectorColorSpaceSettings? colorSpaceSettings;
+
   /// Applies only if colorSpace is a value other than follow. This field controls
   /// how the value in the colorSpace field will be used. fallback means that when
   /// the input does include color space data, that data will be used, but when
@@ -22685,12 +23535,17 @@ class VideoSelector {
 
   VideoSelector({
     this.colorSpace,
+    this.colorSpaceSettings,
     this.colorSpaceUsage,
     this.selectorSettings,
   });
   factory VideoSelector.fromJson(Map<String, dynamic> json) {
     return VideoSelector(
       colorSpace: (json['colorSpace'] as String?)?.toVideoSelectorColorSpace(),
+      colorSpaceSettings: json['colorSpaceSettings'] != null
+          ? VideoSelectorColorSpaceSettings.fromJson(
+              json['colorSpaceSettings'] as Map<String, dynamic>)
+          : null,
       colorSpaceUsage: (json['colorSpaceUsage'] as String?)
           ?.toVideoSelectorColorSpaceUsage(),
       selectorSettings: json['selectorSettings'] != null
@@ -22702,10 +23557,12 @@ class VideoSelector {
 
   Map<String, dynamic> toJson() {
     final colorSpace = this.colorSpace;
+    final colorSpaceSettings = this.colorSpaceSettings;
     final colorSpaceUsage = this.colorSpaceUsage;
     final selectorSettings = this.selectorSettings;
     return {
       if (colorSpace != null) 'colorSpace': colorSpace.toValue(),
+      if (colorSpaceSettings != null) 'colorSpaceSettings': colorSpaceSettings,
       if (colorSpaceUsage != null) 'colorSpaceUsage': colorSpaceUsage.toValue(),
       if (selectorSettings != null) 'selectorSettings': selectorSettings,
     };
@@ -22715,6 +23572,8 @@ class VideoSelector {
 /// Video Selector Color Space
 enum VideoSelectorColorSpace {
   follow,
+  hdr10,
+  hlg_2020,
   rec_601,
   rec_709,
 }
@@ -22724,6 +23583,10 @@ extension on VideoSelectorColorSpace {
     switch (this) {
       case VideoSelectorColorSpace.follow:
         return 'FOLLOW';
+      case VideoSelectorColorSpace.hdr10:
+        return 'HDR10';
+      case VideoSelectorColorSpace.hlg_2020:
+        return 'HLG_2020';
       case VideoSelectorColorSpace.rec_601:
         return 'REC_601';
       case VideoSelectorColorSpace.rec_709:
@@ -22737,12 +23600,40 @@ extension on String {
     switch (this) {
       case 'FOLLOW':
         return VideoSelectorColorSpace.follow;
+      case 'HDR10':
+        return VideoSelectorColorSpace.hdr10;
+      case 'HLG_2020':
+        return VideoSelectorColorSpace.hlg_2020;
       case 'REC_601':
         return VideoSelectorColorSpace.rec_601;
       case 'REC_709':
         return VideoSelectorColorSpace.rec_709;
     }
     throw Exception('$this is not known in enum VideoSelectorColorSpace');
+  }
+}
+
+/// Video Selector Color Space Settings
+class VideoSelectorColorSpaceSettings {
+  final Hdr10Settings? hdr10Settings;
+
+  VideoSelectorColorSpaceSettings({
+    this.hdr10Settings,
+  });
+  factory VideoSelectorColorSpaceSettings.fromJson(Map<String, dynamic> json) {
+    return VideoSelectorColorSpaceSettings(
+      hdr10Settings: json['hdr10Settings'] != null
+          ? Hdr10Settings.fromJson(
+              json['hdr10Settings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hdr10Settings = this.hdr10Settings;
+    return {
+      if (hdr10Settings != null) 'hdr10Settings': hdr10Settings,
+    };
   }
 }
 
@@ -22851,6 +23742,92 @@ class VideoSelectorSettings {
       if (videoSelectorProgramId != null)
         'videoSelectorProgramId': videoSelectorProgramId,
     };
+  }
+}
+
+/// The properties for a private VPC Output
+/// When this property is specified, the output egress addresses will be created
+/// in a user specified VPC
+class VpcOutputSettings {
+  /// A list of VPC subnet IDs from the same VPC.
+  /// If STANDARD channel, subnet IDs must be mapped to two unique availability
+  /// zones (AZ).
+  final List<String> subnetIds;
+
+  /// List of public address allocation ids to associate with ENIs that will be
+  /// created in Output VPC.
+  /// Must specify one for SINGLE_PIPELINE, two for STANDARD channels
+  final List<String>? publicAddressAllocationIds;
+
+  /// A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC
+  /// network interfaces.
+  /// If none are specified then the VPC default security group will be used
+  final List<String>? securityGroupIds;
+
+  VpcOutputSettings({
+    required this.subnetIds,
+    this.publicAddressAllocationIds,
+    this.securityGroupIds,
+  });
+  Map<String, dynamic> toJson() {
+    final subnetIds = this.subnetIds;
+    final publicAddressAllocationIds = this.publicAddressAllocationIds;
+    final securityGroupIds = this.securityGroupIds;
+    return {
+      'subnetIds': subnetIds,
+      if (publicAddressAllocationIds != null)
+        'publicAddressAllocationIds': publicAddressAllocationIds,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+    };
+  }
+}
+
+/// The properties for a private VPC Output
+class VpcOutputSettingsDescription {
+  /// The Availability Zones where the vpc subnets are located.
+  /// The first Availability Zone applies to the first subnet in the list of
+  /// subnets.
+  /// The second Availability Zone applies to the second subnet.
+  final List<String>? availabilityZones;
+
+  /// A list of Elastic Network Interfaces created by MediaLive in the customer's
+  /// VPC
+  final List<String>? networkInterfaceIds;
+
+  /// A list of up EC2 VPC security group IDs attached to the Output VPC network
+  /// interfaces.
+  final List<String>? securityGroupIds;
+
+  /// A list of VPC subnet IDs from the same VPC.
+  /// If STANDARD channel, subnet IDs must be mapped to two unique availability
+  /// zones (AZ).
+  final List<String>? subnetIds;
+
+  VpcOutputSettingsDescription({
+    this.availabilityZones,
+    this.networkInterfaceIds,
+    this.securityGroupIds,
+    this.subnetIds,
+  });
+  factory VpcOutputSettingsDescription.fromJson(Map<String, dynamic> json) {
+    return VpcOutputSettingsDescription(
+      availabilityZones: (json['availabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      networkInterfaceIds: (json['networkInterfaceIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      securityGroupIds: (json['securityGroupIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      subnetIds: (json['subnetIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
   }
 }
 

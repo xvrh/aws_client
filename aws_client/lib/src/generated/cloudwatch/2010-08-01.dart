@@ -142,19 +142,7 @@ class CloudWatch {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stat, 'stat');
-    _s.validateStringPattern(
-      'stat',
-      stat,
-      r'''(SampleCount|Average|Sum|Minimum|Maximum|p(\d{1,2}|100)(\.\d{0,2})?|[ou]\d+(\.\d*)?)(_E|_L|_H)?''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['MetricName'] = metricName;
     $request['Namespace'] = namespace;
@@ -233,6 +221,40 @@ class CloudWatch {
       resultWrapper: 'DeleteInsightRulesResult',
     );
     return DeleteInsightRulesOutput.fromXml($result);
+  }
+
+  /// Permanently deletes the metric stream that you specify.
+  ///
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  ///
+  /// Parameter [name] :
+  /// The name of the metric stream to delete.
+  Future<void> deleteMetricStream({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['Name'] = name;
+    await _protocol.send(
+      $request,
+      action: 'DeleteMetricStream',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DeleteMetricStreamInput'],
+      shapes: shapes,
+      resultWrapper: 'DeleteMetricStreamResult',
+    );
   }
 
   /// Retrieves the history for the specified alarm. You can filter the results
@@ -516,17 +538,6 @@ class CloudWatch {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'extendedStatistic',
-      extendedStatistic,
-      r'''p(\d{1,2}(\.\d{0,2})?|100)''',
-    );
     _s.validateNumRange(
       'period',
       period,
@@ -614,11 +625,6 @@ class CloudWatch {
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
     );
     final $request = <String, dynamic>{};
     dimensions?.also((arg) => $request['Dimensions'] = arg);
@@ -960,23 +966,12 @@ class CloudWatch {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ruleName',
-      ruleName,
-      r'''[\x20-\x7E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startTime, 'startTime');
     _s.validateStringLength(
       'orderBy',
       orderBy,
       1,
       32,
-    );
-    _s.validateStringPattern(
-      'orderBy',
-      orderBy,
-      r'''[\x20-\x7E]+''',
     );
     final $request = <String, dynamic>{};
     $request['EndTime'] = _s.iso8601ToJson(endTime);
@@ -1114,6 +1109,11 @@ class CloudWatch {
   /// 12:05 or 12:30 as <code>StartTime</code> can get a faster response from
   /// CloudWatch than setting 12:07 or 12:29 as the <code>StartTime</code>.
   ///
+  /// Parameter [labelOptions] :
+  /// This structure includes the <code>Timezone</code> parameter, which you can
+  /// use to specify your time zone so that the labels of returned data display
+  /// the correct time for your time zone.
+  ///
   /// Parameter [maxDatapoints] :
   /// The maximum number of data points the request should return before
   /// paginating. If you omit this, the default of 100,800 is used.
@@ -1132,6 +1132,7 @@ class CloudWatch {
     required DateTime endTime,
     required List<MetricDataQuery> metricDataQueries,
     required DateTime startTime,
+    LabelOptions? labelOptions,
     int? maxDatapoints,
     String? nextToken,
     ScanBy? scanBy,
@@ -1143,6 +1144,7 @@ class CloudWatch {
     $request['EndTime'] = _s.iso8601ToJson(endTime);
     $request['MetricDataQueries'] = metricDataQueries;
     $request['StartTime'] = _s.iso8601ToJson(startTime);
+    labelOptions?.also((arg) => $request['LabelOptions'] = arg);
     maxDatapoints?.also((arg) => $request['MaxDatapoints'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     scanBy?.also((arg) => $request['ScanBy'] = arg.toValue());
@@ -1371,12 +1373,6 @@ class CloudWatch {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(period, 'period');
     _s.validateNumRange(
       'period',
@@ -1409,6 +1405,43 @@ class CloudWatch {
       resultWrapper: 'GetMetricStatisticsResult',
     );
     return GetMetricStatisticsOutput.fromXml($result);
+  }
+
+  /// Returns information about the metric stream that you specify.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  /// May throw [InvalidParameterCombinationException].
+  ///
+  /// Parameter [name] :
+  /// The name of the metric stream to retrieve information about.
+  Future<GetMetricStreamOutput> getMetricStream({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['Name'] = name;
+    final $result = await _protocol.send(
+      $request,
+      action: 'GetMetricStream',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['GetMetricStreamInput'],
+      shapes: shapes,
+      resultWrapper: 'GetMetricStreamResult',
+    );
+    return GetMetricStreamOutput.fromXml($result);
   }
 
   /// You can use the <code>GetMetricWidgetImage</code> API to retrieve a
@@ -1547,6 +1580,46 @@ class CloudWatch {
     return ListDashboardsOutput.fromXml($result);
   }
 
+  /// Returns a list of metric streams in this account.
+  ///
+  /// May throw [InvalidNextToken].
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return in one operation.
+  ///
+  /// Parameter [nextToken] :
+  /// Include this value, if it was returned by the previous call, to get the
+  /// next set of metric streams.
+  Future<ListMetricStreamsOutput> listMetricStreams({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      500,
+    );
+    final $request = <String, dynamic>{};
+    maxResults?.also((arg) => $request['MaxResults'] = arg);
+    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'ListMetricStreams',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ListMetricStreamsInput'],
+      shapes: shapes,
+      resultWrapper: 'ListMetricStreamsResult',
+    );
+    return ListMetricStreamsOutput.fromXml($result);
+  }
+
   /// List the specified metrics. You can use the returned metrics with <a
   /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html">GetMetricData</a>
   /// or <a
@@ -1615,11 +1688,6 @@ class CloudWatch {
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
     );
     final $request = <String, dynamic>{};
     dimensions?.also((arg) => $request['Dimensions'] = arg);
@@ -1744,19 +1812,7 @@ class CloudWatch {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stat, 'stat');
-    _s.validateStringPattern(
-      'stat',
-      stat,
-      r'''(SampleCount|Average|Sum|Minimum|Maximum|p(\d{1,2}|100)(\.\d{0,2})?|[ou]\d+(\.\d*)?)(_E|_L|_H)?''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['MetricName'] = metricName;
     $request['Namespace'] = namespace;
@@ -2112,12 +2168,6 @@ class CloudWatch {
       8192,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ruleDefinition',
-      ruleDefinition,
-      r'''[\x00-\x7F]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleName, 'ruleName');
     _s.validateStringLength(
       'ruleName',
@@ -2126,22 +2176,11 @@ class CloudWatch {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ruleName',
-      ruleName,
-      r'''[\x20-\x7E]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'ruleState',
       ruleState,
       1,
       32,
-    );
-    _s.validateStringPattern(
-      'ruleState',
-      ruleState,
-      r'''[\x20-\x7E]+''',
     );
     final $request = <String, dynamic>{};
     $request['RuleDefinition'] = ruleDefinition;
@@ -2189,7 +2228,7 @@ class CloudWatch {
   /// </ul>
   /// The first time you create an alarm in the AWS Management Console, the CLI,
   /// or by using the PutMetricAlarm API, CloudWatch creates the necessary
-  /// service-linked rolea for you. The service-linked roles are called
+  /// service-linked role for you. The service-linked roles are called
   /// <code>AWSServiceRoleForCloudWatchEvents</code> and
   /// <code>AWSServiceRoleForCloudWatchAlarms_ActionSSM</code>. For more
   /// information, see <a
@@ -2358,6 +2397,8 @@ class CloudWatch {
   /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Terminate/1.0</code>
   /// |
   /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Reboot/1.0</code>
+  /// |
+  /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Recover/1.0</code>
   ///
   /// Parameter [period] :
   /// The length, in seconds, used each time the metric specified in
@@ -2510,11 +2551,6 @@ class CloudWatch {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'extendedStatistic',
-      extendedStatistic,
-      r'''p(\d{1,2}(\.\d{0,2})?|100)''',
-    );
     _s.validateStringLength(
       'metricName',
       metricName,
@@ -2526,11 +2562,6 @@ class CloudWatch {
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
     );
     _s.validateNumRange(
       'period',
@@ -2676,12 +2707,6 @@ class CloudWatch {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^:].*''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['MetricData'] = metricData;
     $request['Namespace'] = namespace;
@@ -2695,6 +2720,158 @@ class CloudWatch {
       shape: shapes['PutMetricDataInput'],
       shapes: shapes,
     );
+  }
+
+  /// Creates or updates a metric stream. Metric streams can automatically
+  /// stream CloudWatch metrics to AWS destinations including Amazon S3 and to
+  /// many third-party solutions.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Metric-Streams.html">
+  /// Using Metric Streams</a>.
+  ///
+  /// To create a metric stream, you must be logged on to an account that has
+  /// the <code>iam:PassRole</code> permission and either the
+  /// <code>CloudWatchFullAccess</code> policy or the
+  /// <code>cloudwatch:PutMetricStream</code> permission.
+  ///
+  /// When you create or update a metric stream, you choose one of the
+  /// following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Stream metrics from all metric namespaces in the account.
+  /// </li>
+  /// <li>
+  /// Stream metrics from all metric namespaces in the account, except for the
+  /// namespaces that you list in <code>ExcludeFilters</code>.
+  /// </li>
+  /// <li>
+  /// Stream metrics from only the metric namespaces that you list in
+  /// <code>IncludeFilters</code>.
+  /// </li>
+  /// </ul>
+  /// When you use <code>PutMetricStream</code> to create a new metric stream,
+  /// the stream is created in the <code>running</code> state. If you use it to
+  /// update an existing stream, the state of the stream is not changed.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  /// May throw [InvalidParameterCombinationException].
+  ///
+  /// Parameter [firehoseArn] :
+  /// The ARN of the Amazon Kinesis Firehose delivery stream to use for this
+  /// metric stream. This Amazon Kinesis Firehose delivery stream must already
+  /// exist and must be in the same account as the metric stream.
+  ///
+  /// Parameter [name] :
+  /// If you are creating a new metric stream, this is the name for the new
+  /// stream. The name must be different than the names of other metric streams
+  /// in this account and Region.
+  ///
+  /// If you are updating a metric stream, specify the name of that stream here.
+  ///
+  /// Valid characters are A-Z, a-z, 0-9, "-" and "_".
+  ///
+  /// Parameter [outputFormat] :
+  /// The output format for the stream. Valid values are <code>json</code> and
+  /// <code>opentelemetry0.7</code>. For more information about metric stream
+  /// output formats, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-formats.html">
+  /// Metric streams output formats</a>.
+  ///
+  /// Parameter [roleArn] :
+  /// The ARN of an IAM role that this metric stream will use to access Amazon
+  /// Kinesis Firehose resources. This IAM role must already exist and must be
+  /// in the same account as the metric stream. This IAM role must include the
+  /// following permissions:
+  ///
+  /// <ul>
+  /// <li>
+  /// firehose:PutRecord
+  /// </li>
+  /// <li>
+  /// firehose:PutRecordBatch
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [excludeFilters] :
+  /// If you specify this parameter, the stream sends metrics from all metric
+  /// namespaces except for the namespaces that you specify here.
+  ///
+  /// You cannot include <code>ExcludeFilters</code> and
+  /// <code>IncludeFilters</code> in the same operation.
+  ///
+  /// Parameter [includeFilters] :
+  /// If you specify this parameter, the stream sends only the metrics from the
+  /// metric namespaces that you specify here.
+  ///
+  /// You cannot include <code>IncludeFilters</code> and
+  /// <code>ExcludeFilters</code> in the same operation.
+  ///
+  /// Parameter [tags] :
+  /// A list of key-value pairs to associate with the metric stream. You can
+  /// associate as many as 50 tags with a metric stream.
+  ///
+  /// Tags can help you organize and categorize your resources. You can also use
+  /// them to scope user permissions by granting a user permission to access or
+  /// change only resources with certain tag values.
+  Future<PutMetricStreamOutput> putMetricStream({
+    required String firehoseArn,
+    required String name,
+    required MetricStreamOutputFormat outputFormat,
+    required String roleArn,
+    List<MetricStreamFilter>? excludeFilters,
+    List<MetricStreamFilter>? includeFilters,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(firehoseArn, 'firehoseArn');
+    _s.validateStringLength(
+      'firehoseArn',
+      firehoseArn,
+      1,
+      1024,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(outputFormat, 'outputFormat');
+    ArgumentError.checkNotNull(roleArn, 'roleArn');
+    _s.validateStringLength(
+      'roleArn',
+      roleArn,
+      1,
+      1024,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['FirehoseArn'] = firehoseArn;
+    $request['Name'] = name;
+    $request['OutputFormat'] = outputFormat.toValue();
+    $request['RoleArn'] = roleArn;
+    excludeFilters?.also((arg) => $request['ExcludeFilters'] = arg);
+    includeFilters?.also((arg) => $request['IncludeFilters'] = arg);
+    tags?.also((arg) => $request['Tags'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'PutMetricStream',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['PutMetricStreamInput'],
+      shapes: shapes,
+      resultWrapper: 'PutMetricStreamResult',
+    );
+    return PutMetricStreamOutput.fromXml($result);
   }
 
   /// Temporarily sets the state of an alarm for testing purposes. When the
@@ -2779,6 +2956,68 @@ class CloudWatch {
       exceptionFnMap: _exceptionFns,
       shape: shapes['SetAlarmStateInput'],
       shapes: shapes,
+    );
+  }
+
+  /// Starts the streaming of metrics for one or more of your metric streams.
+  ///
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  ///
+  /// Parameter [names] :
+  /// The array of the names of metric streams to start streaming.
+  ///
+  /// This is an "all or nothing" operation. If you do not have permission to
+  /// access all of the metric streams that you list here, then none of the
+  /// streams that you list in the operation will start streaming.
+  Future<void> startMetricStreams({
+    required List<String> names,
+  }) async {
+    ArgumentError.checkNotNull(names, 'names');
+    final $request = <String, dynamic>{};
+    $request['Names'] = names;
+    await _protocol.send(
+      $request,
+      action: 'StartMetricStreams',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['StartMetricStreamsInput'],
+      shapes: shapes,
+      resultWrapper: 'StartMetricStreamsResult',
+    );
+  }
+
+  /// Stops the streaming of metrics for one or more of your metric streams.
+  ///
+  /// May throw [InternalServiceFault].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingRequiredParameterException].
+  ///
+  /// Parameter [names] :
+  /// The array of the names of metric streams to stop streaming.
+  ///
+  /// This is an "all or nothing" operation. If you do not have permission to
+  /// access all of the metric streams that you list here, then none of the
+  /// streams that you list in the operation will stop streaming.
+  Future<void> stopMetricStreams({
+    required List<String> names,
+  }) async {
+    ArgumentError.checkNotNull(names, 'names');
+    final $request = <String, dynamic>{};
+    $request['Names'] = names;
+    await _protocol.send(
+      $request,
+      action: 'StopMetricStreams',
+      version: '2010-08-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['StopMetricStreamsInput'],
+      shapes: shapes,
+      resultWrapper: 'StopMetricStreamsResult',
     );
   }
 
@@ -3395,6 +3634,15 @@ class DeleteInsightRulesOutput {
   }
 }
 
+class DeleteMetricStreamOutput {
+  DeleteMetricStreamOutput();
+  factory DeleteMetricStreamOutput.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return DeleteMetricStreamOutput();
+  }
+}
+
 class DescribeAlarmHistoryOutput {
   /// The alarm histories, in JSON format.
   final List<AlarmHistoryItem>? alarmHistoryItems;
@@ -3753,6 +4001,81 @@ class GetMetricStatisticsOutput {
   }
 }
 
+class GetMetricStreamOutput {
+  /// The ARN of the metric stream.
+  final String? arn;
+
+  /// The date that the metric stream was created.
+  final DateTime? creationDate;
+
+  /// If this array of metric namespaces is present, then these namespaces are the
+  /// only metric namespaces that are not streamed by this metric stream. In this
+  /// case, all other metric namespaces in the account are streamed by this metric
+  /// stream.
+  final List<MetricStreamFilter>? excludeFilters;
+
+  /// The ARN of the Amazon Kinesis Firehose delivery stream that is used by this
+  /// metric stream.
+  final String? firehoseArn;
+
+  /// If this array of metric namespaces is present, then these namespaces are the
+  /// only metric namespaces that are streamed by this metric stream.
+  final List<MetricStreamFilter>? includeFilters;
+
+  /// The date of the most recent update to the metric stream's configuration.
+  final DateTime? lastUpdateDate;
+
+  /// The name of the metric stream.
+  final String? name;
+
+  /// <p/>
+  final MetricStreamOutputFormat? outputFormat;
+
+  /// The ARN of the IAM role that is used by this metric stream.
+  final String? roleArn;
+
+  /// The state of the metric stream. The possible values are <code>running</code>
+  /// and <code>stopped</code>.
+  final String? state;
+
+  GetMetricStreamOutput({
+    this.arn,
+    this.creationDate,
+    this.excludeFilters,
+    this.firehoseArn,
+    this.includeFilters,
+    this.lastUpdateDate,
+    this.name,
+    this.outputFormat,
+    this.roleArn,
+    this.state,
+  });
+  factory GetMetricStreamOutput.fromXml(_s.XmlElement elem) {
+    return GetMetricStreamOutput(
+      arn: _s.extractXmlStringValue(elem, 'Arn'),
+      creationDate: _s.extractXmlDateTimeValue(elem, 'CreationDate'),
+      excludeFilters: _s.extractXmlChild(elem, 'ExcludeFilters')?.let((elem) =>
+          elem
+              .findElements('member')
+              .map((c) => MetricStreamFilter.fromXml(c))
+              .toList()),
+      firehoseArn: _s.extractXmlStringValue(elem, 'FirehoseArn'),
+      includeFilters: _s.extractXmlChild(elem, 'IncludeFilters')?.let((elem) =>
+          elem
+              .findElements('member')
+              .map((c) => MetricStreamFilter.fromXml(c))
+              .toList()),
+      lastUpdateDate: _s.extractXmlDateTimeValue(elem, 'LastUpdateDate'),
+      name: _s.extractXmlStringValue(elem, 'Name'),
+      outputFormat: _s
+          .extractXmlStringValue(elem, 'OutputFormat')
+          ?.toMetricStreamOutputFormat(),
+      roleArn: _s.extractXmlStringValue(elem, 'RoleArn'),
+      state: _s.extractXmlStringValue(elem, 'State'),
+    );
+  }
+}
+
 class GetMetricWidgetImageOutput {
   /// The image of the graph, in the output format specified. The output is
   /// base64-encoded.
@@ -3986,6 +4309,34 @@ class InsightRuleMetricDatapoint {
   }
 }
 
+/// This structure includes the <code>Timezone</code> parameter, which you can
+/// use to specify your time zone so that the labels that are associated with
+/// returned metrics display the correct time for your time zone.
+///
+/// The <code>Timezone</code> value affects a label only if you have a
+/// time-based dynamic expression in the label. For more information about
+/// dynamic expressions in labels, see <a
+/// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html">Using
+/// Dynamic Labels</a>.
+class LabelOptions {
+  /// The time zone to use for metric data return in this operation. The format is
+  /// <code>+</code> or <code>-</code> followed by four digits. The first two
+  /// digits indicate the number of hours ahead or behind of UTC, and the final
+  /// two digits are the number of minutes. For example, +0130 indicates a time
+  /// zone that is 1 hour and 30 minutes ahead of UTC. The default is +0000.
+  final String? timezone;
+
+  LabelOptions({
+    this.timezone,
+  });
+  Map<String, dynamic> toJson() {
+    final timezone = this.timezone;
+    return {
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
+}
+
 class ListDashboardsOutput {
   /// The list of matching dashboards.
   final List<DashboardEntry>? dashboardEntries;
@@ -4004,6 +4355,30 @@ class ListDashboardsOutput {
               .findElements('member')
               .map((c) => DashboardEntry.fromXml(c))
               .toList()),
+      nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
+    );
+  }
+}
+
+class ListMetricStreamsOutput {
+  /// The array of metric stream information.
+  final List<MetricStreamEntry>? entries;
+
+  /// The token that marks the start of the next batch of returned results. You
+  /// can use this token in a subsequent operation to get the next batch of
+  /// results.
+  final String? nextToken;
+
+  ListMetricStreamsOutput({
+    this.entries,
+    this.nextToken,
+  });
+  factory ListMetricStreamsOutput.fromXml(_s.XmlElement elem) {
+    return ListMetricStreamsOutput(
+      entries: _s.extractXmlChild(elem, 'Entries')?.let((elem) => elem
+          .findElements('member')
+          .map((c) => MetricStreamEntry.fromXml(c))
+          .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
@@ -4345,6 +4720,11 @@ class MetricDataQuery {
   /// useful if this is an expression, so that you know what the value represents.
   /// If the metric or expression is shown in a CloudWatch dashboard widget, the
   /// label is shown. If Label is omitted, CloudWatch generates a default.
+  ///
+  /// You can put dynamic expressions into a label, so that it is more
+  /// descriptive. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html">Using
+  /// Dynamic Labels</a>.
   final String? label;
 
   /// The metric to be returned, along with statistics, period, and units. Use
@@ -4656,6 +5036,109 @@ class MetricStat {
   }
 }
 
+/// This structure contains the configuration information about one metric
+/// stream.
+class MetricStreamEntry {
+  /// The ARN of the metric stream.
+  final String? arn;
+
+  /// The date that the metric stream was originally created.
+  final DateTime? creationDate;
+
+  /// The ARN of the Kinesis Firehose devlivery stream that is used for this
+  /// metric stream.
+  final String? firehoseArn;
+
+  /// The date that the configuration of this metric stream was most recently
+  /// updated.
+  final DateTime? lastUpdateDate;
+
+  /// The name of the metric stream.
+  final String? name;
+
+  /// The output format of this metric stream. Valid values are <code>json</code>
+  /// and <code>opentelemetry0.7</code>.
+  final MetricStreamOutputFormat? outputFormat;
+
+  /// The current state of this stream. Valid values are <code>running</code> and
+  /// <code>stopped</code>.
+  final String? state;
+
+  MetricStreamEntry({
+    this.arn,
+    this.creationDate,
+    this.firehoseArn,
+    this.lastUpdateDate,
+    this.name,
+    this.outputFormat,
+    this.state,
+  });
+  factory MetricStreamEntry.fromXml(_s.XmlElement elem) {
+    return MetricStreamEntry(
+      arn: _s.extractXmlStringValue(elem, 'Arn'),
+      creationDate: _s.extractXmlDateTimeValue(elem, 'CreationDate'),
+      firehoseArn: _s.extractXmlStringValue(elem, 'FirehoseArn'),
+      lastUpdateDate: _s.extractXmlDateTimeValue(elem, 'LastUpdateDate'),
+      name: _s.extractXmlStringValue(elem, 'Name'),
+      outputFormat: _s
+          .extractXmlStringValue(elem, 'OutputFormat')
+          ?.toMetricStreamOutputFormat(),
+      state: _s.extractXmlStringValue(elem, 'State'),
+    );
+  }
+}
+
+/// This structure contains the name of one of the metric namespaces that is
+/// listed in a filter of a metric stream.
+class MetricStreamFilter {
+  /// The name of the metric namespace in the filter.
+  final String? namespace;
+
+  MetricStreamFilter({
+    this.namespace,
+  });
+  factory MetricStreamFilter.fromXml(_s.XmlElement elem) {
+    return MetricStreamFilter(
+      namespace: _s.extractXmlStringValue(elem, 'Namespace'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      if (namespace != null) 'Namespace': namespace,
+    };
+  }
+}
+
+enum MetricStreamOutputFormat {
+  json,
+  opentelemetry0_7,
+}
+
+extension on MetricStreamOutputFormat {
+  String toValue() {
+    switch (this) {
+      case MetricStreamOutputFormat.json:
+        return 'json';
+      case MetricStreamOutputFormat.opentelemetry0_7:
+        return 'opentelemetry0.7';
+    }
+  }
+}
+
+extension on String {
+  MetricStreamOutputFormat toMetricStreamOutputFormat() {
+    switch (this) {
+      case 'json':
+        return MetricStreamOutputFormat.json;
+      case 'opentelemetry0.7':
+        return MetricStreamOutputFormat.opentelemetry0_7;
+    }
+    throw Exception('$this is not known in enum MetricStreamOutputFormat');
+  }
+}
+
 /// This array is empty if the API operation was successful for all the rules
 /// specified in the request. If the operation could not process one of the
 /// rules, the following data is returned for each of those rules.
@@ -4730,6 +5213,20 @@ class PutInsightRuleOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutInsightRuleOutput();
+  }
+}
+
+class PutMetricStreamOutput {
+  /// The ARN of the metric stream.
+  final String? arn;
+
+  PutMetricStreamOutput({
+    this.arn,
+  });
+  factory PutMetricStreamOutput.fromXml(_s.XmlElement elem) {
+    return PutMetricStreamOutput(
+      arn: _s.extractXmlStringValue(elem, 'Arn'),
+    );
   }
 }
 
@@ -4971,6 +5468,15 @@ extension on String {
   }
 }
 
+class StartMetricStreamsOutput {
+  StartMetricStreamsOutput();
+  factory StartMetricStreamsOutput.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return StartMetricStreamsOutput();
+  }
+}
+
 enum StateValue {
   ok,
   alarm,
@@ -5111,6 +5617,15 @@ extension on String {
         return StatusCode.partialData;
     }
     throw Exception('$this is not known in enum StatusCode');
+  }
+}
+
+class StopMetricStreamsOutput {
+  StopMetricStreamsOutput();
+  factory StopMetricStreamsOutput.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return StopMetricStreamsOutput();
   }
 }
 

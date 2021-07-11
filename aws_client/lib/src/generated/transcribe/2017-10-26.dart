@@ -84,12 +84,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.CreateLanguageModel'
@@ -167,24 +161,12 @@ class Transcribe {
       2000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyFileUri',
-      vocabularyFileUri,
-      r'''(s3://|http(s*)://).+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vocabularyName, 'vocabularyName');
     _s.validateStringLength(
       'vocabularyName',
       vocabularyName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -216,7 +198,8 @@ class Transcribe {
   /// May throw [ConflictException].
   ///
   /// Parameter [languageCode] :
-  /// The language code of the vocabulary entries.
+  /// The language code of the vocabulary entries. For a list of languages and
+  /// their corresponding language codes, see <a>what-is-transcribe</a>.
   ///
   /// Parameter [vocabularyName] :
   /// The name of the vocabulary. The name must be unique within an AWS account.
@@ -237,7 +220,7 @@ class Transcribe {
   /// Keys</a> in the <i>Amazon S3 Developer Guide</i>.
   ///
   /// For more information about custom vocabularies, see <a
-  /// href="http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary">Custom
+  /// href="http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary">Custom
   /// Vocabularies</a>.
   Future<CreateVocabularyResponse> createVocabulary({
     required LanguageCode languageCode,
@@ -254,22 +237,11 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'vocabularyFileUri',
       vocabularyFileUri,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'vocabularyFileUri',
-      vocabularyFileUri,
-      r'''(s3://|http(s*)://).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -348,22 +320,11 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyFilterName',
-      vocabularyFilterName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'vocabularyFilterFileUri',
       vocabularyFilterFileUri,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'vocabularyFilterFileUri',
-      vocabularyFilterFileUri,
-      r'''(s3://|http(s*)://).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -406,12 +367,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.DeleteLanguageModel'
@@ -450,12 +405,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'medicalTranscriptionJobName',
-      medicalTranscriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.DeleteMedicalTranscriptionJob'
@@ -490,12 +439,6 @@ class Transcribe {
       vocabularyName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -534,12 +477,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transcriptionJobName',
-      transcriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.DeleteTranscriptionJob'
@@ -576,12 +513,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.DeleteVocabulary'
@@ -616,12 +547,6 @@ class Transcribe {
       vocabularyFilterName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vocabularyFilterName',
-      vocabularyFilterName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -664,12 +589,6 @@ class Transcribe {
       modelName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -715,12 +634,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'medicalTranscriptionJobName',
-      medicalTranscriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.GetMedicalTranscriptionJob'
@@ -758,12 +671,6 @@ class Transcribe {
       vocabularyName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -809,12 +716,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transcriptionJobName',
-      transcriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.GetTranscriptionJob'
@@ -854,12 +755,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Transcribe.GetVocabulary'
@@ -896,12 +791,6 @@ class Transcribe {
       vocabularyFilterName,
       1,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'vocabularyFilterName',
-      vocabularyFilterName,
-      r'''^[0-9a-zA-Z._-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -967,21 +856,11 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1042,11 +921,6 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'jobNameContains',
-      jobNameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1058,11 +932,6 @@ class Transcribe {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1129,21 +998,11 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1202,11 +1061,6 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'jobNameContains',
-      jobNameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1218,11 +1072,6 @@ class Transcribe {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1288,21 +1137,11 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1360,21 +1199,11 @@ class Transcribe {
       1,
       200,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[0-9a-zA-Z._-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1442,6 +1271,12 @@ class Transcribe {
   /// conversations between two or more speakers, e.g., a conversations between
   /// doctors and patients. <code>DICTATION</code> refers to single-speaker
   /// dictated speech, e.g., for clinical notes.
+  ///
+  /// Parameter [contentIdentificationType] :
+  /// You can configure Amazon Transcribe Medical to label content in the
+  /// transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+  /// Medical labels the personal health information (PHI) that it identifies in
+  /// the transcription output.
   ///
   /// Parameter [mediaFormat] :
   /// The audio format of the input media file.
@@ -1519,6 +1354,7 @@ class Transcribe {
     required String outputBucketName,
     required Specialty specialty,
     required Type type,
+    MedicalContentIdentificationType? contentIdentificationType,
     MediaFormat? mediaFormat,
     int? mediaSampleRateHertz,
     String? outputEncryptionKMSKeyId,
@@ -1536,24 +1372,12 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'medicalTranscriptionJobName',
-      medicalTranscriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputBucketName, 'outputBucketName');
     _s.validateStringLength(
       'outputBucketName',
       outputBucketName,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'outputBucketName',
-      outputBucketName,
-      r'''[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(specialty, 'specialty');
@@ -1570,21 +1394,11 @@ class Transcribe {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'outputEncryptionKMSKeyId',
-      outputEncryptionKMSKeyId,
-      r'''^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$''',
-    );
     _s.validateStringLength(
       'outputKey',
       outputKey,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'outputKey',
-      outputKey,
-      r'''[a-zA-Z0-9-_.!*'()/]{1,1024}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1603,6 +1417,8 @@ class Transcribe {
         'OutputBucketName': outputBucketName,
         'Specialty': specialty.toValue(),
         'Type': type.toValue(),
+        if (contentIdentificationType != null)
+          'ContentIdentificationType': contentIdentificationType.toValue(),
         if (mediaFormat != null) 'MediaFormat': mediaFormat.toValue(),
         if (mediaSampleRateHertz != null)
           'MediaSampleRateHertz': mediaSampleRateHertz,
@@ -1650,6 +1466,9 @@ class Transcribe {
   ///
   /// Parameter [languageCode] :
   /// The language code for the language used in the input media file.
+  ///
+  /// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
+  /// video file must be encoded at a sample rate of 16000 Hz or higher.
   ///
   /// Parameter [languageOptions] :
   /// An object containing a list of languages that might be present in your
@@ -1781,12 +1600,6 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transcriptionJobName',
-      transcriptionJobName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'mediaSampleRateHertz',
       mediaSampleRateHertz,
@@ -1799,32 +1612,17 @@ class Transcribe {
       0,
       64,
     );
-    _s.validateStringPattern(
-      'outputBucketName',
-      outputBucketName,
-      r'''[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]''',
-    );
     _s.validateStringLength(
       'outputEncryptionKMSKeyId',
       outputEncryptionKMSKeyId,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'outputEncryptionKMSKeyId',
-      outputEncryptionKMSKeyId,
-      r'''^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$''',
-    );
     _s.validateStringLength(
       'outputKey',
       outputKey,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'outputKey',
-      outputKey,
-      r'''[a-zA-Z0-9-_.!*'()/]{1,1024}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1917,22 +1715,11 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'vocabularyFileUri',
       vocabularyFileUri,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'vocabularyFileUri',
-      vocabularyFileUri,
-      r'''(s3://|http(s*)://).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1965,7 +1752,8 @@ class Transcribe {
   /// May throw [ConflictException].
   ///
   /// Parameter [languageCode] :
-  /// The language code of the vocabulary entries.
+  /// The language code of the vocabulary entries. For a list of languages and
+  /// their corresponding language codes, see <a>what-is-transcribe</a>.
   ///
   /// Parameter [vocabularyName] :
   /// The name of the vocabulary to update. The name is case sensitive. If you
@@ -2004,22 +1792,11 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyName',
-      vocabularyName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'vocabularyFileUri',
       vocabularyFileUri,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'vocabularyFileUri',
-      vocabularyFileUri,
-      r'''(s3://|http(s*)://).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2089,22 +1866,11 @@ class Transcribe {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vocabularyFilterName',
-      vocabularyFilterName,
-      r'''^[0-9a-zA-Z._-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'vocabularyFilterFileUri',
       vocabularyFilterFileUri,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'vocabularyFilterFileUri',
-      vocabularyFilterFileUri,
-      r'''(s3://|http(s*)://).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2158,6 +1924,10 @@ extension on String {
 
 enum CLMLanguageCode {
   enUs,
+  hiIn,
+  esUs,
+  enGb,
+  enAu,
 }
 
 extension on CLMLanguageCode {
@@ -2165,6 +1935,14 @@ extension on CLMLanguageCode {
     switch (this) {
       case CLMLanguageCode.enUs:
         return 'en-US';
+      case CLMLanguageCode.hiIn:
+        return 'hi-IN';
+      case CLMLanguageCode.esUs:
+        return 'es-US';
+      case CLMLanguageCode.enGb:
+        return 'en-GB';
+      case CLMLanguageCode.enAu:
+        return 'en-AU';
     }
   }
 }
@@ -2174,6 +1952,14 @@ extension on String {
     switch (this) {
       case 'en-US':
         return CLMLanguageCode.enUs;
+      case 'hi-IN':
+        return CLMLanguageCode.hiIn;
+      case 'es-US':
+        return CLMLanguageCode.esUs;
+      case 'en-GB':
+        return CLMLanguageCode.enGb;
+      case 'en-AU':
+        return CLMLanguageCode.enAu;
     }
     throw Exception('$this is not known in enum CLMLanguageCode');
   }
@@ -3152,6 +2938,30 @@ extension on String {
   }
 }
 
+enum MedicalContentIdentificationType {
+  phi,
+}
+
+extension on MedicalContentIdentificationType {
+  String toValue() {
+    switch (this) {
+      case MedicalContentIdentificationType.phi:
+        return 'PHI';
+    }
+  }
+}
+
+extension on String {
+  MedicalContentIdentificationType toMedicalContentIdentificationType() {
+    switch (this) {
+      case 'PHI':
+        return MedicalContentIdentificationType.phi;
+    }
+    throw Exception(
+        '$this is not known in enum MedicalContentIdentificationType');
+  }
+}
+
 /// Identifies the location of a medical transcript.
 class MedicalTranscript {
   /// The S3 object location of the medical transcript.
@@ -3175,6 +2985,12 @@ class MedicalTranscript {
 class MedicalTranscriptionJob {
   /// A timestamp that shows when the job was completed.
   final DateTime? completionTime;
+
+  /// Shows the type of content that you've configured Amazon Transcribe Medical
+  /// to identify in a transcription job. If the value is <code>PHI</code>, you've
+  /// configured the job to identify personal health information (PHI) in the
+  /// transcription output.
+  final MedicalContentIdentificationType? contentIdentificationType;
 
   /// A timestamp that shows when the job was created.
   final DateTime? creationTime;
@@ -3283,6 +3099,7 @@ class MedicalTranscriptionJob {
 
   MedicalTranscriptionJob({
     this.completionTime,
+    this.contentIdentificationType,
     this.creationTime,
     this.failureReason,
     this.languageCode,
@@ -3300,6 +3117,8 @@ class MedicalTranscriptionJob {
   factory MedicalTranscriptionJob.fromJson(Map<String, dynamic> json) {
     return MedicalTranscriptionJob(
       completionTime: timeStampFromJson(json['CompletionTime']),
+      contentIdentificationType: (json['ContentIdentificationType'] as String?)
+          ?.toMedicalContentIdentificationType(),
       creationTime: timeStampFromJson(json['CreationTime']),
       failureReason: json['FailureReason'] as String?,
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -3331,6 +3150,12 @@ class MedicalTranscriptionJob {
 class MedicalTranscriptionJobSummary {
   /// A timestamp that shows when the job was completed.
   final DateTime? completionTime;
+
+  /// Shows the type of information you've configured Amazon Transcribe Medical to
+  /// identify in a transcription job. If the value is <code>PHI</code>, you've
+  /// configured the transcription job to identify personal health information
+  /// (PHI).
+  final MedicalContentIdentificationType? contentIdentificationType;
 
   /// A timestamp that shows when the medical transcription job was created.
   final DateTime? creationTime;
@@ -3366,6 +3191,7 @@ class MedicalTranscriptionJobSummary {
 
   MedicalTranscriptionJobSummary({
     this.completionTime,
+    this.contentIdentificationType,
     this.creationTime,
     this.failureReason,
     this.languageCode,
@@ -3379,6 +3205,8 @@ class MedicalTranscriptionJobSummary {
   factory MedicalTranscriptionJobSummary.fromJson(Map<String, dynamic> json) {
     return MedicalTranscriptionJobSummary(
       completionTime: timeStampFromJson(json['CompletionTime']),
+      contentIdentificationType: (json['ContentIdentificationType'] as String?)
+          ?.toMedicalContentIdentificationType(),
       creationTime: timeStampFromJson(json['CreationTime']),
       failureReason: json['FailureReason'] as String?,
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -3666,7 +3494,10 @@ class Settings {
   /// Set to <code>mask</code> to remove filtered text from the transcript and
   /// replace it with three asterisks ("***") as placeholder text. Set to
   /// <code>remove</code> to remove filtered text from the transcript without
-  /// using placeholder text.
+  /// using placeholder text. Set to <code>tag</code> to mark the word in the
+  /// transcription output that matches the vocabulary filter. When you set the
+  /// filter method to <code>tag</code>, the words matching your vocabulary filter
+  /// are not masked or removed.
   final VocabularyFilterMethod? vocabularyFilterMethod;
 
   /// The name of the vocabulary filter to use when transcribing the audio. The
@@ -4267,6 +4098,7 @@ class VocabularyFilterInfo {
 enum VocabularyFilterMethod {
   remove,
   mask,
+  tag,
 }
 
 extension on VocabularyFilterMethod {
@@ -4276,6 +4108,8 @@ extension on VocabularyFilterMethod {
         return 'remove';
       case VocabularyFilterMethod.mask:
         return 'mask';
+      case VocabularyFilterMethod.tag:
+        return 'tag';
     }
   }
 }
@@ -4287,6 +4121,8 @@ extension on String {
         return VocabularyFilterMethod.remove;
       case 'mask':
         return VocabularyFilterMethod.mask;
+      case 'tag':
+        return VocabularyFilterMethod.tag;
     }
     throw Exception('$this is not known in enum VocabularyFilterMethod');
   }

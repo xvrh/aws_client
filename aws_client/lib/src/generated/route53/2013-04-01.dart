@@ -38,7 +38,7 @@ class Route53 {
           endpointUrl: endpointUrl,
         );
 
-  /// Activates a key signing key (KSK) so that it can be used for signing by
+  /// Activates a key-signing key (KSK) so that it can be used for signing by
   /// DNSSEC. This operation changes the KSK status to <code>ACTIVE</code>.
   ///
   /// May throw [ConcurrentModification].
@@ -51,7 +51,9 @@ class Route53 {
   /// A unique string used to identify a hosted zone.
   ///
   /// Parameter [name] :
-  /// An alphanumeric string used to identify a key signing key (KSK).
+  /// A string used to identify a key-signing key (KSK). <code>Name</code> can
+  /// include numbers, letters, and underscores (_). <code>Name</code> must be
+  /// unique for each key-signing key in the same hosted zone.
   Future<ActivateKeySigningKeyResponse> activateKeySigningKey({
     required String hostedZoneId,
     required String name,
@@ -530,6 +532,9 @@ class Route53 {
   /// Route 53 DNS servers. When the NS and SOA records are available, the
   /// status of the zone changes to <code>INSYNC</code>.
   ///
+  /// The <code>CreateHostedZone</code> request requires the caller to have an
+  /// <code>ec2:DescribeVpcs</code> permission.
+  ///
   /// May throw [InvalidDomainName].
   /// May throw [HostedZoneAlreadyExists].
   /// May throw [TooManyHostedZones].
@@ -648,7 +653,7 @@ class Route53 {
     );
   }
 
-  /// Creates a new key signing key (KSK) associated with a hosted zone. You can
+  /// Creates a new key-signing key (KSK) associated with a hosted zone. You can
   /// only have two KSKs per hosted zone.
   ///
   /// May throw [NoSuchHostedZone].
@@ -669,13 +674,14 @@ class Route53 {
   /// The unique string (ID) used to identify a hosted zone.
   ///
   /// Parameter [keyManagementServiceArn] :
-  /// The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key
-  /// Management Service (KMS). The <code>KeyManagementServiceArn</code> must be
-  /// unique for each key signing key (KSK) in a single hosted zone. To see an
-  /// example of <code>KeyManagementServiceArn</code> that grants the correct
-  /// permissions for DNSSEC, scroll down to <b>Example</b>.
+  /// The Amazon resource name (ARN) for a customer managed customer master key
+  /// (CMK) in AWS Key Management Service (AWS KMS). The
+  /// <code>KeyManagementServiceArn</code> must be unique for each key-signing
+  /// key (KSK) in a single hosted zone. To see an example of
+  /// <code>KeyManagementServiceArn</code> that grants the correct permissions
+  /// for DNSSEC, scroll down to <b>Example</b>.
   ///
-  /// You must configure the CMK as follows:
+  /// You must configure the customer managed CMK as follows:
   /// <dl> <dt>Status</dt> <dd>
   /// Enabled
   /// </dd> <dt>Key spec</dt> <dd>
@@ -701,20 +707,21 @@ class Route53 {
   ///
   /// <ul>
   /// <li>
-  /// <code>"Service": "api-service.dnssec.route53.aws.internal"</code>
+  /// <code>"Service": "dnssec.route53.aws.amazonaws.com"</code>
   /// </li>
   /// </ul> </dd> </dl>
-  /// For more information about working with CMK in KMS, see <a
+  /// For more information about working with a customer managed CMK in AWS KMS,
+  /// see <a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
   /// Key Management Service concepts</a>.
   ///
   /// Parameter [name] :
-  /// An alphanumeric string used to identify a key signing key (KSK).
-  /// <code>Name</code> must be unique for each key signing key in the same
-  /// hosted zone.
+  /// A string used to identify a key-signing key (KSK). <code>Name</code> can
+  /// include numbers, letters, and underscores (_). <code>Name</code> must be
+  /// unique for each key-signing key in the same hosted zone.
   ///
   /// Parameter [status] :
-  /// A string specifying the initial status of the key signing key (KSK). You
+  /// A string specifying the initial status of the key-signing key (KSK). You
   /// can set the value to <code>ACTIVE</code> or <code>INACTIVE</code>.
   Future<CreateKeySigningKeyResponse> createKeySigningKey({
     required String callerReference,
@@ -1397,7 +1404,7 @@ class Route53 {
     return CreateVPCAssociationAuthorizationResponse.fromXml($result.body);
   }
 
-  /// Deactivates a key signing key (KSK) so that it will not be used for
+  /// Deactivates a key-signing key (KSK) so that it will not be used for
   /// signing by DNSSEC. This operation changes the KSK status to
   /// <code>INACTIVE</code>.
   ///
@@ -1412,7 +1419,7 @@ class Route53 {
   /// A unique string used to identify a hosted zone.
   ///
   /// Parameter [name] :
-  /// An alphanumeric string used to identify a key signing key (KSK).
+  /// A string used to identify a key-signing key (KSK).
   Future<DeactivateKeySigningKeyResponse> deactivateKeySigningKey({
     required String hostedZoneId,
     required String name,
@@ -1569,8 +1576,8 @@ class Route53 {
     return DeleteHostedZoneResponse.fromXml($result.body);
   }
 
-  /// Deletes a key signing key (KSK). Before you can delete a KSK, you must
-  /// deactivate it. The KSK must be deactived before you can delete it
+  /// Deletes a key-signing key (KSK). Before you can delete a KSK, you must
+  /// deactivate it. The KSK must be deactivated before you can delete it
   /// regardless of whether the hosted zone is enabled for DNSSEC signing.
   ///
   /// May throw [ConcurrentModification].
@@ -1583,7 +1590,7 @@ class Route53 {
   /// A unique string used to identify a hosted zone.
   ///
   /// Parameter [name] :
-  /// An alphanumeric string used to identify a key signing key (KSK).
+  /// A string used to identify a key-signing key (KSK).
   Future<DeleteKeySigningKeyResponse> deleteKeySigningKey({
     required String hostedZoneId,
     required String name,
@@ -1836,7 +1843,7 @@ class Route53 {
   }
 
   /// Disables DNSSEC signing in a specific hosted zone. This action does not
-  /// deactivate any key signing keys (KSKs) that are active in the hosted zone.
+  /// deactivate any key-signing keys (KSKs) that are active in the hosted zone.
   ///
   /// May throw [NoSuchHostedZone].
   /// May throw [InvalidArgument].
@@ -2079,6 +2086,8 @@ class Route53 {
     return GetChangeResponse.fromXml($result.body);
   }
 
+  /// Route 53 does not perform authorization for this API because it retrieves
+  /// information that is already available to the public.
   /// <important>
   /// <code>GetCheckerIpRanges</code> still works, but we recommend that you
   /// download ip-ranges.json, which includes IP address ranges for all AWS
@@ -2097,7 +2106,7 @@ class Route53 {
   }
 
   /// Returns information about DNSSEC for a specific hosted zone, including the
-  /// key signing keys (KSKs) and zone signing keys (ZSKs) in the hosted zone.
+  /// key-signing keys (KSKs) in the hosted zone.
   ///
   /// May throw [NoSuchHostedZone].
   /// May throw [InvalidArgument].
@@ -2126,6 +2135,9 @@ class Route53 {
 
   /// Gets information about whether a specified geographic location is
   /// supported for Amazon Route 53 geolocation resource record sets.
+  ///
+  /// Route 53 does not perform authorization for this API because it retrieves
+  /// information that is already available to the public.
   ///
   /// Use the following syntax to determine whether a continent is supported for
   /// geolocation:
@@ -2183,14 +2195,13 @@ class Route53 {
   /// 3166-1 alpha-2</a>.
   ///
   /// Parameter [subdivisionCode] :
-  /// For <code>SubdivisionCode</code>, Amazon Route 53 supports only states of
-  /// the United States. For a list of state abbreviations, see <a
+  /// The code for the subdivision, such as a particular state within the United
+  /// States. For a list of US state abbreviations, see <a
   /// href="https://pe.usps.com/text/pub28/28apb.htm">Appendix B: Two–Letter
   /// State and Possession Abbreviations</a> on the United States Postal Service
-  /// website.
-  ///
-  /// If you specify <code>subdivisioncode</code>, you must also specify
-  /// <code>US</code> for <code>CountryCode</code>.
+  /// website. For a list of all supported subdivision codes, use the <a
+  /// href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListGeoLocations.html">ListGeoLocations</a>
+  /// API.
   Future<GetGeoLocationResponse> getGeoLocation({
     String? continentCode,
     String? countryCode,
@@ -2637,6 +2648,9 @@ class Route53 {
   /// Route 53 supports subdivisions for a country (for example, states or
   /// provinces), the subdivisions for that country are listed in alphabetical
   /// order immediately after the corresponding country.
+  ///
+  /// Route 53 does not perform authorization for this API because it retrieves
+  /// information that is already available to the public.
   ///
   /// For a list of supported geolocation codes, see the <a
   /// href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GeoLocation.html">GeoLocation</a>
@@ -3129,7 +3143,7 @@ class Route53 {
 
   /// Lists the resource record sets in a specified hosted zone.
   ///
-  /// <code>ListResourceRecordSets</code> returns up to 100 resource record sets
+  /// <code>ListResourceRecordSets</code> returns up to 300 resource record sets
   /// at a time in ASCII order, beginning at a position specified by the
   /// <code>name</code> and <code>type</code> elements.
   ///
@@ -3968,6 +3982,8 @@ class Route53 {
   /// address of a DNS resolver, an EDNS0 client subnet IP address, and a subnet
   /// mask.
   ///
+  /// This call only supports querying public hosted zones.
+  ///
   /// May throw [NoSuchHostedZone].
   /// May throw [InvalidInput].
   ///
@@ -4045,11 +4061,6 @@ class Route53 {
       0,
       45,
     );
-    _s.validateStringPattern(
-      'eDNS0ClientSubnetIP',
-      eDNS0ClientSubnetIP,
-      r'''(^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$)''',
-    );
     _s.validateStringLength(
       'eDNS0ClientSubnetMask',
       eDNS0ClientSubnetMask,
@@ -4061,11 +4072,6 @@ class Route53 {
       resolverIP,
       0,
       45,
-    );
-    _s.validateStringPattern(
-      'resolverIP',
-      resolverIP,
-      r'''(^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$)''',
     );
     final $query = <String, List<String>>{
       'hostedzoneid': [hostedZoneId],
@@ -4516,11 +4522,6 @@ class Route53 {
       0,
       45,
     );
-    _s.validateStringPattern(
-      'iPAddress',
-      iPAddress,
-      r'''(^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$)''',
-    );
     _s.validateNumRange(
       'port',
       port,
@@ -4916,9 +4917,9 @@ class AlarmIdentifier {
   /// was created in.
   ///
   /// For the current list of CloudWatch regions, see <a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-  /// CloudWatch</a> in the <i>AWS Service Endpoints</i> chapter of the <i>Amazon
-  /// Web Services General Reference</i>.
+  /// href="https://docs.aws.amazon.com/general/latest/gr/cw_region.html">Amazon
+  /// CloudWatch endpoints and quotas</a> in the <i>Amazon Web Services General
+  /// Reference</i>.
   final CloudWatchRegion region;
 
   AlarmIdentifier({
@@ -5247,21 +5248,20 @@ class AliasTarget {
   /// Specify the hosted zone ID for the region that you created the environment
   /// in. The environment must have a regionalized subdomain. For a list of
   /// regions and the corresponding hosted zone IDs, see <a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region">AWS
-  /// Elastic Beanstalk</a> in the "AWS Service Endpoints" chapter of the
-  /// <i>Amazon Web Services General Reference</i>.
+  /// href="https://docs.aws.amazon.com/general/latest/gr/elasticbeanstalk.html">AWS
+  /// Elastic Beanstalk endpoints and quotas</a> in the the <i>Amazon Web Services
+  /// General Reference</i>.
   /// </dd> <dt>ELB load balancer</dt> <dd>
   /// Specify the value of the hosted zone ID for the load balancer. Use the
   /// following methods to get the hosted zone ID:
   ///
   /// <ul>
   /// <li>
-  /// <a href="https://docs.aws.amazon.com/general/latest/gr/elb.html">Service
-  /// Endpoints</a> table in the "Elastic Load Balancing Endpoints and Quotas"
-  /// topic in the <i>Amazon Web Services General Reference</i>: Use the value
-  /// that corresponds with the region that you created your load balancer in.
-  /// Note that there are separate columns for Application and Classic Load
-  /// Balancers and for Network Load Balancers.
+  /// <a href="https://docs.aws.amazon.com/general/latest/gr/elb.html">Elastic
+  /// Load Balancing endpoints and quotas</a> topic in the <i>Amazon Web Services
+  /// General Reference</i>: Use the value that corresponds with the region that
+  /// you created your load balancer in. Note that there are separate columns for
+  /// Application and Classic Load Balancers and for Network Load Balancers.
   /// </li>
   /// <li>
   /// <b>AWS Management Console</b>: Go to the Amazon EC2 page, choose <b>Load
@@ -6165,13 +6165,14 @@ class CreateKeySigningKeyRequest {
   /// The unique string (ID) used to identify a hosted zone.
   final String hostedZoneId;
 
-  /// The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key
-  /// Management Service (KMS). The <code>KeyManagementServiceArn</code> must be
-  /// unique for each key signing key (KSK) in a single hosted zone. To see an
-  /// example of <code>KeyManagementServiceArn</code> that grants the correct
-  /// permissions for DNSSEC, scroll down to <b>Example</b>.
+  /// The Amazon resource name (ARN) for a customer managed customer master key
+  /// (CMK) in AWS Key Management Service (AWS KMS). The
+  /// <code>KeyManagementServiceArn</code> must be unique for each key-signing key
+  /// (KSK) in a single hosted zone. To see an example of
+  /// <code>KeyManagementServiceArn</code> that grants the correct permissions for
+  /// DNSSEC, scroll down to <b>Example</b>.
   ///
-  /// You must configure the CMK as follows:
+  /// You must configure the customer managed CMK as follows:
   /// <dl> <dt>Status</dt> <dd>
   /// Enabled
   /// </dd> <dt>Key spec</dt> <dd>
@@ -6197,20 +6198,21 @@ class CreateKeySigningKeyRequest {
   ///
   /// <ul>
   /// <li>
-  /// <code>"Service": "api-service.dnssec.route53.aws.internal"</code>
+  /// <code>"Service": "dnssec.route53.aws.amazonaws.com"</code>
   /// </li>
   /// </ul> </dd> </dl>
-  /// For more information about working with CMK in KMS, see <a
+  /// For more information about working with a customer managed CMK in AWS KMS,
+  /// see <a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
   /// Key Management Service concepts</a>.
   final String keyManagementServiceArn;
 
-  /// An alphanumeric string used to identify a key signing key (KSK).
-  /// <code>Name</code> must be unique for each key signing key in the same hosted
-  /// zone.
+  /// A string used to identify a key-signing key (KSK). <code>Name</code> can
+  /// include numbers, letters, and underscores (_). <code>Name</code> must be
+  /// unique for each key-signing key in the same hosted zone.
   final String name;
 
-  /// A string specifying the initial status of the key signing key (KSK). You can
+  /// A string specifying the initial status of the key-signing key (KSK). You can
   /// set the value to <code>ACTIVE</code> or <code>INACTIVE</code>.
   final String status;
 
@@ -6249,10 +6251,10 @@ class CreateKeySigningKeyRequest {
 class CreateKeySigningKeyResponse {
   final ChangeInfo changeInfo;
 
-  /// The key signing key (KSK) that the request creates.
+  /// The key-signing key (KSK) that the request creates.
   final KeySigningKey keySigningKey;
 
-  /// The unique URL representing the new key signing key (KSK).
+  /// The unique URL representing the new key-signing key (KSK).
   final String location;
 
   CreateKeySigningKeyResponse({
@@ -6607,15 +6609,25 @@ class CreateVPCAssociationAuthorizationResponse {
 
 /// A string repesenting the status of DNSSEC signing.
 class DNSSECStatus {
-  /// Indicates your hosted zone signging status: <code>SIGNING</code>,
-  /// <code>NOT_SIGNING</code>, or <code>INTERNAL_FAILURE</code>. If the status is
-  /// <code>INTERNAL_FAILURE</code>, see <code>StatusMessage</code> for
-  /// information about steps that you can take to correct the problem.
+  /// A string that represents the current hosted zone signing status.
   ///
-  /// A status <code>INTERNAL_FAILURE</code> means there was an error during a
-  /// request. Before you can continue to work with DNSSEC signing, including
-  /// working with key signing keys (KSKs), you must correct the problem by
-  /// enabling or disabling DNSSEC signing for the hosted zone.
+  /// Status can have one of the following values:
+  /// <dl> <dt>SIGNING</dt> <dd>
+  /// DNSSEC signing is enabled for the hosted zone.
+  /// </dd> <dt>NOT_SIGNING</dt> <dd>
+  /// DNSSEC signing is not enabled for the hosted zone.
+  /// </dd> <dt>DELETING</dt> <dd>
+  /// DNSSEC signing is in the process of being removed for the hosted zone.
+  /// </dd> <dt>ACTION_NEEDED</dt> <dd>
+  /// There is a problem with signing in the hosted zone that requires you to take
+  /// action to resolve. For example, the customer managed customer master key
+  /// (CMK) might have been deleted, or the permissions for the customer managed
+  /// CMK might have been changed.
+  /// </dd> <dt>INTERNAL_FAILURE</dt> <dd>
+  /// There was an error during a request. Before you can continue to work with
+  /// DNSSEC signing, including with key-signing keys (KSKs), you must correct the
+  /// problem by enabling or disabling DNSSEC signing for the hosted zone.
+  /// </dd> </dl>
   final String? serveSignature;
 
   /// The status message provided for the following DNSSEC signing status:
@@ -7008,8 +7020,13 @@ class GeoLocationDetails {
   /// The name of the country.
   final String? countryName;
 
-  /// The code for the subdivision. Route 53 currently supports only states in the
-  /// United States.
+  /// The code for the subdivision, such as a particular state within the United
+  /// States. For a list of US state abbreviations, see <a
+  /// href="https://pe.usps.com/text/pub28/28apb.htm">Appendix B: Two–Letter State
+  /// and Possession Abbreviations</a> on the United States Postal Service
+  /// website. For a list of all supported subdivision codes, use the <a
+  /// href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListGeoLocations.html">ListGeoLocations</a>
+  /// API.
   final String? subdivisionCode;
 
   /// The full name of the subdivision. Route 53 currently supports only states in
@@ -7096,7 +7113,7 @@ class GetCheckerIpRangesResponse {
 }
 
 class GetDNSSECResponse {
-  /// The key signing keys (KSKs) in your account.
+  /// The key-signing keys (KSKs) in your account.
   final List<KeySigningKey> keySigningKeys;
 
   /// A string repesenting the status of DNSSEC.
@@ -7412,7 +7429,7 @@ class HealthCheck {
   /// to the health check.
   final int healthCheckVersion;
 
-  /// The identifier that Amazon Route 53assigned to the health check when you
+  /// The identifier that Amazon Route 53 assigned to the health check when you
   /// created it. When you add or update a resource record set, you use this value
   /// to specify which health check to use. The value can be up to 64 characters
   /// long.
@@ -8334,13 +8351,13 @@ extension on String {
   }
 }
 
-/// A key signing key (KSK) is a complex type that represents a public/private
+/// A key-signing key (KSK) is a complex type that represents a public/private
 /// key pair. The private key is used to generate a digital signature for the
 /// zone signing key (ZSK). The public key is stored in the DNS and is used to
 /// authenticate the ZSK. A KSK is always associated with a hosted zone; it
 /// cannot exist by itself.
 class KeySigningKey {
-  /// The date when the key signing key (KSK) was created.
+  /// The date when the key-signing key (KSK) was created.
   final DateTime? createdDate;
 
   /// A string that represents a DNSKEY record.
@@ -8367,7 +8384,7 @@ class KeySigningKey {
   /// the DNS system.
   final String? digestValue;
 
-  /// An integer that specifies how the key is used. For key signing key (KSK),
+  /// An integer that specifies how the key is used. For key-signing key (KSK),
   /// this value is always 257.
   final int? flag;
 
@@ -8376,9 +8393,10 @@ class KeySigningKey {
   /// href="https://tools.ietf.org/rfc/rfc4034.txt">RFC-4034 Appendix B</a>.
   final int? keyTag;
 
-  /// The Amazon resource name (ARN) used to identify the customer managed key
-  /// (CMK) in AWS Key Management Service (KMS). The <code>KmsArn</code> must be
-  /// unique for each key signing key (KSK) in a single hosted zone.
+  /// The Amazon resource name (ARN) used to identify the customer managed
+  /// customer master key (CMK) in AWS Key Management Service (AWS KMS). The
+  /// <code>KmsArn</code> must be unique for each key-signing key (KSK) in a
+  /// single hosted zone.
   ///
   /// You must configure the CMK as follows:
   /// <dl> <dt>Status</dt> <dd>
@@ -8409,18 +8427,18 @@ class KeySigningKey {
   /// <code>"Service": "api-service.dnssec.route53.aws.internal"</code>
   /// </li>
   /// </ul> </dd> </dl>
-  /// For more information about working with the customer managed key (CMK) in
-  /// KMS, see <a
+  /// For more information about working with the customer managed CMK in AWS KMS,
+  /// see <a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
   /// Key Management Service concepts</a>.
   final String? kmsArn;
 
-  /// The last time that the key signing key (KSK) was changed.
+  /// The last time that the key-signing key (KSK) was changed.
   final DateTime? lastModifiedDate;
 
-  /// An alphanumeric string used to identify a key signing key (KSK).
-  /// <code>Name</code> must be unique for each key signing key in the same hosted
-  /// zone.
+  /// A string used to identify a key-signing key (KSK). <code>Name</code> can
+  /// include numbers, letters, and underscores (_). <code>Name</code> must be
+  /// unique for each key-signing key in the same hosted zone.
   final String? name;
 
   /// The public key, represented as a Base64 encoding, as required by <a
@@ -8439,15 +8457,20 @@ class KeySigningKey {
   /// 3.1</a>.
   final int? signingAlgorithmType;
 
-  /// A string that represents the current key signing key (KSK) status.
+  /// A string that represents the current key-signing key (KSK) status.
   ///
   /// Status can have one of the following values:
   /// <dl> <dt>ACTIVE</dt> <dd>
   /// The KSK is being used for signing.
   /// </dd> <dt>INACTIVE</dt> <dd>
   /// The KSK is not being used for signing.
+  /// </dd> <dt>DELETING</dt> <dd>
+  /// The KSK is in the process of being deleted.
   /// </dd> <dt>ACTION_NEEDED</dt> <dd>
-  /// There is an error in the KSK that requires you to take action to resolve.
+  /// There is a problem with the KSK that requires you to take action to resolve.
+  /// For example, the customer managed customer master key (CMK) might have been
+  /// deleted, or the permissions for the customer managed CMK might have been
+  /// changed.
   /// </dd> <dt>INTERNAL_FAILURE</dt> <dd>
   /// There was an error during a request. Before you can continue to work with
   /// DNSSEC signing, including actions that involve this KSK, you must correct
@@ -8455,7 +8478,7 @@ class KeySigningKey {
   /// </dd> </dl>
   final String? status;
 
-  /// The status message provided for the following key signing key (KSK)
+  /// The status message provided for the following key-signing key (KSK)
   /// statuses: <code>ACTION_NEEDED</code> or <code>INTERNAL_FAILURE</code>. The
   /// status message includes information about what the problem might be and
   /// steps that you can take to correct the issue.
@@ -9592,9 +9615,9 @@ class ResourceRecordSet {
   /// DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.
   ///
   /// Valid values for basic resource record sets: <code>A</code> |
-  /// <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code>
-  /// | <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code>
-  /// | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>
+  /// <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>DS</code>
+  /// |<code>MX</code> | <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> |
+  /// <code>SOA</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>
   ///
   /// Values for weighted, latency, geolocation, and failover resource record
   /// sets: <code>A</code> | <code>AAAA</code> | <code>CAA</code> |

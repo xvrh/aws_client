@@ -53,7 +53,8 @@ class Qldb {
   /// The name of the ledger.
   ///
   /// Parameter [streamId] :
-  /// The unique ID that QLDB assigns to each QLDB journal stream.
+  /// The UUID (represented in Base62-encoded text) of the QLDB journal stream
+  /// to be canceled.
   Future<CancelJournalKinesisStreamResponse> cancelJournalKinesisStream({
     required String ledgerName,
     required String streamId,
@@ -66,24 +67,12 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ledgerName',
-      ledgerName,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(streamId, 'streamId');
     _s.validateStringLength(
       'streamId',
       streamId,
       22,
       22,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'streamId',
-      streamId,
-      r'''^[A-Za-z-0-9]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -96,7 +85,7 @@ class Qldb {
     return CancelJournalKinesisStreamResponse.fromJson(response);
   }
 
-  /// Creates a new ledger in your AWS account.
+  /// Creates a new ledger in your AWS account in the current Region.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [ResourceAlreadyExistsException].
@@ -112,7 +101,38 @@ class Qldb {
   /// in Amazon QLDB</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// Parameter [permissionsMode] :
-  /// The permissions mode to assign to the ledger that you want to create.
+  /// The permissions mode to assign to the ledger that you want to create. This
+  /// parameter can have one of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW_ALL</code>: A legacy permissions mode that enables access
+  /// control with API-level granularity for ledgers.
+  ///
+  /// This mode allows users who have the <code>SendCommand</code> API
+  /// permission for this ledger to run all PartiQL commands (hence,
+  /// <code>ALLOW_ALL</code>) on any tables in the specified ledger. This mode
+  /// disregards any table-level or command-level IAM permissions policies that
+  /// you create for the ledger.
+  /// </li>
+  /// <li>
+  /// <code>STANDARD</code>: (<i>Recommended</i>) A permissions mode that
+  /// enables access control with finer granularity for ledgers, tables, and
+  /// PartiQL commands.
+  ///
+  /// By default, this mode denies all user requests to run any PartiQL commands
+  /// on any tables in this ledger. To allow PartiQL commands to run, you must
+  /// create IAM permissions policies for specific table resources and PartiQL
+  /// actions, in addition to the <code>SendCommand</code> API permission for
+  /// the ledger. For information, see <a
+  /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-standard-mode.html">Getting
+  /// started with the standard permissions mode</a> in the <i>Amazon QLDB
+  /// Developer Guide</i>.
+  /// </li>
+  /// </ul> <note>
+  /// We strongly recommend using the <code>STANDARD</code> permissions mode to
+  /// maximize the security of your ledger data.
+  /// </note>
   ///
   /// Parameter [deletionProtection] :
   /// The flag that prevents a ledger from being deleted by any user. If not
@@ -120,10 +140,8 @@ class Qldb {
   /// by default.
   ///
   /// If deletion protection is enabled, you must first disable it before you
-  /// can delete the ledger using the QLDB API or the AWS Command Line Interface
-  /// (AWS CLI). You can disable it by calling the <code>UpdateLedger</code>
-  /// operation to set the flag to <code>false</code>. The QLDB console disables
-  /// deletion protection for you when you use it to delete a ledger.
+  /// can delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   ///
   /// Parameter [tags] :
   /// The key-value pairs to add as tags to the ledger that you want to create.
@@ -141,12 +159,6 @@ class Qldb {
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(permissionsMode, 'permissionsMode');
@@ -168,10 +180,8 @@ class Qldb {
   /// Deletes a ledger and all of its contents. This action is irreversible.
   ///
   /// If deletion protection is enabled, you must first disable it before you
-  /// can delete the ledger using the QLDB API or the AWS Command Line Interface
-  /// (AWS CLI). You can disable it by calling the <code>UpdateLedger</code>
-  /// operation to set the flag to <code>false</code>. The QLDB console disables
-  /// deletion protection for you when you use it to delete a ledger.
+  /// can delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [ResourceNotFoundException].
@@ -191,12 +201,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -207,8 +211,13 @@ class Qldb {
 
   /// Returns detailed information about a given Amazon QLDB journal stream. The
   /// output includes the Amazon Resource Name (ARN), stream name, current
-  /// status, creation time, and the parameters of your original stream creation
+  /// status, creation time, and the parameters of the original stream creation
   /// request.
+  ///
+  /// This action does not return any expired journal streams. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/streams.create.html#streams.create.states.expiration">Expiration
+  /// for terminal streams</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [ResourceNotFoundException].
@@ -218,7 +227,8 @@ class Qldb {
   /// The name of the ledger.
   ///
   /// Parameter [streamId] :
-  /// The unique ID that QLDB assigns to each QLDB journal stream.
+  /// The UUID (represented in Base62-encoded text) of the QLDB journal stream
+  /// to describe.
   Future<DescribeJournalKinesisStreamResponse> describeJournalKinesisStream({
     required String ledgerName,
     required String streamId,
@@ -231,24 +241,12 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ledgerName',
-      ledgerName,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(streamId, 'streamId');
     _s.validateStringLength(
       'streamId',
       streamId,
       22,
       22,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'streamId',
-      streamId,
-      r'''^[A-Za-z-0-9]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -262,13 +260,13 @@ class Qldb {
   }
 
   /// Returns information about a journal export job, including the ledger name,
-  /// export ID, when it was created, current status, and its start and end time
-  /// export parameters.
+  /// export ID, creation time, current status, and the parameters of the
+  /// original export creation request.
   ///
   /// This action does not return any expired export jobs. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
-  /// Job Expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
+  /// job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// If the export job with the given <code>ExportId</code> doesn't exist, then
   /// throws <code>ResourceNotFoundException</code>.
@@ -279,7 +277,8 @@ class Qldb {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [exportId] :
-  /// The unique ID of the journal export job that you want to describe.
+  /// The UUID (represented in Base62-encoded text) of the journal export job to
+  /// describe.
   ///
   /// Parameter [name] :
   /// The name of the ledger.
@@ -295,24 +294,12 @@ class Qldb {
       22,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'exportId',
-      exportId,
-      r'''^[A-Za-z-0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -344,12 +331,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -377,23 +358,23 @@ class Qldb {
   /// May throw [ResourcePreconditionNotMetException].
   ///
   /// Parameter [exclusiveEndTime] :
-  /// The exclusive end date and time for the range of journal contents that you
-  /// want to export.
+  /// The exclusive end date and time for the range of journal contents to
+  /// export.
   ///
   /// The <code>ExclusiveEndTime</code> must be in <code>ISO 8601</code> date
   /// and time format and in Universal Coordinated Time (UTC). For example:
-  /// <code>2019-06-13T21:36:34Z</code>
+  /// <code>2019-06-13T21:36:34Z</code>.
   ///
   /// The <code>ExclusiveEndTime</code> must be less than or equal to the
   /// current UTC date and time.
   ///
   /// Parameter [inclusiveStartTime] :
-  /// The inclusive start date and time for the range of journal contents that
-  /// you want to export.
+  /// The inclusive start date and time for the range of journal contents to
+  /// export.
   ///
   /// The <code>InclusiveStartTime</code> must be in <code>ISO 8601</code> date
   /// and time format and in Universal Coordinated Time (UTC). For example:
-  /// <code>2019-06-13T21:36:34Z</code>
+  /// <code>2019-06-13T21:36:34Z</code>.
   ///
   /// The <code>InclusiveStartTime</code> must be before
   /// <code>ExclusiveEndTime</code>.
@@ -437,12 +418,6 @@ class Qldb {
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
@@ -496,7 +471,7 @@ class Qldb {
   /// <code>sequenceNo</code>.
   ///
   /// For example:
-  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code>
+  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code>.
   ///
   /// Parameter [name] :
   /// The name of the ledger.
@@ -507,7 +482,7 @@ class Qldb {
   /// <code>strandId</code> and <code>sequenceNo</code>.
   ///
   /// For example:
-  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}</code>
+  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}</code>.
   Future<GetBlockResponse> getBlock({
     required ValueHolder blockAddress,
     required String name,
@@ -520,12 +495,6 @@ class Qldb {
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -561,12 +530,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -590,10 +553,11 @@ class Qldb {
   /// <code>sequenceNo</code>.
   ///
   /// For example:
-  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code>
+  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}</code>.
   ///
   /// Parameter [documentId] :
-  /// The unique ID of the document to be verified.
+  /// The UUID (represented in Base62-encoded text) of the document to be
+  /// verified.
   ///
   /// Parameter [name] :
   /// The name of the ledger.
@@ -604,7 +568,7 @@ class Qldb {
   /// <code>strandId</code> and <code>sequenceNo</code>.
   ///
   /// For example:
-  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}</code>
+  /// <code>{strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}</code>.
   Future<GetRevisionResponse> getRevision({
     required ValueHolder blockAddress,
     required String documentId,
@@ -620,24 +584,12 @@ class Qldb {
       22,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''^[A-Za-z-0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -657,6 +609,11 @@ class Qldb {
   /// Returns an array of all Amazon QLDB journal stream descriptors for a given
   /// ledger. The output of each stream descriptor includes the same details
   /// that are returned by <code>DescribeJournalKinesisStream</code>.
+  ///
+  /// This action does not return any expired journal streams. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/streams.create.html#streams.create.states.expiration">Expiration
+  /// for terminal streams</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// This action returns a maximum of <code>MaxResults</code> items. It is
   /// paginated so that you can retrieve all the items by calling
@@ -693,12 +650,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ledgerName',
-      ledgerName,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -710,11 +661,6 @@ class Qldb {
       nextToken,
       4,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z-0-9+/=]+$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
@@ -741,7 +687,7 @@ class Qldb {
   /// This action does not return any expired export jobs. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
-  /// Job Expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
+  /// job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of results to return in a single
@@ -769,11 +715,6 @@ class Qldb {
       4,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z-0-9+/=]+$''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
       if (nextToken != null) 'next_token': [nextToken],
@@ -798,7 +739,7 @@ class Qldb {
   /// This action does not return any expired export jobs. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
-  /// Job Expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
+  /// job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.
   ///
   /// Parameter [name] :
   /// The name of the ledger.
@@ -826,12 +767,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -843,11 +778,6 @@ class Qldb {
       nextToken,
       4,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z-0-9+/=]+$''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
@@ -896,11 +826,6 @@ class Qldb {
       4,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[A-Za-z-0-9+/=]+$''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
       if (nextToken != null) 'next_token': [nextToken],
@@ -921,8 +846,7 @@ class Qldb {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [resourceArn] :
-  /// The Amazon Resource Name (ARN) for which you want to list the tags. For
-  /// example:
+  /// The Amazon Resource Name (ARN) for which to list the tags. For example:
   ///
   /// <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code>
   Future<ListTagsForResourceResponse> listTagsForResource({
@@ -957,7 +881,7 @@ class Qldb {
   /// The inclusive start date and time from which to start streaming journal
   /// data. This parameter must be in <code>ISO 8601</code> date and time format
   /// and in Universal Coordinated Time (UTC). For example:
-  /// <code>2019-06-13T21:36:34Z</code>
+  /// <code>2019-06-13T21:36:34Z</code>.
   ///
   /// The <code>InclusiveStartTime</code> cannot be in the future and must be
   /// before <code>ExclusiveEndTime</code>.
@@ -995,7 +919,7 @@ class Qldb {
   ///
   /// The <code>ExclusiveEndTime</code> must be in <code>ISO 8601</code> date
   /// and time format and in Universal Coordinated Time (UTC). For example:
-  /// <code>2019-06-13T21:36:34Z</code>
+  /// <code>2019-06-13T21:36:34Z</code>.
   ///
   /// Parameter [tags] :
   /// The key-value pairs to add as tags to the stream that you want to create.
@@ -1020,12 +944,6 @@ class Qldb {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ledgerName',
-      ledgerName,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -1040,12 +958,6 @@ class Qldb {
       streamName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'streamName',
-      streamName,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1117,13 +1029,12 @@ class Qldb {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [resourceArn] :
-  /// The Amazon Resource Name (ARN) from which you want to remove the tags. For
-  /// example:
+  /// The Amazon Resource Name (ARN) from which to remove the tags. For example:
   ///
   /// <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code>
   ///
   /// Parameter [tagKeys] :
-  /// The list of tag keys that you want to remove.
+  /// The list of tag keys to remove.
   Future<void> untagResource({
     required String resourceArn,
     required List<String> tagKeys,
@@ -1163,10 +1074,8 @@ class Qldb {
   /// by default.
   ///
   /// If deletion protection is enabled, you must first disable it before you
-  /// can delete the ledger using the QLDB API or the AWS Command Line Interface
-  /// (AWS CLI). You can disable it by calling the <code>UpdateLedger</code>
-  /// operation to set the flag to <code>false</code>. The QLDB console disables
-  /// deletion protection for you when you use it to delete a ledger.
+  /// can delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   Future<UpdateLedgerResponse> updateLedger({
     required String name,
     bool? deletionProtection,
@@ -1177,12 +1086,6 @@ class Qldb {
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(?!^.*--)(?!^[0-9]+$)(?!^-)(?!.*-$)^[A-Za-z0-9-]+$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1196,10 +1099,84 @@ class Qldb {
     );
     return UpdateLedgerResponse.fromJson(response);
   }
+
+  /// Updates the permissions mode of a ledger.
+  /// <important>
+  /// Before you switch to the <code>STANDARD</code> permissions mode, you must
+  /// first create all required IAM policies and table tags to avoid disruption
+  /// to your users. To learn more, see <a
+  /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/ledger-management.basics.html#ledger-mgmt.basics.update-permissions.migrating">Migrating
+  /// to the standard permissions mode</a> in the <i>Amazon QLDB Developer
+  /// Guide</i>.
+  /// </important>
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [name] :
+  /// The name of the ledger.
+  ///
+  /// Parameter [permissionsMode] :
+  /// The permissions mode to assign to the ledger. This parameter can have one
+  /// of the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ALLOW_ALL</code>: A legacy permissions mode that enables access
+  /// control with API-level granularity for ledgers.
+  ///
+  /// This mode allows users who have the <code>SendCommand</code> API
+  /// permission for this ledger to run all PartiQL commands (hence,
+  /// <code>ALLOW_ALL</code>) on any tables in the specified ledger. This mode
+  /// disregards any table-level or command-level IAM permissions policies that
+  /// you create for the ledger.
+  /// </li>
+  /// <li>
+  /// <code>STANDARD</code>: (<i>Recommended</i>) A permissions mode that
+  /// enables access control with finer granularity for ledgers, tables, and
+  /// PartiQL commands.
+  ///
+  /// By default, this mode denies all user requests to run any PartiQL commands
+  /// on any tables in this ledger. To allow PartiQL commands to run, you must
+  /// create IAM permissions policies for specific table resources and PartiQL
+  /// actions, in addition to the <code>SendCommand</code> API permission for
+  /// the ledger. For information, see <a
+  /// href="https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-standard-mode.html">Getting
+  /// started with the standard permissions mode</a> in the <i>Amazon QLDB
+  /// Developer Guide</i>.
+  /// </li>
+  /// </ul> <note>
+  /// We strongly recommend using the <code>STANDARD</code> permissions mode to
+  /// maximize the security of your ledger data.
+  /// </note>
+  Future<UpdateLedgerPermissionsModeResponse> updateLedgerPermissionsMode({
+    required String name,
+    required PermissionsMode permissionsMode,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      32,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(permissionsMode, 'permissionsMode');
+    final $payload = <String, dynamic>{
+      'PermissionsMode': permissionsMode.toValue(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PATCH',
+      requestUri: '/ledgers/${Uri.encodeComponent(name)}/permissions-mode',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateLedgerPermissionsModeResponse.fromJson(response);
+  }
 }
 
 class CancelJournalKinesisStreamResponse {
-  /// The unique ID that QLDB assigns to each QLDB journal stream.
+  /// The UUID (Base62-encoded text) of the canceled QLDB journal stream.
   final String? streamId;
 
   CancelJournalKinesisStreamResponse({
@@ -1227,14 +1204,15 @@ class CreateLedgerResponse {
   /// default.
   ///
   /// If deletion protection is enabled, you must first disable it before you can
-  /// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-  /// CLI). You can disable it by calling the <code>UpdateLedger</code> operation
-  /// to set the flag to <code>false</code>. The QLDB console disables deletion
-  /// protection for you when you use it to delete a ledger.
+  /// delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   final bool? deletionProtection;
 
   /// The name of the ledger.
   final String? name;
+
+  /// The permissions mode of the ledger that you created.
+  final PermissionsMode? permissionsMode;
 
   /// The current status of the ledger.
   final LedgerState? state;
@@ -1244,6 +1222,7 @@ class CreateLedgerResponse {
     this.creationDateTime,
     this.deletionProtection,
     this.name,
+    this.permissionsMode,
     this.state,
   });
   factory CreateLedgerResponse.fromJson(Map<String, dynamic> json) {
@@ -1252,6 +1231,8 @@ class CreateLedgerResponse {
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
       deletionProtection: json['DeletionProtection'] as bool?,
       name: json['Name'] as String?,
+      permissionsMode:
+          (json['PermissionsMode'] as String?)?.toPermissionsMode(),
       state: (json['State'] as String?)?.toLedgerState(),
     );
   }
@@ -1306,14 +1287,15 @@ class DescribeLedgerResponse {
   /// default.
   ///
   /// If deletion protection is enabled, you must first disable it before you can
-  /// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-  /// CLI). You can disable it by calling the <code>UpdateLedger</code> operation
-  /// to set the flag to <code>false</code>. The QLDB console disables deletion
-  /// protection for you when you use it to delete a ledger.
+  /// delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   final bool? deletionProtection;
 
   /// The name of the ledger.
   final String? name;
+
+  /// The permissions mode of the ledger.
+  final PermissionsMode? permissionsMode;
 
   /// The current status of the ledger.
   final LedgerState? state;
@@ -1323,6 +1305,7 @@ class DescribeLedgerResponse {
     this.creationDateTime,
     this.deletionProtection,
     this.name,
+    this.permissionsMode,
     this.state,
   });
   factory DescribeLedgerResponse.fromJson(Map<String, dynamic> json) {
@@ -1331,6 +1314,8 @@ class DescribeLedgerResponse {
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
       deletionProtection: json['DeletionProtection'] as bool?,
       name: json['Name'] as String?,
+      permissionsMode:
+          (json['PermissionsMode'] as String?)?.toPermissionsMode(),
       state: (json['State'] as String?)?.toLedgerState(),
     );
   }
@@ -1365,7 +1350,8 @@ extension on String {
 }
 
 class ExportJournalToS3Response {
-  /// The unique ID that QLDB assigns to each journal export job.
+  /// The UUID (represented in Base62-encoded text) that QLDB assigns to each
+  /// journal export job.
   ///
   /// To describe your export request and check the status of the job, you can use
   /// <code>ExportId</code> to call <code>DescribeJournalS3Export</code>.
@@ -1484,12 +1470,12 @@ class GetRevisionResponse {
   }
 }
 
-/// The information about an Amazon QLDB journal stream, including the Amazon
+/// Information about an Amazon QLDB journal stream, including the Amazon
 /// Resource Name (ARN), stream name, creation time, current status, and the
-/// parameters of your original stream creation request.
+/// parameters of the original stream creation request.
 class JournalKinesisStreamDescription {
   /// The configuration settings of the Amazon Kinesis Data Streams destination
-  /// for your QLDB journal stream.
+  /// for a QLDB journal stream.
   final KinesisConfiguration kinesisConfiguration;
 
   /// The name of the ledger.
@@ -1503,7 +1489,7 @@ class JournalKinesisStreamDescription {
   /// The current state of the QLDB journal stream.
   final StreamStatus status;
 
-  /// The unique ID that QLDB assigns to each QLDB journal stream.
+  /// The UUID (represented in Base62-encoded text) of the QLDB journal stream.
   final String streamId;
 
   /// The user-defined name of the QLDB journal stream.
@@ -1561,9 +1547,9 @@ class JournalKinesisStreamDescription {
   }
 }
 
-/// The information about a journal export job, including the ledger name,
-/// export ID, when it was created, current status, and its start and end time
-/// export parameters.
+/// Information about a journal export job, including the ledger name, export
+/// ID, creation time, current status, and the parameters of the original export
+/// creation request.
 class JournalS3ExportDescription {
   /// The exclusive end date and time for the range of journal contents that are
   /// specified in the original export request.
@@ -1574,7 +1560,7 @@ class JournalS3ExportDescription {
   /// January 1, 1970 UTC.)
   final DateTime exportCreationTime;
 
-  /// The unique ID of the journal export job.
+  /// The UUID (represented in Base62-encoded text) of the journal export job.
   final String exportId;
 
   /// The inclusive start date and time for the range of journal contents that are
@@ -1631,15 +1617,22 @@ class JournalS3ExportDescription {
 }
 
 /// The configuration settings of the Amazon Kinesis Data Streams destination
-/// for your Amazon QLDB journal stream.
+/// for an Amazon QLDB journal stream.
 class KinesisConfiguration {
-  /// The Amazon Resource Name (ARN) of the Kinesis data stream resource.
+  /// The Amazon Resource Name (ARN) of the Kinesis Data Streams resource.
   final String streamArn;
 
   /// Enables QLDB to publish multiple data records in a single Kinesis Data
-  /// Streams record. To learn more, see <a
+  /// Streams record, increasing the number of records sent per API call.
+  ///
+  /// <i>This option is enabled by default.</i> Record aggregation has important
+  /// implications for processing records and requires de-aggregation in your
+  /// stream consumer. To learn more, see <a
   /// href="https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html">KPL
-  /// Key Concepts</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
+  /// Key Concepts</a> and <a
+  /// href="https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-consumer-deaggregation.html">Consumer
+  /// De-aggregation</a> in the <i>Amazon Kinesis Data Streams Developer
+  /// Guide</i>.
   final bool? aggregationEnabled;
 
   KinesisConfiguration({
@@ -1889,6 +1882,7 @@ class ListTagsForResourceResponse {
 
 enum PermissionsMode {
   allowAll,
+  standard,
 }
 
 extension on PermissionsMode {
@@ -1896,6 +1890,8 @@ extension on PermissionsMode {
     switch (this) {
       case PermissionsMode.allowAll:
         return 'ALLOW_ALL';
+      case PermissionsMode.standard:
+        return 'STANDARD';
     }
   }
 }
@@ -1905,6 +1901,8 @@ extension on String {
     switch (this) {
       case 'ALLOW_ALL':
         return PermissionsMode.allowAll;
+      case 'STANDARD':
+        return PermissionsMode.standard;
     }
     throw Exception('$this is not known in enum PermissionsMode');
   }
@@ -1922,8 +1920,8 @@ class S3EncryptionConfiguration {
   final S3ObjectEncryptionType objectEncryptionType;
 
   /// The Amazon Resource Name (ARN) for a symmetric customer master key (CMK) in
-  /// AWS Key Management Service (AWS KMS). Amazon QLDB does not support
-  /// asymmetric CMKs.
+  /// AWS Key Management Service (AWS KMS). Amazon S3 does not support asymmetric
+  /// CMKs.
   ///
   /// You must provide a <code>KmsKeyArn</code> if you specify
   /// <code>SSE_KMS</code> as the <code>ObjectEncryptionType</code>.
@@ -2053,7 +2051,8 @@ extension on String {
 }
 
 class StreamJournalToKinesisResponse {
-  /// The unique ID that QLDB assigns to each QLDB journal stream.
+  /// The UUID (represented in Base62-encoded text) that QLDB assigns to each QLDB
+  /// journal stream.
   final String? streamId;
 
   StreamJournalToKinesisResponse({
@@ -2123,6 +2122,32 @@ class UntagResourceResponse {
   }
 }
 
+class UpdateLedgerPermissionsModeResponse {
+  /// The Amazon Resource Name (ARN) for the ledger.
+  final String? arn;
+
+  /// The name of the ledger.
+  final String? name;
+
+  /// The current permissions mode of the ledger.
+  final PermissionsMode? permissionsMode;
+
+  UpdateLedgerPermissionsModeResponse({
+    this.arn,
+    this.name,
+    this.permissionsMode,
+  });
+  factory UpdateLedgerPermissionsModeResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateLedgerPermissionsModeResponse(
+      arn: json['Arn'] as String?,
+      name: json['Name'] as String?,
+      permissionsMode:
+          (json['PermissionsMode'] as String?)?.toPermissionsMode(),
+    );
+  }
+}
+
 class UpdateLedgerResponse {
   /// The Amazon Resource Name (ARN) for the ledger.
   final String? arn;
@@ -2137,10 +2162,8 @@ class UpdateLedgerResponse {
   /// default.
   ///
   /// If deletion protection is enabled, you must first disable it before you can
-  /// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-  /// CLI). You can disable it by calling the <code>UpdateLedger</code> operation
-  /// to set the flag to <code>false</code>. The QLDB console disables deletion
-  /// protection for you when you use it to delete a ledger.
+  /// delete the ledger. You can disable it by calling the
+  /// <code>UpdateLedger</code> operation to set the flag to <code>false</code>.
   final bool? deletionProtection;
 
   /// The name of the ledger.

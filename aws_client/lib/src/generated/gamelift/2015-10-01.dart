@@ -70,31 +70,19 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html">
-  /// Add FlexMatch to a Game Client</a>
+  /// Add FlexMatch to a game client</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html">
-  /// FlexMatch Events Reference</a>
+  /// FlexMatch events</a> (reference)
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>StopMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>AcceptMatch</a>
-  /// </li>
-  /// <li>
-  /// <a>StartMatchBackfill</a>
-  /// </li>
-  /// </ul>
+  /// <a>StartMatchmaking</a> | <a>DescribeMatchmaking</a> |
+  /// <a>StopMatchmaking</a> | <a>AcceptMatch</a> | <a>StartMatchBackfill</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -126,12 +114,6 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ticketId',
-      ticketId,
-      r'''[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.AcceptMatch'
@@ -150,8 +132,8 @@ class GameLift {
     );
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Locates an available game server and temporarily reserves it to host
   /// gameplay and players. This operation is called from a game client or
@@ -199,28 +181,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -231,7 +198,7 @@ class GameLift {
   ///
   /// Parameter [gameServerGroupName] :
   /// A unique identifier for the game server group where the game server is
-  /// running. Use either the <a>GameServerGroup</a> name or ARN value.. If you
+  /// running. Use either the <a>GameServerGroup</a> name or ARN value. If you
   /// are not specifying a game server to claim, this value identifies where you
   /// want GameLift FleetIQ to look for an available game server to claim.
   ///
@@ -258,33 +225,17 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'gameServerData',
       gameServerData,
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'gameServerData',
-      gameServerData,
-      r'''.*\S.*''',
-    );
     _s.validateStringLength(
       'gameServerId',
       gameServerId,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'gameServerId',
-      gameServerId,
-      r'''[a-zA-Z0-9-\.]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -324,26 +275,12 @@ class GameLift {
   /// returned, including an alias ID and an ARN. You can reassign an alias to
   /// another fleet by calling <code>UpdateAlias</code>.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -386,12 +323,6 @@ class GameLift {
       name,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(routingStrategy, 'routingStrategy');
@@ -438,22 +369,24 @@ class GameLift {
   ///
   /// <ul>
   /// <li>
-  /// To create a new game build with build files that are in an S3 location
-  /// under an AWS account that you control. To use this option, you must first
-  /// give Amazon GameLift access to the S3 bucket. With permissions in place,
-  /// call <code>CreateBuild</code> and specify a build name, operating system,
-  /// and the S3 storage location of your game build.
+  /// To create a new game build with build files that are in an Amazon S3
+  /// location under an AWS account that you control. To use this option, you
+  /// must first give Amazon GameLift access to the Amazon S3 bucket. With
+  /// permissions in place, call <code>CreateBuild</code> and specify a build
+  /// name, operating system, and the Amazon S3 storage location of your game
+  /// build.
   /// </li>
   /// <li>
-  /// To directly upload your build files to a GameLift S3 location. To use this
-  /// option, first call <code>CreateBuild</code> and specify a build name and
-  /// operating system. This operation creates a new build resource and also
-  /// returns an S3 location with temporary access credentials. Use the
-  /// credentials to manually upload your build files to the specified S3
-  /// location. For more information, see <a
+  /// To directly upload your build files to a GameLift Amazon S3 location. To
+  /// use this option, first call <code>CreateBuild</code> and specify a build
+  /// name and operating system. This operation creates a new build resource and
+  /// also returns an Amazon S3 location with temporary access credentials. Use
+  /// the credentials to manually upload your build files to the specified
+  /// Amazon S3 location. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UploadingObjects.html">Uploading
   /// Objects</a> in the <i>Amazon S3 Developer Guide</i>. Build files can be
-  /// uploaded to the GameLift S3 location once only; that can't be updated.
+  /// uploaded to the GameLift Amazon S3 location once only; that can't be
+  /// updated.
   /// </li>
   /// </ul>
   /// If successful, this operation creates a new build resource with a unique
@@ -470,25 +403,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-cli-uploading.html#gamelift-build-cli-uploading-create-build">
   /// Create a Build with Files in Amazon S3</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -510,16 +430,12 @@ class GameLift {
   /// (WINDOWS_2012). This value cannot be changed later.
   ///
   /// Parameter [storageLocation] :
-  /// The location where your game build files are stored. Use this parameter
-  /// only when creating a build using files that are stored in an S3 bucket
-  /// that you own. Identify an S3 bucket name and key, which must in the same
-  /// Region where you're creating a build. This parameter must also specify the
-  /// ARN for an IAM role that you've set up to give Amazon GameLift access your
-  /// S3 bucket. To call this operation with a storage location, you must have
-  /// IAM PassRole permission. For more details on IAM roles and PassRole
-  /// permissions, see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html">
-  /// Set up a role for GameLift access</a>.
+  /// Information indicating where your game build files are stored. Use this
+  /// parameter only when creating a build with files stored in an Amazon S3
+  /// bucket that you own. The storage location must specify an Amazon S3 bucket
+  /// name and key. The location must also specify a role ARN that you set up to
+  /// allow Amazon GameLift to access your Amazon S3 bucket. The S3 bucket and
+  /// your new build must be in the same Region.
   ///
   /// Parameter [tags] :
   /// A list of labels to assign to the new build resource. Tags are
@@ -579,83 +495,64 @@ class GameLift {
     return CreateBuildOutput.fromJson(jsonResponse.body);
   }
 
-  /// Creates a new fleet to run your game servers. whether they are custom game
-  /// builds or Realtime Servers with game-specific script. A fleet is a set of
-  /// Amazon Elastic Compute Cloud (Amazon EC2) instances, each of which can
-  /// host multiple game sessions. When creating a fleet, you choose the
-  /// hardware specifications, set some configuration options, and specify the
-  /// game server to deploy on the new fleet.
+  /// Creates a fleet of Amazon Elastic Compute Cloud (Amazon EC2) instances to
+  /// host your custom game server or Realtime Servers. Use this operation to
+  /// configure the computing resources for your fleet and provide instructions
+  /// for running game servers on each instance.
   ///
-  /// To create a new fleet, provide the following: (1) a fleet name, (2) an EC2
-  /// instance type and fleet type (spot or on-demand), (3) the build ID for
-  /// your game build or script ID if using Realtime Servers, and (4) a runtime
-  /// configuration, which determines how game servers will run on each instance
-  /// in the fleet.
+  /// Most GameLift fleets can deploy instances to multiple locations, including
+  /// the home Region (where the fleet is created) and an optional set of remote
+  /// locations. Fleets that are created in the following AWS Regions support
+  /// multiple locations: us-east-1 (N. Virginia), us-west-2 (Oregon),
+  /// eu-central-1 (Frankfurt), eu-west-1 (Ireland), ap-southeast-2 (Sydney),
+  /// ap-northeast-1 (Tokyo), and ap-northeast-2 (Seoul). Fleets that are
+  /// created in other GameLift Regions can deploy instances in the fleet's home
+  /// Region only. All fleet instances use the same configuration regardless of
+  /// location; however, you can adjust capacity settings and turn auto-scaling
+  /// on/off for each location.
   ///
-  /// If the <code>CreateFleet</code> call is successful, Amazon GameLift
-  /// performs the following tasks. You can track the process of a fleet by
-  /// checking the fleet status or by monitoring fleet creation events:
+  /// To create a fleet, choose the hardware for your instances, specify a game
+  /// server build or Realtime script to deploy, and provide a runtime
+  /// configuration to direct GameLift how to start and run game servers on each
+  /// instance in the fleet. Set permissions for inbound traffic to your game
+  /// servers, and enable optional features as needed. When creating a
+  /// multi-location fleet, provide a list of additional remote locations.
   ///
-  /// <ul>
-  /// <li>
-  /// Creates a fleet resource. Status: <code>NEW</code>.
-  /// </li>
-  /// <li>
-  /// Begins writing events to the fleet event log, which can be accessed in the
-  /// Amazon GameLift console.
-  /// </li>
-  /// <li>
-  /// Sets the fleet's target capacity to 1 (desired instances), which triggers
-  /// Amazon GameLift to start one new EC2 instance.
-  /// </li>
-  /// <li>
-  /// Downloads the game build or Realtime script to the new instance and
-  /// installs it. Statuses: <code>DOWNLOADING</code>, <code>VALIDATING</code>,
-  /// <code>BUILDING</code>.
-  /// </li>
-  /// <li>
-  /// Starts launching server processes on the instance. If the fleet is
-  /// configured to run multiple server processes per instance, Amazon GameLift
-  /// staggers each process launch by a few seconds. Status:
-  /// <code>ACTIVATING</code>.
-  /// </li>
-  /// <li>
-  /// Sets the fleet's status to <code>ACTIVE</code> as soon as one server
-  /// process is ready to host a game session.
-  /// </li>
-  /// </ul>
+  /// If successful, this operation creates a new Fleet resource and places it
+  /// in <code>NEW</code> status, which prompts GameLift to initiate the <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creation-workflow.html">fleet
+  /// creation workflow</a>. You can track fleet creation by checking fleet
+  /// status using <a>DescribeFleetAttributes</a> and
+  /// <a>DescribeFleetLocationAttributes</a>/, or by monitoring fleet creation
+  /// events using <a>DescribeFleetEvents</a>. As soon as the fleet status
+  /// changes to <code>ACTIVE</code>, you can enable automatic scaling for the
+  /// fleet with <a>PutScalingPolicy</a> and set capacity for the home Region
+  /// with <a>UpdateFleetCapacity</a>. When the status of each remote location
+  /// reaches <code>ACTIVE</code>, you can set capacity by location using
+  /// <a>UpdateFleetCapacity</a>.
+  ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// Up Fleets</a>
+  /// up fleets</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html#fleets-creating-debug-creation">Debug
-  /// Fleet Creation Issues</a>
+  /// fleet creation issues</a>
   ///
-  /// <b>Related operations</b>
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Multi-location
+  /// fleets</a>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleet</a> | <a>UpdateFleetCapacity</a> | <a>PutScalingPolicy</a>
+  /// | <a>DescribeEC2InstanceLimits</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetLocationAttributes</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>StopFleetActions</a> | <a>DeleteFleet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -666,167 +563,152 @@ class GameLift {
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [eC2InstanceType] :
-  /// The name of an EC2 instance type that is supported in Amazon GameLift. A
-  /// fleet instance type determines the computing resources of each instance in
-  /// the fleet, including CPU, memory, storage, and networking capacity. Amazon
-  /// GameLift supports the following EC2 instance types. See <a
-  /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
-  /// Types</a> for detailed descriptions.
+  /// The GameLift-supported EC2 instance type to use for all fleet instances.
+  /// Instance type determines the computing resources that will be used to host
+  /// your game servers, including CPU, memory, storage, and networking
+  /// capacity. See <a href="http://aws.amazon.com/ec2/instance-types/">Amazon
+  /// EC2 Instance Types</a> for detailed descriptions of EC2 instance types.
   ///
   /// Parameter [name] :
   /// A descriptive label that is associated with a fleet. Fleet names do not
   /// need to be unique.
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to be deployed on the new fleet. You can
-  /// use either the build ID or ARN value. The custom game server build must
-  /// have been successfully uploaded to Amazon GameLift and be in a
-  /// <code>READY</code> status. This fleet setting cannot be changed once the
-  /// fleet is created.
+  /// The unique identifier for a custom game server build to be deployed on
+  /// fleet instances. You can use either the build ID or ARN. The build must be
+  /// uploaded to GameLift and in <code>READY</code> status. This fleet property
+  /// cannot be changed later.
   ///
   /// Parameter [certificateConfiguration] :
-  /// Indicates whether to generate a TLS/SSL certificate for the new fleet. TLS
-  /// certificates are used for encrypting traffic between game clients and game
-  /// servers running on GameLift. If this parameter is not specified, the
-  /// default value, DISABLED, is used. This fleet setting cannot be changed
-  /// once the fleet is created. Learn more at <a
+  /// Prompts GameLift to generate a TLS/SSL certificate for the fleet. TLS
+  /// certificates are used for encrypting traffic between game clients and the
+  /// game servers that are running on GameLift. By default, the
+  /// <code>CertificateConfiguration</code> is set to <code>DISABLED</code>.
+  /// Learn more at <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-howitworks.html#gamelift-howitworks-security">Securing
-  /// Client/Server Communication</a>.
+  /// Client/Server Communication</a>. This property cannot be changed after the
+  /// fleet is created.
   ///
   /// Note: This feature requires the AWS Certificate Manager (ACM) service,
-  /// which is available in the AWS global partition but not in all other
-  /// partitions. When working in a partition that does not support this
-  /// feature, a request for a new fleet with certificate generation results
-  /// fails with a 4xx unsupported Region error.
-  ///
-  /// Valid values include:
-  ///
-  /// <ul>
-  /// <li>
-  /// <b>GENERATED</b> - Generate a TLS/SSL certificate for this fleet.
-  /// </li>
-  /// <li>
-  /// <b>DISABLED</b> - (default) Do not generate a TLS/SSL certificate for this
-  /// fleet.
-  /// </li>
-  /// </ul>
+  /// which is not available in all AWS regions. When working in a region that
+  /// does not support this feature, a fleet creation request with certificate
+  /// generation fails with a 4xx error.
   ///
   /// Parameter [description] :
-  /// A human-readable description of a fleet.
+  /// A human-readable description of the fleet.
   ///
   /// Parameter [eC2InboundPermissions] :
-  /// Range of IP addresses and port settings that permit inbound traffic to
-  /// access game sessions that are running on the fleet. For fleets using a
-  /// custom game build, this parameter is required before game sessions running
-  /// on the fleet can accept connections. For Realtime Servers fleets, Amazon
-  /// GameLift automatically sets TCP and UDP ranges for use by the Realtime
-  /// servers. You can specify multiple permission settings or add more by
-  /// updating the fleet.
+  /// The allowed IP address ranges and port settings that allow inbound traffic
+  /// to access game sessions on this fleet. If the fleet is hosting a custom
+  /// game build, this property must be set before players can connect to game
+  /// sessions. For Realtime Servers fleets, GameLift automatically sets TCP and
+  /// UDP ranges.
   ///
   /// Parameter [fleetType] :
-  /// Indicates whether to use On-Demand instances or Spot instances for this
-  /// fleet. If empty, the default is <code>ON_DEMAND</code>. Both categories of
-  /// instances use identical hardware and configurations based on the instance
-  /// type selected for this fleet. Learn more about <a
+  /// Indicates whether to use On-Demand or Spot instances for this fleet. By
+  /// default, this property is set to <code>ON_DEMAND</code>. Learn more about
+  /// when to use <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-ec2-instances.html#gamelift-ec2-instances-spot">
-  /// On-Demand versus Spot Instances</a>.
+  /// On-Demand versus Spot Instances</a>. This property cannot be changed after
+  /// the fleet is created.
   ///
   /// Parameter [instanceRoleArn] :
   /// A unique identifier for an AWS IAM role that manages access to your AWS
-  /// services. Fleets with an instance role ARN allow applications that are
-  /// running on the fleet's instances to assume the role. Learn more about
-  /// using on-box credentials for your game servers at <a
+  /// services. With an instance role ARN set, any application that runs on an
+  /// instance in this fleet can assume the role, including install scripts,
+  /// server processes, and daemons (background processes). Create a role or
+  /// look up a role's ARN by using the <a
+  /// href="https://console.aws.amazon.com/iam/">IAM dashboard</a> in the AWS
+  /// Management Console. Learn more about using on-box credentials for your
+  /// game servers at <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html">
-  /// Access external resources from a game server</a>. To call this operation
-  /// with instance role ARN, you must have IAM PassRole permissions. See <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-iam-policy-examples.html">IAM
-  /// policy examples for GameLift</a>.
+  /// Access external resources from a game server</a>. This property cannot be
+  /// changed after the fleet is created.
+  ///
+  /// Parameter [locations] :
+  /// A set of remote locations to deploy additional instances to and manage as
+  /// part of the fleet. This parameter can only be used when creating fleets in
+  /// AWS Regions that support multiple locations. You can add any
+  /// GameLift-supported AWS Region as a remote location, in the form of an AWS
+  /// Region code such as <code>us-west-2</code>. To create a fleet with
+  /// instances in the home Region only, omit this parameter.
   ///
   /// Parameter [logPaths] :
-  /// This parameter is no longer used. Instead, to specify where Amazon
-  /// GameLift should store log files once a server process shuts down, use the
-  /// Amazon GameLift server API <code>ProcessReady()</code> and specify one or
-  /// more directory paths in <code>logParameters</code>. See more information
-  /// in the <a
+  /// <b>This parameter is no longer used.</b> To specify where GameLift should
+  /// store log files once a server process shuts down, use the GameLift server
+  /// API <code>ProcessReady()</code> and specify one or more directory paths in
+  /// <code>logParameters</code>. See more information in the <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api-ref.html#gamelift-sdk-server-api-ref-dataypes-process">Server
   /// API Reference</a>.
   ///
   /// Parameter [metricGroups] :
-  /// The name of an Amazon CloudWatch metric group to add this fleet to. A
-  /// metric group aggregates the metrics for all fleets in the group. Specify
-  /// an existing metric group name, or provide a new name to create a new
-  /// metric group. A fleet can only be included in one metric group at a time.
+  /// The name of an AWS CloudWatch metric group to add this fleet to. A metric
+  /// group is used to aggregate the metrics for multiple fleets. You can
+  /// specify an existing metric group name or set a new name to create a new
+  /// metric group. A fleet can be included in only one metric group at a time.
   ///
   /// Parameter [newGameSessionProtectionPolicy] :
-  /// A game session protection policy to apply to all instances in this fleet.
-  /// If this parameter is not set, instances in this fleet default to no
-  /// protection. You can change a fleet's protection policy using
-  /// <a>UpdateFleetAttributes</a>, but this change will only affect sessions
-  /// created after the policy change. You can also set protection for
-  /// individual instances using <a>UpdateGameSession</a>.
+  /// The status of termination protection for active game sessions on the
+  /// fleet. By default, this property is set to <code>NoProtection</code>. You
+  /// can also set game session protection for an individual game session by
+  /// calling <a>UpdateGameSession</a>.
   ///
   /// <ul>
   /// <li>
-  /// <b>NoProtection</b> - The game session can be terminated during a
-  /// scale-down event.
+  /// <b>NoProtection</b> - Game sessions can be terminated during active
+  /// gameplay as a result of a scale-down event.
   /// </li>
   /// <li>
-  /// <b>FullProtection</b> - If the game session is in an <code>ACTIVE</code>
-  /// status, it cannot be terminated during a scale-down event.
+  /// <b>FullProtection</b> - Game sessions in <code>ACTIVE</code> status cannot
+  /// be terminated during a scale-down event.
   /// </li>
   /// </ul>
   ///
   /// Parameter [peerVpcAwsAccountId] :
-  /// A unique identifier for the AWS account with the VPC that you want to peer
-  /// your Amazon GameLift fleet with. You can find your account ID in the AWS
-  /// Management Console under account settings.
+  /// Used when peering your GameLift fleet with a VPC, the unique identifier
+  /// for the AWS account that owns the VPC. You can find your account ID in the
+  /// AWS Management Console under account settings.
   ///
   /// Parameter [peerVpcId] :
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
+  /// A unique identifier for a VPC with resources to be accessed by your
   /// GameLift fleet. The VPC must be in the same Region as your fleet. To look
   /// up a VPC ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC
   /// Dashboard</a> in the AWS Management Console. Learn more about VPC peering
   /// in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   ///
   /// Parameter [resourceCreationLimitPolicy] :
-  /// A policy that limits the number of game sessions an individual player can
-  /// create over a span of time for this fleet.
+  /// A policy that limits the number of game sessions that an individual player
+  /// can create on instances in this fleet within a specified span of time.
   ///
   /// Parameter [runtimeConfiguration] :
-  /// Instructions for launching server processes on each instance in the fleet.
-  /// Server processes run either a custom game build executable or a Realtime
-  /// script. The runtime configuration defines the server executables or launch
-  /// script file, launch parameters, and the number of processes to run
-  /// concurrently on each instance. When creating a fleet, the runtime
-  /// configuration must have at least one server process configuration;
-  /// otherwise the request fails with an invalid request exception. (This
-  /// parameter replaces the parameters <code>ServerLaunchPath</code> and
-  /// <code>ServerLaunchParameters</code>, although requests that contain values
-  /// for these parameters instead of a runtime configuration will continue to
-  /// work.) This parameter is required unless the parameters
-  /// <code>ServerLaunchPath</code> and <code>ServerLaunchParameters</code> are
-  /// defined. Runtime configuration replaced these parameters, but fleets that
-  /// use them will continue to work.
+  /// Instructions for how to launch and maintain server processes on instances
+  /// in the fleet. The runtime configuration defines one or more server process
+  /// configurations, each identifying a build executable or Realtime script
+  /// file and the number of processes of that type to run concurrently.
+  /// <note>
+  /// The <code>RuntimeConfiguration</code> parameter is required unless the
+  /// fleet is being configured using the older parameters
+  /// <code>ServerLaunchPath</code> and <code>ServerLaunchParameters</code>,
+  /// which are still supported for backward compatibility.
+  /// </note>
   ///
   /// Parameter [scriptId] :
-  /// A unique identifier for a Realtime script to be deployed on the new fleet.
-  /// You can use either the script ID or ARN value. The Realtime script must
-  /// have been successfully uploaded to Amazon GameLift. This fleet setting
-  /// cannot be changed once the fleet is created.
+  /// The unique identifier for a Realtime configuration script to be deployed
+  /// on fleet instances. You can use either the script ID or ARN. Scripts must
+  /// be uploaded to GameLift prior to creating the fleet. This fleet property
+  /// cannot be changed later.
   ///
   /// Parameter [serverLaunchParameters] :
-  /// This parameter is no longer used. Instead, specify server launch
-  /// parameters in the <code>RuntimeConfiguration</code> parameter. (Requests
-  /// that specify a server launch path and launch parameters instead of a
-  /// runtime configuration will continue to work.)
+  /// <b>This parameter is no longer used.</b> Specify server launch parameters
+  /// using the <code>RuntimeConfiguration</code> parameter. Requests that use
+  /// this parameter instead continue to be valid.
   ///
   /// Parameter [serverLaunchPath] :
-  /// This parameter is no longer used. Instead, specify a server launch path
-  /// using the <code>RuntimeConfiguration</code> parameter. Requests that
-  /// specify a server launch path and launch parameters instead of a runtime
-  /// configuration will continue to work.
+  /// <b>This parameter is no longer used.</b> Specify a server launch path
+  /// using the <code>RuntimeConfiguration</code> parameter. Requests that use
+  /// this parameter instead continue to be valid.
   ///
   /// Parameter [tags] :
   /// A list of labels to assign to the new fleet resource. Tags are
@@ -835,10 +717,10 @@ class GameLift {
   /// information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">
   /// Tagging AWS Resources</a> in the <i>AWS General Reference</i>. Once the
-  /// resource is created, you can use <a>TagResource</a>, <a>UntagResource</a>,
+  /// fleet is created, you can use <a>TagResource</a>, <a>UntagResource</a>,
   /// and <a>ListTagsForResource</a> to add, remove, and view tags. The maximum
-  /// tag limit may be lower than stated. See the AWS General Reference for
-  /// actual tagging limits.
+  /// tag limit may be lower than stated. See the <i>AWS General Reference</i>
+  /// for actual tagging limits.
   Future<CreateFleetOutput> createFleet({
     required EC2InstanceType eC2InstanceType,
     required String name,
@@ -848,6 +730,7 @@ class GameLift {
     List<IpPermission>? eC2InboundPermissions,
     FleetType? fleetType,
     String? instanceRoleArn,
+    List<LocationConfiguration>? locations,
     List<String>? logPaths,
     List<String>? metricGroups,
     ProtectionPolicy? newGameSessionProtectionPolicy,
@@ -868,11 +751,6 @@ class GameLift {
       1,
       1024,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
     );
     _s.validateStringLength(
       'description',
@@ -897,11 +775,6 @@ class GameLift {
       peerVpcId,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'scriptId',
-      scriptId,
-      r'''^script-\S+|^arn:.*:script\/script-\S+''',
     );
     _s.validateStringLength(
       'serverLaunchParameters',
@@ -936,6 +809,7 @@ class GameLift {
           'EC2InboundPermissions': eC2InboundPermissions,
         if (fleetType != null) 'FleetType': fleetType.toValue(),
         if (instanceRoleArn != null) 'InstanceRoleArn': instanceRoleArn,
+        if (locations != null) 'Locations': locations,
         if (logPaths != null) 'LogPaths': logPaths,
         if (metricGroups != null) 'MetricGroups': metricGroups,
         if (newGameSessionProtectionPolicy != null)
@@ -959,8 +833,90 @@ class GameLift {
     return CreateFleetOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// Adds remote locations to a fleet and begins populating the new locations
+  /// with EC2 instances. The new instances conform to the fleet's instance
+  /// type, auto-scaling, and other configuration settings.
+  /// <note>
+  /// This operation cannot be used with fleets that don't support remote
+  /// locations. Fleets can have multiple locations only if they reside in AWS
+  /// Regions that support this feature (see <a>CreateFleet</a> for the complete
+  /// list) and were created after the feature was released in March 2021.
+  /// </note>
+  /// To add fleet locations, specify the fleet to be updated and provide a list
+  /// of one or more locations.
+  ///
+  /// If successful, this operation returns the list of added locations with
+  /// their status set to <code>NEW</code>. GameLift initiates the process of
+  /// starting an instance in each added location. You can track the status of
+  /// each new location by monitoring location creation events using
+  /// <a>DescribeFleetEvents</a>. Alternatively, you can poll location status by
+  /// calling <a>DescribeFleetLocationAttributes</a>. After a location status
+  /// becomes <code>ACTIVE</code>, you can adjust the location's capacity as
+  /// needed with <a>UpdateFleetCapacity</a>.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
+  /// up fleets</a>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Multi-location
+  /// fleets</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleetLocations</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetLocationCapacity</a> |
+  /// <a>DescribeFleetLocationUtilization</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetCapacity</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>StopFleetActions</a> |
+  /// <a>DeleteFleetLocations</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
+  ///
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [NotFoundException].
+  /// May throw [InvalidFleetStatusException].
+  ///
+  /// Parameter [fleetId] :
+  /// A unique identifier for the fleet to add locations to. You can use either
+  /// the fleet ID or ARN value.
+  ///
+  /// Parameter [locations] :
+  /// A list of locations to deploy additional instances to and manage as part
+  /// of the fleet. You can add any GameLift-supported AWS Region as a remote
+  /// location, in the form of an AWS Region code such as
+  /// <code>us-west-2</code>.
+  Future<CreateFleetLocationsOutput> createFleetLocations({
+    required String fleetId,
+    required List<LocationConfiguration> locations,
+  }) async {
+    ArgumentError.checkNotNull(fleetId, 'fleetId');
+    ArgumentError.checkNotNull(locations, 'locations');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'GameLift.CreateFleetLocations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FleetId': fleetId,
+        'Locations': locations,
+      },
+    );
+
+    return CreateFleetLocationsOutput.fromJson(jsonResponse.body);
+  }
+
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Creates a GameLift FleetIQ game server group for managing game hosting on
   /// a collection of Amazon EC2 instances for game hosting. This operation
@@ -983,7 +939,7 @@ class GameLift {
   /// An IAM role that extends limited access to your AWS account to allow
   /// GameLift FleetIQ to create and interact with the Auto Scaling group. For
   /// more information, see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gsg-iam-permissions-roles.html">Create
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-iam-permissions-roles.html">Create
   /// IAM roles for cross-service interaction</a> in the <i>GameLift FleetIQ
   /// Developer Guide</i>.
   /// </li>
@@ -1009,34 +965,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ConflictException].
@@ -1074,6 +1010,12 @@ class GameLift {
   /// Scaling User Guide</i>. After the Auto Scaling group is created, update
   /// this value directly in the Auto Scaling group using the AWS console or
   /// APIs.
+  /// <note>
+  /// If you specify network interfaces in your launch template, you must
+  /// explicitly set the property <code>AssociatePublicIpAddress</code> to
+  /// "true". If no network interface is specified in the launch template,
+  /// GameLift FleetIQ uses your account's default VPC.
+  /// </note>
   ///
   /// Parameter [maxSize] :
   /// The maximum number of instances allowed in the EC2 Auto Scaling group.
@@ -1184,12 +1126,6 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceDefinitions, 'instanceDefinitions');
     ArgumentError.checkNotNull(launchTemplate, 'launchTemplate');
     ArgumentError.checkNotNull(maxSize, 'maxSize');
@@ -1214,12 +1150,6 @@ class GameLift {
       roleArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:.*:role\/[\w+=,.@-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1252,74 +1182,63 @@ class GameLift {
     return CreateGameServerGroupOutput.fromJson(jsonResponse.body);
   }
 
-  /// Creates a multiplayer game session for players. This operation creates a
-  /// game session record and assigns an available server process in the
-  /// specified fleet to host the game session. A fleet must have an
-  /// <code>ACTIVE</code> status before a game session can be created in it.
+  /// Creates a multiplayer game session for players in a specific fleet
+  /// location. This operation prompts an available server process to start a
+  /// game session and retrieves connection information for the new game
+  /// session. As an alternative, consider using the GameLift game session
+  /// placement feature with
   ///
-  /// To create a game session, specify either fleet ID or alias ID and indicate
-  /// a maximum number of players to allow in the game session. You can also
-  /// provide a name and game-specific properties for this game session. If
-  /// successful, a <a>GameSession</a> object is returned containing the game
-  /// session properties and other settings you specified.
+  /// with <a>StartGameSessionPlacement</a>, which uses FleetIQ algorithms and
+  /// queues to optimize the placement process.
   ///
-  /// <b>Idempotency tokens.</b> You can add a token that uniquely identifies
-  /// game session requests. This is useful for ensuring that game session
-  /// requests are idempotent. Multiple requests with the same idempotency token
-  /// are processed only once; subsequent requests return the original result.
-  /// All response values are the same with the exception of game session
-  /// status, which may change.
+  /// When creating a game session, you specify exactly where you want to place
+  /// it and provide a set of game session configuration settings. The fleet
+  /// must be in <code>ACTIVE</code> status before a game session can be created
+  /// in it.
   ///
-  /// <b>Resource creation limits.</b> If you are creating a game session on a
-  /// fleet with a resource creation limit policy in force, then you must
-  /// specify a creator ID. Without this ID, Amazon GameLift has no way to
-  /// evaluate the policy for this new game session request.
+  /// This operation can be used in the following ways:
   ///
-  /// <b>Player acceptance policy.</b> By default, newly created game sessions
-  /// are open to new players. You can restrict new player access by using
+  /// <ul>
+  /// <li>
+  /// To create a game session on an instance in a fleet's home Region, provide
+  /// a fleet or alias ID along with your game session configuration.
+  /// </li>
+  /// <li>
+  /// To create a game session on an instance in a fleet's remote location,
+  /// provide a fleet or alias ID and a location name, along with your game
+  /// session configuration.
+  /// </li>
+  /// </ul>
+  /// If successful, a workflow is initiated to start a new game session. A
+  /// <code>GameSession</code> object is returned containing the game session
+  /// configuration and status. When the status is <code>ACTIVE</code>, game
+  /// session connection information is provided and player sessions can be
+  /// created for the game session. By default, newly created game sessions are
+  /// open to new players. You can restrict new player access by using
   /// <a>UpdateGameSession</a> to change the game session's player session
   /// creation policy.
   ///
-  /// <b>Game session logs.</b> Logs are retained for all active game sessions
-  /// for 14 days. To access the logs, call <a>GetGameSessionLogUrl</a> to
-  /// download the log files.
+  /// Game session logs are retained for all active game sessions for 14 days.
+  /// To access the logs, call <a>GetGameSessionLogUrl</a> to download the log
+  /// files.
   ///
-  /// <i>Available in Amazon GameLift Local.</i>
+  /// <i>Available in GameLift Local.</i>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Learn more</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+  /// a game session</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [ConflictException].
   /// May throw [InternalServiceException].
@@ -1337,53 +1256,58 @@ class GameLift {
   /// game session.
   ///
   /// Parameter [aliasId] :
-  /// A unique identifier for an alias associated with the fleet to create a
+  /// A unique identifier for the alias associated with the fleet to create a
   /// game session in. You can use either the alias ID or ARN value. Each
   /// request must reference either a fleet ID or alias ID, but not both.
   ///
   /// Parameter [creatorId] :
   /// A unique identifier for a player or entity creating the game session. This
-  /// ID is used to enforce a resource protection policy (if one exists) that
-  /// limits the number of concurrent active game sessions one player can have.
+  /// parameter is required when requesting a new game session on a fleet with a
+  /// resource creation limit policy. This type of policy limits the number of
+  /// concurrent active game sessions that one player can create within a
+  /// certain time span. GameLift uses the CreatorId to evaluate the new request
+  /// against the policy.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to create a game session in. You can use
+  /// A unique identifier for the fleet to create a game session in. You can use
   /// either the fleet ID or ARN value. Each request must reference either a
   /// fleet ID or alias ID, but not both.
   ///
   /// Parameter [gameProperties] :
-  /// Set of custom properties for a game session, formatted as key:value pairs.
-  /// These properties are passed to a game server process in the
-  /// <a>GameSession</a> object with a request to start a new game session (see
-  /// <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-  /// a Game Session</a>).
+  /// A set of custom properties for a game session, formatted as key:value
+  /// pairs. These properties are passed to a game server process in the
+  /// <a>GameSession</a> object with a request to start a new game session.
   ///
   /// Parameter [gameSessionData] :
-  /// Set of custom game session properties, formatted as a single string value.
-  /// This data is passed to a game server process in the <a>GameSession</a>
-  /// object with a request to start a new game session (see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-  /// a Game Session</a>).
+  /// A set of custom game session properties, formatted as a single string
+  /// value. This data is passed to a game server process in the
+  /// <a>GameSession</a> object with a request to start a new game session.
   ///
   /// Parameter [gameSessionId] :
   /// <i>This parameter is no longer preferred. Please use
   /// <code>IdempotencyToken</code> instead.</i> Custom string that uniquely
   /// identifies a request for a new game session. Maximum token length is 48
   /// characters. If provided, this string is included in the new game session's
-  /// ID. (A game session ARN has the following format:
-  /// <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet
-  /// ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.)
+  /// ID.
   ///
   /// Parameter [idempotencyToken] :
-  /// Custom string that uniquely identifies a request for a new game session.
-  /// Maximum token length is 48 characters. If provided, this string is
-  /// included in the new game session's ID. (A game session ARN has the
-  /// following format:
+  /// Custom string that uniquely identifies the new game session request. This
+  /// is useful for ensuring that game session requests with the same
+  /// idempotency token are processed only once. Subsequent requests with the
+  /// same string return the original <code>GameSession</code> object, with an
+  /// updated status. Maximum token length is 48 characters. If provided, this
+  /// string is included in the new game session's ID. A game session ARN has
+  /// the following format:
   /// <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet
-  /// ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.) Idempotency
+  /// ID&gt;/&lt;custom ID string or idempotency token&gt;</code>. Idempotency
   /// tokens remain in use for 30 days after a game session has ended; game
   /// session objects are retained for this time period and then deleted.
+  ///
+  /// Parameter [location] :
+  /// A fleet's remote location to place the new game session in. If this
+  /// parameter is not set, the new game session is placed in the fleet's home
+  /// Region. Specify a remote location with an AWS Region code such as
+  /// <code>us-west-2</code>.
   ///
   /// Parameter [name] :
   /// A descriptive label that is associated with a game session. Session names
@@ -1397,6 +1321,7 @@ class GameLift {
     String? gameSessionData,
     String? gameSessionId,
     String? idempotencyToken,
+    String? location,
     String? name,
   }) async {
     ArgumentError.checkNotNull(
@@ -1408,27 +1333,17 @@ class GameLift {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-    );
     _s.validateStringLength(
       'creatorId',
       creatorId,
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-    );
     _s.validateStringLength(
       'gameSessionData',
       gameSessionData,
       1,
-      4096,
+      262144,
     );
     _s.validateStringLength(
       'gameSessionId',
@@ -1436,21 +1351,17 @@ class GameLift {
       1,
       48,
     );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'idempotencyToken',
       idempotencyToken,
       1,
       48,
     );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[a-zA-Z0-9-]+''',
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'name',
@@ -1477,6 +1388,7 @@ class GameLift {
         if (gameSessionData != null) 'GameSessionData': gameSessionData,
         if (gameSessionId != null) 'GameSessionId': gameSessionId,
         if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
+        if (location != null) 'Location': location,
         if (name != null) 'Name': name,
       },
     );
@@ -1484,93 +1396,101 @@ class GameLift {
     return CreateGameSessionOutput.fromJson(jsonResponse.body);
   }
 
-  /// Establishes a new queue for processing requests to place new game
-  /// sessions. A queue identifies where new game sessions can be hosted -- by
-  /// specifying a list of destinations (fleets or aliases) -- and how long
-  /// requests can wait in the queue before timing out. You can set up a queue
-  /// to try to place game sessions on fleets in multiple Regions. To add
-  /// placement requests to a queue, call <a>StartGameSessionPlacement</a> and
-  /// reference the queue name.
+  /// Creates a placement queue that processes requests for new game sessions. A
+  /// queue uses FleetIQ algorithms to determine the best placement locations
+  /// and find an available game server there, then prompts the game server
+  /// process to start a new game session.
   ///
-  /// <b>Destination order.</b> When processing a request for a game session,
-  /// Amazon GameLift tries each destination in order until it finds one with
-  /// available resources to host the new game session. A queue's default order
-  /// is determined by how destinations are listed. The default order is
-  /// overridden when a game session placement request provides player latency
-  /// information. Player latency information enables Amazon GameLift to
-  /// prioritize destinations where players report the lowest average latency,
-  /// as a result placing the new game session where the majority of players
-  /// will have the best possible gameplay experience.
+  /// A game session queue is configured with a set of destinations (GameLift
+  /// fleets or aliases), which determine the locations where the queue can
+  /// place new game sessions. These destinations can span multiple fleet types
+  /// (Spot and On-Demand), instance types, and AWS Regions. If the queue
+  /// includes multi-location fleets, the queue is able to place game sessions
+  /// in all of a fleet's remote locations. You can opt to filter out individual
+  /// locations if needed.
   ///
-  /// <b>Player latency policies.</b> For placement requests containing player
-  /// latency information, use player latency policies to protect individual
-  /// players from very high latencies. With a latency cap, even when a
-  /// destination can deliver a low latency for most players, the game is not
-  /// placed where any individual player is reporting latency higher than a
-  /// policy's maximum. A queue can have multiple latency policies, which are
-  /// enforced consecutively starting with the policy with the lowest latency
-  /// cap. Use multiple policies to gradually relax latency controls; for
-  /// example, you might set a policy with a low latency cap for the first 60
-  /// seconds, a second policy with a higher cap for the next 60 seconds, etc.
+  /// The queue configuration also determines how FleetIQ selects the best
+  /// available placement for a new game session. Before searching for an
+  /// available game server, FleetIQ first prioritizes the queue's destinations
+  /// and locations, with the best placement locations on top. You can set up
+  /// the queue to use the FleetIQ default prioritization or provide an
+  /// alternate set of priorities.
   ///
-  /// To create a new queue, provide a name, timeout value, a list of
-  /// destinations and, if desired, a set of latency policies. If successful, a
-  /// new queue object is returned.
+  /// To create a new queue, provide a name, timeout value, and a list of
+  /// destinations. Optionally, specify a sort configuration and/or a filter,
+  /// and define a set of latency cap policies. You can also include the ARN for
+  /// an Amazon Simple Notification Service (SNS) topic to receive notifications
+  /// of game session placement activity. Notifications using SNS or CloudWatch
+  /// events is the preferred way to track placement activity.
+  ///
+  /// If successful, a new <code>GameSessionQueue</code> object is returned with
+  /// an assigned queue ARN. New game session requests, which are submitted to
+  /// the queue with <a>StartGameSessionPlacement</a> or
+  /// <a>StartMatchmaking</a>, reference a queue's name or ARN.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queues-design.html">
-  /// Design a Game Session Queue</a>
+  /// Design a game session queue</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queues-creating.html">
-  /// Create a Game Session Queue</a>
+  /// Create a game session queue</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionQueues</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameSessionQueue</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameSessionQueue</a> | <a>DescribeGameSessionQueues</a> |
+  /// <a>UpdateGameSessionQueue</a> | <a>DeleteGameSessionQueue</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [name] :
   /// A descriptive label that is associated with game session queue. Queue
   /// names must be unique within each Region.
   ///
+  /// Parameter [customEventData] :
+  /// Information to be added to all events that are related to this game
+  /// session queue.
+  ///
   /// Parameter [destinations] :
-  /// A list of fleets that can be used to fulfill game session placement
-  /// requests in the queue. Fleets are identified by either a fleet ARN or a
-  /// fleet alias ARN. Destinations are listed in default preference order.
+  /// A list of fleets and/or fleet aliases that can be used to fulfill game
+  /// session placement requests in the queue. Destinations are identified by
+  /// either a fleet ARN or a fleet alias ARN, and are listed in order of
+  /// placement preference.
+  ///
+  /// Parameter [filterConfiguration] :
+  /// A list of locations where a queue is allowed to place new game sessions.
+  /// Locations are specified in the form of AWS Region codes, such as
+  /// <code>us-west-2</code>. If this parameter is not set, game sessions can be
+  /// placed in any queue location.
+  ///
+  /// Parameter [notificationTarget] :
+  /// An SNS topic ARN that is set up to receive game session placement
+  /// notifications. See <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html">
+  /// Setting up notifications for game session placement</a>.
   ///
   /// Parameter [playerLatencyPolicies] :
-  /// A collection of latency policies to apply when processing game sessions
-  /// placement requests with player latency information. Multiple policies are
-  /// evaluated in order of the maximum latency value, starting with the lowest
-  /// latency values. With just one policy, the policy is enforced at the start
-  /// of the game session placement for the duration period. With multiple
-  /// policies, each policy is enforced consecutively for its duration period.
-  /// For example, a queue might enforce a 60-second policy followed by a
-  /// 120-second policy, and then no policy for the remainder of the placement.
-  /// A player latency policy must set a value for
-  /// <code>MaximumIndividualPlayerLatencyMilliseconds</code>. If none is set,
-  /// this API request fails.
+  /// A set of policies that act as a sliding cap on player latency. FleetIQ
+  /// works to deliver low latency for most players in a game session. These
+  /// policies ensure that no individual player can be placed into a game with
+  /// unreasonably high latency. Use multiple policies to gradually relax
+  /// latency requirements a step at a time. Multiple policies are applied based
+  /// on their maximum allowed latency, starting with the lowest value.
+  ///
+  /// Parameter [priorityConfiguration] :
+  /// Custom settings to use when prioritizing destinations and locations for
+  /// game session placements. This configuration replaces the FleetIQ default
+  /// prioritization process. Priority types that are not explicitly named will
+  /// be automatically applied at the end of the prioritization process.
   ///
   /// Parameter [tags] :
   /// A list of labels to assign to the new game session queue resource. Tags
@@ -1590,8 +1510,12 @@ class GameLift {
   /// placement changes to a <code>TIMED_OUT</code> status.
   Future<CreateGameSessionQueueOutput> createGameSessionQueue({
     required String name,
+    String? customEventData,
     List<GameSessionQueueDestination>? destinations,
+    FilterConfiguration? filterConfiguration,
+    String? notificationTarget,
     List<PlayerLatencyPolicy>? playerLatencyPolicies,
+    PriorityConfiguration? priorityConfiguration,
     List<Tag>? tags,
     int? timeoutInSeconds,
   }) async {
@@ -1603,11 +1527,17 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'customEventData',
+      customEventData,
+      0,
+      256,
+    );
+    _s.validateStringLength(
+      'notificationTarget',
+      notificationTarget,
+      0,
+      300,
     );
     _s.validateNumRange(
       'timeoutInSeconds',
@@ -1627,9 +1557,16 @@ class GameLift {
       headers: headers,
       payload: {
         'Name': name,
+        if (customEventData != null) 'CustomEventData': customEventData,
         if (destinations != null) 'Destinations': destinations,
+        if (filterConfiguration != null)
+          'FilterConfiguration': filterConfiguration,
+        if (notificationTarget != null)
+          'NotificationTarget': notificationTarget,
         if (playerLatencyPolicies != null)
           'PlayerLatencyPolicies': playerLatencyPolicies,
+        if (priorityConfiguration != null)
+          'PriorityConfiguration': priorityConfiguration,
         if (tags != null) 'Tags': tags,
         if (timeoutInSeconds != null) 'TimeoutInSeconds': timeoutInSeconds,
       },
@@ -1657,7 +1594,7 @@ class GameLift {
   /// starting a game session for the match.
   ///
   /// In addition, you must set up an Amazon Simple Notification Service (SNS)
-  /// to receive matchmaking notifications, and provide the topic ARN in the
+  /// topic to receive matchmaking notifications. Provide the topic ARN in the
   /// matchmaking configuration. An alternative method, continuously polling
   /// ticket status with <a>DescribeMatchmaking</a>, is only suitable for games
   /// in development with low matchmaking usage.
@@ -1665,45 +1602,23 @@ class GameLift {
   /// <b>Learn more</b>
   ///
   /// <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html">
-  /// FlexMatch Developer Guide</a>
-  ///
-  /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html">
-  /// Design a FlexMatch Matchmaker</a>
+  /// Design a FlexMatch matchmaker</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html">
-  /// Set Up FlexMatch Event Notification</a>
+  /// Set up FlexMatch event notification</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [LimitExceededException].
@@ -1721,8 +1636,8 @@ class GameLift {
   /// acceptance.
   ///
   /// Parameter [name] :
-  /// A unique identifier for a matchmaking configuration. This name is used to
-  /// identify the configuration associated with a matchmaking request or
+  /// A unique identifier for the matchmaking configuration. This name is used
+  /// to identify the configuration associated with a matchmaking request or
   /// ticket.
   ///
   /// Parameter [requestTimeoutSeconds] :
@@ -1731,23 +1646,21 @@ class GameLift {
   /// resubmitted as needed.
   ///
   /// Parameter [ruleSetName] :
-  /// A unique identifier for a matchmaking rule set to use with this
+  /// A unique identifier for the matchmaking rule set to use with this
   /// configuration. You can use either the rule set name or ARN value. A
   /// matchmaking configuration can only use rule sets that are defined in the
   /// same Region.
   ///
   /// Parameter [acceptanceTimeoutSeconds] :
   /// The length of time (in seconds) to wait for players to accept a proposed
-  /// match, if acceptance is required. If any player rejects the match or fails
-  /// to accept before the timeout, the tickets are returned to the ticket pool
-  /// and continue to be evaluated for an acceptable match.
+  /// match, if acceptance is required.
   ///
   /// Parameter [additionalPlayerCount] :
   /// The number of player slots in a match to keep open for future players. For
-  /// example, assume that the configuration's rule set specifies a match for a
-  /// single 12-person team. If the additional player count is set to 2, only 10
-  /// players are initially selected for the match. This parameter is not used
-  /// if <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
+  /// example, if the configuration's rule set specifies a match for a single
+  /// 12-person team, and the additional player count is set to 2, only 10
+  /// players are selected for the match. This parameter is not used if
+  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   ///
   /// Parameter [backfillMode] :
   /// The method used to backfill game sessions that are created with this
@@ -1786,7 +1699,7 @@ class GameLift {
   /// </ul>
   ///
   /// Parameter [gameProperties] :
-  /// A set of custom properties for a game session, formatted as key-value
+  /// A set of custom properties for a game session, formatted as key:value
   /// pairs. These properties are passed to a game server process in the
   /// <a>GameSession</a> object with a request to start a new game session (see
   /// <a
@@ -1808,17 +1721,21 @@ class GameLift {
   /// <code>STANDALONE</code>.
   ///
   /// Parameter [gameSessionQueueArns] :
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift game session queue resource and uniquely
-  /// identifies it. ARNs are unique across all Regions. Queues can be located
-  /// in any Region. Queues are used to start new GameLift-hosted game sessions
-  /// for matches that are created with this matchmaking configuration. If
-  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>, do not set
-  /// this parameter.
+  /// identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+  /// name&gt;</code>. Queues can be located in any Region. Queues are used to
+  /// start new GameLift-hosted game sessions for matches that are created with
+  /// this matchmaking configuration. If <code>FlexMatchMode</code> is set to
+  /// <code>STANDALONE</code>, do not set this parameter.
   ///
   /// Parameter [notificationTarget] :
-  /// An SNS topic ARN that is set up to receive matchmaking notifications.
+  /// An SNS topic ARN that is set up to receive matchmaking notifications. See
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html">
+  /// Setting up notifications for matchmaking</a> for more information.
   ///
   /// Parameter [tags] :
   /// A list of labels to assign to the new matchmaking configuration resource.
@@ -1857,12 +1774,6 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requestTimeoutSeconds, 'requestTimeoutSeconds');
     _s.validateNumRange(
       'requestTimeoutSeconds',
@@ -1877,12 +1788,6 @@ class GameLift {
       ruleSetName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'ruleSetName',
-      ruleSetName,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingruleset\/[a-zA-Z0-9-\.]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1920,11 +1825,6 @@ class GameLift {
       notificationTarget,
       0,
       300,
-    );
-    _s.validateStringPattern(
-      'notificationTarget',
-      notificationTarget,
-      r'''[a-zA-Z0-9:_/-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1982,12 +1882,12 @@ class GameLift {
   /// <li>
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html">Build
-  /// a Rule Set</a>
+  /// a rule set</a>
   /// </li>
   /// <li>
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html">Design
-  /// a Matchmaker</a>
+  /// a matchmaker</a>
   /// </li>
   /// <li>
   /// <a
@@ -1995,34 +1895,16 @@ class GameLift {
   /// with FlexMatch</a>
   /// </li>
   /// </ul>
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
@@ -2030,7 +1912,7 @@ class GameLift {
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [name] :
-  /// A unique identifier for a matchmaking rule set. A matchmaking
+  /// A unique identifier for the matchmaking rule set. A matchmaking
   /// configuration identifies the rule set it uses by this name value. Note
   /// that the rule set name is different from the optional <code>name</code>
   /// field in the rule set body.
@@ -2063,12 +1945,6 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleSetBody, 'ruleSetBody');
     _s.validateStringLength(
       'ruleSetBody',
@@ -2097,46 +1973,30 @@ class GameLift {
     return CreateMatchmakingRuleSetOutput.fromJson(jsonResponse.body);
   }
 
-  /// Reserves an open player slot in an active game session. Before a player
-  /// can be added, a game session must have an <code>ACTIVE</code> status, have
-  /// a creation policy of <code>ALLOW_ALL</code>, and have an open player slot.
-  /// To add a group of players to a game session, use
-  /// <a>CreatePlayerSessions</a>. When the player connects to the game server
-  /// and references a player session ID, the game server contacts the Amazon
-  /// GameLift service to validate the player reservation and accept the player.
+  /// Reserves an open player slot in a game session for a player. New player
+  /// sessions can be created in any game session with an open slot that is in
+  /// <code>ACTIVE</code> status and has a player creation policy of
+  /// <code>ACCEPT_ALL</code>. You can add a group of players to a game session
+  /// with <a>CreatePlayerSessions</a>.
   ///
   /// To create a player session, specify a game session ID, player ID, and
-  /// optionally a string of player data. If successful, a slot is reserved in
-  /// the game session for the player and a new <a>PlayerSession</a> object is
-  /// returned. Player sessions cannot be updated.
+  /// optionally a set of player data.
+  ///
+  /// If successful, a slot is reserved in the game session for the player and a
+  /// new <a>PlayerSession</a> object is returned with a player session ID. The
+  /// player references the player session ID when sending a connection request
+  /// to the game session, and the game server can use it to validate the player
+  /// reservation with the GameLift service. Player sessions cannot be updated.
   ///
   /// <i>Available in Amazon GameLift Local.</i>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreatePlayerSession</a>
-  /// </li>
-  /// <li>
-  /// <a>CreatePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreatePlayerSession</a> | <a>CreatePlayerSessions</a> |
+  /// <a>DescribePlayerSessions</a> | <a>StartGameSessionPlacement</a> |
+  /// <a>DescribeGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [UnauthorizedException].
@@ -2153,8 +2013,8 @@ class GameLift {
   /// A unique identifier for a player. Player IDs are developer-defined.
   ///
   /// Parameter [playerData] :
-  /// Developer-defined information related to a player. Amazon GameLift does
-  /// not use this data, so it can be formatted as needed for use in the game.
+  /// Developer-defined information related to a player. GameLift does not use
+  /// this data, so it can be formatted as needed for use in the game.
   Future<CreatePlayerSessionOutput> createPlayerSession({
     required String gameSessionId,
     required String playerId,
@@ -2166,12 +2026,6 @@ class GameLift {
       gameSessionId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(playerId, 'playerId');
@@ -2208,47 +2062,31 @@ class GameLift {
     return CreatePlayerSessionOutput.fromJson(jsonResponse.body);
   }
 
-  /// Reserves open slots in a game session for a group of players. Before
-  /// players can be added, a game session must have an <code>ACTIVE</code>
-  /// status, have a creation policy of <code>ALLOW_ALL</code>, and have an open
-  /// player slot. To add a single player to a game session, use
-  /// <a>CreatePlayerSession</a>. When a player connects to the game server and
-  /// references a player session ID, the game server contacts the Amazon
-  /// GameLift service to validate the player reservation and accept the player.
+  /// Reserves open slots in a game session for a group of players. New player
+  /// sessions can be created in any game session with an open slot that is in
+  /// <code>ACTIVE</code> status and has a player creation policy of
+  /// <code>ACCEPT_ALL</code>. To add a single player to a game session, use
+  /// <a>CreatePlayerSession</a>.
   ///
-  /// To create player sessions, specify a game session ID, a list of player
-  /// IDs, and optionally a set of player data strings. If successful, a slot is
-  /// reserved in the game session for each player and a set of new
-  /// <a>PlayerSession</a> objects is returned. Player sessions cannot be
-  /// updated.
+  /// To create player sessions, specify a game session ID and a list of player
+  /// IDs. Optionally, provide a set of player data for each player ID.
+  ///
+  /// If successful, a slot is reserved in the game session for each player, and
+  /// new <a>PlayerSession</a> objects are returned with player session IDs.
+  /// Each player references their player session ID when sending a connection
+  /// request to the game session, and the game server can use it to validate
+  /// the player reservation with the GameLift service. Player sessions cannot
+  /// be updated.
   ///
   /// <i>Available in Amazon GameLift Local.</i>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreatePlayerSession</a>
-  /// </li>
-  /// <li>
-  /// <a>CreatePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreatePlayerSession</a> | <a>CreatePlayerSessions</a> |
+  /// <a>DescribePlayerSessions</a> | <a>StartGameSessionPlacement</a> |
+  /// <a>DescribeGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [UnauthorizedException].
@@ -2268,7 +2106,7 @@ class GameLift {
   /// Map of string pairs, each specifying a player ID and a set of
   /// developer-defined information related to the player. Amazon GameLift does
   /// not use this data, so it can be formatted as needed for use in the game.
-  /// Player data strings for player IDs not included in the
+  /// Any player data strings for player IDs that are not included in the
   /// <code>PlayerIds</code> parameter are ignored.
   Future<CreatePlayerSessionsOutput> createPlayerSessions({
     required String gameSessionId,
@@ -2281,12 +2119,6 @@ class GameLift {
       gameSessionId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(playerIds, 'playerIds');
@@ -2349,25 +2181,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html">Set
   /// Up a Role for Amazon GameLift Access</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>ListScripts</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeScript</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteScript</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+  /// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -2381,17 +2200,14 @@ class GameLift {
   /// later.
   ///
   /// Parameter [storageLocation] :
-  /// The Amazon S3 location of your Realtime scripts. The storage location must
-  /// specify the S3 bucket name, the zip file name (the "key"), and an IAM role
-  /// ARN that allows Amazon GameLift to access the S3 storage location. The S3
-  /// bucket must be in the same Region where you are creating a new script. By
+  /// The location of the Amazon S3 bucket where a zipped file containing your
+  /// Realtime scripts is stored. The storage location must specify the Amazon
+  /// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
+  /// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket
+  /// must be in the same Region where you want to create a new script. By
   /// default, Amazon GameLift uploads the latest version of the zip file; if
   /// you have S3 object versioning turned on, you can use the
-  /// <code>ObjectVersion</code> parameter to specify an earlier version. To
-  /// call this operation with a storage location, you must have IAM PassRole
-  /// permission. For more details on IAM roles and PassRole permissions, see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html">
-  /// Set up a role for GameLift access</a>.
+  /// <code>ObjectVersion</code> parameter to specify an earlier version.
   ///
   /// Parameter [tags] :
   /// A list of labels to assign to the new script resource. Tags are
@@ -2406,9 +2222,9 @@ class GameLift {
   /// actual tagging limits.
   ///
   /// Parameter [version] :
-  /// The version that is associated with a build or script. Version strings do
-  /// not need to be unique. You can use <a>UpdateScript</a> to change this
-  /// value later.
+  /// Version information that is associated with a build or script. Version
+  /// strings do not need to be unique. You can use <a>UpdateScript</a> to
+  /// change this value later.
   ///
   /// Parameter [zipFile] :
   /// A data object containing your Realtime scripts and dependencies as a zip
@@ -2491,26 +2307,15 @@ class GameLift {
   /// call to <a>DeleteVpcPeeringAuthorization</a>. You must create or delete
   /// the peering connection while the authorization is valid.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -2518,18 +2323,18 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [gameLiftAwsAccountId] :
-  /// A unique identifier for the AWS account that you use to manage your Amazon
+  /// A unique identifier for the AWS account that you use to manage your
   /// GameLift fleet. You can find your Account ID in the AWS Management Console
   /// under account settings.
   ///
   /// Parameter [peerVpcId] :
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
-  /// GameLift fleet. The VPC must be in the same Region where your fleet is
-  /// deployed. Look up a VPC ID using the <a
-  /// href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a> in the AWS
-  /// Management Console. Learn more about VPC peering in <a
+  /// A unique identifier for a VPC with resources to be accessed by your
+  /// GameLift fleet. The VPC must be in the same Region as your fleet. To look
+  /// up a VPC ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC
+  /// Dashboard</a> in the AWS Management Console. Learn more about VPC peering
+  /// in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   Future<CreateVpcPeeringAuthorizationOutput> createVpcPeeringAuthorization({
     required String gameLiftAwsAccountId,
     required String peerVpcId,
@@ -2596,26 +2401,15 @@ class GameLift {
   /// using <a>DescribeVpcPeeringConnections</a>, or by monitoring fleet events
   /// for success or failure using <a>DescribeFleetEvents</a>.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -2623,7 +2417,7 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet. You can use either the fleet ID or ARN
+  /// A unique identifier for the fleet. You can use either the fleet ID or ARN
   /// value. This tells Amazon GameLift which GameLift VPC to peer with.
   ///
   /// Parameter [peerVpcAwsAccountId] :
@@ -2632,25 +2426,19 @@ class GameLift {
   /// Management Console under account settings.
   ///
   /// Parameter [peerVpcId] :
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
-  /// GameLift fleet. The VPC must be in the same Region where your fleet is
-  /// deployed. Look up a VPC ID using the <a
-  /// href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a> in the AWS
-  /// Management Console. Learn more about VPC peering in <a
+  /// A unique identifier for a VPC with resources to be accessed by your
+  /// GameLift fleet. The VPC must be in the same Region as your fleet. To look
+  /// up a VPC ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC
+  /// Dashboard</a> in the AWS Management Console. Learn more about VPC peering
+  /// in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   Future<void> createVpcPeeringConnection({
     required String fleetId,
     required String peerVpcAwsAccountId,
     required String peerVpcId,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(peerVpcAwsAccountId, 'peerVpcAwsAccountId');
     _s.validateStringLength(
       'peerVpcAwsAccountId',
@@ -2689,26 +2477,12 @@ class GameLift {
   /// clients attempting to access a server process using the deleted alias
   /// receive an error. To delete an alias, specify the alias ID to be deleted.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
@@ -2723,12 +2497,6 @@ class GameLift {
     required String aliasId,
   }) async {
     ArgumentError.checkNotNull(aliasId, 'aliasId');
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteAlias'
@@ -2758,25 +2526,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html">
   /// Upload a Custom Server Build</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
@@ -2785,18 +2540,12 @@ class GameLift {
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to delete. You can use either the build ID
-  /// or ARN value.
+  /// A unique identifier for the build to delete. You can use either the build
+  /// ID or ARN value.
   Future<void> deleteBuild({
     required String buildId,
   }) async {
     ArgumentError.checkNotNull(buildId, 'buildId');
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteBuild'
@@ -2813,17 +2562,20 @@ class GameLift {
     );
   }
 
-  /// Deletes everything related to a fleet. Before deleting a fleet, you must
-  /// set the fleet's desired capacity to zero. See <a>UpdateFleetCapacity</a>.
-  ///
+  /// Deletes all resources and information related a fleet. Any current fleet
+  /// instances, including those in remote locations, are shut down. You don't
+  /// need to call <code>DeleteFleetLocations</code> separately.
+  /// <note>
   /// If the fleet being deleted has a VPC peering connection, you first need to
   /// get a valid authorization (good for 24 hours) by calling
   /// <a>CreateVpcPeeringAuthorization</a>. You do not need to explicitly delete
   /// the VPC peering connection--this is done as part of the delete fleet
   /// process.
-  ///
-  /// This operation removes the fleet and its resources. Once a fleet is
-  /// deleted, you can no longer use any of the resource in that fleet.
+  /// </note>
+  /// To delete a fleet, specify the fleet ID to be terminated. During the
+  /// deletion process the fleet status is changed to <code>DELETING</code>.
+  /// When completed, the status switches to <code>TERMINATED</code> and the
+  /// fleet event <code>FLEET_DELETED</code> is sent.
   ///
   /// <b>Learn more</b>
   ///
@@ -2831,28 +2583,15 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
   /// up GameLift Fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleetLocations</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>UpdateFleetPortSettings</a> |
+  /// <a>UpdateRuntimeConfiguration</a> | <a>StopFleetActions</a> |
+  /// <a>StartFleetActions</a> | <a>PutScalingPolicy</a> | <a>DeleteFleet</a> |
+  /// <a>DeleteFleetLocations</a> | <a>DeleteScalingPolicy</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [InternalServiceException].
@@ -2862,18 +2601,12 @@ class GameLift {
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to be deleted. You can use either the
+  /// A unique identifier for the fleet to be deleted. You can use either the
   /// fleet ID or ARN value.
   Future<void> deleteFleet({
     required String fleetId,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteFleet'
@@ -2890,8 +2623,74 @@ class GameLift {
     );
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// Removes locations from a multi-location fleet. When deleting a location,
+  /// all game server process and all instances that are still active in the
+  /// location are shut down.
+  ///
+  /// To delete fleet locations, identify the fleet ID and provide a list of the
+  /// locations to be deleted.
+  ///
+  /// If successful, GameLift sets the location status to <code>DELETING</code>,
+  /// and begins to shut down existing server processes and terminate instances
+  /// in each location being deleted. When completed, the location status
+  /// changes to <code>TERMINATED</code>.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
+  /// up GameLift fleets</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleetLocations</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetLocationCapacity</a> |
+  /// <a>DescribeFleetLocationUtilization</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetCapacity</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>StopFleetActions</a> |
+  /// <a>DeleteFleetLocations</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
+  ///
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [NotFoundException].
+  ///
+  /// Parameter [fleetId] :
+  /// A unique identifier for the fleet to delete locations for. You can use
+  /// either the fleet ID or ARN value.
+  ///
+  /// Parameter [locations] :
+  /// The list of fleet locations to delete. Specify locations in the form of an
+  /// AWS Region code, such as <code>us-west-2</code>.
+  Future<DeleteFleetLocationsOutput> deleteFleetLocations({
+    required String fleetId,
+    required List<String> locations,
+  }) async {
+    ArgumentError.checkNotNull(fleetId, 'fleetId');
+    ArgumentError.checkNotNull(locations, 'locations');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'GameLift.DeleteFleetLocations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FleetId': fleetId,
+        'Locations': locations,
+      },
+    );
+
+    return DeleteFleetLocationsOutput.fromJson(jsonResponse.body);
+  }
+
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Terminates a game server group and permanently deletes the game server
   /// group record. You have several options for how these resources are
@@ -2930,34 +2729,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -2999,12 +2778,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteGameServerGroup'
@@ -3034,22 +2807,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queues-intro.html">
   /// Using Multi-Region Queues</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionQueues</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameSessionQueue</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameSessionQueue</a> | <a>DescribeGameSessionQueues</a> |
+  /// <a>UpdateGameSessionQueue</a> | <a>DeleteGameSessionQueue</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -3072,12 +2835,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-]+|^arn:.*:gamesessionqueue\/[a-zA-Z0-9-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteGameSessionQueue'
@@ -3098,34 +2855,16 @@ class GameLift {
   /// specify the configuration name. A matchmaking configuration cannot be
   /// deleted if it is being used in any active matchmaking tickets.
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -3134,7 +2873,7 @@ class GameLift {
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [name] :
-  /// A unique identifier for a matchmaking configuration. You can use either
+  /// A unique identifier for the matchmaking configuration. You can use either
   /// the configuration name or ARN value.
   Future<void> deleteMatchmakingConfiguration({
     required String name,
@@ -3145,12 +2884,6 @@ class GameLift {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingconfiguration\/[a-zA-Z0-9-\.]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3179,37 +2912,19 @@ class GameLift {
   /// <li>
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html">Build
-  /// a Rule Set</a>
+  /// a rule set</a>
   /// </li>
   /// </ul>
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
@@ -3218,7 +2933,7 @@ class GameLift {
   /// May throw [TaggingFailedException].
   ///
   /// Parameter [name] :
-  /// A unique identifier for a matchmaking rule set to be deleted. (Note: The
+  /// A unique identifier for the matchmaking rule set to be deleted. (Note: The
   /// rule set name is different from the optional "name" field in the rule set
   /// body.) You can use either the rule set name or ARN value.
   Future<void> deleteMatchmakingRuleSet({
@@ -3230,12 +2945,6 @@ class GameLift {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingruleset\/[a-zA-Z0-9-\.]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3262,42 +2971,14 @@ class GameLift {
   /// To temporarily suspend scaling policies, call <a>StopFleetActions</a>.
   /// This operation suspends all policies for the fleet.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// Manage scaling policies:
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>PutScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DescribeScalingPolicies</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DeleteScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// Manage fleet actions:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartFleetActions</a>
-  /// </li>
-  /// <li>
-  /// <a>StopFleetActions</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>DescribeFleetCapacity</a> | <a>UpdateFleetCapacity</a> |
+  /// <a>DescribeEC2InstanceLimits</a> | <a>PutScalingPolicy</a> |
+  /// <a>DescribeScalingPolicies</a> | <a>DeleteScalingPolicy</a> |
+  /// <a>StopFleetActions</a> | <a>StartFleetActions</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -3305,23 +2986,17 @@ class GameLift {
   /// May throw [NotFoundException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to be deleted. You can use either the
+  /// A unique identifier for the fleet to be deleted. You can use either the
   /// fleet ID or ARN value.
   ///
   /// Parameter [name] :
-  /// A descriptive label that is associated with a scaling policy. Policy names
-  /// do not need to be unique.
+  /// A descriptive label that is associated with a fleet's scaling policy.
+  /// Policy names do not need to be unique.
   Future<void> deleteScalingPolicy({
     required String fleetId,
     required String name,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -3363,25 +3038,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html">Amazon
   /// GameLift Realtime Servers</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>ListScripts</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeScript</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteScript</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+  /// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
@@ -3390,18 +3052,12 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [scriptId] :
-  /// A unique identifier for a Realtime script to delete. You can use either
+  /// A unique identifier for the Realtime script to delete. You can use either
   /// the script ID or ARN value.
   Future<void> deleteScript({
     required String scriptId,
   }) async {
     ArgumentError.checkNotNull(scriptId, 'scriptId');
-    _s.validateStringPattern(
-      'scriptId',
-      scriptId,
-      r'''^script-\S+|^arn:.*:script\/script-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteScript'
@@ -3422,26 +3078,15 @@ class GameLift {
   /// need to delete an existing VPC peering connection, call
   /// <a>DeleteVpcPeeringConnection</a>.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -3449,18 +3094,18 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [gameLiftAwsAccountId] :
-  /// A unique identifier for the AWS account that you use to manage your Amazon
+  /// A unique identifier for the AWS account that you use to manage your
   /// GameLift fleet. You can find your Account ID in the AWS Management Console
   /// under account settings.
   ///
   /// Parameter [peerVpcId] :
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
-  /// GameLift fleet. The VPC must be in the same Region where your fleet is
-  /// deployed. Look up a VPC ID using the <a
-  /// href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a> in the AWS
-  /// Management Console. Learn more about VPC peering in <a
+  /// A unique identifier for a VPC with resources to be accessed by your
+  /// GameLift fleet. The VPC must be in the same Region as your fleet. To look
+  /// up a VPC ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC
+  /// Dashboard</a> in the AWS Management Console. Learn more about VPC peering
+  /// in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   Future<void> deleteVpcPeeringAuthorization({
     required String gameLiftAwsAccountId,
     required String peerVpcId,
@@ -3509,26 +3154,15 @@ class GameLift {
   /// connection to delete by the connection ID and fleet ID. If successful, the
   /// connection is removed.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -3536,9 +3170,9 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet. This fleet specified must match the fleet
-  /// referenced in the VPC peering connection record. You can use either the
-  /// fleet ID or ARN value.
+  /// A unique identifier for the fleet. This fleet specified must match the
+  /// fleet referenced in the VPC peering connection record. You can use either
+  /// the fleet ID or ARN value.
   ///
   /// Parameter [vpcPeeringConnectionId] :
   /// A unique identifier for a VPC peering connection. This value is included
@@ -3549,12 +3183,6 @@ class GameLift {
     required String vpcPeeringConnectionId,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         vpcPeeringConnectionId, 'vpcPeeringConnectionId');
     _s.validateStringLength(
@@ -3581,8 +3209,8 @@ class GameLift {
     );
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Removes the game server from a game server group. As a result of this
   /// operation, the deregistered game server can no longer be claimed and will
@@ -3598,28 +3226,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -3644,24 +3257,12 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
     _s.validateStringLength(
       'gameServerId',
       gameServerId,
       3,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerId',
-      gameServerId,
-      r'''[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3688,26 +3289,12 @@ class GameLift {
   /// To get alias properties, specify the alias ID. If successful, the
   /// requested alias record is returned.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -3721,12 +3308,6 @@ class GameLift {
     required String aliasId,
   }) async {
     ArgumentError.checkNotNull(aliasId, 'aliasId');
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeAlias'
@@ -3755,25 +3336,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html">
   /// Upload a Custom Server Build</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -3781,18 +3349,12 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to retrieve properties for. You can use
+  /// A unique identifier for the build to retrieve properties for. You can use
   /// either the build ID or ARN value.
   Future<DescribeBuildOutput> describeBuild({
     required String buildId,
   }) async {
     ArgumentError.checkNotNull(buildId, 'buildId');
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeBuild'
@@ -3811,65 +3373,104 @@ class GameLift {
     return DescribeBuildOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the following information for the specified EC2 instance type:
+  /// The GameLift service limits and current utilization for an AWS Region or
+  /// location. Instance limits control the number of instances, per instance
+  /// type, per location, that your AWS account can use. Learn more at <a
+  /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
+  /// Types</a>. The information returned includes the maximum number of
+  /// instances allowed and your account's current usage across all fleets. This
+  /// information can affect your ability to scale your GameLift fleets. You can
+  /// request a limit increase for your account by using the <b>Service
+  /// limits</b> page in the GameLift console.
+  ///
+  /// Instance limits differ based on whether the instances are deployed in a
+  /// fleet's home Region or in a remote location. For remote locations, limits
+  /// also differ based on the combination of home Region and remote location.
+  /// All requests must specify an AWS Region (either explicitly or as your
+  /// default settings). To get the limit for a remote location, you must also
+  /// specify the location. For example, the following requests all return
+  /// different results:
   ///
   /// <ul>
   /// <li>
-  /// Maximum number of instances allowed per AWS account (service limit).
+  /// Request specifies the Region <code>ap-northeast-1</code> with no location.
+  /// The result is limits and usage data on all instance types that are
+  /// deployed in <code>us-east-2</code>, by all of the fleets that reside in
+  /// <code>ap-northeast-1</code>.
   /// </li>
   /// <li>
-  /// Current usage for the AWS account.
+  /// Request specifies the Region <code>us-east-1</code> with location
+  /// <code>ca-central-1</code>. The result is limits and usage data on all
+  /// instance types that are deployed in <code>ca-central-1</code>, by all of
+  /// the fleets that reside in <code>us-east-2</code>. These limits do not
+  /// affect fleets in any other Regions that deploy instances to
+  /// <code>ca-central-1</code>.
+  /// </li>
+  /// <li>
+  /// Request specifies the Region <code>eu-west-1</code> with location
+  /// <code>ca-central-1</code>. The result is limits and usage data on all
+  /// instance types that are deployed in <code>ca-central-1</code>, by all of
+  /// the fleets that reside in <code>eu-west-1</code>.
   /// </li>
   /// </ul>
-  /// To learn more about the capabilities of each instance type, see <a
-  /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
-  /// Types</a>. Note that the instance types offered may vary depending on the
-  /// region.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get limit and usage data for all instance types that are deployed in an
+  /// AWS Region by fleets that reside in the same Region: Specify the Region
+  /// only. Optionally, specify a single instance type to retrieve information
+  /// for.
+  /// </li>
+  /// <li>
+  /// To get limit and usage data for all instance types that are deployed to a
+  /// remote location by fleets that reside in different AWS Region: Provide
+  /// both the AWS Region and the remote location. Optionally, specify a single
+  /// instance type to retrieve information for.
+  /// </li>
+  /// </ul>
+  /// If successful, an <code>EC2InstanceLimits</code> object is returned with
+  /// limits and usage data for each requested instance type.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleet</a> | <a>UpdateFleetCapacity</a> | <a>PutScalingPolicy</a>
+  /// | <a>DescribeEC2InstanceLimits</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetLocationAttributes</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>StopFleetActions</a> | <a>DeleteFleet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [eC2InstanceType] :
-  /// Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
+  /// Name of an EC2 instance type that is supported in GameLift. A fleet
   /// instance type determines the computing resources of each instance in the
-  /// fleet, including CPU, memory, storage, and networking capacity. Amazon
-  /// GameLift supports the following EC2 instance types. See <a
-  /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
-  /// Types</a> for detailed descriptions. Leave this parameter blank to
-  /// retrieve limits for all types.
+  /// fleet, including CPU, memory, storage, and networking capacity. Do not
+  /// specify a value for this parameter to retrieve limits for all instance
+  /// types.
+  ///
+  /// Parameter [location] :
+  /// The name of a remote location to request instance limits for, in the form
+  /// of an AWS Region code such as <code>us-west-2</code>.
   Future<DescribeEC2InstanceLimitsOutput> describeEC2InstanceLimits({
     EC2InstanceType? eC2InstanceType,
+    String? location,
   }) async {
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeEC2InstanceLimits'
@@ -3883,77 +3484,52 @@ class GameLift {
       payload: {
         if (eC2InstanceType != null)
           'EC2InstanceType': eC2InstanceType.toValue(),
+        if (location != null) 'Location': location,
       },
     );
 
     return DescribeEC2InstanceLimitsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves core properties, including configuration, status, and metadata,
-  /// for a fleet.
+  /// Retrieves core fleet-wide properties, including the computing hardware and
+  /// deployment configuration for all instances in the fleet.
   ///
-  /// To get attributes for one or more fleets, provide a list of fleet IDs or
-  /// fleet ARNs. To get attributes for all fleets, do not specify a fleet
-  /// identifier. When requesting attributes for multiple fleets, use the
-  /// pagination parameters to retrieve results as a set of sequential pages. If
-  /// successful, a <a>FleetAttributes</a> object is returned for each fleet
-  /// requested, unless the fleet identifier is not found.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get attributes for one or more specific fleets, provide a list of fleet
+  /// IDs or fleet ARNs.
+  /// </li>
+  /// <li>
+  /// To get attributes for all fleets, do not provide a fleet identifier.
+  /// </li>
+  /// </ul>
+  /// When requesting attributes for multiple fleets, use the pagination
+  /// parameters to retrieve results as a set of sequential pages.
+  ///
+  /// If successful, a <code>FleetAttributes</code> object is returned for each
+  /// fleet requested, unless the fleet identifier is not found.
   /// <note>
-  /// Some API operations may limit the number of fleet IDs allowed in one
+  /// Some API operations limit the number of fleet IDs that allowed in one
   /// request. If a request exceeds this limit, the request fails and the error
-  /// message includes the maximum allowed number.
+  /// message contains the maximum allowed number.
   /// </note>
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -3963,9 +3539,7 @@ class GameLift {
   /// Parameter [fleetIds] :
   /// A list of unique fleet identifiers to retrieve attributes for. You can use
   /// either the fleet ID or ARN value. To retrieve attributes for all current
-  /// fleets, do not include this parameter. If the list of fleet identifiers
-  /// includes fleets that don't currently exist, the request succeeds but no
-  /// attributes for that fleet are returned.
+  /// fleets, do not include this parameter.
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
@@ -3974,8 +3548,8 @@ class GameLift {
   /// IDs.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value. This
   /// parameter is ignored when the request specifies one or a list of fleet
   /// IDs.
@@ -4016,77 +3590,56 @@ class GameLift {
     return DescribeFleetAttributesOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the current capacity statistics for one or more fleets. These
-  /// statistics present a snapshot of the fleet's instances and provide insight
-  /// on current or imminent scaling activity. To get statistics on game hosting
-  /// activity in the fleet, see <a>DescribeFleetUtilization</a>.
+  /// Retrieves the resource capacity settings for one or more fleets. The data
+  /// returned includes the current fleet capacity (number of EC2 instances),
+  /// and settings that can control how capacity scaling. For fleets with remote
+  /// locations, this operation retrieves data for the fleet's home Region only.
+  /// See <a>DescribeFleetLocationCapacity</a> to get capacity settings for a
+  /// fleet's remote locations.
   ///
-  /// You can request capacity for all fleets or specify a list of one or more
-  /// fleet identifiers. When requesting multiple fleets, use the pagination
-  /// parameters to retrieve results as a set of sequential pages. If
-  /// successful, a <a>FleetCapacity</a> object is returned for each requested
-  /// fleet ID. When a list of fleet IDs is provided, attribute objects are
-  /// returned only for fleets that currently exist.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get capacity data for one or more specific fleets, provide a list of
+  /// fleet IDs or fleet ARNs.
+  /// </li>
+  /// <li>
+  /// To get capacity data for all fleets, do not provide a fleet identifier.
+  /// </li>
+  /// </ul>
+  /// When requesting multiple fleets, use the pagination parameters to retrieve
+  /// results as a set of sequential pages.
+  ///
+  /// If successful, a <a>FleetCapacity</a> object is returned for each
+  /// requested fleet ID. Each FleetCapacity object includes a
+  /// <code>Location</code> property, which is set to the fleet's home Region.
+  /// When a list of fleet IDs is provided, attribute objects are returned only
+  /// for fleets that currently exist.
   /// <note>
-  /// Some API operations may limit the number of fleet IDs allowed in one
-  /// request. If a request exceeds this limit, the request fails and the error
-  /// message includes the maximum allowed.
+  /// Some API operations may limit the number of fleet IDs that are allowed in
+  /// one request. If a request exceeds this limit, the request fails and the
+  /// error message includes the maximum allowed.
   /// </note>
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html#gamelift-metrics-fleet">GameLift
-  /// Metrics for Fleets</a>
+  /// metrics for fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -4094,8 +3647,9 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetIds] :
-  /// A unique identifier for a fleet(s) to retrieve capacity information for.
-  /// You can use either the fleet ID or ARN value.
+  /// A unique identifier for the fleet(s) to retrieve capacity information for.
+  /// You can use either the fleet ID or ARN value. Leave this parameter empty
+  /// to retrieve capacity information for all fleets.
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
@@ -4104,8 +3658,8 @@ class GameLift {
   /// IDs.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value. This
   /// parameter is ignored when the request specifies one or a list of fleet
   /// IDs.
@@ -4146,62 +3700,32 @@ class GameLift {
     return DescribeFleetCapacityOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves entries from the specified fleet's event log. You can specify a
-  /// time range to limit the result set. Use the pagination parameters to
-  /// retrieve results as a set of sequential pages. If successful, a collection
-  /// of event log entries matching the request are returned.
+  /// Retrieves entries from a fleet's event log. Fleet events are initiated by
+  /// changes in status, such as during fleet creation and termination, changes
+  /// in capacity, etc. If a fleet has multiple locations, events are also
+  /// initiated by changes to status and capacity in remote locations.
+  ///
+  /// You can specify a time range to limit the result set. Use the pagination
+  /// parameters to retrieve results as a set of sequential pages.
+  ///
+  /// If successful, a collection of event log entries matching the request are
+  /// returned.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [InternalServiceException].
@@ -4209,29 +3733,29 @@ class GameLift {
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to get event logs for. You can use either
-  /// the fleet ID or ARN value.
+  /// A unique identifier for the fleet to get event logs for. You can use
+  /// either the fleet ID or ARN value.
   ///
   /// Parameter [endTime] :
-  /// Most recent date to retrieve event logs for. If no end time is specified,
-  /// this call returns entries from the specified start time up to the present.
-  /// Format is a number expressed in Unix time as milliseconds (ex:
-  /// "1469498468.057").
+  /// The most recent date to retrieve event logs for. If no end time is
+  /// specified, this call returns entries from the specified start time up to
+  /// the present. Format is a number expressed in Unix time as milliseconds
+  /// (ex: "1469498468.057").
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [startTime] :
-  /// Earliest date to retrieve event logs for. If no start time is specified,
-  /// this call returns entries starting from when the fleet was created to the
-  /// specified end time. Format is a number expressed in Unix time as
-  /// milliseconds (ex: "1469498468.057").
+  /// The earliest date to retrieve event logs for. If no start time is
+  /// specified, this call returns entries starting from when the fleet was
+  /// created to the specified end time. Format is a number expressed in Unix
+  /// time as milliseconds (ex: "1469498468.057").
   Future<DescribeFleetEventsOutput> describeFleetEvents({
     required String fleetId,
     DateTime? endTime,
@@ -4240,12 +3764,6 @@ class GameLift {
     DateTime? startTime,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -4280,67 +3798,305 @@ class GameLift {
     return DescribeFleetEventsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves a fleet's inbound connection permissions. Connection permissions
-  /// specify the range of IP addresses and port settings that incoming traffic
-  /// can use to access server processes in the fleet. Game sessions that are
-  /// running on instances in the fleet use connections that fall in this range.
+  /// Retrieves information on a fleet's remote locations, including life-cycle
+  /// status and any suspended fleet activity.
   ///
-  /// To get a fleet's inbound connection permissions, specify the fleet's
-  /// unique identifier. If successful, a collection of <a>IpPermission</a>
-  /// objects is returned for the requested fleet ID. If the requested fleet has
-  /// been deleted, the result set is empty.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get data for specific locations, provide a fleet identifier and a list
+  /// of locations. Location data is returned in the order that it is requested.
+  /// </li>
+  /// <li>
+  /// To get data for all locations, provide a fleet identifier only. Location
+  /// data is returned in no particular order.
+  /// </li>
+  /// </ul>
+  /// When requesting attributes for multiple locations, use the pagination
+  /// parameters to retrieve results as a set of sequential pages.
+  ///
+  /// If successful, a <code>LocationAttributes</code> object is returned for
+  /// each requested location. If the fleet does not have a requested location,
+  /// no information is returned. This operation does not return the home
+  /// Region. To get information on a fleet's home Region, call
+  /// <code>DescribeFleetAttributes</code>.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleetLocations</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetLocationCapacity</a> |
+  /// <a>DescribeFleetLocationUtilization</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetCapacity</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>StopFleetActions</a> |
+  /// <a>DeleteFleetLocations</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
+  ///
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [NotFoundException].
+  ///
+  /// Parameter [fleetId] :
+  /// A unique identifier for the fleet to retrieve remote locations for. You
+  /// can use either the fleet ID or ARN value.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of results to return. Use this parameter with
+  /// <code>NextToken</code> to get results as a set of sequential pages. This
+  /// limit is not currently enforced.
+  ///
+  /// Parameter [locations] :
+  /// A list of fleet locations to retrieve information for. Specify locations
+  /// in the form of an AWS Region code, such as <code>us-west-2</code>.
+  ///
+  /// Parameter [nextToken] :
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
+  /// start at the beginning of the result set, do not specify a value.
+  Future<DescribeFleetLocationAttributesOutput>
+      describeFleetLocationAttributes({
+    required String fleetId,
+    int? limit,
+    List<String>? locations,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(fleetId, 'fleetId');
+    _s.validateNumRange(
+      'limit',
+      limit,
+      1,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      1024,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'GameLift.DescribeFleetLocationAttributes'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FleetId': fleetId,
+        if (limit != null) 'Limit': limit,
+        if (locations != null) 'Locations': locations,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return DescribeFleetLocationAttributesOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves the resource capacity settings for a fleet location. The data
+  /// returned includes the current capacity (number of EC2 instances) and some
+  /// scaling settings for the requested fleet location. Use this operation to
+  /// retrieve capacity information for a fleet's remote location or home Region
+  /// (you can also retrieve home Region capacity by calling
+  /// <code>DescribeFleetCapacity</code>).
+  ///
+  /// To retrieve capacity data, identify a fleet and location.
+  ///
+  /// If successful, a <code>FleetCapacity</code> object is returned for the
+  /// requested fleet location.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
+  /// up GameLift fleets</a>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html#gamelift-metrics-fleet">GameLift
+  /// metrics for fleets</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleetLocations</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetLocationCapacity</a> |
+  /// <a>DescribeFleetLocationUtilization</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetCapacity</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>StopFleetActions</a> |
+  /// <a>DeleteFleetLocations</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
+  ///
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [NotFoundException].
+  ///
+  /// Parameter [fleetId] :
+  /// A unique identifier for the fleet to request location capacity for. You
+  /// can use either the fleet ID or ARN value.
+  ///
+  /// Parameter [location] :
+  /// The fleet location to retrieve capacity information for. Specify a
+  /// location in the form of an AWS Region code, such as
+  /// <code>us-west-2</code>.
+  Future<DescribeFleetLocationCapacityOutput> describeFleetLocationCapacity({
+    required String fleetId,
+    required String location,
+  }) async {
+    ArgumentError.checkNotNull(fleetId, 'fleetId');
+    ArgumentError.checkNotNull(location, 'location');
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'GameLift.DescribeFleetLocationCapacity'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FleetId': fleetId,
+        'Location': location,
+      },
+    );
+
+    return DescribeFleetLocationCapacityOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves current usage data for a fleet location. Utilization data
+  /// provides a snapshot of current game hosting activity at the requested
+  /// location. Use this operation to retrieve utilization information for a
+  /// fleet's remote location or home Region (you can also retrieve home Region
+  /// utilization by calling <code>DescribeFleetUtilization</code>).
+  ///
+  /// To retrieve utilization data, identify a fleet and location.
+  ///
+  /// If successful, a <code>FleetUtilization</code> object is returned for the
+  /// requested fleet location.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
+  /// up GameLift fleets</a>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html#gamelift-metrics-fleet">GameLift
+  /// metrics for fleets</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateFleetLocations</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetLocationCapacity</a> |
+  /// <a>DescribeFleetLocationUtilization</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetCapacity</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>StopFleetActions</a> |
+  /// <a>DeleteFleetLocations</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
+  ///
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [NotFoundException].
+  ///
+  /// Parameter [fleetId] :
+  /// A unique identifier for the fleet to request location utilization for. You
+  /// can use either the fleet ID or ARN value.
+  ///
+  /// Parameter [location] :
+  /// The fleet location to retrieve utilization information for. Specify a
+  /// location in the form of an AWS Region code, such as
+  /// <code>us-west-2</code>.
+  Future<DescribeFleetLocationUtilizationOutput>
+      describeFleetLocationUtilization({
+    required String fleetId,
+    required String location,
+  }) async {
+    ArgumentError.checkNotNull(fleetId, 'fleetId');
+    ArgumentError.checkNotNull(location, 'location');
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'GameLift.DescribeFleetLocationUtilization'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'FleetId': fleetId,
+        'Location': location,
+      },
+    );
+
+    return DescribeFleetLocationUtilizationOutput.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves a fleet's inbound connection permissions. Connection permissions
+  /// specify the range of IP addresses and port settings that incoming traffic
+  /// can use to access server processes in the fleet. Game sessions that are
+  /// running on instances in the fleet must use connections that fall in this
+  /// range.
+  ///
+  /// This operation can be used in the following ways:
   ///
   /// <ul>
   /// <li>
-  /// <a>CreateFleet</a>
+  /// To retrieve the inbound connection permissions for a fleet, identify the
+  /// fleet's unique identifier.
   /// </li>
   /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
+  /// To check the status of recent updates to a fleet remote location, specify
+  /// the fleet ID and a location. Port setting updates can take time to
+  /// propagate across all locations.
   /// </li>
   /// </ul>
+  /// If successful, a set of <a>IpPermission</a> objects is returned for the
+  /// requested fleet ID. When a location is specified, a pending status is
+  /// included. If the requested fleet has been deleted, the result set is
+  /// empty.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
+  /// up GameLift fleets</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -4348,17 +4104,22 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to retrieve port settings for. You can use
-  /// either the fleet ID or ARN value.
+  /// A unique identifier for the fleet to retrieve port settings for. You can
+  /// use either the fleet ID or ARN value.
+  ///
+  /// Parameter [location] :
+  /// A remote location to check for status of port setting updates. Use the AWS
+  /// Region code format, such as <code>us-west-2</code>.
   Future<DescribeFleetPortSettingsOutput> describeFleetPortSettings({
     required String fleetId,
+    String? location,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4372,22 +4133,38 @@ class GameLift {
       headers: headers,
       payload: {
         'FleetId': fleetId,
+        if (location != null) 'Location': location,
       },
     );
 
     return DescribeFleetPortSettingsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves utilization statistics for one or more fleets. These statistics
-  /// provide insight into how available hosting resources are currently being
-  /// used. To get statistics on available hosting resources, see
-  /// <a>DescribeFleetCapacity</a>.
+  /// Retrieves utilization statistics for one or more fleets. Utilization data
+  /// provides a snapshot of how the fleet's hosting resources are currently
+  /// being used. For fleets with remote locations, this operation retrieves
+  /// data for the fleet's home Region only. See
+  /// <a>DescribeFleetLocationUtilization</a> to get utilization statistics for
+  /// a fleet's remote locations.
   ///
-  /// You can request utilization data for all fleets, or specify a list of one
-  /// or more fleet IDs. When requesting multiple fleets, use the pagination
-  /// parameters to retrieve results as a set of sequential pages. If
-  /// successful, a <a>FleetUtilization</a> object is returned for each
-  /// requested fleet ID, unless the fleet identifier is not found.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get utilization data for one or more specific fleets, provide a list of
+  /// fleet IDs or fleet ARNs.
+  /// </li>
+  /// <li>
+  /// To get utilization data for all fleets, do not provide a fleet identifier.
+  /// </li>
+  /// </ul>
+  /// When requesting multiple fleets, use the pagination parameters to retrieve
+  /// results as a set of sequential pages.
+  ///
+  /// If successful, a <a>FleetUtilization</a> object is returned for each
+  /// requested fleet ID, unless the fleet identifier is not found. Each fleet
+  /// utilization object includes a <code>Location</code> property, which is set
+  /// to the fleet's home Region.
   /// <note>
   /// Some API operations may limit the number of fleet IDs allowed in one
   /// request. If a request exceeds this limit, the request fails and the error
@@ -4403,51 +4180,15 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/monitoring-cloudwatch.html#gamelift-metrics-fleet">GameLift
   /// Metrics for Fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -4455,11 +4196,9 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetIds] :
-  /// A unique identifier for a fleet(s) to retrieve utilization data for. You
+  /// A unique identifier for the fleet(s) to retrieve utilization data for. You
   /// can use either the fleet ID or ARN value. To retrieve attributes for all
-  /// current fleets, do not include this parameter. If the list of fleet
-  /// identifiers includes fleets that don't currently exist, the request
-  /// succeeds but no attributes for that fleet are returned.
+  /// current fleets, do not include this parameter.
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
@@ -4468,8 +4207,8 @@ class GameLift {
   /// IDs.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value. This
   /// parameter is ignored when the request specifies one or a list of fleet
   /// IDs.
@@ -4510,8 +4249,8 @@ class GameLift {
     return DescribeFleetUtilizationOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Retrieves information for a registered game server. Information includes
   /// game server status, health check info, and the instance that the game
@@ -4526,28 +4265,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -4573,24 +4297,12 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
     _s.validateStringLength(
       'gameServerId',
       gameServerId,
       3,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerId',
-      gameServerId,
-      r'''[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4612,8 +4324,8 @@ class GameLift {
     return DescribeGameServerOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Retrieves information on a game server group. This operation returns only
   /// properties related to GameLift FleetIQ. To view or update properties for
@@ -4630,34 +4342,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -4678,12 +4370,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeGameServerGroup'
@@ -4702,8 +4388,8 @@ class GameLift {
     return DescribeGameServerGroupOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Retrieves status information about the Amazon EC2 instances associated
   /// with a GameLift FleetIQ game server group. Use this operation to detect
@@ -4730,34 +4416,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -4776,12 +4442,12 @@ class GameLift {
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
-  /// <code>NextToken</code> to get results as a set of sequential segments.
+  /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// A token that indicates the start of the next sequential segment of
-  /// results. Use the token returned with the previous call to this operation.
-  /// To start at the beginning of the result set, do not specify a value.
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
+  /// start at the beginning of the result set, do not specify a value.
   Future<DescribeGameServerInstancesOutput> describeGameServerInstances({
     required String gameServerGroupName,
     List<String>? instanceIds,
@@ -4794,12 +4460,6 @@ class GameLift {
       gameServerGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4835,53 +4495,56 @@ class GameLift {
     return DescribeGameServerInstancesOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves properties, including the protection policy in force, for one or
-  /// more game sessions. This operation can be used in several ways: (1)
-  /// provide a <code>GameSessionId</code> or <code>GameSessionArn</code> to
-  /// request details for a specific game session; (2) provide either a
-  /// <code>FleetId</code> or an <code>AliasId</code> to request properties for
-  /// all game sessions running on a fleet.
+  /// Retrieves additional game session properties, including the game session
+  /// protection policy in force, a set of one or more game sessions in a
+  /// specific fleet location. You can optionally filter the results by current
+  /// game session status. Alternatively, use <a>SearchGameSessions</a> to
+  /// request a set of active game sessions that are filtered by certain
+  /// criteria. To retrieve all game session properties, use
+  /// <a>DescribeGameSessions</a>.
   ///
-  /// To get game session record(s), specify just one of the following: game
-  /// session ID, fleet ID, or alias ID. You can filter this request by game
-  /// session status. Use the pagination parameters to retrieve results as a set
-  /// of sequential pages. If successful, a <a>GameSessionDetail</a> object is
-  /// returned for each session matching the request.
+  /// This operation can be used in the following ways:
   ///
   /// <ul>
   /// <li>
-  /// <a>CreateGameSession</a>
+  /// To retrieve details for all game sessions that are currently running on
+  /// all locations in a fleet, provide a fleet or alias ID, with an optional
+  /// status filter. This approach returns details from the fleet's home Region
+  /// and all remote locations.
   /// </li>
   /// <li>
-  /// <a>DescribeGameSessions</a>
+  /// To retrieve details for all game sessions that are currently running on a
+  /// specific fleet location, provide a fleet or alias ID and a location name,
+  /// with optional status filter. The location can be the fleet's home Region
+  /// or any remote location.
   /// </li>
   /// <li>
-  /// <a>DescribeGameSessionDetails</a>
+  /// To retrieve details for a specific game session, provide the game session
+  /// ID. This approach looks for the game session ID in all fleets that reside
+  /// in the AWS Region defined in the request.
   /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
   /// </ul>
+  /// Use the pagination parameters to retrieve results as a set of sequential
+  /// pages.
+  ///
+  /// If successful, a <code>GameSessionDetail</code> object is returned for
+  /// each game session that matches the request.
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-find">Find
+  /// a game session</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -4890,11 +4553,11 @@ class GameLift {
   /// May throw [TerminalRoutingStrategyException].
   ///
   /// Parameter [aliasId] :
-  /// A unique identifier for an alias associated with the fleet to retrieve all
-  /// game sessions for. You can use either the alias ID or ARN value.
+  /// A unique identifier for the alias associated with the fleet to retrieve
+  /// all game sessions for. You can use either the alias ID or ARN value.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to retrieve all game sessions active on
+  /// A unique identifier for the fleet to retrieve all game sessions active on
   /// the fleet. You can use either the fleet ID or ARN value.
   ///
   /// Parameter [gameSessionId] :
@@ -4904,9 +4567,14 @@ class GameLift {
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
+  /// Parameter [location] :
+  /// A fleet location to get game sessions for. You can specify a fleet's home
+  /// Region or a remote location. Use the AWS Region code format, such as
+  /// <code>us-west-2</code>.
+  ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [statusFilter] :
@@ -4919,35 +4587,27 @@ class GameLift {
     String? fleetId,
     String? gameSessionId,
     int? limit,
+    String? location,
     String? nextToken,
     String? statusFilter,
   }) async {
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-    );
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-    );
     _s.validateStringLength(
       'gameSessionId',
       gameSessionId,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'nextToken',
@@ -4976,6 +4636,7 @@ class GameLift {
         if (fleetId != null) 'FleetId': fleetId,
         if (gameSessionId != null) 'GameSessionId': gameSessionId,
         if (limit != null) 'Limit': limit,
+        if (location != null) 'Location': location,
         if (nextToken != null) 'NextToken': nextToken,
         if (statusFilter != null) 'StatusFilter': statusFilter,
       },
@@ -4984,44 +4645,22 @@ class GameLift {
     return DescribeGameSessionDetailsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves properties and current status of a game session placement
-  /// request. To get game session placement details, specify the placement ID.
+  /// Retrieves information, including current status, about a game session
+  /// placement request.
+  ///
+  /// To get game session placement details, specify the placement ID.
+  ///
   /// If successful, a <a>GameSessionPlacement</a> object is returned.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -5039,12 +4678,6 @@ class GameLift {
       placementId,
       1,
       48,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'placementId',
-      placementId,
-      r'''[a-zA-Z0-9-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5078,22 +4711,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queues-console.html">
   /// View Your Queues</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionQueues</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameSessionQueue</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameSessionQueue</a> | <a>DescribeGameSessionQueues</a> |
+  /// <a>UpdateGameSessionQueue</a> | <a>DeleteGameSessionQueue</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -5151,54 +4774,57 @@ class GameLift {
     return DescribeGameSessionQueuesOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves a set of one or more game sessions. Request a specific game
-  /// session or request all game sessions on a fleet. Alternatively, use
-  /// <a>SearchGameSessions</a> to request a set of active game sessions that
-  /// are filtered by certain criteria. To retrieve protection policy settings
-  /// for game sessions, use <a>DescribeGameSessionDetails</a>.
+  /// Retrieves a set of one or more game sessions in a specific fleet location.
+  /// You can optionally filter the results by current game session status.
+  /// Alternatively, use <a>SearchGameSessions</a> to request a set of active
+  /// game sessions that are filtered by certain criteria. To retrieve the
+  /// protection policy for game sessions, use
+  /// <a>DescribeGameSessionDetails</a>.
   ///
-  /// To get game sessions, specify one of the following: game session ID, fleet
-  /// ID, or alias ID. You can filter this request by game session status. Use
-  /// the pagination parameters to retrieve results as a set of sequential
-  /// pages. If successful, a <a>GameSession</a> object is returned for each
-  /// game session matching the request.
-  ///
-  /// <i>Available in Amazon GameLift Local.</i>
+  /// This operation can be used in the following ways:
   ///
   /// <ul>
   /// <li>
-  /// <a>CreateGameSession</a>
+  /// To retrieve all game sessions that are currently running on all locations
+  /// in a fleet, provide a fleet or alias ID, with an optional status filter.
+  /// This approach returns all game sessions in the fleet's home Region and all
+  /// remote locations.
   /// </li>
   /// <li>
-  /// <a>DescribeGameSessions</a>
+  /// To retrieve all game sessions that are currently running on a specific
+  /// fleet location, provide a fleet or alias ID and a location name, with
+  /// optional status filter. The location can be the fleet's home Region or any
+  /// remote location.
   /// </li>
   /// <li>
-  /// <a>DescribeGameSessionDetails</a>
+  /// To retrieve a specific game session, provide the game session ID. This
+  /// approach looks for the game session ID in all fleets that reside in the
+  /// AWS Region defined in the request.
   /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
   /// </ul>
+  /// Use the pagination parameters to retrieve results as a set of sequential
+  /// pages.
+  ///
+  /// If successful, a <code>GameSession</code> object is returned for each game
+  /// session that matches the request.
+  ///
+  /// <i>Available in GameLift Local.</i>
+  ///
+  /// <b>Learn more</b>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-find">Find
+  /// a game session</a>
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -5207,11 +4833,11 @@ class GameLift {
   /// May throw [TerminalRoutingStrategyException].
   ///
   /// Parameter [aliasId] :
-  /// A unique identifier for an alias associated with the fleet to retrieve all
+  /// A unique identifier for the alias associated with the fleet to retrieve
   /// game sessions for. You can use either the alias ID or ARN value.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to retrieve all game sessions for. You can
+  /// A unique identifier for the fleet to retrieve game sessions for. You can
   /// use either the fleet ID or ARN value.
   ///
   /// Parameter [gameSessionId] :
@@ -5221,50 +4847,47 @@ class GameLift {
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
+  /// Parameter [location] :
+  /// A fleet location to get game session details for. You can specify a
+  /// fleet's home Region or a remote location. Use the AWS Region code format,
+  /// such as <code>us-west-2</code>.
+  ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [statusFilter] :
-  /// Game session status to filter results on. Possible game session statuses
-  /// include <code>ACTIVE</code>, <code>TERMINATED</code>,
-  /// <code>ACTIVATING</code>, and <code>TERMINATING</code> (the last two are
-  /// transitory).
+  /// Game session status to filter results on. You can filter on the following
+  /// states: <code>ACTIVE</code>, <code>TERMINATED</code>,
+  /// <code>ACTIVATING</code>, and <code>TERMINATING</code>. The last two are
+  /// transitory and used for only very brief periods of time.
   Future<DescribeGameSessionsOutput> describeGameSessions({
     String? aliasId,
     String? fleetId,
     String? gameSessionId,
     int? limit,
+    String? location,
     String? nextToken,
     String? statusFilter,
   }) async {
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-    );
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-    );
     _s.validateStringLength(
       'gameSessionId',
       gameSessionId,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'nextToken',
@@ -5293,6 +4916,7 @@ class GameLift {
         if (fleetId != null) 'FleetId': fleetId,
         if (gameSessionId != null) 'GameSessionId': gameSessionId,
         if (limit != null) 'Limit': limit,
+        if (location != null) 'Location': location,
         if (nextToken != null) 'NextToken': nextToken,
         if (statusFilter != null) 'StatusFilter': statusFilter,
       },
@@ -5301,14 +4925,30 @@ class GameLift {
     return DescribeGameSessionsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves information about a fleet's instances, including instance IDs.
-  /// Use this operation to get details on all instances in the fleet or get
-  /// details on one specific instance.
+  /// Retrieves information about a fleet's instances, including instance IDs,
+  /// connection data, and status.
   ///
-  /// To get a specific instance, specify fleet ID and instance ID. To get all
-  /// instances in a fleet, specify a fleet ID only. Use the pagination
-  /// parameters to retrieve results as a set of sequential pages. If
-  /// successful, an <a>Instance</a> object is returned for each result.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get information on all instances that are deployed to a fleet's home
+  /// Region, provide the fleet ID.
+  /// </li>
+  /// <li>
+  /// To get information on all instances that are deployed to a fleet's remote
+  /// location, provide the fleet ID and location name.
+  /// </li>
+  /// <li>
+  /// To get information on a specific instance in a fleet, provide the fleet ID
+  /// and instance ID.
+  /// </li>
+  /// </ul>
+  /// Use the pagination parameters to retrieve results as a set of sequential
+  /// pages.
+  ///
+  /// If successful, an <code>Instance</code> object is returned for each
+  /// requested instance. Instances are not returned in any particular order.
   ///
   /// <b>Learn more</b>
   ///
@@ -5320,16 +4960,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html">Debug
   /// Fleet Issues</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeInstances</a>
-  /// </li>
-  /// <li>
-  /// <a>GetInstanceAccess</a>
-  /// </li>
-  /// </ul>
+  /// <a>DescribeInstances</a> | <a>GetInstanceAccess</a> |
+  /// <a>DescribeEC2InstanceLimits</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -5337,8 +4973,8 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to retrieve instance information for. You
-  /// can use either the fleet ID or ARN value.
+  /// A unique identifier for the fleet to retrieve instance information for.
+  /// You can use either the fleet ID or ARN value.
   ///
   /// Parameter [instanceId] :
   /// A unique identifier for an instance to retrieve. Specify an instance ID or
@@ -5348,33 +4984,33 @@ class GameLift {
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
+  /// Parameter [location] :
+  /// The name of a location to retrieve instance information for, in the form
+  /// of an AWS Region code such as <code>us-west-2</code>.
+  ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   Future<DescribeInstancesOutput> describeInstances({
     required String fleetId,
     String? instanceId,
     int? limit,
+    String? location,
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[a-zA-Z0-9\.-]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'nextToken',
@@ -5396,6 +5032,7 @@ class GameLift {
         'FleetId': fleetId,
         if (instanceId != null) 'InstanceId': instanceId,
         if (limit != null) 'Limit': limit,
+        if (location != null) 'Location': location,
         if (nextToken != null) 'NextToken': nextToken,
       },
     );
@@ -5423,31 +5060,19 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html">
-  /// Add FlexMatch to a Game Client</a>
+  /// Add FlexMatch to a game client</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html">
-  /// Set Up FlexMatch Event Notification</a>
+  /// Set Up FlexMatch event notification</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>StopMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>AcceptMatch</a>
-  /// </li>
-  /// <li>
-  /// <a>StartMatchBackfill</a>
-  /// </li>
-  /// </ul>
+  /// <a>StartMatchmaking</a> | <a>DescribeMatchmaking</a> |
+  /// <a>StopMatchmaking</a> | <a>AcceptMatch</a> | <a>StartMatchBackfill</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
@@ -5494,36 +5119,18 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/matchmaker-build.html">
-  /// Setting Up FlexMatch Matchmakers</a>
+  /// Setting up FlexMatch matchmakers</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
@@ -5535,7 +5142,7 @@ class GameLift {
   /// parameter is limited to 10.
   ///
   /// Parameter [names] :
-  /// A unique identifier for a matchmaking configuration(s) to retrieve. You
+  /// A unique identifier for the matchmaking configuration(s) to retrieve. You
   /// can use either the configuration name or ARN value. To request all
   /// existing configurations, leave this parameter empty.
   ///
@@ -5545,7 +5152,7 @@ class GameLift {
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [ruleSetName] :
-  /// A unique identifier for a matchmaking rule set. You can use either the
+  /// A unique identifier for the matchmaking rule set. You can use either the
   /// rule set name or ARN value. Use this parameter to retrieve all matchmaking
   /// configurations that use this rule set.
   Future<DescribeMatchmakingConfigurationsOutput>
@@ -5572,11 +5179,6 @@ class GameLift {
       ruleSetName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'ruleSetName',
-      ruleSetName,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingruleset\/[a-zA-Z0-9-\.]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5611,37 +5213,19 @@ class GameLift {
   /// <li>
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html">Build
-  /// a Rule Set</a>
+  /// a rule set</a>
   /// </li>
   /// </ul>
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
@@ -5698,47 +5282,40 @@ class GameLift {
     return DescribeMatchmakingRuleSetsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves properties for one or more player sessions. This operation can
-  /// be used in several ways: (1) provide a <code>PlayerSessionId</code> to
-  /// request properties for a specific player session; (2) provide a
-  /// <code>GameSessionId</code> to request properties for all player sessions
-  /// in the specified game session; (3) provide a <code>PlayerId</code> to
-  /// request properties for all player sessions of a specified player.
+  /// Retrieves properties for one or more player sessions.
   ///
-  /// To get game session record(s), specify only one of the following: a player
-  /// session ID, a game session ID, or a player ID. You can filter this request
-  /// by player session status. Use the pagination parameters to retrieve
-  /// results as a set of sequential pages. If successful, a
-  /// <a>PlayerSession</a> object is returned for each session matching the
-  /// request.
+  /// This action can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To retrieve a specific player session, provide the player session ID only.
+  /// </li>
+  /// <li>
+  /// To retrieve all player sessions in a game session, provide the game
+  /// session ID only.
+  /// </li>
+  /// <li>
+  /// To retrieve all player sessions for a specific player, provide a player ID
+  /// only.
+  /// </li>
+  /// </ul>
+  /// To request player sessions, specify either a player session ID, game
+  /// session ID, or player ID. You can filter this request by player session
+  /// status. Use the pagination parameters to retrieve results as a set of
+  /// sequential pages.
+  ///
+  /// If successful, a <code>PlayerSession</code> object is returned for each
+  /// session that matches the request.
   ///
   /// <i>Available in Amazon GameLift Local.</i>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreatePlayerSession</a>
-  /// </li>
-  /// <li>
-  /// <a>CreatePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribePlayerSessions</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreatePlayerSession</a> | <a>CreatePlayerSessions</a> |
+  /// <a>DescribePlayerSessions</a> | <a>StartGameSessionPlacement</a> |
+  /// <a>DescribeGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -5754,8 +5331,8 @@ class GameLift {
   /// player session ID is specified, this parameter is ignored.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value. If a
   /// player session ID is specified, this parameter is ignored.
   ///
@@ -5802,11 +5379,6 @@ class GameLift {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -5824,11 +5396,6 @@ class GameLift {
       playerId,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'playerSessionId',
-      playerSessionId,
-      r'''^psess-\S+''',
     );
     _s.validateStringLength(
       'playerSessionStatusFilter',
@@ -5861,11 +5428,13 @@ class GameLift {
   }
 
   /// Retrieves a fleet's runtime configuration settings. The runtime
-  /// configuration tells Amazon GameLift which server processes to run (and
-  /// how) on each instance in the fleet.
+  /// configuration tells GameLift which server processes to run (and how) on
+  /// each instance in the fleet.
   ///
-  /// To get a runtime configuration, specify the fleet's unique identifier. If
-  /// successful, a <a>RuntimeConfiguration</a> object is returned for the
+  /// To get the runtime configuration that is currently in forces for a fleet,
+  /// provide the fleet ID.
+  ///
+  /// If successful, a <a>RuntimeConfiguration</a> object is returned for the
   /// requested fleet. If the requested fleet has been deleted, the result set
   /// is empty.
   ///
@@ -5873,57 +5442,21 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-multiprocess.html">Running
-  /// Multiple Processes on a Fleet</a>
+  /// multiple processes on a fleet</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// Describe fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetUtilization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeRuntimeConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetEvents</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>ListFleets</a> | <a>DescribeEC2InstanceLimits</a> |
+  /// <a>DescribeFleetAttributes</a> | <a>DescribeFleetCapacity</a> |
+  /// <a>DescribeFleetEvents</a> | <a>DescribeFleetLocationAttributes</a> |
+  /// <a>DescribeFleetPortSettings</a> | <a>DescribeFleetUtilization</a> |
+  /// <a>DescribeRuntimeConfiguration</a> | <a>DescribeScalingPolicies</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
@@ -5931,18 +5464,12 @@ class GameLift {
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to get the runtime configuration for. You
-  /// can use either the fleet ID or ARN value.
+  /// A unique identifier for the fleet to get the runtime configuration for.
+  /// You can use either the fleet ID or ARN value.
   Future<DescribeRuntimeConfigurationOutput> describeRuntimeConfiguration({
     required String fleetId,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeRuntimeConfiguration'
@@ -5975,42 +5502,14 @@ class GameLift {
   /// scaling policies are in force or suspended, call
   /// <a>DescribeFleetAttributes</a> and check the stopped actions.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// Manage scaling policies:
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>PutScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DescribeScalingPolicies</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DeleteScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// Manage fleet actions:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartFleetActions</a>
-  /// </li>
-  /// <li>
-  /// <a>StopFleetActions</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>DescribeFleetCapacity</a> | <a>UpdateFleetCapacity</a> |
+  /// <a>DescribeEC2InstanceLimits</a> | <a>PutScalingPolicy</a> |
+  /// <a>DescribeScalingPolicies</a> | <a>DeleteScalingPolicy</a> |
+  /// <a>StopFleetActions</a> | <a>StartFleetActions</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -6018,16 +5517,19 @@ class GameLift {
   /// May throw [NotFoundException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to retrieve scaling policies for. You can
-  /// use either the fleet ID or ARN value.
+  /// A unique identifier for the fleet to retrieve scaling policies for. You
+  /// can use either the fleet ID or ARN value.
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
+  /// Parameter [location] :
+  /// CONTENT TODO
+  ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [statusFilter] :
@@ -6063,21 +5565,22 @@ class GameLift {
   Future<DescribeScalingPoliciesOutput> describeScalingPolicies({
     required String fleetId,
     int? limit,
+    String? location,
     String? nextToken,
     ScalingStatusType? statusFilter,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'nextToken',
@@ -6098,6 +5601,7 @@ class GameLift {
       payload: {
         'FleetId': fleetId,
         if (limit != null) 'Limit': limit,
+        if (location != null) 'Location': location,
         if (nextToken != null) 'NextToken': nextToken,
         if (statusFilter != null) 'StatusFilter': statusFilter.toValue(),
       },
@@ -6117,25 +5621,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html">Amazon
   /// GameLift Realtime Servers</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>ListScripts</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeScript</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteScript</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+  /// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6143,18 +5634,12 @@ class GameLift {
   /// May throw [NotFoundException].
   ///
   /// Parameter [scriptId] :
-  /// A unique identifier for a Realtime script to retrieve properties for. You
-  /// can use either the script ID or ARN value.
+  /// A unique identifier for the Realtime script to retrieve properties for.
+  /// You can use either the script ID or ARN value.
   Future<DescribeScriptOutput> describeScript({
     required String scriptId,
   }) async {
     ArgumentError.checkNotNull(scriptId, 'scriptId');
-    _s.validateStringPattern(
-      'scriptId',
-      scriptId,
-      r'''^script-\S+|^arn:.*:script\/script-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeScript'
@@ -6178,26 +5663,15 @@ class GameLift {
   /// requests for peering. This includes those initiated and received by this
   /// account.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6229,26 +5703,15 @@ class GameLift {
   /// connections. Active connections identify the IpV4 CIDR block that the VPC
   /// uses to connect.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringAuthorizations</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringAuthorization</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateVpcPeeringConnection</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeVpcPeeringConnections</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteVpcPeeringConnection</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateVpcPeeringAuthorization</a> |
+  /// <a>DescribeVpcPeeringAuthorizations</a> |
+  /// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+  /// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6256,16 +5719,11 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet. You can use either the fleet ID or ARN
+  /// A unique identifier for the fleet. You can use either the fleet ID or ARN
   /// value.
   Future<DescribeVpcPeeringConnectionsOutput> describeVpcPeeringConnections({
     String? fleetId,
   }) async {
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeVpcPeeringConnections'
@@ -6285,8 +5743,8 @@ class GameLift {
   }
 
   /// Retrieves the location of stored game session logs for a specified game
-  /// session. When a game session is terminated, Amazon GameLift automatically
-  /// stores the logs in Amazon S3 and retains them for 14 days. Use this URL to
+  /// session. When a game session is terminated, GameLift automatically stores
+  /// the logs in Amazon S3 and retains them for 14 days. Use this URL to
   /// download the logs.
   /// <note>
   /// See the <a
@@ -6294,40 +5752,15 @@ class GameLift {
   /// Service Limits</a> page for maximum log file sizes. Log files that exceed
   /// this limit are not saved.
   /// </note>
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -6345,12 +5778,6 @@ class GameLift {
       gameSessionId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6376,14 +5803,14 @@ class GameLift {
   /// time.
   ///
   /// To remotely access an instance, you need credentials that match the
-  /// operating system of the instance. For a Windows instance, Amazon GameLift
-  /// returns a user name and password as strings for use with a Windows Remote
-  /// Desktop client. For a Linux instance, Amazon GameLift returns a user name
-  /// and RSA private key, also as strings, for use with an SSH client. The
-  /// private key must be saved in the proper format to a <code>.pem</code> file
-  /// before using. If you're making this request using the AWS CLI, saving the
-  /// secret can be handled as part of the GetInstanceAccess request, as shown
-  /// in one of the examples for this operation.
+  /// operating system of the instance. For a Windows instance, GameLift returns
+  /// a user name and password as strings for use with a Windows Remote Desktop
+  /// client. For a Linux instance, GameLift returns a user name and RSA private
+  /// key, also as strings, for use with an SSH client. The private key must be
+  /// saved in the proper format to a <code>.pem</code> file before using. If
+  /// you're making this request using the AWS CLI, saving the secret can be
+  /// handled as part of the <code>GetInstanceAccess</code> request, as shown in
+  /// one of the examples for this operation.
   ///
   /// To request access to a specific instance, specify the IDs of both the
   /// instance and the fleet it belongs to. You can retrieve a fleet's instance
@@ -6401,16 +5828,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-creating-debug.html">Debug
   /// Fleet Issues</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeInstances</a>
-  /// </li>
-  /// <li>
-  /// <a>GetInstanceAccess</a>
-  /// </li>
-  /// </ul>
+  /// <a>DescribeInstances</a> | <a>GetInstanceAccess</a> |
+  /// <a>DescribeEC2InstanceLimits</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6418,33 +5841,22 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet that contains the instance you want access
-  /// to. You can use either the fleet ID or ARN value. The fleet can be in any
-  /// of the following statuses: <code>ACTIVATING</code>, <code>ACTIVE</code>,
-  /// or <code>ERROR</code>. Fleets with an <code>ERROR</code> status may be
-  /// accessible for a short time before they are deleted.
+  /// A unique identifier for the fleet that contains the instance you want
+  /// access to. You can use either the fleet ID or ARN value. The fleet can be
+  /// in any of the following statuses: <code>ACTIVATING</code>,
+  /// <code>ACTIVE</code>, or <code>ERROR</code>. Fleets with an
+  /// <code>ERROR</code> status may be accessible for a short time before they
+  /// are deleted.
   ///
   /// Parameter [instanceId] :
-  /// A unique identifier for an instance you want to get access to. You can
+  /// A unique identifier for the instance you want to get access to. You can
   /// access an instance in any status.
   Future<GetInstanceAccessOutput> getInstanceAccess({
     required String fleetId,
     required String instanceId,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[a-zA-Z0-9\.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.GetInstanceAccess'
@@ -6470,26 +5882,12 @@ class GameLift {
   /// <note>
   /// Returned aliases are not listed in any particular order.
   /// </note>
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6586,25 +5984,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html">
   /// Upload a Custom Server Build</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -6615,8 +6000,8 @@ class GameLift {
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [status] :
@@ -6678,10 +6063,37 @@ class GameLift {
     return ListBuildsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves a collection of fleet resources for this AWS account. You can
-  /// filter the result set to find only those fleets that are deployed with a
-  /// specific build or script. Use the pagination parameters to retrieve
-  /// results in sequential pages.
+  /// Retrieves a collection of fleet resources in an AWS Region. You can call
+  /// this operation to get fleets in a previously selected default Region (see
+  /// <a
+  /// href="https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html">https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.html</a>or
+  /// specify a Region in your request. You can filter the result set to find
+  /// only those fleets that are deployed with a specific build or script. For
+  /// fleets that have multiple locations, this operation retrieves fleets based
+  /// on their home Region only.
+  ///
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To get a list of all fleets in a Region, don't provide a build or script
+  /// identifier.
+  /// </li>
+  /// <li>
+  /// To get a list of all fleets where a specific custom game build is
+  /// deployed, provide the build ID.
+  /// </li>
+  /// <li>
+  /// To get a list of all Realtime Servers fleets with a specific configuration
+  /// script, provide the script ID.
+  /// </li>
+  /// </ul>
+  /// Use the pagination parameters to retrieve results as a set of sequential
+  /// pages.
+  ///
+  /// If successful, a list of fleet IDs that match the request parameters is
+  /// returned. A NextToken value is also returned if there are more result
+  /// pages to retrieve.
   /// <note>
   /// Fleet resources are not listed in a particular order.
   /// </note>
@@ -6689,30 +6101,16 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleet</a> | <a>UpdateFleetCapacity</a> | <a>PutScalingPolicy</a>
+  /// | <a>DescribeEC2InstanceLimits</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetLocationAttributes</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>StopFleetActions</a> | <a>DeleteFleet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -6720,36 +6118,29 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to return fleets for. Use this parameter
-  /// to return only fleets using a specified build. Use either the build ID or
-  /// ARN value. To retrieve all fleets, do not include either a BuildId and
-  /// ScriptID parameter.
+  /// A unique identifier for the build to request fleets for. Use this
+  /// parameter to return only fleets using a specified build. Use either the
+  /// build ID or ARN value.
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
   /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [scriptId] :
-  /// A unique identifier for a Realtime script to return fleets for. Use this
-  /// parameter to return only fleets using a specified script. Use either the
-  /// script ID or ARN value. To retrieve all fleets, leave this parameter
-  /// empty.
+  /// A unique identifier for the Realtime script to request fleets for. Use
+  /// this parameter to return only fleets using a specified script. Use either
+  /// the script ID or ARN value.
   Future<ListFleetsOutput> listFleets({
     String? buildId,
     int? limit,
     String? nextToken,
     String? scriptId,
   }) async {
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -6761,11 +6152,6 @@ class GameLift {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'scriptId',
-      scriptId,
-      r'''^script-\S+|^arn:.*:script\/script-\S+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6788,8 +6174,8 @@ class GameLift {
     return ListFleetsOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Retrieves information on all game servers groups that exist in the current
   /// AWS account for the selected Region. Use the pagination parameters to
@@ -6801,34 +6187,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
@@ -6836,12 +6202,12 @@ class GameLift {
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
-  /// <code>NextToken</code> to get results as a set of sequential segments.
+  /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// A token that indicates the start of the next sequential segment of
-  /// results. Use the token returned with the previous call to this operation.
-  /// To start at the beginning of the result set, do not specify a value.
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
+  /// start at the beginning of the result set, do not specify a value.
   Future<ListGameServerGroupsOutput> listGameServerGroups({
     int? limit,
     String? nextToken,
@@ -6877,8 +6243,8 @@ class GameLift {
     return ListGameServerGroupsOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Retrieves information on all game servers that are currently active in a
   /// specified game server group. You can opt to sort the list by game server
@@ -6891,28 +6257,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
@@ -6924,18 +6275,19 @@ class GameLift {
   ///
   /// Parameter [limit] :
   /// The maximum number of results to return. Use this parameter with
-  /// <code>NextToken</code> to get results as a set of sequential segments.
+  /// <code>NextToken</code> to get results as a set of sequential pages.
   ///
   /// Parameter [nextToken] :
-  /// A token that indicates the start of the next sequential segment of
-  /// results. Use the token returned with the previous call to this operation.
-  /// To start at the beginning of the result set, do not specify a value.
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
+  /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [sortOrder] :
   /// Indicates how to sort the returned data based on game server registration
-  /// timestamp. Use ASCENDING to retrieve oldest game servers first, or use
-  /// DESCENDING to retrieve newest game servers first. If this parameter is
-  /// left empty, game servers are returned in no particular order.
+  /// timestamp. Use <code>ASCENDING</code> to retrieve oldest game servers
+  /// first, or use <code>DESCENDING</code> to retrieve newest game servers
+  /// first. If this parameter is left empty, game servers are returned in no
+  /// particular order.
   Future<ListGameServersOutput> listGameServers({
     required String gameServerGroupName,
     int? limit,
@@ -6948,12 +6300,6 @@ class GameLift {
       gameServerGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -6998,25 +6344,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html">Amazon
   /// GameLift Realtime Servers</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>ListScripts</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeScript</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteScript</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+  /// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -7106,19 +6439,12 @@ class GameLift {
   /// href="http://aws.amazon.com/answers/account-management/aws-tagging-strategies/">
   /// AWS Tagging Strategies</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>TagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>UntagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>ListTagsForResource</a>
-  /// </li>
-  /// </ul>
+  /// <a>TagResource</a> | <a>UntagResource</a> | <a>ListTagsForResource</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [InvalidRequestException].
@@ -7245,42 +6571,14 @@ class GameLift {
   /// are temporarily suspended, the new policy will be in force once the fleet
   /// actions are restarted.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>DescribeFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeEC2InstanceLimits</a>
-  /// </li>
-  /// <li>
-  /// Manage scaling policies:
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>PutScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DescribeScalingPolicies</a> (auto-scaling)
-  /// </li>
-  /// <li>
-  /// <a>DeleteScalingPolicy</a> (auto-scaling)
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// Manage fleet actions:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartFleetActions</a>
-  /// </li>
-  /// <li>
-  /// <a>StopFleetActions</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>DescribeFleetCapacity</a> | <a>UpdateFleetCapacity</a> |
+  /// <a>DescribeEC2InstanceLimits</a> | <a>PutScalingPolicy</a> |
+  /// <a>DescribeScalingPolicies</a> | <a>DeleteScalingPolicy</a> |
+  /// <a>StopFleetActions</a> | <a>StartFleetActions</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -7288,7 +6586,7 @@ class GameLift {
   /// May throw [NotFoundException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to apply this policy to. You can use
+  /// A unique identifier for the fleet to apply this policy to. You can use
   /// either the fleet ID or ARN value. The fleet cannot be in any of the
   /// following statuses: ERROR or DELETING.
   ///
@@ -7348,9 +6646,9 @@ class GameLift {
   /// </ul>
   ///
   /// Parameter [name] :
-  /// A descriptive label that is associated with a scaling policy. Policy names
-  /// do not need to be unique. A fleet can have only one scaling policy with
-  /// the same name.
+  /// A descriptive label that is associated with a fleet's scaling policy.
+  /// Policy names do not need to be unique. A fleet can have only one scaling
+  /// policy with the same name.
   ///
   /// Parameter [comparisonOperator] :
   /// Comparison operator to use when measuring the metric against the threshold
@@ -7394,7 +6692,7 @@ class GameLift {
   /// </ul>
   ///
   /// Parameter [targetConfiguration] :
-  /// The settings for a target-based scaling policy.
+  /// An object that contains settings for a target-based scaling policy.
   ///
   /// Parameter [threshold] :
   /// Metric value used to trigger a scaling event.
@@ -7411,12 +6709,6 @@ class GameLift {
     double? threshold,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -7462,8 +6754,8 @@ class GameLift {
     return PutScalingPolicyOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Creates a new game server resource and notifies GameLift FleetIQ that the
   /// game server is ready to host gameplay and players. This operation is
@@ -7489,28 +6781,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [ConflictException].
@@ -7557,24 +6834,12 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
     _s.validateStringLength(
       'gameServerId',
       gameServerId,
       3,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerId',
-      gameServerId,
-      r'''[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
@@ -7585,33 +6850,17 @@ class GameLift {
       19,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''^i-[0-9a-zA-Z]{17}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'connectionInfo',
       connectionInfo,
       1,
       512,
     );
-    _s.validateStringPattern(
-      'connectionInfo',
-      connectionInfo,
-      r'''.*\S.*''',
-    );
     _s.validateStringLength(
       'gameServerData',
       gameServerData,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'gameServerData',
-      gameServerData,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7650,25 +6899,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-cli-uploading.html#gamelift-build-cli-uploading-create-build">
   /// Create a Build with Files in S3</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -7676,18 +6912,12 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to get credentials for. You can use either
-  /// the build ID or ARN value.
+  /// A unique identifier for the build to get credentials for. You can use
+  /// either the build ID or ARN value.
   Future<RequestUploadCredentialsOutput> requestUploadCredentials({
     required String buildId,
   }) async {
     ArgumentError.checkNotNull(buildId, 'buildId');
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.RequestUploadCredentials'
@@ -7708,26 +6938,12 @@ class GameLift {
 
   /// Retrieves the fleet ID that an alias is currently pointing to.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -7742,12 +6958,6 @@ class GameLift {
     required String aliasId,
   }) async {
     ArgumentError.checkNotNull(aliasId, 'aliasId');
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ResolveAlias'
@@ -7766,8 +6976,8 @@ class GameLift {
     return ResolveAliasOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Reinstates activity on a game server group after it has been suspended. A
   /// game server group might be suspended by the<a>SuspendGameServerGroup</a>
@@ -7788,34 +6998,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -7840,12 +7030,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resumeActions, 'resumeActions');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7867,8 +7051,37 @@ class GameLift {
   }
 
   /// Retrieves all active game sessions that match a set of search criteria and
-  /// sorts them in a specified order. You can search or sort by the following
-  /// game session attributes:
+  /// sorts them into a specified order.
+  ///
+  /// When searching for game sessions, you specify exactly where you want to
+  /// search and provide a search filter expression, a sort expression, or both.
+  /// A search request can search only one fleet, but it can search all of a
+  /// fleet's locations.
+  ///
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To search all game sessions that are currently running on all locations in
+  /// a fleet, provide a fleet or alias ID. This approach returns game sessions
+  /// in the fleet's home Region and all remote locations that fit the search
+  /// criteria.
+  /// </li>
+  /// <li>
+  /// To search all game sessions that are currently running on a specific fleet
+  /// location, provide a fleet or alias ID and a location name. For location,
+  /// you can specify a fleet's home Region or any remote location.
+  /// </li>
+  /// </ul>
+  /// Use the pagination parameters to retrieve results as a set of sequential
+  /// pages.
+  ///
+  /// If successful, a <code>GameSession</code> object is returned for each game
+  /// session that matches the request. Search finds game sessions that are in
+  /// <code>ACTIVE</code> status only. To retrieve information on game sessions
+  /// in other statuses, use <a>DescribeGameSessions</a>.
+  ///
+  /// You can search or sort by the following game session attributes:
   ///
   /// <ul>
   /// <li>
@@ -7919,52 +7132,15 @@ class GameLift {
   /// time. Be sure to refresh search results often, and handle sessions that
   /// fill up before a player can join.
   /// </note>
-  /// To search or sort, specify either a fleet ID or an alias ID, and provide a
-  /// search filter expression, a sort expression, or both. If successful, a
-  /// collection of <a>GameSession</a> objects matching the request is returned.
-  /// Use the pagination parameters to retrieve results as a set of sequential
-  /// pages.
+  /// <b>Related actions</b>
   ///
-  /// You can search for game sessions one fleet at a time only. To find game
-  /// sessions across multiple fleets, you must search each fleet separately and
-  /// combine the results. This search feature finds only game sessions that are
-  /// in <code>ACTIVE</code> status. To locate games in statuses other than
-  /// active, use <a>DescribeGameSessionDetails</a>.
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [NotFoundException].
@@ -7973,7 +7149,7 @@ class GameLift {
   /// May throw [TerminalRoutingStrategyException].
   ///
   /// Parameter [aliasId] :
-  /// A unique identifier for an alias associated with the fleet to search for
+  /// A unique identifier for the alias associated with the fleet to search for
   /// active game sessions. You can use either the alias ID or ARN value. Each
   /// request must reference either a fleet ID or alias ID, but not both.
   ///
@@ -8038,7 +7214,7 @@ class GameLift {
   /// <code>"maximumSessions&gt;=10 AND hasAvailablePlayerSessions=true"</code>.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to search for active game sessions. You
+  /// A unique identifier for the fleet to search for active game sessions. You
   /// can use either the fleet ID or ARN value. Each request must reference
   /// either a fleet ID or alias ID, but not both.
   ///
@@ -8048,9 +7224,16 @@ class GameLift {
   /// maximum number of results returned is 20, even if this value is not set or
   /// is set higher than 20.
   ///
+  /// Parameter [location] :
+  /// A fleet location to search for game sessions. You can specify a fleet's
+  /// home Region or a remote location. Use the AWS Region code format, such as
+  /// <code>us-west-2</code>.
+  ///
+  ///
+  ///
   /// Parameter [nextToken] :
-  /// Token that indicates the start of the next sequential page of results. Use
-  /// the token that is returned with a previous call to this operation. To
+  /// A token that indicates the start of the next sequential page of results.
+  /// Use the token that is returned with a previous call to this operation. To
   /// start at the beginning of the result set, do not specify a value.
   ///
   /// Parameter [sortExpression] :
@@ -8080,30 +7263,27 @@ class GameLift {
     String? filterExpression,
     String? fleetId,
     int? limit,
+    String? location,
     String? nextToken,
     String? sortExpression,
   }) async {
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-    );
     _s.validateStringLength(
       'filterExpression',
       filterExpression,
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateStringLength(
       'nextToken',
@@ -8132,6 +7312,7 @@ class GameLift {
         if (filterExpression != null) 'FilterExpression': filterExpression,
         if (fleetId != null) 'FleetId': fleetId,
         if (limit != null) 'Limit': limit,
+        if (location != null) 'Location': location,
         if (nextToken != null) 'NextToken': nextToken,
         if (sortExpression != null) 'SortExpression': sortExpression,
       },
@@ -8140,45 +7321,43 @@ class GameLift {
     return SearchGameSessionsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Resumes activity on a fleet that was suspended with
-  /// <a>StopFleetActions</a>. Currently, this operation is used to restart a
-  /// fleet's auto-scaling activity.
+  /// Resumes certain types of activity on fleet instances that were suspended
+  /// with <a>StopFleetActions</a>. For multi-location fleets, fleet actions are
+  /// managed separately for each location. Currently, this operation is used to
+  /// restart a fleet's auto-scaling activity.
   ///
-  /// To start fleet actions, specify the fleet ID and the type of actions to
-  /// restart. When auto-scaling fleet actions are restarted, Amazon GameLift
-  /// once again initiates scaling events as triggered by the fleet's scaling
-  /// policies. If actions on the fleet were never stopped, this operation will
-  /// have no effect. You can view a fleet's stopped actions using
-  /// <a>DescribeFleetAttributes</a>.
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To restart actions on instances in the fleet's home Region, provide a
+  /// fleet ID and the type of actions to resume.
+  /// </li>
+  /// <li>
+  /// To restart actions on instances in one of the fleet's remote locations,
+  /// provide a fleet ID, a location name, and the type of actions to resume.
+  /// </li>
+  /// </ul>
+  /// If successful, GameLift once again initiates scaling events as triggered
+  /// by the fleet's scaling policies. If actions on the fleet location were
+  /// never stopped, this operation will have no effect. You can view a fleet's
+  /// stopped actions using <a>DescribeFleetAttributes</a> or
+  /// <a>DescribeFleetLocationAttributes</a>.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleet</a> | <a>UpdateFleetCapacity</a> | <a>PutScalingPolicy</a>
+  /// | <a>DescribeEC2InstanceLimits</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetLocationAttributes</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>StopFleetActions</a> | <a>DeleteFleet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -8189,25 +7368,30 @@ class GameLift {
   /// List of actions to restart on the fleet.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to start actions on. You can use either
-  /// the fleet ID or ARN value.
-  Future<void> startFleetActions({
+  /// A unique identifier for the fleet to restart actions on. You can use
+  /// either the fleet ID or ARN value.
+  ///
+  /// Parameter [location] :
+  /// The fleet location to restart fleet actions for. Specify a location in the
+  /// form of an AWS Region code, such as <code>us-west-2</code>.
+  Future<StartFleetActionsOutput> startFleetActions({
     required List<FleetAction> actions,
     required String fleetId,
+    String? location,
   }) async {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StartFleetActions'
     };
-    await _protocol.send(
+    final jsonResponse = await _protocol.send(
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
@@ -8216,8 +7400,11 @@ class GameLift {
       payload: {
         'Actions': actions.map((e) => e.toValue()).toList(),
         'FleetId': fleetId,
+        if (location != null) 'Location': location,
       },
     );
+
+    return StartFleetActionsOutput.fromJson(jsonResponse.body);
   }
 
   /// Places a request for a new game session in a queue (see
@@ -8272,40 +7459,15 @@ class GameLift {
   /// times out, you can resubmit the request or retry it with a different
   /// queue.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -8330,17 +7492,18 @@ class GameLift {
   /// Set of information on each player to create a player session for.
   ///
   /// Parameter [gameProperties] :
-  /// Set of custom properties for a game session, formatted as key:value pairs.
-  /// These properties are passed to a game server process in the
+  /// A set of custom properties for a game session, formatted as key:value
+  /// pairs. These properties are passed to a game server process in the
   /// <a>GameSession</a> object with a request to start a new game session (see
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
   /// a Game Session</a>).
   ///
   /// Parameter [gameSessionData] :
-  /// Set of custom game session properties, formatted as a single string value.
-  /// This data is passed to a game server process in the <a>GameSession</a>
-  /// object with a request to start a new game session (see <a
+  /// A set of custom game session properties, formatted as a single string
+  /// value. This data is passed to a game server process in the
+  /// <a>GameSession</a> object with a request to start a new game session (see
+  /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
   /// a Game Session</a>).
   ///
@@ -8349,10 +7512,10 @@ class GameLift {
   /// do not need to be unique.
   ///
   /// Parameter [playerLatencies] :
-  /// Set of values, expressed in milliseconds, indicating the amount of latency
-  /// that a player experiences when connected to AWS Regions. This information
-  /// is used to try to place the new game session where it can offer the best
-  /// possible gameplay experience for the players.
+  /// A set of values, expressed in milliseconds, that indicates the amount of
+  /// latency that a player experiences when connected to AWS Regions. This
+  /// information is used to try to place the new game session where it can
+  /// offer the best possible gameplay experience for the players.
   Future<StartGameSessionPlacementOutput> startGameSessionPlacement({
     required String gameSessionQueueName,
     required int maximumPlayerSessionCount,
@@ -8369,12 +7532,6 @@ class GameLift {
       gameSessionQueueName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameSessionQueueName',
-      gameSessionQueueName,
-      r'''[a-zA-Z0-9-]+|^arn:.*:gamesessionqueue\/[a-zA-Z0-9-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -8394,17 +7551,11 @@ class GameLift {
       48,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'placementId',
-      placementId,
-      r'''[a-zA-Z0-9-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'gameSessionData',
       gameSessionData,
       1,
-      4096,
+      262144,
     );
     _s.validateStringLength(
       'gameSessionName',
@@ -8438,62 +7589,59 @@ class GameLift {
     return StartGameSessionPlacementOutput.fromJson(jsonResponse.body);
   }
 
-  /// Finds new players to fill open slots in an existing game session. This
-  /// operation can be used to add players to matched games that start with
-  /// fewer than the maximum number of players or to replace players when they
-  /// drop out. By backfilling with the same matchmaker used to create the
-  /// original match, you ensure that new players meet the match criteria and
-  /// maintain a consistent experience throughout the game session. You can
-  /// backfill a match anytime after a game session has been created.
+  /// Finds new players to fill open slots in currently running game sessions.
+  /// The backfill match process is essentially identical to the process of
+  /// forming new matches. Backfill requests use the same matchmaker that was
+  /// used to make the original match, and they provide matchmaking data for all
+  /// players currently in the game session. FlexMatch uses this information to
+  /// select new players so that backfilled match continues to meet the original
+  /// match requirements.
   ///
-  /// To request a match backfill, specify a unique ticket ID, the existing game
-  /// session's ARN, a matchmaking configuration, and a set of data that
-  /// describes all current players in the game session. If successful, a match
-  /// backfill ticket is created and returned with status set to QUEUED. The
-  /// ticket is placed in the matchmaker's ticket pool and processed. Track the
-  /// status of the ticket to respond as needed.
+  /// When using FlexMatch with GameLift managed hosting, you can request a
+  /// backfill match from a client service by calling this operation with a
+  /// <a>GameSession</a> identifier. You also have the option of making backfill
+  /// requests directly from your game server. In response to a request,
+  /// FlexMatch creates player sessions for the new players, updates the
+  /// <code>GameSession</code> resource, and sends updated matchmaking data to
+  /// the game server. You can request a backfill match at any point after a
+  /// game session is started. Each game session can have only one active
+  /// backfill request at a time; a subsequent request automatically replaces
+  /// the earlier request.
   ///
-  /// The process of finding backfill matches is essentially identical to the
-  /// initial matchmaking process. The matchmaker searches the pool and groups
-  /// tickets together to form potential matches, allowing only one backfill
-  /// ticket per potential match. Once the a match is formed, the matchmaker
-  /// creates player sessions for the new players. All tickets in the match are
-  /// updated with the game session's connection information, and the
-  /// <a>GameSession</a> object is updated to include matchmaker data on the new
-  /// players. For more detail on how match backfill requests are processed, see
-  /// <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html">
-  /// How Amazon GameLift FlexMatch Works</a>.
+  /// When using FlexMatch as a standalone component, request a backfill match
+  /// by calling this operation without a game session identifier. As with newly
+  /// formed matches, matchmaking results are returned in a matchmaking event so
+  /// that your game can update the game session that is being backfilled.
+  ///
+  /// To request a backfill match, specify a unique ticket ID, the original
+  /// matchmaking configuration, and matchmaking data for all current players in
+  /// the game session being backfilled. Optionally, specify the
+  /// <code>GameSession</code> ARN. If successful, a match backfill ticket is
+  /// created and returned with status set to QUEUED. Track the status of
+  /// backfill tickets using the same method for tracking tickets for new
+  /// matches.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html">
-  /// Backfill Existing Games with FlexMatch</a>
+  /// Backfill existing games with FlexMatch</a>
+  ///
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html">
+  /// Matchmaking events</a> (reference)
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html">
-  /// How GameLift FlexMatch Works</a>
+  /// How GameLift FlexMatch works</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>StopMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>AcceptMatch</a>
-  /// </li>
-  /// <li>
-  /// <a>StartMatchBackfill</a>
-  /// </li>
-  /// </ul>
+  /// <a>StartMatchmaking</a> | <a>DescribeMatchmaking</a> |
+  /// <a>StopMatchmaking</a> | <a>AcceptMatch</a> | <a>StartMatchBackfill</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -8513,25 +7661,24 @@ class GameLift {
   ///
   /// <ul>
   /// <li>
-  /// PlayerID, PlayerAttributes, Team -\\- This information is maintained in
-  /// the <a>GameSession</a> object, <code>MatchmakerData</code> property, for
-  /// all players who are currently assigned to the game session. The matchmaker
+  /// PlayerID, PlayerAttributes, Team -- This information is maintained in the
+  /// <a>GameSession</a> object, <code>MatchmakerData</code> property, for all
+  /// players who are currently assigned to the game session. The matchmaker
   /// data is in JSON syntax, formatted as a string. For more details, see <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data">
   /// Match Data</a>.
   /// </li>
   /// <li>
-  /// LatencyInMs -\\- If the matchmaker uses player latency, include a latency
+  /// LatencyInMs -- If the matchmaker uses player latency, include a latency
   /// value, in milliseconds, for the Region that the game session is currently
   /// in. Do not include latency values for any other Region.
   /// </li>
   /// </ul>
   ///
   /// Parameter [gameSessionArn] :
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
-  /// that is assigned to a game session and uniquely identifies it. This is the
-  /// same as the game session ID.
+  /// A unique identifier for the game session. Use the game session ID. When
+  /// using FlexMatch as a standalone matchmaking solution, this parameter is
+  /// not needed.
   ///
   /// Parameter [ticketId] :
   /// A unique identifier for a matchmaking ticket. If no ticket ID is specified
@@ -8552,12 +7699,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationName',
-      configurationName,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingconfiguration\/[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(players, 'players');
     _s.validateStringLength(
       'gameSessionArn',
@@ -8565,21 +7706,11 @@ class GameLift {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'gameSessionArn',
-      gameSessionArn,
-      r'''[a-zA-Z0-9:/-]+''',
-    );
     _s.validateStringLength(
       'ticketId',
       ticketId,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'ticketId',
-      ticketId,
-      r'''[a-zA-Z0-9-\.]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8603,64 +7734,47 @@ class GameLift {
   }
 
   /// Uses FlexMatch to create a game match for a group of players based on
-  /// custom matchmaking rules. If you're also using GameLift hosting, a new
-  /// game session is started for the matched players. Each matchmaking request
-  /// identifies one or more players to find a match for, and specifies the type
-  /// of match to build, including the team configuration and the rules for an
-  /// acceptable match. When a matchmaking request identifies a group of players
-  /// who want to play together, FlexMatch finds additional players to fill the
-  /// match. Match type, rules, and other features are defined in a
-  /// <code>MatchmakingConfiguration</code>.
+  /// custom matchmaking rules. With games that use GameLift managed hosting,
+  /// this operation also triggers GameLift to find hosting resources and start
+  /// a new game session for the new match. Each matchmaking request includes
+  /// information on one or more players and specifies the FlexMatch matchmaker
+  /// to use. When a request is for multiple players, FlexMatch attempts to
+  /// build a match that includes all players in the request, placing them in
+  /// the same team and finding additional players as needed to fill the match.
   ///
   /// To start matchmaking, provide a unique ticket ID, specify a matchmaking
-  /// configuration, and include the players to be matched. For each player, you
-  /// must also include the player attribute values that are required by the
-  /// matchmaking configuration (in the rule set). If successful, a matchmaking
-  /// ticket is returned with status set to <code>QUEUED</code>.
+  /// configuration, and include the players to be matched. You must also
+  /// include any player attributes that are required by the matchmaking
+  /// configuration's rule set. If successful, a matchmaking ticket is returned
+  /// with status set to <code>QUEUED</code>.
   ///
-  /// Track the status of the ticket to respond as needed. If you're also using
-  /// GameLift hosting, a successfully completed ticket contains game session
-  /// connection information. Ticket status updates are tracked using event
-  /// notification through Amazon Simple Notification Service (SNS), which is
-  /// defined in the matchmaking configuration.
+  /// Track matchmaking events to respond as needed and acquire game session
+  /// connection information for successfully completed matches. Ticket status
+  /// updates are tracked using event notification through Amazon Simple
+  /// Notification Service (SNS), which is defined in the matchmaking
+  /// configuration.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html">
-  /// Add FlexMatch to a Game Client</a>
+  /// Add FlexMatch to a game client</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html">
-  /// Set Up FlexMatch Event Notification</a>
-  ///
-  /// <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-tasks.html">
-  /// FlexMatch Integration Roadmap</a>
+  /// Set Up FlexMatch event notification</a>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html">
-  /// How GameLift FlexMatch Works</a>
+  /// How GameLift FlexMatch works</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>StopMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>AcceptMatch</a>
-  /// </li>
-  /// <li>
-  /// <a>StartMatchBackfill</a>
-  /// </li>
-  /// </ul>
+  /// <a>StartMatchmaking</a> | <a>DescribeMatchmaking</a> |
+  /// <a>StopMatchmaking</a> | <a>AcceptMatch</a> | <a>StartMatchBackfill</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -8696,23 +7810,12 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationName',
-      configurationName,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingconfiguration\/[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(players, 'players');
     _s.validateStringLength(
       'ticketId',
       ticketId,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'ticketId',
-      ticketId,
-      r'''[a-zA-Z0-9-\.]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8734,16 +7837,32 @@ class GameLift {
     return StartMatchmakingOutput.fromJson(jsonResponse.body);
   }
 
-  /// Suspends activity on a fleet. Currently, this operation is used to stop a
-  /// fleet's auto-scaling activity. It is used to temporarily stop triggering
-  /// scaling events. The policies can be retained and auto-scaling activity can
-  /// be restarted using <a>StartFleetActions</a>. You can view a fleet's
-  /// stopped actions using <a>DescribeFleetAttributes</a>.
+  /// Suspends certain types of activity in a fleet location. Currently, this
+  /// operation is used to stop auto-scaling activity. For multi-location
+  /// fleets, fleet actions are managed separately for each location.
   ///
-  /// To stop fleet actions, specify the fleet ID and the type of actions to
-  /// suspend. When auto-scaling fleet actions are stopped, Amazon GameLift no
-  /// longer initiates scaling events except in response to manual changes using
-  /// <a>UpdateFleetCapacity</a>.
+  /// Stopping fleet actions has several potential purposes. It allows you to
+  /// temporarily stop auto-scaling activity but retain your scaling policies
+  /// for use in the future. For multi-location fleets, you can set up
+  /// fleet-wide auto-scaling, and then opt out of it for certain locations.
+  ///
+  /// This operation can be used in the following ways:
+  ///
+  /// <ul>
+  /// <li>
+  /// To stop actions on instances in the fleet's home Region, provide a fleet
+  /// ID and the type of actions to suspend.
+  /// </li>
+  /// <li>
+  /// To stop actions on instances in one of the fleet's remote locations,
+  /// provide a fleet ID, a location name, and the type of actions to suspend.
+  /// </li>
+  /// </ul>
+  /// If successful, GameLift no longer initiates scaling events except in
+  /// response to manual changes using <a>UpdateFleetCapacity</a>. You can view
+  /// a fleet's stopped actions using <a>DescribeFleetAttributes</a> or
+  /// <a>DescribeFleetLocationAttributes</a>. Suspended activity can be
+  /// restarted using <a>StartFleetActions</a>.
   ///
   /// <b>Learn more</b>
   ///
@@ -8751,28 +7870,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
   /// up GameLift Fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleet</a> | <a>UpdateFleetCapacity</a> | <a>PutScalingPolicy</a>
+  /// | <a>DescribeEC2InstanceLimits</a> | <a>DescribeFleetAttributes</a> |
+  /// <a>DescribeFleetLocationAttributes</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>StopFleetActions</a> | <a>DeleteFleet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -8783,25 +7888,30 @@ class GameLift {
   /// List of actions to suspend on the fleet.
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to stop actions on. You can use either the
-  /// fleet ID or ARN value.
-  Future<void> stopFleetActions({
+  /// A unique identifier for the fleet to stop actions on. You can use either
+  /// the fleet ID or ARN value.
+  ///
+  /// Parameter [location] :
+  /// The fleet location to stop fleet actions for. Specify a location in the
+  /// form of an AWS Region code, such as <code>us-west-2</code>.
+  Future<StopFleetActionsOutput> stopFleetActions({
     required List<FleetAction> actions,
     required String fleetId,
+    String? location,
   }) async {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StopFleetActions'
     };
-    await _protocol.send(
+    final jsonResponse = await _protocol.send(
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
@@ -8810,48 +7920,26 @@ class GameLift {
       payload: {
         'Actions': actions.map((e) => e.toValue()).toList(),
         'FleetId': fleetId,
+        if (location != null) 'Location': location,
       },
     );
+
+    return StopFleetActionsOutput.fromJson(jsonResponse.body);
   }
 
   /// Cancels a game session placement that is in <code>PENDING</code> status.
   /// To stop a placement, provide the placement ID values. If successful, the
   /// placement is moved to <code>CANCELLED</code> status.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -8869,12 +7957,6 @@ class GameLift {
       placementId,
       1,
       48,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'placementId',
-      placementId,
-      r'''[a-zA-Z0-9-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8913,27 +7995,15 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html">
-  /// Add FlexMatch to a Game Client</a>
+  /// Add FlexMatch to a game client</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>StopMatchmaking</a>
-  /// </li>
-  /// <li>
-  /// <a>AcceptMatch</a>
-  /// </li>
-  /// <li>
-  /// <a>StartMatchBackfill</a>
-  /// </li>
-  /// </ul>
+  /// <a>StartMatchmaking</a> | <a>DescribeMatchmaking</a> |
+  /// <a>StopMatchmaking</a> | <a>AcceptMatch</a> | <a>StartMatchBackfill</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -8953,12 +8023,6 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ticketId',
-      ticketId,
-      r'''[a-zA-Z0-9-\.]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StopMatchmaking'
@@ -8975,8 +8039,8 @@ class GameLift {
     );
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Temporarily stops activity on a game server group without terminating
   /// instances or the game server group. You can restart activity by calling
@@ -9006,34 +8070,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -9056,12 +8100,6 @@ class GameLift {
       gameServerGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(suspendActions, 'suspendActions');
@@ -9128,19 +8166,12 @@ class GameLift {
   /// href="http://aws.amazon.com/answers/account-management/aws-tagging-strategies/">
   /// AWS Tagging Strategies</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>TagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>UntagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>ListTagsForResource</a>
-  /// </li>
-  /// </ul>
+  /// <a>TagResource</a> | <a>UntagResource</a> | <a>ListTagsForResource</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [InvalidRequestException].
@@ -9234,19 +8265,12 @@ class GameLift {
   /// href="http://aws.amazon.com/answers/account-management/aws-tagging-strategies/">
   /// AWS Tagging Strategies</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>TagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>UntagResource</a>
-  /// </li>
-  /// <li>
-  /// <a>ListTagsForResource</a>
-  /// </li>
-  /// </ul>
+  /// <a>TagResource</a> | <a>UntagResource</a> | <a>ListTagsForResource</a> |
+  /// <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [InvalidRequestException].
@@ -9300,26 +8324,12 @@ class GameLift {
   /// alias to another fleet, provide an updated routing strategy. If
   /// successful, the updated alias record is returned.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ListAliases</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteAlias</a>
-  /// </li>
-  /// <li>
-  /// <a>ResolveAlias</a>
-  /// </li>
-  /// </ul>
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+  /// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -9347,12 +8357,6 @@ class GameLift {
     RoutingStrategy? routingStrategy,
   }) async {
     ArgumentError.checkNotNull(aliasId, 'aliasId');
-    _s.validateStringPattern(
-      'aliasId',
-      aliasId,
-      r'''^alias-\S+|^arn:.*:alias\/alias-\S+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -9364,11 +8368,6 @@ class GameLift {
       name,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9402,25 +8401,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html">
   /// Upload a Custom Server Build</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>ListBuilds</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateBuild</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteBuild</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+  /// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -9428,8 +8414,8 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [buildId] :
-  /// A unique identifier for a build to update. You can use either the build ID
-  /// or ARN value.
+  /// A unique identifier for the build to update. You can use either the build
+  /// ID or ARN value.
   ///
   /// Parameter [name] :
   /// A descriptive label that is associated with a build. Build names do not
@@ -9444,12 +8430,6 @@ class GameLift {
     String? version,
   }) async {
     ArgumentError.checkNotNull(buildId, 'buildId');
-    _s.validateStringPattern(
-      'buildId',
-      buildId,
-      r'''^build-\S+|^arn:.*:build\/build-\S+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
@@ -9482,53 +8462,29 @@ class GameLift {
     return UpdateBuildOutput.fromJson(jsonResponse.body);
   }
 
-  /// Updates fleet properties, including name and description, for a fleet. To
-  /// update metadata, specify the fleet ID and the property values that you
-  /// want to change. If successful, the fleet ID for the updated fleet is
-  /// returned.
+  /// Updates a fleet's mutable attributes, including game session protection
+  /// and resource creation limits.
+  ///
+  /// To update fleet attributes, specify the fleet ID and the property values
+  /// that you want to change.
+  ///
+  /// If successful, an updated <code>FleetAttributes</code> object is returned.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// Update fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateRuntimeConfiguration</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleetLocations</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>UpdateFleetPortSettings</a> |
+  /// <a>UpdateRuntimeConfiguration</a> | <a>StopFleetActions</a> |
+  /// <a>StartFleetActions</a> | <a>PutScalingPolicy</a> | <a>DeleteFleet</a> |
+  /// <a>DeleteFleetLocations</a> | <a>DeleteScalingPolicy</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [ConflictException].
@@ -9539,26 +8495,25 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to update attribute metadata for. You can
-  /// use either the fleet ID or ARN value.
+  /// A unique identifier for the fleet to update attribute metadata for. You
+  /// can use either the fleet ID or ARN value.
   ///
   /// Parameter [description] :
-  /// Human-readable description of a fleet.
+  /// A human-readable description of a fleet.
   ///
   /// Parameter [metricGroups] :
-  /// Names of metric groups to include this fleet in. Amazon CloudWatch uses a
-  /// fleet metric group is to aggregate metrics from multiple fleets. Use an
-  /// existing metric group name to add this fleet to the group. Or use a new
-  /// name to create a new metric group. A fleet can only be included in one
-  /// metric group at a time.
+  /// The name of a metric group to add this fleet to. Use a metric group in
+  /// Amazon CloudWatch to aggregate the metrics from multiple fleets. Provide
+  /// an existing metric group name, or create a new metric group by providing a
+  /// new name. A fleet can only be in one metric group at a time.
   ///
   /// Parameter [name] :
   /// A descriptive label that is associated with a fleet. Fleet names do not
   /// need to be unique.
   ///
   /// Parameter [newGameSessionProtectionPolicy] :
-  /// Game session protection policy to apply to all new instances created in
-  /// this fleet. Instances that already exist are not affected. You can set
+  /// The game session protection policy to apply to all new instances created
+  /// in this fleet. Instances that already exist are not affected. You can set
   /// protection for individual instances using <a>UpdateGameSession</a>.
   ///
   /// <ul>
@@ -9573,8 +8528,8 @@ class GameLift {
   /// </ul>
   ///
   /// Parameter [resourceCreationLimitPolicy] :
-  /// Policy that limits the number of game sessions an individual player can
-  /// create over a span of time.
+  /// Policy settings that limit the number of game sessions an individual
+  /// player can create over a span of time.
   Future<UpdateFleetAttributesOutput> updateFleetAttributes({
     required String fleetId,
     String? description,
@@ -9584,12 +8539,6 @@ class GameLift {
     ResourceCreationLimitPolicy? resourceCreationLimitPolicy,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -9628,68 +8577,65 @@ class GameLift {
     return UpdateFleetAttributesOutput.fromJson(jsonResponse.body);
   }
 
-  /// Updates capacity settings for a fleet. Use this operation to specify the
-  /// number of EC2 instances (hosts) that you want this fleet to contain.
-  /// Before calling this operation, you may want to call
-  /// <a>DescribeEC2InstanceLimits</a> to get the maximum capacity based on the
-  /// fleet's EC2 instance type.
+  /// Updates capacity settings for a fleet. For fleets with multiple locations,
+  /// use this operation to manage capacity settings in each location
+  /// individually. Fleet capacity determines the number of game sessions and
+  /// players that can be hosted based on the fleet configuration. Use this
+  /// operation to set the following fleet capacity properties:
   ///
-  /// Specify minimum and maximum number of instances. Amazon GameLift will not
-  /// change fleet capacity to values fall outside of this range. This is
-  /// particularly important when using auto-scaling (see
-  /// <a>PutScalingPolicy</a>) to allow capacity to adjust based on player
-  /// demand while imposing limits on automatic adjustments.
+  /// <ul>
+  /// <li>
+  /// Minimum/maximum size: Set hard limits on fleet capacity. GameLift cannot
+  /// set the fleet's capacity to a value outside of this range, whether the
+  /// capacity is changed manually or through automatic scaling.
+  /// </li>
+  /// <li>
+  /// Desired capacity: Manually set the number of EC2 instances to be
+  /// maintained in a fleet location. Before changing a fleet's desired
+  /// capacity, you may want to call <a>DescribeEC2InstanceLimits</a> to get the
+  /// maximum capacity of the fleet's EC2 instance type. Alternatively, consider
+  /// using automatic scaling to adjust capacity based on player demand.
+  /// </li>
+  /// </ul>
+  /// This operation can be used in the following ways:
   ///
-  /// To update fleet capacity, specify the fleet ID and the number of instances
-  /// you want the fleet to host. If successful, Amazon GameLift starts or
-  /// terminates instances so that the fleet's active instance count matches the
-  /// desired instance count. You can view a fleet's current capacity
-  /// information by calling <a>DescribeFleetCapacity</a>. If the desired
-  /// instance count is higher than the instance type's limit, the "Limit
-  /// Exceeded" exception occurs.
+  /// <ul>
+  /// <li>
+  /// To update capacity for a fleet's home Region, or if the fleet has no
+  /// remote locations, omit the <code>Location</code> parameter. The fleet must
+  /// be in <code>ACTIVE</code> status.
+  /// </li>
+  /// <li>
+  /// To update capacity for a fleet's remote location, include the
+  /// <code>Location</code> parameter set to the location to be updated. The
+  /// location must be in <code>ACTIVE</code> status.
+  /// </li>
+  /// </ul>
+  /// If successful, capacity settings are updated immediately. In response a
+  /// change in desired capacity, GameLift initiates steps to start new
+  /// instances or terminate existing instances in the requested fleet location.
+  /// This continues until the location's active instance count matches the new
+  /// desired instance count. You can track a fleet's current capacity by
+  /// calling <a>DescribeFleetCapacity</a> or
+  /// <a>DescribeFleetLocationCapacity</a>. If the requested desired instance
+  /// count is higher than the instance type's limit, the
+  /// <code>LimitExceeded</code> exception occurs.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-manage-capacity.html">Scaling
+  /// fleet capacity</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// Update fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateRuntimeConfiguration</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleetLocations</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>UpdateFleetPortSettings</a> |
+  /// <a>UpdateRuntimeConfiguration</a> | <a>StopFleetActions</a> |
+  /// <a>StartFleetActions</a> | <a>PutScalingPolicy</a> | <a>DeleteFleet</a> |
+  /// <a>DeleteFleetLocations</a> | <a>DeleteScalingPolicy</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [ConflictException].
@@ -9700,37 +8646,44 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to update capacity for. You can use either
-  /// the fleet ID or ARN value.
+  /// A unique identifier for the fleet to update capacity settings for. You can
+  /// use either the fleet ID or ARN value.
   ///
   /// Parameter [desiredInstances] :
-  /// Number of EC2 instances you want this fleet to host.
+  /// The number of EC2 instances you want to maintain in the specified fleet
+  /// location. This value must fall between the minimum and maximum size
+  /// limits.
+  ///
+  /// Parameter [location] :
+  /// The name of a remote location to update fleet capacity settings for, in
+  /// the form of an AWS Region code such as <code>us-west-2</code>.
   ///
   /// Parameter [maxSize] :
-  /// The maximum value allowed for the fleet's instance count. Default if not
-  /// set is 1.
+  /// The maximum number of instances that are allowed in the specified fleet
+  /// location. If this parameter is not set, the default is 1.
   ///
   /// Parameter [minSize] :
-  /// The minimum value allowed for the fleet's instance count. Default if not
-  /// set is 0.
+  /// The minimum number of instances that are allowed in the specified fleet
+  /// location. If this parameter is not set, the default is 0.
   Future<UpdateFleetCapacityOutput> updateFleetCapacity({
     required String fleetId,
     int? desiredInstances,
+    String? location,
     int? maxSize,
     int? minSize,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'desiredInstances',
       desiredInstances,
       0,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'location',
+      location,
+      1,
+      64,
     );
     _s.validateNumRange(
       'maxSize',
@@ -9757,6 +8710,7 @@ class GameLift {
       payload: {
         'FleetId': fleetId,
         if (desiredInstances != null) 'DesiredInstances': desiredInstances,
+        if (location != null) 'Location': location,
         if (maxSize != null) 'MaxSize': maxSize,
         if (minSize != null) 'MinSize': minSize,
       },
@@ -9765,56 +8719,35 @@ class GameLift {
     return UpdateFleetCapacityOutput.fromJson(jsonResponse.body);
   }
 
-  /// Updates port settings for a fleet. To update settings, specify the fleet
-  /// ID to be updated and list the permissions you want to update. List the
-  /// permissions you want to add in
+  /// Updates permissions that allow inbound traffic to connect to game sessions
+  /// that are being hosted on instances in the fleet.
+  ///
+  /// To update settings, specify the fleet ID to be updated and specify the
+  /// changes to be made. List the permissions you want to add in
   /// <code>InboundPermissionAuthorizations</code>, and permissions you want to
   /// remove in <code>InboundPermissionRevocations</code>. Permissions to be
-  /// removed must match existing fleet permissions. If successful, the fleet ID
-  /// for the updated fleet is returned.
+  /// removed must match existing fleet permissions.
+  ///
+  /// If successful, the fleet ID for the updated fleet is returned. For fleets
+  /// with remote locations, port setting updates can take time to propagate
+  /// across all locations. You can check the status of updates in each location
+  /// by calling <code>DescribeFleetPortSettings</code> with a location name.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// Update fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateRuntimeConfiguration</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleetLocations</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>UpdateFleetPortSettings</a> |
+  /// <a>UpdateRuntimeConfiguration</a> | <a>StopFleetActions</a> |
+  /// <a>StartFleetActions</a> | <a>PutScalingPolicy</a> | <a>DeleteFleet</a> |
+  /// <a>DeleteFleetLocations</a> | <a>DeleteScalingPolicy</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [ConflictException].
@@ -9825,7 +8758,7 @@ class GameLift {
   /// May throw [UnauthorizedException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to update port settings for. You can use
+  /// A unique identifier for the fleet to update port settings for. You can use
   /// either the fleet ID or ARN value.
   ///
   /// Parameter [inboundPermissionAuthorizations] :
@@ -9839,12 +8772,6 @@ class GameLift {
     List<IpPermission>? inboundPermissionRevocations,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateFleetPortSettings'
@@ -9867,8 +8794,8 @@ class GameLift {
     return UpdateFleetPortSettingsOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Updates information about a registered game server to help GameLift
   /// FleetIQ to track game server availability. This operation is called by a
@@ -9905,28 +8832,13 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>RegisterGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServers</a>
-  /// </li>
-  /// <li>
-  /// <a>ClaimGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServer</a>
-  /// </li>
-  /// <li>
-  /// <a>DeregisterGameServer</a>
-  /// </li>
-  /// </ul>
+  /// <a>RegisterGameServer</a> | <a>ListGameServers</a> |
+  /// <a>ClaimGameServer</a> | <a>DescribeGameServer</a> |
+  /// <a>UpdateGameServer</a> | <a>DeregisterGameServer</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -9968,12 +8880,6 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
     _s.validateStringLength(
       'gameServerId',
@@ -9982,22 +8888,11 @@ class GameLift {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerId',
-      gameServerId,
-      r'''[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'gameServerData',
       gameServerData,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'gameServerData',
-      gameServerData,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10022,8 +8917,8 @@ class GameLift {
     return UpdateGameServerOutput.fromJson(jsonResponse.body);
   }
 
-  /// <b>This operation is used with the Amazon GameLift FleetIQ solution and
-  /// game server groups.</b>
+  /// <b>This operation is used with the GameLift FleetIQ solution and game
+  /// server groups.</b>
   ///
   /// Updates GameLift FleetIQ-specific properties for a game server group. Many
   /// Auto Scaling group properties are updated on the Auto Scaling group
@@ -10042,34 +8937,14 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/gsg-intro.html">GameLift
   /// FleetIQ Guide</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ListGameServerGroups</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>ResumeGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>SuspendGameServerGroup</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameServerInstances</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+  /// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+  /// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+  /// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -10155,22 +9030,11 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'gameServerGroupName',
-      gameServerGroupName,
-      r'''[a-zA-Z0-9-\.]+|^arn:.*:gameservergroup\/[a-zA-Z0-9-\.]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:.*:role\/[\w+=,.@-]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10197,48 +9061,22 @@ class GameLift {
     return UpdateGameServerGroupOutput.fromJson(jsonResponse.body);
   }
 
-  /// Updates game session properties. This includes the session name, maximum
-  /// player count, protection policy, which controls whether or not an active
-  /// game session can be terminated during a scale-down event, and the player
-  /// session creation policy, which controls whether or not new players can
-  /// join the session. To update a game session, specify the game session ID
-  /// and the values you want to change. If successful, an updated
-  /// <a>GameSession</a> object is returned.
+  /// Updates the mutable properties of a game session.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionDetails</a>
-  /// </li>
-  /// <li>
-  /// <a>SearchGameSessions</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSession</a>
-  /// </li>
-  /// <li>
-  /// <a>GetGameSessionLogUrl</a>
-  /// </li>
-  /// <li>
-  /// Game session placements
+  /// To update a game session, specify the game session ID and the values you
+  /// want to change.
   ///
-  /// <ul>
-  /// <li>
-  /// <a>StartGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionPlacement</a>
-  /// </li>
-  /// <li>
-  /// <a>StopGameSessionPlacement</a>
-  /// </li>
-  /// </ul> </li>
-  /// </ul>
+  /// If successful, the updated <code>GameSession</code> object is returned.
+  ///
+  /// <b>Related actions</b>
+  ///
+  /// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+  /// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+  /// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+  /// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+  /// <a>StopGameSessionPlacement</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [NotFoundException].
   /// May throw [ConflictException].
@@ -10259,7 +9097,8 @@ class GameLift {
   /// do not need to be unique.
   ///
   /// Parameter [playerSessionCreationPolicy] :
-  /// Policy determining whether or not the game session accepts new players.
+  /// A policy that determines whether the game session is accepting new
+  /// players.
   ///
   /// Parameter [protectionPolicy] :
   /// Game session protection policy to apply to this game session only.
@@ -10287,12 +9126,6 @@ class GameLift {
       gameSessionId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'gameSessionId',
-      gameSessionId,
-      r'''[a-zA-Z0-9:/-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -10332,8 +9165,8 @@ class GameLift {
     return UpdateGameSessionOutput.fromJson(jsonResponse.body);
   }
 
-  /// Updates settings for a game session queue, which determines how new game
-  /// session requests in the queue are processed. To update settings, specify
+  /// Updates the configuration of a game session queue, which determines how
+  /// the queue processes new game session requests. To update settings, specify
   /// the queue name to be updated and provide the new settings. When updating
   /// destinations, provide a complete list of destinations.
   ///
@@ -10343,22 +9176,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queues-intro.html">
   /// Using Multi-Region Queues</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeGameSessionQueues</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateGameSessionQueue</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteGameSessionQueue</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateGameSessionQueue</a> | <a>DescribeGameSessionQueues</a> |
+  /// <a>UpdateGameSessionQueue</a> | <a>DeleteGameSessionQueue</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
@@ -10370,22 +9193,45 @@ class GameLift {
   /// names must be unique within each Region. You can use either the queue ID
   /// or ARN value.
   ///
+  /// Parameter [customEventData] :
+  /// Information to be added to all events that are related to this game
+  /// session queue.
+  ///
   /// Parameter [destinations] :
-  /// A list of fleets that can be used to fulfill game session placement
-  /// requests in the queue. Fleets are identified by either a fleet ARN or a
-  /// fleet alias ARN. Destinations are listed in default preference order. When
-  /// updating this list, provide a complete list of destinations.
+  /// A list of fleets and/or fleet aliases that can be used to fulfill game
+  /// session placement requests in the queue. Destinations are identified by
+  /// either a fleet ARN or a fleet alias ARN, and are listed in order of
+  /// placement preference. When updating this list, provide a complete list of
+  /// destinations.
+  ///
+  /// Parameter [filterConfiguration] :
+  /// A list of locations where a queue is allowed to place new game sessions.
+  /// Locations are specified in the form of AWS Region codes, such as
+  /// <code>us-west-2</code>. If this parameter is not set, game sessions can be
+  /// placed in any queue location. To remove an existing filter configuration,
+  /// pass in an empty set.
+  ///
+  /// Parameter [notificationTarget] :
+  /// An SNS topic ARN that is set up to receive game session placement
+  /// notifications. See <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html">
+  /// Setting up notifications for game session placement</a>.
   ///
   /// Parameter [playerLatencyPolicies] :
-  /// A collection of latency policies to apply when processing game sessions
-  /// placement requests with player latency information. Multiple policies are
-  /// evaluated in order of the maximum latency value, starting with the lowest
-  /// latency values. With just one policy, the policy is enforced at the start
-  /// of the game session placement for the duration period. With multiple
-  /// policies, each policy is enforced consecutively for its duration period.
-  /// For example, a queue might enforce a 60-second policy followed by a
-  /// 120-second policy, and then no policy for the remainder of the placement.
-  /// When updating policies, provide a complete collection of policies.
+  /// A set of policies that act as a sliding cap on player latency. FleetIQ
+  /// works to deliver low latency for most players in a game session. These
+  /// policies ensure that no individual player can be placed into a game with
+  /// unreasonably high latency. Use multiple policies to gradually relax
+  /// latency requirements a step at a time. Multiple policies are applied based
+  /// on their maximum allowed latency, starting with the lowest value. When
+  /// updating policies, provide a complete collection of policies.
+  ///
+  /// Parameter [priorityConfiguration] :
+  /// Custom settings to use when prioritizing destinations and locations for
+  /// game session placements. This configuration replaces the FleetIQ default
+  /// prioritization process. Priority types that are not explicitly named will
+  /// be automatically applied at the end of the prioritization process. To
+  /// remove an existing priority configuration, pass in an empty set.
   ///
   /// Parameter [timeoutInSeconds] :
   /// The maximum time, in seconds, that a new game session placement request
@@ -10393,8 +9239,12 @@ class GameLift {
   /// placement changes to a <code>TIMED_OUT</code> status.
   Future<UpdateGameSessionQueueOutput> updateGameSessionQueue({
     required String name,
+    String? customEventData,
     List<GameSessionQueueDestination>? destinations,
+    FilterConfiguration? filterConfiguration,
+    String? notificationTarget,
     List<PlayerLatencyPolicy>? playerLatencyPolicies,
+    PriorityConfiguration? priorityConfiguration,
     int? timeoutInSeconds,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
@@ -10405,11 +9255,17 @@ class GameLift {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-]+|^arn:.*:gamesessionqueue\/[a-zA-Z0-9-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'customEventData',
+      customEventData,
+      0,
+      256,
+    );
+    _s.validateStringLength(
+      'notificationTarget',
+      notificationTarget,
+      0,
+      300,
     );
     _s.validateNumRange(
       'timeoutInSeconds',
@@ -10429,9 +9285,16 @@ class GameLift {
       headers: headers,
       payload: {
         'Name': name,
+        if (customEventData != null) 'CustomEventData': customEventData,
         if (destinations != null) 'Destinations': destinations,
+        if (filterConfiguration != null)
+          'FilterConfiguration': filterConfiguration,
+        if (notificationTarget != null)
+          'NotificationTarget': notificationTarget,
         if (playerLatencyPolicies != null)
           'PlayerLatencyPolicies': playerLatencyPolicies,
+        if (priorityConfiguration != null)
+          'PriorityConfiguration': priorityConfiguration,
         if (timeoutInSeconds != null) 'TimeoutInSeconds': timeoutInSeconds,
       },
     );
@@ -10448,36 +9311,18 @@ class GameLift {
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html">
-  /// Design a FlexMatch Matchmaker</a>
+  /// Design a FlexMatch matchmaker</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
@@ -10485,8 +9330,8 @@ class GameLift {
   /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [name] :
-  /// A unique identifier for a matchmaking configuration to update. You can use
-  /// either the configuration name or ARN value.
+  /// A unique identifier for the matchmaking configuration to update. You can
+  /// use either the configuration name or ARN value.
   ///
   /// Parameter [acceptanceRequired] :
   /// A flag that indicates whether a match that was created with this
@@ -10497,16 +9342,14 @@ class GameLift {
   ///
   /// Parameter [acceptanceTimeoutSeconds] :
   /// The length of time (in seconds) to wait for players to accept a proposed
-  /// match, if acceptance is required. If any player rejects the match or fails
-  /// to accept before the timeout, the tickets are returned to the ticket pool
-  /// and continue to be evaluated for an acceptable match.
+  /// match, if acceptance is required.
   ///
   /// Parameter [additionalPlayerCount] :
   /// The number of player slots in a match to keep open for future players. For
-  /// example, assume that the configuration's rule set specifies a match for a
-  /// single 12-person team. If the additional player count is set to 2, only 10
-  /// players are initially selected for the match. This parameter is not used
-  /// if <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
+  /// example, if the configuration's rule set specifies a match for a single
+  /// 12-person team, and the additional player count is set to 2, only 10
+  /// players are selected for the match. This parameter is not used if
+  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   ///
   /// Parameter [backfillMode] :
   /// The method that is used to backfill game sessions created with this
@@ -10543,7 +9386,7 @@ class GameLift {
   /// </ul>
   ///
   /// Parameter [gameProperties] :
-  /// A set of custom properties for a game session, formatted as key-value
+  /// A set of custom properties for a game session, formatted as key:value
   /// pairs. These properties are passed to a game server process in the
   /// <a>GameSession</a> object with a request to start a new game session (see
   /// <a
@@ -10565,20 +9408,21 @@ class GameLift {
   /// <code>STANDALONE</code>.
   ///
   /// Parameter [gameSessionQueueArns] :
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift game session queue resource and uniquely
-  /// identifies it. ARNs are unique across all Regions. Queues can be located
-  /// in any Region. Queues are used to start new GameLift-hosted game sessions
-  /// for matches that are created with this matchmaking configuration. If
-  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>, do not set
-  /// this parameter.
+  /// identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+  /// name&gt;</code>. Queues can be located in any Region. Queues are used to
+  /// start new GameLift-hosted game sessions for matches that are created with
+  /// this matchmaking configuration. If <code>FlexMatchMode</code> is set to
+  /// <code>STANDALONE</code>, do not set this parameter.
   ///
   /// Parameter [notificationTarget] :
   /// An SNS topic ARN that is set up to receive matchmaking notifications. See
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html">
-  /// Setting up Notifications for Matchmaking</a> for more information.
+  /// Setting up notifications for matchmaking</a> for more information.
   ///
   /// Parameter [requestTimeoutSeconds] :
   /// The maximum duration, in seconds, that a matchmaking ticket can remain in
@@ -10586,7 +9430,7 @@ class GameLift {
   /// resubmitted as needed.
   ///
   /// Parameter [ruleSetName] :
-  /// A unique identifier for a matchmaking rule set to use with this
+  /// A unique identifier for the matchmaking rule set to use with this
   /// configuration. You can use either the rule set name or ARN value. A
   /// matchmaking configuration can only use rule sets that are defined in the
   /// same Region.
@@ -10612,12 +9456,6 @@ class GameLift {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingconfiguration\/[a-zA-Z0-9-\.]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -10656,11 +9494,6 @@ class GameLift {
       0,
       300,
     );
-    _s.validateStringPattern(
-      'notificationTarget',
-      notificationTarget,
-      r'''[a-zA-Z0-9:_/-]*''',
-    );
     _s.validateNumRange(
       'requestTimeoutSeconds',
       requestTimeoutSeconds,
@@ -10672,11 +9505,6 @@ class GameLift {
       ruleSetName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'ruleSetName',
-      ruleSetName,
-      r'''[a-zA-Z0-9-\.]*|^arn:.*:matchmakingruleset\/[a-zA-Z0-9-\.]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10716,64 +9544,37 @@ class GameLift {
   }
 
   /// Updates the current runtime configuration for the specified fleet, which
-  /// tells Amazon GameLift how to launch server processes on instances in the
+  /// tells GameLift how to launch server processes on all instances in the
   /// fleet. You can update a fleet's runtime configuration at any time after
-  /// the fleet is created; it does not need to be in an <code>ACTIVE</code>
+  /// the fleet is created; it does not need to be in <code>ACTIVE</code>
   /// status.
   ///
   /// To update runtime configuration, specify the fleet ID and provide a
-  /// <code>RuntimeConfiguration</code> object with an updated set of server
-  /// process configurations.
+  /// <code>RuntimeConfiguration</code> with an updated set of server process
+  /// configurations.
   ///
-  /// Each instance in a Amazon GameLift fleet checks regularly for an updated
-  /// runtime configuration and changes how it launches server processes to
-  /// comply with the latest version. Existing server processes are not affected
-  /// by the update; runtime configuration changes are applied gradually as
-  /// existing processes shut down and new processes are launched during Amazon
-  /// GameLift's normal process recycling activity.
+  /// If successful, the fleet's runtime configuration settings are updated.
+  /// Each instance in the fleet regularly checks for and retrieves updated
+  /// runtime configurations. Instances immediately begin complying with the new
+  /// configuration by launching new server processes or not replacing existing
+  /// processes when they shut down. Updating a fleet's runtime configuration
+  /// never affects existing server processes.
   ///
   /// <b>Learn more</b>
   ///
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
-  /// up GameLift Fleets</a>
+  /// up GameLift fleets</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>ListFleets</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteFleet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// Update fleets:
-  ///
-  /// <ul>
-  /// <li>
-  /// <a>UpdateFleetAttributes</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetCapacity</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateFleetPortSettings</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateRuntimeConfiguration</a>
-  /// </li>
-  /// </ul> </li>
-  /// <li>
-  /// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateFleetLocations</a> | <a>UpdateFleetAttributes</a> |
+  /// <a>UpdateFleetCapacity</a> | <a>UpdateFleetPortSettings</a> |
+  /// <a>UpdateRuntimeConfiguration</a> | <a>StopFleetActions</a> |
+  /// <a>StartFleetActions</a> | <a>PutScalingPolicy</a> | <a>DeleteFleet</a> |
+  /// <a>DeleteFleetLocations</a> | <a>DeleteScalingPolicy</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
@@ -10782,29 +9583,20 @@ class GameLift {
   /// May throw [InvalidFleetStatusException].
   ///
   /// Parameter [fleetId] :
-  /// A unique identifier for a fleet to update runtime configuration for. You
+  /// A unique identifier for the fleet to update runtime configuration for. You
   /// can use either the fleet ID or ARN value.
   ///
   /// Parameter [runtimeConfiguration] :
   /// Instructions for launching server processes on each instance in the fleet.
   /// Server processes run either a custom game build executable or a Realtime
   /// Servers script. The runtime configuration lists the types of server
-  /// processes to run on an instance and includes the following configuration
-  /// settings: the server executable or launch script file, launch parameters,
-  /// and the number of processes to run concurrently on each instance. A
-  /// CreateFleet request must include a runtime configuration with at least one
-  /// server process configuration.
+  /// processes to run on an instance, how to launch them, and the number of
+  /// processes to run concurrently.
   Future<UpdateRuntimeConfigurationOutput> updateRuntimeConfiguration({
     required String fleetId,
     required RuntimeConfiguration runtimeConfiguration,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringPattern(
-      'fleetId',
-      fleetId,
-      r'''^fleet-\S+|^arn:.*:fleet\/fleet-\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runtimeConfiguration, 'runtimeConfiguration');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10846,25 +9638,12 @@ class GameLift {
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/realtime-intro.html">Amazon
   /// GameLift Realtime Servers</a>
   ///
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>ListScripts</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeScript</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateScript</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteScript</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+  /// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [UnauthorizedException].
   /// May throw [InvalidRequestException].
@@ -10872,7 +9651,7 @@ class GameLift {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [scriptId] :
-  /// A unique identifier for a Realtime script to update. You can use either
+  /// A unique identifier for the Realtime script to update. You can use either
   /// the script ID or ARN value.
   ///
   /// Parameter [name] :
@@ -10880,21 +9659,18 @@ class GameLift {
   /// need to be unique.
   ///
   /// Parameter [storageLocation] :
-  /// The Amazon S3 location of your Realtime scripts. The storage location must
-  /// specify the S3 bucket name, the zip file name (the "key"), and an IAM role
-  /// ARN that allows Amazon GameLift to access the S3 storage location. The S3
-  /// bucket must be in the same Region as the script you're updating. By
+  /// The location of the Amazon S3 bucket where a zipped file containing your
+  /// Realtime scripts is stored. The storage location must specify the Amazon
+  /// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
+  /// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket
+  /// must be in the same Region where you want to create a new script. By
   /// default, Amazon GameLift uploads the latest version of the zip file; if
   /// you have S3 object versioning turned on, you can use the
-  /// <code>ObjectVersion</code> parameter to specify an earlier version. To
-  /// call this operation with a storage location, you must have IAM PassRole
-  /// permission. For more details on IAM roles and PassRole permissions, see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html">
-  /// Set up a role for GameLift access</a>.
+  /// <code>ObjectVersion</code> parameter to specify an earlier version.
   ///
   /// Parameter [version] :
-  /// The version that is associated with a build or script. Version strings do
-  /// not need to be unique.
+  /// Version information that is associated with a build or script. Version
+  /// strings do not need to be unique.
   ///
   /// Parameter [zipFile] :
   /// A data object containing your Realtime scripts and dependencies as a zip
@@ -10913,12 +9689,6 @@ class GameLift {
     Uint8List? zipFile,
   }) async {
     ArgumentError.checkNotNull(scriptId, 'scriptId');
-    _s.validateStringPattern(
-      'scriptId',
-      scriptId,
-      r'''^script-\S+|^arn:.*:script\/script-\S+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
@@ -10964,37 +9734,19 @@ class GameLift {
   /// <li>
   /// <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html">Build
-  /// a Rule Set</a>
+  /// a rule set</a>
   /// </li>
   /// </ul>
-  /// <b>Related operations</b>
+  /// <b>Related actions</b>
   ///
-  /// <ul>
-  /// <li>
-  /// <a>CreateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingConfigurations</a>
-  /// </li>
-  /// <li>
-  /// <a>UpdateMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingConfiguration</a>
-  /// </li>
-  /// <li>
-  /// <a>CreateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DescribeMatchmakingRuleSets</a>
-  /// </li>
-  /// <li>
-  /// <a>ValidateMatchmakingRuleSet</a>
-  /// </li>
-  /// <li>
-  /// <a>DeleteMatchmakingRuleSet</a>
-  /// </li>
-  /// </ul>
+  /// <a>CreateMatchmakingConfiguration</a> |
+  /// <a>DescribeMatchmakingConfigurations</a> |
+  /// <a>UpdateMatchmakingConfiguration</a> |
+  /// <a>DeleteMatchmakingConfiguration</a> | <a>CreateMatchmakingRuleSet</a> |
+  /// <a>DescribeMatchmakingRuleSets</a> | <a>ValidateMatchmakingRuleSet</a> |
+  /// <a>DeleteMatchmakingRuleSet</a> | <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+  /// APIs by task</a>
   ///
   /// May throw [InternalServiceException].
   /// May throw [UnsupportedRegionException].
@@ -11069,47 +9821,35 @@ extension on String {
 
 /// Properties that describe an alias resource.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateAlias</a>
-/// </li>
-/// <li>
-/// <a>ListAliases</a>
-/// </li>
-/// <li>
-/// <a>DescribeAlias</a>
-/// </li>
-/// <li>
-/// <a>UpdateAlias</a>
-/// </li>
-/// <li>
-/// <a>DeleteAlias</a>
-/// </li>
-/// <li>
-/// <a>ResolveAlias</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+/// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class Alias {
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift alias resource and uniquely identifies it.
-  /// ARNs are unique across all Regions. In a GameLift alias ARN, the resource ID
-  /// matches the alias ID value.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::alias/alias-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  /// In a GameLift alias ARN, the resource ID matches the alias ID value.
   final String? aliasArn;
 
-  /// A unique identifier for an alias. Alias IDs are unique within a Region.
+  /// A unique identifier for the alias. Alias IDs are unique within a Region.
   final String? aliasId;
 
   /// A time stamp indicating when this data object was created. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// A human-readable description of an alias.
   final String? description;
 
   /// The time that this data object was last modified. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? lastUpdatedTime;
 
   /// A descriptive label that is associated with an alias. Alias names do not
@@ -11290,38 +10030,27 @@ extension on String {
 
 /// Properties describing a custom game build.
 ///
-/// <b>Related operations</b>
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>CreateBuild</a>
-/// </li>
-/// <li>
-/// <a>ListBuilds</a>
-/// </li>
-/// <li>
-/// <a>DescribeBuild</a>
-/// </li>
-/// <li>
-/// <a>UpdateBuild</a>
-/// </li>
-/// <li>
-/// <a>DeleteBuild</a>
-/// </li>
-/// </ul>
+/// <a>CreateBuild</a> | <a>ListBuilds</a> | <a>DescribeBuild</a> |
+/// <a>UpdateBuild</a> | <a>DeleteBuild</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class Build {
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift build resource and uniquely identifies it.
-  /// ARNs are unique across all Regions. In a GameLift build ARN, the resource ID
-  /// matches the <i>BuildId</i> value.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::build/build-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  /// In a GameLift build ARN, the resource ID matches the <i>BuildId</i> value.
   final String? buildArn;
 
-  /// A unique identifier for a build.
+  /// A unique identifier for the build.
   final String? buildId;
 
-  /// Time stamp indicating when this data object was created. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// A time stamp indicating when this data object was created. Format is a
+  /// number expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// A descriptive label that is associated with a build. Build names do not need
@@ -11421,18 +10150,28 @@ extension on String {
   }
 }
 
-/// Information about the use of a TLS/SSL certificate for a fleet. TLS
-/// certificate generation is enabled at the fleet level, with one certificate
-/// generated for the fleet. When this feature is enabled, the certificate can
-/// be retrieved using the <a
+/// Determines whether a TLS/SSL certificate is generated for a fleet. This
+/// feature must be enabled when creating the fleet. All instances in a fleet
+/// share the same certificate. The certificate can be retrieved by calling the
+/// <a
 /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-serversdk.html">GameLift
-/// Server SDK</a> call <code>GetInstanceCertificate</code>. All instances in a
-/// fleet share the same certificate.
+/// Server SDK</a> operation <code>GetInstanceCertificate</code>.
+///
+/// A fleet's certificate configuration is part of <a>FleetAttributes</a>.
 class CertificateConfiguration {
-  /// Indicates whether a TLS/SSL certificate was generated for a fleet.
+  /// Indicates whether a TLS/SSL certificate is generated for a fleet.
   ///
+  /// Valid values include:
   ///
-  ///
+  /// <ul>
+  /// <li>
+  /// <b>GENERATED</b> - Generate a TLS/SSL certificate for this fleet.
+  /// </li>
+  /// <li>
+  /// <b>DISABLED</b> - (default) Do not generate a TLS/SSL certificate for this
+  /// fleet.
+  /// </li>
+  /// </ul>
   ///
   final CertificateType certificateType;
 
@@ -11562,8 +10301,8 @@ class CreateBuildOutput {
 
   /// This element is returned only when the operation is called without a storage
   /// location. It contains credentials to use when you are uploading a build file
-  /// to an S3 bucket that is owned by Amazon GameLift. Credentials have a limited
-  /// life span. To refresh these credentials, call
+  /// to an Amazon S3 bucket that is owned by Amazon GameLift. Credentials have a
+  /// limited life span. To refresh these credentials, call
   /// <a>RequestUploadCredentials</a>.
   final AwsCredentials? uploadCredentials;
 
@@ -11589,12 +10328,59 @@ class CreateBuildOutput {
 }
 
 /// Represents the returned data in response to a request operation.
+class CreateFleetLocationsOutput {
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that was updated with new locations.
+  final String? fleetId;
+
+  /// The remote locations that are being added to the fleet, and the life-cycle
+  /// status of each location. For new locations, the status is set to
+  /// <code>NEW</code>. During location creation, GameLift updates each location's
+  /// status as instances are deployed there and prepared for game hosting. This
+  /// list does not include the fleet home Region or any remote locations that
+  /// were already added to the fleet.
+  final List<LocationState>? locationStates;
+
+  CreateFleetLocationsOutput({
+    this.fleetArn,
+    this.fleetId,
+    this.locationStates,
+  });
+  factory CreateFleetLocationsOutput.fromJson(Map<String, dynamic> json) {
+    return CreateFleetLocationsOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
+      locationStates: (json['LocationStates'] as List?)
+          ?.whereNotNull()
+          .map((e) => LocationState.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// Represents the returned data in response to a request operation.
 class CreateFleetOutput {
-  /// Properties for the newly created fleet.
+  /// The properties for the new fleet, including the current status. All fleets
+  /// are placed in <code>NEW</code> status on creation.
   final FleetAttributes? fleetAttributes;
+
+  /// The fleet's locations and life-cycle status of each location. For new
+  /// fleets, the status of all locations is set to <code>NEW</code>. During fleet
+  /// creation, GameLift updates each location status as instances are deployed
+  /// there and prepared for game hosting. This list includes an entry for the
+  /// fleet's home Region. For fleets with no remote locations, only one entry,
+  /// representing the home Region, is returned.
+  final List<LocationState>? locationStates;
 
   CreateFleetOutput({
     this.fleetAttributes,
+    this.locationStates,
   });
   factory CreateFleetOutput.fromJson(Map<String, dynamic> json) {
     return CreateFleetOutput(
@@ -11602,6 +10388,10 @@ class CreateFleetOutput {
           ? FleetAttributes.fromJson(
               json['FleetAttributes'] as Map<String, dynamic>)
           : null,
+      locationStates: (json['LocationStates'] as List?)
+          ?.whereNotNull()
+          .map((e) => LocationState.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -11781,6 +10571,40 @@ class CreateVpcPeeringConnectionOutput {
   }
 }
 
+/// Represents the returned data in response to a request operation.
+class DeleteFleetLocationsOutput {
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that location attributes are being deleted
+  /// for.
+  final String? fleetId;
+
+  /// The remote locations that are being deleted, with each location status set
+  /// to <code>DELETING</code>.
+  final List<LocationState>? locationStates;
+
+  DeleteFleetLocationsOutput({
+    this.fleetArn,
+    this.fleetId,
+    this.locationStates,
+  });
+  factory DeleteFleetLocationsOutput.fromJson(Map<String, dynamic> json) {
+    return DeleteFleetLocationsOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
+      locationStates: (json['LocationStates'] as List?)
+          ?.whereNotNull()
+          .map((e) => LocationState.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 class DeleteGameServerGroupOutput {
   /// An object that describes the deleted game server group resource, with status
   /// updated to <code>DELETE_SCHEDULED</code>.
@@ -11895,9 +10719,9 @@ class DescribeFleetAttributesOutput {
   /// exist.
   final List<FleetAttributes>? fleetAttributes;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeFleetAttributesOutput({
@@ -11917,14 +10741,14 @@ class DescribeFleetAttributesOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribeFleetCapacityOutput {
-  /// A collection of objects containing capacity information for each requested
-  /// fleet ID. Leave this parameter empty to retrieve capacity information for
-  /// all fleets.
+  /// A collection of objects that contains capacity information for each
+  /// requested fleet ID. Capacity objects are returned only for fleets that
+  /// currently exist.
   final List<FleetCapacity>? fleetCapacity;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeFleetCapacityOutput({
@@ -11948,9 +10772,9 @@ class DescribeFleetEventsOutput {
   /// fleet.
   final List<Event>? events;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeFleetEventsOutput({
@@ -11969,19 +10793,128 @@ class DescribeFleetEventsOutput {
 }
 
 /// Represents the returned data in response to a request operation.
+class DescribeFleetLocationAttributesOutput {
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that location attributes were requested
+  /// for.
+  final String? fleetId;
+
+  /// Location-specific information on the requested fleet's remote locations.
+  final List<LocationAttributes>? locationAttributes;
+
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
+  final String? nextToken;
+
+  DescribeFleetLocationAttributesOutput({
+    this.fleetArn,
+    this.fleetId,
+    this.locationAttributes,
+    this.nextToken,
+  });
+  factory DescribeFleetLocationAttributesOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeFleetLocationAttributesOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
+      locationAttributes: (json['LocationAttributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => LocationAttributes.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+/// Represents the returned data in response to a request operation.
+class DescribeFleetLocationCapacityOutput {
+  /// Resource capacity information for the requested fleet location. Capacity
+  /// objects are returned only for fleets and locations that currently exist.
+  final FleetCapacity? fleetCapacity;
+
+  DescribeFleetLocationCapacityOutput({
+    this.fleetCapacity,
+  });
+  factory DescribeFleetLocationCapacityOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeFleetLocationCapacityOutput(
+      fleetCapacity: json['FleetCapacity'] != null
+          ? FleetCapacity.fromJson(
+              json['FleetCapacity'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Represents the returned data in response to a request operation.
+class DescribeFleetLocationUtilizationOutput {
+  /// Utilization information for the requested fleet location. Utilization
+  /// objects are returned only for fleets and locations that currently exist.
+  final FleetUtilization? fleetUtilization;
+
+  DescribeFleetLocationUtilizationOutput({
+    this.fleetUtilization,
+  });
+  factory DescribeFleetLocationUtilizationOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeFleetLocationUtilizationOutput(
+      fleetUtilization: json['FleetUtilization'] != null
+          ? FleetUtilization.fromJson(
+              json['FleetUtilization'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Represents the returned data in response to a request operation.
 class DescribeFleetPortSettingsOutput {
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that was requested.
+  final String? fleetId;
+
   /// The port settings for the requested fleet ID.
   final List<IpPermission>? inboundPermissions;
 
+  /// The requested fleet location, expressed as an AWS Region code, such as
+  /// <code>us-west-2</code>.
+  final String? location;
+
+  /// The current status of updates to the fleet's port settings in the requested
+  /// fleet location. A status of <code>PENDING_UPDATE</code> indicates that an
+  /// update was requested for the fleet but has not yet been completed for the
+  /// location.
+  final LocationUpdateStatus? updateStatus;
+
   DescribeFleetPortSettingsOutput({
+    this.fleetArn,
+    this.fleetId,
     this.inboundPermissions,
+    this.location,
+    this.updateStatus,
   });
   factory DescribeFleetPortSettingsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetPortSettingsOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
       inboundPermissions: (json['InboundPermissions'] as List?)
           ?.whereNotNull()
           .map((e) => IpPermission.fromJson(e as Map<String, dynamic>))
           .toList(),
+      location: json['Location'] as String?,
+      updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
     );
   }
 }
@@ -11989,12 +10922,13 @@ class DescribeFleetPortSettingsOutput {
 /// Represents the returned data in response to a request operation.
 class DescribeFleetUtilizationOutput {
   /// A collection of objects containing utilization information for each
-  /// requested fleet ID.
+  /// requested fleet ID. Utilization objects are returned only for fleets that
+  /// currently exist.
   final List<FleetUtilization>? fleetUtilization;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeFleetUtilizationOutput({
@@ -12073,13 +11007,12 @@ class DescribeGameServerOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribeGameSessionDetailsOutput {
-  /// A collection of objects containing game session properties and the
-  /// protection policy currently in force for each session matching the request.
+  /// A collection of properties for each game session that matches the request.
   final List<GameSessionDetail>? gameSessionDetails;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeGameSessionDetailsOutput({
@@ -12143,13 +11076,12 @@ class DescribeGameSessionQueuesOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribeGameSessionsOutput {
-  /// A collection of objects containing game session properties for each session
-  /// matching the request.
+  /// A collection of properties for each game session that matches the request.
   final List<GameSession>? gameSessions;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeGameSessionsOutput({
@@ -12172,9 +11104,9 @@ class DescribeInstancesOutput {
   /// A collection of objects containing properties for each instance returned.
   final List<Instance>? instances;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   DescribeInstancesOutput({
@@ -12265,9 +11197,9 @@ class DescribeMatchmakingRuleSetsOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribePlayerSessionsOutput {
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   /// A collection of objects containing properties for each player session that
@@ -12291,7 +11223,7 @@ class DescribePlayerSessionsOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribeRuntimeConfigurationOutput {
-  /// Instructions describing how server processes should be launched and
+  /// Instructions that describe how server processes should be launched and
   /// maintained on each instance in the fleet.
   final RuntimeConfiguration? runtimeConfiguration;
 
@@ -12311,9 +11243,9 @@ class DescribeRuntimeConfigurationOutput {
 
 /// Represents the returned data in response to a request operation.
 class DescribeScalingPoliciesOutput {
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   /// A collection of objects containing the scaling policies matching the
@@ -12393,8 +11325,8 @@ class DescribeVpcPeeringConnectionsOutput {
 /// Player information for use when creating player sessions using a game
 /// session placement request with <a>StartGameSessionPlacement</a>.
 class DesiredPlayerSession {
-  /// Developer-defined information related to a player. Amazon GameLift does not
-  /// use this data, so it can be formatted as needed for use in the game.
+  /// Developer-defined information related to a player. GameLift does not use
+  /// this data, so it can be formatted as needed for use in the game.
   final String? playerData;
 
   /// A unique identifier for a player to associate with the player session.
@@ -12414,54 +11346,35 @@ class DesiredPlayerSession {
   }
 }
 
-/// Current status of fleet capacity. The number of active instances should
-/// match or be in the process of matching the number of desired instances.
-/// Pending and terminating counts are non-zero only if fleet capacity is
-/// adjusting to an <a>UpdateFleetCapacity</a> request, or if access to
-/// resources is temporarily affected.
+/// Resource capacity settings. Fleet capacity is measured in EC2 instances.
+/// Pending and terminating counts are non-zero when the fleet capacity is
+/// adjusting to a scaling event or if access to resources is temporarily
+/// affected.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateFleet</a>
-/// </li>
-/// <li>
-/// <a>ListFleets</a>
-/// </li>
-/// <li>
-/// <a>DeleteFleet</a>
-/// </li>
-/// <li>
-/// <a>DescribeFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-/// </li>
-/// </ul>
+/// EC2 instance counts are part of <a>FleetCapacity</a>.
 class EC2InstanceCounts {
-  /// Actual number of active instances in the fleet.
+  /// Actual number of instances that are ready to host game sessions.
   final int? active;
 
-  /// Ideal number of active instances in the fleet.
+  /// Ideal number of active instances. GameLift will always try to maintain the
+  /// desired number of instances. Capacity is scaled up or down by changing the
+  /// desired instances.
   final int? desired;
 
-  /// Number of active instances in the fleet that are not currently hosting a
-  /// game session.
+  /// Number of active instances that are not currently hosting a game session.
   final int? idle;
 
-  /// The maximum value allowed for the fleet's instance count.
+  /// The maximum instance count value allowed.
   final int? maximum;
 
-  /// The minimum value allowed for the fleet's instance count.
+  /// The minimum instance count value allowed.
   final int? minimum;
 
-  /// Number of instances in the fleet that are starting but not yet active.
+  /// Number of instances that are starting but not yet active.
   final int? pending;
 
-  /// Number of instances in the fleet that are no longer active but haven't yet
-  /// been terminated.
+  /// Number of instances that are no longer active but haven't yet been
+  /// terminated.
   final int? terminating;
 
   EC2InstanceCounts({
@@ -12486,29 +11399,37 @@ class EC2InstanceCounts {
   }
 }
 
-/// The maximum number of instances allowed based on the Amazon Elastic Compute
-/// Cloud (Amazon EC2) instance type. Instance limits can be retrieved by
-/// calling <a>DescribeEC2InstanceLimits</a>.
+/// The GameLift service limits for an EC2 instance type and current
+/// utilization. GameLift allows AWS accounts a maximum number of instances, per
+/// instance type, per AWS Region or location, for use with GameLift. You can
+/// request an limit increase for your account by using the <b>Service
+/// limits</b> page in the GameLift console.
+///
+/// <b>Related actions</b>
+///
+/// <a>DescribeEC2InstanceLimits</a>
 class EC2InstanceLimit {
-  /// Number of instances of the specified type that are currently in use by this
-  /// AWS account.
+  /// The number of instances for the specified type and location that are
+  /// currently being used by the AWS account.
   final int? currentInstances;
 
-  /// Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
-  /// instance type determines the computing resources of each instance in the
-  /// fleet, including CPU, memory, storage, and networking capacity. Amazon
-  /// GameLift supports the following EC2 instance types. See <a
+  /// The name of an EC2 instance type. See <a
   /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
   /// Types</a> for detailed descriptions.
   final EC2InstanceType? eC2InstanceType;
 
-  /// Number of instances allowed.
+  /// The number of instances that is allowed for the specified instance type and
+  /// location.
   final int? instanceLimit;
+
+  /// An AWS Region code, such as <code>us-west-2</code>.
+  final String? location;
 
   EC2InstanceLimit({
     this.currentInstances,
     this.eC2InstanceType,
     this.instanceLimit,
+    this.location,
   });
   factory EC2InstanceLimit.fromJson(Map<String, dynamic> json) {
     return EC2InstanceLimit(
@@ -12516,6 +11437,7 @@ class EC2InstanceLimit {
       eC2InstanceType:
           (json['EC2InstanceType'] as String?)?.toEC2InstanceType(),
       instanceLimit: json['InstanceLimit'] as int?,
+      location: json['Location'] as String?,
     );
   }
 }
@@ -12948,9 +11870,13 @@ extension on String {
   }
 }
 
-/// Log entry describing an event that involves Amazon GameLift resources (such
-/// as a fleet). In addition to tracking activity, event codes and messages can
+/// Log entry describing an event that involves GameLift resources (such as a
+/// fleet). In addition to tracking activity, event codes and messages can
 /// provide additional information for troubleshooting and debugging problems.
+///
+/// <b>Related actions</b>
+///
+/// <a>DescribeFleetEvents</a>
 class Event {
   /// The type of event being logged.
   ///
@@ -12980,21 +11906,21 @@ class Event {
   /// </li>
   /// <li>
   /// FLEET_CREATION_RUNNING_INSTALLER – The game server build files were
-  /// successfully extracted, and the Amazon GameLift is now running the build's
-  /// install script (if one is included). Failure in this stage prevents a fleet
-  /// from moving to <code>ACTIVE</code> status. Logs for this stage list the
+  /// successfully extracted, and the GameLift is now running the build's install
+  /// script (if one is included). Failure in this stage prevents a fleet from
+  /// moving to <code>ACTIVE</code> status. Logs for this stage list the
   /// installation steps and whether or not the install completed successfully.
   /// Access the logs by using the URL in <i>PreSignedLogUrl</i>.
   /// </li>
   /// <li>
   /// FLEET_CREATION_VALIDATING_RUNTIME_CONFIG -- The build process was
-  /// successful, and the Amazon GameLift is now verifying that the game server
-  /// launch paths, which are specified in the fleet's runtime configuration,
-  /// exist. If any listed launch path exists, Amazon GameLift tries to launch a
-  /// game server process and waits for the process to report ready. Failures in
-  /// this stage prevent a fleet from moving to <code>ACTIVE</code> status. Logs
-  /// for this stage list the launch paths in the runtime configuration and
-  /// indicate whether each is found. Access the logs by using the URL in
+  /// successful, and the GameLift is now verifying that the game server launch
+  /// paths, which are specified in the fleet's runtime configuration, exist. If
+  /// any listed launch path exists, GameLift tries to launch a game server
+  /// process and waits for the process to report ready. Failures in this stage
+  /// prevent a fleet from moving to <code>ACTIVE</code> status. Logs for this
+  /// stage list the launch paths in the runtime configuration and indicate
+  /// whether each is found. Access the logs by using the URL in
   /// <i>PreSignedLogUrl</i>.
   /// </li>
   /// <li>
@@ -13038,7 +11964,7 @@ class Event {
   /// <ul>
   /// <li>
   /// FLEET_VPC_PEERING_SUCCEEDED -- A VPC peering connection has been established
-  /// between the VPC for an Amazon GameLift fleet and a VPC in your AWS account.
+  /// between the VPC for an GameLift fleet and a VPC in your AWS account.
   /// </li>
   /// <li>
   /// FLEET_VPC_PEERING_FAILED -- A requested VPC peering connection has failed.
@@ -13088,7 +12014,7 @@ class Event {
   final String? eventId;
 
   /// Time stamp indicating when this event occurred. Format is a number expressed
-  /// in Unix time as milliseconds (for example "1469498468.057").
+  /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
   final DateTime? eventTime;
 
   /// Additional information related to the event.
@@ -13096,7 +12022,7 @@ class Event {
 
   /// Location of stored logs with additional detail that is related to the event.
   /// This is useful for debugging issues. The URL is valid for 15 minutes. You
-  /// can also access fleet creation logs through the Amazon GameLift console.
+  /// can also access fleet creation logs through the GameLift console.
   final String? preSignedLogUrl;
 
   /// A unique identifier for an event resource, such as a fleet ID.
@@ -13305,6 +12231,38 @@ extension on String {
   }
 }
 
+/// A list of fleet locations where a game session queue can place new game
+/// sessions. You can use a filter to temporarily turn off placements for
+/// specific locations. For queues that have multi-location fleets, you can use
+/// a filter configuration allow placement with some, but not all of these
+/// locations.
+///
+/// Filter configurations are part of a <a>GameSessionQueue</a>.
+class FilterConfiguration {
+  /// A list of locations to allow game session placement in, in the form of AWS
+  /// Region codes such as <code>us-west-2</code>.
+  final List<String>? allowedLocations;
+
+  FilterConfiguration({
+    this.allowedLocations,
+  });
+  factory FilterConfiguration.fromJson(Map<String, dynamic> json) {
+    return FilterConfiguration(
+      allowedLocations: (json['AllowedLocations'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedLocations = this.allowedLocations;
+    return {
+      if (allowedLocations != null) 'AllowedLocations': allowedLocations,
+    };
+  }
+}
+
 enum FleetAction {
   autoScaling,
 }
@@ -13328,96 +12286,86 @@ extension on String {
   }
 }
 
-/// General properties describing a fleet.
+/// Describes a GameLift fleet of game hosting resources.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateFleet</a>
-/// </li>
-/// <li>
-/// <a>ListFleets</a>
-/// </li>
-/// <li>
-/// <a>DeleteFleet</a>
-/// </li>
-/// <li>
-/// <a>DescribeFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateFleet</a> | <a>DescribeFleetAttributes</a>
 class FleetAttributes {
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift build resource that is deployed on instances in
   /// this fleet. In a GameLift build ARN, the resource ID matches the
-  /// <i>BuildId</i> value.
+  /// <code>BuildId</code> value.
   final String? buildArn;
 
-  /// A unique identifier for a build.
+  /// A unique identifier for the build resource that is deployed on instances in
+  /// this fleet.
   final String? buildId;
 
   /// Indicates whether a TLS/SSL certificate was generated for the fleet.
   final CertificateConfiguration? certificateConfiguration;
 
-  /// Time stamp indicating when this data object was created. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// A time stamp indicating when this data object was created. Format is a
+  /// number expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
-  /// Human-readable description of the fleet.
+  /// A human-readable description of the fleet.
   final String? description;
 
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift fleet resource and uniquely identifies it.
-  /// ARNs are unique across all Regions. In a GameLift fleet ARN, the resource ID
-  /// matches the <i>FleetId</i> value.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  /// In a GameLift fleet ARN, the resource ID matches the <code>FleetId</code>
+  /// value.
   final String? fleetArn;
 
-  /// A unique identifier for a fleet.
+  /// A unique identifier for the fleet.
   final String? fleetId;
 
-  /// Indicates whether the fleet uses on-demand or spot instances. A spot
-  /// instance in use may be interrupted with a two-minute notification.
+  /// The kind of instances, On-Demand or Spot, that this fleet uses.
   final FleetType? fleetType;
 
   /// A unique identifier for an AWS IAM role that manages access to your AWS
-  /// services.
+  /// services. With an instance role ARN set, any application that runs on an
+  /// instance in this fleet can assume the role, including install scripts,
+  /// server processes, and daemons (background processes). Create a role or look
+  /// up a role's ARN by using the <a
+  /// href="https://console.aws.amazon.com/iam/">IAM dashboard</a> in the AWS
+  /// Management Console. Learn more about using on-box credentials for your game
+  /// servers at <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html">
+  /// Access external resources from a game server</a>.
   final String? instanceRoleArn;
 
-  /// EC2 instance type indicating the computing resources of each instance in the
-  /// fleet, including CPU, memory, storage, and networking capacity. See <a
+  /// The EC2 instance type that determines the computing resources of each
+  /// instance in the fleet. Instance type defines the CPU, memory, storage, and
+  /// networking capacity. See <a
   /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
   /// Types</a> for detailed descriptions.
   final EC2InstanceType? instanceType;
 
-  /// Location of default log files. When a server process is shut down, Amazon
-  /// GameLift captures and stores any log files in this location. These logs are
-  /// in addition to game session logs; see more on game session logs in the <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
-  /// GameLift Developer Guide</a>. If no default log path for a fleet is
-  /// specified, Amazon GameLift automatically uploads logs that are stored on
-  /// each instance at <code>C:\game\logs</code> (for Windows) or
-  /// <code>/local/game/logs</code> (for Linux). Use the Amazon GameLift console
-  /// to access stored logs.
+  /// <b>This parameter is no longer used.</b> Game session log paths are now
+  /// defined using the GameLift server API <code>ProcessReady()</code>
+  /// <code>logParameters</code>. See more information in the <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api-ref.html#gamelift-sdk-server-api-ref-dataypes-process">Server
+  /// API Reference</a>.
   final List<String>? logPaths;
 
-  /// Names of metric groups that this fleet is included in. In Amazon CloudWatch,
-  /// you can view metrics for an individual fleet or aggregated metrics for
-  /// fleets that are in a fleet metric group. A fleet can be included in only one
-  /// metric group at a time.
+  /// Name of a metric group that metrics for this fleet are added to. In Amazon
+  /// CloudWatch, you can view aggregated metrics for fleets that are in a metric
+  /// group. A fleet can be included in only one metric group at a time.
   final List<String>? metricGroups;
 
   /// A descriptive label that is associated with a fleet. Fleet names do not need
   /// to be unique.
   final String? name;
 
-  /// The type of game session protection to set for all new instances started in
-  /// the fleet.
+  /// The type of game session protection to set on all new instances that are
+  /// started in the fleet.
   ///
   /// <ul>
   /// <li>
@@ -13431,39 +12379,37 @@ class FleetAttributes {
   /// </ul>
   final ProtectionPolicy? newGameSessionProtectionPolicy;
 
-  /// Operating system of the fleet's computing resources. A fleet's operating
-  /// system depends on the OS specified for the build that is deployed on this
-  /// fleet.
+  /// The operating system of the fleet's computing resources. A fleet's operating
+  /// system is determined by the OS of the build or script that is deployed on
+  /// this fleet.
   final OperatingSystem? operatingSystem;
 
-  /// Fleet policy to limit the number of game sessions an individual player can
-  /// create over a span of time.
+  /// The fleet policy that limits the number of game sessions an individual
+  /// player can create over a span of time.
   final ResourceCreationLimitPolicy? resourceCreationLimitPolicy;
 
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift script resource that is deployed on instances
   /// in this fleet. In a GameLift script ARN, the resource ID matches the
-  /// <i>ScriptId</i> value.
+  /// <code>ScriptId</code> value.
   final String? scriptArn;
 
-  /// A unique identifier for a Realtime script.
+  /// A unique identifier for the Realtime script resource that is deployed on
+  /// instances in this fleet.
   final String? scriptId;
 
-  /// Game server launch parameters specified for fleets created before 2016-08-04
-  /// (or AWS SDK v. 0.12.16). Server launch parameters for fleets created after
-  /// this date are specified in the fleet's <a>RuntimeConfiguration</a>.
+  /// <b>This parameter is no longer used.</b> Server launch parameters are now
+  /// defined using the fleet's <a>RuntimeConfiguration</a> parameter. Requests
+  /// that use this parameter instead continue to be valid.
   final String? serverLaunchParameters;
 
-  /// Path to a game server executable in the fleet's build, specified for fleets
-  /// created before 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
-  /// fleets created after this date are specified in the fleet's
-  /// <a>RuntimeConfiguration</a>.
+  /// <b>This parameter is no longer used.</b> Server launch paths are now defined
+  /// using the fleet's <a>RuntimeConfiguration</a> parameter. Requests that use
+  /// this parameter instead continue to be valid.
   final String? serverLaunchPath;
 
-  /// Current status of the fleet.
-  ///
-  /// Possible fleet statuses include the following:
+  /// Current status of the fleet. Possible fleet statuses include the following:
   ///
   /// <ul>
   /// <li>
@@ -13471,9 +12417,9 @@ class FleetAttributes {
   /// 1.
   /// </li>
   /// <li>
-  /// <b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> -- Amazon GameLift is
-  /// setting up the new fleet, creating new instances with the game build or
-  /// Realtime script and starting server processes.
+  /// <b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> -- GameLift is setting up
+  /// the new fleet, creating new instances with the game build or Realtime script
+  /// and starting server processes.
   /// </li>
   /// <li>
   /// <b>ACTIVE</b> -- Hosts can now accept game sessions.
@@ -13491,13 +12437,13 @@ class FleetAttributes {
   /// </ul>
   final FleetStatus? status;
 
-  /// List of fleet activity that have been suspended using
-  /// <a>StopFleetActions</a>. This includes auto-scaling.
+  /// A list of fleet activity that has been suspended using
+  /// <a>StopFleetActions</a>. This includes fleet auto-scaling.
   final List<FleetAction>? stoppedActions;
 
-  /// Time stamp indicating when this data object was terminated. Format is a
+  /// A time stamp indicating when this data object was terminated. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? terminationTime;
 
   FleetAttributes({
@@ -13572,59 +12518,55 @@ class FleetAttributes {
   }
 }
 
-/// Information about the fleet's capacity. Fleet capacity is measured in EC2
-/// instances. By default, new fleets have a capacity of one instance, but can
-/// be updated as needed. The maximum number of instances for a fleet is
-/// determined by the fleet's instance type.
+/// Current resource capacity settings in a specified fleet or location. The
+/// location value might refer to a fleet's remote location or its home Region.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateFleet</a>
-/// </li>
-/// <li>
-/// <a>ListFleets</a>
-/// </li>
-/// <li>
-/// <a>DeleteFleet</a>
-/// </li>
-/// <li>
-/// <a>DescribeFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>DescribeFleetCapacity</a> | <a>DescribeFleetLocationCapacity</a> |
+/// <a>UpdateFleetCapacity</a>
 class FleetCapacity {
-  /// A unique identifier for a fleet.
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet associated with the location.
   final String? fleetId;
 
-  /// Current status of fleet capacity.
+  /// The current instance count and capacity settings for the fleet location.
   final EC2InstanceCounts? instanceCounts;
 
-  /// Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
-  /// instance type determines the computing resources of each instance in the
-  /// fleet, including CPU, memory, storage, and networking capacity. Amazon
-  /// GameLift supports the following EC2 instance types. See <a
+  /// The EC2 instance type that is used for all instances in a fleet. The
+  /// instance type determines the computing resources in use, including CPU,
+  /// memory, storage, and networking capacity. See <a
   /// href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance
   /// Types</a> for detailed descriptions.
   final EC2InstanceType? instanceType;
 
+  /// The fleet location for the instance count information, expressed as an AWS
+  /// Region code, such as <code>us-west-2</code>.
+  final String? location;
+
   FleetCapacity({
+    this.fleetArn,
     this.fleetId,
     this.instanceCounts,
     this.instanceType,
+    this.location,
   });
   factory FleetCapacity.fromJson(Map<String, dynamic> json) {
     return FleetCapacity(
+      fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
       instanceCounts: json['InstanceCounts'] != null
           ? EC2InstanceCounts.fromJson(
               json['InstanceCounts'] as Map<String, dynamic>)
           : null,
       instanceType: (json['InstanceType'] as String?)?.toEC2InstanceType(),
+      location: json['Location'] as String?,
     );
   }
 }
@@ -13720,54 +12662,51 @@ extension on String {
   }
 }
 
-/// Current status of fleet utilization, including the number of game and player
-/// sessions being hosted.
+/// Current resource utilization statistics in a specified fleet or location.
+/// The location value might refer to a fleet's remote location or its home
+/// Region.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateFleet</a>
-/// </li>
-/// <li>
-/// <a>ListFleets</a>
-/// </li>
-/// <li>
-/// <a>DeleteFleet</a>
-/// </li>
-/// <li>
-/// <a>DescribeFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>DescribeFleetUtilization</a> | <a>DescribeFleetLocationUtilization</a>
 class FleetUtilization {
-  /// Number of active game sessions currently being hosted on all instances in
-  /// the fleet.
+  /// The number of active game sessions that are currently being hosted across
+  /// all instances in the fleet location.
   final int? activeGameSessionCount;
 
-  /// Number of server processes in an <code>ACTIVE</code> status currently
-  /// running across all instances in the fleet
+  /// The number of server processes in <code>ACTIVE</code> status that are
+  /// currently running across all instances in the fleet location.
   final int? activeServerProcessCount;
 
-  /// Number of active player sessions currently being hosted on all instances in
-  /// the fleet.
+  /// The number of active player sessions that are currently being hosted across
+  /// all instances in the fleet location.
   final int? currentPlayerSessionCount;
 
-  /// A unique identifier for a fleet.
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet associated with the location.
   final String? fleetId;
 
-  /// The maximum number of players allowed across all game sessions currently
-  /// being hosted on all instances in the fleet.
+  /// The fleet location for the fleet utilization information, expressed as an
+  /// AWS Region code, such as <code>us-west-2</code>.
+  final String? location;
+
+  /// The maximum number of players allowed across all game sessions that are
+  /// currently being hosted across all instances in the fleet location.
   final int? maximumPlayerSessionCount;
 
   FleetUtilization({
     this.activeGameSessionCount,
     this.activeServerProcessCount,
     this.currentPlayerSessionCount,
+    this.fleetArn,
     this.fleetId,
+    this.location,
     this.maximumPlayerSessionCount,
   });
   factory FleetUtilization.fromJson(Map<String, dynamic> json) {
@@ -13775,7 +12714,9 @@ class FleetUtilization {
       activeGameSessionCount: json['ActiveGameSessionCount'] as int?,
       activeServerProcessCount: json['ActiveServerProcessCount'] as int?,
       currentPlayerSessionCount: json['CurrentPlayerSessionCount'] as int?,
+      fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
+      location: json['Location'] as String?,
       maximumPlayerSessionCount: json['MaximumPlayerSessionCount'] as int?,
     );
   }
@@ -13816,7 +12757,7 @@ extension on String {
 /// game server process when initiating a new game session. For more
 /// information, see the <a
 /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-client-api.html#gamelift-sdk-client-api-create">
-/// Amazon GameLift Developer Guide</a>.
+/// GameLift Developer Guide</a>.
 class GameProperty {
   /// The game property identifier.
   final String key;
@@ -13845,7 +12786,7 @@ class GameProperty {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// Properties describing a game server that is running on an instance in a
@@ -13856,26 +12797,13 @@ class GameProperty {
 /// <code>DeregisterGameServer</code>. A game server is claimed to host a game
 /// session by calling <code>ClaimGameServer</code>.
 ///
-/// <ul>
-/// <li>
-/// <a>RegisterGameServer</a>
-/// </li>
-/// <li>
-/// <a>ListGameServers</a>
-/// </li>
-/// <li>
-/// <a>ClaimGameServer</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameServer</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameServer</a>
-/// </li>
-/// <li>
-/// <a>DeregisterGameServer</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>RegisterGameServer</a> | <a>ListGameServers</a> | <a>ClaimGameServer</a>
+/// | <a>DescribeGameServer</a> | <a>UpdateGameServer</a> |
+/// <a>DeregisterGameServer</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+/// APIs by task</a>
 class GameServer {
   /// Indicates when an available game server has been reserved for gameplay but
   /// has not yet started hosting a game. Once it is claimed, the game server
@@ -14002,7 +12930,7 @@ extension on String {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// Properties that describe a game server group resource. A game server group
@@ -14016,32 +12944,14 @@ extension on String {
 /// <code>SuspendGameServerGroup</code> and <code>ResumeGameServerGroup</code>,
 /// respectively.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>ListGameServerGroups</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>DeleteGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>ResumeGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>SuspendGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameServerInstances</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+/// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+/// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+/// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+/// APIs by task</a>
 class GameServerGroup {
   /// A generated unique ID for the EC2 Auto Scaling group that is associated with
   /// this game server group.
@@ -14076,7 +12986,7 @@ class GameServerGroup {
   /// </ul>
   final BalancingStrategy? balancingStrategy;
 
-  /// A timestamp that indicates when this data object was created. Format is a
+  /// A time stamp indicating when this data object was created. Format is a
   /// number expressed in Unix time as milliseconds (for example
   /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
@@ -14218,7 +13128,7 @@ extension on String {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// Configuration settings for intelligent automatic scaling that uses target
@@ -14304,6 +13214,14 @@ enum GameServerGroupInstanceType {
   c5_12xlarge,
   c5_18xlarge,
   c5_24xlarge,
+  c5aLarge,
+  c5aXlarge,
+  c5a_2xlarge,
+  c5a_4xlarge,
+  c5a_8xlarge,
+  c5a_12xlarge,
+  c5a_16xlarge,
+  c5a_24xlarge,
   r4Large,
   r4Xlarge,
   r4_2xlarge,
@@ -14318,6 +13236,14 @@ enum GameServerGroupInstanceType {
   r5_12xlarge,
   r5_16xlarge,
   r5_24xlarge,
+  r5aLarge,
+  r5aXlarge,
+  r5a_2xlarge,
+  r5a_4xlarge,
+  r5a_8xlarge,
+  r5a_12xlarge,
+  r5a_16xlarge,
+  r5a_24xlarge,
   m4Large,
   m4Xlarge,
   m4_2xlarge,
@@ -14331,6 +13257,14 @@ enum GameServerGroupInstanceType {
   m5_12xlarge,
   m5_16xlarge,
   m5_24xlarge,
+  m5aLarge,
+  m5aXlarge,
+  m5a_2xlarge,
+  m5a_4xlarge,
+  m5a_8xlarge,
+  m5a_12xlarge,
+  m5a_16xlarge,
+  m5a_24xlarge,
 }
 
 extension on GameServerGroupInstanceType {
@@ -14362,6 +13296,22 @@ extension on GameServerGroupInstanceType {
         return 'c5.18xlarge';
       case GameServerGroupInstanceType.c5_24xlarge:
         return 'c5.24xlarge';
+      case GameServerGroupInstanceType.c5aLarge:
+        return 'c5a.large';
+      case GameServerGroupInstanceType.c5aXlarge:
+        return 'c5a.xlarge';
+      case GameServerGroupInstanceType.c5a_2xlarge:
+        return 'c5a.2xlarge';
+      case GameServerGroupInstanceType.c5a_4xlarge:
+        return 'c5a.4xlarge';
+      case GameServerGroupInstanceType.c5a_8xlarge:
+        return 'c5a.8xlarge';
+      case GameServerGroupInstanceType.c5a_12xlarge:
+        return 'c5a.12xlarge';
+      case GameServerGroupInstanceType.c5a_16xlarge:
+        return 'c5a.16xlarge';
+      case GameServerGroupInstanceType.c5a_24xlarge:
+        return 'c5a.24xlarge';
       case GameServerGroupInstanceType.r4Large:
         return 'r4.large';
       case GameServerGroupInstanceType.r4Xlarge:
@@ -14390,6 +13340,22 @@ extension on GameServerGroupInstanceType {
         return 'r5.16xlarge';
       case GameServerGroupInstanceType.r5_24xlarge:
         return 'r5.24xlarge';
+      case GameServerGroupInstanceType.r5aLarge:
+        return 'r5a.large';
+      case GameServerGroupInstanceType.r5aXlarge:
+        return 'r5a.xlarge';
+      case GameServerGroupInstanceType.r5a_2xlarge:
+        return 'r5a.2xlarge';
+      case GameServerGroupInstanceType.r5a_4xlarge:
+        return 'r5a.4xlarge';
+      case GameServerGroupInstanceType.r5a_8xlarge:
+        return 'r5a.8xlarge';
+      case GameServerGroupInstanceType.r5a_12xlarge:
+        return 'r5a.12xlarge';
+      case GameServerGroupInstanceType.r5a_16xlarge:
+        return 'r5a.16xlarge';
+      case GameServerGroupInstanceType.r5a_24xlarge:
+        return 'r5a.24xlarge';
       case GameServerGroupInstanceType.m4Large:
         return 'm4.large';
       case GameServerGroupInstanceType.m4Xlarge:
@@ -14416,6 +13382,22 @@ extension on GameServerGroupInstanceType {
         return 'm5.16xlarge';
       case GameServerGroupInstanceType.m5_24xlarge:
         return 'm5.24xlarge';
+      case GameServerGroupInstanceType.m5aLarge:
+        return 'm5a.large';
+      case GameServerGroupInstanceType.m5aXlarge:
+        return 'm5a.xlarge';
+      case GameServerGroupInstanceType.m5a_2xlarge:
+        return 'm5a.2xlarge';
+      case GameServerGroupInstanceType.m5a_4xlarge:
+        return 'm5a.4xlarge';
+      case GameServerGroupInstanceType.m5a_8xlarge:
+        return 'm5a.8xlarge';
+      case GameServerGroupInstanceType.m5a_12xlarge:
+        return 'm5a.12xlarge';
+      case GameServerGroupInstanceType.m5a_16xlarge:
+        return 'm5a.16xlarge';
+      case GameServerGroupInstanceType.m5a_24xlarge:
+        return 'm5a.24xlarge';
     }
   }
 }
@@ -14449,6 +13431,22 @@ extension on String {
         return GameServerGroupInstanceType.c5_18xlarge;
       case 'c5.24xlarge':
         return GameServerGroupInstanceType.c5_24xlarge;
+      case 'c5a.large':
+        return GameServerGroupInstanceType.c5aLarge;
+      case 'c5a.xlarge':
+        return GameServerGroupInstanceType.c5aXlarge;
+      case 'c5a.2xlarge':
+        return GameServerGroupInstanceType.c5a_2xlarge;
+      case 'c5a.4xlarge':
+        return GameServerGroupInstanceType.c5a_4xlarge;
+      case 'c5a.8xlarge':
+        return GameServerGroupInstanceType.c5a_8xlarge;
+      case 'c5a.12xlarge':
+        return GameServerGroupInstanceType.c5a_12xlarge;
+      case 'c5a.16xlarge':
+        return GameServerGroupInstanceType.c5a_16xlarge;
+      case 'c5a.24xlarge':
+        return GameServerGroupInstanceType.c5a_24xlarge;
       case 'r4.large':
         return GameServerGroupInstanceType.r4Large;
       case 'r4.xlarge':
@@ -14477,6 +13475,22 @@ extension on String {
         return GameServerGroupInstanceType.r5_16xlarge;
       case 'r5.24xlarge':
         return GameServerGroupInstanceType.r5_24xlarge;
+      case 'r5a.large':
+        return GameServerGroupInstanceType.r5aLarge;
+      case 'r5a.xlarge':
+        return GameServerGroupInstanceType.r5aXlarge;
+      case 'r5a.2xlarge':
+        return GameServerGroupInstanceType.r5a_2xlarge;
+      case 'r5a.4xlarge':
+        return GameServerGroupInstanceType.r5a_4xlarge;
+      case 'r5a.8xlarge':
+        return GameServerGroupInstanceType.r5a_8xlarge;
+      case 'r5a.12xlarge':
+        return GameServerGroupInstanceType.r5a_12xlarge;
+      case 'r5a.16xlarge':
+        return GameServerGroupInstanceType.r5a_16xlarge;
+      case 'r5a.24xlarge':
+        return GameServerGroupInstanceType.r5a_24xlarge;
       case 'm4.large':
         return GameServerGroupInstanceType.m4Large;
       case 'm4.xlarge':
@@ -14503,6 +13517,22 @@ extension on String {
         return GameServerGroupInstanceType.m5_16xlarge;
       case 'm5.24xlarge':
         return GameServerGroupInstanceType.m5_24xlarge;
+      case 'm5a.large':
+        return GameServerGroupInstanceType.m5aLarge;
+      case 'm5a.xlarge':
+        return GameServerGroupInstanceType.m5aXlarge;
+      case 'm5a.2xlarge':
+        return GameServerGroupInstanceType.m5a_2xlarge;
+      case 'm5a.4xlarge':
+        return GameServerGroupInstanceType.m5a_4xlarge;
+      case 'm5a.8xlarge':
+        return GameServerGroupInstanceType.m5a_8xlarge;
+      case 'm5a.12xlarge':
+        return GameServerGroupInstanceType.m5a_12xlarge;
+      case 'm5a.16xlarge':
+        return GameServerGroupInstanceType.m5a_16xlarge;
+      case 'm5a.24xlarge':
+        return GameServerGroupInstanceType.m5a_24xlarge;
     }
     throw Exception('$this is not known in enum GameServerGroupInstanceType');
   }
@@ -14584,7 +13614,7 @@ extension on String {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// Additional properties, including status, that describe an EC2 instance in a
@@ -14595,32 +13625,14 @@ extension on String {
 /// Retrieve game server instances for a game server group by calling
 /// <code>DescribeGameServerInstances</code>.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>ListGameServerGroups</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>DeleteGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>ResumeGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>SuspendGameServerGroup</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameServerInstances</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateGameServerGroup</a> | <a>ListGameServerGroups</a> |
+/// <a>DescribeGameServerGroup</a> | <a>UpdateGameServerGroup</a> |
+/// <a>DeleteGameServerGroup</a> | <a>ResumeGameServerGroup</a> |
+/// <a>SuspendGameServerGroup</a> | <a>DescribeGameServerInstances</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/fleetiqguide/reference-awssdk-fleetiq.html">All
+/// APIs by task</a>
 class GameServerInstance {
   /// A generated unique identifier for the game server group that includes the
   /// game server instance.
@@ -14773,43 +13785,19 @@ extension on String {
 /// means you can reuse idempotency token values after this time. Game session
 /// logs are retained for 14 days.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateGameSession</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessions</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionDetails</a>
-/// </li>
-/// <li>
-/// <a>SearchGameSessions</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameSession</a>
-/// </li>
-/// <li>
-/// <a>GetGameSessionLogUrl</a>
-/// </li>
-/// <li>
-/// Game session placements
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>StartGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>StopGameSessionPlacement</a>
-/// </li>
-/// </ul> </li>
-/// </ul>
+/// <a>CreateGameSession</a> | <a>DescribeGameSessions</a> |
+/// <a>DescribeGameSessionDetails</a> | <a>SearchGameSessions</a> |
+/// <a>UpdateGameSession</a> | <a>GetGameSessionLogUrl</a> |
+/// <a>StartGameSessionPlacement</a> | <a>DescribeGameSessionPlacement</a> |
+/// <a>StopGameSessionPlacement</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class GameSession {
-  /// Time stamp indicating when this data object was created. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// A time stamp indicating when this data object was created. Format is a
+  /// number expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// A unique identifier for a player. This ID is used to enforce a resource
@@ -14820,8 +13808,8 @@ class GameSession {
   /// Number of players currently in the game session.
   final int? currentPlayerSessionCount;
 
-  /// DNS identifier assigned to the instance that is running the game session.
-  /// Values have the following format:
+  /// The DNS identifier assigned to the instance that is running the game
+  /// session. Values have the following format:
   ///
   /// <ul>
   /// <li>
@@ -14840,26 +13828,23 @@ class GameSession {
   final String? dnsName;
 
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift fleet that this game session is running on.
   final String? fleetArn;
 
-  /// A unique identifier for a fleet that the game session is running on.
+  /// A unique identifier for the fleet that the game session is running on.
   final String? fleetId;
 
-  /// Set of custom properties for a game session, formatted as key:value pairs.
+  /// A set of custom properties for a game session, formatted as key:value pairs.
   /// These properties are passed to a game server process in the
-  /// <a>GameSession</a> object with a request to start a new game session (see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-  /// a Game Session</a>). You can search for active game sessions based on this
-  /// custom data with <a>SearchGameSessions</a>.
+  /// <a>GameSession</a> object with a request to start a new game session. You
+  /// can search for active game sessions based on this custom data with
+  /// <a>SearchGameSessions</a>.
   final List<GameProperty>? gameProperties;
 
-  /// Set of custom game session properties, formatted as a single string value.
+  /// A set of custom game session properties, formatted as a single string value.
   /// This data is passed to a game server process in the <a>GameSession</a>
-  /// object with a request to start a new game session (see <a
-  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-  /// a Game Session</a>).
+  /// object with a request to start a new game session.
   final String? gameSessionData;
 
   /// A unique identifier for the game session. A game session ARN has the
@@ -14868,10 +13853,14 @@ class GameSession {
   /// ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.
   final String? gameSessionId;
 
-  /// IP address of the instance that is running the game session. When connecting
-  /// to a Amazon GameLift game server, a client needs to reference an IP address
-  /// (or DNS name) and port number.
+  /// The IP address of the game session. To connect to a GameLift game server, an
+  /// app needs both the IP address and port number.
   final String? ipAddress;
+
+  /// The fleet location where the game session is running. This value might
+  /// specify the fleet's home Region or a remote location. Location is expressed
+  /// as an AWS Region code such as <code>us-west-2</code>.
+  final String? location;
 
   /// Information about the matchmaking process that was used to create the game
   /// session. It is in JSON syntax, formatted as a string. In addition the
@@ -14895,8 +13884,8 @@ class GameSession {
   /// Indicates whether or not the game session is accepting new players.
   final PlayerSessionCreationPolicy? playerSessionCreationPolicy;
 
-  /// Port number for the game session. To connect to a Amazon GameLift game
-  /// server, an app needs both the IP address and port number.
+  /// The port number for the game session. To connect to a GameLift game server,
+  /// an app needs both the IP address and port number.
   final int? port;
 
   /// Current status of the game session. A game session must have an
@@ -14909,9 +13898,9 @@ class GameSession {
   /// terminated.
   final GameSessionStatusReason? statusReason;
 
-  /// Time stamp indicating when this data object was terminated. Format is a
+  /// A time stamp indicating when this data object was terminated. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? terminationTime;
 
   GameSession({
@@ -14925,6 +13914,7 @@ class GameSession {
     this.gameSessionData,
     this.gameSessionId,
     this.ipAddress,
+    this.location,
     this.matchmakerData,
     this.maximumPlayerSessionCount,
     this.name,
@@ -14949,6 +13939,7 @@ class GameSession {
       gameSessionData: json['GameSessionData'] as String?,
       gameSessionId: json['GameSessionId'] as String?,
       ipAddress: json['IpAddress'] as String?,
+      location: json['Location'] as String?,
       matchmakerData: json['MatchmakerData'] as String?,
       maximumPlayerSessionCount: json['MaximumPlayerSessionCount'] as int?,
       name: json['Name'] as String?,
@@ -14971,8 +13962,8 @@ class GameSession {
 /// matchmaking request, is added to the <a>MatchmakingTicket</a>, which can be
 /// retrieved by calling <a>DescribeMatchmaking</a>.
 class GameSessionConnectionInfo {
-  /// DNS identifier assigned to the instance that is running the game session.
-  /// Values have the following format:
+  /// The DNS identifier assigned to the instance that is running the game
+  /// session. Values have the following format:
   ///
   /// <ul>
   /// <li>
@@ -14990,22 +13981,19 @@ class GameSessionConnectionInfo {
   /// you must use the DNS name, not the IP address.
   final String? dnsName;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
-  /// that is assigned to a game session and uniquely identifies it.
+  /// A unique identifier for the game session. Use the game session ID.
   final String? gameSessionArn;
 
-  /// IP address of the instance that is running the game session. When connecting
-  /// to a Amazon GameLift game server, a client needs to reference an IP address
-  /// (or DNS name) and port number.
+  /// The IP address of the game session. To connect to a GameLift game server, an
+  /// app needs both the IP address and port number.
   final String? ipAddress;
 
   /// A collection of player session IDs, one for each player ID that was included
   /// in the original matchmaking request.
   final List<MatchedPlayerSession>? matchedPlayerSessions;
 
-  /// Port number for the game session. To connect to a Amazon GameLift game
-  /// server, an app needs both the IP address and port number.
+  /// The port number for the game session. To connect to a GameLift game server,
+  /// an app needs both the IP address and port number.
   final int? port;
 
   GameSessionConnectionInfo({
@@ -15081,8 +14069,8 @@ class GameSessionDetail {
 /// </li>
 /// </ul>
 class GameSessionPlacement {
-  /// DNS identifier assigned to the instance that is running the game session.
-  /// Values have the following format:
+  /// The DNS identifier assigned to the instance that is running the game
+  /// session. Values have the following format:
   ///
   /// <ul>
   /// <li>
@@ -15104,7 +14092,7 @@ class GameSessionPlacement {
   /// out.
   final DateTime? endTime;
 
-  /// Set of custom properties for a game session, formatted as key:value pairs.
+  /// A set of custom properties for a game session, formatted as key:value pairs.
   /// These properties are passed to a game server process in the
   /// <a>GameSession</a> object with a request to start a new game session (see <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
@@ -15117,7 +14105,7 @@ class GameSessionPlacement {
   /// can use this value as a <code>GameSessionId</code> value as needed.
   final String? gameSessionArn;
 
-  /// Set of custom game session properties, formatted as a single string value.
+  /// A set of custom game session properties, formatted as a single string value.
   /// This data is passed to a game server process in the <a>GameSession</a>
   /// object with a request to start a new game session (see <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
@@ -15141,10 +14129,9 @@ class GameSessionPlacement {
   /// status is <code>FULFILLED</code>).
   final String? gameSessionRegion;
 
-  /// IP address of the instance that is running the game session. When connecting
-  /// to a Amazon GameLift game server, a client needs to reference an IP address
-  /// (or DNS name) and port number. This value is set once the new game session
-  /// is placed (placement status is <code>FULFILLED</code>).
+  /// The IP address of the game session. To connect to a GameLift game server, an
+  /// app needs both the IP address and port number. This value is set once the
+  /// new game session is placed (placement status is <code>FULFILLED</code>).
   final String? ipAddress;
 
   /// Information on the matchmaking process for this game. Data is in JSON
@@ -15172,19 +14159,18 @@ class GameSessionPlacement {
   /// A unique identifier for a game session placement.
   final String? placementId;
 
-  /// Set of values, expressed in milliseconds, indicating the amount of latency
-  /// that a player experiences when connected to AWS Regions.
+  /// A set of values, expressed in milliseconds, that indicates the amount of
+  /// latency that a player experiences when connected to AWS Regions.
   final List<PlayerLatency>? playerLatencies;
 
-  /// Port number for the game session. To connect to a Amazon GameLift game
-  /// server, an app needs both the IP address and port number. This value is set
-  /// once the new game session is placed (placement status is
-  /// <code>FULFILLED</code>).
+  /// The port number for the game session. To connect to a GameLift game server,
+  /// an app needs both the IP address and port number. This value is set once the
+  /// new game session is placed (placement status is <code>FULFILLED</code>).
   final int? port;
 
   /// Time stamp indicating when this request was placed in the queue. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? startTime;
 
   /// Current status of the game session placement request.
@@ -15311,67 +14297,63 @@ extension on String {
   }
 }
 
-/// Configuration of a queue that is used to process game session placement
-/// requests. The queue configuration identifies several game features:
+/// Configuration for a game session placement mechanism that processes requests
+/// for new game sessions. A queue can be used on its own or as part of a
+/// matchmaking solution.
 ///
-/// <ul>
-/// <li>
-/// The destinations where a new game session can potentially be hosted. Amazon
-/// GameLift tries these destinations in an order based on either the queue's
-/// default order or player latency information, if provided in a placement
-/// request. With latency information, Amazon GameLift can place game sessions
-/// where the majority of players are reporting the lowest possible latency.
-/// </li>
-/// <li>
-/// The length of time that placement requests can wait in the queue before
-/// timing out.
-/// </li>
-/// <li>
-/// A set of optional latency policies that protect individual players from high
-/// latencies, preventing game sessions from being placed where any individual
-/// player is reporting latency higher than a policy's maximum.
-/// </li>
-/// </ul>
-/// <ul>
-/// <li>
-/// <a>CreateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionQueues</a>
-/// </li>
-/// <li>
+/// <b>Related actions</b>
+///
+/// <a>CreateGameSessionQueue</a> | <a>DescribeGameSessionQueues</a> |
 /// <a>UpdateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DeleteGameSessionQueue</a>
-/// </li>
-/// </ul>
 class GameSessionQueue {
-  /// A list of fleets that can be used to fulfill game session placement requests
-  /// in the queue. Fleets are identified by either a fleet ARN or a fleet alias
-  /// ARN. Destinations are listed in default preference order.
+  /// Information that is added to all events that are related to this game
+  /// session queue.
+  final String? customEventData;
+
+  /// A list of fleets and/or fleet aliases that can be used to fulfill game
+  /// session placement requests in the queue. Destinations are identified by
+  /// either a fleet ARN or a fleet alias ARN, and are listed in order of
+  /// placement preference.
   final List<GameSessionQueueDestination>? destinations;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// A list of locations where a queue is allowed to place new game sessions.
+  /// Locations are specified in the form of AWS Region codes, such as
+  /// <code>us-west-2</code>. If this parameter is not set, game sessions can be
+  /// placed in any queue location.
+  final FilterConfiguration? filterConfiguration;
+
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift game session queue resource and uniquely
-  /// identifies it. ARNs are unique across all Regions. In a GameLift game
-  /// session queue ARN, the resource ID matches the <i>Name</i> value.
+  /// identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+  /// name&gt;</code>. In a GameLift game session queue ARN, the resource ID
+  /// matches the <i>Name</i> value.
   final String? gameSessionQueueArn;
 
   /// A descriptive label that is associated with game session queue. Queue names
   /// must be unique within each Region.
   final String? name;
 
-  /// A collection of latency policies to apply when processing game sessions
-  /// placement requests with player latency information. Multiple policies are
-  /// evaluated in order of the maximum latency value, starting with the lowest
-  /// latency values. With just one policy, the policy is enforced at the start of
-  /// the game session placement for the duration period. With multiple policies,
-  /// each policy is enforced consecutively for its duration period. For example,
-  /// a queue might enforce a 60-second policy followed by a 120-second policy,
-  /// and then no policy for the remainder of the placement.
+  /// An SNS topic ARN that is set up to receive game session placement
+  /// notifications. See <a
+  /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html">
+  /// Setting up notifications for game session placement</a>.
+  final String? notificationTarget;
+
+  /// A set of policies that act as a sliding cap on player latency. FleetIQ works
+  /// to deliver low latency for most players in a game session. These policies
+  /// ensure that no individual player can be placed into a game with unreasonably
+  /// high latency. Use multiple policies to gradually relax latency requirements
+  /// a step at a time. Multiple policies are applied based on their maximum
+  /// allowed latency, starting with the lowest value.
   final List<PlayerLatencyPolicy>? playerLatencyPolicies;
+
+  /// Custom settings to use when prioritizing destinations and locations for game
+  /// session placements. This configuration replaces the FleetIQ default
+  /// prioritization process. Priority types that are not explicitly named will be
+  /// automatically applied at the end of the prioritization process.
+  final PriorityConfiguration? priorityConfiguration;
 
   /// The maximum time, in seconds, that a new game session placement request
   /// remains in the queue. When a request exceeds this time, the game session
@@ -15379,48 +14361,49 @@ class GameSessionQueue {
   final int? timeoutInSeconds;
 
   GameSessionQueue({
+    this.customEventData,
     this.destinations,
+    this.filterConfiguration,
     this.gameSessionQueueArn,
     this.name,
+    this.notificationTarget,
     this.playerLatencyPolicies,
+    this.priorityConfiguration,
     this.timeoutInSeconds,
   });
   factory GameSessionQueue.fromJson(Map<String, dynamic> json) {
     return GameSessionQueue(
+      customEventData: json['CustomEventData'] as String?,
       destinations: (json['Destinations'] as List?)
           ?.whereNotNull()
           .map((e) =>
               GameSessionQueueDestination.fromJson(e as Map<String, dynamic>))
           .toList(),
+      filterConfiguration: json['FilterConfiguration'] != null
+          ? FilterConfiguration.fromJson(
+              json['FilterConfiguration'] as Map<String, dynamic>)
+          : null,
       gameSessionQueueArn: json['GameSessionQueueArn'] as String?,
       name: json['Name'] as String?,
+      notificationTarget: json['NotificationTarget'] as String?,
       playerLatencyPolicies: (json['PlayerLatencyPolicies'] as List?)
           ?.whereNotNull()
           .map((e) => PlayerLatencyPolicy.fromJson(e as Map<String, dynamic>))
           .toList(),
+      priorityConfiguration: json['PriorityConfiguration'] != null
+          ? PriorityConfiguration.fromJson(
+              json['PriorityConfiguration'] as Map<String, dynamic>)
+          : null,
       timeoutInSeconds: json['TimeoutInSeconds'] as int?,
     );
   }
 }
 
-/// Fleet designated in a game session queue. Requests for new game sessions in
-/// the queue are fulfilled by starting a new game session on any destination
-/// that is configured for a queue.
+/// A fleet or alias designated in a game session queue. Queues fulfill requests
+/// for new game sessions by placing a new game session on any of the queue's
+/// destinations.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionQueues</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DeleteGameSessionQueue</a>
-/// </li>
-/// </ul>
+/// Destinations are part of a <a>GameSessionQueue</a>.
 class GameSessionQueueDestination {
   /// The Amazon Resource Name (ARN) that is assigned to fleet or fleet alias.
   /// ARNs, which include a fleet ID or alias ID and a Region name, provide a
@@ -15547,15 +14530,20 @@ class GetInstanceAccessOutput {
   }
 }
 
-/// Properties that describe an instance of a virtual computing resource that
-/// hosts one or more game servers. A fleet may contain zero or more instances.
+/// Represents an EC2 instance of virtual computing resources that hosts one or
+/// more game servers. In GameLift, a fleet can contain zero or more instances.
+///
+/// <b>Related actions</b>
+///
+/// <a>DescribeInstances</a>
 class Instance {
-  /// Time stamp indicating when this data object was created. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// A time stamp indicating when this data object was created. Format is a
+  /// number expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
-  /// DNS identifier assigned to the instance that is running the game session.
-  /// Values have the following format:
+  /// The DNS identifier assigned to the instance that is running the game
+  /// session. Values have the following format:
   ///
   /// <ul>
   /// <li>
@@ -15573,14 +14561,25 @@ class Instance {
   /// you must use the DNS name, not the IP address.
   final String? dnsName;
 
-  /// A unique identifier for a fleet that the instance is in.
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that the instance is in.
   final String? fleetId;
 
-  /// A unique identifier for an instance.
+  /// A unique identifier for the instance.
   final String? instanceId;
 
   /// IP address that is assigned to the instance.
   final String? ipAddress;
+
+  /// The fleet location of the instance, expressed as an AWS Region code, such as
+  /// <code>us-west-2</code>.
+  final String? location;
 
   /// Operating system that is running on this instance.
   final OperatingSystem? operatingSystem;
@@ -15594,9 +14593,9 @@ class Instance {
   /// </li>
   /// <li>
   /// <b>ACTIVE</b> -- The instance has been successfully created and at least one
-  /// server process has successfully launched and reported back to Amazon
-  /// GameLift that it is ready to host a game session. The instance is now
-  /// considered ready to host game sessions.
+  /// server process has successfully launched and reported back to GameLift that
+  /// it is ready to host a game session. The instance is now considered ready to
+  /// host game sessions.
   /// </li>
   /// <li>
   /// <b>TERMINATING</b> -- The instance is in the process of shutting down. This
@@ -15612,9 +14611,11 @@ class Instance {
   Instance({
     this.creationTime,
     this.dnsName,
+    this.fleetArn,
     this.fleetId,
     this.instanceId,
     this.ipAddress,
+    this.location,
     this.operatingSystem,
     this.status,
     this.type,
@@ -15623,9 +14624,11 @@ class Instance {
     return Instance(
       creationTime: timeStampFromJson(json['CreationTime']),
       dnsName: json['DnsName'] as String?,
+      fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
       instanceId: json['InstanceId'] as String?,
       ipAddress: json['IpAddress'] as String?,
+      location: json['Location'] as String?,
       operatingSystem:
           (json['OperatingSystem'] as String?)?.toOperatingSystem(),
       status: (json['Status'] as String?)?.toInstanceStatus(),
@@ -15640,10 +14643,10 @@ class InstanceAccess {
   /// Credentials required to access the instance.
   final InstanceCredentials? credentials;
 
-  /// A unique identifier for a fleet containing the instance being accessed.
+  /// A unique identifier for the fleet containing the instance being accessed.
   final String? fleetId;
 
-  /// A unique identifier for an instance being accessed.
+  /// A unique identifier for the instance being accessed.
   final String? instanceId;
 
   /// IP address that is assigned to the instance.
@@ -15698,7 +14701,7 @@ class InstanceCredentials {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// An allowed instance type for a <a>GameServerGroup</a>. All game server
@@ -15775,13 +14778,15 @@ extension on String {
 }
 
 /// A range of IP addresses and port settings that allow inbound traffic to
-/// connect to server processes on an Amazon GameLift hosting resource. New game
-/// sessions that are started on the fleet are assigned an IP address/port
-/// number combination, which must fall into the fleet's allowed ranges. For
-/// fleets created with a custom game server, the ranges reflect the server's
-/// game session assignments. For Realtime Servers fleets, Amazon GameLift
-/// automatically opens two port ranges, one for TCP messaging and one for UDP
-/// for use by the Realtime servers.
+/// connect to server processes on an instance in a fleet. New game sessions are
+/// assigned an IP address/port number combination, which must fall into the
+/// fleet's allowed ranges. Fleets with custom game builds must have permissions
+/// explicitly set. For Realtime Servers fleets, GameLift automatically opens
+/// two port ranges, one for TCP messaging and one for UDP.
+///
+/// <b>Related actions</b>
+///
+/// <a>DescribeFleetPortSettings</a>
 class IpPermission {
   /// A starting value for a range of allowed port numbers.
   final int fromPort;
@@ -15855,7 +14860,7 @@ extension on String {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// An EC2 launch template that contains configuration settings and game server
@@ -15922,9 +14927,9 @@ class ListBuildsOutput {
   /// A collection of build resources that match the request.
   final List<Build>? builds;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   ListBuildsOutput({
@@ -15944,15 +14949,15 @@ class ListBuildsOutput {
 
 /// Represents the returned data in response to a request operation.
 class ListFleetsOutput {
-  /// Set of fleet IDs matching the list request. You can retrieve additional
-  /// information about all returned fleets by passing this result set to a call
-  /// to <a>DescribeFleetAttributes</a>, <a>DescribeFleetCapacity</a>, or
-  /// <a>DescribeFleetUtilization</a>.
+  /// A set of fleet IDs that match the list request. You can retrieve additional
+  /// information about all returned fleets by passing this result set to a
+  /// <a>DescribeFleetAttributes</a>, <a>DescribeFleetCapacity</a>, or
+  /// <a>DescribeFleetUtilization</a> call.
   final List<String>? fleetIds;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   ListFleetsOutput({
@@ -16059,6 +15064,118 @@ class ListTagsForResourceResponse {
   }
 }
 
+/// Represents a location in a multi-location fleet.
+///
+/// <b>Related actions</b>
+///
+/// <a>DescribeFleetLocationAttributes</a>
+class LocationAttributes {
+  /// A fleet location and its current life-cycle state.
+  final LocationState? locationState;
+
+  /// A list of fleet actions that have been suspended in the fleet location.
+  final List<FleetAction>? stoppedActions;
+
+  /// The status of fleet activity updates to the location. The status
+  /// <code>PENDING_UPDATE</code> indicates that <a>StopFleetActions</a> or
+  /// <a>StartFleetActions</a> has been requested but the update has not yet been
+  /// completed for the location.
+  final LocationUpdateStatus? updateStatus;
+
+  LocationAttributes({
+    this.locationState,
+    this.stoppedActions,
+    this.updateStatus,
+  });
+  factory LocationAttributes.fromJson(Map<String, dynamic> json) {
+    return LocationAttributes(
+      locationState: json['LocationState'] != null
+          ? LocationState.fromJson(
+              json['LocationState'] as Map<String, dynamic>)
+          : null,
+      stoppedActions: (json['StoppedActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toFleetAction())
+          .toList(),
+      updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
+    );
+  }
+}
+
+/// A remote location where a multi-location fleet can deploy EC2 instances for
+/// game hosting.
+///
+/// <b>Related actions</b>
+///
+/// <a>CreateFleet</a>
+class LocationConfiguration {
+  /// An AWS Region code, such as <code>us-west-2</code>.
+  final String? location;
+
+  LocationConfiguration({
+    this.location,
+  });
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    return {
+      if (location != null) 'Location': location,
+    };
+  }
+}
+
+/// A fleet location and its life-cycle state. A location state object might be
+/// used to describe a fleet's remote location or home Region. Life-cycle state
+/// tracks the progress of launching the first instance in a new location and
+/// preparing it for game hosting, and then removing all instances and deleting
+/// the location from the fleet.
+///
+/// <b>Related actions</b>
+///
+/// <a>CreateFleet</a> | <a>CreateFleetLocations</a> |
+/// <a>DeleteFleetLocations</a>
+class LocationState {
+  /// The fleet location, expressed as an AWS Region code such as
+  /// <code>us-west-2</code>.
+  final String? location;
+
+  /// The life-cycle status of a fleet location.
+  final FleetStatus? status;
+
+  LocationState({
+    this.location,
+    this.status,
+  });
+  factory LocationState.fromJson(Map<String, dynamic> json) {
+    return LocationState(
+      location: json['Location'] as String?,
+      status: (json['Status'] as String?)?.toFleetStatus(),
+    );
+  }
+}
+
+enum LocationUpdateStatus {
+  pendingUpdate,
+}
+
+extension on LocationUpdateStatus {
+  String toValue() {
+    switch (this) {
+      case LocationUpdateStatus.pendingUpdate:
+        return 'PENDING_UPDATE';
+    }
+  }
+}
+
+extension on String {
+  LocationUpdateStatus toLocationUpdateStatus() {
+    switch (this) {
+      case 'PENDING_UPDATE':
+        return LocationUpdateStatus.pendingUpdate;
+    }
+    throw Exception('$this is not known in enum LocationUpdateStatus');
+  }
+}
+
 /// Represents a new player session that is created as a result of a successful
 /// FlexMatch match. A successful match automatically creates new player
 /// sessions for every player ID in the original matchmaking request.
@@ -16097,15 +15214,15 @@ class MatchmakingConfiguration {
 
   /// The length of time (in seconds) to wait for players to accept a proposed
   /// match, if acceptance is required. If any player rejects the match or fails
-  /// to accept before the timeout, the tickets are returned to the ticket pool
-  /// and continue to be evaluated for an acceptable match.
+  /// to accept before the timeout, the ticket continues to look for an acceptable
+  /// match.
   final int? acceptanceTimeoutSeconds;
 
   /// The number of player slots in a match to keep open for future players. For
-  /// example, assume that the configuration's rule set specifies a match for a
-  /// single 12-person team. If the additional player count is set to 2, only 10
-  /// players are initially selected for the match. This parameter is not used
-  /// when <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
+  /// example, if the configuration's rule set specifies a match for a single
+  /// 12-person team, and the additional player count is set to 2, only 10 players
+  /// are selected for the match. This parameter is not used when
+  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   final int? additionalPlayerCount;
 
   /// The method used to backfill game sessions created with this matchmaking
@@ -16114,20 +15231,22 @@ class MatchmakingConfiguration {
   /// creates <a>StartMatchBackfill</a> requests whenever a game session has one
   /// or more open slots. Learn more about manual and automatic backfill in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html">Backfill
-  /// Existing Games with FlexMatch</a>. Automatic backfill is not available when
+  /// existing games with FlexMatch</a>. Automatic backfill is not available when
   /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   final BackfillMode? backfillMode;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift matchmaking configuration resource and
-  /// uniquely identifies it. ARNs are unique across all Regions. In a GameLift
-  /// configuration ARN, the resource ID matches the <i>Name</i> value.
+  /// uniquely identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::matchmakingconfiguration/&lt;matchmaking
+  /// configuration name&gt;</code>. In a GameLift configuration ARN, the resource
+  /// ID matches the <i>Name</i> value.
   final String? configurationArn;
 
-  /// The time stamp indicating when this data object was created. The format is a
+  /// A time stamp indicating when this data object was created. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// Information to attach to all events related to the matchmaking
@@ -16154,7 +15273,7 @@ class MatchmakingConfiguration {
   /// </ul>
   final FlexMatchMode? flexMatchMode;
 
-  /// A set of custom properties for a game session, formatted as key-value pairs.
+  /// A set of custom properties for a game session, formatted as key:value pairs.
   /// These properties are passed to a game server process in the
   /// <a>GameSession</a> object with a request to start a new game session (see <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
@@ -16172,17 +15291,18 @@ class MatchmakingConfiguration {
   /// when <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   final String? gameSessionData;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift game session queue resource and uniquely
-  /// identifies it. ARNs are unique across all Regions. Queues can be located in
-  /// any Region. Queues are used to start new GameLift-hosted game sessions for
-  /// matches that are created with this matchmaking configuration. Thais property
-  /// is not set when <code>FlexMatchMode</code> is set to
-  /// <code>STANDALONE</code>.
+  /// identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+  /// name&gt;</code>. Queues can be located in any Region. Queues are used to
+  /// start new GameLift-hosted game sessions for matches that are created with
+  /// this matchmaking configuration. This property is not set when
+  /// <code>FlexMatchMode</code> is set to <code>STANDALONE</code>.
   final List<String>? gameSessionQueueArns;
 
-  /// A unique identifier for a matchmaking configuration. This name is used to
+  /// A unique identifier for the matchmaking configuration. This name is used to
   /// identify the configuration associated with a matchmaking request or ticket.
   final String? name;
 
@@ -16195,12 +15315,12 @@ class MatchmakingConfiguration {
   final int? requestTimeoutSeconds;
 
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift matchmaking rule set resource that this
   /// configuration uses.
   final String? ruleSetArn;
 
-  /// A unique identifier for a matchmaking rule set to use with this
+  /// A unique identifier for the matchmaking rule set to use with this
   /// configuration. A matchmaking configuration can only use rule sets that are
   /// defined in the same Region.
   final String? ruleSetName;
@@ -16320,7 +15440,7 @@ extension on String {
 /// A rule set may define the following elements for a match. For detailed
 /// information and examples showing how to construct a rule set, see <a
 /// href="https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html">Build
-/// a FlexMatch Rule Set</a>.
+/// a FlexMatch rule set</a>.
 ///
 /// <ul>
 /// <li>
@@ -16358,19 +15478,21 @@ class MatchmakingRuleSet {
   /// not allowed in JSON, but most elements support a description field.
   final String ruleSetBody;
 
-  /// The time stamp indicating when this data object was created. The format is a
+  /// A time stamp indicating when this data object was created. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift matchmaking rule set resource and uniquely
-  /// identifies it. ARNs are unique across all Regions. In a GameLift rule set
-  /// ARN, the resource ID matches the <i>RuleSetName</i> value.
+  /// identifies it. ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::matchmakingruleset/&lt;ruleset
+  /// name&gt;</code>. In a GameLift rule set ARN, the resource ID matches the
+  /// <i>RuleSetName</i> value.
   final String? ruleSetArn;
 
-  /// A unique identifier for a matchmaking rule set
+  /// A unique identifier for the matchmaking rule set
   final String? ruleSetName;
 
   MatchmakingRuleSet({
@@ -16395,7 +15517,7 @@ class MatchmakingRuleSet {
 /// retrieved by calling <a>DescribeMatchmaking</a> with the ticket ID.
 class MatchmakingTicket {
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift matchmaking configuration resource that is used
   /// with this ticket.
   final String? configurationArn;
@@ -16407,7 +15529,7 @@ class MatchmakingTicket {
 
   /// Time stamp indicating when this matchmaking request stopped being processed
   /// due to success, failure, or cancellation. Format is a number expressed in
-  /// Unix time as milliseconds (for example "1469498468.057").
+  /// Unix time as milliseconds (for example <code>"1469498468.057"</code>).
   final DateTime? endTime;
 
   /// Average amount of time (in seconds) that players are currently waiting for a
@@ -16429,7 +15551,7 @@ class MatchmakingTicket {
 
   /// Time stamp indicating when this matchmaking request was received. Format is
   /// a number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? startTime;
 
   /// Current status of the matchmaking request.
@@ -16634,31 +15756,13 @@ extension on String {
 /// player ID and player session ID. To retrieve full details on a player
 /// session, call <a>DescribePlayerSessions</a> with the player session ID.
 ///
-/// <ul>
-/// <li>
-/// <a>CreatePlayerSession</a>
-/// </li>
-/// <li>
-/// <a>CreatePlayerSessions</a>
-/// </li>
-/// <li>
-/// <a>DescribePlayerSessions</a>
-/// </li>
-/// <li>
-/// Game session placements
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>StartGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>StopGameSessionPlacement</a>
-/// </li>
-/// </ul> </li>
-/// </ul>
+/// <a>CreatePlayerSession</a> | <a>CreatePlayerSessions</a> |
+/// <a>DescribePlayerSessions</a> | <a>StartGameSessionPlacement</a> |
+/// <a>DescribeGameSessionPlacement</a> | <a>StopGameSessionPlacement</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class PlacedPlayerSession {
   /// A unique identifier for a player that is associated with this player
   /// session.
@@ -16683,10 +15787,10 @@ class PlacedPlayerSession {
 /// player has a player ID, attributes, and may have latency data. Team
 /// information is added after a match has been successfully completed.
 class Player {
-  /// Set of values, expressed in milliseconds, indicating the amount of latency
-  /// that a player experiences when connected to AWS Regions. If this property is
-  /// present, FlexMatch considers placing the match only in Regions for which
-  /// latency is reported.
+  /// A set of values, expressed in milliseconds, that indicates the amount of
+  /// latency that a player experiences when connected to AWS Regions. If this
+  /// property is present, FlexMatch considers placing the match only in Regions
+  /// for which latency is reported.
   ///
   /// If a matchmaker has a rule that evaluates player latency, players must
   /// report latency in order to be matched. If no latency is reported in this
@@ -16782,26 +15886,14 @@ class PlayerLatency {
   }
 }
 
-/// Queue setting that determines the highest latency allowed for individual
-/// players when placing a game session. When a latency policy is in force, a
-/// game session cannot be placed with any fleet in a Region where a player
-/// reports latency higher than the cap. Latency policies are only enforced when
-/// the placement request contains player latency information.
+/// Sets a latency cap for individual players when placing a game session. With
+/// a latency policy in force, a game session cannot be placed in a fleet
+/// location where a player reports latency higher than the cap. Latency
+/// policies are used only with placement request that provide player latency
+/// information. Player latency policies can be stacked to gradually relax
+/// latency requirements over time.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionQueues</a>
-/// </li>
-/// <li>
-/// <a>UpdateGameSessionQueue</a>
-/// </li>
-/// <li>
-/// <a>DeleteGameSessionQueue</a>
-/// </li>
-/// </ul>
+/// Latency policies are part of a <a>GameSessionQueue</a>.
 class PlayerLatencyPolicy {
   /// The maximum latency value that is allowed for any player, in milliseconds.
   /// All policies must have a value set for this property.
@@ -16838,50 +15930,31 @@ class PlayerLatencyPolicy {
   }
 }
 
-/// Properties describing a player session. Player session objects are created
-/// either by creating a player session for a specific game session, or as part
-/// of a game session placement. A player session represents either a player
-/// reservation for a game session (status <code>RESERVED</code>) or actual
-/// player activity in a game session (status <code>ACTIVE</code>). A player
-/// session object (including player data) is automatically passed to a game
-/// session when the player connects to the game session and is validated.
+/// Represents a player session. Player sessions are created either for a
+/// specific game session, or as part of a game session placement or matchmaking
+/// request. A player session can represents a reserved player slot in a game
+/// session (when status is <code>RESERVED</code>) or actual player activity in
+/// a game session (when status is <code>ACTIVE</code>). A player session
+/// object, including player data, is automatically passed to a game session
+/// when the player connects to the game session and is validated. After the
+/// game session ends, player sessions information is retained for 30 days and
+/// then removed.
 ///
-/// When a player disconnects, the player session status changes to
-/// <code>COMPLETED</code>. Once the session ends, the player session object is
-/// retained for 30 days and then removed.
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>CreatePlayerSession</a>
-/// </li>
-/// <li>
-/// <a>CreatePlayerSessions</a>
-/// </li>
-/// <li>
-/// <a>DescribePlayerSessions</a>
-/// </li>
-/// <li>
-/// Game session placements
-///
-/// <ul>
-/// <li>
-/// <a>StartGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>DescribeGameSessionPlacement</a>
-/// </li>
-/// <li>
-/// <a>StopGameSessionPlacement</a>
-/// </li>
-/// </ul> </li>
-/// </ul>
+/// <a>CreatePlayerSession</a> | <a>CreatePlayerSessions</a> |
+/// <a>DescribePlayerSessions</a> | <a>StartGameSessionPlacement</a> |
+/// <a>DescribeGameSessionPlacement</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class PlayerSession {
-  /// Time stamp indicating when this data object was created. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// A time stamp indicating when this data object was created. Format is a
+  /// number expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
-  /// DNS identifier assigned to the instance that is running the game session.
-  /// Values have the following format:
+  /// The DNS identifier assigned to the instance that is running the game
+  /// session. Values have the following format:
   ///
   /// <ul>
   /// <li>
@@ -16900,12 +15973,12 @@ class PlayerSession {
   final String? dnsName;
 
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift fleet that the player's game session is running
   /// on.
   final String? fleetArn;
 
-  /// A unique identifier for a fleet that the player's game session is running
+  /// A unique identifier for the fleet that the player's game session is running
   /// on.
   final String? fleetId;
 
@@ -16913,13 +15986,12 @@ class PlayerSession {
   /// connected to.
   final String? gameSessionId;
 
-  /// IP address of the instance that is running the game session. When connecting
-  /// to a Amazon GameLift game server, a client needs to reference an IP address
-  /// (or DNS name) and port number.
+  /// The IP address of the game session. To connect to a GameLift game server, an
+  /// app needs both the IP address and port number.
   final String? ipAddress;
 
-  /// Developer-defined information related to a player. Amazon GameLift does not
-  /// use this data, so it can be formatted as needed for use in the game.
+  /// Developer-defined information related to a player. GameLift does not use
+  /// this data, so it can be formatted as needed for use in the game.
   final String? playerData;
 
   /// A unique identifier for a player that is associated with this player
@@ -16956,9 +16028,9 @@ class PlayerSession {
   /// </ul>
   final PlayerSessionStatus? status;
 
-  /// Time stamp indicating when this data object was terminated. Format is a
+  /// A time stamp indicating when this data object was terminated. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? terminationTime;
 
   PlayerSession({
@@ -17087,6 +16159,129 @@ extension on String {
   }
 }
 
+/// Custom prioritization settings for use by a game session queue when placing
+/// new game sessions with available game servers. When defined, this
+/// configuration replaces the default FleetIQ prioritization process, which is
+/// as follows:
+///
+/// <ul>
+/// <li>
+/// If player latency data is included in a game session request, destinations
+/// and locations are prioritized first based on lowest average latency (1),
+/// then on lowest hosting cost (2), then on destination list order (3), and
+/// finally on location (alphabetical) (4). This approach ensures that the
+/// queue's top priority is to place game sessions where average player latency
+/// is lowest, and--if latency is the same--where the hosting cost is less, etc.
+/// </li>
+/// <li>
+/// If player latency data is not included, destinations and locations are
+/// prioritized first on destination list order (1), and then on location
+/// (alphabetical) (2). This approach ensures that the queue's top priority is
+/// to place game sessions on the first destination fleet listed. If that fleet
+/// has multiple locations, the game session is placed on the first location
+/// (when listed alphabetically).
+/// </li>
+/// </ul>
+/// Changing the priority order will affect how game sessions are placed.
+///
+/// Priority configurations are part of a <a>GameSessionQueue</a>.
+class PriorityConfiguration {
+  /// The prioritization order to use for fleet locations, when the
+  /// <code>PriorityOrder</code> property includes <code>LOCATION</code>.
+  /// Locations are identified by AWS Region codes such as <code>us-west-2</code>.
+  /// Each location can only be listed once.
+  final List<String>? locationOrder;
+
+  /// The recommended sequence to use when prioritizing where to place new game
+  /// sessions. Each type can only be listed once.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>LATENCY</code> -- FleetIQ prioritizes locations where the average
+  /// player latency (provided in each game session request) is lowest.
+  /// </li>
+  /// <li>
+  /// <code>COST</code> -- FleetIQ prioritizes destinations with the lowest
+  /// current hosting costs. Cost is evaluated based on the location, instance
+  /// type, and fleet type (Spot or On-Demand) for each destination in the queue.
+  /// </li>
+  /// <li>
+  /// <code>DESTINATION</code> -- FleetIQ prioritizes based on the order that
+  /// destinations are listed in the queue configuration.
+  /// </li>
+  /// <li>
+  /// <code>LOCATION</code> -- FleetIQ prioritizes based on the provided order of
+  /// locations, as defined in <code>LocationOrder</code>.
+  /// </li>
+  /// </ul>
+  final List<PriorityType>? priorityOrder;
+
+  PriorityConfiguration({
+    this.locationOrder,
+    this.priorityOrder,
+  });
+  factory PriorityConfiguration.fromJson(Map<String, dynamic> json) {
+    return PriorityConfiguration(
+      locationOrder: (json['LocationOrder'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      priorityOrder: (json['PriorityOrder'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toPriorityType())
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationOrder = this.locationOrder;
+    final priorityOrder = this.priorityOrder;
+    return {
+      if (locationOrder != null) 'LocationOrder': locationOrder,
+      if (priorityOrder != null)
+        'PriorityOrder': priorityOrder.map((e) => e.toValue()).toList(),
+    };
+  }
+}
+
+enum PriorityType {
+  latency,
+  cost,
+  destination,
+  location,
+}
+
+extension on PriorityType {
+  String toValue() {
+    switch (this) {
+      case PriorityType.latency:
+        return 'LATENCY';
+      case PriorityType.cost:
+        return 'COST';
+      case PriorityType.destination:
+        return 'DESTINATION';
+      case PriorityType.location:
+        return 'LOCATION';
+    }
+  }
+}
+
+extension on String {
+  PriorityType toPriorityType() {
+    switch (this) {
+      case 'LATENCY':
+        return PriorityType.latency;
+      case 'COST':
+        return PriorityType.cost;
+      case 'DESTINATION':
+        return PriorityType.destination;
+      case 'LOCATION':
+        return PriorityType.location;
+    }
+    throw Exception('$this is not known in enum PriorityType');
+  }
+}
+
 enum ProtectionPolicy {
   noProtection,
   fullProtection,
@@ -17117,8 +16312,8 @@ extension on String {
 
 /// Represents the returned data in response to a request operation.
 class PutScalingPolicyOutput {
-  /// A descriptive label that is associated with a scaling policy. Policy names
-  /// do not need to be unique.
+  /// A descriptive label that is associated with a fleet's scaling policy. Policy
+  /// names do not need to be unique.
   final String? name;
 
   PutScalingPolicyOutput({
@@ -17177,7 +16372,7 @@ class RequestUploadCredentialsOutput {
 /// Represents the returned data in response to a request operation.
 class ResolveAliasOutput {
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift fleet resource that this alias points to.
   final String? fleetArn;
 
@@ -17196,18 +16391,16 @@ class ResolveAliasOutput {
   }
 }
 
-/// A policy that limits the number of game sessions a player can create on the
-/// same fleet. This optional policy gives game owners control over how players
-/// can consume available game server resources. A resource creation policy
-/// makes the following statement: "An individual player can create a maximum
-/// number of new game sessions within a specified time period".
+/// A policy that puts limits on the number of game sessions that a player can
+/// create within a specified span of time. With this policy, you can control
+/// players' ability to consume available resources.
 ///
-/// The policy is evaluated when a player tries to create a new game session.
-/// For example: Assume you have a policy of 10 new game sessions and a time
-/// period of 60 minutes. On receiving a <code>CreateGameSession</code> request,
-/// Amazon GameLift checks that the player (identified by
-/// <code>CreatorId</code>) has created fewer than 10 game sessions in the past
-/// 60 minutes.
+/// The policy is evaluated when a player tries to create a new game session. On
+/// receiving a <code>CreateGameSession</code> request, GameLift checks that the
+/// player (identified by <code>CreatorId</code>) has created fewer than game
+/// session limit in the specified time period.
+///
+/// The resource creation limit policy is included in <a>FleetAttributes</a>.
 class ResourceCreationLimitPolicy {
   /// The maximum number of game sessions that an individual can create during the
   /// policy period.
@@ -17260,28 +16453,14 @@ class ResumeGameServerGroupOutput {
 
 /// The routing configuration for a fleet alias.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateAlias</a>
-/// </li>
-/// <li>
-/// <a>ListAliases</a>
-/// </li>
-/// <li>
-/// <a>DescribeAlias</a>
-/// </li>
-/// <li>
-/// <a>UpdateAlias</a>
-/// </li>
-/// <li>
-/// <a>DeleteAlias</a>
-/// </li>
-/// <li>
-/// <a>ResolveAlias</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateAlias</a> | <a>ListAliases</a> | <a>DescribeAlias</a> |
+/// <a>UpdateAlias</a> | <a>DeleteAlias</a> | <a>ResolveAlias</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class RoutingStrategy {
-  /// The unique identifier for a fleet that the alias points to. This value is
+  /// A unique identifier for the fleet that the alias points to. This value is
   /// the fleet ID, not the fleet ARN.
   final String? fleetId;
 
@@ -17359,57 +16538,37 @@ extension on String {
   }
 }
 
-/// A collection of server process configurations that describe what processes
-/// to run on each instance in a fleet. Server processes run either a custom
-/// game build executable or a Realtime Servers script. Each instance in the
-/// fleet starts the specified server processes and continues to start new
-/// processes as existing processes end. Each instance regularly checks for an
-/// updated runtime configuration.
+/// A collection of server process configurations that describe the set of
+/// processes to run on each instance in a fleet. Server processes run either an
+/// executable in a custom game build or a Realtime Servers script. GameLift
+/// launches the configured processes, manages their life cycle, and replaces
+/// them as needed. Each instance checks regularly for an updated runtime
+/// configuration.
 ///
-/// The runtime configuration enables the instances in a fleet to run multiple
-/// processes simultaneously. Learn more about <a
+/// A GameLift instance is limited to 50 processes running concurrently. To
+/// calculate the total number of processes in a runtime configuration, add the
+/// values of the <code>ConcurrentExecutions</code> parameter for each
+/// <a>ServerProcess</a>. Learn more about <a
 /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-multiprocess.html">
-/// Running Multiple Processes on a Fleet </a>.
+/// Running Multiple Processes on a Fleet</a>.
 ///
-/// A Amazon GameLift instance is limited to 50 processes running
-/// simultaneously. To calculate the total number of processes in a runtime
-/// configuration, add the values of the <code>ConcurrentExecutions</code>
-/// parameter for each <a>ServerProcess</a> object.
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>CreateFleet</a>
-/// </li>
-/// <li>
-/// <a>ListFleets</a>
-/// </li>
-/// <li>
-/// <a>DeleteFleet</a>
-/// </li>
-/// <li>
-/// <a>DescribeFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetAttributes</a>
-/// </li>
-/// <li>
-/// <a>StartFleetActions</a> or <a>StopFleetActions</a>
-/// </li>
-/// </ul>
+/// <a>DescribeRuntimeConfiguration</a> | <a>UpdateRuntimeConfiguration</a>
 class RuntimeConfiguration {
-  /// The maximum amount of time (in seconds) that a game session can remain in
-  /// status <code>ACTIVATING</code>. If the game session is not active before the
-  /// timeout, activation is terminated and the game session status is changed to
-  /// <code>TERMINATED</code>.
+  /// The maximum amount of time (in seconds) allowed to launch a new game session
+  /// and have it report ready to host players. During this time, the game session
+  /// is in status <code>ACTIVATING</code>. If the game session does not become
+  /// active before the timeout, it is ended and the game session status is
+  /// changed to <code>TERMINATED</code>.
   final int? gameSessionActivationTimeoutSeconds;
 
-  /// The maximum number of game sessions with status <code>ACTIVATING</code> to
-  /// allow on an instance simultaneously. This setting limits the amount of
-  /// instance resources that can be used for new game activations at any one
-  /// time.
+  /// The number of game sessions in status <code>ACTIVATING</code> to allow on an
+  /// instance. This setting limits the instance resources that can be used for
+  /// new game activations at any one time.
   final int? maxConcurrentGameSessionActivations;
 
-  /// A collection of server process configurations that describe which server
+  /// A collection of server process configurations that identify what server
   /// processes to run on each instance in a fleet.
   final List<ServerProcess>? serverProcesses;
 
@@ -17449,14 +16608,14 @@ class RuntimeConfiguration {
   }
 }
 
-/// The location in S3 where build or script files are stored for access by
-/// Amazon GameLift. This location is specified in <a>CreateBuild</a>,
+/// The location in Amazon S3 where build or script files are stored for access
+/// by Amazon GameLift. This location is specified in <a>CreateBuild</a>,
 /// <a>CreateScript</a>, and <a>UpdateScript</a> requests.
 class S3Location {
-  /// An S3 bucket identifier. This is the name of the S3 bucket.
+  /// An Amazon S3 bucket identifier. This is the name of the S3 bucket.
   /// <note>
-  /// GameLift currently does not support uploading from S3 buckets with names
-  /// that contain a dot (.).
+  /// GameLift currently does not support uploading from Amazon S3 buckets with
+  /// names that contain a dot (.).
   /// </note>
   final String? bucket;
 
@@ -17539,42 +16698,14 @@ extension on String {
 /// Rule that controls how a fleet is scaled. Scaling policies are uniquely
 /// identified by the combination of name and fleet ID.
 ///
-/// <ul>
-/// <li>
-/// <a>DescribeFleetCapacity</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetCapacity</a>
-/// </li>
-/// <li>
-/// <a>DescribeEC2InstanceLimits</a>
-/// </li>
-/// <li>
-/// Manage scaling policies:
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>PutScalingPolicy</a> (auto-scaling)
-/// </li>
-/// <li>
-/// <a>DescribeScalingPolicies</a> (auto-scaling)
-/// </li>
-/// <li>
-/// <a>DeleteScalingPolicy</a> (auto-scaling)
-/// </li>
-/// </ul> </li>
-/// <li>
-/// Manage fleet actions:
-///
-/// <ul>
-/// <li>
-/// <a>StartFleetActions</a>
-/// </li>
-/// <li>
-/// <a>StopFleetActions</a>
-/// </li>
-/// </ul> </li>
-/// </ul>
+/// <a>DescribeFleetCapacity</a> | <a>UpdateFleetCapacity</a> |
+/// <a>DescribeEC2InstanceLimits</a> | <a>PutScalingPolicy</a> |
+/// <a>DescribeScalingPolicies</a> | <a>DeleteScalingPolicy</a> |
+/// <a>StopFleetActions</a> | <a>StartFleetActions</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class ScalingPolicy {
   /// Comparison operator to use when measuring a metric against the threshold
   /// value.
@@ -17584,8 +16715,19 @@ class ScalingPolicy {
   /// before a scaling event is triggered.
   final int? evaluationPeriods;
 
-  /// A unique identifier for a fleet that is associated with this scaling policy.
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that is associated with this scaling
+  /// policy.
   final String? fleetId;
+
+  ///
+  final String? location;
 
   /// Name of the Amazon GameLift-defined metric that is used to trigger a scaling
   /// adjustment. For detailed descriptions of fleet metrics, see <a
@@ -17642,8 +16784,8 @@ class ScalingPolicy {
   /// </ul>
   final MetricName? metricName;
 
-  /// A descriptive label that is associated with a scaling policy. Policy names
-  /// do not need to be unique.
+  /// A descriptive label that is associated with a fleet's scaling policy. Policy
+  /// names do not need to be unique.
   final String? name;
 
   /// The type of scaling policy to create. For a target-based policy, set the
@@ -17712,16 +16854,23 @@ class ScalingPolicy {
   /// </ul>
   final ScalingStatusType? status;
 
-  /// The settings for a target-based scaling policy.
+  /// An object that contains settings for a target-based scaling policy.
   final TargetConfiguration? targetConfiguration;
 
   /// Metric value used to trigger a scaling event.
   final double? threshold;
 
+  /// The current status of the fleet's scaling policies in a requested fleet
+  /// location. The status <code>PENDING_UPDATE</code> indicates that an update
+  /// was requested for the fleet but has not yet been completed for the location.
+  final LocationUpdateStatus? updateStatus;
+
   ScalingPolicy({
     this.comparisonOperator,
     this.evaluationPeriods,
+    this.fleetArn,
     this.fleetId,
+    this.location,
     this.metricName,
     this.name,
     this.policyType,
@@ -17730,13 +16879,16 @@ class ScalingPolicy {
     this.status,
     this.targetConfiguration,
     this.threshold,
+    this.updateStatus,
   });
   factory ScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ScalingPolicy(
       comparisonOperator:
           (json['ComparisonOperator'] as String?)?.toComparisonOperatorType(),
       evaluationPeriods: json['EvaluationPeriods'] as int?,
+      fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
+      location: json['Location'] as String?,
       metricName: (json['MetricName'] as String?)?.toMetricName(),
       name: json['Name'] as String?,
       policyType: (json['PolicyType'] as String?)?.toPolicyType(),
@@ -17749,6 +16901,7 @@ class ScalingPolicy {
               json['TargetConfiguration'] as Map<String, dynamic>)
           : null,
       threshold: json['Threshold'] as double?,
+      updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
     );
   }
 }
@@ -17808,43 +16961,30 @@ extension on String {
 
 /// Properties describing a Realtime script.
 ///
-/// <b>Related operations</b>
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>CreateScript</a>
-/// </li>
-/// <li>
-/// <a>ListScripts</a>
-/// </li>
-/// <li>
-/// <a>DescribeScript</a>
-/// </li>
-/// <li>
-/// <a>UpdateScript</a>
-/// </li>
-/// <li>
-/// <a>DeleteScript</a>
-/// </li>
-/// </ul>
+/// <a>CreateScript</a> | <a>ListScripts</a> | <a>DescribeScript</a> |
+/// <a>UpdateScript</a> | <a>DeleteScript</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class Script {
-  /// A time stamp indicating when this data object was created. The format is a
+  /// A time stamp indicating when this data object was created. Format is a
   /// number expressed in Unix time as milliseconds (for example
-  /// "1469498468.057").
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// A descriptive label that is associated with a script. Script names do not
   /// need to be unique.
   final String? name;
 
-  /// Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// that is assigned to a GameLift script resource and uniquely identifies it.
   /// ARNs are unique across all Regions. In a GameLift script ARN, the resource
   /// ID matches the <i>ScriptId</i> value.
   final String? scriptArn;
 
-  /// A unique identifier for a Realtime script
+  /// A unique identifier for the Realtime script
   final String? scriptId;
 
   /// The file size of the uploaded Realtime script, expressed in bytes. When
@@ -17852,8 +16992,8 @@ class Script {
   final int? sizeOnDisk;
   final S3Location? storageLocation;
 
-  /// The version that is associated with a build or script. Version strings do
-  /// not need to be unique.
+  /// Version information that is associated with a build or script. Version
+  /// strings do not need to be unique.
   final String? version;
 
   Script({
@@ -17883,12 +17023,12 @@ class Script {
 /// Represents the returned data in response to a request operation.
 class SearchGameSessionsOutput {
   /// A collection of objects containing game session properties for each session
-  /// matching the request.
+  /// that matches the request.
   final List<GameSession>? gameSessions;
 
-  /// Token that indicates where to resume retrieving results on the next call to
-  /// this operation. If no token is returned, these results represent the end of
-  /// the list.
+  /// A token that indicates where to resume retrieving results on the next call
+  /// to this operation. If no token is returned, these results represent the end
+  /// of the list.
   final String? nextToken;
 
   SearchGameSessionsOutput({
@@ -17907,24 +17047,21 @@ class SearchGameSessionsOutput {
 }
 
 /// A set of instructions for launching server processes on each instance in a
-/// fleet. Server processes run either a custom game build executable or a
-/// Realtime Servers script. Each instruction set identifies the location of the
-/// custom game build executable or Realtime launch script, optional launch
-/// parameters, and the number of server processes with this configuration to
-/// maintain concurrently on the instance. Server process configurations make up
-/// a fleet's <code> <a>RuntimeConfiguration</a> </code>.
+/// fleet. Server processes run either an executable in a custom game build or a
+/// Realtime Servers script. Server process configurations are part of a fleet's
+/// <a>RuntimeConfiguration</a>.
 class ServerProcess {
-  /// The number of server processes that use this configuration to run
-  /// concurrently on an instance.
+  /// The number of server processes using this configuration that run
+  /// concurrently on each instance.
   final int concurrentExecutions;
 
-  /// The location of the server executable in a custom game build or the name of
-  /// the Realtime script file that contains the <code>Init()</code> function.
-  /// Game builds and Realtime scripts are installed on instances at the root:
+  /// The location of a game build executable or the Realtime script file that
+  /// contains the <code>Init()</code> function. Game builds and Realtime scripts
+  /// are installed on instances at the root:
   ///
   /// <ul>
   /// <li>
-  /// Windows (for custom game builds only): <code>C:\game</code>. Example:
+  /// Windows (custom game builds only): <code>C:\game</code>. Example:
   /// "<code>C:\game\MyGame\server.exe</code>"
   /// </li>
   /// <li>
@@ -17992,10 +17129,27 @@ extension on String {
   }
 }
 
+/// Represents the returned data in response to a request operation.
 class StartFleetActionsOutput {
-  StartFleetActionsOutput();
-  factory StartFleetActionsOutput.fromJson(Map<String, dynamic> _) {
-    return StartFleetActionsOutput();
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet to restart actions on.
+  final String? fleetId;
+
+  StartFleetActionsOutput({
+    this.fleetArn,
+    this.fleetId,
+  });
+  factory StartFleetActionsOutput.fromJson(Map<String, dynamic> json) {
+    return StartFleetActionsOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
+    );
   }
 }
 
@@ -18059,10 +17213,27 @@ class StartMatchmakingOutput {
   }
 }
 
+/// Represents the input for a request operation.
 class StopFleetActionsOutput {
-  StopFleetActionsOutput();
-  factory StopFleetActionsOutput.fromJson(Map<String, dynamic> _) {
-    return StopFleetActionsOutput();
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet to stop actions on.
+  final String? fleetId;
+
+  StopFleetActionsOutput({
+    this.fleetArn,
+    this.fleetId,
+  });
+  factory StopFleetActionsOutput.fromJson(Map<String, dynamic> json) {
+    return StopFleetActionsOutput(
+      fleetArn: json['FleetArn'] as String?,
+      fleetId: json['FleetId'] as String?,
+    );
   }
 }
 
@@ -18123,19 +17294,11 @@ class SuspendGameServerGroupOutput {
 /// href="http://aws.amazon.com/answers/account-management/aws-tagging-strategies/">
 /// AWS Tagging Strategies</a>
 ///
-/// <b>Related operations</b>
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>TagResource</a>
-/// </li>
-/// <li>
-/// <a>UntagResource</a>
-/// </li>
-/// <li>
-/// <a>ListTagsForResource</a>
-/// </li>
-/// </ul>
+/// <a>TagResource</a> | <a>UntagResource</a> | <a>ListTagsForResource</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class Tag {
   /// The key for a developer-defined key:value pair for tagging an AWS resource.
   final String key;
@@ -18179,42 +17342,14 @@ class TagResourceResponse {
 /// The target configuration specifies settings as needed for the target based
 /// policy, including the target value.
 ///
-/// <ul>
-/// <li>
-/// <a>DescribeFleetCapacity</a>
-/// </li>
-/// <li>
-/// <a>UpdateFleetCapacity</a>
-/// </li>
-/// <li>
-/// <a>DescribeEC2InstanceLimits</a>
-/// </li>
-/// <li>
-/// Manage scaling policies:
+/// <b>Related actions</b>
 ///
-/// <ul>
-/// <li>
-/// <a>PutScalingPolicy</a> (auto-scaling)
-/// </li>
-/// <li>
-/// <a>DescribeScalingPolicies</a> (auto-scaling)
-/// </li>
-/// <li>
-/// <a>DeleteScalingPolicy</a> (auto-scaling)
-/// </li>
-/// </ul> </li>
-/// <li>
-/// Manage fleet actions:
-///
-/// <ul>
-/// <li>
-/// <a>StartFleetActions</a>
-/// </li>
-/// <li>
-/// <a>StopFleetActions</a>
-/// </li>
-/// </ul> </li>
-/// </ul>
+/// <a>DescribeFleetCapacity</a> | <a>UpdateFleetCapacity</a> |
+/// <a>DescribeEC2InstanceLimits</a> | <a>PutScalingPolicy</a> |
+/// <a>DescribeScalingPolicies</a> | <a>DeleteScalingPolicy</a> |
+/// <a>StopFleetActions</a> | <a>StartFleetActions</a> | <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class TargetConfiguration {
   /// Desired value to use with a target-based scaling policy. The value must be
   /// relevant for whatever metric the scaling policy is using. For example, in a
@@ -18240,7 +17375,7 @@ class TargetConfiguration {
   }
 }
 
-/// <b>This data type is used with the Amazon GameLift FleetIQ and game server
+/// <b>This data type is used with the GameLift FleetIQ and game server
 /// groups.</b>
 ///
 /// Settings for a target-based scaling policy as part of a
@@ -18307,8 +17442,7 @@ class UpdateBuildOutput {
 
 /// Represents the returned data in response to a request operation.
 class UpdateFleetAttributesOutput {
-  /// A unique identifier for a fleet that was updated. Use either the fleet ID or
-  /// ARN value.
+  /// A unique identifier for the fleet that was updated.
   final String? fleetId;
 
   UpdateFleetAttributesOutput({
@@ -18323,22 +17457,37 @@ class UpdateFleetAttributesOutput {
 
 /// Represents the returned data in response to a request operation.
 class UpdateFleetCapacityOutput {
-  /// A unique identifier for a fleet that was updated.
+  /// The Amazon Resource Name (<a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
+  /// that is assigned to a GameLift fleet resource and uniquely identifies it.
+  /// ARNs are unique across all Regions. Format is
+  /// <code>arn:aws:gamelift:&lt;region&gt;::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912</code>.
+  final String? fleetArn;
+
+  /// A unique identifier for the fleet that was updated.
   final String? fleetId;
 
+  /// The remote location being updated, expressed as an AWS Region code, such as
+  /// <code>us-west-2</code>.
+  final String? location;
+
   UpdateFleetCapacityOutput({
+    this.fleetArn,
     this.fleetId,
+    this.location,
   });
   factory UpdateFleetCapacityOutput.fromJson(Map<String, dynamic> json) {
     return UpdateFleetCapacityOutput(
+      fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
+      location: json['Location'] as String?,
     );
   }
 }
 
 /// Represents the returned data in response to a request operation.
 class UpdateFleetPortSettingsOutput {
-  /// A unique identifier for a fleet that was updated.
+  /// A unique identifier for the fleet that was updated.
   final String? fleetId;
 
   UpdateFleetPortSettingsOutput({
@@ -18387,7 +17536,7 @@ class UpdateGameServerOutput {
 
 /// Represents the returned data in response to a request operation.
 class UpdateGameSessionOutput {
-  /// The updated game session metadata.
+  /// The updated game session properties.
   final GameSession? gameSession;
 
   UpdateGameSessionOutput({
@@ -18441,8 +17590,8 @@ class UpdateMatchmakingConfigurationOutput {
 
 /// Represents the returned data in response to a request operation.
 class UpdateRuntimeConfigurationOutput {
-  /// The runtime configuration currently in force. If the update was successful,
-  /// this object matches the one in the request.
+  /// The runtime configuration currently in use by all instances in the fleet. If
+  /// the update was successful, all property changes are shown.
   final RuntimeConfiguration? runtimeConfiguration;
 
   UpdateRuntimeConfigurationOutput({
@@ -18499,51 +17648,40 @@ class ValidateMatchmakingRuleSetOutput {
 /// This authorization must exist and be valid for the peering connection to be
 /// established. Authorizations are valid for 24 hours after they are issued.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateVpcPeeringAuthorization</a>
-/// </li>
-/// <li>
-/// <a>DescribeVpcPeeringAuthorizations</a>
-/// </li>
-/// <li>
-/// <a>DeleteVpcPeeringAuthorization</a>
-/// </li>
-/// <li>
-/// <a>CreateVpcPeeringConnection</a>
-/// </li>
-/// <li>
-/// <a>DescribeVpcPeeringConnections</a>
-/// </li>
-/// <li>
-/// <a>DeleteVpcPeeringConnection</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateVpcPeeringAuthorization</a> |
+/// <a>DescribeVpcPeeringAuthorizations</a> |
+/// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+/// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+/// <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class VpcPeeringAuthorization {
   /// Time stamp indicating when this authorization was issued. Format is a number
-  /// expressed in Unix time as milliseconds (for example "1469498468.057").
+  /// expressed in Unix time as milliseconds (for example
+  /// <code>"1469498468.057"</code>).
   final DateTime? creationTime;
 
   /// Time stamp indicating when this authorization expires (24 hours after
   /// issuance). Format is a number expressed in Unix time as milliseconds (for
-  /// example "1469498468.057").
+  /// example <code>"1469498468.057"</code>).
   final DateTime? expirationTime;
 
-  /// A unique identifier for the AWS account that you use to manage your Amazon
-  /// GameLift fleet. You can find your Account ID in the AWS Management Console
-  /// under account settings.
+  /// A unique identifier for the AWS account that you use to manage your GameLift
+  /// fleet. You can find your Account ID in the AWS Management Console under
+  /// account settings.
   final String? gameLiftAwsAccountId;
 
   /// <p/>
   final String? peerVpcAwsAccountId;
 
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
-  /// GameLift fleet. The VPC must be in the same Region where your fleet is
-  /// deployed. Look up a VPC ID using the <a
-  /// href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a> in the AWS
-  /// Management Console. Learn more about VPC peering in <a
+  /// A unique identifier for a VPC with resources to be accessed by your GameLift
+  /// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
+  /// ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a>
+  /// in the AWS Management Console. Learn more about VPC peering in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   final String? peerVpcId;
 
   VpcPeeringAuthorization({
@@ -18569,33 +17707,22 @@ class VpcPeeringAuthorization {
 /// active peering connection or a pending connection that has not yet been
 /// established.
 ///
-/// <ul>
-/// <li>
-/// <a>CreateVpcPeeringAuthorization</a>
-/// </li>
-/// <li>
-/// <a>DescribeVpcPeeringAuthorizations</a>
-/// </li>
-/// <li>
-/// <a>DeleteVpcPeeringAuthorization</a>
-/// </li>
-/// <li>
-/// <a>CreateVpcPeeringConnection</a>
-/// </li>
-/// <li>
-/// <a>DescribeVpcPeeringConnections</a>
-/// </li>
-/// <li>
-/// <a>DeleteVpcPeeringConnection</a>
-/// </li>
-/// </ul>
+/// <b>Related actions</b>
+///
+/// <a>CreateVpcPeeringAuthorization</a> |
+/// <a>DescribeVpcPeeringAuthorizations</a> |
+/// <a>DeleteVpcPeeringAuthorization</a> | <a>CreateVpcPeeringConnection</a> |
+/// <a>DescribeVpcPeeringConnections</a> | <a>DeleteVpcPeeringConnection</a> |
+/// <a
+/// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/reference-awssdk.html#reference-awssdk-resources-fleets">All
+/// APIs by task</a>
 class VpcPeeringConnection {
   /// The Amazon Resource Name (<a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>)
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
   /// associated with the GameLift fleet resource for this connection.
   final String? fleetArn;
 
-  /// A unique identifier for a fleet. This ID determines the ID of the Amazon
+  /// A unique identifier for the fleet. This ID determines the ID of the Amazon
   /// GameLift VPC for your fleet.
   final String? fleetId;
 
@@ -18609,13 +17736,12 @@ class VpcPeeringConnection {
   /// these blocks cannot overlap or the peering connection cannot be created.
   final String? ipV4CidrBlock;
 
-  /// A unique identifier for a VPC with resources to be accessed by your Amazon
-  /// GameLift fleet. The VPC must be in the same Region where your fleet is
-  /// deployed. Look up a VPC ID using the <a
-  /// href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a> in the AWS
-  /// Management Console. Learn more about VPC peering in <a
+  /// A unique identifier for a VPC with resources to be accessed by your GameLift
+  /// fleet. The VPC must be in the same Region as your fleet. To look up a VPC
+  /// ID, use the <a href="https://console.aws.amazon.com/vpc/">VPC Dashboard</a>
+  /// in the AWS Management Console. Learn more about VPC peering in <a
   /// href="https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html">VPC
-  /// Peering with Amazon GameLift Fleets</a>.
+  /// Peering with GameLift Fleets</a>.
   final String? peerVpcId;
 
   /// The status information about the connection. Status indicates if a

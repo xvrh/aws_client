@@ -22,6 +22,11 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// You can use the Amazon Redshift Data API to run queries on Amazon Redshift
 /// tables. You can run individual SQL statements, which are committed if the
 /// statement succeeds.
+///
+/// For more information about the Amazon Redshift Data API, see <a
+/// href="https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html">Using
+/// the Amazon Redshift Data API</a> in the <i>Amazon Redshift Cluster
+/// Management Guide</i>.
 class RedshiftDataApi {
   final _s.JsonProtocol _protocol;
   RedshiftDataApi({
@@ -134,8 +139,13 @@ class RedshiftDataApi {
   /// using either AWS Secrets Manager or temporary credentials.
   ///
   /// Parameter [database] :
-  /// The name of the database. This parameter is required when authenticating
-  /// using temporary credentials.
+  /// The name of the database that contains the tables to be described. If
+  /// <code>ConnectedDatabase</code> is not specified, this is also the database
+  /// to connect to with your authentication credentials.
+  ///
+  /// Parameter [connectedDatabase] :
+  /// A database name. The connected database is specified when you connect with
+  /// your authentication credentials.
   ///
   /// Parameter [dbUser] :
   /// The database user name. This parameter is required when authenticating
@@ -168,7 +178,8 @@ class RedshiftDataApi {
   /// tables for all schemas in the database are returned
   Future<DescribeTableResponse> describeTable({
     required String clusterIdentifier,
-    String? database,
+    required String database,
+    String? connectedDatabase,
     String? dbUser,
     int? maxResults,
     String? nextToken,
@@ -177,6 +188,13 @@ class RedshiftDataApi {
     String? table,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    ArgumentError.checkNotNull(database, 'database');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      1000,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.DescribeTable'
@@ -189,7 +207,8 @@ class RedshiftDataApi {
       headers: headers,
       payload: {
         'ClusterIdentifier': clusterIdentifier,
-        if (database != null) 'Database': database,
+        'Database': database,
+        if (connectedDatabase != null) 'ConnectedDatabase': connectedDatabase,
         if (dbUser != null) 'DbUser': dbUser,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
@@ -222,6 +241,7 @@ class RedshiftDataApi {
   ///
   /// May throw [ValidationException].
   /// May throw [ExecuteStatementException].
+  /// May throw [ActiveStatementsExceededException].
   ///
   /// Parameter [clusterIdentifier] :
   /// The cluster identifier. This parameter is required when authenticating
@@ -237,6 +257,9 @@ class RedshiftDataApi {
   /// Parameter [dbUser] :
   /// The database user name. This parameter is required when authenticating
   /// using temporary credentials.
+  ///
+  /// Parameter [parameters] :
+  /// The parameters for the SQL statement.
   ///
   /// Parameter [secretArn] :
   /// The name or ARN of the secret that enables access to the database. This
@@ -254,6 +277,7 @@ class RedshiftDataApi {
     required String sql,
     String? database,
     String? dbUser,
+    List<SqlParameter>? parameters,
     String? secretArn,
     String? statementName,
     bool? withEvent,
@@ -281,6 +305,7 @@ class RedshiftDataApi {
         'Sql': sql,
         if (database != null) 'Database': database,
         if (dbUser != null) 'DbUser': dbUser,
+        if (parameters != null) 'Parameters': parameters,
         if (secretArn != null) 'SecretArn': secretArn,
         if (statementName != null) 'StatementName': statementName,
         if (withEvent != null) 'WithEvent': withEvent,
@@ -391,6 +416,12 @@ class RedshiftDataApi {
     String? secretArn,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      1000,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.ListDatabases'
@@ -439,8 +470,13 @@ class RedshiftDataApi {
   /// using either AWS Secrets Manager or temporary credentials.
   ///
   /// Parameter [database] :
-  /// The name of the database. This parameter is required when authenticating
-  /// using temporary credentials.
+  /// The name of the database that contains the schemas to list. If
+  /// <code>ConnectedDatabase</code> is not specified, this is also the database
+  /// to connect to with your authentication credentials.
+  ///
+  /// Parameter [connectedDatabase] :
+  /// A database name. The connected database is specified when you connect with
+  /// your authentication credentials.
   ///
   /// Parameter [dbUser] :
   /// The database user name. This parameter is required when authenticating
@@ -471,6 +507,7 @@ class RedshiftDataApi {
   Future<ListSchemasResponse> listSchemas({
     required String clusterIdentifier,
     required String database,
+    String? connectedDatabase,
     String? dbUser,
     int? maxResults,
     String? nextToken,
@@ -479,6 +516,12 @@ class RedshiftDataApi {
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
     ArgumentError.checkNotNull(database, 'database');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      1000,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.ListSchemas'
@@ -492,6 +535,7 @@ class RedshiftDataApi {
       payload: {
         'ClusterIdentifier': clusterIdentifier,
         'Database': database,
+        if (connectedDatabase != null) 'ConnectedDatabase': connectedDatabase,
         if (dbUser != null) 'DbUser': dbUser,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
@@ -521,6 +565,12 @@ class RedshiftDataApi {
   /// value in the next NextToken parameter and retrying the command. If the
   /// NextToken field is empty, all response records have been retrieved for the
   /// request.
+  ///
+  /// Parameter [roleLevel] :
+  /// A value that filters which statements to return in the response. If true,
+  /// all statements run by the caller's IAM role are returned. If false, only
+  /// statements run by the caller's IAM role in the current IAM session are
+  /// returned. The default is true.
   ///
   /// Parameter [statementName] :
   /// The name of the SQL statement specified as input to
@@ -562,6 +612,7 @@ class RedshiftDataApi {
   Future<ListStatementsResponse> listStatements({
     int? maxResults,
     String? nextToken,
+    bool? roleLevel,
     String? statementName,
     StatusString? status,
   }) async {
@@ -590,6 +641,7 @@ class RedshiftDataApi {
       payload: {
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
+        if (roleLevel != null) 'RoleLevel': roleLevel,
         if (statementName != null) 'StatementName': statementName,
         if (status != null) 'Status': status.toValue(),
       },
@@ -625,8 +677,13 @@ class RedshiftDataApi {
   /// using either AWS Secrets Manager or temporary credentials.
   ///
   /// Parameter [database] :
-  /// The name of the database. This parameter is required when authenticating
-  /// using temporary credentials.
+  /// The name of the database that contains the tables to list. If
+  /// <code>ConnectedDatabase</code> is not specified, this is also the database
+  /// to connect to with your authentication credentials.
+  ///
+  /// Parameter [connectedDatabase] :
+  /// A database name. The connected database is specified when you connect with
+  /// your authentication credentials.
   ///
   /// Parameter [dbUser] :
   /// The database user name. This parameter is required when authenticating
@@ -669,6 +726,7 @@ class RedshiftDataApi {
   Future<ListTablesResponse> listTables({
     required String clusterIdentifier,
     required String database,
+    String? connectedDatabase,
     String? dbUser,
     int? maxResults,
     String? nextToken,
@@ -678,6 +736,12 @@ class RedshiftDataApi {
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
     ArgumentError.checkNotNull(database, 'database');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      1000,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.ListTables'
@@ -691,6 +755,7 @@ class RedshiftDataApi {
       payload: {
         'ClusterIdentifier': clusterIdentifier,
         'Database': database,
+        if (connectedDatabase != null) 'ConnectedDatabase': connectedDatabase,
         if (dbUser != null) 'DbUser': dbUser,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
@@ -817,6 +882,13 @@ class DescribeStatementResponse {
   /// while running.
   final String? error;
 
+  /// A value that indicates whether the statement has a result set. The result
+  /// set can be empty.
+  final bool? hasResultSet;
+
+  /// The parameters for the SQL statement.
+  final List<SqlParameter>? queryParameters;
+
   /// The SQL statement text.
   final String? queryString;
 
@@ -882,6 +954,8 @@ class DescribeStatementResponse {
     this.dbUser,
     this.duration,
     this.error,
+    this.hasResultSet,
+    this.queryParameters,
     this.queryString,
     this.redshiftPid,
     this.redshiftQueryId,
@@ -900,6 +974,11 @@ class DescribeStatementResponse {
       dbUser: json['DbUser'] as String?,
       duration: json['Duration'] as int?,
       error: json['Error'] as String?,
+      hasResultSet: json['HasResultSet'] as bool?,
+      queryParameters: (json['QueryParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => SqlParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
       queryString: json['QueryString'] as String?,
       redshiftPid: json['RedshiftPid'] as int?,
       redshiftQueryId: json['RedshiftQueryId'] as int?,
@@ -1178,6 +1257,38 @@ class ListTablesResponse {
   }
 }
 
+/// A parameter used in a SQL statement.
+class SqlParameter {
+  /// The name of the parameter.
+  final String name;
+
+  /// The value of the parameter. Amazon Redshift implicitly converts to the
+  /// proper data type. For more inforation, see <a
+  /// href="https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html">Data
+  /// types</a> in the <i>Amazon Redshift Database Developer Guide</i>.
+  final String value;
+
+  SqlParameter({
+    required this.name,
+    required this.value,
+  });
+  factory SqlParameter.fromJson(Map<String, dynamic> json) {
+    return SqlParameter(
+      name: json['name'] as String,
+      value: json['value'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'name': name,
+      'value': value,
+    };
+  }
+}
+
 /// The SQL statement to run.
 class StatementData {
   /// The SQL statement identifier. This value is a universally unique identifier
@@ -1186,6 +1297,9 @@ class StatementData {
 
   /// The date and time (UTC) the statement was created.
   final DateTime? createdAt;
+
+  /// The parameters used in a SQL statement.
+  final List<SqlParameter>? queryParameters;
 
   /// The SQL statement.
   final String? queryString;
@@ -1207,6 +1321,7 @@ class StatementData {
   StatementData({
     required this.id,
     this.createdAt,
+    this.queryParameters,
     this.queryString,
     this.secretArn,
     this.statementName,
@@ -1217,6 +1332,10 @@ class StatementData {
     return StatementData(
       id: json['Id'] as String,
       createdAt: timeStampFromJson(json['CreatedAt']),
+      queryParameters: (json['QueryParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => SqlParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
       queryString: json['QueryString'] as String?,
       secretArn: json['SecretArn'] as String?,
       statementName: json['StatementName'] as String?,
@@ -1227,32 +1346,32 @@ class StatementData {
 }
 
 enum StatusString {
-  aborted,
-  all,
-  failed,
-  finished,
+  submitted,
   picked,
   started,
-  submitted,
+  finished,
+  aborted,
+  failed,
+  all,
 }
 
 extension on StatusString {
   String toValue() {
     switch (this) {
-      case StatusString.aborted:
-        return 'ABORTED';
-      case StatusString.all:
-        return 'ALL';
-      case StatusString.failed:
-        return 'FAILED';
-      case StatusString.finished:
-        return 'FINISHED';
+      case StatusString.submitted:
+        return 'SUBMITTED';
       case StatusString.picked:
         return 'PICKED';
       case StatusString.started:
         return 'STARTED';
-      case StatusString.submitted:
-        return 'SUBMITTED';
+      case StatusString.finished:
+        return 'FINISHED';
+      case StatusString.aborted:
+        return 'ABORTED';
+      case StatusString.failed:
+        return 'FAILED';
+      case StatusString.all:
+        return 'ALL';
     }
   }
 }
@@ -1260,20 +1379,20 @@ extension on StatusString {
 extension on String {
   StatusString toStatusString() {
     switch (this) {
-      case 'ABORTED':
-        return StatusString.aborted;
-      case 'ALL':
-        return StatusString.all;
-      case 'FAILED':
-        return StatusString.failed;
-      case 'FINISHED':
-        return StatusString.finished;
+      case 'SUBMITTED':
+        return StatusString.submitted;
       case 'PICKED':
         return StatusString.picked;
       case 'STARTED':
         return StatusString.started;
-      case 'SUBMITTED':
-        return StatusString.submitted;
+      case 'FINISHED':
+        return StatusString.finished;
+      case 'ABORTED':
+        return StatusString.aborted;
+      case 'FAILED':
+        return StatusString.failed;
+      case 'ALL':
+        return StatusString.all;
     }
     throw Exception('$this is not known in enum StatusString');
   }
@@ -1305,6 +1424,14 @@ class TableMember {
   }
 }
 
+class ActiveStatementsExceededException extends _s.GenericAwsException {
+  ActiveStatementsExceededException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'ActiveStatementsExceededException',
+            message: message);
+}
+
 class ExecuteStatementException extends _s.GenericAwsException {
   ExecuteStatementException({String? type, String? message})
       : super(type: type, code: 'ExecuteStatementException', message: message);
@@ -1326,6 +1453,8 @@ class ValidationException extends _s.GenericAwsException {
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{
+  'ActiveStatementsExceededException': (type, message) =>
+      ActiveStatementsExceededException(type: type, message: message),
   'ExecuteStatementException': (type, message) =>
       ExecuteStatementException(type: type, message: message),
   'InternalServerException': (type, message) =>

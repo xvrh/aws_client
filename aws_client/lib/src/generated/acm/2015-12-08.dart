@@ -19,7 +19,10 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// Welcome to the AWS Certificate Manager (ACM) API documentation.
+/// You can use AWS Certificate Manager (ACM) to manage SSL/TLS certificates for
+/// your AWS-based websites and applications. For more information about using
+/// ACM, see the <a href="https://docs.aws.amazon.com/acm/latest/userguide/">AWS
+/// Certificate Manager User Guide</a>.
 class Acm {
   final _s.JsonProtocol _protocol;
   Acm({
@@ -64,6 +67,7 @@ class Acm {
   /// May throw [TooManyTagsException].
   /// May throw [TagPolicyException].
   /// May throw [InvalidParameterException].
+  /// May throw [ThrottlingException].
   ///
   /// Parameter [certificateArn] :
   /// String that contains the ARN of the ACM certificate to which the tag is to
@@ -73,7 +77,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   ///
   /// Parameter [tags] :
   /// The key-value pair that defines the tag. The tag value is optional.
@@ -87,12 +91,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -136,7 +134,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   Future<void> deleteCertificate({
     required String certificateArn,
   }) async {
@@ -146,12 +144,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -183,7 +175,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   Future<DescribeCertificateResponse> describeCertificate({
     required String certificateArn,
   }) async {
@@ -193,12 +185,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -258,12 +244,6 @@ class Acm {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(passphrase, 'passphrase');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -284,6 +264,26 @@ class Acm {
     return ExportCertificateResponse.fromJson(jsonResponse.body);
   }
 
+  /// Returns the account configuration options associated with an AWS account.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ThrottlingException].
+  Future<GetAccountConfigurationResponse> getAccountConfiguration() async {
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'CertificateManager.GetAccountConfiguration'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+    );
+
+    return GetAccountConfigurationResponse.fromJson(jsonResponse.body);
+  }
+
   /// Retrieves an Amazon-issued certificate and its certificate chain. The
   /// chain consists of the certificate of the issuing CA and the intermediate
   /// certificates of any other subordinate CAs. All of the certificates are
@@ -302,7 +302,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   Future<GetCertificateResponse> getCertificate({
     required String certificateArn,
   }) async {
@@ -312,12 +312,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -365,6 +359,9 @@ class Acm {
   /// is protected by a password or a passphrase.
   /// </li>
   /// <li>
+  /// The private key must be no larger than 5 KB (5,120 bytes).
+  /// </li>
+  /// <li>
   /// If the certificate you are importing is not self-signed, you must enter
   /// its certificate chain.
   /// </li>
@@ -388,14 +385,14 @@ class Acm {
   /// <li>
   /// To import a new certificate, omit the <code>CertificateArn</code>
   /// argument. Include this argument only when you want to replace a previously
-  /// imported certifica
+  /// imported certificate.
   /// </li>
   /// <li>
   /// When you import a certificate by using the CLI, you must specify the
   /// certificate, the certificate chain, and the private key by their file
-  /// names preceded by <code>file://</code>. For example, you can specify a
+  /// names preceded by <code>fileb://</code>. For example, you can specify a
   /// certificate saved in the <code>C:\temp</code> folder as
-  /// <code>file://C:\temp\certificate_to_import.pem</code>. If you are making
+  /// <code>fileb://C:\temp\certificate_to_import.pem</code>. If you are making
   /// an HTTP or HTTPS Query request, include these arguments as BLOBs.
   /// </li>
   /// <li>
@@ -419,6 +416,7 @@ class Acm {
   /// May throw [TooManyTagsException].
   /// May throw [TagPolicyException].
   /// May throw [InvalidParameterException].
+  /// May throw [InvalidArnException].
   ///
   /// Parameter [certificate] :
   /// The certificate to import.
@@ -453,11 +451,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -526,11 +519,6 @@ class Acm {
       1,
       10000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.ListCertificates'
@@ -570,7 +558,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   Future<ListTagsForCertificateResponse> listTagsForCertificate({
     required String certificateArn,
   }) async {
@@ -580,12 +568,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -606,6 +588,58 @@ class Acm {
     return ListTagsForCertificateResponse.fromJson(jsonResponse.body);
   }
 
+  /// Adds or modifies account-level configurations in ACM.
+  ///
+  /// The supported configuration option is <code>DaysBeforeExpiry</code>. This
+  /// option specifies the number of days prior to certificate expiration when
+  /// ACM starts generating <code>EventBridge</code> events. ACM sends one event
+  /// per day per certificate until the certificate expires. By default,
+  /// accounts receive events starting 45 days before certificate expiration.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ThrottlingException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  ///
+  /// Parameter [idempotencyToken] :
+  /// Customer-chosen string used to distinguish between calls to
+  /// <code>PutAccountConfiguration</code>. Idempotency tokens time out after
+  /// one hour. If you call <code>PutAccountConfiguration</code> multiple times
+  /// with the same unexpired idempotency token, ACM treats it as the same
+  /// request and returns the original result. If you change the idempotency
+  /// token for each call, ACM treats each call as a new request.
+  ///
+  /// Parameter [expiryEvents] :
+  /// Specifies expiration events associated with an account.
+  Future<void> putAccountConfiguration({
+    required String idempotencyToken,
+    ExpiryEventsConfiguration? expiryEvents,
+  }) async {
+    ArgumentError.checkNotNull(idempotencyToken, 'idempotencyToken');
+    _s.validateStringLength(
+      'idempotencyToken',
+      idempotencyToken,
+      1,
+      32,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'CertificateManager.PutAccountConfiguration'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'IdempotencyToken': idempotencyToken,
+        if (expiryEvents != null) 'ExpiryEvents': expiryEvents,
+      },
+    );
+  }
+
   /// Remove one or more tags from an ACM certificate. A tag consists of a
   /// key-value pair. If you do not specify the value portion of the tag when
   /// calling this function, the tag will be removed regardless of value. If you
@@ -621,6 +655,7 @@ class Acm {
   /// May throw [InvalidTagException].
   /// May throw [TagPolicyException].
   /// May throw [InvalidParameterException].
+  /// May throw [ThrottlingException].
   ///
   /// Parameter [certificateArn] :
   /// String that contains the ARN of the ACM Certificate with one or more tags
@@ -630,7 +665,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   ///
   /// Parameter [tags] :
   /// The key-value pair that defines the tag to remove.
@@ -644,12 +679,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -670,7 +699,7 @@ class Acm {
     );
   }
 
-  /// Renews an eligable ACM certificate. At this time, only exported private
+  /// Renews an eligible ACM certificate. At this time, only exported private
   /// certificates can be renewed with this operation. In order to renew your
   /// ACM PCA certificates with ACM, you must first <a
   /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaPermissions.html">grant
@@ -690,7 +719,7 @@ class Acm {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   Future<void> renewCertificate({
     required String certificateArn,
   }) async {
@@ -700,12 +729,6 @@ class Acm {
       certificateArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -852,33 +875,17 @@ class Acm {
       253,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^(\*\.)?(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'certificateAuthorityArn',
       certificateAuthorityArn,
       20,
       2048,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-    );
     _s.validateStringLength(
       'idempotencyToken',
       idempotencyToken,
       1,
       32,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''\w+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -981,12 +988,6 @@ class Acm {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domain, 'domain');
     _s.validateStringLength(
       'domain',
@@ -995,24 +996,12 @@ class Acm {
       253,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''^(\*\.)?(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(validationDomain, 'validationDomain');
     _s.validateStringLength(
       'validationDomain',
       validationDomain,
       1,
       253,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'validationDomain',
-      validationDomain,
-      r'''^(\*\.)?(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1068,12 +1057,6 @@ class Acm {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(options, 'options');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1099,8 +1082,7 @@ class CertificateDetail {
   /// The Amazon Resource Name (ARN) of the certificate. For more information
   /// about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
-  /// Reference</i>.
+  /// Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.
   final String? certificateArn;
 
   /// The Amazon Resource Name (ARN) of the ACM PCA private certificate authority
@@ -1109,8 +1091,7 @@ class CertificateDetail {
   /// <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code>
   final String? certificateAuthorityArn;
 
-  /// The time at which the certificate was requested. This value exists only when
-  /// the certificate type is <code>AMAZON_ISSUED</code>.
+  /// The time at which the certificate was requested.
   final DateTime? createdAt;
 
   /// The fully qualified domain name for the certificate, such as www.example.com
@@ -1403,7 +1384,7 @@ class CertificateSummary {
   ///
   /// For more information about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs) and AWS Service Namespaces</a>.
+  /// Resource Names (ARNs)</a>.
   final String? certificateArn;
 
   /// Fully qualified domain name (FQDN), such as www.example.com or example.com,
@@ -1649,6 +1630,31 @@ class DomainValidationOption {
     return {
       'DomainName': domainName,
       'ValidationDomain': validationDomain,
+    };
+  }
+}
+
+/// Object containing expiration events options associated with an AWS account.
+class ExpiryEventsConfiguration {
+  /// Specifies the number of days prior to certificate expiration when ACM starts
+  /// generating <code>EventBridge</code> events. ACM sends one event per day per
+  /// certificate until the certificate expires. By default, accounts receive
+  /// events starting 45 days before certificate expiration.
+  final int? daysBeforeExpiry;
+
+  ExpiryEventsConfiguration({
+    this.daysBeforeExpiry,
+  });
+  factory ExpiryEventsConfiguration.fromJson(Map<String, dynamic> json) {
+    return ExpiryEventsConfiguration(
+      daysBeforeExpiry: json['DaysBeforeExpiry'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final daysBeforeExpiry = this.daysBeforeExpiry;
+    return {
+      if (daysBeforeExpiry != null) 'DaysBeforeExpiry': daysBeforeExpiry,
     };
   }
 }
@@ -1922,7 +1928,8 @@ class Filters {
 
   /// Specify one or more algorithms that can be used to generate key pairs.
   ///
-  /// Default filtering returns only <code>RSA_2048</code> certificates. To return
+  /// Default filtering returns only <code>RSA_1024</code> and
+  /// <code>RSA_2048</code> certificates that have at least one domain. To return
   /// other certificate types, provide the desired type signatures in a
   /// comma-separated list. For example, <code>"keyTypes":
   /// ["RSA_2048,RSA_4096"]</code> returns both <code>RSA_2048</code> and
@@ -1949,6 +1956,23 @@ class Filters {
       if (keyUsage != null)
         'keyUsage': keyUsage.map((e) => e.toValue()).toList(),
     };
+  }
+}
+
+class GetAccountConfigurationResponse {
+  /// Expiration events configuration options associated with the AWS account.
+  final ExpiryEventsConfiguration? expiryEvents;
+
+  GetAccountConfigurationResponse({
+    this.expiryEvents,
+  });
+  factory GetAccountConfigurationResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccountConfigurationResponse(
+      expiryEvents: json['ExpiryEvents'] != null
+          ? ExpiryEventsConfiguration.fromJson(
+              json['ExpiryEvents'] as Map<String, dynamic>)
+          : null,
+    );
   }
 }
 
@@ -2472,6 +2496,16 @@ extension on String {
   }
 }
 
+class AccessDeniedException extends _s.GenericAwsException {
+  AccessDeniedException({String? type, String? message})
+      : super(type: type, code: 'AccessDeniedException', message: message);
+}
+
+class ConflictException extends _s.GenericAwsException {
+  ConflictException({String? type, String? message})
+      : super(type: type, code: 'ConflictException', message: message);
+}
+
 class InvalidArgsException extends _s.GenericAwsException {
   InvalidArgsException({String? type, String? message})
       : super(type: type, code: 'InvalidArgsException', message: message);
@@ -2530,12 +2564,26 @@ class TagPolicyException extends _s.GenericAwsException {
       : super(type: type, code: 'TagPolicyException', message: message);
 }
 
+class ThrottlingException extends _s.GenericAwsException {
+  ThrottlingException({String? type, String? message})
+      : super(type: type, code: 'ThrottlingException', message: message);
+}
+
 class TooManyTagsException extends _s.GenericAwsException {
   TooManyTagsException({String? type, String? message})
       : super(type: type, code: 'TooManyTagsException', message: message);
 }
 
+class ValidationException extends _s.GenericAwsException {
+  ValidationException({String? type, String? message})
+      : super(type: type, code: 'ValidationException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
+  'AccessDeniedException': (type, message) =>
+      AccessDeniedException(type: type, message: message),
+  'ConflictException': (type, message) =>
+      ConflictException(type: type, message: message),
   'InvalidArgsException': (type, message) =>
       InvalidArgsException(type: type, message: message),
   'InvalidArnException': (type, message) =>
@@ -2558,6 +2606,10 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ResourceNotFoundException(type: type, message: message),
   'TagPolicyException': (type, message) =>
       TagPolicyException(type: type, message: message),
+  'ThrottlingException': (type, message) =>
+      ThrottlingException(type: type, message: message),
   'TooManyTagsException': (type, message) =>
       TooManyTagsException(type: type, message: message),
+  'ValidationException': (type, message) =>
+      ValidationException(type: type, message: message),
 };

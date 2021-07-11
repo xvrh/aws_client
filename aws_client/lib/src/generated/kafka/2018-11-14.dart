@@ -1133,6 +1133,55 @@ class Kafka {
   }
 
   ///
+  /// Updates EC2 instance type.
+  ///
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [UnauthorizedException].
+  /// May throw [InternalServerErrorException].
+  /// May throw [ForbiddenException].
+  /// May throw [NotFoundException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [TooManyRequestsException].
+  ///
+  /// Parameter [clusterArn] :
+  ///
+  /// The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+  ///
+  ///
+  /// Parameter [currentVersion] :
+  ///
+  /// The cluster version that you want to change. After this operation
+  /// completes successfully, the cluster will have a new version.
+  ///
+  ///
+  /// Parameter [targetInstanceType] :
+  ///
+  /// The Amazon MSK broker type that you want all of the brokers in this
+  /// cluster to be.
+  ///
+  Future<UpdateBrokerTypeResponse> updateBrokerType({
+    required String clusterArn,
+    required String currentVersion,
+    required String targetInstanceType,
+  }) async {
+    ArgumentError.checkNotNull(clusterArn, 'clusterArn');
+    ArgumentError.checkNotNull(currentVersion, 'currentVersion');
+    ArgumentError.checkNotNull(targetInstanceType, 'targetInstanceType');
+    final $payload = <String, dynamic>{
+      'currentVersion': currentVersion,
+      'targetInstanceType': targetInstanceType,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/v1/clusters/${Uri.encodeComponent(clusterArn)}/nodes/type',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateBrokerTypeResponse.fromJson(response);
+  }
+
+  ///
   /// Updates the EBS storage associated with MSK brokers.
   ///
   ///
@@ -2948,6 +2997,12 @@ class GetBootstrapBrokersResponse {
   final String? bootstrapBrokerString;
 
   ///
+  /// A string that contains one or more DNS names (or IP addresses) and SASL IAM
+  /// port pairs.
+  ///
+  final String? bootstrapBrokerStringSaslIam;
+
+  ///
   /// A string containing one or more DNS names (or IP) and Sasl Scram port pairs.
   ///
   final String? bootstrapBrokerStringSaslScram;
@@ -2959,12 +3014,15 @@ class GetBootstrapBrokersResponse {
 
   GetBootstrapBrokersResponse({
     this.bootstrapBrokerString,
+    this.bootstrapBrokerStringSaslIam,
     this.bootstrapBrokerStringSaslScram,
     this.bootstrapBrokerStringTls,
   });
   factory GetBootstrapBrokersResponse.fromJson(Map<String, dynamic> json) {
     return GetBootstrapBrokersResponse(
       bootstrapBrokerString: json['bootstrapBrokerString'] as String?,
+      bootstrapBrokerStringSaslIam:
+          json['bootstrapBrokerStringSaslIam'] as String?,
       bootstrapBrokerStringSaslScram:
           json['bootstrapBrokerStringSaslScram'] as String?,
       bootstrapBrokerStringTls: json['bootstrapBrokerStringTls'] as String?,
@@ -3281,6 +3339,11 @@ class MutableClusterInfo {
   final EnhancedMonitoring? enhancedMonitoring;
 
   ///
+  /// Information about the Amazon MSK broker type.
+  ///
+  final String? instanceType;
+
+  ///
   /// The Kafka version.
   ///
   final String? kafkaVersion;
@@ -3300,6 +3363,7 @@ class MutableClusterInfo {
     this.brokerEBSVolumeInfo,
     this.configurationInfo,
     this.enhancedMonitoring,
+    this.instanceType,
     this.kafkaVersion,
     this.loggingInfo,
     this.numberOfBrokerNodes,
@@ -3317,6 +3381,7 @@ class MutableClusterInfo {
           : null,
       enhancedMonitoring:
           (json['enhancedMonitoring'] as String?)?.toEnhancedMonitoring(),
+      instanceType: json['instanceType'] as String?,
       kafkaVersion: json['kafkaVersion'] as String?,
       loggingInfo: json['loggingInfo'] != null
           ? LoggingInfo.fromJson(json['loggingInfo'] as Map<String, dynamic>)
@@ -3564,15 +3629,24 @@ class S3 {
 ///
 class Sasl {
   ///
+  /// Indicates whether IAM access control is enabled.
+  ///
+  final Iam? iam;
+
+  ///
   /// Details for SASL/SCRAM client authentication.
   ///
   final Scram? scram;
 
   Sasl({
+    this.iam,
     this.scram,
   });
   factory Sasl.fromJson(Map<String, dynamic> json) {
     return Sasl(
+      iam: json['iam'] != null
+          ? Iam.fromJson(json['iam'] as Map<String, dynamic>)
+          : null,
       scram: json['scram'] != null
           ? Scram.fromJson(json['scram'] as Map<String, dynamic>)
           : null,
@@ -3580,8 +3654,10 @@ class Sasl {
   }
 
   Map<String, dynamic> toJson() {
+    final iam = this.iam;
     final scram = this.scram;
     return {
+      if (iam != null) 'iam': iam,
       if (scram != null) 'scram': scram,
     };
   }
@@ -3601,6 +3677,32 @@ class Scram {
   });
   factory Scram.fromJson(Map<String, dynamic> json) {
     return Scram(
+      enabled: json['enabled'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
+}
+
+///
+/// Details for IAM access control.
+///
+class Iam {
+  ///
+  /// Indicates whether IAM access control is enabled.
+  ///
+  final bool? enabled;
+
+  Iam({
+    this.enabled,
+  });
+  factory Iam.fromJson(Map<String, dynamic> json) {
+    return Iam(
       enabled: json['enabled'] as bool?,
     );
   }
@@ -3825,6 +3927,29 @@ class UpdateBrokerCountResponse {
   });
   factory UpdateBrokerCountResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerCountResponse(
+      clusterArn: json['clusterArn'] as String?,
+      clusterOperationArn: json['clusterOperationArn'] as String?,
+    );
+  }
+}
+
+class UpdateBrokerTypeResponse {
+  ///
+  /// The Amazon Resource Name (ARN) of the cluster.
+  ///
+  final String? clusterArn;
+
+  ///
+  /// The Amazon Resource Name (ARN) of the cluster operation.
+  ///
+  final String? clusterOperationArn;
+
+  UpdateBrokerTypeResponse({
+    this.clusterArn,
+    this.clusterOperationArn,
+  });
+  factory UpdateBrokerTypeResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateBrokerTypeResponse(
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );

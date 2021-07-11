@@ -1351,12 +1351,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1429,12 +1423,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2528,12 +2516,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2604,12 +2586,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3592,11 +3568,6 @@ class ApiGateway {
   }) async {
     ArgumentError.checkNotNull(responseType, 'responseType');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-    );
     final $payload = <String, dynamic>{
       if (responseParameters != null) 'responseParameters': responseParameters,
       if (responseTemplates != null) 'responseTemplates': responseTemplates,
@@ -3892,12 +3863,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (contentHandling != null) 'contentHandling': contentHandling.toValue(),
       if (responseParameters != null) 'responseParameters': responseParameters,
@@ -4075,12 +4040,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (responseModels != null) 'responseModels': responseModels,
       if (responseParameters != null) 'responseParameters': responseParameters,
@@ -4819,12 +4778,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (patchOperations != null) 'patchOperations': patchOperations,
     };
@@ -4916,12 +4869,6 @@ class ApiGateway {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(restApiId, 'restApiId');
     ArgumentError.checkNotNull(statusCode, 'statusCode');
-    _s.validateStringPattern(
-      'statusCode',
-      statusCode,
-      r'''[1-5]\d\d''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (patchOperations != null) 'patchOperations': patchOperations,
     };

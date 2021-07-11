@@ -160,7 +160,7 @@ class ComputeOptimizer {
   /// recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to export
+  /// parameter to specify the member account for which you want to export
   /// recommendations.
   ///
   /// This parameter cannot be specified together with the include member
@@ -191,7 +191,12 @@ class ComputeOptimizer {
   /// accounts of the organization if your account is the management account of
   /// an organization.
   ///
-  /// The member accounts must also be opted in to Compute Optimizer.
+  /// The member accounts must also be opted in to Compute Optimizer, and
+  /// trusted access for Compute Optimizer must be enabled in the organization
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access">Compute
+  /// Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
   ///
   /// Recommendations for member accounts of the organization are not included
   /// in the export file if this parameter is omitted.
@@ -238,6 +243,113 @@ class ComputeOptimizer {
         jsonResponse.body);
   }
 
+  /// Exports optimization recommendations for Amazon EBS volumes.
+  ///
+  /// Recommendations are exported in a comma-separated values (.csv) file, and
+  /// its metadata in a JavaScript Object Notation (.json) file, to an existing
+  /// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html">Exporting
+  /// Recommendations</a> in the <i>Compute Optimizer User Guide</i>.
+  ///
+  /// You can have only one Amazon EBS volume export job in progress per AWS
+  /// Region.
+  ///
+  /// May throw [OptInRequiredException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingAuthenticationToken].
+  /// May throw [ThrottlingException].
+  /// May throw [LimitExceededException].
+  ///
+  /// Parameter [accountIds] :
+  /// The IDs of the AWS accounts for which to export Amazon EBS volume
+  /// recommendations.
+  ///
+  /// If your account is the management account of an organization, use this
+  /// parameter to specify the member account for which you want to export
+  /// recommendations.
+  ///
+  /// This parameter cannot be specified together with the include member
+  /// accounts parameter. The parameters are mutually exclusive.
+  ///
+  /// Recommendations for member accounts are not included in the export if this
+  /// parameter, or the include member accounts parameter, is omitted.
+  ///
+  /// You can specify multiple account IDs per request.
+  ///
+  /// Parameter [fieldsToExport] :
+  /// The recommendations data to include in the export file. For more
+  /// information about the fields that can be exported, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files">Exported
+  /// files</a> in the <i>Compute Optimizer User Guide</i>.
+  ///
+  /// Parameter [fileFormat] :
+  /// The format of the export file.
+  ///
+  /// The only export file format currently supported is <code>Csv</code>.
+  ///
+  /// Parameter [filters] :
+  /// An array of objects that describe a filter to export a more specific set
+  /// of Amazon EBS volume recommendations.
+  ///
+  /// Parameter [includeMemberAccounts] :
+  /// Indicates whether to include recommendations for resources in all member
+  /// accounts of the organization if your account is the management account of
+  /// an organization.
+  ///
+  /// The member accounts must also be opted in to Compute Optimizer, and
+  /// trusted access for Compute Optimizer must be enabled in the organization
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access">Compute
+  /// Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
+  ///
+  /// Recommendations for member accounts of the organization are not included
+  /// in the export file if this parameter is omitted.
+  ///
+  /// This parameter cannot be specified together with the account IDs
+  /// parameter. The parameters are mutually exclusive.
+  ///
+  /// Recommendations for member accounts are not included in the export if this
+  /// parameter, or the account IDs parameter, is omitted.
+  Future<ExportEBSVolumeRecommendationsResponse>
+      exportEBSVolumeRecommendations({
+    required S3DestinationConfig s3DestinationConfig,
+    List<String>? accountIds,
+    List<ExportableVolumeField>? fieldsToExport,
+    FileFormat? fileFormat,
+    List<EBSFilter>? filters,
+    bool? includeMemberAccounts,
+  }) async {
+    ArgumentError.checkNotNull(s3DestinationConfig, 's3DestinationConfig');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.0',
+      'X-Amz-Target': 'ComputeOptimizerService.ExportEBSVolumeRecommendations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        's3DestinationConfig': s3DestinationConfig,
+        if (accountIds != null) 'accountIds': accountIds,
+        if (fieldsToExport != null)
+          'fieldsToExport': fieldsToExport.map((e) => e.toValue()).toList(),
+        if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+        if (filters != null) 'filters': filters,
+        if (includeMemberAccounts != null)
+          'includeMemberAccounts': includeMemberAccounts,
+      },
+    );
+
+    return ExportEBSVolumeRecommendationsResponse.fromJson(jsonResponse.body);
+  }
+
   /// Exports optimization recommendations for Amazon EC2 instances.
   ///
   /// Recommendations are exported in a comma-separated values (.csv) file, and
@@ -278,7 +390,7 @@ class ComputeOptimizer {
   /// The IDs of the AWS accounts for which to export instance recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to export
+  /// parameter to specify the member account for which you want to export
   /// recommendations.
   ///
   /// This parameter cannot be specified together with the include member
@@ -309,7 +421,12 @@ class ComputeOptimizer {
   /// accounts of the organization if your account is the management account of
   /// an organization.
   ///
-  /// The member accounts must also be opted in to Compute Optimizer.
+  /// The member accounts must also be opted in to Compute Optimizer, and
+  /// trusted access for Compute Optimizer must be enabled in the organization
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access">Compute
+  /// Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
   ///
   /// Recommendations for member accounts of the organization are not included
   /// in the export file if this parameter is omitted.
@@ -351,6 +468,115 @@ class ComputeOptimizer {
     return ExportEC2InstanceRecommendationsResponse.fromJson(jsonResponse.body);
   }
 
+  /// Exports optimization recommendations for AWS Lambda functions.
+  ///
+  /// Recommendations are exported in a comma-separated values (.csv) file, and
+  /// its metadata in a JavaScript Object Notation (.json) file, to an existing
+  /// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html">Exporting
+  /// Recommendations</a> in the <i>Compute Optimizer User Guide</i>.
+  ///
+  /// You can have only one Lambda function export job in progress per AWS
+  /// Region.
+  ///
+  /// May throw [OptInRequiredException].
+  /// May throw [InternalServerException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [MissingAuthenticationToken].
+  /// May throw [ThrottlingException].
+  /// May throw [LimitExceededException].
+  ///
+  /// Parameter [accountIds] :
+  /// The IDs of the AWS accounts for which to export Lambda function
+  /// recommendations.
+  ///
+  /// If your account is the management account of an organization, use this
+  /// parameter to specify the member account for which you want to export
+  /// recommendations.
+  ///
+  /// This parameter cannot be specified together with the include member
+  /// accounts parameter. The parameters are mutually exclusive.
+  ///
+  /// Recommendations for member accounts are not included in the export if this
+  /// parameter, or the include member accounts parameter, is omitted.
+  ///
+  /// You can specify multiple account IDs per request.
+  ///
+  /// Parameter [fieldsToExport] :
+  /// The recommendations data to include in the export file. For more
+  /// information about the fields that can be exported, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files">Exported
+  /// files</a> in the <i>Compute Optimizer User Guide</i>.
+  ///
+  /// Parameter [fileFormat] :
+  /// The format of the export file.
+  ///
+  /// The only export file format currently supported is <code>Csv</code>.
+  ///
+  /// Parameter [filters] :
+  /// An array of objects that describe a filter to export a more specific set
+  /// of Lambda function recommendations.
+  ///
+  /// Parameter [includeMemberAccounts] :
+  /// Indicates whether to include recommendations for resources in all member
+  /// accounts of the organization if your account is the management account of
+  /// an organization.
+  ///
+  /// The member accounts must also be opted in to Compute Optimizer, and
+  /// trusted access for Compute Optimizer must be enabled in the organization
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access">Compute
+  /// Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
+  ///
+  /// Recommendations for member accounts of the organization are not included
+  /// in the export file if this parameter is omitted.
+  ///
+  /// This parameter cannot be specified together with the account IDs
+  /// parameter. The parameters are mutually exclusive.
+  ///
+  /// Recommendations for member accounts are not included in the export if this
+  /// parameter, or the account IDs parameter, is omitted.
+  Future<ExportLambdaFunctionRecommendationsResponse>
+      exportLambdaFunctionRecommendations({
+    required S3DestinationConfig s3DestinationConfig,
+    List<String>? accountIds,
+    List<ExportableLambdaFunctionField>? fieldsToExport,
+    FileFormat? fileFormat,
+    List<LambdaFunctionRecommendationFilter>? filters,
+    bool? includeMemberAccounts,
+  }) async {
+    ArgumentError.checkNotNull(s3DestinationConfig, 's3DestinationConfig');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.0',
+      'X-Amz-Target':
+          'ComputeOptimizerService.ExportLambdaFunctionRecommendations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        's3DestinationConfig': s3DestinationConfig,
+        if (accountIds != null) 'accountIds': accountIds,
+        if (fieldsToExport != null)
+          'fieldsToExport': fieldsToExport.map((e) => e.toValue()).toList(),
+        if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+        if (filters != null) 'filters': filters,
+        if (includeMemberAccounts != null)
+          'includeMemberAccounts': includeMemberAccounts,
+      },
+    );
+
+    return ExportLambdaFunctionRecommendationsResponse.fromJson(
+        jsonResponse.body);
+  }
+
   /// Returns Auto Scaling group recommendations.
   ///
   /// AWS Compute Optimizer generates recommendations for Amazon EC2 Auto
@@ -370,11 +596,11 @@ class ComputeOptimizer {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [accountIds] :
-  /// The IDs of the AWS accounts for which to return Auto Scaling group
+  /// The ID of the AWS account for which to return Auto Scaling group
   /// recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to return Auto
+  /// parameter to specify the member account for which you want to return Auto
   /// Scaling group recommendations.
   ///
   /// Only one account ID can be specified per request.
@@ -448,10 +674,10 @@ class ComputeOptimizer {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [accountIds] :
-  /// The IDs of the AWS accounts for which to return volume recommendations.
+  /// The ID of the AWS account for which to return volume recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to return
+  /// parameter to specify the member account for which you want to return
   /// volume recommendations.
   ///
   /// Only one account ID can be specified per request.
@@ -521,10 +747,10 @@ class ComputeOptimizer {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [accountIds] :
-  /// The IDs of the AWS accounts for which to return instance recommendations.
+  /// The ID of the AWS account for which to return instance recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to return
+  /// parameter to specify the member account for which you want to return
   /// instance recommendations.
   ///
   /// Only one account ID can be specified per request.
@@ -695,10 +921,10 @@ class ComputeOptimizer {
   /// May throw [LimitExceededException].
   ///
   /// Parameter [accountIds] :
-  /// The IDs of the AWS accounts for which to return function recommendations.
+  /// The ID of the AWS account for which to return function recommendations.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to return
+  /// parameter to specify the member account for which you want to return
   /// function recommendations.
   ///
   /// Only one account ID can be specified per request.
@@ -761,10 +987,26 @@ class ComputeOptimizer {
 
   /// Returns the optimization findings for an account.
   ///
-  /// For example, it returns the number of Amazon EC2 instances in an account
-  /// that are under-provisioned, over-provisioned, or optimized. It also
-  /// returns the number of Auto Scaling groups in an account that are not
-  /// optimized, or optimized.
+  /// It returns the number of:
+  ///
+  /// <ul>
+  /// <li>
+  /// Amazon EC2 instances in an account that are <code>Underprovisioned</code>,
+  /// <code>Overprovisioned</code>, or <code>Optimized</code>.
+  /// </li>
+  /// <li>
+  /// Auto Scaling groups in an account that are <code>NotOptimized</code>, or
+  /// <code>Optimized</code>.
+  /// </li>
+  /// <li>
+  /// Amazon EBS volumes in an account that are <code>NotOptimized</code>, or
+  /// <code>Optimized</code>.
+  /// </li>
+  /// <li>
+  /// Lambda functions in an account that are <code>NotOptimized</code>, or
+  /// <code>Optimized</code>.
+  /// </li>
+  /// </ul>
   ///
   /// May throw [OptInRequiredException].
   /// May throw [InternalServerException].
@@ -775,10 +1017,10 @@ class ComputeOptimizer {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [accountIds] :
-  /// The IDs of the AWS accounts for which to return recommendation summaries.
+  /// The ID of the AWS account for which to return recommendation summaries.
   ///
   /// If your account is the management account of an organization, use this
-  /// parameter to specify the member accounts for which you want to return
+  /// parameter to specify the member account for which you want to return
   /// recommendation summaries.
   ///
   /// Only one account ID can be specified per request.
@@ -817,11 +1059,23 @@ class ComputeOptimizer {
     return GetRecommendationSummariesResponse.fromJson(jsonResponse.body);
   }
 
-  /// Updates the enrollment (opt in) status of an account to the AWS Compute
-  /// Optimizer service.
+  /// Updates the enrollment (opt in and opt out) status of an account to the
+  /// AWS Compute Optimizer service.
   ///
   /// If the account is a management account of an organization, this action can
   /// also be used to enroll member accounts within the organization.
+  ///
+  /// You must have the appropriate permissions to opt in to Compute Optimizer,
+  /// to view its recommendations, and to opt out. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html">Controlling
+  /// access with AWS Identity and Access Management</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
+  ///
+  /// When you opt in, Compute Optimizer automatically creates a Service-Linked
+  /// Role in your account to access its data. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/using-service-linked-roles.html">Using
+  /// Service-Linked Roles for AWS Compute Optimizer</a> in the <i>AWS Compute
+  /// Optimizer User Guide</i>.
   ///
   /// May throw [InternalServerException].
   /// May throw [ServiceUnavailableException].
@@ -833,13 +1087,32 @@ class ComputeOptimizer {
   /// Parameter [status] :
   /// The new enrollment status of the account.
   ///
-  /// Accepted options are <code>Active</code> or <code>Inactive</code>. You
-  /// will get an error if <code>Pending</code> or <code>Failed</code> are
-  /// specified.
+  /// The following status options are available:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Active</code> - Opts in your account to the Compute Optimizer
+  /// service. Compute Optimizer begins analyzing the configuration and
+  /// utilization metrics of your AWS resources after you opt in. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html">Metrics
+  /// analyzed by AWS Compute Optimizer</a> in the <i>AWS Compute Optimizer User
+  /// Guide</i>.
+  /// </li>
+  /// <li>
+  /// <code>Inactive</code> - Opts out your account from the Compute Optimizer
+  /// service. Your account's recommendations and related metrics data will be
+  /// deleted from Compute Optimizer after you opt out.
+  /// </li>
+  /// </ul> <note>
+  /// The <code>Pending</code> and <code>Failed</code> options cannot be used to
+  /// update the enrollment status of an account. They are returned in the
+  /// response of a request to update the enrollment status of an account.
+  /// </note>
   ///
   /// Parameter [includeMemberAccounts] :
   /// Indicates whether to enroll member accounts of the organization if the
-  /// your account is the management account of an organization.
+  /// account is the management account of an organization.
   Future<UpdateEnrollmentStatusResponse> updateEnrollmentStatus({
     required Status status,
     bool? includeMemberAccounts,
@@ -913,7 +1186,7 @@ class AutoScalingGroupRecommendation {
   /// Scaling group.
   final AutoScalingGroupConfiguration? currentConfiguration;
 
-  /// The finding classification for the Auto Scaling group.
+  /// The finding classification of the Auto Scaling group.
   ///
   /// Findings for Auto Scaling groups include:
   ///
@@ -992,11 +1265,19 @@ class AutoScalingGroupRecommendationOption {
 
   /// The performance risk of the Auto Scaling group configuration recommendation.
   ///
-  /// Performance risk is the likelihood of the recommended instance type not
-  /// meeting the performance requirement of your workload.
+  /// Performance risk indicates the likelihood of the recommended instance type
+  /// not meeting the resource needs of your workload. Compute Optimizer
+  /// calculates an individual performance risk score for each specification of
+  /// the recommended instance, including CPU, memory, EBS throughput, EBS IOPS,
+  /// disk throughput, disk IOPS, network throughput, and network PPS. The
+  /// performance risk of the recommended instance is calculated as the maximum
+  /// performance risk score across the analyzed resource specifications.
   ///
-  /// The lowest performance risk is categorized as <code>0</code>, and the
-  /// highest as <code>5</code>.
+  /// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+  /// is predicted to always provide enough hardware capability. The higher the
+  /// performance risk is, the more likely you should validate whether the
+  /// recommended resource meets the performance requirements of your workload
+  /// before migrating your resource.
   final double? performanceRisk;
 
   /// An array of objects that describe the projected utilization metrics of the
@@ -1067,15 +1348,19 @@ class DescribeRecommendationExportJobsResponse {
 }
 
 /// Describes a filter that returns a more specific list of Amazon Elastic Block
-/// Store (Amazon EBS) volume recommendations.
+/// Store (Amazon EBS) volume recommendations. Use this filter with the
+/// <code>GetEBSVolumeRecommendations</code> action.
 ///
-/// This filter is used with the <code>GetEBSVolumeRecommendations</code>
-/// action.
+/// You can use <code>LambdaFunctionRecommendationFilter</code> with the
+/// <code>GetLambdaFunctionRecommendations</code> action, <code>JobFilter</code>
+/// with the <code>DescribeRecommendationExportJobs</code> action, and
+/// <code>Filter</code> with the <code>GetAutoScalingGroupRecommendations</code>
+/// and <code>GetEC2InstanceRecommendations</code> actions.
 class EBSFilter {
   /// The name of the filter.
   ///
   /// Specify <code>Finding</code> to return recommendations with a specific
-  /// finding classification (e.g., <code>Optimized</code>).
+  /// finding classification (e.g., <code>NotOptimized</code>).
   final EBSFilterName? name;
 
   /// The value of the filter.
@@ -1227,19 +1512,20 @@ class EBSUtilizationMetric {
 
   /// The statistic of the utilization metric.
   ///
-  /// The following statistics are available:
+  /// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+  /// return utilization metrics using only the <code>Maximum</code> statistic,
+  /// which is the highest value observed during the specified period.
   ///
-  /// <ul>
-  /// <li>
-  /// <code>Average</code> - This is the value of Sum / SampleCount during the
-  /// specified period, or the average value observed during the specified period.
-  /// </li>
-  /// <li>
-  /// <code>Maximum</code> - The highest value observed during the specified
-  /// period. Use this value to determine high volumes of activity for your
-  /// application.
-  /// </li>
-  /// </ul>
+  /// The Compute Optimizer console displays graphs for some utilization metrics
+  /// using the <code>Average</code> statistic, which is the value of
+  /// <code>Sum</code> / <code>SampleCount</code> during the specified period. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html">Viewing
+  /// resource recommendations</a> in the <i>AWS Compute Optimizer User Guide</i>.
+  /// You can also get averaged utilization metric data for your resources using
+  /// Amazon CloudWatch. For more information, see the <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html">Amazon
+  /// CloudWatch User Guide</a>.
   final MetricStatistic? statistic;
 
   /// The value of the utilization metric.
@@ -1305,6 +1591,30 @@ class ExportDestination {
   }
 }
 
+class ExportEBSVolumeRecommendationsResponse {
+  /// The identification number of the export job.
+  ///
+  /// Use the <code>DescribeRecommendationExportJobs</code> action, and specify
+  /// the job ID to view the status of an export job.
+  final String? jobId;
+  final S3Destination? s3Destination;
+
+  ExportEBSVolumeRecommendationsResponse({
+    this.jobId,
+    this.s3Destination,
+  });
+  factory ExportEBSVolumeRecommendationsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ExportEBSVolumeRecommendationsResponse(
+      jobId: json['jobId'] as String?,
+      s3Destination: json['s3Destination'] != null
+          ? S3Destination.fromJson(
+              json['s3Destination'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class ExportEC2InstanceRecommendationsResponse {
   /// The identification number of the export job.
   ///
@@ -1332,6 +1642,30 @@ class ExportEC2InstanceRecommendationsResponse {
   }
 }
 
+class ExportLambdaFunctionRecommendationsResponse {
+  /// The identification number of the export job.
+  ///
+  /// Use the <code>DescribeRecommendationExportJobs</code> action, and specify
+  /// the job ID to view the status of an export job.
+  final String? jobId;
+  final S3Destination? s3Destination;
+
+  ExportLambdaFunctionRecommendationsResponse({
+    this.jobId,
+    this.s3Destination,
+  });
+  factory ExportLambdaFunctionRecommendationsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ExportLambdaFunctionRecommendationsResponse(
+      jobId: json['jobId'] as String?,
+      s3Destination: json['s3Destination'] != null
+          ? S3Destination.fromJson(
+              json['s3Destination'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 enum ExportableAutoScalingGroupField {
   accountId,
   autoScalingGroupArn,
@@ -1343,6 +1677,14 @@ enum ExportableAutoScalingGroupField {
   utilizationMetricsEbsWriteOpsPerSecondMaximum,
   utilizationMetricsEbsReadBytesPerSecondMaximum,
   utilizationMetricsEbsWriteBytesPerSecondMaximum,
+  utilizationMetricsDiskReadOpsPerSecondMaximum,
+  utilizationMetricsDiskWriteOpsPerSecondMaximum,
+  utilizationMetricsDiskReadBytesPerSecondMaximum,
+  utilizationMetricsDiskWriteBytesPerSecondMaximum,
+  utilizationMetricsNetworkInBytesPerSecondMaximum,
+  utilizationMetricsNetworkOutBytesPerSecondMaximum,
+  utilizationMetricsNetworkPacketsInPerSecondMaximum,
+  utilizationMetricsNetworkPacketsOutPerSecondMaximum,
   lookbackPeriodInDays,
   currentConfigurationInstanceType,
   currentConfigurationDesiredCapacity,
@@ -1399,6 +1741,30 @@ extension on ExportableAutoScalingGroupField {
       case ExportableAutoScalingGroupField
           .utilizationMetricsEbsWriteBytesPerSecondMaximum:
         return 'UtilizationMetricsEbsWriteBytesPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsDiskReadOpsPerSecondMaximum:
+        return 'UtilizationMetricsDiskReadOpsPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsDiskWriteOpsPerSecondMaximum:
+        return 'UtilizationMetricsDiskWriteOpsPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsDiskReadBytesPerSecondMaximum:
+        return 'UtilizationMetricsDiskReadBytesPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsDiskWriteBytesPerSecondMaximum:
+        return 'UtilizationMetricsDiskWriteBytesPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsNetworkInBytesPerSecondMaximum:
+        return 'UtilizationMetricsNetworkInBytesPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsNetworkOutBytesPerSecondMaximum:
+        return 'UtilizationMetricsNetworkOutBytesPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsNetworkPacketsInPerSecondMaximum:
+        return 'UtilizationMetricsNetworkPacketsInPerSecondMaximum';
+      case ExportableAutoScalingGroupField
+          .utilizationMetricsNetworkPacketsOutPerSecondMaximum:
+        return 'UtilizationMetricsNetworkPacketsOutPerSecondMaximum';
       case ExportableAutoScalingGroupField.lookbackPeriodInDays:
         return 'LookbackPeriodInDays';
       case ExportableAutoScalingGroupField.currentConfigurationInstanceType:
@@ -1494,6 +1860,30 @@ extension on String {
       case 'UtilizationMetricsEbsWriteBytesPerSecondMaximum':
         return ExportableAutoScalingGroupField
             .utilizationMetricsEbsWriteBytesPerSecondMaximum;
+      case 'UtilizationMetricsDiskReadOpsPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsDiskReadOpsPerSecondMaximum;
+      case 'UtilizationMetricsDiskWriteOpsPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsDiskWriteOpsPerSecondMaximum;
+      case 'UtilizationMetricsDiskReadBytesPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsDiskReadBytesPerSecondMaximum;
+      case 'UtilizationMetricsDiskWriteBytesPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsDiskWriteBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkInBytesPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsNetworkInBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkOutBytesPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsNetworkOutBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkPacketsInPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsNetworkPacketsInPerSecondMaximum;
+      case 'UtilizationMetricsNetworkPacketsOutPerSecondMaximum':
+        return ExportableAutoScalingGroupField
+            .utilizationMetricsNetworkPacketsOutPerSecondMaximum;
       case 'LookbackPeriodInDays':
         return ExportableAutoScalingGroupField.lookbackPeriodInDays;
       case 'CurrentConfigurationInstanceType':
@@ -1572,6 +1962,7 @@ enum ExportableInstanceField {
   instanceArn,
   instanceName,
   finding,
+  findingReasonCodes,
   lookbackPeriodInDays,
   currentInstanceType,
   utilizationMetricsCpuMaximum,
@@ -1580,6 +1971,14 @@ enum ExportableInstanceField {
   utilizationMetricsEbsWriteOpsPerSecondMaximum,
   utilizationMetricsEbsReadBytesPerSecondMaximum,
   utilizationMetricsEbsWriteBytesPerSecondMaximum,
+  utilizationMetricsDiskReadOpsPerSecondMaximum,
+  utilizationMetricsDiskWriteOpsPerSecondMaximum,
+  utilizationMetricsDiskReadBytesPerSecondMaximum,
+  utilizationMetricsDiskWriteBytesPerSecondMaximum,
+  utilizationMetricsNetworkInBytesPerSecondMaximum,
+  utilizationMetricsNetworkOutBytesPerSecondMaximum,
+  utilizationMetricsNetworkPacketsInPerSecondMaximum,
+  utilizationMetricsNetworkPacketsOutPerSecondMaximum,
   currentOnDemandPrice,
   currentStandardOneYearNoUpfrontReservedPrice,
   currentStandardThreeYearNoUpfrontReservedPrice,
@@ -1590,6 +1989,7 @@ enum ExportableInstanceField {
   recommendationOptionsInstanceType,
   recommendationOptionsProjectedUtilizationMetricsCpuMaximum,
   recommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+  recommendationOptionsPlatformDifferences,
   recommendationOptionsPerformanceRisk,
   recommendationOptionsVcpus,
   recommendationOptionsMemory,
@@ -1614,6 +2014,8 @@ extension on ExportableInstanceField {
         return 'InstanceName';
       case ExportableInstanceField.finding:
         return 'Finding';
+      case ExportableInstanceField.findingReasonCodes:
+        return 'FindingReasonCodes';
       case ExportableInstanceField.lookbackPeriodInDays:
         return 'LookbackPeriodInDays';
       case ExportableInstanceField.currentInstanceType:
@@ -1633,6 +2035,30 @@ extension on ExportableInstanceField {
       case ExportableInstanceField
           .utilizationMetricsEbsWriteBytesPerSecondMaximum:
         return 'UtilizationMetricsEbsWriteBytesPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsDiskReadOpsPerSecondMaximum:
+        return 'UtilizationMetricsDiskReadOpsPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsDiskWriteOpsPerSecondMaximum:
+        return 'UtilizationMetricsDiskWriteOpsPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsDiskReadBytesPerSecondMaximum:
+        return 'UtilizationMetricsDiskReadBytesPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsDiskWriteBytesPerSecondMaximum:
+        return 'UtilizationMetricsDiskWriteBytesPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsNetworkInBytesPerSecondMaximum:
+        return 'UtilizationMetricsNetworkInBytesPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsNetworkOutBytesPerSecondMaximum:
+        return 'UtilizationMetricsNetworkOutBytesPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsNetworkPacketsInPerSecondMaximum:
+        return 'UtilizationMetricsNetworkPacketsInPerSecondMaximum';
+      case ExportableInstanceField
+          .utilizationMetricsNetworkPacketsOutPerSecondMaximum:
+        return 'UtilizationMetricsNetworkPacketsOutPerSecondMaximum';
       case ExportableInstanceField.currentOnDemandPrice:
         return 'CurrentOnDemandPrice';
       case ExportableInstanceField.currentStandardOneYearNoUpfrontReservedPrice:
@@ -1656,6 +2082,8 @@ extension on ExportableInstanceField {
       case ExportableInstanceField
           .recommendationOptionsProjectedUtilizationMetricsMemoryMaximum:
         return 'RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum';
+      case ExportableInstanceField.recommendationOptionsPlatformDifferences:
+        return 'RecommendationOptionsPlatformDifferences';
       case ExportableInstanceField.recommendationOptionsPerformanceRisk:
         return 'RecommendationOptionsPerformanceRisk';
       case ExportableInstanceField.recommendationOptionsVcpus:
@@ -1697,6 +2125,8 @@ extension on String {
         return ExportableInstanceField.instanceName;
       case 'Finding':
         return ExportableInstanceField.finding;
+      case 'FindingReasonCodes':
+        return ExportableInstanceField.findingReasonCodes;
       case 'LookbackPeriodInDays':
         return ExportableInstanceField.lookbackPeriodInDays;
       case 'CurrentInstanceType':
@@ -1717,6 +2147,30 @@ extension on String {
       case 'UtilizationMetricsEbsWriteBytesPerSecondMaximum':
         return ExportableInstanceField
             .utilizationMetricsEbsWriteBytesPerSecondMaximum;
+      case 'UtilizationMetricsDiskReadOpsPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsDiskReadOpsPerSecondMaximum;
+      case 'UtilizationMetricsDiskWriteOpsPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsDiskWriteOpsPerSecondMaximum;
+      case 'UtilizationMetricsDiskReadBytesPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsDiskReadBytesPerSecondMaximum;
+      case 'UtilizationMetricsDiskWriteBytesPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsDiskWriteBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkInBytesPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsNetworkInBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkOutBytesPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsNetworkOutBytesPerSecondMaximum;
+      case 'UtilizationMetricsNetworkPacketsInPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsNetworkPacketsInPerSecondMaximum;
+      case 'UtilizationMetricsNetworkPacketsOutPerSecondMaximum':
+        return ExportableInstanceField
+            .utilizationMetricsNetworkPacketsOutPerSecondMaximum;
       case 'CurrentOnDemandPrice':
         return ExportableInstanceField.currentOnDemandPrice;
       case 'CurrentStandardOneYearNoUpfrontReservedPrice':
@@ -1741,6 +2195,8 @@ extension on String {
       case 'RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum':
         return ExportableInstanceField
             .recommendationOptionsProjectedUtilizationMetricsMemoryMaximum;
+      case 'RecommendationOptionsPlatformDifferences':
+        return ExportableInstanceField.recommendationOptionsPlatformDifferences;
       case 'RecommendationOptionsPerformanceRisk':
         return ExportableInstanceField.recommendationOptionsPerformanceRisk;
       case 'RecommendationOptionsVcpus':
@@ -1772,6 +2228,299 @@ extension on String {
   }
 }
 
+enum ExportableLambdaFunctionField {
+  accountId,
+  functionArn,
+  functionVersion,
+  finding,
+  findingReasonCodes,
+  numberOfInvocations,
+  utilizationMetricsDurationMaximum,
+  utilizationMetricsDurationAverage,
+  utilizationMetricsMemoryMaximum,
+  utilizationMetricsMemoryAverage,
+  lookbackPeriodInDays,
+  currentConfigurationMemorySize,
+  currentConfigurationTimeout,
+  currentCostTotal,
+  currentCostAverage,
+  recommendationOptionsConfigurationMemorySize,
+  recommendationOptionsCostLow,
+  recommendationOptionsCostHigh,
+  recommendationOptionsProjectedUtilizationMetricsDurationLowerBound,
+  recommendationOptionsProjectedUtilizationMetricsDurationUpperBound,
+  recommendationOptionsProjectedUtilizationMetricsDurationExpected,
+  lastRefreshTimestamp,
+}
+
+extension on ExportableLambdaFunctionField {
+  String toValue() {
+    switch (this) {
+      case ExportableLambdaFunctionField.accountId:
+        return 'AccountId';
+      case ExportableLambdaFunctionField.functionArn:
+        return 'FunctionArn';
+      case ExportableLambdaFunctionField.functionVersion:
+        return 'FunctionVersion';
+      case ExportableLambdaFunctionField.finding:
+        return 'Finding';
+      case ExportableLambdaFunctionField.findingReasonCodes:
+        return 'FindingReasonCodes';
+      case ExportableLambdaFunctionField.numberOfInvocations:
+        return 'NumberOfInvocations';
+      case ExportableLambdaFunctionField.utilizationMetricsDurationMaximum:
+        return 'UtilizationMetricsDurationMaximum';
+      case ExportableLambdaFunctionField.utilizationMetricsDurationAverage:
+        return 'UtilizationMetricsDurationAverage';
+      case ExportableLambdaFunctionField.utilizationMetricsMemoryMaximum:
+        return 'UtilizationMetricsMemoryMaximum';
+      case ExportableLambdaFunctionField.utilizationMetricsMemoryAverage:
+        return 'UtilizationMetricsMemoryAverage';
+      case ExportableLambdaFunctionField.lookbackPeriodInDays:
+        return 'LookbackPeriodInDays';
+      case ExportableLambdaFunctionField.currentConfigurationMemorySize:
+        return 'CurrentConfigurationMemorySize';
+      case ExportableLambdaFunctionField.currentConfigurationTimeout:
+        return 'CurrentConfigurationTimeout';
+      case ExportableLambdaFunctionField.currentCostTotal:
+        return 'CurrentCostTotal';
+      case ExportableLambdaFunctionField.currentCostAverage:
+        return 'CurrentCostAverage';
+      case ExportableLambdaFunctionField
+          .recommendationOptionsConfigurationMemorySize:
+        return 'RecommendationOptionsConfigurationMemorySize';
+      case ExportableLambdaFunctionField.recommendationOptionsCostLow:
+        return 'RecommendationOptionsCostLow';
+      case ExportableLambdaFunctionField.recommendationOptionsCostHigh:
+        return 'RecommendationOptionsCostHigh';
+      case ExportableLambdaFunctionField
+          .recommendationOptionsProjectedUtilizationMetricsDurationLowerBound:
+        return 'RecommendationOptionsProjectedUtilizationMetricsDurationLowerBound';
+      case ExportableLambdaFunctionField
+          .recommendationOptionsProjectedUtilizationMetricsDurationUpperBound:
+        return 'RecommendationOptionsProjectedUtilizationMetricsDurationUpperBound';
+      case ExportableLambdaFunctionField
+          .recommendationOptionsProjectedUtilizationMetricsDurationExpected:
+        return 'RecommendationOptionsProjectedUtilizationMetricsDurationExpected';
+      case ExportableLambdaFunctionField.lastRefreshTimestamp:
+        return 'LastRefreshTimestamp';
+    }
+  }
+}
+
+extension on String {
+  ExportableLambdaFunctionField toExportableLambdaFunctionField() {
+    switch (this) {
+      case 'AccountId':
+        return ExportableLambdaFunctionField.accountId;
+      case 'FunctionArn':
+        return ExportableLambdaFunctionField.functionArn;
+      case 'FunctionVersion':
+        return ExportableLambdaFunctionField.functionVersion;
+      case 'Finding':
+        return ExportableLambdaFunctionField.finding;
+      case 'FindingReasonCodes':
+        return ExportableLambdaFunctionField.findingReasonCodes;
+      case 'NumberOfInvocations':
+        return ExportableLambdaFunctionField.numberOfInvocations;
+      case 'UtilizationMetricsDurationMaximum':
+        return ExportableLambdaFunctionField.utilizationMetricsDurationMaximum;
+      case 'UtilizationMetricsDurationAverage':
+        return ExportableLambdaFunctionField.utilizationMetricsDurationAverage;
+      case 'UtilizationMetricsMemoryMaximum':
+        return ExportableLambdaFunctionField.utilizationMetricsMemoryMaximum;
+      case 'UtilizationMetricsMemoryAverage':
+        return ExportableLambdaFunctionField.utilizationMetricsMemoryAverage;
+      case 'LookbackPeriodInDays':
+        return ExportableLambdaFunctionField.lookbackPeriodInDays;
+      case 'CurrentConfigurationMemorySize':
+        return ExportableLambdaFunctionField.currentConfigurationMemorySize;
+      case 'CurrentConfigurationTimeout':
+        return ExportableLambdaFunctionField.currentConfigurationTimeout;
+      case 'CurrentCostTotal':
+        return ExportableLambdaFunctionField.currentCostTotal;
+      case 'CurrentCostAverage':
+        return ExportableLambdaFunctionField.currentCostAverage;
+      case 'RecommendationOptionsConfigurationMemorySize':
+        return ExportableLambdaFunctionField
+            .recommendationOptionsConfigurationMemorySize;
+      case 'RecommendationOptionsCostLow':
+        return ExportableLambdaFunctionField.recommendationOptionsCostLow;
+      case 'RecommendationOptionsCostHigh':
+        return ExportableLambdaFunctionField.recommendationOptionsCostHigh;
+      case 'RecommendationOptionsProjectedUtilizationMetricsDurationLowerBound':
+        return ExportableLambdaFunctionField
+            .recommendationOptionsProjectedUtilizationMetricsDurationLowerBound;
+      case 'RecommendationOptionsProjectedUtilizationMetricsDurationUpperBound':
+        return ExportableLambdaFunctionField
+            .recommendationOptionsProjectedUtilizationMetricsDurationUpperBound;
+      case 'RecommendationOptionsProjectedUtilizationMetricsDurationExpected':
+        return ExportableLambdaFunctionField
+            .recommendationOptionsProjectedUtilizationMetricsDurationExpected;
+      case 'LastRefreshTimestamp':
+        return ExportableLambdaFunctionField.lastRefreshTimestamp;
+    }
+    throw Exception('$this is not known in enum ExportableLambdaFunctionField');
+  }
+}
+
+enum ExportableVolumeField {
+  accountId,
+  volumeArn,
+  finding,
+  utilizationMetricsVolumeReadOpsPerSecondMaximum,
+  utilizationMetricsVolumeWriteOpsPerSecondMaximum,
+  utilizationMetricsVolumeReadBytesPerSecondMaximum,
+  utilizationMetricsVolumeWriteBytesPerSecondMaximum,
+  lookbackPeriodInDays,
+  currentConfigurationVolumeType,
+  currentConfigurationVolumeBaselineIOPS,
+  currentConfigurationVolumeBaselineThroughput,
+  currentConfigurationVolumeBurstIOPS,
+  currentConfigurationVolumeBurstThroughput,
+  currentConfigurationVolumeSize,
+  currentMonthlyPrice,
+  recommendationOptionsConfigurationVolumeType,
+  recommendationOptionsConfigurationVolumeBaselineIOPS,
+  recommendationOptionsConfigurationVolumeBaselineThroughput,
+  recommendationOptionsConfigurationVolumeBurstIOPS,
+  recommendationOptionsConfigurationVolumeBurstThroughput,
+  recommendationOptionsConfigurationVolumeSize,
+  recommendationOptionsMonthlyPrice,
+  recommendationOptionsPerformanceRisk,
+  lastRefreshTimestamp,
+}
+
+extension on ExportableVolumeField {
+  String toValue() {
+    switch (this) {
+      case ExportableVolumeField.accountId:
+        return 'AccountId';
+      case ExportableVolumeField.volumeArn:
+        return 'VolumeArn';
+      case ExportableVolumeField.finding:
+        return 'Finding';
+      case ExportableVolumeField
+          .utilizationMetricsVolumeReadOpsPerSecondMaximum:
+        return 'UtilizationMetricsVolumeReadOpsPerSecondMaximum';
+      case ExportableVolumeField
+          .utilizationMetricsVolumeWriteOpsPerSecondMaximum:
+        return 'UtilizationMetricsVolumeWriteOpsPerSecondMaximum';
+      case ExportableVolumeField
+          .utilizationMetricsVolumeReadBytesPerSecondMaximum:
+        return 'UtilizationMetricsVolumeReadBytesPerSecondMaximum';
+      case ExportableVolumeField
+          .utilizationMetricsVolumeWriteBytesPerSecondMaximum:
+        return 'UtilizationMetricsVolumeWriteBytesPerSecondMaximum';
+      case ExportableVolumeField.lookbackPeriodInDays:
+        return 'LookbackPeriodInDays';
+      case ExportableVolumeField.currentConfigurationVolumeType:
+        return 'CurrentConfigurationVolumeType';
+      case ExportableVolumeField.currentConfigurationVolumeBaselineIOPS:
+        return 'CurrentConfigurationVolumeBaselineIOPS';
+      case ExportableVolumeField.currentConfigurationVolumeBaselineThroughput:
+        return 'CurrentConfigurationVolumeBaselineThroughput';
+      case ExportableVolumeField.currentConfigurationVolumeBurstIOPS:
+        return 'CurrentConfigurationVolumeBurstIOPS';
+      case ExportableVolumeField.currentConfigurationVolumeBurstThroughput:
+        return 'CurrentConfigurationVolumeBurstThroughput';
+      case ExportableVolumeField.currentConfigurationVolumeSize:
+        return 'CurrentConfigurationVolumeSize';
+      case ExportableVolumeField.currentMonthlyPrice:
+        return 'CurrentMonthlyPrice';
+      case ExportableVolumeField.recommendationOptionsConfigurationVolumeType:
+        return 'RecommendationOptionsConfigurationVolumeType';
+      case ExportableVolumeField
+          .recommendationOptionsConfigurationVolumeBaselineIOPS:
+        return 'RecommendationOptionsConfigurationVolumeBaselineIOPS';
+      case ExportableVolumeField
+          .recommendationOptionsConfigurationVolumeBaselineThroughput:
+        return 'RecommendationOptionsConfigurationVolumeBaselineThroughput';
+      case ExportableVolumeField
+          .recommendationOptionsConfigurationVolumeBurstIOPS:
+        return 'RecommendationOptionsConfigurationVolumeBurstIOPS';
+      case ExportableVolumeField
+          .recommendationOptionsConfigurationVolumeBurstThroughput:
+        return 'RecommendationOptionsConfigurationVolumeBurstThroughput';
+      case ExportableVolumeField.recommendationOptionsConfigurationVolumeSize:
+        return 'RecommendationOptionsConfigurationVolumeSize';
+      case ExportableVolumeField.recommendationOptionsMonthlyPrice:
+        return 'RecommendationOptionsMonthlyPrice';
+      case ExportableVolumeField.recommendationOptionsPerformanceRisk:
+        return 'RecommendationOptionsPerformanceRisk';
+      case ExportableVolumeField.lastRefreshTimestamp:
+        return 'LastRefreshTimestamp';
+    }
+  }
+}
+
+extension on String {
+  ExportableVolumeField toExportableVolumeField() {
+    switch (this) {
+      case 'AccountId':
+        return ExportableVolumeField.accountId;
+      case 'VolumeArn':
+        return ExportableVolumeField.volumeArn;
+      case 'Finding':
+        return ExportableVolumeField.finding;
+      case 'UtilizationMetricsVolumeReadOpsPerSecondMaximum':
+        return ExportableVolumeField
+            .utilizationMetricsVolumeReadOpsPerSecondMaximum;
+      case 'UtilizationMetricsVolumeWriteOpsPerSecondMaximum':
+        return ExportableVolumeField
+            .utilizationMetricsVolumeWriteOpsPerSecondMaximum;
+      case 'UtilizationMetricsVolumeReadBytesPerSecondMaximum':
+        return ExportableVolumeField
+            .utilizationMetricsVolumeReadBytesPerSecondMaximum;
+      case 'UtilizationMetricsVolumeWriteBytesPerSecondMaximum':
+        return ExportableVolumeField
+            .utilizationMetricsVolumeWriteBytesPerSecondMaximum;
+      case 'LookbackPeriodInDays':
+        return ExportableVolumeField.lookbackPeriodInDays;
+      case 'CurrentConfigurationVolumeType':
+        return ExportableVolumeField.currentConfigurationVolumeType;
+      case 'CurrentConfigurationVolumeBaselineIOPS':
+        return ExportableVolumeField.currentConfigurationVolumeBaselineIOPS;
+      case 'CurrentConfigurationVolumeBaselineThroughput':
+        return ExportableVolumeField
+            .currentConfigurationVolumeBaselineThroughput;
+      case 'CurrentConfigurationVolumeBurstIOPS':
+        return ExportableVolumeField.currentConfigurationVolumeBurstIOPS;
+      case 'CurrentConfigurationVolumeBurstThroughput':
+        return ExportableVolumeField.currentConfigurationVolumeBurstThroughput;
+      case 'CurrentConfigurationVolumeSize':
+        return ExportableVolumeField.currentConfigurationVolumeSize;
+      case 'CurrentMonthlyPrice':
+        return ExportableVolumeField.currentMonthlyPrice;
+      case 'RecommendationOptionsConfigurationVolumeType':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeType;
+      case 'RecommendationOptionsConfigurationVolumeBaselineIOPS':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeBaselineIOPS;
+      case 'RecommendationOptionsConfigurationVolumeBaselineThroughput':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeBaselineThroughput;
+      case 'RecommendationOptionsConfigurationVolumeBurstIOPS':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeBurstIOPS;
+      case 'RecommendationOptionsConfigurationVolumeBurstThroughput':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeBurstThroughput;
+      case 'RecommendationOptionsConfigurationVolumeSize':
+        return ExportableVolumeField
+            .recommendationOptionsConfigurationVolumeSize;
+      case 'RecommendationOptionsMonthlyPrice':
+        return ExportableVolumeField.recommendationOptionsMonthlyPrice;
+      case 'RecommendationOptionsPerformanceRisk':
+        return ExportableVolumeField.recommendationOptionsPerformanceRisk;
+      case 'LastRefreshTimestamp':
+        return ExportableVolumeField.lastRefreshTimestamp;
+    }
+    throw Exception('$this is not known in enum ExportableVolumeField');
+  }
+}
+
 enum FileFormat {
   csv,
 }
@@ -1795,18 +2544,27 @@ extension on String {
   }
 }
 
-/// Describes a filter that returns a more specific list of recommendations.
+/// Describes a filter that returns a more specific list of recommendations. Use
+/// this filter with the <code>GetAutoScalingGroupRecommendations</code> and
+/// <code>GetEC2InstanceRecommendations</code> actions.
 ///
-/// This filter is used with the <code>GetAutoScalingGroupRecommendations</code>
-/// and <code>GetEC2InstanceRecommendations</code> actions.
+/// You can use <code>EBSFilter</code> with the
+/// <code>GetEBSVolumeRecommendations</code> action,
+/// <code>LambdaFunctionRecommendationFilter</code> with the
+/// <code>GetLambdaFunctionRecommendations</code> action, and
+/// <code>JobFilter</code> with the
+/// <code>DescribeRecommendationExportJobs</code> action.
 class Filter {
   /// The name of the filter.
   ///
   /// Specify <code>Finding</code> to return recommendations with a specific
-  /// finding classification (e.g., <code>Overprovisioned</code>).
+  /// finding classification (e.g., <code>Underprovisioned</code>).
   ///
   /// Specify <code>RecommendationSourceType</code> to return recommendations of a
-  /// specific resource type (e.g., <code>AutoScalingGroup</code>).
+  /// specific resource type (e.g., <code>Ec2Instance</code>).
+  ///
+  /// Specify <code>FindingReasonCodes</code> to return recommendations with a
+  /// specific finding reason code (e.g., <code>CPUUnderprovisioned</code>).
   final FilterName? name;
 
   /// The value of the filter.
@@ -1817,20 +2575,115 @@ class Filter {
   ///
   /// <ul>
   /// <li>
-  /// Specify <code>Optimized</code> or <code>NotOptimized</code> if you specified
+  /// Specify <code>Optimized</code> or <code>NotOptimized</code> if you specify
   /// the <code>name</code> parameter as <code>Finding</code> and you want to
   /// filter results for Auto Scaling groups.
   /// </li>
   /// <li>
   /// Specify <code>Underprovisioned</code>, <code>Overprovisioned</code>, or
-  /// <code>Optimized</code> if you specified the <code>name</code> parameter as
+  /// <code>Optimized</code> if you specify the <code>name</code> parameter as
   /// <code>Finding</code> and you want to filter results for EC2 instances.
   /// </li>
   /// <li>
   /// Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you
-  /// specified the <code>name</code> parameter as
+  /// specify the <code>name</code> parameter as
   /// <code>RecommendationSourceType</code>.
   /// </li>
+  /// <li>
+  /// Specify one of the following options if you specify the <code>name</code>
+  /// parameter as <code>FindingReasonCodes</code>:
+  ///
+  /// <ul>
+  /// <li>
+  /// <b> <code>CPUOverprovisioned</code> </b> — The instance’s CPU configuration
+  /// can be sized down while still meeting the performance requirements of your
+  /// workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>CPUUnderprovisioned</code> </b> — The instance’s CPU configuration
+  /// doesn't meet the performance requirements of your workload and there is an
+  /// alternative instance type that provides better CPU performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>MemoryOverprovisioned</code> </b> — The instance’s memory
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>MemoryUnderprovisioned</code> </b> — The instance’s memory
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better memory
+  /// performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSThroughputOverprovisioned</code> </b> — The instance’s EBS
+  /// throughput configuration can be sized down while still meeting the
+  /// performance requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSThroughputUnderprovisioned</code> </b> — The instance’s EBS
+  /// throughput configuration doesn't meet the performance requirements of your
+  /// workload and there is an alternative instance type that provides better EBS
+  /// throughput performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSIOPSOverprovisioned</code> </b> — The instance’s EBS IOPS
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSIOPSUnderprovisioned</code> </b> — The instance’s EBS IOPS
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better EBS IOPS
+  /// performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkBandwidthOverprovisioned</code> </b> — The instance’s
+  /// network bandwidth configuration can be sized down while still meeting the
+  /// performance requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkBandwidthUnderprovisioned</code> </b> — The instance’s
+  /// network bandwidth configuration doesn't meet the performance requirements of
+  /// your workload and there is an alternative instance type that provides better
+  /// network bandwidth performance. This finding reason happens when the
+  /// <code>NetworkIn</code> or <code>NetworkOut</code> performance of an instance
+  /// is impacted.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkPPSOverprovisioned</code> </b> — The instance’s network PPS
+  /// (packets per second) configuration can be sized down while still meeting the
+  /// performance requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkPPSUnderprovisioned</code> </b> — The instance’s network
+  /// PPS (packets per second) configuration doesn't meet the performance
+  /// requirements of your workload and there is an alternative instance type that
+  /// provides better network PPS performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskIOPSOverprovisioned</code> </b> — The instance’s disk IOPS
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskIOPSUnderprovisioned</code> </b> — The instance’s disk IOPS
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better disk IOPS
+  /// performance.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskThroughputOverprovisioned</code> </b> — The instance’s disk
+  /// throughput configuration can be sized down while still meeting the
+  /// performance requirements of your workload.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskThroughputUnderprovisioned</code> </b> — The instance’s disk
+  /// throughput configuration doesn't meet the performance requirements of your
+  /// workload and there is an alternative instance type that provides better disk
+  /// throughput performance.
+  /// </li>
+  /// </ul> </li>
   /// </ul>
   final List<String>? values;
 
@@ -1850,6 +2703,7 @@ class Filter {
 
 enum FilterName {
   finding,
+  findingReasonCodes,
   recommendationSourceType,
 }
 
@@ -1858,6 +2712,8 @@ extension on FilterName {
     switch (this) {
       case FilterName.finding:
         return 'Finding';
+      case FilterName.findingReasonCodes:
+        return 'FindingReasonCodes';
       case FilterName.recommendationSourceType:
         return 'RecommendationSourceType';
     }
@@ -1869,6 +2725,8 @@ extension on String {
     switch (this) {
       case 'Finding':
         return FilterName.finding;
+      case 'FindingReasonCodes':
+        return FilterName.findingReasonCodes;
       case 'RecommendationSourceType':
         return FilterName.recommendationSourceType;
     }
@@ -2201,7 +3059,7 @@ class InstanceRecommendation {
   /// The instance type of the current instance.
   final String? currentInstanceType;
 
-  /// The finding classification for the instance.
+  /// The finding classification of the instance.
   ///
   /// Findings for instances include:
   ///
@@ -2224,13 +3082,158 @@ class InstanceRecommendation {
   /// <li>
   /// <b> <code>Optimized</code> </b>—An instance is considered optimized when all
   /// specifications of your instance, such as CPU, memory, and network, meet the
-  /// performance requirements of your workload and is not over provisioned. An
-  /// optimized instance runs your workloads with optimal performance and
-  /// infrastructure cost. For optimized resources, AWS Compute Optimizer might
-  /// recommend a new generation instance type.
+  /// performance requirements of your workload and is not over provisioned. For
+  /// optimized resources, AWS Compute Optimizer might recommend a new generation
+  /// instance type.
   /// </li>
   /// </ul>
   final Finding? finding;
+
+  /// The reason for the finding classification of the instance.
+  ///
+  /// Finding reason codes for instances include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <b> <code>CPUOverprovisioned</code> </b> — The instance’s CPU configuration
+  /// can be sized down while still meeting the performance requirements of your
+  /// workload. This is identified by analyzing the <code>CPUUtilization</code>
+  /// metric of the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>CPUUnderprovisioned</code> </b> — The instance’s CPU configuration
+  /// doesn't meet the performance requirements of your workload and there is an
+  /// alternative instance type that provides better CPU performance. This is
+  /// identified by analyzing the <code>CPUUtilization</code> metric of the
+  /// current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>MemoryOverprovisioned</code> </b> — The instance’s memory
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload. This is identified by analyzing the memory
+  /// utilization metric of the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>MemoryUnderprovisioned</code> </b> — The instance’s memory
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better memory
+  /// performance. This is identified by analyzing the memory utilization metric
+  /// of the current instance during the look-back period.
+  /// <note>
+  /// Memory utilization is analyzed only for resources that have the unified
+  /// CloudWatch agent installed on them. For more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
+  /// memory utilization with the Amazon CloudWatch Agent</a> in the <i>AWS
+  /// Compute Optimizer User Guide</i>. On Linux instances, Compute Optimizer
+  /// analyses the <code>mem_used_percent</code> metric in the
+  /// <code>CWAgent</code> namespace, or the legacy <code>MemoryUtilization</code>
+  /// metric in the <code>System/Linux</code> namespace. On Windows instances,
+  /// Compute Optimizer analyses the <code>Memory % Committed Bytes In Use</code>
+  /// metric in the <code>CWAgent</code> namespace.
+  /// </note> </li>
+  /// <li>
+  /// <b> <code>EBSThroughputOverprovisioned</code> </b> — The instance’s EBS
+  /// throughput configuration can be sized down while still meeting the
+  /// performance requirements of your workload. This is identified by analyzing
+  /// the <code>VolumeReadOps</code> and <code>VolumeWriteOps</code> metrics of
+  /// EBS volumes attached to the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSThroughputUnderprovisioned</code> </b> — The instance’s EBS
+  /// throughput configuration doesn't meet the performance requirements of your
+  /// workload and there is an alternative instance type that provides better EBS
+  /// throughput performance. This is identified by analyzing the
+  /// <code>VolumeReadOps</code> and <code>VolumeWriteOps</code> metrics of EBS
+  /// volumes attached to the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSIOPSOverprovisioned</code> </b> — The instance’s EBS IOPS
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload. This is identified by analyzing the
+  /// <code>VolumeReadBytes</code> and <code>VolumeWriteBytes</code> metric of EBS
+  /// volumes attached to the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>EBSIOPSUnderprovisioned</code> </b> — The instance’s EBS IOPS
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better EBS IOPS
+  /// performance. This is identified by analyzing the
+  /// <code>VolumeReadBytes</code> and <code>VolumeWriteBytes</code> metric of EBS
+  /// volumes attached to the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkBandwidthOverprovisioned</code> </b> — The instance’s
+  /// network bandwidth configuration can be sized down while still meeting the
+  /// performance requirements of your workload. This is identified by analyzing
+  /// the <code>NetworkIn</code> and <code>NetworkOut</code> metrics of the
+  /// current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkBandwidthUnderprovisioned</code> </b> — The instance’s
+  /// network bandwidth configuration doesn't meet the performance requirements of
+  /// your workload and there is an alternative instance type that provides better
+  /// network bandwidth performance. This is identified by analyzing the
+  /// <code>NetworkIn</code> and <code>NetworkOut</code> metrics of the current
+  /// instance during the look-back period. This finding reason happens when the
+  /// <code>NetworkIn</code> or <code>NetworkOut</code> performance of an instance
+  /// is impacted.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkPPSOverprovisioned</code> </b> — The instance’s network PPS
+  /// (packets per second) configuration can be sized down while still meeting the
+  /// performance requirements of your workload. This is identified by analyzing
+  /// the <code>NetworkPacketsIn</code> and <code>NetworkPacketsIn</code> metrics
+  /// of the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkPPSUnderprovisioned</code> </b> — The instance’s network
+  /// PPS (packets per second) configuration doesn't meet the performance
+  /// requirements of your workload and there is an alternative instance type that
+  /// provides better network PPS performance. This is identified by analyzing the
+  /// <code>NetworkPacketsIn</code> and <code>NetworkPacketsIn</code> metrics of
+  /// the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskIOPSOverprovisioned</code> </b> — The instance’s disk IOPS
+  /// configuration can be sized down while still meeting the performance
+  /// requirements of your workload. This is identified by analyzing the
+  /// <code>DiskReadOps</code> and <code>DiskWriteOps</code> metrics of the
+  /// current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskIOPSUnderprovisioned</code> </b> — The instance’s disk IOPS
+  /// configuration doesn't meet the performance requirements of your workload and
+  /// there is an alternative instance type that provides better disk IOPS
+  /// performance. This is identified by analyzing the <code>DiskReadOps</code>
+  /// and <code>DiskWriteOps</code> metrics of the current instance during the
+  /// look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskThroughputOverprovisioned</code> </b> — The instance’s disk
+  /// throughput configuration can be sized down while still meeting the
+  /// performance requirements of your workload. This is identified by analyzing
+  /// the <code>DiskReadBytes</code> and <code>DiskWriteBytes</code> metrics of
+  /// the current instance during the look-back period.
+  /// </li>
+  /// <li>
+  /// <b> <code>DiskThroughputUnderprovisioned</code> </b> — The instance’s disk
+  /// throughput configuration doesn't meet the performance requirements of your
+  /// workload and there is an alternative instance type that provides better disk
+  /// throughput performance. This is identified by analyzing the
+  /// <code>DiskReadBytes</code> and <code>DiskWriteBytes</code> metrics of the
+  /// current instance during the look-back period.
+  /// </li>
+  /// </ul> <note>
+  /// For more information about instance metrics, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html">List
+  /// the available CloudWatch metrics for your instances</a> in the <i>Amazon
+  /// Elastic Compute Cloud User Guide</i>. For more information about EBS volume
+  /// metrics, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cloudwatch_ebs.html">Amazon
+  /// CloudWatch metrics for Amazon EBS</a> in the <i>Amazon Elastic Compute Cloud
+  /// User Guide</i>.
+  /// </note>
+  final List<InstanceRecommendationFindingReasonCode>? findingReasonCodes;
 
   /// The Amazon Resource Name (ARN) of the current instance.
   final String? instanceArn;
@@ -2259,6 +3262,7 @@ class InstanceRecommendation {
     this.accountId,
     this.currentInstanceType,
     this.finding,
+    this.findingReasonCodes,
     this.instanceArn,
     this.instanceName,
     this.lastRefreshTimestamp,
@@ -2272,6 +3276,10 @@ class InstanceRecommendation {
       accountId: json['accountId'] as String?,
       currentInstanceType: json['currentInstanceType'] as String?,
       finding: (json['finding'] as String?)?.toFinding(),
+      findingReasonCodes: (json['findingReasonCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toInstanceRecommendationFindingReasonCode())
+          .toList(),
       instanceArn: json['instanceArn'] as String?,
       instanceName: json['instanceName'] as String?,
       lastRefreshTimestamp: timeStampFromJson(json['lastRefreshTimestamp']),
@@ -2293,6 +3301,119 @@ class InstanceRecommendation {
   }
 }
 
+enum InstanceRecommendationFindingReasonCode {
+  cPUOverprovisioned,
+  cPUUnderprovisioned,
+  memoryOverprovisioned,
+  memoryUnderprovisioned,
+  eBSThroughputOverprovisioned,
+  eBSThroughputUnderprovisioned,
+  eBSIOPSOverprovisioned,
+  eBSIOPSUnderprovisioned,
+  networkBandwidthOverprovisioned,
+  networkBandwidthUnderprovisioned,
+  networkPPSOverprovisioned,
+  networkPPSUnderprovisioned,
+  diskIOPSOverprovisioned,
+  diskIOPSUnderprovisioned,
+  diskThroughputOverprovisioned,
+  diskThroughputUnderprovisioned,
+}
+
+extension on InstanceRecommendationFindingReasonCode {
+  String toValue() {
+    switch (this) {
+      case InstanceRecommendationFindingReasonCode.cPUOverprovisioned:
+        return 'CPUOverprovisioned';
+      case InstanceRecommendationFindingReasonCode.cPUUnderprovisioned:
+        return 'CPUUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode.memoryOverprovisioned:
+        return 'MemoryOverprovisioned';
+      case InstanceRecommendationFindingReasonCode.memoryUnderprovisioned:
+        return 'MemoryUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode.eBSThroughputOverprovisioned:
+        return 'EBSThroughputOverprovisioned';
+      case InstanceRecommendationFindingReasonCode
+          .eBSThroughputUnderprovisioned:
+        return 'EBSThroughputUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode.eBSIOPSOverprovisioned:
+        return 'EBSIOPSOverprovisioned';
+      case InstanceRecommendationFindingReasonCode.eBSIOPSUnderprovisioned:
+        return 'EBSIOPSUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode
+          .networkBandwidthOverprovisioned:
+        return 'NetworkBandwidthOverprovisioned';
+      case InstanceRecommendationFindingReasonCode
+          .networkBandwidthUnderprovisioned:
+        return 'NetworkBandwidthUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode.networkPPSOverprovisioned:
+        return 'NetworkPPSOverprovisioned';
+      case InstanceRecommendationFindingReasonCode.networkPPSUnderprovisioned:
+        return 'NetworkPPSUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode.diskIOPSOverprovisioned:
+        return 'DiskIOPSOverprovisioned';
+      case InstanceRecommendationFindingReasonCode.diskIOPSUnderprovisioned:
+        return 'DiskIOPSUnderprovisioned';
+      case InstanceRecommendationFindingReasonCode
+          .diskThroughputOverprovisioned:
+        return 'DiskThroughputOverprovisioned';
+      case InstanceRecommendationFindingReasonCode
+          .diskThroughputUnderprovisioned:
+        return 'DiskThroughputUnderprovisioned';
+    }
+  }
+}
+
+extension on String {
+  InstanceRecommendationFindingReasonCode
+      toInstanceRecommendationFindingReasonCode() {
+    switch (this) {
+      case 'CPUOverprovisioned':
+        return InstanceRecommendationFindingReasonCode.cPUOverprovisioned;
+      case 'CPUUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode.cPUUnderprovisioned;
+      case 'MemoryOverprovisioned':
+        return InstanceRecommendationFindingReasonCode.memoryOverprovisioned;
+      case 'MemoryUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode.memoryUnderprovisioned;
+      case 'EBSThroughputOverprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .eBSThroughputOverprovisioned;
+      case 'EBSThroughputUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .eBSThroughputUnderprovisioned;
+      case 'EBSIOPSOverprovisioned':
+        return InstanceRecommendationFindingReasonCode.eBSIOPSOverprovisioned;
+      case 'EBSIOPSUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode.eBSIOPSUnderprovisioned;
+      case 'NetworkBandwidthOverprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .networkBandwidthOverprovisioned;
+      case 'NetworkBandwidthUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .networkBandwidthUnderprovisioned;
+      case 'NetworkPPSOverprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .networkPPSOverprovisioned;
+      case 'NetworkPPSUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .networkPPSUnderprovisioned;
+      case 'DiskIOPSOverprovisioned':
+        return InstanceRecommendationFindingReasonCode.diskIOPSOverprovisioned;
+      case 'DiskIOPSUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode.diskIOPSUnderprovisioned;
+      case 'DiskThroughputOverprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .diskThroughputOverprovisioned;
+      case 'DiskThroughputUnderprovisioned':
+        return InstanceRecommendationFindingReasonCode
+            .diskThroughputUnderprovisioned;
+    }
+    throw Exception(
+        '$this is not known in enum InstanceRecommendationFindingReasonCode');
+  }
+}
+
 /// Describes a recommendation option for an Amazon EC2 instance.
 class InstanceRecommendationOption {
   /// The instance type of the instance recommendation.
@@ -2300,12 +3421,118 @@ class InstanceRecommendationOption {
 
   /// The performance risk of the instance recommendation option.
   ///
-  /// Performance risk is the likelihood of the recommended instance type not
-  /// meeting the performance requirement of your workload.
+  /// Performance risk indicates the likelihood of the recommended instance type
+  /// not meeting the resource needs of your workload. Compute Optimizer
+  /// calculates an individual performance risk score for each specification of
+  /// the recommended instance, including CPU, memory, EBS throughput, EBS IOPS,
+  /// disk throughput, disk IOPS, network throughput, and network PPS. The
+  /// performance risk of the recommended instance is calculated as the maximum
+  /// performance risk score across the analyzed resource specifications.
   ///
-  /// The lowest performance risk is categorized as <code>0</code>, and the
-  /// highest as <code>5</code>.
+  /// The value ranges from <code>0</code> to <code>5</code>, with <code>0</code>
+  /// meaning that the recommended resource is predicted to always provide enough
+  /// hardware capability. The higher the performance risk is, the more likely you
+  /// should validate whether the recommendation will meet the performance
+  /// requirements of your workload before migrating your resource.
   final double? performanceRisk;
+
+  /// Describes the configuration differences between the current instance and the
+  /// recommended instance type. You should consider the configuration differences
+  /// before migrating your workloads from the current instance to the recommended
+  /// instance type. The <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html">Change
+  /// the instance type guide for Linux</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-resize.html">Change
+  /// the instance type guide for Windows</a> provide general guidance for getting
+  /// started with an instance migration.
+  ///
+  /// Platform differences include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <b> <code>Hypervisor</code> </b> — The hypervisor of the recommended
+  /// instance type is different than that of the current instance. For example,
+  /// the recommended instance type uses a Nitro hypervisor and the current
+  /// instance uses a Xen hypervisor. The differences that you should consider
+  /// between these hypervisors are covered in the <a
+  /// href="http://aws.amazon.com/ec2/faqs/#Nitro_Hypervisor">Nitro Hypervisor</a>
+  /// section of the Amazon EC2 frequently asked questions. For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Instances
+  /// built on the Nitro System</a> in the <i>Amazon EC2 User Guide for Linux</i>,
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#ec2-nitro-instances">Instances
+  /// built on the Nitro System</a> in the <i>Amazon EC2 User Guide for
+  /// Windows</i>.
+  /// </li>
+  /// <li>
+  /// <b> <code>NetworkInterface</code> </b> — The network interface of the
+  /// recommended instance type is different than that of the current instance.
+  /// For example, the recommended instance type supports enhanced networking and
+  /// the current instance might not. To enable enhanced networking for the
+  /// recommended instance type, you will need to install the Elastic Network
+  /// Adapter (ENA) driver or the Intel 82599 Virtual Function driver. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html">Enhanced
+  /// networking on Linux</a> in the <i>Amazon EC2 User Guide for Linux</i>, or <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enhanced-networking.html">Enhanced
+  /// networking on Windows</a> in the <i>Amazon EC2 User Guide for Windows</i>.
+  /// </li>
+  /// <li>
+  /// <b> <code>StorageInterface</code> </b> — The storage interface of the
+  /// recommended instance type is different than that of the current instance.
+  /// For example, the recommended instance type uses an NVMe storage interface
+  /// and the current instance does not. To access NVMe volumes for the
+  /// recommended instance type, you will need to install or upgrade the NVMe
+  /// driver. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nvme-ebs-volumes.html">Amazon
+  /// EBS and NVMe on Linux instances</a> in the <i>Amazon EC2 User Guide for
+  /// Linux</i>, or <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/nvme-ebs-volumes.html">Amazon
+  /// EBS and NVMe on Windows instances</a> in the <i>Amazon EC2 User Guide for
+  /// Windows</i>.
+  /// </li>
+  /// <li>
+  /// <b> <code>InstanceStoreAvailability</code> </b> — The recommended instance
+  /// type does not support instance store volumes and the current instance does.
+  /// Before migrating, you might need to back up the data on your instance store
+  /// volumes if you want to preserve them. For more information, see <a
+  /// href="https://aws.amazon.com/premiumsupport/knowledge-center/back-up-instance-store-ebs/">How
+  /// do I back up an instance store volume on my Amazon EC2 instance to Amazon
+  /// EBS?</a> in the <i>AWS Premium Support Knowledge Base</i>. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html">Amazon
+  /// EC2 instance store</a> in the <i>Amazon EC2 User Guide for Linux</i>, or see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage">Networking
+  /// and storage features</a> and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/InstanceStorage.html">Amazon
+  /// EC2 instance store</a> in the <i>Amazon EC2 User Guide for Windows</i>.
+  /// </li>
+  /// <li>
+  /// <b> <code>VirtualizationType</code> </b> — The recommended instance type
+  /// uses the hardware virtual machine (HVM) virtualization type and the current
+  /// instance uses the paravirtual (PV) virtualization type. For more information
+  /// about the differences between these virtualization types, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html">Linux
+  /// AMI virtualization types</a> in the <i>Amazon EC2 User Guide for Linux</i>,
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#virtualization-types">Windows
+  /// AMI virtualization types</a> in the <i>Amazon EC2 User Guide for
+  /// Windows</i>.
+  /// </li>
+  /// </ul>
+  final List<PlatformDifference>? platformDifferences;
 
   /// An array of objects that describe the projected utilization metrics of the
   /// instance recommendation option.
@@ -2327,6 +3554,7 @@ class InstanceRecommendationOption {
   InstanceRecommendationOption({
     this.instanceType,
     this.performanceRisk,
+    this.platformDifferences,
     this.projectedUtilizationMetrics,
     this.rank,
   });
@@ -2334,6 +3562,10 @@ class InstanceRecommendationOption {
     return InstanceRecommendationOption(
       instanceType: json['instanceType'] as String?,
       performanceRisk: json['performanceRisk'] as double?,
+      platformDifferences: (json['platformDifferences'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toPlatformDifference())
+          .toList(),
       projectedUtilizationMetrics:
           (json['projectedUtilizationMetrics'] as List?)
               ?.whereNotNull()
@@ -2345,10 +3577,15 @@ class InstanceRecommendationOption {
 }
 
 /// Describes a filter that returns a more specific list of recommendation
-/// export jobs.
+/// export jobs. Use this filter with the
+/// <code>DescribeRecommendationExportJobs</code> action.
 ///
-/// This filter is used with the <code>DescribeRecommendationExportJobs</code>
-/// action.
+/// You can use <code>EBSFilter</code> with the
+/// <code>GetEBSVolumeRecommendations</code> action,
+/// <code>LambdaFunctionRecommendationFilter</code> with the
+/// <code>GetLambdaFunctionRecommendations</code> action, and
+/// <code>Filter</code> with the <code>GetAutoScalingGroupRecommendations</code>
+/// and <code>GetEC2InstanceRecommendations</code> actions.
 class JobFilter {
   /// The name of the filter.
   ///
@@ -2367,13 +3604,13 @@ class JobFilter {
   /// <ul>
   /// <li>
   /// Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you
-  /// specified the <code>name</code> parameter as <code>ResourceType</code>.
-  /// There is no filter for EBS volumes because volume recommendations cannot be
+  /// specify the <code>name</code> parameter as <code>ResourceType</code>. There
+  /// is no filter for EBS volumes because volume recommendations cannot be
   /// exported at this time.
   /// </li>
   /// <li>
   /// Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>,
-  /// or <code>Failed</code> if you specified the <code>name</code> parameter as
+  /// or <code>Failed</code> if you specify the <code>name</code> parameter as
   /// <code>JobStatus</code>.
   /// </li>
   /// </ul>
@@ -2643,7 +3880,7 @@ class LambdaFunctionRecommendation {
   /// The amount of memory, in MB, that's allocated to the current function.
   final int? currentMemorySize;
 
-  /// The finding classification for the function.
+  /// The finding classification of the function.
   ///
   /// Findings for functions include:
   ///
@@ -2683,7 +3920,7 @@ class LambdaFunctionRecommendation {
   /// Functions that have a finding classification of <code>Optimized</code> don't
   /// have a finding reason code.
   /// </note>
-  /// Reason codes include:
+  /// Finding reason codes for functions include:
   ///
   /// <ul>
   /// <li>
@@ -2711,8 +3948,9 @@ class LambdaFunctionRecommendation {
   /// </li>
   /// <li>
   /// <b> <code>Inconclusive</code> </b> — The function does not qualify for a
-  /// recommendation, or there was an internal error. This finding reason code is
-  /// part of the <code>Unavailable</code> finding classification.
+  /// recommendation because Compute Optimizer cannot generate a recommendation
+  /// with a high degree of confidence. This finding reason code is part of the
+  /// <code>Unavailable</code> finding classification.
   /// </li>
   /// </ul>
   final List<LambdaFunctionRecommendationFindingReasonCode>? findingReasonCodes;
@@ -2787,7 +4025,14 @@ class LambdaFunctionRecommendation {
 }
 
 /// Describes a filter that returns a more specific list of AWS Lambda function
-/// recommendations.
+/// recommendations. Use this filter with the
+/// <code>GetLambdaFunctionRecommendations</code> action.
+///
+/// You can use <code>EBSFilter</code> with the
+/// <code>GetEBSVolumeRecommendations</code> action, <code>JobFilter</code> with
+/// the <code>DescribeRecommendationExportJobs</code> action, and
+/// <code>Filter</code> with the <code>GetAutoScalingGroupRecommendations</code>
+/// and <code>GetEC2InstanceRecommendations</code> actions.
 class LambdaFunctionRecommendationFilter {
   /// The name of the filter.
   ///
@@ -2806,14 +4051,14 @@ class LambdaFunctionRecommendationFilter {
   /// <ul>
   /// <li>
   /// Specify <code>Optimized</code>, <code>NotOptimized</code>, or
-  /// <code>Unavailable</code> if you specified the <code>name</code> parameter as
+  /// <code>Unavailable</code> if you specify the <code>name</code> parameter as
   /// <code>Finding</code>.
   /// </li>
   /// <li>
   /// Specify <code>MemoryOverprovisioned</code>,
   /// <code>MemoryUnderprovisioned</code>, <code>InsufficientData</code>, or
-  /// <code>Inconclusive</code> if you specified the <code>name</code> parameter
-  /// as <code>FindingReasonCode</code>.
+  /// <code>Inconclusive</code> if you specify the <code>name</code> parameter as
+  /// <code>FindingReasonCode</code>.
   /// </li>
   /// </ul>
   final List<String>? values;
@@ -2941,9 +4186,36 @@ extension on String {
 /// Describes a utilization metric of an AWS Lambda function.
 class LambdaFunctionUtilizationMetric {
   /// The name of the utilization metric.
+  ///
+  /// The following utilization metrics are available:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Duration</code> - The amount of time that your function code spends
+  /// processing an event.
+  /// </li>
+  /// <li>
+  /// <code>Memory</code> - The amount of memory used per invocation.
+  /// </li>
+  /// </ul>
   final LambdaFunctionMetricName? name;
 
   /// The statistic of the utilization metric.
+  ///
+  /// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+  /// return utilization metrics using only the <code>Maximum</code> statistic,
+  /// which is the highest value observed during the specified period.
+  ///
+  /// The Compute Optimizer console displays graphs for some utilization metrics
+  /// using the <code>Average</code> statistic, which is the value of
+  /// <code>Sum</code> / <code>SampleCount</code> during the specified period. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html">Viewing
+  /// resource recommendations</a> in the <i>AWS Compute Optimizer User Guide</i>.
+  /// You can also get averaged utilization metric data for your resources using
+  /// Amazon CloudWatch. For more information, see the <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html">Amazon
+  /// CloudWatch User Guide</a>.
   final LambdaFunctionMetricStatistic? statistic;
 
   /// The value of the utilization metric.
@@ -2971,6 +4243,14 @@ enum MetricName {
   ebsWriteOpsPerSecond,
   ebsReadBytesPerSecond,
   ebsWriteBytesPerSecond,
+  diskReadOpsPerSecond,
+  diskWriteOpsPerSecond,
+  diskReadBytesPerSecond,
+  diskWriteBytesPerSecond,
+  networkInBytesPerSecond,
+  networkOutBytesPerSecond,
+  networkPacketsInPerSecond,
+  networkPacketsOutPerSecond,
 }
 
 extension on MetricName {
@@ -2988,6 +4268,22 @@ extension on MetricName {
         return 'EBS_READ_BYTES_PER_SECOND';
       case MetricName.ebsWriteBytesPerSecond:
         return 'EBS_WRITE_BYTES_PER_SECOND';
+      case MetricName.diskReadOpsPerSecond:
+        return 'DISK_READ_OPS_PER_SECOND';
+      case MetricName.diskWriteOpsPerSecond:
+        return 'DISK_WRITE_OPS_PER_SECOND';
+      case MetricName.diskReadBytesPerSecond:
+        return 'DISK_READ_BYTES_PER_SECOND';
+      case MetricName.diskWriteBytesPerSecond:
+        return 'DISK_WRITE_BYTES_PER_SECOND';
+      case MetricName.networkInBytesPerSecond:
+        return 'NETWORK_IN_BYTES_PER_SECOND';
+      case MetricName.networkOutBytesPerSecond:
+        return 'NETWORK_OUT_BYTES_PER_SECOND';
+      case MetricName.networkPacketsInPerSecond:
+        return 'NETWORK_PACKETS_IN_PER_SECOND';
+      case MetricName.networkPacketsOutPerSecond:
+        return 'NETWORK_PACKETS_OUT_PER_SECOND';
     }
   }
 }
@@ -3007,6 +4303,22 @@ extension on String {
         return MetricName.ebsReadBytesPerSecond;
       case 'EBS_WRITE_BYTES_PER_SECOND':
         return MetricName.ebsWriteBytesPerSecond;
+      case 'DISK_READ_OPS_PER_SECOND':
+        return MetricName.diskReadOpsPerSecond;
+      case 'DISK_WRITE_OPS_PER_SECOND':
+        return MetricName.diskWriteOpsPerSecond;
+      case 'DISK_READ_BYTES_PER_SECOND':
+        return MetricName.diskReadBytesPerSecond;
+      case 'DISK_WRITE_BYTES_PER_SECOND':
+        return MetricName.diskWriteBytesPerSecond;
+      case 'NETWORK_IN_BYTES_PER_SECOND':
+        return MetricName.networkInBytesPerSecond;
+      case 'NETWORK_OUT_BYTES_PER_SECOND':
+        return MetricName.networkOutBytesPerSecond;
+      case 'NETWORK_PACKETS_IN_PER_SECOND':
+        return MetricName.networkPacketsInPerSecond;
+      case 'NETWORK_PACKETS_OUT_PER_SECOND':
+        return MetricName.networkPacketsOutPerSecond;
     }
     throw Exception('$this is not known in enum MetricName');
   }
@@ -3037,6 +4349,49 @@ extension on String {
         return MetricStatistic.average;
     }
     throw Exception('$this is not known in enum MetricStatistic');
+  }
+}
+
+enum PlatformDifference {
+  hypervisor,
+  networkInterface,
+  storageInterface,
+  instanceStoreAvailability,
+  virtualizationType,
+}
+
+extension on PlatformDifference {
+  String toValue() {
+    switch (this) {
+      case PlatformDifference.hypervisor:
+        return 'Hypervisor';
+      case PlatformDifference.networkInterface:
+        return 'NetworkInterface';
+      case PlatformDifference.storageInterface:
+        return 'StorageInterface';
+      case PlatformDifference.instanceStoreAvailability:
+        return 'InstanceStoreAvailability';
+      case PlatformDifference.virtualizationType:
+        return 'VirtualizationType';
+    }
+  }
+}
+
+extension on String {
+  PlatformDifference toPlatformDifference() {
+    switch (this) {
+      case 'Hypervisor':
+        return PlatformDifference.hypervisor;
+      case 'NetworkInterface':
+        return PlatformDifference.networkInterface;
+      case 'StorageInterface':
+        return PlatformDifference.storageInterface;
+      case 'InstanceStoreAvailability':
+        return PlatformDifference.instanceStoreAvailability;
+      case 'VirtualizationType':
+        return PlatformDifference.virtualizationType;
+    }
+    throw Exception('$this is not known in enum PlatformDifference');
   }
 }
 
@@ -3328,6 +4683,8 @@ class RecommendedOptionProjectedMetric {
 enum ResourceType {
   ec2Instance,
   autoScalingGroup,
+  ebsVolume,
+  lambdaFunction,
 }
 
 extension on ResourceType {
@@ -3337,6 +4694,10 @@ extension on ResourceType {
         return 'Ec2Instance';
       case ResourceType.autoScalingGroup:
         return 'AutoScalingGroup';
+      case ResourceType.ebsVolume:
+        return 'EbsVolume';
+      case ResourceType.lambdaFunction:
+        return 'LambdaFunction';
     }
   }
 }
@@ -3348,6 +4709,10 @@ extension on String {
         return ResourceType.ec2Instance;
       case 'AutoScalingGroup':
         return ResourceType.autoScalingGroup;
+      case 'EbsVolume':
+        return ResourceType.ebsVolume;
+      case 'LambdaFunction':
+        return ResourceType.lambdaFunction;
     }
     throw Exception('$this is not known in enum ResourceType');
   }
@@ -3565,24 +4930,79 @@ class UtilizationMetric {
   ///
   /// Unit: Bytes
   /// </li>
+  /// <li>
+  /// <code>DISK_READ_OPS_PER_SECOND</code> - The completed read operations from
+  /// all instance store volumes available to the instance in a specified period
+  /// of time.
+  ///
+  /// If there are no instance store volumes, either the value is <code>0</code>
+  /// or the metric is not reported.
+  /// </li>
+  /// <li>
+  /// <code>DISK_WRITE_OPS_PER_SECOND</code> - The completed write operations from
+  /// all instance store volumes available to the instance in a specified period
+  /// of time.
+  ///
+  /// If there are no instance store volumes, either the value is <code>0</code>
+  /// or the metric is not reported.
+  /// </li>
+  /// <li>
+  /// <code>DISK_READ_BYTES_PER_SECOND</code> - The bytes read from all instance
+  /// store volumes available to the instance. This metric is used to determine
+  /// the volume of the data the application reads from the disk of the instance.
+  /// This can be used to determine the speed of the application.
+  ///
+  /// If there are no instance store volumes, either the value is <code>0</code>
+  /// or the metric is not reported.
+  /// </li>
+  /// <li>
+  /// <code>DISK_WRITE_BYTES_PER_SECOND</code> - The bytes written to all instance
+  /// store volumes available to the instance. This metric is used to determine
+  /// the volume of the data the application writes onto the disk of the instance.
+  /// This can be used to determine the speed of the application.
+  ///
+  /// If there are no instance store volumes, either the value is <code>0</code>
+  /// or the metric is not reported.
+  /// </li>
+  /// <li>
+  /// <code>NETWORK_IN_BYTES_PER_SECOND</code> - The number of bytes received by
+  /// the instance on all network interfaces. This metric identifies the volume of
+  /// incoming network traffic to a single instance.
+  /// </li>
+  /// <li>
+  /// <code>NETWORK_OUT_BYTES_PER_SECOND</code> - The number of bytes sent out by
+  /// the instance on all network interfaces. This metric identifies the volume of
+  /// outgoing network traffic from a single instance.
+  /// </li>
+  /// <li>
+  /// <code>NETWORK_PACKETS_IN_PER_SECOND</code> - The number of packets received
+  /// by the instance on all network interfaces. This metric identifies the volume
+  /// of incoming traffic in terms of the number of packets on a single instance.
+  /// </li>
+  /// <li>
+  /// <code>NETWORK_PACKETS_OUT_PER_SECOND</code> - The number of packets sent out
+  /// by the instance on all network interfaces. This metric identifies the volume
+  /// of outgoing traffic in terms of the number of packets on a single instance.
+  /// </li>
   /// </ul>
   final MetricName? name;
 
   /// The statistic of the utilization metric.
   ///
-  /// The following statistics are available:
+  /// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+  /// return utilization metrics using only the <code>Maximum</code> statistic,
+  /// which is the highest value observed during the specified period.
   ///
-  /// <ul>
-  /// <li>
-  /// <code>Average</code> - This is the value of Sum / SampleCount during the
-  /// specified period, or the average value observed during the specified period.
-  /// </li>
-  /// <li>
-  /// <code>Maximum</code> - The highest value observed during the specified
-  /// period. Use this value to determine high volumes of activity for your
-  /// application.
-  /// </li>
-  /// </ul>
+  /// The Compute Optimizer console displays graphs for some utilization metrics
+  /// using the <code>Average</code> statistic, which is the value of
+  /// <code>Sum</code> / <code>SampleCount</code> during the specified period. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html">Viewing
+  /// resource recommendations</a> in the <i>AWS Compute Optimizer User Guide</i>.
+  /// You can also get averaged utilization metric data for your resources using
+  /// Amazon CloudWatch. For more information, see the <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html">Amazon
+  /// CloudWatch User Guide</a>.
   final MetricStatistic? statistic;
 
   /// The value of the utilization metric.
@@ -3656,7 +5076,7 @@ class VolumeRecommendation {
   /// An array of objects that describe the current configuration of the volume.
   final VolumeConfiguration? currentConfiguration;
 
-  /// The finding classification for the volume.
+  /// The finding classification of the volume.
   ///
   /// Findings for volumes include:
   ///
@@ -3734,11 +5154,14 @@ class VolumeRecommendationOption {
 
   /// The performance risk of the volume recommendation option.
   ///
-  /// Performance risk is the likelihood of the recommended volume type not
-  /// meeting the performance requirement of your workload.
+  /// Performance risk is the likelihood of the recommended volume type meeting
+  /// the performance requirement of your workload.
   ///
-  /// The lowest performance risk is categorized as <code>0</code>, and the
-  /// highest as <code>5</code>.
+  /// The value ranges from <code>0</code> to <code>5</code>, with <code>0</code>
+  /// meaning that the recommended resource is predicted to always provide enough
+  /// hardware capability. The higher the performance risk is, the more likely you
+  /// should validate whether the recommendation will meet the performance
+  /// requirements of your workload before migrating your resource.
   final double? performanceRisk;
 
   /// The rank of the volume recommendation option.

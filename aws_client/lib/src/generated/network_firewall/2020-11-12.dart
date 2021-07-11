@@ -72,9 +72,6 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// Perform deep packet inspection on traffic entering or leaving your VPC.
 /// </li>
 /// <li>
-/// Rate limit traffic going from AWS to on-premises IP destinations.
-/// </li>
-/// <li>
 /// Use stateful protocol detection to filter protocols like HTTPS, regardless
 /// of the port used.
 /// </li>
@@ -189,22 +186,11 @@ class NetworkFirewall {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      r'''^arn:aws.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'firewallArn',
       firewallArn,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
     );
     _s.validateStringLength(
       'firewallName',
@@ -212,21 +198,11 @@ class NetworkFirewall {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -265,6 +241,7 @@ class NetworkFirewall {
   /// May throw [ThrottlingException].
   /// May throw [InvalidTokenException].
   /// May throw [InvalidOperationException].
+  /// May throw [InsufficientCapacityException].
   ///
   /// Parameter [subnetMappings] :
   /// The IDs of the subnets that you want to associate with the firewall.
@@ -310,32 +287,17 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -451,24 +413,12 @@ class NetworkFirewall {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallPolicyArn, 'firewallPolicyArn');
     _s.validateStringLength(
       'firewallPolicyArn',
       firewallPolicyArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(subnetMappings, 'subnetMappings');
@@ -480,22 +430,11 @@ class NetworkFirewall {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vpcId',
-      vpcId,
-      r'''^vpc-[0-9a-f]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -581,22 +520,11 @@ class NetworkFirewall {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'firewallPolicyName',
-      firewallPolicyName,
-      r'''^[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -715,21 +643,17 @@ class NetworkFirewall {
   /// </note>
   ///
   /// Parameter [rules] :
-  /// The name of a file containing stateful rule group rules specifications in
-  /// Suricata flat format, with one rule per line. Use this to import your
-  /// existing Suricata compatible rule groups.
+  /// A string containing stateful rule group rules specifications in Suricata
+  /// flat format, with one rule per line. Use this to import your existing
+  /// Suricata compatible rule groups.
   /// <note>
   /// You must provide either this rules setting or a populated
   /// <code>RuleGroup</code> setting, but not both.
   /// </note>
-  /// You can provide your rule group specification in a file through this
-  /// setting when you create or update your rule group. The call response
-  /// returns a <a>RuleGroup</a> object that Network Firewall has populated from
-  /// your file. Network Firewall uses the file contents to populate the rule
-  /// group rules, but does not maintain a reference to the file or use the file
-  /// in any way after performing the create or update. If you call
-  /// <a>DescribeRuleGroup</a> to retrieve the rule group, Network Firewall
-  /// returns rules settings inside a <a>RuleGroup</a> object.
+  /// You can provide your rule group specification in Suricata flat format
+  /// through this setting when you create or update your rule group. The call
+  /// response returns a <a>RuleGroup</a> object that Network Firewall has
+  /// populated from your string.
   ///
   /// Parameter [tags] :
   /// The key:value pairs to associate with the resource.
@@ -752,23 +676,12 @@ class NetworkFirewall {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'ruleGroupName',
-      ruleGroupName,
-      r'''^[a-zA-Z0-9-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
     );
     _s.validateStringLength(
       'rules',
@@ -844,21 +757,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -908,21 +811,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallPolicyName',
       firewallPolicyName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallPolicyName',
-      firewallPolicyName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -947,6 +840,7 @@ class NetworkFirewall {
   /// Deletes a resource policy that you created in a <a>PutResourcePolicy</a>
   /// request.
   ///
+  /// May throw [InvalidRequestException].
   /// May throw [InternalServerError].
   /// May throw [ResourceNotFoundException].
   /// May throw [ThrottlingException].
@@ -963,12 +857,6 @@ class NetworkFirewall {
       resourceArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1026,21 +914,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'ruleGroupArn',
-      ruleGroupArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'ruleGroupName',
       ruleGroupName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'ruleGroupName',
-      ruleGroupName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1089,21 +967,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1151,21 +1019,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallPolicyName',
       firewallPolicyName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallPolicyName',
-      firewallPolicyName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1214,21 +1072,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1252,6 +1100,7 @@ class NetworkFirewall {
   /// Retrieves a resource policy that you created in a <a>PutResourcePolicy</a>
   /// request.
   ///
+  /// May throw [InvalidRequestException].
   /// May throw [InternalServerError].
   /// May throw [ResourceNotFoundException].
   /// May throw [ThrottlingException].
@@ -1268,12 +1117,6 @@ class NetworkFirewall {
       resourceArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1331,21 +1174,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'ruleGroupArn',
-      ruleGroupArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'ruleGroupName',
       ruleGroupName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'ruleGroupName',
-      ruleGroupName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1422,32 +1255,17 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1506,11 +1324,6 @@ class NetworkFirewall {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[0-9A-Za-z:\/+=]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1577,11 +1390,6 @@ class NetworkFirewall {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[0-9A-Za-z:\/+=]+$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.ListFirewalls'
@@ -1639,11 +1447,6 @@ class NetworkFirewall {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[0-9A-Za-z:\/+=]+$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.ListRuleGroups'
@@ -1673,6 +1476,7 @@ class NetworkFirewall {
   /// Firewall: firewalls, firewall policies, and rule groups.
   ///
   /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
   ///
   /// Parameter [resourceArn] :
   /// The Amazon Resource Name (ARN) of the resource.
@@ -1703,12 +1507,6 @@ class NetworkFirewall {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1720,11 +1518,6 @@ class NetworkFirewall {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[0-9A-Za-z:\/+=]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1839,24 +1632,12 @@ class NetworkFirewall {
       395000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policy',
-      policy,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1905,12 +1686,6 @@ class NetworkFirewall {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1957,12 +1732,6 @@ class NetworkFirewall {
       resourceArn,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -2045,32 +1814,17 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2146,21 +1900,11 @@ class NetworkFirewall {
       0,
       512,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
-    );
     _s.validateStringLength(
       'firewallArn',
       firewallArn,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
     );
     _s.validateStringLength(
       'firewallName',
@@ -2168,21 +1912,11 @@ class NetworkFirewall {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2274,22 +2008,11 @@ class NetworkFirewall {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
     );
     _s.validateStringLength(
       'firewallPolicyArn',
@@ -2297,21 +2020,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallPolicyName',
       firewallPolicyName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallPolicyName',
-      firewallPolicyName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2396,32 +2109,17 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2512,21 +2210,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2613,21 +2301,17 @@ class NetworkFirewall {
   /// You must specify the ARN or the name, and you can specify both.
   ///
   /// Parameter [rules] :
-  /// The name of a file containing stateful rule group rules specifications in
-  /// Suricata flat format, with one rule per line. Use this to import your
-  /// existing Suricata compatible rule groups.
+  /// A string containing stateful rule group rules specifications in Suricata
+  /// flat format, with one rule per line. Use this to import your existing
+  /// Suricata compatible rule groups.
   /// <note>
   /// You must provide either this rules setting or a populated
   /// <code>RuleGroup</code> setting, but not both.
   /// </note>
-  /// You can provide your rule group specification in a file through this
-  /// setting when you create or update your rule group. The call response
-  /// returns a <a>RuleGroup</a> object that Network Firewall has populated from
-  /// your file. Network Firewall uses the file contents to populate the rule
-  /// group rules, but does not maintain a reference to the file or use the file
-  /// in any way after performing the create or update. If you call
-  /// <a>DescribeRuleGroup</a> to retrieve the rule group, Network Firewall
-  /// returns rules settings inside a <a>RuleGroup</a> object.
+  /// You can provide your rule group specification in Suricata flat format
+  /// through this setting when you create or update your rule group. The call
+  /// response returns a <a>RuleGroup</a> object that Network Firewall has
+  /// populated from your string.
   ///
   /// Parameter [type] :
   /// Indicates whether the rule group is stateless or stateful. If the rule
@@ -2655,22 +2339,11 @@ class NetworkFirewall {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^.*$''',
     );
     _s.validateStringLength(
       'ruleGroupArn',
@@ -2678,21 +2351,11 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'ruleGroupArn',
-      ruleGroupArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'ruleGroupName',
       ruleGroupName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'ruleGroupName',
-      ruleGroupName,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     _s.validateStringLength(
       'rules',
@@ -2783,32 +2446,17 @@ class NetworkFirewall {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'firewallArn',
-      firewallArn,
-      r'''^arn:aws.*''',
-    );
     _s.validateStringLength(
       'firewallName',
       firewallName,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'firewallName',
-      firewallName,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'updateToken',
       updateToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'updateToken',
-      updateToken,
-      r'''^([0-9a-f]{8})-([0-9a-f]{4}-){3}([0-9a-f]{12})$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -3697,10 +3345,11 @@ class FirewallPolicy {
   /// compatibility, see the custom action descriptions under <a>CustomAction</a>.
   final List<String> statelessDefaultActions;
 
-  /// The actions to take on a fragmented packet if it doesn't match any of the
-  /// stateless rules in the policy. If you want non-matching fragmented packets
-  /// to be forwarded for stateful inspection, specify
-  /// <code>aws:forward_to_sfe</code>.
+  /// The actions to take on a fragmented UDP packet if it doesn't match any of
+  /// the stateless rules in the policy. Network Firewall only manages UDP packet
+  /// fragments and silently drops packet fragments for other protocols. If you
+  /// want non-matching fragmented UDP packets to be forwarded for stateful
+  /// inspection, specify <code>aws:forward_to_sfe</code>.
   ///
   /// You must specify one of the standard actions: <code>aws:pass</code>,
   /// <code>aws:drop</code>, or <code>aws:forward_to_sfe</code>. In addition, you
@@ -4013,8 +3662,8 @@ class Header {
   /// source to the destination.
   final StatefulRuleDirection direction;
 
-  /// The protocol to inspect for. To match with any protocol, specify
-  /// <code>ANY</code>.
+  /// The protocol to inspect for. To specify all, you can use <code>IP</code>,
+  /// because all traffic on AWS and on the internet is IP.
   final StatefulRuleProtocol protocol;
 
   /// The source IP address or address range to inspect for, in CIDR notation. To
@@ -4476,17 +4125,29 @@ class MatchAttributes {
   }
 }
 
-/// <p/>
+/// Provides configuration status for a single policy or rule group that is used
+/// for a firewall endpoint. Network Firewall provides each endpoint with the
+/// rules that are configured in the firewall policy. Each time you add a subnet
+/// or modify the associated firewall policy, Network Firewall synchronizes the
+/// rules in the endpoint, so it can properly filter network traffic. This is
+/// part of a <a>SyncState</a> for a firewall.
 class PerObjectStatus {
-  /// <p/>
+  /// Indicates whether this object is in sync with the version indicated in the
+  /// update token.
   final PerObjectSyncStatus? syncStatus;
+
+  /// The current version of the object that is either in sync or pending
+  /// synchronization.
+  final String? updateToken;
 
   PerObjectStatus({
     this.syncStatus,
+    this.updateToken,
   });
   factory PerObjectStatus.fromJson(Map<String, dynamic> json) {
     return PerObjectStatus(
       syncStatus: (json['SyncStatus'] as String?)?.toPerObjectSyncStatus(),
+      updateToken: json['UpdateToken'] as String?,
     );
   }
 }
@@ -4959,12 +4620,6 @@ class RulesSource {
   /// These rules contain the inspection criteria and the action to take for
   /// traffic that matches the criteria, so this type of rule group doesn't have a
   /// separate action setting.
-  ///
-  /// You can provide the rules from a file that you've stored in an Amazon S3
-  /// bucket, or by providing the rules in a Suricata rules string. To import from
-  /// Amazon S3, provide the fully qualified name of the file that contains the
-  /// rules definitions. To provide a Suricata rule string, provide the complete,
-  /// Suricata compatible rule.
   final String? rulesString;
 
   /// The 5-tuple stateful inspection criteria. This contains an array of
@@ -5016,15 +4671,45 @@ class RulesSource {
 }
 
 /// Stateful inspection criteria for a domain list rule group.
+///
+/// For HTTPS traffic, domain filtering is SNI-based. It uses the server name
+/// indicator extension of the TLS handshake.
+///
+/// By default, Network Firewall domain list inspection only includes traffic
+/// coming from the VPC where you deploy the firewall. To inspect traffic from
+/// IP addresses outside of the deployment VPC, you set the
+/// <code>HOME_NET</code> rule variable to include the CIDR range of the
+/// deployment VPC plus the other CIDR ranges. For more information, see
+/// <a>RuleVariables</a> in this guide and <a
+/// href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html">Stateful
+/// domain list rule groups in AWS Network Firewall</a> in the <i>Network
+/// Firewall Developer Guide</i>
 class RulesSourceList {
   /// Whether you want to allow or deny access to the domains in your target list.
   final GeneratedRulesType generatedRulesType;
 
-  /// <p/>
+  /// The protocols you want to inspect. Specify <code>TLS_SNI</code> for
+  /// <code>HTTPS</code>. Specity <code>HTTP_HOST</code> for <code>HTTP</code>.
+  /// You can specify either or both.
   final List<TargetType> targetTypes;
 
   /// The domains that you want to inspect for in your traffic flows. To provide
-  /// multiple domains, separate them with commas.
+  /// multiple domains, separate them with commas. Valid domain specifications are
+  /// the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// Explicit names. For example, <code>abc.example.com</code> matches only the
+  /// domain <code>abc.example.com</code>.
+  /// </li>
+  /// <li>
+  /// Names that use a domain wildcard, which you indicate with an initial
+  /// '<code>.</code>'. For example,<code>.example.com</code> matches
+  /// <code>example.com</code> and matches all subdomains of
+  /// <code>example.com</code>, such as <code>abc.example.com</code> and
+  /// <code>www.example.com</code>.
+  /// </li>
+  /// </ul>
   final List<String> targets;
 
   RulesSourceList({

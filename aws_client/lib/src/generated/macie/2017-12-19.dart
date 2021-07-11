@@ -58,12 +58,6 @@ class Macie {
     required String memberAccountId,
   }) async {
     ArgumentError.checkNotNull(memberAccountId, 'memberAccountId');
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MacieService.AssociateMemberAccount'
@@ -82,10 +76,10 @@ class Macie {
 
   /// Associates specified S3 resources with Amazon Macie Classic for monitoring
   /// and data classification. If memberAccountId isn't specified, the action
-  /// associates specified S3 resources with Macie Classic for the current
-  /// master account. If memberAccountId is specified, the action associates
-  /// specified S3 resources with Macie Classic for the specified member
-  /// account.
+  /// associates specified S3 resources with Macie Classic for the current Macie
+  /// Classic administrator account. If memberAccountId is specified, the action
+  /// associates specified S3 resources with Macie Classic for the specified
+  /// member account.
   ///
   /// May throw [InvalidInputException].
   /// May throw [AccessDeniedException].
@@ -104,11 +98,6 @@ class Macie {
     String? memberAccountId,
   }) async {
     ArgumentError.checkNotNull(s3Resources, 's3Resources');
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MacieService.AssociateS3Resources'
@@ -140,12 +129,6 @@ class Macie {
     required String memberAccountId,
   }) async {
     ArgumentError.checkNotNull(memberAccountId, 'memberAccountId');
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MacieService.DisassociateMemberAccount'
@@ -164,9 +147,10 @@ class Macie {
 
   /// Removes specified S3 resources from being monitored by Amazon Macie
   /// Classic. If memberAccountId isn't specified, the action removes specified
-  /// S3 resources from Macie Classic for the current master account. If
-  /// memberAccountId is specified, the action removes specified S3 resources
-  /// from Macie Classic for the specified member account.
+  /// S3 resources from Macie Classic for the current Macie Classic
+  /// administrator account. If memberAccountId is specified, the action removes
+  /// specified S3 resources from Macie Classic for the specified member
+  /// account.
   ///
   /// May throw [InvalidInputException].
   /// May throw [AccessDeniedException].
@@ -178,17 +162,12 @@ class Macie {
   ///
   /// Parameter [memberAccountId] :
   /// The ID of the Amazon Macie Classic member account whose resources you want
-  /// to remove from being monitored by Amazon Macie Classic.
+  /// to remove from being monitored by Macie Classic.
   Future<DisassociateS3ResourcesResult> disassociateS3Resources({
     required List<S3Resource> associatedS3Resources,
     String? memberAccountId,
   }) async {
     ArgumentError.checkNotNull(associatedS3Resources, 'associatedS3Resources');
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MacieService.DisassociateS3Resources'
@@ -208,8 +187,8 @@ class Macie {
     return DisassociateS3ResourcesResult.fromJson(jsonResponse.body);
   }
 
-  /// Lists all Amazon Macie Classic member accounts for the current Amazon
-  /// Macie Classic master account.
+  /// Lists all Amazon Macie Classic member accounts for the current Macie
+  /// Classic administrator account.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -260,9 +239,9 @@ class Macie {
 
   /// Lists all the S3 resources associated with Amazon Macie Classic. If
   /// memberAccountId isn't specified, the action lists the S3 resources
-  /// associated with Amazon Macie Classic for the current master account. If
-  /// memberAccountId is specified, the action lists the S3 resources associated
-  /// with Amazon Macie Classic for the specified member account.
+  /// associated with Macie Classic for the current Macie Classic administrator
+  /// account. If memberAccountId is specified, the action lists the S3
+  /// resources associated with Macie Classic for the specified member account.
   ///
   /// May throw [InvalidInputException].
   /// May throw [AccessDeniedException].
@@ -291,11 +270,6 @@ class Macie {
       maxResults,
       0,
       250,
-    );
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -326,9 +300,9 @@ class Macie {
   /// Updates the classification types for the specified S3 resources. If
   /// memberAccountId isn't specified, the action updates the classification
   /// types of the S3 resources associated with Amazon Macie Classic for the
-  /// current master account. If memberAccountId is specified, the action
-  /// updates the classification types of the S3 resources associated with
-  /// Amazon Macie Classic for the specified member account.
+  /// current Macie Classic administrator account. If memberAccountId is
+  /// specified, the action updates the classification types of the S3 resources
+  /// associated with Macie Classic for the specified member account.
   ///
   /// May throw [InvalidInputException].
   /// May throw [AccessDeniedException].
@@ -345,11 +319,6 @@ class Macie {
     String? memberAccountId,
   }) async {
     ArgumentError.checkNotNull(s3ResourcesUpdate, 's3ResourcesUpdate');
-    _s.validateStringPattern(
-      'memberAccountId',
-      memberAccountId,
-      r'''[0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MacieService.UpdateS3Resources'
@@ -393,7 +362,7 @@ class AssociateS3ResourcesResult {
 class ClassificationType {
   /// A continuous classification of the objects that are added to a specified S3
   /// bucket. Amazon Macie Classic begins performing continuous classification
-  /// after a bucket is successfully associated with Amazon Macie Classic.
+  /// after a bucket is successfully associated with Macie Classic.
   final S3ContinuousClassificationType continuous;
 
   /// A one-time classification of all of the existing objects in a specified S3
@@ -428,7 +397,7 @@ class ClassificationType {
 class ClassificationTypeUpdate {
   /// A continuous classification of the objects that are added to a specified S3
   /// bucket. Amazon Macie Classic begins performing continuous classification
-  /// after a bucket is successfully associated with Amazon Macie Classic.
+  /// after a bucket is successfully associated with Macie Classic.
   final S3ContinuousClassificationType? continuous;
 
   /// A one-time classification of all of the existing objects in a specified S3
@@ -497,7 +466,8 @@ class FailedS3Resource {
 
 class ListMemberAccountsResult {
   /// A list of the Amazon Macie Classic member accounts returned by the action.
-  /// The current master account is also included in this list.
+  /// The current Macie Classic administrator account is also included in this
+  /// list.
   final List<MemberAccount>? memberAccounts;
 
   /// When a response is generated, if there is more data to be listed, this

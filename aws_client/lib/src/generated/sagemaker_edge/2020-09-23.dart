@@ -61,24 +61,12 @@ class SagemakerEdgeManager {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*_*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
     _s.validateStringLength(
       'deviceName',
       deviceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceName',
-      deviceName,
-      r'''^[a-zA-Z0-9](-*_*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -129,12 +117,6 @@ class SagemakerEdgeManager {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'agentVersion',
-      agentVersion,
-      r'''[a-zA-Z0-9\ \_\.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
     _s.validateStringLength(
       'deviceFleetName',
@@ -143,24 +125,12 @@ class SagemakerEdgeManager {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*_*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
     _s.validateStringLength(
       'deviceName',
       deviceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceName',
-      deviceName,
-      r'''^[a-zA-Z0-9](-*_*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{

@@ -19,19 +19,19 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// The AWS Support API reference is intended for programmers who need detailed
-/// information about the AWS Support operations and data types. This service
-/// enables you to manage your AWS Support cases programmatically. It uses HTTP
-/// methods that return results in JSON format.
+/// The <i>AWS Support API Reference</i> is intended for programmers who need
+/// detailed information about the AWS Support operations and data types. You
+/// can use the API to manage your support cases programmatically. The AWS
+/// Support API uses HTTP methods that return results in JSON format.
 /// <note>
 /// <ul>
 /// <li>
-/// You must have a Business or Enterprise support plan to use the AWS Support
+/// You must have a Business or Enterprise Support plan to use the AWS Support
 /// API.
 /// </li>
 /// <li>
 /// If you call the AWS Support API from an account that does not have a
-/// Business or Enterprise support plan, the
+/// Business or Enterprise Support plan, the
 /// <code>SubscriptionRequiredException</code> error message appears. For
 /// information about changing your support plan, see <a
 /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -68,12 +68,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -135,12 +135,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -160,8 +160,8 @@ class Support {
   /// the case. Create the set by calling <a>AddAttachmentsToSet</a>
   ///
   /// Parameter [caseId] :
-  /// The AWS Support case ID requested or returned in the call. The case ID is
-  /// an alphanumeric string formatted as shown in this example:
+  /// The support case ID requested or returned in the call. The case ID is an
+  /// alphanumeric string formatted as shown in this example:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   ///
   /// Parameter [ccEmailAddresses] :
@@ -235,12 +235,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -259,7 +259,7 @@ class Support {
   /// Case</a> page.
   ///
   /// Parameter [subject] :
-  /// The title of the AWS Support case. The title appears in the <b>Subject</b>
+  /// The title of the support case. The title appears in the <b>Subject</b>
   /// field on the AWS Support Center <a
   /// href="https://console.aws.amazon.com/support/home#/case/create">Create
   /// Case</a> page.
@@ -269,7 +269,7 @@ class Support {
   /// using the <a>AddAttachmentsToSet</a> operation.
   ///
   /// Parameter [categoryCode] :
-  /// The category of problem for the AWS Support case. You also use the
+  /// The category of problem for the support case. You also use the
   /// <a>DescribeServices</a> operation to get the category code for a service.
   /// Each AWS service defines its own set of category codes.
   ///
@@ -362,12 +362,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -427,12 +427,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -460,7 +460,7 @@ class Support {
   /// Parameter [includeCommunications] :
   /// Specifies whether to include communications in the
   /// <code>DescribeCases</code> response. By default, communications are
-  /// incuded.
+  /// included.
   ///
   /// Parameter [includeResolvedCases] :
   /// Specifies whether to include resolved support cases in the
@@ -538,12 +538,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -554,8 +554,8 @@ class Support {
   /// May throw [CaseIdNotFound].
   ///
   /// Parameter [caseId] :
-  /// The AWS Support case ID requested or returned in the call. The case ID is
-  /// an alphanumeric string formatted as shown in this example:
+  /// The support case ID requested or returned in the call. The case ID is an
+  /// alphanumeric string formatted as shown in this example:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   ///
   /// Parameter [afterTime] :
@@ -623,12 +623,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -667,19 +667,18 @@ class Support {
     return DescribeServicesResponse.fromJson(jsonResponse.body);
   }
 
-  /// Returns the list of severity levels that you can assign to an AWS Support
-  /// case. The severity level for a case is also a field in the
-  /// <a>CaseDetails</a> data type that you include for a <a>CreateCase</a>
-  /// request.
+  /// Returns the list of severity levels that you can assign to a support case.
+  /// The severity level for a case is also a field in the <a>CaseDetails</a>
+  /// data type that you include for a <a>CreateCase</a> request.
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -725,12 +724,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -740,7 +739,7 @@ class Support {
   /// May throw [InternalServerError].
   ///
   /// Parameter [checkIds] :
-  /// The IDs of the Trusted Advisor checks to get the status of.
+  /// The IDs of the Trusted Advisor checks to get the status.
   /// <note>
   /// If you specify the check ID of a check that is automatically refreshed,
   /// you might see an <code>InvalidParameterValue</code> error.
@@ -792,8 +791,9 @@ class Support {
   ///
   /// <ul>
   /// <li>
-  /// <b>status</b> - The alert status of the check: "ok" (green), "warning"
-  /// (yellow), "error" (red), or "not_available".
+  /// <b>status</b> - The alert status of the check can be <code>ok</code>
+  /// (green), <code>warning</code> (yellow), <code>error</code> (red), or
+  /// <code>not_available</code>.
   /// </li>
   /// <li>
   /// <b>timestamp</b> - The time of the last refresh of the check.
@@ -804,12 +804,12 @@ class Support {
   /// </ul> <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -860,12 +860,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -909,15 +909,20 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
+  /// </li>
+  /// <li>
+  /// The names and descriptions for Trusted Advisor checks are subject to
+  /// change. We recommend that you specify the check ID in your code to
+  /// uniquely identify a check.
   /// </li>
   /// </ul> </note>
   ///
@@ -961,12 +966,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -977,8 +982,10 @@ class Support {
   ///
   /// Parameter [checkId] :
   /// The unique identifier for the Trusted Advisor check to refresh.
-  /// <b>Note:</b> Specifying the check ID of a check that is automatically
-  /// refreshed causes an <code>InvalidParameterValue</code> error.
+  /// <note>
+  /// Specifying the check ID of a check that is automatically refreshed causes
+  /// an <code>InvalidParameterValue</code> error.
+  /// </note>
   Future<RefreshTrustedAdvisorCheckResponse> refreshTrustedAdvisorCheck({
     required String checkId,
   }) async {
@@ -1006,12 +1013,12 @@ class Support {
   /// <note>
   /// <ul>
   /// <li>
-  /// You must have a Business or Enterprise support plan to use the AWS Support
+  /// You must have a Business or Enterprise Support plan to use the AWS Support
   /// API.
   /// </li>
   /// <li>
   /// If you call the AWS Support API from an account that does not have a
-  /// Business or Enterprise support plan, the
+  /// Business or Enterprise Support plan, the
   /// <code>SubscriptionRequiredException</code> error message appears. For
   /// information about changing your support plan, see <a
   /// href="http://aws.amazon.com/premiumsupport/">AWS Support</a>.
@@ -1022,8 +1029,8 @@ class Support {
   /// May throw [CaseIdNotFound].
   ///
   /// Parameter [caseId] :
-  /// The AWS Support case ID requested or returned in the call. The case ID is
-  /// an alphanumeric string formatted as shown in this example:
+  /// The support case ID requested or returned in the call. The case ID is an
+  /// alphanumeric string formatted as shown in this example:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   Future<ResolveCaseResponse> resolveCase({
     String? caseId,
@@ -1144,44 +1151,44 @@ class AttachmentDetails {
 ///
 /// <ul>
 /// <li>
-/// <b>caseId.</b> The AWS Support case ID requested or returned in the call.
-/// The case ID is an alphanumeric string formatted as shown in this example:
+/// <b>caseId</b> - The support case ID requested or returned in the call. The
+/// case ID is an alphanumeric string formatted as shown in this example:
 /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>.
 /// </li>
 /// <li>
-/// <b>categoryCode.</b> The category of problem for the AWS Support case.
-/// Corresponds to the CategoryCode values returned by a call to
+/// <b>categoryCode</b> - The category of problem for the support case.
+/// Corresponds to the <code>CategoryCode</code> values returned by a call to
 /// <a>DescribeServices</a>.
 /// </li>
 /// <li>
-/// <b>displayId.</b> The identifier for the case on pages in the AWS Support
+/// <b>displayId</b> - The identifier for the case on pages in the AWS Support
 /// Center.
 /// </li>
 /// <li>
-/// <b>language.</b> The ISO 639-1 code for the language in which AWS provides
+/// <b>language</b> - The ISO 639-1 code for the language in which AWS provides
 /// support. AWS Support currently supports English ("en") and Japanese ("ja").
 /// Language parameters must be passed explicitly for operations that take them.
 /// </li>
 /// <li>
-/// <b>nextToken.</b> A resumption point for pagination.
+/// <b>nextToken</b> - A resumption point for pagination.
 /// </li>
 /// <li>
-/// <b>recentCommunications.</b> One or more <a>Communication</a> objects.
+/// <b>recentCommunications</b> - One or more <a>Communication</a> objects.
 /// Fields of these objects are <code>attachments</code>, <code>body</code>,
 /// <code>caseId</code>, <code>submittedBy</code>, and <code>timeCreated</code>.
 /// </li>
 /// <li>
-/// <b>serviceCode.</b> The identifier for the AWS service that corresponds to
+/// <b>serviceCode</b> - The identifier for the AWS service that corresponds to
 /// the service code defined in the call to <a>DescribeServices</a>.
 /// </li>
 /// <li>
-/// <b>severityCode.</b> The severity code assigned to the case. Contains one of
-/// the values returned by the call to <a>DescribeSeverityLevels</a>. The
+/// <b>severityCode</b> - The severity code assigned to the case. Contains one
+/// of the values returned by the call to <a>DescribeSeverityLevels</a>. The
 /// possible values are: <code>low</code>, <code>normal</code>,
 /// <code>high</code>, <code>urgent</code>, and <code>critical</code>.
 /// </li>
 /// <li>
-/// <b>status.</b> The status of the case in the AWS Support Center. Valid
+/// <b>status</b> - The status of the case in the AWS Support Center. Valid
 /// values:
 ///
 /// <ul>
@@ -1205,23 +1212,23 @@ class AttachmentDetails {
 /// </li>
 /// </ul> </li>
 /// <li>
-/// <b>subject.</b> The subject line of the case.
+/// <b>subject</b> - The subject line of the case.
 /// </li>
 /// <li>
-/// <b>submittedBy.</b> The email address of the account that submitted the
+/// <b>submittedBy</b> - The email address of the account that submitted the
 /// case.
 /// </li>
 /// <li>
-/// <b>timeCreated.</b> The time the case was created, in ISO-8601 format.
+/// <b>timeCreated</b> - The time the case was created, in ISO-8601 format.
 /// </li>
 /// </ul>
 class CaseDetails {
-  /// The AWS Support case ID requested or returned in the call. The case ID is an
+  /// The support case ID requested or returned in the call. The case ID is an
   /// alphanumeric string formatted as shown in this example:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   final String? caseId;
 
-  /// The category of problem for the AWS Support case.
+  /// The category of problem for the support case.
   final String? categoryCode;
 
   /// The email addresses that receive copies of communication about the case.
@@ -1344,9 +1351,9 @@ class Category {
   }
 }
 
-/// A communication associated with an AWS Support case. The communication
-/// consists of the case ID, the message body, attachment information, the
-/// submitter of the communication, and the date and time of the communication.
+/// A communication associated with a support case. The communication consists
+/// of the case ID, the message body, attachment information, the submitter of
+/// the communication, and the date and time of the communication.
 class Communication {
   /// Information about the attachments to the case communication.
   final List<AttachmentDetails>? attachmentSet;
@@ -1354,15 +1361,15 @@ class Communication {
   /// The text of the communication between the customer and AWS Support.
   final String? body;
 
-  /// The AWS Support case ID requested or returned in the call. The case ID is an
+  /// The support case ID requested or returned in the call. The case ID is an
   /// alphanumeric string formatted as shown in this example:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   final String? caseId;
 
   /// The identity of the account that submitted, or responded to, the support
   /// case. Customer entries include the role or IAM user as well as the email
-  /// address. For example, "AdminRole (Role) &lt;someone@example.com&gt;. Entries
-  /// from the AWS Support team display "Amazon Web Services," and do not show an
+  /// address. For example, "AdminRole (Role) &lt;janedoe@example.com&gt;. Entries
+  /// from the AWS Support team display "Amazon Web Services," and don't show an
   /// email address.
   final String? submittedBy;
 
@@ -1390,10 +1397,10 @@ class Communication {
   }
 }
 
-/// The AWS Support case ID returned by a successful completion of the
+/// The support case ID returned by a successful completion of the
 /// <a>CreateCase</a> operation.
 class CreateCaseResponse {
-  /// The AWS Support case ID requested or returned in the call. The case ID is an
+  /// The support case ID requested or returned in the call. The case ID is an
   /// alphanumeric string in the following format:
   /// case-<i>12345678910-2013-c4c1d2bf33c5cf47</i>
   final String? caseId;
@@ -1711,26 +1718,27 @@ class SeverityLevel {
 
   /// The name of the severity level that corresponds to the severity level code.
   /// <note>
-  /// The values returned by the API differ from the values that are displayed in
-  /// the AWS Support Center. For example, for the code "low", the API name is
-  /// "Low", but the name in the Support Center is "General guidance". These are
-  /// the Support Center code/name mappings:
+  /// The values returned by the API are different from the values that appear in
+  /// the AWS Support Center. For example, the API uses the code <code>low</code>,
+  /// but the name appears as General guidance in Support Center.
+  ///
+  /// The following are the API code names and how they appear in the console:
   ///
   /// <ul>
   /// <li>
-  /// <code>low</code>: General guidance
+  /// <code>low</code> - General guidance
   /// </li>
   /// <li>
-  /// <code>normal</code>: System impaired
+  /// <code>normal</code> - System impaired
   /// </li>
   /// <li>
-  /// <code>high</code>: Production system impaired
+  /// <code>high</code> - Production system impaired
   /// </li>
   /// <li>
-  /// <code>urgent</code>: Production system down
+  /// <code>urgent</code> - Production system down
   /// </li>
   /// <li>
-  /// <code>critical</code>: Business-critical system down
+  /// <code>critical</code> - Business-critical system down
   /// </li>
   /// </ul> </note>
   /// For more information, see <a
@@ -1828,22 +1836,22 @@ class TrustedAdvisorCheckRefreshStatus {
   ///
   /// <ul>
   /// <li>
-  /// <code>none:</code> The check is not refreshed or the non-success status
+  /// <code>none</code> - The check is not refreshed or the non-success status
   /// exceeds the timeout
   /// </li>
   /// <li>
-  /// <code>enqueued:</code> The check refresh requests has entered the refresh
+  /// <code>enqueued</code> - The check refresh requests has entered the refresh
   /// queue
   /// </li>
   /// <li>
-  /// <code>processing:</code> The check refresh request is picked up by the rule
+  /// <code>processing</code> - The check refresh request is picked up by the rule
   /// processing engine
   /// </li>
   /// <li>
-  /// <code>success:</code> The check is successfully refreshed
+  /// <code>success</code> - The check is successfully refreshed
   /// </li>
   /// <li>
-  /// <code>abandoned:</code> The check refresh has failed
+  /// <code>abandoned</code> - The check refresh has failed
   /// </li>
   /// </ul>
   final String status;
@@ -1997,7 +2005,7 @@ class TrustedAdvisorResourceDetail {
   /// was marked as suppressed by the user.
   final bool? isSuppressed;
 
-  /// The AWS region in which the identified resource is located.
+  /// The AWS Region in which the identified resource is located.
   final String? region;
 
   TrustedAdvisorResourceDetail({

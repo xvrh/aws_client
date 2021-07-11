@@ -1450,6 +1450,67 @@ class ExportAssetsToS3ResponseDetails {
   }
 }
 
+/// Details of the operation to be performed by the job.
+class ExportRevisionsToS3RequestDetails {
+  /// The unique identifier for the data set associated with this export job.
+  final String dataSetId;
+
+  /// The destination for the revision.
+  final List<RevisionDestinationEntry> revisionDestinations;
+
+  /// Encryption configuration for the export job.
+  final ExportServerSideEncryption? encryption;
+
+  ExportRevisionsToS3RequestDetails({
+    required this.dataSetId,
+    required this.revisionDestinations,
+    this.encryption,
+  });
+  Map<String, dynamic> toJson() {
+    final dataSetId = this.dataSetId;
+    final revisionDestinations = this.revisionDestinations;
+    final encryption = this.encryption;
+    return {
+      'DataSetId': dataSetId,
+      'RevisionDestinations': revisionDestinations,
+      if (encryption != null) 'Encryption': encryption,
+    };
+  }
+}
+
+/// Details about the export revisions to Amazon S3 response.
+class ExportRevisionsToS3ResponseDetails {
+  /// The unique identifier for the data set associated with this export job.
+  final String dataSetId;
+
+  /// The destination in Amazon S3 where the revision is exported.
+  final List<RevisionDestinationEntry> revisionDestinations;
+
+  /// Encryption configuration of the export job.
+  final ExportServerSideEncryption? encryption;
+
+  ExportRevisionsToS3ResponseDetails({
+    required this.dataSetId,
+    required this.revisionDestinations,
+    this.encryption,
+  });
+  factory ExportRevisionsToS3ResponseDetails.fromJson(
+      Map<String, dynamic> json) {
+    return ExportRevisionsToS3ResponseDetails(
+      dataSetId: json['DataSetId'] as String,
+      revisionDestinations: (json['RevisionDestinations'] as List)
+          .whereNotNull()
+          .map((e) =>
+              RevisionDestinationEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      encryption: json['Encryption'] != null
+          ? ExportServerSideEncryption.fromJson(
+              json['Encryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 /// Encryption configuration of the export job. Includes the encryption type as
 /// well as the AWS KMS key. The KMS key is only necessary if you chose the KMS
 /// encryption type.
@@ -2214,6 +2275,9 @@ class RequestDetails {
   /// Details about the export to Amazon S3 request.
   final ExportAssetsToS3RequestDetails? exportAssetsToS3;
 
+  /// Details about the export to Amazon S3 request.
+  final ExportRevisionsToS3RequestDetails? exportRevisionsToS3;
+
   /// Details about the import from signed URL request.
   final ImportAssetFromSignedUrlRequestDetails? importAssetFromSignedUrl;
 
@@ -2223,18 +2287,22 @@ class RequestDetails {
   RequestDetails({
     this.exportAssetToSignedUrl,
     this.exportAssetsToS3,
+    this.exportRevisionsToS3,
     this.importAssetFromSignedUrl,
     this.importAssetsFromS3,
   });
   Map<String, dynamic> toJson() {
     final exportAssetToSignedUrl = this.exportAssetToSignedUrl;
     final exportAssetsToS3 = this.exportAssetsToS3;
+    final exportRevisionsToS3 = this.exportRevisionsToS3;
     final importAssetFromSignedUrl = this.importAssetFromSignedUrl;
     final importAssetsFromS3 = this.importAssetsFromS3;
     return {
       if (exportAssetToSignedUrl != null)
         'ExportAssetToSignedUrl': exportAssetToSignedUrl,
       if (exportAssetsToS3 != null) 'ExportAssetsToS3': exportAssetsToS3,
+      if (exportRevisionsToS3 != null)
+        'ExportRevisionsToS3': exportRevisionsToS3,
       if (importAssetFromSignedUrl != null)
         'ImportAssetFromSignedUrl': importAssetFromSignedUrl,
       if (importAssetsFromS3 != null) 'ImportAssetsFromS3': importAssetsFromS3,
@@ -2250,6 +2318,9 @@ class ResponseDetails {
   /// Details for the export to Amazon S3 response.
   final ExportAssetsToS3ResponseDetails? exportAssetsToS3;
 
+  /// Details for the export revisions to Amazon S3 response.
+  final ExportRevisionsToS3ResponseDetails? exportRevisionsToS3;
+
   /// Details for the import from signed URL response.
   final ImportAssetFromSignedUrlResponseDetails? importAssetFromSignedUrl;
 
@@ -2259,6 +2330,7 @@ class ResponseDetails {
   ResponseDetails({
     this.exportAssetToSignedUrl,
     this.exportAssetsToS3,
+    this.exportRevisionsToS3,
     this.importAssetFromSignedUrl,
     this.importAssetsFromS3,
   });
@@ -2272,6 +2344,10 @@ class ResponseDetails {
           ? ExportAssetsToS3ResponseDetails.fromJson(
               json['ExportAssetsToS3'] as Map<String, dynamic>)
           : null,
+      exportRevisionsToS3: json['ExportRevisionsToS3'] != null
+          ? ExportRevisionsToS3ResponseDetails.fromJson(
+              json['ExportRevisionsToS3'] as Map<String, dynamic>)
+          : null,
       importAssetFromSignedUrl: json['ImportAssetFromSignedUrl'] != null
           ? ImportAssetFromSignedUrlResponseDetails.fromJson(
               json['ImportAssetFromSignedUrl'] as Map<String, dynamic>)
@@ -2281,6 +2357,45 @@ class ResponseDetails {
               json['ImportAssetsFromS3'] as Map<String, dynamic>)
           : null,
     );
+  }
+}
+
+/// The destination where the assets in the revision will be exported.
+class RevisionDestinationEntry {
+  /// The S3 bucket that is the destination for the assets in the revision.
+  final String bucket;
+
+  /// The unique identifier for the revision.
+  final String revisionId;
+
+  /// A string representing the pattern for generated names of the individual
+  /// assets in the revision. For more information about key patterns, see <a
+  /// href="https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns">Key
+  /// patterns when exporting revisions</a>.
+  final String? keyPattern;
+
+  RevisionDestinationEntry({
+    required this.bucket,
+    required this.revisionId,
+    this.keyPattern,
+  });
+  factory RevisionDestinationEntry.fromJson(Map<String, dynamic> json) {
+    return RevisionDestinationEntry(
+      bucket: json['Bucket'] as String,
+      revisionId: json['RevisionId'] as String,
+      keyPattern: json['KeyPattern'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final revisionId = this.revisionId;
+    final keyPattern = this.keyPattern;
+    return {
+      'Bucket': bucket,
+      'RevisionId': revisionId,
+      if (keyPattern != null) 'KeyPattern': keyPattern,
+    };
   }
 }
 
@@ -2448,6 +2563,7 @@ enum Type {
   importAssetFromSignedUrl,
   exportAssetsToS3,
   exportAssetToSignedUrl,
+  exportRevisionsToS3,
 }
 
 extension on Type {
@@ -2461,6 +2577,8 @@ extension on Type {
         return 'EXPORT_ASSETS_TO_S3';
       case Type.exportAssetToSignedUrl:
         return 'EXPORT_ASSET_TO_SIGNED_URL';
+      case Type.exportRevisionsToS3:
+        return 'EXPORT_REVISIONS_TO_S3';
     }
   }
 }
@@ -2476,6 +2594,8 @@ extension on String {
         return Type.exportAssetsToS3;
       case 'EXPORT_ASSET_TO_SIGNED_URL':
         return Type.exportAssetToSignedUrl;
+      case 'EXPORT_REVISIONS_TO_S3':
+        return Type.exportRevisionsToS3;
     }
     throw Exception('$this is not known in enum Type');
   }

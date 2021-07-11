@@ -85,6 +85,16 @@ class Ssm {
   ///
   /// PatchBaseline: pb-012345abcde
   ///
+  /// OpsMetadata object: <code>ResourceID</code> for tagging is created from
+  /// the Amazon Resource Name (ARN) for the object. Specifically,
+  /// <code>ResourceID</code> is created from the strings that come after the
+  /// word <code>opsmetadata</code> in the ARN. For example, an OpsMetadata
+  /// object with an ARN of
+  /// <code>arn:aws:ssm:us-east-2:1234567890:opsmetadata/aws/ssm/MyGroup/appmanager</code>
+  /// has a <code>ResourceID</code> of either
+  /// <code>aws/ssm/MyGroup/appmanager</code> or
+  /// <code>/aws/ssm/MyGroup/appmanager</code>.
+  ///
   /// For the Document and Parameter values, use the name of the resource.
   /// <note>
   /// The ManagedInstance type for this API action is only for on-premises
@@ -101,9 +111,7 @@ class Ssm {
   /// </note>
   ///
   /// Parameter [tags] :
-  /// One or more tags. The value parameter is required, but if you don't want
-  /// the tag to have a value, specify the parameter with no value, and we set
-  /// the value to an empty string.
+  /// One or more tags. The value parameter is required.
   /// <important>
   /// Do not enter personally identifiable information in this field.
   /// </important>
@@ -131,6 +139,68 @@ class Ssm {
         'Tags': tags,
       },
     );
+  }
+
+  /// Associates a related resource to a Systems Manager OpsCenter OpsItem. For
+  /// example, you can associate an Incident Manager incident or analysis with
+  /// an OpsItem. Incident Manager is a capability of AWS Systems Manager.
+  ///
+  /// May throw [InternalServerError].
+  /// May throw [OpsItemNotFoundException].
+  /// May throw [OpsItemLimitExceededException].
+  /// May throw [OpsItemInvalidParameterException].
+  /// May throw [OpsItemRelatedItemAlreadyExistsException].
+  ///
+  /// Parameter [associationType] :
+  /// The type of association that you want to create between an OpsItem and a
+  /// resource. OpsCenter supports <code>IsParentOf</code> and
+  /// <code>RelatesTo</code> association types.
+  ///
+  /// Parameter [opsItemId] :
+  /// The ID of the OpsItem to which you want to associate a resource as a
+  /// related item.
+  ///
+  /// Parameter [resourceType] :
+  /// The type of resource that you want to associate with an OpsItem. OpsCenter
+  /// supports the following types:
+  ///
+  /// <code>AWS::SSMIncidents::IncidentRecord</code>: an Incident Manager
+  /// incident. Incident Manager is a capability of AWS Systems Manager.
+  ///
+  /// <code>AWS::SSM::Document</code>: a Systems Manager (SSM) document.
+  ///
+  /// Parameter [resourceUri] :
+  /// The Amazon Resource Name (ARN) of the AWS resource that you want to
+  /// associate with the OpsItem.
+  Future<AssociateOpsItemRelatedItemResponse> associateOpsItemRelatedItem({
+    required String associationType,
+    required String opsItemId,
+    required String resourceType,
+    required String resourceUri,
+  }) async {
+    ArgumentError.checkNotNull(associationType, 'associationType');
+    ArgumentError.checkNotNull(opsItemId, 'opsItemId');
+    ArgumentError.checkNotNull(resourceType, 'resourceType');
+    ArgumentError.checkNotNull(resourceUri, 'resourceUri');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonSSM.AssociateOpsItemRelatedItem'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'AssociationType': associationType,
+        'OpsItemId': opsItemId,
+        'ResourceType': resourceType,
+        'ResourceUri': resourceUri,
+      },
+    );
+
+    return AssociateOpsItemRelatedItemResponse.fromJson(jsonResponse.body);
   }
 
   /// Attempts to cancel the command specified by the Command ID. There is no
@@ -199,12 +269,6 @@ class Ssm {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CancelMaintenanceWindowExecution'
@@ -266,8 +330,10 @@ class Ssm {
   /// </important>
   ///
   /// Parameter [expirationDate] :
-  /// The date by which this activation request should expire. The default value
-  /// is 24 hours.
+  /// The date by which this activation request should expire, in timestamp
+  /// format, such as "2021-07-07T00:00:00". You can specify a date up to 30
+  /// days in advance. If you don't provide an expiration date, the activation
+  /// code expires in 24 hours.
   ///
   /// Parameter [registrationLimit] :
   /// Specify the maximum number of managed instances you want to register. The
@@ -323,11 +389,6 @@ class Ssm {
       defaultInstanceName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'defaultInstanceName',
-      defaultInstanceName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
     );
     _s.validateStringLength(
       'description',
@@ -413,7 +474,7 @@ class Ssm {
   /// <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.
   ///
   /// Parameter [applyOnlyAtCronInterval] :
-  /// By default, when you create a new associations, the system runs it
+  /// By default, when you create a new association, the system runs it
   /// immediately after it is created and then according to the schedule you
   /// specified. Specify this option if you don't want an association to run
   /// immediately after you create it. This parameter is not supported for rate
@@ -426,6 +487,14 @@ class Ssm {
   /// Specify the target for the association. This target is required for
   /// associations that use an Automation document and target resources by using
   /// rate controls.
+  ///
+  /// Parameter [calendarNames] :
+  /// The names or Amazon Resource Names (ARNs) of the Systems Manager Change
+  /// Calendar type documents you want to gate your associations under. The
+  /// associations only run when that Change Calendar is open. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar">AWS
+  /// Systems Manager Change Calendar</a>.
   ///
   /// Parameter [complianceSeverity] :
   /// The severity level to assign to the association.
@@ -519,6 +588,7 @@ class Ssm {
     bool? applyOnlyAtCronInterval,
     String? associationName,
     String? automationTargetParameterName,
+    List<String>? calendarNames,
     AssociationComplianceSeverity? complianceSeverity,
     String? documentVersion,
     String? instanceId,
@@ -532,54 +602,23 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'associationName',
-      associationName,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-    );
     _s.validateStringLength(
       'automationTargetParameterName',
       automationTargetParameterName,
       1,
       50,
     );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-    );
     _s.validateStringLength(
       'maxConcurrency',
       maxConcurrency,
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
-    );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
     );
     _s.validateStringLength(
       'scheduleExpression',
@@ -604,6 +643,7 @@ class Ssm {
         if (associationName != null) 'AssociationName': associationName,
         if (automationTargetParameterName != null)
           'AutomationTargetParameterName': automationTargetParameterName,
+        if (calendarNames != null) 'CalendarNames': calendarNames,
         if (complianceSeverity != null)
           'ComplianceSeverity': complianceSeverity.toValue(),
         if (documentVersion != null) 'DocumentVersion': documentVersion,
@@ -733,6 +773,12 @@ class Ssm {
   /// A list of key and value pairs that describe attachments to a version of a
   /// document.
   ///
+  /// Parameter [displayName] :
+  /// An optional field where you can specify a friendly name for the Systems
+  /// Manager document. This value can differ for each version of the document.
+  /// You can update this value at a later time using the <a>UpdateDocument</a>
+  /// action.
+  ///
   /// Parameter [documentFormat] :
   /// Specify the document format for the request. The document format can be
   /// JSON, YAML, or TEXT. JSON is the default format.
@@ -777,7 +823,7 @@ class Ssm {
   /// document can run on all types of resources. If you don't specify a value,
   /// the document can't run on any resources. For a list of valid resource
   /// types, see <a
-  /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
   /// resource and property types reference</a> in the <i>AWS CloudFormation
   /// User Guide</i>.
   ///
@@ -789,6 +835,7 @@ class Ssm {
     required String content,
     required String name,
     List<AttachmentsSource>? attachments,
+    String? displayName,
     DocumentFormat? documentFormat,
     DocumentType? documentType,
     List<DocumentRequires>? requires,
@@ -805,27 +852,17 @@ class Ssm {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
+    _s.validateStringLength(
+      'displayName',
+      displayName,
+      0,
+      1024,
     );
     _s.validateStringLength(
       'targetType',
       targetType,
       0,
       200,
-    );
-    _s.validateStringPattern(
-      'targetType',
-      targetType,
-      r'''^\/[\w\.\-\:\/]*$''',
-    );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''^[a-zA-Z0-9_\-.]{1,128}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -841,6 +878,7 @@ class Ssm {
         'Content': content,
         'Name': name,
         if (attachments != null) 'Attachments': attachments,
+        if (displayName != null) 'DisplayName': displayName,
         if (documentFormat != null) 'DocumentFormat': documentFormat.toValue(),
         if (documentType != null) 'DocumentType': documentType.toValue(),
         if (requires != null) 'Requires': requires,
@@ -988,12 +1026,6 @@ class Ssm {
       name,
       3,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(schedule, 'schedule');
@@ -1184,13 +1216,7 @@ class Ssm {
       'description',
       description,
       1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\s\S]*\S[\s\S]*''',
+      2048,
       isRequired: true,
     );
     ArgumentError.checkNotNull(source, 'source');
@@ -1201,12 +1227,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'source',
-      source,
-      r'''^(?!\s*$).+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(title, 'title');
     _s.validateStringLength(
       'title',
@@ -1215,22 +1235,11 @@ class Ssm {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'title',
-      title,
-      r'''^(?!\s*$).+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'category',
       category,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'category',
-      category,
-      r'''^(?!\s*$).+''',
     );
     _s.validateNumRange(
       'priority',
@@ -1243,11 +1252,6 @@ class Ssm {
       severity,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'severity',
-      severity,
-      r'''^(?!\s*$).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1300,9 +1304,27 @@ class Ssm {
   ///
   /// Parameter [metadata] :
   /// Metadata for a new Application Manager application.
+  ///
+  /// Parameter [tags] :
+  /// Optional metadata that you assign to a resource. You can specify a maximum
+  /// of five tags for an OpsMetadata object. Tags enable you to categorize a
+  /// resource in different ways, such as by purpose, owner, or environment. For
+  /// example, you might want to tag an OpsMetadata object to identify an
+  /// environment or target AWS Region. In this case, you could specify the
+  /// following key-value pairs:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Key=Environment,Value=Production</code>
+  /// </li>
+  /// <li>
+  /// <code>Key=Region,Value=us-east-2</code>
+  /// </li>
+  /// </ul>
   Future<CreateOpsMetadataResult> createOpsMetadata({
     required String resourceId,
     Map<String, MetadataValue>? metadata,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
@@ -1310,12 +1332,6 @@ class Ssm {
       resourceId,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''^(?!\s*$).+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1331,6 +1347,7 @@ class Ssm {
       payload: {
         'ResourceId': resourceId,
         if (metadata != null) 'Metadata': metadata,
+        if (tags != null) 'Tags': tags,
       },
     );
 
@@ -1364,8 +1381,8 @@ class Ssm {
   /// <i>AWS Systems Manager User Guide</i>.
   ///
   /// Parameter [approvedPatchesComplianceLevel] :
-  /// Defines the compliance level for approved patches. This means that if an
-  /// approved patch is reported as missing, this is the severity of the
+  /// Defines the compliance level for approved patches. When an approved patch
+  /// is reported as missing, this value describes the severity of the
   /// compliance violation. The default value is UNSPECIFIED.
   ///
   /// Parameter [approvedPatchesEnableNonSecurity] :
@@ -1461,12 +1478,6 @@ class Ssm {
       name,
       3,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1629,12 +1640,6 @@ class Ssm {
     required String activationId,
   }) async {
     ArgumentError.checkNotNull(activationId, 'activationId');
-    _s.validateStringPattern(
-      'activationId',
-      activationId,
-      r'''^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteActivation'
@@ -1678,21 +1683,6 @@ class Ssm {
     String? instanceId,
     String? name,
   }) async {
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteAssociation'
@@ -1748,22 +1738,6 @@ class Ssm {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''^[a-zA-Z0-9_\-.]{1,128}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteDocument'
@@ -1834,17 +1808,6 @@ class Ssm {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''^(AWS|Custom):.*$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteInventory'
@@ -1884,12 +1847,6 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteMaintenanceWindow'
@@ -1925,12 +1882,6 @@ class Ssm {
       opsMetadataArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'opsMetadataArn',
-      opsMetadataArn,
-      r'''arn:(aws[a-zA-Z-]*)?:ssm:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:opsmetadata\/([a-zA-Z0-9-_\.\/]*)''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2029,12 +1980,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeletePatchBaseline'
@@ -2115,12 +2060,6 @@ class Ssm {
     required String instanceId,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''^mi-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeregisterManagedInstance'
@@ -2161,24 +2100,12 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
     _s.validateStringLength(
       'patchGroup',
       patchGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'patchGroup',
-      patchGroup,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2231,24 +2158,12 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTargetId, 'windowTargetId');
     _s.validateStringLength(
       'windowTargetId',
       windowTargetId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowTargetId',
-      windowTargetId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2295,24 +2210,12 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
     _s.validateStringLength(
       'windowTaskId',
       windowTaskId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowTaskId',
-      windowTaskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2419,26 +2322,6 @@ class Ssm {
     String? instanceId,
     String? name,
   }) async {
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-    );
-    _s.validateStringPattern(
-      'associationVersion',
-      associationVersion,
-      r'''([$]LATEST)|([1-9][0-9]*)''',
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribeAssociation'
@@ -2501,19 +2384,7 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(associationId, 'associationId');
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionId, 'executionId');
-    _s.validateStringPattern(
-      'executionId',
-      executionId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2575,12 +2446,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(associationId, 'associationId');
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2684,8 +2549,8 @@ class Ssm {
   /// from a previous call.)
   ///
   /// Parameter [reverseOrder] :
-  /// A boolean that indicates whether to list step executions in reverse order
-  /// by start time. The default value is false.
+  /// Indicates whether to list step executions in reverse order by start time.
+  /// The default value is 'false'.
   Future<DescribeAutomationStepExecutionsResult>
       describeAutomationStepExecutions({
     required String automationExecutionId,
@@ -2797,22 +2662,6 @@ class Ssm {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''^[a-zA-Z0-9_\-.]{1,128}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribeDocument'
@@ -2840,7 +2689,9 @@ class Ssm {
   ///
   /// May throw [InternalServerError].
   /// May throw [InvalidDocument].
+  /// May throw [InvalidNextToken].
   /// May throw [InvalidPermissionType].
+  /// May throw [InvalidDocumentOperation].
   ///
   /// Parameter [name] :
   /// The name of the document for which you are the owner.
@@ -2848,18 +2699,29 @@ class Ssm {
   /// Parameter [permissionType] :
   /// The permission type for the document. The permission type can be
   /// <i>Share</i>.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of items to return for this call. The call also returns
+  /// a token that you can specify in a subsequent call to get the next set of
+  /// results.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of items to return. (You received this token
+  /// from a previous call.)
   Future<DescribeDocumentPermissionResponse> describeDocumentPermission({
     required String name,
     required DocumentPermissionType permissionType,
+    int? maxResults,
+    String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionType, 'permissionType');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      200,
+    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribeDocumentPermission'
@@ -2873,6 +2735,8 @@ class Ssm {
       payload: {
         'Name': name,
         'PermissionType': permissionType.toValue(),
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
       },
     );
 
@@ -2903,12 +2767,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2968,12 +2826,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3025,12 +2877,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3222,12 +3068,6 @@ class Ssm {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patchGroup',
-      patchGroup,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3286,12 +3126,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3341,11 +3175,6 @@ class Ssm {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'deletionId',
-      deletionId,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3414,24 +3243,12 @@ class Ssm {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
     _s.validateStringLength(
       'windowExecutionId',
       windowExecutionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3499,12 +3316,6 @@ class Ssm {
       windowExecutionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3575,12 +3386,6 @@ class Ssm {
       windowId,
       20,
       20,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3660,11 +3465,6 @@ class Ssm {
       20,
       20,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribeMaintenanceWindowSchedule'
@@ -3722,12 +3522,6 @@ class Ssm {
       windowId,
       20,
       20,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3796,12 +3590,6 @@ class Ssm {
       windowId,
       20,
       20,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4193,12 +3981,6 @@ class Ssm {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patchGroup',
-      patchGroup,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribePatchGroupState'
@@ -4433,6 +4215,45 @@ class Ssm {
     return DescribeSessionsResponse.fromJson(jsonResponse.body);
   }
 
+  /// Deletes the association between an OpsItem and a related resource. For
+  /// example, this API action can delete an Incident Manager incident from an
+  /// OpsItem. Incident Manager is a capability of AWS Systems Manager.
+  ///
+  /// May throw [InternalServerError].
+  /// May throw [OpsItemRelatedItemAssociationNotFoundException].
+  /// May throw [OpsItemNotFoundException].
+  /// May throw [OpsItemInvalidParameterException].
+  ///
+  /// Parameter [associationId] :
+  /// The ID of the association for which you want to delete an association
+  /// between the OpsItem and a related resource.
+  ///
+  /// Parameter [opsItemId] :
+  /// The ID of the OpsItem for which you want to delete an association between
+  /// the OpsItem and a related resource.
+  Future<void> disassociateOpsItemRelatedItem({
+    required String associationId,
+    required String opsItemId,
+  }) async {
+    ArgumentError.checkNotNull(associationId, 'associationId');
+    ArgumentError.checkNotNull(opsItemId, 'opsItemId');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonSSM.DisassociateOpsItemRelatedItem'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'AssociationId': associationId,
+        'OpsItemId': opsItemId,
+      },
+    );
+  }
+
   /// Get detailed information about a particular Automation execution.
   ///
   /// May throw [AutomationExecutionNotFoundException].
@@ -4530,6 +4351,11 @@ class Ssm {
   /// Returns detailed information about command execution for an invocation or
   /// plugin.
   ///
+  /// <code>GetCommandInvocation</code> only gives the execution status of a
+  /// plugin in a document. To get the command execution status on a specific
+  /// instance, use <a>ListCommandInvocations</a>. To get the command execution
+  /// status across instances, use <a>ListCommands</a>.
+  ///
   /// May throw [InternalServerError].
   /// May throw [InvalidCommandId].
   /// May throw [InvalidInstanceId].
@@ -4541,16 +4367,24 @@ class Ssm {
   ///
   /// Parameter [instanceId] :
   /// (Required) The ID of the managed instance targeted by the command. A
-  /// managed instance can be an EC2 instance or an instance in your hybrid
-  /// environment that is configured for Systems Manager.
+  /// managed instance can be an Amazon Elastic Compute Cloud (Amazon EC2)
+  /// instance or an instance in your hybrid environment that is configured for
+  /// AWS Systems Manager.
   ///
   /// Parameter [pluginName] :
-  /// (Optional) The name of the plugin for which you want detailed results. If
-  /// the document contains only one plugin, the name can be omitted and the
-  /// details will be returned.
+  /// The name of the plugin for which you want detailed results. If the
+  /// document contains only one plugin, you can omit the name and details for
+  /// that plugin. If the document contains more than one plugin, you must
+  /// specify the name of the plugin for which you want to view details.
   ///
-  /// Plugin names are also referred to as step names in Systems Manager
-  /// documents.
+  /// Plugin names are also referred to as <i>step names</i> in Systems Manager
+  /// documents. For example, <code>aws:RunShellScript</code> is a plugin.
+  ///
+  /// To find the <code>PluginName</code>, check the document content and find
+  /// the name of the plugin. Alternatively, use <a>ListCommandInvocations</a>
+  /// with the <code>CommandId</code> and <code>Details</code> parameters. The
+  /// <code>PluginName</code> is the <code>Name</code> attribute of the
+  /// <code>CommandPlugin</code> object in the <code>CommandPlugins</code> list.
   Future<GetCommandInvocationResult> getCommandInvocation({
     required String commandId,
     required String instanceId,
@@ -4565,12 +4399,6 @@ class Ssm {
       isRequired: true,
     );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'pluginName',
       pluginName,
@@ -4681,30 +4509,22 @@ class Ssm {
   ///
   /// Parameter [snapshotId] :
   /// The user-defined snapshot ID.
+  ///
+  /// Parameter [baselineOverride] :
+  /// Defines the basic information about a patch baseline override.
   Future<GetDeployablePatchSnapshotForInstanceResult>
       getDeployablePatchSnapshotForInstance({
     required String instanceId,
     required String snapshotId,
+    BaselineOverride? baselineOverride,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotId, 'snapshotId');
     _s.validateStringLength(
       'snapshotId',
       snapshotId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'snapshotId',
-      snapshotId,
-      r'''^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4720,6 +4540,7 @@ class Ssm {
       payload: {
         'InstanceId': instanceId,
         'SnapshotId': snapshotId,
+        if (baselineOverride != null) 'BaselineOverride': baselineOverride,
       },
     );
 
@@ -4754,22 +4575,6 @@ class Ssm {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''^[a-zA-Z0-9_\-.]{1,128}$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetDocument'
@@ -4945,12 +4750,6 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindow'
@@ -4985,12 +4784,6 @@ class Ssm {
       windowExecutionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5036,24 +4829,12 @@ class Ssm {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
     _s.validateStringLength(
       'windowExecutionId',
       windowExecutionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5103,12 +4884,6 @@ class Ssm {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'invocationId',
-      invocationId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(taskId, 'taskId');
     _s.validateStringLength(
       'taskId',
@@ -5117,24 +4892,12 @@ class Ssm {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
     _s.validateStringLength(
       'windowExecutionId',
       windowExecutionId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowExecutionId',
-      windowExecutionId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5187,24 +4950,12 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
     _s.validateStringLength(
       'windowTaskId',
       windowTaskId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowTaskId',
-      windowTaskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5248,12 +4999,6 @@ class Ssm {
     required String opsItemId,
   }) async {
     ArgumentError.checkNotNull(opsItemId, 'opsItemId');
-    _s.validateStringPattern(
-      'opsItemId',
-      opsItemId,
-      r'''^(oi)-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetOpsItem'
@@ -5300,12 +5045,6 @@ class Ssm {
       opsMetadataArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'opsMetadataArn',
-      opsMetadataArn,
-      r'''arn:(aws[a-zA-Z-]*)?:ssm:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:opsmetadata\/([a-zA-Z0-9-_\.\/]*)''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5572,9 +5311,11 @@ class Ssm {
   ///
   /// Parameter [path] :
   /// The hierarchy for the parameter. Hierarchies start with a forward slash
-  /// (/) and end with the parameter name. A parameter name hierarchy can have a
-  /// maximum of 15 levels. Here is an example of a hierarchy:
-  /// <code>/Finance/Prod/IAD/WinServ2016/license33</code>
+  /// (/). The hierachy is the parameter name except the last part of the
+  /// parameter. For the API call to succeeed, the last part of the parameter
+  /// name cannot be in the path. A parameter name hierarchy can have a maximum
+  /// of 15 levels. Here is an example of a hierarchy:
+  /// <code>/Finance/Prod/IAD/WinServ2016/license33 </code>
   ///
   /// Parameter [maxResults] :
   /// The maximum number of items to return for this call. The call also returns
@@ -5673,12 +5414,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetPatchBaseline'
@@ -5718,12 +5453,6 @@ class Ssm {
       patchGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'patchGroup',
-      patchGroup,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5769,10 +5498,29 @@ class Ssm {
   /// May throw [ServiceSettingNotFound].
   ///
   /// Parameter [settingId] :
-  /// The ID of the service setting to get. The setting ID can be
-  /// <code>/ssm/parameter-store/default-parameter-tier</code>,
-  /// <code>/ssm/parameter-store/high-throughput-enabled</code>, or
-  /// <code>/ssm/managed-instance/activation-tier</code>.
+  /// The ID of the service setting to get. The setting ID can be one of the
+  /// following.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>/ssm/automation/customer-script-log-destination</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/automation/customer-script-log-group-name</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/documents/console/public-sharing-permission</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/parameter-store/default-parameter-tier</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/parameter-store/high-throughput-enabled</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/managed-instance/activation-tier</code>
+  /// </li>
+  /// </ul>
   Future<GetServiceSettingResult> getServiceSetting({
     required String settingId,
   }) async {
@@ -5827,9 +5575,8 @@ class Ssm {
   /// a label to a specific version of a parameter.
   /// </li>
   /// <li>
-  /// You can't delete a parameter label. If you no longer want to use a
-  /// parameter label, then you must move it to a different version of a
-  /// parameter.
+  /// If you no longer want to use a parameter label, then you can either delete
+  /// it or move it to a different version of a parameter.
   /// </li>
   /// <li>
   /// A label can have a maximum of 100 characters.
@@ -5917,12 +5664,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(associationId, 'associationId');
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6024,7 +5765,7 @@ class Ssm {
   ///
   /// Parameter [details] :
   /// (Optional) If set this returns the response of the command executions and
-  /// any command output. By default this is set to False.
+  /// any command output. The default value is 'false'.
   ///
   /// Parameter [filters] :
   /// (Optional) One or more filters. Use a filter to return a more specific
@@ -6054,11 +5795,6 @@ class Ssm {
       commandId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -6132,11 +5868,6 @@ class Ssm {
       commandId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -6316,17 +6047,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(metadata, 'metadata');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6378,12 +6098,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6421,14 +6135,19 @@ class Ssm {
   /// This data type is deprecated. Instead, use <code>Filters</code>.
   ///
   /// Parameter [filters] :
-  /// One or more DocumentKeyValuesFilter objects. Use a filter to return a more
-  /// specific list of results. For keys, you can specify one or more key-value
-  /// pair tags that have been applied to a document. Other valid keys include
-  /// <code>Owner</code>, <code>Name</code>, <code>PlatformTypes</code>,
-  /// <code>DocumentType</code>, and <code>TargetType</code>. For example, to
-  /// return documents you own use <code>Key=Owner,Values=Self</code>. To
-  /// specify a custom key-value pair, use the format
-  /// <code>Key=tag:tagName,Values=valueName</code>.
+  /// One or more <code>DocumentKeyValuesFilter</code> objects. Use a filter to
+  /// return a more specific list of results. For keys, you can specify one or
+  /// more key-value pair tags that have been applied to a document. Other valid
+  /// keys include <code>Owner</code>, <code>Name</code>,
+  /// <code>PlatformTypes</code>, <code>DocumentType</code>, and
+  /// <code>TargetType</code>. For example, to return documents you own use
+  /// <code>Key=Owner,Values=Self</code>. To specify a custom key-value pair,
+  /// use the format <code>Key=tag:tagName,Values=valueName</code>.
+  /// <note>
+  /// This API action only supports filtering documents by using a single tag
+  /// key and one or more tag values. For example:
+  /// <code>Key=tag:tagName,Values=valueName1,valueName2</code>
+  /// </note>
   ///
   /// Parameter [maxResults] :
   /// The maximum number of items to return for this call. The call also returns
@@ -6506,24 +6225,12 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(typeName, 'typeName');
     _s.validateStringLength(
       'typeName',
       typeName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''^(AWS|Custom):.*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -6603,6 +6310,60 @@ class Ssm {
     );
 
     return ListOpsItemEventsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Lists all related-item resources associated with an OpsItem.
+  ///
+  /// May throw [InternalServerError].
+  /// May throw [OpsItemInvalidParameterException].
+  ///
+  /// Parameter [filters] :
+  /// One or more OpsItem filters. Use a filter to return a more specific list
+  /// of results.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of items to return for this call. The call also returns
+  /// a token that you can specify in a subsequent call to get the next set of
+  /// results.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of items to return. (You received this token
+  /// from a previous call.)
+  ///
+  /// Parameter [opsItemId] :
+  /// The ID of the OpsItem for which you want to list all related-item
+  /// resources.
+  Future<ListOpsItemRelatedItemsResponse> listOpsItemRelatedItems({
+    List<OpsItemRelatedItemsFilter>? filters,
+    int? maxResults,
+    String? nextToken,
+    String? opsItemId,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      50,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonSSM.ListOpsItemRelatedItems'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (filters != null) 'Filters': filters,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+        if (opsItemId != null) 'OpsItemId': opsItemId,
+      },
+    );
+
+    return ListOpsItemRelatedItemsResponse.fromJson(jsonResponse.body);
   }
 
   /// Systems Manager calls this API action when displaying all Application
@@ -6848,23 +6609,12 @@ class Ssm {
     String? sharedDocumentVersion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionType, 'permissionType');
     _s.validateStringLength(
       'sharedDocumentVersion',
       sharedDocumentVersion,
       0,
       8,
-    );
-    _s.validateStringPattern(
-      'sharedDocumentVersion',
-      sharedDocumentVersion,
-      r'''([$]LATEST|[$]DEFAULT|[$]ALL)''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7019,12 +6769,6 @@ class Ssm {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'complianceType',
-      complianceType,
-      r'''[A-Za-z0-9_\-]\w+|Custom:[a-zA-Z0-9_\-]\w+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionSummary, 'executionSummary');
     ArgumentError.checkNotNull(items, 'items');
     ArgumentError.checkNotNull(resourceId, 'resourceId');
@@ -7098,12 +6842,6 @@ class Ssm {
     required List<InventoryItem> items,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(items, 'items');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7163,7 +6901,11 @@ class Ssm {
   /// </li>
   /// <li>
   /// Parameter names can include only the following symbols and letters:
-  /// <code>a-zA-Z0-9_.-/</code>
+  /// <code>a-zA-Z0-9_.-</code>
+  ///
+  /// In addition, the slash character ( / ) is used to delineate hierarchies in
+  /// parameter names. For example:
+  /// <code>/Dev/Production/East/Project-ABC/MyParameter</code>
   /// </li>
   /// <li>
   /// A parameter name can't include spaces.
@@ -7173,9 +6915,9 @@ class Ssm {
   /// </li>
   /// </ul>
   /// For additional information about valid values for parameter names, see <a
-  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html">About
-  /// requirements and constraints for parameter names</a> in the <i>AWS Systems
-  /// Manager User Guide</i>.
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html">Creating
+  /// Systems Manager parameters</a> in the <i>AWS Systems Manager User
+  /// Guide</i>.
   /// <note>
   /// The maximum length constraint listed below includes capacity for
   /// additional system attributes that are not part of the name. The maximum
@@ -7220,7 +6962,7 @@ class Ssm {
   /// is in the required format, such as <code>ami-12345abcdeEXAMPLE</code>, and
   /// that the specified AMI is available in your AWS account. For more
   /// information, see <a
-  /// href="http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html">Native
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html">Native
   /// parameter support for Amazon Machine Image IDs</a> in the <i>AWS Systems
   /// Manager User Guide</i>.
   ///
@@ -7254,8 +6996,7 @@ class Ssm {
   /// </ul>
   ///
   /// Parameter [overwrite] :
-  /// Overwrite an existing parameter. If not specified, will default to
-  /// "false".
+  /// Overwrite an existing parameter. The default value is 'false'.
   ///
   /// Parameter [policies] :
   /// One or more policies to apply to a parameter. This action takes a JSON
@@ -7444,11 +7185,6 @@ class Ssm {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'keyId',
-      keyId,
-      r'''^([a-zA-Z0-9:/_-]+)$''',
-    );
     _s.validateStringLength(
       'policies',
       policies,
@@ -7508,12 +7244,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.RegisterDefaultPatchBaseline'
@@ -7559,24 +7289,12 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
     _s.validateStringLength(
       'patchGroup',
       patchGroup,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'patchGroup',
-      patchGroup,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7611,7 +7329,12 @@ class Ssm {
   /// Parameter [targets] :
   /// The targets to register with the maintenance window. In other words, the
   /// instances to run commands on when the maintenance window runs.
-  ///
+  /// <note>
+  /// If a single maintenance window task is registered with multiple targets,
+  /// its task invocations occur sequentially and not in parallel. If your task
+  /// must run on multiple targets at the same time, register a task for each
+  /// target individually and assign each task the same priority level.
+  /// </note>
   /// You can specify targets using instance IDs, resource group names, or tags
   /// that have been applied to instances.
   ///
@@ -7685,12 +7408,6 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -7708,11 +7425,6 @@ class Ssm {
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     _s.validateStringLength(
       'ownerInformation',
@@ -7837,7 +7549,7 @@ class Ssm {
   /// Command-type tasks. Depending on the task, targets are optional for other
   /// maintenance window task types (Automation, AWS Lambda, and AWS Step
   /// Functions). For more information about running tasks that do not specify
-  /// targets, see see <a
+  /// targets, see <a
   /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html">Registering
   /// maintenance window tasks without targets</a> in the <i>AWS Systems Manager
   /// User Guide</i>.
@@ -7898,12 +7610,6 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -7922,32 +7628,17 @@ class Ssm {
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     _s.validateNumRange(
       'priority',
@@ -8002,6 +7693,16 @@ class Ssm {
   /// MaintenanceWindow: mw-012345abcde
   ///
   /// PatchBaseline: pb-012345abcde
+  ///
+  /// OpsMetadata object: <code>ResourceID</code> for tagging is created from
+  /// the Amazon Resource Name (ARN) for the object. Specifically,
+  /// <code>ResourceID</code> is created from the strings that come after the
+  /// word <code>opsmetadata</code> in the ARN. For example, an OpsMetadata
+  /// object with an ARN of
+  /// <code>arn:aws:ssm:us-east-2:1234567890:opsmetadata/aws/ssm/MyGroup/appmanager</code>
+  /// has a <code>ResourceID</code> of either
+  /// <code>aws/ssm/MyGroup/appmanager</code> or
+  /// <code>/aws/ssm/MyGroup/appmanager</code>.
   ///
   /// For the Document and Parameter values, use the name of the resource.
   /// <note>
@@ -8071,11 +7772,28 @@ class Ssm {
   ///
   /// Parameter [settingId] :
   /// The Amazon Resource Name (ARN) of the service setting to reset. The
-  /// setting ID can be
-  /// <code>/ssm/parameter-store/default-parameter-tier</code>,
-  /// <code>/ssm/parameter-store/high-throughput-enabled</code>, or
-  /// <code>/ssm/managed-instance/activation-tier</code>. For example,
-  /// <code>arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled</code>.
+  /// setting ID can be one of the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>/ssm/automation/customer-script-log-destination</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/automation/customer-script-log-group-name</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/documents/console/public-sharing-permission</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/parameter-store/default-parameter-tier</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/parameter-store/high-throughput-enabled</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/managed-instance/activation-tier</code>
+  /// </li>
+  /// </ul>
   Future<ResetServiceSettingResult> resetServiceSetting({
     required String settingId,
   }) async {
@@ -8230,8 +7948,12 @@ class Ssm {
   /// May throw [InvalidNotificationConfig].
   ///
   /// Parameter [documentName] :
-  /// Required. The name of the Systems Manager document to run. This can be a
-  /// public document or a custom document.
+  /// The name of the Systems Manager document to run. This can be a public
+  /// document or a custom document. To run a shared document belonging to
+  /// another account, specify the document ARN. For more information about how
+  /// to use shared documents, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html">Using
+  /// shared SSM documents</a> in the <i>AWS Systems Manager User Guide</i>.
   ///
   /// Parameter [cloudWatchOutputConfig] :
   /// Enables Systems Manager to send Run Command output to Amazon CloudWatch
@@ -8361,12 +8083,6 @@ class Ssm {
     int? timeoutSeconds,
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
-    _s.validateStringPattern(
-      'documentName',
-      documentName,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'comment',
       comment,
@@ -8379,32 +8095,17 @@ class Ssm {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
     _s.validateStringLength(
       'maxConcurrency',
       maxConcurrency,
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
-    );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
     );
     _s.validateStringLength(
       'outputS3BucketName',
@@ -8507,7 +8208,12 @@ class Ssm {
   /// May throw [InternalServerError].
   ///
   /// Parameter [documentName] :
-  /// The name of the Automation document to use for this execution.
+  /// The name of the Systems Manager document to run. This can be a public
+  /// document or a custom document. To run a shared document belonging to
+  /// another account, specify the document ARN. For more information about how
+  /// to use shared documents, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html">Using
+  /// shared SSM documents</a> in the <i>AWS Systems Manager User Guide</i>.
   ///
   /// Parameter [clientToken] :
   /// User-provided idempotency token. The token must be unique, is case
@@ -8600,27 +8306,11 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
-    _s.validateStringPattern(
-      'documentName',
-      documentName,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}''',
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
     );
     _s.validateStringLength(
       'maxConcurrency',
@@ -8628,21 +8318,11 @@ class Ssm {
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
-    );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
     );
     _s.validateStringLength(
       'targetParameterName',
@@ -8704,6 +8384,11 @@ class Ssm {
   /// all required approvals for the change request have been received.
   /// </note>
   ///
+  /// Parameter [changeDetails] :
+  /// User-provided details about the change. If no details are provided,
+  /// content specified in the <b>Template information</b> section of the
+  /// associated change template is added.
+  ///
   /// Parameter [changeRequestName] :
   /// The name of the change request associated with the runbook workflow to be
   /// run.
@@ -8719,6 +8404,11 @@ class Ssm {
   /// Parameter [parameters] :
   /// A key-value map of parameters that match the declared parameters in the
   /// change template document.
+  ///
+  /// Parameter [scheduledEndTime] :
+  /// The time that the requester expects the runbook workflow related to the
+  /// change request to complete. The time is an estimate only that the
+  /// requester provides for reviewers.
   ///
   /// Parameter [scheduledTime] :
   /// The date and time specified in the change request to run the Automation
@@ -8747,21 +8437,23 @@ class Ssm {
   Future<StartChangeRequestExecutionResult> startChangeRequestExecution({
     required String documentName,
     required List<Runbook> runbooks,
+    String? changeDetails,
     String? changeRequestName,
     String? clientToken,
     String? documentVersion,
     Map<String, List<String>>? parameters,
+    DateTime? scheduledEndTime,
     DateTime? scheduledTime,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
-    _s.validateStringPattern(
-      'documentName',
-      documentName,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runbooks, 'runbooks');
+    _s.validateStringLength(
+      'changeDetails',
+      changeDetails,
+      1,
+      32768,
+    );
     _s.validateStringLength(
       'changeRequestName',
       changeRequestName,
@@ -8773,16 +8465,6 @@ class Ssm {
       clientToken,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}''',
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8797,10 +8479,13 @@ class Ssm {
       payload: {
         'DocumentName': documentName,
         'Runbooks': runbooks,
+        if (changeDetails != null) 'ChangeDetails': changeDetails,
         if (changeRequestName != null) 'ChangeRequestName': changeRequestName,
         if (clientToken != null) 'ClientToken': clientToken,
         if (documentVersion != null) 'DocumentVersion': documentVersion,
         if (parameters != null) 'Parameters': parameters,
+        if (scheduledEndTime != null)
+          'ScheduledEndTime': unixTimestampToJson(scheduledEndTime),
         if (scheduledTime != null)
           'ScheduledTime': unixTimestampToJson(scheduledTime),
         if (tags != null) 'Tags': tags,
@@ -8853,11 +8538,6 @@ class Ssm {
       1,
       400,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentName',
-      documentName,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8958,6 +8638,57 @@ class Ssm {
     return TerminateSessionResponse.fromJson(jsonResponse.body);
   }
 
+  /// Remove a label or labels from a parameter.
+  ///
+  /// May throw [InternalServerError].
+  /// May throw [TooManyUpdates].
+  /// May throw [ParameterNotFound].
+  /// May throw [ParameterVersionNotFound].
+  ///
+  /// Parameter [labels] :
+  /// One or more labels to delete from the specified parameter version.
+  ///
+  /// Parameter [name] :
+  /// The parameter name of which you want to delete one or more labels.
+  ///
+  /// Parameter [parameterVersion] :
+  /// The specific version of the parameter which you want to delete one or more
+  /// labels from. If it is not present, the call will fail.
+  Future<UnlabelParameterVersionResult> unlabelParameterVersion({
+    required List<String> labels,
+    required String name,
+    required int parameterVersion,
+  }) async {
+    ArgumentError.checkNotNull(labels, 'labels');
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(parameterVersion, 'parameterVersion');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonSSM.UnlabelParameterVersion'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Labels': labels,
+        'Name': name,
+        'ParameterVersion': parameterVersion,
+      },
+    );
+
+    return UnlabelParameterVersionResult.fromJson(jsonResponse.body);
+  }
+
   /// Updates an association. You can update the association name and version,
   /// the document version, schedule, parameters, and Amazon S3 output.
   ///
@@ -9015,6 +8746,14 @@ class Ssm {
   /// Specify the target for the association. This target is required for
   /// associations that use an Automation document and target resources by using
   /// rate controls.
+  ///
+  /// Parameter [calendarNames] :
+  /// The names or Amazon Resource Names (ARNs) of the Systems Manager Change
+  /// Calendar type documents you want to gate your associations under. The
+  /// associations only run when that Change Calendar is open. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar">AWS
+  /// Systems Manager Change Calendar</a>.
   ///
   /// Parameter [complianceSeverity] :
   /// The severity level to assign to the association.
@@ -9112,6 +8851,7 @@ class Ssm {
     String? associationName,
     String? associationVersion,
     String? automationTargetParameterName,
+    List<String>? calendarNames,
     AssociationComplianceSeverity? complianceSeverity,
     String? documentVersion,
     String? maxConcurrency,
@@ -9125,59 +8865,23 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(associationId, 'associationId');
-    _s.validateStringPattern(
-      'associationId',
-      associationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'associationName',
-      associationName,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-    );
-    _s.validateStringPattern(
-      'associationVersion',
-      associationVersion,
-      r'''([$]LATEST)|([1-9][0-9]*)''',
-    );
     _s.validateStringLength(
       'automationTargetParameterName',
       automationTargetParameterName,
       1,
       50,
     );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
     _s.validateStringLength(
       'maxConcurrency',
       maxConcurrency,
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
-    );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
     );
     _s.validateStringLength(
       'scheduleExpression',
@@ -9204,6 +8908,7 @@ class Ssm {
           'AssociationVersion': associationVersion,
         if (automationTargetParameterName != null)
           'AutomationTargetParameterName': automationTargetParameterName,
+        if (calendarNames != null) 'CalendarNames': calendarNames,
         if (complianceSeverity != null)
           'ComplianceSeverity': complianceSeverity.toValue(),
         if (documentVersion != null) 'DocumentVersion': documentVersion,
@@ -9248,19 +8953,7 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(associationStatus, 'associationStatus');
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''(^i-(\w{8}|\w{17})$)|(^mi-\w{17}$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.:/]{3,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateAssociationStatus'
@@ -9298,21 +8991,27 @@ class Ssm {
   /// A valid JSON or YAML string.
   ///
   /// Parameter [name] :
-  /// The name of the document that you want to update.
+  /// The name of the Systems Manager document that you want to update.
   ///
   /// Parameter [attachments] :
   /// A list of key and value pairs that describe attachments to a version of a
   /// document.
+  ///
+  /// Parameter [displayName] :
+  /// The friendly name of the Systems Manager document that you want to update.
+  /// This value can differ for each version of the document. If you do not
+  /// specify a value for this parameter in your request, the existing value is
+  /// applied to the new document version.
   ///
   /// Parameter [documentFormat] :
   /// Specify the document format for the new document version. Systems Manager
   /// supports JSON and YAML documents. JSON is the default format.
   ///
   /// Parameter [documentVersion] :
-  /// (Required) The latest version of the document that you want to update. The
-  /// latest document version can be specified using the $LATEST variable or by
-  /// the version number. Updating a previous version of a document is not
-  /// supported.
+  /// The version of the document that you want to update. Currently, Systems
+  /// Manager supports updating only the latest version of the document. You can
+  /// specify the version number of the latest version or use the
+  /// <code>$LATEST</code> variable.
   ///
   /// Parameter [targetType] :
   /// Specify a new target type for the document.
@@ -9325,6 +9024,7 @@ class Ssm {
     required String content,
     required String name,
     List<AttachmentsSource>? attachments,
+    String? displayName,
     DocumentFormat? documentFormat,
     String? documentVersion,
     String? targetType,
@@ -9339,32 +9039,17 @@ class Ssm {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
+    _s.validateStringLength(
+      'displayName',
+      displayName,
+      0,
+      1024,
     );
     _s.validateStringLength(
       'targetType',
       targetType,
       0,
       200,
-    );
-    _s.validateStringPattern(
-      'targetType',
-      targetType,
-      r'''^\/[\w\.\-\:\/]*$''',
-    );
-    _s.validateStringPattern(
-      'versionName',
-      versionName,
-      r'''^[a-zA-Z0-9_\-.]{1,128}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9380,6 +9065,7 @@ class Ssm {
         'Content': content,
         'Name': name,
         if (attachments != null) 'Attachments': attachments,
+        if (displayName != null) 'DisplayName': displayName,
         if (documentFormat != null) 'DocumentFormat': documentFormat.toValue(),
         if (documentVersion != null) 'DocumentVersion': documentVersion,
         if (targetType != null) 'TargetType': targetType,
@@ -9408,19 +9094,7 @@ class Ssm {
     required String name,
   }) async {
     ArgumentError.checkNotNull(documentVersion, 'documentVersion');
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''(^[1-9][0-9]*$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateDocumentDefaultVersion'
@@ -9463,17 +9137,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(documentReviews, 'documentReviews');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'documentVersion',
-      documentVersion,
-      r'''([$]LATEST|[$]DEFAULT|^[1-9][0-9]*$)''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateDocumentMetadata'
@@ -9592,12 +9255,6 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'cutoff',
       cutoff,
@@ -9621,11 +9278,6 @@ class Ssm {
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     _s.validateStringLength(
       'schedule',
@@ -9741,24 +9393,12 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTargetId, 'windowTargetId');
     _s.validateStringLength(
       'windowTargetId',
       windowTargetId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowTargetId',
-      windowTargetId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -9772,11 +9412,6 @@ class Ssm {
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     _s.validateStringLength(
       'ownerInformation',
@@ -9836,7 +9471,7 @@ class Ssm {
   /// Command-type tasks. Depending on the task, targets are optional for other
   /// maintenance window task types (Automation, AWS Lambda, and AWS Step
   /// Functions). For more information about running tasks that do not specify
-  /// targets, see see <a
+  /// targets, see <a
   /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html">Registering
   /// maintenance window tasks without targets</a> in the <i>AWS Systems Manager
   /// User Guide</i>.
@@ -9949,7 +9584,7 @@ class Ssm {
   /// Command-type tasks. Depending on the task, targets are optional for other
   /// maintenance window task types (Automation, AWS Lambda, and AWS Step
   /// Functions). For more information about running tasks that do not specify
-  /// targets, see see <a
+  /// targets, see <a
   /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html">Registering
   /// maintenance window tasks without targets</a> in the <i>AWS Systems Manager
   /// User Guide</i>.
@@ -10013,24 +9648,12 @@ class Ssm {
       20,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'windowId',
-      windowId,
-      r'''^mw-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
     _s.validateStringLength(
       'windowTaskId',
       windowTaskId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'windowTaskId',
-      windowTaskId,
-      r'''^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -10045,32 +9668,17 @@ class Ssm {
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxConcurrency',
-      maxConcurrency,
-      r'''^([1-9][0-9]*|[1-9][0-9]%|[1-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'maxErrors',
       maxErrors,
       1,
       7,
     );
-    _s.validateStringPattern(
-      'maxErrors',
-      maxErrors,
-      r'''^([1-9][0-9]*|[0]|[1-9][0-9]%|[0-9]%|100%)$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     _s.validateNumRange(
       'priority',
@@ -10142,12 +9750,6 @@ class Ssm {
       isRequired: true,
     );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''^mi-[0-9a-f]{17}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateManagedInstanceRole'
@@ -10285,33 +9887,17 @@ class Ssm {
     String? title,
   }) async {
     ArgumentError.checkNotNull(opsItemId, 'opsItemId');
-    _s.validateStringPattern(
-      'opsItemId',
-      opsItemId,
-      r'''^(oi)-[0-9a-f]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'category',
       category,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'category',
-      category,
-      r'''^(?!\s*$).+''',
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
-      1024,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\s\S]*\S[\s\S]*''',
+      2048,
     );
     _s.validateNumRange(
       'priority',
@@ -10325,21 +9911,11 @@ class Ssm {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'severity',
-      severity,
-      r'''^(?!\s*$).+''',
-    );
     _s.validateStringLength(
       'title',
       title,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'title',
-      title,
-      r'''^(?!\s*$).+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10404,12 +9980,6 @@ class Ssm {
       opsMetadataArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'opsMetadataArn',
-      opsMetadataArn,
-      r'''arn:(aws[a-zA-Z-]*)?:ssm:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:opsmetadata\/([a-zA-Z0-9-_\.\/]*)''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -10536,12 +10106,6 @@ class Ssm {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baselineId',
-      baselineId,
-      r'''^[a-zA-Z0-9_\-:/]{20,128}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -10553,11 +10117,6 @@ class Ssm {
       name,
       3,
       128,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9_\-.]{3,128}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10688,6 +10247,15 @@ class Ssm {
   ///
   /// <ul>
   /// <li>
+  /// <code>/ssm/automation/customer-script-log-destination</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/automation/customer-script-log-group-name</code>
+  /// </li>
+  /// <li>
+  /// <code>/ssm/documents/console/public-sharing-permission</code>
+  /// </li>
+  /// <li>
   /// <code>/ssm/parameter-store/default-parameter-tier</code>
   /// </li>
   /// <li>
@@ -10717,6 +10285,16 @@ class Ssm {
   /// For the <code>/ssm/parameter-store/high-throughput-enabled</code>, and
   /// <code>/ssm/managed-instance/activation-tier</code> setting IDs, the
   /// setting value can be true or false.
+  ///
+  /// For the <code>/ssm/automation/customer-script-log-destination</code>
+  /// setting ID, the setting value can be CloudWatch.
+  ///
+  /// For the <code>/ssm/automation/customer-script-log-group-name</code>
+  /// setting ID, the setting value can be the name of a CloudWatch Logs log
+  /// group.
+  ///
+  /// For the <code>/ssm/documents/console/public-sharing-permission</code>
+  /// setting ID, the setting value can be Enable or Disable.
   Future<void> updateServiceSetting({
     required String settingId,
     required String settingValue,
@@ -10852,6 +10430,21 @@ class AddTagsToResourceResult {
   }
 }
 
+class AssociateOpsItemRelatedItemResponse {
+  /// The association ID.
+  final String? associationId;
+
+  AssociateOpsItemRelatedItemResponse({
+    this.associationId,
+  });
+  factory AssociateOpsItemRelatedItemResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateOpsItemRelatedItemResponse(
+      associationId: json['AssociationId'] as String?,
+    );
+  }
+}
+
 /// Describes an association of a Systems Manager document and an instance.
 class Association {
   /// The ID created by the system when you create an association. An association
@@ -10879,7 +10472,8 @@ class Association {
   /// Information about the association.
   final AssociationOverview? overview;
 
-  /// A cron expression that specifies a schedule when the association runs.
+  /// A cron expression that specifies a schedule when the association runs. The
+  /// schedule runs in Coordinated Universal Time (UTC).
   final String? scheduleExpression;
 
   /// The instances targeted by the request to create an association.
@@ -10985,6 +10579,13 @@ class AssociationDescription {
   /// rate controls.
   final String? automationTargetParameterName;
 
+  /// The names or Amazon Resource Names (ARNs) of the Systems Manager Change
+  /// Calendar type documents your associations are gated under. The associations
+  /// only run when that Change Calendar is open. For more information, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar">AWS
+  /// Systems Manager Change Calendar</a>.
+  final List<String>? calendarNames;
+
   /// The severity level that is assigned to the association.
   final AssociationComplianceSeverity? complianceSeverity;
 
@@ -11079,6 +10680,7 @@ class AssociationDescription {
     this.associationName,
     this.associationVersion,
     this.automationTargetParameterName,
+    this.calendarNames,
     this.complianceSeverity,
     this.date,
     this.documentVersion,
@@ -11106,6 +10708,10 @@ class AssociationDescription {
       associationVersion: json['AssociationVersion'] as String?,
       automationTargetParameterName:
           json['AutomationTargetParameterName'] as String?,
+      calendarNames: (json['CalendarNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       complianceSeverity: (json['ComplianceSeverity'] as String?)
           ?.toAssociationComplianceSeverity(),
       date: timeStampFromJson(json['Date']),
@@ -11642,6 +11248,14 @@ class AssociationVersionInfo {
   /// The association version.
   final String? associationVersion;
 
+  /// The names or Amazon Resource Names (ARNs) of the Systems Manager Change
+  /// Calendar type documents your associations are gated under. The associations
+  /// for this version only run when that Change Calendar is open. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar">AWS
+  /// Systems Manager Change Calendar</a>.
+  final List<String>? calendarNames;
+
   /// The severity level that is assigned to the association.
   final AssociationComplianceSeverity? complianceSeverity;
 
@@ -11721,6 +11335,7 @@ class AssociationVersionInfo {
     this.associationId,
     this.associationName,
     this.associationVersion,
+    this.calendarNames,
     this.complianceSeverity,
     this.createdDate,
     this.documentVersion,
@@ -11740,6 +11355,10 @@ class AssociationVersionInfo {
       associationId: json['AssociationId'] as String?,
       associationName: json['AssociationName'] as String?,
       associationVersion: json['AssociationVersion'] as String?,
+      calendarNames: (json['CalendarNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       complianceSeverity: (json['ComplianceSeverity'] as String?)
           ?.toAssociationComplianceSeverity(),
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -12153,10 +11772,7 @@ class AutomationExecution {
 /// A filter used to match specific automation executions. This is used to limit
 /// the scope of Automation execution information returned.
 class AutomationExecutionFilter {
-  /// One or more keys to limit the results. Valid filter keys include the
-  /// following: DocumentNamePrefix, ExecutionStatus, ExecutionId,
-  /// ParentExecutionId, CurrentAction, StartTimeBefore, StartTimeAfter,
-  /// TargetResourceGroup.
+  /// One or more keys to limit the results.
   final AutomationExecutionFilterKey key;
 
   /// The values used to limit the execution information associated with the
@@ -12592,6 +12208,93 @@ extension on String {
         return AutomationType.local;
     }
     throw Exception('$this is not known in enum AutomationType');
+  }
+}
+
+/// Defines the basic information about a patch baseline override.
+class BaselineOverride {
+  final PatchRuleGroup? approvalRules;
+
+  /// A list of explicitly approved patches for the baseline.
+  ///
+  /// For information about accepted formats for lists of approved patches and
+  /// rejected patches, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">About
+  /// package name formats for approved and rejected patch lists</a> in the <i>AWS
+  /// Systems Manager User Guide</i>.
+  final List<String>? approvedPatches;
+
+  /// Defines the compliance level for approved patches. When an approved patch is
+  /// reported as missing, this value describes the severity of the compliance
+  /// violation.
+  final PatchComplianceLevel? approvedPatchesComplianceLevel;
+
+  /// Indicates whether the list of approved patches includes non-security updates
+  /// that should be applied to the instances. The default value is 'false'.
+  /// Applies to Linux instances only.
+  final bool? approvedPatchesEnableNonSecurity;
+  final PatchFilterGroup? globalFilters;
+
+  /// The operating system rule used by the patch baseline override.
+  final OperatingSystem? operatingSystem;
+
+  /// A list of explicitly rejected patches for the baseline.
+  ///
+  /// For information about accepted formats for lists of approved patches and
+  /// rejected patches, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">About
+  /// package name formats for approved and rejected patch lists</a> in the <i>AWS
+  /// Systems Manager User Guide</i>.
+  final List<String>? rejectedPatches;
+
+  /// The action for Patch Manager to take on patches included in the
+  /// RejectedPackages list. A patch can be allowed only if it is a dependency of
+  /// another package, or blocked entirely along with packages that include it as
+  /// a dependency.
+  final PatchAction? rejectedPatchesAction;
+
+  /// Information about the patches to use to update the instances, including
+  /// target operating systems and source repositories. Applies to Linux instances
+  /// only.
+  final List<PatchSource>? sources;
+
+  BaselineOverride({
+    this.approvalRules,
+    this.approvedPatches,
+    this.approvedPatchesComplianceLevel,
+    this.approvedPatchesEnableNonSecurity,
+    this.globalFilters,
+    this.operatingSystem,
+    this.rejectedPatches,
+    this.rejectedPatchesAction,
+    this.sources,
+  });
+  Map<String, dynamic> toJson() {
+    final approvalRules = this.approvalRules;
+    final approvedPatches = this.approvedPatches;
+    final approvedPatchesComplianceLevel = this.approvedPatchesComplianceLevel;
+    final approvedPatchesEnableNonSecurity =
+        this.approvedPatchesEnableNonSecurity;
+    final globalFilters = this.globalFilters;
+    final operatingSystem = this.operatingSystem;
+    final rejectedPatches = this.rejectedPatches;
+    final rejectedPatchesAction = this.rejectedPatchesAction;
+    final sources = this.sources;
+    return {
+      if (approvalRules != null) 'ApprovalRules': approvalRules,
+      if (approvedPatches != null) 'ApprovedPatches': approvedPatches,
+      if (approvedPatchesComplianceLevel != null)
+        'ApprovedPatchesComplianceLevel':
+            approvedPatchesComplianceLevel.toValue(),
+      if (approvedPatchesEnableNonSecurity != null)
+        'ApprovedPatchesEnableNonSecurity': approvedPatchesEnableNonSecurity,
+      if (globalFilters != null) 'GlobalFilters': globalFilters,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem.toValue(),
+      if (rejectedPatches != null) 'RejectedPatches': rejectedPatches,
+      if (rejectedPatchesAction != null)
+        'RejectedPatchesAction': rejectedPatchesAction.toValue(),
+      if (sources != null) 'Sources': sources,
+    };
   }
 }
 
@@ -13038,6 +12741,8 @@ class CommandInvocation {
 
   /// The command against which this invocation was requested.
   final String? commandId;
+
+  /// Plugins processed by the command.
   final List<CommandPlugin>? commandPlugins;
 
   /// User-specified information about the command, such as a brief description of
@@ -13988,6 +13693,13 @@ class CreateAssociationBatchRequestEntry {
   /// rate controls.
   final String? automationTargetParameterName;
 
+  /// The names or Amazon Resource Names (ARNs) of the Systems Manager Change
+  /// Calendar type documents your associations are gated under. The associations
+  /// only run when that Change Calendar is open. For more information, see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar">AWS
+  /// Systems Manager Change Calendar</a>.
+  final List<String>? calendarNames;
+
   /// The severity level to assign to the association.
   final AssociationComplianceSeverity? complianceSeverity;
 
@@ -14060,6 +13772,7 @@ class CreateAssociationBatchRequestEntry {
     this.applyOnlyAtCronInterval,
     this.associationName,
     this.automationTargetParameterName,
+    this.calendarNames,
     this.complianceSeverity,
     this.documentVersion,
     this.instanceId,
@@ -14080,6 +13793,10 @@ class CreateAssociationBatchRequestEntry {
       associationName: json['AssociationName'] as String?,
       automationTargetParameterName:
           json['AutomationTargetParameterName'] as String?,
+      calendarNames: (json['CalendarNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       complianceSeverity: (json['ComplianceSeverity'] as String?)
           ?.toAssociationComplianceSeverity(),
       documentVersion: json['DocumentVersion'] as String?,
@@ -14112,6 +13829,7 @@ class CreateAssociationBatchRequestEntry {
     final applyOnlyAtCronInterval = this.applyOnlyAtCronInterval;
     final associationName = this.associationName;
     final automationTargetParameterName = this.automationTargetParameterName;
+    final calendarNames = this.calendarNames;
     final complianceSeverity = this.complianceSeverity;
     final documentVersion = this.documentVersion;
     final instanceId = this.instanceId;
@@ -14130,6 +13848,7 @@ class CreateAssociationBatchRequestEntry {
       if (associationName != null) 'AssociationName': associationName,
       if (automationTargetParameterName != null)
         'AutomationTargetParameterName': automationTargetParameterName,
+      if (calendarNames != null) 'CalendarNames': calendarNames,
       if (complianceSeverity != null)
         'ComplianceSeverity': complianceSeverity.toValue(),
       if (documentVersion != null) 'DocumentVersion': documentVersion,
@@ -14696,9 +14415,14 @@ class DescribeDocumentPermissionResponse {
   /// shared with each account.
   final List<AccountSharingInfo>? accountSharingInfoList;
 
+  /// The token for the next set of items to return. Use this token to get the
+  /// next set of results.
+  final String? nextToken;
+
   DescribeDocumentPermissionResponse({
     this.accountIds,
     this.accountSharingInfoList,
+    this.nextToken,
   });
   factory DescribeDocumentPermissionResponse.fromJson(
       Map<String, dynamic> json) {
@@ -14711,6 +14435,7 @@ class DescribeDocumentPermissionResponse {
           ?.whereNotNull()
           .map((e) => AccountSharingInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
+      nextToken: json['NextToken'] as String?,
     );
   }
 }
@@ -15216,6 +14941,13 @@ class DescribePatchGroupStateResult {
   /// The number of instances in the patch group.
   final int? instances;
 
+  /// The number of instances where patches that are specified as "Critical" for
+  /// compliance reporting in the patch baseline are not installed. These patches
+  /// might be missing, have failed installation, were rejected, or were installed
+  /// but awaiting a required instance reboot. The status of these instances is
+  /// <code>NON_COMPLIANT</code>.
+  final int? instancesWithCriticalNonCompliantPatches;
+
   /// The number of instances with patches from the patch baseline that failed to
   /// install.
   final int? instancesWithFailedPatches;
@@ -15247,6 +14979,18 @@ class DescribePatchGroupStateResult {
   /// The number of instances with patches that aren't applicable.
   final int? instancesWithNotApplicablePatches;
 
+  /// The number of instances with patches installed that are specified as other
+  /// than "Critical" or "Security" but are not compliant with the patch baseline.
+  /// The status of these instances is NON_COMPLIANT.
+  final int? instancesWithOtherNonCompliantPatches;
+
+  /// The number of instances where patches that are specified as "Security" in a
+  /// patch advisory are not installed. These patches might be missing, have
+  /// failed installation, were rejected, or were installed but awaiting a
+  /// required instance reboot. The status of these instances is
+  /// <code>NON_COMPLIANT</code>.
+  final int? instancesWithSecurityNonCompliantPatches;
+
   /// The number of instances with <code>NotApplicable</code> patches beyond the
   /// supported limit, which are not reported by name to Systems Manager
   /// Inventory.
@@ -15254,6 +14998,7 @@ class DescribePatchGroupStateResult {
 
   DescribePatchGroupStateResult({
     this.instances,
+    this.instancesWithCriticalNonCompliantPatches,
     this.instancesWithFailedPatches,
     this.instancesWithInstalledOtherPatches,
     this.instancesWithInstalledPatches,
@@ -15261,11 +15006,15 @@ class DescribePatchGroupStateResult {
     this.instancesWithInstalledRejectedPatches,
     this.instancesWithMissingPatches,
     this.instancesWithNotApplicablePatches,
+    this.instancesWithOtherNonCompliantPatches,
+    this.instancesWithSecurityNonCompliantPatches,
     this.instancesWithUnreportedNotApplicablePatches,
   });
   factory DescribePatchGroupStateResult.fromJson(Map<String, dynamic> json) {
     return DescribePatchGroupStateResult(
       instances: json['Instances'] as int?,
+      instancesWithCriticalNonCompliantPatches:
+          json['InstancesWithCriticalNonCompliantPatches'] as int?,
       instancesWithFailedPatches: json['InstancesWithFailedPatches'] as int?,
       instancesWithInstalledOtherPatches:
           json['InstancesWithInstalledOtherPatches'] as int?,
@@ -15278,6 +15027,10 @@ class DescribePatchGroupStateResult {
       instancesWithMissingPatches: json['InstancesWithMissingPatches'] as int?,
       instancesWithNotApplicablePatches:
           json['InstancesWithNotApplicablePatches'] as int?,
+      instancesWithOtherNonCompliantPatches:
+          json['InstancesWithOtherNonCompliantPatches'] as int?,
+      instancesWithSecurityNonCompliantPatches:
+          json['InstancesWithSecurityNonCompliantPatches'] as int?,
       instancesWithUnreportedNotApplicablePatches:
           json['InstancesWithUnreportedNotApplicablePatches'] as int?,
     );
@@ -15360,6 +15113,14 @@ class DescribeSessionsResponse {
   }
 }
 
+class DisassociateOpsItemRelatedItemResponse {
+  DisassociateOpsItemRelatedItemResponse();
+  factory DisassociateOpsItemRelatedItemResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DisassociateOpsItemRelatedItemResponse();
+  }
+}
+
 /// A default version of a document.
 class DocumentDefaultVersionDescription {
   /// The default version of the document.
@@ -15406,6 +15167,11 @@ class DocumentDescription {
 
   /// A description of the document.
   final String? description;
+
+  /// The friendly name of the Systems Manager document. This value can differ for
+  /// each version of the document. If you want to update this value, see
+  /// <a>UpdateDocument</a>.
+  final String? displayName;
 
   /// The document format, either JSON or YAML.
   final DocumentFormat? documentFormat;
@@ -15479,7 +15245,7 @@ class DocumentDescription {
   /// The target type which defines the kinds of resources the document can run
   /// on. For example, /AWS::EC2::Instance. For a list of valid resource types,
   /// see <a
-  /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
   /// resource and property types reference</a> in the <i>AWS CloudFormation User
   /// Guide</i>.
   final String? targetType;
@@ -15494,6 +15260,7 @@ class DocumentDescription {
     this.createdDate,
     this.defaultVersion,
     this.description,
+    this.displayName,
     this.documentFormat,
     this.documentType,
     this.documentVersion,
@@ -15527,6 +15294,7 @@ class DocumentDescription {
       createdDate: timeStampFromJson(json['CreatedDate']),
       defaultVersion: json['DefaultVersion'] as String?,
       description: json['Description'] as String?,
+      displayName: json['DisplayName'] as String?,
       documentFormat: (json['DocumentFormat'] as String?)?.toDocumentFormat(),
       documentType: (json['DocumentType'] as String?)?.toDocumentType(),
       documentVersion: json['DocumentVersion'] as String?,
@@ -15693,6 +15461,14 @@ class DocumentIdentifier {
   /// The user in your organization who created the document.
   final String? author;
 
+  /// The date the Systems Manager document was created.
+  final DateTime? createdDate;
+
+  /// An optional field where you can specify a friendly name for the Systems
+  /// Manager document. This value can differ for each version of the document. If
+  /// you want to update this value, see <a>UpdateDocument</a>.
+  final String? displayName;
+
   /// The document format, either JSON or YAML.
   final DocumentFormat? documentFormat;
 
@@ -15728,7 +15504,7 @@ class DocumentIdentifier {
   /// The target type which defines the kinds of resources the document can run
   /// on. For example, /AWS::EC2::Instance. For a list of valid resource types,
   /// see <a
-  /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
   /// resource and property types reference</a> in the <i>AWS CloudFormation User
   /// Guide</i>.
   final String? targetType;
@@ -15740,6 +15516,8 @@ class DocumentIdentifier {
 
   DocumentIdentifier({
     this.author,
+    this.createdDate,
+    this.displayName,
     this.documentFormat,
     this.documentType,
     this.documentVersion,
@@ -15756,6 +15534,8 @@ class DocumentIdentifier {
   factory DocumentIdentifier.fromJson(Map<String, dynamic> json) {
     return DocumentIdentifier(
       author: json['Author'] as String?,
+      createdDate: timeStampFromJson(json['CreatedDate']),
+      displayName: json['DisplayName'] as String?,
       documentFormat: (json['DocumentFormat'] as String?)?.toDocumentFormat(),
       documentType: (json['DocumentType'] as String?)?.toDocumentType(),
       documentVersion: json['DocumentVersion'] as String?,
@@ -15856,7 +15636,7 @@ class DocumentIdentifier {
 ///
 /// You can also use the <code>TargetType</code> AWS-provided key. For a list of
 /// valid resource type values that can be used with this key, see <a
-/// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
+/// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">AWS
 /// resource and property types reference</a> in the <i>AWS CloudFormation User
 /// Guide</i>.
 ///
@@ -16268,6 +16048,8 @@ enum DocumentType {
   deploymentStrategy,
   changeCalendar,
   automationChangeTemplate,
+  problemAnalysis,
+  problemAnalysisTemplate,
 }
 
 extension on DocumentType {
@@ -16293,6 +16075,10 @@ extension on DocumentType {
         return 'ChangeCalendar';
       case DocumentType.automationChangeTemplate:
         return 'Automation.ChangeTemplate';
+      case DocumentType.problemAnalysis:
+        return 'ProblemAnalysis';
+      case DocumentType.problemAnalysisTemplate:
+        return 'ProblemAnalysisTemplate';
     }
   }
 }
@@ -16320,6 +16106,10 @@ extension on String {
         return DocumentType.changeCalendar;
       case 'Automation.ChangeTemplate':
         return DocumentType.automationChangeTemplate;
+      case 'ProblemAnalysis':
+        return DocumentType.problemAnalysis;
+      case 'ProblemAnalysisTemplate':
+        return DocumentType.problemAnalysisTemplate;
     }
     throw Exception('$this is not known in enum DocumentType');
   }
@@ -16329,6 +16119,11 @@ extension on String {
 class DocumentVersionInfo {
   /// The date the document was created.
   final DateTime? createdDate;
+
+  /// The friendly name of the Systems Manager document. This value can differ for
+  /// each version of the document. If you want to update this value, see
+  /// <a>UpdateDocument</a>.
+  final String? displayName;
 
   /// The document format, either JSON or YAML.
   final DocumentFormat? documentFormat;
@@ -16363,6 +16158,7 @@ class DocumentVersionInfo {
 
   DocumentVersionInfo({
     this.createdDate,
+    this.displayName,
     this.documentFormat,
     this.documentVersion,
     this.isDefaultVersion,
@@ -16375,6 +16171,7 @@ class DocumentVersionInfo {
   factory DocumentVersionInfo.fromJson(Map<String, dynamic> json) {
     return DocumentVersionInfo(
       createdDate: timeStampFromJson(json['CreatedDate']),
+      displayName: json['DisplayName'] as String?,
       documentFormat: (json['DocumentFormat'] as String?)?.toDocumentFormat(),
       documentVersion: json['DocumentVersion'] as String?,
       isDefaultVersion: json['IsDefaultVersion'] as bool?,
@@ -16598,19 +16395,19 @@ class GetCommandInvocationResult {
   /// The comment text for the command.
   final String? comment;
 
-  /// The name of the document that was run. For example, AWS-RunShellScript.
+  /// The name of the document that was run. For example,
+  /// <code>AWS-RunShellScript</code>.
   final String? documentName;
 
   /// The SSM document version used in the request.
   final String? documentVersion;
 
-  /// Duration since ExecutionStartDateTime.
+  /// Duration since <code>ExecutionStartDateTime</code>.
   final String? executionElapsedTime;
 
-  /// The date and time the plugin was finished running. Date and time are written
-  /// in ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7.
-  /// The following sample AWS CLI command uses the <code>InvokedAfter</code>
-  /// filter.
+  /// The date and time the plugin finished running. Date and time are written in
+  /// ISO 8601 format. For example, June 7, 2017 is represented as 2017-06-7. The
+  /// following sample AWS CLI command uses the <code>InvokedAfter</code> filter.
   ///
   /// <code>aws ssm list-commands --filters
   /// key=InvokedAfter,value=2017-06-07T00:00:00Z</code>
@@ -16633,44 +16430,46 @@ class GetCommandInvocationResult {
   /// configured for Systems Manager.
   final String? instanceId;
 
-  /// The name of the plugin for which you want detailed results. For example,
-  /// aws:RunShellScript is a plugin.
+  /// The name of the plugin, or <i>step name</i>, for which details are reported.
+  /// For example, <code>aws:RunShellScript</code> is a plugin.
   final String? pluginName;
 
   /// The error level response code for the plugin script. If the response code is
-  /// -1, then the command has not started running on the instance, or it was not
-  /// received by the instance.
+  /// <code>-1</code>, then the command has not started running on the instance,
+  /// or it was not received by the instance.
   final int? responseCode;
 
-  /// The first 8,000 characters written by the plugin to stderr. If the command
-  /// has not finished running, then this string is empty.
+  /// The first 8,000 characters written by the plugin to <code>stderr</code>. If
+  /// the command has not finished running, then this string is empty.
   final String? standardErrorContent;
 
-  /// The URL for the complete text written by the plugin to stderr. If the
-  /// command has not finished running, then this string is empty.
+  /// The URL for the complete text written by the plugin to <code>stderr</code>.
+  /// If the command has not finished running, then this string is empty.
   final String? standardErrorUrl;
 
-  /// The first 24,000 characters written by the plugin to stdout. If the command
-  /// has not finished running, if ExecutionStatus is neither Succeeded nor
-  /// Failed, then this string is empty.
+  /// The first 24,000 characters written by the plugin to <code>stdout</code>. If
+  /// the command has not finished running, if <code>ExecutionStatus</code> is
+  /// neither Succeeded nor Failed, then this string is empty.
   final String? standardOutputContent;
 
-  /// The URL for the complete text written by the plugin to stdout in Amazon S3.
-  /// If an S3 bucket was not specified, then this string is empty.
+  /// The URL for the complete text written by the plugin to <code>stdout</code>
+  /// in Amazon Simple Storage Service (Amazon S3). If an S3 bucket was not
+  /// specified, then this string is empty.
   final String? standardOutputUrl;
 
   /// The status of this invocation plugin. This status can be different than
-  /// StatusDetails.
+  /// <code>StatusDetails</code>.
   final CommandInvocationStatus? status;
 
-  /// A detailed status of the command execution for an invocation. StatusDetails
-  /// includes more information than Status because it includes states resulting
-  /// from error and concurrency control parameters. StatusDetails can show
-  /// different results than Status. For more information about these statuses,
-  /// see <a
+  /// A detailed status of the command execution for an invocation.
+  /// <code>StatusDetails</code> includes more information than
+  /// <code>Status</code> because it includes states resulting from error and
+  /// concurrency control parameters. <code>StatusDetails</code> can show
+  /// different results than <code>Status</code>. For more information about these
+  /// statuses, see <a
   /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html">Understanding
   /// command statuses</a> in the <i>AWS Systems Manager User Guide</i>.
-  /// StatusDetails can be one of the following values:
+  /// <code>StatusDetails</code> can be one of the following values:
   ///
   /// <ul>
   /// <li>
@@ -16692,21 +16491,22 @@ class GetCommandInvocationResult {
   /// <li>
   /// Delivery Timed Out: The command was not delivered to the instance before the
   /// delivery timeout expired. Delivery timeouts do not count against the parent
-  /// command's MaxErrors limit, but they do contribute to whether the parent
-  /// command status is Success or Incomplete. This is a terminal state.
+  /// command's <code>MaxErrors</code> limit, but they do contribute to whether
+  /// the parent command status is Success or Incomplete. This is a terminal
+  /// state.
   /// </li>
   /// <li>
   /// Execution Timed Out: The command started to run on the instance, but the
   /// execution was not complete before the timeout expired. Execution timeouts
-  /// count against the MaxErrors limit of the parent command. This is a terminal
-  /// state.
+  /// count against the <code>MaxErrors</code> limit of the parent command. This
+  /// is a terminal state.
   /// </li>
   /// <li>
   /// Failed: The command wasn't run successfully on the instance. For a plugin,
   /// this indicates that the result code was not zero. For a command invocation,
   /// this indicates that the result code for one or more plugins was not zero.
-  /// Invocation failures count against the MaxErrors limit of the parent command.
-  /// This is a terminal state.
+  /// Invocation failures count against the <code>MaxErrors</code> limit of the
+  /// parent command. This is a terminal state.
   /// </li>
   /// <li>
   /// Canceled: The command was terminated before it was completed. This is a
@@ -16715,13 +16515,14 @@ class GetCommandInvocationResult {
   /// <li>
   /// Undeliverable: The command can't be delivered to the instance. The instance
   /// might not exist or might not be responding. Undeliverable invocations don't
-  /// count against the parent command's MaxErrors limit and don't contribute to
-  /// whether the parent command status is Success or Incomplete. This is a
-  /// terminal state.
+  /// count against the parent command's <code>MaxErrors</code> limit and don't
+  /// contribute to whether the parent command status is Success or Incomplete.
+  /// This is a terminal state.
   /// </li>
   /// <li>
-  /// Terminated: The parent command exceeded its MaxErrors limit and subsequent
-  /// command invocations were canceled by the system. This is a terminal state.
+  /// Terminated: The parent command exceeded its <code>MaxErrors</code> limit and
+  /// subsequent command invocations were canceled by the system. This is a
+  /// terminal state.
   /// </li>
   /// </ul>
   final String? statusDetails;
@@ -16850,6 +16651,14 @@ class GetDocumentResult {
   /// The contents of the Systems Manager document.
   final String? content;
 
+  /// The date the Systems Manager document was created.
+  final DateTime? createdDate;
+
+  /// The friendly name of the Systems Manager document. This value can differ for
+  /// each version of the document. If you want to update this value, see
+  /// <a>UpdateDocument</a>.
+  final String? displayName;
+
   /// The document format, either JSON or YAML.
   final DocumentFormat? documentFormat;
 
@@ -16897,6 +16706,8 @@ class GetDocumentResult {
   GetDocumentResult({
     this.attachmentsContent,
     this.content,
+    this.createdDate,
+    this.displayName,
     this.documentFormat,
     this.documentType,
     this.documentVersion,
@@ -16914,6 +16725,8 @@ class GetDocumentResult {
           .map((e) => AttachmentContent.fromJson(e as Map<String, dynamic>))
           .toList(),
       content: json['Content'] as String?,
+      createdDate: timeStampFromJson(json['CreatedDate']),
+      displayName: json['DisplayName'] as String?,
       documentFormat: (json['DocumentFormat'] as String?)?.toDocumentFormat(),
       documentType: (json['DocumentType'] as String?)?.toDocumentType(),
       documentVersion: json['DocumentVersion'] as String?,
@@ -17778,6 +17591,11 @@ class InstanceAssociation {
 }
 
 /// An S3 bucket where you want to store the results of this request.
+///
+/// For the minimal permissions required to enable Amazon S3 output for an
+/// association, see <a
+/// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-state-assoc.html">Creating
+/// associations</a> in the <i>Systems Manager User Guide</i>.
 class InstanceAssociationOutputLocation {
   /// An S3 bucket where you want to store the results of this request.
   final S3OutputLocation? s3Location;
@@ -17919,9 +17737,9 @@ class InstanceInformation {
   /// IAM role for EC2 instances. To retrieve the IAM role for an EC2 instance,
   /// use the Amazon EC2 <code>DescribeInstances</code> action. For information,
   /// see <a
-  /// href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
   /// in the <i>Amazon EC2 API Reference</i> or <a
-  /// href="http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html">describe-instances</a>
+  /// href="https://docs.aws.amazon.com/cli/latest/ec2/describe-instances.html">describe-instances</a>
   /// in the <i>AWS CLI Command Reference</i>.
   final String? iamRole;
 
@@ -17950,15 +17768,15 @@ class InstanceInformation {
   /// <a>CreateActivation</a> command. It is applied to the managed instance by
   /// specifying the Activation Code and Activation ID when you install SSM Agent
   /// on the instance, as explained in <a
-  /// href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html">Install
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html">Install
   /// SSM Agent for a hybrid environment (Linux)</a> and <a
-  /// href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html">Install
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html">Install
   /// SSM Agent for a hybrid environment (Windows)</a>. To retrieve the Name tag
   /// of an EC2 instance, use the Amazon EC2 <code>DescribeInstances</code>
   /// action. For information, see <a
-  /// href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html">DescribeInstances</a>
   /// in the <i>Amazon EC2 API Reference</i> or <a
-  /// href="http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html">describe-instances</a>
+  /// href="https://docs.aws.amazon.com/cli/latest/ec2/describe-instances.html">describe-instances</a>
   /// in the <i>AWS CLI Command Reference</i>.
   final String? name;
 
@@ -18129,6 +17947,12 @@ class InstanceInformationStringFilter {
   ///
   /// "InstanceIds"|"AgentVersion"|"PingStatus"|"PlatformTypes"|"ActivationIds"|"IamRole"|"ResourceType"|"AssociationStatus"|"Tag
   /// Key"
+  /// <important>
+  /// <code>Tag key</code> is not a valid filter. You must specify either
+  /// <code>tag-key</code> or <code>tag:keyname</code> and a string. Here are some
+  /// valid examples: tag-key, tag:123, tag:al!, tag:Windows. Here are some
+  /// <i>invalid</i> examples: tag-keys, Tag Key, tag:, tagKey, abc:keyname.
+  /// </important>
   final String key;
 
   /// The filter values.
@@ -18172,6 +17996,13 @@ class InstancePatchState {
 
   /// The name of the patch group the managed instance belongs to.
   final String patchGroup;
+
+  /// The number of instances where patches that are specified as "Critical" for
+  /// compliance reporting in the patch baseline are not installed. These patches
+  /// might be missing, have failed installation, were rejected, or were installed
+  /// but awaiting a required instance reboot. The status of these instances is
+  /// <code>NON_COMPLIANT</code>.
+  final int? criticalNonCompliantCount;
 
   /// The number of patches from the patch baseline that were attempted to be
   /// installed during the last patching operation, but failed to install.
@@ -18227,6 +18058,11 @@ class InstancePatchState {
   /// beyond this limit are reported in <code>UnreportedNotApplicableCount</code>.
   final int? notApplicableCount;
 
+  /// The number of instances with patches installed that are specified as other
+  /// than "Critical" or "Security" but are not compliant with the patch baseline.
+  /// The status of these instances is NON_COMPLIANT.
+  final int? otherNonCompliantCount;
+
   /// Placeholder information. This field will always be empty in the current
   /// release of the service.
   final String? ownerInformation;
@@ -18251,6 +18087,13 @@ class InstancePatchState {
   /// </ul>
   final RebootOption? rebootOption;
 
+  /// The number of instances where patches that are specified as "Security" in a
+  /// patch advisory are not installed. These patches might be missing, have
+  /// failed installation, were rejected, or were installed but awaiting a
+  /// required instance reboot. The status of these instances is
+  /// <code>NON_COMPLIANT</code>.
+  final int? securityNonCompliantCount;
+
   /// The ID of the patch baseline snapshot used during the patching operation
   /// when this compliance data was collected.
   final String? snapshotId;
@@ -18267,6 +18110,7 @@ class InstancePatchState {
     required this.operationEndTime,
     required this.operationStartTime,
     required this.patchGroup,
+    this.criticalNonCompliantCount,
     this.failedCount,
     this.installOverrideList,
     this.installedCount,
@@ -18276,8 +18120,10 @@ class InstancePatchState {
     this.lastNoRebootInstallOperationTime,
     this.missingCount,
     this.notApplicableCount,
+    this.otherNonCompliantCount,
     this.ownerInformation,
     this.rebootOption,
+    this.securityNonCompliantCount,
     this.snapshotId,
     this.unreportedNotApplicableCount,
   });
@@ -18291,6 +18137,7 @@ class InstancePatchState {
       operationStartTime:
           nonNullableTimeStampFromJson(json['OperationStartTime'] as Object),
       patchGroup: json['PatchGroup'] as String,
+      criticalNonCompliantCount: json['CriticalNonCompliantCount'] as int?,
       failedCount: json['FailedCount'] as int?,
       installOverrideList: json['InstallOverrideList'] as String?,
       installedCount: json['InstalledCount'] as int?,
@@ -18301,8 +18148,10 @@ class InstancePatchState {
           timeStampFromJson(json['LastNoRebootInstallOperationTime']),
       missingCount: json['MissingCount'] as int?,
       notApplicableCount: json['NotApplicableCount'] as int?,
+      otherNonCompliantCount: json['OtherNonCompliantCount'] as int?,
       ownerInformation: json['OwnerInformation'] as String?,
       rebootOption: (json['RebootOption'] as String?)?.toRebootOption(),
+      securityNonCompliantCount: json['SecurityNonCompliantCount'] as int?,
       snapshotId: json['SnapshotId'] as String?,
       unreportedNotApplicableCount:
           json['UnreportedNotApplicableCount'] as int?,
@@ -19246,6 +19095,30 @@ class ListOpsItemEventsResponse {
       summaries: (json['Summaries'] as List?)
           ?.whereNotNull()
           .map((e) => OpsItemEventSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class ListOpsItemRelatedItemsResponse {
+  /// The token for the next set of items to return. Use this token to get the
+  /// next set of results.
+  final String? nextToken;
+
+  /// A list of related-item resources for the specified OpsItem.
+  final List<OpsItemRelatedItemSummary>? summaries;
+
+  ListOpsItemRelatedItemsResponse({
+    this.nextToken,
+    this.summaries,
+  });
+  factory ListOpsItemRelatedItemsResponse.fromJson(Map<String, dynamic> json) {
+    return ListOpsItemRelatedItemsResponse(
+      nextToken: json['NextToken'] as String?,
+      summaries: (json['Summaries'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              OpsItemRelatedItemSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -21085,7 +20958,8 @@ extension on String {
   }
 }
 
-/// Summary information about an OpsItem event.
+/// Summary information about an OpsItem event or that associated an OpsItem
+/// with a related item.
 class OpsItemEventSummary {
   /// Information about the user or resource that created the OpsItem event.
   final OpsItemIdentity? createdBy;
@@ -21382,6 +21256,150 @@ class OpsItemNotification {
     return {
       if (arn != null) 'Arn': arn,
     };
+  }
+}
+
+/// Summary information about related-item resources for an OpsItem.
+class OpsItemRelatedItemSummary {
+  /// The association ID.
+  final String? associationId;
+
+  /// The association type.
+  final String? associationType;
+  final OpsItemIdentity? createdBy;
+
+  /// The time the related-item association was created.
+  final DateTime? createdTime;
+  final OpsItemIdentity? lastModifiedBy;
+
+  /// The time the related-item association was last updated.
+  final DateTime? lastModifiedTime;
+
+  /// The OpsItem ID.
+  final String? opsItemId;
+
+  /// The resource type.
+  final String? resourceType;
+
+  /// The Amazon Resource Name (ARN) of the related-item resource.
+  final String? resourceUri;
+
+  OpsItemRelatedItemSummary({
+    this.associationId,
+    this.associationType,
+    this.createdBy,
+    this.createdTime,
+    this.lastModifiedBy,
+    this.lastModifiedTime,
+    this.opsItemId,
+    this.resourceType,
+    this.resourceUri,
+  });
+  factory OpsItemRelatedItemSummary.fromJson(Map<String, dynamic> json) {
+    return OpsItemRelatedItemSummary(
+      associationId: json['AssociationId'] as String?,
+      associationType: json['AssociationType'] as String?,
+      createdBy: json['CreatedBy'] != null
+          ? OpsItemIdentity.fromJson(json['CreatedBy'] as Map<String, dynamic>)
+          : null,
+      createdTime: timeStampFromJson(json['CreatedTime']),
+      lastModifiedBy: json['LastModifiedBy'] != null
+          ? OpsItemIdentity.fromJson(
+              json['LastModifiedBy'] as Map<String, dynamic>)
+          : null,
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      opsItemId: json['OpsItemId'] as String?,
+      resourceType: json['ResourceType'] as String?,
+      resourceUri: json['ResourceUri'] as String?,
+    );
+  }
+}
+
+/// Describes a filter for a specific list of related-item resources.
+class OpsItemRelatedItemsFilter {
+  /// The name of the filter key. Supported values include
+  /// <code>ResourceUri</code>, <code>ResourceType</code>, or
+  /// <code>AssociationId</code>.
+  final OpsItemRelatedItemsFilterKey key;
+
+  /// The operator used by the filter call. The only supported operator is
+  /// <code>EQUAL</code>.
+  final OpsItemRelatedItemsFilterOperator operator;
+
+  /// The values for the filter.
+  final List<String> values;
+
+  OpsItemRelatedItemsFilter({
+    required this.key,
+    required this.operator,
+    required this.values,
+  });
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final operator = this.operator;
+    final values = this.values;
+    return {
+      'Key': key.toValue(),
+      'Operator': operator.toValue(),
+      'Values': values,
+    };
+  }
+}
+
+enum OpsItemRelatedItemsFilterKey {
+  resourceType,
+  associationId,
+  resourceUri,
+}
+
+extension on OpsItemRelatedItemsFilterKey {
+  String toValue() {
+    switch (this) {
+      case OpsItemRelatedItemsFilterKey.resourceType:
+        return 'ResourceType';
+      case OpsItemRelatedItemsFilterKey.associationId:
+        return 'AssociationId';
+      case OpsItemRelatedItemsFilterKey.resourceUri:
+        return 'ResourceUri';
+    }
+  }
+}
+
+extension on String {
+  OpsItemRelatedItemsFilterKey toOpsItemRelatedItemsFilterKey() {
+    switch (this) {
+      case 'ResourceType':
+        return OpsItemRelatedItemsFilterKey.resourceType;
+      case 'AssociationId':
+        return OpsItemRelatedItemsFilterKey.associationId;
+      case 'ResourceUri':
+        return OpsItemRelatedItemsFilterKey.resourceUri;
+    }
+    throw Exception('$this is not known in enum OpsItemRelatedItemsFilterKey');
+  }
+}
+
+enum OpsItemRelatedItemsFilterOperator {
+  equal,
+}
+
+extension on OpsItemRelatedItemsFilterOperator {
+  String toValue() {
+    switch (this) {
+      case OpsItemRelatedItemsFilterOperator.equal:
+        return 'Equal';
+    }
+  }
+}
+
+extension on String {
+  OpsItemRelatedItemsFilterOperator toOpsItemRelatedItemsFilterOperator() {
+    switch (this) {
+      case 'Equal':
+        return OpsItemRelatedItemsFilterOperator.equal;
+    }
+    throw Exception(
+        '$this is not known in enum OpsItemRelatedItemsFilterOperator');
   }
 }
 
@@ -22868,12 +22886,12 @@ class PatchRule {
   /// The number of days after the release date of each patch matched by the rule
   /// that the patch is marked as approved in the patch baseline. For example, a
   /// value of <code>7</code> means that patches are approved seven days after
-  /// they are released. Not supported on Ubuntu Server.
+  /// they are released. Not supported on Debian Server or Ubuntu Server.
   final int? approveAfterDays;
 
   /// The cutoff date for auto approval of released patches. Any patches released
-  /// on or before this date are installed automatically. Not supported on Ubuntu
-  /// Server.
+  /// on or before this date are installed automatically. Not supported on Debian
+  /// Server or Ubuntu Server.
   ///
   /// Enter dates in the format <code>YYYY-MM-DD</code>. For example,
   /// <code>2020-12-31</code>.
@@ -22983,11 +23001,16 @@ class PatchSource {
   ///
   /// <code>[main]</code>
   ///
-  /// <code>cachedir=/var/cache/yum/$basesearch$releasever</code>
+  /// <code>name=MyCustomRepository</code>
   ///
-  /// <code>keepcache=0</code>
+  /// <code>baseurl=https://my-custom-repository</code>
   ///
-  /// <code>debuglevel=2</code>
+  /// <code>enabled=1</code>
+  /// <note>
+  /// For information about other options available for your yum repository
+  /// configuration, see <a
+  /// href="https://man7.org/linux/man-pages/man5/dnf.conf.5.html">dnf.conf(5)</a>.
+  /// </note>
   final String configuration;
 
   /// The name specified to identify the patch source.
@@ -23689,12 +23712,22 @@ class ResourceDataSyncSource {
 
   /// The type of data source for the resource data sync. <code>SourceType</code>
   /// is either <code>AwsOrganizations</code> (if an organization is present in
-  /// AWS Organizations) or <code>singleAccountMultiRegions</code>.
+  /// AWS Organizations) or <code>SingleAccountMultiRegions</code>.
   final String sourceType;
 
   /// Information about the AwsOrganizationsSource resource data sync source. A
   /// sync source of this type can synchronize data from AWS Organizations.
   final ResourceDataSyncAwsOrganizationsSource? awsOrganizationsSource;
+
+  /// When you create a resource data sync, if you choose one of the AWS
+  /// Organizations options, then Systems Manager automatically enables all
+  /// OpsData sources in the selected AWS Regions for all AWS accounts in your
+  /// organization (or in the selected organization units). For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html">About
+  /// multiple account and Region resource data syncs</a> in the <i>AWS Systems
+  /// Manager User Guide</i>.
+  final bool? enableAllOpsDataSources;
 
   /// Whether to automatically synchronize and aggregate data from new AWS Regions
   /// when those Regions come online.
@@ -23704,18 +23737,22 @@ class ResourceDataSyncSource {
     required this.sourceRegions,
     required this.sourceType,
     this.awsOrganizationsSource,
+    this.enableAllOpsDataSources,
     this.includeFutureRegions,
   });
   Map<String, dynamic> toJson() {
     final sourceRegions = this.sourceRegions;
     final sourceType = this.sourceType;
     final awsOrganizationsSource = this.awsOrganizationsSource;
+    final enableAllOpsDataSources = this.enableAllOpsDataSources;
     final includeFutureRegions = this.includeFutureRegions;
     return {
       'SourceRegions': sourceRegions,
       'SourceType': sourceType,
       if (awsOrganizationsSource != null)
         'AwsOrganizationsSource': awsOrganizationsSource,
+      if (enableAllOpsDataSources != null)
+        'EnableAllOpsDataSources': enableAllOpsDataSources,
       if (includeFutureRegions != null)
         'IncludeFutureRegions': includeFutureRegions,
     };
@@ -23740,6 +23777,16 @@ class ResourceDataSyncSourceWithState {
   /// The field name in <code>SyncSource</code> for the
   /// <code>ResourceDataSyncAwsOrganizationsSource</code> type.
   final ResourceDataSyncAwsOrganizationsSource? awsOrganizationsSource;
+
+  /// When you create a resource data sync, if you choose one of the AWS
+  /// Organizations options, then Systems Manager automatically enables all
+  /// OpsData sources in the selected AWS Regions for all AWS accounts in your
+  /// organization (or in the selected organization units). For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html">About
+  /// multiple account and Region resource data syncs</a> in the <i>AWS Systems
+  /// Manager User Guide</i>.
+  final bool? enableAllOpsDataSources;
 
   /// Whether to automatically synchronize and aggregate data from new AWS Regions
   /// when those Regions come online.
@@ -23771,6 +23818,7 @@ class ResourceDataSyncSourceWithState {
 
   ResourceDataSyncSourceWithState({
     this.awsOrganizationsSource,
+    this.enableAllOpsDataSources,
     this.includeFutureRegions,
     this.sourceRegions,
     this.sourceType,
@@ -23782,6 +23830,7 @@ class ResourceDataSyncSourceWithState {
           ? ResourceDataSyncAwsOrganizationsSource.fromJson(
               json['AwsOrganizationsSource'] as Map<String, dynamic>)
           : null,
+      enableAllOpsDataSources: json['EnableAllOpsDataSources'] as bool?,
       includeFutureRegions: json['IncludeFutureRegions'] as bool?,
       sourceRegions: (json['SourceRegions'] as List?)
           ?.whereNotNull()
@@ -23833,6 +23882,7 @@ enum ResourceTypeForTagging {
   parameter,
   patchBaseline,
   opsItem,
+  opsMetadata,
 }
 
 extension on ResourceTypeForTagging {
@@ -23850,6 +23900,8 @@ extension on ResourceTypeForTagging {
         return 'PatchBaseline';
       case ResourceTypeForTagging.opsItem:
         return 'OpsItem';
+      case ResourceTypeForTagging.opsMetadata:
+        return 'OpsMetadata';
     }
   }
 }
@@ -23869,6 +23921,8 @@ extension on String {
         return ResourceTypeForTagging.patchBaseline;
       case 'OpsItem':
         return ResourceTypeForTagging.opsItem;
+      case 'OpsMetadata':
+        return ResourceTypeForTagging.opsMetadata;
     }
     throw Exception('$this is not known in enum ResourceTypeForTagging');
   }
@@ -25005,7 +25059,7 @@ class Tag {
 /// Command-type tasks. Depending on the task, targets are optional for other
 /// maintenance window task types (Automation, AWS Lambda, and AWS Step
 /// Functions). For more information about running tasks that do not specify
-/// targets, see see <a
+/// targets, see <a
 /// href="https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html">Registering
 /// maintenance window tasks without targets</a> in the <i>AWS Systems Manager
 /// User Guide</i>.
@@ -25090,6 +25144,9 @@ class Target {
   /// specified <code>tag:ServerRole</code>, you could specify
   /// <code>value:WebServer</code> to run a command on instances that include EC2
   /// tags of <code>ServerRole,WebServer</code>.
+  ///
+  /// Depending on the type of <code>Target</code>, the maximum number of values
+  /// for a <code>Key</code> might be lower than the global maximum of 50.
   final List<String>? values;
 
   Target({
@@ -25190,6 +25247,31 @@ class TerminateSessionResponse {
   factory TerminateSessionResponse.fromJson(Map<String, dynamic> json) {
     return TerminateSessionResponse(
       sessionId: json['SessionId'] as String?,
+    );
+  }
+}
+
+class UnlabelParameterVersionResult {
+  /// The labels that are not attached to the given parameter version.
+  final List<String>? invalidLabels;
+
+  /// A list of all labels deleted from the parameter.
+  final List<String>? removedLabels;
+
+  UnlabelParameterVersionResult({
+    this.invalidLabels,
+    this.removedLabels,
+  });
+  factory UnlabelParameterVersionResult.fromJson(Map<String, dynamic> json) {
+    return UnlabelParameterVersionResult(
+      invalidLabels: (json['InvalidLabels'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      removedLabels: (json['RemovedLabels'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
     );
   }
 }
@@ -26160,6 +26242,24 @@ class OpsItemNotFoundException extends _s.GenericAwsException {
       : super(type: type, code: 'OpsItemNotFoundException', message: message);
 }
 
+class OpsItemRelatedItemAlreadyExistsException extends _s.GenericAwsException {
+  OpsItemRelatedItemAlreadyExistsException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'OpsItemRelatedItemAlreadyExistsException',
+            message: message);
+}
+
+class OpsItemRelatedItemAssociationNotFoundException
+    extends _s.GenericAwsException {
+  OpsItemRelatedItemAssociationNotFoundException(
+      {String? type, String? message})
+      : super(
+            type: type,
+            code: 'OpsItemRelatedItemAssociationNotFoundException',
+            message: message);
+}
+
 class OpsMetadataAlreadyExistsException extends _s.GenericAwsException {
   OpsMetadataAlreadyExistsException({String? type, String? message})
       : super(
@@ -26573,6 +26673,11 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       OpsItemLimitExceededException(type: type, message: message),
   'OpsItemNotFoundException': (type, message) =>
       OpsItemNotFoundException(type: type, message: message),
+  'OpsItemRelatedItemAlreadyExistsException': (type, message) =>
+      OpsItemRelatedItemAlreadyExistsException(type: type, message: message),
+  'OpsItemRelatedItemAssociationNotFoundException': (type, message) =>
+      OpsItemRelatedItemAssociationNotFoundException(
+          type: type, message: message),
   'OpsMetadataAlreadyExistsException': (type, message) =>
       OpsMetadataAlreadyExistsException(type: type, message: message),
   'OpsMetadataInvalidArgumentException': (type, message) =>

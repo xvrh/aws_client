@@ -108,12 +108,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -122,22 +116,11 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       32,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'rowsToCreate': rowsToCreate,
@@ -209,12 +192,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -223,22 +200,11 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       32,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'rowIds': rowIds,
@@ -318,12 +284,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -332,22 +292,11 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       32,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'rowsToUpdate': rowsToUpdate,
@@ -435,12 +384,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -449,22 +392,11 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       32,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'rowsToUpsert': rowsToUpsert,
@@ -521,12 +453,6 @@ class Honeycode {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[^\n\r\x00\x08\x0B\x0C\x0E\x1F]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableId, 'tableId');
     _s.validateStringLength(
       'tableId',
@@ -535,24 +461,12 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
       workbookId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -622,12 +536,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appId',
-      appId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(screenId, 'screenId');
     _s.validateStringLength(
       'screenId',
@@ -636,24 +544,12 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'screenId',
-      screenId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
       workbookId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -667,11 +563,6 @@ class Honeycode {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'appId': appId,
@@ -757,24 +648,12 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appId',
-      appId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(screenAutomationId, 'screenAutomationId');
     _s.validateStringLength(
       'screenAutomationId',
       screenAutomationId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'screenAutomationId',
-      screenAutomationId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(screenId, 'screenId');
@@ -785,12 +664,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'screenId',
-      screenId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -799,33 +672,17 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       32,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
-    );
     _s.validateStringLength(
       'rowId',
       rowId,
       77,
       77,
-    );
-    _s.validateStringPattern(
-      'rowId',
-      rowId,
-      r'''row:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
     );
     final $payload = <String, dynamic>{
       if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
@@ -885,12 +742,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
@@ -899,22 +750,11 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?!\s*$).+''',
     );
     final $query = <String, List<String>>{
       if (nextToken != null) 'nextToken': [nextToken],
@@ -983,24 +823,12 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
       workbookId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1014,11 +842,6 @@ class Honeycode {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
@@ -1074,12 +897,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1091,11 +908,6 @@ class Honeycode {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?!\s*$).+''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1163,24 +975,12 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableId',
-      tableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
       'workbookId',
       workbookId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1194,11 +994,6 @@ class Honeycode {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?!\s*$).+''',
     );
     final $payload = <String, dynamic>{
       'filterFormula': filterFormula,
@@ -1277,12 +1072,6 @@ class Honeycode {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^(?!\s*$).+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataFormat, 'dataFormat');
     ArgumentError.checkNotNull(dataSource, 'dataSource');
     ArgumentError.checkNotNull(destinationTableId, 'destinationTableId');
@@ -1293,12 +1082,6 @@ class Honeycode {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationTableId',
-      destinationTableId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(importOptions, 'importOptions');
     ArgumentError.checkNotNull(workbookId, 'workbookId');
     _s.validateStringLength(
@@ -1306,12 +1089,6 @@ class Honeycode {
       workbookId,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workbookId',
-      workbookId,
-      r'''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{

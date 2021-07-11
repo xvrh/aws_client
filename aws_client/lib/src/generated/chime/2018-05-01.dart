@@ -26,8 +26,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// and outputs, and error codes. It also includes some server-side API actions
 /// to use with the Amazon Chime SDK. For more information about the Amazon
 /// Chime SDK, see <a
-/// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
-/// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
+/// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html"> Using
+/// the Amazon Chime SDK </a> in the <i>Amazon Chime Developer Guide</i>.
 ///
 /// You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the
 /// REST API to make API calls. We recommend using an AWS SDK or the AWS CLI.
@@ -46,9 +46,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// Guide</i>. For a list of available Amazon Chime commands, see the <a
 /// href="https://docs.aws.amazon.com/cli/latest/reference/chime/index.html">Amazon
 /// Chime commands</a> in the <i>AWS CLI Command Reference</i>.
-/// </dd> <dt>Using REST</dt> <dd>
+/// </dd> <dt>Using REST APIs</dt> <dd>
 /// If you use REST to make API calls, you must authenticate your request by
-/// providing a signature. Amazon Chime supports Signature Version 4. For more
+/// providing a signature. Amazon Chime supports signature version 4. For more
 /// information, see <a
 /// href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature
 /// Version 4 Signing Process</a> in the <i>Amazon Web Services General
@@ -105,12 +105,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
     ArgumentError.checkNotNull(e164PhoneNumber, 'e164PhoneNumber');
-    _s.validateStringPattern(
-      'e164PhoneNumber',
-      e164PhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
     final $payload = <String, dynamic>{
       'E164PhoneNumber': e164PhoneNumber,
@@ -154,12 +148,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(e164PhoneNumbers, 'e164PhoneNumbers');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'E164PhoneNumbers': e164PhoneNumbers,
       if (forceAssociate != null) 'ForceAssociate': forceAssociate,
@@ -205,12 +193,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(e164PhoneNumbers, 'e164PhoneNumbers');
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
-    _s.validateStringPattern(
-      'voiceConnectorGroupId',
-      voiceConnectorGroupId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'E164PhoneNumbers': e164PhoneNumbers,
       if (forceAssociate != null) 'ForceAssociate': forceAssociate,
@@ -247,12 +229,6 @@ class Chime {
     required List<SigninDelegateGroup> signinDelegateGroups,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(signinDelegateGroups, 'signinDelegateGroups');
     final $payload = <String, dynamic>{
       'SigninDelegateGroups': signinDelegateGroups,
@@ -291,12 +267,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(attendees, 'attendees');
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Attendees': attendees,
     };
@@ -310,10 +280,73 @@ class Chime {
     return BatchCreateAttendeeResponse.fromJson(response);
   }
 
+  /// Adds a specified number of users to a channel.
+  ///
+  /// May throw [ServiceFailureException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [BadRequestException].
+  /// May throw [ForbiddenException].
+  /// May throw [ThrottledClientException].
+  ///
+  /// Parameter [channelArn] :
+  /// The ARN of the channel to which you're adding users.
+  ///
+  /// Parameter [memberArns] :
+  /// The ARNs of the members you want to add to the channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
+  /// Parameter [type] :
+  /// The membership type of a user, <code>DEFAULT</code> or
+  /// <code>HIDDEN</code>. Default members are always returned as part of
+  /// <code>ListChannelMemberships</code>. Hidden members are only returned if
+  /// the type filter in <code>ListChannelMemberships</code> equals
+  /// <code>HIDDEN</code>. Otherwise hidden members are not returned. This is
+  /// only supported by moderators.
+  Future<BatchCreateChannelMembershipResponse> batchCreateChannelMembership({
+    required String channelArn,
+    required List<String> memberArns,
+    String? chimeBearer,
+    ChannelMembershipType? type,
+  }) async {
+    ArgumentError.checkNotNull(channelArn, 'channelArn');
+    _s.validateStringLength(
+      'channelArn',
+      channelArn,
+      5,
+      1600,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(memberArns, 'memberArns');
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
+    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
+    final $payload = <String, dynamic>{
+      'MemberArns': memberArns,
+      if (type != null) 'Type': type.toValue(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/channels/${Uri.encodeComponent(channelArn)}/memberships?operation=batch-create',
+      headers: headers,
+      exceptionFnMap: _exceptionFns,
+    );
+    return BatchCreateChannelMembershipResponse.fromJson(response);
+  }
+
   /// Adds up to 50 members to a chat room in an Amazon Chime Enterprise
-  /// account. Members can be either users or bots. The member role designates
-  /// whether the member is a chat room administrator or a general chat room
-  /// member.
+  /// account. Members can be users or bots. The member role designates whether
+  /// the member is a chat room administrator or a general chat room member.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -337,20 +370,8 @@ class Chime {
     required String roomId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(membershipItemList, 'membershipItemList');
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MembershipItemList': membershipItemList,
     };
@@ -405,7 +426,7 @@ class Chime {
   /// Guide</i>.
   ///
   /// Users suspended from a <code>Team</code> account are disassociated from
-  /// the account, but they can continue to use Amazon Chime as free users. To
+  /// the account,but they can continue to use Amazon Chime as free users. To
   /// remove the suspension from suspended <code>Team</code> account users,
   /// invite them to the <code>Team</code> account again. You can use the
   /// <a>InviteUsers</a> action to do so.
@@ -436,12 +457,6 @@ class Chime {
     required List<String> userIdList,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userIdList, 'userIdList');
     final $payload = <String, dynamic>{
       'UserIdList': userIdList,
@@ -460,9 +475,9 @@ class Chime {
   /// specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on
   /// <code>EnterpriseLWA</code> accounts can be unsuspended using this action.
   /// For more information about different account types, see <a
-  /// href="https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html">Managing
-  /// Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html">
+  /// Managing Your Amazon Chime Accounts </a> in the account types, in the
+  /// <i>Amazon Chime Administration Guide</i>.
   ///
   /// Previously suspended users who are unsuspended using this action are
   /// returned to <code>Registered</code> status. Users who are not previously
@@ -486,12 +501,6 @@ class Chime {
     required List<String> userIdList,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userIdList, 'userIdList');
     final $payload = <String, dynamic>{
       'UserIdList': userIdList,
@@ -508,11 +517,11 @@ class Chime {
 
   /// Updates phone number product types or calling names. You can update one
   /// attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>.
-  /// For example, you can update either the product type or the calling name.
+  /// For example, you can update the product type or the calling name.
   ///
-  /// For product types, choose from Amazon Chime Business Calling and Amazon
-  /// Chime Voice Connector. For toll-free numbers, you must use the Amazon
-  /// Chime Voice Connector product type.
+  /// For toll-free numbers, you cannot use the Amazon Chime Business Calling
+  /// product type. For numbers outside the U.S., you must use the Amazon Chime
+  /// SIP Media Application Dial-In product type.
   ///
   /// Updates to outbound calling names can take up to 72 hours to complete.
   /// Pending updates to outbound calling names must be complete before you can
@@ -568,12 +577,6 @@ class Chime {
     required List<UpdateUserRequestItem> updateUserRequestItems,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         updateUserRequestItems, 'updateUserRequestItems');
     final $payload = <String, dynamic>{
@@ -616,12 +619,6 @@ class Chime {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
     };
@@ -634,10 +631,10 @@ class Chime {
     return CreateAccountResponse.fromJson(response);
   }
 
-  /// Creates an Amazon Chime Messaging SDK <code>AppInstance</code> under an
-  /// AWS Account. Only Messaging SDK customers use this API.
-  /// <code>CreateAppInstance</code> supports <code>idempotency</code> behavior
-  /// as described in the AWS API Standard.
+  /// Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an
+  /// AWS account. Only SDK messaging customers use this API.
+  /// <code>CreateAppInstance</code> supports idempotency behavior as described
+  /// in the AWS API Standard.
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
@@ -649,17 +646,22 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [name] :
-  /// The name of the app instance.
+  /// The name of the <code>AppInstance</code>.
   ///
   /// Parameter [clientRequestToken] :
-  /// The <code>ClientRequestToken</code> of the app instance.
+  /// The <code>ClientRequestToken</code> of the <code>AppInstance</code>.
   ///
   /// Parameter [metadata] :
-  /// The metadata of the app instance. Limited to a 1KB string in UTF-8.
+  /// The metadata of the <code>AppInstance</code>. Limited to a 1KB string in
+  /// UTF-8.
+  ///
+  /// Parameter [tags] :
+  /// Tags assigned to the <code>AppInstanceUser</code>.
   Future<CreateAppInstanceResponse> createAppInstance({
     required String name,
     String? clientRequestToken,
     String? metadata,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -669,22 +671,11 @@ class Chime {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'metadata',
@@ -692,15 +683,11 @@ class Chime {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (metadata != null) 'Metadata': metadata,
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -717,8 +704,8 @@ class Chime {
   ///
   /// <ul>
   /// <li>
-  /// <code>ChannelModerator</code> actions across all channels in the app
-  /// instance.
+  /// <code>ChannelModerator</code> actions across all channels in the
+  /// <code>AppInstance</code>.
   /// </li>
   /// <li>
   /// <code>DeleteChannelMessage</code> actions.
@@ -737,10 +724,10 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceAdminArn] :
-  /// The ARN of the administrator of the current app instance.
+  /// The ARN of the administrator of the current <code>AppInstance</code>.
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<CreateAppInstanceAdminResponse> createAppInstanceAdmin({
     required String appInstanceAdminArn,
     required String appInstanceArn,
@@ -753,24 +740,12 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
     _s.validateStringLength(
       'appInstanceArn',
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -800,25 +775,29 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance request.
+  /// The ARN of the <code>AppInstance</code> request.
   ///
   /// Parameter [appInstanceUserId] :
-  /// The user ID of the app instance.
+  /// The user ID of the <code>AppInstance</code>.
   ///
   /// Parameter [name] :
   /// The user's name.
   ///
   /// Parameter [clientRequestToken] :
-  /// The token assigned to the user requesting an app instance.
+  /// The token assigned to the user requesting an <code>AppInstance</code>.
   ///
   /// Parameter [metadata] :
   /// The request's metadata. Limited to a 1KB string in UTF-8.
+  ///
+  /// Parameter [tags] :
+  /// Tags assigned to the <code>AppInstanceUser</code>.
   Future<CreateAppInstanceUserResponse> createAppInstanceUser({
     required String appInstanceArn,
     required String appInstanceUserId,
     required String name,
     String? clientRequestToken,
     String? metadata,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
     _s.validateStringLength(
@@ -828,24 +807,12 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceUserId, 'appInstanceUserId');
     _s.validateStringLength(
       'appInstanceUserId',
       appInstanceUserId,
       1,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceUserId',
-      appInstanceUserId,
-      r'''[A-Za-z0-9][A-Za-z0-9\:\-\_\.\@]{3,50}[A-Za-z0-9]''',
+      64,
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
@@ -856,22 +823,11 @@ class Chime {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'metadata',
@@ -879,17 +835,13 @@ class Chime {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
     final $payload = <String, dynamic>{
       'AppInstanceArn': appInstanceArn,
       'AppInstanceUserId': appInstanceUserId,
       'Name': name,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (metadata != null) 'Metadata': metadata,
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -916,9 +868,7 @@ class Chime {
   ///
   /// Parameter [externalUserId] :
   /// The Amazon Chime SDK external user ID. An idempotency token. Links the
-  /// attendee to an identity managed by a builder application. If you create an
-  /// attendee with the same external user id, the service returns the existing
-  /// record.
+  /// attendee to an identity managed by a builder application.
   ///
   /// Parameter [meetingId] :
   /// The Amazon Chime SDK meeting ID.
@@ -939,12 +889,6 @@ class Chime {
       isRequired: true,
     );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ExternalUserId': externalUserId,
       if (tags != null) 'Tags': tags,
@@ -983,18 +927,7 @@ class Chime {
     String? domain,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(displayName, 'displayName');
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''.*\S.*''',
-    );
     final $payload = <String, dynamic>{
       'DisplayName': displayName,
       if (domain != null) 'Domain': domain,
@@ -1011,6 +944,11 @@ class Chime {
   /// Creates a channel to which you can add users and send messages.
   ///
   /// <b>Restriction</b>: You can't change a channel's privacy.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1027,6 +965,9 @@ class Chime {
   /// Parameter [name] :
   /// The name of the channel.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [clientRequestToken] :
   /// The client token for the request. An <code>Idempotency</code> token.
   ///
@@ -1042,10 +983,14 @@ class Chime {
   /// Parameter [privacy] :
   /// The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>.
   /// Private channels aren't discoverable by users outside the channel. Public
-  /// channels are discoverable by anyone in the app instance.
+  /// channels are discoverable by anyone in the <code>AppInstance</code>.
+  ///
+  /// Parameter [tags] :
+  /// The tags for the creation request.
   Future<CreateChannelResponse> createChannel({
     required String appInstanceArn,
     required String name,
+    String? chimeBearer,
     String? clientRequestToken,
     String? metadata,
     ChannelMode? mode,
@@ -1060,12 +1005,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -1074,11 +1013,11 @@ class Chime {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateStringLength(
       'clientRequestToken',
@@ -1086,22 +1025,15 @@ class Chime {
       2,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'metadata',
       metadata,
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'AppInstanceArn': appInstanceArn,
       'Name': name,
@@ -1115,6 +1047,7 @@ class Chime {
       payload: $payload,
       method: 'POST',
       requestUri: '/channels',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return CreateChannelResponse.fromJson(response);
@@ -1128,6 +1061,11 @@ class Chime {
   ///
   /// If you ban a user who is already part of a channel, that user is
   /// automatically kicked from the channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1143,9 +1081,13 @@ class Chime {
   ///
   /// Parameter [memberArn] :
   /// The ARN of the member being banned.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<CreateChannelBanResponse> createChannelBan({
     required String channelArn,
     required String memberArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -1153,12 +1095,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -1169,12 +1105,15 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'MemberArn': memberArn,
     };
@@ -1182,6 +1121,7 @@ class Chime {
       payload: $payload,
       method: 'POST',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/bans',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return CreateChannelBanResponse.fromJson(response);
@@ -1217,7 +1157,11 @@ class Chime {
   /// <li>
   /// Private Channels: You must be a member to list or send messages.
   /// </li>
-  /// </ul>
+  /// </ul> <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1241,10 +1185,14 @@ class Chime {
   /// the type filter in <code>ListChannelMemberships</code> equals
   /// <code>HIDDEN</code>. Otherwise hidden members are not returned. This is
   /// only supported by moderators.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<CreateChannelMembershipResponse> createChannelMembership({
     required String channelArn,
     required String memberArn,
     required ChannelMembershipType type,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -1252,12 +1200,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -1268,13 +1210,16 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
+    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'MemberArn': memberArn,
       'Type': type.toValue(),
@@ -1283,6 +1228,7 @@ class Chime {
       payload: $payload,
       method: 'POST',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/memberships',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return CreateChannelMembershipResponse.fromJson(response);
@@ -1306,7 +1252,11 @@ class Chime {
   /// <li>
   /// List messages in the channel.
   /// </li>
-  /// </ul>
+  /// </ul> <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1322,9 +1272,13 @@ class Chime {
   ///
   /// Parameter [channelModeratorArn] :
   /// The ARN of the moderator.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<CreateChannelModeratorResponse> createChannelModerator({
     required String channelArn,
     required String channelModeratorArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -1332,12 +1286,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
@@ -1348,12 +1296,15 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelModeratorArn',
-      channelModeratorArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'ChannelModeratorArn': channelModeratorArn,
     };
@@ -1361,19 +1312,93 @@ class Chime {
       payload: $payload,
       method: 'POST',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/moderators',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return CreateChannelModeratorResponse.fromJson(response);
+  }
+
+  /// Creates a media capture pipeline.
+  ///
+  /// May throw [ResourceLimitExceededException].
+  /// May throw [ForbiddenException].
+  /// May throw [BadRequestException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ThrottledClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [sinkArn] :
+  /// The ARN of the sink type.
+  ///
+  /// Parameter [sinkType] :
+  /// Destination type to which the media artifacts are saved. You must use an
+  /// S3 bucket.
+  ///
+  /// Parameter [sourceArn] :
+  /// ARN of the source from which the media artifacts are captured.
+  ///
+  /// Parameter [sourceType] :
+  /// Source type from which the media artifacts will be captured. A Chime SDK
+  /// Meeting is the only supported source.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// The token assigned to the client making the pipeline request.
+  Future<CreateMediaCapturePipelineResponse> createMediaCapturePipeline({
+    required String sinkArn,
+    required MediaPipelineSinkType sinkType,
+    required String sourceArn,
+    required MediaPipelineSourceType sourceType,
+    String? clientRequestToken,
+  }) async {
+    ArgumentError.checkNotNull(sinkArn, 'sinkArn');
+    _s.validateStringLength(
+      'sinkArn',
+      sinkArn,
+      1,
+      1024,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(sinkType, 'sinkType');
+    ArgumentError.checkNotNull(sourceArn, 'sourceArn');
+    _s.validateStringLength(
+      'sourceArn',
+      sourceArn,
+      1,
+      1024,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(sourceType, 'sourceType');
+    _s.validateStringLength(
+      'clientRequestToken',
+      clientRequestToken,
+      2,
+      64,
+    );
+    final $payload = <String, dynamic>{
+      'SinkArn': sinkArn,
+      'SinkType': sinkType.toValue(),
+      'SourceArn': sourceArn,
+      'SourceType': sourceType.toValue(),
+      'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/media-capture-pipelines',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateMediaCapturePipelineResponse.fromJson(response);
   }
 
   /// Creates a new Amazon Chime SDK meeting in the specified media Region with
   /// no initial attendees. For more information about specifying media Regions,
   /// see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html">Amazon
-  /// Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> .
   /// For more information about the Amazon Chime SDK, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
-  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> .
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1394,14 +1419,14 @@ class Chime {
   /// The Region in which to create the meeting. Default:
   /// <code>us-east-1</code>.
   ///
-  /// Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>,
-  /// <code>ap-northeast-2</code>, <code>ap-south-1</code>,
-  /// <code>ap-southeast-1</code>, <code>ap-southeast-2</code>,
-  /// <code>ca-central-1</code>, <code>eu-central-1</code>,
-  /// <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>,
-  /// <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>,
-  /// <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>,
-  /// <code>us-west-2</code>.
+  /// Available values: <code>af-south-1</code> , <code>ap-northeast-1</code> ,
+  /// <code>ap-northeast-2</code> , <code>ap-south-1</code> ,
+  /// <code>ap-southeast-1</code> , <code>ap-southeast-2</code> ,
+  /// <code>ca-central-1</code> , <code>eu-central-1</code> ,
+  /// <code>eu-north-1</code> , <code>eu-south-1</code> , <code>eu-west-1</code>
+  /// , <code>eu-west-2</code> , <code>eu-west-3</code> , <code>sa-east-1</code>
+  /// , <code>us-east-1</code> , <code>us-east-2</code> , <code>us-west-1</code>
+  /// , <code>us-west-2</code> .
   ///
   /// Parameter [meetingHostId] :
   /// Reserved.
@@ -1425,11 +1450,6 @@ class Chime {
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'externalMeetingId',
@@ -1463,11 +1483,11 @@ class Chime {
 
   /// Uses the join token and call metadata in a meeting request (From number,
   /// To number, and so forth) to initiate an outbound call to a public switched
-  /// telephone network (PSTN) and joins them into Chime meeting. Also ensures
+  /// telephone network (PSTN) and join them into a Chime meeting. Also ensures
   /// that the From number belongs to the customer.
   ///
   /// To play welcome audio or implement an interactive voice response (IVR),
-  /// use the <code>CreateSipMediaApplicationCall</code> API with the
+  /// use the <code>CreateSipMediaApplicationCall</code> action with the
   /// corresponding SIP media application ID.
   ///
   /// May throw [BadRequestException].
@@ -1483,17 +1503,11 @@ class Chime {
   ///
   /// Parameter [joinToken] :
   /// Token used by the Amazon Chime SDK attendee. Call the <a
-  /// href="https://docs.aws.amazon.com/https:/docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.html">
-  /// CreateAttendee API</a> to get a join token.
+  /// href="https://docs.aws.amazon.com/chime/latest/APIReference/API_CreateAttendee.html">CreateAttendee</a>
+  /// action to get a join token.
   ///
   /// Parameter [meetingId] :
   /// The Amazon Chime SDK meeting ID.
-  ///
-  /// Type: String
-  ///
-  /// Pattern: [a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}
-  ///
-  /// Required: No
   ///
   /// Parameter [toPhoneNumber] :
   /// Phone number called when inviting someone to a meeting.
@@ -1504,12 +1518,6 @@ class Chime {
     required String toPhoneNumber,
   }) async {
     ArgumentError.checkNotNull(fromPhoneNumber, 'fromPhoneNumber');
-    _s.validateStringPattern(
-      'fromPhoneNumber',
-      fromPhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(joinToken, 'joinToken');
     _s.validateStringLength(
       'joinToken',
@@ -1518,26 +1526,8 @@ class Chime {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'joinToken',
-      joinToken,
-      r'''^[a-zA-Z0-9+/]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(toPhoneNumber, 'toPhoneNumber');
-    _s.validateStringPattern(
-      'toPhoneNumber',
-      toPhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'FromPhoneNumber': fromPhoneNumber,
       'JoinToken': joinToken,
@@ -1555,10 +1545,10 @@ class Chime {
   /// Creates a new Amazon Chime SDK meeting in the specified media Region, with
   /// attendees. For more information about specifying media Regions, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html">Amazon
-  /// Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> .
   /// For more information about the Amazon Chime SDK, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
-  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> .
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1579,17 +1569,17 @@ class Chime {
   /// The external meeting ID.
   ///
   /// Parameter [mediaRegion] :
-  /// The Region in which to create the meeting. Default:
-  /// <code>us-east-1</code>.
+  /// The Region in which to create the meeting. Default: <code>us-east-1</code>
+  /// .
   ///
-  /// Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>,
-  /// <code>ap-northeast-2</code>, <code>ap-south-1</code>,
-  /// <code>ap-southeast-1</code>, <code>ap-southeast-2</code>,
-  /// <code>ca-central-1</code>, <code>eu-central-1</code>,
-  /// <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>,
-  /// <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>,
-  /// <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>,
-  /// <code>us-west-2</code>.
+  /// Available values: <code>af-south-1</code> , <code>ap-northeast-1</code> ,
+  /// <code>ap-northeast-2</code> , <code>ap-south-1</code> ,
+  /// <code>ap-southeast-1</code> , <code>ap-southeast-2</code> ,
+  /// <code>ca-central-1</code> , <code>eu-central-1</code> ,
+  /// <code>eu-north-1</code> , <code>eu-south-1</code> , <code>eu-west-1</code>
+  /// , <code>eu-west-2</code> , <code>eu-west-3</code> , <code>sa-east-1</code>
+  /// , <code>us-east-1</code> , <code>us-east-2</code> , <code>us-west-1</code>
+  /// , <code>us-west-2</code> .
   ///
   /// Parameter [meetingHostId] :
   /// Reserved.
@@ -1610,11 +1600,6 @@ class Chime {
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'externalMeetingId',
@@ -1647,10 +1632,10 @@ class Chime {
     return CreateMeetingWithAttendeesResponse.fromJson(response);
   }
 
-  /// Creates an order for phone numbers to be provisioned. Choose from Amazon
-  /// Chime Business Calling and Amazon Chime Voice Connector product types. For
-  /// toll-free numbers, you must use the Amazon Chime Voice Connector product
-  /// type.
+  /// Creates an order for phone numbers to be provisioned. For toll-free
+  /// numbers, you cannot use the Amazon Chime Business Calling product type.
+  /// For numbers outside the U.S., you must use the Amazon Chime SIP Media
+  /// Application Dial-In product type.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -1742,22 +1727,11 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'expiryMinutes',
       expiryMinutes,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^$|^[a-zA-Z0-9 ]{0,30}$''',
     );
     final $payload = <String, dynamic>{
       'Capabilities': capabilities.map((e) => e.toValue()).toList(),
@@ -1804,23 +1778,12 @@ class Chime {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     final $payload = <String, dynamic>{
       'Name': name,
@@ -1867,26 +1830,8 @@ class Chime {
     RoomMembershipRole? role,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringPattern(
-      'memberId',
-      memberId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MemberId': memberId,
       if (role != null) 'Role': role.toValue(),
@@ -1914,7 +1859,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [awsRegion] :
-  /// AWS Region assigned to the SIP media application.
+  /// The AWS Region assigned to the SIP media application.
   ///
   /// Parameter [endpoints] :
   /// List of endpoints (Lambda Amazon Resource Names) specified for the SIP
@@ -1925,20 +1870,22 @@ class Chime {
   Future<CreateSipMediaApplicationResponse> createSipMediaApplication({
     required String awsRegion,
     required List<SipMediaApplicationEndpoint> endpoints,
-    String? name,
+    required String name,
   }) async {
     ArgumentError.checkNotNull(awsRegion, 'awsRegion');
     ArgumentError.checkNotNull(endpoints, 'endpoints');
+    ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       256,
+      isRequired: true,
     );
     final $payload = <String, dynamic>{
       'AwsRegion': awsRegion,
       'Endpoints': endpoints,
-      if (name != null) 'Name': name,
+      'Name': name,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1961,39 +1908,26 @@ class Chime {
   /// May throw [ServiceUnavailableException].
   /// May throw [ServiceFailureException].
   ///
+  /// Parameter [fromPhoneNumber] :
+  /// The phone number that a user calls from. This is a phone number in your
+  /// Amazon Chime phone number inventory.
+  ///
   /// Parameter [sipMediaApplicationId] :
   /// The ID of the SIP media application.
   ///
-  /// Parameter [fromPhoneNumber] :
-  /// The phone number that a user calls from.
-  ///
   /// Parameter [toPhoneNumber] :
-  /// The phone number that the user dials in order to connect to a meeting
+  /// The phone number that the service should call.
   Future<CreateSipMediaApplicationCallResponse> createSipMediaApplicationCall({
+    required String fromPhoneNumber,
     required String sipMediaApplicationId,
-    String? fromPhoneNumber,
-    String? toPhoneNumber,
+    required String toPhoneNumber,
   }) async {
+    ArgumentError.checkNotNull(fromPhoneNumber, 'fromPhoneNumber');
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fromPhoneNumber',
-      fromPhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-    );
-    _s.validateStringPattern(
-      'toPhoneNumber',
-      toPhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-    );
+    ArgumentError.checkNotNull(toPhoneNumber, 'toPhoneNumber');
     final $payload = <String, dynamic>{
-      if (fromPhoneNumber != null) 'FromPhoneNumber': fromPhoneNumber,
-      if (toPhoneNumber != null) 'ToPhoneNumber': toPhoneNumber,
+      'FromPhoneNumber': fromPhoneNumber,
+      'ToPhoneNumber': toPhoneNumber,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -2026,22 +1960,18 @@ class Chime {
   /// application per AWS Region can be used.
   ///
   /// Parameter [triggerType] :
-  /// The type of trigger whose value is assigned to the SIP rule in
-  /// <code>TriggerValue</code>. Allowed trigger values are
-  /// <code>RequestUriHostname</code> and <code>ToPhoneNumber</code>.
+  /// The type of trigger assigned to the SIP rule in <code>TriggerValue</code>,
+  /// currently <code>RequestUriHostname</code> or <code>ToPhoneNumber</code>.
   ///
   /// Parameter [triggerValue] :
-  /// If <code>TriggerType</code> is <code>RequestUriHostname</code> then the
-  /// value can be the outbound host name of an Amazon Chime Voice Connector. If
-  /// <code>TriggerType</code> is <code>ToPhoneNumber</code> then the value can
-  /// be a customer-owned phone number in E164 format. <code>SipRule</code> is
-  /// triggered if the SIP application requests a host name, or a If
-  /// <code>TriggerType</code> is <code>RequestUriHostname</code>, then the
-  /// value can be the outbound hostname of an Amazon Chime Voice Connector. If
-  /// <code>TriggerType</code> is <code>ToPhoneNumber</code>, then the value can
-  /// be a customer-owned phone number in E164 format. <code>SipRule</code> is
-  /// triggered if the SIP application requests a host name, or a
-  /// <code>ToPhoneNumber</code> value matches the incoming SIP request.
+  /// If <code>TriggerType</code> is <code>RequestUriHostname</code>, the value
+  /// can be the outbound host name of an Amazon Chime Voice Connector. If
+  /// <code>TriggerType</code> is <code>ToPhoneNumber</code>, the value can be a
+  /// customer-owned phone number in the E164 format. The
+  /// <code>SipMediaApplication</code> specified in the <code>SipRule</code> is
+  /// triggered if the request URI in an incoming SIP request matches the
+  /// <code>RequestUriHostname</code>, or if the <code>To</code> header in the
+  /// incoming SIP request matches the <code>ToPhoneNumber</code> value.
   ///
   /// Parameter [disabled] :
   /// Enables or disables a rule. You must disable rules before you can delete
@@ -2064,12 +1994,6 @@ class Chime {
     ArgumentError.checkNotNull(targetApplications, 'targetApplications');
     ArgumentError.checkNotNull(triggerType, 'triggerType');
     ArgumentError.checkNotNull(triggerValue, 'triggerValue');
-    _s.validateStringPattern(
-      'triggerValue',
-      triggerValue,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'TargetApplications': targetApplications,
@@ -2115,17 +2039,6 @@ class Chime {
     String? username,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'email',
-      email,
-      r'''.+@.+\..+''',
-    );
     final $payload = <String, dynamic>{
       if (email != null) 'Email': email,
       if (userType != null) 'UserType': userType.toValue(),
@@ -2167,7 +2080,7 @@ class Chime {
   ///
   /// Parameter [awsRegion] :
   /// The AWS Region in which the Amazon Chime Voice Connector is created.
-  /// Default value: <code>us-east-1</code>.
+  /// Default value: <code>us-east-1</code> .
   Future<CreateVoiceConnectorResponse> createVoiceConnector({
     required String name,
     required bool requireEncryption,
@@ -2246,8 +2159,8 @@ class Chime {
   }
 
   /// Deletes the specified Amazon Chime account. You must suspend all users
-  /// before deleting a <code>Team</code> account. You can use the
-  /// <a>BatchSuspendUser</a> action to do so.
+  /// before deleting <code>Team</code> account. You can use the
+  /// <a>BatchSuspendUser</a> action to dodo.
   ///
   /// For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you
   /// must release the claimed domains for your Amazon Chime account before
@@ -2255,8 +2168,8 @@ class Chime {
   /// are suspended.
   ///
   /// Deleted accounts appear in your <code>Disabled</code> accounts list for 90
-  /// days. To restore a deleted account from your <code>Disabled</code>
-  /// accounts list, you must contact AWS Support.
+  /// days. To restore deleted account from your <code>Disabled</code> accounts
+  /// list, you must contact AWS Support.
   ///
   /// After 90 days, deleted accounts are permanently removed from your
   /// <code>Disabled</code> accounts list.
@@ -2276,12 +2189,6 @@ class Chime {
     required String accountId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2301,7 +2208,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<void> deleteAppInstance({
     required String appInstanceArn,
   }) async {
@@ -2311,12 +2218,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     await _protocol.send(
@@ -2333,17 +2234,16 @@ class Chime {
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
   /// May throw [ForbiddenException].
-  /// May throw [ResourceLimitExceededException].
   /// May throw [ThrottledClientException].
   /// May throw [UnauthorizedClientException].
   /// May throw [ServiceUnavailableException].
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceAdminArn] :
-  /// The ARN of the app instance's administrator.
+  /// The ARN of the <code>AppInstance</code>'s administrator.
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<void> deleteAppInstanceAdmin({
     required String appInstanceAdminArn,
     required String appInstanceArn,
@@ -2356,24 +2256,12 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
     _s.validateStringLength(
       'appInstanceArn',
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     await _protocol.send(
@@ -2385,7 +2273,7 @@ class Chime {
     );
   }
 
-  /// Deletes the streaming configurations of an app instance.
+  /// Deletes the streaming configurations of an <code>AppInstance</code>.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -2406,12 +2294,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     await _protocol.send(
@@ -2443,12 +2325,6 @@ class Chime {
       appInstanceUserArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     await _protocol.send(
@@ -2485,19 +2361,7 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(attendeeId, 'attendeeId');
-    _s.validateStringPattern(
-      'attendeeId',
-      attendeeId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2509,6 +2373,11 @@ class Chime {
 
   /// Immediately makes a channel and its memberships inaccessible and marks
   /// them for deletion. This is an irreversible process.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -2519,8 +2388,12 @@ class Chime {
   ///
   /// Parameter [channelArn] :
   /// The ARN of the channel being deleted.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<void> deleteChannel({
     required String channelArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -2530,21 +2403,30 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     await _protocol.send(
       payload: null,
       method: 'DELETE',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
   }
 
   /// Removes a user from a channel's ban list.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -2554,13 +2436,18 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [channelArn] :
-  /// The ARN of the channel from which the app instance user was banned.
+  /// The ARN of the channel from which the <code>AppInstanceUser</code> was
+  /// banned.
   ///
   /// Parameter [memberArn] :
-  /// The ARN of the app instance user that you want to reinstate.
+  /// The ARN of the <code>AppInstanceUser</code> that you want to reinstate.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<void> deleteChannelBan({
     required String channelArn,
     required String memberArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -2568,12 +2455,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -2584,26 +2465,36 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     await _protocol.send(
       payload: null,
       method: 'DELETE',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/bans/${Uri.encodeComponent(memberArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
   }
 
   /// Removes a member from a channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
   /// May throw [UnauthorizedClientException].
+  /// May throw [ConflictException].
   /// May throw [ThrottledClientException].
   /// May throw [ServiceUnavailableException].
   /// May throw [ServiceFailureException].
@@ -2613,9 +2504,13 @@ class Chime {
   ///
   /// Parameter [memberArn] :
   /// The ARN of the member that you're removing from the channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<void> deleteChannelMembership({
     required String channelArn,
     required String memberArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -2623,12 +2518,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -2639,17 +2528,21 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     await _protocol.send(
       payload: null,
       method: 'DELETE',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/memberships/${Uri.encodeComponent(memberArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -2657,6 +2550,11 @@ class Chime {
   /// Deletes a channel message. Only admins can perform this action. Deletion
   /// makes messages inaccessible immediately. A background process deletes any
   /// revisions created by <code>UpdateChannelMessage</code>.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -2670,9 +2568,13 @@ class Chime {
   ///
   /// Parameter [messageId] :
   /// The ID of the message being deleted.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<void> deleteChannelMessage({
     required String channelArn,
     required String messageId,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -2680,12 +2582,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(messageId, 'messageId');
@@ -2696,22 +2592,31 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''[-_a-zA-Z0-9]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     await _protocol.send(
       payload: null,
       method: 'DELETE',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/messages/${Uri.encodeComponent(messageId)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
   }
 
   /// Deletes a channel moderator.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -2725,9 +2630,13 @@ class Chime {
   ///
   /// Parameter [channelModeratorArn] :
   /// The ARN of the moderator being deleted.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<void> deleteChannelModerator({
     required String channelArn,
     required String channelModeratorArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -2735,12 +2644,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
@@ -2751,17 +2654,21 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelModeratorArn',
-      channelModeratorArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     await _protocol.send(
       payload: null,
       method: 'DELETE',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/moderators/${Uri.encodeComponent(channelModeratorArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -2786,19 +2693,7 @@ class Chime {
     required String botId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2808,9 +2703,34 @@ class Chime {
     );
   }
 
-  /// Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted,
-  /// its attendees are also deleted and clients can no longer join it. For more
-  /// information about the Amazon Chime SDK, see <a
+  /// Deletes the media capture pipeline.
+  ///
+  /// May throw [ForbiddenException].
+  /// May throw [NotFoundException].
+  /// May throw [BadRequestException].
+  /// May throw [ThrottledClientException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [mediaPipelineId] :
+  /// The ID of the media capture pipeline being deleted.
+  Future<void> deleteMediaCapturePipeline({
+    required String mediaPipelineId,
+  }) async {
+    ArgumentError.checkNotNull(mediaPipelineId, 'mediaPipelineId');
+    await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri:
+          '/media-capture-pipelines/${Uri.encodeComponent(mediaPipelineId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Deletes the specified Amazon Chime SDK meeting. The operation deletes all
+  /// attendees, disconnects all clients, and prevents new clients from joining
+  /// the meeting. For more information about the Amazon Chime SDK, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
   /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
   ///
@@ -2828,12 +2748,6 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2899,24 +2813,12 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'proxySessionId',
-      proxySessionId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
     _s.validateStringLength(
       'voiceConnectorId',
       voiceConnectorId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
       isRequired: true,
     );
     await _protocol.send(
@@ -2948,19 +2850,7 @@ class Chime {
     required String roomId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2994,26 +2884,8 @@ class Chime {
     required String roomId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringPattern(
-      'memberId',
-      memberId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3040,12 +2912,6 @@ class Chime {
     required String sipMediaApplicationId,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3072,12 +2938,6 @@ class Chime {
     required String sipRuleId,
   }) async {
     ArgumentError.checkNotNull(sipRuleId, 'sipRuleId');
-    _s.validateStringPattern(
-      'sipRuleId',
-      sipRuleId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3105,12 +2965,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3136,12 +2990,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3170,12 +3018,6 @@ class Chime {
     required String voiceConnectorGroupId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
-    _s.validateStringPattern(
-      'voiceConnectorGroupId',
-      voiceConnectorGroupId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3206,12 +3048,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3245,12 +3081,6 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3277,12 +3107,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3313,12 +3137,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3351,12 +3169,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(usernames, 'usernames');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Usernames': usernames,
     };
@@ -3379,7 +3191,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<DescribeAppInstanceResponse> describeAppInstance({
     required String appInstanceArn,
   }) async {
@@ -3389,12 +3201,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3416,10 +3222,10 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceAdminArn] :
-  /// The ARN of the app instance administrator.
+  /// The ARN of the <code>AppInstanceAdmin</code>.
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<DescribeAppInstanceAdminResponse> describeAppInstanceAdmin({
     required String appInstanceAdminArn,
     required String appInstanceArn,
@@ -3432,24 +3238,12 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
     _s.validateStringLength(
       'appInstanceArn',
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3462,7 +3256,7 @@ class Chime {
     return DescribeAppInstanceAdminResponse.fromJson(response);
   }
 
-  /// Returns the full details of an <code>AppInstanceUser</code>.
+  /// Returns the full details of an <code>AppInstanceUser</code> .
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3472,7 +3266,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceUserArn] :
-  /// The ARN of the app instance user.
+  /// The ARN of the <code>AppInstanceUser</code>.
   Future<DescribeAppInstanceUserResponse> describeAppInstanceUser({
     required String appInstanceUserArn,
   }) async {
@@ -3482,12 +3276,6 @@ class Chime {
       appInstanceUserArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3500,7 +3288,13 @@ class Chime {
     return DescribeAppInstanceUserResponse.fromJson(response);
   }
 
-  /// Returns the full details of a channel in an Amazon Chime app instance.
+  /// Returns the full details of a channel in an Amazon Chime
+  /// <code>AppInstance</code>.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3511,8 +3305,12 @@ class Chime {
   ///
   /// Parameter [channelArn] :
   /// The ARN of the channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelResponse> describeChannel({
     required String channelArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -3522,22 +3320,31 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelResponse.fromJson(response);
   }
 
   /// Returns the full details of a channel ban.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3552,9 +3359,13 @@ class Chime {
   ///
   /// Parameter [memberArn] :
   /// The ARN of the member being banned.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelBanResponse> describeChannelBan({
     required String channelArn,
     required String memberArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -3562,12 +3373,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -3578,23 +3383,32 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/bans/${Uri.encodeComponent(memberArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelBanResponse.fromJson(response);
   }
 
   /// Returns the full details of a user's channel membership.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3609,9 +3423,13 @@ class Chime {
   ///
   /// Parameter [memberArn] :
   /// The ARN of the member.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelMembershipResponse> describeChannelMembership({
     required String channelArn,
     required String memberArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -3619,12 +3437,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
@@ -3635,24 +3447,33 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberArn',
-      memberArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/memberships/${Uri.encodeComponent(memberArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelMembershipResponse.fromJson(response);
   }
 
-  /// Returns the details of a channel based on the membership of the
-  /// <code>AppInstanceUser</code> specified.
+  /// Returns the details of a channel based on the membership of the specified
+  /// <code>AppInstanceUser</code>.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3666,10 +3487,14 @@ class Chime {
   ///
   /// Parameter [channelArn] :
   /// The ARN of the channel to which the user belongs.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelMembershipForAppInstanceUserResponse>
       describeChannelMembershipForAppInstanceUser({
     required String appInstanceUserArn,
     required String channelArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
     _s.validateStringLength(
@@ -3677,12 +3502,6 @@ class Chime {
       appInstanceUserArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(channelArn, 'channelArn');
@@ -3693,12 +3512,15 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       'app-instance-user-arn': [appInstanceUserArn],
     };
@@ -3708,6 +3530,7 @@ class Chime {
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}?scope=app-instance-user-membership',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelMembershipForAppInstanceUserResponse.fromJson(
@@ -3716,6 +3539,11 @@ class Chime {
 
   /// Returns the full details of a channel moderated by the specified
   /// <code>AppInstanceUser</code>.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3725,14 +3553,18 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceUserArn] :
-  /// The ARN of the app instance user in the moderated channel.
+  /// The ARN of the <code>AppInstanceUser</code> in the moderated channel.
   ///
   /// Parameter [channelArn] :
   /// The ARN of the moderated channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelModeratedByAppInstanceUserResponse>
       describeChannelModeratedByAppInstanceUser({
     required String appInstanceUserArn,
     required String channelArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
     _s.validateStringLength(
@@ -3740,12 +3572,6 @@ class Chime {
       appInstanceUserArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(channelArn, 'channelArn');
@@ -3756,12 +3582,15 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       'app-instance-user-arn': [appInstanceUserArn],
     };
@@ -3771,12 +3600,18 @@ class Chime {
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}?scope=app-instance-user-moderated-channel',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelModeratedByAppInstanceUserResponse.fromJson(response);
   }
 
   /// Returns the full details of a single ChannelModerator.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -3791,9 +3626,13 @@ class Chime {
   ///
   /// Parameter [channelModeratorArn] :
   /// The ARN of the channel moderator.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<DescribeChannelModeratorResponse> describeChannelModerator({
     required String channelArn,
     required String channelModeratorArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -3801,12 +3640,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
@@ -3817,17 +3650,21 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelModeratorArn',
-      channelModeratorArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/moderators/${Uri.encodeComponent(channelModeratorArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return DescribeChannelModeratorResponse.fromJson(response);
@@ -3887,12 +3724,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(e164PhoneNumbers, 'e164PhoneNumbers');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'E164PhoneNumbers': e164PhoneNumbers,
     };
@@ -3930,12 +3761,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(e164PhoneNumbers, 'e164PhoneNumbers');
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
-    _s.validateStringPattern(
-      'voiceConnectorGroupId',
-      voiceConnectorGroupId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'E164PhoneNumbers': e164PhoneNumbers,
     };
@@ -3971,12 +3796,6 @@ class Chime {
     required List<String> groupNames,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupNames, 'groupNames');
     final $payload = <String, dynamic>{
       'GroupNames': groupNames,
@@ -4007,12 +3826,6 @@ class Chime {
     required String accountId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4023,7 +3836,7 @@ class Chime {
   }
 
   /// Retrieves account settings for the specified Amazon Chime account ID, such
-  /// as remote control and dial out settings. For more information about these
+  /// as remote control and dialout settings. For more information about these
   /// settings, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/ag/policies.html">Use the
   /// Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.
@@ -4042,12 +3855,6 @@ class Chime {
     required String accountId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4057,7 +3864,7 @@ class Chime {
     return GetAccountSettingsResponse.fromJson(response);
   }
 
-  /// Gets the retention settings for an app instance.
+  /// Gets the retention settings for an <code>AppInstance</code>.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -4068,7 +3875,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<GetAppInstanceRetentionSettingsResponse>
       getAppInstanceRetentionSettings({
     required String appInstanceArn,
@@ -4081,12 +3888,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4097,7 +3898,7 @@ class Chime {
     return GetAppInstanceRetentionSettingsResponse.fromJson(response);
   }
 
-  /// Gets the streaming settings for an app instance.
+  /// Gets the streaming settings for an <code>AppInstance</code>.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -4108,7 +3909,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   Future<GetAppInstanceStreamingConfigurationsResponse>
       getAppInstanceStreamingConfigurations({
     required String appInstanceArn,
@@ -4119,12 +3920,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -4140,7 +3935,7 @@ class Chime {
   /// Gets the Amazon Chime SDK attendee details for a specified meeting ID and
   /// attendee ID. For more information about the Amazon Chime SDK, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
-  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> .
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -4160,19 +3955,7 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(attendeeId, 'attendeeId');
-    _s.validateStringPattern(
-      'attendeeId',
-      attendeeId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4204,19 +3987,7 @@ class Chime {
     required String botId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4228,6 +3999,11 @@ class Chime {
   }
 
   /// Gets the full details of a channel message.
+  /// <note>
+  /// The x-amz-chime-bearer request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -4242,9 +4018,13 @@ class Chime {
   ///
   /// Parameter [messageId] :
   /// The ID of the message.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<GetChannelMessageResponse> getChannelMessage({
     required String channelArn,
     required String messageId,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -4252,12 +4032,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(messageId, 'messageId');
@@ -4268,17 +4042,21 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''[-_a-zA-Z0-9]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/messages/${Uri.encodeComponent(messageId)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return GetChannelMessageResponse.fromJson(response);
@@ -4305,19 +4083,7 @@ class Chime {
     required String botId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4347,10 +4113,36 @@ class Chime {
     return GetGlobalSettingsResponse.fromJson(response);
   }
 
+  /// Gets an existing media capture pipeline.
+  ///
+  /// May throw [NotFoundException].
+  /// May throw [ForbiddenException].
+  /// May throw [BadRequestException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ThrottledClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [mediaPipelineId] :
+  /// The ID of the pipeline that you want to get.
+  Future<GetMediaCapturePipelineResponse> getMediaCapturePipeline({
+    required String mediaPipelineId,
+  }) async {
+    ArgumentError.checkNotNull(mediaPipelineId, 'mediaPipelineId');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/media-capture-pipelines/${Uri.encodeComponent(mediaPipelineId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetMediaCapturePipelineResponse.fromJson(response);
+  }
+
   /// Gets the Amazon Chime SDK meeting details for the specified meeting ID.
   /// For more information about the Amazon Chime SDK, see <a
   /// href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
-  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
+  /// the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> .
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -4366,12 +4158,6 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4381,7 +4167,7 @@ class Chime {
     return GetMeetingResponse.fromJson(response);
   }
 
-  /// The endpoint for the messaging session.
+  /// The details of the endpoint for the messaging session.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [ForbiddenException].
@@ -4425,7 +4211,7 @@ class Chime {
     return GetPhoneNumberResponse.fromJson(response);
   }
 
-  /// Retrieves details for the specified phone number order, such as order
+  /// Retrieves details for the specified phone number order, such as the order
   /// creation timestamp, phone numbers in E.164 format, product type, and order
   /// status.
   ///
@@ -4443,12 +4229,6 @@ class Chime {
     required String phoneNumberOrderId,
   }) async {
     ArgumentError.checkNotNull(phoneNumberOrderId, 'phoneNumberOrderId');
-    _s.validateStringPattern(
-      'phoneNumberOrderId',
-      phoneNumberOrderId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4506,24 +4286,12 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'proxySessionId',
-      proxySessionId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
     _s.validateStringLength(
       'voiceConnectorId',
       voiceConnectorId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -4556,12 +4324,6 @@ class Chime {
     required String accountId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4593,19 +4355,7 @@ class Chime {
     required String roomId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4633,12 +4383,6 @@ class Chime {
     required String sipMediaApplicationId,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4660,18 +4404,12 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [sipMediaApplicationId] :
-  /// The ID of the SIP media application.
+  /// The SIP media application ID.
   Future<GetSipMediaApplicationLoggingConfigurationResponse>
       getSipMediaApplicationLoggingConfiguration({
     required String sipMediaApplicationId,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4700,12 +4438,6 @@ class Chime {
     required String sipRuleId,
   }) async {
     ArgumentError.checkNotNull(sipRuleId, 'sipRuleId');
-    _s.validateStringPattern(
-      'sipRuleId',
-      sipRuleId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4716,7 +4448,7 @@ class Chime {
   }
 
   /// Retrieves details for the specified user ID, such as primary email
-  /// address, license type, and personal meeting PIN.
+  /// address, license type,and personal meeting PIN.
   ///
   /// To retrieve user details with an email address instead of a user ID, use
   /// the <a>ListUsers</a> action, and then filter by email address.
@@ -4739,19 +4471,7 @@ class Chime {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4795,7 +4515,7 @@ class Chime {
   }
 
   /// Retrieves details for the specified Amazon Chime Voice Connector, such as
-  /// timestamps, name, outbound host, and encryption requirements.
+  /// timestamps,name, outbound host, and encryption requirements.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -4811,12 +4531,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4844,12 +4558,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4862,7 +4570,7 @@ class Chime {
   }
 
   /// Retrieves details for the specified Amazon Chime Voice Connector group,
-  /// such as timestamps, name, and associated <code>VoiceConnectorItems</code>.
+  /// such as timestamps,name, and associated <code>VoiceConnectorItems</code>.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -4878,12 +4586,6 @@ class Chime {
     required String voiceConnectorGroupId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
-    _s.validateStringPattern(
-      'voiceConnectorGroupId',
-      voiceConnectorGroupId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4896,7 +4598,7 @@ class Chime {
 
   /// Retrieves the logging configuration details for the specified Amazon Chime
   /// Voice Connector. Shows whether SIP message logs are enabled for sending to
-  /// Amazon CloudWatch.
+  /// Amazon CloudWatch Logs.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -4913,12 +4615,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4946,12 +4642,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4986,12 +4676,6 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -5022,12 +4706,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -5055,12 +4733,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -5090,12 +4762,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -5132,12 +4798,6 @@ class Chime {
     UserType? userType,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userEmailList, 'userEmailList');
     final $payload = <String, dynamic>{
       'UserEmailList': userEmailList,
@@ -5195,16 +4855,6 @@ class Chime {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-    );
-    _s.validateStringPattern(
-      'userEmail',
-      userEmail,
-      r'''.+@.+\..+''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (name != null) 'name': [name],
@@ -5221,18 +4871,17 @@ class Chime {
     return ListAccountsResponse.fromJson(response);
   }
 
-  /// Returns a list of the administrators in the app instance.
+  /// Returns a list of the administrators in the <code>AppInstance</code>.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
-  /// May throw [ResourceLimitExceededException].
   /// May throw [ThrottledClientException].
   /// May throw [UnauthorizedClientException].
   /// May throw [ServiceUnavailableException].
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of administrators that you want to return.
@@ -5253,12 +4902,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5270,11 +4913,6 @@ class Chime {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -5291,8 +4929,8 @@ class Chime {
     return ListAppInstanceAdminsResponse.fromJson(response);
   }
 
-  /// List all <code>AppInstanceUsers</code> created under a single app
-  /// instance.
+  /// List all <code>AppInstanceUsers</code> created under a single
+  /// <code>AppInstance</code>.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5302,7 +4940,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of requests that you want returned.
@@ -5323,12 +4961,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5340,11 +4972,6 @@ class Chime {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final $query = <String, List<String>>{
       'app-instance-arn': [appInstanceArn],
@@ -5361,7 +4988,8 @@ class Chime {
     return ListAppInstanceUsersResponse.fromJson(response);
   }
 
-  /// Lists all Amazon Chime app instances created under a single AWS account.
+  /// Lists all Amazon Chime <code>AppInstance</code>s created under a single
+  /// AWS account.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5371,11 +4999,11 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of app instances that you want to return.
+  /// The maximum number of <code>AppInstance</code>s that you want to return.
   ///
   /// Parameter [nextToken] :
   /// The token passed by previous API requests until you reach the maximum
-  /// number of app instances.
+  /// number of <code>AppInstance</code>s.
   Future<ListAppInstancesResponse> listAppInstances({
     int? maxResults,
     String? nextToken,
@@ -5391,11 +5019,6 @@ class Chime {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -5431,19 +5054,7 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(attendeeId, 'attendeeId');
-    _s.validateStringPattern(
-      'attendeeId',
-      attendeeId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -5481,12 +5092,6 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5533,12 +5138,6 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5560,6 +5159,11 @@ class Chime {
   }
 
   /// Lists all the users banned from a particular channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5571,6 +5175,9 @@ class Chime {
   /// Parameter [channelArn] :
   /// The ARN of the channel.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of bans that you want returned.
   ///
@@ -5579,6 +5186,7 @@ class Chime {
   /// returned.
   Future<ListChannelBansResponse> listChannelBans({
     required String channelArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -5590,11 +5198,11 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -5608,11 +5216,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -5622,12 +5228,18 @@ class Chime {
       method: 'GET',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/bans',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelBansResponse.fromJson(response);
   }
 
   /// Lists all channel memberships in a channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5639,12 +5251,15 @@ class Chime {
   /// Parameter [channelArn] :
   /// The maximum number of channel memberships that you want returned.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of channel memberships that you want returned.
   ///
   /// Parameter [nextToken] :
   /// The token passed by previous API calls until all requested channel
-  /// memberships are returned..
+  /// memberships are returned.
   ///
   /// Parameter [type] :
   /// The membership type of a user, <code>DEFAULT</code> or
@@ -5654,6 +5269,7 @@ class Chime {
   /// <code>HIDDEN</code>. Otherwise hidden members are not returned.
   Future<ListChannelMembershipsResponse> listChannelMemberships({
     required String channelArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
     ChannelMembershipType? type,
@@ -5666,11 +5282,11 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -5684,11 +5300,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -5699,6 +5313,7 @@ class Chime {
       method: 'GET',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/memberships',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelMembershipsResponse.fromJson(response);
@@ -5707,6 +5322,11 @@ class Chime {
   /// Lists all channels that a particular <code>AppInstanceUser</code> is a
   /// part of. Only an <code>AppInstanceAdmin</code> can call the API with a
   /// user ARN that is not their own.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5716,7 +5336,10 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceUserArn] :
-  /// The ARN of the app instance users
+  /// The ARN of the <code>AppInstanceUser</code>s
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of users that you want returned.
@@ -5727,6 +5350,7 @@ class Chime {
   Future<ListChannelMembershipsForAppInstanceUserResponse>
       listChannelMembershipsForAppInstanceUser({
     String? appInstanceUserArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -5736,10 +5360,11 @@ class Chime {
       5,
       1600,
     );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -5753,11 +5378,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (appInstanceUserArn != null)
         'app-instance-user-arn': [appInstanceUserArn],
@@ -5769,18 +5392,23 @@ class Chime {
       method: 'GET',
       requestUri: '/channels?scope=app-instance-user-memberships',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelMembershipsForAppInstanceUserResponse.fromJson(response);
   }
 
   /// List all the messages in a channel. Returns a paginated list of
-  /// <code>ChannelMessages</code>. Sorted in descending order by default, based
-  /// on the creation timestamp.
+  /// <code>ChannelMessages</code>. By default, sorted by creation timestamp in
+  /// descending order.
   /// <note>
   /// Redacted messages appear in the results as empty, since they are only
   /// redacted, not deleted. Deleted messages do not appear in the results. This
   /// action always returns the latest version of an edited message.
+  ///
+  /// Also, the x-amz-chime-bearer request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
   /// </note>
   ///
   /// May throw [BadRequestException].
@@ -5792,6 +5420,9 @@ class Chime {
   ///
   /// Parameter [channelArn] :
   /// The ARN of the channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of messages that you want returned.
@@ -5811,6 +5442,7 @@ class Chime {
   /// on time created.
   Future<ListChannelMessagesResponse> listChannelMessages({
     required String channelArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
     DateTime? notAfter,
@@ -5825,11 +5457,11 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -5843,11 +5475,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -5862,12 +5492,18 @@ class Chime {
       method: 'GET',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/messages',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelMessagesResponse.fromJson(response);
   }
 
   /// Lists all the moderators for a channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5879,6 +5515,9 @@ class Chime {
   /// Parameter [channelArn] :
   /// The ARN of the channel.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of moderators that you want returned.
   ///
@@ -5887,6 +5526,7 @@ class Chime {
   /// returned.
   Future<ListChannelModeratorsResponse> listChannelModerators({
     required String channelArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -5898,11 +5538,11 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -5916,11 +5556,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -5930,6 +5568,7 @@ class Chime {
       method: 'GET',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/moderators',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelModeratorsResponse.fromJson(response);
@@ -5942,13 +5581,17 @@ class Chime {
   /// <ul>
   /// <li>
   /// Use privacy = <code>PUBLIC</code> to retrieve all public channels in the
-  /// account
+  /// account.
   /// </li>
   /// <li>
   /// Only an <code>AppInstanceAdmin</code> can set privacy =
   /// <code>PRIVATE</code> to list the private channels in an account.
   /// </li>
-  /// </ul>
+  /// </ul> <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -5958,7 +5601,10 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of channels that you want to return.
@@ -5969,10 +5615,11 @@ class Chime {
   ///
   /// Parameter [privacy] :
   /// The privacy setting. <code>PUBLIC</code> retrieves all the public
-  /// channels. <code>PRIVATE</code> retrieves private channels. Only an app
-  /// instance administrator can retrieve private channels.
+  /// channels. <code>PRIVATE</code> retrieves private channels. Only an
+  /// <code>AppInstanceAdmin</code> can retrieve private channels.
   Future<ListChannelsResponse> listChannels({
     required String appInstanceArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
     ChannelPrivacy? privacy,
@@ -5985,11 +5632,11 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -6003,11 +5650,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       'app-instance-arn': [appInstanceArn],
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -6019,12 +5664,18 @@ class Chime {
       method: 'GET',
       requestUri: '/channels',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelsResponse.fromJson(response);
   }
 
-  /// A list of the channels moderated by an app instance user.
+  /// A list of the channels moderated by an <code>AppInstanceUser</code>.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -6036,6 +5687,9 @@ class Chime {
   /// Parameter [appInstanceUserArn] :
   /// The ARN of the user in the moderated channel.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of channels in the request.
   ///
@@ -6045,6 +5699,7 @@ class Chime {
   Future<ListChannelsModeratedByAppInstanceUserResponse>
       listChannelsModeratedByAppInstanceUser({
     String? appInstanceUserArn,
+    String? chimeBearer,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -6054,10 +5709,11 @@ class Chime {
       5,
       1600,
     );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateNumRange(
       'maxResults',
@@ -6071,11 +5727,9 @@ class Chime {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $query = <String, List<String>>{
       if (appInstanceUserArn != null)
         'app-instance-user-arn': [appInstanceUserArn],
@@ -6087,9 +5741,49 @@ class Chime {
       method: 'GET',
       requestUri: '/channels?scope=app-instance-user-moderated-channels',
       queryParams: $query,
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return ListChannelsModeratedByAppInstanceUserResponse.fromJson(response);
+  }
+
+  /// Returns a list of media capture pipelines.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [ForbiddenException].
+  /// May throw [ThrottledClientException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return in a single call. Valid Range: 1 -
+  /// 99.
+  ///
+  /// Parameter [nextToken] :
+  /// The token used to retrieve the next page of results.
+  Future<ListMediaCapturePipelinesResponse> listMediaCapturePipelines({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      99,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'max-results': [maxResults.toString()],
+      if (nextToken != null) 'next-token': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/media-capture-pipelines',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListMediaCapturePipelinesResponse.fromJson(response);
   }
 
   /// Lists the tags applied to an Amazon Chime SDK meeting resource.
@@ -6108,12 +5802,6 @@ class Chime {
     required String meetingId,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -6210,6 +5898,7 @@ class Chime {
   /// May throw [UnauthorizedClientException].
   /// May throw [ForbiddenException].
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [ThrottledClientException].
   /// May throw [ServiceUnavailableException].
   /// May throw [ServiceFailureException].
@@ -6298,12 +5987,6 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6361,19 +6044,7 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6425,12 +6096,6 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6530,11 +6195,6 @@ class Chime {
       0,
       65535,
     );
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -6549,6 +6209,36 @@ class Chime {
       exceptionFnMap: _exceptionFns,
     );
     return ListSipRulesResponse.fromJson(response);
+  }
+
+  /// Lists supported phone number countries.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [ForbiddenException].
+  /// May throw [AccessDeniedException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ThrottledClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [productType] :
+  /// The phone number product type.
+  Future<ListSupportedPhoneNumberCountriesResponse>
+      listSupportedPhoneNumberCountries({
+    required PhoneNumberProductType productType,
+  }) async {
+    ArgumentError.checkNotNull(productType, 'productType');
+    final $query = <String, List<String>>{
+      'product-type': [productType.toValue()],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/phone-number-countries',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListSupportedPhoneNumberCountriesResponse.fromJson(response);
   }
 
   /// Lists the tags applied to an Amazon Chime SDK meeting resource.
@@ -6571,12 +6261,6 @@ class Chime {
       resourceARN,
       1,
       1024,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn[\/\:\-\_\.a-zA-Z0-9]+$''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -6626,22 +6310,11 @@ class Chime {
     UserType? userType,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       200,
-    );
-    _s.validateStringPattern(
-      'userEmail',
-      userEmail,
-      r'''.+@.+\..+''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -6715,12 +6388,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -6791,19 +6458,7 @@ class Chime {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -6813,7 +6468,8 @@ class Chime {
     );
   }
 
-  /// Sets the amount of time in days that a given app instance retains data.
+  /// Sets the amount of time in days that a given <code>AppInstance</code>
+  /// retains data.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -6825,7 +6481,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   ///
   /// Parameter [appInstanceRetentionSettings] :
   /// The time in days to retain data. Data type: number.
@@ -6840,12 +6496,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -6863,7 +6513,7 @@ class Chime {
     return PutAppInstanceRetentionSettingsResponse.fromJson(response);
   }
 
-  /// The data streaming configurations of an app instance.
+  /// The data streaming configurations of an <code>AppInstance</code>.
   ///
   /// May throw [NotFoundException].
   /// May throw [BadRequestException].
@@ -6874,10 +6524,10 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   ///
   /// Parameter [appInstanceStreamingConfigurations] :
-  /// The streaming configurations set for an app instance.
+  /// The streaming configurations set for an <code>AppInstance</code>.
   Future<PutAppInstanceStreamingConfigurationsResponse>
       putAppInstanceStreamingConfigurations({
     required String appInstanceArn,
@@ -6890,12 +6540,6 @@ class Chime {
       appInstanceArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(appInstanceStreamingConfigurations,
@@ -6943,19 +6587,7 @@ class Chime {
     String? outboundEventsHTTPSEndpoint,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (lambdaFunctionArn != null) 'LambdaFunctionArn': lambdaFunctionArn,
       if (outboundEventsHTTPSEndpoint != null)
@@ -7005,12 +6637,6 @@ class Chime {
     required RetentionSettings retentionSettings,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(retentionSettings, 'retentionSettings');
     final $payload = <String, dynamic>{
       'RetentionSettings': retentionSettings,
@@ -7036,7 +6662,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [sipMediaApplicationId] :
-  /// The ID of the specified SIP media application
+  /// The SIP media application ID.
   ///
   /// Parameter [sipMediaApplicationLoggingConfiguration] :
   /// The actual logging configuration.
@@ -7047,12 +6673,6 @@ class Chime {
         sipMediaApplicationLoggingConfiguration,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (sipMediaApplicationLoggingConfiguration != null)
         'SipMediaApplicationLoggingConfiguration':
@@ -7095,12 +6715,6 @@ class Chime {
     ArgumentError.checkNotNull(
         emergencyCallingConfiguration, 'emergencyCallingConfiguration');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'EmergencyCallingConfiguration': emergencyCallingConfiguration,
     };
@@ -7139,12 +6753,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(loggingConfiguration, 'loggingConfiguration');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'LoggingConfiguration': loggingConfiguration,
     };
@@ -7183,12 +6791,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(origination, 'origination');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Origination': origination,
     };
@@ -7248,17 +6850,6 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fallBackPhoneNumber',
-      fallBackPhoneNumber,
-      r'''^\+?[1-9]\d{1,14}$''',
-    );
     final $payload = <String, dynamic>{
       'DefaultSessionExpiryMinutes': defaultSessionExpiryMinutes,
       'PhoneNumberPoolCountries': phoneNumberPoolCountries,
@@ -7278,8 +6869,8 @@ class Chime {
 
   /// Adds a streaming configuration for the specified Amazon Chime Voice
   /// Connector. The streaming configuration specifies whether media streaming
-  /// is enabled for sending to Amazon Kinesis. It also sets the retention
-  /// period, in hours, for the Amazon Kinesis data.
+  /// is enabled for sending to Indonesians. It also sets the retention period,
+  /// in hours, for the Amazon Kinesis data.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -7302,12 +6893,6 @@ class Chime {
     ArgumentError.checkNotNull(
         streamingConfiguration, 'streamingConfiguration');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'StreamingConfiguration': streamingConfiguration,
     };
@@ -7347,12 +6932,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(termination, 'termination');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Termination': termination,
     };
@@ -7387,12 +6966,6 @@ class Chime {
     List<Credential>? credentials,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (credentials != null) 'Credentials': credentials,
     };
@@ -7407,6 +6980,11 @@ class Chime {
 
   /// Redacts message content, but not metadata. The message exists in the back
   /// end, but the action returns null content, and the state shows as redacted.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -7420,9 +6998,13 @@ class Chime {
   ///
   /// Parameter [messageId] :
   /// The ID of the message being redacted.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<RedactChannelMessageResponse> redactChannelMessage({
     required String channelArn,
     required String messageId,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -7430,12 +7012,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(messageId, 'messageId');
@@ -7446,17 +7022,21 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''[-_a-zA-Z0-9]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/messages/${Uri.encodeComponent(messageId)}?operation=redact',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return RedactChannelMessageResponse.fromJson(response);
@@ -7487,26 +7067,8 @@ class Chime {
     required String messageId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(conversationId, 'conversationId');
-    _s.validateStringPattern(
-      'conversationId',
-      conversationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -7540,26 +7102,8 @@ class Chime {
     required String roomId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -7589,19 +7133,7 @@ class Chime {
     required String botId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -7634,19 +7166,7 @@ class Chime {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -7675,12 +7195,6 @@ class Chime {
     required String phoneNumberId,
   }) async {
     ArgumentError.checkNotNull(phoneNumberId, 'phoneNumberId');
-    _s.validateStringPattern(
-      'phoneNumberId',
-      phoneNumberId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -7691,7 +7205,12 @@ class Chime {
     return RestorePhoneNumberResponse.fromJson(response);
   }
 
-  /// Searches phone numbers that can be ordered.
+  /// Searches for phone numbers that can be ordered. For US numbers, provide at
+  /// least one of the following search filters: <code>AreaCode</code>,
+  /// <code>City</code>, <code>State</code>, or <code>TollFreePrefix</code>. If
+  /// you provide <code>City</code>, you must also provide <code>State</code>.
+  /// Numbers outside the US only support the <code>PhoneNumberType</code>
+  /// filter, which you must use.
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -7702,31 +7221,38 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [areaCode] :
-  /// The area code used to filter results.
+  /// The area code used to filter results. Only applies to the US.
   ///
   /// Parameter [city] :
-  /// The city used to filter results.
+  /// The city used to filter results. Only applies to the US.
   ///
   /// Parameter [country] :
-  /// The country used to filter results.
+  /// The country used to filter results. Defaults to the US Format: ISO 3166-1
+  /// alpha-2.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of results to return in a single call.
   ///
   /// Parameter [nextToken] :
-  /// The token to use to retrieve the next page of results.
+  /// The token used to retrieve the next page of results.
+  ///
+  /// Parameter [phoneNumberType] :
+  /// The phone number type used to filter results. Required for non-US numbers.
   ///
   /// Parameter [state] :
-  /// The state used to filter results.
+  /// The state used to filter results. Required only if you provide
+  /// <code>City</code>. Only applies to the US.
   ///
   /// Parameter [tollFreePrefix] :
-  /// The toll-free prefix that you use to filter results.
+  /// The toll-free prefix that you use to filter results. Only applies to the
+  /// US.
   Future<SearchAvailablePhoneNumbersResponse> searchAvailablePhoneNumbers({
     String? areaCode,
     String? city,
     String? country,
     int? maxResults,
     String? nextToken,
+    PhoneNumberType? phoneNumberType,
     String? state,
     String? tollFreePrefix,
   }) async {
@@ -7742,17 +7268,14 @@ class Chime {
       3,
       3,
     );
-    _s.validateStringPattern(
-      'tollFreePrefix',
-      tollFreePrefix,
-      r'''^8(00|33|44|55|66|77|88)$''',
-    );
     final $query = <String, List<String>>{
       if (areaCode != null) 'area-code': [areaCode],
       if (city != null) 'city': [city],
       if (country != null) 'country': [country],
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
+      if (phoneNumberType != null)
+        'phone-number-type': [phoneNumberType.toValue()],
       if (state != null) 'state': [state],
       if (tollFreePrefix != null) 'toll-free-prefix': [tollFreePrefix],
     };
@@ -7768,9 +7291,13 @@ class Chime {
 
   /// Sends a message to a particular channel that the member is a part of.
   /// <note>
-  /// <code>STANDARD</code> messages can contain 4KB of data and the 1KB of
-  /// metadata. <code>CONTROL</code> messages can contain 30 bytes of data and
-  /// no metadata.
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  ///
+  /// Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB
+  /// of metadata. <code>CONTROL</code> messages can contain 30 bytes of data
+  /// and no metadata.
   /// </note>
   ///
   /// May throw [BadRequestException].
@@ -7794,6 +7321,9 @@ class Chime {
   /// Parameter [type] :
   /// The type of message, <code>STANDARD</code> or <code>CONTROL</code>.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [clientRequestToken] :
   /// The <code>Idempotency</code> token for each client request.
   ///
@@ -7804,6 +7334,7 @@ class Chime {
     required String content,
     required ChannelMessagePersistenceType persistence,
     required ChannelMessageType type,
+    String? chimeBearer,
     String? clientRequestToken,
     String? metadata,
   }) async {
@@ -7815,38 +7346,27 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(content, 'content');
     _s.validateStringLength(
       'content',
       content,
       1,
-      4096,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'content',
-      content,
-      r'''[\s\S]*''',
+      1152921504606846976,
       isRequired: true,
     );
     ArgumentError.checkNotNull(persistence, 'persistence');
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
+    );
+    _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[-_a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'metadata',
@@ -7854,11 +7374,9 @@ class Chime {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'Content': content,
       'Persistence': persistence.toValue(),
@@ -7870,6 +7388,7 @@ class Chime {
       payload: $payload,
       method: 'POST',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/messages',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return SendChannelMessageResponse.fromJson(response);
@@ -7900,19 +7419,7 @@ class Chime {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(attendeeId, 'attendeeId');
-    _s.validateStringPattern(
-      'attendeeId',
-      attendeeId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -7947,12 +7454,6 @@ class Chime {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -7993,12 +7494,6 @@ class Chime {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn[\/\:\-\_\.a-zA-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -8036,19 +7531,7 @@ class Chime {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(attendeeId, 'attendeeId');
-    _s.validateStringPattern(
-      'attendeeId',
-      attendeeId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'TagKeys': tagKeys,
@@ -8082,12 +7565,6 @@ class Chime {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(meetingId, 'meetingId');
-    _s.validateStringPattern(
-      'meetingId',
-      meetingId,
-      r'''[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'TagKeys': tagKeys,
@@ -8128,12 +7605,6 @@ class Chime {
       1024,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn[\/\:\-\_\.a-zA-Z0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -8148,7 +7619,8 @@ class Chime {
   }
 
   /// Updates account details for the specified Amazon Chime account. Currently,
-  /// only account name updates are supported for this action.
+  /// only account name and default license updates are supported for this
+  /// action.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -8161,31 +7633,25 @@ class Chime {
   /// Parameter [accountId] :
   /// The Amazon Chime account ID.
   ///
+  /// Parameter [defaultLicense] :
+  /// The default license applied when you add users to an Amazon Chime account.
+  ///
   /// Parameter [name] :
   /// The new name for the specified Amazon Chime account.
   Future<UpdateAccountResponse> updateAccount({
     required String accountId,
+    License? defaultLicense,
     String? name,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       100,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-    );
     final $payload = <String, dynamic>{
+      if (defaultLicense != null) 'DefaultLicense': defaultLicense.toValue(),
       if (name != null) 'Name': name,
     };
     final response = await _protocol.send(
@@ -8222,12 +7688,6 @@ class Chime {
     required AccountSettings accountSettings,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(accountSettings, 'accountSettings');
     final $payload = <String, dynamic>{
       'AccountSettings': accountSettings,
@@ -8251,7 +7711,7 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceArn] :
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   ///
   /// Parameter [name] :
   /// The name that you want to change.
@@ -8271,12 +7731,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceArn',
-      appInstanceArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -8285,22 +7739,11 @@ class Chime {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'metadata',
       metadata,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
     );
     final $payload = <String, dynamic>{
       'Name': name,
@@ -8315,7 +7758,7 @@ class Chime {
     return UpdateAppInstanceResponse.fromJson(response);
   }
 
-  /// Updates the details for an <code>AppInstanceUser</code>. You can update
+  /// Updates the details of an <code>AppInstanceUser</code>. You can update
   /// names and metadata.
   ///
   /// May throw [BadRequestException].
@@ -8327,13 +7770,13 @@ class Chime {
   /// May throw [ServiceFailureException].
   ///
   /// Parameter [appInstanceUserArn] :
-  /// The ARN of the app instance user.
+  /// The ARN of the <code>AppInstanceUser</code>.
   ///
   /// Parameter [name] :
-  /// The name of the app instance user.
+  /// The name of the <code>AppInstanceUser</code>.
   ///
   /// Parameter [metadata] :
-  /// The metadata of the app instance user.
+  /// The metadata of the <code>AppInstanceUser</code>.
   Future<UpdateAppInstanceUserResponse> updateAppInstanceUser({
     required String appInstanceUserArn,
     required String name,
@@ -8347,12 +7790,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -8361,22 +7798,11 @@ class Chime {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'metadata',
       metadata,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
     );
     final $payload = <String, dynamic>{
       'Name': name,
@@ -8417,19 +7843,7 @@ class Chime {
     bool? disabled,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botId, 'botId');
-    _s.validateStringPattern(
-      'botId',
-      botId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (disabled != null) 'Disabled': disabled,
     };
@@ -8446,6 +7860,11 @@ class Chime {
   /// Update a channel's attributes.
   ///
   /// <b>Restriction</b>: You can't change a channel's privacy.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -8464,12 +7883,16 @@ class Chime {
   /// Parameter [name] :
   /// The name of the channel.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [metadata] :
-  /// The metadata of the channel.
+  /// The metadata for the update request.
   Future<UpdateChannelResponse> updateChannel({
     required String channelArn,
     required ChannelMode mode,
     required String name,
+    String? chimeBearer,
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
@@ -8478,12 +7901,6 @@ class Chime {
       channelArn,
       5,
       1600,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(mode, 'mode');
@@ -8495,11 +7912,11 @@ class Chime {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateStringLength(
       'metadata',
@@ -8507,11 +7924,9 @@ class Chime {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       'Mode': mode.toValue(),
       'Name': name,
@@ -8521,12 +7936,18 @@ class Chime {
       payload: $payload,
       method: 'PUT',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return UpdateChannelResponse.fromJson(response);
   }
 
   /// Updates the content of a message.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
@@ -8542,6 +7963,9 @@ class Chime {
   /// Parameter [messageId] :
   /// The ID string of the message being updated.
   ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+  ///
   /// Parameter [content] :
   /// The content of the message being updated.
   ///
@@ -8550,6 +7974,7 @@ class Chime {
   Future<UpdateChannelMessageResponse> updateChannelMessage({
     required String channelArn,
     required String messageId,
+    String? chimeBearer,
     String? content,
     String? metadata,
   }) async {
@@ -8561,12 +7986,6 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
     _s.validateStringLength(
       'messageId',
@@ -8575,11 +7994,11 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'messageId',
-      messageId,
-      r'''[-_a-zA-Z0-9]*''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
     _s.validateStringLength(
       'content',
@@ -8587,22 +8006,15 @@ class Chime {
       0,
       4096,
     );
-    _s.validateStringPattern(
-      'content',
-      content,
-      r'''[\s\S]*''',
-    );
     _s.validateStringLength(
       'metadata',
       metadata,
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'metadata',
-      metadata,
-      r'''.*''',
-    );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final $payload = <String, dynamic>{
       if (content != null) 'Content': content,
       if (metadata != null) 'Metadata': metadata,
@@ -8612,13 +8024,18 @@ class Chime {
       method: 'PUT',
       requestUri:
           '/channels/${Uri.encodeComponent(channelArn)}/messages/${Uri.encodeComponent(messageId)}',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return UpdateChannelMessageResponse.fromJson(response);
   }
 
-  /// Sets the timestamp to the point when a user last read messages in a
-  /// channel.
+  /// The details of the time when a user last read messages in a channel.
+  /// <note>
+  /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+  /// <code>AppInstanceUserArn</code> of the user that makes the API call as the
+  /// value in the header.
+  /// </note>
   ///
   /// May throw [BadRequestException].
   /// May throw [ForbiddenException].
@@ -8630,8 +8047,12 @@ class Chime {
   ///
   /// Parameter [channelArn] :
   /// The ARN of the channel.
+  ///
+  /// Parameter [chimeBearer] :
+  /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
   Future<UpdateChannelReadMarkerResponse> updateChannelReadMarker({
     required String channelArn,
+    String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
     _s.validateStringLength(
@@ -8641,16 +8062,20 @@ class Chime {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'channelArn',
-      channelArn,
-      r'''arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:[^/].{0,1023}''',
-      isRequired: true,
+    _s.validateStringLength(
+      'chimeBearer',
+      chimeBearer,
+      5,
+      1600,
     );
+    final headers = <String, String>{
+      if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'PUT',
       requestUri: '/channels/${Uri.encodeComponent(channelArn)}/readMarker',
+      headers: headers,
       exceptionFnMap: _exceptionFns,
     );
     return UpdateChannelReadMarkerResponse.fromJson(response);
@@ -8694,12 +8119,13 @@ class Chime {
   /// time. For example, you can update either the product type or the calling
   /// name in one action.
   ///
-  /// For toll-free numbers, you must use the Amazon Chime Voice Connector
-  /// product type.
+  /// For toll-free numbers, you cannot use the Amazon Chime Business Calling
+  /// product type. For numbers outside the U.S., you must use the Amazon Chime
+  /// SIP Media Application Dial-In product type.
   ///
-  /// Updates to outbound calling names can take up to 72 hours to complete.
-  /// Pending updates to outbound calling names must be complete before you can
-  /// request another update.
+  /// Updates to outbound calling names can take 72 hours to complete. Pending
+  /// updates to outbound calling names must be complete before you can request
+  /// another update.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -8723,11 +8149,6 @@ class Chime {
     PhoneNumberProductType? productType,
   }) async {
     ArgumentError.checkNotNull(phoneNumberId, 'phoneNumberId');
-    _s.validateStringPattern(
-      'callingName',
-      callingName,
-      r'''^$|^[a-zA-Z0-9 ]{2,15}$''',
-    );
     final $payload = <String, dynamic>{
       if (callingName != null) 'CallingName': callingName,
       if (productType != null) 'ProductType': productType.toValue(),
@@ -8759,12 +8180,6 @@ class Chime {
     required String callingName,
   }) async {
     ArgumentError.checkNotNull(callingName, 'callingName');
-    _s.validateStringPattern(
-      'callingName',
-      callingName,
-      r'''^$|^[a-zA-Z0-9 ]{2,15}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'CallingName': callingName,
     };
@@ -8813,24 +8228,12 @@ class Chime {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'proxySessionId',
-      proxySessionId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
     _s.validateStringLength(
       'voiceConnectorId',
       voiceConnectorId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -8878,19 +8281,7 @@ class Chime {
     String? name,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (name != null) 'Name': name,
     };
@@ -8935,26 +8326,8 @@ class Chime {
     RoomMembershipRole? role,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringPattern(
-      'memberId',
-      memberId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roomId, 'roomId');
-    _s.validateStringPattern(
-      'roomId',
-      roomId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (role != null) 'Role': role.toValue(),
     };
@@ -8968,7 +8341,7 @@ class Chime {
     return UpdateRoomMembershipResponse.fromJson(response);
   }
 
-  /// Updates the details for the specified SIP media application.
+  /// Updates the details of the specified SIP media application.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -8993,12 +8366,6 @@ class Chime {
     String? name,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringPattern(
-      'sipMediaApplicationId',
-      sipMediaApplicationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
@@ -9019,7 +8386,51 @@ class Chime {
     return UpdateSipMediaApplicationResponse.fromJson(response);
   }
 
-  /// Updates the details for the specified SIP rule.
+  /// Allows you to trigger a Lambda function at any time while a call is
+  /// active, and replace the current actions with new actions returned by the
+  /// invocation.
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
+  /// May throw [ForbiddenException].
+  /// May throw [ResourceLimitExceededException].
+  /// May throw [ThrottledClientException].
+  /// May throw [UnauthorizedClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ServiceFailureException].
+  ///
+  /// Parameter [arguments] :
+  /// Arguments made available to the Lambda function as part of the
+  /// <code>CALL_UPDATE_REQUESTED</code> event. Can contain 0-20 key-value
+  /// pairs.
+  ///
+  /// Parameter [sipMediaApplicationId] :
+  /// The ID of the SIP media application handling the call.
+  ///
+  /// Parameter [transactionId] :
+  /// The ID of the call transaction.
+  Future<UpdateSipMediaApplicationCallResponse> updateSipMediaApplicationCall({
+    required Map<String, String> arguments,
+    required String sipMediaApplicationId,
+    required String transactionId,
+  }) async {
+    ArgumentError.checkNotNull(arguments, 'arguments');
+    ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
+    ArgumentError.checkNotNull(transactionId, 'transactionId');
+    final $payload = <String, dynamic>{
+      'Arguments': arguments,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/sip-media-applications/${Uri.encodeComponent(sipMediaApplicationId)}/calls/${Uri.encodeComponent(transactionId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateSipMediaApplicationCallResponse.fromJson(response);
+  }
+
+  /// Updates the details of the specified SIP rule.
   ///
   /// May throw [UnauthorizedClientException].
   /// May throw [NotFoundException].
@@ -9057,12 +8468,6 @@ class Chime {
       isRequired: true,
     );
     ArgumentError.checkNotNull(sipRuleId, 'sipRuleId');
-    _s.validateStringPattern(
-      'sipRuleId',
-      sipRuleId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (disabled != null) 'Disabled': disabled,
@@ -9111,19 +8516,7 @@ class Chime {
     UserType? userType,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (alexaForBusinessMetadata != null)
         'AlexaForBusinessMetadata': alexaForBusinessMetadata,
@@ -9212,12 +8605,6 @@ class Chime {
     );
     ArgumentError.checkNotNull(requireEncryption, 'requireEncryption');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringPattern(
-      'voiceConnectorId',
-      voiceConnectorId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'RequireEncryption': requireEncryption,
@@ -9231,7 +8618,7 @@ class Chime {
     return UpdateVoiceConnectorResponse.fromJson(response);
   }
 
-  /// Updates details for the specified Amazon Chime Voice Connector group, such
+  /// Updates details of the specified Amazon Chime Voice Connector group, such
   /// as the name and Amazon Chime Voice Connector priority ranking.
   ///
   /// May throw [UnauthorizedClientException].
@@ -9265,12 +8652,6 @@ class Chime {
       isRequired: true,
     );
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
-    _s.validateStringPattern(
-      'voiceConnectorGroupId',
-      voiceConnectorGroupId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorItems, 'voiceConnectorItems');
     final $payload = <String, dynamic>{
       'Name': name,
@@ -9457,21 +8838,24 @@ class AlexaForBusinessMetadata {
   }
 }
 
-/// An instance of a Chime messaging application.
+/// The details of an <code>AppInstance</code>, an instance of an Amazon Chime
+/// SDK messaging application.
 class AppInstance {
   /// The ARN of the messaging instance.
   final String? appInstanceArn;
 
-  /// The time at which an app instance was created. In epoch milliseconds.
+  /// The time at which an <code>AppInstance</code> was created. In epoch
+  /// milliseconds.
   final DateTime? createdTimestamp;
 
-  /// The time an app instance was last updated. In epoch milliseconds.
+  /// The time an <code>AppInstance</code> was last updated. In epoch
+  /// milliseconds.
   final DateTime? lastUpdatedTimestamp;
 
-  /// The metadata of an app instance.
+  /// The metadata of an <code>AppInstance</code>.
   final String? metadata;
 
-  /// The name of an app instance.
+  /// The name of an <code>AppInstance</code>.
   final String? name;
 
   AppInstance({
@@ -9492,13 +8876,13 @@ class AppInstance {
   }
 }
 
-/// Promotes a user to the administrator role for the duration of an app
-/// instance.
+/// The details of an <code>AppInstanceAdmin</code>.
 class AppInstanceAdmin {
-  /// The name and metadata of the app instance administrator.
+  /// The <code>AppInstanceAdmin</code> data.
   final Identity? admin;
 
-  /// The ARN of the app instance administrator.
+  /// The ARN of the <code>AppInstance</code> for which the user is an
+  /// administrator.
   final String? appInstanceArn;
 
   /// The time at which an administrator was created.
@@ -9520,9 +8904,9 @@ class AppInstanceAdmin {
   }
 }
 
-/// The identity and metadata of an administrator.
+/// Summary of the details of an <code>AppInstanceAdmin</code>.
 class AppInstanceAdminSummary {
-  /// The name and metadata of the app instance administrator.
+  /// The details of the <code>AppInstanceAdmin</code>.
   final Identity? admin;
 
   AppInstanceAdminSummary({
@@ -9565,9 +8949,9 @@ extension on String {
   }
 }
 
-/// The length of time in days to retain messages.
+/// The details of the data-retention settings for an <code>AppInstance</code>.
 class AppInstanceRetentionSettings {
-  /// The length of time in days to retain a channel.
+  /// The length of time in days to retain the messages in a channel.
   final ChannelRetentionSettings? channelRetentionSettings;
 
   AppInstanceRetentionSettings({
@@ -9591,9 +8975,9 @@ class AppInstanceRetentionSettings {
   }
 }
 
-/// The streaming configuration of an app instance.
+/// The details of the streaming configuration of an <code>AppInstance</code>.
 class AppInstanceStreamingConfiguration {
-  /// The data type of the app instance.
+  /// The type of data to be streamed.
   final AppInstanceDataType appInstanceDataType;
 
   /// The resource ARN.
@@ -9622,15 +9006,15 @@ class AppInstanceStreamingConfiguration {
   }
 }
 
-/// The summary data for an app instance.
+/// Summary of the data for an <code>AppInstance</code>.
 class AppInstanceSummary {
-  /// The app instance ARN.
+  /// The <code>AppInstance</code> ARN.
   final String? appInstanceArn;
 
-  /// The metadata of the app instance summary.
+  /// The metadata of the <code>AppInstance</code>.
   final String? metadata;
 
-  /// The name of the app instance summary.
+  /// The name of the <code>AppInstance</code>.
   final String? name;
 
   AppInstanceSummary({
@@ -9647,21 +9031,21 @@ class AppInstanceSummary {
   }
 }
 
-/// The app instance user.
+/// The details of an <code>AppInstanceUser</code>.
 class AppInstanceUser {
-  /// The ARN of the app instance user.
+  /// The ARN of the <code>AppInstanceUser</code>.
   final String? appInstanceUserArn;
 
-  /// The time at which the app instance user was created.
+  /// The time at which the <code>AppInstanceUser</code> was created.
   final DateTime? createdTimestamp;
 
-  /// The time at which the app instance user was last updated.
+  /// The time at which the <code>AppInstanceUser</code> was last updated.
   final DateTime? lastUpdatedTimestamp;
 
-  /// The metadata of the app instance user.
+  /// The metadata of the <code>AppInstanceUser</code>.
   final String? metadata;
 
-  /// The name of the app instance user.
+  /// The name of the <code>AppInstanceUser</code>.
   final String? name;
 
   AppInstanceUser({
@@ -9682,12 +9066,12 @@ class AppInstanceUser {
   }
 }
 
-/// Lists the channels to which app instance users belong.
+/// Summary of the membership details of an <code>AppInstanceUser</code>.
 class AppInstanceUserMembershipSummary {
-  /// The time at which a summary was last read.
+  /// The time at which a message was last read.
   final DateTime? readMarkerTimestamp;
 
-  /// The type of channel summary,
+  /// The type of <code>ChannelMembership</code>.
   final ChannelMembershipType? type;
 
   AppInstanceUserMembershipSummary({
@@ -9702,15 +9086,15 @@ class AppInstanceUserMembershipSummary {
   }
 }
 
-/// The app instance user summary data .
+/// Summary of the details of an <code>AppInstanceUser</code>.
 class AppInstanceUserSummary {
-  /// The ARN of the app instance user.
+  /// The ARN of the <code>AppInstanceUser</code>.
   final String? appInstanceUserArn;
 
-  /// The metadata in an app instance user summary.
+  /// The metadata of the <code>AppInstanceUser</code>.
   final String? metadata;
 
-  /// The name in an app instance user summary.
+  /// The name of an <code>AppInstanceUser</code>.
   final String? name;
 
   AppInstanceUserSummary({
@@ -9784,7 +9168,7 @@ class AssociateSigninDelegateGroupsWithAccountResponse {
 }
 
 /// An Amazon Chime SDK meeting attendee. Includes a unique
-/// <code>AttendeeId</code> and <code>JoinToken</code>. The
+/// <code>AttendeeId</code> and <code>JoinToken</code> . The
 /// <code>JoinToken</code> allows a client to authenticate and join as the
 /// specified attendee. The <code>JoinToken</code> expires when the meeting ends
 /// or when <a>DeleteAttendee</a> is called. After that, the attendee is unable
@@ -9798,9 +9182,7 @@ class Attendee {
   final String? attendeeId;
 
   /// The Amazon Chime SDK external user ID. An idempotency token. Links the
-  /// attendee to an identity managed by a builder application. If you create an
-  /// attendee with the same external user id, the service returns the existing
-  /// record.
+  /// attendee to an identity managed by a builder application.
   final String? externalUserId;
 
   /// The join token used by the Amazon Chime SDK attendee.
@@ -9816,6 +9198,40 @@ class Attendee {
       attendeeId: json['AttendeeId'] as String?,
       externalUserId: json['ExternalUserId'] as String?,
       joinToken: json['JoinToken'] as String?,
+    );
+  }
+}
+
+/// The membership information, including member ARNs, the channel ARN, and
+/// membership types.
+class BatchChannelMemberships {
+  /// The ARN of the channel to which you're adding users.
+  final String? channelArn;
+  final Identity? invitedBy;
+
+  /// The users successfully added to the request.
+  final List<Identity>? members;
+
+  /// The membership types set for the channel users.
+  final ChannelMembershipType? type;
+
+  BatchChannelMemberships({
+    this.channelArn,
+    this.invitedBy,
+    this.members,
+    this.type,
+  });
+  factory BatchChannelMemberships.fromJson(Map<String, dynamic> json) {
+    return BatchChannelMemberships(
+      channelArn: json['ChannelArn'] as String?,
+      invitedBy: json['InvitedBy'] != null
+          ? Identity.fromJson(json['InvitedBy'] as Map<String, dynamic>)
+          : null,
+      members: (json['Members'] as List?)
+          ?.whereNotNull()
+          .map((e) => Identity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
 }
@@ -9841,6 +9257,61 @@ class BatchCreateAttendeeResponse {
       errors: (json['Errors'] as List?)
           ?.whereNotNull()
           .map((e) => CreateAttendeeError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// A list of failed member ARNs, error codes, and error messages.
+class BatchCreateChannelMembershipError {
+  /// The error code.
+  final ErrorCode? errorCode;
+
+  /// The error message.
+  final String? errorMessage;
+
+  /// The ARN of the member that the service couldn't add.
+  final String? memberArn;
+
+  BatchCreateChannelMembershipError({
+    this.errorCode,
+    this.errorMessage,
+    this.memberArn,
+  });
+  factory BatchCreateChannelMembershipError.fromJson(
+      Map<String, dynamic> json) {
+    return BatchCreateChannelMembershipError(
+      errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
+      errorMessage: json['ErrorMessage'] as String?,
+      memberArn: json['MemberArn'] as String?,
+    );
+  }
+}
+
+class BatchCreateChannelMembershipResponse {
+  /// The list of channel memberships in the response.
+  final BatchChannelMemberships? batchChannelMemberships;
+
+  /// If the action fails for one or more of the memberships in the request, a
+  /// list of the memberships is returned, along with error codes and error
+  /// messages.
+  final List<BatchCreateChannelMembershipError>? errors;
+
+  BatchCreateChannelMembershipResponse({
+    this.batchChannelMemberships,
+    this.errors,
+  });
+  factory BatchCreateChannelMembershipResponse.fromJson(
+      Map<String, dynamic> json) {
+    return BatchCreateChannelMembershipResponse(
+      batchChannelMemberships: json['BatchChannelMemberships'] != null
+          ? BatchChannelMemberships.fromJson(
+              json['BatchChannelMemberships'] as Map<String, dynamic>)
+          : null,
+      errors: (json['Errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => BatchCreateChannelMembershipError.fromJson(
+              e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -10130,24 +9601,24 @@ extension on String {
   }
 }
 
-/// Creates a channel.
+/// The details of a channel.
 class Channel {
   /// The ARN of the channel.
   final String? channelArn;
 
-  /// The administrator who created the channel.
+  /// The <code>AppInstanceUser</code> who created the channel.
   final Identity? createdBy;
 
-  /// The time at which the administrator created the channel.
+  /// The time at which the <code>AppInstanceUser</code> created the channel.
   final DateTime? createdTimestamp;
 
-  /// The time at which a member sent the last message in a session.
+  /// The time at which a member sent the last message in the channel.
   final DateTime? lastMessageTimestamp;
 
   /// The time at which a channel was last updated.
   final DateTime? lastUpdatedTimestamp;
 
-  /// The metadata of the channel.
+  /// The channel's metadata.
   final String? metadata;
 
   /// The mode of the channel.
@@ -10156,7 +9627,7 @@ class Channel {
   /// The name of the channel.
   final String? name;
 
-  /// The channel's privacy setting, <code>PUBLIC</code> or <code>HIDDEN</code>.
+  /// The channel's privacy setting.
   final ChannelPrivacy? privacy;
 
   Channel({
@@ -10187,12 +9658,12 @@ class Channel {
   }
 }
 
-/// Bans a user from a channel.
+/// The details of a channel ban.
 class ChannelBan {
   /// The ARN of the channel from which a member is being banned.
   final String? channelArn;
 
-  /// The parameter of the action.
+  /// The <code>AppInstanceUser</code> who created the ban.
   final Identity? createdBy;
 
   /// The time at which the ban was created.
@@ -10221,7 +9692,7 @@ class ChannelBan {
   }
 }
 
-/// The summary data for the channel ban.
+/// Summary of the details of a <code>ChannelBan</code>.
 class ChannelBanSummary {
   /// The member being banned from a channel.
   final Identity? member;
@@ -10238,7 +9709,7 @@ class ChannelBanSummary {
   }
 }
 
-/// Creates a channel member.
+/// The details of a channel member.
 class ChannelMembership {
   /// The ARN of the member's channel.
   final String? channelArn;
@@ -10246,8 +9717,7 @@ class ChannelMembership {
   /// The time at which the channel membership was created.
   final DateTime? createdTimestamp;
 
-  /// The identifier of the member who invited another member. Taken from the
-  /// message header.
+  /// The identifier of the member who invited another member.
   final Identity? invitedBy;
 
   /// The time at which a channel membership was last updated.
@@ -10283,9 +9753,10 @@ class ChannelMembership {
   }
 }
 
-/// Returns the channel membership summary data for an app instance.
+/// Summary of the channel membership details of an
+/// <code>AppInstanceUser</code>.
 class ChannelMembershipForAppInstanceUserSummary {
-  /// Returns the channel membership data for an app instance.
+  /// Returns the channel membership data for an <code>AppInstance</code>.
   final AppInstanceUserMembershipSummary? appInstanceUserMembershipSummary;
   final ChannelSummary? channelSummary;
 
@@ -10310,7 +9781,7 @@ class ChannelMembershipForAppInstanceUserSummary {
   }
 }
 
-/// The summary data of a channel membership.
+/// Summary of the details of a <code>ChannelMembership</code>.
 class ChannelMembershipSummary {
   /// A member's summary data.
   final Identity? member;
@@ -10355,7 +9826,7 @@ extension on String {
   }
 }
 
-/// Creates a message in a channel.
+/// The details of a message in a channel.
 class ChannelMessage {
   /// The ARN of the channel.
   final String? channelArn;
@@ -10377,10 +9848,11 @@ class ChannelMessage {
 
   /// The message metadata.
   final String? metadata;
+
+  /// The persistence setting for a channel message.
   final ChannelMessagePersistenceType? persistence;
 
-  /// Hides the content of a message. The message still exists on the back end,
-  /// but this action only returns metadata.
+  /// Hides the content of a message.
   final bool? redacted;
 
   /// The message sender.
@@ -10450,29 +9922,33 @@ extension on String {
   }
 }
 
-/// A summary of the messages in a channel.
+/// Summary of the messages in a <code>Channel</code>.
 class ChannelMessageSummary {
-  /// The content of the message summary.
+  /// The content of the message.
   final String? content;
 
   /// The time at which the message summary was created.
   final DateTime? createdTimestamp;
+
+  /// The time at which a message was last edited.
   final DateTime? lastEditedTimestamp;
+
+  /// The time at which a message was last updated.
   final DateTime? lastUpdatedTimestamp;
 
-  /// The ID of the message summary.
+  /// The ID of the message.
   final String? messageId;
 
-  /// The metadata of the message summary.
+  /// The metadata of the message.
   final String? metadata;
 
-  /// Redacts the content of a message summary.
+  /// Indicates whether a message was redacted.
   final bool? redacted;
 
-  /// The sender of the message summary.
+  /// The message sender.
   final Identity? sender;
 
-  /// The type of message summary.
+  /// The type of message.
   final ChannelMessageType? type;
 
   ChannelMessageSummary({
@@ -10559,7 +10035,7 @@ extension on String {
   }
 }
 
-/// Returns the summary data for a moderated channel.
+/// Summary of the details of a moderated channel.
 class ChannelModeratedByAppInstanceUserSummary {
   final ChannelSummary? channelSummary;
 
@@ -10577,12 +10053,12 @@ class ChannelModeratedByAppInstanceUserSummary {
   }
 }
 
-/// Creates a moderator on a channel.
+/// The details of a channel moderator.
 class ChannelModerator {
   /// The ARN of the moderator's channel.
   final String? channelArn;
 
-  /// The member who created the moderator.
+  /// The <code>AppInstanceUser</code> who created the moderator.
   final Identity? createdBy;
 
   /// The time at which the moderator was created.
@@ -10611,7 +10087,7 @@ class ChannelModerator {
   }
 }
 
-/// Summary data of the moderators in a channel.
+/// Summary of the details of a <code>ChannelModerator</code>.
 class ChannelModeratorSummary {
   /// The data for a moderator.
   final Identity? moderator;
@@ -10656,9 +10132,9 @@ extension on String {
   }
 }
 
-/// The retention settings for a channel.
+/// The details of the retention settings for a channel.
 class ChannelRetentionSettings {
-  /// The time in days to retain a channel.
+  /// The time in days to retain the messages in a channel.
   final int? retentionDays;
 
   ChannelRetentionSettings({
@@ -10678,25 +10154,24 @@ class ChannelRetentionSettings {
   }
 }
 
-/// The summary data for a channel.
+/// Summary of the details of a <code>Channel</code>.
 class ChannelSummary {
-  /// The ARN of the channel summary.
+  /// The ARN of the channel.
   final String? channelArn;
 
   /// The time at which the last message in a channel was sent.
   final DateTime? lastMessageTimestamp;
 
-  /// The metadata of the channel summary.
+  /// The metadata of the channel.
   final String? metadata;
 
-  /// The summary mode of the channel.
+  /// The mode of the channel.
   final ChannelMode? mode;
 
-  /// The parameter of the action.
+  /// The name of the channel.
   final String? name;
 
-  /// The privacy setting of the channel being summarized, <code>PUBLIC</code> or
-  /// <code>HIDDEN</code>.
+  /// The privacy setting of the channel.
   final ChannelPrivacy? privacy;
 
   ChannelSummary({
@@ -10719,10 +10194,10 @@ class ChannelSummary {
   }
 }
 
-/// The retention settings that determine how long to retain chat conversation
+/// The retention settings that determine how long to retain conversation
 /// messages for an Amazon Chime Enterprise account.
 class ConversationRetentionSettings {
-  /// The number of days for which to retain chat conversation messages.
+  /// The number of days for which to retain conversation messages.
   final int? retentionDays;
 
   ConversationRetentionSettings({
@@ -10743,6 +10218,7 @@ class ConversationRetentionSettings {
 }
 
 class CreateAccountResponse {
+  /// The Amazon Chime account details.
   final Account? account;
 
   CreateAccountResponse({
@@ -10758,10 +10234,10 @@ class CreateAccountResponse {
 }
 
 class CreateAppInstanceAdminResponse {
-  /// The name and ARN of the admin for the app instance.
+  /// The name and ARN of the admin for the <code>AppInstance</code>.
   final Identity? appInstanceAdmin;
 
-  /// The ARN of the of the admin for the app instance.
+  /// The ARN of the of the admin for the <code>AppInstance</code>.
   final String? appInstanceArn;
 
   CreateAppInstanceAdminResponse({
@@ -10779,7 +10255,7 @@ class CreateAppInstanceAdminResponse {
 }
 
 class CreateAppInstanceResponse {
-  /// The Amazon Resource Number (ARN) of the app instance.
+  /// The Amazon Resource Number (ARN) of the <code>AppInstance</code>.
   final String? appInstanceArn;
 
   CreateAppInstanceResponse({
@@ -10817,9 +10293,7 @@ class CreateAttendeeError {
   final String? errorMessage;
 
   /// The Amazon Chime SDK external user ID. An idempotency token. Links the
-  /// attendee to an identity managed by a builder application. If you create an
-  /// attendee with the same external user id, the service returns the existing
-  /// record.
+  /// attendee to an identity managed by a builder application.
   final String? externalUserId;
 
   CreateAttendeeError({
@@ -10840,12 +10314,7 @@ class CreateAttendeeError {
 /// BatchCreateAttendee action.
 class CreateAttendeeRequestItem {
   /// The Amazon Chime SDK external user ID. An idempotency token. Links the
-  /// attendee to an identity managed by a builder application. If you create an
-  /// attendee with the same external user id, the service returns the existing
-  /// record.
-  ///
-  /// The Amazon Chime SDK external user ID. Links the attendee to an identity
-  /// managed by a builder application.
+  /// attendee to an identity managed by a builder application.
   final String externalUserId;
 
   /// The tag key-value pairs.
@@ -10975,6 +10444,25 @@ class CreateChannelResponse {
   }
 }
 
+class CreateMediaCapturePipelineResponse {
+  /// A media capture pipeline object, the ID, source type, source ARN, sink type,
+  /// and sink ARN of a media capture pipeline object.
+  final MediaCapturePipeline? mediaCapturePipeline;
+
+  CreateMediaCapturePipelineResponse({
+    this.mediaCapturePipeline,
+  });
+  factory CreateMediaCapturePipelineResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateMediaCapturePipelineResponse(
+      mediaCapturePipeline: json['MediaCapturePipeline'] != null
+          ? MediaCapturePipeline.fromJson(
+              json['MediaCapturePipeline'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class CreateMeetingDialOutResponse {
   /// Unique ID that tracks API calls.
   final String? transactionId;
@@ -10991,7 +10479,7 @@ class CreateMeetingDialOutResponse {
 
 class CreateMeetingResponse {
   /// The meeting information, including the meeting ID and
-  /// <code>MediaPlacement</code>.
+  /// <code>MediaPlacement</code> .
   final Meeting? meeting;
 
   CreateMeetingResponse({
@@ -11123,7 +10611,7 @@ class CreateSipMediaApplicationCallResponse {
 }
 
 class CreateSipMediaApplicationResponse {
-  /// The Sip media application details.
+  /// The SIP media application details.
   final SipMediaApplication? sipMediaApplication;
 
   CreateSipMediaApplicationResponse({
@@ -11280,9 +10768,9 @@ class DeleteAccountResponse {
 }
 
 class DescribeAppInstanceAdminResponse {
-  /// The ARN and name of the app instance user, the ARN of the app instance, and
-  /// the created and last-updated timestamps. All timestamps use epoch
-  /// milliseconds.
+  /// The ARN and name of the <code>AppInstanceUser</code>, the ARN of the
+  /// <code>AppInstance</code>, and the created and last-updated timestamps. All
+  /// timestamps use epoch milliseconds.
   final AppInstanceAdmin? appInstanceAdmin;
 
   DescribeAppInstanceAdminResponse({
@@ -11300,7 +10788,7 @@ class DescribeAppInstanceAdminResponse {
 
 class DescribeAppInstanceResponse {
   /// The ARN, metadata, created and last-updated timestamps, and the name of the
-  /// app instance. All timestamps use epoch milliseconds.
+  /// <code>AppInstance</code>. All timestamps use epoch milliseconds.
   final AppInstance? appInstance;
 
   DescribeAppInstanceResponse({
@@ -11316,7 +10804,7 @@ class DescribeAppInstanceResponse {
 }
 
 class DescribeAppInstanceUserResponse {
-  /// The name of the app instance user.
+  /// The name of the <code>AppInstanceUser</code>.
   final AppInstanceUser? appInstanceUser;
 
   DescribeAppInstanceUserResponse({
@@ -11333,7 +10821,7 @@ class DescribeAppInstanceUserResponse {
 }
 
 class DescribeChannelBanResponse {
-  /// The the details of the ban.
+  /// The details of the ban.
   final ChannelBan? channelBan;
 
   DescribeChannelBanResponse({
@@ -11730,6 +11218,7 @@ class GeoMatchParams {
 }
 
 class GetAccountResponse {
+  /// The Amazon Chime account details.
   final Account? account;
 
   GetAccountResponse({
@@ -11762,7 +11251,7 @@ class GetAccountSettingsResponse {
 }
 
 class GetAppInstanceRetentionSettingsResponse {
-  /// The retention settings for the app instance.
+  /// The retention settings for the <code>AppInstance</code>.
   final AppInstanceRetentionSettings? appInstanceRetentionSettings;
 
   /// The timestamp representing the time at which the specified items are
@@ -11893,6 +11382,23 @@ class GetGlobalSettingsResponse {
       voiceConnector: json['VoiceConnector'] != null
           ? VoiceConnectorSettings.fromJson(
               json['VoiceConnector'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class GetMediaCapturePipelineResponse {
+  /// The media capture pipeline object.
+  final MediaCapturePipeline? mediaCapturePipeline;
+
+  GetMediaCapturePipelineResponse({
+    this.mediaCapturePipeline,
+  });
+  factory GetMediaCapturePipelineResponse.fromJson(Map<String, dynamic> json) {
+    return GetMediaCapturePipelineResponse(
+      mediaCapturePipeline: json['MediaCapturePipeline'] != null
+          ? MediaCapturePipeline.fromJson(
+              json['MediaCapturePipeline'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -12284,7 +11790,7 @@ class GetVoiceConnectorTerminationResponse {
   }
 }
 
-/// The ARN and name of a user.
+/// The details of a user.
 class Identity {
   /// The ARN in an Identity.
   final String? arn;
@@ -12424,10 +11930,10 @@ extension on String {
 }
 
 class ListAccountsResponse {
-  /// The list of accounts.
+  /// List of Amazon Chime accounts and account details.
   final List<Account>? accounts;
 
-  /// The account's user token.
+  /// The token to use to retrieve the next page of results.
   final String? nextToken;
 
   ListAccountsResponse({
@@ -12449,7 +11955,7 @@ class ListAppInstanceAdminsResponse {
   /// The information for each administrator.
   final List<AppInstanceAdminSummary>? appInstanceAdmins;
 
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   final String? appInstanceArn;
 
   /// The token returned from previous API requests until the number of
@@ -12475,10 +11981,10 @@ class ListAppInstanceAdminsResponse {
 }
 
 class ListAppInstanceUsersResponse {
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   final String? appInstanceArn;
 
-  /// The information for each of the requested app instance users.
+  /// The information for each requested <code>AppInstanceUser</code>.
   final List<AppInstanceUserSummary>? appInstanceUsers;
 
   /// The token passed by previous API calls until all requested users are
@@ -12504,11 +12010,11 @@ class ListAppInstanceUsersResponse {
 }
 
 class ListAppInstancesResponse {
-  /// The information for each app instance.
+  /// The information for each <code>AppInstance</code>.
   final List<AppInstanceSummary>? appInstances;
 
-  /// The token passed by previous API requests until the maximum number of app
-  /// instances is reached.
+  /// The token passed by previous API requests until the maximum number of
+  /// <code>AppInstance</code>s is reached.
   final String? nextToken;
 
   ListAppInstancesResponse({
@@ -12674,7 +12180,7 @@ class ListChannelMessagesResponse {
   /// The ARN of the channel containing the requested messages.
   final String? channelArn;
 
-  /// The information about and content of each requested message.
+  /// The information about, and content of, each requested message.
   final List<ChannelMessageSummary>? channelMessages;
 
   /// The token passed by previous API calls until all requested messages are
@@ -12769,6 +12275,29 @@ class ListChannelsResponse {
       channels: (json['Channels'] as List?)
           ?.whereNotNull()
           .map((e) => ChannelSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListMediaCapturePipelinesResponse {
+  /// The media capture pipeline objects in the list.
+  final List<MediaCapturePipeline>? mediaCapturePipelines;
+
+  /// The token used to retrieve the next page of results.
+  final String? nextToken;
+
+  ListMediaCapturePipelinesResponse({
+    this.mediaCapturePipelines,
+    this.nextToken,
+  });
+  factory ListMediaCapturePipelinesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListMediaCapturePipelinesResponse(
+      mediaCapturePipelines: (json['MediaCapturePipelines'] as List?)
+          ?.whereNotNull()
+          .map((e) => MediaCapturePipeline.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
@@ -12968,6 +12497,24 @@ class ListSipRulesResponse {
   }
 }
 
+class ListSupportedPhoneNumberCountriesResponse {
+  /// The supported phone number countries.
+  final List<PhoneNumberCountry>? phoneNumberCountries;
+
+  ListSupportedPhoneNumberCountriesResponse({
+    this.phoneNumberCountries,
+  });
+  factory ListSupportedPhoneNumberCountriesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListSupportedPhoneNumberCountriesResponse(
+      phoneNumberCountries: (json['PhoneNumberCountries'] as List?)
+          ?.whereNotNull()
+          .map((e) => PhoneNumberCountry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 class ListTagsForResourceResponse {
   /// A list of tag-key value pairs.
   final List<Tag>? tags;
@@ -13100,6 +12647,148 @@ class LogoutUserResponse {
   }
 }
 
+/// A media capture pipeline object. A string consisting of an ID, source type,
+/// a source ARN, a sink type, and a sink ARN.
+class MediaCapturePipeline {
+  /// The time at which the capture pipeline was created, in ISO 8601 format.
+  final DateTime? createdTimestamp;
+
+  /// The ID of a media capture pipeline.
+  final String? mediaPipelineId;
+
+  /// ARN of the destination to which the media artifacts are saved.
+  final String? sinkArn;
+
+  /// Destination type to which the media artifacts are saved. You must use an S3
+  /// Bucket.
+  final MediaPipelineSinkType? sinkType;
+
+  /// ARN of the source from which the media artifacts will be saved.
+  final String? sourceArn;
+
+  /// Source type from which media artifacts are saved. You must use
+  /// <code>ChimeMeeting</code>.
+  final MediaPipelineSourceType? sourceType;
+
+  /// The status of the media capture pipeline.
+  final MediaPipelineStatus? status;
+
+  /// The time at which the capture pipeline was updated, in ISO 8601 format.
+  final DateTime? updatedTimestamp;
+
+  MediaCapturePipeline({
+    this.createdTimestamp,
+    this.mediaPipelineId,
+    this.sinkArn,
+    this.sinkType,
+    this.sourceArn,
+    this.sourceType,
+    this.status,
+    this.updatedTimestamp,
+  });
+  factory MediaCapturePipeline.fromJson(Map<String, dynamic> json) {
+    return MediaCapturePipeline(
+      createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
+      mediaPipelineId: json['MediaPipelineId'] as String?,
+      sinkArn: json['SinkArn'] as String?,
+      sinkType: (json['SinkType'] as String?)?.toMediaPipelineSinkType(),
+      sourceArn: json['SourceArn'] as String?,
+      sourceType: (json['SourceType'] as String?)?.toMediaPipelineSourceType(),
+      status: (json['Status'] as String?)?.toMediaPipelineStatus(),
+      updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
+    );
+  }
+}
+
+enum MediaPipelineSinkType {
+  s3Bucket,
+}
+
+extension on MediaPipelineSinkType {
+  String toValue() {
+    switch (this) {
+      case MediaPipelineSinkType.s3Bucket:
+        return 'S3Bucket';
+    }
+  }
+}
+
+extension on String {
+  MediaPipelineSinkType toMediaPipelineSinkType() {
+    switch (this) {
+      case 'S3Bucket':
+        return MediaPipelineSinkType.s3Bucket;
+    }
+    throw Exception('$this is not known in enum MediaPipelineSinkType');
+  }
+}
+
+enum MediaPipelineSourceType {
+  chimeSdkMeeting,
+}
+
+extension on MediaPipelineSourceType {
+  String toValue() {
+    switch (this) {
+      case MediaPipelineSourceType.chimeSdkMeeting:
+        return 'ChimeSdkMeeting';
+    }
+  }
+}
+
+extension on String {
+  MediaPipelineSourceType toMediaPipelineSourceType() {
+    switch (this) {
+      case 'ChimeSdkMeeting':
+        return MediaPipelineSourceType.chimeSdkMeeting;
+    }
+    throw Exception('$this is not known in enum MediaPipelineSourceType');
+  }
+}
+
+enum MediaPipelineStatus {
+  initializing,
+  inProgress,
+  failed,
+  stopping,
+  stopped,
+}
+
+extension on MediaPipelineStatus {
+  String toValue() {
+    switch (this) {
+      case MediaPipelineStatus.initializing:
+        return 'Initializing';
+      case MediaPipelineStatus.inProgress:
+        return 'InProgress';
+      case MediaPipelineStatus.failed:
+        return 'Failed';
+      case MediaPipelineStatus.stopping:
+        return 'Stopping';
+      case MediaPipelineStatus.stopped:
+        return 'Stopped';
+    }
+  }
+}
+
+extension on String {
+  MediaPipelineStatus toMediaPipelineStatus() {
+    switch (this) {
+      case 'Initializing':
+        return MediaPipelineStatus.initializing;
+      case 'InProgress':
+        return MediaPipelineStatus.inProgress;
+      case 'Failed':
+        return MediaPipelineStatus.failed;
+      case 'Stopping':
+        return MediaPipelineStatus.stopping;
+      case 'Stopped':
+        return MediaPipelineStatus.stopped;
+    }
+    throw Exception('$this is not known in enum MediaPipelineStatus');
+  }
+}
+
 /// A set of endpoints used by clients to connect to the media service group for
 /// a Amazon Chime SDK meeting.
 class MediaPlacement {
@@ -13108,6 +12797,9 @@ class MediaPlacement {
 
   /// The audio host URL.
   final String? audioHostUrl;
+
+  /// The event ingestion URL.
+  final String? eventIngestionUrl;
 
   /// The screen data URL.
   final String? screenDataUrl;
@@ -13127,6 +12819,7 @@ class MediaPlacement {
   MediaPlacement({
     this.audioFallbackUrl,
     this.audioHostUrl,
+    this.eventIngestionUrl,
     this.screenDataUrl,
     this.screenSharingUrl,
     this.screenViewingUrl,
@@ -13137,6 +12830,7 @@ class MediaPlacement {
     return MediaPlacement(
       audioFallbackUrl: json['AudioFallbackUrl'] as String?,
       audioHostUrl: json['AudioHostUrl'] as String?,
+      eventIngestionUrl: json['EventIngestionUrl'] as String?,
       screenDataUrl: json['ScreenDataUrl'] as String?,
       screenSharingUrl: json['ScreenSharingUrl'] as String?,
       screenViewingUrl: json['ScreenViewingUrl'] as String?,
@@ -13154,7 +12848,7 @@ class Meeting {
   /// The media placement for the meeting.
   final MediaPlacement? mediaPlacement;
 
-  /// The Region in which to create the meeting. Available values:
+  /// The Region in which you create the meeting. Available values:
   /// <code>af-south-1</code>, <code>ap-northeast-1</code>,
   /// <code>ap-northeast-2</code>, <code>ap-south-1</code>,
   /// <code>ap-southeast-1</code>, <code>ap-southeast-2</code>,
@@ -13187,9 +12881,9 @@ class Meeting {
   }
 }
 
-/// The configuration for resource targets to receive notifications when Amazon
-/// Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports
-/// resource targets located in the US East (N. Virginia) AWS Region
+/// The resource target configurations for receiving Amazon Chime SDK meeting
+/// and attendee event notifications. The Amazon Chime SDK supports resource
+/// targets located in the US East (N. Virginia) AWS Region
 /// (<code>us-east-1</code>).
 class MeetingNotificationConfiguration {
   /// The SNS topic ARN.
@@ -13327,9 +13021,9 @@ class MembershipItem {
   }
 }
 
-/// The endpoint of a meeting session.
+/// The websocket endpoint used to connect to Amazon Chime SDK messaging.
 class MessagingSessionEndpoint {
-  /// The URL of a meeting session endpoint.
+  /// The endpoint to which you establish a websocket connection.
   final String? url;
 
   MessagingSessionEndpoint({
@@ -13510,7 +13204,7 @@ class OriginationRoute {
   final OriginationRouteProtocol? protocol;
 
   /// The weight associated with the host. If hosts are equal in priority, calls
-  /// are distributed among them based on their relative weight.
+  /// are redistributed among them based on their relative weight.
   final int? weight;
 
   OriginationRoute({
@@ -13610,6 +13304,9 @@ class PhoneNumber {
   /// The phone number capabilities.
   final PhoneNumberCapabilities? capabilities;
 
+  /// The phone number country. Format: ISO 3166-1 alpha-2.
+  final String? country;
+
   /// The phone number creation timestamp, in ISO 8601 format.
   final DateTime? createdTimestamp;
 
@@ -13639,6 +13336,7 @@ class PhoneNumber {
     this.callingName,
     this.callingNameStatus,
     this.capabilities,
+    this.country,
     this.createdTimestamp,
     this.deletionTimestamp,
     this.e164PhoneNumber,
@@ -13662,6 +13360,7 @@ class PhoneNumber {
           ? PhoneNumberCapabilities.fromJson(
               json['Capabilities'] as Map<String, dynamic>)
           : null,
+      country: json['Country'] as String?,
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       deletionTimestamp: timeStampFromJson(json['DeletionTimestamp']),
       e164PhoneNumber: json['E164PhoneNumber'] as String?,
@@ -13786,6 +13485,29 @@ class PhoneNumberCapabilities {
   }
 }
 
+/// The phone number country.
+class PhoneNumberCountry {
+  /// The phone number country code. Format: ISO 3166-1 alpha-2.
+  final String? countryCode;
+
+  /// The supported phone number types.
+  final List<PhoneNumberType>? supportedPhoneNumberTypes;
+
+  PhoneNumberCountry({
+    this.countryCode,
+    this.supportedPhoneNumberTypes,
+  });
+  factory PhoneNumberCountry.fromJson(Map<String, dynamic> json) {
+    return PhoneNumberCountry(
+      countryCode: json['CountryCode'] as String?,
+      supportedPhoneNumberTypes: (json['SupportedPhoneNumberTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toPhoneNumberType())
+          .toList(),
+    );
+  }
+}
+
 /// If the phone number action fails for one or more of the phone numbers in the
 /// request, a list of the phone numbers is returned, along with error codes and
 /// error messages.
@@ -13815,7 +13537,7 @@ class PhoneNumberError {
 
 /// The details of a phone number order created for Amazon Chime.
 class PhoneNumberOrder {
-  /// The phone number order creation timestamp, in ISO 8601 format.
+  /// The phone number order creation time stamp, in ISO 8601 format.
   final DateTime? createdTimestamp;
 
   /// The ordered phone number details, such as the phone number in E.164 format
@@ -13831,7 +13553,7 @@ class PhoneNumberOrder {
   /// The status of the phone number order.
   final PhoneNumberOrderStatus? status;
 
-  /// The updated phone number order timestamp, in ISO 8601 format.
+  /// The updated phone number order time stamp, in ISO 8601 format.
   final DateTime? updatedTimestamp;
 
   PhoneNumberOrder({
@@ -13898,6 +13620,7 @@ extension on String {
 enum PhoneNumberProductType {
   businessCalling,
   voiceConnector,
+  sipMediaApplicationDialIn,
 }
 
 extension on PhoneNumberProductType {
@@ -13907,6 +13630,8 @@ extension on PhoneNumberProductType {
         return 'BusinessCalling';
       case PhoneNumberProductType.voiceConnector:
         return 'VoiceConnector';
+      case PhoneNumberProductType.sipMediaApplicationDialIn:
+        return 'SipMediaApplicationDialIn';
     }
   }
 }
@@ -13918,6 +13643,8 @@ extension on String {
         return PhoneNumberProductType.businessCalling;
       case 'VoiceConnector':
         return PhoneNumberProductType.voiceConnector;
+      case 'SipMediaApplicationDialIn':
+        return PhoneNumberProductType.sipMediaApplicationDialIn;
     }
     throw Exception('$this is not known in enum PhoneNumberProductType');
   }
@@ -14048,10 +13775,10 @@ class ProxySession {
   /// The proxy session capabilities.
   final List<Capability>? capabilities;
 
-  /// The created timestamp, in ISO 8601 format.
+  /// The created time stamp, in ISO 8601 format.
   final DateTime? createdTimestamp;
 
-  /// The ended timestamp, in ISO 8601 format.
+  /// The ended time stamp, in ISO 8601 format.
   final DateTime? endedTimestamp;
 
   /// The number of minutes allowed for the proxy session.
@@ -14080,7 +13807,7 @@ class ProxySession {
   /// The status of the proxy session.
   final ProxySessionStatus? status;
 
-  /// The updated timestamp, in ISO 8601 format.
+  /// The updated time stamp, in ISO 8601 format.
   final DateTime? updatedTimestamp;
 
   /// The Amazon Chime voice connector ID.
@@ -14188,7 +13915,7 @@ class PutAppInstanceRetentionSettingsResponse {
 }
 
 class PutAppInstanceStreamingConfigurationsResponse {
-  /// The streaming configurations of an app instance.
+  /// The streaming configurations of an <code>AppInstance</code>.
   final List<AppInstanceStreamingConfiguration>?
       appInstanceStreamingConfigurations;
 
@@ -14249,7 +13976,6 @@ class PutRetentionSettingsResponse {
 }
 
 class PutSipMediaApplicationLoggingConfigurationResponse {
-  /// The actual logging configuration.
   final SipMediaApplicationLoggingConfiguration?
       sipMediaApplicationLoggingConfiguration;
 
@@ -14488,7 +14214,7 @@ class RestorePhoneNumberResponse {
 }
 
 /// The retention settings for an Amazon Chime Enterprise account that determine
-/// how long to retain items such as chat room messages and chat conversation
+/// how long to retain items such as chat-room messages and chat-conversation
 /// messages.
 class RetentionSettings {
   /// The chat conversation retention settings.
@@ -14630,10 +14356,10 @@ extension on String {
   }
 }
 
-/// The retention settings that determine how long to retain chat room messages
+/// The retention settings that determine how long to retain chat-room messages
 /// for an Amazon Chime Enterprise account.
 class RoomRetentionSettings {
-  /// The number of days for which to retain chat room messages.
+  /// The number of days for which to retain chat-room messages.
   final int? retentionDays;
 
   RoomRetentionSettings({
@@ -14657,8 +14383,12 @@ class SearchAvailablePhoneNumbersResponse {
   /// List of phone numbers, in E.164 format.
   final List<String>? e164PhoneNumbers;
 
+  /// The token used to retrieve the next page of search results.
+  final String? nextToken;
+
   SearchAvailablePhoneNumbersResponse({
     this.e164PhoneNumbers,
+    this.nextToken,
   });
   factory SearchAvailablePhoneNumbersResponse.fromJson(
       Map<String, dynamic> json) {
@@ -14667,6 +14397,7 @@ class SearchAvailablePhoneNumbersResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+      nextToken: json['NextToken'] as String?,
     );
   }
 }
@@ -14713,8 +14444,8 @@ class SigninDelegateGroup {
   }
 }
 
-/// The SIP media application details, including name and endpoints. An AWS
-/// account can have multiple SIP media applications.
+/// The details of the SIP media application, including name and endpoints. An
+/// AWS account can have multiple SIP media applications.
 class SipMediaApplication {
   /// The AWS Region in which the SIP media application is created.
   final String? awsRegion;
@@ -14774,10 +14505,10 @@ class SipMediaApplicationCall {
   }
 }
 
-/// Endpoints to specify as part of a SIP media application.
+/// The endpoint assigned to the SIP media application.
 class SipMediaApplicationEndpoint {
-  /// Valid Amazon Resource Name (ARN) of the Lambda function of the same AWS
-  /// Region where the SIP media application is created.
+  /// Valid Amazon Resource Name (ARN) of the Lambda function. The function must
+  /// be created in the same AWS Region as the SIP media application.
   final String? lambdaArn;
 
   SipMediaApplicationEndpoint({
@@ -14827,11 +14558,11 @@ class SipMediaApplicationLoggingConfiguration {
 /// The SIP rule details, including name, triggers, and target applications. An
 /// AWS account can have multiple SIP rules.
 class SipRule {
-  /// The SIP rule created timestamp, in ISO 8601 format.
+  /// The time at which the SIP rule was created, in ISO 8601 format.
   final DateTime? createdTimestamp;
 
-  /// Indicates if the SIP rule is enabled or disabled. You must disable a rule
-  /// before you can delete it.
+  /// Indicates whether the SIP rule is enabled or disabled. You must disable a
+  /// rule before you can delete it.
   final bool? disabled;
 
   /// The name of the SIP rule.
@@ -14840,12 +14571,13 @@ class SipRule {
   /// The SIP rule ID.
   final String? sipRuleId;
 
-  /// List of SIP media applications with priority and AWS Region. You can only
-  /// use one SIP application per AWS Region and priority combination.
+  /// Target SIP media application and other details, such as priority and AWS
+  /// Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
+  /// can be provided.
   final List<SipRuleTargetApplication>? targetApplications;
 
-  /// The type of trigger whose value is assigned to the SIP rule in
-  /// <code>TriggerValue</code>.
+  /// The type of trigger assigned to the SIP rule in <code>TriggerValue</code>,
+  /// currently <code>RequestUriHostname</code> or <code>ToPhoneNumber</code>.
   final SipRuleTriggerType? triggerType;
 
   /// If <code>TriggerType</code> is <code>RequestUriHostname</code>, then the
@@ -14856,7 +14588,7 @@ class SipRule {
   /// matches in the incoming SIP request.
   final String? triggerValue;
 
-  /// The SIP rule updated timestamp, in ISO 8601 format.
+  /// The time at which the SIP rule was last updated, in ISO 8601 format.
   final DateTime? updatedTimestamp;
 
   SipRule({
@@ -14887,11 +14619,11 @@ class SipRule {
   }
 }
 
-/// Target SIP media application along with other details like priority and AWS
-/// Region to be specified in the SIP rule. Only one SIP rule per AWS Region can
-/// be provided.
+/// Target SIP media application and other details, such as priority and AWS
+/// Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
+/// can be provided.
 class SipRuleTargetApplication {
-  /// AWS Region of target application.
+  /// The AWS Region of the target application.
   final String? awsRegion;
 
   /// Priority of the SIP media application in the target list.
@@ -15197,6 +14929,7 @@ class TerminationHealth {
 }
 
 class UpdateAccountResponse {
+  /// The updated Amazon Chime account details.
   final Account? account;
 
   UpdateAccountResponse({
@@ -15219,7 +14952,7 @@ class UpdateAccountSettingsResponse {
 }
 
 class UpdateAppInstanceResponse {
-  /// The ARN of the app instance.
+  /// The ARN of the <code>AppInstance</code>.
   final String? appInstanceArn;
 
   UpdateAppInstanceResponse({
@@ -15233,7 +14966,7 @@ class UpdateAppInstanceResponse {
 }
 
 class UpdateAppInstanceUserResponse {
-  /// The ARN of the app instance user.
+  /// The ARN of the <code>AppInstanceUser</code>.
   final String? appInstanceUserArn;
 
   UpdateAppInstanceUserResponse({
@@ -15398,6 +15131,23 @@ class UpdateRoomResponse {
     return UpdateRoomResponse(
       room: json['Room'] != null
           ? Room.fromJson(json['Room'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class UpdateSipMediaApplicationCallResponse {
+  final SipMediaApplicationCall? sipMediaApplicationCall;
+
+  UpdateSipMediaApplicationCallResponse({
+    this.sipMediaApplicationCall,
+  });
+  factory UpdateSipMediaApplicationCallResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateSipMediaApplicationCallResponse(
+      sipMediaApplicationCall: json['SipMediaApplicationCall'] != null
+          ? SipMediaApplicationCall.fromJson(
+              json['SipMediaApplicationCall'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -15766,14 +15516,14 @@ extension on String {
 /// from different AWS Regions in your group. This creates a fault tolerant
 /// mechanism for fallback in case of availability events.
 class VoiceConnectorGroup {
-  /// The Amazon Chime Voice Connector group creation timestamp, in ISO 8601
+  /// The Amazon Chime Voice Connector group creation time stamp, in ISO 8601
   /// format.
   final DateTime? createdTimestamp;
 
   /// The name of the Amazon Chime Voice Connector group.
   final String? name;
 
-  /// The updated Amazon Chime Voice Connector group timestamp, in ISO 8601
+  /// The updated Amazon Chime Voice Connector group time stamp, in ISO 8601
   /// format.
   final DateTime? updatedTimestamp;
 

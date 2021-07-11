@@ -83,12 +83,6 @@ class CloudWatchEvents {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.ActivateEventSource'
@@ -125,12 +119,6 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'replayName',
-      replayName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.CancelReplay'
@@ -147,6 +135,102 @@ class CloudWatchEvents {
     );
 
     return CancelReplayResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates an API destination, which is an HTTP invocation endpoint
+  /// configured as a target for events.
+  ///
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [LimitExceededException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [connectionArn] :
+  /// The ARN of the connection to use for the API destination. The destination
+  /// endpoint must support the authorization type specified for the connection.
+  ///
+  /// Parameter [httpMethod] :
+  /// The method to use for the request to the HTTP invocation endpoint.
+  ///
+  /// Parameter [invocationEndpoint] :
+  /// The URL to the HTTP invocation endpoint for the API destination.
+  ///
+  /// Parameter [name] :
+  /// The name for the API destination to create.
+  ///
+  /// Parameter [description] :
+  /// A description for the API destination to create.
+  ///
+  /// Parameter [invocationRateLimitPerSecond] :
+  /// The maximum number of requests per second to send to the HTTP invocation
+  /// endpoint.
+  Future<CreateApiDestinationResponse> createApiDestination({
+    required String connectionArn,
+    required ApiDestinationHttpMethod httpMethod,
+    required String invocationEndpoint,
+    required String name,
+    String? description,
+    int? invocationRateLimitPerSecond,
+  }) async {
+    ArgumentError.checkNotNull(connectionArn, 'connectionArn');
+    _s.validateStringLength(
+      'connectionArn',
+      connectionArn,
+      1,
+      1600,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(httpMethod, 'httpMethod');
+    ArgumentError.checkNotNull(invocationEndpoint, 'invocationEndpoint');
+    _s.validateStringLength(
+      'invocationEndpoint',
+      invocationEndpoint,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      512,
+    );
+    _s.validateNumRange(
+      'invocationRateLimitPerSecond',
+      invocationRateLimitPerSecond,
+      1,
+      1152921504606846976,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.CreateApiDestination'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ConnectionArn': connectionArn,
+        'HttpMethod': httpMethod.toValue(),
+        'InvocationEndpoint': invocationEndpoint,
+        'Name': name,
+        if (description != null) 'Description': description,
+        if (invocationRateLimitPerSecond != null)
+          'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
+      },
+    );
+
+    return CreateApiDestinationResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates an archive of events with the specified settings. When you create
@@ -193,12 +277,6 @@ class CloudWatchEvents {
       48,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'archiveName',
-      archiveName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventSourceArn, 'eventSourceArn');
     _s.validateStringLength(
       'eventSourceArn',
@@ -212,11 +290,6 @@ class CloudWatchEvents {
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     _s.validateNumRange(
       'retentionDays',
@@ -244,6 +317,69 @@ class CloudWatchEvents {
     );
 
     return CreateArchiveResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a connection. A connection defines the authorization type and
+  /// credentials to use for authorization with an API destination HTTP
+  /// endpoint.
+  ///
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [LimitExceededException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [authParameters] :
+  /// A <code>CreateConnectionAuthRequestParameters</code> object that contains
+  /// the authorization parameters to use to authorize with the endpoint.
+  ///
+  /// Parameter [authorizationType] :
+  /// The type of authorization to use for the connection.
+  ///
+  /// Parameter [name] :
+  /// The name for the connection to create.
+  ///
+  /// Parameter [description] :
+  /// A description for the connection to create.
+  Future<CreateConnectionResponse> createConnection({
+    required CreateConnectionAuthRequestParameters authParameters,
+    required ConnectionAuthorizationType authorizationType,
+    required String name,
+    String? description,
+  }) async {
+    ArgumentError.checkNotNull(authParameters, 'authParameters');
+    ArgumentError.checkNotNull(authorizationType, 'authorizationType');
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      512,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.CreateConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'AuthParameters': authParameters,
+        'AuthorizationType': authorizationType.toValue(),
+        'Name': name,
+        if (description != null) 'Description': description,
+      },
+    );
+
+    return CreateConnectionResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates a new event bus within your account. This can be a custom event
@@ -288,22 +424,11 @@ class CloudWatchEvents {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[/\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventSourceName',
       eventSourceName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'eventSourceName',
-      eventSourceName,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -383,24 +508,12 @@ class CloudWatchEvents {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'account',
-      account,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -451,15 +564,83 @@ class CloudWatchEvents {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.DeactivateEventSource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+      },
+    );
+  }
+
+  /// Removes all authorization parameters from the connection. This lets you
+  /// remove the secret from the connection so you can reuse it without having
+  /// to create a new connection.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [name] :
+  /// The name of the connection to remove authorization from.
+  Future<DeauthorizeConnectionResponse> deauthorizeConnection({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
       'name',
       name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
+      1,
+      64,
       isRequired: true,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
-      'X-Amz-Target': 'AWSEvents.DeactivateEventSource'
+      'X-Amz-Target': 'AWSEvents.DeauthorizeConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+      },
+    );
+
+    return DeauthorizeConnectionResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Deletes the specified API destination.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [name] :
+  /// The name of the destination to delete.
+  Future<void> deleteApiDestination({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.DeleteApiDestination'
     };
     await _protocol.send(
       method: 'POST',
@@ -492,12 +673,6 @@ class CloudWatchEvents {
       48,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'archiveName',
-      archiveName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteArchive'
@@ -512,6 +687,43 @@ class CloudWatchEvents {
         'ArchiveName': archiveName,
       },
     );
+  }
+
+  /// Deletes a connection.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [name] :
+  /// The name of the connection to delete.
+  Future<DeleteConnectionResponse> deleteConnection({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.DeleteConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+      },
+    );
+
+    return DeleteConnectionResponse.fromJson(jsonResponse.body);
   }
 
   /// Deletes the specified custom event bus or partner event bus. All rules
@@ -532,12 +744,6 @@ class CloudWatchEvents {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[/\.\-_A-Za-z0-9]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -585,24 +791,12 @@ class CloudWatchEvents {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'account',
-      account,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -629,6 +823,10 @@ class CloudWatchEvents {
   ///
   /// When you delete a rule, incoming events might continue to match to the
   /// deleted rule. Allow a short period of time for changes to take effect.
+  ///
+  /// If you call delete rule multiple times for the same rule, all calls will
+  /// succeed. When you call delete rule for a non-existent custom eventbus,
+  /// <code>ResourceNotFoundException</code> is returned.
   ///
   /// Managed rules are rules created and managed by another AWS service on your
   /// behalf. These rules are created by those other AWS services to support
@@ -668,22 +866,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -701,6 +888,42 @@ class CloudWatchEvents {
         if (force != null) 'Force': force,
       },
     );
+  }
+
+  /// Retrieves details about an API destination.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [name] :
+  /// The name of the API destination to retrieve.
+  Future<DescribeApiDestinationResponse> describeApiDestination({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.DescribeApiDestination'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+      },
+    );
+
+    return DescribeApiDestinationResponse.fromJson(jsonResponse.body);
   }
 
   /// Retrieves details about an archive.
@@ -722,12 +945,6 @@ class CloudWatchEvents {
       48,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'archiveName',
-      archiveName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeArchive'
@@ -744,6 +961,42 @@ class CloudWatchEvents {
     );
 
     return DescribeArchiveResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves details about a connection.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  ///
+  /// Parameter [name] :
+  /// The name of the connection to retrieve.
+  Future<DescribeConnectionResponse> describeConnection({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.DescribeConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+      },
+    );
+
+    return DescribeConnectionResponse.fromJson(jsonResponse.body);
   }
 
   /// Displays details about an event bus in your account. This can include the
@@ -770,11 +1023,6 @@ class CloudWatchEvents {
       name,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -812,12 +1060,6 @@ class CloudWatchEvents {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -858,12 +1100,6 @@ class CloudWatchEvents {
       name,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -912,12 +1148,6 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'replayName',
-      replayName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeReplay'
@@ -962,22 +1192,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1027,22 +1246,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1091,22 +1299,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1123,6 +1320,73 @@ class CloudWatchEvents {
         if (eventBusName != null) 'EventBusName': eventBusName,
       },
     );
+  }
+
+  /// Retrieves a list of API destination in the account in the current Region.
+  ///
+  /// May throw [InternalException].
+  ///
+  /// Parameter [connectionArn] :
+  /// The ARN of the connection specified for the API destination.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of API destinations to include in the response.
+  ///
+  /// Parameter [namePrefix] :
+  /// A name prefix to filter results returned. Only API destinations with a
+  /// name that starts with the prefix are returned.
+  ///
+  /// Parameter [nextToken] :
+  /// The token returned by a previous call to retrieve the next set of results.
+  Future<ListApiDestinationsResponse> listApiDestinations({
+    String? connectionArn,
+    int? limit,
+    String? namePrefix,
+    String? nextToken,
+  }) async {
+    _s.validateStringLength(
+      'connectionArn',
+      connectionArn,
+      1,
+      1600,
+    );
+    _s.validateNumRange(
+      'limit',
+      limit,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'namePrefix',
+      namePrefix,
+      1,
+      64,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      2048,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.ListApiDestinations'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (connectionArn != null) 'ConnectionArn': connectionArn,
+        if (limit != null) 'Limit': limit,
+        if (namePrefix != null) 'NamePrefix': namePrefix,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListApiDestinationsResponse.fromJson(jsonResponse.body);
   }
 
   /// Lists your archives. You can either list all the archives or you can
@@ -1172,11 +1436,6 @@ class CloudWatchEvents {
       1,
       48,
     );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''[\.\-_A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
@@ -1203,6 +1462,68 @@ class CloudWatchEvents {
     );
 
     return ListArchivesResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Retrieves a list of connections from the account.
+  ///
+  /// May throw [InternalException].
+  ///
+  /// Parameter [connectionState] :
+  /// The state of the connection.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of connections to return.
+  ///
+  /// Parameter [namePrefix] :
+  /// A name prefix to filter results returned. Only connections with a name
+  /// that starts with the prefix are returned.
+  ///
+  /// Parameter [nextToken] :
+  /// The token returned by a previous call to retrieve the next set of results.
+  Future<ListConnectionsResponse> listConnections({
+    ConnectionState? connectionState,
+    int? limit,
+    String? namePrefix,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'limit',
+      limit,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'namePrefix',
+      namePrefix,
+      1,
+      64,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      2048,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.ListConnections'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (connectionState != null)
+          'ConnectionState': connectionState.toValue(),
+        if (limit != null) 'Limit': limit,
+        if (namePrefix != null) 'NamePrefix': namePrefix,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListConnectionsResponse.fromJson(jsonResponse.body);
   }
 
   /// Lists all the event buses in your account, including the default event
@@ -1237,11 +1558,6 @@ class CloudWatchEvents {
       namePrefix,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''[/\.\-_A-Za-z0-9]+''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -1304,11 +1620,6 @@ class CloudWatchEvents {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''[/\.\-_A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
@@ -1366,12 +1677,6 @@ class CloudWatchEvents {
       eventSourceName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'eventSourceName',
-      eventSourceName,
-      r'''aws\.partner(/[\.\-_A-Za-z0-9]+){2,}''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1436,12 +1741,6 @@ class CloudWatchEvents {
       namePrefix,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''aws\.partner/[\.\-_A-Za-z0-9]+/[/\.\-_A-Za-z0-9]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1521,11 +1820,6 @@ class CloudWatchEvents {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''[\.\-_A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
@@ -1591,11 +1885,6 @@ class CloudWatchEvents {
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -1663,11 +1952,6 @@ class CloudWatchEvents {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1679,11 +1963,6 @@ class CloudWatchEvents {
       namePrefix,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'namePrefix',
-      namePrefix,
-      r'''[\.\-_A-Za-z0-9]+''',
     );
     _s.validateStringLength(
       'nextToken',
@@ -1780,22 +2059,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'rule',
-      rule,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -1982,21 +2250,11 @@ class CloudWatchEvents {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'action',
-      action,
-      r'''events:[a-zA-Z]+''',
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''[\.\-_A-Za-z0-9]+''',
     );
     _s.validateStringLength(
       'principal',
@@ -2004,21 +2262,11 @@ class CloudWatchEvents {
       1,
       12,
     );
-    _s.validateStringPattern(
-      'principal',
-      principal,
-      r'''(\d{12}|\*)''',
-    );
     _s.validateStringLength(
       'statementId',
       statementId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''[a-zA-Z0-9-_]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2153,12 +2401,6 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -2170,11 +2412,6 @@ class CloudWatchEvents {
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     _s.validateStringLength(
       'roleArn',
@@ -2223,55 +2460,82 @@ class CloudWatchEvents {
   ///
   /// <ul>
   /// <li>
-  /// EC2 instances
+  /// <a
+  /// href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
+  /// destination</a>
   /// </li>
   /// <li>
-  /// SSM Run Command
+  /// Amazon API Gateway REST API endpoints
   /// </li>
   /// <li>
-  /// SSM Automation
+  /// API Gateway
   /// </li>
   /// <li>
-  /// AWS Lambda functions
+  /// AWS Batch job queue
   /// </li>
   /// <li>
-  /// Data streams in Amazon Kinesis Data Streams
+  /// CloudWatch Logs group
   /// </li>
   /// <li>
-  /// Data delivery streams in Amazon Kinesis Data Firehose
+  /// CodeBuild project
+  /// </li>
+  /// <li>
+  /// CodePineline
+  /// </li>
+  /// <li>
+  /// Amazon EC2 <code>CreateSnapshot</code> API call
+  /// </li>
+  /// <li>
+  /// Amazon EC2 <code>RebootInstances</code> API call
+  /// </li>
+  /// <li>
+  /// Amazon EC2 <code>StopInstances</code> API call
+  /// </li>
+  /// <li>
+  /// Amazon EC2 <code>TerminateInstances</code> API call
   /// </li>
   /// <li>
   /// Amazon ECS tasks
   /// </li>
   /// <li>
-  /// AWS Step Functions state machines
+  /// Event bus in a different AWS account or Region.
+  ///
+  /// You can use an event bus in the US East (N. Virginia) us-east-1, US West
+  /// (Oregon) us-west-2, or Europe (Ireland) eu-west-1 Regions as a target for
+  /// a rule.
   /// </li>
   /// <li>
-  /// AWS Batch jobs
+  /// Firehose delivery stream (Kinesis Data Firehose)
   /// </li>
   /// <li>
-  /// AWS CodeBuild projects
+  /// Inspector assessment template (Amazon Inspector)
   /// </li>
   /// <li>
-  /// Pipelines in AWS CodePipeline
+  /// Kinesis stream (Kinesis Data Stream)
   /// </li>
   /// <li>
-  /// Amazon Inspector assessment templates
+  /// AWS Lambda function
   /// </li>
   /// <li>
-  /// Amazon SNS topics
+  /// Redshift clusters (Data API statement execution)
   /// </li>
   /// <li>
-  /// Amazon SQS queues, including FIFO queues
+  /// Amazon SNS topic
   /// </li>
   /// <li>
-  /// The default event bus of another AWS account
+  /// Amazon SQS queues (includes FIFO queues
   /// </li>
   /// <li>
-  /// Amazon API Gateway REST APIs
+  /// SSM Automation
   /// </li>
   /// <li>
-  /// Redshift Clusters to invoke Data API ExecuteStatement on
+  /// SSM OpsItem
+  /// </li>
+  /// <li>
+  /// SSM Run Command
+  /// </li>
+  /// <li>
+  /// Step Functions state machines
   /// </li>
   /// </ul>
   /// Creating rules with built-in targets is supported only in the AWS
@@ -2393,23 +2657,12 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'rule',
-      rule,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targets, 'targets');
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2463,21 +2716,11 @@ class CloudWatchEvents {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''[\.\-_A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'statementId',
       statementId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'statementId',
-      statementId,
-      r'''[a-zA-Z0-9-_]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2547,22 +2790,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'rule',
-      rule,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'eventBusName',
       eventBusName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'eventBusName',
-      eventBusName,
-      r'''(arn:aws[\w-]*:events:[a-z]{2}-[a-z]+-[\w-]+:[0-9]{12}:event-bus\/)?[/\.\-_A-Za-z0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2651,22 +2883,11 @@ class CloudWatchEvents {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'replayName',
-      replayName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2759,7 +2980,34 @@ class CloudWatchEvents {
   /// May throw [InternalException].
   ///
   /// Parameter [event] :
-  /// The event, in JSON format, to test against the event pattern.
+  /// The event, in JSON format, to test against the event pattern. The JSON
+  /// must follow the format specified in <a
+  /// href="https://docs.aws.amazon.com/eventbridge/latest/userguide/aws-events.html">AWS
+  /// Events</a>, and the following fields are mandatory:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>id</code>
+  /// </li>
+  /// <li>
+  /// <code>account</code>
+  /// </li>
+  /// <li>
+  /// <code>source</code>
+  /// </li>
+  /// <li>
+  /// <code>time</code>
+  /// </li>
+  /// <li>
+  /// <code>region</code>
+  /// </li>
+  /// <li>
+  /// <code>resources</code>
+  /// </li>
+  /// <li>
+  /// <code>detail-type</code>
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [eventPattern] :
   /// The event pattern. For more information, see <a
@@ -2791,7 +3039,7 @@ class CloudWatchEvents {
   }
 
   /// Removes one or more tags from the specified EventBridge resource. In
-  /// Amazon EventBridge (CloudWatch Events, rules and event buses can be
+  /// Amazon EventBridge (CloudWatch Events), rules and event buses can be
   /// tagged.
   ///
   /// May throw [ResourceNotFoundException].
@@ -2834,6 +3082,96 @@ class CloudWatchEvents {
     );
   }
 
+  /// Updates an API destination.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  /// May throw [LimitExceededException].
+  ///
+  /// Parameter [name] :
+  /// The name of the API destination to update.
+  ///
+  /// Parameter [connectionArn] :
+  /// The ARN of the connection to use for the API destination.
+  ///
+  /// Parameter [description] :
+  /// The name of the API destination to update.
+  ///
+  /// Parameter [httpMethod] :
+  /// The method to use for the API destination.
+  ///
+  /// Parameter [invocationEndpoint] :
+  /// The URL to the endpoint to use for the API destination.
+  ///
+  /// Parameter [invocationRateLimitPerSecond] :
+  /// The maximum number of invocations per second to send to the API
+  /// destination.
+  Future<UpdateApiDestinationResponse> updateApiDestination({
+    required String name,
+    String? connectionArn,
+    String? description,
+    ApiDestinationHttpMethod? httpMethod,
+    String? invocationEndpoint,
+    int? invocationRateLimitPerSecond,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'connectionArn',
+      connectionArn,
+      1,
+      1600,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      512,
+    );
+    _s.validateStringLength(
+      'invocationEndpoint',
+      invocationEndpoint,
+      1,
+      2048,
+    );
+    _s.validateNumRange(
+      'invocationRateLimitPerSecond',
+      invocationRateLimitPerSecond,
+      1,
+      1152921504606846976,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.UpdateApiDestination'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+        if (connectionArn != null) 'ConnectionArn': connectionArn,
+        if (description != null) 'Description': description,
+        if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+        if (invocationEndpoint != null)
+          'InvocationEndpoint': invocationEndpoint,
+        if (invocationRateLimitPerSecond != null)
+          'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
+      },
+    );
+
+    return UpdateApiDestinationResponse.fromJson(jsonResponse.body);
+  }
+
   /// Updates the specified archive.
   ///
   /// May throw [ConcurrentModificationException].
@@ -2867,22 +3205,11 @@ class CloudWatchEvents {
       48,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'archiveName',
-      archiveName,
-      r'''[\.\-_A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     _s.validateNumRange(
       'retentionDays',
@@ -2909,6 +3236,204 @@ class CloudWatchEvents {
     );
 
     return UpdateArchiveResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates settings for a connection.
+  ///
+  /// May throw [ConcurrentModificationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InternalException].
+  /// May throw [LimitExceededException].
+  ///
+  /// Parameter [name] :
+  /// The name of the connection to update.
+  ///
+  /// Parameter [authParameters] :
+  /// The authorization parameters to use for the connection.
+  ///
+  /// Parameter [authorizationType] :
+  /// The type of authorization to use for the connection.
+  ///
+  /// Parameter [description] :
+  /// A description for the connection.
+  Future<UpdateConnectionResponse> updateConnection({
+    required String name,
+    UpdateConnectionAuthRequestParameters? authParameters,
+    ConnectionAuthorizationType? authorizationType,
+    String? description,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      512,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSEvents.UpdateConnection'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Name': name,
+        if (authParameters != null) 'AuthParameters': authParameters,
+        if (authorizationType != null)
+          'AuthorizationType': authorizationType.toValue(),
+        if (description != null) 'Description': description,
+      },
+    );
+
+    return UpdateConnectionResponse.fromJson(jsonResponse.body);
+  }
+}
+
+/// Contains details about an API destination.
+class ApiDestination {
+  /// The ARN of the API destination.
+  final String? apiDestinationArn;
+
+  /// The state of the API destination.
+  final ApiDestinationState? apiDestinationState;
+
+  /// The ARN of the connection specified for the API destination.
+  final String? connectionArn;
+
+  /// A time stamp for the time that the API destination was created.
+  final DateTime? creationTime;
+
+  /// The method to use to connect to the HTTP endpoint.
+  final ApiDestinationHttpMethod? httpMethod;
+
+  /// The URL to the endpoint for the API destination.
+  final String? invocationEndpoint;
+
+  /// The maximum number of invocations per second to send to the HTTP endpoint.
+  final int? invocationRateLimitPerSecond;
+
+  /// A time stamp for the time that the API destination was last modified.
+  final DateTime? lastModifiedTime;
+
+  /// The name of the API destination.
+  final String? name;
+
+  ApiDestination({
+    this.apiDestinationArn,
+    this.apiDestinationState,
+    this.connectionArn,
+    this.creationTime,
+    this.httpMethod,
+    this.invocationEndpoint,
+    this.invocationRateLimitPerSecond,
+    this.lastModifiedTime,
+    this.name,
+  });
+  factory ApiDestination.fromJson(Map<String, dynamic> json) {
+    return ApiDestination(
+      apiDestinationArn: json['ApiDestinationArn'] as String?,
+      apiDestinationState:
+          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      connectionArn: json['ConnectionArn'] as String?,
+      creationTime: timeStampFromJson(json['CreationTime']),
+      httpMethod: (json['HttpMethod'] as String?)?.toApiDestinationHttpMethod(),
+      invocationEndpoint: json['InvocationEndpoint'] as String?,
+      invocationRateLimitPerSecond:
+          json['InvocationRateLimitPerSecond'] as int?,
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      name: json['Name'] as String?,
+    );
+  }
+}
+
+enum ApiDestinationHttpMethod {
+  post,
+  get,
+  head,
+  options,
+  put,
+  patch,
+  delete,
+}
+
+extension on ApiDestinationHttpMethod {
+  String toValue() {
+    switch (this) {
+      case ApiDestinationHttpMethod.post:
+        return 'POST';
+      case ApiDestinationHttpMethod.get:
+        return 'GET';
+      case ApiDestinationHttpMethod.head:
+        return 'HEAD';
+      case ApiDestinationHttpMethod.options:
+        return 'OPTIONS';
+      case ApiDestinationHttpMethod.put:
+        return 'PUT';
+      case ApiDestinationHttpMethod.patch:
+        return 'PATCH';
+      case ApiDestinationHttpMethod.delete:
+        return 'DELETE';
+    }
+  }
+}
+
+extension on String {
+  ApiDestinationHttpMethod toApiDestinationHttpMethod() {
+    switch (this) {
+      case 'POST':
+        return ApiDestinationHttpMethod.post;
+      case 'GET':
+        return ApiDestinationHttpMethod.get;
+      case 'HEAD':
+        return ApiDestinationHttpMethod.head;
+      case 'OPTIONS':
+        return ApiDestinationHttpMethod.options;
+      case 'PUT':
+        return ApiDestinationHttpMethod.put;
+      case 'PATCH':
+        return ApiDestinationHttpMethod.patch;
+      case 'DELETE':
+        return ApiDestinationHttpMethod.delete;
+    }
+    throw Exception('$this is not known in enum ApiDestinationHttpMethod');
+  }
+}
+
+enum ApiDestinationState {
+  active,
+  inactive,
+}
+
+extension on ApiDestinationState {
+  String toValue() {
+    switch (this) {
+      case ApiDestinationState.active:
+        return 'ACTIVE';
+      case ApiDestinationState.inactive:
+        return 'INACTIVE';
+    }
+  }
+}
+
+extension on String {
+  ApiDestinationState toApiDestinationState() {
+    switch (this) {
+      case 'ACTIVE':
+        return ApiDestinationState.active;
+      case 'INACTIVE':
+        return ApiDestinationState.inactive;
+    }
+    throw Exception('$this is not known in enum ApiDestinationState');
   }
 }
 
@@ -3222,6 +3747,50 @@ class CancelReplayResponse {
   }
 }
 
+/// The details of a capacity provider strategy. To learn more, see <a
+/// href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CapacityProviderStrategyItem.html">CapacityProviderStrategyItem</a>
+/// in the Amazon ECS API Reference.
+class CapacityProviderStrategyItem {
+  /// The short name of the capacity provider.
+  final String capacityProvider;
+
+  /// The base value designates how many tasks, at a minimum, to run on the
+  /// specified capacity provider. Only one capacity provider in a capacity
+  /// provider strategy can have a base defined. If no value is specified, the
+  /// default value of 0 is used.
+  final int? base;
+
+  /// The weight value designates the relative percentage of the total number of
+  /// tasks launched that should use the specified capacity provider. The weight
+  /// value is taken into consideration after the base value, if defined, is
+  /// satisfied.
+  final int? weight;
+
+  CapacityProviderStrategyItem({
+    required this.capacityProvider,
+    this.base,
+    this.weight,
+  });
+  factory CapacityProviderStrategyItem.fromJson(Map<String, dynamic> json) {
+    return CapacityProviderStrategyItem(
+      capacityProvider: json['capacityProvider'] as String,
+      base: json['base'] as int?,
+      weight: json['weight'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityProvider = this.capacityProvider;
+    final base = this.base;
+    final weight = this.weight;
+    return {
+      'capacityProvider': capacityProvider,
+      if (base != null) 'base': base,
+      if (weight != null) 'weight': weight,
+    };
+  }
+}
+
 /// A JSON string which you can use to limit the event bus permissions you are
 /// granting to only accounts that fulfill the condition. Currently, the only
 /// supported condition is membership in a certain AWS organization. The string
@@ -3261,6 +3830,506 @@ class Condition {
   }
 }
 
+/// Contains information about a connection.
+class Connection {
+  /// The authorization type specified for the connection.
+  final ConnectionAuthorizationType? authorizationType;
+
+  /// The ARN of the connection.
+  final String? connectionArn;
+
+  /// The state of the connection.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the connection was last authorized.
+  final DateTime? lastAuthorizedTime;
+
+  /// A time stamp for the time that the connection was last modified.
+  final DateTime? lastModifiedTime;
+
+  /// The name of the connection.
+  final String? name;
+
+  /// The reason that the connection is in the connection state.
+  final String? stateReason;
+
+  Connection({
+    this.authorizationType,
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.lastAuthorizedTime,
+    this.lastModifiedTime,
+    this.name,
+    this.stateReason,
+  });
+  factory Connection.fromJson(Map<String, dynamic> json) {
+    return Connection(
+      authorizationType: (json['AuthorizationType'] as String?)
+          ?.toConnectionAuthorizationType(),
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      name: json['Name'] as String?,
+      stateReason: json['StateReason'] as String?,
+    );
+  }
+}
+
+/// Contains the authorization parameters for the connection if API Key is
+/// specified as the authorization type.
+class ConnectionApiKeyAuthResponseParameters {
+  /// The name of the header to use for the <code>APIKeyValue</code> used for
+  /// authorization.
+  final String? apiKeyName;
+
+  ConnectionApiKeyAuthResponseParameters({
+    this.apiKeyName,
+  });
+  factory ConnectionApiKeyAuthResponseParameters.fromJson(
+      Map<String, dynamic> json) {
+    return ConnectionApiKeyAuthResponseParameters(
+      apiKeyName: json['ApiKeyName'] as String?,
+    );
+  }
+}
+
+/// Contains the authorization parameters to use for the connection.
+class ConnectionAuthResponseParameters {
+  /// The API Key parameters to use for authorization.
+  final ConnectionApiKeyAuthResponseParameters? apiKeyAuthParameters;
+
+  /// The authorization parameters for Basic authorization.
+  final ConnectionBasicAuthResponseParameters? basicAuthParameters;
+
+  /// Additional parameters for the connection that are passed through with every
+  /// invocation to the HTTP endpoint.
+  final ConnectionHttpParameters? invocationHttpParameters;
+
+  /// The OAuth parameters to use for authorization.
+  final ConnectionOAuthResponseParameters? oAuthParameters;
+
+  ConnectionAuthResponseParameters({
+    this.apiKeyAuthParameters,
+    this.basicAuthParameters,
+    this.invocationHttpParameters,
+    this.oAuthParameters,
+  });
+  factory ConnectionAuthResponseParameters.fromJson(Map<String, dynamic> json) {
+    return ConnectionAuthResponseParameters(
+      apiKeyAuthParameters: json['ApiKeyAuthParameters'] != null
+          ? ConnectionApiKeyAuthResponseParameters.fromJson(
+              json['ApiKeyAuthParameters'] as Map<String, dynamic>)
+          : null,
+      basicAuthParameters: json['BasicAuthParameters'] != null
+          ? ConnectionBasicAuthResponseParameters.fromJson(
+              json['BasicAuthParameters'] as Map<String, dynamic>)
+          : null,
+      invocationHttpParameters: json['InvocationHttpParameters'] != null
+          ? ConnectionHttpParameters.fromJson(
+              json['InvocationHttpParameters'] as Map<String, dynamic>)
+          : null,
+      oAuthParameters: json['OAuthParameters'] != null
+          ? ConnectionOAuthResponseParameters.fromJson(
+              json['OAuthParameters'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+enum ConnectionAuthorizationType {
+  basic,
+  oauthClientCredentials,
+  apiKey,
+}
+
+extension on ConnectionAuthorizationType {
+  String toValue() {
+    switch (this) {
+      case ConnectionAuthorizationType.basic:
+        return 'BASIC';
+      case ConnectionAuthorizationType.oauthClientCredentials:
+        return 'OAUTH_CLIENT_CREDENTIALS';
+      case ConnectionAuthorizationType.apiKey:
+        return 'API_KEY';
+    }
+  }
+}
+
+extension on String {
+  ConnectionAuthorizationType toConnectionAuthorizationType() {
+    switch (this) {
+      case 'BASIC':
+        return ConnectionAuthorizationType.basic;
+      case 'OAUTH_CLIENT_CREDENTIALS':
+        return ConnectionAuthorizationType.oauthClientCredentials;
+      case 'API_KEY':
+        return ConnectionAuthorizationType.apiKey;
+    }
+    throw Exception('$this is not known in enum ConnectionAuthorizationType');
+  }
+}
+
+/// Contains the authorization parameters for the connection if Basic is
+/// specified as the authorization type.
+class ConnectionBasicAuthResponseParameters {
+  /// The user name to use for Basic authorization.
+  final String? username;
+
+  ConnectionBasicAuthResponseParameters({
+    this.username,
+  });
+  factory ConnectionBasicAuthResponseParameters.fromJson(
+      Map<String, dynamic> json) {
+    return ConnectionBasicAuthResponseParameters(
+      username: json['Username'] as String?,
+    );
+  }
+}
+
+/// Additional parameter included in the body. You can include up to 100
+/// additional body parameters per request. An event payload cannot exceed 64
+/// KB.
+class ConnectionBodyParameter {
+  /// Specified whether the value is secret.
+  final bool? isValueSecret;
+
+  /// The key for the parameter.
+  final String? key;
+
+  /// The value associated with the key.
+  final String? value;
+
+  ConnectionBodyParameter({
+    this.isValueSecret,
+    this.key,
+    this.value,
+  });
+  factory ConnectionBodyParameter.fromJson(Map<String, dynamic> json) {
+    return ConnectionBodyParameter(
+      isValueSecret: json['IsValueSecret'] as bool?,
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isValueSecret = this.isValueSecret;
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (isValueSecret != null) 'IsValueSecret': isValueSecret,
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// Additional parameter included in the header. You can include up to 100
+/// additional header parameters per request. An event payload cannot exceed 64
+/// KB.
+class ConnectionHeaderParameter {
+  /// Specified whether the value is a secret.
+  final bool? isValueSecret;
+
+  /// The key for the parameter.
+  final String? key;
+
+  /// The value associated with the key.
+  final String? value;
+
+  ConnectionHeaderParameter({
+    this.isValueSecret,
+    this.key,
+    this.value,
+  });
+  factory ConnectionHeaderParameter.fromJson(Map<String, dynamic> json) {
+    return ConnectionHeaderParameter(
+      isValueSecret: json['IsValueSecret'] as bool?,
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isValueSecret = this.isValueSecret;
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (isValueSecret != null) 'IsValueSecret': isValueSecret,
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// Contains additional parameters for the connection.
+class ConnectionHttpParameters {
+  /// Contains additional body string parameters for the connection.
+  final List<ConnectionBodyParameter>? bodyParameters;
+
+  /// Contains additional header parameters for the connection.
+  final List<ConnectionHeaderParameter>? headerParameters;
+
+  /// Contains additional query string parameters for the connection.
+  final List<ConnectionQueryStringParameter>? queryStringParameters;
+
+  ConnectionHttpParameters({
+    this.bodyParameters,
+    this.headerParameters,
+    this.queryStringParameters,
+  });
+  factory ConnectionHttpParameters.fromJson(Map<String, dynamic> json) {
+    return ConnectionHttpParameters(
+      bodyParameters: (json['BodyParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ConnectionBodyParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      headerParameters: (json['HeaderParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ConnectionHeaderParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      queryStringParameters: (json['QueryStringParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConnectionQueryStringParameter.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bodyParameters = this.bodyParameters;
+    final headerParameters = this.headerParameters;
+    final queryStringParameters = this.queryStringParameters;
+    return {
+      if (bodyParameters != null) 'BodyParameters': bodyParameters,
+      if (headerParameters != null) 'HeaderParameters': headerParameters,
+      if (queryStringParameters != null)
+        'QueryStringParameters': queryStringParameters,
+    };
+  }
+}
+
+/// Contains the client response parameters for the connection when OAuth is
+/// specified as the authorization type.
+class ConnectionOAuthClientResponseParameters {
+  /// The client ID associated with the response to the connection request.
+  final String? clientID;
+
+  ConnectionOAuthClientResponseParameters({
+    this.clientID,
+  });
+  factory ConnectionOAuthClientResponseParameters.fromJson(
+      Map<String, dynamic> json) {
+    return ConnectionOAuthClientResponseParameters(
+      clientID: json['ClientID'] as String?,
+    );
+  }
+}
+
+enum ConnectionOAuthHttpMethod {
+  get,
+  post,
+  put,
+}
+
+extension on ConnectionOAuthHttpMethod {
+  String toValue() {
+    switch (this) {
+      case ConnectionOAuthHttpMethod.get:
+        return 'GET';
+      case ConnectionOAuthHttpMethod.post:
+        return 'POST';
+      case ConnectionOAuthHttpMethod.put:
+        return 'PUT';
+    }
+  }
+}
+
+extension on String {
+  ConnectionOAuthHttpMethod toConnectionOAuthHttpMethod() {
+    switch (this) {
+      case 'GET':
+        return ConnectionOAuthHttpMethod.get;
+      case 'POST':
+        return ConnectionOAuthHttpMethod.post;
+      case 'PUT':
+        return ConnectionOAuthHttpMethod.put;
+    }
+    throw Exception('$this is not known in enum ConnectionOAuthHttpMethod');
+  }
+}
+
+/// Contains the response parameters when OAuth is specified as the
+/// authorization type.
+class ConnectionOAuthResponseParameters {
+  /// The URL to the HTTP endpoint that authorized the request.
+  final String? authorizationEndpoint;
+
+  /// A <code>ConnectionOAuthClientResponseParameters</code> object that contains
+  /// details about the client parameters returned when OAuth is specified as the
+  /// authorization type.
+  final ConnectionOAuthClientResponseParameters? clientParameters;
+
+  /// The method used to connect to the HTTP endpoint.
+  final ConnectionOAuthHttpMethod? httpMethod;
+
+  /// The additional HTTP parameters used for the OAuth authorization request.
+  final ConnectionHttpParameters? oAuthHttpParameters;
+
+  ConnectionOAuthResponseParameters({
+    this.authorizationEndpoint,
+    this.clientParameters,
+    this.httpMethod,
+    this.oAuthHttpParameters,
+  });
+  factory ConnectionOAuthResponseParameters.fromJson(
+      Map<String, dynamic> json) {
+    return ConnectionOAuthResponseParameters(
+      authorizationEndpoint: json['AuthorizationEndpoint'] as String?,
+      clientParameters: json['ClientParameters'] != null
+          ? ConnectionOAuthClientResponseParameters.fromJson(
+              json['ClientParameters'] as Map<String, dynamic>)
+          : null,
+      httpMethod:
+          (json['HttpMethod'] as String?)?.toConnectionOAuthHttpMethod(),
+      oAuthHttpParameters: json['OAuthHttpParameters'] != null
+          ? ConnectionHttpParameters.fromJson(
+              json['OAuthHttpParameters'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// Additional query string parameter for the connection. You can include up to
+/// 100 additional query string parameters per request. Each additional
+/// parameter counts towards the event payload size, which cannot exceed 64 KB.
+class ConnectionQueryStringParameter {
+  /// Specifies whether the value is secret.
+  final bool? isValueSecret;
+
+  /// The key for a query string parameter.
+  final String? key;
+
+  /// The value associated with the key for the query string parameter.
+  final String? value;
+
+  ConnectionQueryStringParameter({
+    this.isValueSecret,
+    this.key,
+    this.value,
+  });
+  factory ConnectionQueryStringParameter.fromJson(Map<String, dynamic> json) {
+    return ConnectionQueryStringParameter(
+      isValueSecret: json['IsValueSecret'] as bool?,
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isValueSecret = this.isValueSecret;
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (isValueSecret != null) 'IsValueSecret': isValueSecret,
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+enum ConnectionState {
+  creating,
+  updating,
+  deleting,
+  authorized,
+  deauthorized,
+  authorizing,
+  deauthorizing,
+}
+
+extension on ConnectionState {
+  String toValue() {
+    switch (this) {
+      case ConnectionState.creating:
+        return 'CREATING';
+      case ConnectionState.updating:
+        return 'UPDATING';
+      case ConnectionState.deleting:
+        return 'DELETING';
+      case ConnectionState.authorized:
+        return 'AUTHORIZED';
+      case ConnectionState.deauthorized:
+        return 'DEAUTHORIZED';
+      case ConnectionState.authorizing:
+        return 'AUTHORIZING';
+      case ConnectionState.deauthorizing:
+        return 'DEAUTHORIZING';
+    }
+  }
+}
+
+extension on String {
+  ConnectionState toConnectionState() {
+    switch (this) {
+      case 'CREATING':
+        return ConnectionState.creating;
+      case 'UPDATING':
+        return ConnectionState.updating;
+      case 'DELETING':
+        return ConnectionState.deleting;
+      case 'AUTHORIZED':
+        return ConnectionState.authorized;
+      case 'DEAUTHORIZED':
+        return ConnectionState.deauthorized;
+      case 'AUTHORIZING':
+        return ConnectionState.authorizing;
+      case 'DEAUTHORIZING':
+        return ConnectionState.deauthorizing;
+    }
+    throw Exception('$this is not known in enum ConnectionState');
+  }
+}
+
+class CreateApiDestinationResponse {
+  /// The ARN of the API destination that was created by the request.
+  final String? apiDestinationArn;
+
+  /// The state of the API destination that was created by the request.
+  final ApiDestinationState? apiDestinationState;
+
+  /// A time stamp indicating the time that the API destination was created.
+  final DateTime? creationTime;
+
+  /// A time stamp indicating the time that the API destination was last modified.
+  final DateTime? lastModifiedTime;
+
+  CreateApiDestinationResponse({
+    this.apiDestinationArn,
+    this.apiDestinationState,
+    this.creationTime,
+    this.lastModifiedTime,
+  });
+  factory CreateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
+    return CreateApiDestinationResponse(
+      apiDestinationArn: json['ApiDestinationArn'] as String?,
+      apiDestinationState:
+          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+    );
+  }
+}
+
 class CreateArchiveResponse {
   /// The ARN of the archive that was created.
   final String? archiveArn;
@@ -3286,6 +4355,185 @@ class CreateArchiveResponse {
       creationTime: timeStampFromJson(json['CreationTime']),
       state: (json['State'] as String?)?.toArchiveState(),
       stateReason: json['StateReason'] as String?,
+    );
+  }
+}
+
+/// Contains the API key authorization parameters for the connection.
+class CreateConnectionApiKeyAuthRequestParameters {
+  /// The name of the API key to use for authorization.
+  final String apiKeyName;
+
+  /// The value for the API key to use for authorization.
+  final String apiKeyValue;
+
+  CreateConnectionApiKeyAuthRequestParameters({
+    required this.apiKeyName,
+    required this.apiKeyValue,
+  });
+  Map<String, dynamic> toJson() {
+    final apiKeyName = this.apiKeyName;
+    final apiKeyValue = this.apiKeyValue;
+    return {
+      'ApiKeyName': apiKeyName,
+      'ApiKeyValue': apiKeyValue,
+    };
+  }
+}
+
+/// Contains the authorization parameters for the connection.
+class CreateConnectionAuthRequestParameters {
+  /// A <code>CreateConnectionApiKeyAuthRequestParameters</code> object that
+  /// contains the API key authorization parameters to use for the connection.
+  final CreateConnectionApiKeyAuthRequestParameters? apiKeyAuthParameters;
+
+  /// A <code>CreateConnectionBasicAuthRequestParameters</code> object that
+  /// contains the Basic authorization parameters to use for the connection.
+  final CreateConnectionBasicAuthRequestParameters? basicAuthParameters;
+
+  /// A <code>ConnectionHttpParameters</code> object that contains the API key
+  /// authorization parameters to use for the connection. Note that if you include
+  /// additional parameters for the target of a rule via
+  /// <code>HttpParameters</code>, including query strings, the parameters added
+  /// for the connection take precedence.
+  final ConnectionHttpParameters? invocationHttpParameters;
+
+  /// A <code>CreateConnectionOAuthRequestParameters</code> object that contains
+  /// the OAuth authorization parameters to use for the connection.
+  final CreateConnectionOAuthRequestParameters? oAuthParameters;
+
+  CreateConnectionAuthRequestParameters({
+    this.apiKeyAuthParameters,
+    this.basicAuthParameters,
+    this.invocationHttpParameters,
+    this.oAuthParameters,
+  });
+  Map<String, dynamic> toJson() {
+    final apiKeyAuthParameters = this.apiKeyAuthParameters;
+    final basicAuthParameters = this.basicAuthParameters;
+    final invocationHttpParameters = this.invocationHttpParameters;
+    final oAuthParameters = this.oAuthParameters;
+    return {
+      if (apiKeyAuthParameters != null)
+        'ApiKeyAuthParameters': apiKeyAuthParameters,
+      if (basicAuthParameters != null)
+        'BasicAuthParameters': basicAuthParameters,
+      if (invocationHttpParameters != null)
+        'InvocationHttpParameters': invocationHttpParameters,
+      if (oAuthParameters != null) 'OAuthParameters': oAuthParameters,
+    };
+  }
+}
+
+/// Contains the Basic authorization parameters to use for the connection.
+class CreateConnectionBasicAuthRequestParameters {
+  /// The password associated with the user name to use for Basic authorization.
+  final String password;
+
+  /// The user name to use for Basic authorization.
+  final String username;
+
+  CreateConnectionBasicAuthRequestParameters({
+    required this.password,
+    required this.username,
+  });
+  Map<String, dynamic> toJson() {
+    final password = this.password;
+    final username = this.username;
+    return {
+      'Password': password,
+      'Username': username,
+    };
+  }
+}
+
+/// Contains the Basic authorization parameters to use for the connection.
+class CreateConnectionOAuthClientRequestParameters {
+  /// The client ID to use for OAuth authorization for the connection.
+  final String clientID;
+
+  /// The client secret associated with the client ID to use for OAuth
+  /// authorization for the connection.
+  final String clientSecret;
+
+  CreateConnectionOAuthClientRequestParameters({
+    required this.clientID,
+    required this.clientSecret,
+  });
+  Map<String, dynamic> toJson() {
+    final clientID = this.clientID;
+    final clientSecret = this.clientSecret;
+    return {
+      'ClientID': clientID,
+      'ClientSecret': clientSecret,
+    };
+  }
+}
+
+/// Contains the OAuth authorization parameters to use for the connection.
+class CreateConnectionOAuthRequestParameters {
+  /// The URL to the authorization endpoint when OAuth is specified as the
+  /// authorization type.
+  final String authorizationEndpoint;
+
+  /// A <code>CreateConnectionOAuthClientRequestParameters</code> object that
+  /// contains the client parameters for OAuth authorization.
+  final CreateConnectionOAuthClientRequestParameters clientParameters;
+
+  /// The method to use for the authorization request.
+  final ConnectionOAuthHttpMethod httpMethod;
+
+  /// A <code>ConnectionHttpParameters</code> object that contains details about
+  /// the additional parameters to use for the connection.
+  final ConnectionHttpParameters? oAuthHttpParameters;
+
+  CreateConnectionOAuthRequestParameters({
+    required this.authorizationEndpoint,
+    required this.clientParameters,
+    required this.httpMethod,
+    this.oAuthHttpParameters,
+  });
+  Map<String, dynamic> toJson() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientParameters = this.clientParameters;
+    final httpMethod = this.httpMethod;
+    final oAuthHttpParameters = this.oAuthHttpParameters;
+    return {
+      'AuthorizationEndpoint': authorizationEndpoint,
+      'ClientParameters': clientParameters,
+      'HttpMethod': httpMethod.toValue(),
+      if (oAuthHttpParameters != null)
+        'OAuthHttpParameters': oAuthHttpParameters,
+    };
+  }
+}
+
+class CreateConnectionResponse {
+  /// The ARN of the connection that was created by the request.
+  final String? connectionArn;
+
+  /// The state of the connection that was created by the request.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the connection was last updated.
+  final DateTime? lastModifiedTime;
+
+  CreateConnectionResponse({
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.lastModifiedTime,
+  });
+  factory CreateConnectionResponse.fromJson(Map<String, dynamic> json) {
+    return CreateConnectionResponse(
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
 }
@@ -3341,10 +4589,156 @@ class DeadLetterConfig {
   }
 }
 
+class DeauthorizeConnectionResponse {
+  /// The ARN of the connection that authorization was removed from.
+  final String? connectionArn;
+
+  /// The state of the connection.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the connection was last authorized.
+  final DateTime? lastAuthorizedTime;
+
+  /// A time stamp for the time that the connection was last updated.
+  final DateTime? lastModifiedTime;
+
+  DeauthorizeConnectionResponse({
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.lastAuthorizedTime,
+    this.lastModifiedTime,
+  });
+  factory DeauthorizeConnectionResponse.fromJson(Map<String, dynamic> json) {
+    return DeauthorizeConnectionResponse(
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+    );
+  }
+}
+
+class DeleteApiDestinationResponse {
+  DeleteApiDestinationResponse();
+  factory DeleteApiDestinationResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteApiDestinationResponse();
+  }
+}
+
 class DeleteArchiveResponse {
   DeleteArchiveResponse();
   factory DeleteArchiveResponse.fromJson(Map<String, dynamic> _) {
     return DeleteArchiveResponse();
+  }
+}
+
+class DeleteConnectionResponse {
+  /// The ARN of the connection that was deleted.
+  final String? connectionArn;
+
+  /// The state of the connection before it was deleted.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the connection was last authorized before it
+  /// wa deleted.
+  final DateTime? lastAuthorizedTime;
+
+  /// A time stamp for the time that the connection was last modified before it
+  /// was deleted.
+  final DateTime? lastModifiedTime;
+
+  DeleteConnectionResponse({
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.lastAuthorizedTime,
+    this.lastModifiedTime,
+  });
+  factory DeleteConnectionResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteConnectionResponse(
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+    );
+  }
+}
+
+class DescribeApiDestinationResponse {
+  /// The ARN of the API destination retrieved.
+  final String? apiDestinationArn;
+
+  /// The state of the API destination retrieved.
+  final ApiDestinationState? apiDestinationState;
+
+  /// The ARN of the connection specified for the API destination retrieved.
+  final String? connectionArn;
+
+  /// A time stamp for the time that the API destination was created.
+  final DateTime? creationTime;
+
+  /// The description for the API destination retrieved.
+  final String? description;
+
+  /// The method to use to connect to the HTTP endpoint.
+  final ApiDestinationHttpMethod? httpMethod;
+
+  /// The URL to use to connect to the HTTP endpoint.
+  final String? invocationEndpoint;
+
+  /// The maximum number of invocations per second to specified for the API
+  /// destination. Note that if you set the invocation rate maximum to a value
+  /// lower the rate necessary to send all events received on to the destination
+  /// HTTP endpoint, some events may not be delivered within the 24-hour retry
+  /// window. If you plan to set the rate lower than the rate necessary to deliver
+  /// all events, consider using a dead-letter queue to catch events that are not
+  /// delivered within 24 hours.
+  final int? invocationRateLimitPerSecond;
+
+  /// A time stamp for the time that the API destination was last modified.
+  final DateTime? lastModifiedTime;
+
+  /// The name of the API destination retrieved.
+  final String? name;
+
+  DescribeApiDestinationResponse({
+    this.apiDestinationArn,
+    this.apiDestinationState,
+    this.connectionArn,
+    this.creationTime,
+    this.description,
+    this.httpMethod,
+    this.invocationEndpoint,
+    this.invocationRateLimitPerSecond,
+    this.lastModifiedTime,
+    this.name,
+  });
+  factory DescribeApiDestinationResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeApiDestinationResponse(
+      apiDestinationArn: json['ApiDestinationArn'] as String?,
+      apiDestinationState:
+          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      connectionArn: json['ConnectionArn'] as String?,
+      creationTime: timeStampFromJson(json['CreationTime']),
+      description: json['Description'] as String?,
+      httpMethod: (json['HttpMethod'] as String?)?.toApiDestinationHttpMethod(),
+      invocationEndpoint: json['InvocationEndpoint'] as String?,
+      invocationRateLimitPerSecond:
+          json['InvocationRateLimitPerSecond'] as int?,
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      name: json['Name'] as String?,
+    );
   }
 }
 
@@ -3407,6 +4801,76 @@ class DescribeArchiveResponse {
       retentionDays: json['RetentionDays'] as int?,
       sizeBytes: json['SizeBytes'] as int?,
       state: (json['State'] as String?)?.toArchiveState(),
+      stateReason: json['StateReason'] as String?,
+    );
+  }
+}
+
+class DescribeConnectionResponse {
+  /// The parameters to use for authorization for the connection.
+  final ConnectionAuthResponseParameters? authParameters;
+
+  /// The type of authorization specified for the connection.
+  final ConnectionAuthorizationType? authorizationType;
+
+  /// The ARN of the connection retrieved.
+  final String? connectionArn;
+
+  /// The state of the connection retrieved.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// The description for the connection retrieved.
+  final String? description;
+
+  /// A time stamp for the time that the connection was last authorized.
+  final DateTime? lastAuthorizedTime;
+
+  /// A time stamp for the time that the connection was last modified.
+  final DateTime? lastModifiedTime;
+
+  /// The name of the connection retrieved.
+  final String? name;
+
+  /// The ARN of the secret created from the authorization parameters specified
+  /// for the connection.
+  final String? secretArn;
+
+  /// The reason that the connection is in the current connection state.
+  final String? stateReason;
+
+  DescribeConnectionResponse({
+    this.authParameters,
+    this.authorizationType,
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.description,
+    this.lastAuthorizedTime,
+    this.lastModifiedTime,
+    this.name,
+    this.secretArn,
+    this.stateReason,
+  });
+  factory DescribeConnectionResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeConnectionResponse(
+      authParameters: json['AuthParameters'] != null
+          ? ConnectionAuthResponseParameters.fromJson(
+              json['AuthParameters'] as Map<String, dynamic>)
+          : null,
+      authorizationType: (json['AuthorizationType'] as String?)
+          ?.toConnectionAuthorizationType(),
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      description: json['Description'] as String?,
+      lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+      name: json['Name'] as String?,
+      secretArn: json['SecretArn'] as String?,
       stateReason: json['StateReason'] as String?,
     );
   }
@@ -3647,6 +5111,26 @@ class EcsParameters {
   /// task.
   final String taskDefinitionArn;
 
+  /// The capacity provider strategy to use for the task.
+  ///
+  /// If a <code>capacityProviderStrategy</code> is specified, the
+  /// <code>launchType</code> parameter must be omitted. If no
+  /// <code>capacityProviderStrategy</code> or launchType is specified, the
+  /// <code>defaultCapacityProviderStrategy</code> for the cluster is used.
+  final List<CapacityProviderStrategyItem>? capacityProviderStrategy;
+
+  /// Specifies whether to enable Amazon ECS managed tags for the task. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html">Tagging
+  /// Your Amazon ECS Resources</a> in the Amazon Elastic Container Service
+  /// Developer Guide.
+  final bool? enableECSManagedTags;
+
+  /// Whether or not to enable the execute command functionality for the
+  /// containers in this task. If true, this enables execute command functionality
+  /// on all containers in the task.
+  final bool? enableExecuteCommand;
+
   /// Specifies an ECS task group for the task. The maximum length is 255
   /// characters.
   final String? group;
@@ -3672,6 +5156,15 @@ class EcsParameters {
   /// does not use the <code>awsvpc</code> network mode, the task fails.
   final NetworkConfiguration? networkConfiguration;
 
+  /// An array of placement constraint objects to use for the task. You can
+  /// specify up to 10 constraints per task (including constraints in the task
+  /// definition and those specified at runtime).
+  final List<PlacementConstraint>? placementConstraints;
+
+  /// The placement strategy objects to use for the task. You can specify a
+  /// maximum of five strategy rules per task.
+  final List<PlacementStrategy>? placementStrategy;
+
   /// Specifies the platform version for the task. Specify only the numeric
   /// portion of the platform version, such as <code>1.1.0</code>.
   ///
@@ -3683,46 +5176,111 @@ class EcsParameters {
   /// Developer Guide</i>.
   final String? platformVersion;
 
+  /// Specifies whether to propagate the tags from the task definition to the
+  /// task. If no value is specified, the tags are not propagated. Tags can only
+  /// be propagated to the task during task creation. To add tags to a task after
+  /// task creation, use the TagResource API action.
+  final PropagateTags? propagateTags;
+
+  /// The reference ID to use for the task.
+  final String? referenceId;
+
+  /// The metadata that you apply to the task to help you categorize and organize
+  /// them. Each tag consists of a key and an optional value, both of which you
+  /// define. To learn more, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-tags">RunTask</a>
+  /// in the Amazon ECS API Reference.
+  final List<Tag>? tags;
+
   /// The number of tasks to create based on <code>TaskDefinition</code>. The
   /// default is 1.
   final int? taskCount;
 
   EcsParameters({
     required this.taskDefinitionArn,
+    this.capacityProviderStrategy,
+    this.enableECSManagedTags,
+    this.enableExecuteCommand,
     this.group,
     this.launchType,
     this.networkConfiguration,
+    this.placementConstraints,
+    this.placementStrategy,
     this.platformVersion,
+    this.propagateTags,
+    this.referenceId,
+    this.tags,
     this.taskCount,
   });
   factory EcsParameters.fromJson(Map<String, dynamic> json) {
     return EcsParameters(
       taskDefinitionArn: json['TaskDefinitionArn'] as String,
+      capacityProviderStrategy: (json['CapacityProviderStrategy'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              CapacityProviderStrategyItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      enableECSManagedTags: json['EnableECSManagedTags'] as bool?,
+      enableExecuteCommand: json['EnableExecuteCommand'] as bool?,
       group: json['Group'] as String?,
       launchType: (json['LaunchType'] as String?)?.toLaunchType(),
       networkConfiguration: json['NetworkConfiguration'] != null
           ? NetworkConfiguration.fromJson(
               json['NetworkConfiguration'] as Map<String, dynamic>)
           : null,
+      placementConstraints: (json['PlacementConstraints'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlacementConstraint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      placementStrategy: (json['PlacementStrategy'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlacementStrategy.fromJson(e as Map<String, dynamic>))
+          .toList(),
       platformVersion: json['PlatformVersion'] as String?,
+      propagateTags: (json['PropagateTags'] as String?)?.toPropagateTags(),
+      referenceId: json['ReferenceId'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
       taskCount: json['TaskCount'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final taskDefinitionArn = this.taskDefinitionArn;
+    final capacityProviderStrategy = this.capacityProviderStrategy;
+    final enableECSManagedTags = this.enableECSManagedTags;
+    final enableExecuteCommand = this.enableExecuteCommand;
     final group = this.group;
     final launchType = this.launchType;
     final networkConfiguration = this.networkConfiguration;
+    final placementConstraints = this.placementConstraints;
+    final placementStrategy = this.placementStrategy;
     final platformVersion = this.platformVersion;
+    final propagateTags = this.propagateTags;
+    final referenceId = this.referenceId;
+    final tags = this.tags;
     final taskCount = this.taskCount;
     return {
       'TaskDefinitionArn': taskDefinitionArn,
+      if (capacityProviderStrategy != null)
+        'CapacityProviderStrategy': capacityProviderStrategy,
+      if (enableECSManagedTags != null)
+        'EnableECSManagedTags': enableECSManagedTags,
+      if (enableExecuteCommand != null)
+        'EnableExecuteCommand': enableExecuteCommand,
       if (group != null) 'Group': group,
       if (launchType != null) 'LaunchType': launchType.toValue(),
       if (networkConfiguration != null)
         'NetworkConfiguration': networkConfiguration,
+      if (placementConstraints != null)
+        'PlacementConstraints': placementConstraints,
+      if (placementStrategy != null) 'PlacementStrategy': placementStrategy,
       if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (propagateTags != null) 'PropagateTags': propagateTags.toValue(),
+      if (referenceId != null) 'ReferenceId': referenceId,
+      if (tags != null) 'Tags': tags,
       if (taskCount != null) 'TaskCount': taskCount,
     };
   }
@@ -3730,10 +5288,10 @@ class EcsParameters {
 
 /// An event bus receives events from a source and routes them to rules
 /// associated with that event bus. Your account's default event bus receives
-/// rules from AWS services. A custom event bus can receive rules from AWS
-/// services as well as your custom applications and services. A partner event
-/// bus receives events from an event source created by an SaaS partner. These
-/// events come from the partners services or applications.
+/// events from AWS services. A custom event bus can receive events from your
+/// custom applications and services. A partner event bus receives events from
+/// an event source created by an SaaS partner. These events come from the
+/// partners services or applications.
 class EventBus {
   /// The ARN of the event bus.
   final String? arn;
@@ -3840,18 +5398,20 @@ extension on String {
 }
 
 /// These are custom parameter to be used when the target is an API Gateway REST
-/// APIs.
+/// APIs or EventBridge ApiDestinations. In the latter case, these are merged
+/// with any InvocationParameters specified on the Connection, with any values
+/// from the Connection taking precedence.
 class HttpParameters {
   /// The headers that need to be sent as part of request invoking the API Gateway
-  /// REST API.
+  /// REST API or EventBridge ApiDestination.
   final Map<String, String>? headerParameters;
 
-  /// The path parameter values to be used to populate API Gateway REST API path
-  /// wildcards ("*").
+  /// The path parameter values to be used to populate API Gateway REST API or
+  /// EventBridge ApiDestination path wildcards ("*").
   final List<String>? pathParameterValues;
 
   /// The query string keys/values that need to be sent as part of request
-  /// invoking the API Gateway REST API.
+  /// invoking the API Gateway REST API or EventBridge ApiDestination.
   final Map<String, String>? queryStringParameters;
 
   HttpParameters({
@@ -3902,9 +5462,6 @@ class InputTransformer {
   /// <li>
   /// The placeholder cannot be used as an object key.
   /// </li>
-  /// <li>
-  /// Object values cannot include quote marks.
-  /// </li>
   /// </ul>
   /// The following example shows the syntax for using <code>InputPathsMap</code>
   /// and <code>InputTemplate</code>.
@@ -3934,6 +5491,21 @@ class InputTransformer {
   /// \"&lt;status&gt;\""</code>
   ///
   /// <code>}</code>
+  ///
+  /// The <code>InputTemplate</code> can also be valid JSON with varibles in
+  /// quotes or out, as in the following example:
+  ///
+  /// <code> "InputTransformer":</code>
+  ///
+  /// <code>{</code>
+  ///
+  /// <code>"InputPathsMap": {"instance": "$.detail.instance","status":
+  /// "$.detail.status"},</code>
+  ///
+  /// <code>"InputTemplate": '{"myInstance": &lt;instance&gt;,"myStatus":
+  /// "&lt;instance&gt; is in state \"&lt;status&gt;\""}'</code>
+  ///
+  /// <code>}</code>
   final String inputTemplate;
 
   /// Map of JSON paths to be extracted from the event. You can then insert these
@@ -3941,7 +5513,7 @@ class InputTransformer {
   /// to be sent to the target.
   ///
   /// <code>InputPathsMap</code> is an array key-value pairs, where each value is
-  /// a valid JSON path. You can have as many as 10 key-value pairs. You must use
+  /// a valid JSON path. You can have as many as 100 key-value pairs. You must use
   /// JSON dot notation, not bracket notation.
   ///
   /// The keys cannot start with "AWS."
@@ -4027,6 +5599,30 @@ extension on String {
   }
 }
 
+class ListApiDestinationsResponse {
+  /// An array of <code>ApiDestination</code> objects that include information
+  /// about an API destination.
+  final List<ApiDestination>? apiDestinations;
+
+  /// A token you can use in a subsequent request to retrieve the next set of
+  /// results.
+  final String? nextToken;
+
+  ListApiDestinationsResponse({
+    this.apiDestinations,
+    this.nextToken,
+  });
+  factory ListApiDestinationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListApiDestinationsResponse(
+      apiDestinations: (json['ApiDestinations'] as List?)
+          ?.whereNotNull()
+          .map((e) => ApiDestination.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
 class ListArchivesResponse {
   /// An array of <code>Archive</code> objects that include details about an
   /// archive.
@@ -4044,6 +5640,29 @@ class ListArchivesResponse {
       archives: (json['Archives'] as List?)
           ?.whereNotNull()
           .map((e) => Archive.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListConnectionsResponse {
+  /// An array of connections objects that include details about the connections.
+  final List<Connection>? connections;
+
+  /// A token you can use in a subsequent request to retrieve the next set of
+  /// results.
+  final String? nextToken;
+
+  ListConnectionsResponse({
+    this.connections,
+    this.nextToken,
+  });
+  factory ListConnectionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListConnectionsResponse(
+      connections: (json['Connections'] as List?)
+          ?.whereNotNull()
+          .map((e) => Connection.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
@@ -4338,6 +5957,172 @@ class PartnerEventSourceAccount {
   }
 }
 
+/// An object representing a constraint on task placement. To learn more, see <a
+/// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html">Task
+/// Placement Constraints</a> in the Amazon Elastic Container Service Developer
+/// Guide.
+class PlacementConstraint {
+  /// A cluster query language expression to apply to the constraint. You cannot
+  /// specify an expression if the constraint type is
+  /// <code>distinctInstance</code>. To learn more, see <a
+  /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html">Cluster
+  /// Query Language</a> in the Amazon Elastic Container Service Developer Guide.
+  final String? expression;
+
+  /// The type of constraint. Use distinctInstance to ensure that each task in a
+  /// particular group is running on a different container instance. Use memberOf
+  /// to restrict the selection to a group of valid candidates.
+  final PlacementConstraintType? type;
+
+  PlacementConstraint({
+    this.expression,
+    this.type,
+  });
+  factory PlacementConstraint.fromJson(Map<String, dynamic> json) {
+    return PlacementConstraint(
+      expression: json['expression'] as String?,
+      type: (json['type'] as String?)?.toPlacementConstraintType(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    final type = this.type;
+    return {
+      if (expression != null) 'expression': expression,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
+}
+
+enum PlacementConstraintType {
+  distinctInstance,
+  memberOf,
+}
+
+extension on PlacementConstraintType {
+  String toValue() {
+    switch (this) {
+      case PlacementConstraintType.distinctInstance:
+        return 'distinctInstance';
+      case PlacementConstraintType.memberOf:
+        return 'memberOf';
+    }
+  }
+}
+
+extension on String {
+  PlacementConstraintType toPlacementConstraintType() {
+    switch (this) {
+      case 'distinctInstance':
+        return PlacementConstraintType.distinctInstance;
+      case 'memberOf':
+        return PlacementConstraintType.memberOf;
+    }
+    throw Exception('$this is not known in enum PlacementConstraintType');
+  }
+}
+
+/// The task placement strategy for a task or service. To learn more, see <a
+/// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html">Task
+/// Placement Strategies</a> in the Amazon Elastic Container Service Developer
+/// Guide.
+class PlacementStrategy {
+  /// The field to apply the placement strategy against. For the spread placement
+  /// strategy, valid values are instanceId (or host, which has the same effect),
+  /// or any platform or custom attribute that is applied to a container instance,
+  /// such as attribute:ecs.availability-zone. For the binpack placement strategy,
+  /// valid values are cpu and memory. For the random placement strategy, this
+  /// field is not used.
+  final String? field;
+
+  /// The type of placement strategy. The random placement strategy randomly
+  /// places tasks on available candidates. The spread placement strategy spreads
+  /// placement across available candidates evenly based on the field parameter.
+  /// The binpack strategy places tasks on available candidates that have the
+  /// least available amount of the resource that is specified with the field
+  /// parameter. For example, if you binpack on memory, a task is placed on the
+  /// instance with the least amount of remaining memory (but still enough to run
+  /// the task).
+  final PlacementStrategyType? type;
+
+  PlacementStrategy({
+    this.field,
+    this.type,
+  });
+  factory PlacementStrategy.fromJson(Map<String, dynamic> json) {
+    return PlacementStrategy(
+      field: json['field'] as String?,
+      type: (json['type'] as String?)?.toPlacementStrategyType(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final field = this.field;
+    final type = this.type;
+    return {
+      if (field != null) 'field': field,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
+}
+
+enum PlacementStrategyType {
+  random,
+  spread,
+  binpack,
+}
+
+extension on PlacementStrategyType {
+  String toValue() {
+    switch (this) {
+      case PlacementStrategyType.random:
+        return 'random';
+      case PlacementStrategyType.spread:
+        return 'spread';
+      case PlacementStrategyType.binpack:
+        return 'binpack';
+    }
+  }
+}
+
+extension on String {
+  PlacementStrategyType toPlacementStrategyType() {
+    switch (this) {
+      case 'random':
+        return PlacementStrategyType.random;
+      case 'spread':
+        return PlacementStrategyType.spread;
+      case 'binpack':
+        return PlacementStrategyType.binpack;
+    }
+    throw Exception('$this is not known in enum PlacementStrategyType');
+  }
+}
+
+enum PropagateTags {
+  taskDefinition,
+}
+
+extension on PropagateTags {
+  String toValue() {
+    switch (this) {
+      case PropagateTags.taskDefinition:
+        return 'TASK_DEFINITION';
+    }
+  }
+}
+
+extension on String {
+  PropagateTags toPropagateTags() {
+    switch (this) {
+      case 'TASK_DEFINITION':
+        return PropagateTags.taskDefinition;
+    }
+    throw Exception('$this is not known in enum PropagateTags');
+  }
+}
+
 /// Represents an event to be submitted.
 class PutEventsRequestEntry {
   /// A valid JSON string. There is no other schema imposed. The JSON string may
@@ -4364,6 +6149,14 @@ class PutEventsRequestEntry {
   /// stamp is provided, the time stamp of the <a>PutEvents</a> call is used.
   final DateTime? time;
 
+  /// An AWS X-Ray trade header, which is an http header (X-Amzn-Trace-Id) that
+  /// contains the trace-id associated with the event.
+  ///
+  /// To learn more about X-Ray trace headers, see <a
+  /// href="https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader">Tracing
+  /// header</a> in the AWS X-Ray Developer Guide.
+  final String? traceHeader;
+
   PutEventsRequestEntry({
     this.detail,
     this.detailType,
@@ -4371,6 +6164,7 @@ class PutEventsRequestEntry {
     this.resources,
     this.source,
     this.time,
+    this.traceHeader,
   });
   Map<String, dynamic> toJson() {
     final detail = this.detail;
@@ -4379,6 +6173,7 @@ class PutEventsRequestEntry {
     final resources = this.resources;
     final source = this.source;
     final time = this.time;
+    final traceHeader = this.traceHeader;
     return {
       if (detail != null) 'Detail': detail,
       if (detailType != null) 'DetailType': detailType,
@@ -4386,6 +6181,7 @@ class PutEventsRequestEntry {
       if (resources != null) 'Resources': resources,
       if (source != null) 'Source': source,
       if (time != null) 'Time': unixTimestampToJson(time),
+      if (traceHeader != null) 'TraceHeader': traceHeader,
     };
   }
 }
@@ -5035,6 +6831,66 @@ class RunCommandTarget {
   }
 }
 
+/// Name/Value pair of a parameter to start execution of a SageMaker Model
+/// Building Pipeline.
+class SageMakerPipelineParameter {
+  /// Name of parameter to start execution of a SageMaker Model Building Pipeline.
+  final String name;
+
+  /// Value of parameter to start execution of a SageMaker Model Building
+  /// Pipeline.
+  final String value;
+
+  SageMakerPipelineParameter({
+    required this.name,
+    required this.value,
+  });
+  factory SageMakerPipelineParameter.fromJson(Map<String, dynamic> json) {
+    return SageMakerPipelineParameter(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
+    };
+  }
+}
+
+/// These are custom parameters to use when the target is a SageMaker Model
+/// Building Pipeline that starts based on EventBridge events.
+class SageMakerPipelineParameters {
+  /// List of Parameter names and values for SageMaker Model Building Pipeline
+  /// execution.
+  final List<SageMakerPipelineParameter>? pipelineParameterList;
+
+  SageMakerPipelineParameters({
+    this.pipelineParameterList,
+  });
+  factory SageMakerPipelineParameters.fromJson(Map<String, dynamic> json) {
+    return SageMakerPipelineParameters(
+      pipelineParameterList: (json['PipelineParameterList'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              SageMakerPipelineParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineParameterList = this.pipelineParameterList;
+    return {
+      if (pipelineParameterList != null)
+        'PipelineParameterList': pipelineParameterList,
+    };
+  }
+}
+
 /// This structure includes the custom parameter to be used when the target is
 /// an SQS FIFO queue.
 class SqsParameters {
@@ -5162,11 +7018,14 @@ class Target {
   final EcsParameters? ecsParameters;
 
   /// Contains the HTTP parameters to use when the target is a API Gateway REST
-  /// endpoint.
+  /// endpoint or EventBridge ApiDestination.
   ///
-  /// If you specify an API Gateway REST API as a target, you can use this
-  /// parameter to specify headers, path parameter, query string keys/values as
-  /// part of your target invoking request.
+  /// If you specify an API Gateway REST API or EventBridge ApiDestination as a
+  /// target, you can use this parameter to specify headers, path parameters, and
+  /// query string keys/values as part of your target invoking request. If you're
+  /// using ApiDestinations, the corresponding Connection can also have these
+  /// values configured. In case of any conflicting keys, values from the
+  /// Connection take precedence.
   final HttpParameters? httpParameters;
 
   /// Valid JSON text passed to the target. In this case, nothing from the event
@@ -5212,6 +7071,14 @@ class Target {
   /// Command.
   final RunCommandParameters? runCommandParameters;
 
+  /// Contains the SageMaker Model Building Pipeline parameters to start execution
+  /// of a SageMaker Model Building Pipeline.
+  ///
+  /// If you specify a SageMaker Model Building Pipeline as a target, you can use
+  /// this to specify parameters to start a pipeline execution based on
+  /// EventBridge events.
+  final SageMakerPipelineParameters? sageMakerPipelineParameters;
+
   /// Contains the message group ID to use when the target is a FIFO queue.
   ///
   /// If you specify an SQS FIFO queue as a target, the queue must have
@@ -5233,6 +7100,7 @@ class Target {
     this.retryPolicy,
     this.roleArn,
     this.runCommandParameters,
+    this.sageMakerPipelineParameters,
     this.sqsParameters,
   });
   factory Target.fromJson(Map<String, dynamic> json) {
@@ -5277,6 +7145,10 @@ class Target {
           ? RunCommandParameters.fromJson(
               json['RunCommandParameters'] as Map<String, dynamic>)
           : null,
+      sageMakerPipelineParameters: json['SageMakerPipelineParameters'] != null
+          ? SageMakerPipelineParameters.fromJson(
+              json['SageMakerPipelineParameters'] as Map<String, dynamic>)
+          : null,
       sqsParameters: json['SqsParameters'] != null
           ? SqsParameters.fromJson(
               json['SqsParameters'] as Map<String, dynamic>)
@@ -5299,6 +7171,7 @@ class Target {
     final retryPolicy = this.retryPolicy;
     final roleArn = this.roleArn;
     final runCommandParameters = this.runCommandParameters;
+    final sageMakerPipelineParameters = this.sageMakerPipelineParameters;
     final sqsParameters = this.sqsParameters;
     return {
       'Arn': arn,
@@ -5317,6 +7190,8 @@ class Target {
       if (roleArn != null) 'RoleArn': roleArn,
       if (runCommandParameters != null)
         'RunCommandParameters': runCommandParameters,
+      if (sageMakerPipelineParameters != null)
+        'SageMakerPipelineParameters': sageMakerPipelineParameters,
       if (sqsParameters != null) 'SqsParameters': sqsParameters,
     };
   }
@@ -5340,6 +7215,36 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+}
+
+class UpdateApiDestinationResponse {
+  /// The ARN of the API destination that was updated.
+  final String? apiDestinationArn;
+
+  /// The state of the API destination that was updated.
+  final ApiDestinationState? apiDestinationState;
+
+  /// A time stamp for the time that the API destination was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the API destination was last modified.
+  final DateTime? lastModifiedTime;
+
+  UpdateApiDestinationResponse({
+    this.apiDestinationArn,
+    this.apiDestinationState,
+    this.creationTime,
+    this.lastModifiedTime,
+  });
+  factory UpdateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateApiDestinationResponse(
+      apiDestinationArn: json['ApiDestinationArn'] as String?,
+      apiDestinationState:
+          (json['ApiDestinationState'] as String?)?.toApiDestinationState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+    );
   }
 }
 
@@ -5368,6 +7273,189 @@ class UpdateArchiveResponse {
       creationTime: timeStampFromJson(json['CreationTime']),
       state: (json['State'] as String?)?.toArchiveState(),
       stateReason: json['StateReason'] as String?,
+    );
+  }
+}
+
+/// Contains the API key authorization parameters to use to update the
+/// connection.
+class UpdateConnectionApiKeyAuthRequestParameters {
+  /// The name of the API key to use for authorization.
+  final String? apiKeyName;
+
+  /// The value associated with teh API key to use for authorization.
+  final String? apiKeyValue;
+
+  UpdateConnectionApiKeyAuthRequestParameters({
+    this.apiKeyName,
+    this.apiKeyValue,
+  });
+  Map<String, dynamic> toJson() {
+    final apiKeyName = this.apiKeyName;
+    final apiKeyValue = this.apiKeyValue;
+    return {
+      if (apiKeyName != null) 'ApiKeyName': apiKeyName,
+      if (apiKeyValue != null) 'ApiKeyValue': apiKeyValue,
+    };
+  }
+}
+
+/// Contains the additional parameters to use for the connection.
+class UpdateConnectionAuthRequestParameters {
+  /// A <code>UpdateConnectionApiKeyAuthRequestParameters</code> object that
+  /// contains the authorization parameters for API key authorization.
+  final UpdateConnectionApiKeyAuthRequestParameters? apiKeyAuthParameters;
+
+  /// A <code>UpdateConnectionBasicAuthRequestParameters</code> object that
+  /// contains the authorization parameters for Basic authorization.
+  final UpdateConnectionBasicAuthRequestParameters? basicAuthParameters;
+
+  /// A <code>ConnectionHttpParameters</code> object that contains the additional
+  /// parameters to use for the connection.
+  final ConnectionHttpParameters? invocationHttpParameters;
+
+  /// A <code>UpdateConnectionOAuthRequestParameters</code> object that contains
+  /// the authorization parameters for OAuth authorization.
+  final UpdateConnectionOAuthRequestParameters? oAuthParameters;
+
+  UpdateConnectionAuthRequestParameters({
+    this.apiKeyAuthParameters,
+    this.basicAuthParameters,
+    this.invocationHttpParameters,
+    this.oAuthParameters,
+  });
+  Map<String, dynamic> toJson() {
+    final apiKeyAuthParameters = this.apiKeyAuthParameters;
+    final basicAuthParameters = this.basicAuthParameters;
+    final invocationHttpParameters = this.invocationHttpParameters;
+    final oAuthParameters = this.oAuthParameters;
+    return {
+      if (apiKeyAuthParameters != null)
+        'ApiKeyAuthParameters': apiKeyAuthParameters,
+      if (basicAuthParameters != null)
+        'BasicAuthParameters': basicAuthParameters,
+      if (invocationHttpParameters != null)
+        'InvocationHttpParameters': invocationHttpParameters,
+      if (oAuthParameters != null) 'OAuthParameters': oAuthParameters,
+    };
+  }
+}
+
+/// Contains the Basic authorization parameters for the connection.
+class UpdateConnectionBasicAuthRequestParameters {
+  /// The password associated with the user name to use for Basic authorization.
+  final String? password;
+
+  /// The user name to use for Basic authorization.
+  final String? username;
+
+  UpdateConnectionBasicAuthRequestParameters({
+    this.password,
+    this.username,
+  });
+  Map<String, dynamic> toJson() {
+    final password = this.password;
+    final username = this.username;
+    return {
+      if (password != null) 'Password': password,
+      if (username != null) 'Username': username,
+    };
+  }
+}
+
+/// Contains the OAuth authorization parameters to use for the connection.
+class UpdateConnectionOAuthClientRequestParameters {
+  /// The client ID to use for OAuth authorization.
+  final String? clientID;
+
+  /// The client secret assciated with the client ID to use for OAuth
+  /// authorization.
+  final String? clientSecret;
+
+  UpdateConnectionOAuthClientRequestParameters({
+    this.clientID,
+    this.clientSecret,
+  });
+  Map<String, dynamic> toJson() {
+    final clientID = this.clientID;
+    final clientSecret = this.clientSecret;
+    return {
+      if (clientID != null) 'ClientID': clientID,
+      if (clientSecret != null) 'ClientSecret': clientSecret,
+    };
+  }
+}
+
+/// Contains the OAuth request parameters to use for the connection.
+class UpdateConnectionOAuthRequestParameters {
+  /// The URL to the authorization endpoint when OAuth is specified as the
+  /// authorization type.
+  final String? authorizationEndpoint;
+
+  /// A <code>UpdateConnectionOAuthClientRequestParameters</code> object that
+  /// contains the client parameters to use for the connection when OAuth is
+  /// specified as the authorization type.
+  final UpdateConnectionOAuthClientRequestParameters? clientParameters;
+
+  /// The method used to connect to the HTTP endpoint.
+  final ConnectionOAuthHttpMethod? httpMethod;
+
+  /// The additional HTTP parameters used for the OAuth authorization request.
+  final ConnectionHttpParameters? oAuthHttpParameters;
+
+  UpdateConnectionOAuthRequestParameters({
+    this.authorizationEndpoint,
+    this.clientParameters,
+    this.httpMethod,
+    this.oAuthHttpParameters,
+  });
+  Map<String, dynamic> toJson() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientParameters = this.clientParameters;
+    final httpMethod = this.httpMethod;
+    final oAuthHttpParameters = this.oAuthHttpParameters;
+    return {
+      if (authorizationEndpoint != null)
+        'AuthorizationEndpoint': authorizationEndpoint,
+      if (clientParameters != null) 'ClientParameters': clientParameters,
+      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (oAuthHttpParameters != null)
+        'OAuthHttpParameters': oAuthHttpParameters,
+    };
+  }
+}
+
+class UpdateConnectionResponse {
+  /// The ARN of the connection that was updated.
+  final String? connectionArn;
+
+  /// The state of the connection that was updated.
+  final ConnectionState? connectionState;
+
+  /// A time stamp for the time that the connection was created.
+  final DateTime? creationTime;
+
+  /// A time stamp for the time that the connection was last authorized.
+  final DateTime? lastAuthorizedTime;
+
+  /// A time stamp for the time that the connection was last modified.
+  final DateTime? lastModifiedTime;
+
+  UpdateConnectionResponse({
+    this.connectionArn,
+    this.connectionState,
+    this.creationTime,
+    this.lastAuthorizedTime,
+    this.lastModifiedTime,
+  });
+  factory UpdateConnectionResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateConnectionResponse(
+      connectionArn: json['ConnectionArn'] as String?,
+      connectionState:
+          (json['ConnectionState'] as String?)?.toConnectionState(),
+      creationTime: timeStampFromJson(json['CreationTime']),
+      lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
 }

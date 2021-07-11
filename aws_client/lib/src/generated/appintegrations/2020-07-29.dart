@@ -97,12 +97,6 @@ class AppIntegrations {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventBridgeBus',
-      eventBridgeBus,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventFilter, 'eventFilter');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -112,33 +106,17 @@ class AppIntegrations {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final $payload = <String, dynamic>{
       'EventBridgeBus': eventBridgeBus,
@@ -182,12 +160,6 @@ class AppIntegrations {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -218,12 +190,6 @@ class AppIntegrations {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -269,12 +235,6 @@ class AppIntegrations {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventIntegrationName',
-      eventIntegrationName,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -286,11 +246,6 @@ class AppIntegrations {
       nextToken,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -339,11 +294,6 @@ class AppIntegrations {
       1,
       1000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -381,12 +331,6 @@ class AppIntegrations {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -421,12 +365,6 @@ class AppIntegrations {
       resourceArn,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -466,12 +404,6 @@ class AppIntegrations {
       resourceArn,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -515,22 +447,11 @@ class AppIntegrations {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9\/\._\-]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,

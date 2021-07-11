@@ -55,10 +55,15 @@ class IoTWireless {
   /// create a new resource with the same token as a resource that already
   /// exists, an exception occurs. If you omit this value, AWS SDKs will
   /// automatically generate a unique client request.
+  ///
+  /// Parameter [tags] :
+  /// The tags to attach to the specified resource. Tags are metadata that you
+  /// can use to manage a resource.
   Future<AssociateAwsAccountWithPartnerAccountResponse>
       associateAwsAccountWithPartnerAccount({
     required SidewalkAccountInfo sidewalk,
     String? clientRequestToken,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(sidewalk, 'sidewalk');
     _s.validateStringLength(
@@ -67,14 +72,10 @@ class IoTWireless {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     final $payload = <String, dynamic>{
       'Sidewalk': sidewalk,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -239,8 +240,8 @@ class IoTWireless {
   /// The description of the new resource.
   ///
   /// Parameter [tags] :
-  /// The tags to attach to the new destination. Tags are metadata that can be
-  /// used to manage a resource.
+  /// The tags to attach to the new destination. Tags are metadata that you can
+  /// use to manage a resource.
   Future<CreateDestinationResponse> createDestination({
     required String expression,
     required ExpressionType expressionType,
@@ -267,12 +268,6 @@ class IoTWireless {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -286,11 +281,6 @@ class IoTWireless {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'description',
@@ -337,8 +327,8 @@ class IoTWireless {
   /// The name of the new resource.
   ///
   /// Parameter [tags] :
-  /// The tags to attach to the new device profile Tags are metadata that can be
-  /// used to manage a resource.
+  /// The tags to attach to the new device profile. Tags are metadata that you
+  /// can use to manage a resource.
   Future<CreateDeviceProfileResponse> createDeviceProfile({
     String? clientRequestToken,
     LoRaWANDeviceProfile? loRaWAN,
@@ -350,11 +340,6 @@ class IoTWireless {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'name',
@@ -398,8 +383,8 @@ class IoTWireless {
   /// The name of the new resource.
   ///
   /// Parameter [tags] :
-  /// The tags to attach to the new service profile. Tags are metadata that can
-  /// be used to manage a resource.
+  /// The tags to attach to the new service profile. Tags are metadata that you
+  /// can use to manage a resource.
   Future<CreateServiceProfileResponse> createServiceProfile({
     String? clientRequestToken,
     LoRaWANServiceProfile? loRaWAN,
@@ -411,11 +396,6 @@ class IoTWireless {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'name',
@@ -467,6 +447,10 @@ class IoTWireless {
   ///
   /// Parameter [name] :
   /// The name of the new resource.
+  ///
+  /// Parameter [tags] :
+  /// The tags to attach to the new wireless device. Tags are metadata that you
+  /// can use to manage a resource.
   Future<CreateWirelessDeviceResponse> createWirelessDevice({
     required String destinationName,
     required WirelessDeviceType type,
@@ -474,6 +458,7 @@ class IoTWireless {
     String? description,
     LoRaWANDevice? loRaWAN,
     String? name,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(destinationName, 'destinationName');
     _s.validateStringLength(
@@ -483,23 +468,12 @@ class IoTWireless {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'description',
@@ -520,6 +494,7 @@ class IoTWireless {
       if (description != null) 'Description': description,
       if (loRaWAN != null) 'LoRaWAN': loRaWAN,
       if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -555,8 +530,8 @@ class IoTWireless {
   /// The name of the new resource.
   ///
   /// Parameter [tags] :
-  /// The tags to attach to the new wireless gateway. Tags are metadata that can
-  /// be used to manage a resource.
+  /// The tags to attach to the new wireless gateway. Tags are metadata that you
+  /// can use to manage a resource.
   Future<CreateWirelessGatewayResponse> createWirelessGateway({
     required LoRaWANGateway loRaWAN,
     String? clientRequestToken,
@@ -570,11 +545,6 @@ class IoTWireless {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'description',
@@ -639,12 +609,6 @@ class IoTWireless {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'wirelessGatewayTaskDefinitionId',
-      wirelessGatewayTaskDefinitionId,
-      r'''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'WirelessGatewayTaskDefinitionId': wirelessGatewayTaskDefinitionId,
     };
@@ -680,6 +644,10 @@ class IoTWireless {
   /// Parameter [name] :
   /// The name of the new resource.
   ///
+  /// Parameter [tags] :
+  /// The tags to attach to the specified resource. Tags are metadata that you
+  /// can use to manage a resource.
+  ///
   /// Parameter [update] :
   /// Information about the gateways to update.
   Future<CreateWirelessGatewayTaskDefinitionResponse>
@@ -687,6 +655,7 @@ class IoTWireless {
     required bool autoCreateTasks,
     String? clientRequestToken,
     String? name,
+    List<Tag>? tags,
     UpdateWirelessGatewayTaskCreate? update,
   }) async {
     ArgumentError.checkNotNull(autoCreateTasks, 'autoCreateTasks');
@@ -695,11 +664,6 @@ class IoTWireless {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
     );
     _s.validateStringLength(
       'name',
@@ -711,6 +675,7 @@ class IoTWireless {
       'AutoCreateTasks': autoCreateTasks,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
       if (update != null) 'Update': update,
     };
     final response = await _protocol.send(
@@ -742,12 +707,6 @@ class IoTWireless {
       name,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-_]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -927,12 +886,6 @@ class IoTWireless {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1093,12 +1046,6 @@ class IoTWireless {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1136,6 +1083,25 @@ class IoTWireless {
       exceptionFnMap: _exceptionFns,
     );
     return GetDeviceProfileResponse.fromJson(response);
+  }
+
+  /// Returns current default log-levels, or log levels by resource types, could
+  /// be for wireless device log options or wireless gateway log options.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  Future<GetLogLevelsByResourceTypesResponse>
+      getLogLevelsByResourceTypes() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/log-levels',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetLogLevelsByResourceTypesResponse.fromJson(response);
   }
 
   /// Gets information about a partner account. If <code>PartnerAccountId</code>
@@ -1176,6 +1142,44 @@ class IoTWireless {
       exceptionFnMap: _exceptionFns,
     );
     return GetPartnerAccountResponse.fromJson(response);
+  }
+
+  /// Fetches the log-level override if any for a given resource-ID and
+  /// resource-type, coulde be a wireless device or a wireless gateway.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [resourceType] :
+  /// The type of the resource, currently support WirelessDevice and
+  /// WirelessGateway.
+  Future<GetResourceLogLevelResponse> getResourceLogLevel({
+    required String resourceIdentifier,
+    required String resourceType,
+  }) async {
+    ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
+    _s.validateStringLength(
+      'resourceIdentifier',
+      resourceIdentifier,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(resourceType, 'resourceType');
+    final $query = <String, List<String>>{
+      'resourceType': [resourceType],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/log-levels/${Uri.encodeComponent(resourceIdentifier)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetResourceLogLevelResponse.fromJson(response);
   }
 
   /// Gets the account-specific endpoint for Configuration and Update Server
@@ -1491,12 +1495,6 @@ class IoTWireless {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1692,7 +1690,7 @@ class IoTWireless {
   /// May throw [ThrottlingException].
   ///
   /// Parameter [resourceArn] :
-  /// The ARN of the resource for which to list tags.
+  /// The ARN of the resource for which you want to list tags.
   Future<ListTagsForResourceResponse> listTagsForResource({
     required String resourceArn,
   }) async {
@@ -1757,11 +1755,6 @@ class IoTWireless {
       destinationName,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[a-zA-Z0-9-_]+''',
     );
     _s.validateStringLength(
       'deviceProfileId',
@@ -1903,6 +1896,102 @@ class IoTWireless {
     return ListWirelessGatewaysResponse.fromJson(response);
   }
 
+  /// Sets the log-level override for a resource-ID and resource-type, could be
+  /// a wireless gateway or a wireless device.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [resourceType] :
+  /// The type of the resource, currently support WirelessDevice and
+  /// WirelessGateway.
+  Future<void> putResourceLogLevel({
+    required LogLevel logLevel,
+    required String resourceIdentifier,
+    required String resourceType,
+  }) async {
+    ArgumentError.checkNotNull(logLevel, 'logLevel');
+    ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
+    _s.validateStringLength(
+      'resourceIdentifier',
+      resourceIdentifier,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(resourceType, 'resourceType');
+    final $query = <String, List<String>>{
+      'resourceType': [resourceType],
+    };
+    final $payload = <String, dynamic>{
+      'LogLevel': logLevel.toValue(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/log-levels/${Uri.encodeComponent(resourceIdentifier)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Remove log-level overrides if any for all resources (both wireless devices
+  /// and wireless gateways).
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  Future<void> resetAllResourceLogLevels() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/log-levels',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Remove log-level override if any for a specific resource-ID and
+  /// resource-type, could be a wireless device or a wireless gateway.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [resourceType] :
+  /// The type of the resource, currently support WirelessDevice and
+  /// WirelessGateway.
+  Future<void> resetResourceLogLevel({
+    required String resourceIdentifier,
+    required String resourceType,
+  }) async {
+    ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
+    _s.validateStringLength(
+      'resourceIdentifier',
+      resourceIdentifier,
+      0,
+      256,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(resourceType, 'resourceType');
+    final $query = <String, List<String>>{
+      'resourceType': [resourceType],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/log-levels/${Uri.encodeComponent(resourceIdentifier)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Sends a decrypted application data frame to a device.
   ///
   /// May throw [ValidationException].
@@ -1918,8 +2007,8 @@ class IoTWireless {
   ///
   /// Parameter [transmitMode] :
   /// The transmit mode to use to send data to the wireless device. Can be:
-  /// <code>0</code> for UM (unacknowledge mode), <code>1</code> for AM
-  /// (acknowledge mode), or <code>2</code> for (TM) transparent mode.
+  /// <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM
+  /// (acknowledge mode).
   ///
   /// Parameter [wirelessMetadata] :
   /// Metadata about the message request.
@@ -1943,12 +2032,6 @@ class IoTWireless {
       payloadData,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'payloadData',
-      payloadData,
-      r'''^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(transmitMode, 'transmitMode');
@@ -1987,7 +2070,7 @@ class IoTWireless {
   ///
   /// Parameter [tags] :
   /// Adds to or modifies the tags of the given resource. Tags are metadata that
-  /// can be used to manage a resource.
+  /// you can use to manage a resource.
   Future<void> tagResource({
     required String resourceArn,
     required List<Tag> tags,
@@ -2122,12 +2205,6 @@ class IoTWireless {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9-_]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -2156,6 +2233,36 @@ class IoTWireless {
       payload: $payload,
       method: 'PATCH',
       requestUri: '/destinations/${Uri.encodeComponent(name)}',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Set default log level, or log levels by resource types, could be for
+  /// wireless device log options or wireless gateways log options. This is to
+  /// control the log messages that will be displayed in CloudWatch.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  Future<void> updateLogLevelsByResourceTypes({
+    LogLevel? defaultLogLevel,
+    List<WirelessDeviceLogOption>? wirelessDeviceLogOptions,
+    List<WirelessGatewayLogOption>? wirelessGatewayLogOptions,
+  }) async {
+    final $payload = <String, dynamic>{
+      if (defaultLogLevel != null) 'DefaultLogLevel': defaultLogLevel.toValue(),
+      if (wirelessDeviceLogOptions != null)
+        'WirelessDeviceLogOptions': wirelessDeviceLogOptions,
+      if (wirelessGatewayLogOptions != null)
+        'WirelessGatewayLogOptions': wirelessGatewayLogOptions,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/log-levels',
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -2254,11 +2361,6 @@ class IoTWireless {
       0,
       128,
     );
-    _s.validateStringPattern(
-      'destinationName',
-      destinationName,
-      r'''[a-zA-Z0-9-_]+''',
-    );
     _s.validateStringLength(
       'name',
       name,
@@ -2298,7 +2400,9 @@ class IoTWireless {
   Future<void> updateWirelessGateway({
     required String id,
     String? description,
+    List<List<String>>? joinEuiFilters,
     String? name,
+    List<String>? netIdFilters,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
     _s.validateStringLength(
@@ -2322,7 +2426,9 @@ class IoTWireless {
     );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
+      if (joinEuiFilters != null) 'JoinEuiFilters': joinEuiFilters,
       if (name != null) 'Name': name,
+      if (netIdFilters != null) 'NetIdFilters': netIdFilters,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -2398,15 +2504,20 @@ class AbpV1_1 {
 }
 
 class AssociateAwsAccountWithPartnerAccountResponse {
+  /// The Amazon Resource Name of the resource.
+  final String? arn;
+
   /// The Sidewalk account credentials.
   final SidewalkAccountInfo? sidewalk;
 
   AssociateAwsAccountWithPartnerAccountResponse({
+    this.arn,
     this.sidewalk,
   });
   factory AssociateAwsAccountWithPartnerAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateAwsAccountWithPartnerAccountResponse(
+      arn: json['Arn'] as String?,
       sidewalk: json['Sidewalk'] != null
           ? SidewalkAccountInfo.fromJson(
               json['Sidewalk'] as Map<String, dynamic>)
@@ -2443,6 +2554,88 @@ class AssociateWirelessGatewayWithThingResponse {
   factory AssociateWirelessGatewayWithThingResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateWirelessGatewayWithThingResponse();
+  }
+}
+
+/// Sidewalk device battery level.
+enum BatteryLevel {
+  normal,
+  low,
+  critical,
+}
+
+extension on BatteryLevel {
+  String toValue() {
+    switch (this) {
+      case BatteryLevel.normal:
+        return 'normal';
+      case BatteryLevel.low:
+        return 'low';
+      case BatteryLevel.critical:
+        return 'critical';
+    }
+  }
+}
+
+extension on String {
+  BatteryLevel toBatteryLevel() {
+    switch (this) {
+      case 'normal':
+        return BatteryLevel.normal;
+      case 'low':
+        return BatteryLevel.low;
+      case 'critical':
+        return BatteryLevel.critical;
+    }
+    throw Exception('$this is not known in enum BatteryLevel');
+  }
+}
+
+/// List of sidewalk certificates.
+class CertificateList {
+  /// The certificate chain algorithm provided by sidewalk.
+  final SigningAlg signingAlg;
+
+  /// The value of the chosen sidewalk certificate.
+  final String value;
+
+  CertificateList({
+    required this.signingAlg,
+    required this.value,
+  });
+  factory CertificateList.fromJson(Map<String, dynamic> json) {
+    return CertificateList(
+      signingAlg: (json['SigningAlg'] as String).toSigningAlg(),
+      value: json['Value'] as String,
+    );
+  }
+}
+
+enum ConnectionStatus {
+  connected,
+  disconnected,
+}
+
+extension on ConnectionStatus {
+  String toValue() {
+    switch (this) {
+      case ConnectionStatus.connected:
+        return 'Connected';
+      case ConnectionStatus.disconnected:
+        return 'Disconnected';
+    }
+  }
+}
+
+extension on String {
+  ConnectionStatus toConnectionStatus() {
+    switch (this) {
+      case 'Connected':
+        return ConnectionStatus.connected;
+      case 'Disconnected':
+        return ConnectionStatus.disconnected;
+    }
+    throw Exception('$this is not known in enum ConnectionStatus');
   }
 }
 
@@ -2542,15 +2735,20 @@ class CreateWirelessGatewayResponse {
 }
 
 class CreateWirelessGatewayTaskDefinitionResponse {
+  /// The Amazon Resource Name of the resource.
+  final String? arn;
+
   /// The ID of the new wireless gateway task definition.
   final String? id;
 
   CreateWirelessGatewayTaskDefinitionResponse({
+    this.arn,
     this.id,
   });
   factory CreateWirelessGatewayTaskDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateWirelessGatewayTaskDefinitionResponse(
+      arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
   }
@@ -2692,6 +2890,45 @@ class DeviceProfile {
   }
 }
 
+/// Device state defines the device status of sidewalk device.
+enum DeviceState {
+  provisioned,
+  registeredNotSeen,
+  registeredReachable,
+  registeredUnreachable,
+}
+
+extension on DeviceState {
+  String toValue() {
+    switch (this) {
+      case DeviceState.provisioned:
+        return 'Provisioned';
+      case DeviceState.registeredNotSeen:
+        return 'RegisteredNotSeen';
+      case DeviceState.registeredReachable:
+        return 'RegisteredReachable';
+      case DeviceState.registeredUnreachable:
+        return 'RegisteredUnreachable';
+    }
+  }
+}
+
+extension on String {
+  DeviceState toDeviceState() {
+    switch (this) {
+      case 'Provisioned':
+        return DeviceState.provisioned;
+      case 'RegisteredNotSeen':
+        return DeviceState.registeredNotSeen;
+      case 'RegisteredReachable':
+        return DeviceState.registeredReachable;
+      case 'RegisteredUnreachable':
+        return DeviceState.registeredUnreachable;
+    }
+    throw Exception('$this is not known in enum DeviceState');
+  }
+}
+
 class DisassociateAwsAccountFromPartnerAccountResponse {
   DisassociateAwsAccountFromPartnerAccountResponse();
   factory DisassociateAwsAccountFromPartnerAccountResponse.fromJson(
@@ -2724,8 +2961,53 @@ class DisassociateWirelessGatewayFromThingResponse {
   }
 }
 
+/// Sidewalk device status notification.
+enum Event {
+  discovered,
+  lost,
+  ack,
+  nack,
+  passthrough,
+}
+
+extension on Event {
+  String toValue() {
+    switch (this) {
+      case Event.discovered:
+        return 'discovered';
+      case Event.lost:
+        return 'lost';
+      case Event.ack:
+        return 'ack';
+      case Event.nack:
+        return 'nack';
+      case Event.passthrough:
+        return 'passthrough';
+    }
+  }
+}
+
+extension on String {
+  Event toEvent() {
+    switch (this) {
+      case 'discovered':
+        return Event.discovered;
+      case 'lost':
+        return Event.lost;
+      case 'ack':
+        return Event.ack;
+      case 'nack':
+        return Event.nack;
+      case 'passthrough':
+        return Event.passthrough;
+    }
+    throw Exception('$this is not known in enum Event');
+  }
+}
+
 enum ExpressionType {
   ruleName,
+  mqttTopic,
 }
 
 extension on ExpressionType {
@@ -2733,6 +3015,8 @@ extension on ExpressionType {
     switch (this) {
       case ExpressionType.ruleName:
         return 'RuleName';
+      case ExpressionType.mqttTopic:
+        return 'MqttTopic';
     }
   }
 }
@@ -2742,6 +3026,8 @@ extension on String {
     switch (this) {
       case 'RuleName':
         return ExpressionType.ruleName;
+      case 'MqttTopic':
+        return ExpressionType.mqttTopic;
     }
     throw Exception('$this is not known in enum ExpressionType');
   }
@@ -2818,6 +3104,34 @@ class GetDeviceProfileResponse {
   }
 }
 
+class GetLogLevelsByResourceTypesResponse {
+  final LogLevel? defaultLogLevel;
+  final List<WirelessDeviceLogOption>? wirelessDeviceLogOptions;
+  final List<WirelessGatewayLogOption>? wirelessGatewayLogOptions;
+
+  GetLogLevelsByResourceTypesResponse({
+    this.defaultLogLevel,
+    this.wirelessDeviceLogOptions,
+    this.wirelessGatewayLogOptions,
+  });
+  factory GetLogLevelsByResourceTypesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetLogLevelsByResourceTypesResponse(
+      defaultLogLevel: (json['DefaultLogLevel'] as String?)?.toLogLevel(),
+      wirelessDeviceLogOptions: (json['WirelessDeviceLogOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              WirelessDeviceLogOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      wirelessGatewayLogOptions: (json['WirelessGatewayLogOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              WirelessGatewayLogOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 class GetPartnerAccountResponse {
   /// Whether the partner account is linked to the AWS account.
   final bool? accountLinked;
@@ -2836,6 +3150,19 @@ class GetPartnerAccountResponse {
           ? SidewalkAccountInfoWithFingerprint.fromJson(
               json['Sidewalk'] as Map<String, dynamic>)
           : null,
+    );
+  }
+}
+
+class GetResourceLogLevelResponse {
+  final LogLevel? logLevel;
+
+  GetResourceLogLevelResponse({
+    this.logLevel,
+  });
+  factory GetResourceLogLevelResponse.fromJson(Map<String, dynamic> json) {
+    return GetResourceLogLevelResponse(
+      logLevel: (json['LogLevel'] as String?)?.toLogLevel(),
     );
   }
 }
@@ -2916,6 +3243,9 @@ class GetWirelessDeviceResponse {
   /// The name of the resource.
   final String? name;
 
+  /// Sidewalk device object.
+  final SidewalkDevice? sidewalk;
+
   /// The ARN of the thing associated with the wireless device.
   final String? thingArn;
 
@@ -2933,6 +3263,7 @@ class GetWirelessDeviceResponse {
     this.id,
     this.loRaWAN,
     this.name,
+    this.sidewalk,
     this.thingArn,
     this.thingName,
     this.type,
@@ -2947,6 +3278,9 @@ class GetWirelessDeviceResponse {
           ? LoRaWANDevice.fromJson(json['LoRaWAN'] as Map<String, dynamic>)
           : null,
       name: json['Name'] as String?,
+      sidewalk: json['Sidewalk'] != null
+          ? SidewalkDevice.fromJson(json['Sidewalk'] as Map<String, dynamic>)
+          : null,
       thingArn: json['ThingArn'] as String?,
       thingName: json['ThingName'] as String?,
       type: (json['Type'] as String?)?.toWirelessDeviceType(),
@@ -2961,12 +3295,16 @@ class GetWirelessDeviceStatisticsResponse {
   /// Information about the wireless device's operations.
   final LoRaWANDeviceMetadata? loRaWAN;
 
+  /// MetaData for Sidewalk device.
+  final SidewalkDeviceMetadata? sidewalk;
+
   /// The ID of the wireless device.
   final String? wirelessDeviceId;
 
   GetWirelessDeviceStatisticsResponse({
     this.lastUplinkReceivedAt,
     this.loRaWAN,
+    this.sidewalk,
     this.wirelessDeviceId,
   });
   factory GetWirelessDeviceStatisticsResponse.fromJson(
@@ -2977,6 +3315,10 @@ class GetWirelessDeviceStatisticsResponse {
           ? LoRaWANDeviceMetadata.fromJson(
               json['LoRaWAN'] as Map<String, dynamic>)
           : null,
+      sidewalk: json['Sidewalk'] != null
+          ? SidewalkDeviceMetadata.fromJson(
+              json['Sidewalk'] as Map<String, dynamic>)
+          : null,
       wirelessDeviceId: json['WirelessDeviceId'] as String?,
     );
   }
@@ -2986,13 +3328,20 @@ class GetWirelessGatewayCertificateResponse {
   /// The ID of the certificate associated with the wireless gateway.
   final String? iotCertificateId;
 
+  /// The ID of the certificate that is associated with the wireless gateway and
+  /// used for the LoRaWANNetworkServer endpoint.
+  final String? loRaWANNetworkServerCertificateId;
+
   GetWirelessGatewayCertificateResponse({
     this.iotCertificateId,
+    this.loRaWANNetworkServerCertificateId,
   });
   factory GetWirelessGatewayCertificateResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayCertificateResponse(
       iotCertificateId: json['IotCertificateId'] as String?,
+      loRaWANNetworkServerCertificateId:
+          json['LoRaWANNetworkServerCertificateId'] as String?,
     );
   }
 }
@@ -3063,6 +3412,9 @@ class GetWirelessGatewayResponse {
 }
 
 class GetWirelessGatewayStatisticsResponse {
+  /// The connection status of the wireless gateway.
+  final ConnectionStatus? connectionStatus;
+
   /// The date and time when the most recent uplink was received.
   final String? lastUplinkReceivedAt;
 
@@ -3070,12 +3422,15 @@ class GetWirelessGatewayStatisticsResponse {
   final String? wirelessGatewayId;
 
   GetWirelessGatewayStatisticsResponse({
+    this.connectionStatus,
     this.lastUplinkReceivedAt,
     this.wirelessGatewayId,
   });
   factory GetWirelessGatewayStatisticsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayStatisticsResponse(
+      connectionStatus:
+          (json['ConnectionStatus'] as String?)?.toConnectionStatus(),
       lastUplinkReceivedAt: json['LastUplinkReceivedAt'] as String?,
       wirelessGatewayId: json['WirelessGatewayId'] as String?,
     );
@@ -3083,6 +3438,9 @@ class GetWirelessGatewayStatisticsResponse {
 }
 
 class GetWirelessGatewayTaskDefinitionResponse {
+  /// The Amazon Resource Name of the resource.
+  final String? arn;
+
   /// Whether to automatically create tasks using this task definition for all
   /// gateways with the specified current version. If <code>false</code>, the task
   /// must me created by calling <code>CreateWirelessGatewayTask</code>.
@@ -3095,6 +3453,7 @@ class GetWirelessGatewayTaskDefinitionResponse {
   final UpdateWirelessGatewayTaskCreate? update;
 
   GetWirelessGatewayTaskDefinitionResponse({
+    this.arn,
     this.autoCreateTasks,
     this.name,
     this.update,
@@ -3102,6 +3461,7 @@ class GetWirelessGatewayTaskDefinitionResponse {
   factory GetWirelessGatewayTaskDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayTaskDefinitionResponse(
+      arn: json['Arn'] as String?,
       autoCreateTasks: json['AutoCreateTasks'] as bool?,
       name: json['Name'] as String?,
       update: json['Update'] != null
@@ -3241,8 +3601,8 @@ class ListServiceProfilesResponse {
 }
 
 class ListTagsForResourceResponse {
-  /// The tags attached to the specified resource. Tags are metadata that can be
-  /// used to manage a resource
+  /// The tags to attach to the specified resource. Tags are metadata that you can
+  /// use to manage a resource.
   final List<Tag>? tags;
 
   ListTagsForResourceResponse({
@@ -3604,27 +3964,52 @@ class LoRaWANDeviceProfile {
 class LoRaWANGateway {
   /// The gateway's EUI value.
   final String? gatewayEui;
+  final List<List<String>>? joinEuiFilters;
+  final List<String>? netIdFilters;
 
   /// The frequency band (RFRegion) value.
   final String? rfRegion;
+  final List<int>? subBands;
 
   LoRaWANGateway({
     this.gatewayEui,
+    this.joinEuiFilters,
+    this.netIdFilters,
     this.rfRegion,
+    this.subBands,
   });
   factory LoRaWANGateway.fromJson(Map<String, dynamic> json) {
     return LoRaWANGateway(
       gatewayEui: json['GatewayEui'] as String?,
+      joinEuiFilters: (json['JoinEuiFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              (e as List).whereNotNull().map((e) => e as String).toList())
+          .toList(),
+      netIdFilters: (json['NetIdFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       rfRegion: json['RfRegion'] as String?,
+      subBands: (json['SubBands'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as int)
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final gatewayEui = this.gatewayEui;
+    final joinEuiFilters = this.joinEuiFilters;
+    final netIdFilters = this.netIdFilters;
     final rfRegion = this.rfRegion;
+    final subBands = this.subBands;
     return {
       if (gatewayEui != null) 'GatewayEui': gatewayEui,
+      if (joinEuiFilters != null) 'JoinEuiFilters': joinEuiFilters,
+      if (netIdFilters != null) 'NetIdFilters': netIdFilters,
       if (rfRegion != null) 'RfRegion': rfRegion,
+      if (subBands != null) 'SubBands': subBands,
     };
   }
 }
@@ -3957,6 +4342,79 @@ class LoRaWANUpdateGatewayTaskEntry {
   }
 }
 
+/// The log level for a log message.
+enum LogLevel {
+  info,
+  error,
+  disabled,
+}
+
+extension on LogLevel {
+  String toValue() {
+    switch (this) {
+      case LogLevel.info:
+        return 'INFO';
+      case LogLevel.error:
+        return 'ERROR';
+      case LogLevel.disabled:
+        return 'DISABLED';
+    }
+  }
+}
+
+extension on String {
+  LogLevel toLogLevel() {
+    switch (this) {
+      case 'INFO':
+        return LogLevel.info;
+      case 'ERROR':
+        return LogLevel.error;
+      case 'DISABLED':
+        return LogLevel.disabled;
+    }
+    throw Exception('$this is not known in enum LogLevel');
+  }
+}
+
+/// Sidewalk device message type.
+enum MessageType {
+  customCommandIdNotify,
+  customCommandIdGet,
+  customCommandIdSet,
+  customCommandIdResp,
+}
+
+extension on MessageType {
+  String toValue() {
+    switch (this) {
+      case MessageType.customCommandIdNotify:
+        return 'CUSTOM_COMMAND_ID_NOTIFY';
+      case MessageType.customCommandIdGet:
+        return 'CUSTOM_COMMAND_ID_GET';
+      case MessageType.customCommandIdSet:
+        return 'CUSTOM_COMMAND_ID_SET';
+      case MessageType.customCommandIdResp:
+        return 'CUSTOM_COMMAND_ID_RESP';
+    }
+  }
+}
+
+extension on String {
+  MessageType toMessageType() {
+    switch (this) {
+      case 'CUSTOM_COMMAND_ID_NOTIFY':
+        return MessageType.customCommandIdNotify;
+      case 'CUSTOM_COMMAND_ID_GET':
+        return MessageType.customCommandIdGet;
+      case 'CUSTOM_COMMAND_ID_SET':
+        return MessageType.customCommandIdSet;
+      case 'CUSTOM_COMMAND_ID_RESP':
+        return MessageType.customCommandIdResp;
+    }
+    throw Exception('$this is not known in enum MessageType');
+  }
+}
+
 /// OTAA device object for v1.0.x
 class OtaaV1_0_x {
   /// The AppEUI value.
@@ -4042,6 +4500,27 @@ extension on String {
         return PartnerType.sidewalk;
     }
     throw Exception('$this is not known in enum PartnerType');
+  }
+}
+
+class PutResourceLogLevelResponse {
+  PutResourceLogLevelResponse();
+  factory PutResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
+    return PutResourceLogLevelResponse();
+  }
+}
+
+class ResetAllResourceLogLevelsResponse {
+  ResetAllResourceLogLevelsResponse();
+  factory ResetAllResourceLogLevelsResponse.fromJson(Map<String, dynamic> _) {
+    return ResetAllResourceLogLevelsResponse();
+  }
+}
+
+class ResetResourceLogLevelResponse {
+  ResetResourceLogLevelResponse();
+  factory ResetResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
+    return ResetResourceLogLevelResponse();
   }
 }
 
@@ -4191,18 +4670,81 @@ class SidewalkAccountInfoWithFingerprint {
   /// The Sidewalk Amazon ID.
   final String? amazonId;
 
-  /// Fingerprint for Sidewalk application server private key.
+  /// The Amazon Resource Name of the resource.
+  final String? arn;
+
+  /// The fingerprint of the Sidewalk application server private key.
   final String? fingerprint;
 
   SidewalkAccountInfoWithFingerprint({
     this.amazonId,
+    this.arn,
     this.fingerprint,
   });
   factory SidewalkAccountInfoWithFingerprint.fromJson(
       Map<String, dynamic> json) {
     return SidewalkAccountInfoWithFingerprint(
       amazonId: json['AmazonId'] as String?,
+      arn: json['Arn'] as String?,
       fingerprint: json['Fingerprint'] as String?,
+    );
+  }
+}
+
+/// Sidewalk device object.
+class SidewalkDevice {
+  /// The sidewalk device certificates for Ed25519 and P256r1.
+  final List<CertificateList>? deviceCertificates;
+
+  /// The sidewalk device identification.
+  final String? sidewalkId;
+
+  /// The Sidewalk manufacturing series number.
+  final String? sidewalkManufacturingSn;
+
+  SidewalkDevice({
+    this.deviceCertificates,
+    this.sidewalkId,
+    this.sidewalkManufacturingSn,
+  });
+  factory SidewalkDevice.fromJson(Map<String, dynamic> json) {
+    return SidewalkDevice(
+      deviceCertificates: (json['DeviceCertificates'] as List?)
+          ?.whereNotNull()
+          .map((e) => CertificateList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sidewalkId: json['SidewalkId'] as String?,
+      sidewalkManufacturingSn: json['SidewalkManufacturingSn'] as String?,
+    );
+  }
+}
+
+/// MetaData for Sidewalk device.
+class SidewalkDeviceMetadata {
+  /// Sidewalk device battery level.
+  final BatteryLevel? batteryLevel;
+
+  /// Device state defines the device status of sidewalk device.
+  final DeviceState? deviceState;
+
+  /// Sidewalk device status notification.
+  final Event? event;
+
+  /// The RSSI value.
+  final int? rssi;
+
+  SidewalkDeviceMetadata({
+    this.batteryLevel,
+    this.deviceState,
+    this.event,
+    this.rssi,
+  });
+  factory SidewalkDeviceMetadata.fromJson(Map<String, dynamic> json) {
+    return SidewalkDeviceMetadata(
+      batteryLevel: (json['BatteryLevel'] as String?)?.toBatteryLevel(),
+      deviceState: (json['DeviceState'] as String?)?.toDeviceState(),
+      event: (json['Event'] as String?)?.toEvent(),
+      rssi: json['Rssi'] as int?,
     );
   }
 }
@@ -4212,27 +4754,50 @@ class SidewalkListDevice {
   /// The Sidewalk Amazon ID.
   final String? amazonId;
 
+  /// The sidewalk device certificates for Ed25519 and P256r1.
+  final List<CertificateList>? deviceCertificates;
+
+  /// The sidewalk device identification.
+  final String? sidewalkId;
+
+  /// The Sidewalk manufacturing series number.
+  final String? sidewalkManufacturingSn;
+
   SidewalkListDevice({
     this.amazonId,
+    this.deviceCertificates,
+    this.sidewalkId,
+    this.sidewalkManufacturingSn,
   });
   factory SidewalkListDevice.fromJson(Map<String, dynamic> json) {
     return SidewalkListDevice(
       amazonId: json['AmazonId'] as String?,
+      deviceCertificates: (json['DeviceCertificates'] as List?)
+          ?.whereNotNull()
+          .map((e) => CertificateList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sidewalkId: json['SidewalkId'] as String?,
+      sidewalkManufacturingSn: json['SidewalkManufacturingSn'] as String?,
     );
   }
 }
 
 /// Information about a Sidewalk router.
 class SidewalkSendDataToDevice {
+  final MessageType? messageType;
+
   /// The sequence number.
   final int? seq;
 
   SidewalkSendDataToDevice({
+    this.messageType,
     this.seq,
   });
   Map<String, dynamic> toJson() {
+    final messageType = this.messageType;
     final seq = this.seq;
     return {
+      if (messageType != null) 'MessageType': messageType.toValue(),
       if (seq != null) 'Seq': seq,
     };
   }
@@ -4252,6 +4817,35 @@ class SidewalkUpdateAccount {
       if (appServerPrivateKey != null)
         'AppServerPrivateKey': appServerPrivateKey,
     };
+  }
+}
+
+/// The certificate chain algorithm provided by sidewalk.
+enum SigningAlg {
+  ed25519,
+  p256r1,
+}
+
+extension on SigningAlg {
+  String toValue() {
+    switch (this) {
+      case SigningAlg.ed25519:
+        return 'Ed25519';
+      case SigningAlg.p256r1:
+        return 'P256r1';
+    }
+  }
+}
+
+extension on String {
+  SigningAlg toSigningAlg() {
+    switch (this) {
+      case 'Ed25519':
+        return SigningAlg.ed25519;
+      case 'P256r1':
+        return SigningAlg.p256r1;
+    }
+    throw Exception('$this is not known in enum SigningAlg');
   }
 }
 
@@ -4319,6 +4913,14 @@ class UpdateDestinationResponse {
   }
 }
 
+class UpdateLogLevelsByResourceTypesResponse {
+  UpdateLogLevelsByResourceTypesResponse();
+  factory UpdateLogLevelsByResourceTypesResponse.fromJson(
+      Map<String, dynamic> _) {
+    return UpdateLogLevelsByResourceTypesResponse();
+  }
+}
+
 class UpdatePartnerAccountResponse {
   UpdatePartnerAccountResponse();
   factory UpdatePartnerAccountResponse.fromJson(Map<String, dynamic> _) {
@@ -4381,6 +4983,9 @@ class UpdateWirelessGatewayTaskCreate {
 
 /// UpdateWirelessGatewayTaskEntry object.
 class UpdateWirelessGatewayTaskEntry {
+  /// The Amazon Resource Name of the resource.
+  final String? arn;
+
   /// The ID of the new wireless gateway task entry.
   final String? id;
 
@@ -4388,17 +4993,94 @@ class UpdateWirelessGatewayTaskEntry {
   final LoRaWANUpdateGatewayTaskEntry? loRaWAN;
 
   UpdateWirelessGatewayTaskEntry({
+    this.arn,
     this.id,
     this.loRaWAN,
   });
   factory UpdateWirelessGatewayTaskEntry.fromJson(Map<String, dynamic> json) {
     return UpdateWirelessGatewayTaskEntry(
+      arn: json['Arn'] as String?,
       id: json['Id'] as String?,
       loRaWAN: json['LoRaWAN'] != null
           ? LoRaWANUpdateGatewayTaskEntry.fromJson(
               json['LoRaWAN'] as Map<String, dynamic>)
           : null,
     );
+  }
+}
+
+/// The event for a log message, if the log message is tied to a wireless
+/// device.
+enum WirelessDeviceEvent {
+  join,
+  rejoin,
+  uplinkData,
+  downlinkData,
+  registration,
+}
+
+extension on WirelessDeviceEvent {
+  String toValue() {
+    switch (this) {
+      case WirelessDeviceEvent.join:
+        return 'Join';
+      case WirelessDeviceEvent.rejoin:
+        return 'Rejoin';
+      case WirelessDeviceEvent.uplinkData:
+        return 'Uplink_Data';
+      case WirelessDeviceEvent.downlinkData:
+        return 'Downlink_Data';
+      case WirelessDeviceEvent.registration:
+        return 'Registration';
+    }
+  }
+}
+
+extension on String {
+  WirelessDeviceEvent toWirelessDeviceEvent() {
+    switch (this) {
+      case 'Join':
+        return WirelessDeviceEvent.join;
+      case 'Rejoin':
+        return WirelessDeviceEvent.rejoin;
+      case 'Uplink_Data':
+        return WirelessDeviceEvent.uplinkData;
+      case 'Downlink_Data':
+        return WirelessDeviceEvent.downlinkData;
+      case 'Registration':
+        return WirelessDeviceEvent.registration;
+    }
+    throw Exception('$this is not known in enum WirelessDeviceEvent');
+  }
+}
+
+/// The log option for a wireless device event. Can be used to set log level for
+/// a specific wireless device event. For a LoRaWAN device, the possible events
+/// for a log messsage are: Join, Rejoin, Downlink_Data, Uplink_Data. For a
+/// Sidewalk device, the possible events for a log message are: Registration,
+/// Downlink_Data, Uplink_Data.
+class WirelessDeviceEventLogOption {
+  final WirelessDeviceEvent event;
+  final LogLevel logLevel;
+
+  WirelessDeviceEventLogOption({
+    required this.event,
+    required this.logLevel,
+  });
+  factory WirelessDeviceEventLogOption.fromJson(Map<String, dynamic> json) {
+    return WirelessDeviceEventLogOption(
+      event: (json['Event'] as String).toWirelessDeviceEvent(),
+      logLevel: (json['LogLevel'] as String).toLogLevel(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final logLevel = this.logLevel;
+    return {
+      'Event': event.toValue(),
+      'LogLevel': logLevel.toValue(),
+    };
   }
 }
 
@@ -4432,6 +5114,44 @@ extension on String {
         return WirelessDeviceIdType.thingName;
     }
     throw Exception('$this is not known in enum WirelessDeviceIdType');
+  }
+}
+
+/// The log option for wireless devices. Can be used to set log level for a
+/// specific type of wireless device.
+class WirelessDeviceLogOption {
+  final LogLevel logLevel;
+
+  /// The wireless device type.
+  final WirelessDeviceType type;
+  final List<WirelessDeviceEventLogOption>? events;
+
+  WirelessDeviceLogOption({
+    required this.logLevel,
+    required this.type,
+    this.events,
+  });
+  factory WirelessDeviceLogOption.fromJson(Map<String, dynamic> json) {
+    return WirelessDeviceLogOption(
+      logLevel: (json['LogLevel'] as String).toLogLevel(),
+      type: (json['Type'] as String).toWirelessDeviceType(),
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              WirelessDeviceEventLogOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    final type = this.type;
+    final events = this.events;
+    return {
+      'LogLevel': logLevel.toValue(),
+      'Type': type.toValue(),
+      if (events != null) 'Events': events,
+    };
   }
 }
 
@@ -4518,6 +5238,64 @@ extension on String {
   }
 }
 
+/// The event for a log message, if the log message is tied to a wireless
+/// gateway.
+enum WirelessGatewayEvent {
+  cupsRequest,
+  certificate,
+}
+
+extension on WirelessGatewayEvent {
+  String toValue() {
+    switch (this) {
+      case WirelessGatewayEvent.cupsRequest:
+        return 'CUPS_Request';
+      case WirelessGatewayEvent.certificate:
+        return 'Certificate';
+    }
+  }
+}
+
+extension on String {
+  WirelessGatewayEvent toWirelessGatewayEvent() {
+    switch (this) {
+      case 'CUPS_Request':
+        return WirelessGatewayEvent.cupsRequest;
+      case 'Certificate':
+        return WirelessGatewayEvent.certificate;
+    }
+    throw Exception('$this is not known in enum WirelessGatewayEvent');
+  }
+}
+
+/// The log option for a wireless gateway event. Can be used to set log level
+/// for a specific wireless gateway event. For a LoRaWAN gateway, the possible
+/// events for a log message are: CUPS_Request, Certificate.
+class WirelessGatewayEventLogOption {
+  final WirelessGatewayEvent event;
+  final LogLevel logLevel;
+
+  WirelessGatewayEventLogOption({
+    required this.event,
+    required this.logLevel,
+  });
+  factory WirelessGatewayEventLogOption.fromJson(Map<String, dynamic> json) {
+    return WirelessGatewayEventLogOption(
+      event: (json['Event'] as String).toWirelessGatewayEvent(),
+      logLevel: (json['LogLevel'] as String).toLogLevel(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final logLevel = this.logLevel;
+    return {
+      'Event': event.toValue(),
+      'LogLevel': logLevel.toValue(),
+    };
+  }
+}
+
 enum WirelessGatewayIdType {
   gatewayEui,
   wirelessGatewayId,
@@ -4548,6 +5326,42 @@ extension on String {
         return WirelessGatewayIdType.thingName;
     }
     throw Exception('$this is not known in enum WirelessGatewayIdType');
+  }
+}
+
+/// The log option for wireless gateways. Can be used to set log level for a
+/// specific type of wireless gateway.
+class WirelessGatewayLogOption {
+  final LogLevel logLevel;
+  final WirelessGatewayType type;
+  final List<WirelessGatewayEventLogOption>? events;
+
+  WirelessGatewayLogOption({
+    required this.logLevel,
+    required this.type,
+    this.events,
+  });
+  factory WirelessGatewayLogOption.fromJson(Map<String, dynamic> json) {
+    return WirelessGatewayLogOption(
+      logLevel: (json['LogLevel'] as String).toLogLevel(),
+      type: (json['Type'] as String).toWirelessGatewayType(),
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              WirelessGatewayEventLogOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    final type = this.type;
+    final events = this.events;
+    return {
+      'LogLevel': logLevel.toValue(),
+      'Type': type.toValue(),
+      if (events != null) 'Events': events,
+    };
   }
 }
 
@@ -4690,6 +5504,30 @@ extension on String {
         return WirelessGatewayTaskStatus.failed;
     }
     throw Exception('$this is not known in enum WirelessGatewayTaskStatus');
+  }
+}
+
+/// The wireless gateway type.
+enum WirelessGatewayType {
+  loRaWAN,
+}
+
+extension on WirelessGatewayType {
+  String toValue() {
+    switch (this) {
+      case WirelessGatewayType.loRaWAN:
+        return 'LoRaWAN';
+    }
+  }
+}
+
+extension on String {
+  WirelessGatewayType toWirelessGatewayType() {
+    switch (this) {
+      case 'LoRaWAN':
+        return WirelessGatewayType.loRaWAN;
+    }
+    throw Exception('$this is not known in enum WirelessGatewayType');
   }
 }
 

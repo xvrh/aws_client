@@ -22,9 +22,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// This is documentation for <b>AWS CloudHSM Classic</b>. For more information,
 /// see <a href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM
 /// Classic FAQs</a>, the <a
-/// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
+/// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
 /// Classic User Guide</a>, and the <a
-/// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+/// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
 /// CloudHSM Classic API Reference</a>.
 class CloudHsm {
   final _s.JsonProtocol _protocol;
@@ -47,16 +47,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Adds or overwrites one or more tags for the specified AWS CloudHSM
@@ -79,12 +79,6 @@ class CloudHsm {
     required List<Tag> tagList,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''[\w :+=./\\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagList, 'tagList');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -109,16 +103,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Creates a high-availability partition group. A high-availability partition
@@ -134,12 +128,6 @@ class CloudHsm {
     required String label,
   }) async {
     ArgumentError.checkNotNull(label, 'label');
-    _s.validateStringPattern(
-      'label',
-      label,
-      r'''[a-zA-Z0-9_.-]{1,64}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.CreateHapg'
@@ -162,16 +150,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Creates an uninitialized HSM instance.
@@ -230,47 +218,9 @@ class CloudHsm {
     String? syslogIp,
   }) async {
     ArgumentError.checkNotNull(iamRoleArn, 'iamRoleArn');
-    _s.validateStringPattern(
-      'iamRoleArn',
-      iamRoleArn,
-      r'''arn:aws(-iso)?:iam::[0-9]{12}:role/[a-zA-Z0-9_\+=,\.\-@]{1,64}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sshKey, 'sshKey');
-    _s.validateStringPattern(
-      'sshKey',
-      sshKey,
-      r'''[a-zA-Z0-9+/= ._:\\@-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetId, 'subnetId');
-    _s.validateStringPattern(
-      'subnetId',
-      subnetId,
-      r'''subnet-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subscriptionType, 'subscriptionType');
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''[a-zA-Z0-9]{1,64}''',
-    );
-    _s.validateStringPattern(
-      'eniIp',
-      eniIp,
-      r'''\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}''',
-    );
-    _s.validateStringPattern(
-      'externalId',
-      externalId,
-      r'''[\w :+=./-]*''',
-    );
-    _s.validateStringPattern(
-      'syslogIp',
-      syslogIp,
-      r'''\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.CreateHsm'
@@ -300,16 +250,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Creates an HSM client.
@@ -336,17 +286,6 @@ class CloudHsm {
       2400,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificate',
-      certificate,
-      r'''[\w :+=./\n-]*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'label',
-      label,
-      r'''[a-zA-Z0-9_.-]{2,64}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.CreateLunaClient'
@@ -370,16 +309,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Deletes a high-availability partition group.
@@ -394,12 +333,6 @@ class CloudHsm {
     required String hapgArn,
   }) async {
     ArgumentError.checkNotNull(hapgArn, 'hapgArn');
-    _s.validateStringPattern(
-      'hapgArn',
-      hapgArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hapg-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DeleteHapg'
@@ -422,16 +355,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Deletes an HSM. After completion, this operation cannot be undone and your
@@ -447,12 +380,6 @@ class CloudHsm {
     required String hsmArn,
   }) async {
     ArgumentError.checkNotNull(hsmArn, 'hsmArn');
-    _s.validateStringPattern(
-      'hsmArn',
-      hsmArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hsm-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DeleteHsm'
@@ -475,16 +402,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Deletes a client.
@@ -499,12 +426,6 @@ class CloudHsm {
     required String clientArn,
   }) async {
     ArgumentError.checkNotNull(clientArn, 'clientArn');
-    _s.validateStringPattern(
-      'clientArn',
-      clientArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:client-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DeleteLunaClient'
@@ -527,16 +448,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Retrieves information about a high-availability partition group.
@@ -551,12 +472,6 @@ class CloudHsm {
     required String hapgArn,
   }) async {
     ArgumentError.checkNotNull(hapgArn, 'hapgArn');
-    _s.validateStringPattern(
-      'hapgArn',
-      hapgArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hapg-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DescribeHapg'
@@ -579,16 +494,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Retrieves information about an HSM. You can identify the HSM by its ARN or
@@ -609,16 +524,6 @@ class CloudHsm {
     String? hsmArn,
     String? hsmSerialNumber,
   }) async {
-    _s.validateStringPattern(
-      'hsmArn',
-      hsmArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hsm-[0-9a-f]{8}''',
-    );
-    _s.validateStringPattern(
-      'hsmSerialNumber',
-      hsmSerialNumber,
-      r'''\d{1,16}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DescribeHsm'
@@ -642,16 +547,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Retrieves information about an HSM client.
@@ -669,16 +574,6 @@ class CloudHsm {
     String? certificateFingerprint,
     String? clientArn,
   }) async {
-    _s.validateStringPattern(
-      'certificateFingerprint',
-      certificateFingerprint,
-      r'''([0-9a-fA-F][0-9a-fA-F]:){15}[0-9a-fA-F][0-9a-fA-F]''',
-    );
-    _s.validateStringPattern(
-      'clientArn',
-      clientArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:client-[0-9a-f]{8}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.DescribeLunaClient'
@@ -703,16 +598,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Gets the configuration files necessary to connect to all high availability
@@ -737,12 +632,6 @@ class CloudHsm {
     required List<String> hapgList,
   }) async {
     ArgumentError.checkNotNull(clientArn, 'clientArn');
-    _s.validateStringPattern(
-      'clientArn',
-      clientArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:client-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clientVersion, 'clientVersion');
     ArgumentError.checkNotNull(hapgList, 'hapgList');
     final headers = <String, String>{
@@ -769,16 +658,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Lists the Availability Zones that have available AWS CloudHSM capacity.
@@ -806,16 +695,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Lists the high-availability partition groups for the account.
@@ -836,11 +725,6 @@ class CloudHsm {
   Future<ListHapgsResponse> listHapgs({
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9+/]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ListHapgs'
@@ -863,16 +747,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Retrieves the identifiers of all of the HSMs provisioned for the current
@@ -894,11 +778,6 @@ class CloudHsm {
   Future<ListHsmsResponse> listHsms({
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9+/]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ListHsms'
@@ -921,16 +800,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Lists all of the clients.
@@ -951,11 +830,6 @@ class CloudHsm {
   Future<ListLunaClientsResponse> listLunaClients({
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9+/]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ListLunaClients'
@@ -978,16 +852,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Returns a list of all tags for the specified AWS CloudHSM resource.
@@ -1002,12 +876,6 @@ class CloudHsm {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''[\w :+=./\\-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ListTagsForResource'
@@ -1030,16 +898,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Modifies an existing high-availability partition group.
@@ -1063,17 +931,6 @@ class CloudHsm {
     List<String>? partitionSerialList,
   }) async {
     ArgumentError.checkNotNull(hapgArn, 'hapgArn');
-    _s.validateStringPattern(
-      'hapgArn',
-      hapgArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hapg-[0-9a-f]{8}''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'label',
-      label,
-      r'''[a-zA-Z0-9_.-]{1,64}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ModifyHapg'
@@ -1099,16 +956,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Modifies an HSM.
@@ -1157,37 +1014,6 @@ class CloudHsm {
     String? syslogIp,
   }) async {
     ArgumentError.checkNotNull(hsmArn, 'hsmArn');
-    _s.validateStringPattern(
-      'hsmArn',
-      hsmArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:hsm-[0-9a-f]{8}''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'eniIp',
-      eniIp,
-      r'''\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}''',
-    );
-    _s.validateStringPattern(
-      'externalId',
-      externalId,
-      r'''[\w :+=./-]*''',
-    );
-    _s.validateStringPattern(
-      'iamRoleArn',
-      iamRoleArn,
-      r'''arn:aws(-iso)?:iam::[0-9]{12}:role/[a-zA-Z0-9_\+=,\.\-@]{1,64}''',
-    );
-    _s.validateStringPattern(
-      'subnetId',
-      subnetId,
-      r'''subnet-[0-9a-f]{8}''',
-    );
-    _s.validateStringPattern(
-      'syslogIp',
-      syslogIp,
-      r'''\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ModifyHsm'
@@ -1215,16 +1041,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Modifies the certificate used by the client.
@@ -1251,19 +1077,7 @@ class CloudHsm {
       2400,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificate',
-      certificate,
-      r'''[\w :+=./\n-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clientArn, 'clientArn');
-    _s.validateStringPattern(
-      'clientArn',
-      clientArn,
-      r'''arn:aws(-iso)?:cloudhsm:[a-zA-Z0-9\-]*:[0-9]{12}:client-[0-9a-f]{8}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.ModifyLunaClient'
@@ -1287,16 +1101,16 @@ class CloudHsm {
   /// information, see <a
   /// href="http://aws.amazon.com/cloudhsm/faqs-classic/">AWS CloudHSM Classic
   /// FAQs</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS CloudHSM
-  /// Classic User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/userguide/">AWS
+  /// CloudHSM Classic User Guide</a>, and the <a
+  /// href="https://docs.aws.amazon.com/cloudhsm/classic/APIReference/">AWS
   /// CloudHSM Classic API Reference</a>.
   ///
   /// <b>For information about the current version of AWS CloudHSM</b>, see <a
   /// href="http://aws.amazon.com/cloudhsm/">AWS CloudHSM</a>, the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/">AWS CloudHSM
   /// User Guide</a>, and the <a
-  /// href="http://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
+  /// href="https://docs.aws.amazon.com/cloudhsm/latest/APIReference/">AWS
   /// CloudHSM API Reference</a>.
   ///
   /// Removes one or more tags from the specified AWS CloudHSM resource.
@@ -1321,12 +1135,6 @@ class CloudHsm {
     required List<String> tagKeyList,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''[\w :+=./\\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeyList, 'tagKeyList');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1390,14 +1198,6 @@ extension on String {
   }
 }
 
-/// Indicates that an internal error occurred.
-class CloudHsmInternalException implements _s.AwsException {
-  CloudHsmInternalException();
-  factory CloudHsmInternalException.fromJson(Map<String, dynamic> _) {
-    return CloudHsmInternalException();
-  }
-}
-
 enum CloudHsmObjectState {
   ready,
   updating,
@@ -1428,26 +1228,6 @@ extension on String {
         return CloudHsmObjectState.degraded;
     }
     throw Exception('$this is not known in enum CloudHsmObjectState');
-  }
-}
-
-/// Indicates that an exception occurred in the AWS CloudHSM service.
-class CloudHsmServiceException implements _s.AwsException {
-  /// Additional information about the error.
-  final String? message;
-
-  /// Indicates if the action can be retried.
-  final bool? retryable;
-
-  CloudHsmServiceException({
-    this.message,
-    this.retryable,
-  });
-  factory CloudHsmServiceException.fromJson(Map<String, dynamic> json) {
-    return CloudHsmServiceException(
-      message: json['message'] as String?,
-      retryable: json['retryable'] as bool?,
-    );
   }
 }
 
@@ -1836,14 +1616,6 @@ extension on String {
   }
 }
 
-/// Indicates that one or more of the request parameters are not valid.
-class InvalidRequestException implements _s.AwsException {
-  InvalidRequestException();
-  factory InvalidRequestException.fromJson(Map<String, dynamic> _) {
-    return InvalidRequestException();
-  }
-}
-
 class ListAvailableZonesResponse {
   /// The list of Availability Zones that have available AWS CloudHSM capacity.
   final List<String>? aZList;
@@ -2068,9 +1840,26 @@ class Tag {
   }
 }
 
+class CloudHsmInternalException extends _s.GenericAwsException {
+  CloudHsmInternalException({String? type, String? message})
+      : super(type: type, code: 'CloudHsmInternalException', message: message);
+}
+
+class CloudHsmServiceException extends _s.GenericAwsException {
+  CloudHsmServiceException({String? type, String? message})
+      : super(type: type, code: 'CloudHsmServiceException', message: message);
+}
+
+class InvalidRequestException extends _s.GenericAwsException {
+  InvalidRequestException({String? type, String? message})
+      : super(type: type, code: 'InvalidRequestException', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
-  'CloudHsmInternalException': (type, message) => CloudHsmInternalException(),
+  'CloudHsmInternalException': (type, message) =>
+      CloudHsmInternalException(type: type, message: message),
   'CloudHsmServiceException': (type, message) =>
-      CloudHsmServiceException(message: message),
-  'InvalidRequestException': (type, message) => InvalidRequestException(),
+      CloudHsmServiceException(type: type, message: message),
+  'InvalidRequestException': (type, message) =>
+      InvalidRequestException(type: type, message: message),
 };

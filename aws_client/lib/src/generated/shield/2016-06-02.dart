@@ -76,12 +76,6 @@ class Shield {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logBucket',
-      logBucket,
-      r'''^([a-z]|(\d(?!\d{0,2}\.\d{1,3}\.\d{1,3}\.\d{1,3})))([a-z\d]|(\.(?!(\.|-)))|(-(?!\.))){1,61}[a-z\d]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.AssociateDRTLogBucket'
@@ -166,12 +160,6 @@ class Shield {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.AssociateDRTRole'
@@ -225,24 +213,12 @@ class Shield {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'healthCheckArn',
-      healthCheckArn,
-      r'''^arn:aws:route53:::healthcheck/\S{36}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(protectionId, 'protectionId');
     _s.validateStringLength(
       'protectionId',
       protectionId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionId',
-      protectionId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -343,6 +319,7 @@ class Shield {
   /// May throw [ResourceAlreadyExistsException].
   /// May throw [OptimisticLockException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterException].
   ///
   /// Parameter [name] :
   /// Friendly name for the <code>Protection</code> you are creating.
@@ -383,9 +360,14 @@ class Shield {
   /// </code>
   /// </li>
   /// </ul>
+  ///
+  /// Parameter [tags] :
+  /// One or more tag key-value pairs for the <a>Protection</a> object that is
+  /// created.
   Future<CreateProtectionResponse> createProtection({
     required String name,
     required String resourceArn,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -395,24 +377,12 @@ class Shield {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[ a-zA-Z0-9_\\.\\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -428,6 +398,7 @@ class Shield {
       payload: {
         'Name': name,
         'ResourceArn': resourceArn,
+        if (tags != null) 'Tags': tags,
       },
     );
 
@@ -492,12 +463,16 @@ class Shield {
   /// must set this when you set <code>Pattern</code> to
   /// <code>BY_RESOURCE_TYPE</code> and you must not set it for any other
   /// <code>Pattern</code> setting.
+  ///
+  /// Parameter [tags] :
+  /// One or more tag key-value pairs for the protection group.
   Future<void> createProtectionGroup({
     required ProtectionGroupAggregation aggregation,
     required ProtectionGroupPattern pattern,
     required String protectionGroupId,
     List<String>? members,
     ProtectedResourceType? resourceType,
+    List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(aggregation, 'aggregation');
     ArgumentError.checkNotNull(pattern, 'pattern');
@@ -507,12 +482,6 @@ class Shield {
       protectionGroupId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionGroupId',
-      protectionGroupId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -531,6 +500,7 @@ class Shield {
         'ProtectionGroupId': protectionGroupId,
         if (members != null) 'Members': members,
         if (resourceType != null) 'ResourceType': resourceType.toValue(),
+        if (tags != null) 'Tags': tags,
       },
     );
   }
@@ -576,12 +546,6 @@ class Shield {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'protectionId',
-      protectionId,
-      r'''[a-zA-Z0-9\\-]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.DeleteProtection'
@@ -617,12 +581,6 @@ class Shield {
       protectionGroupId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionGroupId',
-      protectionGroupId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -679,12 +637,6 @@ class Shield {
       attackId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attackId',
-      attackId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -810,21 +762,11 @@ class Shield {
       1,
       36,
     );
-    _s.validateStringPattern(
-      'protectionId',
-      protectionId,
-      r'''[a-zA-Z0-9\\-]*''',
-    );
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -863,12 +805,6 @@ class Shield {
       protectionGroupId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionGroupId',
-      protectionGroupId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -965,12 +901,6 @@ class Shield {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'logBucket',
-      logBucket,
-      r'''^([a-z]|(\d(?!\d{0,2}\.\d{1,3}\.\d{1,3}\.\d{1,3})))([a-z\d]|(\.(?!(\.|-)))|(-(?!\.))){1,61}[a-z\d]$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.DisassociateDRTLogBucket'
@@ -1053,24 +983,12 @@ class Shield {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'healthCheckArn',
-      healthCheckArn,
-      r'''^arn:aws:route53:::healthcheck/\S{36}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(protectionId, 'protectionId');
     _s.validateStringLength(
       'protectionId',
       protectionId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionId',
-      protectionId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1193,11 +1111,6 @@ class Shield {
       1,
       4096,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^.*$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.ListAttacks'
@@ -1256,11 +1169,6 @@ class Shield {
       1,
       4096,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^.*$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSShield_20160616.ListProtectionGroups'
@@ -1315,11 +1223,6 @@ class Shield {
       nextToken,
       1,
       4096,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^.*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1380,12 +1283,6 @@ class Shield {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'protectionGroupId',
-      protectionGroupId,
-      r'''[a-zA-Z0-9\\-]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1397,11 +1294,6 @@ class Shield {
       nextToken,
       1,
       4096,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^.*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1421,6 +1313,130 @@ class Shield {
     );
 
     return ListResourcesInProtectionGroupResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Gets information about AWS tags for a specified Amazon Resource Name (ARN)
+  /// in AWS Shield.
+  ///
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidResourceException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceARN] :
+  /// The Amazon Resource Name (ARN) of the resource to get tags for.
+  Future<ListTagsForResourceResponse> listTagsForResource({
+    required String resourceARN,
+  }) async {
+    ArgumentError.checkNotNull(resourceARN, 'resourceARN');
+    _s.validateStringLength(
+      'resourceARN',
+      resourceARN,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSShield_20160616.ListTagsForResource'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceARN': resourceARN,
+      },
+    );
+
+    return ListTagsForResourceResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Adds or updates tags for a resource in AWS Shield.
+  ///
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidResourceException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceARN] :
+  /// The Amazon Resource Name (ARN) of the resource that you want to add or
+  /// update tags for.
+  ///
+  /// Parameter [tags] :
+  /// The tags that you want to modify or add to the resource.
+  Future<void> tagResource({
+    required String resourceARN,
+    required List<Tag> tags,
+  }) async {
+    ArgumentError.checkNotNull(resourceARN, 'resourceARN');
+    _s.validateStringLength(
+      'resourceARN',
+      resourceARN,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tags, 'tags');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSShield_20160616.TagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceARN': resourceARN,
+        'Tags': tags,
+      },
+    );
+  }
+
+  /// Removes tags from a resource in AWS Shield.
+  ///
+  /// May throw [InternalErrorException].
+  /// May throw [InvalidResourceException].
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceARN] :
+  /// The Amazon Resource Name (ARN) of the resource that you want to remove
+  /// tags from.
+  ///
+  /// Parameter [tagKeys] :
+  /// The tag key for each tag that you want to remove from the resource.
+  Future<void> untagResource({
+    required String resourceARN,
+    required List<String> tagKeys,
+  }) async {
+    ArgumentError.checkNotNull(resourceARN, 'resourceARN');
+    _s.validateStringLength(
+      'resourceARN',
+      resourceARN,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSShield_20160616.UntagResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceARN': resourceARN,
+        'TagKeys': tagKeys,
+      },
+    );
   }
 
   /// Updates the details of the list of email addresses and phone numbers that
@@ -1529,12 +1545,6 @@ class Shield {
       protectionGroupId,
       1,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'protectionGroupId',
-      protectionGroupId,
-      r'''[a-zA-Z0-9\\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2473,6 +2483,23 @@ class ListResourcesInProtectionGroupResponse {
   }
 }
 
+class ListTagsForResourceResponse {
+  /// A list of tag key and value pairs associated with the specified resource.
+  final List<Tag>? tags;
+
+  ListTagsForResourceResponse({
+    this.tags,
+  });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 /// The mitigation applied to a DDoS attack.
 class Mitigation {
   /// The name of the mitigation taken for this attack.
@@ -2582,6 +2609,9 @@ class Protection {
   /// distributions</code>.
   final String? name;
 
+  /// The ARN (Amazon Resource Name) of the protection.
+  final String? protectionArn;
+
   /// The ARN (Amazon Resource Name) of the AWS resource that is protected.
   final String? resourceArn;
 
@@ -2589,6 +2619,7 @@ class Protection {
     this.healthCheckIds,
     this.id,
     this.name,
+    this.protectionArn,
     this.resourceArn,
   });
   factory Protection.fromJson(Map<String, dynamic> json) {
@@ -2599,6 +2630,7 @@ class Protection {
           .toList(),
       id: json['Id'] as String?,
       name: json['Name'] as String?,
+      protectionArn: json['ProtectionArn'] as String?,
       resourceArn: json['ResourceArn'] as String?,
     );
   }
@@ -2648,6 +2680,9 @@ class ProtectionGroup {
   /// delete, or describe it.
   final String protectionGroupId;
 
+  /// The ARN (Amazon Resource Name) of the protection group.
+  final String? protectionGroupArn;
+
   /// The resource type to include in the protection group. All protected
   /// resources of this type are included in the protection group. You must set
   /// this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and
@@ -2659,6 +2694,7 @@ class ProtectionGroup {
     required this.members,
     required this.pattern,
     required this.protectionGroupId,
+    this.protectionGroupArn,
     this.resourceType,
   });
   factory ProtectionGroup.fromJson(Map<String, dynamic> json) {
@@ -2671,6 +2707,7 @@ class ProtectionGroup {
           .toList(),
       pattern: (json['Pattern'] as String).toProtectionGroupPattern(),
       protectionGroupId: json['ProtectionGroupId'] as String,
+      protectionGroupArn: json['ProtectionGroupArn'] as String?,
       resourceType:
           (json['ResourceType'] as String?)?.toProtectedResourceType(),
     );
@@ -2921,6 +2958,9 @@ class Subscription {
   /// href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types">timestamp</a>.
   final DateTime? startTime;
 
+  /// The ARN (Amazon Resource Name) of the subscription.
+  final String? subscriptionArn;
+
   /// The length, in seconds, of the AWS Shield Advanced subscription for the
   /// account.
   final int? timeCommitmentInSeconds;
@@ -2932,6 +2972,7 @@ class Subscription {
     this.limits,
     this.proactiveEngagementStatus,
     this.startTime,
+    this.subscriptionArn,
     this.timeCommitmentInSeconds,
   });
   factory Subscription.fromJson(Map<String, dynamic> json) {
@@ -2947,6 +2988,7 @@ class Subscription {
       proactiveEngagementStatus: (json['ProactiveEngagementStatus'] as String?)
           ?.toProactiveEngagementStatus(),
       startTime: timeStampFromJson(json['StartTime']),
+      subscriptionArn: json['SubscriptionArn'] as String?,
       timeCommitmentInSeconds: json['TimeCommitmentInSeconds'] as int?,
     );
   }
@@ -3065,6 +3107,53 @@ class SummarizedCounter {
   }
 }
 
+/// A tag associated with an AWS resource. Tags are key:value pairs that you can
+/// use to categorize and manage your resources, for purposes like billing or
+/// other management. Typically, the tag key represents a category, such as
+/// "environment", and the tag value represents a specific value within that
+/// category, such as "test," "development," or "production". Or you might set
+/// the tag key to "customer" and the value to the customer name or ID. You can
+/// specify one or more tags to add to each AWS resource, up to 50 tags for a
+/// resource.
+class Tag {
+  /// Part of the key:value pair that defines a tag. You can use a tag key to
+  /// describe a category of information, such as "customer." Tag keys are
+  /// case-sensitive.
+  final String? key;
+
+  /// Part of the key:value pair that defines a tag. You can use a tag value to
+  /// describe a specific value within a category, such as "companyA" or
+  /// "companyB." Tag values are case-sensitive.
+  final String? value;
+
+  Tag({
+    this.key,
+    this.value,
+  });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
 /// The time range.
 class TimeRange {
   /// The start time, in Unix time in seconds. For more information see <a
@@ -3132,6 +3221,13 @@ extension on String {
         return Unit.requests;
     }
     throw Exception('$this is not known in enum Unit');
+  }
+}
+
+class UntagResourceResponse {
+  UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
   }
 }
 

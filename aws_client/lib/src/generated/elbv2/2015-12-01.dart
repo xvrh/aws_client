@@ -135,7 +135,7 @@ class ElasticLoadBalancingV2 {
   }
 
   /// Creates a listener for the specified Application Load Balancer, Network
-  /// Load Balancer. or Gateway Load Balancer.
+  /// Load Balancer, or Gateway Load Balancer.
   ///
   /// For more information, see the following:
   ///
@@ -424,11 +424,6 @@ class ElasticLoadBalancingV2 {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'customerOwnedIpv4Pool',
-      customerOwnedIpv4Pool,
-      r'''^(ipv4pool-coip-)[a-zA-Z0-9]+$''',
-    );
     final $request = <String, dynamic>{};
     $request['Name'] = name;
     customerOwnedIpv4Pool
@@ -579,10 +574,10 @@ class ElasticLoadBalancingV2 {
   ///
   /// Parameter [healthCheckIntervalSeconds] :
   /// The approximate amount of time, in seconds, between health checks of an
-  /// individual target. For TCP health checks, the supported values are 10 and
-  /// 30 seconds. If the target type is <code>instance</code> or
-  /// <code>ip</code>, the default is 30 seconds. If the target group protocol
-  /// is GENEVE, the default is 10 seconds. If the target type is
+  /// individual target. If the target group protocol is TCP, TLS, UDP, or
+  /// TCP_UDP, the supported values are 10 and 30 seconds. If the target group
+  /// protocol is HTTP or HTTPS, the default is 30 seconds. If the target group
+  /// protocol is GENEVE, the default is 10 seconds. If the target type is
   /// <code>lambda</code>, the default is 35 seconds.
   ///
   /// Parameter [healthCheckPath] :
@@ -592,7 +587,8 @@ class ElasticLoadBalancingV2 {
   /// [HTTP1 or HTTP2 protocol version] The ping path. The default is /.
   ///
   /// [GRPC protocol version] The path of a custom health check method with the
-  /// format /package.service/method. The default is /AWS.ALB/healthcheck.
+  /// format /package.service/method. The default is /Amazon Web
+  /// Services.ALB/healthcheck.
   ///
   /// Parameter [healthCheckPort] :
   /// The port the load balancer uses when performing health checks on targets.
@@ -937,8 +933,8 @@ class ElasticLoadBalancingV2 {
     );
   }
 
-  /// Describes the current Elastic Load Balancing resource limits for your AWS
-  /// account.
+  /// Describes the current Elastic Load Balancing resource limits for your
+  /// Amazon Web Services account.
   ///
   /// For more information, see the following:
   ///
@@ -1701,14 +1697,18 @@ class ElasticLoadBalancingV2 {
   /// [HTTP1 or HTTP2 protocol version] The ping path. The default is /.
   ///
   /// [GRPC protocol version] The path of a custom health check method with the
-  /// format /package.service/method. The default is /AWS.ALB/healthcheck.
+  /// format /package.service/method. The default is /Amazon Web
+  /// Services.ALB/healthcheck.
   ///
   /// Parameter [healthCheckPort] :
   /// The port the load balancer uses when performing health checks on targets.
   ///
   /// Parameter [healthCheckProtocol] :
   /// The protocol the load balancer uses when performing health checks on
-  /// targets. The TCP protocol is supported for health checks only if the
+  /// targets. For Application Load Balancers, the default is HTTP. For Network
+  /// Load Balancers and Gateway Load Balancers, the default is TCP. The TCP
+  /// protocol is not supported for health checks if the protocol of the target
+  /// group is HTTP or HTTPS. It is supported for health checks only if the
   /// protocol of the target group is TCP, TLS, UDP, or TCP_UDP. The GENEVE,
   /// TLS, UDP, and TCP_UDP protocols are not supported for health checks.
   ///
@@ -3306,8 +3306,8 @@ extension on String {
   }
 }
 
-/// Information about an Elastic Load Balancing resource limit for your AWS
-/// account.
+/// Information about an Elastic Load Balancing resource limit for your Amazon
+/// Web Services account.
 class Limit {
   /// The maximum value of the limit.
   final String? max;
@@ -3635,8 +3635,8 @@ class LoadBalancerAttribute {
   /// <li>
   /// <code>waf.fail_open.enabled</code> - Indicates whether to allow a
   /// WAF-enabled load balancer to route requests to targets if it is unable to
-  /// forward the request to AWS WAF. The value is <code>true</code> or
-  /// <code>false</code>. The default is <code>false</code>.
+  /// forward the request to Amazon Web Services WAF. The value is
+  /// <code>true</code> or <code>false</code>. The default is <code>false</code>.
   /// </li>
   /// </ul>
   /// The following attribute is supported by Network Load Balancers and Gateway
@@ -3707,8 +3707,10 @@ extension on String {
 class LoadBalancerState {
   /// The state code. The initial state of the load balancer is
   /// <code>provisioning</code>. After the load balancer is fully set up and ready
-  /// to route traffic, its state is <code>active</code>. If the load balancer
-  /// could not be set up, its state is <code>failed</code>.
+  /// to route traffic, its state is <code>active</code>. If load balancer is
+  /// routing traffic but does not have the resources it needs to scale, its state
+  /// is<code>active_impaired</code>. If the load balancer could not be set up,
+  /// its state is <code>failed</code>.
   final LoadBalancerStateEnum? code;
 
   /// A description of the state.
@@ -4870,8 +4872,9 @@ class TargetGroupAttribute {
   /// </li>
   /// <li>
   /// <code>stickiness.type</code> - The type of sticky sessions. The possible
-  /// values are <code>lb_cookie</code> for Application Load Balancers or
-  /// <code>source_ip</code> for Network Load Balancers.
+  /// values are <code>lb_cookie</code> and <code>app_cookie</code> for
+  /// Application Load Balancers or <code>source_ip</code> for Network Load
+  /// Balancers.
   /// </li>
   /// </ul>
   /// The following attributes are supported only if the load balancer is an
@@ -4891,6 +4894,19 @@ class TargetGroupAttribute {
   /// traffic to the target group. After this time period ends, the target
   /// receives its full share of traffic. The range is 30-900 seconds (15
   /// minutes). The default is 0 seconds (disabled).
+  /// </li>
+  /// <li>
+  /// <code>stickiness.app_cookie.cookie_name</code> - Indicates the name of the
+  /// application-based cookie. Names that start with the following prefixes are
+  /// not allowed: <code>AWSALB</code>, <code>AWSALBAPP</code>, and
+  /// <code>AWSALBTG</code>; they're reserved for use by the load balancer.
+  /// </li>
+  /// <li>
+  /// <code>stickiness.app_cookie.duration_seconds</code> - The time period, in
+  /// seconds, during which requests from a client should be routed to the same
+  /// target. After this time period expires, the application-based cookie is
+  /// considered stale. The range is 1 second to 1 week (604800 seconds). The
+  /// default value is 1 day (86400 seconds).
   /// </li>
   /// <li>
   /// <code>stickiness.lb_cookie.duration_seconds</code> - The time period, in
@@ -4922,6 +4938,14 @@ class TargetGroupAttribute {
   /// whether the load balancer terminates connections at the end of the
   /// deregistration timeout. The value is <code>true</code> or
   /// <code>false</code>. The default is <code>false</code>.
+  /// </li>
+  /// <li>
+  /// <code>preserve_client_ip.enabled</code> - Indicates whether client IP
+  /// preservation is enabled. The value is <code>true</code> or
+  /// <code>false</code>. The default is disabled if the target group type is IP
+  /// address and the target group protocol is TCP or TLS. Otherwise, the default
+  /// is enabled. Client IP preservation cannot be disabled for UDP and TCP_UDP
+  /// target groups.
   /// </li>
   /// <li>
   /// <code>proxy_protocol_v2.enabled</code> - Indicates whether Proxy Protocol

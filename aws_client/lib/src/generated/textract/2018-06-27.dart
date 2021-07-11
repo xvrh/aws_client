@@ -289,12 +289,6 @@ class Textract {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -306,11 +300,6 @@ class Textract {
       nextToken,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -406,12 +395,6 @@ class Textract {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -423,11 +406,6 @@ class Textract {
       nextToken,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -544,32 +522,17 @@ class Textract {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
-    );
     _s.validateStringLength(
       'kMSKeyId',
       kMSKeyId,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKeyId',
-      kMSKeyId,
-      r'''^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -681,32 +644,17 @@ class Textract {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-_]+$''',
-    );
     _s.validateStringLength(
       'jobTag',
       jobTag,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'jobTag',
-      jobTag,
-      r'''[a-zA-Z0-9_.\-:]+''',
-    );
     _s.validateStringLength(
       'kMSKeyId',
       kMSKeyId,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKeyId',
-      kMSKeyId,
-      r'''^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

@@ -28,13 +28,14 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 ///
 /// The Detective API primarily supports the creation and management of behavior
 /// graphs. A behavior graph contains the extracted data from a set of member
-/// accounts, and is created and managed by a master account.
+/// accounts, and is created and managed by an administrator account.
 ///
 /// Every behavior graph is specific to a Region. You can only use the API to
 /// manage graphs that belong to the Region that is associated with the
 /// currently selected endpoint.
 ///
-/// A Detective master account can use the Detective API to do the following:
+/// A Detective administrator account can use the Detective API to do the
+/// following:
 ///
 /// <ul>
 /// <li>
@@ -70,6 +71,12 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// All API actions are logged as CloudTrail events. See <a
 /// href="https://docs.aws.amazon.com/detective/latest/adminguide/logging-using-cloudtrail.html">Logging
 /// Detective API Calls with CloudTrail</a>.
+/// <note>
+/// We replaced the term "master account" with the term "administrator account."
+/// An administrator account is used to centrally manage multiple accounts. In
+/// the case of Detective, the administrator account manages the accounts in
+/// their behavior graph.
+/// </note>
 class Detective {
   final _s.RestJsonProtocol _protocol;
   Detective({
@@ -111,12 +118,6 @@ class Detective {
     required String graphArn,
   }) async {
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'GraphArn': graphArn,
     };
@@ -129,8 +130,8 @@ class Detective {
   }
 
   /// Creates a new behavior graph for the calling account, and sets that
-  /// account as the master account. This operation is called by the account
-  /// that is enabling Detective.
+  /// account as the administrator account. This operation is called by the
+  /// account that is enabling Detective.
   ///
   /// Before you try to enable Detective, make sure that your account has been
   /// enrolled in Amazon GuardDuty for at least 48 hours. If you do not meet
@@ -145,17 +146,28 @@ class Detective {
   /// <code>CreateGraph</code> triggers a process to create the corresponding
   /// data tables for the new behavior graph.
   ///
-  /// An account can only be the master account for one behavior graph within a
-  /// Region. If the same account calls <code>CreateGraph</code> with the same
-  /// master account, it always returns the same behavior graph ARN. It does not
-  /// create a new behavior graph.
+  /// An account can only be the administrator account for one behavior graph
+  /// within a Region. If the same account calls <code>CreateGraph</code> with
+  /// the same administrator account, it always returns the same behavior graph
+  /// ARN. It does not create a new behavior graph.
   ///
   /// May throw [ConflictException].
   /// May throw [InternalServerException].
   /// May throw [ServiceQuotaExceededException].
-  Future<CreateGraphResponse> createGraph() async {
+  ///
+  /// Parameter [tags] :
+  /// The tags to assign to the new behavior graph. You can add up to 50 tags.
+  /// For each tag, you provide the tag key and the tag value. Each tag key can
+  /// contain up to 128 characters. Each tag value can contain up to 256
+  /// characters.
+  Future<CreateGraphResponse> createGraph({
+    Map<String, String>? tags,
+  }) async {
+    final $payload = <String, dynamic>{
+      if (tags != null) 'Tags': tags,
+    };
     final response = await _protocol.send(
-      payload: null,
+      payload: $payload,
       method: 'POST',
       requestUri: '/graph',
       exceptionFnMap: _exceptionFns,
@@ -164,11 +176,13 @@ class Detective {
   }
 
   /// Sends a request to invite the specified AWS accounts to be member accounts
-  /// in the behavior graph. This operation can only be called by the master
-  /// account for a behavior graph.
+  /// in the behavior graph. This operation can only be called by the
+  /// administrator account for a behavior graph.
   ///
-  /// <code>CreateMembers</code> verifies the accounts and then sends
-  /// invitations to the verified accounts.
+  /// <code>CreateMembers</code> verifies the accounts and then invites the
+  /// verified accounts. The administrator can optionally specify to not send
+  /// invitation emails to the member accounts. This would be used when the
+  /// administrator manages their member accounts centrally.
   ///
   /// The request provides the behavior graph ARN and the list of accounts to
   /// invite.
@@ -179,8 +193,8 @@ class Detective {
   /// <li>
   /// The accounts that <code>CreateMembers</code> was able to start the
   /// verification for. This list includes member accounts that are being
-  /// verified, that have passed verification and are being sent an invitation,
-  /// and that have failed verification.
+  /// verified, that have passed verification and are to be invited, and that
+  /// have failed verification.
   /// </li>
   /// <li>
   /// The accounts that <code>CreateMembers</code> was unable to process. This
@@ -196,12 +210,18 @@ class Detective {
   ///
   /// Parameter [accounts] :
   /// The list of AWS accounts to invite to become member accounts in the
-  /// behavior graph. For each invited account, the account list contains the
-  /// account identifier and the AWS account root user email address.
+  /// behavior graph. You can invite up to 50 accounts at a time. For each
+  /// invited account, the account list contains the account identifier and the
+  /// AWS account root user email address.
   ///
   /// Parameter [graphArn] :
   /// The ARN of the behavior graph to invite the member accounts to contribute
   /// their data to.
+  ///
+  /// Parameter [disableEmailNotification] :
+  /// if set to <code>true</code>, then the member accounts do not receive email
+  /// notifications. By default, this is set to <code>false</code>, and the
+  /// member accounts receive email notifications.
   ///
   /// Parameter [message] :
   /// Customized message text to include in the invitation email message to the
@@ -209,16 +229,11 @@ class Detective {
   Future<CreateMembersResponse> createMembers({
     required List<Account> accounts,
     required String graphArn,
+    bool? disableEmailNotification,
     String? message,
   }) async {
     ArgumentError.checkNotNull(accounts, 'accounts');
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'message',
       message,
@@ -228,6 +243,8 @@ class Detective {
     final $payload = <String, dynamic>{
       'Accounts': accounts,
       'GraphArn': graphArn,
+      if (disableEmailNotification != null)
+        'DisableEmailNotification': disableEmailNotification,
       if (message != null) 'Message': message,
     };
     final response = await _protocol.send(
@@ -243,8 +260,8 @@ class Detective {
   /// operation removes the graph from each member account's list of behavior
   /// graphs.
   ///
-  /// <code>DeleteGraph</code> can only be called by the master account for a
-  /// behavior graph.
+  /// <code>DeleteGraph</code> can only be called by the administrator account
+  /// for a behavior graph.
   ///
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
@@ -256,12 +273,6 @@ class Detective {
     required String graphArn,
   }) async {
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'GraphArn': graphArn,
     };
@@ -273,11 +284,12 @@ class Detective {
     );
   }
 
-  /// Deletes one or more member accounts from the master account behavior
-  /// graph. This operation can only be called by a Detective master account.
-  /// That account cannot use <code>DeleteMembers</code> to delete their own
-  /// account from the behavior graph. To disable a behavior graph, the master
-  /// account uses the <code>DeleteGraph</code> API method.
+  /// Deletes one or more member accounts from the administrator account's
+  /// behavior graph. This operation can only be called by a Detective
+  /// administrator account. That account cannot use <code>DeleteMembers</code>
+  /// to delete their own account from the behavior graph. To disable a behavior
+  /// graph, the administrator account uses the <code>DeleteGraph</code> API
+  /// method.
   ///
   /// May throw [ConflictException].
   /// May throw [InternalServerException].
@@ -286,7 +298,7 @@ class Detective {
   ///
   /// Parameter [accountIds] :
   /// The list of AWS account identifiers for the member accounts to delete from
-  /// the behavior graph.
+  /// the behavior graph. You can delete up to 50 member accounts at a time.
   ///
   /// Parameter [graphArn] :
   /// The ARN of the behavior graph to delete members from.
@@ -296,12 +308,6 @@ class Detective {
   }) async {
     ArgumentError.checkNotNull(accountIds, 'accountIds');
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AccountIds': accountIds,
       'GraphArn': graphArn,
@@ -333,12 +339,6 @@ class Detective {
     required String graphArn,
   }) async {
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'GraphArn': graphArn,
     };
@@ -359,7 +359,8 @@ class Detective {
   ///
   /// Parameter [accountIds] :
   /// The list of AWS account identifiers for the member account for which to
-  /// return member details.
+  /// return member details. You can request details for up to 50 member
+  /// accounts at a time.
   ///
   /// You cannot use <code>GetMembers</code> to retrieve information about
   /// member accounts that were removed from the behavior graph.
@@ -372,12 +373,6 @@ class Detective {
   }) async {
     ArgumentError.checkNotNull(accountIds, 'accountIds');
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AccountIds': accountIds,
       'GraphArn': graphArn,
@@ -391,11 +386,12 @@ class Detective {
     return GetMembersResponse.fromJson(response);
   }
 
-  /// Returns the list of behavior graphs that the calling account is a master
-  /// of. This operation can only be called by a master account.
+  /// Returns the list of behavior graphs that the calling account is an
+  /// administrator account of. This operation can only be called by an
+  /// administrator account.
   ///
-  /// Because an account can currently only be the master of one behavior graph
-  /// within a Region, the results always contain a single graph.
+  /// Because an account can currently only be the administrator of one behavior
+  /// graph within a Region, the results always contain a single behavior graph.
   ///
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
@@ -515,12 +511,6 @@ class Detective {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -547,6 +537,27 @@ class Detective {
     return ListMembersResponse.fromJson(response);
   }
 
+  /// Returns the tag values that are assigned to a behavior graph.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The ARN of the behavior graph for which to retrieve the tag values.
+  Future<ListTagsForResourceResponse> listTagsForResource({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListTagsForResourceResponse.fromJson(response);
+  }
+
   /// Rejects an invitation to contribute the account data to a behavior graph.
   /// This operation must be called by a member account that has the
   /// <code>INVITED</code> status.
@@ -565,12 +576,6 @@ class Detective {
     required String graphArn,
   }) async {
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'GraphArn': graphArn,
     };
@@ -624,19 +629,7 @@ class Detective {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''^[0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringPattern(
-      'graphArn',
-      graphArn,
-      r'''^arn:aws[-\w]{0,10}?:detective:[-\w]{2,20}?:\d{12}?:graph:[abcdef\d]{32}?$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AccountId': accountId,
       'GraphArn': graphArn,
@@ -648,9 +641,71 @@ class Detective {
       exceptionFnMap: _exceptionFns,
     );
   }
+
+  /// Applies tag values to a behavior graph.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The ARN of the behavior graph to assign the tags to.
+  ///
+  /// Parameter [tags] :
+  /// The tags to assign to the behavior graph. You can add up to 50 tags. For
+  /// each tag, you provide the tag key and the tag value. Each tag key can
+  /// contain up to 128 characters. Each tag value can contain up to 256
+  /// characters.
+  Future<void> tagResource({
+    required String resourceArn,
+    required Map<String, String> tags,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    ArgumentError.checkNotNull(tags, 'tags');
+    final $payload = <String, dynamic>{
+      'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Removes tags from a behavior graph.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The ARN of the behavior graph to remove the tags from.
+  ///
+  /// Parameter [tagKeys] :
+  /// The tag keys of the tags to remove from the behavior graph. You can remove
+  /// up to 50 tags at a time.
+  Future<void> untagResource({
+    required String resourceArn,
+    required List<String> tagKeys,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    final $query = <String, List<String>>{
+      'tagKeys': tagKeys,
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
 }
 
-/// An AWS account that is the master of or a member of a behavior graph.
+/// An AWS account that is the administrator account of or a member of a
+/// behavior graph.
 class Account {
   /// The account identifier of the AWS account.
   final String accountId;
@@ -796,7 +851,7 @@ class Graph {
 }
 
 class ListGraphsResponse {
-  /// A list of behavior graphs that the account is a master for.
+  /// A list of behavior graphs that the account is an administrator account for.
   final List<Graph>? graphList;
 
   /// If there are more behavior graphs remaining in the results, then this is the
@@ -870,11 +925,31 @@ class ListMembersResponse {
   }
 }
 
+class ListTagsForResourceResponse {
+  /// The tag values that are assigned to the behavior graph. The request returns
+  /// up to 50 tag values.
+  final Map<String, String>? tags;
+
+  ListTagsForResourceResponse({
+    this.tags,
+  });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
 /// Details about a member account that was invited to contribute to a behavior
 /// graph.
 class MemberDetail {
   /// The AWS account identifier for the member account.
   final String? accountId;
+
+  /// The AWS account identifier of the administrator account for the behavior
+  /// graph.
+  final String? administratorId;
 
   /// For member accounts with a status of <code>ACCEPTED_BUT_DISABLED</code>, the
   /// reason that the member account is not enabled.
@@ -904,7 +979,8 @@ class MemberDetail {
   /// The value is in milliseconds since the epoch.
   final DateTime? invitedTime;
 
-  /// The AWS account identifier of the master account for the behavior graph.
+  /// The AWS account identifier of the administrator account for the behavior
+  /// graph.
   final String? masterId;
 
   /// The member account data volume as a percentage of the maximum allowed data
@@ -960,8 +1036,15 @@ class MemberDetail {
   /// milliseconds since the epoch.
   final DateTime? updatedTime;
 
+  /// The data volume in bytes per day for the member account.
+  final int? volumeUsageInBytes;
+
+  /// The data and time when the member account data volume was last updated.
+  final DateTime? volumeUsageUpdatedTime;
+
   MemberDetail({
     this.accountId,
+    this.administratorId,
     this.disabledReason,
     this.emailAddress,
     this.graphArn,
@@ -971,10 +1054,13 @@ class MemberDetail {
     this.percentOfGraphUtilizationUpdatedTime,
     this.status,
     this.updatedTime,
+    this.volumeUsageInBytes,
+    this.volumeUsageUpdatedTime,
   });
   factory MemberDetail.fromJson(Map<String, dynamic> json) {
     return MemberDetail(
       accountId: json['AccountId'] as String?,
+      administratorId: json['AdministratorId'] as String?,
       disabledReason:
           (json['DisabledReason'] as String?)?.toMemberDisabledReason(),
       emailAddress: json['EmailAddress'] as String?,
@@ -986,6 +1072,8 @@ class MemberDetail {
           timeStampFromJson(json['PercentOfGraphUtilizationUpdatedTime']),
       status: (json['Status'] as String?)?.toMemberStatus(),
       updatedTime: timeStampFromJson(json['UpdatedTime']),
+      volumeUsageInBytes: json['VolumeUsageInBytes'] as int?,
+      volumeUsageUpdatedTime: timeStampFromJson(json['VolumeUsageUpdatedTime']),
     );
   }
 }
@@ -1061,6 +1149,13 @@ extension on String {
   }
 }
 
+class TagResourceResponse {
+  TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+}
+
 /// A member account that was included in a request but for which the request
 /// could not be processed.
 class UnprocessedAccount {
@@ -1079,6 +1174,13 @@ class UnprocessedAccount {
       accountId: json['AccountId'] as String?,
       reason: json['Reason'] as String?,
     );
+  }
+}
+
+class UntagResourceResponse {
+  UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
   }
 }
 

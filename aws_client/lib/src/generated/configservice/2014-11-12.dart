@@ -83,12 +83,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceIdentifiers, 'resourceIdentifiers');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -168,12 +162,6 @@ class ConfigService {
     required String authorizedAwsRegion,
   }) async {
     ArgumentError.checkNotNull(authorizedAccountId, 'authorizedAccountId');
-    _s.validateStringPattern(
-      'authorizedAccountId',
-      authorizedAccountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(authorizedAwsRegion, 'authorizedAwsRegion');
     _s.validateStringLength(
       'authorizedAwsRegion',
@@ -226,12 +214,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteConfigRule'
@@ -265,12 +247,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -357,12 +333,6 @@ class ConfigService {
       conformancePackName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'conformancePackName',
-      conformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -486,12 +456,6 @@ class ConfigService {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteOrganizationConfigRule'
@@ -539,12 +503,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteOrganizationConformancePack'
@@ -576,12 +534,6 @@ class ConfigService {
     required String requesterAwsRegion,
   }) async {
     ArgumentError.checkNotNull(requesterAccountId, 'requesterAccountId');
-    _s.validateStringPattern(
-      'requesterAccountId',
-      requesterAccountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requesterAwsRegion, 'requesterAwsRegion');
     _s.validateStringLength(
       'requesterAwsRegion',
@@ -612,6 +564,7 @@ class ConfigService {
   /// May throw [NoSuchRemediationConfigurationException].
   /// May throw [RemediationInProgressException].
   /// May throw [InsufficientPermissionsException].
+  /// May throw [InvalidParameterValueException].
   ///
   /// Parameter [configRuleName] :
   /// The name of the AWS Config rule for which you want to delete remediation
@@ -629,12 +582,6 @@ class ConfigService {
       configRuleName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -681,12 +628,6 @@ class ConfigService {
       configRuleName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
@@ -778,12 +719,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'retentionConfigurationName',
-      retentionConfigurationName,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteRetentionConfiguration'
@@ -800,7 +735,7 @@ class ConfigService {
     );
   }
 
-  /// Deletes the stored query for an AWS account in an AWS Region.
+  /// Deletes the stored query for a single AWS account and a single AWS Region.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
@@ -816,12 +751,6 @@ class ConfigService {
       queryName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'queryName',
-      queryName,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -934,12 +863,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -966,6 +889,81 @@ class ConfigService {
     );
 
     return DescribeAggregateComplianceByConfigRulesResponse.fromJson(
+        jsonResponse.body);
+  }
+
+  /// Returns a list of the conformance packs and their associated compliance
+  /// status with the count of compliant and noncompliant AWS Config rules
+  /// within each conformance pack. Also returns the total rule count which
+  /// includes compliant rules, noncompliant rules, and rules that cannot be
+  /// evaluated due to insufficient data.
+  /// <note>
+  /// The results can return an empty result page, but if you have a
+  /// <code>nextToken</code>, the results are displayed on the next page.
+  /// </note>
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InvalidLimitException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [NoSuchConfigurationAggregatorException].
+  ///
+  /// Parameter [configurationAggregatorName] :
+  /// The name of the configuration aggregator.
+  ///
+  /// Parameter [filters] :
+  /// Filters the result by
+  /// <code>AggregateConformancePackComplianceFilters</code> object.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of conformance packs compliance details returned on
+  /// each page. The default is maximum. If you specify 0, AWS Config uses the
+  /// default.
+  ///
+  /// Parameter [nextToken] :
+  /// The <code>nextToken</code> string returned on a previous page that you use
+  /// to get the next page of results in a paginated response.
+  Future<DescribeAggregateComplianceByConformancePacksResponse>
+      describeAggregateComplianceByConformancePacks({
+    required String configurationAggregatorName,
+    AggregateConformancePackComplianceFilters? filters,
+    int? limit,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(
+        configurationAggregatorName, 'configurationAggregatorName');
+    _s.validateStringLength(
+      'configurationAggregatorName',
+      configurationAggregatorName,
+      1,
+      256,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'limit',
+      limit,
+      0,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target':
+          'StarlingDoveService.DescribeAggregateComplianceByConformancePacks'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ConfigurationAggregatorName': configurationAggregatorName,
+        if (filters != null) 'Filters': filters,
+        if (limit != null) 'Limit': limit,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return DescribeAggregateComplianceByConformancePacksResponse.fromJson(
         jsonResponse.body);
   }
 
@@ -1344,12 +1342,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1542,12 +1534,6 @@ class ConfigService {
       conformancePackName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'conformancePackName',
-      conformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2118,12 +2104,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2158,6 +2138,7 @@ class ConfigService {
   ///
   /// May throw [NoSuchRemediationConfigurationException].
   /// May throw [InvalidNextTokenException].
+  /// May throw [InvalidParameterValueException].
   ///
   /// Parameter [configRuleName] :
   /// A list of AWS Config rule names.
@@ -2186,12 +2167,6 @@ class ConfigService {
       configRuleName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2325,12 +2300,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringPattern(
-      'accountId',
-      accountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsRegion, 'awsRegion');
     _s.validateStringLength(
       'awsRegion',
@@ -2347,12 +2316,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
     _s.validateStringLength(
@@ -2360,12 +2323,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2447,12 +2404,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2480,6 +2431,83 @@ class ConfigService {
     );
 
     return GetAggregateConfigRuleComplianceSummaryResponse.fromJson(
+        jsonResponse.body);
+  }
+
+  /// Returns the count of compliant and noncompliant conformance packs across
+  /// all AWS Accounts and AWS Regions in an aggregator. You can filter based on
+  /// AWS Account ID or AWS Region.
+  /// <note>
+  /// The results can return an empty result page, but if you have a nextToken,
+  /// the results are displayed on the next page.
+  /// </note>
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InvalidLimitException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [NoSuchConfigurationAggregatorException].
+  ///
+  /// Parameter [configurationAggregatorName] :
+  /// The name of the configuration aggregator.
+  ///
+  /// Parameter [filters] :
+  /// Filters the results based on the
+  /// <code>AggregateConformancePackComplianceSummaryFilters</code> object.
+  ///
+  /// Parameter [groupByKey] :
+  /// Groups the result based on AWS Account ID or AWS Region.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of results returned on each page. The default is
+  /// maximum. If you specify 0, AWS Config uses the default.
+  ///
+  /// Parameter [nextToken] :
+  /// The <code>nextToken</code> string returned on a previous page that you use
+  /// to get the next page of results in a paginated response.
+  Future<GetAggregateConformancePackComplianceSummaryResponse>
+      getAggregateConformancePackComplianceSummary({
+    required String configurationAggregatorName,
+    AggregateConformancePackComplianceSummaryFilters? filters,
+    AggregateConformancePackComplianceSummaryGroupKey? groupByKey,
+    int? limit,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(
+        configurationAggregatorName, 'configurationAggregatorName');
+    _s.validateStringLength(
+      'configurationAggregatorName',
+      configurationAggregatorName,
+      1,
+      256,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'limit',
+      limit,
+      0,
+      100,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target':
+          'StarlingDoveService.GetAggregateConformancePackComplianceSummary'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ConfigurationAggregatorName': configurationAggregatorName,
+        if (filters != null) 'Filters': filters,
+        if (groupByKey != null) 'GroupByKey': groupByKey.toValue(),
+        if (limit != null) 'Limit': limit,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return GetAggregateConformancePackComplianceSummaryResponse.fromJson(
         jsonResponse.body);
   }
 
@@ -2530,12 +2558,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2591,12 +2613,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
@@ -2846,12 +2862,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'conformancePackName',
-      conformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3077,12 +3087,6 @@ class ConfigService {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3150,12 +3154,6 @@ class ConfigService {
       organizationConformancePackName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -3309,12 +3307,6 @@ class ConfigService {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'queryName',
-      queryName,
-      r'''^[a-zA-Z0-9-_]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.GetStoredQuery'
@@ -3360,9 +3352,9 @@ class ConfigService {
   /// Filters the results based on the <code>ResourceFilters</code> object.
   ///
   /// Parameter [limit] :
-  /// The maximum number of resource identifiers returned on each page. The
-  /// default is 100. You cannot specify a number greater than 100. If you
-  /// specify 0, AWS Config uses the default.
+  /// The maximum number of resource identifiers returned on each page. You
+  /// cannot specify a number greater than 100. If you specify 0, AWS Config
+  /// uses the default.
   ///
   /// Parameter [nextToken] :
   /// The <code>nextToken</code> string returned on a previous page that you use
@@ -3382,12 +3374,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
@@ -3505,8 +3491,8 @@ class ConfigService {
     return ListDiscoveredResourcesResponse.fromJson(jsonResponse.body);
   }
 
-  /// List the stored queries for an AWS account in an AWS Region. The default
-  /// is 100.
+  /// Lists the stored queries for a single AWS account and a single AWS Region.
+  /// The default is 100.
   ///
   /// May throw [ValidationException].
   /// May throw [InvalidNextTokenException].
@@ -3625,12 +3611,6 @@ class ConfigService {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(authorizedAccountId, 'authorizedAccountId');
-    _s.validateStringPattern(
-      'authorizedAccountId',
-      authorizedAccountId,
-      r'''\d{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(authorizedAwsRegion, 'authorizedAwsRegion');
     _s.validateStringLength(
       'authorizedAwsRegion',
@@ -3739,14 +3719,27 @@ class ConfigService {
   /// Creates and updates the configuration aggregator with the selected source
   /// accounts and regions. The source account can be individual account(s) or
   /// an organization.
+  ///
+  /// <code>accountIds</code> that are passed will be replaced with existing
+  /// accounts. If you want to add additional accounts into the aggregator, call
+  /// <code>DescribeAggregator</code> to get the previous accounts and then
+  /// append new ones.
   /// <note>
   /// AWS Config should be enabled in source accounts and regions you want to
   /// aggregate.
   ///
   /// If your source type is an organization, you must be signed in to the
-  /// master account and all features must be enabled in your organization. AWS
-  /// Config calls <code>EnableAwsServiceAccess</code> API to enable integration
-  /// between AWS Config and AWS Organizations.
+  /// management account or a registered delegated administrator and all the
+  /// features must be enabled in your organization. If the caller is a
+  /// management account, AWS Config calls <code>EnableAwsServiceAccess</code>
+  /// API to enable integration between AWS Config and AWS Organizations. If the
+  /// caller is a registered delegated administrator, AWS Config calls
+  /// <code>ListDelegatedAdministrators</code> API to verify whether the caller
+  /// is a valid delegated administrator.
+  ///
+  /// To register a delegated administrator, see <a
+  /// href="https://docs.aws.amazon.com/config/latest/developerguide/set-up-aggregator-cli.html#register-a-delegated-administrator-cli">Register
+  /// a Delegated Administrator</a> in the AWS Config developer guide.
   /// </note>
   ///
   /// May throw [InvalidParameterValueException].
@@ -3780,12 +3773,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3881,11 +3868,16 @@ class ConfigService {
   /// A list of <code>ConformancePackInputParameter</code> objects.
   ///
   /// Parameter [deliveryS3Bucket] :
-  /// AWS Config stores intermediate files while processing conformance pack
-  /// template.
+  /// Amazon S3 bucket where AWS Config stores conformance pack templates.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   ///
   /// Parameter [deliveryS3KeyPrefix] :
   /// The prefix for the Amazon S3 bucket.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   ///
   /// Parameter [templateBody] :
   /// A string containing full conformance pack template body. Structure
@@ -3920,12 +3912,6 @@ class ConfigService {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'conformancePackName',
-      conformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'deliveryS3Bucket',
       deliveryS3Bucket,
@@ -3949,11 +3935,6 @@ class ConfigService {
       templateS3Uri,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'templateS3Uri',
-      templateS3Uri,
-      r'''s3://.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4001,6 +3982,7 @@ class ConfigService {
   /// May throw [InvalidDeliveryChannelNameException].
   /// May throw [NoSuchBucketException].
   /// May throw [InvalidS3KeyPrefixException].
+  /// May throw [InvalidS3KmsKeyArnException].
   /// May throw [InvalidSNSTopicARNException].
   /// May throw [InsufficientDeliveryPolicyException].
   ///
@@ -4080,9 +4062,18 @@ class ConfigService {
     return PutEvaluationsResponse.fromJson(jsonResponse.body);
   }
 
+  /// Add or updates the evaluations for process checks. This API checks if the
+  /// rule is a process check when the name of the AWS Config rule is provided.
   ///
   /// May throw [NoSuchConfigRuleException].
   /// May throw [InvalidParameterValueException].
+  ///
+  /// Parameter [configRuleName] :
+  /// The name of the AWS Config rule.
+  ///
+  /// Parameter [externalEvaluation] :
+  /// An <code>ExternalEvaluation</code> object that provides details about
+  /// compliance.
   Future<void> putExternalEvaluation({
     required String configRuleName,
     required ExternalEvaluation externalEvaluation,
@@ -4093,12 +4084,6 @@ class ConfigService {
       configRuleName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(externalEvaluation, 'externalEvaluation');
@@ -4197,12 +4182,6 @@ class ConfigService {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutOrganizationConfigRule'
@@ -4256,7 +4235,7 @@ class ConfigService {
   /// UPDATE_IN_PROGRESS until the conformance pack is created or updated. You
   /// cannot update a conformance pack while it is in this state.
   ///
-  /// You can create 6 conformance packs with 25 AWS Config rules in each pack
+  /// You can create 50 conformance packs with 25 AWS Config rules in each pack
   /// and 3 delegated administrator per organization.
   /// </note>
   ///
@@ -4276,18 +4255,17 @@ class ConfigService {
   /// A list of <code>ConformancePackInputParameter</code> objects.
   ///
   /// Parameter [deliveryS3Bucket] :
-  /// Location of an Amazon S3 bucket where AWS Config can deliver evaluation
-  /// results. AWS Config stores intermediate files while processing conformance
-  /// pack template.
-  ///
-  /// The delivery bucket name should start with awsconfigconforms. For example:
-  /// "Resource": "arn:aws:s3:::your_bucket_name/*". For more information, see
-  /// <a
-  /// href="https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html">Permissions
-  /// for cross account bucket access</a>.
+  /// Amazon S3 bucket where AWS Config stores conformance pack templates.
+  /// <note>
+  /// This field is optional. If used, it must be prefixed with
+  /// <code>awsconfigconforms</code>.
+  /// </note>
   ///
   /// Parameter [deliveryS3KeyPrefix] :
   /// The prefix for the Amazon S3 bucket.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   ///
   /// Parameter [excludedAccounts] :
   /// A list of AWS accounts to be excluded from an organization conformance
@@ -4323,12 +4301,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'deliveryS3Bucket',
       deliveryS3Bucket,
@@ -4352,11 +4324,6 @@ class ConfigService {
       templateS3Uri,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'templateS3Uri',
-      templateS3Uri,
-      r'''s3://.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4430,7 +4397,7 @@ class ConfigService {
 
   /// A remediation exception is when a specific resource is no longer
   /// considered for auto-remediation. This API adds a new exception or updates
-  /// an exisiting exception for a specific resource with a specific AWS Config
+  /// an existing exception for a specific resource with a specific AWS Config
   /// rule.
   /// <note>
   /// AWS Config generates a remediation exception when a problem occurs
@@ -4467,12 +4434,6 @@ class ConfigService {
       configRuleName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
@@ -4587,12 +4548,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'schemaVersionId',
-      schemaVersionId,
-      r'''[A-Za-z0-9-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutResourceConfig'
@@ -4663,8 +4618,9 @@ class ConfigService {
   }
 
   /// Saves a new query or updates an existing saved query. The
-  /// <code>QueryName</code> must be unique for an AWS account in an AWS Region.
-  /// You can create upto 300 queries in an AWS account in an AWS Region.
+  /// <code>QueryName</code> must be unique for a single AWS account and a
+  /// single AWS Region. You can create upto 300 queries in a single AWS account
+  /// and a single AWS Region.
   ///
   /// May throw [ValidationException].
   /// May throw [TooManyTagsException].
@@ -4673,6 +4629,11 @@ class ConfigService {
   /// Parameter [storedQuery] :
   /// A list of <code>StoredQuery</code> objects. The mandatory fields are
   /// <code>QueryName</code> and <code>Expression</code>.
+  /// <note>
+  /// When you are creating a query, you must provide a query name and an
+  /// expression. When you are updating a query, you must provide a query name
+  /// but updating the description is optional.
+  /// </note>
   ///
   /// Parameter [tags] :
   /// A list of <code>Tags</code> object.
@@ -4744,12 +4705,6 @@ class ConfigService {
       configurationAggregatorName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(expression, 'expression');
@@ -4992,12 +4947,6 @@ class ConfigService {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'configRuleName',
-      configRuleName,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5224,6 +5173,50 @@ class AggregateComplianceByConfigRule {
   }
 }
 
+/// Provides aggregate compliance of the conformance pack. Indicates whether a
+/// conformance pack is compliant based on the name of the conformance pack,
+/// account ID, and region.
+///
+/// A conformance pack is compliant if all of the rules in a conformance packs
+/// are compliant. It is noncompliant if any of the rules are not compliant. The
+/// compliance status of a conformance pack is INSUFFICIENT_DATA only if all
+/// rules within a conformance pack cannot be evaluated due to insufficient
+/// data. If some of the rules in a conformance pack are compliant but the
+/// compliance status of other rules in that same conformance pack is
+/// INSUFFICIENT_DATA, the conformance pack shows compliant.
+class AggregateComplianceByConformancePack {
+  /// The 12-digit AWS account ID of the source account.
+  final String? accountId;
+
+  /// The source AWS Region from where the data is aggregated.
+  final String? awsRegion;
+
+  /// The compliance status of the conformance pack.
+  final AggregateConformancePackCompliance? compliance;
+
+  /// The name of the conformance pack.
+  final String? conformancePackName;
+
+  AggregateComplianceByConformancePack({
+    this.accountId,
+    this.awsRegion,
+    this.compliance,
+    this.conformancePackName,
+  });
+  factory AggregateComplianceByConformancePack.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateComplianceByConformancePack(
+      accountId: json['AccountId'] as String?,
+      awsRegion: json['AwsRegion'] as String?,
+      compliance: json['Compliance'] != null
+          ? AggregateConformancePackCompliance.fromJson(
+              json['Compliance'] as Map<String, dynamic>)
+          : null,
+      conformancePackName: json['ConformancePackName'] as String?,
+    );
+  }
+}
+
 /// Returns the number of compliant and noncompliant rules for one or more
 /// accounts and regions in an aggregator.
 class AggregateComplianceCount {
@@ -5245,6 +5238,186 @@ class AggregateComplianceCount {
           : null,
       groupName: json['GroupName'] as String?,
     );
+  }
+}
+
+/// Provides the number of compliant and noncompliant rules within a conformance
+/// pack. Also provides the compliance status of the conformance pack and the
+/// total rule count which includes compliant rules, noncompliant rules, and
+/// rules that cannot be evaluated due to insufficient data.
+///
+/// A conformance pack is compliant if all of the rules in a conformance packs
+/// are compliant. It is noncompliant if any of the rules are not compliant. The
+/// compliance status of a conformance pack is INSUFFICIENT_DATA only if all
+/// rules within a conformance pack cannot be evaluated due to insufficient
+/// data. If some of the rules in a conformance pack are compliant but the
+/// compliance status of other rules in that same conformance pack is
+/// INSUFFICIENT_DATA, the conformance pack shows compliant.
+class AggregateConformancePackCompliance {
+  /// The compliance status of the conformance pack.
+  final ConformancePackComplianceType? complianceType;
+
+  /// The number of compliant AWS Config Rules.
+  final int? compliantRuleCount;
+
+  /// The number of noncompliant AWS Config Rules.
+  final int? nonCompliantRuleCount;
+
+  /// Total number of compliant rules, noncompliant rules, and the rules that do
+  /// not have any applicable resources to evaluate upon resulting in insufficient
+  /// data.
+  final int? totalRuleCount;
+
+  AggregateConformancePackCompliance({
+    this.complianceType,
+    this.compliantRuleCount,
+    this.nonCompliantRuleCount,
+    this.totalRuleCount,
+  });
+  factory AggregateConformancePackCompliance.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateConformancePackCompliance(
+      complianceType: (json['ComplianceType'] as String?)
+          ?.toConformancePackComplianceType(),
+      compliantRuleCount: json['CompliantRuleCount'] as int?,
+      nonCompliantRuleCount: json['NonCompliantRuleCount'] as int?,
+      totalRuleCount: json['TotalRuleCount'] as int?,
+    );
+  }
+}
+
+/// The number of conformance packs that are compliant and noncompliant.
+class AggregateConformancePackComplianceCount {
+  /// Number of compliant conformance packs.
+  final int? compliantConformancePackCount;
+
+  /// Number of noncompliant conformance packs.
+  final int? nonCompliantConformancePackCount;
+
+  AggregateConformancePackComplianceCount({
+    this.compliantConformancePackCount,
+    this.nonCompliantConformancePackCount,
+  });
+  factory AggregateConformancePackComplianceCount.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateConformancePackComplianceCount(
+      compliantConformancePackCount:
+          json['CompliantConformancePackCount'] as int?,
+      nonCompliantConformancePackCount:
+          json['NonCompliantConformancePackCount'] as int?,
+    );
+  }
+}
+
+/// Filters the conformance packs based on an account ID, region, compliance
+/// type, and the name of the conformance pack.
+class AggregateConformancePackComplianceFilters {
+  /// The 12-digit AWS account ID of the source account.
+  final String? accountId;
+
+  /// The source AWS Region from where the data is aggregated.
+  final String? awsRegion;
+
+  /// The compliance status of the conformance pack.
+  final ConformancePackComplianceType? complianceType;
+
+  /// The name of the conformance pack.
+  final String? conformancePackName;
+
+  AggregateConformancePackComplianceFilters({
+    this.accountId,
+    this.awsRegion,
+    this.complianceType,
+    this.conformancePackName,
+  });
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsRegion = this.awsRegion;
+    final complianceType = this.complianceType;
+    final conformancePackName = this.conformancePackName;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+      if (conformancePackName != null)
+        'ConformancePackName': conformancePackName,
+    };
+  }
+}
+
+/// Provides a summary of compliance based on either account ID or region.
+class AggregateConformancePackComplianceSummary {
+  /// Returns an <code>AggregateConformancePackComplianceCount</code> object.
+  final AggregateConformancePackComplianceCount? complianceSummary;
+
+  /// Groups the result based on AWS Account ID or AWS Region.
+  final String? groupName;
+
+  AggregateConformancePackComplianceSummary({
+    this.complianceSummary,
+    this.groupName,
+  });
+  factory AggregateConformancePackComplianceSummary.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateConformancePackComplianceSummary(
+      complianceSummary: json['ComplianceSummary'] != null
+          ? AggregateConformancePackComplianceCount.fromJson(
+              json['ComplianceSummary'] as Map<String, dynamic>)
+          : null,
+      groupName: json['GroupName'] as String?,
+    );
+  }
+}
+
+/// Filters the results based on account ID and region.
+class AggregateConformancePackComplianceSummaryFilters {
+  /// The 12-digit AWS account ID of the source account.
+  final String? accountId;
+
+  /// The source AWS Region from where the data is aggregated.
+  final String? awsRegion;
+
+  AggregateConformancePackComplianceSummaryFilters({
+    this.accountId,
+    this.awsRegion,
+  });
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsRegion = this.awsRegion;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+    };
+  }
+}
+
+enum AggregateConformancePackComplianceSummaryGroupKey {
+  accountId,
+  awsRegion,
+}
+
+extension on AggregateConformancePackComplianceSummaryGroupKey {
+  String toValue() {
+    switch (this) {
+      case AggregateConformancePackComplianceSummaryGroupKey.accountId:
+        return 'ACCOUNT_ID';
+      case AggregateConformancePackComplianceSummaryGroupKey.awsRegion:
+        return 'AWS_REGION';
+    }
+  }
+}
+
+extension on String {
+  AggregateConformancePackComplianceSummaryGroupKey
+      toAggregateConformancePackComplianceSummaryGroupKey() {
+    switch (this) {
+      case 'ACCOUNT_ID':
+        return AggregateConformancePackComplianceSummaryGroupKey.accountId;
+      case 'AWS_REGION':
+        return AggregateConformancePackComplianceSummaryGroupKey.awsRegion;
+    }
+    throw Exception(
+        '$this is not known in enum AggregateConformancePackComplianceSummaryGroupKey');
   }
 }
 
@@ -6504,7 +6677,7 @@ class ConfigurationItem {
   /// The 12-digit AWS account ID associated with the resource.
   final String? accountId;
 
-  /// accoun
+  /// Amazon Resource Name (ARN) associated with the resource.
   final String? arn;
 
   /// The Availability Zone associated with the resource.
@@ -6795,7 +6968,7 @@ class ConformancePackComplianceFilters {
   /// Filters the results by compliance.
   ///
   /// The allowed values are <code>COMPLIANT</code> and
-  /// <code>NON_COMPLIANT</code>.
+  /// <code>NON_COMPLIANT</code>. <code>INSUFFICIENT_DATA</code> is not supported.
   final ConformancePackComplianceType? complianceType;
 
   /// Filters the results by AWS Config rule names.
@@ -6817,8 +6990,9 @@ class ConformancePackComplianceFilters {
 
 /// Summary includes the name and status of the conformance pack.
 class ConformancePackComplianceSummary {
-  /// The status of the conformance pack. The allowed values are COMPLIANT and
-  /// NON_COMPLIANT.
+  /// The status of the conformance pack. The allowed values are
+  /// <code>COMPLIANT</code>, <code>NON_COMPLIANT</code> and
+  /// <code>INSUFFICIENT_DATA</code>.
   final ConformancePackComplianceType conformancePackComplianceStatus;
 
   /// The name of the conformance pack name.
@@ -6841,6 +7015,7 @@ class ConformancePackComplianceSummary {
 enum ConformancePackComplianceType {
   compliant,
   nonCompliant,
+  insufficientData,
 }
 
 extension on ConformancePackComplianceType {
@@ -6850,6 +7025,8 @@ extension on ConformancePackComplianceType {
         return 'COMPLIANT';
       case ConformancePackComplianceType.nonCompliant:
         return 'NON_COMPLIANT';
+      case ConformancePackComplianceType.insufficientData:
+        return 'INSUFFICIENT_DATA';
     }
   }
 }
@@ -6861,6 +7038,8 @@ extension on String {
         return ConformancePackComplianceType.compliant;
       case 'NON_COMPLIANT':
         return ConformancePackComplianceType.nonCompliant;
+      case 'INSUFFICIENT_DATA':
+        return ConformancePackComplianceType.insufficientData;
     }
     throw Exception('$this is not known in enum ConformancePackComplianceType');
   }
@@ -6885,12 +7064,16 @@ class ConformancePackDetail {
   /// AWS service that created the conformance pack.
   final String? createdBy;
 
-  /// Conformance pack template that is used to create a pack. The delivery bucket
-  /// name should start with awsconfigconforms. For example: "Resource":
-  /// "arn:aws:s3:::your_bucket_name/*".
+  /// Amazon S3 bucket where AWS Config stores conformance pack templates.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   final String? deliveryS3Bucket;
 
   /// The prefix for the Amazon S3 bucket.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   final String? deliveryS3KeyPrefix;
 
   /// Last time when conformation pack update was requested.
@@ -6932,7 +7115,7 @@ class ConformancePackEvaluationFilters {
   /// Filters the results by compliance.
   ///
   /// The allowed values are <code>COMPLIANT</code> and
-  /// <code>NON_COMPLIANT</code>.
+  /// <code>NON_COMPLIANT</code>. <code>INSUFFICIENT_DATA</code> is not supported.
   final ConformancePackComplianceType? complianceType;
 
   /// Filters the results by AWS Config rule names.
@@ -6974,7 +7157,7 @@ class ConformancePackEvaluationFilters {
 /// pack, related time stamps, and supplementary information.
 class ConformancePackEvaluationResult {
   /// The compliance type. The allowed values are <code>COMPLIANT</code> and
-  /// <code>NON_COMPLIANT</code>.
+  /// <code>NON_COMPLIANT</code>. <code>INSUFFICIENT_DATA</code> is not supported.
   final ConformancePackComplianceType complianceType;
 
   /// The time when AWS Config rule evaluated AWS resource.
@@ -7044,24 +7227,35 @@ class ConformancePackInputParameter {
 /// Compliance information of one or more AWS Config rules within a conformance
 /// pack. You can filter using AWS Config rule names and compliance types.
 class ConformancePackRuleCompliance {
-  /// Compliance of the AWS Config rule
+  /// Compliance of the AWS Config rule.
   ///
-  /// The allowed values are <code>COMPLIANT</code> and
-  /// <code>NON_COMPLIANT</code>.
+  /// The allowed values are <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>,
+  /// and <code>INSUFFICIENT_DATA</code>.
   final ConformancePackComplianceType? complianceType;
 
   /// Name of the config rule.
   final String? configRuleName;
 
+  /// Controls for the conformance pack. A control is a process to prevent or
+  /// detect problems while meeting objectives. A control can align with a
+  /// specific compliance regime or map to internal controls defined by an
+  /// organization.
+  final List<String>? controls;
+
   ConformancePackRuleCompliance({
     this.complianceType,
     this.configRuleName,
+    this.controls,
   });
   factory ConformancePackRuleCompliance.fromJson(Map<String, dynamic> json) {
     return ConformancePackRuleCompliance(
       complianceType: (json['ComplianceType'] as String?)
           ?.toConformancePackComplianceType(),
       configRuleName: json['ConfigRuleName'] as String?,
+      controls: (json['Controls'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
     );
   }
 }
@@ -7271,6 +7465,11 @@ class DeliveryChannel {
   /// The prefix for the specified Amazon S3 bucket.
   final String? s3KeyPrefix;
 
+  /// The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
+  /// customer managed key (CMK) used to encrypt objects delivered by AWS Config.
+  /// Must belong to the same Region as the destination S3 bucket.
+  final String? s3KmsKeyArn;
+
   /// The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config
   /// sends notifications about configuration changes.
   ///
@@ -7285,6 +7484,7 @@ class DeliveryChannel {
     this.name,
     this.s3BucketName,
     this.s3KeyPrefix,
+    this.s3KmsKeyArn,
     this.snsTopicARN,
   });
   factory DeliveryChannel.fromJson(Map<String, dynamic> json) {
@@ -7298,6 +7498,7 @@ class DeliveryChannel {
       name: json['name'] as String?,
       s3BucketName: json['s3BucketName'] as String?,
       s3KeyPrefix: json['s3KeyPrefix'] as String?,
+      s3KmsKeyArn: json['s3KmsKeyArn'] as String?,
       snsTopicARN: json['snsTopicARN'] as String?,
     );
   }
@@ -7308,6 +7509,7 @@ class DeliveryChannel {
     final name = this.name;
     final s3BucketName = this.s3BucketName;
     final s3KeyPrefix = this.s3KeyPrefix;
+    final s3KmsKeyArn = this.s3KmsKeyArn;
     final snsTopicARN = this.snsTopicARN;
     return {
       if (configSnapshotDeliveryProperties != null)
@@ -7315,6 +7517,7 @@ class DeliveryChannel {
       if (name != null) 'name': name,
       if (s3BucketName != null) 's3BucketName': s3BucketName,
       if (s3KeyPrefix != null) 's3KeyPrefix': s3KeyPrefix,
+      if (s3KmsKeyArn != null) 's3KmsKeyArn': s3KmsKeyArn,
       if (snsTopicARN != null) 'snsTopicARN': snsTopicARN,
     };
   }
@@ -7416,6 +7619,33 @@ class DescribeAggregateComplianceByConfigRulesResponse {
           (json['AggregateComplianceByConfigRules'] as List?)
               ?.whereNotNull()
               .map((e) => AggregateComplianceByConfigRule.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class DescribeAggregateComplianceByConformancePacksResponse {
+  /// Returns the <code>AggregateComplianceByConformancePack</code> object.
+  final List<AggregateComplianceByConformancePack>?
+      aggregateComplianceByConformancePacks;
+
+  /// The <code>nextToken</code> string returned on a previous page that you use
+  /// to get the next page of results in a paginated response.
+  final String? nextToken;
+
+  DescribeAggregateComplianceByConformancePacksResponse({
+    this.aggregateComplianceByConformancePacks,
+    this.nextToken,
+  });
+  factory DescribeAggregateComplianceByConformancePacksResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeAggregateComplianceByConformancePacksResponse(
+      aggregateComplianceByConformancePacks:
+          (json['AggregateComplianceByConformancePacks'] as List?)
+              ?.whereNotNull()
+              .map((e) => AggregateComplianceByConformancePack.fromJson(
                   e as Map<String, dynamic>))
               .toList(),
       nextToken: json['NextToken'] as String?,
@@ -8207,11 +8437,26 @@ class ExecutionControls {
   }
 }
 
+/// Identifies an AWS resource and indicates whether it complies with the AWS
+/// Config rule that it was evaluated against.
 class ExternalEvaluation {
+  /// The evaluated compliance resource ID. AWS Config accepts only AWS account
+  /// ID.
   final String complianceResourceId;
+
+  /// The evaluated compliance resource type. AWS Config accepts
+  /// <code>AWS::::Account</code> resource type.
   final String complianceResourceType;
+
+  /// The compliance of the AWS resource. The valid values are <code>COMPLIANT,
+  /// NON_COMPLIANT, </code> and <code>NOT_APPLICABLE</code>.
   final ComplianceType complianceType;
+
+  /// The time when the compliance was recorded.
   final DateTime orderingTimestamp;
+
+  /// Supplementary information about the reason of compliance. For example, this
+  /// task was completed on a specific date.
   final String? annotation;
 
   ExternalEvaluation({
@@ -8375,6 +8620,39 @@ class GetAggregateConfigRuleComplianceSummaryResponse {
           .map((e) =>
               AggregateComplianceCount.fromJson(e as Map<String, dynamic>))
           .toList(),
+      groupByKey: json['GroupByKey'] as String?,
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class GetAggregateConformancePackComplianceSummaryResponse {
+  /// Returns a list of <code>AggregateConformancePackComplianceSummary</code>
+  /// object.
+  final List<AggregateConformancePackComplianceSummary>?
+      aggregateConformancePackComplianceSummaries;
+
+  /// Groups the result based on AWS Account ID or AWS Region.
+  final String? groupByKey;
+
+  /// The <code>nextToken</code> string returned on a previous page that you use
+  /// to get the next page of results in a paginated response.
+  final String? nextToken;
+
+  GetAggregateConformancePackComplianceSummaryResponse({
+    this.aggregateConformancePackComplianceSummaries,
+    this.groupByKey,
+    this.nextToken,
+  });
+  factory GetAggregateConformancePackComplianceSummaryResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetAggregateConformancePackComplianceSummaryResponse(
+      aggregateConformancePackComplianceSummaries:
+          (json['AggregateConformancePackComplianceSummaries'] as List?)
+              ?.whereNotNull()
+              .map((e) => AggregateConformancePackComplianceSummary.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
       groupByKey: json['GroupByKey'] as String?,
       nextToken: json['NextToken'] as String?,
     );
@@ -9323,11 +9601,16 @@ class OrganizationConformancePack {
   /// A list of <code>ConformancePackInputParameter</code> objects.
   final List<ConformancePackInputParameter>? conformancePackInputParameters;
 
-  /// Location of an Amazon S3 bucket where AWS Config can deliver evaluation
-  /// results and conformance pack template that is used to create a pack.
+  /// Amazon S3 bucket where AWS Config stores conformance pack templates.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   final String? deliveryS3Bucket;
 
   /// Any folder structure you want to add to an Amazon S3 bucket.
+  /// <note>
+  /// This field is optional.
+  /// </note>
   final String? deliveryS3KeyPrefix;
 
   /// A comma-separated list of accounts excluded from organization conformance
@@ -10238,7 +10521,7 @@ class PutRetentionConfigurationResponse {
 
 class PutStoredQueryResponse {
   /// Amazon Resource Name (ARN) of the query. For example,
-  /// arn:partition:service:region:account-id:resource-type/resource-id.
+  /// arn:partition:service:region:account-id:resource-type/resource-name/resource-id.
   final String? queryArn;
 
   PutStoredQueryResponse({
@@ -10369,10 +10652,10 @@ class RecordingGroup {
   /// AWS Config records configuration changes (for example,
   /// <code>AWS::EC2::Instance</code> or <code>AWS::CloudTrail::Trail</code>).
   ///
-  /// Before you can set this option to <code>true</code>, you must set the
-  /// <code>allSupported</code> option to <code>false</code>.
+  /// To record all configuration changes, you must set the
+  /// <code>allSupported</code> option to <code>true</code>.
   ///
-  /// If you set this option to <code>true</code>, when AWS Config adds support
+  /// If you set this option to <code>false</code>, when AWS Config adds support
   /// for a new type of resource, it will not record resources of that type unless
   /// you manually add that type to your recording group.
   ///
@@ -11097,6 +11380,7 @@ enum ResourceType {
   awsSsmPatchCompliance,
   awsShieldProtection,
   awsShieldRegionalProtection,
+  awsConfigConformancePackCompliance,
   awsConfigResourceCompliance,
   awsApiGatewayStage,
   awsApiGatewayRestApi,
@@ -11279,6 +11563,8 @@ extension on ResourceType {
         return 'AWS::Shield::Protection';
       case ResourceType.awsShieldRegionalProtection:
         return 'AWS::ShieldRegional::Protection';
+      case ResourceType.awsConfigConformancePackCompliance:
+        return 'AWS::Config::ConformancePackCompliance';
       case ResourceType.awsConfigResourceCompliance:
         return 'AWS::Config::ResourceCompliance';
       case ResourceType.awsApiGatewayStage:
@@ -11478,6 +11764,8 @@ extension on String {
         return ResourceType.awsShieldProtection;
       case 'AWS::ShieldRegional::Protection':
         return ResourceType.awsShieldRegionalProtection;
+      case 'AWS::Config::ConformancePackCompliance':
+        return ResourceType.awsConfigConformancePackCompliance;
       case 'AWS::Config::ResourceCompliance':
         return ResourceType.awsConfigResourceCompliance;
       case 'AWS::ApiGateway::Stage':
@@ -12020,7 +12308,7 @@ class StoredQuery {
   final String? expression;
 
   /// Amazon Resource Name (ARN) of the query. For example,
-  /// arn:partition:service:region:account-id:resource-type/resource-id.
+  /// arn:partition:service:region:account-id:resource-type/resource-name/resource-id.
   final String? queryArn;
 
   /// The ID of the query.
@@ -12062,7 +12350,7 @@ class StoredQuery {
 /// Returns details of a specific query.
 class StoredQueryMetadata {
   /// Amazon Resource Name (ARN) of the query. For example,
-  /// arn:partition:service:region:account-id:resource-type/resource-id.
+  /// arn:partition:service:region:account-id:resource-type/resource-name/resource-id.
   final String queryArn;
 
   /// The ID of the query.
@@ -12212,6 +12500,12 @@ class InvalidS3KeyPrefixException extends _s.GenericAwsException {
   InvalidS3KeyPrefixException({String? type, String? message})
       : super(
             type: type, code: 'InvalidS3KeyPrefixException', message: message);
+}
+
+class InvalidS3KmsKeyArnException extends _s.GenericAwsException {
+  InvalidS3KmsKeyArnException({String? type, String? message})
+      : super(
+            type: type, code: 'InvalidS3KmsKeyArnException', message: message);
 }
 
 class InvalidSNSTopicARNException extends _s.GenericAwsException {
@@ -12542,6 +12836,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidRoleException(type: type, message: message),
   'InvalidS3KeyPrefixException': (type, message) =>
       InvalidS3KeyPrefixException(type: type, message: message),
+  'InvalidS3KmsKeyArnException': (type, message) =>
+      InvalidS3KmsKeyArnException(type: type, message: message),
   'InvalidSNSTopicARNException': (type, message) =>
       InvalidSNSTopicARNException(type: type, message: message),
   'InvalidTimeRangeException': (type, message) =>

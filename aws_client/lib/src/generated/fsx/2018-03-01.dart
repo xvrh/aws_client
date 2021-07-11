@@ -101,22 +101,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -175,12 +164,6 @@ class FSx {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskId',
-      taskId,
-      r'''^(task-[0-9a-f]{17,})$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSSimbaAPIService_v20180301.CancelDataRepositoryTask'
@@ -197,6 +180,124 @@ class FSx {
     );
 
     return CancelDataRepositoryTaskResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Copies an existing backup within the same AWS account to another Region
+  /// (cross-Region copy) or within the same Region (in-Region copy). You can
+  /// have up to five backup copy requests in progress to a single destination
+  /// Region per account.
+  ///
+  /// You can use cross-Region backup copies for cross-region disaster recovery.
+  /// You periodically take backups and copy them to another Region so that in
+  /// the event of a disaster in the primary Region, you can restore from backup
+  /// and recover availability quickly in the other Region. You can make
+  /// cross-Region copies only within your AWS partition.
+  ///
+  /// You can also use backup copies to clone your file data set to another
+  /// Region or within the same Region.
+  ///
+  /// You can use the <code>SourceRegion</code> parameter to specify the AWS
+  /// Region from which the backup will be copied. For example, if you make the
+  /// call from the <code>us-west-1</code> Region and want to copy a backup from
+  /// the <code>us-east-2</code> Region, you specify <code>us-east-2</code> in
+  /// the <code>SourceRegion</code> parameter to make a cross-Region copy. If
+  /// you don't specify a Region, the backup copy is created in the same Region
+  /// where the request is sent from (in-Region copy).
+  ///
+  /// For more information on creating backup copies, see <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#copy-backups">
+  /// Copying backups</a> in the <i>Amazon FSx for Windows User Guide</i> and <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html#copy-backups">Copying
+  /// backups</a> in the <i>Amazon FSx for Lustre User Guide</i>.
+  ///
+  /// May throw [BadRequest].
+  /// May throw [BackupNotFound].
+  /// May throw [ServiceLimitExceeded].
+  /// May throw [UnsupportedOperation].
+  /// May throw [IncompatibleParameterError].
+  /// May throw [InternalServerError].
+  /// May throw [InvalidSourceKmsKey].
+  /// May throw [InvalidDestinationKmsKey].
+  /// May throw [InvalidRegion].
+  /// May throw [SourceBackupUnavailable].
+  /// May throw [IncompatibleRegionForMultiAZ].
+  ///
+  /// Parameter [sourceBackupId] :
+  /// The ID of the source backup. Specifies the ID of the backup that is being
+  /// copied.
+  ///
+  /// Parameter [copyTags] :
+  /// A boolean flag indicating whether tags from the source backup should be
+  /// copied to the backup copy. This value defaults to false.
+  ///
+  /// If you set <code>CopyTags</code> to true and the source backup has
+  /// existing tags, you can use the <code>Tags</code> parameter to create new
+  /// tags, provided that the sum of the source backup tags and the new tags
+  /// doesn't exceed 50. Both sets of tags are merged. If there are tag
+  /// conflicts (for example, two tags with the same key but different values),
+  /// the tags created with the <code>Tags</code> parameter take precedence.
+  ///
+  /// Parameter [sourceRegion] :
+  /// The source AWS Region of the backup. Specifies the AWS Region from which
+  /// the backup is being copied. The source and destination Regions must be in
+  /// the same AWS partition. If you don't specify a Region, it defaults to the
+  /// Region where the request is sent from (in-Region copy).
+  Future<CopyBackupResponse> copyBackup({
+    required String sourceBackupId,
+    String? clientRequestToken,
+    bool? copyTags,
+    String? kmsKeyId,
+    String? sourceRegion,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(sourceBackupId, 'sourceBackupId');
+    _s.validateStringLength(
+      'sourceBackupId',
+      sourceBackupId,
+      12,
+      128,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clientRequestToken',
+      clientRequestToken,
+      1,
+      63,
+    );
+    _s.validateStringLength(
+      'kmsKeyId',
+      kmsKeyId,
+      1,
+      2048,
+    );
+    _s.validateStringLength(
+      'sourceRegion',
+      sourceRegion,
+      1,
+      20,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSSimbaAPIService_v20180301.CopyBackup'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'SourceBackupId': sourceBackupId,
+        'ClientRequestToken':
+            clientRequestToken ?? _s.generateIdempotencyToken(),
+        if (copyTags != null) 'CopyTags': copyTags,
+        if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+        if (sourceRegion != null) 'SourceRegion': sourceRegion,
+        if (tags != null) 'Tags': tags,
+      },
+    );
+
+    return CopyBackupResponse.fromJson(jsonResponse.body);
   }
 
   /// Creates a backup of an existing Amazon FSx file system. Creating regular
@@ -290,22 +391,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -386,12 +476,6 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(report, 'report');
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
@@ -399,11 +483,6 @@ class FSx {
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -521,7 +600,9 @@ class FSx {
   /// provide exactly two subnet IDs, one for the preferred file server and one
   /// for the standby file server. You specify one of these subnets as the
   /// preferred subnet using the <code>WindowsConfiguration &gt;
-  /// PreferredSubnetID</code> property.
+  /// PreferredSubnetID</code> property. For more information, see <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html">
+  /// Availability and durability: Single-AZ and Multi-AZ file systems</a>.
   ///
   /// For Windows <code>SINGLE_AZ_1</code> and <code>SINGLE_AZ_2</code> file
   /// system deployment types and Lustre file systems, provide exactly one
@@ -594,21 +675,11 @@ class FSx {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
-    );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''^.{1,2048}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -747,6 +818,7 @@ class FSx {
     required String backupId,
     required List<String> subnetIds,
     String? clientRequestToken,
+    String? kmsKeyId,
     CreateFileSystemLustreConfiguration? lustreConfiguration,
     List<String>? securityGroupIds,
     StorageType? storageType,
@@ -761,12 +833,6 @@ class FSx {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''^(backup-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
     _s.validateStringLength(
       'clientRequestToken',
@@ -774,10 +840,11 @@ class FSx {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
+    _s.validateStringLength(
+      'kmsKeyId',
+      kmsKeyId,
+      1,
+      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -794,6 +861,7 @@ class FSx {
         'SubnetIds': subnetIds,
         'ClientRequestToken':
             clientRequestToken ?? _s.generateIdempotencyToken(),
+        if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
         if (lustreConfiguration != null)
           'LustreConfiguration': lustreConfiguration,
         if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
@@ -823,6 +891,7 @@ class FSx {
   /// May throw [BackupRestoring].
   /// May throw [IncompatibleParameterError].
   /// May throw [InternalServerError].
+  /// May throw [BackupBeingCopied].
   ///
   /// Parameter [backupId] :
   /// The ID of the backup you want to delete.
@@ -843,22 +912,11 @@ class FSx {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''^(backup-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -931,22 +989,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1046,11 +1093,6 @@ class FSx {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSSimbaAPIService_v20180301.DescribeBackups'
@@ -1118,11 +1160,6 @@ class FSx {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSSimbaAPIService_v20180301.DescribeDataRepositoryTasks'
@@ -1184,22 +1221,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -1212,11 +1238,6 @@ class FSx {
       nextToken,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1308,11 +1329,6 @@ class FSx {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSSimbaAPIService_v20180301.DescribeFileSystems'
@@ -1370,22 +1386,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1472,12 +1477,6 @@ class FSx {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:(?=[^:]+:fsx:[^:]+:\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\d{1,3}(\.\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\.)(?![^:]*\.-)[a-z0-9].*(?<!-)):){4}(?!/).{0,1024}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1489,11 +1488,6 @@ class FSx {
       nextToken,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1542,12 +1536,6 @@ class FSx {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:(?=[^:]+:fsx:[^:]+:\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\d{1,3}(\.\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\.)(?![^:]*\.-)[a-z0-9].*(?<!-)):){4}(?!/).{0,1024}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1592,12 +1580,6 @@ class FSx {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:(?=[^:]+:fsx:[^:]+:\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\d{1,3}(\.\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\.)(?![^:]*\.-)[a-z0-9].*(?<!-)):){4}(?!/).{0,1024}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1623,6 +1605,9 @@ class FSx {
   /// following properties:
   ///
   /// <ul>
+  /// <li>
+  /// AuditLogConfiguration
+  /// </li>
   /// <li>
   /// AutomaticBackupRetentionDays
   /// </li>
@@ -1654,6 +1639,9 @@ class FSx {
   /// </li>
   /// <li>
   /// DailyAutomaticBackupStartTime
+  /// </li>
+  /// <li>
+  /// DataCompressionType
   /// </li>
   /// <li>
   /// StorageCapacity
@@ -1737,22 +1725,11 @@ class FSx {
       21,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(fs-[0-9a-f]{8,})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[A-za-z0-9_.-]{0,63}$''',
     );
     _s.validateNumRange(
       'storageCapacity',
@@ -1795,15 +1772,18 @@ class ActiveDirectoryBackupAttributes {
 
   /// The fully qualified domain name of the self-managed AD directory.
   final String? domainName;
+  final String? resourceARN;
 
   ActiveDirectoryBackupAttributes({
     this.activeDirectoryId,
     this.domainName,
+    this.resourceARN,
   });
   factory ActiveDirectoryBackupAttributes.fromJson(Map<String, dynamic> json) {
     return ActiveDirectoryBackupAttributes(
       activeDirectoryId: json['ActiveDirectoryId'] as String?,
       domainName: json['DomainName'] as String?,
+      resourceARN: json['ResourceARN'] as String?,
     );
   }
 }
@@ -2028,7 +2008,7 @@ class Alias {
   /// <code>accounting.example.com</code>.
   /// </li>
   /// <li>
-  /// Can contain alphanumeric characters and the hyphen (-).
+  /// Can contain alphanumeric characters, the underscore (_), and the hyphen (-).
   /// </li>
   /// <li>
   /// Cannot start or end with a hyphen.
@@ -2154,20 +2134,7 @@ extension on String {
   }
 }
 
-/// A backup of an Amazon FSx file system. For more information see:
-///
-/// <ul>
-/// <li>
-/// <a
-/// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html">Working
-/// with backups for Windows file systems</a>
-/// </li>
-/// <li>
-/// <a
-/// href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html">Working
-/// with backups for Lustre file systems</a>
-/// </li>
-/// </ul>
+/// A backup of an Amazon FSx file system.
 class Backup {
   /// The ID of the backup.
   final String backupId;
@@ -2197,6 +2164,9 @@ class Backup {
   /// systems only; Amazon FSx is transferring the backup to S3.
   /// </li>
   /// <li>
+  /// <code>COPYING</code> - Amazon FSx is copying the backup.
+  /// </li>
+  /// <li>
   /// <code>DELETED</code> - Amazon FSx deleted the backup and it is no longer
   /// available.
   /// </li>
@@ -2219,10 +2189,16 @@ class Backup {
   /// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
   /// backup of the Amazon FSx file system's data at rest.
   final String? kmsKeyId;
+  final String? ownerId;
   final int? progressPercent;
 
   /// The Amazon Resource Name (ARN) for the backup resource.
   final String? resourceARN;
+  final String? sourceBackupId;
+
+  /// The source Region of the backup. Specifies the Region from where this backup
+  /// is copied.
+  final String? sourceBackupRegion;
 
   /// Tags associated with a particular file system.
   final List<Tag>? tags;
@@ -2236,8 +2212,11 @@ class Backup {
     this.directoryInformation,
     this.failureDetails,
     this.kmsKeyId,
+    this.ownerId,
     this.progressPercent,
     this.resourceARN,
+    this.sourceBackupId,
+    this.sourceBackupRegion,
     this.tags,
   });
   factory Backup.fromJson(Map<String, dynamic> json) {
@@ -2258,8 +2237,11 @@ class Backup {
               json['FailureDetails'] as Map<String, dynamic>)
           : null,
       kmsKeyId: json['KmsKeyId'] as String?,
+      ownerId: json['OwnerId'] as String?,
       progressPercent: json['ProgressPercent'] as int?,
       resourceARN: json['ResourceARN'] as String?,
+      sourceBackupId: json['SourceBackupId'] as String?,
+      sourceBackupRegion: json['SourceBackupRegion'] as String?,
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -2302,6 +2284,9 @@ class BackupFailureDetails {
 /// systems only; Amazon FSx is backing up the file system.
 /// </li>
 /// <li>
+/// <code>COPYING</code> - Amazon FSx is copying the backup.
+/// </li>
+/// <li>
 /// <code>DELETED</code> - Amazon FSx deleted the backup and it is no longer
 /// available.
 /// </li>
@@ -2316,6 +2301,7 @@ enum BackupLifecycle {
   deleted,
   failed,
   pending,
+  copying,
 }
 
 extension on BackupLifecycle {
@@ -2333,6 +2319,8 @@ extension on BackupLifecycle {
         return 'FAILED';
       case BackupLifecycle.pending:
         return 'PENDING';
+      case BackupLifecycle.copying:
+        return 'COPYING';
     }
   }
 }
@@ -2352,6 +2340,8 @@ extension on String {
         return BackupLifecycle.failed;
       case 'PENDING':
         return BackupLifecycle.pending;
+      case 'COPYING':
+        return BackupLifecycle.copying;
     }
     throw Exception('$this is not known in enum BackupLifecycle');
   }
@@ -2507,6 +2497,21 @@ class CompletionReport {
   }
 }
 
+class CopyBackupResponse {
+  final Backup? backup;
+
+  CopyBackupResponse({
+    this.backup,
+  });
+  factory CopyBackupResponse.fromJson(Map<String, dynamic> json) {
+    return CopyBackupResponse(
+      backup: json['Backup'] != null
+          ? Backup.fromJson(json['Backup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 /// The response object for the <code>CreateBackup</code> operation.
 class CreateBackupResponse {
   /// A description of the backup.
@@ -2609,6 +2614,23 @@ class CreateFileSystemLustreConfiguration {
   final bool? copyTagsToBackups;
   final String? dailyAutomaticBackupStartTime;
 
+  /// Sets the data compression configuration for the file system.
+  /// <code>DataCompressionType</code> can have the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NONE</code> - (Default) Data compression is turned off when the file
+  /// system is created.
+  /// </li>
+  /// <li>
+  /// <code>LZ4</code> - Data compression is turned on with the LZ4 algorithm.
+  /// </li>
+  /// </ul>
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html">Lustre
+  /// data compression</a>.
+  final DataCompressionType? dataCompressionType;
+
   /// Choose <code>SCRATCH_1</code> and <code>SCRATCH_2</code> deployment types
   /// when you need temporary storage and shorter-term processing of data. The
   /// <code>SCRATCH_2</code> deployment type provides in-transit encryption of
@@ -2703,6 +2725,7 @@ class CreateFileSystemLustreConfiguration {
     this.automaticBackupRetentionDays,
     this.copyTagsToBackups,
     this.dailyAutomaticBackupStartTime,
+    this.dataCompressionType,
     this.deploymentType,
     this.driveCacheType,
     this.exportPath,
@@ -2716,6 +2739,7 @@ class CreateFileSystemLustreConfiguration {
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final copyTagsToBackups = this.copyTagsToBackups;
     final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final dataCompressionType = this.dataCompressionType;
     final deploymentType = this.deploymentType;
     final driveCacheType = this.driveCacheType;
     final exportPath = this.exportPath;
@@ -2731,6 +2755,8 @@ class CreateFileSystemLustreConfiguration {
       if (copyTagsToBackups != null) 'CopyTagsToBackups': copyTagsToBackups,
       if (dailyAutomaticBackupStartTime != null)
         'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (dataCompressionType != null)
+        'DataCompressionType': dataCompressionType.toValue(),
       if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
       if (driveCacheType != null) 'DriveCacheType': driveCacheType.toValue(),
       if (exportPath != null) 'ExportPath': exportPath,
@@ -2799,7 +2825,7 @@ class CreateFileSystemWindowsConfiguration {
   /// <code>accounting.example.com</code>.
   /// </li>
   /// <li>
-  /// Can contain alphanumeric characters and the hyphen (-).
+  /// Can contain alphanumeric characters, the underscore (_), and the hyphen (-).
   /// </li>
   /// <li>
   /// Cannot start or end with a hyphen.
@@ -2812,6 +2838,11 @@ class CreateFileSystemWindowsConfiguration {
   /// letters (a-z), regardless of how you specify them: as uppercase letters,
   /// lowercase letters, or the corresponding letters in escape codes.
   final List<String>? aliases;
+
+  /// The configuration that Amazon FSx for Windows File Server uses to audit and
+  /// log user accesses of files, folders, and file shares on the Amazon FSx for
+  /// Windows File Server file system.
+  final WindowsAuditLogCreateConfiguration? auditLogConfiguration;
 
   /// The number of days to retain automatic backups. The default is to retain
   /// backups for 7 days. Setting this value to 0 disables the creation of
@@ -2874,6 +2905,7 @@ class CreateFileSystemWindowsConfiguration {
     required this.throughputCapacity,
     this.activeDirectoryId,
     this.aliases,
+    this.auditLogConfiguration,
     this.automaticBackupRetentionDays,
     this.copyTagsToBackups,
     this.dailyAutomaticBackupStartTime,
@@ -2886,6 +2918,7 @@ class CreateFileSystemWindowsConfiguration {
     final throughputCapacity = this.throughputCapacity;
     final activeDirectoryId = this.activeDirectoryId;
     final aliases = this.aliases;
+    final auditLogConfiguration = this.auditLogConfiguration;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final copyTagsToBackups = this.copyTagsToBackups;
     final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
@@ -2898,6 +2931,8 @@ class CreateFileSystemWindowsConfiguration {
       'ThroughputCapacity': throughputCapacity,
       if (activeDirectoryId != null) 'ActiveDirectoryId': activeDirectoryId,
       if (aliases != null) 'Aliases': aliases,
+      if (auditLogConfiguration != null)
+        'AuditLogConfiguration': auditLogConfiguration,
       if (automaticBackupRetentionDays != null)
         'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
       if (copyTagsToBackups != null) 'CopyTagsToBackups': copyTagsToBackups,
@@ -2911,6 +2946,34 @@ class CreateFileSystemWindowsConfiguration {
       if (weeklyMaintenanceStartTime != null)
         'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
     };
+  }
+}
+
+enum DataCompressionType {
+  none,
+  lz4,
+}
+
+extension on DataCompressionType {
+  String toValue() {
+    switch (this) {
+      case DataCompressionType.none:
+        return 'NONE';
+      case DataCompressionType.lz4:
+        return 'LZ4';
+    }
+  }
+}
+
+extension on String {
+  DataCompressionType toDataCompressionType() {
+    switch (this) {
+      case 'NONE':
+        return DataCompressionType.none;
+      case 'LZ4':
+        return DataCompressionType.lz4;
+    }
+    throw Exception('$this is not known in enum DataCompressionType');
   }
 }
 
@@ -3553,7 +3616,7 @@ class DeleteFileSystemWindowsResponse {
 
 /// Response object for <code>DescribeBackups</code> operation.
 class DescribeBackupsResponse {
-  /// Any array of backups.
+  /// An array of backups.
   final List<Backup>? backups;
 
   /// This is present if there are more backups than returned in the response
@@ -4136,6 +4199,22 @@ class LustreFileSystemConfiguration {
   /// system, regardless of this value. (Default = false)
   final bool? copyTagsToBackups;
   final String? dailyAutomaticBackupStartTime;
+
+  /// The data compression configuration for the file system.
+  /// <code>DataCompressionType</code> can have the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NONE</code> - Data compression is turned off for the file system.
+  /// </li>
+  /// <li>
+  /// <code>LZ4</code> - Data compression is turned on with the LZ4 algorithm.
+  /// </li>
+  /// </ul>
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html">Lustre
+  /// data compression</a>.
+  final DataCompressionType? dataCompressionType;
   final DataRepositoryConfiguration? dataRepositoryConfiguration;
 
   /// The deployment type of the FSX for Lustre file system. <i>Scratch deployment
@@ -4191,6 +4270,7 @@ class LustreFileSystemConfiguration {
     this.automaticBackupRetentionDays,
     this.copyTagsToBackups,
     this.dailyAutomaticBackupStartTime,
+    this.dataCompressionType,
     this.dataRepositoryConfiguration,
     this.deploymentType,
     this.driveCacheType,
@@ -4205,6 +4285,8 @@ class LustreFileSystemConfiguration {
       copyTagsToBackups: json['CopyTagsToBackups'] as bool?,
       dailyAutomaticBackupStartTime:
           json['DailyAutomaticBackupStartTime'] as String?,
+      dataCompressionType:
+          (json['DataCompressionType'] as String?)?.toDataCompressionType(),
       dataRepositoryConfiguration: json['DataRepositoryConfiguration'] != null
           ? DataRepositoryConfiguration.fromJson(
               json['DataRepositoryConfiguration'] as Map<String, dynamic>)
@@ -4314,25 +4396,12 @@ class SelfManagedActiveDirectoryAttributes {
 
 /// The configuration that Amazon FSx uses to join the Windows File Server
 /// instance to your self-managed (including on-premises) Microsoft Active
-/// Directory (AD) directory.
+/// Directory (AD) directory. For more information, see <a
+/// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html">
+/// Using Amazon FSx with your self-managed Microsoft Active Directory</a>.
 class SelfManagedActiveDirectoryConfiguration {
   /// A list of up to two IP addresses of DNS servers or domain controllers in the
-  /// self-managed AD directory. The IP addresses need to be either in the same
-  /// VPC CIDR range as the one in which your Amazon FSx file system is being
-  /// created, or in the private IP version 4 (IPv4) address ranges, as specified
-  /// in <a href="http://www.faqs.org/rfcs/rfc1918.html">RFC 1918</a>:
-  ///
-  /// <ul>
-  /// <li>
-  /// 10.0.0.0 - 10.255.255.255 (10/8 prefix)
-  /// </li>
-  /// <li>
-  /// 172.16.0.0 - 172.31.255.255 (172.16/12 prefix)
-  /// </li>
-  /// <li>
-  /// 192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
-  /// </li>
-  /// </ul>
+  /// self-managed AD directory.
   final List<String> dnsIps;
 
   /// The fully qualified domain name of the self-managed AD directory, such as
@@ -4592,6 +4661,25 @@ class UpdateFileSystemLustreConfiguration {
   final int? automaticBackupRetentionDays;
   final String? dailyAutomaticBackupStartTime;
 
+  /// Sets the data compression configuration for the file system.
+  /// <code>DataCompressionType</code> can have the following values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NONE</code> - Data compression is turned off for the file system.
+  /// </li>
+  /// <li>
+  /// <code>LZ4</code> - Data compression is turned on with the LZ4 algorithm.
+  /// </li>
+  /// </ul>
+  /// If you don't use <code>DataCompressionType</code>, the file system retains
+  /// its current data compression configuration.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html">Lustre
+  /// data compression</a>.
+  final DataCompressionType? dataCompressionType;
+
   /// (Optional) The preferred start time to perform weekly maintenance, formatted
   /// d:HH:MM in the UTC time zone. d is the weekday number, from 1 through 7,
   /// beginning with Monday and ending with Sunday.
@@ -4601,12 +4689,14 @@ class UpdateFileSystemLustreConfiguration {
     this.autoImportPolicy,
     this.automaticBackupRetentionDays,
     this.dailyAutomaticBackupStartTime,
+    this.dataCompressionType,
     this.weeklyMaintenanceStartTime,
   });
   Map<String, dynamic> toJson() {
     final autoImportPolicy = this.autoImportPolicy;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final dataCompressionType = this.dataCompressionType;
     final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
     return {
       if (autoImportPolicy != null)
@@ -4615,6 +4705,8 @@ class UpdateFileSystemLustreConfiguration {
         'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
       if (dailyAutomaticBackupStartTime != null)
         'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (dataCompressionType != null)
+        'DataCompressionType': dataCompressionType.toValue(),
       if (weeklyMaintenanceStartTime != null)
         'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
     };
@@ -4642,6 +4734,11 @@ class UpdateFileSystemResponse {
 /// file system. Amazon FSx only overwrites existing properties with non-null
 /// values provided in the request.
 class UpdateFileSystemWindowsConfiguration {
+  /// The configuration that Amazon FSx for Windows File Server uses to audit and
+  /// log user accesses of files, folders, and file shares on the Amazon FSx for
+  /// Windows File Server file system..
+  final WindowsAuditLogCreateConfiguration? auditLogConfiguration;
+
   /// The number of days to retain automatic daily backups. Setting this to zero
   /// (0) disables automatic daily backups. You can retain automatic daily backups
   /// for a maximum of 90 days. For more information, see <a
@@ -4675,6 +4772,7 @@ class UpdateFileSystemWindowsConfiguration {
   final String? weeklyMaintenanceStartTime;
 
   UpdateFileSystemWindowsConfiguration({
+    this.auditLogConfiguration,
     this.automaticBackupRetentionDays,
     this.dailyAutomaticBackupStartTime,
     this.selfManagedActiveDirectoryConfiguration,
@@ -4682,6 +4780,7 @@ class UpdateFileSystemWindowsConfiguration {
     this.weeklyMaintenanceStartTime,
   });
   Map<String, dynamic> toJson() {
+    final auditLogConfiguration = this.auditLogConfiguration;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
     final selfManagedActiveDirectoryConfiguration =
@@ -4689,6 +4788,8 @@ class UpdateFileSystemWindowsConfiguration {
     final throughputCapacity = this.throughputCapacity;
     final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
     return {
+      if (auditLogConfiguration != null)
+        'AuditLogConfiguration': auditLogConfiguration,
       if (automaticBackupRetentionDays != null)
         'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
       if (dailyAutomaticBackupStartTime != null)
@@ -4699,6 +4800,222 @@ class UpdateFileSystemWindowsConfiguration {
       if (throughputCapacity != null) 'ThroughputCapacity': throughputCapacity,
       if (weeklyMaintenanceStartTime != null)
         'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
+    };
+  }
+}
+
+enum WindowsAccessAuditLogLevel {
+  disabled,
+  successOnly,
+  failureOnly,
+  successAndFailure,
+}
+
+extension on WindowsAccessAuditLogLevel {
+  String toValue() {
+    switch (this) {
+      case WindowsAccessAuditLogLevel.disabled:
+        return 'DISABLED';
+      case WindowsAccessAuditLogLevel.successOnly:
+        return 'SUCCESS_ONLY';
+      case WindowsAccessAuditLogLevel.failureOnly:
+        return 'FAILURE_ONLY';
+      case WindowsAccessAuditLogLevel.successAndFailure:
+        return 'SUCCESS_AND_FAILURE';
+    }
+  }
+}
+
+extension on String {
+  WindowsAccessAuditLogLevel toWindowsAccessAuditLogLevel() {
+    switch (this) {
+      case 'DISABLED':
+        return WindowsAccessAuditLogLevel.disabled;
+      case 'SUCCESS_ONLY':
+        return WindowsAccessAuditLogLevel.successOnly;
+      case 'FAILURE_ONLY':
+        return WindowsAccessAuditLogLevel.failureOnly;
+      case 'SUCCESS_AND_FAILURE':
+        return WindowsAccessAuditLogLevel.successAndFailure;
+    }
+    throw Exception('$this is not known in enum WindowsAccessAuditLogLevel');
+  }
+}
+
+/// The configuration that Amazon FSx for Windows File Server uses to audit and
+/// log user accesses of files, folders, and file shares on the Amazon FSx for
+/// Windows File Server file system. For more information, see <a
+/// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/file-access-auditing.html">
+/// File access auditing</a>.
+class WindowsAuditLogConfiguration {
+  /// Sets which attempt type is logged by Amazon FSx for file and folder
+  /// accesses.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SUCCESS_ONLY</code> - only successful attempts to access files or
+  /// folders are logged.
+  /// </li>
+  /// <li>
+  /// <code>FAILURE_ONLY</code> - only failed attempts to access files or folders
+  /// are logged.
+  /// </li>
+  /// <li>
+  /// <code>SUCCESS_AND_FAILURE</code> - both successful attempts and failed
+  /// attempts to access files or folders are logged.
+  /// </li>
+  /// <li>
+  /// <code>DISABLED</code> - access auditing of files and folders is turned off.
+  /// </li>
+  /// </ul>
+  final WindowsAccessAuditLogLevel fileAccessAuditLogLevel;
+
+  /// Sets which attempt type is logged by Amazon FSx for file share accesses.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SUCCESS_ONLY</code> - only successful attempts to access file shares
+  /// are logged.
+  /// </li>
+  /// <li>
+  /// <code>FAILURE_ONLY</code> - only failed attempts to access file shares are
+  /// logged.
+  /// </li>
+  /// <li>
+  /// <code>SUCCESS_AND_FAILURE</code> - both successful attempts and failed
+  /// attempts to access file shares are logged.
+  /// </li>
+  /// <li>
+  /// <code>DISABLED</code> - access auditing of file shares is turned off.
+  /// </li>
+  /// </ul>
+  final WindowsAccessAuditLogLevel fileShareAccessAuditLogLevel;
+
+  /// The Amazon Resource Name (ARN) for the destination of the audit logs. The
+  /// destination can be any Amazon CloudWatch Logs log group ARN or Amazon
+  /// Kinesis Data Firehose delivery stream ARN.
+  ///
+  /// The name of the Amazon CloudWatch Logs log group must begin with the
+  /// <code>/aws/fsx</code> prefix. The name of the Amazon Kinesis Data Firehouse
+  /// delivery stream must begin with the <code>aws-fsx</code> prefix.
+  ///
+  /// The destination ARN (either CloudWatch Logs log group or Kinesis Data
+  /// Firehose delivery stream) must be in the same AWS partition, AWS region, and
+  /// AWS account as your Amazon FSx file system.
+  final String? auditLogDestination;
+
+  WindowsAuditLogConfiguration({
+    required this.fileAccessAuditLogLevel,
+    required this.fileShareAccessAuditLogLevel,
+    this.auditLogDestination,
+  });
+  factory WindowsAuditLogConfiguration.fromJson(Map<String, dynamic> json) {
+    return WindowsAuditLogConfiguration(
+      fileAccessAuditLogLevel: (json['FileAccessAuditLogLevel'] as String)
+          .toWindowsAccessAuditLogLevel(),
+      fileShareAccessAuditLogLevel:
+          (json['FileShareAccessAuditLogLevel'] as String)
+              .toWindowsAccessAuditLogLevel(),
+      auditLogDestination: json['AuditLogDestination'] as String?,
+    );
+  }
+}
+
+/// The Windows file access auditing configuration used when creating or
+/// updating an Amazon FSx for Windows File Server file system.
+class WindowsAuditLogCreateConfiguration {
+  /// Sets which attempt type is logged by Amazon FSx for file and folder
+  /// accesses.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SUCCESS_ONLY</code> - only successful attempts to access files or
+  /// folders are logged.
+  /// </li>
+  /// <li>
+  /// <code>FAILURE_ONLY</code> - only failed attempts to access files or folders
+  /// are logged.
+  /// </li>
+  /// <li>
+  /// <code>SUCCESS_AND_FAILURE</code> - both successful attempts and failed
+  /// attempts to access files or folders are logged.
+  /// </li>
+  /// <li>
+  /// <code>DISABLED</code> - access auditing of files and folders is turned off.
+  /// </li>
+  /// </ul>
+  final WindowsAccessAuditLogLevel fileAccessAuditLogLevel;
+
+  /// Sets which attempt type is logged by Amazon FSx for file share accesses.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SUCCESS_ONLY</code> - only successful attempts to access file shares
+  /// are logged.
+  /// </li>
+  /// <li>
+  /// <code>FAILURE_ONLY</code> - only failed attempts to access file shares are
+  /// logged.
+  /// </li>
+  /// <li>
+  /// <code>SUCCESS_AND_FAILURE</code> - both successful attempts and failed
+  /// attempts to access file shares are logged.
+  /// </li>
+  /// <li>
+  /// <code>DISABLED</code> - access auditing of file shares is turned off.
+  /// </li>
+  /// </ul>
+  final WindowsAccessAuditLogLevel fileShareAccessAuditLogLevel;
+
+  /// The Amazon Resource Name (ARN) that specifies the destination of the audit
+  /// logs.
+  ///
+  /// The destination can be any Amazon CloudWatch Logs log group ARN or Amazon
+  /// Kinesis Data Firehose delivery stream ARN, with the following requirements:
+  ///
+  /// <ul>
+  /// <li>
+  /// The destination ARN that you provide (either CloudWatch Logs log group or
+  /// Kinesis Data Firehose delivery stream) must be in the same AWS partition,
+  /// AWS region, and AWS account as your Amazon FSx file system.
+  /// </li>
+  /// <li>
+  /// The name of the Amazon CloudWatch Logs log group must begin with the
+  /// <code>/aws/fsx</code> prefix. The name of the Amazon Kinesis Data Firehouse
+  /// delivery stream must begin with the <code>aws-fsx</code> prefix.
+  /// </li>
+  /// <li>
+  /// If you do not provide a destination in <code>AuditLogDestination</code>,
+  /// Amazon FSx will create and use a log stream in the CloudWatch Logs
+  /// <code>/aws/fsx/windows</code> log group.
+  /// </li>
+  /// <li>
+  /// If <code>AuditLogDestination</code> is provided and the resource does not
+  /// exist, the request will fail with a <code>BadRequest</code> error.
+  /// </li>
+  /// <li>
+  /// If <code>FileAccessAuditLogLevel</code> and
+  /// <code>FileShareAccessAuditLogLevel</code> are both set to
+  /// <code>DISABLED</code>, you cannot specify a destination in
+  /// <code>AuditLogDestination</code>.
+  /// </li>
+  /// </ul>
+  final String? auditLogDestination;
+
+  WindowsAuditLogCreateConfiguration({
+    required this.fileAccessAuditLogLevel,
+    required this.fileShareAccessAuditLogLevel,
+    this.auditLogDestination,
+  });
+  Map<String, dynamic> toJson() {
+    final fileAccessAuditLogLevel = this.fileAccessAuditLogLevel;
+    final fileShareAccessAuditLogLevel = this.fileShareAccessAuditLogLevel;
+    final auditLogDestination = this.auditLogDestination;
+    return {
+      'FileAccessAuditLogLevel': fileAccessAuditLogLevel.toValue(),
+      'FileShareAccessAuditLogLevel': fileShareAccessAuditLogLevel.toValue(),
+      if (auditLogDestination != null)
+        'AuditLogDestination': auditLogDestination,
     };
   }
 }
@@ -4738,10 +5055,15 @@ extension on String {
 
 /// The configuration for this Microsoft Windows file system.
 class WindowsFileSystemConfiguration {
-  /// The ID for an existing Microsoft Active Directory instance that the file
-  /// system should join when it's created.
+  /// The ID for an existing AWS Managed Microsoft Active Directory instance that
+  /// the file system is joined to.
   final String? activeDirectoryId;
   final List<Alias>? aliases;
+
+  /// The configuration that Amazon FSx for Windows File Server uses to audit and
+  /// log user accesses of files, folders, and file shares on the Amazon FSx for
+  /// Windows File Server file system.
+  final WindowsAuditLogConfiguration? auditLogConfiguration;
 
   /// The number of days to retain automatic backups. Setting this to 0 disables
   /// automatic backups. You can retain automatic backups for a maximum of 90
@@ -4810,7 +5132,7 @@ class WindowsFileSystemConfiguration {
   /// this value is the same as that for <code>SubnetIDs</code>. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#single-multi-az-resources">Availability
-  /// and Durability: Single-AZ and Multi-AZ File Systems</a>
+  /// and durability: Single-AZ and Multi-AZ file systems</a>.
   final String? preferredSubnetId;
 
   /// For <code>MULTI_AZ_1</code> deployment types, use this endpoint when
@@ -4826,7 +5148,7 @@ class WindowsFileSystemConfiguration {
   final SelfManagedActiveDirectoryAttributes?
       selfManagedActiveDirectoryConfiguration;
 
-  /// The throughput of an Amazon FSx file system, measured in megabytes per
+  /// The throughput of the Amazon FSx file system, measured in megabytes per
   /// second.
   final int? throughputCapacity;
 
@@ -4838,6 +5160,7 @@ class WindowsFileSystemConfiguration {
   WindowsFileSystemConfiguration({
     this.activeDirectoryId,
     this.aliases,
+    this.auditLogConfiguration,
     this.automaticBackupRetentionDays,
     this.copyTagsToBackups,
     this.dailyAutomaticBackupStartTime,
@@ -4857,6 +5180,10 @@ class WindowsFileSystemConfiguration {
           ?.whereNotNull()
           .map((e) => Alias.fromJson(e as Map<String, dynamic>))
           .toList(),
+      auditLogConfiguration: json['AuditLogConfiguration'] != null
+          ? WindowsAuditLogConfiguration.fromJson(
+              json['AuditLogConfiguration'] as Map<String, dynamic>)
+          : null,
       automaticBackupRetentionDays:
           json['AutomaticBackupRetentionDays'] as int?,
       copyTagsToBackups: json['CopyTagsToBackups'] as bool?,
@@ -4888,6 +5215,11 @@ class WindowsFileSystemConfiguration {
 class ActiveDirectoryError extends _s.GenericAwsException {
   ActiveDirectoryError({String? type, String? message})
       : super(type: type, code: 'ActiveDirectoryError', message: message);
+}
+
+class BackupBeingCopied extends _s.GenericAwsException {
+  BackupBeingCopied({String? type, String? message})
+      : super(type: type, code: 'BackupBeingCopied', message: message);
 }
 
 class BackupInProgress extends _s.GenericAwsException {
@@ -4936,9 +5268,20 @@ class IncompatibleParameterError extends _s.GenericAwsException {
       : super(type: type, code: 'IncompatibleParameterError', message: message);
 }
 
+class IncompatibleRegionForMultiAZ extends _s.GenericAwsException {
+  IncompatibleRegionForMultiAZ({String? type, String? message})
+      : super(
+            type: type, code: 'IncompatibleRegionForMultiAZ', message: message);
+}
+
 class InternalServerError extends _s.GenericAwsException {
   InternalServerError({String? type, String? message})
       : super(type: type, code: 'InternalServerError', message: message);
+}
+
+class InvalidDestinationKmsKey extends _s.GenericAwsException {
+  InvalidDestinationKmsKey({String? type, String? message})
+      : super(type: type, code: 'InvalidDestinationKmsKey', message: message);
 }
 
 class InvalidExportPath extends _s.GenericAwsException {
@@ -4962,6 +5305,16 @@ class InvalidPerUnitStorageThroughput extends _s.GenericAwsException {
             type: type,
             code: 'InvalidPerUnitStorageThroughput',
             message: message);
+}
+
+class InvalidRegion extends _s.GenericAwsException {
+  InvalidRegion({String? type, String? message})
+      : super(type: type, code: 'InvalidRegion', message: message);
+}
+
+class InvalidSourceKmsKey extends _s.GenericAwsException {
+  InvalidSourceKmsKey({String? type, String? message})
+      : super(type: type, code: 'InvalidSourceKmsKey', message: message);
 }
 
 class MissingFileSystemConfiguration extends _s.GenericAwsException {
@@ -4995,6 +5348,11 @@ class ServiceLimitExceeded extends _s.GenericAwsException {
       : super(type: type, code: 'ServiceLimitExceeded', message: message);
 }
 
+class SourceBackupUnavailable extends _s.GenericAwsException {
+  SourceBackupUnavailable({String? type, String? message})
+      : super(type: type, code: 'SourceBackupUnavailable', message: message);
+}
+
 class UnsupportedOperation extends _s.GenericAwsException {
   UnsupportedOperation({String? type, String? message})
       : super(type: type, code: 'UnsupportedOperation', message: message);
@@ -5003,6 +5361,8 @@ class UnsupportedOperation extends _s.GenericAwsException {
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'ActiveDirectoryError': (type, message) =>
       ActiveDirectoryError(type: type, message: message),
+  'BackupBeingCopied': (type, message) =>
+      BackupBeingCopied(type: type, message: message),
   'BackupInProgress': (type, message) =>
       BackupInProgress(type: type, message: message),
   'BackupNotFound': (type, message) =>
@@ -5020,8 +5380,12 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       FileSystemNotFound(type: type, message: message),
   'IncompatibleParameterError': (type, message) =>
       IncompatibleParameterError(type: type, message: message),
+  'IncompatibleRegionForMultiAZ': (type, message) =>
+      IncompatibleRegionForMultiAZ(type: type, message: message),
   'InternalServerError': (type, message) =>
       InternalServerError(type: type, message: message),
+  'InvalidDestinationKmsKey': (type, message) =>
+      InvalidDestinationKmsKey(type: type, message: message),
   'InvalidExportPath': (type, message) =>
       InvalidExportPath(type: type, message: message),
   'InvalidImportPath': (type, message) =>
@@ -5030,6 +5394,10 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidNetworkSettings(type: type, message: message),
   'InvalidPerUnitStorageThroughput': (type, message) =>
       InvalidPerUnitStorageThroughput(type: type, message: message),
+  'InvalidRegion': (type, message) =>
+      InvalidRegion(type: type, message: message),
+  'InvalidSourceKmsKey': (type, message) =>
+      InvalidSourceKmsKey(type: type, message: message),
   'MissingFileSystemConfiguration': (type, message) =>
       MissingFileSystemConfiguration(type: type, message: message),
   'NotServiceResourceError': (type, message) =>
@@ -5040,6 +5408,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       ResourceNotFound(type: type, message: message),
   'ServiceLimitExceeded': (type, message) =>
       ServiceLimitExceeded(type: type, message: message),
+  'SourceBackupUnavailable': (type, message) =>
+      SourceBackupUnavailable(type: type, message: message),
   'UnsupportedOperation': (type, message) =>
       UnsupportedOperation(type: type, message: message),
 };

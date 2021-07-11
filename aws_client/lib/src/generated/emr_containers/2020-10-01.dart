@@ -92,24 +92,12 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
     _s.validateStringLength(
       'virtualClusterId',
       virtualClusterId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -176,24 +164,12 @@ class EmrContainers {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):acm:.+:(\d{12}):certificate/.+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):iam::(\d{12})?:(role((\u002F)|(\u002F[\u0021-\u007F]+\u002F))[\w+=,.@-]+)$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
@@ -204,24 +180,12 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(releaseLabel, 'releaseLabel');
     _s.validateStringLength(
       'releaseLabel',
       releaseLabel,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'releaseLabel',
-      releaseLabel,
-      r'''[\.\-_/A-Za-z0-9]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
@@ -232,12 +196,6 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'type',
-      type,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
     _s.validateStringLength(
       'virtualClusterId',
@@ -246,22 +204,11 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''.*\S.*''',
     );
     final $payload = <String, dynamic>{
       'certificateArn': certificateArn,
@@ -321,22 +268,11 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''.*\S.*''',
     );
     final $payload = <String, dynamic>{
       'containerProvider': containerProvider,
@@ -377,24 +313,12 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
     _s.validateStringLength(
       'virtualClusterId',
       virtualClusterId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -428,12 +352,6 @@ class EmrContainers {
       id,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -470,24 +388,12 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
     _s.validateStringLength(
       'virtualClusterId',
       virtualClusterId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -525,24 +431,12 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
     _s.validateStringLength(
       'virtualClusterId',
       virtualClusterId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -578,12 +472,6 @@ class EmrContainers {
       id,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[0-9a-z]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -639,33 +527,17 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_/#A-Za-z0-9]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final $query = <String, List<String>>{
       if (createdAfter != null)
@@ -732,22 +604,11 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final $query = <String, List<String>>{
       if (createdAfter != null)
@@ -787,12 +648,6 @@ class EmrContainers {
       resourceArn,
       60,
       500,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\d{12}):/virtualclusters/.+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -850,21 +705,11 @@ class EmrContainers {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'containerProviderId',
-      containerProviderId,
-      r'''.*\S.*''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final $query = <String, List<String>>{
       if (containerProviderId != null)
@@ -937,12 +782,6 @@ class EmrContainers {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):iam::(\d{12})?:(role((\u002F)|(\u002F[\u0021-\u007F]+\u002F))[\w+=,.@-]+)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobDriver, 'jobDriver');
     ArgumentError.checkNotNull(releaseLabel, 'releaseLabel');
     _s.validateStringLength(
@@ -950,12 +789,6 @@ class EmrContainers {
       releaseLabel,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'releaseLabel',
-      releaseLabel,
-      r'''[\.\-_/A-Za-z0-9]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
@@ -966,33 +799,17 @@ class EmrContainers {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'virtualClusterId',
-      virtualClusterId,
-      r'''[0-9a-z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''.*\S.*''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\.\-_/#A-Za-z0-9]+''',
     );
     final $payload = <String, dynamic>{
       'executionRoleArn': executionRoleArn,
@@ -1046,12 +863,6 @@ class EmrContainers {
       500,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\d{12}):/virtualclusters/.+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -1085,12 +896,6 @@ class EmrContainers {
       resourceArn,
       60,
       500,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:(aws[a-zA-Z0-9-]*):emr-containers:.+:(\d{12}):/virtualclusters/.+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');

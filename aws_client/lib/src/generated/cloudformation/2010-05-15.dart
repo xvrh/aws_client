@@ -46,6 +46,200 @@ class CloudFormation {
         shapes = shapesJson
             .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
 
+  /// Activates a public third-party extension, making it available for use in
+  /// stack templates. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html">Using
+  /// public extensions</a> in the <i>CloudFormation User Guide</i>.
+  ///
+  /// Once you have activated a public third-party extension in your account and
+  /// region, use <a
+  /// href="AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html">SetTypeConfiguration</a>
+  /// to specify configuration properties for the extension. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+  /// extensions at the account level</a> in the <i>CloudFormation User
+  /// Guide</i>.
+  ///
+  /// May throw [CFNRegistryException].
+  /// May throw [TypeNotFoundException].
+  ///
+  /// Parameter [autoUpdate] :
+  /// Whether to automatically update the extension in this account and region
+  /// when a new <i>minor</i> version is published by the extension publisher.
+  /// Major versions released by the publisher must be manually updated.
+  ///
+  /// The default is <code>true</code>.
+  ///
+  /// Parameter [executionRoleArn] :
+  /// The name of the IAM execution role to use to activate the extension.
+  ///
+  /// Parameter [majorVersion] :
+  /// The major version of this extension you want to activate, if multiple
+  /// major versions are available. The default is the latest major version.
+  /// CloudFormation uses the latest available <i>minor</i> version of the major
+  /// version selected.
+  ///
+  /// You can specify <code>MajorVersion</code> or <code>VersionBump</code>, but
+  /// not both.
+  ///
+  /// Parameter [publicTypeArn] :
+  /// The Amazon Resource Number (ARN) of the public extension.
+  ///
+  /// Conditional: You must specify <code>PublicTypeArn</code>, or
+  /// <code>TypeName</code>, <code>Type</code>, and <code>PublisherId</code>.
+  ///
+  /// Parameter [publisherId] :
+  /// The ID of the extension publisher.
+  ///
+  /// Conditional: You must specify <code>PublicTypeArn</code>, or
+  /// <code>TypeName</code>, <code>Type</code>, and <code>PublisherId</code>.
+  ///
+  /// Parameter [type] :
+  /// The extension type.
+  ///
+  /// Conditional: You must specify <code>PublicTypeArn</code>, or
+  /// <code>TypeName</code>, <code>Type</code>, and <code>PublisherId</code>.
+  ///
+  /// Parameter [typeName] :
+  /// The name of the extension.
+  ///
+  /// Conditional: You must specify <code>PublicTypeArn</code>, or
+  /// <code>TypeName</code>, <code>Type</code>, and <code>PublisherId</code>.
+  ///
+  /// Parameter [typeNameAlias] :
+  /// An alias to assign to the public extension, in this account and region. If
+  /// you specify an alias for the extension, CloudFormation treats the alias as
+  /// the extension type name within this account and region. You must use the
+  /// alias to refer to the extension in your templates, API calls, and
+  /// CloudFormation console.
+  ///
+  /// An extension alias must be unique within a given account and region. You
+  /// can activate the same public resource multiple times in the same account
+  /// and region, using different type name aliases.
+  ///
+  /// Parameter [versionBump] :
+  /// Manually updates a previously-activated type to a new major or minor
+  /// version, if available. You can also use this parameter to update the value
+  /// of <code>AutoUpdate</code>.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>MAJOR</code>: CloudFormation updates the extension to the newest
+  /// major version, if one is available.
+  /// </li>
+  /// <li>
+  /// <code>MINOR</code>: CloudFormation updates the extension to the newest
+  /// minor version, if one is available.
+  /// </li>
+  /// </ul>
+  Future<ActivateTypeOutput> activateType({
+    bool? autoUpdate,
+    String? executionRoleArn,
+    LoggingConfig? loggingConfig,
+    int? majorVersion,
+    String? publicTypeArn,
+    String? publisherId,
+    ThirdPartyType? type,
+    String? typeName,
+    String? typeNameAlias,
+    VersionBump? versionBump,
+  }) async {
+    _s.validateStringLength(
+      'executionRoleArn',
+      executionRoleArn,
+      1,
+      256,
+    );
+    _s.validateNumRange(
+      'majorVersion',
+      majorVersion,
+      1,
+      100000,
+    );
+    _s.validateStringLength(
+      'publicTypeArn',
+      publicTypeArn,
+      0,
+      1024,
+    );
+    _s.validateStringLength(
+      'publisherId',
+      publisherId,
+      1,
+      40,
+    );
+    _s.validateStringLength(
+      'typeName',
+      typeName,
+      10,
+      204,
+    );
+    _s.validateStringLength(
+      'typeNameAlias',
+      typeNameAlias,
+      10,
+      204,
+    );
+    final $request = <String, dynamic>{};
+    autoUpdate?.also((arg) => $request['AutoUpdate'] = arg);
+    executionRoleArn?.also((arg) => $request['ExecutionRoleArn'] = arg);
+    loggingConfig?.also((arg) => $request['LoggingConfig'] = arg);
+    majorVersion?.also((arg) => $request['MajorVersion'] = arg);
+    publicTypeArn?.also((arg) => $request['PublicTypeArn'] = arg);
+    publisherId?.also((arg) => $request['PublisherId'] = arg);
+    type?.also((arg) => $request['Type'] = arg.toValue());
+    typeName?.also((arg) => $request['TypeName'] = arg);
+    typeNameAlias?.also((arg) => $request['TypeNameAlias'] = arg);
+    versionBump?.also((arg) => $request['VersionBump'] = arg.toValue());
+    final $result = await _protocol.send(
+      $request,
+      action: 'ActivateType',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['ActivateTypeInput'],
+      shapes: shapes,
+      resultWrapper: 'ActivateTypeResult',
+    );
+    return ActivateTypeOutput.fromXml($result);
+  }
+
+  /// Returns configuration data for the specified CloudFormation extensions,
+  /// from the CloudFormation registry for the account and region.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+  /// extensions at the account level</a> in the <i>CloudFormation User
+  /// Guide</i>.
+  ///
+  /// May throw [TypeConfigurationNotFoundException].
+  /// May throw [CFNRegistryException].
+  ///
+  /// Parameter [typeConfigurationIdentifiers] :
+  /// The list of identifiers for the desired extension configurations.
+  Future<BatchDescribeTypeConfigurationsOutput>
+      batchDescribeTypeConfigurations({
+    required List<TypeConfigurationIdentifier> typeConfigurationIdentifiers,
+  }) async {
+    ArgumentError.checkNotNull(
+        typeConfigurationIdentifiers, 'typeConfigurationIdentifiers');
+    final $request = <String, dynamic>{};
+    $request['TypeConfigurationIdentifiers'] = typeConfigurationIdentifiers;
+    final $result = await _protocol.send(
+      $request,
+      action: 'BatchDescribeTypeConfigurations',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['BatchDescribeTypeConfigurationsInput'],
+      shapes: shapes,
+      resultWrapper: 'BatchDescribeTypeConfigurationsResult',
+    );
+    return BatchDescribeTypeConfigurationsOutput.fromXml($result);
+  }
+
   /// Cancels an update on the specified stack. If the call completes
   /// successfully, the stack rolls back the update and reverts to the previous
   /// stack configuration.
@@ -74,11 +268,6 @@ class CloudFormation {
       clientRequestToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
     );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
@@ -201,22 +390,11 @@ class CloudFormation {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'roleARN',
@@ -490,8 +668,8 @@ class CloudFormation {
   /// Parameter [templateURL] :
   /// The location of the file that contains the revised template. The URL must
   /// point to a template (max size: 460,800 bytes) that is located in an S3
-  /// bucket. AWS CloudFormation generates the change set by comparing this
-  /// template with the stack that you specified.
+  /// bucket or a Systems Manager document. AWS CloudFormation generates the
+  /// change set by comparing this template with the stack that you specified.
   ///
   /// Conditional: You must specify only <code>TemplateBody</code> or
   /// <code>TemplateURL</code>.
@@ -526,24 +704,12 @@ class CloudFormation {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackName, 'stackName');
     _s.validateStringLength(
       'stackName',
       stackName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -867,8 +1033,8 @@ class CloudFormation {
   ///
   /// Parameter [templateURL] :
   /// Location of file containing the template body. The URL must point to a
-  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket.
-  /// For more information, go to the <a
+  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket
+  /// or a Systems Manager document. For more information, go to the <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -904,11 +1070,6 @@ class CloudFormation {
       clientRequestToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'roleARN',
@@ -1003,16 +1164,38 @@ class CloudFormation {
   /// instances from.
   ///
   /// Parameter [accounts] :
-  /// [<code>Self-managed</code> permissions] The names of one or more AWS
-  /// accounts that you want to create stack instances in the specified
-  /// Region(s) for.
+  /// [Self-managed permissions] The names of one or more AWS accounts that you
+  /// want to create stack instances in the specified Region(s) for.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [deploymentTargets] :
-  /// [<code>Service-managed</code> permissions] The AWS Organizations accounts
-  /// for which to create stack instances in the specified Regions.
+  /// [Service-managed permissions] The AWS Organizations accounts for which to
+  /// create stack instances in the specified Regions.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
@@ -1081,6 +1264,7 @@ class CloudFormation {
     required List<String> regions,
     required String stackSetName,
     List<String>? accounts,
+    CallAs? callAs,
     DeploymentTargets? deploymentTargets,
     String? operationId,
     StackSetOperationPreferences? operationPreferences,
@@ -1094,15 +1278,11 @@ class CloudFormation {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['StackSetName'] = stackSetName;
     accounts?.also((arg) => $request['Accounts'] = arg);
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     deploymentTargets?.also((arg) => $request['DeploymentTargets'] = arg);
     $request['OperationId'] = operationId ?? _s.generateIdempotencyToken();
     operationPreferences?.also((arg) => $request['OperationPreferences'] = arg);
@@ -1152,6 +1332,33 @@ class CloudFormation {
   /// accounts that are added to the target organization or organizational unit
   /// (OU). Specify only if <code>PermissionModel</code> is
   /// <code>SERVICE_MANAGED</code>.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// To create a stack set with service-managed permissions while signed in to
+  /// the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// To create a stack set with service-managed permissions while signed in to
+  /// a delegated administrator account, specify <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated admin in the management
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  /// Stack sets with service-managed permissions are created in the management
+  /// account, including stack sets that are created by delegated
+  /// administrators.
   ///
   /// Parameter [capabilities] :
   /// In some cases, you must explicitly acknowledge that your stack set
@@ -1232,22 +1439,24 @@ class CloudFormation {
   /// <li>
   /// <code>CAPABILITY_AUTO_EXPAND</code>
   ///
-  /// Some templates contain macros. If your stack template contains one or more
-  /// macros, and you choose to create a stack directly from the processed
-  /// template, without first reviewing the resulting changes in a change set,
-  /// you must acknowledge this capability. For more information, see <a
+  /// Some templates reference macros. If your stack set template references one
+  /// or more macros, you must create the stack set directly from the processed
+  /// template, without first reviewing the resulting changes in a change set.
+  /// To create the stack set directly, you must acknowledge this capability.
+  /// For more information, see <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html">Using
   /// AWS CloudFormation Macros to Perform Custom Processing on Templates</a>.
-  /// <note>
-  /// Stack sets do not currently support macros in stack templates. (This
-  /// includes the <a
+  /// <important>
+  /// Stack sets with service-managed permissions do not currently support the
+  /// use of macros in templates. (This includes the <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/create-reusable-transform-function-snippets-and-add-to-your-template-with-aws-include-transform.html">AWS::Include</a>
   /// and <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-aws-serverless.html">AWS::Serverless</a>
   /// transforms, which are macros hosted by AWS CloudFormation.) Even if you
-  /// specify this capability, if you include a macro in your template the stack
-  /// set operation will fail.
-  /// </note> </li>
+  /// specify this capability for a stack set with service-managed permissions,
+  /// if you reference a macro in your template the stack set operation will
+  /// fail.
+  /// </important> </li>
   /// </ul>
   ///
   /// Parameter [clientRequestToken] :
@@ -1321,7 +1530,8 @@ class CloudFormation {
   /// Parameter [templateURL] :
   /// The location of the file that contains the template body. The URL must
   /// point to a template (maximum size: 460,800 bytes) that's located in an
-  /// Amazon S3 bucket. For more information, see <a
+  /// Amazon S3 bucket or a Systems Manager document. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -1331,6 +1541,7 @@ class CloudFormation {
     required String stackSetName,
     String? administrationRoleARN,
     AutoDeployment? autoDeployment,
+    CallAs? callAs,
     List<Capability>? capabilities,
     String? clientRequestToken,
     String? description,
@@ -1354,11 +1565,6 @@ class CloudFormation {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'description',
       description,
@@ -1370,11 +1576,6 @@ class CloudFormation {
       executionRoleName,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'executionRoleName',
-      executionRoleName,
-      r'''[a-zA-Z_0-9+=,.@-]+''',
     );
     _s.validateStringLength(
       'templateBody',
@@ -1393,6 +1594,7 @@ class CloudFormation {
     administrationRoleARN
         ?.also((arg) => $request['AdministrationRoleARN'] = arg);
     autoDeployment?.also((arg) => $request['AutoDeployment'] = arg);
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     capabilities?.also((arg) =>
         $request['Capabilities'] = arg.map((e) => e.toValue()).toList());
     $request['ClientRequestToken'] =
@@ -1416,6 +1618,72 @@ class CloudFormation {
       resultWrapper: 'CreateStackSetResult',
     );
     return CreateStackSetOutput.fromXml($result);
+  }
+
+  /// Deactivates a public extension that was previously activated in this
+  /// account and region.
+  ///
+  /// Once deactivated, an extension cannot be used in any CloudFormation
+  /// operation. This includes stack update operations where the stack template
+  /// includes the extension, even if no updates are being made to the
+  /// extension. In addition, deactivated extensions are not automatically
+  /// updated if a new version of the extension is released.
+  ///
+  /// May throw [CFNRegistryException].
+  /// May throw [TypeNotFoundException].
+  ///
+  /// Parameter [arn] :
+  /// The Amazon Resource Name (ARN) for the extension, in this account and
+  /// region.
+  ///
+  /// Conditional: You must specify either <code>Arn</code>, or
+  /// <code>TypeName</code> and <code>Type</code>.
+  ///
+  /// Parameter [type] :
+  /// The extension type.
+  ///
+  /// Conditional: You must specify either <code>Arn</code>, or
+  /// <code>TypeName</code> and <code>Type</code>.
+  ///
+  /// Parameter [typeName] :
+  /// The type name of the extension, in this account and region. If you
+  /// specified a type name alias when enabling the extension, use the type name
+  /// alias.
+  ///
+  /// Conditional: You must specify either <code>Arn</code>, or
+  /// <code>TypeName</code> and <code>Type</code>.
+  Future<void> deactivateType({
+    String? arn,
+    ThirdPartyType? type,
+    String? typeName,
+  }) async {
+    _s.validateStringLength(
+      'arn',
+      arn,
+      0,
+      1024,
+    );
+    _s.validateStringLength(
+      'typeName',
+      typeName,
+      10,
+      204,
+    );
+    final $request = <String, dynamic>{};
+    arn?.also((arg) => $request['Arn'] = arg);
+    type?.also((arg) => $request['Type'] = arg.toValue());
+    typeName?.also((arg) => $request['TypeName'] = arg);
+    await _protocol.send(
+      $request,
+      action: 'DeactivateType',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DeactivateTypeInput'],
+      shapes: shapes,
+      resultWrapper: 'DeactivateTypeResult',
+    );
   }
 
   /// Deletes the specified change set. Deleting change sets ensures that no one
@@ -1451,22 +1719,11 @@ class CloudFormation {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*|arn:[-a-zA-Z0-9:/]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'stackName',
       stackName,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
     );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
@@ -1546,11 +1803,6 @@ class CloudFormation {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'roleARN',
       roleARN,
@@ -1600,15 +1852,38 @@ class CloudFormation {
   /// instances for.
   ///
   /// Parameter [accounts] :
-  /// [<code>Self-managed</code> permissions] The names of the AWS accounts that
-  /// you want to delete stack instances for.
+  /// [Self-managed permissions] The names of the AWS accounts that you want to
+  /// delete stack instances for.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [deploymentTargets] :
-  /// [<code>Service-managed</code> permissions] The AWS Organizations accounts
-  /// from which to delete stack instances.
+  /// [Service-managed permissions] The AWS Organizations accounts from which to
+  /// delete stack instances.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
@@ -1633,6 +1908,7 @@ class CloudFormation {
     required bool retainStacks,
     required String stackSetName,
     List<String>? accounts,
+    CallAs? callAs,
     DeploymentTargets? deploymentTargets,
     String? operationId,
     StackSetOperationPreferences? operationPreferences,
@@ -1646,16 +1922,12 @@ class CloudFormation {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['RetainStacks'] = retainStacks;
     $request['StackSetName'] = stackSetName;
     accounts?.also((arg) => $request['Accounts'] = arg);
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     deploymentTargets?.also((arg) => $request['DeploymentTargets'] = arg);
     $request['OperationId'] = operationId ?? _s.generateIdempotencyToken();
     operationPreferences?.also((arg) => $request['OperationPreferences'] = arg);
@@ -1683,12 +1955,37 @@ class CloudFormation {
   /// Parameter [stackSetName] :
   /// The name or unique ID of the stack set that you're deleting. You can
   /// obtain this value by running <a>ListStackSets</a>.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   Future<void> deleteStackSet({
     required String stackSetName,
+    CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     await _protocol.send(
       $request,
       action: 'DeleteStackSet',
@@ -1702,45 +1999,50 @@ class CloudFormation {
     );
   }
 
-  /// Removes a type or type version from active use in the CloudFormation
-  /// registry. If a type or type version is deregistered, it cannot be used in
-  /// CloudFormation operations.
+  /// Marks an extension or extension version as <code>DEPRECATED</code> in the
+  /// CloudFormation registry, removing it from active use. Deprecated
+  /// extensions or extension versions cannot be used in CloudFormation
+  /// operations.
   ///
-  /// To deregister a type, you must individually deregister all registered
-  /// versions of that type. If a type has only a single registered version,
-  /// deregistering that version results in the type itself being deregistered.
+  /// To deregister an entire extension, you must individually deregister all
+  /// active versions of that extension. If an extension has only a single
+  /// active version, deregistering that version results in the extension itself
+  /// being deregistered and marked as deprecated in the registry.
   ///
-  /// You cannot deregister the default version of a type, unless it is the only
-  /// registered version of that type, in which case the type itself is
-  /// deregistered as well.
+  /// You cannot deregister the default version of an extension if there are
+  /// other active version of that extension. If you do deregister the default
+  /// version of an extension, the textensionype itself is deregistered as well
+  /// and marked as deprecated.
+  ///
+  /// To view the deprecation status of an extension or extension version, use
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>.
   ///
   /// May throw [CFNRegistryException].
   /// May throw [TypeNotFoundException].
   ///
   /// Parameter [arn] :
-  /// The Amazon Resource Name (ARN) of the type.
+  /// The Amazon Resource Name (ARN) of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [type] :
-  /// The kind of type.
-  ///
-  /// Currently the only valid value is <code>RESOURCE</code>.
+  /// The kind of extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeName] :
-  /// The name of the type.
+  /// The name of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [versionId] :
-  /// The ID of a specific version of the type. The version ID is the value at
-  /// the end of the Amazon Resource Name (ARN) assigned to the type version
-  /// when it is registered.
+  /// The ID of a specific version of the extension. The version ID is the value
+  /// at the end of the Amazon Resource Name (ARN) assigned to the extension
+  /// version when it is registered.
   Future<void> deregisterType({
     String? arn,
     RegistryType? type,
@@ -1753,32 +2055,17 @@ class CloudFormation {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:[0-9]{12}:type/.+''',
-    );
     _s.validateStringLength(
       'typeName',
       typeName,
       10,
       204,
     );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
-    );
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[A-Za-z0-9-]+''',
     );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
@@ -1864,12 +2151,6 @@ class CloudFormation {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*|arn:[-a-zA-Z0-9:/]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
@@ -1881,11 +2162,6 @@ class CloudFormation {
       stackName,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
     );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
@@ -1903,6 +2179,60 @@ class CloudFormation {
       resultWrapper: 'DescribeChangeSetResult',
     );
     return DescribeChangeSetOutput.fromXml($result);
+  }
+
+  /// Returns information about a CloudFormation extension publisher.
+  ///
+  /// If you do not supply a <code>PublisherId</code>, and you have registered
+  /// as an extension publisher, <code>DescribePublisher</code> returns
+  /// information about your own publisher account.
+  ///
+  /// For more information on registering as a publisher, see:
+  ///
+  /// <ul>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterPublisher.html">RegisterPublisher</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html">Publishing
+  /// extensions to make them available for public use</a> in the
+  /// <i>CloudFormation CLI User Guide</i>
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [CFNRegistryException].
+  ///
+  /// Parameter [publisherId] :
+  /// The ID of the extension publisher.
+  ///
+  /// If you do not supply a <code>PublisherId</code>, and you have registered
+  /// as an extension publisher, <code>DescribePublisher</code> returns
+  /// information about your own publisher account.
+  Future<DescribePublisherOutput> describePublisher({
+    String? publisherId,
+  }) async {
+    _s.validateStringLength(
+      'publisherId',
+      publisherId,
+      1,
+      40,
+    );
+    final $request = <String, dynamic>{};
+    publisherId?.also((arg) => $request['PublisherId'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'DescribePublisher',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DescribePublisherInput'],
+      shapes: shapes,
+      resultWrapper: 'DescribePublisherResult',
+    );
+    return DescribePublisherOutput.fromXml($result);
   }
 
   /// Returns information about a stack drift detection operation. A stack drift
@@ -2029,30 +2359,43 @@ class CloudFormation {
   /// Parameter [stackSetName] :
   /// The name or the unique stack ID of the stack set that you want to get
   /// stack instance information for.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   Future<DescribeStackInstanceOutput> describeStackInstance({
     required String stackInstanceAccount,
     required String stackInstanceRegion,
     required String stackSetName,
+    CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(stackInstanceAccount, 'stackInstanceAccount');
-    _s.validateStringPattern(
-      'stackInstanceAccount',
-      stackInstanceAccount,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackInstanceRegion, 'stackInstanceRegion');
-    _s.validateStringPattern(
-      'stackInstanceRegion',
-      stackInstanceRegion,
-      r'''^[a-zA-Z0-9-]{1,128}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['StackInstanceAccount'] = stackInstanceAccount;
     $request['StackInstanceRegion'] = stackInstanceRegion;
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     final $result = await _protocol.send(
       $request,
       action: 'DescribeStackInstance',
@@ -2177,12 +2520,6 @@ class CloudFormation {
       stackName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2310,12 +2647,37 @@ class CloudFormation {
   ///
   /// Parameter [stackSetName] :
   /// The name or unique ID of the stack set whose description you want.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   Future<DescribeStackSetOutput> describeStackSet({
     required String stackSetName,
+    CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     final $result = await _protocol.send(
       $request,
       action: 'DescribeStackSet',
@@ -2340,9 +2702,33 @@ class CloudFormation {
   ///
   /// Parameter [stackSetName] :
   /// The name or the unique stack ID of the stack set for the stack operation.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   Future<DescribeStackSetOperationOutput> describeStackSetOperation({
     required String operationId,
     required String stackSetName,
+    CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
     _s.validateStringLength(
@@ -2352,16 +2738,11 @@ class CloudFormation {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     final $result = await _protocol.send(
       $request,
       action: 'DescribeStackSetOperation',
@@ -2428,45 +2809,53 @@ class CloudFormation {
     return DescribeStacksOutput.fromXml($result);
   }
 
-  /// Returns detailed information about a type that has been registered.
+  /// Returns detailed information about an extension that has been registered.
   ///
   /// If you specify a <code>VersionId</code>, <code>DescribeType</code> returns
-  /// information about that specific type version. Otherwise, it returns
-  /// information about the default type version.
+  /// information about that specific extension version. Otherwise, it returns
+  /// information about the default extension version.
   ///
   /// May throw [CFNRegistryException].
   /// May throw [TypeNotFoundException].
   ///
   /// Parameter [arn] :
-  /// The Amazon Resource Name (ARN) of the type.
+  /// The Amazon Resource Name (ARN) of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
-  /// Parameter [type] :
-  /// The kind of type.
+  /// Parameter [publicVersionNumber] :
+  /// The version number of a public third-party extension.
   ///
-  /// Currently the only valid value is <code>RESOURCE</code>.
+  /// Parameter [publisherId] :
+  /// The publisher ID of the extension publisher.
+  ///
+  /// Extensions provided by Amazon are not assigned a publisher ID.
+  ///
+  /// Parameter [type] :
+  /// The kind of extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeName] :
-  /// The name of the type.
+  /// The name of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [versionId] :
-  /// The ID of a specific version of the type. The version ID is the value at
-  /// the end of the Amazon Resource Name (ARN) assigned to the type version
-  /// when it is registered.
+  /// The ID of a specific version of the extension. The version ID is the value
+  /// at the end of the Amazon Resource Name (ARN) assigned to the extension
+  /// version when it is registered.
   ///
   /// If you specify a <code>VersionId</code>, <code>DescribeType</code> returns
-  /// information about that specific type version. Otherwise, it returns
-  /// information about the default type version.
+  /// information about that specific extension version. Otherwise, it returns
+  /// information about the default extension version.
   Future<DescribeTypeOutput> describeType({
     String? arn,
+    String? publicVersionNumber,
+    String? publisherId,
     RegistryType? type,
     String? typeName,
     String? versionId,
@@ -2477,10 +2866,17 @@ class CloudFormation {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type/.+''',
+    _s.validateStringLength(
+      'publicVersionNumber',
+      publicVersionNumber,
+      5,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'publisherId',
+      publisherId,
+      1,
+      40,
     );
     _s.validateStringLength(
       'typeName',
@@ -2488,24 +2884,16 @@ class CloudFormation {
       10,
       204,
     );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
-    );
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[A-Za-z0-9-]+''',
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
+    publicVersionNumber?.also((arg) => $request['PublicVersionNumber'] = arg);
+    publisherId?.also((arg) => $request['PublisherId'] = arg);
     type?.also((arg) => $request['Type'] = arg.toValue());
     typeName?.also((arg) => $request['TypeName'] = arg);
     versionId?.also((arg) => $request['VersionId'] = arg);
@@ -2523,15 +2911,16 @@ class CloudFormation {
     return DescribeTypeOutput.fromXml($result);
   }
 
-  /// Returns information about a type's registration, including its current
-  /// status and type and version identifiers.
+  /// Returns information about an extension's registration, including its
+  /// current status and type and version identifiers.
   ///
   /// When you initiate a registration request using <code> <a>RegisterType</a>
   /// </code>, you can then use <code> <a>DescribeTypeRegistration</a> </code>
   /// to monitor the progress of that registration request.
   ///
   /// Once the registration request has completed, use <code>
-  /// <a>DescribeType</a> </code> to return detailed informaiton about a type.
+  /// <a>DescribeType</a> </code> to return detailed information about an
+  /// extension.
   ///
   /// May throw [CFNRegistryException].
   ///
@@ -2549,12 +2938,6 @@ class CloudFormation {
       registrationToken,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'registrationToken',
-      registrationToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -2622,12 +3005,6 @@ class CloudFormation {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     logicalResourceIds?.also((arg) => $request['LogicalResourceIds'] = arg);
@@ -2682,12 +3059,6 @@ class CloudFormation {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['LogicalResourceId'] = logicalResourceId;
     $request['StackName'] = stackName;
@@ -2723,7 +3094,7 @@ class CloudFormation {
   ///
   /// <ul>
   /// <li>
-  /// Use <code> <a>DescribeStackSet</a> </code> to return detailed informaiton
+  /// Use <code> <a>DescribeStackSet</a> </code> to return detailed information
   /// about the stack set, including detailed information about the last
   /// <i>completed</i> drift operation performed on the stack set. (Information
   /// about drift operations that are in progress is not included.)
@@ -2758,33 +3129,47 @@ class CloudFormation {
   /// The name of the stack set on which to perform the drift detection
   /// operation.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [operationId] :
   /// <i>The ID of the stack set operation.</i>
   Future<DetectStackSetDriftOutput> detectStackSetDrift({
     required String stackSetName,
+    CallAs? callAs,
     String? operationId,
     StackSetOperationPreferences? operationPreferences,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringPattern(
-      'stackSetName',
-      stackSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*(?::[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'operationId',
       operationId,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     $request['OperationId'] = operationId ?? _s.generateIdempotencyToken();
     operationPreferences?.also((arg) => $request['OperationPreferences'] = arg);
     final $result = await _protocol.send(
@@ -2820,8 +3205,8 @@ class CloudFormation {
   ///
   /// Parameter [templateURL] :
   /// Location of file containing the template body. The URL must point to a
-  /// template that is located in an Amazon S3 bucket. For more information, go
-  /// to <a
+  /// template that is located in an Amazon S3 bucket or a Systems Manager
+  /// document. For more information, go to <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -2912,33 +3297,17 @@ class CloudFormation {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*|arn:[-a-zA-Z0-9:/]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'stackName',
       stackName,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
     );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
@@ -3023,7 +3392,7 @@ class CloudFormation {
   ///
   /// If the template doesn't include transforms, <code>Original</code> and
   /// <code>Processed</code> return the same template. By default, AWS
-  /// CloudFormation specifies <code>Original</code>.
+  /// CloudFormation specifies <code>Processed</code>.
   Future<GetTemplateOutput> getTemplate({
     String? changeSetName,
     String? stackName,
@@ -3034,11 +3403,6 @@ class CloudFormation {
       changeSetName,
       1,
       1600,
-    );
-    _s.validateStringPattern(
-      'changeSetName',
-      changeSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*|arn:[-a-zA-Z0-9:/]*''',
     );
     final $request = <String, dynamic>{};
     changeSetName?.also((arg) => $request['ChangeSetName'] = arg);
@@ -3073,6 +3437,29 @@ class CloudFormation {
   ///
   /// May throw [StackSetNotFoundException].
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [stackName] :
   /// The name or the stack ID that is associated with the stack, which are not
   /// always interchangeable. For running stacks, you can specify either the
@@ -3103,8 +3490,9 @@ class CloudFormation {
   ///
   /// Parameter [templateURL] :
   /// Location of file containing the template body. The URL must point to a
-  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket.
-  /// For more information about templates, see <a
+  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket
+  /// or a Systems Manager document. For more information about templates, see
+  /// <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -3112,6 +3500,7 @@ class CloudFormation {
   /// <code>StackName</code>, <code>StackSetName</code>,
   /// <code>TemplateBody</code>, or <code>TemplateURL</code>.
   Future<GetTemplateSummaryOutput> getTemplateSummary({
+    CallAs? callAs,
     String? stackName,
     String? stackSetName,
     String? templateBody,
@@ -3122,16 +3511,6 @@ class CloudFormation {
       stackName,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-    );
-    _s.validateStringPattern(
-      'stackSetName',
-      stackSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*(?::[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})?''',
     );
     _s.validateStringLength(
       'templateBody',
@@ -3146,6 +3525,7 @@ class CloudFormation {
       1024,
     );
     final $request = <String, dynamic>{};
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     stackName?.also((arg) => $request['StackName'] = arg);
     stackSetName?.also((arg) => $request['StackSetName'] = arg);
     templateBody?.also((arg) => $request['TemplateBody'] = arg);
@@ -3185,12 +3565,6 @@ class CloudFormation {
       stackName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3311,6 +3685,29 @@ class CloudFormation {
   /// The name or unique ID of the stack set that you want to list stack
   /// instances for.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [filters] :
   /// The status that stack instances are filtered by.
   ///
@@ -3335,6 +3732,7 @@ class CloudFormation {
   /// The name of the Region where you want to list stack instances.
   Future<ListStackInstancesOutput> listStackInstances({
     required String stackSetName,
+    CallAs? callAs,
     List<StackInstanceFilter>? filters,
     int? maxResults,
     String? nextToken,
@@ -3354,18 +3752,9 @@ class CloudFormation {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'stackInstanceAccount',
-      stackInstanceAccount,
-      r'''^[0-9]{12}$''',
-    );
-    _s.validateStringPattern(
-      'stackInstanceRegion',
-      stackInstanceRegion,
-      r'''^[a-zA-Z0-9-]{1,128}$''',
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     filters?.also((arg) => $request['Filters'] = arg);
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
@@ -3448,6 +3837,29 @@ class CloudFormation {
   /// The name or unique ID of the stack set that you want to get operation
   /// results for.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of results to be returned with a single call. If the
   /// number of available results exceeds this maximum, the response includes a
@@ -3465,6 +3877,7 @@ class CloudFormation {
   Future<ListStackSetOperationResultsOutput> listStackSetOperationResults({
     required String operationId,
     required String stackSetName,
+    CallAs? callAs,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -3474,12 +3887,6 @@ class CloudFormation {
       operationId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
@@ -3498,6 +3905,7 @@ class CloudFormation {
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     final $result = await _protocol.send(
@@ -3522,6 +3930,29 @@ class CloudFormation {
   /// The name or unique ID of the stack set that you want to get operation
   /// summaries for.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [maxResults] :
   /// The maximum number of results to be returned with a single call. If the
   /// number of available results exceeds this maximum, the response includes a
@@ -3538,6 +3969,7 @@ class CloudFormation {
   /// parameter is set to <code>null</code>.
   Future<ListStackSetOperationsOutput> listStackSetOperations({
     required String stackSetName,
+    CallAs? callAs,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -3556,6 +3988,7 @@ class CloudFormation {
     );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     final $result = await _protocol.send(
@@ -3574,6 +4007,50 @@ class CloudFormation {
 
   /// Returns summary information about stack sets that are associated with the
   /// user.
+  ///
+  /// <ul>
+  /// <li>
+  /// [Self-managed permissions] If you set the <code>CallAs</code> parameter to
+  /// <code>SELF</code> while signed in to your AWS account,
+  /// <code>ListStackSets</code> returns all self-managed stack sets in your AWS
+  /// account.
+  /// </li>
+  /// <li>
+  /// [Service-managed permissions] If you set the <code>CallAs</code> parameter
+  /// to <code>SELF</code> while signed in to the organization's management
+  /// account, <code>ListStackSets</code> returns all stack sets in the
+  /// management account.
+  /// </li>
+  /// <li>
+  /// [Service-managed permissions] If you set the <code>CallAs</code> parameter
+  /// to <code>DELEGATED_ADMIN</code> while signed in to your member account,
+  /// <code>ListStackSets</code> returns all stack sets with service-managed
+  /// permissions in the management account.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the management account or as a delegated
+  /// administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [maxResults] :
   /// The maximum number of results to be returned with a single call. If the
@@ -3594,6 +4071,7 @@ class CloudFormation {
   /// The status of the stack sets that you want to get summary information
   /// about.
   Future<ListStackSetsOutput> listStackSets({
+    CallAs? callAs,
     int? maxResults,
     String? nextToken,
     StackSetStatus? status,
@@ -3611,6 +4089,7 @@ class CloudFormation {
       1024,
     );
     final $request = <String, dynamic>{};
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     status?.also((arg) => $request['Status'] = arg.toValue());
@@ -3671,7 +4150,7 @@ class CloudFormation {
     return ListStacksOutput.fromXml($result);
   }
 
-  /// Returns a list of registration tokens for the specified type(s).
+  /// Returns a list of registration tokens for the specified extension(s).
   ///
   /// May throw [CFNRegistryException].
   ///
@@ -3690,26 +4169,24 @@ class CloudFormation {
   /// object's <code>NextToken</code> parameter is set to <code>null</code>.
   ///
   /// Parameter [registrationStatusFilter] :
-  /// The current status of the type registration request.
+  /// The current status of the extension registration request.
   ///
   /// The default is <code>IN_PROGRESS</code>.
   ///
   /// Parameter [type] :
-  /// The kind of type.
-  ///
-  /// Currently the only valid value is <code>RESOURCE</code>.
+  /// The kind of extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeArn] :
-  /// The Amazon Resource Name (ARN) of the type.
+  /// The Amazon Resource Name (ARN) of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeName] :
-  /// The name of the type.
+  /// The name of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
@@ -3739,21 +4216,11 @@ class CloudFormation {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'typeArn',
-      typeArn,
-      r'''arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type/.+''',
-    );
     _s.validateStringLength(
       'typeName',
       typeName,
       10,
       204,
-    );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
     );
     final $request = <String, dynamic>{};
     maxResults?.also((arg) => $request['MaxResults'] = arg);
@@ -3777,32 +4244,32 @@ class CloudFormation {
     return ListTypeRegistrationsOutput.fromXml($result);
   }
 
-  /// Returns summary information about the versions of a type.
+  /// Returns summary information about the versions of an extension.
   ///
   /// May throw [CFNRegistryException].
   ///
   /// Parameter [arn] :
-  /// The Amazon Resource Name (ARN) of the type for which you want version
+  /// The Amazon Resource Name (ARN) of the extension for which you want version
   /// summary information.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [deprecatedStatus] :
-  /// The deprecation status of the type versions that you want to get summary
-  /// information about.
+  /// The deprecation status of the extension versions that you want to get
+  /// summary information about.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>LIVE</code>: The type version is registered and can be used in
+  /// <code>LIVE</code>: The extension version is registered and can be used in
   /// CloudFormation operations, dependent on its provisioning behavior and
   /// visibility scope.
   /// </li>
   /// <li>
-  /// <code>DEPRECATED</code>: The type version has been deregistered and can no
-  /// longer be used in CloudFormation operations.
+  /// <code>DEPRECATED</code>: The extension version has been deregistered and
+  /// can no longer be used in CloudFormation operations.
   /// </li>
   /// </ul>
   /// The default is <code>LIVE</code>.
@@ -3821,16 +4288,19 @@ class CloudFormation {
   /// parameter. If there are no remaining results, the previous response
   /// object's <code>NextToken</code> parameter is set to <code>null</code>.
   ///
-  /// Parameter [type] :
-  /// The kind of the type.
+  /// Parameter [publisherId] :
+  /// The publisher ID of the extension publisher.
   ///
-  /// Currently the only valid value is <code>RESOURCE</code>.
+  /// Extensions published by Amazon are not assigned a publisher ID.
+  ///
+  /// Parameter [type] :
+  /// The kind of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeName] :
-  /// The name of the type for which you want version summary information.
+  /// The name of the extension for which you want version summary information.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
@@ -3839,6 +4309,7 @@ class CloudFormation {
     DeprecatedStatus? deprecatedStatus,
     int? maxResults,
     String? nextToken,
+    String? publisherId,
     RegistryType? type,
     String? typeName,
   }) async {
@@ -3847,11 +4318,6 @@ class CloudFormation {
       arn,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:[0-9]{12}:type/.+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -3866,15 +4332,16 @@ class CloudFormation {
       1024,
     );
     _s.validateStringLength(
+      'publisherId',
+      publisherId,
+      1,
+      40,
+    );
+    _s.validateStringLength(
       'typeName',
       typeName,
       10,
       204,
-    );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
     );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
@@ -3882,6 +4349,7 @@ class CloudFormation {
         ?.also((arg) => $request['DeprecatedStatus'] = arg.toValue());
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
+    publisherId?.also((arg) => $request['PublisherId'] = arg);
     type?.also((arg) => $request['Type'] = arg.toValue());
     typeName?.also((arg) => $request['TypeName'] = arg);
     final $result = await _protocol.send(
@@ -3898,27 +4366,33 @@ class CloudFormation {
     return ListTypeVersionsOutput.fromXml($result);
   }
 
-  /// Returns summary information about types that have been registered with
+  /// Returns summary information about extension that have been registered with
   /// CloudFormation.
   ///
   /// May throw [CFNRegistryException].
   ///
   /// Parameter [deprecatedStatus] :
-  /// The deprecation status of the types that you want to get summary
+  /// The deprecation status of the extension that you want to get summary
   /// information about.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>LIVE</code>: The type is registered for use in CloudFormation
+  /// <code>LIVE</code>: The extension is registered for use in CloudFormation
   /// operations.
   /// </li>
   /// <li>
-  /// <code>DEPRECATED</code>: The type has been deregistered and can no longer
-  /// be used in CloudFormation operations.
+  /// <code>DEPRECATED</code>: The extension has been deregistered and can no
+  /// longer be used in CloudFormation operations.
   /// </li>
   /// </ul>
+  ///
+  /// Parameter [filters] :
+  /// Filter criteria to use in determining which extensions to return.
+  ///
+  /// If you specify a filter, CloudFormation ignores any specified
+  /// <code>Visibility</code> value when returning the list of types.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of results to be returned with a single call. If the
@@ -3935,51 +4409,61 @@ class CloudFormation {
   /// object's <code>NextToken</code> parameter is set to <code>null</code>.
   ///
   /// Parameter [provisioningType] :
-  /// The provisioning behavior of the type. AWS CloudFormation determines the
-  /// provisioning type during registration, based on the types of handlers in
-  /// the schema handler package submitted.
+  /// For resource types, the provisioning behavior of the resource type. AWS
+  /// CloudFormation determines the provisioning type during registration, based
+  /// on the types of handlers in the schema handler package submitted.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>FULLY_MUTABLE</code>: The type includes an update handler to process
-  /// updates to the type during stack update operations.
+  /// <code>FULLY_MUTABLE</code>: The resource type includes an update handler
+  /// to process updates to the type during stack update operations.
   /// </li>
   /// <li>
-  /// <code>IMMUTABLE</code>: The type does not include an update handler, so
-  /// the type cannot be updated and must instead be replaced during stack
-  /// update operations.
+  /// <code>IMMUTABLE</code>: The resource type does not include an update
+  /// handler, so the type cannot be updated and must instead be replaced during
+  /// stack update operations.
   /// </li>
   /// <li>
-  /// <code>NON_PROVISIONABLE</code>: The type does not include create, read,
-  /// and delete handlers, and therefore cannot actually be provisioned.
+  /// <code>NON_PROVISIONABLE</code>: The resource type does not include create,
+  /// read, and delete handlers, and therefore cannot actually be provisioned.
   /// </li>
   /// </ul>
+  /// The default is <code>FULLY_MUTABLE</code>.
   ///
   /// Parameter [type] :
   /// The type of extension.
   ///
   /// Parameter [visibility] :
-  /// The scope at which the type is visible and usable in CloudFormation
+  /// The scope at which the extensions are visible and usable in CloudFormation
   /// operations.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>PRIVATE</code>: The type is only visible and usable within the
-  /// account in which it is registered. Currently, AWS CloudFormation marks any
-  /// types you create as <code>PRIVATE</code>.
+  /// <code>PRIVATE</code>: Extensions that are visible and usable within this
+  /// account and region. This includes:
+  ///
+  /// <ul>
+  /// <li>
+  /// Private extensions you have registered in this account and region.
   /// </li>
   /// <li>
-  /// <code>PUBLIC</code>: The type is publically visible and usable within any
-  /// Amazon account.
+  /// Public extensions that you have activated in this account and region.
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// <code>PUBLIC</code>: Extensions that are publicly visible and available to
+  /// be activated within any Amazon account. This includes extensions from
+  /// Amazon, as well as third-party publishers.
   /// </li>
   /// </ul>
   /// The default is <code>PRIVATE</code>.
   Future<ListTypesOutput> listTypes({
     DeprecatedStatus? deprecatedStatus,
+    TypeFilters? filters,
     int? maxResults,
     String? nextToken,
     ProvisioningType? provisioningType,
@@ -4001,6 +4485,7 @@ class CloudFormation {
     final $request = <String, dynamic>{};
     deprecatedStatus
         ?.also((arg) => $request['DeprecatedStatus'] = arg.toValue());
+    filters?.also((arg) => $request['Filters'] = arg);
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     provisioningType
@@ -4019,6 +4504,95 @@ class CloudFormation {
       resultWrapper: 'ListTypesResult',
     );
     return ListTypesOutput.fromXml($result);
+  }
+
+  /// Publishes the specified extension to the CloudFormation registry as a
+  /// public extension in this region. Public extensions are available for use
+  /// by all CloudFormation users. For more information on publishing
+  /// extensions, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html">Publishing
+  /// extensions to make them available for public use</a> in the
+  /// <i>CloudFormation CLI User Guide</i>.
+  ///
+  /// To publish an extension, you must be registered as a publisher with
+  /// CloudFormation. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterPublisher.html">RegisterPublisher</a>.
+  ///
+  /// May throw [CFNRegistryException].
+  /// May throw [TypeNotFoundException].
+  ///
+  /// Parameter [arn] :
+  /// The Amazon Resource Number (ARN) of the extension.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  ///
+  /// Parameter [publicVersionNumber] :
+  /// The version number to assign to this version of the extension.
+  ///
+  /// Use the following format, and adhere to semantic versioning when assigning
+  /// a version number to your extension:
+  ///
+  /// <code>MAJOR.MINOR.PATCH</code>
+  ///
+  /// For more information, see <a href="https://semver.org/">Semantic
+  /// Versioning 2.0.0</a>.
+  ///
+  /// If you do not specify a version number, CloudFormation increments the
+  /// version number by one minor version release.
+  ///
+  /// Parameter [type] :
+  /// The type of the extension.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  ///
+  /// Parameter [typeName] :
+  /// The name of the extension.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  Future<PublishTypeOutput> publishType({
+    String? arn,
+    String? publicVersionNumber,
+    ThirdPartyType? type,
+    String? typeName,
+  }) async {
+    _s.validateStringLength(
+      'arn',
+      arn,
+      0,
+      1024,
+    );
+    _s.validateStringLength(
+      'publicVersionNumber',
+      publicVersionNumber,
+      5,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'typeName',
+      typeName,
+      10,
+      204,
+    );
+    final $request = <String, dynamic>{};
+    arn?.also((arg) => $request['Arn'] = arg);
+    publicVersionNumber?.also((arg) => $request['PublicVersionNumber'] = arg);
+    type?.also((arg) => $request['Type'] = arg.toValue());
+    typeName?.also((arg) => $request['TypeName'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'PublishType',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['PublishTypeInput'],
+      shapes: shapes,
+      resultWrapper: 'PublishTypeResult',
+    );
+    return PublishTypeOutput.fromXml($result);
   }
 
   /// Reports progress of a resource handler to CloudFormation.
@@ -4088,11 +4662,6 @@ class CloudFormation {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'resourceModel',
       resourceModel,
@@ -4127,51 +4696,116 @@ class CloudFormation {
     );
   }
 
-  /// Registers a type with the CloudFormation service. Registering a type makes
-  /// it available for use in CloudFormation templates in your AWS account, and
-  /// includes:
+  /// Registers your account as a publisher of public extensions in the
+  /// CloudFormation registry. Public extensions are available for use by all
+  /// CloudFormation users. This publisher ID applies to your account in all AWS
+  /// regions.
+  ///
+  /// For information on requirements for registering as a public extension
+  /// publisher, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Registering
+  /// your account to publish CloudFormation extensions</a> in the
+  /// <i>CloudFormation CLI User Guide</i>.
+  /// <p/>
+  ///
+  /// May throw [CFNRegistryException].
+  ///
+  /// Parameter [acceptTermsAndConditions] :
+  /// Whether you accept the terms and conditions for publishing extensions in
+  /// the CloudFormation registry. You must accept the terms and conditions in
+  /// order to register to publish public extensions to the CloudFormation
+  /// registry.
+  ///
+  /// The default is <code>false</code>.
+  ///
+  /// Parameter [connectionArn] :
+  /// If you are using a Bitbucket or GitHub account for identity verification,
+  /// the Amazon Resource Name (ARN) for your connection to that account.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-prereqs">Registering
+  /// your account to publish CloudFormation extensions</a> in the
+  /// <i>CloudFormation CLI User Guide</i>.
+  Future<RegisterPublisherOutput> registerPublisher({
+    bool? acceptTermsAndConditions,
+    String? connectionArn,
+  }) async {
+    _s.validateStringLength(
+      'connectionArn',
+      connectionArn,
+      1,
+      256,
+    );
+    final $request = <String, dynamic>{};
+    acceptTermsAndConditions
+        ?.also((arg) => $request['AcceptTermsAndConditions'] = arg);
+    connectionArn?.also((arg) => $request['ConnectionArn'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'RegisterPublisher',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['RegisterPublisherInput'],
+      shapes: shapes,
+      resultWrapper: 'RegisterPublisherResult',
+    );
+    return RegisterPublisherOutput.fromXml($result);
+  }
+
+  /// Registers an extension with the CloudFormation service. Registering an
+  /// extension makes it available for use in CloudFormation templates in your
+  /// AWS account, and includes:
   ///
   /// <ul>
   /// <li>
-  /// Validating the resource schema
+  /// Validating the extension schema
   /// </li>
   /// <li>
-  /// Determining which handlers have been specified for the resource
+  /// Determining which handlers, if any, have been specified for the extension
   /// </li>
   /// <li>
-  /// Making the resource type available for use in your account
+  /// Making the extension available for use in your account
   /// </li>
   /// </ul>
-  /// For more information on how to develop types and ready them for
+  /// For more information on how to develop extensions and ready them for
   /// registeration, see <a
   /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-types.html">Creating
   /// Resource Providers</a> in the <i>CloudFormation CLI User Guide</i>.
   ///
-  /// You can have a maximum of 50 resource type versions registered at a time.
-  /// This maximum is per account and per region. Use <a
+  /// You can have a maximum of 50 resource extension versions registered at a
+  /// time. This maximum is per account and per region. Use <a
   /// href="AWSCloudFormation/latest/APIReference/API_DeregisterType.html">DeregisterType</a>
-  /// to deregister specific resource type versions if necessary.
+  /// to deregister specific extension versions if necessary.
   ///
   /// Once you have initiated a registration request using <code>
   /// <a>RegisterType</a> </code>, you can use <code>
   /// <a>DescribeTypeRegistration</a> </code> to monitor the progress of the
   /// registration request.
   ///
+  /// Once you have registered a private extension in your account and region,
+  /// use <a
+  /// href="AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html">SetTypeConfiguration</a>
+  /// to specify configuration properties for the extension. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+  /// extensions at the account level</a> in the <i>CloudFormation User
+  /// Guide</i>.
+  ///
   /// May throw [CFNRegistryException].
   ///
   /// Parameter [schemaHandlerPackage] :
-  /// A url to the S3 bucket containing the schema handler package that contains
-  /// the schema, event handlers, and associated files for the type you want to
-  /// register.
+  /// A url to the S3 bucket containing the extension project package that
+  /// contains the neccessary files for the extension you want to register.
   ///
-  /// For information on generating a schema handler package for the type you
-  /// want to register, see <a
+  /// For information on generating a schema handler package for the extension
+  /// you want to register, see <a
   /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-cli-submit.html">submit</a>
   /// in the <i>CloudFormation CLI User Guide</i>.
   /// <note>
-  /// The user registering the resource provider type must be able to access the
-  /// the schema handler package in the S3 bucket. That is, the user needs to
-  /// have <a
+  /// The user registering the extension must be able to access the package in
+  /// the S3 bucket. That is, the user needs to have <a
   /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html">GetObject</a>
   /// permissions for the schema handler package. For more information, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html">Actions,
@@ -4180,13 +4814,22 @@ class CloudFormation {
   /// </note>
   ///
   /// Parameter [typeName] :
-  /// The name of the type being registered.
+  /// The name of the extension being registered.
   ///
-  /// We recommend that type names adhere to the following pattern:
+  /// We recommend that extension names adhere to the following patterns:
+  ///
+  /// <ul>
+  /// <li>
+  /// For resource types,
   /// <i>company_or_organization</i>::<i>service</i>::<i>type</i>.
-  /// <note>
+  /// </li>
+  /// <li>
+  /// For modules,
+  /// <i>company_or_organization</i>::<i>service</i>::<i>type</i>::MODULE.
+  /// </li>
+  /// </ul> <note>
   /// The following organization namespaces are reserved and cannot be used in
-  /// your resource type names:
+  /// your extension names:
   ///
   /// <ul>
   /// <li>
@@ -4212,28 +4855,36 @@ class CloudFormation {
   /// Parameter [clientRequestToken] :
   /// A unique identifier that acts as an idempotency key for this registration
   /// request. Specifying a client request token prevents CloudFormation from
-  /// generating more than one version of a type from the same registeration
-  /// request, even if the request is submitted multiple times.
+  /// generating more than one version of an extension from the same
+  /// registeration request, even if the request is submitted multiple times.
   ///
   /// Parameter [executionRoleArn] :
   /// The Amazon Resource Name (ARN) of the IAM role for CloudFormation to
-  /// assume when invoking the resource provider. If your resource type calls
-  /// AWS APIs in any of its handlers, you must create an <i> <a
+  /// assume when invoking the extension.
+  ///
+  /// For CloudFormation to assume the specified execution role, the role must
+  /// contain a trust relationship with the CloudFormation service principle
+  /// (<code>resources.cloudformation.amazonaws.com</code>). For more
+  /// information on adding trust relationships, see <a
+  /// href="IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-managingrole_edit-trust-policy">Modifying
+  /// a role trust policy</a> in the <i>AWS Identity and Access Management User
+  /// Guide</i>.
+  ///
+  /// If your extension calls AWS APIs in any of its handlers, you must create
+  /// an <i> <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
   /// execution role</a> </i> that includes the necessary permissions to call
   /// those AWS APIs, and provision that execution role in your account. When
-  /// CloudFormation needs to invoke the resource provider handler,
-  /// CloudFormation assumes this execution role to create a temporary session
-  /// token, which it then passes to the resource provider handler, thereby
-  /// supplying your resource provider with the appropriate credentials.
+  /// CloudFormation needs to invoke the resource type handler, CloudFormation
+  /// assumes this execution role to create a temporary session token, which it
+  /// then passes to the resource type handler, thereby supplying your resource
+  /// type with the appropriate credentials.
   ///
   /// Parameter [loggingConfig] :
-  /// Specifies logging configuration information for a type.
+  /// Specifies logging configuration information for an extension.
   ///
   /// Parameter [type] :
-  /// The kind of type.
-  ///
-  /// Currently, the only valid value is <code>RESOURCE</code>.
+  /// The kind of extension.
   Future<RegisterTypeOutput> registerType({
     required String schemaHandlerPackage,
     required String typeName,
@@ -4258,33 +4909,17 @@ class CloudFormation {
       204,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''arn:.+:iam::[0-9]{12}:role/.+''',
     );
     final $request = <String, dynamic>{};
     $request['SchemaHandlerPackage'] = schemaHandlerPackage;
@@ -4358,35 +4993,153 @@ class CloudFormation {
     );
   }
 
-  /// Specify the default version of a type. The default version of a type will
-  /// be used in CloudFormation operations.
+  /// Specifies the configuration data for a registered CloudFormation
+  /// extension, in the given account and region.
+  ///
+  /// To view the current configuration data for an extension, refer to the
+  /// <code>ConfigurationSchema</code> element of <a
+  /// href="AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>.
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+  /// extensions at the account level</a> in the <i>CloudFormation User
+  /// Guide</i>.
+  /// <important>
+  /// It is strongly recommended that you use dynamic references to restrict
+  /// sensitive configuration definitions, such as third-party credentials. For
+  /// more details on dynamic references, see <a
+  /// href="https://docs.aws.amazon.com/">Using dynamic references to specify
+  /// template values</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </important>
+  ///
+  /// May throw [CFNRegistryException].
+  /// May throw [TypeNotFoundException].
+  ///
+  /// Parameter [configuration] :
+  /// The configuration data for the extension, in this account and region.
+  ///
+  /// The configuration data must be formatted as JSON, and validate against the
+  /// schema returned in the <code>ConfigurationSchema</code> response element
+  /// of <a
+  /// href="AWSCloudFormation/latest/APIReference/API_DescribeType.html">API_DescribeType</a>.
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-model.html#resource-type-howto-configuration">Defining
+  /// account-level configuration data for an extension</a> in the
+  /// <i>CloudFormation CLI User Guide</i>.
+  ///
+  /// Parameter [configurationAlias] :
+  /// An alias by which to refer to this extension configuration data.
+  ///
+  /// Conditional: Specifying a configuration alias is required when setting a
+  /// configuration for a resource type extension.
+  ///
+  /// Parameter [type] :
+  /// The type of extension.
+  ///
+  /// Conditional: You must specify <code>ConfigurationArn</code>, or
+  /// <code>Type</code> and <code>TypeName</code>.
+  ///
+  /// Parameter [typeArn] :
+  /// The Amazon Resource Name (ARN) for the extension, in this account and
+  /// region.
+  ///
+  /// For public extensions, this will be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
+  /// the type</a> in this account and region. For private extensions, this will
+  /// be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">register
+  /// the type</a> in this account and region.
+  ///
+  /// Do not include the extension versions suffix at the end of the ARN. You
+  /// can set the configuration for an extension, but not for a specific
+  /// extension version.
+  ///
+  /// Parameter [typeName] :
+  /// The name of the extension.
+  ///
+  /// Conditional: You must specify <code>ConfigurationArn</code>, or
+  /// <code>Type</code> and <code>TypeName</code>.
+  Future<SetTypeConfigurationOutput> setTypeConfiguration({
+    required String configuration,
+    String? configurationAlias,
+    ThirdPartyType? type,
+    String? typeArn,
+    String? typeName,
+  }) async {
+    ArgumentError.checkNotNull(configuration, 'configuration');
+    _s.validateStringLength(
+      'configuration',
+      configuration,
+      1,
+      204800,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'configurationAlias',
+      configurationAlias,
+      1,
+      256,
+    );
+    _s.validateStringLength(
+      'typeArn',
+      typeArn,
+      0,
+      1024,
+    );
+    _s.validateStringLength(
+      'typeName',
+      typeName,
+      10,
+      204,
+    );
+    final $request = <String, dynamic>{};
+    $request['Configuration'] = configuration;
+    configurationAlias?.also((arg) => $request['ConfigurationAlias'] = arg);
+    type?.also((arg) => $request['Type'] = arg.toValue());
+    typeArn?.also((arg) => $request['TypeArn'] = arg);
+    typeName?.also((arg) => $request['TypeName'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'SetTypeConfiguration',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['SetTypeConfigurationInput'],
+      shapes: shapes,
+      resultWrapper: 'SetTypeConfigurationResult',
+    );
+    return SetTypeConfigurationOutput.fromXml($result);
+  }
+
+  /// Specify the default version of an extension. The default version of an
+  /// extension will be used in CloudFormation operations.
   ///
   /// May throw [CFNRegistryException].
   /// May throw [TypeNotFoundException].
   ///
   /// Parameter [arn] :
-  /// The Amazon Resource Name (ARN) of the type for which you want version
+  /// The Amazon Resource Name (ARN) of the extension for which you want version
   /// summary information.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [type] :
-  /// The kind of type.
+  /// The kind of extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [typeName] :
-  /// The name of the type.
+  /// The name of the extension.
   ///
   /// Conditional: You must specify either <code>TypeName</code> and
   /// <code>Type</code>, or <code>Arn</code>.
   ///
   /// Parameter [versionId] :
-  /// The ID of a specific version of the type. The version ID is the value at
-  /// the end of the Amazon Resource Name (ARN) assigned to the type version
-  /// when it is registered.
+  /// The ID of a specific version of the extension. The version ID is the value
+  /// at the end of the Amazon Resource Name (ARN) assigned to the extension
+  /// version when it is registered.
   Future<void> setTypeDefaultVersion({
     String? arn,
     RegistryType? type,
@@ -4399,32 +5152,17 @@ class CloudFormation {
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:[0-9]{12}:type/.+''',
-    );
     _s.validateStringLength(
       'typeName',
       typeName,
       10,
       204,
     );
-    _s.validateStringPattern(
-      'typeName',
-      typeName,
-      r'''[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}''',
-    );
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[A-Za-z0-9-]+''',
     );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
@@ -4485,12 +5223,6 @@ class CloudFormation {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     ArgumentError.checkNotNull(uniqueId, 'uniqueId');
     _s.validateStringLength(
@@ -4530,9 +5262,33 @@ class CloudFormation {
   /// Parameter [stackSetName] :
   /// The name or unique ID of the stack set that you want to stop the operation
   /// for.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   Future<void> stopStackSetOperation({
     required String operationId,
     required String stackSetName,
+    CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
     _s.validateStringLength(
@@ -4542,16 +5298,11 @@ class CloudFormation {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
     $request['StackSetName'] = stackSetName;
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     await _protocol.send(
       $request,
       action: 'StopStackSetOperation',
@@ -4563,6 +5314,148 @@ class CloudFormation {
       shapes: shapes,
       resultWrapper: 'StopStackSetOperationResult',
     );
+  }
+
+  /// Tests a registered extension to make sure it meets all necessary
+  /// requirements for being published in the CloudFormation registry.
+  ///
+  /// <ul>
+  /// <li>
+  /// For resource types, this includes passing all contracts tests defined for
+  /// the type.
+  /// </li>
+  /// <li>
+  /// For modules, this includes determining if the module's model meets all
+  /// necessary requirements.
+  /// </li>
+  /// </ul>
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html#publish-extension-testing">Testing
+  /// your public extension prior to publishing</a> in the <i>CloudFormation CLI
+  /// User Guide</i>.
+  ///
+  /// If you do not specify a version, CloudFormation uses the default version
+  /// of the extension in your account and region for testing.
+  ///
+  /// To perform testing, CloudFormation assumes the execution role specified
+  /// when the test was registered. For more information, see <a
+  /// href="AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  ///
+  /// Once you've initiated testing on an extension using <code>TestType</code>,
+  /// you can use <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DescribeType.html">DescribeType</a>
+  /// to monitor the current test status and test status description for the
+  /// extension.
+  ///
+  /// An extension must have a test status of <code>PASSED</code> before it can
+  /// be published. For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-publish.html">Publishing
+  /// extensions to make them available for public use</a> in the
+  /// <i>CloudFormation CLI User Guide</i>.
+  ///
+  /// May throw [CFNRegistryException].
+  /// May throw [TypeNotFoundException].
+  ///
+  /// Parameter [arn] :
+  /// The Amazon Resource Number (ARN) of the extension.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  ///
+  /// Parameter [logDeliveryBucket] :
+  /// The S3 bucket to which CloudFormation delivers the contract test execution
+  /// logs.
+  ///
+  /// CloudFormation delivers the logs by the time contract testing has
+  /// completed and the extension has been assigned a test type status of
+  /// <code>PASSED</code> or <code>FAILED</code>.
+  ///
+  /// The user calling <code>TestType</code> must be able to access items in the
+  /// specified S3 bucket. Specifically, the user needs the following
+  /// permissions:
+  ///
+  /// <ul>
+  /// <li>
+  /// GetObject
+  /// </li>
+  /// <li>
+  /// PutObject
+  /// </li>
+  /// </ul>
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html">Actions,
+  /// Resources, and Condition Keys for Amazon S3</a> in the <i>AWS Identity and
+  /// Access Management User Guide</i>.
+  ///
+  /// Parameter [type] :
+  /// The type of the extension to test.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  ///
+  /// Parameter [typeName] :
+  /// The name of the extension to test.
+  ///
+  /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code>
+  /// and <code>Type</code>.
+  ///
+  /// Parameter [versionId] :
+  /// The version of the extension to test.
+  ///
+  /// You can specify the version id with either <code>Arn</code>, or with
+  /// <code>TypeName</code> and <code>Type</code>.
+  ///
+  /// If you do not specify a version, CloudFormation uses the default version
+  /// of the extension in this account and region for testing.
+  Future<TestTypeOutput> testType({
+    String? arn,
+    String? logDeliveryBucket,
+    ThirdPartyType? type,
+    String? typeName,
+    String? versionId,
+  }) async {
+    _s.validateStringLength(
+      'arn',
+      arn,
+      0,
+      1024,
+    );
+    _s.validateStringLength(
+      'logDeliveryBucket',
+      logDeliveryBucket,
+      3,
+      63,
+    );
+    _s.validateStringLength(
+      'typeName',
+      typeName,
+      10,
+      204,
+    );
+    _s.validateStringLength(
+      'versionId',
+      versionId,
+      1,
+      128,
+    );
+    final $request = <String, dynamic>{};
+    arn?.also((arg) => $request['Arn'] = arg);
+    logDeliveryBucket?.also((arg) => $request['LogDeliveryBucket'] = arg);
+    type?.also((arg) => $request['Type'] = arg.toValue());
+    typeName?.also((arg) => $request['TypeName'] = arg);
+    versionId?.also((arg) => $request['VersionId'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'TestType',
+      version: '2010-05-15',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['TestTypeInput'],
+      shapes: shapes,
+      resultWrapper: 'TestTypeResult',
+    );
+    return TestTypeOutput.fromXml($result);
   }
 
   /// Updates a stack as specified in the template. After the call completes
@@ -4820,8 +5713,8 @@ class CloudFormation {
   ///
   /// Parameter [templateURL] :
   /// Location of file containing the template body. The URL must point to a
-  /// template that is located in an Amazon S3 bucket. For more information, go
-  /// to <a
+  /// template that is located in an Amazon S3 bucket or a Systems Manager
+  /// document. For more information, go to <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -4860,11 +5753,6 @@ class CloudFormation {
       clientRequestToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'roleARN',
@@ -4983,21 +5871,44 @@ class CloudFormation {
   /// instances.
   ///
   /// Parameter [accounts] :
-  /// [<code>Self-managed</code> permissions] The names of one or more AWS
-  /// accounts for which you want to update parameter values for stack
-  /// instances. The overridden parameter values will be applied to all stack
-  /// instances in the specified accounts and Regions.
+  /// [Self-managed permissions] The names of one or more AWS accounts for which
+  /// you want to update parameter values for stack instances. The overridden
+  /// parameter values will be applied to all stack instances in the specified
+  /// accounts and Regions.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
   ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
+  ///
   /// Parameter [deploymentTargets] :
-  /// [<code>Service-managed</code> permissions] The AWS Organizations accounts
-  /// for which you want to update parameter values for stack instances. If your
-  /// update targets OUs, the overridden parameter values only apply to the
-  /// accounts that are currently in the target OUs and their child OUs.
-  /// Accounts added to the target OUs and their child OUs in the future won't
-  /// use the overridden values.
+  /// [Service-managed permissions] The AWS Organizations accounts for which you
+  /// want to update parameter values for stack instances. If your update
+  /// targets OUs, the overridden parameter values only apply to the accounts
+  /// that are currently in the target OUs and their child OUs. Accounts added
+  /// to the target OUs and their child OUs in the future won't use the
+  /// overridden values.
   ///
   /// You can specify <code>Accounts</code> or <code>DeploymentTargets</code>,
   /// but not both.
@@ -5069,6 +5980,7 @@ class CloudFormation {
     required List<String> regions,
     required String stackSetName,
     List<String>? accounts,
+    CallAs? callAs,
     DeploymentTargets? deploymentTargets,
     String? operationId,
     StackSetOperationPreferences? operationPreferences,
@@ -5076,27 +5988,17 @@ class CloudFormation {
   }) async {
     ArgumentError.checkNotNull(regions, 'regions');
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringPattern(
-      'stackSetName',
-      stackSetName,
-      r'''[a-zA-Z][-a-zA-Z0-9]*(?::[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'operationId',
       operationId,
       1,
       128,
     );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['StackSetName'] = stackSetName;
     accounts?.also((arg) => $request['Accounts'] = arg);
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     deploymentTargets?.also((arg) => $request['DeploymentTargets'] = arg);
     $request['OperationId'] = operationId ?? _s.generateIdempotencyToken();
     operationPreferences?.also((arg) => $request['OperationPreferences'] = arg);
@@ -5135,9 +6037,9 @@ class CloudFormation {
   /// The name or unique ID of the stack set that you want to update.
   ///
   /// Parameter [accounts] :
-  /// [<code>Self-managed</code> permissions] The accounts in which to update
-  /// associated stack instances. If you specify accounts, you must also specify
-  /// the Regions in which to update stack set instances.
+  /// [Self-managed permissions] The accounts in which to update associated
+  /// stack instances. If you specify accounts, you must also specify the
+  /// Regions in which to update stack set instances.
   ///
   /// To update <i>all</i> the stack instances associated with this stack set,
   /// do not specify the <code>Accounts</code> or <code>Regions</code>
@@ -5170,12 +6072,35 @@ class CloudFormation {
   /// previously.
   ///
   /// Parameter [autoDeployment] :
-  /// [<code>Service-managed</code> permissions] Describes whether StackSets
-  /// automatically deploys to AWS Organizations accounts that are added to a
-  /// target organization or organizational unit (OU).
+  /// [Service-managed permissions] Describes whether StackSets automatically
+  /// deploys to AWS Organizations accounts that are added to a target
+  /// organization or organizational unit (OU).
   ///
   /// If you specify <code>AutoDeployment</code>, do not specify
   /// <code>DeploymentTargets</code> or <code>Regions</code>.
+  ///
+  /// Parameter [callAs] :
+  /// [Service-managed permissions] Specifies whether you are acting as an
+  /// account administrator in the organization's management account or as a
+  /// delegated administrator in a member account.
+  ///
+  /// By default, <code>SELF</code> is specified. Use <code>SELF</code> for
+  /// stack sets with self-managed permissions.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you are signed in to the management account, specify <code>SELF</code>.
+  /// </li>
+  /// <li>
+  /// If you are signed in to a delegated administrator account, specify
+  /// <code>DELEGATED_ADMIN</code>.
+  ///
+  /// Your AWS account must be registered as a delegated administrator in the
+  /// management account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-delegated-admin.html">Register
+  /// a delegated administrator</a> in the <i>AWS CloudFormation User Guide</i>.
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [capabilities] :
   /// In some cases, you must explicitly acknowledge that your stack template
@@ -5256,27 +6181,29 @@ class CloudFormation {
   /// <li>
   /// <code>CAPABILITY_AUTO_EXPAND</code>
   ///
-  /// Some templates contain macros. If your stack template contains one or more
-  /// macros, and you choose to update a stack directly from the processed
-  /// template, without first reviewing the resulting changes in a change set,
-  /// you must acknowledge this capability. For more information, see <a
+  /// Some templates reference macros. If your stack set template references one
+  /// or more macros, you must update the stack set directly from the processed
+  /// template, without first reviewing the resulting changes in a change set.
+  /// To update the stack set directly, you must acknowledge this capability.
+  /// For more information, see <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-macros.html">Using
   /// AWS CloudFormation Macros to Perform Custom Processing on Templates</a>.
   /// <important>
-  /// Stack sets do not currently support macros in stack templates. (This
-  /// includes the <a
+  /// Stack sets with service-managed permissions do not currently support the
+  /// use of macros in templates. (This includes the <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/create-reusable-transform-function-snippets-and-add-to-your-template-with-aws-include-transform.html">AWS::Include</a>
   /// and <a
   /// href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-aws-serverless.html">AWS::Serverless</a>
   /// transforms, which are macros hosted by AWS CloudFormation.) Even if you
-  /// specify this capability, if you include a macro in your template the stack
-  /// set operation will fail.
+  /// specify this capability for a stack set with service-managed permissions,
+  /// if you reference a macro in your template the stack set operation will
+  /// fail.
   /// </important> </li>
   /// </ul>
   ///
   /// Parameter [deploymentTargets] :
-  /// [<code>Service-managed</code> permissions] The AWS Organizations accounts
-  /// in which to update associated stack instances.
+  /// [Service-managed permissions] The AWS Organizations accounts in which to
+  /// update associated stack instances.
   ///
   /// To update all the stack instances associated with this stack set, do not
   /// specify <code>DeploymentTargets</code> or <code>Regions</code>.
@@ -5420,7 +6347,8 @@ class CloudFormation {
   /// Parameter [templateURL] :
   /// The location of the file that contains the template body. The URL must
   /// point to a template (maximum size: 460,800 bytes) that is located in an
-  /// Amazon S3 bucket. For more information, see <a
+  /// Amazon S3 bucket or a Systems Manager document. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -5440,6 +6368,7 @@ class CloudFormation {
     List<String>? accounts,
     String? administrationRoleARN,
     AutoDeployment? autoDeployment,
+    CallAs? callAs,
     List<Capability>? capabilities,
     DeploymentTargets? deploymentTargets,
     String? description,
@@ -5473,21 +6402,11 @@ class CloudFormation {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'executionRoleName',
-      executionRoleName,
-      r'''[a-zA-Z_0-9+=,.@-]+''',
-    );
     _s.validateStringLength(
       'operationId',
       operationId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'operationId',
-      operationId,
-      r'''[a-zA-Z0-9][-a-zA-Z0-9]*''',
     );
     _s.validateStringLength(
       'templateBody',
@@ -5507,6 +6426,7 @@ class CloudFormation {
     administrationRoleARN
         ?.also((arg) => $request['AdministrationRoleARN'] = arg);
     autoDeployment?.also((arg) => $request['AutoDeployment'] = arg);
+    callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     capabilities?.also((arg) =>
         $request['Capabilities'] = arg.map((e) => e.toValue()).toList());
     deploymentTargets?.also((arg) => $request['DeploymentTargets'] = arg);
@@ -5567,12 +6487,6 @@ class CloudFormation {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'stackName',
-      stackName,
-      r'''([a-zA-Z][-a-zA-Z0-9]*)|(arn:\b(aws|aws-us-gov|aws-cn)\b:[-a-zA-Z0-9:/._+]*)''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EnableTerminationProtection'] = enableTerminationProtection;
     $request['StackName'] = stackName;
@@ -5607,8 +6521,8 @@ class CloudFormation {
   ///
   /// Parameter [templateURL] :
   /// Location of file containing the template body. The URL must point to a
-  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket.
-  /// For more information, go to <a
+  /// template (max size: 460,800 bytes) that is located in an Amazon S3 bucket
+  /// or a Systems Manager document. For more information, go to <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Template
   /// Anatomy</a> in the AWS CloudFormation User Guide.
   ///
@@ -5796,9 +6710,24 @@ class AccountLimit {
   }
 }
 
-/// [<code>Service-managed</code> permissions] Describes whether StackSets
-/// automatically deploys to AWS Organizations accounts that are added to a
-/// target organization or organizational unit (OU).
+class ActivateTypeOutput {
+  /// The Amazon Resource Number (ARN) of the activated extension, in this account
+  /// and region.
+  final String? arn;
+
+  ActivateTypeOutput({
+    this.arn,
+  });
+  factory ActivateTypeOutput.fromXml(_s.XmlElement elem) {
+    return ActivateTypeOutput(
+      arn: _s.extractXmlStringValue(elem, 'Arn'),
+    );
+  }
+}
+
+/// [Service-managed permissions] Describes whether StackSets automatically
+/// deploys to AWS Organizations accounts that are added to a target
+/// organization or organizational unit (OU).
 class AutoDeployment {
   /// If set to <code>true</code>, StackSets automatically deploys additional
   /// stack instances to AWS Organizations accounts that are added to a target
@@ -5836,6 +6765,99 @@ class AutoDeployment {
   }
 }
 
+/// Detailed information concerning an error generated during the setting of
+/// configuration data for a CloudFormation extension.
+class BatchDescribeTypeConfigurationsError {
+  /// The error code.
+  final String? errorCode;
+
+  /// The error message.
+  final String? errorMessage;
+  final TypeConfigurationIdentifier? typeConfigurationIdentifier;
+
+  BatchDescribeTypeConfigurationsError({
+    this.errorCode,
+    this.errorMessage,
+    this.typeConfigurationIdentifier,
+  });
+  factory BatchDescribeTypeConfigurationsError.fromXml(_s.XmlElement elem) {
+    return BatchDescribeTypeConfigurationsError(
+      errorCode: _s.extractXmlStringValue(elem, 'ErrorCode'),
+      errorMessage: _s.extractXmlStringValue(elem, 'ErrorMessage'),
+      typeConfigurationIdentifier: _s
+          .extractXmlChild(elem, 'TypeConfigurationIdentifier')
+          ?.let((e) => TypeConfigurationIdentifier.fromXml(e)),
+    );
+  }
+}
+
+class BatchDescribeTypeConfigurationsOutput {
+  /// A list of information concerning any errors generated during the setting of
+  /// the specified configurations.
+  final List<BatchDescribeTypeConfigurationsError>? errors;
+
+  /// A list of any of the specified extension configurations from the
+  /// CloudFormation registry.
+  final List<TypeConfigurationDetails>? typeConfigurations;
+
+  /// A list of any of the specified extension configurations that CloudFormation
+  /// could not process for any reason.
+  final List<TypeConfigurationIdentifier>? unprocessedTypeConfigurations;
+
+  BatchDescribeTypeConfigurationsOutput({
+    this.errors,
+    this.typeConfigurations,
+    this.unprocessedTypeConfigurations,
+  });
+  factory BatchDescribeTypeConfigurationsOutput.fromXml(_s.XmlElement elem) {
+    return BatchDescribeTypeConfigurationsOutput(
+      errors: _s.extractXmlChild(elem, 'Errors')?.let((elem) => elem
+          .findElements('member')
+          .map((c) => BatchDescribeTypeConfigurationsError.fromXml(c))
+          .toList()),
+      typeConfigurations: _s.extractXmlChild(elem, 'TypeConfigurations')?.let(
+          (elem) => elem
+              .findElements('member')
+              .map((c) => TypeConfigurationDetails.fromXml(c))
+              .toList()),
+      unprocessedTypeConfigurations: _s
+          .extractXmlChild(elem, 'UnprocessedTypeConfigurations')
+          ?.let((elem) => elem
+              .findElements('member')
+              .map((c) => TypeConfigurationIdentifier.fromXml(c))
+              .toList()),
+    );
+  }
+}
+
+enum CallAs {
+  self,
+  delegatedAdmin,
+}
+
+extension on CallAs {
+  String toValue() {
+    switch (this) {
+      case CallAs.self:
+        return 'SELF';
+      case CallAs.delegatedAdmin:
+        return 'DELEGATED_ADMIN';
+    }
+  }
+}
+
+extension on String {
+  CallAs toCallAs() {
+    switch (this) {
+      case 'SELF':
+        return CallAs.self;
+      case 'DELEGATED_ADMIN':
+        return CallAs.delegatedAdmin;
+    }
+    throw Exception('$this is not known in enum CallAs');
+  }
+}
+
 enum Capability {
   capabilityIam,
   capabilityNamedIam,
@@ -5866,6 +6888,44 @@ extension on String {
         return Capability.capabilityAutoExpand;
     }
     throw Exception('$this is not known in enum Capability');
+  }
+}
+
+enum Category {
+  registered,
+  activated,
+  thirdParty,
+  awsTypes,
+}
+
+extension on Category {
+  String toValue() {
+    switch (this) {
+      case Category.registered:
+        return 'REGISTERED';
+      case Category.activated:
+        return 'ACTIVATED';
+      case Category.thirdParty:
+        return 'THIRD_PARTY';
+      case Category.awsTypes:
+        return 'AWS_TYPES';
+    }
+  }
+}
+
+extension on String {
+  Category toCategory() {
+    switch (this) {
+      case 'REGISTERED':
+        return Category.registered;
+      case 'ACTIVATED':
+        return Category.activated;
+      case 'THIRD_PARTY':
+        return Category.thirdParty;
+      case 'AWS_TYPES':
+        return Category.awsTypes;
+    }
+    throw Exception('$this is not known in enum Category');
   }
 }
 
@@ -6249,6 +7309,15 @@ class CreateStackSetOutput {
   }
 }
 
+class DeactivateTypeOutput {
+  DeactivateTypeOutput();
+  factory DeactivateTypeOutput.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return DeactivateTypeOutput();
+  }
+}
+
 /// The output for the <a>DeleteChangeSet</a> action.
 class DeleteChangeSetOutput {
   DeleteChangeSetOutput();
@@ -6282,8 +7351,8 @@ class DeleteStackSetOutput {
   }
 }
 
-/// [<code>Service-managed</code> permissions] The AWS Organizations accounts to
-/// which StackSets deploys. StackSets does not deploy stack instances to the
+/// [Service-managed permissions] The AWS Organizations accounts to which
+/// StackSets deploys. StackSets does not deploy stack instances to the
 /// organization management account, even if the organization management account
 /// is in your organization or in an OU in your organization.
 ///
@@ -6295,12 +7364,16 @@ class DeploymentTargets {
   /// updates.
   final List<String>? accounts;
 
+  /// Returns the value of the AccountsUrl property.
+  final String? accountsUrl;
+
   /// The organization root ID or organizational unit (OU) IDs to which StackSets
   /// deploys.
   final List<String>? organizationalUnitIds;
 
   DeploymentTargets({
     this.accounts,
+    this.accountsUrl,
     this.organizationalUnitIds,
   });
   factory DeploymentTargets.fromXml(_s.XmlElement elem) {
@@ -6308,6 +7381,7 @@ class DeploymentTargets {
       accounts: _s
           .extractXmlChild(elem, 'Accounts')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
+      accountsUrl: _s.extractXmlStringValue(elem, 'AccountsUrl'),
       organizationalUnitIds: _s
           .extractXmlChild(elem, 'OrganizationalUnitIds')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
@@ -6316,9 +7390,11 @@ class DeploymentTargets {
 
   Map<String, dynamic> toJson() {
     final accounts = this.accounts;
+    final accountsUrl = this.accountsUrl;
     final organizationalUnitIds = this.organizationalUnitIds;
     return {
       if (accounts != null) 'Accounts': accounts,
+      if (accountsUrl != null) 'AccountsUrl': accountsUrl,
       if (organizationalUnitIds != null)
         'OrganizationalUnitIds': organizationalUnitIds,
     };
@@ -6524,6 +7600,41 @@ class DescribeChangeSetOutput {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
+    );
+  }
+}
+
+class DescribePublisherOutput {
+  /// The type of account used as the identity provider when registering this
+  /// publisher with CloudFormation.
+  final IdentityProvider? identityProvider;
+
+  /// The ID of the extension publisher.
+  final String? publisherId;
+
+  /// The URL to the publisher's profile with the identity provider.
+  final String? publisherProfile;
+
+  /// Whether the publisher is verified. Currently, all registered publishers are
+  /// verified.
+  final PublisherStatus? publisherStatus;
+
+  DescribePublisherOutput({
+    this.identityProvider,
+    this.publisherId,
+    this.publisherProfile,
+    this.publisherStatus,
+  });
+  factory DescribePublisherOutput.fromXml(_s.XmlElement elem) {
+    return DescribePublisherOutput(
+      identityProvider: _s
+          .extractXmlStringValue(elem, 'IdentityProvider')
+          ?.toIdentityProvider(),
+      publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
+      publisherProfile: _s.extractXmlStringValue(elem, 'PublisherProfile'),
+      publisherStatus: _s
+          .extractXmlStringValue(elem, 'PublisherStatus')
+          ?.toPublisherStatus(),
     );
   }
 }
@@ -6798,76 +7909,157 @@ class DescribeStacksOutput {
 }
 
 class DescribeTypeOutput {
-  /// The Amazon Resource Name (ARN) of the type.
+  /// The Amazon Resource Name (ARN) of the extension.
   final String? arn;
 
-  /// The ID of the default version of the type. The default version is used when
-  /// the type version is not specified.
+  /// Whether CloudFormation automatically updates the extension in this account
+  /// and region when a new <i>minor</i> version is published by the extension
+  /// publisher. Major versions released by the publisher must be manually
+  /// updated. For more information, see <a
+  /// href="AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable">Activating
+  /// public extensions for use in your account</a> in the <i>AWS CloudFormation
+  /// User Guide</i>.
+  final bool? autoUpdate;
+
+  /// A JSON string that represent the current configuration data for the
+  /// extension in this account and region.
   ///
-  /// To set the default version of a type, use <code>
+  /// To set the configuration data for an extension, use <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_SetTypeConfiguration.html">SetTypeConfiguration</a>.
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+  /// extensions at the account level</a> in the <i>CloudFormation User Guide</i>.
+  final String? configurationSchema;
+
+  /// The ID of the default version of the extension. The default version is used
+  /// when the extension version is not specified.
+  ///
+  /// This applies only to private extensions you have registered in your account.
+  /// For public extensions, both those provided by Amazon and published by third
+  /// parties, CloudFormation returns <code>null</code>. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  ///
+  /// To set the default version of an extension, use <code>
   /// <a>SetTypeDefaultVersion</a> </code>.
   final String? defaultVersionId;
 
-  /// The deprecation status of the type.
+  /// The deprecation status of the extension version.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>LIVE</code>: The type is registered and can be used in CloudFormation
-  /// operations, dependent on its provisioning behavior and visibility scope.
+  /// <code>LIVE</code>: The extension is activated or registered and can be used
+  /// in CloudFormation operations, dependent on its provisioning behavior and
+  /// visibility scope.
   /// </li>
   /// <li>
-  /// <code>DEPRECATED</code>: The type has been deregistered and can no longer be
-  /// used in CloudFormation operations.
+  /// <code>DEPRECATED</code>: The extension has been deactivated or deregistered
+  /// and can no longer be used in CloudFormation operations.
   /// </li>
   /// </ul>
+  /// For public third-party extensions, CloudFormation returns <code>null</code>.
   final DeprecatedStatus? deprecatedStatus;
 
-  /// The description of the registered type.
+  /// The description of the extension.
   final String? description;
 
-  /// The URL of a page providing detailed documentation for this type.
+  /// The URL of a page providing detailed documentation for this extension.
   final String? documentationUrl;
 
   /// The Amazon Resource Name (ARN) of the IAM execution role used to register
-  /// the type. If your resource type calls AWS APIs in any of its handlers, you
-  /// must create an <i> <a
+  /// the extension. This applies only to private extensions you have registered
+  /// in your account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  /// <p/>
+  /// If the registered extension calls any AWS APIs, you must create an <i> <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
   /// execution role</a> </i> that includes the necessary permissions to call
   /// those AWS APIs, and provision that execution role in your account.
-  /// CloudFormation then assumes that execution role to provide your resource
-  /// type with the appropriate credentials.
+  /// CloudFormation then assumes that execution role to provide your extension
+  /// with the appropriate credentials.
   final String? executionRoleArn;
 
-  /// Whether the specified type version is set as the default version.
+  /// Whether or not the extension is activated in the account and region.
+  ///
+  /// This only applies to public third-party extensions. For all other
+  /// extensions, CloudFormation returns <code>null</code>.
+  final bool? isActivated;
+
+  /// Whether the specified extension version is set as the default version.
+  ///
+  /// This applies only to private extensions you have registered in your account,
+  /// and extensions published by Amazon. For public third-party extensions,
+  /// whether or not they are activated in your account, CloudFormation returns
+  /// <code>null</code>.
   final bool? isDefaultVersion;
 
-  /// When the specified type version was registered.
+  /// When the specified extension version was registered. This applies only to:
+  ///
+  /// <ul>
+  /// <li>
+  /// Private extensions you have registered in your account. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  /// </li>
+  /// <li>
+  /// Public extensions you have activated in your account with auto-update
+  /// specified. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">ActivateType</a>.
+  /// </li>
+  /// </ul>
   final DateTime? lastUpdated;
 
-  /// Contains logging configuration information for a type.
+  /// The latest version of a public extension <i>that is available</i> for use.
+  ///
+  /// This only applies if you specify a public extension, and you do not specify
+  /// a version. For all other requests, CloudFormation returns <code>null</code>.
+  final String? latestPublicVersion;
+
+  /// Contains logging configuration information for private extensions. This
+  /// applies only to private extensions you have registered in your account. For
+  /// public extensions, both those provided by Amazon and published by third
+  /// parties, CloudFormation returns <code>null</code>. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
   final LoggingConfig? loggingConfig;
 
-  /// The provisioning behavior of the type. AWS CloudFormation determines the
-  /// provisioning type during registration, based on the types of handlers in the
-  /// schema handler package submitted.
+  /// For public extensions that have been activated for this account and region,
+  /// the Amazon Resource Name (ARN) of the public extension.
+  final String? originalTypeArn;
+
+  /// For public extensions that have been activated for this account and region,
+  /// the type name of the public extension.
+  ///
+  /// If you specified a <code>TypeNameAlias</code> when enabling the extension in
+  /// this account and region, CloudFormation treats that alias as the extension's
+  /// type name within the account and region, not the type name of the public
+  /// extension. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-alias">Specifying
+  /// aliases to refer to extensions</a> in the <i>CloudFormation User Guide</i>.
+  final String? originalTypeName;
+
+  /// For resource type extensions, the provisioning behavior of the resource
+  /// type. AWS CloudFormation determines the provisioning type during
+  /// registration, based on the types of handlers in the schema handler package
+  /// submitted.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>FULLY_MUTABLE</code>: The type includes an update handler to process
-  /// updates to the type during stack update operations.
+  /// <code>FULLY_MUTABLE</code>: The resource type includes an update handler to
+  /// process updates to the type during stack update operations.
   /// </li>
   /// <li>
-  /// <code>IMMUTABLE</code>: The type does not include an update handler, so the
-  /// type cannot be updated and must instead be replaced during stack update
-  /// operations.
+  /// <code>IMMUTABLE</code>: The resource type does not include an update
+  /// handler, so the type cannot be updated and must instead be replaced during
+  /// stack update operations.
   /// </li>
   /// <li>
-  /// <code>NON_PROVISIONABLE</code>: The type does not include all of the
-  /// following handlers, and therefore cannot actually be provisioned.
+  /// <code>NON_PROVISIONABLE</code>: The resource type does not include all of
+  /// the following handlers, and therefore cannot actually be provisioned.
   ///
   /// <ul>
   /// <li>
@@ -6883,66 +8075,142 @@ class DescribeTypeOutput {
   /// </ul>
   final ProvisioningType? provisioningType;
 
-  /// The schema that defines the type.
+  /// The version number of a public third-party extension.
   ///
-  /// For more information on type schemas, see <a
+  /// This applies only if you specify a public extension you have activated in
+  /// your account, or specify a public extension without specifying a version.
+  /// For all other extensions, CloudFormation returns <code>null</code>.
+  final String? publicVersionNumber;
+
+  /// The publisher ID of the extension publisher.
+  ///
+  /// This applies only to public third-party extensions. For private registered
+  /// extensions, and extensions provided by Amazon, CloudFormation returns
+  /// <code>null</code>.
+  final String? publisherId;
+
+  /// For extensions that are modules, the public third-party extensions that must
+  /// be activated in your account in order for the module itself to be activated.
+  final List<RequiredActivatedType>? requiredActivatedTypes;
+
+  /// The schema that defines the extension.
+  ///
+  /// For more information on extension schemas, see <a
   /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html">Resource
   /// Provider Schema</a> in the <i>CloudFormation CLI User Guide</i>.
   final String? schema;
 
-  /// The URL of the source code for the type.
+  /// The URL of the source code for the extension.
   final String? sourceUrl;
 
-  /// When the specified type version was registered.
+  /// When the specified private extension version was registered or activated in
+  /// your account.
   final DateTime? timeCreated;
 
-  /// The kind of type.
-  ///
-  /// Currently the only valid value is <code>RESOURCE</code>.
+  /// The kind of extension.
   final RegistryType? type;
 
-  /// The name of the registered type.
+  /// The name of the extension.
+  ///
+  /// If the extension is a public third-party type you have activated with a type
+  /// name alias, CloudFormation returns the type name alias. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">ActivateType</a>.
   final String? typeName;
 
-  /// The scope at which the type is visible and usable in CloudFormation
+  /// The contract test status of the registered extension version. To return the
+  /// extension test status of a specifc extension version, you must specify
+  /// <code>VersionId</code>.
+  ///
+  /// This applies only to registered private extension versions. CloudFormation
+  /// does not return this information for public extensions, whether or not they
+  /// are activated in your account.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>PASSED</code>: The extension has passed all its contract tests.
+  ///
+  /// An extension must have a test status of <code>PASSED</code> before it can be
+  /// published. For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-publish.html">Publishing
+  /// extensions to make them available for public use</a> in the
+  /// <i>CloudFormation Command Line Interface User Guide</i>.
+  /// </li>
+  /// <li>
+  /// <code>FAILED</code>: The extension has failed one or more contract tests.
+  /// </li>
+  /// <li>
+  /// <code>IN_PROGRESS</code>: Contract tests are currently being performed on
+  /// the extension.
+  /// </li>
+  /// <li>
+  /// <code>NOT_TESTED</code>: Contract tests have not been performed on the
+  /// extension.
+  /// </li>
+  /// </ul>
+  final TypeTestsStatus? typeTestsStatus;
+
+  /// The description of the test status. To return the extension test status of a
+  /// specifc extension version, you must specify <code>VersionId</code>.
+  ///
+  /// This applies only to registered private extension versions. CloudFormation
+  /// does not return this information for public extensions, whether or not they
+  /// are activated in your account.
+  final String? typeTestsStatusDescription;
+
+  /// The scope at which the extension is visible and usable in CloudFormation
   /// operations.
   ///
   /// Valid values include:
   ///
   /// <ul>
   /// <li>
-  /// <code>PRIVATE</code>: The type is only visible and usable within the account
-  /// in which it is registered. Currently, AWS CloudFormation marks any types you
-  /// register as <code>PRIVATE</code>.
+  /// <code>PRIVATE</code>: The extension is only visible and usable within the
+  /// account in which it is registered. AWS CloudFormation marks any extensions
+  /// you register as <code>PRIVATE</code>.
   /// </li>
   /// <li>
-  /// <code>PUBLIC</code>: The type is publically visible and usable within any
-  /// Amazon account.
+  /// <code>PUBLIC</code>: The extension is publically visible and usable within
+  /// any Amazon account.
   /// </li>
   /// </ul>
   final Visibility? visibility;
 
   DescribeTypeOutput({
     this.arn,
+    this.autoUpdate,
+    this.configurationSchema,
     this.defaultVersionId,
     this.deprecatedStatus,
     this.description,
     this.documentationUrl,
     this.executionRoleArn,
+    this.isActivated,
     this.isDefaultVersion,
     this.lastUpdated,
+    this.latestPublicVersion,
     this.loggingConfig,
+    this.originalTypeArn,
+    this.originalTypeName,
     this.provisioningType,
+    this.publicVersionNumber,
+    this.publisherId,
+    this.requiredActivatedTypes,
     this.schema,
     this.sourceUrl,
     this.timeCreated,
     this.type,
     this.typeName,
+    this.typeTestsStatus,
+    this.typeTestsStatusDescription,
     this.visibility,
   });
   factory DescribeTypeOutput.fromXml(_s.XmlElement elem) {
     return DescribeTypeOutput(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
+      autoUpdate: _s.extractXmlBoolValue(elem, 'AutoUpdate'),
+      configurationSchema:
+          _s.extractXmlStringValue(elem, 'ConfigurationSchema'),
       defaultVersionId: _s.extractXmlStringValue(elem, 'DefaultVersionId'),
       deprecatedStatus: _s
           .extractXmlStringValue(elem, 'DeprecatedStatus')
@@ -6950,39 +8218,58 @@ class DescribeTypeOutput {
       description: _s.extractXmlStringValue(elem, 'Description'),
       documentationUrl: _s.extractXmlStringValue(elem, 'DocumentationUrl'),
       executionRoleArn: _s.extractXmlStringValue(elem, 'ExecutionRoleArn'),
+      isActivated: _s.extractXmlBoolValue(elem, 'IsActivated'),
       isDefaultVersion: _s.extractXmlBoolValue(elem, 'IsDefaultVersion'),
       lastUpdated: _s.extractXmlDateTimeValue(elem, 'LastUpdated'),
+      latestPublicVersion:
+          _s.extractXmlStringValue(elem, 'LatestPublicVersion'),
       loggingConfig: _s
           .extractXmlChild(elem, 'LoggingConfig')
           ?.let((e) => LoggingConfig.fromXml(e)),
+      originalTypeArn: _s.extractXmlStringValue(elem, 'OriginalTypeArn'),
+      originalTypeName: _s.extractXmlStringValue(elem, 'OriginalTypeName'),
       provisioningType: _s
           .extractXmlStringValue(elem, 'ProvisioningType')
           ?.toProvisioningType(),
+      publicVersionNumber:
+          _s.extractXmlStringValue(elem, 'PublicVersionNumber'),
+      publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
+      requiredActivatedTypes: _s
+          .extractXmlChild(elem, 'RequiredActivatedTypes')
+          ?.let((elem) => elem
+              .findElements('member')
+              .map((c) => RequiredActivatedType.fromXml(c))
+              .toList()),
       schema: _s.extractXmlStringValue(elem, 'Schema'),
       sourceUrl: _s.extractXmlStringValue(elem, 'SourceUrl'),
       timeCreated: _s.extractXmlDateTimeValue(elem, 'TimeCreated'),
       type: _s.extractXmlStringValue(elem, 'Type')?.toRegistryType(),
       typeName: _s.extractXmlStringValue(elem, 'TypeName'),
+      typeTestsStatus: _s
+          .extractXmlStringValue(elem, 'TypeTestsStatus')
+          ?.toTypeTestsStatus(),
+      typeTestsStatusDescription:
+          _s.extractXmlStringValue(elem, 'TypeTestsStatusDescription'),
       visibility: _s.extractXmlStringValue(elem, 'Visibility')?.toVisibility(),
     );
   }
 }
 
 class DescribeTypeRegistrationOutput {
-  /// The description of the type registration request.
+  /// The description of the extension registration request.
   final String? description;
 
-  /// The current status of the type registration request.
+  /// The current status of the extension registration request.
   final RegistrationStatus? progressStatus;
 
-  /// The Amazon Resource Name (ARN) of the type being registered.
+  /// The Amazon Resource Name (ARN) of the extension being registered.
   ///
   /// For registration requests with a <code>ProgressStatus</code> of other than
   /// <code>COMPLETE</code>, this will be <code>null</code>.
   final String? typeArn;
 
-  /// The Amazon Resource Name (ARN) of this specific version of the type being
-  /// registered.
+  /// The Amazon Resource Name (ARN) of this specific version of the extension
+  /// being registered.
   ///
   /// For registration requests with a <code>ProgressStatus</code> of other than
   /// <code>COMPLETE</code>, this will be <code>null</code>.
@@ -7379,6 +8666,7 @@ enum HandlerErrorCode {
   serviceInternalError,
   networkFailure,
   internalFailure,
+  invalidTypeConfiguration,
 }
 
 extension on HandlerErrorCode {
@@ -7412,6 +8700,8 @@ extension on HandlerErrorCode {
         return 'NetworkFailure';
       case HandlerErrorCode.internalFailure:
         return 'InternalFailure';
+      case HandlerErrorCode.invalidTypeConfiguration:
+        return 'InvalidTypeConfiguration';
     }
   }
 }
@@ -7447,8 +8737,43 @@ extension on String {
         return HandlerErrorCode.networkFailure;
       case 'InternalFailure':
         return HandlerErrorCode.internalFailure;
+      case 'InvalidTypeConfiguration':
+        return HandlerErrorCode.invalidTypeConfiguration;
     }
     throw Exception('$this is not known in enum HandlerErrorCode');
+  }
+}
+
+enum IdentityProvider {
+  awsMarketplace,
+  gitHub,
+  bitbucket,
+}
+
+extension on IdentityProvider {
+  String toValue() {
+    switch (this) {
+      case IdentityProvider.awsMarketplace:
+        return 'AWS_Marketplace';
+      case IdentityProvider.gitHub:
+        return 'GitHub';
+      case IdentityProvider.bitbucket:
+        return 'Bitbucket';
+    }
+  }
+}
+
+extension on String {
+  IdentityProvider toIdentityProvider() {
+    switch (this) {
+      case 'AWS_Marketplace':
+        return IdentityProvider.awsMarketplace;
+      case 'GitHub':
+        return IdentityProvider.gitHub;
+      case 'Bitbucket':
+        return IdentityProvider.bitbucket;
+    }
+    throw Exception('$this is not known in enum IdentityProvider');
   }
 }
 
@@ -7691,7 +9016,7 @@ class ListTypeRegistrationsOutput {
   /// results, <code>NextToken</code> is set to <code>null</code>.
   final String? nextToken;
 
-  /// A list of type registration tokens.
+  /// A list of extension registration tokens.
   ///
   /// Use <code> <a>DescribeTypeRegistration</a> </code> to return detailed
   /// information about a type registration request.
@@ -7720,7 +9045,7 @@ class ListTypeVersionsOutput {
   final String? nextToken;
 
   /// A list of <code>TypeVersionSummary</code> structures that contain
-  /// information about the specified type's versions.
+  /// information about the specified extension's versions.
   final List<TypeVersionSummary>? typeVersionSummaries;
 
   ListTypeVersionsOutput({
@@ -7749,7 +9074,7 @@ class ListTypesOutput {
   final String? nextToken;
 
   /// A list of <code>TypeSummary</code> structures that contain information about
-  /// the specified types.
+  /// the specified extensions.
   final List<TypeSummary>? typeSummaries;
 
   ListTypesOutput({
@@ -7768,10 +9093,10 @@ class ListTypesOutput {
   }
 }
 
-/// Contains logging configuration information for a type.
+/// Contains logging configuration information for an extension.
 class LoggingConfig {
   /// The Amazon CloudWatch log group to which CloudFormation sends error logging
-  /// information when invoking the type's handlers.
+  /// information when invoking the extension's handlers.
   final String logGroupName;
 
   /// The ARN of the role that CloudFormation should assume when sending log
@@ -8197,6 +9522,49 @@ extension on String {
   }
 }
 
+class PublishTypeOutput {
+  /// The Amazon Resource Number (ARN) assigned to the public extension upon
+  /// publication.
+  final String? publicTypeArn;
+
+  PublishTypeOutput({
+    this.publicTypeArn,
+  });
+  factory PublishTypeOutput.fromXml(_s.XmlElement elem) {
+    return PublishTypeOutput(
+      publicTypeArn: _s.extractXmlStringValue(elem, 'PublicTypeArn'),
+    );
+  }
+}
+
+enum PublisherStatus {
+  verified,
+  unverified,
+}
+
+extension on PublisherStatus {
+  String toValue() {
+    switch (this) {
+      case PublisherStatus.verified:
+        return 'VERIFIED';
+      case PublisherStatus.unverified:
+        return 'UNVERIFIED';
+    }
+  }
+}
+
+extension on String {
+  PublisherStatus toPublisherStatus() {
+    switch (this) {
+      case 'VERIFIED':
+        return PublisherStatus.verified;
+      case 'UNVERIFIED':
+        return PublisherStatus.unverified;
+    }
+    throw Exception('$this is not known in enum PublisherStatus');
+  }
+}
+
 class RecordHandlerProgressOutput {
   RecordHandlerProgressOutput();
   factory RecordHandlerProgressOutput.fromXml(
@@ -8206,12 +9574,54 @@ class RecordHandlerProgressOutput {
   }
 }
 
+enum RegionConcurrencyType {
+  sequential,
+  parallel,
+}
+
+extension on RegionConcurrencyType {
+  String toValue() {
+    switch (this) {
+      case RegionConcurrencyType.sequential:
+        return 'SEQUENTIAL';
+      case RegionConcurrencyType.parallel:
+        return 'PARALLEL';
+    }
+  }
+}
+
+extension on String {
+  RegionConcurrencyType toRegionConcurrencyType() {
+    switch (this) {
+      case 'SEQUENTIAL':
+        return RegionConcurrencyType.sequential;
+      case 'PARALLEL':
+        return RegionConcurrencyType.parallel;
+    }
+    throw Exception('$this is not known in enum RegionConcurrencyType');
+  }
+}
+
+class RegisterPublisherOutput {
+  /// The ID assigned this account by CloudFormation for publishing extensions.
+  final String? publisherId;
+
+  RegisterPublisherOutput({
+    this.publisherId,
+  });
+  factory RegisterPublisherOutput.fromXml(_s.XmlElement elem) {
+    return RegisterPublisherOutput(
+      publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
+    );
+  }
+}
+
 class RegisterTypeOutput {
   /// The identifier for this registration request.
   ///
   /// Use this registration token when calling <code>
   /// <a>DescribeTypeRegistration</a> </code>, which returns information about the
-  /// status and IDs of the type registration.
+  /// status and IDs of the extension registration.
   final String? registrationToken;
 
   RegisterTypeOutput({
@@ -8315,6 +9725,55 @@ extension on String {
         return Replacement.conditional;
     }
     throw Exception('$this is not known in enum Replacement');
+  }
+}
+
+/// For extensions that are modules, a public third-party extension that must be
+/// activated in your account in order for the module itself to be activated.
+///
+/// For more information, see <a
+/// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/modules.html#module-enabling">Activating
+/// public modules for use in your account</a> in the <i>AWS CloudFormation User
+/// Guide</i>.
+class RequiredActivatedType {
+  /// The type name of the public extension.
+  ///
+  /// If you specified a <code>TypeNameAlias</code> when enabling the extension in
+  /// this account and region, CloudFormation treats that alias as the extension's
+  /// type name within the account and region, not the type name of the public
+  /// extension. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-alias">Specifying
+  /// aliases to refer to extensions</a> in the <i>CloudFormation User Guide</i>.
+  final String? originalTypeName;
+
+  /// The publisher ID of the extension publisher.
+  final String? publisherId;
+
+  /// A list of the major versions of the extension type that the macro supports.
+  final List<int>? supportedMajorVersions;
+
+  /// An alias assigned to the public extension, in this account and region. If
+  /// you specify an alias for the extension, CloudFormation treats the alias as
+  /// the extension type name within this account and region. You must use the
+  /// alias to refer to the extension in your templates, API calls, and
+  /// CloudFormation console.
+  final String? typeNameAlias;
+
+  RequiredActivatedType({
+    this.originalTypeName,
+    this.publisherId,
+    this.supportedMajorVersions,
+    this.typeNameAlias,
+  });
+  factory RequiredActivatedType.fromXml(_s.XmlElement elem) {
+    return RequiredActivatedType(
+      originalTypeName: _s.extractXmlStringValue(elem, 'OriginalTypeName'),
+      publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
+      supportedMajorVersions: _s
+          .extractXmlChild(elem, 'SupportedMajorVersions')
+          ?.let((elem) => _s.extractXmlIntListValues(elem, 'member')),
+      typeNameAlias: _s.extractXmlStringValue(elem, 'TypeNameAlias'),
+    );
   }
 }
 
@@ -8941,6 +10400,24 @@ class RollbackTrigger {
   }
 }
 
+class SetTypeConfigurationOutput {
+  /// The Amazon Resource Name (ARN) for the configuration data, in this account
+  /// and region.
+  ///
+  /// Conditional: You must specify <code>ConfigurationArn</code>, or
+  /// <code>Type</code> and <code>TypeName</code>.
+  final String? configurationArn;
+
+  SetTypeConfigurationOutput({
+    this.configurationArn,
+  });
+  factory SetTypeConfigurationOutput.fromXml(_s.XmlElement elem) {
+    return SetTypeConfigurationOutput(
+      configurationArn: _s.extractXmlStringValue(elem, 'ConfigurationArn'),
+    );
+  }
+}
+
 class SetTypeDefaultVersionOutput {
   SetTypeDefaultVersionOutput();
   factory SetTypeDefaultVersionOutput.fromXml(
@@ -9381,8 +10858,8 @@ class StackEvent {
 /// instance contains the ID of its associated stack set, as well as the ID of
 /// the actual stack and the stack status.
 class StackInstance {
-  /// [<code>Self-managed</code> permissions] The name of the AWS account that the
-  /// stack instance is associated with.
+  /// [Self-managed permissions] The name of the AWS account that the stack
+  /// instance is associated with.
   final String? account;
 
   /// Status of the stack instance's actual configuration compared to the expected
@@ -9414,8 +10891,8 @@ class StackInstance {
   /// instance on which drift detection has not yet been performed.
   final DateTime? lastDriftCheckTimestamp;
 
-  /// [<code>Service-managed</code> permissions] The organization root ID or
-  /// organizational unit (OU) IDs that you specified for <a
+  /// [Service-managed permissions] The organization root ID or organizational
+  /// unit (OU) IDs that you specified for <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html">DeploymentTargets</a>.
   final String? organizationalUnitId;
 
@@ -9690,8 +11167,8 @@ extension on String {
 
 /// The structure that contains summary information about a stack instance.
 class StackInstanceSummary {
-  /// [<code>Self-managed</code> permissions] The name of the AWS account that the
-  /// stack instance is associated with.
+  /// [Self-managed permissions] The name of the AWS account that the stack
+  /// instance is associated with.
   final String? account;
 
   /// Status of the stack instance's actual configuration compared to the expected
@@ -9723,8 +11200,8 @@ class StackInstanceSummary {
   /// instance on which drift detection has not yet been performed.
   final DateTime? lastDriftCheckTimestamp;
 
-  /// [<code>Service-managed</code> permissions] The organization root ID or
-  /// organizational unit (OU) IDs that you specified for <a
+  /// [Service-managed permissions] The organization root ID or organizational
+  /// unit (OU) IDs that you specified for <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html">DeploymentTargets</a>.
   final String? organizationalUnitId;
 
@@ -10337,9 +11814,9 @@ class StackSet {
   /// CloudFormation User Guide</i>.
   final String? administrationRoleARN;
 
-  /// [<code>Service-managed</code> permissions] Describes whether StackSets
-  /// automatically deploys to AWS Organizations accounts that are added to a
-  /// target organization or organizational unit (OU).
+  /// [Service-managed permissions] Describes whether StackSets automatically
+  /// deploys to AWS Organizations accounts that are added to a target
+  /// organization or organizational unit (OU).
   final AutoDeployment? autoDeployment;
 
   /// The capabilities that are allowed in the stack set. Some stack set templates
@@ -10360,8 +11837,8 @@ class StackSet {
   /// groups can include in their stack sets.
   final String? executionRoleName;
 
-  /// [<code>Service-managed</code> permissions] The organization root ID or
-  /// organizational unit (OU) IDs that you specified for <a
+  /// [Service-managed permissions] The organization root ID or organizational
+  /// unit (OU) IDs that you specified for <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html">DeploymentTargets</a>.
   final List<String>? organizationalUnitIds;
 
@@ -10710,8 +12187,8 @@ class StackSetOperation {
   /// the requested Regions, before actually creating the first stacks.
   final DateTime? creationTimestamp;
 
-  /// [<code>Service-managed</code> permissions] The AWS Organizations accounts
-  /// affected by the stack operation.
+  /// [Service-managed permissions] The AWS Organizations accounts affected by the
+  /// stack operation.
   final DeploymentTargets? deploymentTargets;
 
   /// The time at which the stack set operation ended, across all accounts and
@@ -10766,9 +12243,9 @@ class StackSetOperation {
   /// CloudFormation cancels the operation in any remaining Regions.
   /// </li>
   /// <li>
-  /// <code>QUEUED</code>: [<code>Service-managed</code> permissions] For
-  /// automatic deployments that require a sequence of operations, the operation
-  /// is queued to be performed. For more information, see the <a
+  /// <code>QUEUED</code>: [Service-managed permissions] For automatic deployments
+  /// that require a sequence of operations, the operation is queued to be
+  /// performed. For more information, see the <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-status-codes">stack
   /// set operation status codes</a> in the AWS CloudFormation User Guide.
   /// </li>
@@ -10883,6 +12360,8 @@ class StackSetOperationPreferences {
   ///
   /// Conditional: You must specify either <code>FailureToleranceCount</code> or
   /// <code>FailureTolerancePercentage</code> (but not both).
+  ///
+  /// By default, <code>0</code> is specified.
   final int? failureToleranceCount;
 
   /// The percentage of accounts, per Region, for which this stack operation can
@@ -10895,6 +12374,8 @@ class StackSetOperationPreferences {
   ///
   /// Conditional: You must specify either <code>FailureToleranceCount</code> or
   /// <code>FailureTolerancePercentage</code>, but not both.
+  ///
+  /// By default, <code>0</code> is specified.
   final int? failureTolerancePercentage;
 
   /// The maximum number of accounts in which to perform this operation at one
@@ -10908,6 +12389,8 @@ class StackSetOperationPreferences {
   ///
   /// Conditional: You must specify either <code>MaxConcurrentCount</code> or
   /// <code>MaxConcurrentPercentage</code>, but not both.
+  ///
+  /// By default, <code>1</code> is specified.
   final int? maxConcurrentCount;
 
   /// The maximum percentage of accounts in which to perform this operation at one
@@ -10924,7 +12407,13 @@ class StackSetOperationPreferences {
   ///
   /// Conditional: You must specify either <code>MaxConcurrentCount</code> or
   /// <code>MaxConcurrentPercentage</code>, but not both.
+  ///
+  /// By default, <code>1</code> is specified.
   final int? maxConcurrentPercentage;
+
+  /// The concurrency type of deploying StackSets operations in regions, could be
+  /// in parallel or one region at a time.
+  final RegionConcurrencyType? regionConcurrencyType;
 
   /// The order of the Regions in where you want to perform the stack operation.
   final List<String>? regionOrder;
@@ -10934,6 +12423,7 @@ class StackSetOperationPreferences {
     this.failureTolerancePercentage,
     this.maxConcurrentCount,
     this.maxConcurrentPercentage,
+    this.regionConcurrencyType,
     this.regionOrder,
   });
   factory StackSetOperationPreferences.fromXml(_s.XmlElement elem) {
@@ -10945,6 +12435,9 @@ class StackSetOperationPreferences {
       maxConcurrentCount: _s.extractXmlIntValue(elem, 'MaxConcurrentCount'),
       maxConcurrentPercentage:
           _s.extractXmlIntValue(elem, 'MaxConcurrentPercentage'),
+      regionConcurrencyType: _s
+          .extractXmlStringValue(elem, 'RegionConcurrencyType')
+          ?.toRegionConcurrencyType(),
       regionOrder: _s
           .extractXmlChild(elem, 'RegionOrder')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
@@ -10956,6 +12449,7 @@ class StackSetOperationPreferences {
     final failureTolerancePercentage = this.failureTolerancePercentage;
     final maxConcurrentCount = this.maxConcurrentCount;
     final maxConcurrentPercentage = this.maxConcurrentPercentage;
+    final regionConcurrencyType = this.regionConcurrencyType;
     final regionOrder = this.regionOrder;
     return {
       if (failureToleranceCount != null)
@@ -10965,6 +12459,8 @@ class StackSetOperationPreferences {
       if (maxConcurrentCount != null) 'MaxConcurrentCount': maxConcurrentCount,
       if (maxConcurrentPercentage != null)
         'MaxConcurrentPercentage': maxConcurrentPercentage,
+      if (regionConcurrencyType != null)
+        'RegionConcurrencyType': regionConcurrencyType.toValue(),
       if (regionOrder != null) 'RegionOrder': regionOrder,
     };
   }
@@ -11016,16 +12512,16 @@ extension on String {
 /// The structure that contains information about a specified operation's
 /// results for a given account in a given Region.
 class StackSetOperationResultSummary {
-  /// [<code>Self-managed</code> permissions] The name of the AWS account for this
-  /// operation result.
+  /// [Self-managed permissions] The name of the AWS account for this operation
+  /// result.
   final String? account;
 
   /// The results of the account gate function AWS CloudFormation invokes, if
   /// present, before proceeding with stack set operations in an account
   final AccountGateResult? accountGateResult;
 
-  /// [<code>Service-managed</code> permissions] The organization root ID or
-  /// organizational unit (OU) IDs that you specified for <a
+  /// [Service-managed permissions] The organization root ID or organizational
+  /// unit (OU) IDs that you specified for <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html">DeploymentTargets</a>.
   final String? organizationalUnitId;
 
@@ -11178,9 +12674,9 @@ class StackSetOperationSummary {
   /// CloudFormation cancels the operation in any remaining Regions.
   /// </li>
   /// <li>
-  /// <code>QUEUED</code>: [<code>Service-managed</code> permissions] For
-  /// automatic deployments that require a sequence of operations, the operation
-  /// is queued to be performed. For more information, see the <a
+  /// <code>QUEUED</code>: [Service-managed permissions] For automatic deployments
+  /// that require a sequence of operations, the operation is queued to be
+  /// performed. For more information, see the <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-status-codes">stack
   /// set operation status codes</a> in the AWS CloudFormation User Guide.
   /// </li>
@@ -11252,9 +12748,9 @@ extension on String {
 /// The structures that contain summary information about the specified stack
 /// set.
 class StackSetSummary {
-  /// [<code>Service-managed</code> permissions] Describes whether StackSets
-  /// automatically deploys to AWS Organizations accounts that are added to a
-  /// target organizational unit (OU).
+  /// [Service-managed permissions] Describes whether StackSets automatically
+  /// deploys to AWS Organizations accounts that are added to a target
+  /// organizational unit (OU).
   final AutoDeployment? autoDeployment;
 
   /// A description of the stack set that you specify when the stack set is
@@ -11666,34 +13162,360 @@ extension on String {
   }
 }
 
-/// Contains summary information about the specified CloudFormation type.
-class TypeSummary {
-  /// The ID of the default version of the type. The default version is used when
-  /// the type version is not specified.
+class TestTypeOutput {
+  /// The Amazon Resource Number (ARN) of the extension.
+  final String? typeVersionArn;
+
+  TestTypeOutput({
+    this.typeVersionArn,
+  });
+  factory TestTypeOutput.fromXml(_s.XmlElement elem) {
+    return TestTypeOutput(
+      typeVersionArn: _s.extractXmlStringValue(elem, 'TypeVersionArn'),
+    );
+  }
+}
+
+enum ThirdPartyType {
+  resource,
+  module,
+}
+
+extension on ThirdPartyType {
+  String toValue() {
+    switch (this) {
+      case ThirdPartyType.resource:
+        return 'RESOURCE';
+      case ThirdPartyType.module:
+        return 'MODULE';
+    }
+  }
+}
+
+extension on String {
+  ThirdPartyType toThirdPartyType() {
+    switch (this) {
+      case 'RESOURCE':
+        return ThirdPartyType.resource;
+      case 'MODULE':
+        return ThirdPartyType.module;
+    }
+    throw Exception('$this is not known in enum ThirdPartyType');
+  }
+}
+
+/// Detailed information concerning the specification of a CloudFormation
+/// extension in a given account and region.
+///
+/// For more information, see <a
+/// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-register.html#registry-set-configuration">Configuring
+/// extensions at the account level</a> in the <i>CloudFormation User Guide</i>.
+class TypeConfigurationDetails {
+  /// The alias specified for this configuration, if one was specified when the
+  /// configuration was set.
+  final String? alias;
+
+  /// The Amazon Resource Name (ARN) for the configuration data, in this account
+  /// and region.
+  final String? arn;
+
+  /// A JSON string specifying the configuration data for the extension, in this
+  /// account and region.
   ///
-  /// To set the default version of a type, use <code>
+  /// If a configuration has not been set for a specified extension,
+  /// CloudFormation returns <code>{}</code>.
+  final String? configuration;
+
+  /// Whether or not this configuration data is the default configuration for the
+  /// extension.
+  final bool? isDefaultConfiguration;
+
+  /// When the configuration data was last updated for this extension.
+  ///
+  /// If a configuration has not been set for a specified extension,
+  /// CloudFormation returns <code>null</code>.
+  final DateTime? lastUpdated;
+
+  /// The Amazon Resource Name (ARN) for the extension, in this account and
+  /// region.
+  ///
+  /// For public extensions, this will be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
+  /// the type</a> in this account and region. For private extensions, this will
+  /// be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">register
+  /// the type</a> in this account and region.
+  final String? typeArn;
+
+  /// The name of the extension.
+  final String? typeName;
+
+  TypeConfigurationDetails({
+    this.alias,
+    this.arn,
+    this.configuration,
+    this.isDefaultConfiguration,
+    this.lastUpdated,
+    this.typeArn,
+    this.typeName,
+  });
+  factory TypeConfigurationDetails.fromXml(_s.XmlElement elem) {
+    return TypeConfigurationDetails(
+      alias: _s.extractXmlStringValue(elem, 'Alias'),
+      arn: _s.extractXmlStringValue(elem, 'Arn'),
+      configuration: _s.extractXmlStringValue(elem, 'Configuration'),
+      isDefaultConfiguration:
+          _s.extractXmlBoolValue(elem, 'IsDefaultConfiguration'),
+      lastUpdated: _s.extractXmlDateTimeValue(elem, 'LastUpdated'),
+      typeArn: _s.extractXmlStringValue(elem, 'TypeArn'),
+      typeName: _s.extractXmlStringValue(elem, 'TypeName'),
+    );
+  }
+}
+
+/// Identifying information for the configuration of a CloudFormation extension.
+class TypeConfigurationIdentifier {
+  /// The type of extension.
+  final ThirdPartyType? type;
+
+  /// The Amazon Resource Name (ARN) for the extension, in this account and
+  /// region.
+  ///
+  /// For public extensions, this will be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
+  /// the type</a> in this account and region. For private extensions, this will
+  /// be the ARN assigned when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">register
+  /// the type</a> in this account and region.
+  final String? typeArn;
+
+  /// The alias specified for this configuration, if one was specified when the
+  /// configuration was set.
+  final String? typeConfigurationAlias;
+
+  /// The Amazon Resource Name (ARN) for the configuration, in this account and
+  /// region.
+  final String? typeConfigurationArn;
+
+  /// The name of the extension type to which this configuration applies.
+  final String? typeName;
+
+  TypeConfigurationIdentifier({
+    this.type,
+    this.typeArn,
+    this.typeConfigurationAlias,
+    this.typeConfigurationArn,
+    this.typeName,
+  });
+  factory TypeConfigurationIdentifier.fromXml(_s.XmlElement elem) {
+    return TypeConfigurationIdentifier(
+      type: _s.extractXmlStringValue(elem, 'Type')?.toThirdPartyType(),
+      typeArn: _s.extractXmlStringValue(elem, 'TypeArn'),
+      typeConfigurationAlias:
+          _s.extractXmlStringValue(elem, 'TypeConfigurationAlias'),
+      typeConfigurationArn:
+          _s.extractXmlStringValue(elem, 'TypeConfigurationArn'),
+      typeName: _s.extractXmlStringValue(elem, 'TypeName'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final typeArn = this.typeArn;
+    final typeConfigurationAlias = this.typeConfigurationAlias;
+    final typeConfigurationArn = this.typeConfigurationArn;
+    final typeName = this.typeName;
+    return {
+      if (type != null) 'Type': type.toValue(),
+      if (typeArn != null) 'TypeArn': typeArn,
+      if (typeConfigurationAlias != null)
+        'TypeConfigurationAlias': typeConfigurationAlias,
+      if (typeConfigurationArn != null)
+        'TypeConfigurationArn': typeConfigurationArn,
+      if (typeName != null) 'TypeName': typeName,
+    };
+  }
+}
+
+/// Filter criteria to use in determining which extensions to return.
+class TypeFilters {
+  /// The category of extensions to return.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>REGISTERED</code>: Private extensions that have been registered for
+  /// this account and region.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVATED</code>: Public extensions that have been activated for this
+  /// account and region.
+  /// </li>
+  /// <li>
+  /// <code>THIRD-PARTY</code>: Extensions available for use from publishers other
+  /// than Amazon. This includes:
+  ///
+  /// <ul>
+  /// <li>
+  /// Private extensions registered in the account.
+  /// </li>
+  /// <li>
+  /// Public extensions from publishers other than Amazon, whether activated or
+  /// not.
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// <code>AWS-TYPES</code>: Extensions available for use from Amazon.
+  /// </li>
+  /// </ul>
+  final Category? category;
+
+  /// The id of the publisher of the extension.
+  ///
+  /// Extensions published by Amazon are not assigned a publisher ID. Use the
+  /// <code>AWS-TYPES</code> category to specify a list of types published by
+  /// Amazon.
+  final String? publisherId;
+
+  /// A prefix to use as a filter for results.
+  final String? typeNamePrefix;
+
+  TypeFilters({
+    this.category,
+    this.publisherId,
+    this.typeNamePrefix,
+  });
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final publisherId = this.publisherId;
+    final typeNamePrefix = this.typeNamePrefix;
+    return {
+      if (category != null) 'Category': category.toValue(),
+      if (publisherId != null) 'PublisherId': publisherId,
+      if (typeNamePrefix != null) 'TypeNamePrefix': typeNamePrefix,
+    };
+  }
+}
+
+/// Contains summary information about the specified CloudFormation extension.
+class TypeSummary {
+  /// The ID of the default version of the extension. The default version is used
+  /// when the extension version is not specified.
+  ///
+  /// This applies only to private extensions you have registered in your account.
+  /// For public extensions, both those provided by Amazon and published by third
+  /// parties, CloudFormation returns <code>null</code>. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  ///
+  /// To set the default version of an extension, use <code>
   /// <a>SetTypeDefaultVersion</a> </code>.
   final String? defaultVersionId;
 
-  /// The description of the type.
+  /// The description of the extension.
   final String? description;
 
-  /// When the current default version of the type was registered.
+  /// Whether or not the extension is activated for this account and region.
+  ///
+  /// This applies only to third-party public extensions. Extensions published by
+  /// Amazon are activated by default.
+  final bool? isActivated;
+
+  /// When the specified extension version was registered. This applies only to:
+  ///
+  /// <ul>
+  /// <li>
+  /// Private extensions you have registered in your account. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_RegisterType.html">RegisterType</a>.
+  /// </li>
+  /// <li>
+  /// Public extensions you have activated in your account with auto-update
+  /// specified. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">ActivateType</a>.
+  /// </li>
+  /// </ul>
+  /// For all other extension types, CloudFormation returns <code>null</code>.
   final DateTime? lastUpdated;
 
-  /// The kind of type.
+  /// For public extensions that have been activated for this account and region,
+  /// the latest version of the public extension <i>that is available</i>. For any
+  /// extensions other than activated third-arty extensions, CloudFormation
+  /// returns <code>null</code>.
+  ///
+  /// How you specified <code>AutoUpdate</code> when enabling the extension
+  /// affects whether CloudFormation automatically updates the extention in this
+  /// account and region when a new version is released. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto">Setting
+  /// CloudFormation to automatically use new versions of extensions</a> in the
+  /// <i>CloudFormation User Guide</i>.
+  final String? latestPublicVersion;
+
+  /// For public extensions that have been activated for this account and region,
+  /// the type name of the public extension.
+  ///
+  /// If you specified a <code>TypeNameAlias</code> when enabling the extension in
+  /// this account and region, CloudFormation treats that alias as the extension's
+  /// type name within the account and region, not the type name of the public
+  /// extension. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-alias">Specifying
+  /// aliases to refer to extensions</a> in the <i>CloudFormation User Guide</i>.
+  final String? originalTypeName;
+
+  /// For public extensions that have been activated for this account and region,
+  /// the version of the public extension to be used for CloudFormation operations
+  /// in this account and region.
+  ///
+  /// How you specified <code>AutoUpdate</code> when enabling the extension
+  /// affects whether CloudFormation automatically updates the extention in this
+  /// account and region when a new version is released. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto">Setting
+  /// CloudFormation to automatically use new versions of extensions</a> in the
+  /// <i>CloudFormation User Guide</i>.
+  final String? publicVersionNumber;
+
+  /// The ID of the extension publisher, if the extension is published by a third
+  /// party. Extensions published by Amazon do not return a publisher ID.
+  final String? publisherId;
+
+  /// The service used to verify the publisher identity.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html">Registering
+  /// your account to publish CloudFormation extensions</a> in the <i> CFN-CLI
+  /// User Guide for Extension Development</i>.
+  final IdentityProvider? publisherIdentity;
+
+  /// The publisher name, as defined in the public profile for that publisher in
+  /// the service used to verify the publisher identity.
+  final String? publisherName;
+
+  /// The kind of extension.
   final RegistryType? type;
 
-  /// The Amazon Resource Name (ARN) of the type.
+  /// The Amazon Resource Name (ARN) of the extension.
   final String? typeArn;
 
-  /// The name of the type.
+  /// The name of the extension.
+  ///
+  /// If you specified a <code>TypeNameAlias</code> when you <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_ActivateType.html">activate
+  /// this extension</a> in your account and region, CloudFormation considers that
+  /// alias as the type name.
   final String? typeName;
 
   TypeSummary({
     this.defaultVersionId,
     this.description,
+    this.isActivated,
     this.lastUpdated,
+    this.latestPublicVersion,
+    this.originalTypeName,
+    this.publicVersionNumber,
+    this.publisherId,
+    this.publisherIdentity,
+    this.publisherName,
     this.type,
     this.typeArn,
     this.typeName,
@@ -11702,7 +13524,18 @@ class TypeSummary {
     return TypeSummary(
       defaultVersionId: _s.extractXmlStringValue(elem, 'DefaultVersionId'),
       description: _s.extractXmlStringValue(elem, 'Description'),
+      isActivated: _s.extractXmlBoolValue(elem, 'IsActivated'),
       lastUpdated: _s.extractXmlDateTimeValue(elem, 'LastUpdated'),
+      latestPublicVersion:
+          _s.extractXmlStringValue(elem, 'LatestPublicVersion'),
+      originalTypeName: _s.extractXmlStringValue(elem, 'OriginalTypeName'),
+      publicVersionNumber:
+          _s.extractXmlStringValue(elem, 'PublicVersionNumber'),
+      publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
+      publisherIdentity: _s
+          .extractXmlStringValue(elem, 'PublisherIdentity')
+          ?.toIdentityProvider(),
+      publisherName: _s.extractXmlStringValue(elem, 'PublisherName'),
       type: _s.extractXmlStringValue(elem, 'Type')?.toRegistryType(),
       typeArn: _s.extractXmlStringValue(elem, 'TypeArn'),
       typeName: _s.extractXmlStringValue(elem, 'TypeName'),
@@ -11710,36 +13543,94 @@ class TypeSummary {
   }
 }
 
+enum TypeTestsStatus {
+  passed,
+  failed,
+  inProgress,
+  notTested,
+}
+
+extension on TypeTestsStatus {
+  String toValue() {
+    switch (this) {
+      case TypeTestsStatus.passed:
+        return 'PASSED';
+      case TypeTestsStatus.failed:
+        return 'FAILED';
+      case TypeTestsStatus.inProgress:
+        return 'IN_PROGRESS';
+      case TypeTestsStatus.notTested:
+        return 'NOT_TESTED';
+    }
+  }
+}
+
+extension on String {
+  TypeTestsStatus toTypeTestsStatus() {
+    switch (this) {
+      case 'PASSED':
+        return TypeTestsStatus.passed;
+      case 'FAILED':
+        return TypeTestsStatus.failed;
+      case 'IN_PROGRESS':
+        return TypeTestsStatus.inProgress;
+      case 'NOT_TESTED':
+        return TypeTestsStatus.notTested;
+    }
+    throw Exception('$this is not known in enum TypeTestsStatus');
+  }
+}
+
 /// Contains summary information about a specific version of a CloudFormation
-/// type.
+/// extension.
 class TypeVersionSummary {
-  /// The Amazon Resource Name (ARN) of the type version.
+  /// The Amazon Resource Name (ARN) of the extension version.
   final String? arn;
 
-  /// The description of the type version.
+  /// The description of the extension version.
   final String? description;
 
-  /// Whether the specified type version is set as the default version.
+  /// Whether the specified extension version is set as the default version.
+  ///
+  /// This applies only to private extensions you have registered in your account,
+  /// and extensions published by Amazon. For public third-party extensions,
+  /// whether or not they are activated in your account, CloudFormation returns
+  /// <code>null</code>.
   final bool? isDefaultVersion;
+
+  /// For public extensions that have been activated for this account and region,
+  /// the version of the public extension to be used for CloudFormation operations
+  /// in this account and region. For any extensions other than activated
+  /// third-arty extensions, CloudFormation returns <code>null</code>.
+  ///
+  /// How you specified <code>AutoUpdate</code> when enabling the extension
+  /// affects whether CloudFormation automatically updates the extention in this
+  /// account and region when a new version is released. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto">Setting
+  /// CloudFormation to automatically use new versions of extensions</a> in the
+  /// <i>CloudFormation User Guide</i>.
+  final String? publicVersionNumber;
 
   /// When the version was registered.
   final DateTime? timeCreated;
 
-  /// The kind of type.
+  /// The kind of extension.
   final RegistryType? type;
 
-  /// The name of the type.
+  /// The name of the extension.
   final String? typeName;
 
-  /// The ID of a specific version of the type. The version ID is the value at the
-  /// end of the Amazon Resource Name (ARN) assigned to the type version when it
-  /// is registered.
+  /// The ID of a specific version of the extension. The version ID is the value
+  /// at the end of the Amazon Resource Name (ARN) assigned to the extension
+  /// version when it is registered.
   final String? versionId;
 
   TypeVersionSummary({
     this.arn,
     this.description,
     this.isDefaultVersion,
+    this.publicVersionNumber,
     this.timeCreated,
     this.type,
     this.typeName,
@@ -11750,6 +13641,8 @@ class TypeVersionSummary {
       arn: _s.extractXmlStringValue(elem, 'Arn'),
       description: _s.extractXmlStringValue(elem, 'Description'),
       isDefaultVersion: _s.extractXmlBoolValue(elem, 'IsDefaultVersion'),
+      publicVersionNumber:
+          _s.extractXmlStringValue(elem, 'PublicVersionNumber'),
       timeCreated: _s.extractXmlDateTimeValue(elem, 'TimeCreated'),
       type: _s.extractXmlStringValue(elem, 'Type')?.toRegistryType(),
       typeName: _s.extractXmlStringValue(elem, 'TypeName'),
@@ -11864,6 +13757,34 @@ class ValidateTemplateOutput {
           .map((c) => TemplateParameter.fromXml(c))
           .toList()),
     );
+  }
+}
+
+enum VersionBump {
+  major,
+  minor,
+}
+
+extension on VersionBump {
+  String toValue() {
+    switch (this) {
+      case VersionBump.major:
+        return 'MAJOR';
+      case VersionBump.minor:
+        return 'MINOR';
+    }
+  }
+}
+
+extension on String {
+  VersionBump toVersionBump() {
+    switch (this) {
+      case 'MAJOR':
+        return VersionBump.major;
+      case 'MINOR':
+        return VersionBump.minor;
+    }
+    throw Exception('$this is not known in enum VersionBump');
   }
 }
 
@@ -12011,6 +13932,14 @@ class TokenAlreadyExistsException extends _s.GenericAwsException {
             type: type, code: 'TokenAlreadyExistsException', message: message);
 }
 
+class TypeConfigurationNotFoundException extends _s.GenericAwsException {
+  TypeConfigurationNotFoundException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'TypeConfigurationNotFoundException',
+            message: message);
+}
+
 class TypeNotFoundException extends _s.GenericAwsException {
   TypeNotFoundException({String? type, String? message})
       : super(type: type, code: 'TypeNotFoundException', message: message);
@@ -12055,6 +13984,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       StaleRequestException(type: type, message: message),
   'TokenAlreadyExistsException': (type, message) =>
       TokenAlreadyExistsException(type: type, message: message),
+  'TypeConfigurationNotFoundException': (type, message) =>
+      TypeConfigurationNotFoundException(type: type, message: message),
   'TypeNotFoundException': (type, message) =>
       TypeNotFoundException(type: type, message: message),
 };

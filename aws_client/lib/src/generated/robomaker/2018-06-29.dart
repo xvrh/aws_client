@@ -108,12 +108,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'job': job,
     };
@@ -143,12 +137,6 @@ class RoboMaker {
       job,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -184,12 +172,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'batch',
-      batch,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'batch': batch,
     };
@@ -221,12 +203,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'job': job,
     };
@@ -256,12 +232,6 @@ class RoboMaker {
       job,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -328,22 +298,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
     );
     final $payload = <String, dynamic>{
       'deploymentApplicationConfigs': deploymentApplicationConfigs,
@@ -385,12 +344,6 @@ class RoboMaker {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -441,24 +394,12 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'greengrassGroupId',
-      greengrassGroupId,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_\-]*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -512,12 +453,6 @@ class RoboMaker {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robotSoftwareSuite, 'robotSoftwareSuite');
     ArgumentError.checkNotNull(sources, 'sources');
     final $payload = <String, dynamic>{
@@ -561,22 +496,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'currentRevisionId',
       currentRevisionId,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'currentRevisionId',
-      currentRevisionId,
-      r'''[a-zA-Z0-9_.\-]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -635,12 +559,6 @@ class RoboMaker {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[a-zA-Z0-9_\-]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robotSoftwareSuite, 'robotSoftwareSuite');
     ArgumentError.checkNotNull(
         simulationSoftwareSuite, 'simulationSoftwareSuite');
@@ -690,22 +608,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'currentRevisionId',
       currentRevisionId,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'currentRevisionId',
-      currentRevisionId,
-      r'''[a-zA-Z0-9_.\-]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -811,12 +718,6 @@ class RoboMaker {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'iamRole',
-      iamRole,
-      r'''arn:aws:iam::\w+:role/.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         maxJobDurationInSeconds, 'maxJobDurationInSeconds');
     _s.validateStringLength(
@@ -824,11 +725,6 @@ class RoboMaker {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
     );
     final $payload = <String, dynamic>{
       'iamRole': iamRole,
@@ -893,12 +789,6 @@ class RoboMaker {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'iamRole',
-      iamRole,
-      r'''arn:aws:iam::\w+:role/.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputLocation, 'outputLocation');
     ArgumentError.checkNotNull(worlds, 'worlds');
     _s.validateStringLength(
@@ -906,11 +796,6 @@ class RoboMaker {
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
     );
     final $payload = <String, dynamic>{
       'iamRole': iamRole,
@@ -971,23 +856,12 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'template',
-      template,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(worldCount, 'worldCount');
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
     );
     final $payload = <String, dynamic>{
       'template': template,
@@ -1043,32 +917,17 @@ class RoboMaker {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
-    );
     _s.validateStringLength(
       'name',
       name,
       0,
       255,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'templateBody',
       templateBody,
       1,
       262144,
-    );
-    _s.validateStringPattern(
-      'templateBody',
-      templateBody,
-      r'''[\S\s]+''',
     );
     final $payload = <String, dynamic>{
       if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
@@ -1105,12 +964,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'fleet': fleet,
     };
@@ -1139,12 +992,6 @@ class RoboMaker {
       robot,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'robot',
-      robot,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1181,22 +1028,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationVersion',
       applicationVersion,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'applicationVersion',
-      applicationVersion,
-      r'''(\$LATEST)|[0-9]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -1233,22 +1069,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationVersion',
       applicationVersion,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'applicationVersion',
-      applicationVersion,
-      r'''(\$LATEST)|[0-9]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -1280,12 +1105,6 @@ class RoboMaker {
       template,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'template',
-      template,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1323,24 +1142,12 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robot, 'robot');
     _s.validateStringLength(
       'robot',
       robot,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'robot',
-      robot,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1376,12 +1183,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'job': job,
     };
@@ -1414,12 +1215,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'fleet': fleet,
     };
@@ -1450,12 +1245,6 @@ class RoboMaker {
       robot,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'robot',
-      robot,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1494,22 +1283,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationVersion',
       applicationVersion,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'applicationVersion',
-      applicationVersion,
-      r'''(\$LATEST)|[0-9]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -1548,22 +1326,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'applicationVersion',
       applicationVersion,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'applicationVersion',
-      applicationVersion,
-      r'''(\$LATEST)|[0-9]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -1598,12 +1365,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'job': job,
     };
@@ -1633,12 +1394,6 @@ class RoboMaker {
       batch,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'batch',
-      batch,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1673,12 +1428,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'world',
-      world,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'world': world,
     };
@@ -1709,12 +1458,6 @@ class RoboMaker {
       job,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1749,12 +1492,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'job': job,
     };
@@ -1785,12 +1522,6 @@ class RoboMaker {
       template,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'template',
-      template,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1827,21 +1558,11 @@ class RoboMaker {
       1,
       1224,
     );
-    _s.validateStringPattern(
-      'generationJob',
-      generationJob,
-      r'''arn:.*''',
-    );
     _s.validateStringLength(
       'template',
       template,
       1,
       1224,
-    );
-    _s.validateStringPattern(
-      'template',
-      template,
-      r'''arn:.*''',
     );
     final $payload = <String, dynamic>{
       if (generationJob != null) 'generationJob': generationJob,
@@ -1901,11 +1622,6 @@ class RoboMaker {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -1969,11 +1685,6 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2035,21 +1746,11 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     _s.validateStringLength(
       'versionQualifier',
       versionQualifier,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'versionQualifier',
-      versionQualifier,
-      r'''ALL''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2111,11 +1812,6 @@ class RoboMaker {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2179,21 +1875,11 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     _s.validateStringLength(
       'versionQualifier',
       versionQualifier,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'versionQualifier',
-      versionQualifier,
-      r'''ALL''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2245,11 +1931,6 @@ class RoboMaker {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2312,11 +1993,6 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2349,12 +2025,6 @@ class RoboMaker {
       resourceArn,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:.*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2404,11 +2074,6 @@ class RoboMaker {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2463,11 +2128,6 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2515,11 +2175,6 @@ class RoboMaker {
       nextToken,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
@@ -2572,11 +2227,6 @@ class RoboMaker {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.\-\/+=]*''',
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2616,24 +2266,12 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robot, 'robot');
     _s.validateStringLength(
       'robot',
       robot,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'robot',
-      robot,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -2668,12 +2306,6 @@ class RoboMaker {
       job,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'job',
-      job,
-      r'''arn:.*''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -2723,11 +2355,6 @@ class RoboMaker {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
-    );
     final $payload = <String, dynamic>{
       'createSimulationJobRequests': createSimulationJobRequests,
       if (batchPolicy != null) 'batchPolicy': batchPolicy,
@@ -2772,22 +2399,11 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fleet',
-      fleet,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''[a-zA-Z0-9_\-=]*''',
     );
     final $payload = <String, dynamic>{
       'fleet': fleet,
@@ -2837,12 +2453,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -2884,12 +2494,6 @@ class RoboMaker {
       resourceArn,
       1,
       1224,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -2938,12 +2542,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robotSoftwareSuite, 'robotSoftwareSuite');
     ArgumentError.checkNotNull(sources, 'sources');
     _s.validateStringLength(
@@ -2951,11 +2549,6 @@ class RoboMaker {
       currentRevisionId,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'currentRevisionId',
-      currentRevisionId,
-      r'''[a-zA-Z0-9_.\-]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -3013,12 +2606,6 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'application',
-      application,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(robotSoftwareSuite, 'robotSoftwareSuite');
     ArgumentError.checkNotNull(
         simulationSoftwareSuite, 'simulationSoftwareSuite');
@@ -3028,11 +2615,6 @@ class RoboMaker {
       currentRevisionId,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'currentRevisionId',
-      currentRevisionId,
-      r'''[a-zA-Z0-9_.\-]*''',
     );
     final $payload = <String, dynamic>{
       'application': application,
@@ -3083,33 +2665,17 @@ class RoboMaker {
       1224,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'template',
-      template,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       0,
       255,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'templateBody',
       templateBody,
       1,
       262144,
-    );
-    _s.validateStringPattern(
-      'templateBody',
-      templateBody,
-      r'''[\S\s]+''',
     );
     final $payload = <String, dynamic>{
       'template': template,
@@ -4391,7 +3957,11 @@ enum DeploymentJobErrorCode {
   postLaunchFileFailure,
   badPermissionError,
   downloadConditionFailed,
+  badLambdaAssociated,
   internalServerError,
+  robotApplicationDoesNotExist,
+  deploymentFleetDoesNotExist,
+  fleetDeploymentTimeout,
 }
 
 extension on DeploymentJobErrorCode {
@@ -4435,8 +4005,16 @@ extension on DeploymentJobErrorCode {
         return 'BadPermissionError';
       case DeploymentJobErrorCode.downloadConditionFailed:
         return 'DownloadConditionFailed';
+      case DeploymentJobErrorCode.badLambdaAssociated:
+        return 'BadLambdaAssociated';
       case DeploymentJobErrorCode.internalServerError:
         return 'InternalServerError';
+      case DeploymentJobErrorCode.robotApplicationDoesNotExist:
+        return 'RobotApplicationDoesNotExist';
+      case DeploymentJobErrorCode.deploymentFleetDoesNotExist:
+        return 'DeploymentFleetDoesNotExist';
+      case DeploymentJobErrorCode.fleetDeploymentTimeout:
+        return 'FleetDeploymentTimeout';
     }
   }
 }
@@ -4482,8 +4060,16 @@ extension on String {
         return DeploymentJobErrorCode.badPermissionError;
       case 'DownloadConditionFailed':
         return DeploymentJobErrorCode.downloadConditionFailed;
+      case 'BadLambdaAssociated':
+        return DeploymentJobErrorCode.badLambdaAssociated;
       case 'InternalServerError':
         return DeploymentJobErrorCode.internalServerError;
+      case 'RobotApplicationDoesNotExist':
+        return DeploymentJobErrorCode.robotApplicationDoesNotExist;
+      case 'DeploymentFleetDoesNotExist':
+        return DeploymentJobErrorCode.deploymentFleetDoesNotExist;
+      case 'FleetDeploymentTimeout':
+        return DeploymentJobErrorCode.fleetDeploymentTimeout;
     }
     throw Exception('$this is not known in enum DeploymentJobErrorCode');
   }
@@ -5511,6 +5097,34 @@ class DescribeWorldTemplateResponse {
   }
 }
 
+enum ExitBehavior {
+  fail,
+  restart,
+}
+
+extension on ExitBehavior {
+  String toValue() {
+    switch (this) {
+      case ExitBehavior.fail:
+        return 'FAIL';
+      case ExitBehavior.restart:
+        return 'RESTART';
+    }
+  }
+}
+
+extension on String {
+  ExitBehavior toExitBehavior() {
+    switch (this) {
+      case 'FAIL':
+        return ExitBehavior.fail;
+      case 'RESTART':
+        return ExitBehavior.restart;
+    }
+    throw Exception('$this is not known in enum ExitBehavior');
+  }
+}
+
 /// Information about a failed create simulation job request.
 class FailedCreateSimulationJobRequest {
   /// The time, in milliseconds since the epoch, when the simulation job batch
@@ -5721,7 +5335,7 @@ class LaunchConfig {
   /// Boolean indicating whether a streaming session will be configured for the
   /// application. If <code>True</code>, AWS RoboMaker will configure a connection
   /// so you can interact with your application as it is running in the
-  /// simulation. You must configure and luanch the component. It must have a
+  /// simulation. You must configure and launch the component. It must have a
   /// graphical user interface.
   final bool? streamUI;
 
@@ -6418,10 +6032,32 @@ class RobotApplicationConfig {
   /// The version of the robot application.
   final String? applicationVersion;
 
+  /// Information about tools configured for the robot application.
+  final List<Tool>? tools;
+
+  /// The upload configurations for the robot application.
+  final List<UploadConfiguration>? uploadConfigurations;
+
+  /// A Boolean indicating whether to use default robot application tools. The
+  /// default tools are rviz, rqt, terminal and rosbag record. The default is
+  /// <code>False</code>.
+  final bool? useDefaultTools;
+
+  /// A Boolean indicating whether to use default upload configurations. By
+  /// default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when
+  /// the application terminates and all ROS topics will be recorded.
+  ///
+  /// If you set this value, you must specify an <code>outputLocation</code>.
+  final bool? useDefaultUploadConfigurations;
+
   RobotApplicationConfig({
     required this.application,
     required this.launchConfig,
     this.applicationVersion,
+    this.tools,
+    this.uploadConfigurations,
+    this.useDefaultTools,
+    this.useDefaultUploadConfigurations,
   });
   factory RobotApplicationConfig.fromJson(Map<String, dynamic> json) {
     return RobotApplicationConfig(
@@ -6429,6 +6065,17 @@ class RobotApplicationConfig {
       launchConfig:
           LaunchConfig.fromJson(json['launchConfig'] as Map<String, dynamic>),
       applicationVersion: json['applicationVersion'] as String?,
+      tools: (json['tools'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tool.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      uploadConfigurations: (json['uploadConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => UploadConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      useDefaultTools: json['useDefaultTools'] as bool?,
+      useDefaultUploadConfigurations:
+          json['useDefaultUploadConfigurations'] as bool?,
     );
   }
 
@@ -6436,10 +6083,20 @@ class RobotApplicationConfig {
     final application = this.application;
     final launchConfig = this.launchConfig;
     final applicationVersion = this.applicationVersion;
+    final tools = this.tools;
+    final uploadConfigurations = this.uploadConfigurations;
+    final useDefaultTools = this.useDefaultTools;
+    final useDefaultUploadConfigurations = this.useDefaultUploadConfigurations;
     return {
       'application': application,
       'launchConfig': launchConfig,
       if (applicationVersion != null) 'applicationVersion': applicationVersion,
+      if (tools != null) 'tools': tools,
+      if (uploadConfigurations != null)
+        'uploadConfigurations': uploadConfigurations,
+      if (useDefaultTools != null) 'useDefaultTools': useDefaultTools,
+      if (useDefaultUploadConfigurations != null)
+        'useDefaultUploadConfigurations': useDefaultUploadConfigurations,
     };
   }
 }
@@ -6645,6 +6302,7 @@ enum RobotSoftwareSuiteVersionType {
   kinetic,
   melodic,
   dashing,
+  foxy,
 }
 
 extension on RobotSoftwareSuiteVersionType {
@@ -6656,6 +6314,8 @@ extension on RobotSoftwareSuiteVersionType {
         return 'Melodic';
       case RobotSoftwareSuiteVersionType.dashing:
         return 'Dashing';
+      case RobotSoftwareSuiteVersionType.foxy:
+        return 'Foxy';
     }
   }
 }
@@ -6669,6 +6329,8 @@ extension on String {
         return RobotSoftwareSuiteVersionType.melodic;
       case 'Dashing':
         return RobotSoftwareSuiteVersionType.dashing;
+      case 'Foxy':
+        return RobotSoftwareSuiteVersionType.foxy;
     }
     throw Exception('$this is not known in enum RobotSoftwareSuiteVersionType');
   }
@@ -6794,6 +6456,24 @@ class SimulationApplicationConfig {
   /// The version of the simulation application.
   final String? applicationVersion;
 
+  /// Information about tools configured for the simulation application.
+  final List<Tool>? tools;
+
+  /// Information about upload configurations for the simulation application.
+  final List<UploadConfiguration>? uploadConfigurations;
+
+  /// A Boolean indicating whether to use default simulation application tools.
+  /// The default tools are rviz, rqt, terminal and rosbag record. The default is
+  /// <code>False</code>.
+  final bool? useDefaultTools;
+
+  /// A Boolean indicating whether to use default upload configurations. By
+  /// default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when
+  /// the application terminates and all ROS topics will be recorded.
+  ///
+  /// If you set this value, you must specify an <code>outputLocation</code>.
+  final bool? useDefaultUploadConfigurations;
+
   /// A list of world configurations.
   final List<WorldConfig>? worldConfigs;
 
@@ -6801,6 +6481,10 @@ class SimulationApplicationConfig {
     required this.application,
     required this.launchConfig,
     this.applicationVersion,
+    this.tools,
+    this.uploadConfigurations,
+    this.useDefaultTools,
+    this.useDefaultUploadConfigurations,
     this.worldConfigs,
   });
   factory SimulationApplicationConfig.fromJson(Map<String, dynamic> json) {
@@ -6809,6 +6493,17 @@ class SimulationApplicationConfig {
       launchConfig:
           LaunchConfig.fromJson(json['launchConfig'] as Map<String, dynamic>),
       applicationVersion: json['applicationVersion'] as String?,
+      tools: (json['tools'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tool.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      uploadConfigurations: (json['uploadConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => UploadConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      useDefaultTools: json['useDefaultTools'] as bool?,
+      useDefaultUploadConfigurations:
+          json['useDefaultUploadConfigurations'] as bool?,
       worldConfigs: (json['worldConfigs'] as List?)
           ?.whereNotNull()
           .map((e) => WorldConfig.fromJson(e as Map<String, dynamic>))
@@ -6820,11 +6515,21 @@ class SimulationApplicationConfig {
     final application = this.application;
     final launchConfig = this.launchConfig;
     final applicationVersion = this.applicationVersion;
+    final tools = this.tools;
+    final uploadConfigurations = this.uploadConfigurations;
+    final useDefaultTools = this.useDefaultTools;
+    final useDefaultUploadConfigurations = this.useDefaultUploadConfigurations;
     final worldConfigs = this.worldConfigs;
     return {
       'application': application,
       'launchConfig': launchConfig,
       if (applicationVersion != null) 'applicationVersion': applicationVersion,
+      if (tools != null) 'tools': tools,
+      if (uploadConfigurations != null)
+        'uploadConfigurations': uploadConfigurations,
+      if (useDefaultTools != null) 'useDefaultTools': useDefaultTools,
+      if (useDefaultUploadConfigurations != null)
+        'useDefaultUploadConfigurations': useDefaultUploadConfigurations,
       if (worldConfigs != null) 'worldConfigs': worldConfigs,
     };
   }
@@ -7198,6 +6903,8 @@ enum SimulationJobErrorCode {
   internalServiceError,
   robotApplicationCrash,
   simulationApplicationCrash,
+  robotApplicationHealthCheckFailure,
+  simulationApplicationHealthCheckFailure,
   badPermissionsRobotApplication,
   badPermissionsSimulationApplication,
   badPermissionsS3Object,
@@ -7209,6 +6916,7 @@ enum SimulationJobErrorCode {
   invalidBundleRobotApplication,
   invalidBundleSimulationApplication,
   invalidS3Resource,
+  throttlingError,
   limitExceeded,
   mismatchedEtag,
   robotApplicationVersionMismatchedEtag,
@@ -7222,6 +6930,7 @@ enum SimulationJobErrorCode {
   wrongRegionS3Output,
   wrongRegionRobotApplication,
   wrongRegionSimulationApplication,
+  uploadContentMismatchError,
 }
 
 extension on SimulationJobErrorCode {
@@ -7233,6 +6942,10 @@ extension on SimulationJobErrorCode {
         return 'RobotApplicationCrash';
       case SimulationJobErrorCode.simulationApplicationCrash:
         return 'SimulationApplicationCrash';
+      case SimulationJobErrorCode.robotApplicationHealthCheckFailure:
+        return 'RobotApplicationHealthCheckFailure';
+      case SimulationJobErrorCode.simulationApplicationHealthCheckFailure:
+        return 'SimulationApplicationHealthCheckFailure';
       case SimulationJobErrorCode.badPermissionsRobotApplication:
         return 'BadPermissionsRobotApplication';
       case SimulationJobErrorCode.badPermissionsSimulationApplication:
@@ -7255,6 +6968,8 @@ extension on SimulationJobErrorCode {
         return 'InvalidBundleSimulationApplication';
       case SimulationJobErrorCode.invalidS3Resource:
         return 'InvalidS3Resource';
+      case SimulationJobErrorCode.throttlingError:
+        return 'ThrottlingError';
       case SimulationJobErrorCode.limitExceeded:
         return 'LimitExceeded';
       case SimulationJobErrorCode.mismatchedEtag:
@@ -7281,6 +6996,8 @@ extension on SimulationJobErrorCode {
         return 'WrongRegionRobotApplication';
       case SimulationJobErrorCode.wrongRegionSimulationApplication:
         return 'WrongRegionSimulationApplication';
+      case SimulationJobErrorCode.uploadContentMismatchError:
+        return 'UploadContentMismatchError';
     }
   }
 }
@@ -7294,6 +7011,10 @@ extension on String {
         return SimulationJobErrorCode.robotApplicationCrash;
       case 'SimulationApplicationCrash':
         return SimulationJobErrorCode.simulationApplicationCrash;
+      case 'RobotApplicationHealthCheckFailure':
+        return SimulationJobErrorCode.robotApplicationHealthCheckFailure;
+      case 'SimulationApplicationHealthCheckFailure':
+        return SimulationJobErrorCode.simulationApplicationHealthCheckFailure;
       case 'BadPermissionsRobotApplication':
         return SimulationJobErrorCode.badPermissionsRobotApplication;
       case 'BadPermissionsSimulationApplication':
@@ -7316,6 +7037,8 @@ extension on String {
         return SimulationJobErrorCode.invalidBundleSimulationApplication;
       case 'InvalidS3Resource':
         return SimulationJobErrorCode.invalidS3Resource;
+      case 'ThrottlingError':
+        return SimulationJobErrorCode.throttlingError;
       case 'LimitExceeded':
         return SimulationJobErrorCode.limitExceeded;
       case 'MismatchedEtag':
@@ -7343,6 +7066,8 @@ extension on String {
         return SimulationJobErrorCode.wrongRegionRobotApplication;
       case 'WrongRegionSimulationApplication':
         return SimulationJobErrorCode.wrongRegionSimulationApplication;
+      case 'UploadContentMismatchError':
+        return SimulationJobErrorCode.uploadContentMismatchError;
     }
     throw Exception('$this is not known in enum SimulationJobErrorCode');
   }
@@ -7391,7 +7116,8 @@ class SimulationJobRequest {
   /// simulation job request.
   final Map<String, String>? tags;
 
-  /// Boolean indicating whether to use default simulation tool applications.
+  /// A Boolean indicating whether to use default applications in the simulation
+  /// job. Default applications include Gazebo, rqt, rviz and terminal access.
   final bool? useDefaultApplications;
   final VPCConfig? vpcConfig;
 
@@ -7982,6 +7708,64 @@ class TemplateSummary {
   }
 }
 
+/// Information about a tool. Tools are used in a simulation job.
+class Tool {
+  /// Command-line arguments for the tool. It must include the tool executable
+  /// name.
+  final String command;
+
+  /// The name of the tool.
+  final String name;
+
+  /// Exit behavior determines what happens when your tool quits running.
+  /// <code>RESTART</code> will cause your tool to be restarted. <code>FAIL</code>
+  /// will cause your job to exit. The default is <code>RESTART</code>.
+  final ExitBehavior? exitBehavior;
+
+  /// Boolean indicating whether logs will be recorded in CloudWatch for the tool.
+  /// The default is <code>False</code>.
+  final bool? streamOutputToCloudWatch;
+
+  /// Boolean indicating whether a streaming session will be configured for the
+  /// tool. If <code>True</code>, AWS RoboMaker will configure a connection so you
+  /// can interact with the tool as it is running in the simulation. It must have
+  /// a graphical user interface. The default is <code>False</code>.
+  final bool? streamUI;
+
+  Tool({
+    required this.command,
+    required this.name,
+    this.exitBehavior,
+    this.streamOutputToCloudWatch,
+    this.streamUI,
+  });
+  factory Tool.fromJson(Map<String, dynamic> json) {
+    return Tool(
+      command: json['command'] as String,
+      name: json['name'] as String,
+      exitBehavior: (json['exitBehavior'] as String?)?.toExitBehavior(),
+      streamOutputToCloudWatch: json['streamOutputToCloudWatch'] as bool?,
+      streamUI: json['streamUI'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final command = this.command;
+    final name = this.name;
+    final exitBehavior = this.exitBehavior;
+    final streamOutputToCloudWatch = this.streamOutputToCloudWatch;
+    final streamUI = this.streamUI;
+    return {
+      'command': command,
+      'name': name,
+      if (exitBehavior != null) 'exitBehavior': exitBehavior.toValue(),
+      if (streamOutputToCloudWatch != null)
+        'streamOutputToCloudWatch': streamOutputToCloudWatch,
+      if (streamUI != null) 'streamUI': streamUI,
+    };
+  }
+}
+
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
@@ -8136,6 +7920,94 @@ class UpdateWorldTemplateResponse {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
       name: json['name'] as String?,
     );
+  }
+}
+
+enum UploadBehavior {
+  uploadOnTerminate,
+  uploadRollingAutoRemove,
+}
+
+extension on UploadBehavior {
+  String toValue() {
+    switch (this) {
+      case UploadBehavior.uploadOnTerminate:
+        return 'UPLOAD_ON_TERMINATE';
+      case UploadBehavior.uploadRollingAutoRemove:
+        return 'UPLOAD_ROLLING_AUTO_REMOVE';
+    }
+  }
+}
+
+extension on String {
+  UploadBehavior toUploadBehavior() {
+    switch (this) {
+      case 'UPLOAD_ON_TERMINATE':
+        return UploadBehavior.uploadOnTerminate;
+      case 'UPLOAD_ROLLING_AUTO_REMOVE':
+        return UploadBehavior.uploadRollingAutoRemove;
+    }
+    throw Exception('$this is not known in enum UploadBehavior');
+  }
+}
+
+/// Provides upload configuration information. Files are uploaded from the
+/// simulation job to a location you specify.
+class UploadConfiguration {
+  /// A prefix that specifies where files will be uploaded in Amazon S3. It is
+  /// appended to the simulation output location to determine the final path.
+  ///
+  /// For example, if your simulation output location is
+  /// <code>s3://my-bucket</code> and your upload configuration name is
+  /// <code>robot-test</code>, your files will be uploaded to
+  /// <code>s3://my-bucket/&lt;simid&gt;/&lt;runid&gt;/robot-test</code>.
+  final String name;
+
+  /// Specifies the path of the file(s) to upload. Standard Unix glob matching
+  /// rules are accepted, with the addition of <code>**</code> as a <i>super
+  /// asterisk</i>. For example, specifying <code>/var/log/**.log</code> causes
+  /// all .log files in the <code>/var/log</code> directory tree to be collected.
+  /// For more examples, see <a href="https://github.com/gobwas/glob">Glob
+  /// Library</a>.
+  final String path;
+
+  /// Specifies when to upload the files:
+  /// <dl> <dt>UPLOAD_ON_TERMINATE</dt> <dd>
+  /// Matching files are uploaded once the simulation enters the
+  /// <code>TERMINATING</code> state. Matching files are not uploaded until all of
+  /// your code (including tools) have stopped.
+  ///
+  /// If there is a problem uploading a file, the upload is retried. If problems
+  /// persist, no further upload attempts will be made.
+  /// </dd> <dt>UPLOAD_ROLLING_AUTO_REMOVE</dt> <dd>
+  /// Matching files are uploaded as they are created. They are deleted after they
+  /// are uploaded. The specified path is checked every 5 seconds. A final check
+  /// is made when all of your code (including tools) have stopped.
+  /// </dd> </dl>
+  final UploadBehavior uploadBehavior;
+
+  UploadConfiguration({
+    required this.name,
+    required this.path,
+    required this.uploadBehavior,
+  });
+  factory UploadConfiguration.fromJson(Map<String, dynamic> json) {
+    return UploadConfiguration(
+      name: json['name'] as String,
+      path: json['path'] as String,
+      uploadBehavior: (json['uploadBehavior'] as String).toUploadBehavior(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final path = this.path;
+    final uploadBehavior = this.uploadBehavior;
+    return {
+      'name': name,
+      'path': path,
+      'uploadBehavior': uploadBehavior.toValue(),
+    };
   }
 }
 

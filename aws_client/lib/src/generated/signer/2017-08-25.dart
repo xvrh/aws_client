@@ -108,23 +108,12 @@ class Signer {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
     _s.validateStringLength(
       'profileVersion',
       profileVersion,
       10,
       10,
-    );
-    _s.validateStringPattern(
-      'profileVersion',
-      profileVersion,
-      r'''^[a-zA-Z0-9]{10}$''',
     );
     final $payload = <String, dynamic>{
       'action': action,
@@ -164,12 +153,6 @@ class Signer {
       profileName,
       2,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
       isRequired: true,
     );
     await _protocol.send(
@@ -250,22 +233,11 @@ class Signer {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'profileOwner',
       profileOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'profileOwner',
-      profileOwner,
-      r'''^[0-9]{12}$''',
     );
     final $query = <String, List<String>>{
       if (profileOwner != null) 'profileOwner': [profileOwner],
@@ -303,12 +275,6 @@ class Signer {
       profileName,
       2,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -393,11 +359,6 @@ class Signer {
       jobInvoker,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'jobInvoker',
-      jobInvoker,
-      r'''^[0-9]{12}$''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -637,12 +598,6 @@ class Signer {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'platformId': platformId,
       if (overrides != null) 'overrides': overrides,
@@ -690,12 +645,6 @@ class Signer {
       profileName,
       2,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(revisionId, 'revisionId');
@@ -751,11 +700,6 @@ class Signer {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'jobOwner',
-      jobOwner,
-      r'''^[0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       'reason': reason,
       if (jobOwner != null) 'jobOwner': jobOwner,
@@ -806,24 +750,12 @@ class Signer {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileVersion, 'profileVersion');
     _s.validateStringLength(
       'profileVersion',
       profileVersion,
       10,
       10,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'profileVersion',
-      profileVersion,
-      r'''^[a-zA-Z0-9]{10}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(reason, 'reason');
@@ -920,23 +852,12 @@ class Signer {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'profileName',
-      profileName,
-      r'''^[a-zA-Z0-9_]{2,}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
     _s.validateStringLength(
       'profileOwner',
       profileOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'profileOwner',
-      profileOwner,
-      r'''^[0-9]{12}$''',
     );
     final $payload = <String, dynamic>{
       'destination': destination,

@@ -435,14 +435,30 @@ class SesV2 {
   /// the public key that you want to use for DKIM authentication) and a private
   /// key.
   ///
+  /// When you verify a domain, this operation provides a set of DKIM tokens,
+  /// which you can convert into CNAME tokens. You add these CNAME tokens to the
+  /// DNS configuration for your domain. Your domain is verified when Amazon SES
+  /// detects these records in the DNS configuration for your domain. For some
+  /// DNS providers, it can take 72 hours or more to complete the domain
+  /// verification process.
+  ///
+  /// Additionally, you can associate an existing configuration set with the
+  /// email identity that you're verifying.
+  ///
   /// May throw [AlreadyExistsException].
   /// May throw [LimitExceededException].
   /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConcurrentModificationException].
+  /// May throw [NotFoundException].
   ///
   /// Parameter [emailIdentity] :
   /// The email address or domain that you want to verify.
+  ///
+  /// Parameter [configurationSetName] :
+  /// The configuration set to use by default when sending from this identity.
+  /// Note that any configuration set defined in the email sending request takes
+  /// precedence.
   ///
   /// Parameter [dkimSigningAttributes] :
   /// If your request includes this object, Amazon SES configures the identity
@@ -459,6 +475,7 @@ class SesV2 {
   /// to associate with the email identity.
   Future<CreateEmailIdentityResponse> createEmailIdentity({
     required String emailIdentity,
+    String? configurationSetName,
     DkimSigningAttributes? dkimSigningAttributes,
     List<Tag>? tags,
   }) async {
@@ -472,6 +489,8 @@ class SesV2 {
     );
     final $payload = <String, dynamic>{
       'EmailIdentity': emailIdentity,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
       if (dkimSigningAttributes != null)
         'DkimSigningAttributes': dkimSigningAttributes,
       if (tags != null) 'Tags': tags,
@@ -2070,12 +2089,6 @@ class SesV2 {
       1000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'websiteURL',
-      websiteURL,
-      r'''^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MailType': mailType.toValue(),
       'UseCaseDescription': useCaseDescription,
@@ -2445,6 +2458,43 @@ class SesV2 {
       payload: $payload,
       method: 'PUT',
       requestUri: '/v2/email/deliverability-dashboard',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Used to associate a configuration set with an email identity.
+  ///
+  /// May throw [NotFoundException].
+  /// May throw [TooManyRequestsException].
+  /// May throw [BadRequestException].
+  ///
+  /// Parameter [emailIdentity] :
+  /// The email address or domain that you want to associate with a
+  /// configuration set.
+  ///
+  /// Parameter [configurationSetName] :
+  /// The configuration set that you want to associate with an email identity.
+  Future<void> putEmailIdentityConfigurationSetAttributes({
+    required String emailIdentity,
+    String? configurationSetName,
+  }) async {
+    ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
+    _s.validateStringLength(
+      'emailIdentity',
+      emailIdentity,
+      1,
+      1152921504606846976,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri:
+          '/v2/email/identities/${Uri.encodeComponent(emailIdentity)}/configuration-set',
       exceptionFnMap: _exceptionFns,
     );
   }
@@ -6128,6 +6178,9 @@ class GetEmailIdentityPoliciesResponse {
 
 /// Details about an email identity.
 class GetEmailIdentityResponse {
+  /// The configuration set used by default when sending from this identity.
+  final String? configurationSetName;
+
   /// An object that contains information about the DKIM attributes for the
   /// identity.
   final DkimAttributes? dkimAttributes;
@@ -6168,6 +6221,7 @@ class GetEmailIdentityResponse {
   final bool? verifiedForSendingStatus;
 
   GetEmailIdentityResponse({
+    this.configurationSetName,
     this.dkimAttributes,
     this.feedbackForwardingStatus,
     this.identityType,
@@ -6178,6 +6232,7 @@ class GetEmailIdentityResponse {
   });
   factory GetEmailIdentityResponse.fromJson(Map<String, dynamic> json) {
     return GetEmailIdentityResponse(
+      configurationSetName: json['ConfigurationSetName'] as String?,
       dkimAttributes: json['DkimAttributes'] != null
           ? DkimAttributes.fromJson(
               json['DkimAttributes'] as Map<String, dynamic>)
@@ -7452,6 +7507,16 @@ class PutDeliverabilityDashboardOptionResponse {
   factory PutDeliverabilityDashboardOptionResponse.fromJson(
       Map<String, dynamic> _) {
     return PutDeliverabilityDashboardOptionResponse();
+  }
+}
+
+/// If the action is successful, the service sends back an HTTP 200 response
+/// with an empty HTTP body.
+class PutEmailIdentityConfigurationSetAttributesResponse {
+  PutEmailIdentityConfigurationSetAttributesResponse();
+  factory PutEmailIdentityConfigurationSetAttributesResponse.fromJson(
+      Map<String, dynamic> _) {
+    return PutEmailIdentityConfigurationSetAttributesResponse();
   }
 }
 

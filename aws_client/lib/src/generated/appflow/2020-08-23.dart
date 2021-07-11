@@ -131,23 +131,12 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'connectorProfileName',
-      connectorProfileName,
-      r'''[\w/!@#+=.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(connectorType, 'connectorType');
     _s.validateStringLength(
       'kmsArn',
       kmsArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsArn',
-      kmsArn,
-      r'''arn:aws:kms:.*:[0-9]+:.*''',
     );
     final $payload = <String, dynamic>{
       'connectionMode': connectionMode.toValue(),
@@ -229,12 +218,6 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceFlowConfig, 'sourceFlowConfig');
     ArgumentError.checkNotNull(tasks, 'tasks');
     ArgumentError.checkNotNull(triggerConfig, 'triggerConfig');
@@ -244,21 +227,11 @@ class Appflow {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\w!@#\-.?,\s]*''',
-    );
     _s.validateStringLength(
       'kmsArn',
       kmsArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsArn',
-      kmsArn,
-      r'''arn:aws:kms:.*:[0-9]+:.*''',
     );
     final $payload = <String, dynamic>{
       'destinationFlowConfigList': destinationFlowConfigList,
@@ -304,12 +277,6 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'connectorProfileName',
-      connectorProfileName,
-      r'''[\w/!@#+=.-]+''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'connectorProfileName': connectorProfileName,
       if (forceDelete != null) 'forceDelete': forceDelete,
@@ -347,12 +314,6 @@ class Appflow {
       flowName,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -399,22 +360,11 @@ class Appflow {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'connectorEntityName',
-      connectorEntityName,
-      r'''\S+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'connectorProfileName',
       connectorProfileName,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'connectorProfileName',
-      connectorProfileName,
-      r'''[\w/!@#+=.-]+''',
     );
     final $payload = <String, dynamic>{
       'connectorEntityName': connectorEntityName,
@@ -475,11 +425,6 @@ class Appflow {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     final $payload = <String, dynamic>{
       if (connectorProfileNames != null)
         'connectorProfileNames': connectorProfileNames,
@@ -521,11 +466,6 @@ class Appflow {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     final $payload = <String, dynamic>{
       if (connectorTypes != null)
         'connectorTypes': connectorTypes.map((e) => e.toValue()).toList(),
@@ -557,12 +497,6 @@ class Appflow {
       flowName,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -607,12 +541,6 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -624,11 +552,6 @@ class Appflow {
       nextToken,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
     );
     final $payload = <String, dynamic>{
       'flowName': flowName,
@@ -681,21 +604,11 @@ class Appflow {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'connectorProfileName',
-      connectorProfileName,
-      r'''[\w/!@#+=.-]+''',
-    );
     _s.validateStringLength(
       'entitiesPath',
       entitiesPath,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'entitiesPath',
-      entitiesPath,
-      r'''[\s\w/!@#+=.-]*''',
     );
     final $payload = <String, dynamic>{
       if (connectorProfileName != null)
@@ -739,11 +652,6 @@ class Appflow {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -776,12 +684,6 @@ class Appflow {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:.*:.*:[0-9]+:.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -812,12 +714,6 @@ class Appflow {
       flowName,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -855,12 +751,6 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'flowName': flowName,
     };
@@ -894,12 +784,6 @@ class Appflow {
       resourceArn,
       0,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:.*:.*:[0-9]+:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -936,12 +820,6 @@ class Appflow {
       resourceArn,
       0,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:.*:.*:[0-9]+:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -988,12 +866,6 @@ class Appflow {
       connectorProfileName,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'connectorProfileName',
-      connectorProfileName,
-      r'''[\w/!@#+=.-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1055,12 +927,6 @@ class Appflow {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowName',
-      flowName,
-      r'''[a-zA-Z0-9][\w!@#.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tasks, 'tasks');
     ArgumentError.checkNotNull(triggerConfig, 'triggerConfig');
     _s.validateStringLength(
@@ -1068,11 +934,6 @@ class Appflow {
       description,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\w!@#\-.?,\s]*''',
     );
     final $payload = <String, dynamic>{
       'destinationFlowConfigList': destinationFlowConfigList,
@@ -1422,6 +1283,9 @@ class ConnectorMetadata {
   /// The connector metadata specific to Amplitude.
   final AmplitudeMetadata? amplitude;
 
+  /// The connector metadata specific to Amazon Connect Customer Profiles.
+  final CustomerProfilesMetadata? customerProfiles;
+
   /// The connector metadata specific to Datadog.
   final DatadogMetadata? datadog;
 
@@ -1433,6 +1297,9 @@ class ConnectorMetadata {
 
   /// The connector metadata specific to Google Analytics.
   final GoogleAnalyticsMetadata? googleAnalytics;
+
+  /// The connector metadata specific to Amazon Honeycode.
+  final HoneycodeMetadata? honeycode;
 
   /// The connector metadata specific to Infor Nexus.
   final InforNexusMetadata? inforNexus;
@@ -1475,10 +1342,12 @@ class ConnectorMetadata {
 
   ConnectorMetadata({
     this.amplitude,
+    this.customerProfiles,
     this.datadog,
     this.dynatrace,
     this.eventBridge,
     this.googleAnalytics,
+    this.honeycode,
     this.inforNexus,
     this.marketo,
     this.redshift,
@@ -1499,6 +1368,10 @@ class ConnectorMetadata {
           ? AmplitudeMetadata.fromJson(
               json['Amplitude'] as Map<String, dynamic>)
           : null,
+      customerProfiles: json['CustomerProfiles'] != null
+          ? CustomerProfilesMetadata.fromJson(
+              json['CustomerProfiles'] as Map<String, dynamic>)
+          : null,
       datadog: json['Datadog'] != null
           ? DatadogMetadata.fromJson(json['Datadog'] as Map<String, dynamic>)
           : null,
@@ -1513,6 +1386,10 @@ class ConnectorMetadata {
       googleAnalytics: json['GoogleAnalytics'] != null
           ? GoogleAnalyticsMetadata.fromJson(
               json['GoogleAnalytics'] as Map<String, dynamic>)
+          : null,
+      honeycode: json['Honeycode'] != null
+          ? HoneycodeMetadata.fromJson(
+              json['Honeycode'] as Map<String, dynamic>)
           : null,
       inforNexus: json['InforNexus'] != null
           ? InforNexusMetadata.fromJson(
@@ -1802,6 +1679,9 @@ class ConnectorProfileCredentials {
   /// The connector-specific credentials required when using Google Analytics.
   final GoogleAnalyticsConnectorProfileCredentials? googleAnalytics;
 
+  /// The connector-specific credentials required when using Amazon Honeycode.
+  final HoneycodeConnectorProfileCredentials? honeycode;
+
   /// The connector-specific credentials required when using Infor Nexus.
   final InforNexusConnectorProfileCredentials? inforNexus;
 
@@ -1840,6 +1720,7 @@ class ConnectorProfileCredentials {
     this.datadog,
     this.dynatrace,
     this.googleAnalytics,
+    this.honeycode,
     this.inforNexus,
     this.marketo,
     this.redshift,
@@ -1857,6 +1738,7 @@ class ConnectorProfileCredentials {
     final datadog = this.datadog;
     final dynatrace = this.dynatrace;
     final googleAnalytics = this.googleAnalytics;
+    final honeycode = this.honeycode;
     final inforNexus = this.inforNexus;
     final marketo = this.marketo;
     final redshift = this.redshift;
@@ -1873,6 +1755,7 @@ class ConnectorProfileCredentials {
       if (datadog != null) 'Datadog': datadog,
       if (dynatrace != null) 'Dynatrace': dynatrace,
       if (googleAnalytics != null) 'GoogleAnalytics': googleAnalytics,
+      if (honeycode != null) 'Honeycode': honeycode,
       if (inforNexus != null) 'InforNexus': inforNexus,
       if (marketo != null) 'Marketo': marketo,
       if (redshift != null) 'Redshift': redshift,
@@ -1901,6 +1784,9 @@ class ConnectorProfileProperties {
 
   /// The connector-specific properties required Google Analytics.
   final GoogleAnalyticsConnectorProfileProperties? googleAnalytics;
+
+  /// The connector-specific properties required by Amazon Honeycode.
+  final HoneycodeConnectorProfileProperties? honeycode;
 
   /// The connector-specific properties required by Infor Nexus.
   final InforNexusConnectorProfileProperties? inforNexus;
@@ -1940,6 +1826,7 @@ class ConnectorProfileProperties {
     this.datadog,
     this.dynatrace,
     this.googleAnalytics,
+    this.honeycode,
     this.inforNexus,
     this.marketo,
     this.redshift,
@@ -1969,6 +1856,10 @@ class ConnectorProfileProperties {
       googleAnalytics: json['GoogleAnalytics'] != null
           ? GoogleAnalyticsConnectorProfileProperties.fromJson(
               json['GoogleAnalytics'] as Map<String, dynamic>)
+          : null,
+      honeycode: json['Honeycode'] != null
+          ? HoneycodeConnectorProfileProperties.fromJson(
+              json['Honeycode'] as Map<String, dynamic>)
           : null,
       inforNexus: json['InforNexus'] != null
           ? InforNexusConnectorProfileProperties.fromJson(
@@ -2022,6 +1913,7 @@ class ConnectorProfileProperties {
     final datadog = this.datadog;
     final dynatrace = this.dynatrace;
     final googleAnalytics = this.googleAnalytics;
+    final honeycode = this.honeycode;
     final inforNexus = this.inforNexus;
     final marketo = this.marketo;
     final redshift = this.redshift;
@@ -2038,6 +1930,7 @@ class ConnectorProfileProperties {
       if (datadog != null) 'Datadog': datadog,
       if (dynatrace != null) 'Dynatrace': dynatrace,
       if (googleAnalytics != null) 'GoogleAnalytics': googleAnalytics,
+      if (honeycode != null) 'Honeycode': honeycode,
       if (inforNexus != null) 'InforNexus': inforNexus,
       if (marketo != null) 'Marketo': marketo,
       if (redshift != null) 'Redshift': redshift,
@@ -2071,7 +1964,10 @@ enum ConnectorType {
   amplitude,
   veeva,
   eventBridge,
+  lookoutMetrics,
   upsolver,
+  honeycode,
+  customerProfiles,
 }
 
 extension on ConnectorType {
@@ -2111,8 +2007,14 @@ extension on ConnectorType {
         return 'Veeva';
       case ConnectorType.eventBridge:
         return 'EventBridge';
+      case ConnectorType.lookoutMetrics:
+        return 'LookoutMetrics';
       case ConnectorType.upsolver:
         return 'Upsolver';
+      case ConnectorType.honeycode:
+        return 'Honeycode';
+      case ConnectorType.customerProfiles:
+        return 'CustomerProfiles';
     }
   }
 }
@@ -2154,8 +2056,14 @@ extension on String {
         return ConnectorType.veeva;
       case 'EventBridge':
         return ConnectorType.eventBridge;
+      case 'LookoutMetrics':
+        return ConnectorType.lookoutMetrics;
       case 'Upsolver':
         return ConnectorType.upsolver;
+      case 'Honeycode':
+        return ConnectorType.honeycode;
+      case 'CustomerProfiles':
+        return ConnectorType.customerProfiles;
     }
     throw Exception('$this is not known in enum ConnectorType');
   }
@@ -2191,6 +2099,46 @@ class CreateFlowResponse {
       flowArn: json['flowArn'] as String?,
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
     );
+  }
+}
+
+/// The properties that are applied when Amazon Connect Customer Profiles is
+/// used as a destination.
+class CustomerProfilesDestinationProperties {
+  /// The unique name of the Amazon Connect Customer Profiles domain.
+  final String domainName;
+
+  /// The object specified in the Amazon Connect Customer Profiles flow
+  /// destination.
+  final String? objectTypeName;
+
+  CustomerProfilesDestinationProperties({
+    required this.domainName,
+    this.objectTypeName,
+  });
+  factory CustomerProfilesDestinationProperties.fromJson(
+      Map<String, dynamic> json) {
+    return CustomerProfilesDestinationProperties(
+      domainName: json['domainName'] as String,
+      objectTypeName: json['objectTypeName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final objectTypeName = this.objectTypeName;
+    return {
+      'domainName': domainName,
+      if (objectTypeName != null) 'objectTypeName': objectTypeName,
+    };
+  }
+}
+
+/// The connector metadata specific to Amazon Connect Customer Profiles.
+class CustomerProfilesMetadata {
+  CustomerProfilesMetadata();
+  factory CustomerProfilesMetadata.fromJson(Map<String, dynamic> _) {
+    return CustomerProfilesMetadata();
   }
 }
 
@@ -2613,8 +2561,17 @@ class DescribeFlowResponse {
 /// This stores the information that is required to query a particular
 /// connector.
 class DestinationConnectorProperties {
+  /// The properties required to query Amazon Connect Customer Profiles.
+  final CustomerProfilesDestinationProperties? customerProfiles;
+
   /// The properties required to query Amazon EventBridge.
   final EventBridgeDestinationProperties? eventBridge;
+
+  /// The properties required to query Amazon Honeycode.
+  final HoneycodeDestinationProperties? honeycode;
+
+  /// The properties required to query Amazon Lookout for Metrics.
+  final LookoutMetricsDestinationProperties? lookoutMetrics;
 
   /// The properties required to query Amazon Redshift.
   final RedshiftDestinationProperties? redshift;
@@ -2631,19 +2588,38 @@ class DestinationConnectorProperties {
   /// The properties required to query Upsolver.
   final UpsolverDestinationProperties? upsolver;
 
+  /// The properties required to query Zendesk.
+  final ZendeskDestinationProperties? zendesk;
+
   DestinationConnectorProperties({
+    this.customerProfiles,
     this.eventBridge,
+    this.honeycode,
+    this.lookoutMetrics,
     this.redshift,
     this.s3,
     this.salesforce,
     this.snowflake,
     this.upsolver,
+    this.zendesk,
   });
   factory DestinationConnectorProperties.fromJson(Map<String, dynamic> json) {
     return DestinationConnectorProperties(
+      customerProfiles: json['CustomerProfiles'] != null
+          ? CustomerProfilesDestinationProperties.fromJson(
+              json['CustomerProfiles'] as Map<String, dynamic>)
+          : null,
       eventBridge: json['EventBridge'] != null
           ? EventBridgeDestinationProperties.fromJson(
               json['EventBridge'] as Map<String, dynamic>)
+          : null,
+      honeycode: json['Honeycode'] != null
+          ? HoneycodeDestinationProperties.fromJson(
+              json['Honeycode'] as Map<String, dynamic>)
+          : null,
+      lookoutMetrics: json['LookoutMetrics'] != null
+          ? LookoutMetricsDestinationProperties.fromJson(
+              json['LookoutMetrics'] as Map<String, dynamic>)
           : null,
       redshift: json['Redshift'] != null
           ? RedshiftDestinationProperties.fromJson(
@@ -2664,23 +2640,35 @@ class DestinationConnectorProperties {
           ? UpsolverDestinationProperties.fromJson(
               json['Upsolver'] as Map<String, dynamic>)
           : null,
+      zendesk: json['Zendesk'] != null
+          ? ZendeskDestinationProperties.fromJson(
+              json['Zendesk'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final customerProfiles = this.customerProfiles;
     final eventBridge = this.eventBridge;
+    final honeycode = this.honeycode;
+    final lookoutMetrics = this.lookoutMetrics;
     final redshift = this.redshift;
     final s3 = this.s3;
     final salesforce = this.salesforce;
     final snowflake = this.snowflake;
     final upsolver = this.upsolver;
+    final zendesk = this.zendesk;
     return {
+      if (customerProfiles != null) 'CustomerProfiles': customerProfiles,
       if (eventBridge != null) 'EventBridge': eventBridge,
+      if (honeycode != null) 'Honeycode': honeycode,
+      if (lookoutMetrics != null) 'LookoutMetrics': lookoutMetrics,
       if (redshift != null) 'Redshift': redshift,
       if (s3 != null) 'S3': s3,
       if (salesforce != null) 'Salesforce': salesforce,
       if (snowflake != null) 'Snowflake': snowflake,
       if (upsolver != null) 'Upsolver': upsolver,
+      if (zendesk != null) 'Zendesk': zendesk,
     };
   }
 }
@@ -3065,6 +3053,14 @@ class ExecutionDetails {
 
 /// Specifies information about the past flow run instances for a given flow.
 class ExecutionRecord {
+  /// The timestamp that indicates the last new or updated record to be
+  /// transferred in the flow run.
+  final DateTime? dataPullEndTime;
+
+  /// The timestamp that determines the first new or updated record to be
+  /// transferred in the flow run.
+  final DateTime? dataPullStartTime;
+
   /// Specifies the identifier of the given flow run.
   final String? executionId;
 
@@ -3082,6 +3078,8 @@ class ExecutionRecord {
   final DateTime? startedAt;
 
   ExecutionRecord({
+    this.dataPullEndTime,
+    this.dataPullStartTime,
     this.executionId,
     this.executionResult,
     this.executionStatus,
@@ -3090,6 +3088,8 @@ class ExecutionRecord {
   });
   factory ExecutionRecord.fromJson(Map<String, dynamic> json) {
     return ExecutionRecord(
+      dataPullEndTime: timeStampFromJson(json['dataPullEndTime']),
+      dataPullStartTime: timeStampFromJson(json['dataPullStartTime']),
       executionId: json['executionId'] as String?,
       executionResult: json['executionResult'] != null
           ? ExecutionResult.fromJson(
@@ -3494,6 +3494,94 @@ class GoogleAnalyticsSourceProperties {
   }
 }
 
+/// The connector-specific credentials required when using Amazon Honeycode.
+class HoneycodeConnectorProfileCredentials {
+  /// The credentials used to access protected Amazon Honeycode resources.
+  final String? accessToken;
+  final ConnectorOAuthRequest? oAuthRequest;
+
+  /// The credentials used to acquire new access tokens.
+  final String? refreshToken;
+
+  HoneycodeConnectorProfileCredentials({
+    this.accessToken,
+    this.oAuthRequest,
+    this.refreshToken,
+  });
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final oAuthRequest = this.oAuthRequest;
+    final refreshToken = this.refreshToken;
+    return {
+      if (accessToken != null) 'accessToken': accessToken,
+      if (oAuthRequest != null) 'oAuthRequest': oAuthRequest,
+      if (refreshToken != null) 'refreshToken': refreshToken,
+    };
+  }
+}
+
+/// The connector-specific properties required when using Amazon Honeycode.
+class HoneycodeConnectorProfileProperties {
+  HoneycodeConnectorProfileProperties();
+  factory HoneycodeConnectorProfileProperties.fromJson(Map<String, dynamic> _) {
+    return HoneycodeConnectorProfileProperties();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+}
+
+/// The properties that are applied when Amazon Honeycode is used as a
+/// destination.
+class HoneycodeDestinationProperties {
+  /// The object specified in the Amazon Honeycode flow destination.
+  final String object;
+  final ErrorHandlingConfig? errorHandlingConfig;
+
+  HoneycodeDestinationProperties({
+    required this.object,
+    this.errorHandlingConfig,
+  });
+  factory HoneycodeDestinationProperties.fromJson(Map<String, dynamic> json) {
+    return HoneycodeDestinationProperties(
+      object: json['object'] as String,
+      errorHandlingConfig: json['errorHandlingConfig'] != null
+          ? ErrorHandlingConfig.fromJson(
+              json['errorHandlingConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    final errorHandlingConfig = this.errorHandlingConfig;
+    return {
+      'object': object,
+      if (errorHandlingConfig != null)
+        'errorHandlingConfig': errorHandlingConfig,
+    };
+  }
+}
+
+/// The connector metadata specific to Amazon Honeycode.
+class HoneycodeMetadata {
+  /// The desired authorization scope for the Amazon Honeycode account.
+  final List<String>? oAuthScopes;
+
+  HoneycodeMetadata({
+    this.oAuthScopes,
+  });
+  factory HoneycodeMetadata.fromJson(Map<String, dynamic> json) {
+    return HoneycodeMetadata(
+      oAuthScopes: (json['oAuthScopes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+}
+
 /// Specifies the configuration used when importing incremental records from the
 /// source.
 class IncrementalPullConfig {
@@ -3756,6 +3844,19 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+}
+
+/// The properties that are applied when Amazon Lookout for Metrics is used as a
+/// destination.
+class LookoutMetricsDestinationProperties {
+  LookoutMetricsDestinationProperties();
+  factory LookoutMetricsDestinationProperties.fromJson(Map<String, dynamic> _) {
+    return LookoutMetricsDestinationProperties();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4084,6 +4185,7 @@ enum OperatorPropertiesKeys {
   mathOperationFieldsOrder,
   concatFormat,
   subfieldCategoryMap,
+  excludeSourceFieldsList,
 }
 
 extension on OperatorPropertiesKeys {
@@ -4117,6 +4219,8 @@ extension on OperatorPropertiesKeys {
         return 'CONCAT_FORMAT';
       case OperatorPropertiesKeys.subfieldCategoryMap:
         return 'SUBFIELD_CATEGORY_MAP';
+      case OperatorPropertiesKeys.excludeSourceFieldsList:
+        return 'EXCLUDE_SOURCE_FIELDS_LIST';
     }
   }
 }
@@ -4152,6 +4256,8 @@ extension on String {
         return OperatorPropertiesKeys.concatFormat;
       case 'SUBFIELD_CATEGORY_MAP':
         return OperatorPropertiesKeys.subfieldCategoryMap;
+      case 'EXCLUDE_SOURCE_FIELDS_LIST':
+        return OperatorPropertiesKeys.excludeSourceFieldsList;
     }
     throw Exception('$this is not known in enum OperatorPropertiesKeys');
   }
@@ -4161,11 +4267,11 @@ extension on String {
 /// name. You can name your destination folders according to the flow frequency
 /// and date.
 class PrefixConfig {
-  /// Determines the format of the prefix, and whether it applies to the file
-  /// name, file path, or both.
+  /// Determines the level of granularity that's included in the prefix.
   final PrefixFormat? prefixFormat;
 
-  /// Determines the level of granularity that's included in the prefix.
+  /// Determines the format of the prefix, and whether it applies to the file
+  /// name, file path, or both.
   final PrefixType? prefixType;
 
   PrefixConfig({
@@ -5006,20 +5112,30 @@ class ScheduledTriggerProperties {
   /// complete data transfer for each flow run.
   final DataPullMode? dataPullMode;
 
+  /// Specifies the date range for the records to import from the connector in the
+  /// first flow run.
+  final DateTime? firstExecutionFrom;
+
   /// Specifies the scheduled end time for a schedule-triggered flow.
   final DateTime? scheduleEndTime;
+
+  /// Specifies the optional offset that is added to the time interval for a
+  /// schedule-triggered flow.
+  final int? scheduleOffset;
 
   /// Specifies the scheduled start time for a schedule-triggered flow.
   final DateTime? scheduleStartTime;
 
   /// Specifies the time zone used when referring to the date and time of a
-  /// scheduled-triggered flow.
+  /// scheduled-triggered flow, such as <code>America/New_York</code>.
   final String? timezone;
 
   ScheduledTriggerProperties({
     required this.scheduleExpression,
     this.dataPullMode,
+    this.firstExecutionFrom,
     this.scheduleEndTime,
+    this.scheduleOffset,
     this.scheduleStartTime,
     this.timezone,
   });
@@ -5027,7 +5143,9 @@ class ScheduledTriggerProperties {
     return ScheduledTriggerProperties(
       scheduleExpression: json['scheduleExpression'] as String,
       dataPullMode: (json['dataPullMode'] as String?)?.toDataPullMode(),
+      firstExecutionFrom: timeStampFromJson(json['firstExecutionFrom']),
       scheduleEndTime: timeStampFromJson(json['scheduleEndTime']),
+      scheduleOffset: json['scheduleOffset'] as int?,
       scheduleStartTime: timeStampFromJson(json['scheduleStartTime']),
       timezone: json['timezone'] as String?,
     );
@@ -5036,14 +5154,19 @@ class ScheduledTriggerProperties {
   Map<String, dynamic> toJson() {
     final scheduleExpression = this.scheduleExpression;
     final dataPullMode = this.dataPullMode;
+    final firstExecutionFrom = this.firstExecutionFrom;
     final scheduleEndTime = this.scheduleEndTime;
+    final scheduleOffset = this.scheduleOffset;
     final scheduleStartTime = this.scheduleStartTime;
     final timezone = this.timezone;
     return {
       'scheduleExpression': scheduleExpression,
       if (dataPullMode != null) 'dataPullMode': dataPullMode.toValue(),
+      if (firstExecutionFrom != null)
+        'firstExecutionFrom': unixTimestampToJson(firstExecutionFrom),
       if (scheduleEndTime != null)
         'scheduleEndTime': unixTimestampToJson(scheduleEndTime),
+      if (scheduleOffset != null) 'scheduleOffset': scheduleOffset,
       if (scheduleStartTime != null)
         'scheduleStartTime': unixTimestampToJson(scheduleStartTime),
       if (timezone != null) 'timezone': timezone,
@@ -6136,6 +6259,7 @@ enum TaskType {
   arithmetic,
   filter,
   map,
+  mapAll,
   mask,
   merge,
   truncate,
@@ -6151,6 +6275,8 @@ extension on TaskType {
         return 'Filter';
       case TaskType.map:
         return 'Map';
+      case TaskType.mapAll:
+        return 'Map_all';
       case TaskType.mask:
         return 'Mask';
       case TaskType.merge:
@@ -6172,6 +6298,8 @@ extension on String {
         return TaskType.filter;
       case 'Map':
         return TaskType.map;
+      case 'Map_all':
+        return TaskType.mapAll;
       case 'Mask':
         return TaskType.mask;
       case 'Merge':
@@ -6926,6 +7054,52 @@ class ZendeskConnectorProfileProperties {
     final instanceUrl = this.instanceUrl;
     return {
       'instanceUrl': instanceUrl,
+    };
+  }
+}
+
+/// The properties that are applied when Zendesk is used as a destination.
+class ZendeskDestinationProperties {
+  /// The object specified in the Zendesk flow destination.
+  final String object;
+  final ErrorHandlingConfig? errorHandlingConfig;
+  final List<String>? idFieldNames;
+  final WriteOperationType? writeOperationType;
+
+  ZendeskDestinationProperties({
+    required this.object,
+    this.errorHandlingConfig,
+    this.idFieldNames,
+    this.writeOperationType,
+  });
+  factory ZendeskDestinationProperties.fromJson(Map<String, dynamic> json) {
+    return ZendeskDestinationProperties(
+      object: json['object'] as String,
+      errorHandlingConfig: json['errorHandlingConfig'] != null
+          ? ErrorHandlingConfig.fromJson(
+              json['errorHandlingConfig'] as Map<String, dynamic>)
+          : null,
+      idFieldNames: (json['idFieldNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      writeOperationType:
+          (json['writeOperationType'] as String?)?.toWriteOperationType(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    final errorHandlingConfig = this.errorHandlingConfig;
+    final idFieldNames = this.idFieldNames;
+    final writeOperationType = this.writeOperationType;
+    return {
+      'object': object,
+      if (errorHandlingConfig != null)
+        'errorHandlingConfig': errorHandlingConfig,
+      if (idFieldNames != null) 'idFieldNames': idFieldNames,
+      if (writeOperationType != null)
+        'writeOperationType': writeOperationType.toValue(),
     };
   }
 }

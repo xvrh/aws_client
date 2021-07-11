@@ -38,6 +38,59 @@ class LakeFormation {
           endpointUrl: endpointUrl,
         );
 
+  /// Attaches one or more tags to an existing resource.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConcurrentModificationException].
+  ///
+  /// Parameter [lFTags] :
+  /// The tags to attach to the resource.
+  ///
+  /// Parameter [resource] :
+  /// The resource to which to attach a tag.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  Future<AddLFTagsToResourceResponse> addLFTagsToResource({
+    required List<LFTagPair> lFTags,
+    required Resource resource,
+    String? catalogId,
+  }) async {
+    ArgumentError.checkNotNull(lFTags, 'lFTags');
+    ArgumentError.checkNotNull(resource, 'resource');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.AddLFTagsToResource'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'LFTags': lFTags,
+        'Resource': resource,
+        if (catalogId != null) 'CatalogId': catalogId,
+      },
+    );
+
+    return AddLFTagsToResourceResponse.fromJson(jsonResponse.body);
+  }
+
   /// Batch operation to grant permissions to the principal.
   ///
   /// May throw [InvalidInputException].
@@ -62,11 +115,6 @@ class LakeFormation {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -112,11 +160,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.BatchRevokePermissions'
@@ -134,6 +177,120 @@ class LakeFormation {
     );
 
     return BatchRevokePermissionsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Creates a tag with the specified name and values.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [ResourceNumberLimitExceededException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [tagKey] :
+  /// The key-name for the tag.
+  ///
+  /// Parameter [tagValues] :
+  /// A list of possible values an attribute can take.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  Future<void> createLFTag({
+    required String tagKey,
+    required List<String> tagValues,
+    String? catalogId,
+  }) async {
+    ArgumentError.checkNotNull(tagKey, 'tagKey');
+    _s.validateStringLength(
+      'tagKey',
+      tagKey,
+      1,
+      128,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(tagValues, 'tagValues');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.CreateLFTag'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'TagKey': tagKey,
+        'TagValues': tagValues,
+        if (catalogId != null) 'CatalogId': catalogId,
+      },
+    );
+  }
+
+  /// Deletes the specified tag key name. If the attribute key does not exist or
+  /// the tag does not exist, then the operation will not do anything. If the
+  /// attribute key exists, then the operation checks if any resources are
+  /// tagged with this attribute key, if yes, the API throws a 400 Exception
+  /// with the message "Delete not allowed" as the tag key is still attached
+  /// with resources. You can consider untagging resources with this tag key.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [tagKey] :
+  /// The key-name for the tag to delete.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  Future<void> deleteLFTag({
+    required String tagKey,
+    String? catalogId,
+  }) async {
+    ArgumentError.checkNotNull(tagKey, 'tagKey');
+    _s.validateStringLength(
+      'tagKey',
+      tagKey,
+      1,
+      128,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.DeleteLFTag'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'TagKey': tagKey,
+        if (catalogId != null) 'CatalogId': catalogId,
+      },
+    );
   }
 
   /// Deregisters the resource as managed by the Data Catalog.
@@ -222,11 +379,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.GetDataLakeSettings'
@@ -284,11 +436,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -314,6 +461,112 @@ class LakeFormation {
     );
 
     return GetEffectivePermissionsForPathResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns a tag definition.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [tagKey] :
+  /// The key-name for the tag.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  Future<GetLFTagResponse> getLFTag({
+    required String tagKey,
+    String? catalogId,
+  }) async {
+    ArgumentError.checkNotNull(tagKey, 'tagKey');
+    _s.validateStringLength(
+      'tagKey',
+      tagKey,
+      1,
+      128,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.GetLFTag'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'TagKey': tagKey,
+        if (catalogId != null) 'CatalogId': catalogId,
+      },
+    );
+
+    return GetLFTagResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Returns the tags applied to a resource.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [GlueEncryptionException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [resource] :
+  /// The resource for which you want to return tags.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  ///
+  /// Parameter [showAssignedLFTags] :
+  /// Indicates whether to show the assigned tags.
+  Future<GetResourceLFTagsResponse> getResourceLFTags({
+    required Resource resource,
+    String? catalogId,
+    bool? showAssignedLFTags,
+  }) async {
+    ArgumentError.checkNotNull(resource, 'resource');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.GetResourceLFTags'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Resource': resource,
+        if (catalogId != null) 'CatalogId': catalogId,
+        if (showAssignedLFTags != null)
+          'ShowAssignedLFTags': showAssignedLFTags,
+      },
+    );
+
+    return GetResourceLFTagsResponse.fromJson(jsonResponse.body);
   }
 
   /// Grants permissions to the principal to access metadata in the Data Catalog
@@ -373,11 +626,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.GrantPermissions'
@@ -398,6 +646,71 @@ class LakeFormation {
               permissionsWithGrantOption.map((e) => e.toValue()).toList(),
       },
     );
+  }
+
+  /// Lists tags that the requester has permission to view.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return.
+  ///
+  /// Parameter [nextToken] :
+  /// A continuation token, if this is not the first call to retrieve this list.
+  ///
+  /// Parameter [resourceShareType] :
+  /// If resource share type is <code>ALL</code>, returns both in-account tags
+  /// and shared tags that the requester has permission to view. If resource
+  /// share type is <code>FOREIGN</code>, returns all share tags that the
+  /// requester can view. If no resource share type is passed, lists tags in the
+  /// given catalog ID that the requester has permission to view.
+  Future<ListLFTagsResponse> listLFTags({
+    String? catalogId,
+    int? maxResults,
+    String? nextToken,
+    ResourceShareType? resourceShareType,
+  }) async {
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.ListLFTags'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        if (catalogId != null) 'CatalogId': catalogId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+        if (resourceShareType != null)
+          'ResourceShareType': resourceShareType.toValue(),
+      },
+    );
+
+    return ListLFTagsResponse.fromJson(jsonResponse.body);
   }
 
   /// Returns a list of the principal permissions on the resource, filtered by
@@ -452,11 +765,6 @@ class LakeFormation {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -568,11 +876,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.PutDataLakeSettings'
@@ -638,11 +941,6 @@ class LakeFormation {
     bool? useServiceLinkedRole,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:aws:iam::[0-9]*:role/.*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.RegisterResource'
@@ -660,6 +958,62 @@ class LakeFormation {
           'UseServiceLinkedRole': useServiceLinkedRole,
       },
     );
+  }
+
+  /// Removes a tag from the resource. Only database, table, or tableWithColumns
+  /// resource are allowed. To tag columns, use the column inclusion list in
+  /// <code>tableWithColumns</code> to specify column input.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [GlueEncryptionException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ConcurrentModificationException].
+  ///
+  /// Parameter [lFTags] :
+  /// The tags to be removed from the resource.
+  ///
+  /// Parameter [resource] :
+  /// The resource where you want to remove a tag.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  Future<RemoveLFTagsFromResourceResponse> removeLFTagsFromResource({
+    required List<LFTagPair> lFTags,
+    required Resource resource,
+    String? catalogId,
+  }) async {
+    ArgumentError.checkNotNull(lFTags, 'lFTags');
+    ArgumentError.checkNotNull(resource, 'resource');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.RemoveLFTagsFromResource'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'LFTags': lFTags,
+        'Resource': resource,
+        if (catalogId != null) 'CatalogId': catalogId,
+      },
+    );
+
+    return RemoveLFTagsFromResourceResponse.fromJson(jsonResponse.body);
   }
 
   /// Revokes permissions to the principal to access metadata in the Data
@@ -706,11 +1060,6 @@ class LakeFormation {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.RevokePermissions'
@@ -729,6 +1078,211 @@ class LakeFormation {
         if (permissionsWithGrantOption != null)
           'PermissionsWithGrantOption':
               permissionsWithGrantOption.map((e) => e.toValue()).toList(),
+      },
+    );
+  }
+
+  /// This operation allows a search on <code>DATABASE</code> resources by
+  /// <code>TagCondition</code>. This operation is used by admins who want to
+  /// grant user permissions on certain <code>TagConditions</code>. Before
+  /// making a grant, the admin can use <code>SearchDatabasesByTags</code> to
+  /// find all resources where the given <code>TagConditions</code> are valid to
+  /// verify whether the returned resources can be shared.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidInputException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [GlueEncryptionException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [expression] :
+  /// A list of conditions (<code>LFTag</code> structures) to search for in
+  /// database resources.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return.
+  ///
+  /// Parameter [nextToken] :
+  /// A continuation token, if this is not the first call to retrieve this list.
+  Future<SearchDatabasesByLFTagsResponse> searchDatabasesByLFTags({
+    required List<LFTag> expression,
+    String? catalogId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(expression, 'expression');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.SearchDatabasesByLFTags'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Expression': expression,
+        if (catalogId != null) 'CatalogId': catalogId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return SearchDatabasesByLFTagsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// This operation allows a search on <code>TABLE</code> resources by
+  /// <code>LFTag</code>s. This will be used by admins who want to grant user
+  /// permissions on certain LFTags. Before making a grant, the admin can use
+  /// <code>SearchTablesByLFTags</code> to find all resources where the given
+  /// <code>LFTag</code>s are valid to verify whether the returned resources can
+  /// be shared.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InternalServiceException].
+  /// May throw [InvalidInputException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [GlueEncryptionException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [expression] :
+  /// A list of conditions (<code>LFTag</code> structures) to search for in
+  /// table resources.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return.
+  ///
+  /// Parameter [nextToken] :
+  /// A continuation token, if this is not the first call to retrieve this list.
+  Future<SearchTablesByLFTagsResponse> searchTablesByLFTags({
+    required List<LFTag> expression,
+    String? catalogId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(expression, 'expression');
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1000,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.SearchTablesByLFTags'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'Expression': expression,
+        if (catalogId != null) 'CatalogId': catalogId,
+        if (maxResults != null) 'MaxResults': maxResults,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return SearchTablesByLFTagsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates the list of possible values for the specified tag key. If the tag
+  /// does not exist, the operation throws an EntityNotFoundException. The
+  /// values in the delete key values will be deleted from list of possible
+  /// values. If any value in the delete key values is attached to a resource,
+  /// then API errors out with a 400 Exception - "Update not allowed". Untag the
+  /// attribute before deleting the tag key's value.
+  ///
+  /// May throw [EntityNotFoundException].
+  /// May throw [InvalidInputException].
+  /// May throw [InternalServiceException].
+  /// May throw [OperationTimeoutException].
+  /// May throw [ConcurrentModificationException].
+  /// May throw [AccessDeniedException].
+  ///
+  /// Parameter [tagKey] :
+  /// The key-name for the tag for which to add or delete values.
+  ///
+  /// Parameter [catalogId] :
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database
+  /// definitions, table definitions, and other control information to manage
+  /// your AWS Lake Formation environment.
+  ///
+  /// Parameter [tagValuesToAdd] :
+  /// A list of tag values to add from the tag.
+  ///
+  /// Parameter [tagValuesToDelete] :
+  /// A list of tag values to delete from the tag.
+  Future<void> updateLFTag({
+    required String tagKey,
+    String? catalogId,
+    List<String>? tagValuesToAdd,
+    List<String>? tagValuesToDelete,
+  }) async {
+    ArgumentError.checkNotNull(tagKey, 'tagKey');
+    _s.validateStringLength(
+      'tagKey',
+      tagKey,
+      1,
+      128,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'catalogId',
+      catalogId,
+      1,
+      255,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSLakeFormation.UpdateLFTag'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'TagKey': tagKey,
+        if (catalogId != null) 'CatalogId': catalogId,
+        if (tagValuesToAdd != null) 'TagValuesToAdd': tagValuesToAdd,
+        if (tagValuesToDelete != null) 'TagValuesToDelete': tagValuesToDelete,
       },
     );
   }
@@ -753,12 +1307,6 @@ class LakeFormation {
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:aws:iam::[0-9]*:role/.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSLakeFormation.UpdateResource'
@@ -773,6 +1321,23 @@ class LakeFormation {
         'ResourceArn': resourceArn,
         'RoleArn': roleArn,
       },
+    );
+  }
+}
+
+class AddLFTagsToResourceResponse {
+  /// A list of failures to tag the resource.
+  final List<LFTagError>? failures;
+
+  AddLFTagsToResourceResponse({
+    this.failures,
+  });
+  factory AddLFTagsToResourceResponse.fromJson(Map<String, dynamic> json) {
+    return AddLFTagsToResourceResponse(
+      failures: (json['Failures'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagError.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -914,6 +1479,30 @@ class CatalogResource {
   }
 }
 
+/// A structure containing the name of a column resource and the tags attached
+/// to it.
+class ColumnLFTag {
+  /// The tags attached to a column resource.
+  final List<LFTagPair>? lFTags;
+
+  /// The name of a column resource.
+  final String? name;
+
+  ColumnLFTag({
+    this.lFTags,
+    this.name,
+  });
+  factory ColumnLFTag.fromJson(Map<String, dynamic> json) {
+    return ColumnLFTag(
+      lFTags: (json['LFTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      name: json['Name'] as String?,
+    );
+  }
+}
+
 /// A wildcard object, consisting of an optional list of excluded column names
 /// or indexes.
 class ColumnWildcard {
@@ -1014,6 +1603,13 @@ extension on String {
   }
 }
 
+class CreateLFTagResponse {
+  CreateLFTagResponse();
+  factory CreateLFTagResponse.fromJson(Map<String, dynamic> _) {
+    return CreateLFTagResponse();
+  }
+}
+
 /// The AWS Lake Formation principal. Supported principals are IAM users or IAM
 /// roles.
 class DataLakePrincipal {
@@ -1044,6 +1640,10 @@ enum DataLakeResourceType {
   database,
   table,
   dataLocation,
+  lfTag,
+  lfTagPolicy,
+  lfTagPolicyDatabase,
+  lfTagPolicyTable,
 }
 
 extension on DataLakeResourceType {
@@ -1057,6 +1657,14 @@ extension on DataLakeResourceType {
         return 'TABLE';
       case DataLakeResourceType.dataLocation:
         return 'DATA_LOCATION';
+      case DataLakeResourceType.lfTag:
+        return 'LF_TAG';
+      case DataLakeResourceType.lfTagPolicy:
+        return 'LF_TAG_POLICY';
+      case DataLakeResourceType.lfTagPolicyDatabase:
+        return 'LF_TAG_POLICY_DATABASE';
+      case DataLakeResourceType.lfTagPolicyTable:
+        return 'LF_TAG_POLICY_TABLE';
     }
   }
 }
@@ -1072,6 +1680,14 @@ extension on String {
         return DataLakeResourceType.table;
       case 'DATA_LOCATION':
         return DataLakeResourceType.dataLocation;
+      case 'LF_TAG':
+        return DataLakeResourceType.lfTag;
+      case 'LF_TAG_POLICY':
+        return DataLakeResourceType.lfTagPolicy;
+      case 'LF_TAG_POLICY_DATABASE':
+        return DataLakeResourceType.lfTagPolicyDatabase;
+      case 'LF_TAG_POLICY_TABLE':
+        return DataLakeResourceType.lfTagPolicyTable;
     }
     throw Exception('$this is not known in enum DataLakeResourceType');
   }
@@ -1210,6 +1826,13 @@ class DatabaseResource {
   }
 }
 
+class DeleteLFTagResponse {
+  DeleteLFTagResponse();
+  factory DeleteLFTagResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteLFTagResponse();
+  }
+}
+
 class DeregisterResourceResponse {
   DeregisterResourceResponse();
   factory DeregisterResourceResponse.fromJson(Map<String, dynamic> _) {
@@ -1238,9 +1861,9 @@ class DescribeResourceResponse {
 /// <code>PrincipalResourcePermissions</code>.
 ///
 /// If a catalog resource is shared through AWS Resource Access Manager (AWS
-/// RAM), then there will exist a corresponding RAM share resource ARN.
+/// RAM), then there will exist a corresponding RAM resource share ARN.
 class DetailsMap {
-  /// A share resource ARN for a catalog resource shared through AWS Resource
+  /// A resource share ARN for a catalog resource shared through AWS Resource
   /// Access Manager (AWS RAM).
   final List<String>? resourceShare;
 
@@ -1383,10 +2006,281 @@ class GetEffectivePermissionsForPathResponse {
   }
 }
 
+class GetLFTagResponse {
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database definitions,
+  /// table definitions, and other control information to manage your AWS Lake
+  /// Formation environment.
+  final String? catalogId;
+
+  /// The key-name for the tag.
+  final String? tagKey;
+
+  /// A list of possible values an attribute can take.
+  final List<String>? tagValues;
+
+  GetLFTagResponse({
+    this.catalogId,
+    this.tagKey,
+    this.tagValues,
+  });
+  factory GetLFTagResponse.fromJson(Map<String, dynamic> json) {
+    return GetLFTagResponse(
+      catalogId: json['CatalogId'] as String?,
+      tagKey: json['TagKey'] as String?,
+      tagValues: (json['TagValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+}
+
+class GetResourceLFTagsResponse {
+  /// A list of tags applied to a database resource.
+  final List<LFTagPair>? lFTagOnDatabase;
+
+  /// A list of tags applied to a column resource.
+  final List<ColumnLFTag>? lFTagsOnColumns;
+
+  /// A list of tags applied to a table resource.
+  final List<LFTagPair>? lFTagsOnTable;
+
+  GetResourceLFTagsResponse({
+    this.lFTagOnDatabase,
+    this.lFTagsOnColumns,
+    this.lFTagsOnTable,
+  });
+  factory GetResourceLFTagsResponse.fromJson(Map<String, dynamic> json) {
+    return GetResourceLFTagsResponse(
+      lFTagOnDatabase: (json['LFTagOnDatabase'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lFTagsOnColumns: (json['LFTagsOnColumns'] as List?)
+          ?.whereNotNull()
+          .map((e) => ColumnLFTag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lFTagsOnTable: (json['LFTagsOnTable'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 class GrantPermissionsResponse {
   GrantPermissionsResponse();
   factory GrantPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return GrantPermissionsResponse();
+  }
+}
+
+/// A structure that allows an admin to grant user permissions on certain
+/// conditions. For example, granting a role access to all columns not tagged
+/// 'PII' of tables tagged 'Prod'.
+class LFTag {
+  /// The key-name for the tag.
+  final String tagKey;
+
+  /// A list of possible values an attribute can take.
+  final List<String> tagValues;
+
+  LFTag({
+    required this.tagKey,
+    required this.tagValues,
+  });
+  factory LFTag.fromJson(Map<String, dynamic> json) {
+    return LFTag(
+      tagKey: json['TagKey'] as String,
+      tagValues: (json['TagValues'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagKey = this.tagKey;
+    final tagValues = this.tagValues;
+    return {
+      'TagKey': tagKey,
+      'TagValues': tagValues,
+    };
+  }
+}
+
+/// A structure containing an error related to a <code>TagResource</code> or
+/// <code>UnTagResource</code> operation.
+class LFTagError {
+  /// An error that occurred with the attachment or detachment of the tag.
+  final ErrorDetail? error;
+
+  /// The key-name of the tag.
+  final LFTagPair? lFTag;
+
+  LFTagError({
+    this.error,
+    this.lFTag,
+  });
+  factory LFTagError.fromJson(Map<String, dynamic> json) {
+    return LFTagError(
+      error: json['Error'] != null
+          ? ErrorDetail.fromJson(json['Error'] as Map<String, dynamic>)
+          : null,
+      lFTag: json['LFTag'] != null
+          ? LFTagPair.fromJson(json['LFTag'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// A structure containing a tag key and values for a resource.
+class LFTagKeyResource {
+  /// The key-name for the tag.
+  final String tagKey;
+
+  /// A list of possible values an attribute can take.
+  final List<String> tagValues;
+
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database definitions,
+  /// table definitions, and other control information to manage your AWS Lake
+  /// Formation environment.
+  final String? catalogId;
+
+  LFTagKeyResource({
+    required this.tagKey,
+    required this.tagValues,
+    this.catalogId,
+  });
+  factory LFTagKeyResource.fromJson(Map<String, dynamic> json) {
+    return LFTagKeyResource(
+      tagKey: json['TagKey'] as String,
+      tagValues: (json['TagValues'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      catalogId: json['CatalogId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagKey = this.tagKey;
+    final tagValues = this.tagValues;
+    final catalogId = this.catalogId;
+    return {
+      'TagKey': tagKey,
+      'TagValues': tagValues,
+      if (catalogId != null) 'CatalogId': catalogId,
+    };
+  }
+}
+
+/// A structure containing a tag key-value pair.
+class LFTagPair {
+  /// The key-name for the tag.
+  final String tagKey;
+
+  /// A list of possible values an attribute can take.
+  final List<String> tagValues;
+
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database definitions,
+  /// table definitions, and other control information to manage your AWS Lake
+  /// Formation environment.
+  final String? catalogId;
+
+  LFTagPair({
+    required this.tagKey,
+    required this.tagValues,
+    this.catalogId,
+  });
+  factory LFTagPair.fromJson(Map<String, dynamic> json) {
+    return LFTagPair(
+      tagKey: json['TagKey'] as String,
+      tagValues: (json['TagValues'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      catalogId: json['CatalogId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagKey = this.tagKey;
+    final tagValues = this.tagValues;
+    final catalogId = this.catalogId;
+    return {
+      'TagKey': tagKey,
+      'TagValues': tagValues,
+      if (catalogId != null) 'CatalogId': catalogId,
+    };
+  }
+}
+
+/// A structure containing a list of tag conditions that apply to a resource's
+/// tag policy.
+class LFTagPolicyResource {
+  /// A list of tag conditions that apply to the resource's tag policy.
+  final List<LFTag> expression;
+
+  /// The resource type for which the tag policy applies.
+  final ResourceType resourceType;
+
+  /// The identifier for the Data Catalog. By default, the account ID. The Data
+  /// Catalog is the persistent metadata store. It contains database definitions,
+  /// table definitions, and other control information to manage your AWS Lake
+  /// Formation environment.
+  final String? catalogId;
+
+  LFTagPolicyResource({
+    required this.expression,
+    required this.resourceType,
+    this.catalogId,
+  });
+  factory LFTagPolicyResource.fromJson(Map<String, dynamic> json) {
+    return LFTagPolicyResource(
+      expression: (json['Expression'] as List)
+          .whereNotNull()
+          .map((e) => LFTag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      resourceType: (json['ResourceType'] as String).toResourceType(),
+      catalogId: json['CatalogId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    final resourceType = this.resourceType;
+    final catalogId = this.catalogId;
+    return {
+      'Expression': expression,
+      'ResourceType': resourceType.toValue(),
+      if (catalogId != null) 'CatalogId': catalogId,
+    };
+  }
+}
+
+class ListLFTagsResponse {
+  /// A list of tags that the requested has permission to view.
+  final List<LFTagPair>? lFTags;
+
+  /// A continuation token, present if the current list segment is not the last.
+  final String? nextToken;
+
+  ListLFTagsResponse({
+    this.lFTags,
+    this.nextToken,
+  });
+  factory ListLFTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListLFTagsResponse(
+      lFTags: (json['LFTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
   }
 }
 
@@ -1449,6 +2343,11 @@ enum Permission {
   createDatabase,
   createTable,
   dataLocationAccess,
+  createTag,
+  alterTag,
+  deleteTag,
+  describeTag,
+  associateTag,
 }
 
 extension on Permission {
@@ -1474,6 +2373,16 @@ extension on Permission {
         return 'CREATE_TABLE';
       case Permission.dataLocationAccess:
         return 'DATA_LOCATION_ACCESS';
+      case Permission.createTag:
+        return 'CREATE_TAG';
+      case Permission.alterTag:
+        return 'ALTER_TAG';
+      case Permission.deleteTag:
+        return 'DELETE_TAG';
+      case Permission.describeTag:
+        return 'DESCRIBE_TAG';
+      case Permission.associateTag:
+        return 'ASSOCIATE_TAG';
     }
   }
 }
@@ -1501,6 +2410,16 @@ extension on String {
         return Permission.createTable;
       case 'DATA_LOCATION_ACCESS':
         return Permission.dataLocationAccess;
+      case 'CREATE_TAG':
+        return Permission.createTag;
+      case 'ALTER_TAG':
+        return Permission.alterTag;
+      case 'DELETE_TAG':
+        return Permission.deleteTag;
+      case 'DESCRIBE_TAG':
+        return Permission.describeTag;
+      case 'ASSOCIATE_TAG':
+        return Permission.associateTag;
     }
     throw Exception('$this is not known in enum Permission');
   }
@@ -1546,7 +2465,7 @@ class PrincipalPermissions {
 class PrincipalResourcePermissions {
   /// This attribute can be used to return any additional details of
   /// <code>PrincipalResourcePermissions</code>. Currently returns only as a RAM
-  /// share resource ARN.
+  /// resource share ARN.
   final DetailsMap? additionalDetails;
 
   /// The permissions to be granted or revoked on the resource.
@@ -1608,6 +2527,23 @@ class RegisterResourceResponse {
   }
 }
 
+class RemoveLFTagsFromResourceResponse {
+  /// A list of failures to untag a resource.
+  final List<LFTagError>? failures;
+
+  RemoveLFTagsFromResourceResponse({
+    this.failures,
+  });
+  factory RemoveLFTagsFromResourceResponse.fromJson(Map<String, dynamic> json) {
+    return RemoveLFTagsFromResourceResponse(
+      failures: (json['Failures'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagError.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 /// A structure for the resource.
 class Resource {
   /// The identifier for the Data Catalog. By default, the account ID. The Data
@@ -1624,6 +2560,12 @@ class Resource {
   /// Grant and Revoke database permissions to a principal.
   final DatabaseResource? database;
 
+  /// The tag key and values attached to a resource.
+  final LFTagKeyResource? lFTag;
+
+  /// A list of tag conditions that define a resource's tag policy.
+  final LFTagPolicyResource? lFTagPolicy;
+
   /// The table for the resource. A table is a metadata definition that represents
   /// your data. You can Grant and Revoke table privileges to a principal.
   final TableResource? table;
@@ -1637,6 +2579,8 @@ class Resource {
     this.catalog,
     this.dataLocation,
     this.database,
+    this.lFTag,
+    this.lFTagPolicy,
     this.table,
     this.tableWithColumns,
   });
@@ -1652,6 +2596,13 @@ class Resource {
       database: json['Database'] != null
           ? DatabaseResource.fromJson(json['Database'] as Map<String, dynamic>)
           : null,
+      lFTag: json['LFTag'] != null
+          ? LFTagKeyResource.fromJson(json['LFTag'] as Map<String, dynamic>)
+          : null,
+      lFTagPolicy: json['LFTagPolicy'] != null
+          ? LFTagPolicyResource.fromJson(
+              json['LFTagPolicy'] as Map<String, dynamic>)
+          : null,
       table: json['Table'] != null
           ? TableResource.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
@@ -1666,12 +2617,16 @@ class Resource {
     final catalog = this.catalog;
     final dataLocation = this.dataLocation;
     final database = this.database;
+    final lFTag = this.lFTag;
+    final lFTagPolicy = this.lFTagPolicy;
     final table = this.table;
     final tableWithColumns = this.tableWithColumns;
     return {
       if (catalog != null) 'Catalog': catalog,
       if (dataLocation != null) 'DataLocation': dataLocation,
       if (database != null) 'Database': database,
+      if (lFTag != null) 'LFTag': lFTag,
+      if (lFTagPolicy != null) 'LFTagPolicy': lFTagPolicy,
       if (table != null) 'Table': table,
       if (tableWithColumns != null) 'TableWithColumns': tableWithColumns,
     };
@@ -1703,10 +2658,110 @@ class ResourceInfo {
   }
 }
 
+enum ResourceShareType {
+  foreign,
+  all,
+}
+
+extension on ResourceShareType {
+  String toValue() {
+    switch (this) {
+      case ResourceShareType.foreign:
+        return 'FOREIGN';
+      case ResourceShareType.all:
+        return 'ALL';
+    }
+  }
+}
+
+extension on String {
+  ResourceShareType toResourceShareType() {
+    switch (this) {
+      case 'FOREIGN':
+        return ResourceShareType.foreign;
+      case 'ALL':
+        return ResourceShareType.all;
+    }
+    throw Exception('$this is not known in enum ResourceShareType');
+  }
+}
+
+enum ResourceType {
+  database,
+  table,
+}
+
+extension on ResourceType {
+  String toValue() {
+    switch (this) {
+      case ResourceType.database:
+        return 'DATABASE';
+      case ResourceType.table:
+        return 'TABLE';
+    }
+  }
+}
+
+extension on String {
+  ResourceType toResourceType() {
+    switch (this) {
+      case 'DATABASE':
+        return ResourceType.database;
+      case 'TABLE':
+        return ResourceType.table;
+    }
+    throw Exception('$this is not known in enum ResourceType');
+  }
+}
+
 class RevokePermissionsResponse {
   RevokePermissionsResponse();
   factory RevokePermissionsResponse.fromJson(Map<String, dynamic> _) {
     return RevokePermissionsResponse();
+  }
+}
+
+class SearchDatabasesByLFTagsResponse {
+  /// A list of databases that meet the tag conditions.
+  final List<TaggedDatabase>? databaseList;
+
+  /// A continuation token, present if the current list segment is not the last.
+  final String? nextToken;
+
+  SearchDatabasesByLFTagsResponse({
+    this.databaseList,
+    this.nextToken,
+  });
+  factory SearchDatabasesByLFTagsResponse.fromJson(Map<String, dynamic> json) {
+    return SearchDatabasesByLFTagsResponse(
+      databaseList: (json['DatabaseList'] as List?)
+          ?.whereNotNull()
+          .map((e) => TaggedDatabase.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class SearchTablesByLFTagsResponse {
+  /// A continuation token, present if the current list segment is not the last.
+  final String? nextToken;
+
+  /// A list of tables that meet the tag conditions.
+  final List<TaggedTable>? tableList;
+
+  SearchTablesByLFTagsResponse({
+    this.nextToken,
+    this.tableList,
+  });
+  factory SearchTablesByLFTagsResponse.fromJson(Map<String, dynamic> json) {
+    return SearchTablesByLFTagsResponse(
+      nextToken: json['NextToken'] as String?,
+      tableList: (json['TableList'] as List?)
+          ?.whereNotNull()
+          .map((e) => TaggedTable.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
   }
 }
 
@@ -1844,11 +2899,89 @@ class TableWithColumnsResource {
   }
 }
 
+/// A structure describing a database resource with tags.
+class TaggedDatabase {
+  /// A database that has tags attached to it.
+  final DatabaseResource? database;
+
+  /// A list of tags attached to the database.
+  final List<LFTagPair>? lFTags;
+
+  TaggedDatabase({
+    this.database,
+    this.lFTags,
+  });
+  factory TaggedDatabase.fromJson(Map<String, dynamic> json) {
+    return TaggedDatabase(
+      database: json['Database'] != null
+          ? DatabaseResource.fromJson(json['Database'] as Map<String, dynamic>)
+          : null,
+      lFTags: (json['LFTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+/// A structure describing a table resource with tags.
+class TaggedTable {
+  /// A list of tags attached to the database where the table resides.
+  final List<LFTagPair>? lFTagOnDatabase;
+
+  /// A list of tags attached to columns in the table.
+  final List<ColumnLFTag>? lFTagsOnColumns;
+
+  /// A list of tags attached to the table.
+  final List<LFTagPair>? lFTagsOnTable;
+
+  /// A table that has tags attached to it.
+  final TableResource? table;
+
+  TaggedTable({
+    this.lFTagOnDatabase,
+    this.lFTagsOnColumns,
+    this.lFTagsOnTable,
+    this.table,
+  });
+  factory TaggedTable.fromJson(Map<String, dynamic> json) {
+    return TaggedTable(
+      lFTagOnDatabase: (json['LFTagOnDatabase'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lFTagsOnColumns: (json['LFTagsOnColumns'] as List?)
+          ?.whereNotNull()
+          .map((e) => ColumnLFTag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lFTagsOnTable: (json['LFTagsOnTable'] as List?)
+          ?.whereNotNull()
+          .map((e) => LFTagPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      table: json['Table'] != null
+          ? TableResource.fromJson(json['Table'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class UpdateLFTagResponse {
+  UpdateLFTagResponse();
+  factory UpdateLFTagResponse.fromJson(Map<String, dynamic> _) {
+    return UpdateLFTagResponse();
+  }
+}
+
 class UpdateResourceResponse {
   UpdateResourceResponse();
   factory UpdateResourceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceResponse();
   }
+}
+
+class AccessDeniedException extends _s.GenericAwsException {
+  AccessDeniedException({String? type, String? message})
+      : super(type: type, code: 'AccessDeniedException', message: message);
 }
 
 class AlreadyExistsException extends _s.GenericAwsException {
@@ -1869,6 +3002,11 @@ class EntityNotFoundException extends _s.GenericAwsException {
       : super(type: type, code: 'EntityNotFoundException', message: message);
 }
 
+class GlueEncryptionException extends _s.GenericAwsException {
+  GlueEncryptionException({String? type, String? message})
+      : super(type: type, code: 'GlueEncryptionException', message: message);
+}
+
 class InternalServiceException extends _s.GenericAwsException {
   InternalServiceException({String? type, String? message})
       : super(type: type, code: 'InternalServiceException', message: message);
@@ -1884,17 +3022,31 @@ class OperationTimeoutException extends _s.GenericAwsException {
       : super(type: type, code: 'OperationTimeoutException', message: message);
 }
 
+class ResourceNumberLimitExceededException extends _s.GenericAwsException {
+  ResourceNumberLimitExceededException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'ResourceNumberLimitExceededException',
+            message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
+  'AccessDeniedException': (type, message) =>
+      AccessDeniedException(type: type, message: message),
   'AlreadyExistsException': (type, message) =>
       AlreadyExistsException(type: type, message: message),
   'ConcurrentModificationException': (type, message) =>
       ConcurrentModificationException(type: type, message: message),
   'EntityNotFoundException': (type, message) =>
       EntityNotFoundException(type: type, message: message),
+  'GlueEncryptionException': (type, message) =>
+      GlueEncryptionException(type: type, message: message),
   'InternalServiceException': (type, message) =>
       InternalServiceException(type: type, message: message),
   'InvalidInputException': (type, message) =>
       InvalidInputException(type: type, message: message),
   'OperationTimeoutException': (type, message) =>
       OperationTimeoutException(type: type, message: message),
+  'ResourceNumberLimitExceededException': (type, message) =>
+      ResourceNumberLimitExceededException(type: type, message: message),
 };

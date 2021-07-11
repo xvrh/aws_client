@@ -292,7 +292,7 @@ class GlobalAccelerator {
   /// Optionally, if you've added your own IP address pool to Global Accelerator
   /// (BYOIP), you can choose IP addresses from your own pool to use for the
   /// accelerator's static IP addresses when you create an accelerator. You can
-  /// specify one or two addresses, separated by a comma. Do not include the /32
+  /// specify one or two addresses, separated by a space. Do not include the /32
   /// suffix.
   ///
   /// Only one IP address from each of your IP address ranges can be used for
@@ -371,6 +371,11 @@ class GlobalAccelerator {
   /// see the <a
   /// href="https://docs.aws.amazon.com/global-accelerator/latest/api/API_AllowCustomRoutingTraffic.html">
   /// AllowCustomRoutingTraffic</a> operation.
+  /// <important>
+  /// Global Accelerator is a global service that supports endpoints in multiple
+  /// AWS Regions but you must specify the US West (Oregon) Region to create or
+  /// update accelerators.
+  /// </important>
   ///
   /// May throw [InternalServiceErrorException].
   /// May throw [InvalidArgumentException].
@@ -396,6 +401,26 @@ class GlobalAccelerator {
   /// Parameter [ipAddressType] :
   /// The value for the address type must be IPv4.
   ///
+  /// Parameter [ipAddresses] :
+  /// Optionally, if you've added your own IP address pool to Global Accelerator
+  /// (BYOIP), you can choose IP addresses from your own pool to use for the
+  /// accelerator's static IP addresses when you create an accelerator. You can
+  /// specify one or two addresses, separated by a space. Do not include the /32
+  /// suffix.
+  ///
+  /// Only one IP address from each of your IP address ranges can be used for
+  /// each accelerator. If you specify only one IP address from your IP address
+  /// range, Global Accelerator assigns a second static IP address for the
+  /// accelerator from the AWS IP address pool.
+  ///
+  /// Note that you can't update IP addresses for an existing accelerator. To
+  /// change them, you must create a new accelerator with the new addresses.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html">Bring
+  /// your own IP addresses (BYOIP)</a> in the <i>AWS Global Accelerator
+  /// Developer Guide</i>.
+  ///
   /// Parameter [tags] :
   /// Create tags for an accelerator.
   ///
@@ -409,6 +434,7 @@ class GlobalAccelerator {
     bool? enabled,
     String? idempotencyToken,
     IpAddressType? ipAddressType,
+    List<String>? ipAddresses,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
@@ -441,6 +467,7 @@ class GlobalAccelerator {
         if (enabled != null) 'Enabled': enabled,
         'IdempotencyToken': idempotencyToken ?? _s.generateIdempotencyToken(),
         if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+        if (ipAddresses != null) 'IpAddresses': ipAddresses,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -705,11 +732,6 @@ class GlobalAccelerator {
       healthCheckPath,
       0,
       255,
-    );
-    _s.validateStringPattern(
-      'healthCheckPath',
-      healthCheckPath,
-      r'''^/[-a-zA-Z0-9@:%_\\+.~#?&/=]*$''',
     );
     _s.validateNumRange(
       'healthCheckPort',
@@ -2839,11 +2861,6 @@ class GlobalAccelerator {
       healthCheckPath,
       0,
       255,
-    );
-    _s.validateStringPattern(
-      'healthCheckPath',
-      healthCheckPath,
-      r'''^/[-a-zA-Z0-9@:%_\\+.~#?&/=]*$''',
     );
     _s.validateNumRange(
       'healthCheckPort',

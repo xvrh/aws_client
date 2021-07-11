@@ -26,7 +26,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// This API reference provides information about user pools in Amazon Cognito
 /// User Pools.
 ///
-/// For more information, see the Amazon Cognito Documentation.
+/// For more information, see the <a
+/// href="https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html">Amazon
+/// Cognito Documentation</a>.
 class CognitoIdentityProvider {
   final _s.JsonProtocol _protocol;
   CognitoIdentityProvider({
@@ -70,12 +72,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -127,12 +123,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -141,24 +131,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -252,24 +230,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -294,7 +260,27 @@ class CognitoIdentityProvider {
   ///
   /// If <code>MessageAction</code> is not set, the default is to send a welcome
   /// message via email or phone (SMS).
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
   ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   /// This message is based on a template that you configured in your call to
   /// create or update a user pool. This template includes your custom sign-up
   /// instructions and placeholders for user name and temporary password.
@@ -487,12 +473,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
@@ -501,22 +481,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'temporaryPassword',
       temporaryPassword,
       6,
       256,
-    );
-    _s.validateStringPattern(
-      'temporaryPassword',
-      temporaryPassword,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -575,24 +544,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -651,24 +608,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -794,24 +739,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -859,24 +792,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -929,12 +850,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -943,24 +858,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1013,12 +916,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -1027,24 +924,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1097,24 +982,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1137,7 +1010,27 @@ class CognitoIdentityProvider {
   }
 
   /// Initiates the authentication flow, as an administrator.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
   ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   /// Calling this action requires developer credentials.
   ///
   /// May throw [ResourceNotFoundException].
@@ -1349,24 +1242,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1535,24 +1416,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1566,11 +1435,6 @@ class CognitoIdentityProvider {
       paginationToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'paginationToken',
-      paginationToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1630,24 +1494,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1661,11 +1513,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1724,24 +1571,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1755,11 +1590,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1815,12 +1645,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -1829,24 +1653,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1880,7 +1692,27 @@ class CognitoIdentityProvider {
   /// if email verification is selected and a verified email exists for the
   /// user, calling this API will also result in sending a message to the end
   /// user with the code to change their password.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
   ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   /// Calling this action requires developer credentials.
   ///
   /// May throw [ResourceNotFoundException].
@@ -1955,24 +1787,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1994,7 +1814,27 @@ class CognitoIdentityProvider {
   }
 
   /// Responds to an authentication challenge, as an administrator.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
   ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   /// Calling this action requires developer credentials.
   ///
   /// May throw [ResourceNotFoundException].
@@ -2056,6 +1896,11 @@ class CognitoIdentityProvider {
   /// <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
   /// required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
   /// app client is configured with client secret).
+  /// </li>
+  /// <li>
+  /// <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+  /// use the session value returned by <code>VerifySoftwareToken</code> in the
+  /// <code>Session</code> parameter.
   /// </li>
   /// </ul>
   /// The value of the <code>USERNAME</code> attribute must be the user's actual
@@ -2138,24 +1983,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2231,24 +2064,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2320,12 +2141,6 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\S]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -2334,24 +2149,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2409,24 +2212,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2484,12 +2275,6 @@ class CognitoIdentityProvider {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventId',
-      eventId,
-      r'''[\w+-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(feedbackValue, 'feedbackValue');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
@@ -2499,24 +2284,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2576,12 +2349,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
@@ -2590,24 +2357,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2639,7 +2394,27 @@ class CognitoIdentityProvider {
   ///
   /// In addition to updating user attributes, this API can also be used to mark
   /// phone and email as verified.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
   ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   /// Calling this action requires developer credentials.
   ///
   /// May throw [ResourceNotFoundException].
@@ -2722,24 +2497,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2793,24 +2556,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2832,6 +2583,15 @@ class CognitoIdentityProvider {
 
   /// Returns a unique generated shared secret key code for the user account.
   /// The request takes an access token or a session string, but not both.
+  /// <note>
+  /// Calling AssociateSoftwareToken immediately disassociates the existing
+  /// software token from the user account. If the user doesn't subsequently
+  /// verify the software token, their account is essentially set up to
+  /// authenticate without MFA. If MFA config is set to Optional at the user
+  /// pool level, the user can then login without MFA. However, if MFA is set to
+  /// Required for the user pool, the user will be asked to setup a new software
+  /// token MFA during sign in.
+  /// </note>
   ///
   /// May throw [ConcurrentModificationException].
   /// May throw [InvalidParameterException].
@@ -2851,11 +2611,6 @@ class CognitoIdentityProvider {
     String? accessToken,
     String? session,
   }) async {
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-    );
     _s.validateStringLength(
       'session',
       session,
@@ -2908,12 +2663,6 @@ class CognitoIdentityProvider {
     required String proposedPassword,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(previousPassword, 'previousPassword');
     _s.validateStringLength(
       'previousPassword',
@@ -2922,24 +2671,12 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'previousPassword',
-      previousPassword,
-      r'''[\S]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(proposedPassword, 'proposedPassword');
     _s.validateStringLength(
       'proposedPassword',
       proposedPassword,
       6,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'proposedPassword',
-      proposedPassword,
-      r'''[\S]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2994,24 +2731,12 @@ class CognitoIdentityProvider {
     DeviceSecretVerifierConfigType? deviceSecretVerifierConfig,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
     _s.validateStringLength(
       'deviceKey',
       deviceKey,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3145,24 +2870,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(confirmationCode, 'confirmationCode');
     _s.validateStringLength(
       'confirmationCode',
       confirmationCode,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'confirmationCode',
-      confirmationCode,
-      r'''[\S]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(password, 'password');
@@ -3173,12 +2886,6 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\S]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
@@ -3187,22 +2894,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'secretHash',
       secretHash,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'secretHash',
-      secretHash,
-      r'''[\w+=/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3333,24 +3029,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(confirmationCode, 'confirmationCode');
     _s.validateStringLength(
       'confirmationCode',
       confirmationCode,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'confirmationCode',
-      confirmationCode,
-      r'''[\S]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(username, 'username');
@@ -3361,22 +3045,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'secretHash',
       secretHash,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'secretHash',
-      secretHash,
-      r'''[\w+=/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3459,24 +3132,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3496,11 +3157,6 @@ class CognitoIdentityProvider {
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3671,12 +3327,6 @@ class CognitoIdentityProvider {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'providerName',
-      providerName,
-      r'''[^_][\p{L}\p{M}\p{S}\p{N}\p{P}][^_]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(providerType, 'providerType');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
@@ -3684,12 +3334,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3752,12 +3396,6 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identifier',
-      identifier,
-      r'''[\x21\x23-\x5B\x5D-\x7E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -3766,24 +3404,12 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\w\s+=,.@-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3839,12 +3465,6 @@ class CognitoIdentityProvider {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'cloudWatchLogsRoleArn',
-      cloudWatchLogsRoleArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobName, 'jobName');
     _s.validateStringLength(
       'jobName',
@@ -3853,24 +3473,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\w\s+=,.@-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3895,6 +3503,27 @@ class CognitoIdentityProvider {
 
   /// Creates a new Amazon Cognito user pool and sets the password policy for
   /// the pool.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [InvalidParameterException].
   /// May throw [TooManyRequestsException].
@@ -4038,22 +3667,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'poolName',
-      poolName,
-      r'''[\w\s+=,.@-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'emailVerificationMessage',
       emailVerificationMessage,
       6,
       20000,
-    );
-    _s.validateStringPattern(
-      'emailVerificationMessage',
-      emailVerificationMessage,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*\{####\}[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*''',
     );
     _s.validateStringLength(
       'emailVerificationSubject',
@@ -4061,32 +3679,17 @@ class CognitoIdentityProvider {
       1,
       140,
     );
-    _s.validateStringPattern(
-      'emailVerificationSubject',
-      emailVerificationSubject,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+''',
-    );
     _s.validateStringLength(
       'smsAuthenticationMessage',
       smsAuthenticationMessage,
       6,
       140,
     );
-    _s.validateStringPattern(
-      'smsAuthenticationMessage',
-      smsAuthenticationMessage,
-      r'''.*\{####\}.*''',
-    );
     _s.validateStringLength(
       'smsVerificationMessage',
       smsVerificationMessage,
       6,
       140,
-    );
-    _s.validateStringPattern(
-      'smsVerificationMessage',
-      smsVerificationMessage,
-      r'''.*\{####\}.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4143,6 +3746,10 @@ class CognitoIdentityProvider {
   }
 
   /// Creates the user pool client.
+  ///
+  /// When you create a new user pool client, token revocation is automatically
+  /// enabled. For more information about revoking tokens, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html">RevokeToken</a>.
   ///
   /// May throw [InvalidParameterException].
   /// May throw [ResourceNotFoundException].
@@ -4247,6 +3854,14 @@ class CognitoIdentityProvider {
   /// testing purposes only.
   ///
   /// App callback URLs such as myapp://example are also supported.
+  ///
+  /// Parameter [enableTokenRevocation] :
+  /// Enables or disables token revocation. For more information about revoking
+  /// tokens, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html">RevokeToken</a>.
+  ///
+  /// If you don't include this parameter, token revocation is automatically
+  /// enabled for the new user pool client.
   ///
   /// Parameter [explicitAuthFlows] :
   /// The authentication flows that are supported by the user pool clients. Flow
@@ -4362,6 +3977,7 @@ class CognitoIdentityProvider {
     AnalyticsConfigurationType? analyticsConfiguration,
     List<String>? callbackURLs,
     String? defaultRedirectURI,
+    bool? enableTokenRevocation,
     List<ExplicitAuthFlowsType>? explicitAuthFlows,
     bool? generateSecret,
     int? idTokenValidity,
@@ -4381,24 +3997,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientName',
-      clientName,
-      r'''[\w\s+=,.@-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4412,11 +4016,6 @@ class CognitoIdentityProvider {
       defaultRedirectURI,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'defaultRedirectURI',
-      defaultRedirectURI,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
     );
     _s.validateNumRange(
       'idTokenValidity',
@@ -4457,6 +4056,8 @@ class CognitoIdentityProvider {
         if (callbackURLs != null) 'CallbackURLs': callbackURLs,
         if (defaultRedirectURI != null)
           'DefaultRedirectURI': defaultRedirectURI,
+        if (enableTokenRevocation != null)
+          'EnableTokenRevocation': enableTokenRevocation,
         if (explicitAuthFlows != null)
           'ExplicitAuthFlows':
               explicitAuthFlows.map((e) => e.toValue()).toList(),
@@ -4517,24 +4118,12 @@ class CognitoIdentityProvider {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4558,7 +4147,7 @@ class CognitoIdentityProvider {
     return CreateUserPoolDomainResponse.fromJson(jsonResponse.body);
   }
 
-  /// Deletes a group. Currently only groups with no members can be deleted.
+  /// Deletes a group.
   ///
   /// Calling this action requires developer credentials.
   ///
@@ -4585,24 +4174,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4648,24 +4225,12 @@ class CognitoIdentityProvider {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'providerName',
-      providerName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4710,24 +4275,12 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identifier',
-      identifier,
-      r'''[\x21\x23-\x5B\x5D-\x7E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4764,12 +4317,6 @@ class CognitoIdentityProvider {
     required String accessToken,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteUser'
@@ -4811,12 +4358,6 @@ class CognitoIdentityProvider {
     required List<String> userAttributeNames,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userAttributeNames, 'userAttributeNames');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4855,12 +4396,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4904,24 +4439,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4965,24 +4488,12 @@ class CognitoIdentityProvider {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5027,24 +4538,12 @@ class CognitoIdentityProvider {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'providerName',
-      providerName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5092,24 +4591,12 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identifier',
-      identifier,
-      r'''[\x21\x23-\x5B\x5D-\x7E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5157,22 +4644,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientId',
       clientId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5219,24 +4695,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''import-[0-9a-zA-Z-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5279,12 +4743,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5331,24 +4789,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5388,12 +4834,6 @@ class CognitoIdentityProvider {
       domain,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5443,17 +4883,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ForgetDevice'
@@ -5482,6 +4911,27 @@ class CognitoIdentityProvider {
   /// <code>InvalidParameterException</code> is thrown. To use the confirmation
   /// code for resetting the password, call <a
   /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html">ConfirmForgotPassword</a>.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -5575,12 +5025,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
@@ -5589,22 +5033,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'secretHash',
       secretHash,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'secretHash',
-      secretHash,
-      r'''[\w+=/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5649,12 +5082,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5704,17 +5131,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetDevice'
@@ -5761,24 +5177,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5826,24 +5230,12 @@ class CognitoIdentityProvider {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'idpIdentifier',
-      idpIdentifier,
-      r'''[\w\s+=.@-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5883,12 +5275,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5938,22 +5324,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientId',
       clientId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5992,12 +5367,6 @@ class CognitoIdentityProvider {
     required String accessToken,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetUser'
@@ -6018,6 +5387,27 @@ class CognitoIdentityProvider {
 
   /// Gets the user attribute verification code for the specified attribute
   /// name.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -6089,24 +5479,12 @@ class CognitoIdentityProvider {
     Map<String, String>? clientMetadata,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeName, 'attributeName');
     _s.validateStringLength(
       'attributeName',
       attributeName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'attributeName',
-      attributeName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6151,12 +5529,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetUserPoolMfaConfig'
@@ -6194,12 +5566,6 @@ class CognitoIdentityProvider {
     required String accessToken,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GlobalSignOut'
@@ -6217,6 +5583,27 @@ class CognitoIdentityProvider {
   }
 
   /// Initiates the authentication flow.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -6413,12 +5800,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth'
@@ -6468,12 +5849,6 @@ class CognitoIdentityProvider {
     String? paginationToken,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -6485,11 +5860,6 @@ class CognitoIdentityProvider {
       paginationToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'paginationToken',
-      paginationToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6543,12 +5913,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -6560,11 +5924,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6615,12 +5974,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6632,11 +5985,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6687,12 +6035,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6704,11 +6046,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6756,12 +6093,6 @@ class CognitoIdentityProvider {
       resourceArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6821,22 +6152,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'paginationToken',
       paginationToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'paginationToken',
-      paginationToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6890,12 +6210,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6907,11 +6221,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6964,11 +6273,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7096,12 +6400,6 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'filter',
       filter,
@@ -7119,11 +6417,6 @@ class CognitoIdentityProvider {
       paginationToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'paginationToken',
-      paginationToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7183,24 +6476,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -7214,11 +6495,6 @@ class CognitoIdentityProvider {
       nextToken,
       1,
       1152921504606846976,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\S]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7243,6 +6519,27 @@ class CognitoIdentityProvider {
 
   /// Resends the confirmation (for confirmation of registration) to a specific
   /// user in the user pool.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -7333,12 +6630,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
@@ -7347,22 +6638,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'secretHash',
       secretHash,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'secretHash',
-      secretHash,
-      r'''[\w+=/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7388,6 +6668,27 @@ class CognitoIdentityProvider {
   }
 
   /// Responds to the authentication challenge.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -7455,6 +6756,11 @@ class CognitoIdentityProvider {
   /// <li>
   /// <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
   /// <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+  /// </li>
+  /// <li>
+  /// <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+  /// use the session value returned by <code>VerifySoftwareToken</code> in the
+  /// <code>Session</code> parameter.
   /// </li>
   /// </ul>
   ///
@@ -7529,12 +6835,6 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'session',
       session,
@@ -7564,6 +6864,64 @@ class CognitoIdentityProvider {
     );
 
     return RespondToAuthChallengeResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Revokes all of the access tokens generated by the specified refresh token.
+  /// After the token is revoked, you can not use the revoked token to access
+  /// Cognito authenticated APIs.
+  ///
+  /// May throw [TooManyRequestsException].
+  /// May throw [InternalErrorException].
+  /// May throw [UnauthorizedException].
+  /// May throw [InvalidParameterException].
+  /// May throw [UnsupportedOperationException].
+  /// May throw [UnsupportedTokenTypeException].
+  ///
+  /// Parameter [clientId] :
+  /// The client ID for the token that you want to revoke.
+  ///
+  /// Parameter [token] :
+  /// The token that you want to revoke.
+  ///
+  /// Parameter [clientSecret] :
+  /// The secret for the client ID. This is required only if the client ID has a
+  /// secret.
+  Future<void> revokeToken({
+    required String clientId,
+    required String token,
+    String? clientSecret,
+  }) async {
+    ArgumentError.checkNotNull(clientId, 'clientId');
+    _s.validateStringLength(
+      'clientId',
+      clientId,
+      1,
+      128,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(token, 'token');
+    _s.validateStringLength(
+      'clientSecret',
+      clientSecret,
+      1,
+      64,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AWSCognitoIdentityProviderService.RevokeToken'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ClientId': clientId,
+        'Token': token,
+        if (clientSecret != null) 'ClientSecret': clientSecret,
+      },
+    );
   }
 
   /// Configures actions on detected risks. To delete the risk configuration for
@@ -7620,22 +6978,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientId',
       clientId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7709,22 +7056,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientId',
       clientId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7781,12 +7117,6 @@ class CognitoIdentityProvider {
     SoftwareTokenMfaSettingsType? softwareTokenMfaSettings,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.SetUserMFAPreference'
@@ -7807,6 +7137,27 @@ class CognitoIdentityProvider {
   }
 
   /// Set the user pool multi-factor authentication (MFA) configuration.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [InvalidParameterException].
   /// May throw [TooManyRequestsException].
@@ -7820,7 +7171,11 @@ class CognitoIdentityProvider {
   /// The user pool ID.
   ///
   /// Parameter [mfaConfiguration] :
-  /// The MFA configuration. Valid values include:
+  /// The MFA configuration. Users who don't have an MFA factor set up won't be
+  /// able to sign-in if you set the MfaConfiguration value to ‘ON’. See <a
+  /// href="cognito/latest/developerguide/user-pool-settings-mfa.html">Adding
+  /// Multi-Factor Authentication (MFA) to a User Pool</a> to learn more. Valid
+  /// values include:
   ///
   /// <ul>
   /// <li>
@@ -7852,12 +7207,6 @@ class CognitoIdentityProvider {
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7909,12 +7258,6 @@ class CognitoIdentityProvider {
     required List<MFAOptionType> mFAOptions,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(mFAOptions, 'mFAOptions');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7935,6 +7278,27 @@ class CognitoIdentityProvider {
 
   /// Registers the user in the specified user pool and creates a user name,
   /// password, and user attributes.
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -8041,24 +7405,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
     _s.validateStringLength(
       'password',
       password,
       6,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\S]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(username, 'username');
@@ -8069,22 +7421,11 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'secretHash',
       secretHash,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'secretHash',
-      secretHash,
-      r'''[\w+=/]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8138,24 +7479,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''import-[0-9a-zA-Z-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8203,24 +7532,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''import-[0-9a-zA-Z-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8285,12 +7602,6 @@ class CognitoIdentityProvider {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8334,12 +7645,6 @@ class CognitoIdentityProvider {
       resourceArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -8401,19 +7706,7 @@ class CognitoIdentityProvider {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventId',
-      eventId,
-      r'''[\w+-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(feedbackToken, 'feedbackToken');
-    _s.validateStringPattern(
-      'feedbackToken',
-      feedbackToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(feedbackValue, 'feedbackValue');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
@@ -8423,24 +7716,12 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
     _s.validateStringLength(
       'username',
       username,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8490,24 +7771,12 @@ class CognitoIdentityProvider {
     DeviceRememberedStatusType? deviceRememberedStatus,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
     _s.validateStringLength(
       'deviceKey',
       deviceKey,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceKey',
-      deviceKey,
-      r'''[\w-]+_[0-9a-f-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8576,24 +7845,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -8613,11 +7870,6 @@ class CognitoIdentityProvider {
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=/,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8680,24 +7932,12 @@ class CognitoIdentityProvider {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'providerName',
-      providerName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8760,12 +8000,6 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identifier',
-      identifier,
-      r'''[\x21\x23-\x5B\x5D-\x7E]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -8774,24 +8008,12 @@ class CognitoIdentityProvider {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\w\s+=,.@-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8816,6 +8038,27 @@ class CognitoIdentityProvider {
   }
 
   /// Allows a user to update a specific attribute (one at a time).
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -8889,12 +8132,6 @@ class CognitoIdentityProvider {
     Map<String, String>? clientMetadata,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userAttributes, 'userAttributes');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8919,10 +8156,29 @@ class CognitoIdentityProvider {
   /// Updates the specified user pool with the specified attributes. You can get
   /// a list of the current user pool settings using <a
   /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
-  /// <important>
   /// If you don't provide a value for an attribute, it will be set to the
   /// default value.
-  /// </important>
+  /// <note>
+  /// This action might generate an SMS text message. Starting June 1, 2021,
+  /// U.S. telecom carriers require that you register an origination phone
+  /// number before you can send SMS messages to U.S. phone numbers. If you use
+  /// SMS text messages in Amazon Cognito, you must register a phone number with
+  /// <a href="https://console.aws.amazon.com/pinpoint/home/">Amazon
+  /// Pinpoint</a>. Cognito will use the the registered number automatically.
+  /// Otherwise, Cognito users that must receive SMS messages might be unable to
+  /// sign up, activate their accounts, or sign in.
+  ///
+  /// If you have never used SMS text messages with Amazon Cognito or any other
+  /// AWS service, Amazon SNS might place your account in SMS sandbox. In <i> <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+  /// mode</a> </i>, you’ll have limitations, such as sending messages to only
+  /// verified phone numbers. After testing in the sandbox environment, you can
+  /// move out of the SMS sandbox and into production. For more information, see
+  /// <a
+  /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html">
+  /// SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
+  /// Developer Guide</i>.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -8981,7 +8237,10 @@ class CognitoIdentityProvider {
   /// </li>
   /// <li>
   /// <code>ON</code> - MFA tokens are required for all user registrations. You
-  /// can only specify required when you are initially creating a user pool.
+  /// can only specify ON when you are initially creating a user pool. You can
+  /// use the <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html">SetUserPoolMfaConfig</a>
+  /// API operation to turn MFA "ON" for existing user pools.
   /// </li>
   /// <li>
   /// <code>OPTIONAL</code> - Users have the option when registering to create
@@ -9039,22 +8298,11 @@ class CognitoIdentityProvider {
       55,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'emailVerificationMessage',
       emailVerificationMessage,
       6,
       20000,
-    );
-    _s.validateStringPattern(
-      'emailVerificationMessage',
-      emailVerificationMessage,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*\{####\}[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]*''',
     );
     _s.validateStringLength(
       'emailVerificationSubject',
@@ -9062,32 +8310,17 @@ class CognitoIdentityProvider {
       1,
       140,
     );
-    _s.validateStringPattern(
-      'emailVerificationSubject',
-      emailVerificationSubject,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+''',
-    );
     _s.validateStringLength(
       'smsAuthenticationMessage',
       smsAuthenticationMessage,
       6,
       140,
     );
-    _s.validateStringPattern(
-      'smsAuthenticationMessage',
-      smsAuthenticationMessage,
-      r'''.*\{####\}.*''',
-    );
     _s.validateStringLength(
       'smsVerificationMessage',
       smsVerificationMessage,
       6,
       140,
-    );
-    _s.validateStringPattern(
-      'smsVerificationMessage',
-      smsVerificationMessage,
-      r'''.*\{####\}.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9140,6 +8373,9 @@ class CognitoIdentityProvider {
   /// If you don't provide a value for an attribute, it will be set to the
   /// default value.
   /// </important>
+  /// You can also use this operation to enable token revocation for user pool
+  /// clients. For more information about revoking tokens, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html">RevokeToken</a>.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidParameterException].
@@ -9247,6 +8483,11 @@ class CognitoIdentityProvider {
   ///
   /// App callback URLs such as myapp://example are also supported.
   ///
+  /// Parameter [enableTokenRevocation] :
+  /// Enables or disables token revocation. For more information about revoking
+  /// tokens, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html">RevokeToken</a>.
+  ///
   /// Parameter [explicitAuthFlows] :
   /// The authentication flows that are supported by the user pool clients. Flow
   /// names without the <code>ALLOW_</code> prefix are deprecated in favor of
@@ -9345,6 +8586,7 @@ class CognitoIdentityProvider {
     List<String>? callbackURLs,
     String? clientName,
     String? defaultRedirectURI,
+    bool? enableTokenRevocation,
     List<ExplicitAuthFlowsType>? explicitAuthFlows,
     int? idTokenValidity,
     List<String>? logoutURLs,
@@ -9363,24 +8605,12 @@ class CognitoIdentityProvider {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clientId',
-      clientId,
-      r'''[\w+]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -9395,21 +8625,11 @@ class CognitoIdentityProvider {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'clientName',
-      clientName,
-      r'''[\w\s+=,.@-]+''',
-    );
     _s.validateStringLength(
       'defaultRedirectURI',
       defaultRedirectURI,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'defaultRedirectURI',
-      defaultRedirectURI,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
     );
     _s.validateNumRange(
       'idTokenValidity',
@@ -9451,6 +8671,8 @@ class CognitoIdentityProvider {
         if (clientName != null) 'ClientName': clientName,
         if (defaultRedirectURI != null)
           'DefaultRedirectURI': defaultRedirectURI,
+        if (enableTokenRevocation != null)
+          'EnableTokenRevocation': enableTokenRevocation,
         if (explicitAuthFlows != null)
           'ExplicitAuthFlows':
               explicitAuthFlows.map((e) => e.toValue()).toList(),
@@ -9541,24 +8763,12 @@ class CognitoIdentityProvider {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
     _s.validateStringLength(
       'userPoolId',
       userPoolId,
       1,
       55,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userPoolId',
-      userPoolId,
-      r'''[\w-]+_[0-9a-zA-Z]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9626,17 +8836,6 @@ class CognitoIdentityProvider {
       6,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userCode',
-      userCode,
-      r'''[0-9]+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-    );
     _s.validateStringLength(
       'session',
       session,
@@ -9693,12 +8892,6 @@ class CognitoIdentityProvider {
     required String code,
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
-    _s.validateStringPattern(
-      'accessToken',
-      accessToken,
-      r'''[A-Za-z0-9-_=.]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeName, 'attributeName');
     _s.validateStringLength(
       'attributeName',
@@ -9707,24 +8900,12 @@ class CognitoIdentityProvider {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'attributeName',
-      attributeName,
-      r'''[\p{L}\p{M}\p{S}\p{N}\p{P}]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(code, 'code');
     _s.validateStringLength(
       'code',
       code,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'code',
-      code,
-      r'''[\S]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -10231,9 +9412,23 @@ class AdminInitiateAuthResponse {
   /// must be enabled to use this flow.
   /// </li>
   /// <li>
-  /// <code>NEW_PASSWORD_REQUIRED</code>: For users which are required to change
+  /// <code>NEW_PASSWORD_REQUIRED</code>: For users who are required to change
   /// their passwords after successful first login. This challenge should be
   /// passed with <code>NEW_PASSWORD</code> and any other required attributes.
+  /// </li>
+  /// <li>
+  /// <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
+  /// before they can sign-in. The MFA types enabled for the user pool will be
+  /// listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+  ///
+  /// To setup software token MFA, use the session returned here from
+  /// <code>InitiateAuth</code> as an input to
+  /// <code>AssociateSoftwareToken</code>, and use the session returned by
+  /// <code>VerifySoftwareToken</code> as an input to
+  /// <code>RespondToAuthChallenge</code> with challenge name
+  /// <code>MFA_SETUP</code> to complete sign-in. To setup SMS MFA, users will
+  /// need help from an administrator to add a phone number to their account and
+  /// then call <code>InitiateAuth</code> again to restart sign-in.
   /// </li>
   /// </ul>
   final ChallengeNameType? challengeName;
@@ -12774,9 +11969,6 @@ class IdentityProviderType {
   /// jwks_uri <i>if not available from discovery URL specified by oidc_issuer
   /// key</i>
   /// </li>
-  /// <li>
-  /// authorize_scopes
-  /// </li>
   /// </ul> </li>
   /// <li>
   /// For SAML providers:
@@ -12921,9 +12113,23 @@ class InitiateAuthResponse {
   /// <code>PASSWORD_VERIFIER</code>, but for devices only.
   /// </li>
   /// <li>
-  /// <code>NEW_PASSWORD_REQUIRED</code>: For users which are required to change
+  /// <code>NEW_PASSWORD_REQUIRED</code>: For users who are required to change
   /// their passwords after successful first login. This challenge should be
   /// passed with <code>NEW_PASSWORD</code> and any other required attributes.
+  /// </li>
+  /// <li>
+  /// <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
+  /// before they can sign-in. The MFA types enabled for the user pool will be
+  /// listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+  ///
+  /// To setup software token MFA, use the session returned here from
+  /// <code>InitiateAuth</code> as an input to
+  /// <code>AssociateSoftwareToken</code>, and use the session returned by
+  /// <code>VerifySoftwareToken</code> as an input to
+  /// <code>RespondToAuthChallenge</code> with challenge name
+  /// <code>MFA_SETUP</code> to complete sign-in. To setup SMS MFA, users will
+  /// need help from an administrator to add a phone number to their account and
+  /// then call <code>InitiateAuth</code> again to restart sign-in.
   /// </li>
   /// </ul>
   final ChallengeNameType? challengeName;
@@ -13952,6 +13158,13 @@ class RespondToAuthChallengeResponse {
   }
 }
 
+class RevokeTokenResponse {
+  RevokeTokenResponse();
+  factory RevokeTokenResponse.fromJson(Map<String, dynamic> _) {
+    return RevokeTokenResponse();
+  }
+}
+
 /// The risk configuration type.
 class RiskConfigurationType {
   /// The account takeover risk configuration object including the
@@ -14379,6 +13592,11 @@ class SmsConfigurationType {
   /// Cognito Management Console to create a role for SMS MFA, Cognito will create
   /// a role with the required permissions and a trust policy that demonstrates
   /// use of the <code>ExternalId</code>.
+  ///
+  /// For more information about the <code>ExternalId</code> of a role, see <a
+  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html">How
+  /// to use an external ID when granting access to your AWS resources to a third
+  /// party</a>
   final String? externalId;
 
   SmsConfigurationType({
@@ -15184,6 +14402,12 @@ class UserPoolClientType {
   /// App callback URLs such as myapp://example are also supported.
   final String? defaultRedirectURI;
 
+  /// Indicates whether token revocation is enabled for the user pool client. When
+  /// you create a new user pool client, token revocation is enabled by default.
+  /// For more information about revoking tokens, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html">RevokeToken</a>.
+  final bool? enableTokenRevocation;
+
   /// The authentication flows that are supported by the user pool clients. Flow
   /// names without the <code>ALLOW_</code> prefix are deprecated in favor of new
   /// names with the <code>ALLOW_</code> prefix. Note that values with
@@ -15288,6 +14512,7 @@ class UserPoolClientType {
     this.clientSecret,
     this.creationDate,
     this.defaultRedirectURI,
+    this.enableTokenRevocation,
     this.explicitAuthFlows,
     this.idTokenValidity,
     this.lastModifiedDate,
@@ -15326,6 +14551,7 @@ class UserPoolClientType {
       clientSecret: json['ClientSecret'] as String?,
       creationDate: timeStampFromJson(json['CreationDate']),
       defaultRedirectURI: json['DefaultRedirectURI'] as String?,
+      enableTokenRevocation: json['EnableTokenRevocation'] as bool?,
       explicitAuthFlows: (json['ExplicitAuthFlows'] as List?)
           ?.whereNotNull()
           .map((e) => (e as String).toExplicitAuthFlowsType())
@@ -15562,6 +14788,25 @@ class UserPoolType {
   final SmsConfigurationType? smsConfiguration;
 
   /// The reason why the SMS configuration cannot send the messages to your users.
+  ///
+  /// This message might include comma-separated values to describe why your SMS
+  /// configuration can't send messages to user pool end users.
+  ///
+  /// <ul>
+  /// <li>
+  /// InvalidSmsRoleAccessPolicyException - The IAM role which Cognito uses to
+  /// send SMS messages is not properly configured. For more information, see <a
+  /// href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html">SmsConfigurationType</a>.
+  /// </li>
+  /// <li>
+  /// SNSSandbox - The AWS account is in SNS Sandbox and messages won’t reach
+  /// unverified end users. This parameter won’t get populated with SNSSandbox if
+  /// the IAM user creating the user pool doesn’t have SNS permissions. To learn
+  /// how to move your AWS account out of the sandbox, see <a
+  /// href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html">Moving
+  /// out of the SMS sandbox</a>.
+  /// </li>
+  /// </ul>
   final String? smsConfigurationFailure;
 
   /// The contents of the SMS verification message.
@@ -16231,6 +15476,11 @@ class TooManyRequestsException extends _s.GenericAwsException {
       : super(type: type, code: 'TooManyRequestsException', message: message);
 }
 
+class UnauthorizedException extends _s.GenericAwsException {
+  UnauthorizedException({String? type, String? message})
+      : super(type: type, code: 'UnauthorizedException', message: message);
+}
+
 class UnexpectedLambdaException extends _s.GenericAwsException {
   UnexpectedLambdaException({String? type, String? message})
       : super(type: type, code: 'UnexpectedLambdaException', message: message);
@@ -16241,6 +15491,22 @@ class UnsupportedIdentityProviderException extends _s.GenericAwsException {
       : super(
             type: type,
             code: 'UnsupportedIdentityProviderException',
+            message: message);
+}
+
+class UnsupportedOperationException extends _s.GenericAwsException {
+  UnsupportedOperationException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'UnsupportedOperationException',
+            message: message);
+}
+
+class UnsupportedTokenTypeException extends _s.GenericAwsException {
+  UnsupportedTokenTypeException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'UnsupportedTokenTypeException',
             message: message);
 }
 
@@ -16351,10 +15617,16 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       TooManyFailedAttemptsException(type: type, message: message),
   'TooManyRequestsException': (type, message) =>
       TooManyRequestsException(type: type, message: message),
+  'UnauthorizedException': (type, message) =>
+      UnauthorizedException(type: type, message: message),
   'UnexpectedLambdaException': (type, message) =>
       UnexpectedLambdaException(type: type, message: message),
   'UnsupportedIdentityProviderException': (type, message) =>
       UnsupportedIdentityProviderException(type: type, message: message),
+  'UnsupportedOperationException': (type, message) =>
+      UnsupportedOperationException(type: type, message: message),
+  'UnsupportedTokenTypeException': (type, message) =>
+      UnsupportedTokenTypeException(type: type, message: message),
   'UnsupportedUserStateException': (type, message) =>
       UnsupportedUserStateException(type: type, message: message),
   'UserImportInProgressException': (type, message) =>

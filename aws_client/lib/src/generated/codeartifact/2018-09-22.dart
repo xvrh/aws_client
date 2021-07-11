@@ -21,11 +21,11 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// AWS CodeArtifact is a fully managed artifact repository compatible with
 /// language-native package managers and build tools such as npm, Apache Maven,
-/// NuGet, and pip. You can use CodeArtifact to share packages with development
-/// teams and pull packages. Packages can be pulled from both public and
-/// CodeArtifact repositories. You can also create an upstream relationship
-/// between a CodeArtifact repository and another repository, which effectively
-/// merges their contents from the point of view of a package manager client.
+/// and pip. You can use CodeArtifact to share packages with development teams
+/// and pull packages. Packages can be pulled from both public and CodeArtifact
+/// repositories. You can also create an upstream relationship between a
+/// CodeArtifact repository and another repository, which effectively merges
+/// their contents from the point of view of a package manager client.
 ///
 /// <b>AWS CodeArtifact Components</b>
 ///
@@ -39,9 +39,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// versions</a>, each of which maps to a set of assets, or files. Repositories
 /// are polyglot, so a single repository can contain packages of any supported
 /// type. Each repository exposes endpoints for fetching and publishing packages
-/// using tools like the <b> <code>npm</code> </b> CLI, the <b>
-/// <code>NuGet</code> </b> CLI, the Maven CLI (<b> <code>mvn</code> </b>), and
-/// <b> <code>pip</code> </b>.
+/// using tools like the <b> <code>npm</code> </b> CLI, the Maven CLI (<b>
+/// <code>mvn</code> </b>), and <b> <code>pip</code> </b>.
 /// </li>
 /// <li>
 /// <b>Domain</b>: Repositories are aggregated into a higher-level entity known
@@ -70,10 +69,8 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-npm.html">npm</a>,
 /// <a
 /// href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html">PyPI</a>,
-/// <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven">Maven</a>,
 /// and <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-nuget">NuGet</a>
+/// href="https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven">Maven</a>
 /// package formats.
 ///
 /// In CodeArtifact, a package consists of:
@@ -159,9 +156,9 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// that contains information about the requested domain.
 /// </li>
 /// <li>
-/// <code>DescribePackageVersion</code>: Returns a <code> <a
+/// <code>DescribePackageVersion</code>: Returns a <a
 /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html">PackageVersionDescription</a>
-/// </code> object that contains details about a package version.
+/// object that contains details about a package version.
 /// </li>
 /// <li>
 /// <code>DescribeRepository</code>: Returns a
@@ -210,9 +207,6 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// <li>
 /// <code>maven</code>
 /// </li>
-/// <li>
-/// <code>nuget</code>
-/// </li>
 /// </ul> </li>
 /// <li>
 /// <code>GetRepositoryPermissionsPolicy</code>: Returns the resource policy
@@ -247,22 +241,12 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// a domain.
 /// </li>
 /// <li>
-/// <code>ListTagsForResource</code>: Returns a list of the tags associated with
-/// a resource.
-/// </li>
-/// <li>
 /// <code>PutDomainPermissionsPolicy</code>: Attaches a resource policy to a
 /// domain.
 /// </li>
 /// <li>
 /// <code>PutRepositoryPermissionsPolicy</code>: Sets the resource policy on a
 /// repository that specifies permissions to access it.
-/// </li>
-/// <li>
-/// <code>TagResource</code>: Adds or updates tags for a resource.
-/// </li>
-/// <li>
-/// <code>UntagResource</code>: Removes a tag from a resource.
 /// </li>
 /// <li>
 /// <code>UpdatePackageVersionsStatus</code>: Updates the status of one or more
@@ -334,9 +318,6 @@ class CodeArtifact {
   /// <code>public:maven-commonsware</code> - for the CommonsWare Android
   /// repository.
   /// </li>
-  /// <li>
-  /// <code>public:nuget-org</code> - for the NuGet Gallery.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [repository] :
@@ -359,19 +340,7 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(externalConnection, 'externalConnection');
-    _s.validateStringPattern(
-      'externalConnection',
-      externalConnection,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-:]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -380,22 +349,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -449,9 +407,6 @@ class CodeArtifact {
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
   /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [package] :
@@ -493,10 +448,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [versionRevisions] :
@@ -536,24 +487,12 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationRepository',
-      destinationRepository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domain, 'domain');
     _s.validateStringLength(
       'domain',
       domain,
       2,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(format, 'format');
@@ -565,12 +504,6 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceRepository, 'sourceRepository');
     _s.validateStringLength(
       'sourceRepository',
@@ -579,33 +512,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'sourceRepository',
-      sourceRepository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'destination-repository': [destinationRepository],
@@ -693,22 +610,11 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'encryptionKey',
       encryptionKey,
       1,
       1011,
-    );
-    _s.validateStringPattern(
-      'encryptionKey',
-      encryptionKey,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -738,7 +644,7 @@ class CodeArtifact {
   /// May throw [ValidationException].
   ///
   /// Parameter [domain] :
-  /// The domain that contains the created repository.
+  /// The name of the domain that contains the created repository.
   ///
   /// Parameter [repository] :
   /// The name of the repository to create.
@@ -776,12 +682,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -790,33 +690,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''\P{C}+''',
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -866,22 +750,11 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -930,33 +803,17 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'policyRevision',
       policyRevision,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'policyRevision',
-      policyRevision,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -978,11 +835,10 @@ class CodeArtifact {
   /// version from your repository and be able to restore it later, set its
   /// status to <code>Archived</code>. Archived packages cannot be downloaded
   /// from a repository and don't show up with list package APIs (for example,
-  /// <code> <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">ListackageVersions</a>
-  /// </code>), but you can restore them using <code> <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html">UpdatePackageVersionsStatus</a>
-  /// </code>.
+  /// <a
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">ListackageVersions</a>),
+  /// but you can restore them using <a
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html">UpdatePackageVersionsStatus</a>.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ConflictException].
@@ -1006,9 +862,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   ///
@@ -1061,10 +914,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   Future<DeletePackageVersionsResult> deletePackageVersions({
     required String domain,
@@ -1084,12 +933,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -1097,12 +940,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(repository, 'repository');
@@ -1113,12 +950,6 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versions, 'versions');
     _s.validateStringLength(
       'domainOwner',
@@ -1126,21 +957,11 @@ class CodeArtifact {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1195,12 +1016,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -1209,22 +1024,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1289,12 +1093,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -1303,33 +1101,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'policyRevision',
       policyRevision,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'policyRevision',
-      policyRevision,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1348,9 +1130,8 @@ class CodeArtifact {
   }
 
   /// Returns a <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainDescription.html">
-  /// <code>DomainDescription</code> </a> object that contains information about
-  /// the requested domain.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainDescription.html">DomainDescription</a>
+  /// object that contains information about the requested domain.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -1376,22 +1157,11 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1408,9 +1178,8 @@ class CodeArtifact {
   }
 
   /// Returns a <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html">
-  /// <code>PackageVersionDescription</code> </a> object that contains
-  /// information about the requested package version.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html">PackageVersionDescription</a>
+  /// object that contains information about the requested package version.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ConflictException].
@@ -1436,9 +1205,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   ///
@@ -1471,10 +1237,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   Future<DescribePackageVersionResult> describePackageVersion({
     required String domain,
@@ -1493,12 +1255,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -1506,12 +1262,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(packageVersion, 'packageVersion');
@@ -1522,12 +1272,6 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'packageVersion',
-      packageVersion,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -1536,33 +1280,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1614,12 +1342,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -1628,22 +1350,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1698,19 +1409,7 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(externalConnection, 'externalConnection');
-    _s.validateStringPattern(
-      'externalConnection',
-      externalConnection,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-:]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -1719,22 +1418,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -1757,14 +1445,13 @@ class CodeArtifact {
   /// restored in your repository because its assets are deleted.
   ///
   /// To view all disposed package versions in a repository, use <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">
-  /// <code>ListPackageVersions</code> </a> and set the <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html#API_ListPackageVersions_RequestSyntax">
-  /// <code>status</code> </a> parameter to <code>Disposed</code>.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">ListPackageVersions</a>
+  /// and set the <a
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html#API_ListPackageVersions_RequestSyntax">status</a>
+  /// parameter to <code>Disposed</code>.
   ///
   /// To view information about a disposed package version, use <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html">
-  /// <code>DescribePackageVersion</code> </a>..
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html">DescribePackageVersion</a>.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ConflictException].
@@ -1789,9 +1476,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   ///
@@ -1845,10 +1529,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [versionRevisions] :
@@ -1872,12 +1552,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -1885,12 +1559,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(repository, 'repository');
@@ -1901,12 +1569,6 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versions, 'versions');
     _s.validateStringLength(
       'domainOwner',
@@ -1914,21 +1576,11 @@ class CodeArtifact {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2015,22 +1667,11 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateNumRange(
       'durationSeconds',
@@ -2086,22 +1727,11 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2133,8 +1763,8 @@ class CodeArtifact {
   /// The name of the requested asset.
   ///
   /// Parameter [domain] :
-  /// The domain that contains the repository that contains the package version
-  /// with the requested asset.
+  /// The name of the domain that contains the repository that contains the
+  /// package version with the requested asset.
   ///
   /// Parameter [format] :
   /// A format that specifies the type of the package version with the requested
@@ -2149,9 +1779,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   ///
@@ -2184,10 +1811,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [packageVersionRevision] :
@@ -2212,24 +1835,12 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'asset',
-      asset,
-      r'''\P{C}+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domain, 'domain');
     _s.validateStringLength(
       'domain',
       domain,
       2,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(format, 'format');
@@ -2241,24 +1852,12 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageVersion, 'packageVersion');
     _s.validateStringLength(
       'packageVersion',
       packageVersion,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'packageVersion',
-      packageVersion,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(repository, 'repository');
@@ -2269,22 +1868,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'namespace',
@@ -2292,21 +1880,11 @@ class CodeArtifact {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
-    );
     _s.validateStringLength(
       'packageVersionRevision',
       packageVersionRevision,
       1,
       50,
-    );
-    _s.validateStringPattern(
-      'packageVersionRevision',
-      packageVersionRevision,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'asset': [asset],
@@ -2369,9 +1947,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>
   /// </li>
-  /// <li>
-  /// <code>nuget</code>
-  /// </li>
   /// </ul>
   ///
   /// Parameter [package] :
@@ -2403,10 +1978,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   Future<GetPackageVersionReadmeResult> getPackageVersionReadme({
     required String domain,
@@ -2425,12 +1996,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -2438,12 +2003,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(packageVersion, 'packageVersion');
@@ -2454,12 +2013,6 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'packageVersion',
-      packageVersion,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -2468,33 +2021,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2528,9 +2065,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>
   /// </li>
-  /// <li>
-  /// <code>nuget</code>
-  /// </li>
   /// </ul>
   ///
   /// May throw [AccessDeniedException].
@@ -2556,9 +2090,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>
   /// </li>
-  /// <li>
-  /// <code>nuget</code>
-  /// </li>
   /// </ul>
   ///
   /// Parameter [repository] :
@@ -2581,12 +2112,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
@@ -2596,22 +2121,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2661,12 +2175,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -2675,22 +2183,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2707,11 +2204,11 @@ class CodeArtifact {
     return GetRepositoryPermissionsPolicyResult.fromJson(response);
   }
 
-  /// Returns a list of <code> <a
+  /// Returns a list of <a
   /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html">DomainSummary</a>
-  /// </code> objects for all domains owned by the AWS account that makes this
-  /// call. Each returned <code>DomainSummary</code> object contains information
-  /// about a domain.
+  /// objects for all domains owned by the AWS account that makes this call.
+  /// Each returned <code>DomainSummary</code> object contains information about
+  /// a domain.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -2740,11 +2237,6 @@ class CodeArtifact {
       1,
       2000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -2759,8 +2251,8 @@ class CodeArtifact {
   }
 
   /// Returns a list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html">
-  /// <code>AssetSummary</code> </a> objects for assets in a package version.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html">AssetSummary</a>
+  /// objects for assets in a package version.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -2786,9 +2278,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
   /// </li>
   /// </ul>
   ///
@@ -2825,10 +2314,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [nextToken] :
@@ -2853,12 +2338,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -2866,12 +2345,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(packageVersion, 'packageVersion');
@@ -2882,12 +2355,6 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'packageVersion',
-      packageVersion,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -2896,22 +2363,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -2925,21 +2381,11 @@ class CodeArtifact {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -2964,13 +2410,12 @@ class CodeArtifact {
 
   /// Returns the direct dependencies for a package version. The dependencies
   /// are returned as <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html">
-  /// <code>PackageDependency</code> </a> objects. CodeArtifact extracts the
-  /// dependencies for a package version from the metadata file for the package
-  /// format (for example, the <code>package.json</code> file for npm packages
-  /// and the <code>pom.xml</code> file for Maven). Any package version
-  /// dependencies that are not listed in the configuration file are not
-  /// returned.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html">PackageDependency</a>
+  /// objects. CodeArtifact extracts the dependencies for a package version from
+  /// the metadata file for the package format (for example, the
+  /// <code>package.json</code> file for npm packages and the
+  /// <code>pom.xml</code> file for Maven). Any package version dependencies
+  /// that are not listed in the configuration file are not returned.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -2979,8 +2424,8 @@ class CodeArtifact {
   /// May throw [ValidationException].
   ///
   /// Parameter [domain] :
-  /// The domain that contains the repository that contains the requested
-  /// package version dependencies.
+  /// The name of the domain that contains the repository that contains the
+  /// requested package version dependencies.
   ///
   /// Parameter [format] :
   /// The format of the package with the requested dependencies. The valid
@@ -2996,9 +2441,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
   /// </li>
   /// </ul>
   ///
@@ -3031,10 +2473,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [nextToken] :
@@ -3058,12 +2496,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -3071,12 +2503,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(packageVersion, 'packageVersion');
@@ -3087,12 +2513,6 @@ class CodeArtifact {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'packageVersion',
-      packageVersion,
-      r'''[^!#/\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -3101,22 +2521,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'namespace',
@@ -3124,21 +2533,11 @@ class CodeArtifact {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -3161,9 +2560,9 @@ class CodeArtifact {
   }
 
   /// Returns a list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html">
-  /// <code>PackageVersionSummary</code> </a> objects for package versions in a
-  /// repository that match the request parameters.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html">PackageVersionSummary</a>
+  /// objects for package versions in a repository that match the request
+  /// parameters.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -3188,9 +2587,6 @@ class CodeArtifact {
   /// <li>
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
   /// </li>
   /// </ul>
   ///
@@ -3221,10 +2617,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -3277,12 +2669,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -3290,12 +2676,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(repository, 'repository');
@@ -3306,22 +2686,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -3335,21 +2704,11 @@ class CodeArtifact {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -3374,9 +2733,8 @@ class CodeArtifact {
   }
 
   /// Returns a list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html">
-  /// <code>PackageSummary</code> </a> objects for packages in a repository that
-  /// match the request parameters.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html">PackageSummary</a>
+  /// objects for packages in a repository that match the request parameters.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -3385,8 +2743,8 @@ class CodeArtifact {
   /// May throw [ValidationException].
   ///
   /// Parameter [domain] :
-  /// The domain that contains the repository that contains the requested list
-  /// of packages.
+  /// The name of the domain that contains the repository that contains the
+  /// requested list of packages.
   ///
   /// Parameter [repository] :
   /// The name of the repository from which packages are to be listed.
@@ -3409,9 +2767,6 @@ class CodeArtifact {
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
   /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [maxResults] :
@@ -3430,10 +2785,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -3463,12 +2814,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -3477,22 +2822,11 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -3506,32 +2840,17 @@ class CodeArtifact {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       1,
       2000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     _s.validateStringLength(
       'packagePrefix',
       packagePrefix,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'packagePrefix',
-      packagePrefix,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -3554,10 +2873,10 @@ class CodeArtifact {
   }
 
   /// Returns a list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">
-  /// <code>RepositorySummary</code> </a> objects. Each
-  /// <code>RepositorySummary</code> contains information about a repository in
-  /// the specified AWS account and that matches the input parameters.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">RepositorySummary</a>
+  /// objects. Each <code>RepositorySummary</code> contains information about a
+  /// repository in the specified AWS account and that matches the input
+  /// parameters.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -3591,21 +2910,11 @@ class CodeArtifact {
       1,
       2000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     _s.validateStringLength(
       'repositoryPrefix',
       repositoryPrefix,
       2,
       100,
-    );
-    _s.validateStringPattern(
-      'repositoryPrefix',
-      repositoryPrefix,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -3623,10 +2932,9 @@ class CodeArtifact {
   }
 
   /// Returns a list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">
-  /// <code>RepositorySummary</code> </a> objects. Each
-  /// <code>RepositorySummary</code> contains information about a repository in
-  /// the specified domain and that matches the input parameters.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">RepositorySummary</a>
+  /// objects. Each <code>RepositorySummary</code> contains information about a
+  /// repository in the specified domain and that matches the input parameters.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -3671,33 +2979,17 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'administratorAccount',
       administratorAccount,
       12,
       12,
     );
-    _s.validateStringPattern(
-      'administratorAccount',
-      administratorAccount,
-      r'''[0-9]{12}''',
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -3711,21 +3003,11 @@ class CodeArtifact {
       1,
       2000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     _s.validateStringLength(
       'repositoryPrefix',
       repositoryPrefix,
       2,
       100,
-    );
-    _s.validateStringPattern(
-      'repositoryPrefix',
-      repositoryPrefix,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -3765,12 +3047,6 @@ class CodeArtifact {
       resourceArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''\S+''',
       isRequired: true,
     );
     final $query = <String, List<String>>{
@@ -3831,12 +3107,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyDocument, 'policyDocument');
     _s.validateStringLength(
       'policyDocument',
@@ -3851,21 +3121,11 @@ class CodeArtifact {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
-    );
     _s.validateStringLength(
       'policyRevision',
       policyRevision,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'policyRevision',
-      policyRevision,
-      r'''\S+''',
     );
     final $payload = <String, dynamic>{
       'domain': domain,
@@ -3934,12 +3194,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyDocument, 'policyDocument');
     _s.validateStringLength(
       'policyDocument',
@@ -3956,33 +3210,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     _s.validateStringLength(
       'policyRevision',
       policyRevision,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'policyRevision',
-      policyRevision,
-      r'''\S+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -4029,12 +3267,6 @@ class CodeArtifact {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -4076,12 +3308,6 @@ class CodeArtifact {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''\S+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -4108,8 +3334,8 @@ class CodeArtifact {
   /// May throw [ValidationException].
   ///
   /// Parameter [domain] :
-  /// The domain that contains the repository that contains the package versions
-  /// with a status to be updated.
+  /// The name of the domain that contains the repository that contains the
+  /// package versions with a status to be updated.
   ///
   /// Parameter [format] :
   /// A format that specifies the type of the package with the statuses to
@@ -4124,9 +3350,6 @@ class CodeArtifact {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   ///
@@ -4170,10 +3393,6 @@ class CodeArtifact {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   ///
   /// Parameter [versionRevisions] :
@@ -4200,12 +3419,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(package, 'package');
     _s.validateStringLength(
@@ -4213,12 +3426,6 @@ class CodeArtifact {
       package,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'package',
-      package,
-      r'''[^!#/\s]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(repository, 'repository');
@@ -4229,12 +3436,6 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetStatus, 'targetStatus');
     ArgumentError.checkNotNull(versions, 'versions');
     _s.validateStringLength(
@@ -4243,21 +3444,11 @@ class CodeArtifact {
       12,
       12,
     );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''[^!#/\s]+''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -4328,12 +3519,6 @@ class CodeArtifact {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domain',
-      domain,
-      r'''[a-z][a-z0-9\-]{0,48}[a-z0-9]''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repository, 'repository');
     _s.validateStringLength(
       'repository',
@@ -4342,33 +3527,17 @@ class CodeArtifact {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'repository',
-      repository,
-      r'''[A-Za-z0-9][A-Za-z0-9._\-]{1,99}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       1000,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''\P{C}+''',
-    );
     _s.validateStringLength(
       'domainOwner',
       domainOwner,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'domainOwner',
-      domainOwner,
-      r'''[0-9]{12}''',
     );
     final $query = <String, List<String>>{
       'domain': [domain],
@@ -4646,10 +3815,9 @@ class DescribeDomainResult {
 }
 
 class DescribePackageVersionResult {
-  /// A <code> <a
+  /// A <a
   /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html">PackageVersionDescription</a>
-  /// </code> object that contains information about the requested package
-  /// version.
+  /// object that contains information about the requested package version.
   final PackageVersionDescription packageVersion;
 
   DescribePackageVersionResult({
@@ -4844,9 +4012,8 @@ extension on String {
 
 /// Information about a domain, including its name, Amazon Resource Name (ARN),
 /// and status. The <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html">
-/// <code>ListDomains</code> </a> operation returns a list of
-/// <code>DomainSummary</code> objects.
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html">ListDomains</a>
+/// operation returns a list of <code>DomainSummary</code> objects.
 class DomainSummary {
   /// The ARN of the domain.
   final String? arn;
@@ -4991,9 +4158,6 @@ class GetPackageVersionReadmeResult {
   /// <li>
   /// <code>maven</code>
   /// </li>
-  /// <li>
-  /// <code>nuget</code>
-  /// </li>
   /// </ul>
   final PackageFormat? format;
 
@@ -5009,10 +4173,6 @@ class GetPackageVersionReadmeResult {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5140,9 +4300,9 @@ class LicenseInfo {
 }
 
 class ListDomainsResult {
-  /// The returned list of <code> <a
+  /// The returned list of <a
   /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainSummary.html">DomainSummary</a>
-  /// </code> objects.
+  /// objects.
   final List<DomainSummary>? domains;
 
   /// The token for the next set of results. Use the value returned in the
@@ -5166,8 +4326,8 @@ class ListDomainsResult {
 
 class ListPackageVersionAssetsResult {
   /// The returned list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html">
-  /// <code>AssetSummary</code> </a> objects.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html">AssetSummary</a>
+  /// objects.
   final List<AssetSummary>? assets;
 
   /// The format of the package that contains the returned package version assets.
@@ -5185,10 +4345,6 @@ class ListPackageVersionAssetsResult {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5234,8 +4390,8 @@ class ListPackageVersionAssetsResult {
 
 class ListPackageVersionDependenciesResult {
   /// The returned list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html">
-  /// <code>PackageDependency</code> </a> objects.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html">PackageDependency</a>
+  /// objects.
   final List<PackageDependency>? dependencies;
 
   /// A format that specifies the type of the package that contains the returned
@@ -5250,9 +4406,6 @@ class ListPackageVersionDependenciesResult {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   final PackageFormat? format;
@@ -5269,10 +4422,6 @@ class ListPackageVersionDependenciesResult {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5346,9 +4495,6 @@ class ListPackageVersionsResult {
   /// <li>
   /// <code>maven</code>
   /// </li>
-  /// <li>
-  /// <code>nuget</code>
-  /// </li>
   /// </ul>
   final PackageFormat? format;
 
@@ -5366,10 +4512,6 @@ class ListPackageVersionsResult {
   /// A Python package does not contain a corresponding component, so Python
   /// packages do not have a namespace.
   /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
-  /// packages do not have a namespace.
-  /// </li>
   /// </ul>
   final String? namespace;
 
@@ -5381,8 +4523,8 @@ class ListPackageVersionsResult {
   final String? package;
 
   /// The returned list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html">
-  /// <code>PackageVersionSummary</code> </a> objects.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html">PackageVersionSummary</a>
+  /// objects.
   final List<PackageVersionSummary>? versions;
 
   ListPackageVersionsResult({
@@ -5414,8 +4556,8 @@ class ListPackagesResult {
   final String? nextToken;
 
   /// The list of returned <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html">
-  /// <code>PackageSummary</code> </a> objects.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html">PackageSummary</a>
+  /// objects.
   final List<PackageSummary>? packages;
 
   ListPackagesResult({
@@ -5462,8 +4604,8 @@ class ListRepositoriesResult {
   final String? nextToken;
 
   /// The returned list of <a
-  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">
-  /// <code>RepositorySummary</code> </a> objects.
+  /// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html">RepositorySummary</a>
+  /// objects.
   final List<RepositorySummary>? repositories;
 
   ListRepositoriesResult({
@@ -5518,10 +4660,6 @@ class PackageDependency {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5591,9 +4729,8 @@ extension on String {
 }
 
 /// Details about a package, including its format, namespace, and name. The <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html">
-/// <code>ListPackages</code> </a> operation returns a list of
-/// <code>PackageSummary</code> objects.
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html">ListPackages</a>
+/// operation returns a list of <code>PackageSummary</code> objects.
 class PackageSummary {
   /// The format of the package. Valid values are:
   ///
@@ -5606,9 +4743,6 @@ class PackageSummary {
   /// </li>
   /// <li>
   /// <code>maven</code>
-  /// </li>
-  /// <li>
-  /// <code>nuget</code>
   /// </li>
   /// </ul>
   final PackageFormat? format;
@@ -5625,10 +4759,6 @@ class PackageSummary {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5673,9 +4803,6 @@ class PackageVersionDescription {
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
   /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
-  /// </li>
   /// </ul>
   final PackageFormat? format;
 
@@ -5697,10 +4824,6 @@ class PackageVersionDescription {
   /// </li>
   /// <li>
   /// A Python package does not contain a corresponding component, so Python
-  /// packages do not have a namespace.
-  /// </li>
-  /// <li>
-  /// A NuGet package does not contain a corresponding component, so NuGet
   /// packages do not have a namespace.
   /// </li>
   /// </ul>
@@ -5947,9 +5070,8 @@ extension on String {
 
 /// Details about a package version, including its status, version, and
 /// revision. The <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">
-/// <code>ListPackageVersions</code> </a> operation returns a list of
-/// <code>PackageVersionSummary</code> objects.
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html">ListPackageVersions</a>
+/// operation returns a list of <code>PackageVersionSummary</code> objects.
 class PackageVersionSummary {
   /// A string that contains the status of the package version. It can be one of
   /// the following:
@@ -6115,9 +5237,6 @@ class RepositoryExternalConnectionInfo {
   /// <code>maven</code>: A Maven package that contains compiled code in a
   /// distributable format, such as a JAR file.
   /// </li>
-  /// <li>
-  /// <code>nuget</code>: A NuGet package.
-  /// </li>
   /// </ul>
   final PackageFormat? packageFormat;
 
@@ -6141,9 +5260,8 @@ class RepositoryExternalConnectionInfo {
 
 /// Details about a repository, including its Amazon Resource Name (ARN),
 /// description, and domain information. The <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositories.html">
-/// <code>ListRepositories</code> </a> operation returns a list of
-/// <code>RepositorySummary</code> objects.
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositories.html">ListRepositories</a>
+/// operation returns a list of <code>RepositorySummary</code> objects.
 class RepositorySummary {
   /// The AWS account ID that manages the repository.
   final String? administratorAccount;
@@ -6339,10 +5457,9 @@ class UpdateRepositoryResult {
 
 /// Information about an upstream repository. A list of
 /// <code>UpstreamRepository</code> objects is an input parameter to <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html">
-/// <code>CreateRepository</code> </a> and <a
-/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html">
-/// <code>UpdateRepository</code> </a>.
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html">CreateRepository</a>
+/// and <a
+/// href="https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html">UpdateRepository</a>.
 class UpstreamRepository {
   /// The name of an upstream repository.
   final String repositoryName;

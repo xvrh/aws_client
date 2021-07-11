@@ -61,12 +61,6 @@ class MediaStoreData {
       900,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'path',
-      path,
-      r'''(?:[A-Za-z0-9_\.\-\~]+/){0,10}[A-Za-z0-9_\.\-\~]+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -94,12 +88,6 @@ class MediaStoreData {
       path,
       1,
       900,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'path',
-      path,
-      r'''(?:[A-Za-z0-9_\.\-\~]+/){0,10}[A-Za-z0-9_\.\-\~]+''',
       isRequired: true,
     );
     final response = await _protocol.sendRaw(
@@ -179,17 +167,6 @@ class MediaStoreData {
       900,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'path',
-      path,
-      r'''(?:[A-Za-z0-9_\.\-\~]+/){0,10}[A-Za-z0-9_\.\-\~]+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'range',
-      range,
-      r'''^bytes=(?:\d+\-\d*|\d*\-\d+)$''',
-    );
     final headers = <String, String>{
       if (range != null) 'Range': range.toString(),
     };
@@ -264,11 +241,6 @@ class MediaStoreData {
       path,
       0,
       900,
-    );
-    _s.validateStringPattern(
-      'path',
-      path,
-      r'''/?(?:[A-Za-z0-9_\.\-\~]+/){0,10}(?:[A-Za-z0-9_\.\-\~]+)?/?''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -367,17 +339,6 @@ class MediaStoreData {
       1,
       900,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'path',
-      path,
-      r'''(?:[A-Za-z0-9_\.\-\~]+/){0,10}[A-Za-z0-9_\.\-\~]+''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'contentType',
-      contentType,
-      r'''^[\w\-\/\.\+]{1,255}$''',
     );
     final headers = <String, String>{
       if (cacheControl != null) 'Cache-Control': cacheControl.toString(),

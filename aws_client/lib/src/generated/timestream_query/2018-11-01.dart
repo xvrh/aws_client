@@ -64,12 +64,6 @@ class TimestreamQuery {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'queryId',
-      queryId,
-      r'''[a-zA-Z0-9]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.CancelQuery'

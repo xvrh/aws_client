@@ -61,12 +61,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -91,6 +85,8 @@ class CloudSearch {
   /// May throw [BaseException].
   /// May throw [InternalException].
   /// May throw [LimitExceededException].
+  /// May throw [ResourceAlreadyExistsException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [domainName] :
   /// A name for the domain you are creating. Allowed characters are a-z
@@ -105,12 +101,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -154,12 +144,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AnalysisScheme'] = analysisScheme;
     $request['DomainName'] = domainName;
@@ -200,12 +184,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(expression, 'expression');
@@ -258,12 +236,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexField, 'indexField');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -308,12 +280,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suggester, 'suggester');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -356,24 +322,12 @@ class CloudSearch {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisSchemeName',
-      analysisSchemeName,
-      r'''[a-z][a-z0-9_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
       'domainName',
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -413,12 +367,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -462,24 +410,12 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expressionName, 'expressionName');
     _s.validateStringLength(
       'expressionName',
       expressionName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'expressionName',
-      expressionName,
-      r'''[a-z][a-z0-9_]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -525,24 +461,12 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexFieldName, 'indexFieldName');
     _s.validateStringLength(
       'indexFieldName',
       indexFieldName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexFieldName',
-      indexFieldName,
-      r'''([a-z][a-z0-9_]*\*?|\*[a-z0-9_]*)''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -586,24 +510,12 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suggesterName, 'suggesterName');
     _s.validateStringLength(
       'suggesterName',
       suggesterName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'suggesterName',
-      suggesterName,
-      r'''[a-z][a-z0-9_]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -661,12 +573,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     analysisSchemeNames?.also((arg) => $request['AnalysisSchemeNames'] = arg);
@@ -719,12 +625,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -771,12 +671,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -867,12 +761,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -928,12 +816,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -971,12 +853,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1025,12 +901,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1087,12 +957,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -1127,12 +991,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1203,12 +1061,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(multiAZ, 'multiAZ');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -1262,12 +1114,6 @@ class CloudSearch {
       28,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainEndpointOptions'] = domainEndpointOptions;
     $request['DomainName'] = domainName;
@@ -1310,12 +1156,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(scalingParameters, 'scalingParameters');
@@ -1361,12 +1201,6 @@ class CloudSearch {
       domainName,
       3,
       28,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''[a-z][a-z0-9\-]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -3272,6 +3106,10 @@ enum PartitionInstanceType {
   searchLarge,
   searchXlarge,
   search_2xlarge,
+  searchPreviousgenerationSmall,
+  searchPreviousgenerationLarge,
+  searchPreviousgenerationXlarge,
+  searchPreviousgeneration_2xlarge,
 }
 
 extension on PartitionInstanceType {
@@ -3303,6 +3141,14 @@ extension on PartitionInstanceType {
         return 'search.xlarge';
       case PartitionInstanceType.search_2xlarge:
         return 'search.2xlarge';
+      case PartitionInstanceType.searchPreviousgenerationSmall:
+        return 'search.previousgeneration.small';
+      case PartitionInstanceType.searchPreviousgenerationLarge:
+        return 'search.previousgeneration.large';
+      case PartitionInstanceType.searchPreviousgenerationXlarge:
+        return 'search.previousgeneration.xlarge';
+      case PartitionInstanceType.searchPreviousgeneration_2xlarge:
+        return 'search.previousgeneration.2xlarge';
     }
   }
 }
@@ -3336,6 +3182,14 @@ extension on String {
         return PartitionInstanceType.searchXlarge;
       case 'search.2xlarge':
         return PartitionInstanceType.search_2xlarge;
+      case 'search.previousgeneration.small':
+        return PartitionInstanceType.searchPreviousgenerationSmall;
+      case 'search.previousgeneration.large':
+        return PartitionInstanceType.searchPreviousgenerationLarge;
+      case 'search.previousgeneration.xlarge':
+        return PartitionInstanceType.searchPreviousgenerationXlarge;
+      case 'search.previousgeneration.2xlarge':
+        return PartitionInstanceType.searchPreviousgeneration_2xlarge;
     }
     throw Exception('$this is not known in enum PartitionInstanceType');
   }
@@ -3732,6 +3586,14 @@ class LimitExceededException extends _s.GenericAwsException {
       : super(type: type, code: 'LimitExceededException', message: message);
 }
 
+class ResourceAlreadyExistsException extends _s.GenericAwsException {
+  ResourceAlreadyExistsException({String? type, String? message})
+      : super(
+            type: type,
+            code: 'ResourceAlreadyExistsException',
+            message: message);
+}
+
 class ResourceNotFoundException extends _s.GenericAwsException {
   ResourceNotFoundException({String? type, String? message})
       : super(type: type, code: 'ResourceNotFoundException', message: message);
@@ -3753,6 +3615,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidTypeException(type: type, message: message),
   'LimitExceededException': (type, message) =>
       LimitExceededException(type: type, message: message),
+  'ResourceAlreadyExistsException': (type, message) =>
+      ResourceAlreadyExistsException(type: type, message: message),
   'ResourceNotFoundException': (type, message) =>
       ResourceNotFoundException(type: type, message: message),
   'ValidationException': (type, message) =>

@@ -77,12 +77,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
     _s.validateStringLength(
       'keyName',
@@ -91,19 +85,7 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'keyName',
-      keyName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(values, 'values');
     final $payload = <String, dynamic>{
       'KeyName': keyName,
@@ -150,6 +132,10 @@ class CustomerProfiles {
   /// specific type of encryption key is specified. It is used to encrypt all
   /// data before it is placed in permanent or semi-permanent storage.
   ///
+  /// Parameter [matching] :
+  /// The process of matching duplicate profiles. This process runs every
+  /// Saturday at 12AM.
+  ///
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<CreateDomainResponse> createDomain({
@@ -157,6 +143,7 @@ class CustomerProfiles {
     required String domainName,
     String? deadLetterQueueUrl,
     String? defaultEncryptionKey,
+    MatchingRequest? matching,
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(defaultExpirationDays, 'defaultExpirationDays');
@@ -173,12 +160,6 @@ class CustomerProfiles {
       domainName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -198,6 +179,7 @@ class CustomerProfiles {
       if (deadLetterQueueUrl != null) 'DeadLetterQueueUrl': deadLetterQueueUrl,
       if (defaultEncryptionKey != null)
         'DefaultEncryptionKey': defaultEncryptionKey,
+      if (matching != null) 'Matching': matching,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -227,7 +209,7 @@ class CustomerProfiles {
   /// A unique account number that you have given to the customer.
   ///
   /// Parameter [additionalInformation] :
-  /// Any additional information relevant to the customer's profile.
+  /// Any additional information relevant to the customer’s profile.
   ///
   /// Parameter [address] :
   /// A generic address associated with the customer that is not mailing,
@@ -252,7 +234,7 @@ class CustomerProfiles {
   /// The customer’s business phone number.
   ///
   /// Parameter [emailAddress] :
-  /// The customer's email address, which has not been specified as a personal
+  /// The customer’s email address, which has not been specified as a personal
   /// or business address.
   ///
   /// Parameter [firstName] :
@@ -283,7 +265,7 @@ class CustomerProfiles {
   /// The customer’s personal email address.
   ///
   /// Parameter [phoneNumber] :
-  /// The customer's phone number, which has not been specified as a mobile,
+  /// The customer’s phone number, which has not been specified as a mobile,
   /// home, or business number.
   ///
   /// Parameter [shippingAddress] :
@@ -318,12 +300,6 @@ class CustomerProfiles {
       domainName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -468,12 +444,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -498,7 +468,7 @@ class CustomerProfiles {
   /// The URI of the S3 bucket or any other type of data source.
   Future<DeleteIntegrationResponse> deleteIntegration({
     required String domainName,
-    String? uri,
+    required String uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -508,20 +478,16 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
+    ArgumentError.checkNotNull(uri, 'uri');
     _s.validateStringLength(
       'uri',
       uri,
       1,
       255,
+      isRequired: true,
     );
     final $payload = <String, dynamic>{
-      if (uri != null) 'Uri': uri,
+      'Uri': uri,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -559,19 +525,7 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ProfileId': profileId,
     };
@@ -617,12 +571,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
     _s.validateStringLength(
       'keyName',
@@ -631,19 +579,7 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'keyName',
-      keyName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(values, 'values');
     final $payload = <String, dynamic>{
       'KeyName': keyName,
@@ -693,12 +629,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
     _s.validateStringLength(
       'objectTypeName',
@@ -707,19 +637,7 @@ class CustomerProfiles {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         profileObjectUniqueKey, 'profileObjectUniqueKey');
     _s.validateStringLength(
@@ -772,24 +690,12 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
     _s.validateStringLength(
       'objectTypeName',
       objectTypeName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -811,7 +717,7 @@ class CustomerProfiles {
   /// May throw [InternalServerException].
   ///
   /// Parameter [domainName] :
-  /// A unique name for the domain.
+  /// The unique name of the domain.
   Future<GetDomainResponse> getDomain({
     required String domainName,
   }) async {
@@ -821,12 +727,6 @@ class CustomerProfiles {
       domainName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -853,7 +753,7 @@ class CustomerProfiles {
   /// The URI of the S3 bucket or any other type of data source.
   Future<GetIntegrationResponse> getIntegration({
     required String domainName,
-    String? uri,
+    required String uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -863,20 +763,16 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
+    ArgumentError.checkNotNull(uri, 'uri');
     _s.validateStringLength(
       'uri',
       uri,
       1,
       255,
+      isRequired: true,
     );
     final $payload = <String, dynamic>{
-      if (uri != null) 'Uri': uri,
+      'Uri': uri,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -885,6 +781,107 @@ class CustomerProfiles {
       exceptionFnMap: _exceptionFns,
     );
     return GetIntegrationResponse.fromJson(response);
+  }
+
+  /// This API is in preview release for Amazon Connect and subject to change.
+  ///
+  /// Before calling this API, use <a
+  /// href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html">CreateDomain</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html">UpdateDomain</a>
+  /// to enable identity resolution: set <code>Matching</code> to true.
+  ///
+  /// GetMatches returns potentially matching profiles, based on the results of
+  /// the latest run of a machine learning process.
+  /// <important>
+  /// Amazon Connect runs a batch process every Saturday at 12AM UTC to identify
+  /// matching profiles. The results are returned up to seven days after the
+  /// Saturday run.
+  /// </important>
+  /// Amazon Connect uses the following profile attributes to identify matches:
+  ///
+  /// <ul>
+  /// <li>
+  /// PhoneNumber
+  /// </li>
+  /// <li>
+  /// HomePhoneNumber
+  /// </li>
+  /// <li>
+  /// BusinessPhoneNumber
+  /// </li>
+  /// <li>
+  /// MobilePhoneNumber
+  /// </li>
+  /// <li>
+  /// EmailAddress
+  /// </li>
+  /// <li>
+  /// PersonalEmailAddress
+  /// </li>
+  /// <li>
+  /// BusinessEmailAddress
+  /// </li>
+  /// <li>
+  /// FullName
+  /// </li>
+  /// <li>
+  /// BusinessName
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [domainName] :
+  /// The unique name of the domain.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return per page.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results. Use the value returned in the
+  /// previous response in the next request to retrieve the next set of results.
+  Future<GetMatchesResponse> getMatches({
+    required String domainName,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(domainName, 'domainName');
+    _s.validateStringLength(
+      'domainName',
+      domainName,
+      1,
+      64,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      1024,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'max-results': [maxResults.toString()],
+      if (nextToken != null) 'next-token': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/domains/${Uri.encodeComponent(domainName)}/matches',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetMatchesResponse.fromJson(response);
   }
 
   /// Returns the object types for a specific domain.
@@ -912,24 +909,12 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
     _s.validateStringLength(
       'objectTypeName',
       objectTypeName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -966,12 +951,6 @@ class CustomerProfiles {
       templateId,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1115,12 +1094,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1220,12 +1193,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1290,12 +1257,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
     _s.validateStringLength(
       'objectTypeName',
@@ -1304,19 +1265,7 @@ class CustomerProfiles {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1369,12 +1318,6 @@ class CustomerProfiles {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:[a-z0-9]{1,10}:profile''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1382,6 +1325,100 @@ class CustomerProfiles {
       exceptionFnMap: _exceptionFns,
     );
     return ListTagsForResourceResponse.fromJson(response);
+  }
+
+  /// This API is in preview release for Amazon Connect and subject to change.
+  ///
+  /// Runs an AWS Lambda job that does the following:
+  /// <ol>
+  /// <li>
+  /// All the profileKeys in the <code>ProfileToBeMerged</code> will be moved to
+  /// the main profile.
+  /// </li>
+  /// <li>
+  /// All the objects in the <code>ProfileToBeMerged</code> will be moved to the
+  /// main profile.
+  /// </li>
+  /// <li>
+  /// All the <code>ProfileToBeMerged</code> will be deleted at the end.
+  /// </li>
+  /// <li>
+  /// All the profileKeys in the <code>ProfileIdsToBeMerged</code> will be moved
+  /// to the main profile.
+  /// </li>
+  /// <li>
+  /// Standard fields are merged as follows:
+  /// <ol>
+  /// <li>
+  /// Fields are always "union"-ed if there are no conflicts in standard fields
+  /// or attributeKeys.
+  /// </li>
+  /// <li>
+  /// When there are conflicting fields:
+  /// <ol>
+  /// <li>
+  /// If no <code>SourceProfileIds</code> entry is specified, the main Profile
+  /// value is always taken.
+  /// </li>
+  /// <li>
+  /// If a <code>SourceProfileIds</code> entry is specified, the specified
+  /// profileId is always taken, even if it is a NULL value.
+  /// </li> </ol> </li> </ol> </li> </ol>
+  /// You can use MergeProfiles together with <a
+  /// href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html">GetMatches</a>,
+  /// which returns potentially matching profiles, or use it with the results of
+  /// another matching system. After profiles have been merged, they cannot be
+  /// separated (unmerged).
+  ///
+  /// May throw [BadRequestException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InternalServerException].
+  ///
+  /// Parameter [domainName] :
+  /// The unique name of the domain.
+  ///
+  /// Parameter [mainProfileId] :
+  /// The identifier of the profile to be taken.
+  ///
+  /// Parameter [profileIdsToBeMerged] :
+  /// The identifier of the profile to be merged into MainProfileId.
+  ///
+  /// Parameter [fieldSourceProfileIds] :
+  /// The identifiers of the fields in the profile that has the information you
+  /// want to apply to the merge. For example, say you want to merge
+  /// EmailAddress from Profile1 into MainProfile. This would be the identifier
+  /// of the EmailAddress field in Profile1.
+  Future<MergeProfilesResponse> mergeProfiles({
+    required String domainName,
+    required String mainProfileId,
+    required List<String> profileIdsToBeMerged,
+    FieldSourceProfileIds? fieldSourceProfileIds,
+  }) async {
+    ArgumentError.checkNotNull(domainName, 'domainName');
+    _s.validateStringLength(
+      'domainName',
+      domainName,
+      1,
+      64,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(mainProfileId, 'mainProfileId');
+    ArgumentError.checkNotNull(profileIdsToBeMerged, 'profileIdsToBeMerged');
+    final $payload = <String, dynamic>{
+      'MainProfileId': mainProfileId,
+      'ProfileIdsToBeMerged': profileIdsToBeMerged,
+      if (fieldSourceProfileIds != null)
+        'FieldSourceProfileIds': fieldSourceProfileIds,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/domains/${Uri.encodeComponent(domainName)}/profiles/objects/merge',
+      exceptionFnMap: _exceptionFns,
+    );
+    return MergeProfilesResponse.fromJson(response);
   }
 
   /// Adds an integration between the service and a third-party service, which
@@ -1401,16 +1438,21 @@ class CustomerProfiles {
   /// Parameter [objectTypeName] :
   /// The name of the profile object type.
   ///
-  /// Parameter [uri] :
-  /// The URI of the S3 bucket or any other type of data source.
+  /// Parameter [flowDefinition] :
+  /// The configuration that controls how Customer Profiles retrieves data from
+  /// the source.
   ///
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
+  ///
+  /// Parameter [uri] :
+  /// The URI of the S3 bucket or any other type of data source.
   Future<PutIntegrationResponse> putIntegration({
     required String domainName,
     required String objectTypeName,
-    required String uri,
+    FlowDefinition? flowDefinition,
     Map<String, String>? tags,
+    String? uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
     _s.validateStringLength(
@@ -1418,12 +1460,6 @@ class CustomerProfiles {
       domainName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
@@ -1434,24 +1470,17 @@ class CustomerProfiles {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
-      isRequired: true,
-    );
-    ArgumentError.checkNotNull(uri, 'uri');
     _s.validateStringLength(
       'uri',
       uri,
       1,
       255,
-      isRequired: true,
     );
     final $payload = <String, dynamic>{
       'ObjectTypeName': objectTypeName,
-      'Uri': uri,
+      if (flowDefinition != null) 'FlowDefinition': flowDefinition,
       if (tags != null) 'Tags': tags,
+      if (uri != null) 'Uri': uri,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1504,12 +1533,6 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(object, 'object');
     _s.validateStringLength(
       'object',
@@ -1524,12 +1547,6 @@ class CustomerProfiles {
       objectTypeName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1617,24 +1634,12 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
     _s.validateStringLength(
       'objectTypeName',
       objectTypeName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'objectTypeName',
-      objectTypeName,
-      r'''^[a-zA-Z_][a-zA-Z_0-9-]*$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1654,11 +1659,6 @@ class CustomerProfiles {
       templateId,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''^[a-zA-Z0-9_-]+$''',
     );
     final $payload = <String, dynamic>{
       'Description': description,
@@ -1722,24 +1722,12 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
     _s.validateStringLength(
       'keyName',
       keyName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'keyName',
-      keyName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(values, 'values');
@@ -1812,12 +1800,6 @@ class CustomerProfiles {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:[a-z0-9]{1,10}:profile''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -1855,12 +1837,6 @@ class CustomerProfiles {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:[a-z0-9]{1,10}:profile''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1877,7 +1853,7 @@ class CustomerProfiles {
   /// Updates the properties of a domain, including creating or selecting a dead
   /// letter queue or an encryption key.
   ///
-  /// Once a domain is created, the name can’t be changed.
+  /// After a domain is created, the name can’t be changed.
   ///
   /// May throw [BadRequestException].
   /// May throw [ResourceNotFoundException].
@@ -1886,7 +1862,7 @@ class CustomerProfiles {
   /// May throw [InternalServerException].
   ///
   /// Parameter [domainName] :
-  /// The unique name for the domain.
+  /// The unique name of the domain.
   ///
   /// Parameter [deadLetterQueueUrl] :
   /// The URL of the SQS dead letter queue, which is used for reporting errors
@@ -1904,6 +1880,10 @@ class CustomerProfiles {
   /// Parameter [defaultExpirationDays] :
   /// The default number of days until the data within the domain expires.
   ///
+  /// Parameter [matching] :
+  /// The process of matching duplicate profiles. This process runs every
+  /// Saturday at 12AM.
+  ///
   /// Parameter [tags] :
   /// The tags used to organize, track, or control access for this resource.
   Future<UpdateDomainResponse> updateDomain({
@@ -1911,6 +1891,7 @@ class CustomerProfiles {
     String? deadLetterQueueUrl,
     String? defaultEncryptionKey,
     int? defaultExpirationDays,
+    MatchingRequest? matching,
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
@@ -1919,12 +1900,6 @@ class CustomerProfiles {
       domainName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1951,6 +1926,7 @@ class CustomerProfiles {
         'DefaultEncryptionKey': defaultEncryptionKey,
       if (defaultExpirationDays != null)
         'DefaultExpirationDays': defaultExpirationDays,
+      if (matching != null) 'Matching': matching,
       if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
@@ -1985,7 +1961,7 @@ class CustomerProfiles {
   /// A unique account number that you have given to the customer.
   ///
   /// Parameter [additionalInformation] :
-  /// Any additional information relevant to the customer's profile.
+  /// Any additional information relevant to the customer’s profile.
   ///
   /// Parameter [address] :
   /// A generic address associated with the customer that is not mailing,
@@ -2010,7 +1986,7 @@ class CustomerProfiles {
   /// The customer’s business phone number.
   ///
   /// Parameter [emailAddress] :
-  /// The customer's email address, which has not been specified as a personal
+  /// The customer’s email address, which has not been specified as a personal
   /// or business address.
   ///
   /// Parameter [firstName] :
@@ -2041,7 +2017,7 @@ class CustomerProfiles {
   /// The customer’s personal email address.
   ///
   /// Parameter [phoneNumber] :
-  /// The customer's phone number, which has not been specified as a mobile,
+  /// The customer’s phone number, which has not been specified as a mobile,
   /// home, or business number.
   ///
   /// Parameter [shippingAddress] :
@@ -2079,19 +2055,7 @@ class CustomerProfiles {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9_-]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringPattern(
-      'profileId',
-      profileId,
-      r'''[a-f0-9]{32}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'accountNumber',
       accountNumber,
@@ -2322,6 +2286,46 @@ class Address {
   }
 }
 
+/// The operation to be performed on the provided source fields.
+class ConnectorOperator {
+  /// The operation to be performed on the provided Marketo source fields.
+  final MarketoConnectorOperator? marketo;
+
+  /// The operation to be performed on the provided Amazon S3 source fields.
+  final S3ConnectorOperator? s3;
+
+  /// The operation to be performed on the provided Salesforce source fields.
+  final SalesforceConnectorOperator? salesforce;
+
+  /// The operation to be performed on the provided ServiceNow source fields.
+  final ServiceNowConnectorOperator? serviceNow;
+
+  /// The operation to be performed on the provided Zendesk source fields.
+  final ZendeskConnectorOperator? zendesk;
+
+  ConnectorOperator({
+    this.marketo,
+    this.s3,
+    this.salesforce,
+    this.serviceNow,
+    this.zendesk,
+  });
+  Map<String, dynamic> toJson() {
+    final marketo = this.marketo;
+    final s3 = this.s3;
+    final salesforce = this.salesforce;
+    final serviceNow = this.serviceNow;
+    final zendesk = this.zendesk;
+    return {
+      if (marketo != null) 'Marketo': marketo.toValue(),
+      if (s3 != null) 'S3': s3.toValue(),
+      if (salesforce != null) 'Salesforce': salesforce.toValue(),
+      if (serviceNow != null) 'ServiceNow': serviceNow.toValue(),
+      if (zendesk != null) 'Zendesk': zendesk.toValue(),
+    };
+  }
+}
+
 class CreateDomainResponse {
   /// The timestamp of when the domain was created.
   final DateTime createdAt;
@@ -2344,6 +2348,10 @@ class CreateDomainResponse {
   /// before it is placed in permanent or semi-permanent storage.
   final String? defaultEncryptionKey;
 
+  /// The process of matching duplicate profiles. This process runs every Saturday
+  /// at 12AM.
+  final MatchingResponse? matching;
+
   /// The tags used to organize, track, or control access for this resource.
   final Map<String, String>? tags;
 
@@ -2354,6 +2362,7 @@ class CreateDomainResponse {
     required this.lastUpdatedAt,
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
+    this.matching,
     this.tags,
   });
   factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
@@ -2365,6 +2374,9 @@ class CreateDomainResponse {
           nonNullableTimeStampFromJson(json['LastUpdatedAt'] as Object),
       deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
       defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
+      matching: json['Matching'] != null
+          ? MatchingResponse.fromJson(json['Matching'] as Map<String, dynamic>)
+          : null,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -2382,6 +2394,34 @@ class CreateProfileResponse {
     return CreateProfileResponse(
       profileId: json['ProfileId'] as String,
     );
+  }
+}
+
+enum DataPullMode {
+  incremental,
+  complete,
+}
+
+extension on DataPullMode {
+  String toValue() {
+    switch (this) {
+      case DataPullMode.incremental:
+        return 'Incremental';
+      case DataPullMode.complete:
+        return 'Complete';
+    }
+  }
+}
+
+extension on String {
+  DataPullMode toDataPullMode() {
+    switch (this) {
+      case 'Incremental':
+        return DataPullMode.incremental;
+      case 'Complete':
+        return DataPullMode.complete;
+    }
+    throw Exception('$this is not known in enum DataPullMode');
   }
 }
 
@@ -2545,6 +2585,198 @@ extension on String {
   }
 }
 
+/// A duplicate customer profile that is to be merged into a main profile.
+class FieldSourceProfileIds {
+  /// A unique identifier for the account number field to be merged.
+  final String? accountNumber;
+
+  /// A unique identifier for the additional information field to be merged.
+  final String? additionalInformation;
+
+  /// A unique identifier for the party type field to be merged.
+  final String? address;
+
+  /// A unique identifier for the attributes field to be merged.
+  final Map<String, String>? attributes;
+
+  /// A unique identifier for the billing type field to be merged.
+  final String? billingAddress;
+
+  /// A unique identifier for the birthdate field to be merged.
+  final String? birthDate;
+
+  /// A unique identifier for the party type field to be merged.
+  final String? businessEmailAddress;
+
+  /// A unique identifier for the business name field to be merged.
+  final String? businessName;
+
+  /// A unique identifier for the business phone number field to be merged.
+  final String? businessPhoneNumber;
+
+  /// A unique identifier for the email address field to be merged.
+  final String? emailAddress;
+
+  /// A unique identifier for the first name field to be merged.
+  final String? firstName;
+
+  /// A unique identifier for the gender field to be merged.
+  final String? gender;
+
+  /// A unique identifier for the home phone number field to be merged.
+  final String? homePhoneNumber;
+
+  /// A unique identifier for the last name field to be merged.
+  final String? lastName;
+
+  /// A unique identifier for the mailing address field to be merged.
+  final String? mailingAddress;
+
+  /// A unique identifier for the middle name field to be merged.
+  final String? middleName;
+
+  /// A unique identifier for the mobile phone number field to be merged.
+  final String? mobilePhoneNumber;
+
+  /// A unique identifier for the party type field to be merged.
+  final String? partyType;
+
+  /// A unique identifier for the personal email address field to be merged.
+  final String? personalEmailAddress;
+
+  /// A unique identifier for the phone number field to be merged.
+  final String? phoneNumber;
+
+  /// A unique identifier for the shipping address field to be merged.
+  final String? shippingAddress;
+
+  FieldSourceProfileIds({
+    this.accountNumber,
+    this.additionalInformation,
+    this.address,
+    this.attributes,
+    this.billingAddress,
+    this.birthDate,
+    this.businessEmailAddress,
+    this.businessName,
+    this.businessPhoneNumber,
+    this.emailAddress,
+    this.firstName,
+    this.gender,
+    this.homePhoneNumber,
+    this.lastName,
+    this.mailingAddress,
+    this.middleName,
+    this.mobilePhoneNumber,
+    this.partyType,
+    this.personalEmailAddress,
+    this.phoneNumber,
+    this.shippingAddress,
+  });
+  Map<String, dynamic> toJson() {
+    final accountNumber = this.accountNumber;
+    final additionalInformation = this.additionalInformation;
+    final address = this.address;
+    final attributes = this.attributes;
+    final billingAddress = this.billingAddress;
+    final birthDate = this.birthDate;
+    final businessEmailAddress = this.businessEmailAddress;
+    final businessName = this.businessName;
+    final businessPhoneNumber = this.businessPhoneNumber;
+    final emailAddress = this.emailAddress;
+    final firstName = this.firstName;
+    final gender = this.gender;
+    final homePhoneNumber = this.homePhoneNumber;
+    final lastName = this.lastName;
+    final mailingAddress = this.mailingAddress;
+    final middleName = this.middleName;
+    final mobilePhoneNumber = this.mobilePhoneNumber;
+    final partyType = this.partyType;
+    final personalEmailAddress = this.personalEmailAddress;
+    final phoneNumber = this.phoneNumber;
+    final shippingAddress = this.shippingAddress;
+    return {
+      if (accountNumber != null) 'AccountNumber': accountNumber,
+      if (additionalInformation != null)
+        'AdditionalInformation': additionalInformation,
+      if (address != null) 'Address': address,
+      if (attributes != null) 'Attributes': attributes,
+      if (billingAddress != null) 'BillingAddress': billingAddress,
+      if (birthDate != null) 'BirthDate': birthDate,
+      if (businessEmailAddress != null)
+        'BusinessEmailAddress': businessEmailAddress,
+      if (businessName != null) 'BusinessName': businessName,
+      if (businessPhoneNumber != null)
+        'BusinessPhoneNumber': businessPhoneNumber,
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (firstName != null) 'FirstName': firstName,
+      if (gender != null) 'Gender': gender,
+      if (homePhoneNumber != null) 'HomePhoneNumber': homePhoneNumber,
+      if (lastName != null) 'LastName': lastName,
+      if (mailingAddress != null) 'MailingAddress': mailingAddress,
+      if (middleName != null) 'MiddleName': middleName,
+      if (mobilePhoneNumber != null) 'MobilePhoneNumber': mobilePhoneNumber,
+      if (partyType != null) 'PartyType': partyType,
+      if (personalEmailAddress != null)
+        'PersonalEmailAddress': personalEmailAddress,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (shippingAddress != null) 'ShippingAddress': shippingAddress,
+    };
+  }
+}
+
+/// The configurations that control how Customer Profiles retrieves data from
+/// the source, Amazon AppFlow. Customer Profiles uses this information to
+/// create an AppFlow flow on behalf of customers.
+class FlowDefinition {
+  /// The specified name of the flow. Use underscores (_) or hyphens (-) only.
+  /// Spaces are not allowed.
+  final String flowName;
+
+  /// The Amazon Resource Name of the AWS Key Management Service (KMS) key you
+  /// provide for encryption.
+  final String kmsArn;
+
+  /// The configuration that controls how Customer Profiles retrieves data from
+  /// the source.
+  final SourceFlowConfig sourceFlowConfig;
+
+  /// A list of tasks that Customer Profiles performs while transferring the data
+  /// in the flow run.
+  final List<Task> tasks;
+
+  /// The trigger settings that determine how and when the flow runs.
+  final TriggerConfig triggerConfig;
+
+  /// A description of the flow you want to create.
+  final String? description;
+
+  FlowDefinition({
+    required this.flowName,
+    required this.kmsArn,
+    required this.sourceFlowConfig,
+    required this.tasks,
+    required this.triggerConfig,
+    this.description,
+  });
+  Map<String, dynamic> toJson() {
+    final flowName = this.flowName;
+    final kmsArn = this.kmsArn;
+    final sourceFlowConfig = this.sourceFlowConfig;
+    final tasks = this.tasks;
+    final triggerConfig = this.triggerConfig;
+    final description = this.description;
+    return {
+      'FlowName': flowName,
+      'KmsArn': kmsArn,
+      'SourceFlowConfig': sourceFlowConfig,
+      'Tasks': tasks,
+      'TriggerConfig': triggerConfig,
+      if (description != null) 'Description': description,
+    };
+  }
+}
+
 enum Gender {
   male,
   female,
@@ -2600,6 +2832,10 @@ class GetDomainResponse {
   /// The default number of days until the data within the domain expires.
   final int? defaultExpirationDays;
 
+  /// The process of matching duplicate profiles. This process runs every Saturday
+  /// at 12AM.
+  final MatchingResponse? matching;
+
   /// Usage-specific statistics about the domain.
   final DomainStats? stats;
 
@@ -2613,6 +2849,7 @@ class GetDomainResponse {
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
     this.defaultExpirationDays,
+    this.matching,
     this.stats,
     this.tags,
   });
@@ -2625,6 +2862,9 @@ class GetDomainResponse {
       deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
       defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
       defaultExpirationDays: json['DefaultExpirationDays'] as int?,
+      matching: json['Matching'] != null
+          ? MatchingResponse.fromJson(json['Matching'] as Map<String, dynamic>)
+          : null,
       stats: json['Stats'] != null
           ? DomainStats.fromJson(json['Stats'] as Map<String, dynamic>)
           : null,
@@ -2671,6 +2911,39 @@ class GetIntegrationResponse {
       uri: json['Uri'] as String,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
+class GetMatchesResponse {
+  /// The timestamp this version of Match Result generated.
+  final DateTime? matchGenerationDate;
+
+  /// The list of matched profiles for this instance.
+  final List<MatchItem>? matches;
+
+  /// If there are additional results, this is the token for the next set of
+  /// results.
+  final String? nextToken;
+
+  /// The number of potential matches found.
+  final int? potentialMatches;
+
+  GetMatchesResponse({
+    this.matchGenerationDate,
+    this.matches,
+    this.nextToken,
+    this.potentialMatches,
+  });
+  factory GetMatchesResponse.fromJson(Map<String, dynamic> json) {
+    return GetMatchesResponse(
+      matchGenerationDate: timeStampFromJson(json['MatchGenerationDate']),
+      matches: (json['Matches'] as List?)
+          ?.whereNotNull()
+          .map((e) => MatchItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      potentialMatches: json['PotentialMatches'] as int?,
     );
   }
 }
@@ -2800,6 +3073,25 @@ class GetProfileObjectTypeTemplateResponse {
       sourceObject: json['SourceObject'] as String?,
       templateId: json['TemplateId'] as String?,
     );
+  }
+}
+
+/// Specifies the configuration used when importing incremental records from the
+/// source.
+class IncrementalPullConfig {
+  /// A field that specifies the date time or timestamp field as the criteria to
+  /// use when importing incremental records from the source.
+  final String? datetimeTypeFieldName;
+
+  IncrementalPullConfig({
+    this.datetimeTypeFieldName,
+  });
+  Map<String, dynamic> toJson() {
+    final datetimeTypeFieldName = this.datetimeTypeFieldName;
+    return {
+      if (datetimeTypeFieldName != null)
+        'DatetimeTypeFieldName': datetimeTypeFieldName,
+    };
   }
 }
 
@@ -3116,6 +3408,188 @@ class ListTagsForResourceResponse {
   }
 }
 
+enum MarketoConnectorOperator {
+  projection,
+  lessThan,
+  greaterThan,
+  between,
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  maskAll,
+  maskFirstN,
+  maskLastN,
+  validateNonNull,
+  validateNonZero,
+  validateNonNegative,
+  validateNumeric,
+  noOp,
+}
+
+extension on MarketoConnectorOperator {
+  String toValue() {
+    switch (this) {
+      case MarketoConnectorOperator.projection:
+        return 'PROJECTION';
+      case MarketoConnectorOperator.lessThan:
+        return 'LESS_THAN';
+      case MarketoConnectorOperator.greaterThan:
+        return 'GREATER_THAN';
+      case MarketoConnectorOperator.between:
+        return 'BETWEEN';
+      case MarketoConnectorOperator.addition:
+        return 'ADDITION';
+      case MarketoConnectorOperator.multiplication:
+        return 'MULTIPLICATION';
+      case MarketoConnectorOperator.division:
+        return 'DIVISION';
+      case MarketoConnectorOperator.subtraction:
+        return 'SUBTRACTION';
+      case MarketoConnectorOperator.maskAll:
+        return 'MASK_ALL';
+      case MarketoConnectorOperator.maskFirstN:
+        return 'MASK_FIRST_N';
+      case MarketoConnectorOperator.maskLastN:
+        return 'MASK_LAST_N';
+      case MarketoConnectorOperator.validateNonNull:
+        return 'VALIDATE_NON_NULL';
+      case MarketoConnectorOperator.validateNonZero:
+        return 'VALIDATE_NON_ZERO';
+      case MarketoConnectorOperator.validateNonNegative:
+        return 'VALIDATE_NON_NEGATIVE';
+      case MarketoConnectorOperator.validateNumeric:
+        return 'VALIDATE_NUMERIC';
+      case MarketoConnectorOperator.noOp:
+        return 'NO_OP';
+    }
+  }
+}
+
+extension on String {
+  MarketoConnectorOperator toMarketoConnectorOperator() {
+    switch (this) {
+      case 'PROJECTION':
+        return MarketoConnectorOperator.projection;
+      case 'LESS_THAN':
+        return MarketoConnectorOperator.lessThan;
+      case 'GREATER_THAN':
+        return MarketoConnectorOperator.greaterThan;
+      case 'BETWEEN':
+        return MarketoConnectorOperator.between;
+      case 'ADDITION':
+        return MarketoConnectorOperator.addition;
+      case 'MULTIPLICATION':
+        return MarketoConnectorOperator.multiplication;
+      case 'DIVISION':
+        return MarketoConnectorOperator.division;
+      case 'SUBTRACTION':
+        return MarketoConnectorOperator.subtraction;
+      case 'MASK_ALL':
+        return MarketoConnectorOperator.maskAll;
+      case 'MASK_FIRST_N':
+        return MarketoConnectorOperator.maskFirstN;
+      case 'MASK_LAST_N':
+        return MarketoConnectorOperator.maskLastN;
+      case 'VALIDATE_NON_NULL':
+        return MarketoConnectorOperator.validateNonNull;
+      case 'VALIDATE_NON_ZERO':
+        return MarketoConnectorOperator.validateNonZero;
+      case 'VALIDATE_NON_NEGATIVE':
+        return MarketoConnectorOperator.validateNonNegative;
+      case 'VALIDATE_NUMERIC':
+        return MarketoConnectorOperator.validateNumeric;
+      case 'NO_OP':
+        return MarketoConnectorOperator.noOp;
+    }
+    throw Exception('$this is not known in enum MarketoConnectorOperator');
+  }
+}
+
+/// The properties that are applied when Marketo is being used as a source.
+class MarketoSourceProperties {
+  /// The object specified in the Marketo flow source.
+  final String object;
+
+  MarketoSourceProperties({
+    required this.object,
+  });
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    return {
+      'Object': object,
+    };
+  }
+}
+
+/// The Match group object.
+class MatchItem {
+  /// The unique identifiers for this group of profiles that match.
+  final String? matchId;
+
+  /// A list of identifiers for profiles that match.
+  final List<String>? profileIds;
+
+  MatchItem({
+    this.matchId,
+    this.profileIds,
+  });
+  factory MatchItem.fromJson(Map<String, dynamic> json) {
+    return MatchItem(
+      matchId: json['MatchId'] as String?,
+      profileIds: (json['ProfileIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+}
+
+/// The flag that enables the matching process of duplicate profiles.
+class MatchingRequest {
+  /// The flag that enables the matching process of duplicate profiles.
+  final bool enabled;
+
+  MatchingRequest({
+    required this.enabled,
+  });
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      'Enabled': enabled,
+    };
+  }
+}
+
+/// The flag that enables the matching process of duplicate profiles.
+class MatchingResponse {
+  /// The flag that enables the matching process of duplicate profiles.
+  final bool? enabled;
+
+  MatchingResponse({
+    this.enabled,
+  });
+  factory MatchingResponse.fromJson(Map<String, dynamic> json) {
+    return MatchingResponse(
+      enabled: json['Enabled'] as bool?,
+    );
+  }
+}
+
+class MergeProfilesResponse {
+  /// A message that indicates the merge request is complete.
+  final String? message;
+
+  MergeProfilesResponse({
+    this.message,
+  });
+  factory MergeProfilesResponse.fromJson(Map<String, dynamic> json) {
+    return MergeProfilesResponse(
+      message: json['Message'] as String?,
+    );
+  }
+}
+
 /// Represents a field in a ProfileObjectType.
 class ObjectTypeField {
   /// The content type of the field. Used for determining equality when searching.
@@ -3201,6 +3675,94 @@ class ObjectTypeKey {
   }
 }
 
+enum OperatorPropertiesKeys {
+  value,
+  $values,
+  dataType,
+  upperBound,
+  lowerBound,
+  sourceDataType,
+  destinationDataType,
+  validationAction,
+  maskValue,
+  maskLength,
+  truncateLength,
+  mathOperationFieldsOrder,
+  concatFormat,
+  subfieldCategoryMap,
+}
+
+extension on OperatorPropertiesKeys {
+  String toValue() {
+    switch (this) {
+      case OperatorPropertiesKeys.value:
+        return 'VALUE';
+      case OperatorPropertiesKeys.$values:
+        return 'VALUES';
+      case OperatorPropertiesKeys.dataType:
+        return 'DATA_TYPE';
+      case OperatorPropertiesKeys.upperBound:
+        return 'UPPER_BOUND';
+      case OperatorPropertiesKeys.lowerBound:
+        return 'LOWER_BOUND';
+      case OperatorPropertiesKeys.sourceDataType:
+        return 'SOURCE_DATA_TYPE';
+      case OperatorPropertiesKeys.destinationDataType:
+        return 'DESTINATION_DATA_TYPE';
+      case OperatorPropertiesKeys.validationAction:
+        return 'VALIDATION_ACTION';
+      case OperatorPropertiesKeys.maskValue:
+        return 'MASK_VALUE';
+      case OperatorPropertiesKeys.maskLength:
+        return 'MASK_LENGTH';
+      case OperatorPropertiesKeys.truncateLength:
+        return 'TRUNCATE_LENGTH';
+      case OperatorPropertiesKeys.mathOperationFieldsOrder:
+        return 'MATH_OPERATION_FIELDS_ORDER';
+      case OperatorPropertiesKeys.concatFormat:
+        return 'CONCAT_FORMAT';
+      case OperatorPropertiesKeys.subfieldCategoryMap:
+        return 'SUBFIELD_CATEGORY_MAP';
+    }
+  }
+}
+
+extension on String {
+  OperatorPropertiesKeys toOperatorPropertiesKeys() {
+    switch (this) {
+      case 'VALUE':
+        return OperatorPropertiesKeys.value;
+      case 'VALUES':
+        return OperatorPropertiesKeys.$values;
+      case 'DATA_TYPE':
+        return OperatorPropertiesKeys.dataType;
+      case 'UPPER_BOUND':
+        return OperatorPropertiesKeys.upperBound;
+      case 'LOWER_BOUND':
+        return OperatorPropertiesKeys.lowerBound;
+      case 'SOURCE_DATA_TYPE':
+        return OperatorPropertiesKeys.sourceDataType;
+      case 'DESTINATION_DATA_TYPE':
+        return OperatorPropertiesKeys.destinationDataType;
+      case 'VALIDATION_ACTION':
+        return OperatorPropertiesKeys.validationAction;
+      case 'MASK_VALUE':
+        return OperatorPropertiesKeys.maskValue;
+      case 'MASK_LENGTH':
+        return OperatorPropertiesKeys.maskLength;
+      case 'TRUNCATE_LENGTH':
+        return OperatorPropertiesKeys.truncateLength;
+      case 'MATH_OPERATION_FIELDS_ORDER':
+        return OperatorPropertiesKeys.mathOperationFieldsOrder;
+      case 'CONCAT_FORMAT':
+        return OperatorPropertiesKeys.concatFormat;
+      case 'SUBFIELD_CATEGORY_MAP':
+        return OperatorPropertiesKeys.subfieldCategoryMap;
+    }
+    throw Exception('$this is not known in enum OperatorPropertiesKeys');
+  }
+}
+
 enum PartyType {
   individual,
   business,
@@ -3239,7 +3801,7 @@ class Profile {
   /// A unique account number that you have given to the customer.
   final String? accountNumber;
 
-  /// Any additional information relevant to the customer's profile.
+  /// Any additional information relevant to the customer’s profile.
   final String? additionalInformation;
 
   /// A generic address associated with the customer that is not mailing,
@@ -3264,7 +3826,7 @@ class Profile {
   /// The customer’s home phone number.
   final String? businessPhoneNumber;
 
-  /// The customer's email address, which has not been specified as a personal or
+  /// The customer’s email address, which has not been specified as a personal or
   /// business address.
   final String? emailAddress;
 
@@ -3498,6 +4060,363 @@ class PutProfileObjectTypeResponse {
   }
 }
 
+enum S3ConnectorOperator {
+  projection,
+  lessThan,
+  greaterThan,
+  between,
+  lessThanOrEqualTo,
+  greaterThanOrEqualTo,
+  equalTo,
+  notEqualTo,
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  maskAll,
+  maskFirstN,
+  maskLastN,
+  validateNonNull,
+  validateNonZero,
+  validateNonNegative,
+  validateNumeric,
+  noOp,
+}
+
+extension on S3ConnectorOperator {
+  String toValue() {
+    switch (this) {
+      case S3ConnectorOperator.projection:
+        return 'PROJECTION';
+      case S3ConnectorOperator.lessThan:
+        return 'LESS_THAN';
+      case S3ConnectorOperator.greaterThan:
+        return 'GREATER_THAN';
+      case S3ConnectorOperator.between:
+        return 'BETWEEN';
+      case S3ConnectorOperator.lessThanOrEqualTo:
+        return 'LESS_THAN_OR_EQUAL_TO';
+      case S3ConnectorOperator.greaterThanOrEqualTo:
+        return 'GREATER_THAN_OR_EQUAL_TO';
+      case S3ConnectorOperator.equalTo:
+        return 'EQUAL_TO';
+      case S3ConnectorOperator.notEqualTo:
+        return 'NOT_EQUAL_TO';
+      case S3ConnectorOperator.addition:
+        return 'ADDITION';
+      case S3ConnectorOperator.multiplication:
+        return 'MULTIPLICATION';
+      case S3ConnectorOperator.division:
+        return 'DIVISION';
+      case S3ConnectorOperator.subtraction:
+        return 'SUBTRACTION';
+      case S3ConnectorOperator.maskAll:
+        return 'MASK_ALL';
+      case S3ConnectorOperator.maskFirstN:
+        return 'MASK_FIRST_N';
+      case S3ConnectorOperator.maskLastN:
+        return 'MASK_LAST_N';
+      case S3ConnectorOperator.validateNonNull:
+        return 'VALIDATE_NON_NULL';
+      case S3ConnectorOperator.validateNonZero:
+        return 'VALIDATE_NON_ZERO';
+      case S3ConnectorOperator.validateNonNegative:
+        return 'VALIDATE_NON_NEGATIVE';
+      case S3ConnectorOperator.validateNumeric:
+        return 'VALIDATE_NUMERIC';
+      case S3ConnectorOperator.noOp:
+        return 'NO_OP';
+    }
+  }
+}
+
+extension on String {
+  S3ConnectorOperator toS3ConnectorOperator() {
+    switch (this) {
+      case 'PROJECTION':
+        return S3ConnectorOperator.projection;
+      case 'LESS_THAN':
+        return S3ConnectorOperator.lessThan;
+      case 'GREATER_THAN':
+        return S3ConnectorOperator.greaterThan;
+      case 'BETWEEN':
+        return S3ConnectorOperator.between;
+      case 'LESS_THAN_OR_EQUAL_TO':
+        return S3ConnectorOperator.lessThanOrEqualTo;
+      case 'GREATER_THAN_OR_EQUAL_TO':
+        return S3ConnectorOperator.greaterThanOrEqualTo;
+      case 'EQUAL_TO':
+        return S3ConnectorOperator.equalTo;
+      case 'NOT_EQUAL_TO':
+        return S3ConnectorOperator.notEqualTo;
+      case 'ADDITION':
+        return S3ConnectorOperator.addition;
+      case 'MULTIPLICATION':
+        return S3ConnectorOperator.multiplication;
+      case 'DIVISION':
+        return S3ConnectorOperator.division;
+      case 'SUBTRACTION':
+        return S3ConnectorOperator.subtraction;
+      case 'MASK_ALL':
+        return S3ConnectorOperator.maskAll;
+      case 'MASK_FIRST_N':
+        return S3ConnectorOperator.maskFirstN;
+      case 'MASK_LAST_N':
+        return S3ConnectorOperator.maskLastN;
+      case 'VALIDATE_NON_NULL':
+        return S3ConnectorOperator.validateNonNull;
+      case 'VALIDATE_NON_ZERO':
+        return S3ConnectorOperator.validateNonZero;
+      case 'VALIDATE_NON_NEGATIVE':
+        return S3ConnectorOperator.validateNonNegative;
+      case 'VALIDATE_NUMERIC':
+        return S3ConnectorOperator.validateNumeric;
+      case 'NO_OP':
+        return S3ConnectorOperator.noOp;
+    }
+    throw Exception('$this is not known in enum S3ConnectorOperator');
+  }
+}
+
+/// The properties that are applied when Amazon S3 is being used as the flow
+/// source.
+class S3SourceProperties {
+  /// The Amazon S3 bucket name where the source files are stored.
+  final String bucketName;
+
+  /// The object key for the Amazon S3 bucket in which the source files are
+  /// stored.
+  final String? bucketPrefix;
+
+  S3SourceProperties({
+    required this.bucketName,
+    this.bucketPrefix,
+  });
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final bucketPrefix = this.bucketPrefix;
+    return {
+      'BucketName': bucketName,
+      if (bucketPrefix != null) 'BucketPrefix': bucketPrefix,
+    };
+  }
+}
+
+enum SalesforceConnectorOperator {
+  projection,
+  lessThan,
+  contains,
+  greaterThan,
+  between,
+  lessThanOrEqualTo,
+  greaterThanOrEqualTo,
+  equalTo,
+  notEqualTo,
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  maskAll,
+  maskFirstN,
+  maskLastN,
+  validateNonNull,
+  validateNonZero,
+  validateNonNegative,
+  validateNumeric,
+  noOp,
+}
+
+extension on SalesforceConnectorOperator {
+  String toValue() {
+    switch (this) {
+      case SalesforceConnectorOperator.projection:
+        return 'PROJECTION';
+      case SalesforceConnectorOperator.lessThan:
+        return 'LESS_THAN';
+      case SalesforceConnectorOperator.contains:
+        return 'CONTAINS';
+      case SalesforceConnectorOperator.greaterThan:
+        return 'GREATER_THAN';
+      case SalesforceConnectorOperator.between:
+        return 'BETWEEN';
+      case SalesforceConnectorOperator.lessThanOrEqualTo:
+        return 'LESS_THAN_OR_EQUAL_TO';
+      case SalesforceConnectorOperator.greaterThanOrEqualTo:
+        return 'GREATER_THAN_OR_EQUAL_TO';
+      case SalesforceConnectorOperator.equalTo:
+        return 'EQUAL_TO';
+      case SalesforceConnectorOperator.notEqualTo:
+        return 'NOT_EQUAL_TO';
+      case SalesforceConnectorOperator.addition:
+        return 'ADDITION';
+      case SalesforceConnectorOperator.multiplication:
+        return 'MULTIPLICATION';
+      case SalesforceConnectorOperator.division:
+        return 'DIVISION';
+      case SalesforceConnectorOperator.subtraction:
+        return 'SUBTRACTION';
+      case SalesforceConnectorOperator.maskAll:
+        return 'MASK_ALL';
+      case SalesforceConnectorOperator.maskFirstN:
+        return 'MASK_FIRST_N';
+      case SalesforceConnectorOperator.maskLastN:
+        return 'MASK_LAST_N';
+      case SalesforceConnectorOperator.validateNonNull:
+        return 'VALIDATE_NON_NULL';
+      case SalesforceConnectorOperator.validateNonZero:
+        return 'VALIDATE_NON_ZERO';
+      case SalesforceConnectorOperator.validateNonNegative:
+        return 'VALIDATE_NON_NEGATIVE';
+      case SalesforceConnectorOperator.validateNumeric:
+        return 'VALIDATE_NUMERIC';
+      case SalesforceConnectorOperator.noOp:
+        return 'NO_OP';
+    }
+  }
+}
+
+extension on String {
+  SalesforceConnectorOperator toSalesforceConnectorOperator() {
+    switch (this) {
+      case 'PROJECTION':
+        return SalesforceConnectorOperator.projection;
+      case 'LESS_THAN':
+        return SalesforceConnectorOperator.lessThan;
+      case 'CONTAINS':
+        return SalesforceConnectorOperator.contains;
+      case 'GREATER_THAN':
+        return SalesforceConnectorOperator.greaterThan;
+      case 'BETWEEN':
+        return SalesforceConnectorOperator.between;
+      case 'LESS_THAN_OR_EQUAL_TO':
+        return SalesforceConnectorOperator.lessThanOrEqualTo;
+      case 'GREATER_THAN_OR_EQUAL_TO':
+        return SalesforceConnectorOperator.greaterThanOrEqualTo;
+      case 'EQUAL_TO':
+        return SalesforceConnectorOperator.equalTo;
+      case 'NOT_EQUAL_TO':
+        return SalesforceConnectorOperator.notEqualTo;
+      case 'ADDITION':
+        return SalesforceConnectorOperator.addition;
+      case 'MULTIPLICATION':
+        return SalesforceConnectorOperator.multiplication;
+      case 'DIVISION':
+        return SalesforceConnectorOperator.division;
+      case 'SUBTRACTION':
+        return SalesforceConnectorOperator.subtraction;
+      case 'MASK_ALL':
+        return SalesforceConnectorOperator.maskAll;
+      case 'MASK_FIRST_N':
+        return SalesforceConnectorOperator.maskFirstN;
+      case 'MASK_LAST_N':
+        return SalesforceConnectorOperator.maskLastN;
+      case 'VALIDATE_NON_NULL':
+        return SalesforceConnectorOperator.validateNonNull;
+      case 'VALIDATE_NON_ZERO':
+        return SalesforceConnectorOperator.validateNonZero;
+      case 'VALIDATE_NON_NEGATIVE':
+        return SalesforceConnectorOperator.validateNonNegative;
+      case 'VALIDATE_NUMERIC':
+        return SalesforceConnectorOperator.validateNumeric;
+      case 'NO_OP':
+        return SalesforceConnectorOperator.noOp;
+    }
+    throw Exception('$this is not known in enum SalesforceConnectorOperator');
+  }
+}
+
+/// The properties that are applied when Salesforce is being used as a source.
+class SalesforceSourceProperties {
+  /// The object specified in the Salesforce flow source.
+  final String object;
+
+  /// The flag that enables dynamic fetching of new (recently added) fields in the
+  /// Salesforce objects while running a flow.
+  final bool? enableDynamicFieldUpdate;
+
+  /// Indicates whether Amazon AppFlow includes deleted files in the flow run.
+  final bool? includeDeletedRecords;
+
+  SalesforceSourceProperties({
+    required this.object,
+    this.enableDynamicFieldUpdate,
+    this.includeDeletedRecords,
+  });
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    final enableDynamicFieldUpdate = this.enableDynamicFieldUpdate;
+    final includeDeletedRecords = this.includeDeletedRecords;
+    return {
+      'Object': object,
+      if (enableDynamicFieldUpdate != null)
+        'EnableDynamicFieldUpdate': enableDynamicFieldUpdate,
+      if (includeDeletedRecords != null)
+        'IncludeDeletedRecords': includeDeletedRecords,
+    };
+  }
+}
+
+/// Specifies the configuration details of a scheduled-trigger flow that you
+/// define. Currently, these settings only apply to the scheduled-trigger type.
+class ScheduledTriggerProperties {
+  /// The scheduling expression that determines the rate at which the schedule
+  /// will run, for example rate (5 minutes).
+  final String scheduleExpression;
+
+  /// Specifies whether a scheduled flow has an incremental data transfer or a
+  /// complete data transfer for each flow run.
+  final DataPullMode? dataPullMode;
+
+  /// Specifies the date range for the records to import from the connector in the
+  /// first flow run.
+  final DateTime? firstExecutionFrom;
+
+  /// Specifies the scheduled end time for a scheduled-trigger flow.
+  final DateTime? scheduleEndTime;
+
+  /// Specifies the optional offset that is added to the time interval for a
+  /// schedule-triggered flow.
+  final int? scheduleOffset;
+
+  /// Specifies the scheduled start time for a scheduled-trigger flow.
+  final DateTime? scheduleStartTime;
+
+  /// Specifies the time zone used when referring to the date and time of a
+  /// scheduled-triggered flow, such as America/New_York.
+  final String? timezone;
+
+  ScheduledTriggerProperties({
+    required this.scheduleExpression,
+    this.dataPullMode,
+    this.firstExecutionFrom,
+    this.scheduleEndTime,
+    this.scheduleOffset,
+    this.scheduleStartTime,
+    this.timezone,
+  });
+  Map<String, dynamic> toJson() {
+    final scheduleExpression = this.scheduleExpression;
+    final dataPullMode = this.dataPullMode;
+    final firstExecutionFrom = this.firstExecutionFrom;
+    final scheduleEndTime = this.scheduleEndTime;
+    final scheduleOffset = this.scheduleOffset;
+    final scheduleStartTime = this.scheduleStartTime;
+    final timezone = this.timezone;
+    return {
+      'ScheduleExpression': scheduleExpression,
+      if (dataPullMode != null) 'DataPullMode': dataPullMode.toValue(),
+      if (firstExecutionFrom != null)
+        'FirstExecutionFrom': unixTimestampToJson(firstExecutionFrom),
+      if (scheduleEndTime != null)
+        'ScheduleEndTime': unixTimestampToJson(scheduleEndTime),
+      if (scheduleOffset != null) 'ScheduleOffset': scheduleOffset,
+      if (scheduleStartTime != null)
+        'ScheduleStartTime': unixTimestampToJson(scheduleStartTime),
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
+}
+
 class SearchProfilesResponse {
   /// The list of SearchProfiles instances.
   final List<Profile>? items;
@@ -3517,6 +4436,272 @@ class SearchProfilesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+}
+
+enum ServiceNowConnectorOperator {
+  projection,
+  contains,
+  lessThan,
+  greaterThan,
+  between,
+  lessThanOrEqualTo,
+  greaterThanOrEqualTo,
+  equalTo,
+  notEqualTo,
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  maskAll,
+  maskFirstN,
+  maskLastN,
+  validateNonNull,
+  validateNonZero,
+  validateNonNegative,
+  validateNumeric,
+  noOp,
+}
+
+extension on ServiceNowConnectorOperator {
+  String toValue() {
+    switch (this) {
+      case ServiceNowConnectorOperator.projection:
+        return 'PROJECTION';
+      case ServiceNowConnectorOperator.contains:
+        return 'CONTAINS';
+      case ServiceNowConnectorOperator.lessThan:
+        return 'LESS_THAN';
+      case ServiceNowConnectorOperator.greaterThan:
+        return 'GREATER_THAN';
+      case ServiceNowConnectorOperator.between:
+        return 'BETWEEN';
+      case ServiceNowConnectorOperator.lessThanOrEqualTo:
+        return 'LESS_THAN_OR_EQUAL_TO';
+      case ServiceNowConnectorOperator.greaterThanOrEqualTo:
+        return 'GREATER_THAN_OR_EQUAL_TO';
+      case ServiceNowConnectorOperator.equalTo:
+        return 'EQUAL_TO';
+      case ServiceNowConnectorOperator.notEqualTo:
+        return 'NOT_EQUAL_TO';
+      case ServiceNowConnectorOperator.addition:
+        return 'ADDITION';
+      case ServiceNowConnectorOperator.multiplication:
+        return 'MULTIPLICATION';
+      case ServiceNowConnectorOperator.division:
+        return 'DIVISION';
+      case ServiceNowConnectorOperator.subtraction:
+        return 'SUBTRACTION';
+      case ServiceNowConnectorOperator.maskAll:
+        return 'MASK_ALL';
+      case ServiceNowConnectorOperator.maskFirstN:
+        return 'MASK_FIRST_N';
+      case ServiceNowConnectorOperator.maskLastN:
+        return 'MASK_LAST_N';
+      case ServiceNowConnectorOperator.validateNonNull:
+        return 'VALIDATE_NON_NULL';
+      case ServiceNowConnectorOperator.validateNonZero:
+        return 'VALIDATE_NON_ZERO';
+      case ServiceNowConnectorOperator.validateNonNegative:
+        return 'VALIDATE_NON_NEGATIVE';
+      case ServiceNowConnectorOperator.validateNumeric:
+        return 'VALIDATE_NUMERIC';
+      case ServiceNowConnectorOperator.noOp:
+        return 'NO_OP';
+    }
+  }
+}
+
+extension on String {
+  ServiceNowConnectorOperator toServiceNowConnectorOperator() {
+    switch (this) {
+      case 'PROJECTION':
+        return ServiceNowConnectorOperator.projection;
+      case 'CONTAINS':
+        return ServiceNowConnectorOperator.contains;
+      case 'LESS_THAN':
+        return ServiceNowConnectorOperator.lessThan;
+      case 'GREATER_THAN':
+        return ServiceNowConnectorOperator.greaterThan;
+      case 'BETWEEN':
+        return ServiceNowConnectorOperator.between;
+      case 'LESS_THAN_OR_EQUAL_TO':
+        return ServiceNowConnectorOperator.lessThanOrEqualTo;
+      case 'GREATER_THAN_OR_EQUAL_TO':
+        return ServiceNowConnectorOperator.greaterThanOrEqualTo;
+      case 'EQUAL_TO':
+        return ServiceNowConnectorOperator.equalTo;
+      case 'NOT_EQUAL_TO':
+        return ServiceNowConnectorOperator.notEqualTo;
+      case 'ADDITION':
+        return ServiceNowConnectorOperator.addition;
+      case 'MULTIPLICATION':
+        return ServiceNowConnectorOperator.multiplication;
+      case 'DIVISION':
+        return ServiceNowConnectorOperator.division;
+      case 'SUBTRACTION':
+        return ServiceNowConnectorOperator.subtraction;
+      case 'MASK_ALL':
+        return ServiceNowConnectorOperator.maskAll;
+      case 'MASK_FIRST_N':
+        return ServiceNowConnectorOperator.maskFirstN;
+      case 'MASK_LAST_N':
+        return ServiceNowConnectorOperator.maskLastN;
+      case 'VALIDATE_NON_NULL':
+        return ServiceNowConnectorOperator.validateNonNull;
+      case 'VALIDATE_NON_ZERO':
+        return ServiceNowConnectorOperator.validateNonZero;
+      case 'VALIDATE_NON_NEGATIVE':
+        return ServiceNowConnectorOperator.validateNonNegative;
+      case 'VALIDATE_NUMERIC':
+        return ServiceNowConnectorOperator.validateNumeric;
+      case 'NO_OP':
+        return ServiceNowConnectorOperator.noOp;
+    }
+    throw Exception('$this is not known in enum ServiceNowConnectorOperator');
+  }
+}
+
+/// The properties that are applied when ServiceNow is being used as a source.
+class ServiceNowSourceProperties {
+  /// The object specified in the ServiceNow flow source.
+  final String object;
+
+  ServiceNowSourceProperties({
+    required this.object,
+  });
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    return {
+      'Object': object,
+    };
+  }
+}
+
+/// Specifies the information that is required to query a particular Amazon
+/// AppFlow connector. Customer Profiles supports Salesforce, Zendesk, Marketo,
+/// ServiceNow and Amazon S3.
+class SourceConnectorProperties {
+  /// The properties that are applied when Marketo is being used as a source.
+  final MarketoSourceProperties? marketo;
+
+  /// The properties that are applied when Amazon S3 is being used as the flow
+  /// source.
+  final S3SourceProperties? s3;
+
+  /// The properties that are applied when Salesforce is being used as a source.
+  final SalesforceSourceProperties? salesforce;
+
+  /// The properties that are applied when ServiceNow is being used as a source.
+  final ServiceNowSourceProperties? serviceNow;
+
+  /// The properties that are applied when using Zendesk as a flow source.
+  final ZendeskSourceProperties? zendesk;
+
+  SourceConnectorProperties({
+    this.marketo,
+    this.s3,
+    this.salesforce,
+    this.serviceNow,
+    this.zendesk,
+  });
+  Map<String, dynamic> toJson() {
+    final marketo = this.marketo;
+    final s3 = this.s3;
+    final salesforce = this.salesforce;
+    final serviceNow = this.serviceNow;
+    final zendesk = this.zendesk;
+    return {
+      if (marketo != null) 'Marketo': marketo,
+      if (s3 != null) 'S3': s3,
+      if (salesforce != null) 'Salesforce': salesforce,
+      if (serviceNow != null) 'ServiceNow': serviceNow,
+      if (zendesk != null) 'Zendesk': zendesk,
+    };
+  }
+}
+
+enum SourceConnectorType {
+  salesforce,
+  marketo,
+  zendesk,
+  servicenow,
+  s3,
+}
+
+extension on SourceConnectorType {
+  String toValue() {
+    switch (this) {
+      case SourceConnectorType.salesforce:
+        return 'Salesforce';
+      case SourceConnectorType.marketo:
+        return 'Marketo';
+      case SourceConnectorType.zendesk:
+        return 'Zendesk';
+      case SourceConnectorType.servicenow:
+        return 'Servicenow';
+      case SourceConnectorType.s3:
+        return 'S3';
+    }
+  }
+}
+
+extension on String {
+  SourceConnectorType toSourceConnectorType() {
+    switch (this) {
+      case 'Salesforce':
+        return SourceConnectorType.salesforce;
+      case 'Marketo':
+        return SourceConnectorType.marketo;
+      case 'Zendesk':
+        return SourceConnectorType.zendesk;
+      case 'Servicenow':
+        return SourceConnectorType.servicenow;
+      case 'S3':
+        return SourceConnectorType.s3;
+    }
+    throw Exception('$this is not known in enum SourceConnectorType');
+  }
+}
+
+/// Contains information about the configuration of the source connector used in
+/// the flow.
+class SourceFlowConfig {
+  /// The type of connector, such as Salesforce, Marketo, and so on.
+  final SourceConnectorType connectorType;
+
+  /// Specifies the information that is required to query a particular source
+  /// connector.
+  final SourceConnectorProperties sourceConnectorProperties;
+
+  /// The name of the AppFlow connector profile. This name must be unique for each
+  /// connector profile in the AWS account.
+  final String? connectorProfileName;
+
+  /// Defines the configuration for a scheduled incremental data pull. If a valid
+  /// configuration is provided, the fields specified in the configuration are
+  /// used when querying for the incremental data pull.
+  final IncrementalPullConfig? incrementalPullConfig;
+
+  SourceFlowConfig({
+    required this.connectorType,
+    required this.sourceConnectorProperties,
+    this.connectorProfileName,
+    this.incrementalPullConfig,
+  });
+  Map<String, dynamic> toJson() {
+    final connectorType = this.connectorType;
+    final sourceConnectorProperties = this.sourceConnectorProperties;
+    final connectorProfileName = this.connectorProfileName;
+    final incrementalPullConfig = this.incrementalPullConfig;
+    return {
+      'ConnectorType': connectorType.toValue(),
+      'SourceConnectorProperties': sourceConnectorProperties,
+      if (connectorProfileName != null)
+        'ConnectorProfileName': connectorProfileName,
+      if (incrementalPullConfig != null)
+        'IncrementalPullConfig': incrementalPullConfig,
+    };
   }
 }
 
@@ -3567,6 +4752,179 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+}
+
+/// A class for modeling different type of tasks. Task implementation varies
+/// based on the TaskType.
+class Task {
+  /// The source fields to which a particular task is applied.
+  final List<String> sourceFields;
+
+  /// Specifies the particular task implementation that Amazon AppFlow performs.
+  final TaskType taskType;
+
+  /// The operation to be performed on the provided source fields.
+  final ConnectorOperator? connectorOperator;
+
+  /// A field in a destination connector, or a field value against which Amazon
+  /// AppFlow validates a source field.
+  final String? destinationField;
+
+  /// A map used to store task-related information. The service looks for
+  /// particular information based on the TaskType.
+  final Map<OperatorPropertiesKeys, String>? taskProperties;
+
+  Task({
+    required this.sourceFields,
+    required this.taskType,
+    this.connectorOperator,
+    this.destinationField,
+    this.taskProperties,
+  });
+  Map<String, dynamic> toJson() {
+    final sourceFields = this.sourceFields;
+    final taskType = this.taskType;
+    final connectorOperator = this.connectorOperator;
+    final destinationField = this.destinationField;
+    final taskProperties = this.taskProperties;
+    return {
+      'SourceFields': sourceFields,
+      'TaskType': taskType.toValue(),
+      if (connectorOperator != null) 'ConnectorOperator': connectorOperator,
+      if (destinationField != null) 'DestinationField': destinationField,
+      if (taskProperties != null)
+        'TaskProperties':
+            taskProperties.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
+}
+
+enum TaskType {
+  arithmetic,
+  filter,
+  map,
+  mask,
+  merge,
+  truncate,
+  validate,
+}
+
+extension on TaskType {
+  String toValue() {
+    switch (this) {
+      case TaskType.arithmetic:
+        return 'Arithmetic';
+      case TaskType.filter:
+        return 'Filter';
+      case TaskType.map:
+        return 'Map';
+      case TaskType.mask:
+        return 'Mask';
+      case TaskType.merge:
+        return 'Merge';
+      case TaskType.truncate:
+        return 'Truncate';
+      case TaskType.validate:
+        return 'Validate';
+    }
+  }
+}
+
+extension on String {
+  TaskType toTaskType() {
+    switch (this) {
+      case 'Arithmetic':
+        return TaskType.arithmetic;
+      case 'Filter':
+        return TaskType.filter;
+      case 'Map':
+        return TaskType.map;
+      case 'Mask':
+        return TaskType.mask;
+      case 'Merge':
+        return TaskType.merge;
+      case 'Truncate':
+        return TaskType.truncate;
+      case 'Validate':
+        return TaskType.validate;
+    }
+    throw Exception('$this is not known in enum TaskType');
+  }
+}
+
+/// The trigger settings that determine how and when Amazon AppFlow runs the
+/// specified flow.
+class TriggerConfig {
+  /// Specifies the type of flow trigger. It can be OnDemand, Scheduled, or Event.
+  final TriggerType triggerType;
+
+  /// Specifies the configuration details of a schedule-triggered flow that you
+  /// define. Currently, these settings only apply to the Scheduled trigger type.
+  final TriggerProperties? triggerProperties;
+
+  TriggerConfig({
+    required this.triggerType,
+    this.triggerProperties,
+  });
+  Map<String, dynamic> toJson() {
+    final triggerType = this.triggerType;
+    final triggerProperties = this.triggerProperties;
+    return {
+      'TriggerType': triggerType.toValue(),
+      if (triggerProperties != null) 'TriggerProperties': triggerProperties,
+    };
+  }
+}
+
+/// Specifies the configuration details that control the trigger for a flow.
+/// Currently, these settings only apply to the Scheduled trigger type.
+class TriggerProperties {
+  /// Specifies the configuration details of a schedule-triggered flow that you
+  /// define.
+  final ScheduledTriggerProperties? scheduled;
+
+  TriggerProperties({
+    this.scheduled,
+  });
+  Map<String, dynamic> toJson() {
+    final scheduled = this.scheduled;
+    return {
+      if (scheduled != null) 'Scheduled': scheduled,
+    };
+  }
+}
+
+enum TriggerType {
+  scheduled,
+  event,
+  onDemand,
+}
+
+extension on TriggerType {
+  String toValue() {
+    switch (this) {
+      case TriggerType.scheduled:
+        return 'Scheduled';
+      case TriggerType.event:
+        return 'Event';
+      case TriggerType.onDemand:
+        return 'OnDemand';
+    }
+  }
+}
+
+extension on String {
+  TriggerType toTriggerType() {
+    switch (this) {
+      case 'Scheduled':
+        return TriggerType.scheduled;
+      case 'Event':
+        return TriggerType.event;
+      case 'OnDemand':
+        return TriggerType.onDemand;
+    }
+    throw Exception('$this is not known in enum TriggerType');
   }
 }
 
@@ -3651,7 +5009,7 @@ class UpdateDomainResponse {
   /// The timestamp of when the domain was created.
   final DateTime createdAt;
 
-  /// The unique name for the domain.
+  /// The unique name of the domain.
   final String domainName;
 
   /// The timestamp of when the domain was most recently edited.
@@ -3669,6 +5027,10 @@ class UpdateDomainResponse {
   /// The default number of days until the data within the domain expires.
   final int? defaultExpirationDays;
 
+  /// The process of matching duplicate profiles. This process runs every Saturday
+  /// at 12AM.
+  final MatchingResponse? matching;
+
   /// The tags used to organize, track, or control access for this resource.
   final Map<String, String>? tags;
 
@@ -3679,6 +5041,7 @@ class UpdateDomainResponse {
     this.deadLetterQueueUrl,
     this.defaultEncryptionKey,
     this.defaultExpirationDays,
+    this.matching,
     this.tags,
   });
   factory UpdateDomainResponse.fromJson(Map<String, dynamic> json) {
@@ -3690,6 +5053,9 @@ class UpdateDomainResponse {
       deadLetterQueueUrl: json['DeadLetterQueueUrl'] as String?,
       defaultEncryptionKey: json['DefaultEncryptionKey'] as String?,
       defaultExpirationDays: json['DefaultExpirationDays'] as int?,
+      matching: json['Matching'] != null
+          ? MatchingResponse.fromJson(json['Matching'] as Map<String, dynamic>)
+          : null,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
@@ -3707,6 +5073,110 @@ class UpdateProfileResponse {
     return UpdateProfileResponse(
       profileId: json['ProfileId'] as String,
     );
+  }
+}
+
+enum ZendeskConnectorOperator {
+  projection,
+  greaterThan,
+  addition,
+  multiplication,
+  division,
+  subtraction,
+  maskAll,
+  maskFirstN,
+  maskLastN,
+  validateNonNull,
+  validateNonZero,
+  validateNonNegative,
+  validateNumeric,
+  noOp,
+}
+
+extension on ZendeskConnectorOperator {
+  String toValue() {
+    switch (this) {
+      case ZendeskConnectorOperator.projection:
+        return 'PROJECTION';
+      case ZendeskConnectorOperator.greaterThan:
+        return 'GREATER_THAN';
+      case ZendeskConnectorOperator.addition:
+        return 'ADDITION';
+      case ZendeskConnectorOperator.multiplication:
+        return 'MULTIPLICATION';
+      case ZendeskConnectorOperator.division:
+        return 'DIVISION';
+      case ZendeskConnectorOperator.subtraction:
+        return 'SUBTRACTION';
+      case ZendeskConnectorOperator.maskAll:
+        return 'MASK_ALL';
+      case ZendeskConnectorOperator.maskFirstN:
+        return 'MASK_FIRST_N';
+      case ZendeskConnectorOperator.maskLastN:
+        return 'MASK_LAST_N';
+      case ZendeskConnectorOperator.validateNonNull:
+        return 'VALIDATE_NON_NULL';
+      case ZendeskConnectorOperator.validateNonZero:
+        return 'VALIDATE_NON_ZERO';
+      case ZendeskConnectorOperator.validateNonNegative:
+        return 'VALIDATE_NON_NEGATIVE';
+      case ZendeskConnectorOperator.validateNumeric:
+        return 'VALIDATE_NUMERIC';
+      case ZendeskConnectorOperator.noOp:
+        return 'NO_OP';
+    }
+  }
+}
+
+extension on String {
+  ZendeskConnectorOperator toZendeskConnectorOperator() {
+    switch (this) {
+      case 'PROJECTION':
+        return ZendeskConnectorOperator.projection;
+      case 'GREATER_THAN':
+        return ZendeskConnectorOperator.greaterThan;
+      case 'ADDITION':
+        return ZendeskConnectorOperator.addition;
+      case 'MULTIPLICATION':
+        return ZendeskConnectorOperator.multiplication;
+      case 'DIVISION':
+        return ZendeskConnectorOperator.division;
+      case 'SUBTRACTION':
+        return ZendeskConnectorOperator.subtraction;
+      case 'MASK_ALL':
+        return ZendeskConnectorOperator.maskAll;
+      case 'MASK_FIRST_N':
+        return ZendeskConnectorOperator.maskFirstN;
+      case 'MASK_LAST_N':
+        return ZendeskConnectorOperator.maskLastN;
+      case 'VALIDATE_NON_NULL':
+        return ZendeskConnectorOperator.validateNonNull;
+      case 'VALIDATE_NON_ZERO':
+        return ZendeskConnectorOperator.validateNonZero;
+      case 'VALIDATE_NON_NEGATIVE':
+        return ZendeskConnectorOperator.validateNonNegative;
+      case 'VALIDATE_NUMERIC':
+        return ZendeskConnectorOperator.validateNumeric;
+      case 'NO_OP':
+        return ZendeskConnectorOperator.noOp;
+    }
+    throw Exception('$this is not known in enum ZendeskConnectorOperator');
+  }
+}
+
+/// The properties that are applied when using Zendesk as a flow source.
+class ZendeskSourceProperties {
+  /// The object specified in the Zendesk flow source.
+  final String object;
+
+  ZendeskSourceProperties({
+    required this.object,
+  });
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    return {
+      'Object': object,
+    };
   }
 }
 

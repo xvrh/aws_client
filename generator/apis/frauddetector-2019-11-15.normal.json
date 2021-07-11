@@ -68,6 +68,62 @@
       ],
       "documentation": "<p>Gets a batch of variables.</p>"
     },
+    "CancelBatchPredictionJob": {
+      "name": "CancelBatchPredictionJob",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "CancelBatchPredictionJobRequest"
+      },
+      "output": {
+        "shape": "CancelBatchPredictionJobResult"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "documentation": "<p>Cancels the specified batch prediction job.</p>"
+    },
+    "CreateBatchPredictionJob": {
+      "name": "CreateBatchPredictionJob",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "CreateBatchPredictionJobRequest"
+      },
+      "output": {
+        "shape": "CreateBatchPredictionJobResult"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        }
+      ],
+      "documentation": "<p>Creates a batch prediction job.</p>"
+    },
     "CreateDetectorVersion": {
       "name": "CreateDetectorVersion",
       "http": {
@@ -208,6 +264,34 @@
       ],
       "documentation": "<p>Creates a variable.</p>"
     },
+    "DeleteBatchPredictionJob": {
+      "name": "DeleteBatchPredictionJob",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "DeleteBatchPredictionJobRequest"
+      },
+      "output": {
+        "shape": "DeleteBatchPredictionJobResult"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "documentation": "<p>Deletes a batch prediction job.</p>"
+    },
     "DeleteDetector": {
       "name": "DeleteDetector",
       "http": {
@@ -299,7 +383,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes an entity type.</p> <p>You cannot delete an entity type that is included in an event type.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes an entity type.</p> <p>You cannot delete an entity type that is included in an event type.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteEvent": {
       "name": "DeleteEvent",
@@ -327,7 +411,7 @@
           "shape": "ValidationException"
         }
       ],
-      "documentation": "<p>Deletes the specified event.</p> <p>When you delete an event, Amazon Fraud Detector permanently deletes that event from the evaluation history, and the event data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes the specified event.</p> <p>When you delete an event, Amazon Fraud Detector permanently deletes that event and the event data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteEventType": {
       "name": "DeleteEventType",
@@ -355,7 +439,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes an event type.</p> <p>You cannot delete an event type that is used in a detector or a model.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes an event type.</p> <p>You cannot delete an event type that is used in a detector or a model.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteExternalModel": {
       "name": "DeleteExternalModel",
@@ -411,7 +495,7 @@
           "shape": "InternalServerException"
         }
       ],
-      "documentation": "<p>Deletes a label.</p> <p>You cannot delete labels that are included in an event type in Amazon Fraud Detector.</p> <p>You cannot delete a label assigned to an event ID. You must first delete the relevant event ID.</p> <p>When you delete a label, Amazon Fraud Detector permanently deletes that label from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes a label.</p> <p>You cannot delete labels that are included in an event type in Amazon Fraud Detector.</p> <p>You cannot delete a label assigned to an event ID. You must first delete the relevant event ID.</p> <p>When you delete a label, Amazon Fraud Detector permanently deletes that label and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteModel": {
       "name": "DeleteModel",
@@ -439,7 +523,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes a model.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model, Amazon Fraud Detector permanently deletes that model from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes a model.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model, Amazon Fraud Detector permanently deletes that model and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteModelVersion": {
       "name": "DeleteModelVersion",
@@ -467,7 +551,7 @@
           "shape": "ConflictException"
         }
       ],
-      "documentation": "<p>Deletes a model version.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model version, Amazon Fraud Detector permanently deletes that model version from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes a model version.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model version, Amazon Fraud Detector permanently deletes that model version and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteOutcome": {
       "name": "DeleteOutcome",
@@ -498,7 +582,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes an outcome.</p> <p>You cannot delete an outcome that is used in a rule version.</p> <p>When you delete an outcome, Amazon Fraud Detector permanently deletes that outcome from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes an outcome.</p> <p>You cannot delete an outcome that is used in a rule version.</p> <p>When you delete an outcome, Amazon Fraud Detector permanently deletes that outcome and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteRule": {
       "name": "DeleteRule",
@@ -529,7 +613,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes the rule. You cannot delete a rule if it is used by an <code>ACTIVE</code> or <code>INACTIVE</code> detector version.</p> <p>When you delete a rule, Amazon Fraud Detector permanently deletes that rule from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes the rule. You cannot delete a rule if it is used by an <code>ACTIVE</code> or <code>INACTIVE</code> detector version.</p> <p>When you delete a rule, Amazon Fraud Detector permanently deletes that rule and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DeleteVariable": {
       "name": "DeleteVariable",
@@ -560,7 +644,7 @@
           "shape": "AccessDeniedException"
         }
       ],
-      "documentation": "<p>Deletes a variable.</p> <p>You can't delete variables that are included in an event type in Amazon Fraud Detector.</p> <p>Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.</p> <p>When you delete a variable, Amazon Fraud Detector permanently deletes that variable from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>"
+      "documentation": "<p>Deletes a variable.</p> <p>You can't delete variables that are included in an event type in Amazon Fraud Detector.</p> <p>Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.</p> <p>When you delete a variable, Amazon Fraud Detector permanently deletes that variable and the data is no longer stored in Amazon Fraud Detector.</p>"
     },
     "DescribeDetector": {
       "name": "DescribeDetector",
@@ -620,6 +704,34 @@
         }
       ],
       "documentation": "<p>Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version. </p>"
+    },
+    "GetBatchPredictionJobs": {
+      "name": "GetBatchPredictionJobs",
+      "http": {
+        "method": "POST",
+        "requestUri": "/"
+      },
+      "input": {
+        "shape": "GetBatchPredictionJobsRequest"
+      },
+      "output": {
+        "shape": "GetBatchPredictionJobsResult"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        }
+      ],
+      "documentation": "<p>Gets all batch prediction jobs or a specific job if you specify a job ID. This is a paginated API. If you provide a null maxResults, this action retrieves a maximum of 50 records per page. If you provide a maxResults, the value must be between 1 and 50. To get the next page results, provide the pagination token from the GetBatchPredictionJobsResponse as part of your request. A null pagination token fetches the records from the beginning.</p>"
     },
     "GetDetectorVersion": {
       "name": "GetDetectorVersion",
@@ -1534,6 +1646,17 @@
     }
   },
   "shapes": {
+    "AsyncJobStatus": {
+      "type": "string",
+      "enum": [
+        "IN_PROGRESS_INITIALIZING",
+        "IN_PROGRESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELED",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
     "BatchCreateVariableError": {
       "type": "structure",
       "members": {
@@ -1631,6 +1754,143 @@
           "documentation": "<p>The errors from the request.</p>"
         }
       }
+    },
+    "BatchPrediction": {
+      "type": "structure",
+      "members": {
+        "jobId": {
+          "shape": "identifier",
+          "documentation": "<p>The job ID for the batch prediction.</p>"
+        },
+        "status": {
+          "shape": "AsyncJobStatus",
+          "documentation": "<p>The batch prediction status.</p>"
+        },
+        "failureReason": {
+          "shape": "string",
+          "documentation": "<p>The reason a batch prediction job failed.</p>"
+        },
+        "startTime": {
+          "shape": "time",
+          "documentation": "<p>Timestamp of when the batch prediction job started.</p>"
+        },
+        "completionTime": {
+          "shape": "time",
+          "documentation": "<p>Timestamp of when the batch prediction job comleted.</p>"
+        },
+        "lastHeartbeatTime": {
+          "shape": "time",
+          "documentation": "<p>Timestamp of most recent heartbeat indicating the batch prediction job was making progress.</p>"
+        },
+        "inputPath": {
+          "shape": "s3BucketLocation",
+          "documentation": "<p>The Amazon S3 location of your training file.</p>"
+        },
+        "outputPath": {
+          "shape": "s3BucketLocation",
+          "documentation": "<p>The Amazon S3 location of your output file.</p>"
+        },
+        "eventTypeName": {
+          "shape": "identifier",
+          "documentation": "<p>The name of the event type.</p>"
+        },
+        "detectorName": {
+          "shape": "identifier",
+          "documentation": "<p>The name of the detector.</p>"
+        },
+        "detectorVersion": {
+          "shape": "floatVersionString",
+          "documentation": "<p>The detector version. </p>"
+        },
+        "iamRoleArn": {
+          "shape": "iamRoleArn",
+          "documentation": "<p>The ARN of the IAM role to use for this job request.</p>"
+        },
+        "arn": {
+          "shape": "fraudDetectorArn",
+          "documentation": "<p>The ARN of batch prediction job.</p>"
+        },
+        "processedRecordsCount": {
+          "shape": "Integer",
+          "documentation": "<p>The number of records processed by the batch prediction job.</p>"
+        },
+        "totalRecordsCount": {
+          "shape": "Integer",
+          "documentation": "<p>The total number of records in the batch prediction job.</p>"
+        }
+      },
+      "documentation": "<p>The batch prediction details.</p>"
+    },
+    "BatchPredictionList": {
+      "type": "list",
+      "member": {
+        "shape": "BatchPrediction"
+      }
+    },
+    "CancelBatchPredictionJobRequest": {
+      "type": "structure",
+      "required": [
+        "jobId"
+      ],
+      "members": {
+        "jobId": {
+          "shape": "identifier",
+          "documentation": "<p>The ID of the batch prediction job to cancel.</p>"
+        }
+      }
+    },
+    "CancelBatchPredictionJobResult": {
+      "type": "structure",
+      "members": {}
+    },
+    "CreateBatchPredictionJobRequest": {
+      "type": "structure",
+      "required": [
+        "jobId",
+        "inputPath",
+        "outputPath",
+        "eventTypeName",
+        "detectorName",
+        "iamRoleArn"
+      ],
+      "members": {
+        "jobId": {
+          "shape": "identifier",
+          "documentation": "<p>The ID of the batch prediction job.</p>"
+        },
+        "inputPath": {
+          "shape": "s3BucketLocation",
+          "documentation": "<p>The Amazon S3 location of your training file.</p>"
+        },
+        "outputPath": {
+          "shape": "s3BucketLocation",
+          "documentation": "<p>The Amazon S3 location of your output file.</p>"
+        },
+        "eventTypeName": {
+          "shape": "identifier",
+          "documentation": "<p>The name of the event type.</p>"
+        },
+        "detectorName": {
+          "shape": "identifier",
+          "documentation": "<p>The name of the detector.</p>"
+        },
+        "detectorVersion": {
+          "shape": "wholeNumberVersionString",
+          "documentation": "<p>The detector version.</p>"
+        },
+        "iamRoleArn": {
+          "shape": "iamRoleArn",
+          "documentation": "<p>The ARN of the IAM role to use for this job request.</p>"
+        },
+        "tags": {
+          "shape": "tagList",
+          "documentation": "<p>A collection of key and value pairs.</p>"
+        }
+      }
+    },
+    "CreateBatchPredictionJobResult": {
+      "type": "structure",
+      "members": {}
     },
     "CreateDetectorVersionRequest": {
       "type": "structure",
@@ -1907,6 +2167,22 @@
         }
       },
       "documentation": "<p>The model training validation messages.</p>"
+    },
+    "DeleteBatchPredictionJobRequest": {
+      "type": "structure",
+      "required": [
+        "jobId"
+      ],
+      "members": {
+        "jobId": {
+          "shape": "identifier",
+          "documentation": "<p>The ID of the batch prediction job to delete.</p>"
+        }
+      }
+    },
+    "DeleteBatchPredictionJobResult": {
+      "type": "structure",
+      "members": {}
     },
     "DeleteDetectorRequest": {
       "type": "structure",
@@ -2505,6 +2781,36 @@
       },
       "documentation": "<p>The message details.</p>"
     },
+    "GetBatchPredictionJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobId": {
+          "shape": "identifier",
+          "documentation": "<p>The batch prediction job for which to get the details.</p>"
+        },
+        "maxResults": {
+          "shape": "batchPredictionsMaxPageSize",
+          "documentation": "<p>The maximum number of objects to return for the request.</p>"
+        },
+        "nextToken": {
+          "shape": "string",
+          "documentation": "<p>The next token from the previous request.</p>"
+        }
+      }
+    },
+    "GetBatchPredictionJobsResult": {
+      "type": "structure",
+      "members": {
+        "batchPredictions": {
+          "shape": "BatchPredictionList",
+          "documentation": "<p>An array containing the details of each batch prediction job.</p>"
+        },
+        "nextToken": {
+          "shape": "string",
+          "documentation": "<p>The next token for the subsequent request.</p>"
+        }
+      }
+    },
     "GetDetectorVersionRequest": {
       "type": "structure",
       "required": [
@@ -2668,7 +2974,7 @@
         },
         "eventVariables": {
           "shape": "EventVariableMap",
-          "documentation": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p>"
+          "documentation": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p> <important> <ul> <li> <p>You must provide at least one eventVariable</p> </li> <li> <p>If detectorVersion is associated with a modelVersion, you must provide at least one associated eventVariable</p> </li> </ul> </important> <p>To ensure highest possible fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:</p> <p> <b>For Amazon Fraud Detector trained models:</b> </p> <p>If a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.</p> <p> <b>For External models ( for example, imported SageMaker):</b> </p> <p>If a null value is provided explicitly for a variable, the model and rules will use “null” as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable. </p>"
         },
         "externalModelEndpointDataBlobs": {
           "shape": "ExternalModelEndpointDataBlobMap",
@@ -2982,6 +3288,9 @@
         }
       }
     },
+    "Integer": {
+      "type": "integer"
+    },
     "JsonKeyToVariableMap": {
       "type": "map",
       "key": {
@@ -3052,6 +3361,12 @@
         "DETECTORPL"
       ]
     },
+    "ListOfLogitMetrics": {
+      "type": "list",
+      "member": {
+        "shape": "LogitMetric"
+      }
+    },
     "ListOfModelScores": {
       "type": "list",
       "member": {
@@ -3108,6 +3423,29 @@
           "documentation": "<p>The next token for subsequent requests. </p>"
         }
       }
+    },
+    "LogitMetric": {
+      "type": "structure",
+      "required": [
+        "variableName",
+        "variableType",
+        "variableImportance"
+      ],
+      "members": {
+        "variableName": {
+          "shape": "string",
+          "documentation": "<p>The name of the variable.</p>"
+        },
+        "variableType": {
+          "shape": "string",
+          "documentation": "<p>The type of variable.</p>"
+        },
+        "variableImportance": {
+          "shape": "float",
+          "documentation": "<p>The relative importance of the variable.</p>"
+        }
+      },
+      "documentation": "<p>The logit metric details.</p>"
     },
     "MetricDataPoint": {
       "type": "structure",
@@ -3366,7 +3704,8 @@
       "type": "string",
       "enum": [
         "ACTIVE",
-        "INACTIVE"
+        "INACTIVE",
+        "TRAINING_CANCELLED"
       ]
     },
     "NameList": {
@@ -3822,6 +4161,10 @@
         "trainingMetrics": {
           "shape": "TrainingMetrics",
           "documentation": "<p>The training metric details.</p>"
+        },
+        "variableImportanceMetrics": {
+          "shape": "VariableImportanceMetrics",
+          "documentation": "<p>The variable importance metrics.</p>"
         }
       },
       "documentation": "<p>The training result details.</p>"
@@ -4225,6 +4568,16 @@
       "max": 25,
       "min": 1
     },
+    "VariableImportanceMetrics": {
+      "type": "structure",
+      "members": {
+        "LogitMetrics": {
+          "shape": "ListOfLogitMetrics",
+          "documentation": "<p>List of variable metrics.</p>"
+        }
+      },
+      "documentation": "<p>The variable importance metrics details.</p>"
+    },
     "VariableList": {
       "type": "list",
       "member": {
@@ -4236,6 +4589,12 @@
       "box": true,
       "max": 100,
       "min": 50
+    },
+    "batchPredictionsMaxPageSize": {
+      "type": "integer",
+      "box": true,
+      "max": 50,
+      "min": 1
     },
     "blob": {
       "type": "blob"
@@ -4426,7 +4785,9 @@
       "min": 0
     },
     "time": {
-      "type": "string"
+      "type": "string",
+      "max": 30,
+      "min": 11
     },
     "variableName": {
       "type": "string",

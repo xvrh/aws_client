@@ -38,9 +38,10 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 ///
 /// For example, if your Region is set to <code>us-west-2</code>, when you use
 /// <code> <a>CreateMembers</a> </code> to add a member account to Security Hub,
-/// the association of the member account with the master account is created
-/// only in the <code>us-west-2</code> Region. Security Hub must be enabled for
-/// the member account in the same Region that the invitation was sent from.
+/// the association of the member account with the administrator account is
+/// created only in the <code>us-west-2</code> Region. Security Hub must be
+/// enabled for the member account in the same Region that the invitation was
+/// sent from.
 ///
 /// The following throttling limits apply to using Security Hub API operations.
 ///
@@ -85,13 +86,67 @@ class SecurityHub {
         );
 
   /// Accepts the invitation to be a member account and be monitored by the
-  /// Security Hub master account that the invitation was sent from.
+  /// Security Hub administrator account that the invitation was sent from.
   ///
   /// This operation is only used by member accounts that are not added through
   /// Organizations.
   ///
   /// When the member account accepts the invitation, permission is granted to
-  /// the master account to view findings generated in the member account.
+  /// the administrator account to view findings generated in the member
+  /// account.
+  ///
+  /// May throw [InternalException].
+  /// May throw [InvalidInputException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidAccessException].
+  ///
+  /// Parameter [administratorId] :
+  /// The account ID of the Security Hub administrator account that sent the
+  /// invitation.
+  ///
+  /// Parameter [invitationId] :
+  /// The identifier of the invitation sent from the Security Hub administrator
+  /// account.
+  Future<void> acceptAdministratorInvitation({
+    required String administratorId,
+    required String invitationId,
+  }) async {
+    ArgumentError.checkNotNull(administratorId, 'administratorId');
+    ArgumentError.checkNotNull(invitationId, 'invitationId');
+    final $payload = <String, dynamic>{
+      'AdministratorId': administratorId,
+      'InvitationId': invitationId,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/administrator',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This method is deprecated. Instead, use
+  /// <code>AcceptAdministratorInvitation</code>.
+  ///
+  /// The Security Hub console continues to use <code>AcceptInvitation</code>.
+  /// It will eventually change to use
+  /// <code>AcceptAdministratorInvitation</code>. Any IAM policies that
+  /// specifically control access to this function must continue to use
+  /// <code>AcceptInvitation</code>. You should also add
+  /// <code>AcceptAdministratorInvitation</code> to your policies to ensure that
+  /// the correct permissions are in place after the console begins to use
+  /// <code>AcceptAdministratorInvitation</code>.
+  ///
+  /// Accepts the invitation to be a member account and be monitored by the
+  /// Security Hub administrator account that the invitation was sent from.
+  ///
+  /// This operation is only used by member accounts that are not added through
+  /// Organizations.
+  ///
+  /// When the member account accepts the invitation, permission is granted to
+  /// the administrator account to view findings generated in the member
+  /// account.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -100,29 +155,19 @@ class SecurityHub {
   /// May throw [InvalidAccessException].
   ///
   /// Parameter [invitationId] :
-  /// The ID of the invitation sent from the Security Hub master account.
+  /// The identifier of the invitation sent from the Security Hub administrator
+  /// account.
   ///
   /// Parameter [masterId] :
-  /// The account ID of the Security Hub master account that sent the
+  /// The account ID of the Security Hub administrator account that sent the
   /// invitation.
+  @Deprecated('Deprecated')
   Future<void> acceptInvitation({
     required String invitationId,
     required String masterId,
   }) async {
     ArgumentError.checkNotNull(invitationId, 'invitationId');
-    _s.validateStringPattern(
-      'invitationId',
-      invitationId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(masterId, 'masterId');
-    _s.validateStringPattern(
-      'masterId',
-      masterId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'InvitationId': invitationId,
       'MasterId': masterId,
@@ -198,9 +243,9 @@ class SecurityHub {
     return BatchEnableStandardsResponse.fromJson(response);
   }
 
-  /// Imports security findings generated from an integrated third-party product
-  /// into Security Hub. This action is requested by the integrated product to
-  /// import its findings into Security Hub.
+  /// Imports security findings generated from an integrated product into
+  /// Security Hub. This action is requested by the integrated product to import
+  /// its findings into Security Hub.
   ///
   /// The maximum allowed size for a finding is 240 Kb. An error is returned for
   /// any finding larger than 240 Kb.
@@ -223,11 +268,8 @@ class SecurityHub {
   /// <code>Workflow</code>
   /// </li>
   /// </ul>
-  /// <code>BatchImportFindings</code> can be used to update the following
-  /// finding fields and objects only if they have not been updated using
-  /// <code>BatchUpdateFindings</code>. After they are updated using
-  /// <code>BatchUpdateFindings</code>, these fields cannot be updated using
-  /// <code>BatchImportFindings</code>.
+  /// Finding providers also should not use <code>BatchImportFindings</code> to
+  /// update the following attributes.
   ///
   /// <ul>
   /// <li>
@@ -246,6 +288,8 @@ class SecurityHub {
   /// <code>Types</code>
   /// </li>
   /// </ul>
+  /// Instead, finding providers use <code>FindingProviderFields</code> to
+  /// provide values for these attributes.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -274,15 +318,16 @@ class SecurityHub {
   }
 
   /// Used by Security Hub customers to update information about their
-  /// investigation into a finding. Requested by master accounts or member
-  /// accounts. Master accounts can update findings for their account and their
-  /// member accounts. Member accounts can update findings for their account.
+  /// investigation into a finding. Requested by administrator accounts or
+  /// member accounts. Administrator accounts can update findings for their
+  /// account and their member accounts. Member accounts can update findings for
+  /// their account.
   ///
   /// Updates from <code>BatchUpdateFindings</code> do not affect the value of
   /// <code>UpdatedAt</code> for a finding.
   ///
-  /// Master and member accounts can use <code>BatchUpdateFindings</code> to
-  /// update the following finding fields and objects.
+  /// Administrator and member accounts can use <code>BatchUpdateFindings</code>
+  /// to update the following finding fields and objects.
   ///
   /// <ul>
   /// <li>
@@ -471,36 +516,19 @@ class SecurityHub {
   /// The description for the custom action target.
   ///
   /// Parameter [id] :
-  /// The ID for the custom action target.
+  /// The ID for the custom action target. Can contain up to 20 alphanumeric
+  /// characters.
   ///
   /// Parameter [name] :
-  /// The name of the custom action target.
+  /// The name of the custom action target. Can contain up to 20 characters.
   Future<CreateActionTargetResponse> createActionTarget({
     required String description,
     required String id,
     required String name,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Description': description,
       'Id': id,
@@ -548,19 +576,7 @@ class SecurityHub {
   }) async {
     ArgumentError.checkNotNull(filters, 'filters');
     ArgumentError.checkNotNull(groupByAttribute, 'groupByAttribute');
-    _s.validateStringPattern(
-      'groupByAttribute',
-      groupByAttribute,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Filters': filters,
       'GroupByAttribute': groupByAttribute,
@@ -576,10 +592,10 @@ class SecurityHub {
   }
 
   /// Creates a member association in Security Hub between the specified
-  /// accounts and the account used to make the request, which is the master
-  /// account. If you are integrated with Organizations, then the master account
-  /// is the Security Hub administrator account that is designated by the
-  /// organization management account.
+  /// accounts and the account used to make the request, which is the
+  /// administrator account. If you are integrated with Organizations, then the
+  /// administrator account is designated by the organization management
+  /// account.
   ///
   /// <code>CreateMembers</code> is always used to add accounts that are not
   /// organization members.
@@ -609,13 +625,13 @@ class SecurityHub {
   /// Accounts that are part of an organization do not receive an invitation.
   /// They automatically become a member account in Security Hub.
   ///
-  /// A permissions policy is added that permits the master account to view the
-  /// findings generated in the member account. When Security Hub is enabled in
-  /// a member account, findings are sent to both the member and master
-  /// accounts.
+  /// A permissions policy is added that permits the administrator account to
+  /// view the findings generated in the member account. When Security Hub is
+  /// enabled in a member account, the member account findings are also visible
+  /// to the administrator account.
   ///
-  /// To remove the association between the master and member accounts, use the
-  /// <code> <a>DisassociateFromMasterAccount</a> </code> or <code>
+  /// To remove the association between the administrator and member accounts,
+  /// use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code>
   /// <a>DisassociateMembers</a> </code> operation.
   ///
   /// May throw [InternalException].
@@ -625,9 +641,9 @@ class SecurityHub {
   /// May throw [ResourceConflictException].
   ///
   /// Parameter [accountDetails] :
-  /// The list of accounts to associate with the Security Hub master account.
-  /// For each account, the list includes the account ID and optionally the
-  /// email address.
+  /// The list of accounts to associate with the Security Hub administrator
+  /// account. For each account, the list includes the account ID and optionally
+  /// the email address.
   Future<CreateMembersResponse> createMembers({
     required List<AccountDetails> accountDetails,
   }) async {
@@ -690,12 +706,6 @@ class SecurityHub {
     required String actionTargetArn,
   }) async {
     ArgumentError.checkNotNull(actionTargetArn, 'actionTargetArn');
-    _s.validateStringPattern(
-      'actionTargetArn',
-      actionTargetArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -720,12 +730,6 @@ class SecurityHub {
     required String insightArn,
   }) async {
     ArgumentError.checkNotNull(insightArn, 'insightArn');
-    _s.validateStringPattern(
-      'insightArn',
-      insightArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -856,11 +860,6 @@ class SecurityHub {
   Future<DescribeHubResponse> describeHub({
     String? hubArn,
   }) async {
-    _s.validateStringPattern(
-      'hubArn',
-      hubArn,
-      r'''.*\S.*''',
-    );
     final $query = <String, List<String>>{
       if (hubArn != null) 'HubArn': [hubArn],
     };
@@ -892,8 +891,13 @@ class SecurityHub {
     return DescribeOrganizationConfigurationResponse.fromJson(response);
   }
 
-  /// Returns information about the available products that you can subscribe to
-  /// and integrate with Security Hub in order to consolidate findings.
+  /// Returns information about product integrations in Security Hub.
+  ///
+  /// You can optionally provide an integration ARN. If you provide an
+  /// integration ARN, then the results only include that integration.
+  ///
+  /// If you do not provide an integration ARN, then the results include all of
+  /// the available product integrations.
   ///
   /// May throw [InternalException].
   /// May throw [LimitExceededException].
@@ -910,9 +914,13 @@ class SecurityHub {
   ///
   /// For subsequent calls to the operation, to continue listing data, set the
   /// value of this parameter to the value returned from the previous response.
+  ///
+  /// Parameter [productArn] :
+  /// The ARN of the integration to return.
   Future<DescribeProductsResponse> describeProducts({
     int? maxResults,
     String? nextToken,
+    String? productArn,
   }) async {
     _s.validateNumRange(
       'maxResults',
@@ -923,6 +931,7 @@ class SecurityHub {
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
+      if (productArn != null) 'ProductArn': [productArn],
     };
     final response = await _protocol.send(
       payload: null,
@@ -1009,12 +1018,6 @@ class SecurityHub {
   }) async {
     ArgumentError.checkNotNull(
         standardsSubscriptionArn, 'standardsSubscriptionArn');
-    _s.validateStringPattern(
-      'standardsSubscriptionArn',
-      standardsSubscriptionArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1053,12 +1056,6 @@ class SecurityHub {
   }) async {
     ArgumentError.checkNotNull(
         productSubscriptionArn, 'productSubscriptionArn');
-    _s.validateStringPattern(
-      'productSubscriptionArn',
-      productSubscriptionArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1082,12 +1079,6 @@ class SecurityHub {
     required String adminAccountId,
   }) async {
     ArgumentError.checkNotNull(adminAccountId, 'adminAccountId');
-    _s.validateStringPattern(
-      'adminAccountId',
-      adminAccountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AdminAccountId': adminAccountId,
     };
@@ -1103,13 +1094,13 @@ class SecurityHub {
   /// disable Security Hub in all Regions, you must submit one request per
   /// Region where you have enabled Security Hub.
   ///
-  /// When you disable Security Hub for a master account, it doesn't disable
-  /// Security Hub for any associated member accounts.
+  /// When you disable Security Hub for an administrator account, it doesn't
+  /// disable Security Hub for any associated member accounts.
   ///
   /// When you disable Security Hub, your existing findings and insights and any
   /// Security Hub configuration settings are deleted after 90 days and cannot
   /// be recovered. Any standards that were enabled are disabled, and your
-  /// master and member account associations are removed.
+  /// administrator and member account associations are removed.
   ///
   /// If you want to save your existing findings, you must export them before
   /// you disable Security Hub.
@@ -1128,17 +1119,51 @@ class SecurityHub {
   }
 
   /// Disassociates the current Security Hub member account from the associated
-  /// master account.
+  /// administrator account.
   ///
   /// This operation is only used by accounts that are not part of an
-  /// organization. For organization accounts, only the master account (the
-  /// designated Security Hub administrator) can disassociate a member account.
+  /// organization. For organization accounts, only the administrator account
+  /// can disassociate a member account.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
   /// May throw [InvalidAccessException].
   /// May throw [LimitExceededException].
   /// May throw [ResourceNotFoundException].
+  Future<void> disassociateFromAdministratorAccount() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'POST',
+      requestUri: '/administrator/disassociate',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// This method is deprecated. Instead, use
+  /// <code>DisassociateFromAdministratorAccount</code>.
+  ///
+  /// The Security Hub console continues to use
+  /// <code>DisassociateFromMasterAccount</code>. It will eventually change to
+  /// use <code>DisassociateFromAdministratorAccount</code>. Any IAM policies
+  /// that specifically control access to this function must continue to use
+  /// <code>DisassociateFromMasterAccount</code>. You should also add
+  /// <code>DisassociateFromAdministratorAccount</code> to your policies to
+  /// ensure that the correct permissions are in place after the console begins
+  /// to use <code>DisassociateFromAdministratorAccount</code>.
+  ///
+  /// Disassociates the current Security Hub member account from the associated
+  /// administrator account.
+  ///
+  /// This operation is only used by accounts that are not part of an
+  /// organization. For organization accounts, only the administrator account
+  /// can disassociate a member account.
+  ///
+  /// May throw [InternalException].
+  /// May throw [InvalidInputException].
+  /// May throw [InvalidAccessException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceNotFoundException].
+  @Deprecated('Deprecated')
   Future<void> disassociateFromMasterAccount() async {
     final response = await _protocol.send(
       payload: null,
@@ -1148,11 +1173,11 @@ class SecurityHub {
     );
   }
 
-  /// Disassociates the specified member accounts from the associated master
-  /// account.
+  /// Disassociates the specified member accounts from the associated
+  /// administrator account.
   ///
-  /// Can be used to disassociate both accounts that are in an organization and
-  /// accounts that were invited manually.
+  /// Can be used to disassociate both accounts that are managed using
+  /// Organizations and accounts that were invited manually.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -1161,8 +1186,8 @@ class SecurityHub {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [accountIds] :
-  /// The account IDs of the member accounts to disassociate from the master
-  /// account.
+  /// The account IDs of the member accounts to disassociate from the
+  /// administrator account.
   Future<void> disassociateMembers({
     required List<String> accountIds,
   }) async {
@@ -1197,12 +1222,6 @@ class SecurityHub {
     required String productArn,
   }) async {
     ArgumentError.checkNotNull(productArn, 'productArn');
-    _s.validateStringPattern(
-      'productArn',
-      productArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ProductArn': productArn,
     };
@@ -1230,12 +1249,6 @@ class SecurityHub {
     required String adminAccountId,
   }) async {
     ArgumentError.checkNotNull(adminAccountId, 'adminAccountId');
-    _s.validateStringPattern(
-      'adminAccountId',
-      adminAccountId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AdminAccountId': adminAccountId,
     };
@@ -1309,6 +1322,27 @@ class SecurityHub {
       requestUri: '/accounts',
       exceptionFnMap: _exceptionFns,
     );
+  }
+
+  /// Provides the details for the Security Hub administrator account for the
+  /// current member account.
+  ///
+  /// Can be used by both member accounts that are managed using Organizations
+  /// and accounts that were invited manually.
+  ///
+  /// May throw [InternalException].
+  /// May throw [InvalidInputException].
+  /// May throw [InvalidAccessException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceNotFoundException].
+  Future<GetAdministratorAccountResponse> getAdministratorAccount() async {
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/administrator',
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetAdministratorAccountResponse.fromJson(response);
   }
 
   /// Returns a list of the standards that are currently enabled.
@@ -1430,12 +1464,6 @@ class SecurityHub {
     required String insightArn,
   }) async {
     ArgumentError.checkNotNull(insightArn, 'insightArn');
-    _s.validateStringPattern(
-      'insightArn',
-      insightArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1512,17 +1540,29 @@ class SecurityHub {
     return GetInvitationsCountResponse.fromJson(response);
   }
 
-  /// Provides the details for the Security Hub master account for the current
-  /// member account.
+  /// This method is deprecated. Instead, use
+  /// <code>GetAdministratorAccount</code>.
   ///
-  /// Can be used by both member accounts that are in an organization and
-  /// accounts that were invited manually.
+  /// The Security Hub console continues to use <code>GetMasterAccount</code>.
+  /// It will eventually change to use <code>GetAdministratorAccount</code>. Any
+  /// IAM policies that specifically control access to this function must
+  /// continue to use <code>GetMasterAccount</code>. You should also add
+  /// <code>GetAdministratorAccount</code> to your policies to ensure that the
+  /// correct permissions are in place after the console begins to use
+  /// <code>GetAdministratorAccount</code>.
+  ///
+  /// Provides the details for the Security Hub administrator account for the
+  /// current member account.
+  ///
+  /// Can be used by both member accounts that are managed using Organizations
+  /// and accounts that were invited manually.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
   /// May throw [InvalidAccessException].
   /// May throw [LimitExceededException].
   /// May throw [ResourceNotFoundException].
+  @Deprecated('Deprecated')
   Future<GetMasterAccountResponse> getMasterAccount() async {
     final response = await _protocol.send(
       payload: null,
@@ -1536,12 +1576,12 @@ class SecurityHub {
   /// Returns the details for the Security Hub member accounts for the specified
   /// account IDs.
   ///
-  /// A master account can be either a delegated Security Hub administrator
-  /// account for an organization or a master account that enabled Security Hub
-  /// manually.
+  /// An administrator account can be either the delegated Security Hub
+  /// administrator account for an organization or an administrator account that
+  /// enabled Security Hub manually.
   ///
-  /// The results include both member accounts that are in an organization and
-  /// accounts that were invited manually.
+  /// The results include both member accounts that are managed using
+  /// Organizations and accounts that were invited manually.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -1569,7 +1609,7 @@ class SecurityHub {
   }
 
   /// Invites other AWS accounts to become member accounts for the Security Hub
-  /// master account that the invitation is sent from.
+  /// administrator account that the invitation is sent from.
   ///
   /// This operation is only used to invite accounts that do not belong to an
   /// organization. Organization accounts do not receive invitations.
@@ -1579,7 +1619,7 @@ class SecurityHub {
   /// Security Hub.
   ///
   /// When the account owner enables Security Hub and accepts the invitation to
-  /// become a member account, the master account can view the findings
+  /// become a member account, the administrator account can view the findings
   /// generated from the member account.
   ///
   /// May throw [InternalException].
@@ -1651,8 +1691,9 @@ class SecurityHub {
   /// Lists all Security Hub membership invitations that were sent to the
   /// current AWS account.
   ///
-  /// This operation is only used by accounts that do not belong to an
-  /// organization. Organization accounts do not receive invitations.
+  /// This operation is only used by accounts that are managed by invitation.
+  /// Accounts that are managed using the integration with AWS Organizations do
+  /// not receive invitations.
   ///
   /// May throw [InternalException].
   /// May throw [InvalidInputException].
@@ -1694,7 +1735,7 @@ class SecurityHub {
   }
 
   /// Lists details about all member accounts for the current Security Hub
-  /// master account.
+  /// administrator account.
   ///
   /// The results include both member accounts that belong to an organization
   /// and member accounts that were invited manually.
@@ -1717,12 +1758,12 @@ class SecurityHub {
   ///
   /// Parameter [onlyAssociated] :
   /// Specifies which member accounts to include in the response based on their
-  /// relationship status with the master account. The default value is
+  /// relationship status with the administrator account. The default value is
   /// <code>TRUE</code>.
   ///
   /// If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response
-  /// includes member accounts whose relationship status with the master is set
-  /// to <code>ENABLED</code>.
+  /// includes member accounts whose relationship status with the administrator
+  /// account is set to <code>ENABLED</code>.
   ///
   /// If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response
   /// includes all existing member accounts.
@@ -1805,12 +1846,6 @@ class SecurityHub {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:securityhub:.*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1830,18 +1865,14 @@ class SecurityHub {
   /// The ARN of the resource to apply the tags to.
   ///
   /// Parameter [tags] :
-  /// The tags to add to the resource.
+  /// The tags to add to the resource. You can add up to 50 tags at a time. The
+  /// tag keys can be no longer than 128 characters. The tag values can be no
+  /// longer than 256 characters.
   Future<void> tagResource({
     required String resourceArn,
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:securityhub:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1864,18 +1895,13 @@ class SecurityHub {
   /// The ARN of the resource to remove the tags from.
   ///
   /// Parameter [tagKeys] :
-  /// The tag keys associated with the tags to remove from the resource.
+  /// The tag keys associated with the tags to remove from the resource. You can
+  /// remove up to 50 tags at a time.
   Future<void> untagResource({
     required String resourceArn,
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws:securityhub:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1912,22 +1938,6 @@ class SecurityHub {
     String? name,
   }) async {
     ArgumentError.checkNotNull(actionTargetArn, 'actionTargetArn');
-    _s.validateStringPattern(
-      'actionTargetArn',
-      actionTargetArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*\S.*''',
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
@@ -2007,22 +2017,6 @@ class SecurityHub {
     String? name,
   }) async {
     ArgumentError.checkNotNull(insightArn, 'insightArn');
-    _s.validateStringPattern(
-      'insightArn',
-      insightArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'groupByAttribute',
-      groupByAttribute,
-      r'''.*\S.*''',
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*\S.*''',
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'Filters': filters,
       if (groupByAttribute != null) 'GroupByAttribute': groupByAttribute,
@@ -2121,17 +2115,6 @@ class SecurityHub {
     String? disabledReason,
   }) async {
     ArgumentError.checkNotNull(standardsControlArn, 'standardsControlArn');
-    _s.validateStringPattern(
-      'standardsControlArn',
-      standardsControlArn,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'disabledReason',
-      disabledReason,
-      r'''.*\S.*''',
-    );
     final $payload = <String, dynamic>{
       if (controlStatus != null) 'ControlStatus': controlStatus.toValue(),
       if (disabledReason != null) 'DisabledReason': disabledReason,
@@ -2143,6 +2126,14 @@ class SecurityHub {
           '/standards/control/${standardsControlArn.split('/').map(Uri.encodeComponent).join('/')}',
       exceptionFnMap: _exceptionFns,
     );
+  }
+}
+
+class AcceptAdministratorInvitationResponse {
+  AcceptAdministratorInvitationResponse();
+  factory AcceptAdministratorInvitationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return AcceptAdministratorInvitationResponse();
   }
 }
 
@@ -2171,6 +2162,249 @@ class AccountDetails {
     return {
       'AccountId': accountId,
       if (email != null) 'Email': email,
+    };
+  }
+}
+
+/// Provides details about one of the following actions that affects or that was
+/// taken on a resource:
+///
+/// <ul>
+/// <li>
+/// A remote IP address issued an AWS API call
+/// </li>
+/// <li>
+/// A DNS request was received
+/// </li>
+/// <li>
+/// A remote IP address attempted to connect to an EC2 instance
+/// </li>
+/// <li>
+/// A remote IP address attempted a port probe on an EC2 instance
+/// </li>
+/// </ul>
+class Action {
+  /// The type of action that was detected. The possible action types are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>NETWORK_CONNECTION</code>
+  /// </li>
+  /// <li>
+  /// <code>AWS_API_CALL</code>
+  /// </li>
+  /// <li>
+  /// <code>DNS_REQUEST</code>
+  /// </li>
+  /// <li>
+  /// <code>PORT_PROBE</code>
+  /// </li>
+  /// </ul>
+  final String? actionType;
+
+  /// Included if <code>ActionType</code> is <code>AWS_API_CALL</code>. Provides
+  /// details about the API call that was detected.
+  final AwsApiCallAction? awsApiCallAction;
+
+  /// Included if <code>ActionType</code> is <code>DNS_REQUEST</code>. Provides
+  /// details about the DNS request that was detected.
+  final DnsRequestAction? dnsRequestAction;
+
+  /// Included if <code>ActionType</code> is <code>NETWORK_CONNECTION</code>.
+  /// Provides details about the network connection that was detected.
+  final NetworkConnectionAction? networkConnectionAction;
+
+  /// Included if <code>ActionType</code> is <code>PORT_PROBE</code>. Provides
+  /// details about the port probe that was detected.
+  final PortProbeAction? portProbeAction;
+
+  Action({
+    this.actionType,
+    this.awsApiCallAction,
+    this.dnsRequestAction,
+    this.networkConnectionAction,
+    this.portProbeAction,
+  });
+  factory Action.fromJson(Map<String, dynamic> json) {
+    return Action(
+      actionType: json['ActionType'] as String?,
+      awsApiCallAction: json['AwsApiCallAction'] != null
+          ? AwsApiCallAction.fromJson(
+              json['AwsApiCallAction'] as Map<String, dynamic>)
+          : null,
+      dnsRequestAction: json['DnsRequestAction'] != null
+          ? DnsRequestAction.fromJson(
+              json['DnsRequestAction'] as Map<String, dynamic>)
+          : null,
+      networkConnectionAction: json['NetworkConnectionAction'] != null
+          ? NetworkConnectionAction.fromJson(
+              json['NetworkConnectionAction'] as Map<String, dynamic>)
+          : null,
+      portProbeAction: json['PortProbeAction'] != null
+          ? PortProbeAction.fromJson(
+              json['PortProbeAction'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionType = this.actionType;
+    final awsApiCallAction = this.awsApiCallAction;
+    final dnsRequestAction = this.dnsRequestAction;
+    final networkConnectionAction = this.networkConnectionAction;
+    final portProbeAction = this.portProbeAction;
+    return {
+      if (actionType != null) 'ActionType': actionType,
+      if (awsApiCallAction != null) 'AwsApiCallAction': awsApiCallAction,
+      if (dnsRequestAction != null) 'DnsRequestAction': dnsRequestAction,
+      if (networkConnectionAction != null)
+        'NetworkConnectionAction': networkConnectionAction,
+      if (portProbeAction != null) 'PortProbeAction': portProbeAction,
+    };
+  }
+}
+
+/// Provides information about the IP address where the scanned port is located.
+class ActionLocalIpDetails {
+  /// The IP address.
+  final String? ipAddressV4;
+
+  ActionLocalIpDetails({
+    this.ipAddressV4,
+  });
+  factory ActionLocalIpDetails.fromJson(Map<String, dynamic> json) {
+    return ActionLocalIpDetails(
+      ipAddressV4: json['IpAddressV4'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddressV4 = this.ipAddressV4;
+    return {
+      if (ipAddressV4 != null) 'IpAddressV4': ipAddressV4,
+    };
+  }
+}
+
+/// For <code>NetworkConnectionAction</code> and <code>PortProbeDetails</code>,
+/// <code>LocalPortDetails</code> provides information about the local port that
+/// was involved in the action.
+class ActionLocalPortDetails {
+  /// The number of the port.
+  final int? port;
+
+  /// The port name of the local connection.
+  final String? portName;
+
+  ActionLocalPortDetails({
+    this.port,
+    this.portName,
+  });
+  factory ActionLocalPortDetails.fromJson(Map<String, dynamic> json) {
+    return ActionLocalPortDetails(
+      port: json['Port'] as int?,
+      portName: json['PortName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'Port': port,
+      if (portName != null) 'PortName': portName,
+    };
+  }
+}
+
+/// For <code>AwsApiAction</code>, <code>NetworkConnectionAction</code>, and
+/// <code>PortProbeAction</code>, <code>RemoteIpDetails</code> provides
+/// information about the remote IP address that was involved in the action.
+class ActionRemoteIpDetails {
+  /// The city where the remote IP address is located.
+  final City? city;
+
+  /// The country where the remote IP address is located.
+  final Country? country;
+
+  /// The coordinates of the location of the remote IP address.
+  final GeoLocation? geoLocation;
+
+  /// The IP address.
+  final String? ipAddressV4;
+
+  /// The internet service provider (ISP) organization associated with the remote
+  /// IP address.
+  final IpOrganizationDetails? organization;
+
+  ActionRemoteIpDetails({
+    this.city,
+    this.country,
+    this.geoLocation,
+    this.ipAddressV4,
+    this.organization,
+  });
+  factory ActionRemoteIpDetails.fromJson(Map<String, dynamic> json) {
+    return ActionRemoteIpDetails(
+      city: json['City'] != null
+          ? City.fromJson(json['City'] as Map<String, dynamic>)
+          : null,
+      country: json['Country'] != null
+          ? Country.fromJson(json['Country'] as Map<String, dynamic>)
+          : null,
+      geoLocation: json['GeoLocation'] != null
+          ? GeoLocation.fromJson(json['GeoLocation'] as Map<String, dynamic>)
+          : null,
+      ipAddressV4: json['IpAddressV4'] as String?,
+      organization: json['Organization'] != null
+          ? IpOrganizationDetails.fromJson(
+              json['Organization'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final geoLocation = this.geoLocation;
+    final ipAddressV4 = this.ipAddressV4;
+    final organization = this.organization;
+    return {
+      if (city != null) 'City': city,
+      if (country != null) 'Country': country,
+      if (geoLocation != null) 'GeoLocation': geoLocation,
+      if (ipAddressV4 != null) 'IpAddressV4': ipAddressV4,
+      if (organization != null) 'Organization': organization,
+    };
+  }
+}
+
+/// Provides information about the remote port that was involved in an attempted
+/// network connection.
+class ActionRemotePortDetails {
+  /// The number of the port.
+  final int? port;
+
+  /// The port name of the remote connection.
+  final String? portName;
+
+  ActionRemotePortDetails({
+    this.port,
+    this.portName,
+  });
+  factory ActionRemotePortDetails.fromJson(Map<String, dynamic> json) {
+    return ActionRemotePortDetails(
+      port: json['Port'] as int?,
+      portName: json['PortName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'Port': port,
+      if (portName != null) 'PortName': portName,
     };
   }
 }
@@ -2275,6 +2509,113 @@ class AvailabilityZone {
     return {
       if (subnetId != null) 'SubnetId': subnetId,
       if (zoneName != null) 'ZoneName': zoneName,
+    };
+  }
+}
+
+/// Provided if <code>ActionType</code> is <code>AWS_API_CALL</code>. It
+/// provides details about the API call that was detected.
+class AwsApiCallAction {
+  /// Identifies the resources that were affected by the API call.
+  final Map<String, String>? affectedResources;
+
+  /// The name of the API method that was issued.
+  final String? api;
+
+  /// Indicates whether the API call originated from a remote IP address
+  /// (<code>remoteip</code>) or from a DNS domain (<code>domain</code>).
+  final String? callerType;
+
+  /// Provided if <code>CallerType</code> is <code>domain</code>. Provides
+  /// information about the DNS domain that the API call originated from.
+  final AwsApiCallActionDomainDetails? domainDetails;
+
+  /// An ISO8601-formatted timestamp that indicates when the API call was first
+  /// observed.
+  final String? firstSeen;
+
+  /// An ISO8601-formatted timestamp that indicates when the API call was most
+  /// recently observed.
+  final String? lastSeen;
+
+  /// Provided if <code>CallerType</code> is <code>remoteIp</code>. Provides
+  /// information about the remote IP address that the API call originated from.
+  final ActionRemoteIpDetails? remoteIpDetails;
+
+  /// The name of the AWS service that the API method belongs to.
+  final String? serviceName;
+
+  AwsApiCallAction({
+    this.affectedResources,
+    this.api,
+    this.callerType,
+    this.domainDetails,
+    this.firstSeen,
+    this.lastSeen,
+    this.remoteIpDetails,
+    this.serviceName,
+  });
+  factory AwsApiCallAction.fromJson(Map<String, dynamic> json) {
+    return AwsApiCallAction(
+      affectedResources: (json['AffectedResources'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      api: json['Api'] as String?,
+      callerType: json['CallerType'] as String?,
+      domainDetails: json['DomainDetails'] != null
+          ? AwsApiCallActionDomainDetails.fromJson(
+              json['DomainDetails'] as Map<String, dynamic>)
+          : null,
+      firstSeen: json['FirstSeen'] as String?,
+      lastSeen: json['LastSeen'] as String?,
+      remoteIpDetails: json['RemoteIpDetails'] != null
+          ? ActionRemoteIpDetails.fromJson(
+              json['RemoteIpDetails'] as Map<String, dynamic>)
+          : null,
+      serviceName: json['ServiceName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final affectedResources = this.affectedResources;
+    final api = this.api;
+    final callerType = this.callerType;
+    final domainDetails = this.domainDetails;
+    final firstSeen = this.firstSeen;
+    final lastSeen = this.lastSeen;
+    final remoteIpDetails = this.remoteIpDetails;
+    final serviceName = this.serviceName;
+    return {
+      if (affectedResources != null) 'AffectedResources': affectedResources,
+      if (api != null) 'Api': api,
+      if (callerType != null) 'CallerType': callerType,
+      if (domainDetails != null) 'DomainDetails': domainDetails,
+      if (firstSeen != null) 'FirstSeen': firstSeen,
+      if (lastSeen != null) 'LastSeen': lastSeen,
+      if (remoteIpDetails != null) 'RemoteIpDetails': remoteIpDetails,
+      if (serviceName != null) 'ServiceName': serviceName,
+    };
+  }
+}
+
+/// Provided if <code>CallerType</code> is <code>domain</code>. It provides
+/// information about the DNS domain that issued the API call.
+class AwsApiCallActionDomainDetails {
+  /// The name of the DNS domain that issued the API call.
+  final String? domain;
+
+  AwsApiCallActionDomainDetails({
+    this.domain,
+  });
+  factory AwsApiCallActionDomainDetails.fromJson(Map<String, dynamic> json) {
+    return AwsApiCallActionDomainDetails(
+      domain: json['Domain'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'Domain': domain,
     };
   }
 }
@@ -2524,7 +2865,7 @@ class AwsApiGatewayMethodSettings {
   }
 }
 
-/// contains information about a REST API in version 1 of Amazon API Gateway.
+/// Contains information about a REST API in version 1 of Amazon API Gateway.
 class AwsApiGatewayRestApiDetails {
   /// The source of the API key for metering requests according to a usage plan.
   ///
@@ -2976,6 +3317,10 @@ class AwsApiGatewayV2StageDetails {
   /// Indicates whether updates to an API automatically trigger a new deployment.
   final bool? autoDeploy;
 
+  /// The identifier of a client certificate for a stage. Supported only for
+  /// WebSocket API calls.
+  final String? clientCertificateId;
+
   /// Indicates when the stage was created.
   ///
   /// Uses the <code>date-time</code> format specified in <a
@@ -3034,6 +3379,7 @@ class AwsApiGatewayV2StageDetails {
     this.accessLogSettings,
     this.apiGatewayManaged,
     this.autoDeploy,
+    this.clientCertificateId,
     this.createdDate,
     this.defaultRouteSettings,
     this.deploymentId,
@@ -3052,6 +3398,7 @@ class AwsApiGatewayV2StageDetails {
           : null,
       apiGatewayManaged: json['ApiGatewayManaged'] as bool?,
       autoDeploy: json['AutoDeploy'] as bool?,
+      clientCertificateId: json['ClientCertificateId'] as String?,
       createdDate: json['CreatedDate'] as String?,
       defaultRouteSettings: json['DefaultRouteSettings'] != null
           ? AwsApiGatewayV2RouteSettings.fromJson(
@@ -3076,6 +3423,7 @@ class AwsApiGatewayV2StageDetails {
     final accessLogSettings = this.accessLogSettings;
     final apiGatewayManaged = this.apiGatewayManaged;
     final autoDeploy = this.autoDeploy;
+    final clientCertificateId = this.clientCertificateId;
     final createdDate = this.createdDate;
     final defaultRouteSettings = this.defaultRouteSettings;
     final deploymentId = this.deploymentId;
@@ -3089,6 +3437,8 @@ class AwsApiGatewayV2StageDetails {
       if (accessLogSettings != null) 'AccessLogSettings': accessLogSettings,
       if (apiGatewayManaged != null) 'ApiGatewayManaged': apiGatewayManaged,
       if (autoDeploy != null) 'AutoDeploy': autoDeploy,
+      if (clientCertificateId != null)
+        'ClientCertificateId': clientCertificateId,
       if (createdDate != null) 'CreatedDate': createdDate,
       if (defaultRouteSettings != null)
         'DefaultRouteSettings': defaultRouteSettings,
@@ -4348,8 +4698,8 @@ class AwsCodeBuildProjectDetails {
   /// The AWS Key Management Service (AWS KMS) customer master key (CMK) used to
   /// encrypt the build output artifacts.
   ///
-  /// You can specify either the Amazon Resource Name (ARN) of the CMK or, if
-  /// available, the CMK alias (using the format alias/alias-name).
+  /// You can specify either the ARN of the CMK or, if available, the CMK alias
+  /// (using the format alias/alias-name).
   final String? encryptionKey;
 
   /// Information about the build environment for this build project.
@@ -4501,8 +4851,7 @@ class AwsCodeBuildProjectEnvironment {
 
 /// The credentials for access to a private registry.
 class AwsCodeBuildProjectEnvironmentRegistryCredential {
-  /// The Amazon Resource Name (ARN) or name of credentials created using AWS
-  /// Secrets Manager.
+  /// The ARN or name of credentials created using AWS Secrets Manager.
   /// <note>
   /// The credential can use the name of the credentials only if they exist in
   /// your current AWS Region.
@@ -5651,7 +6000,7 @@ class AwsEc2EipDetails {
   }
 }
 
-/// The details of an Amazon EC2 instance.
+/// The details of an EC2 instance.
 class AwsEc2InstanceDetails {
   /// The IAM profile ARN of the instance.
   final String? iamInstanceProfileArn;
@@ -5676,6 +6025,11 @@ class AwsEc2InstanceDetails {
   /// <code>2020-03-22T13:22:13.933Z</code>.
   final String? launchedAt;
 
+  /// The identifiers of the network interfaces for the EC2 instance. The details
+  /// for each network interface are in a corresponding
+  /// <code>AwsEc2NetworkInterfacesDetails</code> object.
+  final List<AwsEc2InstanceNetworkInterfacesDetails>? networkInterfaces;
+
   /// The identifier of the subnet that the instance was launched in.
   final String? subnetId;
 
@@ -5692,6 +6046,7 @@ class AwsEc2InstanceDetails {
     this.ipV6Addresses,
     this.keyName,
     this.launchedAt,
+    this.networkInterfaces,
     this.subnetId,
     this.type,
     this.vpcId,
@@ -5710,6 +6065,11 @@ class AwsEc2InstanceDetails {
           .toList(),
       keyName: json['KeyName'] as String?,
       launchedAt: json['LaunchedAt'] as String?,
+      networkInterfaces: (json['NetworkInterfaces'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEc2InstanceNetworkInterfacesDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
       subnetId: json['SubnetId'] as String?,
       type: json['Type'] as String?,
       vpcId: json['VpcId'] as String?,
@@ -5723,6 +6083,7 @@ class AwsEc2InstanceDetails {
     final ipV6Addresses = this.ipV6Addresses;
     final keyName = this.keyName;
     final launchedAt = this.launchedAt;
+    final networkInterfaces = this.networkInterfaces;
     final subnetId = this.subnetId;
     final type = this.type;
     final vpcId = this.vpcId;
@@ -5734,9 +6095,214 @@ class AwsEc2InstanceDetails {
       if (ipV6Addresses != null) 'IpV6Addresses': ipV6Addresses,
       if (keyName != null) 'KeyName': keyName,
       if (launchedAt != null) 'LaunchedAt': launchedAt,
+      if (networkInterfaces != null) 'NetworkInterfaces': networkInterfaces,
       if (subnetId != null) 'SubnetId': subnetId,
       if (type != null) 'Type': type,
       if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
+}
+
+/// Identifies a network interface for the EC2 instance.
+class AwsEc2InstanceNetworkInterfacesDetails {
+  /// The identifier of the network interface. The details are in a corresponding
+  /// <code>AwsEc2NetworkInterfacesDetails</code> object.
+  final String? networkInterfaceId;
+
+  AwsEc2InstanceNetworkInterfacesDetails({
+    this.networkInterfaceId,
+  });
+  factory AwsEc2InstanceNetworkInterfacesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEc2InstanceNetworkInterfacesDetails(
+      networkInterfaceId: json['NetworkInterfaceId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+    };
+  }
+}
+
+/// An association between the network ACL and a subnet.
+class AwsEc2NetworkAclAssociation {
+  /// The identifier of the association between the network ACL and the subnet.
+  final String? networkAclAssociationId;
+
+  /// The identifier of the network ACL.
+  final String? networkAclId;
+
+  /// The identifier of the subnet that is associated with the network ACL.
+  final String? subnetId;
+
+  AwsEc2NetworkAclAssociation({
+    this.networkAclAssociationId,
+    this.networkAclId,
+    this.subnetId,
+  });
+  factory AwsEc2NetworkAclAssociation.fromJson(Map<String, dynamic> json) {
+    return AwsEc2NetworkAclAssociation(
+      networkAclAssociationId: json['NetworkAclAssociationId'] as String?,
+      networkAclId: json['NetworkAclId'] as String?,
+      subnetId: json['SubnetId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkAclAssociationId = this.networkAclAssociationId;
+    final networkAclId = this.networkAclId;
+    final subnetId = this.subnetId;
+    return {
+      if (networkAclAssociationId != null)
+        'NetworkAclAssociationId': networkAclAssociationId,
+      if (networkAclId != null) 'NetworkAclId': networkAclId,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
+  }
+}
+
+/// Contains details about an EC2 network access control list (ACL).
+class AwsEc2NetworkAclDetails {
+  /// Associations between the network ACL and subnets.
+  final List<AwsEc2NetworkAclAssociation>? associations;
+
+  /// The set of rules in the network ACL.
+  final List<AwsEc2NetworkAclEntry>? entries;
+
+  /// Whether this is the default network ACL for the VPC.
+  final bool? isDefault;
+
+  /// The identifier of the network ACL.
+  final String? networkAclId;
+
+  /// The identifier of the AWS account that owns the network ACL.
+  final String? ownerId;
+
+  /// The identifier of the VPC for the network ACL.
+  final String? vpcId;
+
+  AwsEc2NetworkAclDetails({
+    this.associations,
+    this.entries,
+    this.isDefault,
+    this.networkAclId,
+    this.ownerId,
+    this.vpcId,
+  });
+  factory AwsEc2NetworkAclDetails.fromJson(Map<String, dynamic> json) {
+    return AwsEc2NetworkAclDetails(
+      associations: (json['Associations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEc2NetworkAclAssociation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      entries: (json['Entries'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEc2NetworkAclEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isDefault: json['IsDefault'] as bool?,
+      networkAclId: json['NetworkAclId'] as String?,
+      ownerId: json['OwnerId'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final entries = this.entries;
+    final isDefault = this.isDefault;
+    final networkAclId = this.networkAclId;
+    final ownerId = this.ownerId;
+    final vpcId = this.vpcId;
+    return {
+      if (associations != null) 'Associations': associations,
+      if (entries != null) 'Entries': entries,
+      if (isDefault != null) 'IsDefault': isDefault,
+      if (networkAclId != null) 'NetworkAclId': networkAclId,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
+}
+
+/// A rule for the network ACL. Each rule allows or denies access based on the
+/// IP address, traffic direction, port, and protocol.
+class AwsEc2NetworkAclEntry {
+  /// The IPV4 network range for which to deny or allow access.
+  final String? cidrBlock;
+
+  /// Whether the rule is an egress rule. An egress rule is a rule that applies to
+  /// traffic that leaves the subnet.
+  final bool? egress;
+
+  /// The Internet Control Message Protocol (ICMP) type and code for which to deny
+  /// or allow access.
+  final IcmpTypeCode? icmpTypeCode;
+
+  /// The IPV6 network range for which to deny or allow access.
+  final String? ipv6CidrBlock;
+
+  /// For TCP or UDP protocols, the range of ports that the rule applies to.
+  final PortRangeFromTo? portRange;
+
+  /// The protocol that the rule applies to. To deny or allow access to all
+  /// protocols, use the value -1.
+  final String? protocol;
+
+  /// Whether the rule is used to allow access or deny access.
+  final String? ruleAction;
+
+  /// The rule number. The rules are processed in order by their number.
+  final int? ruleNumber;
+
+  AwsEc2NetworkAclEntry({
+    this.cidrBlock,
+    this.egress,
+    this.icmpTypeCode,
+    this.ipv6CidrBlock,
+    this.portRange,
+    this.protocol,
+    this.ruleAction,
+    this.ruleNumber,
+  });
+  factory AwsEc2NetworkAclEntry.fromJson(Map<String, dynamic> json) {
+    return AwsEc2NetworkAclEntry(
+      cidrBlock: json['CidrBlock'] as String?,
+      egress: json['Egress'] as bool?,
+      icmpTypeCode: json['IcmpTypeCode'] != null
+          ? IcmpTypeCode.fromJson(json['IcmpTypeCode'] as Map<String, dynamic>)
+          : null,
+      ipv6CidrBlock: json['Ipv6CidrBlock'] as String?,
+      portRange: json['PortRange'] != null
+          ? PortRangeFromTo.fromJson(json['PortRange'] as Map<String, dynamic>)
+          : null,
+      protocol: json['Protocol'] as String?,
+      ruleAction: json['RuleAction'] as String?,
+      ruleNumber: json['RuleNumber'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final egress = this.egress;
+    final icmpTypeCode = this.icmpTypeCode;
+    final ipv6CidrBlock = this.ipv6CidrBlock;
+    final portRange = this.portRange;
+    final protocol = this.protocol;
+    final ruleAction = this.ruleAction;
+    final ruleNumber = this.ruleNumber;
+    return {
+      if (cidrBlock != null) 'CidrBlock': cidrBlock,
+      if (egress != null) 'Egress': egress,
+      if (icmpTypeCode != null) 'IcmpTypeCode': icmpTypeCode,
+      if (ipv6CidrBlock != null) 'Ipv6CidrBlock': ipv6CidrBlock,
+      if (portRange != null) 'PortRange': portRange,
+      if (protocol != null) 'Protocol': protocol,
+      if (ruleAction != null) 'RuleAction': ruleAction,
+      if (ruleNumber != null) 'RuleNumber': ruleNumber,
     };
   }
 }
@@ -5820,8 +6386,20 @@ class AwsEc2NetworkInterfaceDetails {
   /// The network interface attachment.
   final AwsEc2NetworkInterfaceAttachment? attachment;
 
+  /// The IPv6 addresses associated with the network interface.
+  final List<AwsEc2NetworkInterfaceIpV6AddressDetail>? ipV6Addresses;
+
   /// The ID of the network interface.
   final String? networkInterfaceId;
+
+  /// The private IPv4 addresses associated with the network interface.
+  final List<AwsEc2NetworkInterfacePrivateIpAddressDetail>? privateIpAddresses;
+
+  /// The public DNS name of the network interface.
+  final String? publicDnsName;
+
+  /// The address of the Elastic IP address bound to the network interface.
+  final String? publicIp;
 
   /// Security groups for the network interface.
   final List<AwsEc2NetworkInterfaceSecurityGroup>? securityGroups;
@@ -5831,7 +6409,11 @@ class AwsEc2NetworkInterfaceDetails {
 
   AwsEc2NetworkInterfaceDetails({
     this.attachment,
+    this.ipV6Addresses,
     this.networkInterfaceId,
+    this.privateIpAddresses,
+    this.publicDnsName,
+    this.publicIp,
     this.securityGroups,
     this.sourceDestCheck,
   });
@@ -5841,7 +6423,19 @@ class AwsEc2NetworkInterfaceDetails {
           ? AwsEc2NetworkInterfaceAttachment.fromJson(
               json['Attachment'] as Map<String, dynamic>)
           : null,
+      ipV6Addresses: (json['IpV6Addresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEc2NetworkInterfaceIpV6AddressDetail.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
       networkInterfaceId: json['NetworkInterfaceId'] as String?,
+      privateIpAddresses: (json['PrivateIpAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEc2NetworkInterfacePrivateIpAddressDetail.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      publicDnsName: json['PublicDnsName'] as String?,
+      publicIp: json['PublicIp'] as String?,
       securityGroups: (json['SecurityGroups'] as List?)
           ?.whereNotNull()
           .map((e) => AwsEc2NetworkInterfaceSecurityGroup.fromJson(
@@ -5853,14 +6447,77 @@ class AwsEc2NetworkInterfaceDetails {
 
   Map<String, dynamic> toJson() {
     final attachment = this.attachment;
+    final ipV6Addresses = this.ipV6Addresses;
     final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddresses = this.privateIpAddresses;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
     final securityGroups = this.securityGroups;
     final sourceDestCheck = this.sourceDestCheck;
     return {
       if (attachment != null) 'Attachment': attachment,
+      if (ipV6Addresses != null) 'IpV6Addresses': ipV6Addresses,
       if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (privateIpAddresses != null) 'PrivateIpAddresses': privateIpAddresses,
+      if (publicDnsName != null) 'PublicDnsName': publicDnsName,
+      if (publicIp != null) 'PublicIp': publicIp,
       if (securityGroups != null) 'SecurityGroups': securityGroups,
       if (sourceDestCheck != null) 'SourceDestCheck': sourceDestCheck,
+    };
+  }
+}
+
+/// Provides information about an IPV6 address that is associated with the
+/// network interface.
+class AwsEc2NetworkInterfaceIpV6AddressDetail {
+  /// The IPV6 address.
+  final String? ipV6Address;
+
+  AwsEc2NetworkInterfaceIpV6AddressDetail({
+    this.ipV6Address,
+  });
+  factory AwsEc2NetworkInterfaceIpV6AddressDetail.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEc2NetworkInterfaceIpV6AddressDetail(
+      ipV6Address: json['IpV6Address'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipV6Address = this.ipV6Address;
+    return {
+      if (ipV6Address != null) 'IpV6Address': ipV6Address,
+    };
+  }
+}
+
+/// Provides information about a private IPv4 address that is with the network
+/// interface.
+class AwsEc2NetworkInterfacePrivateIpAddressDetail {
+  /// The private DNS name for the IP address.
+  final String? privateDnsName;
+
+  /// The IP address.
+  final String? privateIpAddress;
+
+  AwsEc2NetworkInterfacePrivateIpAddressDetail({
+    this.privateDnsName,
+    this.privateIpAddress,
+  });
+  factory AwsEc2NetworkInterfacePrivateIpAddressDetail.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEc2NetworkInterfacePrivateIpAddressDetail(
+      privateDnsName: json['PrivateDnsName'] as String?,
+      privateIpAddress: json['PrivateIpAddress'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (privateDnsName != null) 'PrivateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
     };
   }
 }
@@ -6153,7 +6810,7 @@ class AwsEc2SecurityGroupUserIdGroupPair {
   /// security group is deleted, this value is not returned.
   ///
   /// [EC2-Classic] Required when adding or removing rules that reference a
-  /// security group in another AWS.
+  /// security group in another VPC.
   final String? userId;
 
   /// The ID of the VPC for the referenced security group, if applicable.
@@ -6197,6 +6854,123 @@ class AwsEc2SecurityGroupUserIdGroupPair {
       if (vpcId != null) 'VpcId': vpcId,
       if (vpcPeeringConnectionId != null)
         'VpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
+}
+
+/// Contains information about a subnet in EC2.
+class AwsEc2SubnetDetails {
+  /// Whether to assign an IPV6 address to a network interface that is created in
+  /// this subnet.
+  final bool? assignIpv6AddressOnCreation;
+
+  /// The Availability Zone for the subnet.
+  final String? availabilityZone;
+
+  /// The identifier of the Availability Zone for the subnet.
+  final String? availabilityZoneId;
+
+  /// The number of available IPV4 addresses in the subnet. Does not include
+  /// addresses for stopped instances.
+  final int? availableIpAddressCount;
+
+  /// The IPV4 CIDR block that is assigned to the subnet.
+  final String? cidrBlock;
+
+  /// Whether this subnet is the default subnet for the Availability Zone.
+  final bool? defaultForAz;
+
+  /// The IPV6 CIDR blocks that are associated with the subnet.
+  final List<Ipv6CidrBlockAssociation>? ipv6CidrBlockAssociationSet;
+
+  /// Whether instances in this subnet receive a public IP address.
+  final bool? mapPublicIpOnLaunch;
+
+  /// The identifier of the AWS account that owns the subnet.
+  final String? ownerId;
+
+  /// The current state of the subnet.
+  final String? state;
+
+  /// The ARN of the subnet.
+  final String? subnetArn;
+
+  /// The identifier of the subnet.
+  final String? subnetId;
+
+  /// The identifier of the VPC that contains the subnet.
+  final String? vpcId;
+
+  AwsEc2SubnetDetails({
+    this.assignIpv6AddressOnCreation,
+    this.availabilityZone,
+    this.availabilityZoneId,
+    this.availableIpAddressCount,
+    this.cidrBlock,
+    this.defaultForAz,
+    this.ipv6CidrBlockAssociationSet,
+    this.mapPublicIpOnLaunch,
+    this.ownerId,
+    this.state,
+    this.subnetArn,
+    this.subnetId,
+    this.vpcId,
+  });
+  factory AwsEc2SubnetDetails.fromJson(Map<String, dynamic> json) {
+    return AwsEc2SubnetDetails(
+      assignIpv6AddressOnCreation: json['AssignIpv6AddressOnCreation'] as bool?,
+      availabilityZone: json['AvailabilityZone'] as String?,
+      availabilityZoneId: json['AvailabilityZoneId'] as String?,
+      availableIpAddressCount: json['AvailableIpAddressCount'] as int?,
+      cidrBlock: json['CidrBlock'] as String?,
+      defaultForAz: json['DefaultForAz'] as bool?,
+      ipv6CidrBlockAssociationSet:
+          (json['Ipv6CidrBlockAssociationSet'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  Ipv6CidrBlockAssociation.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      mapPublicIpOnLaunch: json['MapPublicIpOnLaunch'] as bool?,
+      ownerId: json['OwnerId'] as String?,
+      state: json['State'] as String?,
+      subnetArn: json['SubnetArn'] as String?,
+      subnetId: json['SubnetId'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assignIpv6AddressOnCreation = this.assignIpv6AddressOnCreation;
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availableIpAddressCount = this.availableIpAddressCount;
+    final cidrBlock = this.cidrBlock;
+    final defaultForAz = this.defaultForAz;
+    final ipv6CidrBlockAssociationSet = this.ipv6CidrBlockAssociationSet;
+    final mapPublicIpOnLaunch = this.mapPublicIpOnLaunch;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final subnetArn = this.subnetArn;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (assignIpv6AddressOnCreation != null)
+        'AssignIpv6AddressOnCreation': assignIpv6AddressOnCreation,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'AvailabilityZoneId': availabilityZoneId,
+      if (availableIpAddressCount != null)
+        'AvailableIpAddressCount': availableIpAddressCount,
+      if (cidrBlock != null) 'CidrBlock': cidrBlock,
+      if (defaultForAz != null) 'DefaultForAz': defaultForAz,
+      if (ipv6CidrBlockAssociationSet != null)
+        'Ipv6CidrBlockAssociationSet': ipv6CidrBlockAssociationSet,
+      if (mapPublicIpOnLaunch != null)
+        'MapPublicIpOnLaunch': mapPublicIpOnLaunch,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (state != null) 'State': state,
+      if (subnetArn != null) 'SubnetArn': subnetArn,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (vpcId != null) 'VpcId': vpcId,
     };
   }
 }
@@ -6374,6 +7148,2254 @@ class AwsEc2VpcDetails {
   }
 }
 
+/// Indicates whether to enable CloudWatch Container Insights for the ECS
+/// cluster.
+class AwsEcsClusterClusterSettingsDetails {
+  /// The name of the setting.
+  final String? name;
+
+  /// The value of the setting.
+  final String? value;
+
+  AwsEcsClusterClusterSettingsDetails({
+    this.name,
+    this.value,
+  });
+  factory AwsEcsClusterClusterSettingsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsClusterClusterSettingsDetails(
+      name: json['Name'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// The run command configuration for the cluster.
+class AwsEcsClusterConfigurationDetails {
+  /// Contains the run command configuration for the cluster.
+  final AwsEcsClusterConfigurationExecuteCommandConfigurationDetails?
+      executeCommandConfiguration;
+
+  AwsEcsClusterConfigurationDetails({
+    this.executeCommandConfiguration,
+  });
+  factory AwsEcsClusterConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsClusterConfigurationDetails(
+      executeCommandConfiguration: json['ExecuteCommandConfiguration'] != null
+          ? AwsEcsClusterConfigurationExecuteCommandConfigurationDetails
+              .fromJson(
+                  json['ExecuteCommandConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executeCommandConfiguration = this.executeCommandConfiguration;
+    return {
+      if (executeCommandConfiguration != null)
+        'ExecuteCommandConfiguration': executeCommandConfiguration,
+    };
+  }
+}
+
+/// Contains the run command configuration for the cluster.
+class AwsEcsClusterConfigurationExecuteCommandConfigurationDetails {
+  /// The identifier of the KMS key that is used to encrypt the data between the
+  /// local client and the container.
+  final String? kmsKeyId;
+
+  /// The log configuration for the results of the run command actions. Required
+  /// if <code>Logging</code> is <code>NONE</code>.
+  final AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails?
+      logConfiguration;
+
+  /// The log setting to use for redirecting logs for run command results.
+  final String? logging;
+
+  AwsEcsClusterConfigurationExecuteCommandConfigurationDetails({
+    this.kmsKeyId,
+    this.logConfiguration,
+    this.logging,
+  });
+  factory AwsEcsClusterConfigurationExecuteCommandConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsClusterConfigurationExecuteCommandConfigurationDetails(
+      kmsKeyId: json['KmsKeyId'] as String?,
+      logConfiguration: json['LogConfiguration'] != null
+          ? AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails
+              .fromJson(json['LogConfiguration'] as Map<String, dynamic>)
+          : null,
+      logging: json['Logging'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    final logConfiguration = this.logConfiguration;
+    final logging = this.logging;
+    return {
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (logging != null) 'Logging': logging,
+    };
+  }
+}
+
+/// The log configuration for the results of the run command actions.
+class AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+  /// Whether to enable encryption on the CloudWatch logs.
+  final bool? cloudWatchEncryptionEnabled;
+
+  /// The name of the CloudWatch log group to send the logs to.
+  final String? cloudWatchLogGroupName;
+
+  /// The name of the S3 bucket to send logs to.
+  final String? s3BucketName;
+
+  /// Whether to encrypt the logs that are sent to the S3 bucket.
+  final bool? s3EncryptionEnabled;
+
+  /// Identifies the folder in the S3 bucket to send the logs to.
+  final String? s3KeyPrefix;
+
+  AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails({
+    this.cloudWatchEncryptionEnabled,
+    this.cloudWatchLogGroupName,
+    this.s3BucketName,
+    this.s3EncryptionEnabled,
+    this.s3KeyPrefix,
+  });
+  factory AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails(
+      cloudWatchEncryptionEnabled: json['CloudWatchEncryptionEnabled'] as bool?,
+      cloudWatchLogGroupName: json['CloudWatchLogGroupName'] as String?,
+      s3BucketName: json['S3BucketName'] as String?,
+      s3EncryptionEnabled: json['S3EncryptionEnabled'] as bool?,
+      s3KeyPrefix: json['S3KeyPrefix'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchEncryptionEnabled = this.cloudWatchEncryptionEnabled;
+    final cloudWatchLogGroupName = this.cloudWatchLogGroupName;
+    final s3BucketName = this.s3BucketName;
+    final s3EncryptionEnabled = this.s3EncryptionEnabled;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    return {
+      if (cloudWatchEncryptionEnabled != null)
+        'CloudWatchEncryptionEnabled': cloudWatchEncryptionEnabled,
+      if (cloudWatchLogGroupName != null)
+        'CloudWatchLogGroupName': cloudWatchLogGroupName,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3EncryptionEnabled != null)
+        'S3EncryptionEnabled': s3EncryptionEnabled,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+    };
+  }
+}
+
+/// The default capacity provider strategy for the cluster. The default capacity
+/// provider strategy is used when services or tasks are run without a specified
+/// launch type or capacity provider strategy.
+class AwsEcsClusterDefaultCapacityProviderStrategyDetails {
+  /// The minimum number of tasks to run on the specified capacity provider.
+  final int? base;
+
+  /// The name of the capacity provider.
+  final String? capacityProvider;
+
+  /// The relative percentage of the total number of tasks launched that should
+  /// use the capacity provider.
+  final int? weight;
+
+  AwsEcsClusterDefaultCapacityProviderStrategyDetails({
+    this.base,
+    this.capacityProvider,
+    this.weight,
+  });
+  factory AwsEcsClusterDefaultCapacityProviderStrategyDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsClusterDefaultCapacityProviderStrategyDetails(
+      base: json['Base'] as int?,
+      capacityProvider: json['CapacityProvider'] as String?,
+      weight: json['Weight'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final capacityProvider = this.capacityProvider;
+    final weight = this.weight;
+    return {
+      if (base != null) 'Base': base,
+      if (capacityProvider != null) 'CapacityProvider': capacityProvider,
+      if (weight != null) 'Weight': weight,
+    };
+  }
+}
+
+/// provides details about an ECS cluster.
+class AwsEcsClusterDetails {
+  /// The short name of one or more capacity providers to associate with the
+  /// cluster.
+  final List<String>? capacityProviders;
+
+  /// The setting to use to create the cluster. Specifically used to configure
+  /// whether to enable CloudWatch Container Insights for the cluster.
+  final List<AwsEcsClusterClusterSettingsDetails>? clusterSettings;
+
+  /// The run command configuration for the cluster.
+  final AwsEcsClusterConfigurationDetails? configuration;
+
+  /// The default capacity provider strategy for the cluster. The default capacity
+  /// provider strategy is used when services or tasks are run without a specified
+  /// launch type or capacity provider strategy.
+  final List<AwsEcsClusterDefaultCapacityProviderStrategyDetails>?
+      defaultCapacityProviderStrategy;
+
+  AwsEcsClusterDetails({
+    this.capacityProviders,
+    this.clusterSettings,
+    this.configuration,
+    this.defaultCapacityProviderStrategy,
+  });
+  factory AwsEcsClusterDetails.fromJson(Map<String, dynamic> json) {
+    return AwsEcsClusterDetails(
+      capacityProviders: (json['CapacityProviders'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      clusterSettings: (json['ClusterSettings'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsClusterClusterSettingsDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      configuration: json['Configuration'] != null
+          ? AwsEcsClusterConfigurationDetails.fromJson(
+              json['Configuration'] as Map<String, dynamic>)
+          : null,
+      defaultCapacityProviderStrategy:
+          (json['DefaultCapacityProviderStrategy'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  AwsEcsClusterDefaultCapacityProviderStrategyDetails.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityProviders = this.capacityProviders;
+    final clusterSettings = this.clusterSettings;
+    final configuration = this.configuration;
+    final defaultCapacityProviderStrategy =
+        this.defaultCapacityProviderStrategy;
+    return {
+      if (capacityProviders != null) 'CapacityProviders': capacityProviders,
+      if (clusterSettings != null) 'ClusterSettings': clusterSettings,
+      if (configuration != null) 'Configuration': configuration,
+      if (defaultCapacityProviderStrategy != null)
+        'DefaultCapacityProviderStrategy': defaultCapacityProviderStrategy,
+    };
+  }
+}
+
+/// A dependency that is defined for container startup and shutdown.
+class AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails {
+  /// The dependency condition of the dependent container. Indicates the required
+  /// status of the dependent container before the current container can start.
+  final String? condition;
+
+  /// The name of the dependent container.
+  final String? containerName;
+
+  AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails({
+    this.condition,
+    this.containerName,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails(
+      condition: json['Condition'] as String?,
+      containerName: json['ContainerName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final condition = this.condition;
+    final containerName = this.containerName;
+    return {
+      if (condition != null) 'Condition': condition,
+      if (containerName != null) 'ContainerName': containerName,
+    };
+  }
+}
+
+/// A container definition that describes a container in the task.
+class AwsEcsTaskDefinitionContainerDefinitionsDetails {
+  /// The command that is passed to the container.
+  final List<String>? command;
+
+  /// The number of CPU units reserved for the container.
+  final int? cpu;
+
+  /// The dependencies that are defined for container startup and shutdown.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails>?
+      dependsOn;
+
+  /// Whether to disable networking within the container.
+  final bool? disableNetworking;
+
+  /// A list of DNS search domains that are presented to the container.
+  final List<String>? dnsSearchDomains;
+
+  /// A list of DNS servers that are presented to the container.
+  final List<String>? dnsServers;
+
+  /// A key-value map of labels to add to the container.
+  final Map<String, String>? dockerLabels;
+
+  /// A list of strings to provide custom labels for SELinux and AppArmor
+  /// multi-level security systems.
+  final List<String>? dockerSecurityOptions;
+
+  /// The entry point that is passed to the container.
+  final List<String>? entryPoint;
+
+  /// The environment variables to pass to a container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails>?
+      environment;
+
+  /// A list of files containing the environment variables to pass to a container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails>?
+      environmentFiles;
+
+  /// Whether the container is essential. All tasks must have at least one
+  /// essential container.
+  final bool? essential;
+
+  /// A list of hostnames and IP address mappings to append to the
+  /// <b>/etc/hosts</b> file on the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails>?
+      extraHosts;
+
+  /// The FireLens configuration for the container. Specifies and configures a log
+  /// router for container logs.
+  final AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails?
+      firelensConfiguration;
+
+  /// The container health check command and associated configuration parameters
+  /// for the container.
+  final AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails? healthCheck;
+
+  /// The hostname to use for the container.
+  final String? hostname;
+
+  /// The image used to start the container.
+  final String? image;
+
+  /// If set to true, then containerized applications can be deployed that require
+  /// <code>stdin</code> or a <code>tty</code> to be allocated.
+  final bool? interactive;
+
+  /// A list of links for the container in the form <code>
+  /// <i>container_name</i>:<i>alias</i> </code>. Allows containers to communicate
+  /// with each other without the need for port mappings.
+  final List<String>? links;
+
+  /// Linux-specific modifications that are applied to the container, such as
+  /// Linux kernel capabilities.
+  final AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails?
+      linuxParameters;
+
+  /// The log configuration specification for the container.
+  final AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails?
+      logConfiguration;
+
+  /// The amount (in MiB) of memory to present to the container. If the container
+  /// attempts to exceed the memory specified here, the container is shut down.
+  /// The total amount of memory reserved for all containers within a task must be
+  /// lower than the task memory value, if one is specified.
+  final int? memory;
+
+  /// The soft limit (in MiB) of memory to reserve for the container.
+  final int? memoryReservation;
+
+  /// The mount points for the data volumes in the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails>?
+      mountPoints;
+
+  /// The name of the container.
+  final String? name;
+
+  /// The list of port mappings for the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails>?
+      portMappings;
+
+  /// Whether the container is given elevated privileges on the host container
+  /// instance. The elevated privileges are similar to the root user.
+  final bool? privileged;
+
+  /// Whether to allocate a TTY to the container.
+  final bool? pseudoTerminal;
+
+  /// Whether the container is given read-only access to its root file system.
+  final bool? readonlyRootFilesystem;
+
+  /// The private repository authentication credentials to use.
+  final AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails?
+      repositoryCredentials;
+
+  /// The type and amount of a resource to assign to a container. The only
+  /// supported resource is a GPU.
+  final List<
+          AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails>?
+      resourceRequirements;
+
+  /// The secrets to pass to the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails>? secrets;
+
+  /// The number of seconds to wait before giving up on resolving dependencies for
+  /// a container.
+  final int? startTimeout;
+
+  /// The number of seconds to wait before the container is stopped if it doesn't
+  /// shut down normally on its own.
+  final int? stopTimeout;
+
+  /// A list of namespaced kernel parameters to set in the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails>?
+      systemControls;
+
+  /// A list of ulimits to set in the container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails>? ulimits;
+
+  /// The user to use inside the container.
+  ///
+  /// The value can use one of the following formats.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code> <i>user</i> </code>
+  /// </li>
+  /// <li>
+  /// <code> <i>user</i> </code>:<code> <i>group</i> </code>
+  /// </li>
+  /// <li>
+  /// <code> <i>uid</i> </code>
+  /// </li>
+  /// <li>
+  /// <code> <i>uid</i> </code>:<code> <i>gid</i> </code>
+  /// </li>
+  /// <li>
+  /// <code> <i>user</i> </code>:<code> <i>gid</i> </code>
+  /// </li>
+  /// <li>
+  /// <code> <i>uid</i> </code>:<code> <i>group</i> </code>
+  /// </li>
+  /// </ul>
+  final String? user;
+
+  /// Data volumes to mount from another container.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails>?
+      volumesFrom;
+
+  /// The working directory in which to run commands inside the container.
+  final String? workingDirectory;
+
+  AwsEcsTaskDefinitionContainerDefinitionsDetails({
+    this.command,
+    this.cpu,
+    this.dependsOn,
+    this.disableNetworking,
+    this.dnsSearchDomains,
+    this.dnsServers,
+    this.dockerLabels,
+    this.dockerSecurityOptions,
+    this.entryPoint,
+    this.environment,
+    this.environmentFiles,
+    this.essential,
+    this.extraHosts,
+    this.firelensConfiguration,
+    this.healthCheck,
+    this.hostname,
+    this.image,
+    this.interactive,
+    this.links,
+    this.linuxParameters,
+    this.logConfiguration,
+    this.memory,
+    this.memoryReservation,
+    this.mountPoints,
+    this.name,
+    this.portMappings,
+    this.privileged,
+    this.pseudoTerminal,
+    this.readonlyRootFilesystem,
+    this.repositoryCredentials,
+    this.resourceRequirements,
+    this.secrets,
+    this.startTimeout,
+    this.stopTimeout,
+    this.systemControls,
+    this.ulimits,
+    this.user,
+    this.volumesFrom,
+    this.workingDirectory,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsDetails(
+      command: (json['Command'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      cpu: json['Cpu'] as int?,
+      dependsOn: (json['DependsOn'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails.fromJson(
+                  e as Map<String, dynamic>))
+          .toList(),
+      disableNetworking: json['DisableNetworking'] as bool?,
+      dnsSearchDomains: (json['DnsSearchDomains'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      dnsServers: (json['DnsServers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      dockerLabels: (json['DockerLabels'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      dockerSecurityOptions: (json['DockerSecurityOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      entryPoint: (json['EntryPoint'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      environment: (json['Environment'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails
+              .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      environmentFiles: (json['EnvironmentFiles'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      essential: json['Essential'] as bool?,
+      extraHosts: (json['ExtraHosts'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails
+              .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      firelensConfiguration: json['FirelensConfiguration'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails
+              .fromJson(json['FirelensConfiguration'] as Map<String, dynamic>)
+          : null,
+      healthCheck: json['HealthCheck'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails.fromJson(
+              json['HealthCheck'] as Map<String, dynamic>)
+          : null,
+      hostname: json['Hostname'] as String?,
+      image: json['Image'] as String?,
+      interactive: json['Interactive'] as bool?,
+      links: (json['Links'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      linuxParameters: json['LinuxParameters'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails
+              .fromJson(json['LinuxParameters'] as Map<String, dynamic>)
+          : null,
+      logConfiguration: json['LogConfiguration'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails
+              .fromJson(json['LogConfiguration'] as Map<String, dynamic>)
+          : null,
+      memory: json['Memory'] as int?,
+      memoryReservation: json['MemoryReservation'] as int?,
+      mountPoints: (json['MountPoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails
+              .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      name: json['Name'] as String?,
+      portMappings: (json['PortMappings'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      privileged: json['Privileged'] as bool?,
+      pseudoTerminal: json['PseudoTerminal'] as bool?,
+      readonlyRootFilesystem: json['ReadonlyRootFilesystem'] as bool?,
+      repositoryCredentials: json['RepositoryCredentials'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails
+              .fromJson(json['RepositoryCredentials'] as Map<String, dynamic>)
+          : null,
+      resourceRequirements: (json['ResourceRequirements'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      secrets: (json['Secrets'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails.fromJson(
+                  e as Map<String, dynamic>))
+          .toList(),
+      startTimeout: json['StartTimeout'] as int?,
+      stopTimeout: json['StopTimeout'] as int?,
+      systemControls: (json['SystemControls'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      ulimits: (json['Ulimits'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails.fromJson(
+                  e as Map<String, dynamic>))
+          .toList(),
+      user: json['User'] as String?,
+      volumesFrom: (json['VolumesFrom'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails
+              .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      workingDirectory: json['WorkingDirectory'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final command = this.command;
+    final cpu = this.cpu;
+    final dependsOn = this.dependsOn;
+    final disableNetworking = this.disableNetworking;
+    final dnsSearchDomains = this.dnsSearchDomains;
+    final dnsServers = this.dnsServers;
+    final dockerLabels = this.dockerLabels;
+    final dockerSecurityOptions = this.dockerSecurityOptions;
+    final entryPoint = this.entryPoint;
+    final environment = this.environment;
+    final environmentFiles = this.environmentFiles;
+    final essential = this.essential;
+    final extraHosts = this.extraHosts;
+    final firelensConfiguration = this.firelensConfiguration;
+    final healthCheck = this.healthCheck;
+    final hostname = this.hostname;
+    final image = this.image;
+    final interactive = this.interactive;
+    final links = this.links;
+    final linuxParameters = this.linuxParameters;
+    final logConfiguration = this.logConfiguration;
+    final memory = this.memory;
+    final memoryReservation = this.memoryReservation;
+    final mountPoints = this.mountPoints;
+    final name = this.name;
+    final portMappings = this.portMappings;
+    final privileged = this.privileged;
+    final pseudoTerminal = this.pseudoTerminal;
+    final readonlyRootFilesystem = this.readonlyRootFilesystem;
+    final repositoryCredentials = this.repositoryCredentials;
+    final resourceRequirements = this.resourceRequirements;
+    final secrets = this.secrets;
+    final startTimeout = this.startTimeout;
+    final stopTimeout = this.stopTimeout;
+    final systemControls = this.systemControls;
+    final ulimits = this.ulimits;
+    final user = this.user;
+    final volumesFrom = this.volumesFrom;
+    final workingDirectory = this.workingDirectory;
+    return {
+      if (command != null) 'Command': command,
+      if (cpu != null) 'Cpu': cpu,
+      if (dependsOn != null) 'DependsOn': dependsOn,
+      if (disableNetworking != null) 'DisableNetworking': disableNetworking,
+      if (dnsSearchDomains != null) 'DnsSearchDomains': dnsSearchDomains,
+      if (dnsServers != null) 'DnsServers': dnsServers,
+      if (dockerLabels != null) 'DockerLabels': dockerLabels,
+      if (dockerSecurityOptions != null)
+        'DockerSecurityOptions': dockerSecurityOptions,
+      if (entryPoint != null) 'EntryPoint': entryPoint,
+      if (environment != null) 'Environment': environment,
+      if (environmentFiles != null) 'EnvironmentFiles': environmentFiles,
+      if (essential != null) 'Essential': essential,
+      if (extraHosts != null) 'ExtraHosts': extraHosts,
+      if (firelensConfiguration != null)
+        'FirelensConfiguration': firelensConfiguration,
+      if (healthCheck != null) 'HealthCheck': healthCheck,
+      if (hostname != null) 'Hostname': hostname,
+      if (image != null) 'Image': image,
+      if (interactive != null) 'Interactive': interactive,
+      if (links != null) 'Links': links,
+      if (linuxParameters != null) 'LinuxParameters': linuxParameters,
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (memory != null) 'Memory': memory,
+      if (memoryReservation != null) 'MemoryReservation': memoryReservation,
+      if (mountPoints != null) 'MountPoints': mountPoints,
+      if (name != null) 'Name': name,
+      if (portMappings != null) 'PortMappings': portMappings,
+      if (privileged != null) 'Privileged': privileged,
+      if (pseudoTerminal != null) 'PseudoTerminal': pseudoTerminal,
+      if (readonlyRootFilesystem != null)
+        'ReadonlyRootFilesystem': readonlyRootFilesystem,
+      if (repositoryCredentials != null)
+        'RepositoryCredentials': repositoryCredentials,
+      if (resourceRequirements != null)
+        'ResourceRequirements': resourceRequirements,
+      if (secrets != null) 'Secrets': secrets,
+      if (startTimeout != null) 'StartTimeout': startTimeout,
+      if (stopTimeout != null) 'StopTimeout': stopTimeout,
+      if (systemControls != null) 'SystemControls': systemControls,
+      if (ulimits != null) 'Ulimits': ulimits,
+      if (user != null) 'User': user,
+      if (volumesFrom != null) 'VolumesFrom': volumesFrom,
+      if (workingDirectory != null) 'WorkingDirectory': workingDirectory,
+    };
+  }
+}
+
+/// An environment variable to pass to the container.
+class AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails {
+  /// The name of the environment variable.
+  final String? name;
+
+  /// The value of the environment variable.
+  final String? value;
+
+  AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails({
+    this.name,
+    this.value,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails(
+      name: json['Name'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A file that contain environment variables to pass to a container.
+class AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails {
+  /// The type of environment file.
+  final String? type;
+
+  /// The ARN of the S3 object that contains the environment variable file.
+  final String? value;
+
+  AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails({
+    this.type,
+    this.value,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails(
+      type: json['Type'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (type != null) 'Type': type,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A hostname and IP address mapping to append to the <b>/etc/hosts</b> file on
+/// the container.
+class AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails {
+  /// The hostname to use in the <b>/etc/hosts</b> entry.
+  final String? hostname;
+
+  /// The IP address to use in the <b>/etc/hosts</b> entry.
+  final String? ipAddress;
+
+  AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails({
+    this.hostname,
+    this.ipAddress,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails(
+      hostname: json['Hostname'] as String?,
+      ipAddress: json['IpAddress'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostname = this.hostname;
+    final ipAddress = this.ipAddress;
+    return {
+      if (hostname != null) 'Hostname': hostname,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+    };
+  }
+}
+
+/// The FireLens configuration for the container. The configuration specifies
+/// and configures a log router for container logs.
+class AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails {
+  /// The options to use to configure the log router.
+  ///
+  /// The valid option keys are as follows:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>enable-ecs-log-metadata</code>. The value can be <code>true</code> or
+  /// <code>false</code>.
+  /// </li>
+  /// <li>
+  /// <code>config-file-type</code>. The value can be <code>s3</code> or
+  /// <code>file</code>.
+  /// </li>
+  /// <li>
+  /// <code>config-file-value</code>. The value is either an S3 ARN or a file
+  /// path.
+  /// </li>
+  /// </ul>
+  final Map<String, String>? options;
+
+  /// The log router to use.
+  final String? type;
+
+  AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails({
+    this.options,
+    this.type,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails(
+      options: (json['Options'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final type = this.type;
+    return {
+      if (options != null) 'Options': options,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// The container health check command and associated configuration parameters
+/// for the container.
+class AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+  /// The command that the container runs to determine whether it is healthy.
+  final List<String>? command;
+
+  /// The time period in seconds between each health check execution. The default
+  /// value is 30 seconds.
+  final int? interval;
+
+  /// The number of times to retry a failed health check before the container is
+  /// considered unhealthy. The default value is 3.
+  final int? retries;
+
+  /// The optional grace period in seconds that allows containers time to
+  /// bootstrap before failed health checks count towards the maximum number of
+  /// retries.
+  final int? startPeriod;
+
+  /// The time period in seconds to wait for a health check to succeed before it
+  /// is considered a failure. The default value is 5.
+  final int? timeout;
+
+  AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails({
+    this.command,
+    this.interval,
+    this.retries,
+    this.startPeriod,
+    this.timeout,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails(
+      command: (json['Command'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      interval: json['Interval'] as int?,
+      retries: json['Retries'] as int?,
+      startPeriod: json['StartPeriod'] as int?,
+      timeout: json['Timeout'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final command = this.command;
+    final interval = this.interval;
+    final retries = this.retries;
+    final startPeriod = this.startPeriod;
+    final timeout = this.timeout;
+    return {
+      if (command != null) 'Command': command,
+      if (interval != null) 'Interval': interval,
+      if (retries != null) 'Retries': retries,
+      if (startPeriod != null) 'StartPeriod': startPeriod,
+      if (timeout != null) 'Timeout': timeout,
+    };
+  }
+}
+
+/// The Linux capabilities for the container that are added to or dropped from
+/// the default configuration provided by Docker.
+class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails {
+  /// The Linux capabilities for the container that are added to the default
+  /// configuration provided by Docker.
+  final List<String>? add;
+
+  /// The Linux capabilities for the container that are dropped from the default
+  /// configuration provided by Docker.
+  final List<String>? drop;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails({
+    this.add,
+    this.drop,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails(
+      add: (json['Add'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      drop: (json['Drop'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final add = this.add;
+    final drop = this.drop;
+    return {
+      if (add != null) 'Add': add,
+      if (drop != null) 'Drop': drop,
+    };
+  }
+}
+
+/// &gt;Linux-specific modifications that are applied to the container, such as
+/// Linux kernel capabilities.
+class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+  /// The Linux capabilities for the container that are added to or dropped from
+  /// the default configuration provided by Docker.
+  final AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails?
+      capabilities;
+
+  /// The host devices to expose to the container.
+  final List<
+          AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails>?
+      devices;
+
+  /// Whether to run an <code>init</code> process inside the container that
+  /// forwards signals and reaps processes.
+  final bool? initProcessEnabled;
+
+  /// The total amount of swap memory (in MiB) that a container can use.
+  final int? maxSwap;
+
+  /// The value for the size (in MiB) of the <b>/dev/shm</b> volume.
+  final int? sharedMemorySize;
+
+  /// Configures the container's memory swappiness behavior. Determines how
+  /// aggressively pages are swapped. The higher the value, the more aggressive
+  /// the swappiness. The default is 60.
+  final int? swappiness;
+
+  /// The container path, mount options, and size (in MiB) of the tmpfs mount.
+  final List<
+          AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails>?
+      tmpfs;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails({
+    this.capabilities,
+    this.devices,
+    this.initProcessEnabled,
+    this.maxSwap,
+    this.sharedMemorySize,
+    this.swappiness,
+    this.tmpfs,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails(
+      capabilities: json['Capabilities'] != null
+          ? AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails
+              .fromJson(json['Capabilities'] as Map<String, dynamic>)
+          : null,
+      devices: (json['Devices'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      initProcessEnabled: json['InitProcessEnabled'] as bool?,
+      maxSwap: json['MaxSwap'] as int?,
+      sharedMemorySize: json['SharedMemorySize'] as int?,
+      swappiness: json['Swappiness'] as int?,
+      tmpfs: (json['Tmpfs'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capabilities = this.capabilities;
+    final devices = this.devices;
+    final initProcessEnabled = this.initProcessEnabled;
+    final maxSwap = this.maxSwap;
+    final sharedMemorySize = this.sharedMemorySize;
+    final swappiness = this.swappiness;
+    final tmpfs = this.tmpfs;
+    return {
+      if (capabilities != null) 'Capabilities': capabilities,
+      if (devices != null) 'Devices': devices,
+      if (initProcessEnabled != null) 'InitProcessEnabled': initProcessEnabled,
+      if (maxSwap != null) 'MaxSwap': maxSwap,
+      if (sharedMemorySize != null) 'SharedMemorySize': sharedMemorySize,
+      if (swappiness != null) 'Swappiness': swappiness,
+      if (tmpfs != null) 'Tmpfs': tmpfs,
+    };
+  }
+}
+
+/// A host device to expose to the container.
+class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails {
+  /// The path inside the container at which to expose the host device.
+  final String? containerPath;
+
+  /// The path for the device on the host container instance.
+  final String? hostPath;
+
+  /// The explicit permissions to provide to the container for the device. By
+  /// default, the container has permissions for read, write, and
+  /// <code>mknod</code> for the device.
+  final List<String>? permissions;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails({
+    this.containerPath,
+    this.hostPath,
+    this.permissions,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails(
+      containerPath: json['ContainerPath'] as String?,
+      hostPath: json['HostPath'] as String?,
+      permissions: (json['Permissions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerPath = this.containerPath;
+    final hostPath = this.hostPath;
+    final permissions = this.permissions;
+    return {
+      if (containerPath != null) 'ContainerPath': containerPath,
+      if (hostPath != null) 'HostPath': hostPath,
+      if (permissions != null) 'Permissions': permissions,
+    };
+  }
+}
+
+/// The container path, mount options, and size (in MiB) of a tmpfs mount.
+class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails {
+  /// The absolute file path where the tmpfs volume is to be mounted.
+  final String? containerPath;
+
+  /// The list of tmpfs volume mount options.
+  final List<String>? mountOptions;
+
+  /// The maximum size (in MiB) of the tmpfs volume.
+  final int? size;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails({
+    this.containerPath,
+    this.mountOptions,
+    this.size,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails(
+      containerPath: json['ContainerPath'] as String?,
+      mountOptions: (json['MountOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      size: json['Size'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerPath = this.containerPath;
+    final mountOptions = this.mountOptions;
+    final size = this.size;
+    return {
+      if (containerPath != null) 'ContainerPath': containerPath,
+      if (mountOptions != null) 'MountOptions': mountOptions,
+      if (size != null) 'Size': size,
+    };
+  }
+}
+
+/// The log configuration specification for the container.
+class AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails {
+  /// The log driver to use for the container.
+  final String? logDriver;
+
+  /// The configuration options to send to the log driver. Requires version 1.19
+  /// of the Docker Remote API or greater on your container instance.
+  final Map<String, String>? options;
+
+  /// The secrets to pass to the log configuration.
+  final List<
+          AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails>?
+      secretOptions;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails({
+    this.logDriver,
+    this.options,
+    this.secretOptions,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails(
+      logDriver: json['LogDriver'] as String?,
+      options: (json['Options'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      secretOptions: (json['SecretOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logDriver = this.logDriver;
+    final options = this.options;
+    final secretOptions = this.secretOptions;
+    return {
+      if (logDriver != null) 'LogDriver': logDriver,
+      if (options != null) 'Options': options,
+      if (secretOptions != null) 'SecretOptions': secretOptions,
+    };
+  }
+}
+
+/// A secret to pass to the log configuration.
+class AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails {
+  /// The name of the secret.
+  final String? name;
+
+  /// The secret to expose to the container.
+  ///
+  /// The value is either the full ARN of the Secrets Manager secret or the full
+  /// ARN of the parameter in the Systems Manager Parameter Store.
+  final String? valueFrom;
+
+  AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails({
+    this.name,
+    this.valueFrom,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails(
+      name: json['Name'] as String?,
+      valueFrom: json['ValueFrom'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final valueFrom = this.valueFrom;
+    return {
+      if (name != null) 'Name': name,
+      if (valueFrom != null) 'ValueFrom': valueFrom,
+    };
+  }
+}
+
+/// A mount point for the data volumes in the container.
+class AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails {
+  /// The path on the container to mount the host volume at.
+  final String? containerPath;
+
+  /// Whether the container has read-only access to the volume.
+  final bool? readOnly;
+
+  /// The name of the volume to mount. Must match the name of a volume listed in
+  /// <code>VolumeDetails</code> for the task definition.
+  final String? sourceVolume;
+
+  AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails({
+    this.containerPath,
+    this.readOnly,
+    this.sourceVolume,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails(
+      containerPath: json['ContainerPath'] as String?,
+      readOnly: json['ReadOnly'] as bool?,
+      sourceVolume: json['SourceVolume'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerPath = this.containerPath;
+    final readOnly = this.readOnly;
+    final sourceVolume = this.sourceVolume;
+    return {
+      if (containerPath != null) 'ContainerPath': containerPath,
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (sourceVolume != null) 'SourceVolume': sourceVolume,
+    };
+  }
+}
+
+/// A port mapping for the container.
+class AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails {
+  /// The port number on the container that is bound to the user-specified or
+  /// automatically assigned host port.
+  final int? containerPort;
+
+  /// The port number on the container instance to reserve for the container.
+  final int? hostPort;
+
+  /// The protocol used for the port mapping. The default is <code>tcp</code>.
+  final String? protocol;
+
+  AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails({
+    this.containerPort,
+    this.hostPort,
+    this.protocol,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails(
+      containerPort: json['ContainerPort'] as int?,
+      hostPort: json['HostPort'] as int?,
+      protocol: json['Protocol'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerPort = this.containerPort;
+    final hostPort = this.hostPort;
+    final protocol = this.protocol;
+    return {
+      if (containerPort != null) 'ContainerPort': containerPort,
+      if (hostPort != null) 'HostPort': hostPort,
+      if (protocol != null) 'Protocol': protocol,
+    };
+  }
+}
+
+/// The private repository authentication credentials to use.
+class AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails {
+  /// The ARN of the secret that contains the private repository credentials.
+  final String? credentialsParameter;
+
+  AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails({
+    this.credentialsParameter,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails(
+      credentialsParameter: json['CredentialsParameter'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentialsParameter = this.credentialsParameter;
+    return {
+      if (credentialsParameter != null)
+        'CredentialsParameter': credentialsParameter,
+    };
+  }
+}
+
+/// A resource to assign to a container.
+class AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails {
+  /// The type of resource to assign to a container.
+  final String? type;
+
+  /// The value for the specified resource type.
+  ///
+  /// For <code>GPU</code>, the value is the number of physical GPUs the Amazon
+  /// ECS container agent reserves for the container.
+  ///
+  /// For <code>InferenceAccelerator</code>, the value should match the
+  /// <code>DeviceName</code> attribute of an entry in
+  /// <code>InferenceAccelerators</code>.
+  final String? value;
+
+  AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails({
+    this.type,
+    this.value,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails(
+      type: json['Type'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (type != null) 'Type': type,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A secret to pass to the container.
+class AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails {
+  /// The name of the secret.
+  final String? name;
+
+  /// The secret to expose to the container. The value is either the full ARN of
+  /// the Secrets Manager secret or the full ARN of the parameter in the Systems
+  /// Manager Parameter Store.
+  final String? valueFrom;
+
+  AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails({
+    this.name,
+    this.valueFrom,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails(
+      name: json['Name'] as String?,
+      valueFrom: json['ValueFrom'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final valueFrom = this.valueFrom;
+    return {
+      if (name != null) 'Name': name,
+      if (valueFrom != null) 'ValueFrom': valueFrom,
+    };
+  }
+}
+
+/// A namespaced kernel parameter to set in the container.
+class AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails {
+  /// The namespaced kernel parameter for which to set a value.
+  final String? namespace;
+
+  /// The value of the parameter.
+  final String? value;
+
+  AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails({
+    this.namespace,
+    this.value,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails(
+      namespace: json['Namespace'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    final value = this.value;
+    return {
+      if (namespace != null) 'Namespace': namespace,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A ulimit to set in the container.
+class AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails {
+  /// The hard limit for the ulimit type.
+  final int? hardLimit;
+
+  /// The type of the ulimit.
+  final String? name;
+
+  /// The soft limit for the ulimit type.
+  final int? softLimit;
+
+  AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails({
+    this.hardLimit,
+    this.name,
+    this.softLimit,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails(
+      hardLimit: json['HardLimit'] as int?,
+      name: json['Name'] as String?,
+      softLimit: json['SoftLimit'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hardLimit = this.hardLimit;
+    final name = this.name;
+    final softLimit = this.softLimit;
+    return {
+      if (hardLimit != null) 'HardLimit': hardLimit,
+      if (name != null) 'Name': name,
+      if (softLimit != null) 'SoftLimit': softLimit,
+    };
+  }
+}
+
+/// A data volume to mount from another container.
+class AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails {
+  /// Whether the container has read-only access to the volume.
+  final bool? readOnly;
+
+  /// The name of another container within the same task definition from which to
+  /// mount volumes.
+  final String? sourceContainer;
+
+  AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails({
+    this.readOnly,
+    this.sourceContainer,
+  });
+  factory AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails(
+      readOnly: json['ReadOnly'] as bool?,
+      sourceContainer: json['SourceContainer'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readOnly = this.readOnly;
+    final sourceContainer = this.sourceContainer;
+    return {
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (sourceContainer != null) 'SourceContainer': sourceContainer,
+    };
+  }
+}
+
+/// details about a task definition. A task definition describes the container
+/// and volume definitions of an Amazon Elastic Container Service task.
+class AwsEcsTaskDefinitionDetails {
+  /// The container definitions that describe the containers that make up the
+  /// task.
+  final List<AwsEcsTaskDefinitionContainerDefinitionsDetails>?
+      containerDefinitions;
+
+  /// The number of CPU units used by the task.
+  final String? cpu;
+
+  /// The ARN of the task execution role that grants the container agent
+  /// permission to make API calls on behalf of the container user.
+  final String? executionRoleArn;
+
+  /// The name of a family that this task definition is registered to.
+  final String? family;
+
+  /// The Elastic Inference accelerators to use for the containers in the task.
+  final List<AwsEcsTaskDefinitionInferenceAcceleratorsDetails>?
+      inferenceAccelerators;
+
+  /// The IPC resource namespace to use for the containers in the task.
+  final String? ipcMode;
+
+  /// The amount (in MiB) of memory used by the task.
+  final String? memory;
+
+  /// The Docker networking mode to use for the containers in the task.
+  final String? networkMode;
+
+  /// The process namespace to use for the containers in the task.
+  final String? pidMode;
+
+  /// The placement constraint objects to use for tasks.
+  final List<AwsEcsTaskDefinitionPlacementConstraintsDetails>?
+      placementConstraints;
+
+  /// The configuration details for the App Mesh proxy.
+  final AwsEcsTaskDefinitionProxyConfigurationDetails? proxyConfiguration;
+
+  /// The task launch types that the task definition was validated against.
+  final List<String>? requiresCompatibilities;
+
+  /// The short name or ARN of the IAM role that grants containers in the task
+  /// permission to call AWS API operations on your behalf.
+  final String? taskRoleArn;
+
+  /// The data volume definitions for the task.
+  final List<AwsEcsTaskDefinitionVolumesDetails>? volumes;
+
+  AwsEcsTaskDefinitionDetails({
+    this.containerDefinitions,
+    this.cpu,
+    this.executionRoleArn,
+    this.family,
+    this.inferenceAccelerators,
+    this.ipcMode,
+    this.memory,
+    this.networkMode,
+    this.pidMode,
+    this.placementConstraints,
+    this.proxyConfiguration,
+    this.requiresCompatibilities,
+    this.taskRoleArn,
+    this.volumes,
+  });
+  factory AwsEcsTaskDefinitionDetails.fromJson(Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionDetails(
+      containerDefinitions: (json['ContainerDefinitions'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionContainerDefinitionsDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      cpu: json['Cpu'] as String?,
+      executionRoleArn: json['ExecutionRoleArn'] as String?,
+      family: json['Family'] as String?,
+      inferenceAccelerators: (json['InferenceAccelerators'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionInferenceAcceleratorsDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      ipcMode: json['IpcMode'] as String?,
+      memory: json['Memory'] as String?,
+      networkMode: json['NetworkMode'] as String?,
+      pidMode: json['PidMode'] as String?,
+      placementConstraints: (json['PlacementConstraints'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionPlacementConstraintsDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      proxyConfiguration: json['ProxyConfiguration'] != null
+          ? AwsEcsTaskDefinitionProxyConfigurationDetails.fromJson(
+              json['ProxyConfiguration'] as Map<String, dynamic>)
+          : null,
+      requiresCompatibilities: (json['RequiresCompatibilities'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      taskRoleArn: json['TaskRoleArn'] as String?,
+      volumes: (json['Volumes'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsEcsTaskDefinitionVolumesDetails.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerDefinitions = this.containerDefinitions;
+    final cpu = this.cpu;
+    final executionRoleArn = this.executionRoleArn;
+    final family = this.family;
+    final inferenceAccelerators = this.inferenceAccelerators;
+    final ipcMode = this.ipcMode;
+    final memory = this.memory;
+    final networkMode = this.networkMode;
+    final pidMode = this.pidMode;
+    final placementConstraints = this.placementConstraints;
+    final proxyConfiguration = this.proxyConfiguration;
+    final requiresCompatibilities = this.requiresCompatibilities;
+    final taskRoleArn = this.taskRoleArn;
+    final volumes = this.volumes;
+    return {
+      if (containerDefinitions != null)
+        'ContainerDefinitions': containerDefinitions,
+      if (cpu != null) 'Cpu': cpu,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (family != null) 'Family': family,
+      if (inferenceAccelerators != null)
+        'InferenceAccelerators': inferenceAccelerators,
+      if (ipcMode != null) 'IpcMode': ipcMode,
+      if (memory != null) 'Memory': memory,
+      if (networkMode != null) 'NetworkMode': networkMode,
+      if (pidMode != null) 'PidMode': pidMode,
+      if (placementConstraints != null)
+        'PlacementConstraints': placementConstraints,
+      if (proxyConfiguration != null) 'ProxyConfiguration': proxyConfiguration,
+      if (requiresCompatibilities != null)
+        'RequiresCompatibilities': requiresCompatibilities,
+      if (taskRoleArn != null) 'TaskRoleArn': taskRoleArn,
+      if (volumes != null) 'Volumes': volumes,
+    };
+  }
+}
+
+/// An Elastic Inference accelerator to use for the containers in the task.
+class AwsEcsTaskDefinitionInferenceAcceleratorsDetails {
+  /// The Elastic Inference accelerator device name.
+  final String? deviceName;
+
+  /// The Elastic Inference accelerator type to use.
+  final String? deviceType;
+
+  AwsEcsTaskDefinitionInferenceAcceleratorsDetails({
+    this.deviceName,
+    this.deviceType,
+  });
+  factory AwsEcsTaskDefinitionInferenceAcceleratorsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionInferenceAcceleratorsDetails(
+      deviceName: json['DeviceName'] as String?,
+      deviceType: json['DeviceType'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final deviceType = this.deviceType;
+    return {
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (deviceType != null) 'DeviceType': deviceType,
+    };
+  }
+}
+
+/// A placement constraint object to use for tasks.
+class AwsEcsTaskDefinitionPlacementConstraintsDetails {
+  /// A cluster query language expression to apply to the constraint.
+  final String? expression;
+
+  /// The type of constraint.
+  final String? type;
+
+  AwsEcsTaskDefinitionPlacementConstraintsDetails({
+    this.expression,
+    this.type,
+  });
+  factory AwsEcsTaskDefinitionPlacementConstraintsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionPlacementConstraintsDetails(
+      expression: json['Expression'] as String?,
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    final type = this.type;
+    return {
+      if (expression != null) 'Expression': expression,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// The configuration details for the App Mesh proxy.
+class AwsEcsTaskDefinitionProxyConfigurationDetails {
+  /// The name of the container that will serve as the App Mesh proxy.
+  final String? containerName;
+
+  /// The set of network configuration parameters to provide to the Container
+  /// Network Interface (CNI) plugin, specified as key-value pairs.
+  final List<
+          AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails>?
+      proxyConfigurationProperties;
+
+  /// The proxy type.
+  final String? type;
+
+  AwsEcsTaskDefinitionProxyConfigurationDetails({
+    this.containerName,
+    this.proxyConfigurationProperties,
+    this.type,
+  });
+  factory AwsEcsTaskDefinitionProxyConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionProxyConfigurationDetails(
+      containerName: json['ContainerName'] as String?,
+      proxyConfigurationProperties: (json['ProxyConfigurationProperties']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerName = this.containerName;
+    final proxyConfigurationProperties = this.proxyConfigurationProperties;
+    final type = this.type;
+    return {
+      if (containerName != null) 'ContainerName': containerName,
+      if (proxyConfigurationProperties != null)
+        'ProxyConfigurationProperties': proxyConfigurationProperties,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// A network configuration parameter to provide to the Container Network
+/// Interface (CNI) plugin.
+class AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails {
+  /// The name of the property.
+  final String? name;
+
+  /// The value of the property.
+  final String? value;
+
+  AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails({
+    this.name,
+    this.value,
+  });
+  factory AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails(
+      name: json['Name'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A data volume to mount from another container.
+class AwsEcsTaskDefinitionVolumesDetails {
+  /// Information about a Docker volume.
+  final AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails?
+      dockerVolumeConfiguration;
+
+  /// Information about the Amazon Elastic File System file system that is used
+  /// for task storage.
+  final AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails?
+      efsVolumeConfiguration;
+
+  /// Information about a bind mount host volume.
+  final AwsEcsTaskDefinitionVolumesHostDetails? host;
+
+  /// The name of the data volume.
+  final String? name;
+
+  AwsEcsTaskDefinitionVolumesDetails({
+    this.dockerVolumeConfiguration,
+    this.efsVolumeConfiguration,
+    this.host,
+    this.name,
+  });
+  factory AwsEcsTaskDefinitionVolumesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionVolumesDetails(
+      dockerVolumeConfiguration: json['DockerVolumeConfiguration'] != null
+          ? AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails
+              .fromJson(
+                  json['DockerVolumeConfiguration'] as Map<String, dynamic>)
+          : null,
+      efsVolumeConfiguration: json['EfsVolumeConfiguration'] != null
+          ? AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails.fromJson(
+              json['EfsVolumeConfiguration'] as Map<String, dynamic>)
+          : null,
+      host: json['Host'] != null
+          ? AwsEcsTaskDefinitionVolumesHostDetails.fromJson(
+              json['Host'] as Map<String, dynamic>)
+          : null,
+      name: json['Name'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dockerVolumeConfiguration = this.dockerVolumeConfiguration;
+    final efsVolumeConfiguration = this.efsVolumeConfiguration;
+    final host = this.host;
+    final name = this.name;
+    return {
+      if (dockerVolumeConfiguration != null)
+        'DockerVolumeConfiguration': dockerVolumeConfiguration,
+      if (efsVolumeConfiguration != null)
+        'EfsVolumeConfiguration': efsVolumeConfiguration,
+      if (host != null) 'Host': host,
+      if (name != null) 'Name': name,
+    };
+  }
+}
+
+/// Information about a Docker volume.
+class AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+  /// Whether to create the Docker volume automatically if it does not already
+  /// exist.
+  final bool? autoprovision;
+
+  /// The Docker volume driver to use.
+  final String? driver;
+
+  /// A map of Docker driver-specific options that are passed through.
+  final Map<String, String>? driverOpts;
+
+  /// Custom metadata to add to the Docker volume.
+  final Map<String, String>? labels;
+
+  /// The scope for the Docker volume that determines its lifecycle. Docker
+  /// volumes that are scoped to a task are provisioned automatically when the
+  /// task starts and destroyed when the task stops. Docker volumes that are
+  /// shared persist after the task stops.
+  final String? scope;
+
+  AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails({
+    this.autoprovision,
+    this.driver,
+    this.driverOpts,
+    this.labels,
+    this.scope,
+  });
+  factory AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails(
+      autoprovision: json['Autoprovision'] as bool?,
+      driver: json['Driver'] as String?,
+      driverOpts: (json['DriverOpts'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      labels: (json['Labels'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      scope: json['Scope'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoprovision = this.autoprovision;
+    final driver = this.driver;
+    final driverOpts = this.driverOpts;
+    final labels = this.labels;
+    final scope = this.scope;
+    return {
+      if (autoprovision != null) 'Autoprovision': autoprovision,
+      if (driver != null) 'Driver': driver,
+      if (driverOpts != null) 'DriverOpts': driverOpts,
+      if (labels != null) 'Labels': labels,
+      if (scope != null) 'Scope': scope,
+    };
+  }
+}
+
+/// <p/>
+class AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails {
+  /// The Amazon EFS access point identifier to use.
+  final String? accessPointId;
+
+  /// Whether to use the Amazon ECS task IAM role defined in a task definition
+  /// when mounting the Amazon EFS file system.
+  final String? iam;
+
+  AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails({
+    this.accessPointId,
+    this.iam,
+  });
+  factory AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails(
+      accessPointId: json['AccessPointId'] as String?,
+      iam: json['Iam'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPointId = this.accessPointId;
+    final iam = this.iam;
+    return {
+      if (accessPointId != null) 'AccessPointId': accessPointId,
+      if (iam != null) 'Iam': iam,
+    };
+  }
+}
+
+/// Information about the Amazon Elastic File System file system that is used
+/// for task storage.
+class AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+  /// The authorization configuration details for the Amazon EFS file system.
+  final AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails?
+      authorizationConfig;
+
+  /// The Amazon EFS file system identifier to use.
+  final String? filesystemId;
+
+  /// The directory within the Amazon EFS file system to mount as the root
+  /// directory inside the host.
+  final String? rootDirectory;
+
+  /// Whether to enable encryption for Amazon EFS data in transit between the
+  /// Amazon ECS host and the Amazon EFS server.
+  final String? transitEncryption;
+
+  /// The port to use when sending encrypted data between the Amazon ECS host and
+  /// the Amazon EFS server.
+  final int? transitEncryptionPort;
+
+  AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails({
+    this.authorizationConfig,
+    this.filesystemId,
+    this.rootDirectory,
+    this.transitEncryption,
+    this.transitEncryptionPort,
+  });
+  factory AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails(
+      authorizationConfig: json['AuthorizationConfig'] != null
+          ? AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails
+              .fromJson(json['AuthorizationConfig'] as Map<String, dynamic>)
+          : null,
+      filesystemId: json['FilesystemId'] as String?,
+      rootDirectory: json['RootDirectory'] as String?,
+      transitEncryption: json['TransitEncryption'] as String?,
+      transitEncryptionPort: json['TransitEncryptionPort'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizationConfig = this.authorizationConfig;
+    final filesystemId = this.filesystemId;
+    final rootDirectory = this.rootDirectory;
+    final transitEncryption = this.transitEncryption;
+    final transitEncryptionPort = this.transitEncryptionPort;
+    return {
+      if (authorizationConfig != null)
+        'AuthorizationConfig': authorizationConfig,
+      if (filesystemId != null) 'FilesystemId': filesystemId,
+      if (rootDirectory != null) 'RootDirectory': rootDirectory,
+      if (transitEncryption != null) 'TransitEncryption': transitEncryption,
+      if (transitEncryptionPort != null)
+        'TransitEncryptionPort': transitEncryptionPort,
+    };
+  }
+}
+
+/// Information about a bind mount host volume.
+class AwsEcsTaskDefinitionVolumesHostDetails {
+  /// The path on the host container instance that is presented to the container.
+  final String? sourcePath;
+
+  AwsEcsTaskDefinitionVolumesHostDetails({
+    this.sourcePath,
+  });
+  factory AwsEcsTaskDefinitionVolumesHostDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsEcsTaskDefinitionVolumesHostDetails(
+      sourcePath: json['SourcePath'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourcePath = this.sourcePath;
+    return {
+      if (sourcePath != null) 'SourcePath': sourcePath,
+    };
+  }
+}
+
+/// Contains details about an Elastic Beanstalk environment.
+class AwsElasticBeanstalkEnvironmentDetails {
+  /// The name of the application that is associated with the environment.
+  final String? applicationName;
+
+  /// The URL to the CNAME for this environment.
+  final String? cname;
+
+  /// The creation date for this environment.
+  final String? dateCreated;
+
+  /// The date when this environment was last modified.
+  final String? dateUpdated;
+
+  /// A description of the environment.
+  final String? description;
+
+  /// For load-balanced, autoscaling environments, the URL to the load balancer.
+  /// For single-instance environments, the IP address of the instance.
+  final String? endpointUrl;
+
+  /// The ARN of the environment.
+  final String? environmentArn;
+
+  /// The identifier of the environment.
+  final String? environmentId;
+
+  /// Links to other environments in the same group.
+  final List<AwsElasticBeanstalkEnvironmentEnvironmentLink>? environmentLinks;
+
+  /// The name of the environment.
+  final String? environmentName;
+
+  /// The configuration setting for the environment.
+  final List<AwsElasticBeanstalkEnvironmentOptionSetting>? optionSettings;
+
+  /// The ARN of the platform version for the environment.
+  final String? platformArn;
+
+  /// The name of the solution stack that is deployed with the environment.
+  final String? solutionStackName;
+
+  /// The current operational status of the environment.
+  final String? status;
+
+  /// The tier of the environment.
+  final AwsElasticBeanstalkEnvironmentTier? tier;
+
+  /// The application version of the environment.
+  final String? versionLabel;
+
+  AwsElasticBeanstalkEnvironmentDetails({
+    this.applicationName,
+    this.cname,
+    this.dateCreated,
+    this.dateUpdated,
+    this.description,
+    this.endpointUrl,
+    this.environmentArn,
+    this.environmentId,
+    this.environmentLinks,
+    this.environmentName,
+    this.optionSettings,
+    this.platformArn,
+    this.solutionStackName,
+    this.status,
+    this.tier,
+    this.versionLabel,
+  });
+  factory AwsElasticBeanstalkEnvironmentDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticBeanstalkEnvironmentDetails(
+      applicationName: json['ApplicationName'] as String?,
+      cname: json['Cname'] as String?,
+      dateCreated: json['DateCreated'] as String?,
+      dateUpdated: json['DateUpdated'] as String?,
+      description: json['Description'] as String?,
+      endpointUrl: json['EndpointUrl'] as String?,
+      environmentArn: json['EnvironmentArn'] as String?,
+      environmentId: json['EnvironmentId'] as String?,
+      environmentLinks: (json['EnvironmentLinks'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsElasticBeanstalkEnvironmentEnvironmentLink.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      environmentName: json['EnvironmentName'] as String?,
+      optionSettings: (json['OptionSettings'] as List?)
+          ?.whereNotNull()
+          .map((e) => AwsElasticBeanstalkEnvironmentOptionSetting.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      platformArn: json['PlatformArn'] as String?,
+      solutionStackName: json['SolutionStackName'] as String?,
+      status: json['Status'] as String?,
+      tier: json['Tier'] != null
+          ? AwsElasticBeanstalkEnvironmentTier.fromJson(
+              json['Tier'] as Map<String, dynamic>)
+          : null,
+      versionLabel: json['VersionLabel'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final cname = this.cname;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final endpointUrl = this.endpointUrl;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final environmentLinks = this.environmentLinks;
+    final environmentName = this.environmentName;
+    final optionSettings = this.optionSettings;
+    final platformArn = this.platformArn;
+    final solutionStackName = this.solutionStackName;
+    final status = this.status;
+    final tier = this.tier;
+    final versionLabel = this.versionLabel;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (cname != null) 'Cname': cname,
+      if (dateCreated != null) 'DateCreated': dateCreated,
+      if (dateUpdated != null) 'DateUpdated': dateUpdated,
+      if (description != null) 'Description': description,
+      if (endpointUrl != null) 'EndpointUrl': endpointUrl,
+      if (environmentArn != null) 'EnvironmentArn': environmentArn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (environmentLinks != null) 'EnvironmentLinks': environmentLinks,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (optionSettings != null) 'OptionSettings': optionSettings,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (status != null) 'Status': status,
+      if (tier != null) 'Tier': tier,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
+}
+
+/// Contains information about a link to another environment that is in the same
+/// group.
+class AwsElasticBeanstalkEnvironmentEnvironmentLink {
+  /// The name of the linked environment.
+  final String? environmentName;
+
+  /// The name of the environment link.
+  final String? linkName;
+
+  AwsElasticBeanstalkEnvironmentEnvironmentLink({
+    this.environmentName,
+    this.linkName,
+  });
+  factory AwsElasticBeanstalkEnvironmentEnvironmentLink.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticBeanstalkEnvironmentEnvironmentLink(
+      environmentName: json['EnvironmentName'] as String?,
+      linkName: json['LinkName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentName = this.environmentName;
+    final linkName = this.linkName;
+    return {
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (linkName != null) 'LinkName': linkName,
+    };
+  }
+}
+
+/// A configuration option setting for the environment.
+class AwsElasticBeanstalkEnvironmentOptionSetting {
+  /// The type of resource that the configuration option is associated with.
+  final String? namespace;
+
+  /// The name of the option.
+  final String? optionName;
+
+  /// The name of the resource.
+  final String? resourceName;
+
+  /// The value of the configuration setting.
+  final String? value;
+
+  AwsElasticBeanstalkEnvironmentOptionSetting({
+    this.namespace,
+    this.optionName,
+    this.resourceName,
+    this.value,
+  });
+  factory AwsElasticBeanstalkEnvironmentOptionSetting.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticBeanstalkEnvironmentOptionSetting(
+      namespace: json['Namespace'] as String?,
+      optionName: json['OptionName'] as String?,
+      resourceName: json['ResourceName'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    final optionName = this.optionName;
+    final resourceName = this.resourceName;
+    final value = this.value;
+    return {
+      if (namespace != null) 'Namespace': namespace,
+      if (optionName != null) 'OptionName': optionName,
+      if (resourceName != null) 'ResourceName': resourceName,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// Contains information about the tier of the environment.
+class AwsElasticBeanstalkEnvironmentTier {
+  /// The name of the environment tier.
+  final String? name;
+
+  /// The type of environment tier.
+  final String? type;
+
+  /// The version of the environment tier.
+  final String? version;
+
+  AwsElasticBeanstalkEnvironmentTier({
+    this.name,
+    this.type,
+    this.version,
+  });
+  factory AwsElasticBeanstalkEnvironmentTier.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticBeanstalkEnvironmentTier(
+      name: json['Name'] as String?,
+      type: json['Type'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+      if (version != null) 'Version': version,
+    };
+  }
+}
+
 /// Information about an Elasticsearch domain.
 class AwsElasticsearchDomainDetails {
   /// IAM policy document specifying the access policies for the new Amazon ES
@@ -6412,9 +9434,16 @@ class AwsElasticsearchDomainDetails {
   /// The key-value pair that exists if the Amazon ES domain uses VPC endpoints.
   final Map<String, String>? endpoints;
 
+  /// Configures the CloudWatch Logs to publish for the Elasticsearch domain.
+  final AwsElasticsearchDomainLogPublishingOptions? logPublishingOptions;
+
   /// Details about the configuration for node-to-node encryption.
   final AwsElasticsearchDomainNodeToNodeEncryptionOptions?
       nodeToNodeEncryptionOptions;
+
+  /// Information about the status of a domain relative to the latest service
+  /// software.
+  final AwsElasticsearchDomainServiceSoftwareOptions? serviceSoftwareOptions;
 
   /// Information that Amazon ES derives based on <code>VPCOptions</code> for the
   /// domain.
@@ -6429,7 +9458,9 @@ class AwsElasticsearchDomainDetails {
     this.encryptionAtRestOptions,
     this.endpoint,
     this.endpoints,
+    this.logPublishingOptions,
     this.nodeToNodeEncryptionOptions,
+    this.serviceSoftwareOptions,
     this.vPCOptions,
   });
   factory AwsElasticsearchDomainDetails.fromJson(Map<String, dynamic> json) {
@@ -6449,9 +9480,17 @@ class AwsElasticsearchDomainDetails {
       endpoint: json['Endpoint'] as String?,
       endpoints: (json['Endpoints'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      logPublishingOptions: json['LogPublishingOptions'] != null
+          ? AwsElasticsearchDomainLogPublishingOptions.fromJson(
+              json['LogPublishingOptions'] as Map<String, dynamic>)
+          : null,
       nodeToNodeEncryptionOptions: json['NodeToNodeEncryptionOptions'] != null
           ? AwsElasticsearchDomainNodeToNodeEncryptionOptions.fromJson(
               json['NodeToNodeEncryptionOptions'] as Map<String, dynamic>)
+          : null,
+      serviceSoftwareOptions: json['ServiceSoftwareOptions'] != null
+          ? AwsElasticsearchDomainServiceSoftwareOptions.fromJson(
+              json['ServiceSoftwareOptions'] as Map<String, dynamic>)
           : null,
       vPCOptions: json['VPCOptions'] != null
           ? AwsElasticsearchDomainVPCOptions.fromJson(
@@ -6469,7 +9508,9 @@ class AwsElasticsearchDomainDetails {
     final encryptionAtRestOptions = this.encryptionAtRestOptions;
     final endpoint = this.endpoint;
     final endpoints = this.endpoints;
+    final logPublishingOptions = this.logPublishingOptions;
     final nodeToNodeEncryptionOptions = this.nodeToNodeEncryptionOptions;
+    final serviceSoftwareOptions = this.serviceSoftwareOptions;
     final vPCOptions = this.vPCOptions;
     return {
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
@@ -6483,8 +9524,12 @@ class AwsElasticsearchDomainDetails {
         'EncryptionAtRestOptions': encryptionAtRestOptions,
       if (endpoint != null) 'Endpoint': endpoint,
       if (endpoints != null) 'Endpoints': endpoints,
+      if (logPublishingOptions != null)
+        'LogPublishingOptions': logPublishingOptions,
       if (nodeToNodeEncryptionOptions != null)
         'NodeToNodeEncryptionOptions': nodeToNodeEncryptionOptions,
+      if (serviceSoftwareOptions != null)
+        'ServiceSoftwareOptions': serviceSoftwareOptions,
       if (vPCOptions != null) 'VPCOptions': vPCOptions,
     };
   }
@@ -6563,6 +9608,73 @@ class AwsElasticsearchDomainEncryptionAtRestOptions {
   }
 }
 
+/// configures the CloudWatch Logs to publish for the Elasticsearch domain.
+class AwsElasticsearchDomainLogPublishingOptions {
+  /// Configures the Elasticsearch index logs publishing.
+  final AwsElasticsearchDomainLogPublishingOptionsLogConfig? indexSlowLogs;
+
+  /// Configures the Elasticsearch search slow log publishing.
+  final AwsElasticsearchDomainLogPublishingOptionsLogConfig? searchSlowLogs;
+
+  AwsElasticsearchDomainLogPublishingOptions({
+    this.indexSlowLogs,
+    this.searchSlowLogs,
+  });
+  factory AwsElasticsearchDomainLogPublishingOptions.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticsearchDomainLogPublishingOptions(
+      indexSlowLogs: json['IndexSlowLogs'] != null
+          ? AwsElasticsearchDomainLogPublishingOptionsLogConfig.fromJson(
+              json['IndexSlowLogs'] as Map<String, dynamic>)
+          : null,
+      searchSlowLogs: json['SearchSlowLogs'] != null
+          ? AwsElasticsearchDomainLogPublishingOptionsLogConfig.fromJson(
+              json['SearchSlowLogs'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexSlowLogs = this.indexSlowLogs;
+    final searchSlowLogs = this.searchSlowLogs;
+    return {
+      if (indexSlowLogs != null) 'IndexSlowLogs': indexSlowLogs,
+      if (searchSlowLogs != null) 'SearchSlowLogs': searchSlowLogs,
+    };
+  }
+}
+
+/// The log configuration.
+class AwsElasticsearchDomainLogPublishingOptionsLogConfig {
+  /// The ARN of the CloudWatch Logs group to publish the logs to.
+  final String? cloudWatchLogsLogGroupArn;
+
+  /// Whether the log publishing is enabled.
+  final bool? enabled;
+
+  AwsElasticsearchDomainLogPublishingOptionsLogConfig({
+    this.cloudWatchLogsLogGroupArn,
+    this.enabled,
+  });
+  factory AwsElasticsearchDomainLogPublishingOptionsLogConfig.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticsearchDomainLogPublishingOptionsLogConfig(
+      cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,
+      enabled: json['Enabled'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final enabled = this.enabled;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
+}
+
 /// Details about the configuration for node-to-node encryption.
 class AwsElasticsearchDomainNodeToNodeEncryptionOptions {
   /// Whether node-to-node encryption is enabled.
@@ -6582,6 +9694,76 @@ class AwsElasticsearchDomainNodeToNodeEncryptionOptions {
     final enabled = this.enabled;
     return {
       if (enabled != null) 'Enabled': enabled,
+    };
+  }
+}
+
+/// Information about the state of the domain relative to the latest service
+/// software.
+class AwsElasticsearchDomainServiceSoftwareOptions {
+  /// The epoch time when the deployment window closes for required updates. After
+  /// this time, Amazon Elasticsearch Service schedules the software upgrade
+  /// automatically.
+  final String? automatedUpdateDate;
+
+  /// Whether a request to update the domain can be canceled.
+  final bool? cancellable;
+
+  /// The version of the service software that is currently installed on the
+  /// domain.
+  final String? currentVersion;
+
+  /// A more detailed description of the service software status.
+  final String? description;
+
+  /// The most recent version of the service software.
+  final String? newVersion;
+
+  /// Whether a service software update is available for the domain.
+  final bool? updateAvailable;
+
+  /// The status of the service software update.
+  final String? updateStatus;
+
+  AwsElasticsearchDomainServiceSoftwareOptions({
+    this.automatedUpdateDate,
+    this.cancellable,
+    this.currentVersion,
+    this.description,
+    this.newVersion,
+    this.updateAvailable,
+    this.updateStatus,
+  });
+  factory AwsElasticsearchDomainServiceSoftwareOptions.fromJson(
+      Map<String, dynamic> json) {
+    return AwsElasticsearchDomainServiceSoftwareOptions(
+      automatedUpdateDate: json['AutomatedUpdateDate'] as String?,
+      cancellable: json['Cancellable'] as bool?,
+      currentVersion: json['CurrentVersion'] as String?,
+      description: json['Description'] as String?,
+      newVersion: json['NewVersion'] as String?,
+      updateAvailable: json['UpdateAvailable'] as bool?,
+      updateStatus: json['UpdateStatus'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final automatedUpdateDate = this.automatedUpdateDate;
+    final cancellable = this.cancellable;
+    final currentVersion = this.currentVersion;
+    final description = this.description;
+    final newVersion = this.newVersion;
+    final updateAvailable = this.updateAvailable;
+    final updateStatus = this.updateStatus;
+    return {
+      if (automatedUpdateDate != null)
+        'AutomatedUpdateDate': automatedUpdateDate,
+      if (cancellable != null) 'Cancellable': cancellable,
+      if (currentVersion != null) 'CurrentVersion': currentVersion,
+      if (description != null) 'Description': description,
+      if (newVersion != null) 'NewVersion': newVersion,
+      if (updateAvailable != null) 'UpdateAvailable': updateAvailable,
+      if (updateStatus != null) 'UpdateStatus': updateStatus,
     };
   }
 }
@@ -8539,7 +11721,7 @@ class AwsLambdaFunctionCode {
 
 /// The dead-letter queue for failed asynchronous invocations.
 class AwsLambdaFunctionDeadLetterConfig {
-  /// The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.
+  /// The ARN of an Amazon SQS queue or Amazon SNS topic.
   final String? targetArn;
 
   AwsLambdaFunctionDeadLetterConfig({
@@ -8598,7 +11780,7 @@ class AwsLambdaFunctionDetails {
   /// For Lambda@Edge functions, the ARN of the master function.
   final String? masterArn;
 
-  /// The memory that's allocated to the function.
+  /// The memory that is allocated to the function.
   final int? memorySize;
 
   /// The latest updated revision of the function or alias.
@@ -8758,7 +11940,7 @@ class AwsLambdaFunctionEnvironment {
   }
 }
 
-/// Error messages for environment variables that couldn't be applied.
+/// Error messages for environment variables that could not be applied.
 class AwsLambdaFunctionEnvironmentError {
   /// The error code.
   final String? errorCode;
@@ -8790,7 +11972,7 @@ class AwsLambdaFunctionEnvironmentError {
 
 /// An AWS Lambda layer.
 class AwsLambdaFunctionLayer {
-  /// The Amazon Resource Name (ARN) of the function layer.
+  /// The ARN of the function layer.
   final String? arn;
 
   /// The size of the layer archive in bytes.
@@ -8840,7 +12022,6 @@ class AwsLambdaFunctionTracingConfig {
 }
 
 /// The VPC security groups and subnets that are attached to a Lambda function.
-/// For more information, see VPC Settings.
 class AwsLambdaFunctionVpcConfig {
   /// A list of VPC security groups IDs.
   final List<String>? securityGroupIds;
@@ -9417,7 +12598,7 @@ class AwsRdsDbClusterSnapshotDetails {
   /// The identifier of the DB cluster snapshot.
   final String? dbClusterSnapshotIdentifier;
 
-  /// <p/>
+  /// The name of the database engine that you want to use for this DB instance.
   final String? engine;
 
   /// The version of the database engine to use.
@@ -9608,8 +12789,7 @@ class AwsRdsDbInstanceAssociatedRole {
   /// The name of the feature associated with the IAM)role.
   final String? featureName;
 
-  /// The Amazon Resource Name (ARN) of the IAM role that is associated with the
-  /// DB instance.
+  /// The ARN of the IAM role that is associated with the DB instance.
   final String? roleArn;
 
   /// Describes the state of the association between the IAM role and the DB
@@ -10305,12 +13485,12 @@ class AwsRdsDbInstanceVpcSecurityGroup {
   }
 }
 
-/// <p/>
+/// An option group membership.
 class AwsRdsDbOptionGroupMembership {
-  /// <p/>
+  /// The name of the option group.
   final String? optionGroupName;
 
-  /// <p/>
+  /// The status of the option group membership.
   final String? status;
 
   AwsRdsDbOptionGroupMembership({
@@ -10334,12 +13514,12 @@ class AwsRdsDbOptionGroupMembership {
   }
 }
 
-/// <p/>
+/// Provides information about a parameter group for a DB instance.
 class AwsRdsDbParameterGroup {
-  /// <p/>
+  /// The name of the parameter group.
   final String? dbParameterGroupName;
 
-  /// <p/>
+  /// The status of parameter updates.
   final String? parameterApplyStatus;
 
   AwsRdsDbParameterGroup({
@@ -10365,51 +13545,52 @@ class AwsRdsDbParameterGroup {
   }
 }
 
-/// <p/>
+/// Changes to a DB instance that are currently pending.
 class AwsRdsDbPendingModifiedValues {
-  /// <p/>
+  /// The new value of the allocated storage for the DB instance.
   final int? allocatedStorage;
 
-  /// <p/>
+  /// The new backup retention period for the DB instance.
   final int? backupRetentionPeriod;
 
-  /// <p/>
+  /// The new CA certificate identifier for the DB instance.
   final String? caCertificateIdentifier;
 
-  /// <p/>
+  /// The new DB instance class for the DB instance.
   final String? dbInstanceClass;
 
-  /// <p/>
+  /// The new DB instance identifier for the DB instance.
   final String? dbInstanceIdentifier;
 
-  /// <p/>
+  /// The name of the new subnet group for the DB instance.
   final String? dbSubnetGroupName;
 
-  /// <p/>
+  /// The new engine version for the DB instance.
   final String? engineVersion;
 
-  /// <p/>
+  /// The new provisioned IOPS value for the DB instance.
   final int? iops;
 
-  /// <p/>
+  /// The new license model value for the DB instance.
   final String? licenseModel;
 
-  /// <p/>
+  /// The new master user password for the DB instance.
   final String? masterUserPassword;
 
-  /// <p/>
+  /// Indicates that a single Availability Zone DB instance is changing to a
+  /// multiple Availability Zone deployment.
   final bool? multiAZ;
 
-  /// <p/>
+  /// A list of log types that are being enabled or disabled.
   final AwsRdsPendingCloudWatchLogsExports? pendingCloudWatchLogsExports;
 
-  /// <p/>
+  /// The new port for the DB instance.
   final int? port;
 
-  /// <p/>
+  /// Processor features that are being updated.
   final List<AwsRdsDbProcessorFeature>? processorFeatures;
 
-  /// <p/>
+  /// The new storage type for the DB instance.
   final String? storageType;
 
   AwsRdsDbPendingModifiedValues({
@@ -10496,12 +13677,12 @@ class AwsRdsDbPendingModifiedValues {
   }
 }
 
-/// <p/>
+/// A processor feature.
 class AwsRdsDbProcessorFeature {
-  /// <p/>
+  /// The name of the processor feature.
   final String? name;
 
-  /// <p/>
+  /// The value of the processor feature.
   final String? value;
 
   AwsRdsDbProcessorFeature({
@@ -10525,87 +13706,95 @@ class AwsRdsDbProcessorFeature {
   }
 }
 
-/// <p/>
+/// Provides details about an Amazon RDS DB cluster snapshot.
 class AwsRdsDbSnapshotDetails {
-  /// <p/>
+  /// The amount of storage (in gigabytes) to be initially allocated for the
+  /// database instance.
   final int? allocatedStorage;
 
-  /// <p/>
+  /// Specifies the name of the Availability Zone in which the DB instance was
+  /// located at the time of the DB snapshot.
   final String? availabilityZone;
 
-  /// <p/>
+  /// A name for the DB instance.
   final String? dbInstanceIdentifier;
 
-  /// <p/>
+  /// The name or ARN of the DB snapshot that is used to restore the DB instance.
   final String? dbSnapshotIdentifier;
 
-  /// <p/>
+  /// The identifier for the source DB instance.
   final String? dbiResourceId;
 
-  /// <p/>
+  /// Whether the DB snapshot is encrypted.
   final bool? encrypted;
 
-  /// <p/>
+  /// The name of the database engine to use for this DB instance.
   final String? engine;
 
-  /// <p/>
+  /// The version of the database engine.
   final String? engineVersion;
 
-  /// <p/>
+  /// Whether mapping of IAM accounts to database accounts is enabled.
   final bool? iamDatabaseAuthenticationEnabled;
 
-  /// <p/>
+  /// Specifies the time in Coordinated Universal Time (UTC) when the DB instance,
+  /// from which the snapshot was taken, was created.
   final String? instanceCreateTime;
 
-  /// <p/>
+  /// The provisioned IOPS (I/O operations per second) value of the DB instance at
+  /// the time of the snapshot.
   final int? iops;
 
-  /// <p/>
+  /// If <code>Encrypted</code> is <code>true</code>, the AWS KMS key identifier
+  /// for the encrypted DB snapshot.
   final String? kmsKeyId;
 
-  /// <p/>
+  /// License model information for the restored DB instance.
   final String? licenseModel;
 
-  /// <p/>
+  /// The master user name for the DB snapshot.
   final String? masterUsername;
 
-  /// <p/>
+  /// The option group name for the DB snapshot.
   final String? optionGroupName;
 
-  /// <p/>
+  /// The percentage of the estimated data that has been transferred.
   final int? percentProgress;
 
-  /// <p/>
+  /// The port that the database engine was listening on at the time of the
+  /// snapshot.
   final int? port;
 
-  /// <p/>
+  /// The number of CPU cores and the number of threads per core for the DB
+  /// instance class of the DB instance.
   final List<AwsRdsDbProcessorFeature>? processorFeatures;
 
-  /// <p/>
+  /// When the snapshot was taken in Coordinated Universal Time (UTC).
   final String? snapshotCreateTime;
 
-  /// <p/>
+  /// The type of the DB snapshot.
   final String? snapshotType;
 
-  /// <p/>
+  /// The DB snapshot ARN that the DB snapshot was copied from.
   final String? sourceDbSnapshotIdentifier;
 
-  /// <p/>
+  /// The AWS Region that the DB snapshot was created in or copied from.
   final String? sourceRegion;
 
-  /// <p/>
+  /// The status of this DB snapshot.
   final String? status;
 
-  /// <p/>
+  /// The storage type associated with the DB snapshot.
   final String? storageType;
 
-  /// <p/>
+  /// The ARN from the key store with which to associate the instance for TDE
+  /// encryption.
   final String? tdeCredentialArn;
 
-  /// <p/>
+  /// The time zone of the DB snapshot.
   final String? timezone;
 
-  /// <p/>
+  /// The VPC ID associated with the DB snapshot.
   final String? vpcId;
 
   AwsRdsDbSnapshotDetails({
@@ -12075,8 +15264,514 @@ class AwsRedshiftClusterVpcSecurityGroup {
   }
 }
 
+/// provides information about the Amazon S3 Public Access Block configuration
+/// for accounts.
+class AwsS3AccountPublicAccessBlockDetails {
+  /// Indicates whether to reject calls to update an S3 bucket if the calls
+  /// include a public access control list (ACL).
+  final bool? blockPublicAcls;
+
+  /// Indicates whether to reject calls to update the access policy for an S3
+  /// bucket or access point if the policy allows public access.
+  final bool? blockPublicPolicy;
+
+  /// Indicates whether Amazon S3 ignores public ACLs that are associated with an
+  /// S3 bucket.
+  final bool? ignorePublicAcls;
+
+  /// Indicates whether to restrict access to an access point or S3 bucket that
+  /// has a public policy to only AWS service principals and authorized users
+  /// within the S3 bucket owner's account.
+  final bool? restrictPublicBuckets;
+
+  AwsS3AccountPublicAccessBlockDetails({
+    this.blockPublicAcls,
+    this.blockPublicPolicy,
+    this.ignorePublicAcls,
+    this.restrictPublicBuckets,
+  });
+  factory AwsS3AccountPublicAccessBlockDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3AccountPublicAccessBlockDetails(
+      blockPublicAcls: json['BlockPublicAcls'] as bool?,
+      blockPublicPolicy: json['BlockPublicPolicy'] as bool?,
+      ignorePublicAcls: json['IgnorePublicAcls'] as bool?,
+      restrictPublicBuckets: json['RestrictPublicBuckets'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAcls = this.blockPublicAcls;
+    final blockPublicPolicy = this.blockPublicPolicy;
+    final ignorePublicAcls = this.ignorePublicAcls;
+    final restrictPublicBuckets = this.restrictPublicBuckets;
+    return {
+      if (blockPublicAcls != null) 'BlockPublicAcls': blockPublicAcls,
+      if (blockPublicPolicy != null) 'BlockPublicPolicy': blockPublicPolicy,
+      if (ignorePublicAcls != null) 'IgnorePublicAcls': ignorePublicAcls,
+      if (restrictPublicBuckets != null)
+        'RestrictPublicBuckets': restrictPublicBuckets,
+    };
+  }
+}
+
+/// The lifecycle configuration for the objects in the S3 bucket.
+class AwsS3BucketBucketLifecycleConfigurationDetails {
+  /// The lifecycle rules.
+  final List<AwsS3BucketBucketLifecycleConfigurationRulesDetails>? rules;
+
+  AwsS3BucketBucketLifecycleConfigurationDetails({
+    this.rules,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationDetails(
+      rules: (json['Rules'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsS3BucketBucketLifecycleConfigurationRulesDetails.fromJson(
+                  e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
+  }
+}
+
+/// Information about what Amazon S3 does when a multipart upload is incomplete.
+class AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails {
+  /// The number of days after which Amazon S3 cancels an incomplete multipart
+  /// upload.
+  final int? daysAfterInitiation;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails({
+    this.daysAfterInitiation,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails(
+      daysAfterInitiation: json['DaysAfterInitiation'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final daysAfterInitiation = this.daysAfterInitiation;
+    return {
+      if (daysAfterInitiation != null)
+        'DaysAfterInitiation': daysAfterInitiation,
+    };
+  }
+}
+
+/// Configuration for a lifecycle rule.
+class AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+  /// How Amazon S3 responds when a multipart upload is incomplete. Specifically,
+  /// provides a number of days before Amazon S3 cancels the entire upload.
+  final AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails?
+      abortIncompleteMultipartUpload;
+
+  /// The date when objects are moved or deleted.
+  ///
+  /// Uses the <code>date-time</code> format specified in <a
+  /// href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339 section 5.6,
+  /// Internet Date/Time Format</a>. The value cannot contain spaces. For example,
+  /// <code>2020-03-22T13:22:13.933Z</code>.
+  final String? expirationDate;
+
+  /// The length in days of the lifetime for objects that are subject to the rule.
+  final int? expirationInDays;
+
+  /// Whether Amazon S3 removes a delete marker that has no noncurrent versions.
+  /// If set to <code>true</code>, the delete marker is expired. If set to
+  /// <code>false</code>, the policy takes no action.
+  ///
+  /// If you provide <code>ExpiredObjectDeleteMarker</code>, you cannot provide
+  /// <code>ExpirationInDays</code> or <code>ExpirationDate</code>.
+  final bool? expiredObjectDeleteMarker;
+
+  /// Identifies the objects that a rule applies to.
+  final AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails? filter;
+
+  /// The unique identifier of the rule.
+  final String? id;
+
+  /// The number of days that an object is noncurrent before Amazon S3 can perform
+  /// the associated action.
+  final int? noncurrentVersionExpirationInDays;
+
+  /// Transition rules that describe when noncurrent objects transition to a
+  /// specified storage class.
+  final List<
+          AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails>?
+      noncurrentVersionTransitions;
+
+  /// A prefix that identifies one or more objects that the rule applies to.
+  final String? prefix;
+
+  /// The current status of the rule. Indicates whether the rule is currently
+  /// being applied.
+  final String? status;
+
+  /// Transition rules that indicate when objects transition to a specified
+  /// storage class.
+  final List<AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails>?
+      transitions;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesDetails({
+    this.abortIncompleteMultipartUpload,
+    this.expirationDate,
+    this.expirationInDays,
+    this.expiredObjectDeleteMarker,
+    this.filter,
+    this.id,
+    this.noncurrentVersionExpirationInDays,
+    this.noncurrentVersionTransitions,
+    this.prefix,
+    this.status,
+    this.transitions,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesDetails(
+      abortIncompleteMultipartUpload: json['AbortIncompleteMultipartUpload'] !=
+              null
+          ? AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails
+              .fromJson(json['AbortIncompleteMultipartUpload']
+                  as Map<String, dynamic>)
+          : null,
+      expirationDate: json['ExpirationDate'] as String?,
+      expirationInDays: json['ExpirationInDays'] as int?,
+      expiredObjectDeleteMarker: json['ExpiredObjectDeleteMarker'] as bool?,
+      filter: json['Filter'] != null
+          ? AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails.fromJson(
+              json['Filter'] as Map<String, dynamic>)
+          : null,
+      id: json['ID'] as String?,
+      noncurrentVersionExpirationInDays:
+          json['NoncurrentVersionExpirationInDays'] as int?,
+      noncurrentVersionTransitions: (json['NoncurrentVersionTransitions']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      prefix: json['Prefix'] as String?,
+      status: json['Status'] as String?,
+      transitions: (json['Transitions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
+    final expirationDate = this.expirationDate;
+    final expirationInDays = this.expirationInDays;
+    final expiredObjectDeleteMarker = this.expiredObjectDeleteMarker;
+    final filter = this.filter;
+    final id = this.id;
+    final noncurrentVersionExpirationInDays =
+        this.noncurrentVersionExpirationInDays;
+    final noncurrentVersionTransitions = this.noncurrentVersionTransitions;
+    final prefix = this.prefix;
+    final status = this.status;
+    final transitions = this.transitions;
+    return {
+      if (abortIncompleteMultipartUpload != null)
+        'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
+      if (expirationDate != null) 'ExpirationDate': expirationDate,
+      if (expirationInDays != null) 'ExpirationInDays': expirationInDays,
+      if (expiredObjectDeleteMarker != null)
+        'ExpiredObjectDeleteMarker': expiredObjectDeleteMarker,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'ID': id,
+      if (noncurrentVersionExpirationInDays != null)
+        'NoncurrentVersionExpirationInDays': noncurrentVersionExpirationInDays,
+      if (noncurrentVersionTransitions != null)
+        'NoncurrentVersionTransitions': noncurrentVersionTransitions,
+      if (prefix != null) 'Prefix': prefix,
+      if (status != null) 'Status': status,
+      if (transitions != null) 'Transitions': transitions,
+    };
+  }
+}
+
+/// Identifies the objects that a rule applies to.
+class AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails {
+  /// The configuration for the filter.
+  final AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails?
+      predicate;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails({
+    this.predicate,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails(
+      predicate: json['Predicate'] != null
+          ? AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails
+              .fromJson(json['Predicate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predicate = this.predicate;
+    return {
+      if (predicate != null) 'Predicate': predicate,
+    };
+  }
+}
+
+/// The configuration for the filter.
+class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
+  /// The values to use for the filter.
+  final List<
+          AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails>?
+      operands;
+
+  /// A prefix filter.
+  final String? prefix;
+
+  /// A tag filter.
+  final AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails?
+      tag;
+
+  /// Whether to use <code>AND</code> or <code>OR</code> to join the operands.
+  final String? type;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails({
+    this.operands,
+    this.prefix,
+    this.tag,
+    this.type,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails(
+      operands: (json['Operands'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails
+                  .fromJson(e as Map<String, dynamic>))
+          .toList(),
+      prefix: json['Prefix'] as String?,
+      tag: json['Tag'] != null
+          ? AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails
+              .fromJson(json['Tag'] as Map<String, dynamic>)
+          : null,
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operands = this.operands;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    final type = this.type;
+    return {
+      if (operands != null) 'Operands': operands,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// A value to use for the filter.
+class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails {
+  /// Prefix text for matching objects.
+  final String? prefix;
+
+  /// A tag that is assigned to matching objects.
+  final AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails?
+      tag;
+
+  /// The type of filter value.
+  final String? type;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails({
+    this.prefix,
+    this.tag,
+    this.type,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails(
+      prefix: json['Prefix'] as String?,
+      tag: json['Tag'] != null
+          ? AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails
+              .fromJson(json['Tag'] as Map<String, dynamic>)
+          : null,
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final tag = this.tag;
+    final type = this.type;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// A tag that is assigned to matching objects.
+class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails {
+  /// The tag key.
+  final String? key;
+
+  /// The tag value.
+  final String? value;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails({
+    this.key,
+    this.value,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A tag filter.
+class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails {
+  /// The tag key.
+  final String? key;
+
+  /// The tag value
+  final String? value;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails({
+    this.key,
+    this.value,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A transition rule that describes when noncurrent objects transition to a
+/// specified storage class.
+class AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails {
+  /// The number of days that an object is noncurrent before Amazon S3 can perform
+  /// the associated action.
+  final int? days;
+
+  /// The class of storage to change the object to after the object is noncurrent
+  /// for the specified number of days.
+  final String? storageClass;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails({
+    this.days,
+    this.storageClass,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails(
+      days: json['Days'] as int?,
+      storageClass: json['StorageClass'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final days = this.days;
+    final storageClass = this.storageClass;
+    return {
+      if (days != null) 'Days': days,
+      if (storageClass != null) 'StorageClass': storageClass,
+    };
+  }
+}
+
+/// A rule for when objects transition to specific storage classes.
+class AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails {
+  /// A date on which to transition objects to the specified storage class. If you
+  /// provide <code>Date</code>, you cannot provide <code>Days</code>.
+  ///
+  /// Uses the <code>date-time</code> format specified in <a
+  /// href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC 3339 section 5.6,
+  /// Internet Date/Time Format</a>. The value cannot contain spaces. For example,
+  /// <code>2020-03-22T13:22:13.933Z</code>.
+  final String? date;
+
+  /// The number of days after which to transition the object to the specified
+  /// storage class. If you provide <code>Days</code>, you cannot provide
+  /// <code>Date</code>.
+  final int? days;
+
+  /// The storage class to transition the object to.
+  final String? storageClass;
+
+  AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails({
+    this.date,
+    this.days,
+    this.storageClass,
+  });
+  factory AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails.fromJson(
+      Map<String, dynamic> json) {
+    return AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails(
+      date: json['Date'] as String?,
+      days: json['Days'] as int?,
+      storageClass: json['StorageClass'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final days = this.days;
+    final storageClass = this.storageClass;
+    return {
+      if (date != null) 'Date': date,
+      if (days != null) 'Days': days,
+      if (storageClass != null) 'StorageClass': storageClass,
+    };
+  }
+}
+
 /// The details of an Amazon S3 bucket.
 class AwsS3BucketDetails {
+  /// The lifecycle configuration for objects in the S3 bucket.
+  final AwsS3BucketBucketLifecycleConfigurationDetails?
+      bucketLifecycleConfiguration;
+
   /// Indicates when the S3 bucket was created.
   ///
   /// Uses the <code>date-time</code> format specified in <a
@@ -12091,21 +15786,36 @@ class AwsS3BucketDetails {
   /// The display name of the owner of the S3 bucket.
   final String? ownerName;
 
+  /// Provides information about the Amazon S3 Public Access Block configuration
+  /// for the S3 bucket.
+  final AwsS3AccountPublicAccessBlockDetails? publicAccessBlockConfiguration;
+
   /// The encryption rules that are applied to the S3 bucket.
   final AwsS3BucketServerSideEncryptionConfiguration?
       serverSideEncryptionConfiguration;
 
   AwsS3BucketDetails({
+    this.bucketLifecycleConfiguration,
     this.createdAt,
     this.ownerId,
     this.ownerName,
+    this.publicAccessBlockConfiguration,
     this.serverSideEncryptionConfiguration,
   });
   factory AwsS3BucketDetails.fromJson(Map<String, dynamic> json) {
     return AwsS3BucketDetails(
+      bucketLifecycleConfiguration: json['BucketLifecycleConfiguration'] != null
+          ? AwsS3BucketBucketLifecycleConfigurationDetails.fromJson(
+              json['BucketLifecycleConfiguration'] as Map<String, dynamic>)
+          : null,
       createdAt: json['CreatedAt'] as String?,
       ownerId: json['OwnerId'] as String?,
       ownerName: json['OwnerName'] as String?,
+      publicAccessBlockConfiguration: json['PublicAccessBlockConfiguration'] !=
+              null
+          ? AwsS3AccountPublicAccessBlockDetails.fromJson(
+              json['PublicAccessBlockConfiguration'] as Map<String, dynamic>)
+          : null,
       serverSideEncryptionConfiguration:
           json['ServerSideEncryptionConfiguration'] != null
               ? AwsS3BucketServerSideEncryptionConfiguration.fromJson(
@@ -12116,15 +15826,21 @@ class AwsS3BucketDetails {
   }
 
   Map<String, dynamic> toJson() {
+    final bucketLifecycleConfiguration = this.bucketLifecycleConfiguration;
     final createdAt = this.createdAt;
     final ownerId = this.ownerId;
     final ownerName = this.ownerName;
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
     final serverSideEncryptionConfiguration =
         this.serverSideEncryptionConfiguration;
     return {
+      if (bucketLifecycleConfiguration != null)
+        'BucketLifecycleConfiguration': bucketLifecycleConfiguration,
       if (createdAt != null) 'CreatedAt': createdAt,
       if (ownerId != null) 'OwnerId': ownerId,
       if (ownerName != null) 'OwnerName': ownerName,
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
       if (serverSideEncryptionConfiguration != null)
         'ServerSideEncryptionConfiguration': serverSideEncryptionConfiguration,
     };
@@ -12441,21 +16157,11 @@ class AwsSecurityFinding {
   /// The schema version that a finding is formatted for.
   final String schemaVersion;
 
-  /// A finding's severity.
-  final Severity severity;
-
   /// A finding's title.
   /// <note>
   /// In this release, <code>Title</code> is a required property.
   /// </note>
   final String title;
-
-  /// One or more finding types in the format of
-  /// <code>namespace/category/classifier</code> that classify a finding.
-  ///
-  /// Valid namespace values are: Software and Configuration Checks | TTPs |
-  /// Effects | Unusual Behaviors | Sensitive Data Identifications
-  final List<String> types;
 
   /// Indicates when the security-findings provider last updated the finding
   /// record.
@@ -12465,6 +16171,10 @@ class AwsSecurityFinding {
   /// Internet Date/Time Format</a>. The value cannot contain spaces. For example,
   /// <code>2020-03-22T13:22:13.933Z</code>.
   final String updatedAt;
+
+  /// Provides details about an action that affects or that was taken on a
+  /// resource.
+  final Action? action;
 
   /// This data type is exclusive to findings that are generated as the result of
   /// a check run against a specific rule in a supported security standard, such
@@ -12485,6 +16195,11 @@ class AwsSecurityFinding {
   /// A score of 0 means that the underlying resources have no criticality, and a
   /// score of 100 is reserved for the most critical resources.
   final int? criticality;
+
+  /// In a <code>BatchImportFindings</code> request, finding providers use
+  /// <code>FindingProviderFields</code> to provide and update their own values
+  /// for confidence, criticality, related findings, severity, and types.
+  final FindingProviderFields? findingProviderFields;
 
   /// Indicates when the security-findings provider first observed the potential
   /// security issue that a finding captured.
@@ -12539,12 +16254,22 @@ class AwsSecurityFinding {
   /// A data type that describes the remediation options for a finding.
   final Remediation? remediation;
 
+  /// A finding's severity.
+  final Severity? severity;
+
   /// A URL that links to a page about the current finding in the
   /// security-findings provider's solution.
   final String? sourceUrl;
 
   /// Threat intelligence details related to a finding.
   final List<ThreatIntelIndicator>? threatIntelIndicators;
+
+  /// One or more finding types in the format of
+  /// <code>namespace/category/classifier</code> that classify a finding.
+  ///
+  /// Valid namespace values are: Software and Configuration Checks | TTPs |
+  /// Effects | Unusual Behaviors | Sensitive Data Identifications
+  final List<String>? types;
 
   /// A list of name/value string pairs associated with the finding. These are
   /// custom, user-defined fields added to a finding.
@@ -12571,13 +16296,13 @@ class AwsSecurityFinding {
     required this.productArn,
     required this.resources,
     required this.schemaVersion,
-    required this.severity,
     required this.title,
-    required this.types,
     required this.updatedAt,
+    this.action,
     this.compliance,
     this.confidence,
     this.criticality,
+    this.findingProviderFields,
     this.firstObservedAt,
     this.lastObservedAt,
     this.malware,
@@ -12590,8 +16315,10 @@ class AwsSecurityFinding {
     this.recordState,
     this.relatedFindings,
     this.remediation,
+    this.severity,
     this.sourceUrl,
     this.threatIntelIndicators,
+    this.types,
     this.userDefinedFields,
     this.verificationState,
     this.vulnerabilities,
@@ -12611,18 +16338,20 @@ class AwsSecurityFinding {
           .map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
       schemaVersion: json['SchemaVersion'] as String,
-      severity: Severity.fromJson(json['Severity'] as Map<String, dynamic>),
       title: json['Title'] as String,
-      types: (json['Types'] as List)
-          .whereNotNull()
-          .map((e) => e as String)
-          .toList(),
       updatedAt: json['UpdatedAt'] as String,
+      action: json['Action'] != null
+          ? Action.fromJson(json['Action'] as Map<String, dynamic>)
+          : null,
       compliance: json['Compliance'] != null
           ? Compliance.fromJson(json['Compliance'] as Map<String, dynamic>)
           : null,
       confidence: json['Confidence'] as int?,
       criticality: json['Criticality'] as int?,
+      findingProviderFields: json['FindingProviderFields'] != null
+          ? FindingProviderFields.fromJson(
+              json['FindingProviderFields'] as Map<String, dynamic>)
+          : null,
       firstObservedAt: json['FirstObservedAt'] as String?,
       lastObservedAt: json['LastObservedAt'] as String?,
       malware: (json['Malware'] as List?)
@@ -12655,10 +16384,17 @@ class AwsSecurityFinding {
       remediation: json['Remediation'] != null
           ? Remediation.fromJson(json['Remediation'] as Map<String, dynamic>)
           : null,
+      severity: json['Severity'] != null
+          ? Severity.fromJson(json['Severity'] as Map<String, dynamic>)
+          : null,
       sourceUrl: json['SourceUrl'] as String?,
       threatIntelIndicators: (json['ThreatIntelIndicators'] as List?)
           ?.whereNotNull()
           .map((e) => ThreatIntelIndicator.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      types: (json['Types'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
           .toList(),
       userDefinedFields: (json['UserDefinedFields'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -12684,13 +16420,13 @@ class AwsSecurityFinding {
     final productArn = this.productArn;
     final resources = this.resources;
     final schemaVersion = this.schemaVersion;
-    final severity = this.severity;
     final title = this.title;
-    final types = this.types;
     final updatedAt = this.updatedAt;
+    final action = this.action;
     final compliance = this.compliance;
     final confidence = this.confidence;
     final criticality = this.criticality;
+    final findingProviderFields = this.findingProviderFields;
     final firstObservedAt = this.firstObservedAt;
     final lastObservedAt = this.lastObservedAt;
     final malware = this.malware;
@@ -12703,8 +16439,10 @@ class AwsSecurityFinding {
     final recordState = this.recordState;
     final relatedFindings = this.relatedFindings;
     final remediation = this.remediation;
+    final severity = this.severity;
     final sourceUrl = this.sourceUrl;
     final threatIntelIndicators = this.threatIntelIndicators;
+    final types = this.types;
     final userDefinedFields = this.userDefinedFields;
     final verificationState = this.verificationState;
     final vulnerabilities = this.vulnerabilities;
@@ -12719,13 +16457,14 @@ class AwsSecurityFinding {
       'ProductArn': productArn,
       'Resources': resources,
       'SchemaVersion': schemaVersion,
-      'Severity': severity,
       'Title': title,
-      'Types': types,
       'UpdatedAt': updatedAt,
+      if (action != null) 'Action': action,
       if (compliance != null) 'Compliance': compliance,
       if (confidence != null) 'Confidence': confidence,
       if (criticality != null) 'Criticality': criticality,
+      if (findingProviderFields != null)
+        'FindingProviderFields': findingProviderFields,
       if (firstObservedAt != null) 'FirstObservedAt': firstObservedAt,
       if (lastObservedAt != null) 'LastObservedAt': lastObservedAt,
       if (malware != null) 'Malware': malware,
@@ -12738,9 +16477,11 @@ class AwsSecurityFinding {
       if (recordState != null) 'RecordState': recordState.toValue(),
       if (relatedFindings != null) 'RelatedFindings': relatedFindings,
       if (remediation != null) 'Remediation': remediation,
+      if (severity != null) 'Severity': severity,
       if (sourceUrl != null) 'SourceUrl': sourceUrl,
       if (threatIntelIndicators != null)
         'ThreatIntelIndicators': threatIntelIndicators,
+      if (types != null) 'Types': types,
       if (userDefinedFields != null) 'UserDefinedFields': userDefinedFields,
       if (verificationState != null)
         'VerificationState': verificationState.toValue(),
@@ -12791,6 +16532,43 @@ class AwsSecurityFindingFilters {
 
   /// A finding's description.
   final List<StringFilter>? description;
+
+  /// The finding provider value for the finding confidence. Confidence is defined
+  /// as the likelihood that a finding accurately identifies the behavior or issue
+  /// that it was intended to identify.
+  ///
+  /// Confidence is scored on a 0-100 basis using a ratio scale, where 0 means
+  /// zero percent confidence and 100 means 100 percent confidence.
+  final List<NumberFilter>? findingProviderFieldsConfidence;
+
+  /// The finding provider value for the level of importance assigned to the
+  /// resources associated with the findings.
+  ///
+  /// A score of 0 means that the underlying resources have no criticality, and a
+  /// score of 100 is reserved for the most critical resources.
+  final List<NumberFilter>? findingProviderFieldsCriticality;
+
+  /// The finding identifier of a related finding that is identified by the
+  /// finding provider.
+  final List<StringFilter>? findingProviderFieldsRelatedFindingsId;
+
+  /// The ARN of the solution that generated a related finding that is identified
+  /// by the finding provider.
+  final List<StringFilter>? findingProviderFieldsRelatedFindingsProductArn;
+
+  /// The finding provider value for the severity label.
+  final List<StringFilter>? findingProviderFieldsSeverityLabel;
+
+  /// The finding provider's original value for the severity.
+  final List<StringFilter>? findingProviderFieldsSeverityOriginal;
+
+  /// One or more finding types that the finding provider assigned to the finding.
+  /// Uses the format of <code>namespace/category/classifier</code> that classify
+  /// a finding.
+  ///
+  /// Valid namespace values are: Software and Configuration Checks | TTPs |
+  /// Effects | Unusual Behaviors | Sensitive Data Identifications
+  final List<StringFilter>? findingProviderFieldsTypes;
 
   /// An ISO8601-formatted timestamp that indicates when the security-findings
   /// provider first observed the potential security issue that a finding
@@ -13048,7 +16826,19 @@ class AwsSecurityFindingFilters {
   /// <ul>
   /// <li>
   /// <code>NEW</code> - The initial state of a finding, before it is reviewed.
+  ///
+  /// Security Hub also resets the workflow status from <code>NOTIFIED</code> or
+  /// <code>RESOLVED</code> to <code>NEW</code> in the following cases:
+  ///
+  /// <ul>
+  /// <li>
+  /// The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
   /// </li>
+  /// <li>
+  /// The compliance status changes from <code>PASSED</code> to either
+  /// <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.
+  /// </li>
+  /// </ul> </li>
   /// <li>
   /// <code>NOTIFIED</code> - Indicates that the resource owner has been notified
   /// about the security issue. Used when the initial reviewer is not the resource
@@ -13073,6 +16863,13 @@ class AwsSecurityFindingFilters {
     this.createdAt,
     this.criticality,
     this.description,
+    this.findingProviderFieldsConfidence,
+    this.findingProviderFieldsCriticality,
+    this.findingProviderFieldsRelatedFindingsId,
+    this.findingProviderFieldsRelatedFindingsProductArn,
+    this.findingProviderFieldsSeverityLabel,
+    this.findingProviderFieldsSeverityOriginal,
+    this.findingProviderFieldsTypes,
     this.firstObservedAt,
     this.generatorId,
     this.id,
@@ -13178,6 +16975,40 @@ class AwsSecurityFindingFilters {
           .map((e) => NumberFilter.fromJson(e as Map<String, dynamic>))
           .toList(),
       description: (json['Description'] as List?)
+          ?.whereNotNull()
+          .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      findingProviderFieldsConfidence:
+          (json['FindingProviderFieldsConfidence'] as List?)
+              ?.whereNotNull()
+              .map((e) => NumberFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsCriticality:
+          (json['FindingProviderFieldsCriticality'] as List?)
+              ?.whereNotNull()
+              .map((e) => NumberFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsRelatedFindingsId:
+          (json['FindingProviderFieldsRelatedFindingsId'] as List?)
+              ?.whereNotNull()
+              .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsRelatedFindingsProductArn:
+          (json['FindingProviderFieldsRelatedFindingsProductArn'] as List?)
+              ?.whereNotNull()
+              .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsSeverityLabel:
+          (json['FindingProviderFieldsSeverityLabel'] as List?)
+              ?.whereNotNull()
+              .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsSeverityOriginal:
+          (json['FindingProviderFieldsSeverityOriginal'] as List?)
+              ?.whereNotNull()
+              .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      findingProviderFieldsTypes: (json['FindingProviderFieldsTypes'] as List?)
           ?.whereNotNull()
           .map((e) => StringFilter.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -13516,6 +17347,19 @@ class AwsSecurityFindingFilters {
     final createdAt = this.createdAt;
     final criticality = this.criticality;
     final description = this.description;
+    final findingProviderFieldsConfidence =
+        this.findingProviderFieldsConfidence;
+    final findingProviderFieldsCriticality =
+        this.findingProviderFieldsCriticality;
+    final findingProviderFieldsRelatedFindingsId =
+        this.findingProviderFieldsRelatedFindingsId;
+    final findingProviderFieldsRelatedFindingsProductArn =
+        this.findingProviderFieldsRelatedFindingsProductArn;
+    final findingProviderFieldsSeverityLabel =
+        this.findingProviderFieldsSeverityLabel;
+    final findingProviderFieldsSeverityOriginal =
+        this.findingProviderFieldsSeverityOriginal;
+    final findingProviderFieldsTypes = this.findingProviderFieldsTypes;
     final firstObservedAt = this.firstObservedAt;
     final generatorId = this.generatorId;
     final id = this.id;
@@ -13608,6 +17452,24 @@ class AwsSecurityFindingFilters {
       if (createdAt != null) 'CreatedAt': createdAt,
       if (criticality != null) 'Criticality': criticality,
       if (description != null) 'Description': description,
+      if (findingProviderFieldsConfidence != null)
+        'FindingProviderFieldsConfidence': findingProviderFieldsConfidence,
+      if (findingProviderFieldsCriticality != null)
+        'FindingProviderFieldsCriticality': findingProviderFieldsCriticality,
+      if (findingProviderFieldsRelatedFindingsId != null)
+        'FindingProviderFieldsRelatedFindingsId':
+            findingProviderFieldsRelatedFindingsId,
+      if (findingProviderFieldsRelatedFindingsProductArn != null)
+        'FindingProviderFieldsRelatedFindingsProductArn':
+            findingProviderFieldsRelatedFindingsProductArn,
+      if (findingProviderFieldsSeverityLabel != null)
+        'FindingProviderFieldsSeverityLabel':
+            findingProviderFieldsSeverityLabel,
+      if (findingProviderFieldsSeverityOriginal != null)
+        'FindingProviderFieldsSeverityOriginal':
+            findingProviderFieldsSeverityOriginal,
+      if (findingProviderFieldsTypes != null)
+        'FindingProviderFieldsTypes': findingProviderFieldsTypes,
       if (firstObservedAt != null) 'FirstObservedAt': firstObservedAt,
       if (generatorId != null) 'GeneratorId': generatorId,
       if (id != null) 'Id': id,
@@ -13756,7 +17618,7 @@ class AwsSecurityFindingIdentifier {
   }
 }
 
-/// A wrapper type for the topic's Amazon Resource Name (ARN).
+/// A wrapper type for the topic's ARN.
 class AwsSnsTopicDetails {
   /// The ID of an AWS managed customer master key (CMK) for Amazon SNS or a
   /// custom CMK.
@@ -13836,8 +17698,8 @@ class AwsSnsTopicSubscription {
 
 /// Data about a queue.
 class AwsSqsQueueDetails {
-  /// The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS
-  /// moves messages after the value of <code>maxReceiveCount</code> is exceeded.
+  /// The ARN of the dead-letter queue to which Amazon SQS moves messages after
+  /// the value of <code>maxReceiveCount</code> is exceeded.
   final String? deadLetterTargetArn;
 
   /// The length of time, in seconds, for which Amazon SQS can reuse a data key to
@@ -13879,6 +17741,240 @@ class AwsSqsQueueDetails {
         'KmsDataKeyReusePeriodSeconds': kmsDataKeyReusePeriodSeconds,
       if (kmsMasterKeyId != null) 'KmsMasterKeyId': kmsMasterKeyId,
       if (queueName != null) 'QueueName': queueName,
+    };
+  }
+}
+
+/// Provides the details about the compliance status for a patch.
+class AwsSsmComplianceSummary {
+  /// The type of resource for which the compliance was determined. For
+  /// <code>AwsSsmPatchCompliance</code>, <code>ComplianceType</code> is
+  /// <code>Patch</code>.
+  final String? complianceType;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>CRITICAL</code>.
+  final int? compliantCriticalCount;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>HIGH</code>.
+  final int? compliantHighCount;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>INFORMATIONAL</code>.
+  final int? compliantInformationalCount;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>LOW</code>.
+  final int? compliantLowCount;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>MEDIUM</code>.
+  final int? compliantMediumCount;
+
+  /// For the patches that are compliant, the number that have a severity of
+  /// <code>UNSPECIFIED</code>.
+  final int? compliantUnspecifiedCount;
+
+  /// The type of execution that was used determine compliance.
+  final String? executionType;
+
+  /// For the patch items that are noncompliant, the number of items that have a
+  /// severity of <code>CRITICAL</code>.
+  final int? nonCompliantCriticalCount;
+
+  /// For the patches that are noncompliant, the number that have a severity of
+  /// <code>HIGH</code>.
+  final int? nonCompliantHighCount;
+
+  /// For the patches that are noncompliant, the number that have a severity of
+  /// <code>INFORMATIONAL</code>.
+  final int? nonCompliantInformationalCount;
+
+  /// For the patches that are noncompliant, the number that have a severity of
+  /// <code>LOW</code>.
+  final int? nonCompliantLowCount;
+
+  /// For the patches that are noncompliant, the number that have a severity of
+  /// <code>MEDIUM</code>.
+  final int? nonCompliantMediumCount;
+
+  /// For the patches that are noncompliant, the number that have a severity of
+  /// <code>UNSPECIFIED</code>.
+  final int? nonCompliantUnspecifiedCount;
+
+  /// The highest severity for the patches.
+  final String? overallSeverity;
+
+  /// The identifier of the patch baseline. The patch baseline lists the patches
+  /// that are approved for installation.
+  final String? patchBaselineId;
+
+  /// The identifier of the patch group for which compliance was determined. A
+  /// patch group uses tags to group EC2 instances that should have the same patch
+  /// compliance.
+  final String? patchGroup;
+
+  /// The current patch compliance status.
+  ///
+  /// The possible status values are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>COMPLIANT</code>
+  /// </li>
+  /// <li>
+  /// <code>NON_COMPLIANT</code>
+  /// </li>
+  /// <li>
+  /// <code>UNSPECIFIED_DATA</code>
+  /// </li>
+  /// </ul>
+  final String? status;
+
+  AwsSsmComplianceSummary({
+    this.complianceType,
+    this.compliantCriticalCount,
+    this.compliantHighCount,
+    this.compliantInformationalCount,
+    this.compliantLowCount,
+    this.compliantMediumCount,
+    this.compliantUnspecifiedCount,
+    this.executionType,
+    this.nonCompliantCriticalCount,
+    this.nonCompliantHighCount,
+    this.nonCompliantInformationalCount,
+    this.nonCompliantLowCount,
+    this.nonCompliantMediumCount,
+    this.nonCompliantUnspecifiedCount,
+    this.overallSeverity,
+    this.patchBaselineId,
+    this.patchGroup,
+    this.status,
+  });
+  factory AwsSsmComplianceSummary.fromJson(Map<String, dynamic> json) {
+    return AwsSsmComplianceSummary(
+      complianceType: json['ComplianceType'] as String?,
+      compliantCriticalCount: json['CompliantCriticalCount'] as int?,
+      compliantHighCount: json['CompliantHighCount'] as int?,
+      compliantInformationalCount: json['CompliantInformationalCount'] as int?,
+      compliantLowCount: json['CompliantLowCount'] as int?,
+      compliantMediumCount: json['CompliantMediumCount'] as int?,
+      compliantUnspecifiedCount: json['CompliantUnspecifiedCount'] as int?,
+      executionType: json['ExecutionType'] as String?,
+      nonCompliantCriticalCount: json['NonCompliantCriticalCount'] as int?,
+      nonCompliantHighCount: json['NonCompliantHighCount'] as int?,
+      nonCompliantInformationalCount:
+          json['NonCompliantInformationalCount'] as int?,
+      nonCompliantLowCount: json['NonCompliantLowCount'] as int?,
+      nonCompliantMediumCount: json['NonCompliantMediumCount'] as int?,
+      nonCompliantUnspecifiedCount:
+          json['NonCompliantUnspecifiedCount'] as int?,
+      overallSeverity: json['OverallSeverity'] as String?,
+      patchBaselineId: json['PatchBaselineId'] as String?,
+      patchGroup: json['PatchGroup'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final compliantCriticalCount = this.compliantCriticalCount;
+    final compliantHighCount = this.compliantHighCount;
+    final compliantInformationalCount = this.compliantInformationalCount;
+    final compliantLowCount = this.compliantLowCount;
+    final compliantMediumCount = this.compliantMediumCount;
+    final compliantUnspecifiedCount = this.compliantUnspecifiedCount;
+    final executionType = this.executionType;
+    final nonCompliantCriticalCount = this.nonCompliantCriticalCount;
+    final nonCompliantHighCount = this.nonCompliantHighCount;
+    final nonCompliantInformationalCount = this.nonCompliantInformationalCount;
+    final nonCompliantLowCount = this.nonCompliantLowCount;
+    final nonCompliantMediumCount = this.nonCompliantMediumCount;
+    final nonCompliantUnspecifiedCount = this.nonCompliantUnspecifiedCount;
+    final overallSeverity = this.overallSeverity;
+    final patchBaselineId = this.patchBaselineId;
+    final patchGroup = this.patchGroup;
+    final status = this.status;
+    return {
+      if (complianceType != null) 'ComplianceType': complianceType,
+      if (compliantCriticalCount != null)
+        'CompliantCriticalCount': compliantCriticalCount,
+      if (compliantHighCount != null) 'CompliantHighCount': compliantHighCount,
+      if (compliantInformationalCount != null)
+        'CompliantInformationalCount': compliantInformationalCount,
+      if (compliantLowCount != null) 'CompliantLowCount': compliantLowCount,
+      if (compliantMediumCount != null)
+        'CompliantMediumCount': compliantMediumCount,
+      if (compliantUnspecifiedCount != null)
+        'CompliantUnspecifiedCount': compliantUnspecifiedCount,
+      if (executionType != null) 'ExecutionType': executionType,
+      if (nonCompliantCriticalCount != null)
+        'NonCompliantCriticalCount': nonCompliantCriticalCount,
+      if (nonCompliantHighCount != null)
+        'NonCompliantHighCount': nonCompliantHighCount,
+      if (nonCompliantInformationalCount != null)
+        'NonCompliantInformationalCount': nonCompliantInformationalCount,
+      if (nonCompliantLowCount != null)
+        'NonCompliantLowCount': nonCompliantLowCount,
+      if (nonCompliantMediumCount != null)
+        'NonCompliantMediumCount': nonCompliantMediumCount,
+      if (nonCompliantUnspecifiedCount != null)
+        'NonCompliantUnspecifiedCount': nonCompliantUnspecifiedCount,
+      if (overallSeverity != null) 'OverallSeverity': overallSeverity,
+      if (patchBaselineId != null) 'PatchBaselineId': patchBaselineId,
+      if (patchGroup != null) 'PatchGroup': patchGroup,
+      if (status != null) 'Status': status,
+    };
+  }
+}
+
+/// Provides details about the compliance for a patch.
+class AwsSsmPatch {
+  /// The compliance status details for the patch.
+  final AwsSsmComplianceSummary? complianceSummary;
+
+  AwsSsmPatch({
+    this.complianceSummary,
+  });
+  factory AwsSsmPatch.fromJson(Map<String, dynamic> json) {
+    return AwsSsmPatch(
+      complianceSummary: json['ComplianceSummary'] != null
+          ? AwsSsmComplianceSummary.fromJson(
+              json['ComplianceSummary'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummary = this.complianceSummary;
+    return {
+      if (complianceSummary != null) 'ComplianceSummary': complianceSummary,
+    };
+  }
+}
+
+/// Provides information about the state of a patch on an instance based on the
+/// patch baseline that was used to patch the instance.
+class AwsSsmPatchComplianceDetails {
+  /// Information about the status of a patch.
+  final AwsSsmPatch? patch;
+
+  AwsSsmPatchComplianceDetails({
+    this.patch,
+  });
+  factory AwsSsmPatchComplianceDetails.fromJson(Map<String, dynamic> json) {
+    return AwsSsmPatchComplianceDetails(
+      patch: json['Patch'] != null
+          ? AwsSsmPatch.fromJson(json['Patch'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final patch = this.patch;
+    return {
+      if (patch != null) 'Patch': patch,
     };
   }
 }
@@ -14138,6 +18234,55 @@ class BatchUpdateFindingsUnprocessedFinding {
   }
 }
 
+/// An occurrence of sensitive data detected in a Microsoft Excel workbook,
+/// comma-separated value (CSV) file, or tab-separated value (TSV) file.
+class Cell {
+  /// For a Microsoft Excel workbook, provides the location of the cell, as an
+  /// absolute cell reference, that contains the data. For example, Sheet2!C5 for
+  /// cell C5 on Sheet2.
+  final String? cellReference;
+
+  /// The column number of the column that contains the data. For a Microsoft
+  /// Excel workbook, the column number corresponds to the alphabetical column
+  /// identifiers. For example, a value of 1 for Column corresponds to the A
+  /// column in the workbook.
+  final int? column;
+
+  /// The name of the column that contains the data.
+  final String? columnName;
+
+  /// The row number of the row that contains the data.
+  final int? row;
+
+  Cell({
+    this.cellReference,
+    this.column,
+    this.columnName,
+    this.row,
+  });
+  factory Cell.fromJson(Map<String, dynamic> json) {
+    return Cell(
+      cellReference: json['CellReference'] as String?,
+      column: json['Column'] as int?,
+      columnName: json['ColumnName'] as String?,
+      row: json['Row'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cellReference = this.cellReference;
+    final column = this.column;
+    final columnName = this.columnName;
+    final row = this.row;
+    return {
+      if (cellReference != null) 'CellReference': cellReference,
+      if (column != null) 'Column': column,
+      if (columnName != null) 'ColumnName': columnName,
+      if (row != null) 'Row': row,
+    };
+  }
+}
+
 /// An IPv4 CIDR block association.
 class CidrBlockAssociation {
   /// The association ID for the IPv4 CIDR block.
@@ -14170,6 +18315,129 @@ class CidrBlockAssociation {
       if (associationId != null) 'AssociationId': associationId,
       if (cidrBlock != null) 'CidrBlock': cidrBlock,
       if (cidrBlockState != null) 'CidrBlockState': cidrBlockState,
+    };
+  }
+}
+
+/// Information about a city.
+class City {
+  /// The name of the city.
+  final String? cityName;
+
+  City({
+    this.cityName,
+  });
+  factory City.fromJson(Map<String, dynamic> json) {
+    return City(
+      cityName: json['CityName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cityName = this.cityName;
+    return {
+      if (cityName != null) 'CityName': cityName,
+    };
+  }
+}
+
+/// Details about the sensitive data that was detected on the resource.
+class ClassificationResult {
+  /// Indicates whether there are additional occurrences of sensitive data that
+  /// are not included in the finding. This occurs when the number of occurrences
+  /// exceeds the maximum that can be included.
+  final bool? additionalOccurrences;
+
+  /// Provides details about sensitive data that was identified based on
+  /// customer-defined configuration.
+  final CustomDataIdentifiersResult? customDataIdentifiers;
+
+  /// The type of content that the finding applies to.
+  final String? mimeType;
+
+  /// Provides details about sensitive data that was identified based on built-in
+  /// configuration.
+  final List<SensitiveDataResult>? sensitiveData;
+
+  /// The total size in bytes of the affected data.
+  final int? sizeClassified;
+
+  /// The current status of the sensitive data detection.
+  final ClassificationStatus? status;
+
+  ClassificationResult({
+    this.additionalOccurrences,
+    this.customDataIdentifiers,
+    this.mimeType,
+    this.sensitiveData,
+    this.sizeClassified,
+    this.status,
+  });
+  factory ClassificationResult.fromJson(Map<String, dynamic> json) {
+    return ClassificationResult(
+      additionalOccurrences: json['AdditionalOccurrences'] as bool?,
+      customDataIdentifiers: json['CustomDataIdentifiers'] != null
+          ? CustomDataIdentifiersResult.fromJson(
+              json['CustomDataIdentifiers'] as Map<String, dynamic>)
+          : null,
+      mimeType: json['MimeType'] as String?,
+      sensitiveData: (json['SensitiveData'] as List?)
+          ?.whereNotNull()
+          .map((e) => SensitiveDataResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sizeClassified: json['SizeClassified'] as int?,
+      status: json['Status'] != null
+          ? ClassificationStatus.fromJson(
+              json['Status'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalOccurrences = this.additionalOccurrences;
+    final customDataIdentifiers = this.customDataIdentifiers;
+    final mimeType = this.mimeType;
+    final sensitiveData = this.sensitiveData;
+    final sizeClassified = this.sizeClassified;
+    final status = this.status;
+    return {
+      if (additionalOccurrences != null)
+        'AdditionalOccurrences': additionalOccurrences,
+      if (customDataIdentifiers != null)
+        'CustomDataIdentifiers': customDataIdentifiers,
+      if (mimeType != null) 'MimeType': mimeType,
+      if (sensitiveData != null) 'SensitiveData': sensitiveData,
+      if (sizeClassified != null) 'SizeClassified': sizeClassified,
+      if (status != null) 'Status': status,
+    };
+  }
+}
+
+/// Provides details about the current status of the sensitive data detection.
+class ClassificationStatus {
+  /// The code that represents the status of the sensitive data detection.
+  final String? code;
+
+  /// A longer description of the current status of the sensitive data detection.
+  final String? reason;
+
+  ClassificationStatus({
+    this.code,
+    this.reason,
+  });
+  factory ClassificationStatus.fromJson(Map<String, dynamic> json) {
+    return ClassificationStatus(
+      code: json['Code'] as String?,
+      reason: json['Reason'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final reason = this.reason;
+    return {
+      if (code != null) 'Code': code,
+      if (reason != null) 'Reason': reason,
     };
   }
 }
@@ -14364,6 +18632,35 @@ extension on String {
   }
 }
 
+/// Information about a country.
+class Country {
+  /// The 2-letter ISO 3166 country code for the country.
+  final String? countryCode;
+
+  /// The name of the country.
+  final String? countryName;
+
+  Country({
+    this.countryCode,
+    this.countryName,
+  });
+  factory Country.fromJson(Map<String, dynamic> json) {
+    return Country(
+      countryCode: json['CountryCode'] as String?,
+      countryName: json['CountryName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final countryCode = this.countryCode;
+    final countryName = this.countryName;
+    return {
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (countryName != null) 'CountryName': countryName,
+    };
+  }
+}
+
 class CreateActionTargetResponse {
   /// The ARN for the custom action target.
   final String actionTargetArn;
@@ -14410,6 +18707,85 @@ class CreateMembersResponse {
   }
 }
 
+/// The list of detected instances of sensitive data.
+class CustomDataIdentifiersDetections {
+  /// The ARN of the custom identifier that was used to detect the sensitive data.
+  final String? arn;
+
+  /// The total number of occurrences of sensitive data that were detected.
+  final int? count;
+
+  /// he name of the custom identifier that detected the sensitive data.
+  final String? name;
+
+  /// Details about the sensitive data that was detected.
+  final Occurrences? occurrences;
+
+  CustomDataIdentifiersDetections({
+    this.arn,
+    this.count,
+    this.name,
+    this.occurrences,
+  });
+  factory CustomDataIdentifiersDetections.fromJson(Map<String, dynamic> json) {
+    return CustomDataIdentifiersDetections(
+      arn: json['Arn'] as String?,
+      count: json['Count'] as int?,
+      name: json['Name'] as String?,
+      occurrences: json['Occurrences'] != null
+          ? Occurrences.fromJson(json['Occurrences'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final count = this.count;
+    final name = this.name;
+    final occurrences = this.occurrences;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (count != null) 'Count': count,
+      if (name != null) 'Name': name,
+      if (occurrences != null) 'Occurrences': occurrences,
+    };
+  }
+}
+
+/// Contains an instance of sensitive data that was detected by a
+/// customer-defined identifier.
+class CustomDataIdentifiersResult {
+  /// The list of detected instances of sensitive data.
+  final List<CustomDataIdentifiersDetections>? detections;
+
+  /// The total number of occurrences of sensitive data.
+  final int? totalCount;
+
+  CustomDataIdentifiersResult({
+    this.detections,
+    this.totalCount,
+  });
+  factory CustomDataIdentifiersResult.fromJson(Map<String, dynamic> json) {
+    return CustomDataIdentifiersResult(
+      detections: (json['Detections'] as List?)
+          ?.whereNotNull()
+          .map((e) => CustomDataIdentifiersDetections.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      totalCount: json['TotalCount'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detections = this.detections;
+    final totalCount = this.totalCount;
+    return {
+      if (detections != null) 'Detections': detections,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
+}
+
 /// CVSS scores from the advisory related to the vulnerability.
 class Cvss {
   /// The base CVSS score.
@@ -14442,6 +18818,39 @@ class Cvss {
       if (baseScore != null) 'BaseScore': baseScore,
       if (baseVector != null) 'BaseVector': baseVector,
       if (version != null) 'Version': version,
+    };
+  }
+}
+
+/// Provides details about sensitive data that was detected on a resource.
+class DataClassificationDetails {
+  /// The path to the folder or file that contains the sensitive data.
+  final String? detailedResultsLocation;
+
+  /// The details about the sensitive data that was detected on the resource.
+  final ClassificationResult? result;
+
+  DataClassificationDetails({
+    this.detailedResultsLocation,
+    this.result,
+  });
+  factory DataClassificationDetails.fromJson(Map<String, dynamic> json) {
+    return DataClassificationDetails(
+      detailedResultsLocation: json['DetailedResultsLocation'] as String?,
+      result: json['Result'] != null
+          ? ClassificationResult.fromJson(
+              json['Result'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detailedResultsLocation = this.detailedResultsLocation;
+    final result = this.result;
+    return {
+      if (detailedResultsLocation != null)
+        'DetailedResultsLocation': detailedResultsLocation,
+      if (result != null) 'Result': result,
     };
   }
 }
@@ -14786,6 +19195,14 @@ class DisableSecurityHubResponse {
   }
 }
 
+class DisassociateFromAdministratorAccountResponse {
+  DisassociateFromAdministratorAccountResponse();
+  factory DisassociateFromAdministratorAccountResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DisassociateFromAdministratorAccountResponse();
+  }
+}
+
 class DisassociateFromMasterAccountResponse {
   DisassociateFromMasterAccountResponse();
   factory DisassociateFromMasterAccountResponse.fromJson(
@@ -14798,6 +19215,43 @@ class DisassociateMembersResponse {
   DisassociateMembersResponse();
   factory DisassociateMembersResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMembersResponse();
+  }
+}
+
+/// Provided if <code>ActionType</code> is <code>DNS_REQUEST</code>. It provides
+/// details about the DNS request that was detected.
+class DnsRequestAction {
+  /// Indicates whether the DNS request was blocked.
+  final bool? blocked;
+
+  /// The DNS domain that is associated with the DNS request.
+  final String? domain;
+
+  /// The protocol that was used for the DNS request.
+  final String? protocol;
+
+  DnsRequestAction({
+    this.blocked,
+    this.domain,
+    this.protocol,
+  });
+  factory DnsRequestAction.fromJson(Map<String, dynamic> json) {
+    return DnsRequestAction(
+      blocked: json['Blocked'] as bool?,
+      domain: json['Domain'] as String?,
+      protocol: json['Protocol'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final domain = this.domain;
+    final protocol = this.protocol;
+    return {
+      if (blocked != null) 'Blocked': blocked,
+      if (domain != null) 'Domain': domain,
+      if (protocol != null) 'Protocol': protocol,
+    };
   }
 }
 
@@ -14828,6 +19282,153 @@ class EnableSecurityHubResponse {
   EnableSecurityHubResponse();
   factory EnableSecurityHubResponse.fromJson(Map<String, dynamic> _) {
     return EnableSecurityHubResponse();
+  }
+}
+
+/// In a <code>BatchImportFindings</code> request, finding providers use
+/// <code>FindingProviderFields</code> to provide and update values for
+/// confidence, criticality, related findings, severity, and types.
+class FindingProviderFields {
+  /// A finding's confidence. Confidence is defined as the likelihood that a
+  /// finding accurately identifies the behavior or issue that it was intended to
+  /// identify.
+  ///
+  /// Confidence is scored on a 0-100 basis using a ratio scale, where 0 means
+  /// zero percent confidence and 100 means 100 percent confidence.
+  final int? confidence;
+
+  /// The level of importance assigned to the resources associated with the
+  /// finding.
+  ///
+  /// A score of 0 means that the underlying resources have no criticality, and a
+  /// score of 100 is reserved for the most critical resources.
+  final int? criticality;
+
+  /// A list of findings that are related to the current finding.
+  final List<RelatedFinding>? relatedFindings;
+
+  /// The severity of a finding.
+  final FindingProviderSeverity? severity;
+
+  /// One or more finding types in the format of
+  /// <code>namespace/category/classifier</code> that classify a finding.
+  ///
+  /// Valid namespace values are: Software and Configuration Checks | TTPs |
+  /// Effects | Unusual Behaviors | Sensitive Data Identifications
+  final List<String>? types;
+
+  FindingProviderFields({
+    this.confidence,
+    this.criticality,
+    this.relatedFindings,
+    this.severity,
+    this.types,
+  });
+  factory FindingProviderFields.fromJson(Map<String, dynamic> json) {
+    return FindingProviderFields(
+      confidence: json['Confidence'] as int?,
+      criticality: json['Criticality'] as int?,
+      relatedFindings: (json['RelatedFindings'] as List?)
+          ?.whereNotNull()
+          .map((e) => RelatedFinding.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      severity: json['Severity'] != null
+          ? FindingProviderSeverity.fromJson(
+              json['Severity'] as Map<String, dynamic>)
+          : null,
+      types: (json['Types'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final criticality = this.criticality;
+    final relatedFindings = this.relatedFindings;
+    final severity = this.severity;
+    final types = this.types;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (criticality != null) 'Criticality': criticality,
+      if (relatedFindings != null) 'RelatedFindings': relatedFindings,
+      if (severity != null) 'Severity': severity,
+      if (types != null) 'Types': types,
+    };
+  }
+}
+
+/// The severity assigned to the finding by the finding provider.
+class FindingProviderSeverity {
+  /// The severity label assigned to the finding by the finding provider.
+  final SeverityLabel? label;
+
+  /// The finding provider's original value for the severity.
+  final String? original;
+
+  FindingProviderSeverity({
+    this.label,
+    this.original,
+  });
+  factory FindingProviderSeverity.fromJson(Map<String, dynamic> json) {
+    return FindingProviderSeverity(
+      label: (json['Label'] as String?)?.toSeverityLabel(),
+      original: json['Original'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final label = this.label;
+    final original = this.original;
+    return {
+      if (label != null) 'Label': label.toValue(),
+      if (original != null) 'Original': original,
+    };
+  }
+}
+
+/// Provides the latitude and longitude coordinates of a location.
+class GeoLocation {
+  /// The latitude of the location.
+  final double? lat;
+
+  /// The longitude of the location.
+  final double? lon;
+
+  GeoLocation({
+    this.lat,
+    this.lon,
+  });
+  factory GeoLocation.fromJson(Map<String, dynamic> json) {
+    return GeoLocation(
+      lat: json['Lat'] as double?,
+      lon: json['Lon'] as double?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lat = this.lat;
+    final lon = this.lon;
+    return {
+      if (lat != null) 'Lat': lat,
+      if (lon != null) 'Lon': lon,
+    };
+  }
+}
+
+class GetAdministratorAccountResponse {
+  final Invitation? administrator;
+
+  GetAdministratorAccountResponse({
+    this.administrator,
+  });
+  factory GetAdministratorAccountResponse.fromJson(Map<String, dynamic> json) {
+    return GetAdministratorAccountResponse(
+      administrator: json['Administrator'] != null
+          ? Invitation.fromJson(json['Administrator'] as Map<String, dynamic>)
+          : null,
+    );
   }
 }
 
@@ -14929,8 +19530,8 @@ class GetInvitationsCountResponse {
 }
 
 class GetMasterAccountResponse {
-  /// A list of details about the Security Hub master account for the current
-  /// member account.
+  /// A list of details about the Security Hub administrator account for the
+  /// current member account.
   final Invitation? master;
 
   GetMasterAccountResponse({
@@ -14968,6 +19569,37 @@ class GetMembersResponse {
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+}
+
+/// An Internet Control Message Protocol (ICMP) type and code.
+class IcmpTypeCode {
+  /// The ICMP code for which to deny or allow access. To deny or allow all codes,
+  /// use the value -1.
+  final int? code;
+
+  /// The ICMP type for which to deny or allow access. To deny or allow all types,
+  /// use the value -1.
+  final int? type;
+
+  IcmpTypeCode({
+    this.code,
+    this.type,
+  });
+  factory IcmpTypeCode.fromJson(Map<String, dynamic> json) {
+    return IcmpTypeCode(
+      code: json['Code'] as int?,
+      type: json['Type'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final type = this.type;
+    return {
+      if (code != null) 'Code': code,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -15092,6 +19724,7 @@ class InsightResults {
 enum IntegrationType {
   sendFindingsToSecurityHub,
   receiveFindingsFromSecurityHub,
+  updateFindingsInSecurityHub,
 }
 
 extension on IntegrationType {
@@ -15101,6 +19734,8 @@ extension on IntegrationType {
         return 'SEND_FINDINGS_TO_SECURITY_HUB';
       case IntegrationType.receiveFindingsFromSecurityHub:
         return 'RECEIVE_FINDINGS_FROM_SECURITY_HUB';
+      case IntegrationType.updateFindingsInSecurityHub:
+        return 'UPDATE_FINDINGS_IN_SECURITY_HUB';
     }
   }
 }
@@ -15112,6 +19747,8 @@ extension on String {
         return IntegrationType.sendFindingsToSecurityHub;
       case 'RECEIVE_FINDINGS_FROM_SECURITY_HUB':
         return IntegrationType.receiveFindingsFromSecurityHub;
+      case 'UPDATE_FINDINGS_IN_SECURITY_HUB':
+        return IntegrationType.updateFindingsInSecurityHub;
     }
     throw Exception('$this is not known in enum IntegrationType');
   }
@@ -15119,8 +19756,8 @@ extension on String {
 
 /// Details about an invitation.
 class Invitation {
-  /// The account ID of the Security Hub master account that the invitation was
-  /// sent from.
+  /// The account ID of the Security Hub administrator account that the invitation
+  /// was sent from.
   final String? accountId;
 
   /// The ID of the invitation sent to the member account.
@@ -15129,7 +19766,7 @@ class Invitation {
   /// The timestamp of when the invitation was sent.
   final DateTime? invitedAt;
 
-  /// The current status of the association between the member and master
+  /// The current status of the association between the member and administrator
   /// accounts.
   final String? memberStatus;
 
@@ -15185,6 +19822,49 @@ class IpFilter {
     final cidr = this.cidr;
     return {
       if (cidr != null) 'Cidr': cidr,
+    };
+  }
+}
+
+/// Provides information about an internet provider.
+class IpOrganizationDetails {
+  /// The Autonomous System Number (ASN) of the internet provider
+  final int? asn;
+
+  /// The name of the organization that registered the ASN.
+  final String? asnOrg;
+
+  /// The ISP information for the internet provider.
+  final String? isp;
+
+  /// The name of the internet provider.
+  final String? org;
+
+  IpOrganizationDetails({
+    this.asn,
+    this.asnOrg,
+    this.isp,
+    this.org,
+  });
+  factory IpOrganizationDetails.fromJson(Map<String, dynamic> json) {
+    return IpOrganizationDetails(
+      asn: json['Asn'] as int?,
+      asnOrg: json['AsnOrg'] as String?,
+      isp: json['Isp'] as String?,
+      org: json['Org'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final asn = this.asn;
+    final asnOrg = this.asnOrg;
+    final isp = this.isp;
+    final org = this.org;
+    return {
+      if (asn != null) 'Asn': asn,
+      if (asnOrg != null) 'AsnOrg': asnOrg,
+      if (isp != null) 'Isp': isp,
+      if (org != null) 'Org': org,
     };
   }
 }
@@ -15652,6 +20332,10 @@ class Member {
   /// The AWS account ID of the member account.
   final String? accountId;
 
+  /// The AWS account ID of the Security Hub administrator account associated with
+  /// this member account.
+  final String? administratorId;
+
   /// The email address of the member account.
   final String? email;
 
@@ -15659,23 +20343,25 @@ class Member {
   /// account.
   final DateTime? invitedAt;
 
-  /// The AWS account ID of the Security Hub master account associated with this
-  /// member account.
+  /// This is replaced by <code>AdministratorID</code>.
+  ///
+  /// The AWS account ID of the Security Hub administrator account associated with
+  /// this member account.
   final String? masterId;
 
-  /// The status of the relationship between the member account and its master
-  /// account.
+  /// The status of the relationship between the member account and its
+  /// administrator account.
   ///
   /// The status can have one of the following values:
   ///
   /// <ul>
   /// <li>
-  /// <code>CREATED</code> - Indicates that the master account added the member
-  /// account, but has not yet invited the member account.
+  /// <code>CREATED</code> - Indicates that the administrator account added the
+  /// member account, but has not yet invited the member account.
   /// </li>
   /// <li>
-  /// <code>INVITED</code> - Indicates that the master account invited the member
-  /// account. The member account has not yet responded to the invitation.
+  /// <code>INVITED</code> - Indicates that the administrator account invited the
+  /// member account. The member account has not yet responded to the invitation.
   /// </li>
   /// <li>
   /// <code>ENABLED</code> - Indicates that the member account is currently
@@ -15683,16 +20369,16 @@ class Member {
   /// account accepted the invitation.
   /// </li>
   /// <li>
-  /// <code>REMOVED</code> - Indicates that the master account disassociated the
-  /// member account.
+  /// <code>REMOVED</code> - Indicates that the administrator account
+  /// disassociated the member account.
   /// </li>
   /// <li>
   /// <code>RESIGNED</code> - Indicates that the member account disassociated
-  /// themselves from the master account.
+  /// themselves from the administrator account.
   /// </li>
   /// <li>
-  /// <code>DELETED</code> - Indicates that the master account deleted the member
-  /// account.
+  /// <code>DELETED</code> - Indicates that the administrator account deleted the
+  /// member account.
   /// </li>
   /// </ul>
   final String? memberStatus;
@@ -15702,6 +20388,7 @@ class Member {
 
   Member({
     this.accountId,
+    this.administratorId,
     this.email,
     this.invitedAt,
     this.masterId,
@@ -15711,6 +20398,7 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['AccountId'] as String?,
+      administratorId: json['AdministratorId'] as String?,
       email: json['Email'] as String?,
       invitedAt: timeStampFromJson(json['InvitedAt']),
       masterId: json['MasterId'] as String?,
@@ -15818,6 +20506,76 @@ class Network {
       if (sourceIpV6 != null) 'SourceIpV6': sourceIpV6,
       if (sourceMac != null) 'SourceMac': sourceMac,
       if (sourcePort != null) 'SourcePort': sourcePort,
+    };
+  }
+}
+
+/// Provided if <code>ActionType</code> is <code>NETWORK_CONNECTION</code>. It
+/// provides details about the attempted network connection that was detected.
+class NetworkConnectionAction {
+  /// Indicates whether the network connection attempt was blocked.
+  final bool? blocked;
+
+  /// The direction of the network connection request (<code>IN</code> or
+  /// <code>OUT</code>).
+  final String? connectionDirection;
+
+  /// Information about the port on the EC2 instance.
+  final ActionLocalPortDetails? localPortDetails;
+
+  /// The protocol used to make the network connection request.
+  final String? protocol;
+
+  /// Information about the remote IP address that issued the network connection
+  /// request.
+  final ActionRemoteIpDetails? remoteIpDetails;
+
+  /// Information about the port on the remote IP address.
+  final ActionRemotePortDetails? remotePortDetails;
+
+  NetworkConnectionAction({
+    this.blocked,
+    this.connectionDirection,
+    this.localPortDetails,
+    this.protocol,
+    this.remoteIpDetails,
+    this.remotePortDetails,
+  });
+  factory NetworkConnectionAction.fromJson(Map<String, dynamic> json) {
+    return NetworkConnectionAction(
+      blocked: json['Blocked'] as bool?,
+      connectionDirection: json['ConnectionDirection'] as String?,
+      localPortDetails: json['LocalPortDetails'] != null
+          ? ActionLocalPortDetails.fromJson(
+              json['LocalPortDetails'] as Map<String, dynamic>)
+          : null,
+      protocol: json['Protocol'] as String?,
+      remoteIpDetails: json['RemoteIpDetails'] != null
+          ? ActionRemoteIpDetails.fromJson(
+              json['RemoteIpDetails'] as Map<String, dynamic>)
+          : null,
+      remotePortDetails: json['RemotePortDetails'] != null
+          ? ActionRemotePortDetails.fromJson(
+              json['RemotePortDetails'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final connectionDirection = this.connectionDirection;
+    final localPortDetails = this.localPortDetails;
+    final protocol = this.protocol;
+    final remoteIpDetails = this.remoteIpDetails;
+    final remotePortDetails = this.remotePortDetails;
+    return {
+      if (blocked != null) 'Blocked': blocked,
+      if (connectionDirection != null)
+        'ConnectionDirection': connectionDirection,
+      if (localPortDetails != null) 'LocalPortDetails': localPortDetails,
+      if (protocol != null) 'Protocol': protocol,
+      if (remoteIpDetails != null) 'RemoteIpDetails': remoteIpDetails,
+      if (remotePortDetails != null) 'RemotePortDetails': remotePortDetails,
     };
   }
 }
@@ -16079,6 +20837,119 @@ class NumberFilter {
   }
 }
 
+/// The detected occurrences of sensitive data.
+class Occurrences {
+  /// Occurrences of sensitive data detected in Microsoft Excel workbooks,
+  /// comma-separated value (CSV) files, or tab-separated value (TSV) files.
+  final List<Cell>? cells;
+
+  /// Occurrences of sensitive data detected in a non-binary text file or a
+  /// Microsoft Word file. Non-binary text files include files such as HTML, XML,
+  /// JSON, and TXT files.
+  final List<Range>? lineRanges;
+
+  /// Occurrences of sensitive data detected in a binary text file.
+  final List<Range>? offsetRanges;
+
+  /// Occurrences of sensitive data in an Adobe Portable Document Format (PDF)
+  /// file.
+  final List<Page>? pages;
+
+  /// Occurrences of sensitive data in an Apache Avro object container or an
+  /// Apache Parquet file.
+  final List<Record>? records;
+
+  Occurrences({
+    this.cells,
+    this.lineRanges,
+    this.offsetRanges,
+    this.pages,
+    this.records,
+  });
+  factory Occurrences.fromJson(Map<String, dynamic> json) {
+    return Occurrences(
+      cells: (json['Cells'] as List?)
+          ?.whereNotNull()
+          .map((e) => Cell.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lineRanges: (json['LineRanges'] as List?)
+          ?.whereNotNull()
+          .map((e) => Range.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      offsetRanges: (json['OffsetRanges'] as List?)
+          ?.whereNotNull()
+          .map((e) => Range.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pages: (json['Pages'] as List?)
+          ?.whereNotNull()
+          .map((e) => Page.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      records: (json['Records'] as List?)
+          ?.whereNotNull()
+          .map((e) => Record.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final lineRanges = this.lineRanges;
+    final offsetRanges = this.offsetRanges;
+    final pages = this.pages;
+    final records = this.records;
+    return {
+      if (cells != null) 'Cells': cells,
+      if (lineRanges != null) 'LineRanges': lineRanges,
+      if (offsetRanges != null) 'OffsetRanges': offsetRanges,
+      if (pages != null) 'Pages': pages,
+      if (records != null) 'Records': records,
+    };
+  }
+}
+
+/// An occurrence of sensitive data in an Adobe Portable Document Format (PDF)
+/// file.
+class Page {
+  /// An occurrence of sensitive data detected in a non-binary text file or a
+  /// Microsoft Word file. Non-binary text files include files such as HTML, XML,
+  /// JSON, and TXT files.
+  final Range? lineRange;
+
+  /// An occurrence of sensitive data detected in a binary text file.
+  final Range? offsetRange;
+
+  /// The page number of the page that contains the sensitive data.
+  final int? pageNumber;
+
+  Page({
+    this.lineRange,
+    this.offsetRange,
+    this.pageNumber,
+  });
+  factory Page.fromJson(Map<String, dynamic> json) {
+    return Page(
+      lineRange: json['LineRange'] != null
+          ? Range.fromJson(json['LineRange'] as Map<String, dynamic>)
+          : null,
+      offsetRange: json['OffsetRange'] != null
+          ? Range.fromJson(json['OffsetRange'] as Map<String, dynamic>)
+          : null,
+      pageNumber: json['PageNumber'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lineRange = this.lineRange;
+    final offsetRange = this.offsetRange;
+    final pageNumber = this.pageNumber;
+    return {
+      if (lineRange != null) 'LineRange': lineRange,
+      if (offsetRange != null) 'OffsetRange': offsetRange,
+      if (pageNumber != null) 'PageNumber': pageNumber,
+    };
+  }
+}
+
 enum Partition {
   aws,
   awsCn,
@@ -16225,6 +21096,86 @@ class PatchSummary {
   }
 }
 
+/// Provided if <code>ActionType</code> is <code>PORT_PROBE</code>. It provides
+/// details about the attempted port probe that was detected.
+class PortProbeAction {
+  /// Indicates whether the port probe was blocked.
+  final bool? blocked;
+
+  /// Information about the ports affected by the port probe.
+  final List<PortProbeDetail>? portProbeDetails;
+
+  PortProbeAction({
+    this.blocked,
+    this.portProbeDetails,
+  });
+  factory PortProbeAction.fromJson(Map<String, dynamic> json) {
+    return PortProbeAction(
+      blocked: json['Blocked'] as bool?,
+      portProbeDetails: (json['PortProbeDetails'] as List?)
+          ?.whereNotNull()
+          .map((e) => PortProbeDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final portProbeDetails = this.portProbeDetails;
+    return {
+      if (blocked != null) 'Blocked': blocked,
+      if (portProbeDetails != null) 'PortProbeDetails': portProbeDetails,
+    };
+  }
+}
+
+/// A port scan that was part of the port probe. For each scan, PortProbeDetails
+/// provides information about the local IP address and port that were scanned,
+/// and the remote IP address that the scan originated from.
+class PortProbeDetail {
+  /// Provides information about the IP address where the scanned port is located.
+  final ActionLocalIpDetails? localIpDetails;
+
+  /// Provides information about the port that was scanned.
+  final ActionLocalPortDetails? localPortDetails;
+
+  /// Provides information about the remote IP address that performed the scan.
+  final ActionRemoteIpDetails? remoteIpDetails;
+
+  PortProbeDetail({
+    this.localIpDetails,
+    this.localPortDetails,
+    this.remoteIpDetails,
+  });
+  factory PortProbeDetail.fromJson(Map<String, dynamic> json) {
+    return PortProbeDetail(
+      localIpDetails: json['LocalIpDetails'] != null
+          ? ActionLocalIpDetails.fromJson(
+              json['LocalIpDetails'] as Map<String, dynamic>)
+          : null,
+      localPortDetails: json['LocalPortDetails'] != null
+          ? ActionLocalPortDetails.fromJson(
+              json['LocalPortDetails'] as Map<String, dynamic>)
+          : null,
+      remoteIpDetails: json['RemoteIpDetails'] != null
+          ? ActionRemoteIpDetails.fromJson(
+              json['RemoteIpDetails'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final localIpDetails = this.localIpDetails;
+    final localPortDetails = this.localPortDetails;
+    final remoteIpDetails = this.remoteIpDetails;
+    return {
+      if (localIpDetails != null) 'LocalIpDetails': localIpDetails,
+      if (localPortDetails != null) 'LocalPortDetails': localPortDetails,
+      if (remoteIpDetails != null) 'RemoteIpDetails': remoteIpDetails,
+    };
+  }
+}
+
 /// A range of ports.
 class PortRange {
   /// The first port in the port range.
@@ -16250,6 +21201,35 @@ class PortRange {
     return {
       if (begin != null) 'Begin': begin,
       if (end != null) 'End': end,
+    };
+  }
+}
+
+/// A range of ports.
+class PortRangeFromTo {
+  /// The first port in the port range.
+  final int? from;
+
+  /// The last port in the port range.
+  final int? to;
+
+  PortRangeFromTo({
+    this.from,
+    this.to,
+  });
+  factory PortRangeFromTo.fromJson(Map<String, dynamic> json) {
+    return PortRangeFromTo(
+      from: json['From'] as int?,
+      to: json['To'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final from = this.from;
+    final to = this.to;
+    return {
+      if (from != null) 'From': from,
+      if (to != null) 'To': to,
     };
   }
 }
@@ -16326,7 +21306,8 @@ class Product {
   /// The ARN assigned to the product.
   final String productArn;
 
-  /// The URL used to activate the product.
+  /// The URL to the service or product documentation about the integration with
+  /// Security Hub, including how to activate the integration.
   final String? activationUrl;
 
   /// The categories assigned to the product.
@@ -16343,17 +21324,26 @@ class Product {
   ///
   /// <ul>
   /// <li>
-  /// <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - Indicates that the integration
-  /// sends findings to Security Hub.
+  /// <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - The integration sends findings
+  /// to Security Hub.
   /// </li>
   /// <li>
-  /// <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - Indicates that the
-  /// integration receives findings from Security Hub.
+  /// <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - The integration receives
+  /// findings from Security Hub.
+  /// </li>
+  /// <li>
+  /// <code>UPDATE_FINDINGS_IN_SECURITY_HUB</code> - The integration does not send
+  /// new findings to Security Hub, but does make updates to the findings that it
+  /// receives from Security Hub.
   /// </li>
   /// </ul>
   final List<IntegrationType>? integrationTypes;
 
-  /// The URL for the page that contains more information about the product.
+  /// For integrations with AWS services, the AWS Console URL from which to
+  /// activate the service.
+  ///
+  /// For integrations with third-party products, the AWS Marketplace URL from
+  /// which to subscribe to or purchase the product.
   final String? marketplaceUrl;
 
   /// The name of the product.
@@ -16395,6 +21385,45 @@ class Product {
   }
 }
 
+/// Identifies where the sensitive data begins and ends.
+class Range {
+  /// The number of lines (for a line range) or characters (for an offset range)
+  /// from the beginning of the file to the end of the sensitive data.
+  final int? end;
+
+  /// The number of lines (for a line range) or characters (for an offset range)
+  /// from the beginning of the file to the end of the sensitive data.
+  final int? start;
+
+  /// In the line where the sensitive data starts, the column within the line
+  /// where the sensitive data starts.
+  final int? startColumn;
+
+  Range({
+    this.end,
+    this.start,
+    this.startColumn,
+  });
+  factory Range.fromJson(Map<String, dynamic> json) {
+    return Range(
+      end: json['End'] as int?,
+      start: json['Start'] as int?,
+      startColumn: json['StartColumn'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final end = this.end;
+    final start = this.start;
+    final startColumn = this.startColumn;
+    return {
+      if (end != null) 'End': end,
+      if (start != null) 'Start': start,
+      if (startColumn != null) 'StartColumn': startColumn,
+    };
+  }
+}
+
 /// A recommendation on how to remediate the issue identified in a finding.
 class Recommendation {
   /// Describes the recommended steps to take to remediate an issue identified in
@@ -16422,6 +21451,38 @@ class Recommendation {
     return {
       if (text != null) 'Text': text,
       if (url != null) 'Url': url,
+    };
+  }
+}
+
+/// An occurrence of sensitive data in an Apache Avro object container or an
+/// Apache Parquet file.
+class Record {
+  /// The path, as a JSONPath expression, to the field in the record that contains
+  /// the data. If the field name is longer than 20 characters, it is truncated.
+  /// If the path is longer than 250 characters, it is truncated.
+  final String? jsonPath;
+
+  /// The record index, starting from 0, for the record that contains the data.
+  final int? recordIndex;
+
+  Record({
+    this.jsonPath,
+    this.recordIndex,
+  });
+  factory Record.fromJson(Map<String, dynamic> json) {
+    return Record(
+      jsonPath: json['JsonPath'] as String?,
+      recordIndex: json['RecordIndex'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jsonPath = this.jsonPath;
+    final recordIndex = this.recordIndex;
+    return {
+      if (jsonPath != null) 'JsonPath': jsonPath,
+      if (recordIndex != null) 'RecordIndex': recordIndex,
     };
   }
 }
@@ -16523,6 +21584,9 @@ class Resource {
   /// <code>Type</code> to <code>Other</code>.
   final String type;
 
+  /// Contains information about sensitive data that was detected on the resource.
+  final DataClassificationDetails? dataClassification;
+
   /// Additional details about the resource related to a finding.
   final ResourceDetails? details;
 
@@ -16532,7 +21596,8 @@ class Resource {
   /// The canonical AWS external Region name where this resource is located.
   final String? region;
 
-  /// <p/>
+  /// Identifies the role of the resource in the finding. A resource is either the
+  /// actor or target of the finding activity,
   final String? resourceRole;
 
   /// A list of AWS tags associated with a resource at the time the finding was
@@ -16542,6 +21607,7 @@ class Resource {
   Resource({
     required this.id,
     required this.type,
+    this.dataClassification,
     this.details,
     this.partition,
     this.region,
@@ -16552,6 +21618,10 @@ class Resource {
     return Resource(
       id: json['Id'] as String,
       type: json['Type'] as String,
+      dataClassification: json['DataClassification'] != null
+          ? DataClassificationDetails.fromJson(
+              json['DataClassification'] as Map<String, dynamic>)
+          : null,
       details: json['Details'] != null
           ? ResourceDetails.fromJson(json['Details'] as Map<String, dynamic>)
           : null,
@@ -16566,6 +21636,7 @@ class Resource {
   Map<String, dynamic> toJson() {
     final id = this.id;
     final type = this.type;
+    final dataClassification = this.dataClassification;
     final details = this.details;
     final partition = this.partition;
     final region = this.region;
@@ -16574,6 +21645,7 @@ class Resource {
     return {
       'Id': id,
       'Type': type,
+      if (dataClassification != null) 'DataClassification': dataClassification,
       if (details != null) 'Details': details,
       if (partition != null) 'Partition': partition.toValue(),
       if (region != null) 'Region': region,
@@ -16596,29 +21668,29 @@ class Resource {
 /// You also use the <code>Other</code> object to populate the details when the
 /// selected type does not have a corresponding object.
 class ResourceDetails {
-  /// <p/>
+  /// Provides information about a REST API in version 1 of Amazon API Gateway.
   final AwsApiGatewayRestApiDetails? awsApiGatewayRestApi;
 
-  /// <p/>
+  /// Provides information about a version 1 Amazon API Gateway stage.
   final AwsApiGatewayStageDetails? awsApiGatewayStage;
 
-  /// <p/>
+  /// Provides information about a version 2 API in Amazon API Gateway.
   final AwsApiGatewayV2ApiDetails? awsApiGatewayV2Api;
 
-  /// <p/>
+  /// Provides information about a version 2 stage for Amazon API Gateway.
   final AwsApiGatewayV2StageDetails? awsApiGatewayV2Stage;
 
   /// Details for an autoscaling group.
   final AwsAutoScalingAutoScalingGroupDetails? awsAutoScalingAutoScalingGroup;
 
-  /// <p/>
+  /// Provides details about an AWS Certificate Manager (ACM) certificate.
   final AwsCertificateManagerCertificateDetails?
       awsCertificateManagerCertificate;
 
   /// Details about a CloudFront distribution.
   final AwsCloudFrontDistributionDetails? awsCloudFrontDistribution;
 
-  /// <p/>
+  /// Provides details about a CloudTrail trail.
   final AwsCloudTrailTrailDetails? awsCloudTrailTrail;
 
   /// Details for an AWS CodeBuild project.
@@ -16630,8 +21702,11 @@ class ResourceDetails {
   /// Details about an Elastic IP address.
   final AwsEc2EipDetails? awsEc2Eip;
 
-  /// Details about an Amazon EC2 instance related to a finding.
+  /// Details about an EC2 instance related to a finding.
   final AwsEc2InstanceDetails? awsEc2Instance;
+
+  /// Details about an EC2 network access control list (ACL).
+  final AwsEc2NetworkAclDetails? awsEc2NetworkAcl;
 
   /// Details for an Amazon EC2 network interface.
   final AwsEc2NetworkInterfaceDetails? awsEc2NetworkInterface;
@@ -16639,16 +21714,29 @@ class ResourceDetails {
   /// Details for an EC2 security group.
   final AwsEc2SecurityGroupDetails? awsEc2SecurityGroup;
 
+  /// Details about a subnet in EC2.
+  final AwsEc2SubnetDetails? awsEc2Subnet;
+
   /// Details for an EC2 volume.
   final AwsEc2VolumeDetails? awsEc2Volume;
 
   /// Details for an EC2 VPC.
   final AwsEc2VpcDetails? awsEc2Vpc;
 
+  /// Details about an ECS cluster.
+  final AwsEcsClusterDetails? awsEcsCluster;
+
+  /// Details about a task definition. A task definition describes the container
+  /// and volume definitions of an Amazon Elastic Container Service task.
+  final AwsEcsTaskDefinitionDetails? awsEcsTaskDefinition;
+
+  /// Details about an Elastic Beanstalk environment.
+  final AwsElasticBeanstalkEnvironmentDetails? awsElasticBeanstalkEnvironment;
+
   /// Details for an Elasticsearch domain.
   final AwsElasticsearchDomainDetails? awsElasticsearchDomain;
 
-  /// <p/>
+  /// contains details about a Classic Load Balancer.
   final AwsElbLoadBalancerDetails? awsElbLoadBalancer;
 
   /// Details about a load balancer.
@@ -16657,7 +21745,7 @@ class ResourceDetails {
   /// Details about an IAM access key related to a finding.
   final AwsIamAccessKeyDetails? awsIamAccessKey;
 
-  /// <p/>
+  /// Contains details about an IAM group.
   final AwsIamGroupDetails? awsIamGroup;
 
   /// Details about an IAM permissions policy.
@@ -16690,8 +21778,12 @@ class ResourceDetails {
   /// Details about an Amazon RDS database snapshot.
   final AwsRdsDbSnapshotDetails? awsRdsDbSnapshot;
 
-  /// <p/>
+  /// Contains details about an Amazon Redshift cluster.
   final AwsRedshiftClusterDetails? awsRedshiftCluster;
+
+  /// Details about the Amazon S3 Public Access Block configuration for an
+  /// account.
+  final AwsS3AccountPublicAccessBlockDetails? awsS3AccountPublicAccessBlock;
 
   /// Details about an Amazon S3 bucket related to a finding.
   final AwsS3BucketDetails? awsS3Bucket;
@@ -16707,6 +21799,10 @@ class ResourceDetails {
 
   /// Details about an SQS queue.
   final AwsSqsQueueDetails? awsSqsQueue;
+
+  /// Provides information about the state of a patch on an instance based on the
+  /// patch baseline that was used to patch the instance.
+  final AwsSsmPatchComplianceDetails? awsSsmPatchCompliance;
 
   /// Details for a WAF WebACL.
   final AwsWafWebAclDetails? awsWafWebAcl;
@@ -16744,10 +21840,15 @@ class ResourceDetails {
     this.awsDynamoDbTable,
     this.awsEc2Eip,
     this.awsEc2Instance,
+    this.awsEc2NetworkAcl,
     this.awsEc2NetworkInterface,
     this.awsEc2SecurityGroup,
+    this.awsEc2Subnet,
     this.awsEc2Volume,
     this.awsEc2Vpc,
+    this.awsEcsCluster,
+    this.awsEcsTaskDefinition,
+    this.awsElasticBeanstalkEnvironment,
     this.awsElasticsearchDomain,
     this.awsElbLoadBalancer,
     this.awsElbv2LoadBalancer,
@@ -16764,11 +21865,13 @@ class ResourceDetails {
     this.awsRdsDbInstance,
     this.awsRdsDbSnapshot,
     this.awsRedshiftCluster,
+    this.awsS3AccountPublicAccessBlock,
     this.awsS3Bucket,
     this.awsS3Object,
     this.awsSecretsManagerSecret,
     this.awsSnsTopic,
     this.awsSqsQueue,
+    this.awsSsmPatchCompliance,
     this.awsWafWebAcl,
     this.container,
     this.other,
@@ -16825,6 +21928,10 @@ class ResourceDetails {
           ? AwsEc2InstanceDetails.fromJson(
               json['AwsEc2Instance'] as Map<String, dynamic>)
           : null,
+      awsEc2NetworkAcl: json['AwsEc2NetworkAcl'] != null
+          ? AwsEc2NetworkAclDetails.fromJson(
+              json['AwsEc2NetworkAcl'] as Map<String, dynamic>)
+          : null,
       awsEc2NetworkInterface: json['AwsEc2NetworkInterface'] != null
           ? AwsEc2NetworkInterfaceDetails.fromJson(
               json['AwsEc2NetworkInterface'] as Map<String, dynamic>)
@@ -16833,12 +21940,29 @@ class ResourceDetails {
           ? AwsEc2SecurityGroupDetails.fromJson(
               json['AwsEc2SecurityGroup'] as Map<String, dynamic>)
           : null,
+      awsEc2Subnet: json['AwsEc2Subnet'] != null
+          ? AwsEc2SubnetDetails.fromJson(
+              json['AwsEc2Subnet'] as Map<String, dynamic>)
+          : null,
       awsEc2Volume: json['AwsEc2Volume'] != null
           ? AwsEc2VolumeDetails.fromJson(
               json['AwsEc2Volume'] as Map<String, dynamic>)
           : null,
       awsEc2Vpc: json['AwsEc2Vpc'] != null
           ? AwsEc2VpcDetails.fromJson(json['AwsEc2Vpc'] as Map<String, dynamic>)
+          : null,
+      awsEcsCluster: json['AwsEcsCluster'] != null
+          ? AwsEcsClusterDetails.fromJson(
+              json['AwsEcsCluster'] as Map<String, dynamic>)
+          : null,
+      awsEcsTaskDefinition: json['AwsEcsTaskDefinition'] != null
+          ? AwsEcsTaskDefinitionDetails.fromJson(
+              json['AwsEcsTaskDefinition'] as Map<String, dynamic>)
+          : null,
+      awsElasticBeanstalkEnvironment: json['AwsElasticBeanstalkEnvironment'] !=
+              null
+          ? AwsElasticBeanstalkEnvironmentDetails.fromJson(
+              json['AwsElasticBeanstalkEnvironment'] as Map<String, dynamic>)
           : null,
       awsElasticsearchDomain: json['AwsElasticsearchDomain'] != null
           ? AwsElasticsearchDomainDetails.fromJson(
@@ -16903,6 +22027,11 @@ class ResourceDetails {
           ? AwsRedshiftClusterDetails.fromJson(
               json['AwsRedshiftCluster'] as Map<String, dynamic>)
           : null,
+      awsS3AccountPublicAccessBlock:
+          json['AwsS3AccountPublicAccessBlock'] != null
+              ? AwsS3AccountPublicAccessBlockDetails.fromJson(
+                  json['AwsS3AccountPublicAccessBlock'] as Map<String, dynamic>)
+              : null,
       awsS3Bucket: json['AwsS3Bucket'] != null
           ? AwsS3BucketDetails.fromJson(
               json['AwsS3Bucket'] as Map<String, dynamic>)
@@ -16922,6 +22051,10 @@ class ResourceDetails {
       awsSqsQueue: json['AwsSqsQueue'] != null
           ? AwsSqsQueueDetails.fromJson(
               json['AwsSqsQueue'] as Map<String, dynamic>)
+          : null,
+      awsSsmPatchCompliance: json['AwsSsmPatchCompliance'] != null
+          ? AwsSsmPatchComplianceDetails.fromJson(
+              json['AwsSsmPatchCompliance'] as Map<String, dynamic>)
           : null,
       awsWafWebAcl: json['AwsWafWebAcl'] != null
           ? AwsWafWebAclDetails.fromJson(
@@ -16949,10 +22082,15 @@ class ResourceDetails {
     final awsDynamoDbTable = this.awsDynamoDbTable;
     final awsEc2Eip = this.awsEc2Eip;
     final awsEc2Instance = this.awsEc2Instance;
+    final awsEc2NetworkAcl = this.awsEc2NetworkAcl;
     final awsEc2NetworkInterface = this.awsEc2NetworkInterface;
     final awsEc2SecurityGroup = this.awsEc2SecurityGroup;
+    final awsEc2Subnet = this.awsEc2Subnet;
     final awsEc2Volume = this.awsEc2Volume;
     final awsEc2Vpc = this.awsEc2Vpc;
+    final awsEcsCluster = this.awsEcsCluster;
+    final awsEcsTaskDefinition = this.awsEcsTaskDefinition;
+    final awsElasticBeanstalkEnvironment = this.awsElasticBeanstalkEnvironment;
     final awsElasticsearchDomain = this.awsElasticsearchDomain;
     final awsElbLoadBalancer = this.awsElbLoadBalancer;
     final awsElbv2LoadBalancer = this.awsElbv2LoadBalancer;
@@ -16969,11 +22107,13 @@ class ResourceDetails {
     final awsRdsDbInstance = this.awsRdsDbInstance;
     final awsRdsDbSnapshot = this.awsRdsDbSnapshot;
     final awsRedshiftCluster = this.awsRedshiftCluster;
+    final awsS3AccountPublicAccessBlock = this.awsS3AccountPublicAccessBlock;
     final awsS3Bucket = this.awsS3Bucket;
     final awsS3Object = this.awsS3Object;
     final awsSecretsManagerSecret = this.awsSecretsManagerSecret;
     final awsSnsTopic = this.awsSnsTopic;
     final awsSqsQueue = this.awsSqsQueue;
+    final awsSsmPatchCompliance = this.awsSsmPatchCompliance;
     final awsWafWebAcl = this.awsWafWebAcl;
     final container = this.container;
     final other = this.other;
@@ -16996,12 +22136,19 @@ class ResourceDetails {
       if (awsDynamoDbTable != null) 'AwsDynamoDbTable': awsDynamoDbTable,
       if (awsEc2Eip != null) 'AwsEc2Eip': awsEc2Eip,
       if (awsEc2Instance != null) 'AwsEc2Instance': awsEc2Instance,
+      if (awsEc2NetworkAcl != null) 'AwsEc2NetworkAcl': awsEc2NetworkAcl,
       if (awsEc2NetworkInterface != null)
         'AwsEc2NetworkInterface': awsEc2NetworkInterface,
       if (awsEc2SecurityGroup != null)
         'AwsEc2SecurityGroup': awsEc2SecurityGroup,
+      if (awsEc2Subnet != null) 'AwsEc2Subnet': awsEc2Subnet,
       if (awsEc2Volume != null) 'AwsEc2Volume': awsEc2Volume,
       if (awsEc2Vpc != null) 'AwsEc2Vpc': awsEc2Vpc,
+      if (awsEcsCluster != null) 'AwsEcsCluster': awsEcsCluster,
+      if (awsEcsTaskDefinition != null)
+        'AwsEcsTaskDefinition': awsEcsTaskDefinition,
+      if (awsElasticBeanstalkEnvironment != null)
+        'AwsElasticBeanstalkEnvironment': awsElasticBeanstalkEnvironment,
       if (awsElasticsearchDomain != null)
         'AwsElasticsearchDomain': awsElasticsearchDomain,
       if (awsElbLoadBalancer != null) 'AwsElbLoadBalancer': awsElbLoadBalancer,
@@ -17022,12 +22169,16 @@ class ResourceDetails {
       if (awsRdsDbInstance != null) 'AwsRdsDbInstance': awsRdsDbInstance,
       if (awsRdsDbSnapshot != null) 'AwsRdsDbSnapshot': awsRdsDbSnapshot,
       if (awsRedshiftCluster != null) 'AwsRedshiftCluster': awsRedshiftCluster,
+      if (awsS3AccountPublicAccessBlock != null)
+        'AwsS3AccountPublicAccessBlock': awsS3AccountPublicAccessBlock,
       if (awsS3Bucket != null) 'AwsS3Bucket': awsS3Bucket,
       if (awsS3Object != null) 'AwsS3Object': awsS3Object,
       if (awsSecretsManagerSecret != null)
         'AwsSecretsManagerSecret': awsSecretsManagerSecret,
       if (awsSnsTopic != null) 'AwsSnsTopic': awsSnsTopic,
       if (awsSqsQueue != null) 'AwsSqsQueue': awsSqsQueue,
+      if (awsSsmPatchCompliance != null)
+        'AwsSsmPatchCompliance': awsSsmPatchCompliance,
       if (awsWafWebAcl != null) 'AwsWafWebAcl': awsWafWebAcl,
       if (container != null) 'Container': container,
       if (other != null) 'Other': other,
@@ -17052,6 +22203,88 @@ class Result {
       accountId: json['AccountId'] as String?,
       processingResult: json['ProcessingResult'] as String?,
     );
+  }
+}
+
+/// The list of detected instances of sensitive data.
+class SensitiveDataDetections {
+  /// The total number of occurrences of sensitive data that were detected.
+  final int? count;
+
+  /// Details about the sensitive data that was detected.
+  final Occurrences? occurrences;
+
+  /// The type of sensitive data that was detected. For example, the type might
+  /// indicate that the data is an email address.
+  final String? type;
+
+  SensitiveDataDetections({
+    this.count,
+    this.occurrences,
+    this.type,
+  });
+  factory SensitiveDataDetections.fromJson(Map<String, dynamic> json) {
+    return SensitiveDataDetections(
+      count: json['Count'] as int?,
+      occurrences: json['Occurrences'] != null
+          ? Occurrences.fromJson(json['Occurrences'] as Map<String, dynamic>)
+          : null,
+      type: json['Type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final occurrences = this.occurrences;
+    final type = this.type;
+    return {
+      if (count != null) 'Count': count,
+      if (occurrences != null) 'Occurrences': occurrences,
+      if (type != null) 'Type': type,
+    };
+  }
+}
+
+/// Contains a detected instance of sensitive data that are based on built-in
+/// identifiers.
+class SensitiveDataResult {
+  /// The category of sensitive data that was detected. For example, the category
+  /// can indicate that the sensitive data involved credentials, financial
+  /// information, or personal information.
+  final String? category;
+
+  /// The list of detected instances of sensitive data.
+  final List<SensitiveDataDetections>? detections;
+
+  /// The total number of occurrences of sensitive data.
+  final int? totalCount;
+
+  SensitiveDataResult({
+    this.category,
+    this.detections,
+    this.totalCount,
+  });
+  factory SensitiveDataResult.fromJson(Map<String, dynamic> json) {
+    return SensitiveDataResult(
+      category: json['Category'] as String?,
+      detections: (json['Detections'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              SensitiveDataDetections.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalCount: json['TotalCount'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final detections = this.detections;
+    final totalCount = this.totalCount;
+    return {
+      if (category != null) 'Category': category,
+      if (detections != null) 'Detections': detections,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
   }
 }
 
@@ -17583,7 +22816,28 @@ class StandardsSubscription {
   /// A key-value pair of input for the standard.
   final Map<String, String> standardsInput;
 
-  /// The status of the standards subscription.
+  /// The status of the standard subscription.
+  ///
+  /// The status values are as follows:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>PENDING</code> - Standard is in the process of being enabled.
+  /// </li>
+  /// <li>
+  /// <code>READY</code> - Standard is enabled.
+  /// </li>
+  /// <li>
+  /// <code>INCOMPLETE</code> - Standard could not be enabled completely. Some
+  /// controls may not be available.
+  /// </li>
+  /// <li>
+  /// <code>DELETING</code> - Standard is in the process of being disabled.
+  /// </li>
+  /// <li>
+  /// <code>FAILED</code> - Standard could not be disabled.
+  /// </li>
+  /// </ul>
   final StandardsStatus standardsStatus;
 
   /// The ARN of a resource that represents your subscription to a supported
@@ -18326,7 +23580,20 @@ class Workflow {
   /// <ul>
   /// <li>
   /// <code>NEW</code> - The initial state of a finding, before it is reviewed.
+  ///
+  /// Security Hub also resets the workflow status from <code>NOTIFIED</code> or
+  /// <code>RESOLVED</code> to <code>NEW</code> in the following cases:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>RecordState</code> changes from <code>ARCHIVED</code> to
+  /// <code>ACTIVE</code>.
   /// </li>
+  /// <li>
+  /// <code>ComplianceStatus</code> changes from <code>PASSED</code> to either
+  /// <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.
+  /// </li>
+  /// </ul> </li>
   /// <li>
   /// <code>NOTIFIED</code> - Indicates that you notified the resource owner about
   /// the security issue. Used when the initial reviewer is not the resource
@@ -18450,7 +23717,20 @@ class WorkflowUpdate {
   /// <ul>
   /// <li>
   /// <code>NEW</code> - The initial state of a finding, before it is reviewed.
+  ///
+  /// Security Hub also resets <code>WorkFlowStatus</code> from
+  /// <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the
+  /// following cases:
+  ///
+  /// <ul>
+  /// <li>
+  /// The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.
   /// </li>
+  /// <li>
+  /// The compliance status changes from <code>PASSED</code> to either
+  /// <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.
+  /// </li>
+  /// </ul> </li>
   /// <li>
   /// <code>NOTIFIED</code> - Indicates that you notified the resource owner about
   /// the security issue. Used when the initial reviewer is not the resource

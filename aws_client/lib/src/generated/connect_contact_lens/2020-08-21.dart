@@ -83,24 +83,12 @@ class ConnectContactLens {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'contactId',
-      contactId,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     _s.validateStringLength(
       'instanceId',
       instanceId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''.*\S.*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -114,11 +102,6 @@ class ConnectContactLens {
       nextToken,
       1,
       131070,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final $payload = <String, dynamic>{
       'ContactId': contactId,

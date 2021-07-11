@@ -177,20 +177,9 @@ class Forecast {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetName',
-      datasetName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datasetType, 'datasetType');
     ArgumentError.checkNotNull(domain, 'domain');
     ArgumentError.checkNotNull(schema, 'schema');
-    _s.validateStringPattern(
-      'dataFrequency',
-      dataFrequency,
-      r'''^Y|M|W|D|H|30min|15min|10min|5min|1min$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateDataset'
@@ -310,12 +299,6 @@ class Forecast {
       datasetGroupName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetGroupName',
-      datasetGroupName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(domain, 'domain');
@@ -503,12 +486,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datasetImportJobName, 'datasetImportJobName');
     _s.validateStringLength(
       'datasetImportJobName',
@@ -517,22 +494,11 @@ class Forecast {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetImportJobName',
-      datasetImportJobName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'geolocationFormat',
       geolocationFormat,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'geolocationFormat',
-      geolocationFormat,
-      r'''^[a-zA-Z0-9_]+$''',
     );
     _s.validateStringLength(
       'timeZone',
@@ -540,21 +506,11 @@ class Forecast {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'timeZone',
-      timeZone,
-      r'''^[a-zA-Z0-9\/\+\-\_]+$''',
-    );
     _s.validateStringLength(
       'timestampFormat',
       timestampFormat,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'timestampFormat',
-      timestampFormat,
-      r'''^[a-zA-Z0-9\-\:\.\,\'\s]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -682,24 +638,12 @@ class Forecast {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'forecastName',
-      forecastName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
     _s.validateStringLength(
       'predictorArn',
       predictorArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'predictorArn',
-      predictorArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -824,24 +768,12 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'forecastArn',
-      forecastArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(forecastExportJobName, 'forecastExportJobName');
     _s.validateStringLength(
       'forecastExportJobName',
       forecastExportJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'forecastExportJobName',
-      forecastExportJobName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -983,6 +915,13 @@ class Forecast {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [autoMLOverrideStrategy] :
+  /// Used to overide the default AutoML strategy, which is to optimize
+  /// predictor accuracy. To apply an AutoML strategy that minimizes training
+  /// time, use <code>LatencyOptimized</code>.
+  ///
+  /// This parameter is only valid for predictors trained using AutoML.
+  ///
   /// Parameter [encryptionConfig] :
   /// An AWS Key Management Service (KMS) key and the AWS Identity and Access
   /// Management (IAM) role that Amazon Forecast can assume to access the key.
@@ -1102,6 +1041,7 @@ class Forecast {
     required InputDataConfig inputDataConfig,
     required String predictorName,
     String? algorithmArn,
+    AutoMLOverrideStrategy? autoMLOverrideStrategy,
     EncryptionConfig? encryptionConfig,
     EvaluationParameters? evaluationParameters,
     List<String>? forecastTypes,
@@ -1122,22 +1062,11 @@ class Forecast {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'predictorName',
-      predictorName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'algorithmArn',
       algorithmArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'algorithmArn',
-      algorithmArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1155,6 +1084,8 @@ class Forecast {
         'InputDataConfig': inputDataConfig,
         'PredictorName': predictorName,
         if (algorithmArn != null) 'AlgorithmArn': algorithmArn,
+        if (autoMLOverrideStrategy != null)
+          'AutoMLOverrideStrategy': autoMLOverrideStrategy.toValue(),
         if (encryptionConfig != null) 'EncryptionConfig': encryptionConfig,
         if (evaluationParameters != null)
           'EvaluationParameters': evaluationParameters,
@@ -1257,12 +1188,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'predictorArn',
-      predictorArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         predictorBacktestExportJobName, 'predictorBacktestExportJobName');
     _s.validateStringLength(
@@ -1270,12 +1195,6 @@ class Forecast {
       predictorBacktestExportJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'predictorBacktestExportJobName',
-      predictorBacktestExportJobName,
-      r'''^[a-zA-Z][a-zA-Z0-9_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1326,12 +1245,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteDataset'
@@ -1374,12 +1287,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteDatasetGroup'
@@ -1417,12 +1324,6 @@ class Forecast {
       datasetImportJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetImportJobArn',
-      datasetImportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1466,12 +1367,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'forecastArn',
-      forecastArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteForecast'
@@ -1508,12 +1403,6 @@ class Forecast {
       forecastExportJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'forecastExportJobArn',
-      forecastExportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1554,12 +1443,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'predictorArn',
-      predictorArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeletePredictor'
@@ -1597,12 +1480,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'predictorBacktestExportJobArn',
-      predictorBacktestExportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeletePredictorBacktestExportJob'
@@ -1615,6 +1492,71 @@ class Forecast {
       headers: headers,
       payload: {
         'PredictorBacktestExportJobArn': predictorBacktestExportJobArn,
+      },
+    );
+  }
+
+  /// Deletes an entire resource tree. This operation will delete the parent
+  /// resource and its child resources.
+  ///
+  /// Child resources are resources that were created from another resource. For
+  /// example, when a forecast is generated from a predictor, the forecast is
+  /// the child resource and the predictor is the parent resource.
+  ///
+  /// Amazon Forecast resources possess the following parent-child resource
+  /// hierarchies:
+  ///
+  /// <ul>
+  /// <li>
+  /// <b>Dataset</b>: dataset import jobs
+  /// </li>
+  /// <li>
+  /// <b>Dataset Group</b>: predictors, predictor backtest export jobs,
+  /// forecasts, forecast export jobs
+  /// </li>
+  /// <li>
+  /// <b>Predictor</b>: predictor backtest export jobs, forecasts, forecast
+  /// export jobs
+  /// </li>
+  /// <li>
+  /// <b>Forecast</b>: forecast export jobs
+  /// </li>
+  /// </ul> <note>
+  /// <code>DeleteResourceTree</code> will only delete Amazon Forecast
+  /// resources, and will not delete datasets or exported files stored in Amazon
+  /// S3.
+  /// </note>
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceInUseException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) of the parent resource to delete. All child
+  /// resources of the parent resource will also be deleted.
+  Future<void> deleteResourceTree({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonForecast.DeleteResourceTree'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceArn': resourceArn,
       },
     );
   }
@@ -1652,12 +1594,6 @@ class Forecast {
       datasetArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetArn',
-      datasetArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1714,12 +1650,6 @@ class Forecast {
       datasetGroupArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1784,12 +1714,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datasetImportJobArn',
-      datasetImportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeDatasetImportJob'
@@ -1849,12 +1773,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'forecastArn',
-      forecastArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeForecast'
@@ -1909,12 +1827,6 @@ class Forecast {
       forecastExportJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'forecastExportJobArn',
-      forecastExportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1981,12 +1893,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'predictorArn',
-      predictorArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribePredictor'
@@ -2043,12 +1949,6 @@ class Forecast {
       predictorBacktestExportJobArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'predictorBacktestExportJobArn',
-      predictorBacktestExportJobArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2111,12 +2011,6 @@ class Forecast {
       predictorArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'predictorArn',
-      predictorArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2521,7 +2415,7 @@ class Forecast {
   /// </li>
   /// <li>
   /// <code>Key</code> - The name of the parameter to filter on. Valid values
-  /// are <code>PredictorBacktestExportJobArn</code> and <code>Status</code>.
+  /// are <code>PredictorArn</code> and <code>Status</code>.
   /// </li>
   /// <li>
   /// <code>Value</code> - The value to match.
@@ -2678,12 +2572,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListTagsForResource'
@@ -2700,6 +2588,69 @@ class Forecast {
     );
 
     return ListTagsForResourceResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Stops a resource.
+  ///
+  /// The resource undergoes the following states: <code>CREATE_STOPPING</code>
+  /// and <code>CREATE_STOPPED</code>. You cannot resume a resource once it has
+  /// been stopped.
+  ///
+  /// This operation can be applied to the following resources (and their
+  /// corresponding child resources):
+  ///
+  /// <ul>
+  /// <li>
+  /// Dataset Import Job
+  /// </li>
+  /// <li>
+  /// Predictor Job
+  /// </li>
+  /// <li>
+  /// Forecast Job
+  /// </li>
+  /// <li>
+  /// Forecast Export Job
+  /// </li>
+  /// <li>
+  /// Predictor Backtest Export Job
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InvalidInputException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [resourceArn] :
+  /// The Amazon Resource Name (ARN) that identifies the resource to stop. The
+  /// supported ARNs are <code>DatasetImportJobArn</code>,
+  /// <code>PredictorArn</code>, <code>PredictorBacktestExportJobArn</code>,
+  /// <code>ForecastArn</code>, and <code>ForecastExportJobArn</code>.
+  Future<void> stopResource({
+    required String resourceArn,
+  }) async {
+    ArgumentError.checkNotNull(resourceArn, 'resourceArn');
+    _s.validateStringLength(
+      'resourceArn',
+      resourceArn,
+      0,
+      256,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'AmazonForecast.StopResource'
+    };
+    await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ResourceArn': resourceArn,
+      },
+    );
   }
 
   /// Associates the specified tags to a resource with the specified
@@ -2767,12 +2718,6 @@ class Forecast {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2814,12 +2759,6 @@ class Forecast {
       resourceArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -2868,12 +2807,6 @@ class Forecast {
       datasetGroupArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datasetGroupArn',
-      datasetGroupArn,
-      r'''^[a-zA-Z0-9\-\_\.\/\:]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2934,6 +2867,29 @@ extension on String {
         return AttributeType.geolocation;
     }
     throw Exception('$this is not known in enum AttributeType');
+  }
+}
+
+enum AutoMLOverrideStrategy {
+  latencyOptimized,
+}
+
+extension on AutoMLOverrideStrategy {
+  String toValue() {
+    switch (this) {
+      case AutoMLOverrideStrategy.latencyOptimized:
+        return 'LatencyOptimized';
+    }
+  }
+}
+
+extension on String {
+  AutoMLOverrideStrategy toAutoMLOverrideStrategy() {
+    switch (this) {
+      case 'LatencyOptimized':
+        return AutoMLOverrideStrategy.latencyOptimized;
+    }
+    throw Exception('$this is not known in enum AutoMLOverrideStrategy');
   }
 }
 
@@ -3246,15 +3202,21 @@ class DatasetImportJobSummary {
   /// The name of the dataset import job.
   final String? datasetImportJobName;
 
-  /// The last time that the dataset was modified. The time depends on the status
-  /// of the job, as follows:
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
   ///
   /// <ul>
   /// <li>
-  /// <code>CREATE_PENDING</code> - The same time as <code>CreationTime</code>.
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
   /// </li>
   /// <li>
   /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
   /// </li>
   /// <li>
   /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
@@ -3266,10 +3228,7 @@ class DatasetImportJobSummary {
   /// If an error occurred, an informational message about the error.
   final String? message;
 
-  /// The status of the dataset import job. The status is reflected in the status
-  /// of the dataset. For example, when the import job status is
-  /// <code>CREATE_IN_PROGRESS</code>, the status of the dataset is
-  /// <code>UPDATE_IN_PROGRESS</code>. States include:
+  /// The status of the dataset import job. States include:
   ///
   /// <ul>
   /// <li>
@@ -3282,6 +3241,9 @@ class DatasetImportJobSummary {
   /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
   /// <code>DELETE_FAILED</code>
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// </ul>
   final String? status;
@@ -3489,6 +3451,10 @@ class DescribeDatasetImportJobResponse {
   /// The name of the dataset import job.
   final String? datasetImportJobName;
 
+  /// The estimated time remaining in minutes for the dataset import job to
+  /// complete.
+  final int? estimatedTimeRemainingInMinutes;
+
   /// Statistical information about each field in the input data.
   final Map<String, Statistics>? fieldStatistics;
 
@@ -3496,15 +3462,21 @@ class DescribeDatasetImportJobResponse {
   /// Values:<code>"LAT_LONG"</code> and <code>"CC_POSTALCODE"</code>.
   final String? geolocationFormat;
 
-  /// The last time that the dataset was modified. The time depends on the status
-  /// of the job, as follows:
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
   ///
   /// <ul>
   /// <li>
-  /// <code>CREATE_PENDING</code> - The same time as <code>CreationTime</code>.
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
   /// </li>
   /// <li>
   /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
   /// </li>
   /// <li>
   /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
@@ -3516,10 +3488,7 @@ class DescribeDatasetImportJobResponse {
   /// If an error occurred, an informational message about the error.
   final String? message;
 
-  /// The status of the dataset import job. The status is reflected in the status
-  /// of the dataset. For example, when the import job status is
-  /// <code>CREATE_IN_PROGRESS</code>, the status of the dataset is
-  /// <code>UPDATE_IN_PROGRESS</code>. States include:
+  /// The status of the dataset import job. States include:
   ///
   /// <ul>
   /// <li>
@@ -3532,6 +3501,9 @@ class DescribeDatasetImportJobResponse {
   /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
   /// <code>DELETE_FAILED</code>
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// </ul>
   final String? status;
@@ -3569,6 +3541,7 @@ class DescribeDatasetImportJobResponse {
     this.datasetArn,
     this.datasetImportJobArn,
     this.datasetImportJobName,
+    this.estimatedTimeRemainingInMinutes,
     this.fieldStatistics,
     this.geolocationFormat,
     this.lastModificationTime,
@@ -3588,6 +3561,8 @@ class DescribeDatasetImportJobResponse {
       datasetArn: json['DatasetArn'] as String?,
       datasetImportJobArn: json['DatasetImportJobArn'] as String?,
       datasetImportJobName: json['DatasetImportJobName'] as String?,
+      estimatedTimeRemainingInMinutes:
+          json['EstimatedTimeRemainingInMinutes'] as int?,
       fieldStatistics: (json['FieldStatistics'] as Map<String, dynamic>?)?.map(
           (k, e) =>
               MapEntry(k, Statistics.fromJson(e as Map<String, dynamic>))),
@@ -3723,7 +3698,27 @@ class DescribeForecastExportJobResponse {
   /// The name of the forecast export job.
   final String? forecastExportJobName;
 
-  /// When the last successful export job finished.
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -3738,6 +3733,9 @@ class DescribeForecastExportJobResponse {
   /// <li>
   /// <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>,
   /// <code>CREATE_FAILED</code>
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
@@ -3785,6 +3783,9 @@ class DescribeForecastResponse {
   /// predictor.
   final String? datasetGroupArn;
 
+  /// The estimated time remaining in minutes for the forecast job to complete.
+  final int? estimatedTimeRemainingInMinutes;
+
   /// The forecast ARN as specified in the request.
   final String? forecastArn;
 
@@ -3794,11 +3795,27 @@ class DescribeForecastResponse {
   /// The quantiles at which probabilistic forecasts were generated.
   final List<String>? forecastTypes;
 
-  /// Initially, the same as <code>CreationTime</code> (status is
-  /// <code>CREATE_PENDING</code>). Updated when inference (creating the forecast)
-  /// starts (status changed to <code>CREATE_IN_PROGRESS</code>), and when
-  /// inference is complete (status changed to <code>ACTIVE</code>) or fails
-  /// (status changed to <code>CREATE_FAILED</code>).
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -3818,6 +3835,9 @@ class DescribeForecastResponse {
   /// <code>CREATE_FAILED</code>
   /// </li>
   /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
+  /// </li>
+  /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
   /// <code>DELETE_FAILED</code>
   /// </li>
@@ -3830,6 +3850,7 @@ class DescribeForecastResponse {
   DescribeForecastResponse({
     this.creationTime,
     this.datasetGroupArn,
+    this.estimatedTimeRemainingInMinutes,
     this.forecastArn,
     this.forecastName,
     this.forecastTypes,
@@ -3842,6 +3863,8 @@ class DescribeForecastResponse {
     return DescribeForecastResponse(
       creationTime: timeStampFromJson(json['CreationTime']),
       datasetGroupArn: json['DatasetGroupArn'] as String?,
+      estimatedTimeRemainingInMinutes:
+          json['EstimatedTimeRemainingInMinutes'] as int?,
       forecastArn: json['ForecastArn'] as String?,
       forecastName: json['ForecastName'] as String?,
       forecastTypes: (json['ForecastTypes'] as List?)
@@ -3861,7 +3884,27 @@ class DescribePredictorBacktestExportJobResponse {
   final DateTime? creationTime;
   final DataDestination? destination;
 
-  /// When the last successful export job finished.
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// Information about any errors that may have occurred during the backtest
@@ -3884,21 +3927,14 @@ class DescribePredictorBacktestExportJobResponse {
   /// <code>ACTIVE</code>
   /// </li>
   /// <li>
-  /// <code>CREATE_PENDING</code>
-  /// </li>
-  /// <li>
-  /// <code>CREATE_IN_PROGRESS</code>
-  /// </li>
-  /// <li>
+  /// <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>,
   /// <code>CREATE_FAILED</code>
   /// </li>
   /// <li>
-  /// <code>DELETE_PENDING</code>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// <li>
-  /// <code>DELETE_IN_PROGRESS</code>
-  /// </li>
-  /// <li>
+  /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
   /// <code>DELETE_FAILED</code>
   /// </li>
   /// </ul>
@@ -3942,6 +3978,13 @@ class DescribePredictorResponse {
   /// algorithm.
   final List<String>? autoMLAlgorithmArns;
 
+  /// The AutoML strategy used to train the predictor. Unless
+  /// <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes
+  /// predictor accuracy.
+  ///
+  /// This parameter is only valid for predictors trained using AutoML.
+  final AutoMLOverrideStrategy? autoMLOverrideStrategy;
+
   /// When the model training task was created.
   final DateTime? creationTime;
 
@@ -3952,6 +3995,10 @@ class DescribePredictorResponse {
   /// An AWS Key Management Service (KMS) key and the AWS Identity and Access
   /// Management (IAM) role that Amazon Forecast can assume to access the key.
   final EncryptionConfig? encryptionConfig;
+
+  /// The estimated time remaining in minutes for the predictor training job to
+  /// complete.
+  final int? estimatedTimeRemainingInMinutes;
 
   /// Used to override the default evaluation parameters of the specified
   /// algorithm. Amazon Forecast evaluates a predictor by splitting a dataset into
@@ -3977,11 +4024,27 @@ class DescribePredictorResponse {
   /// predictor.
   final InputDataConfig? inputDataConfig;
 
-  /// Initially, the same as <code>CreationTime</code> (when the status is
-  /// <code>CREATE_PENDING</code>). This value is updated when training starts
-  /// (when the status changes to <code>CREATE_IN_PROGRESS</code>), and when
-  /// training has completed (when the status changes to <code>ACTIVE</code>) or
-  /// fails (when the status changes to <code>CREATE_FAILED</code>).
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -4019,8 +4082,7 @@ class DescribePredictorResponse {
   /// <code>DELETE_FAILED</code>
   /// </li>
   /// <li>
-  /// <code>UPDATE_PENDING</code>, <code>UPDATE_IN_PROGRESS</code>,
-  /// <code>UPDATE_FAILED</code>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// </ul> <note>
   /// The <code>Status</code> of the predictor must be <code>ACTIVE</code> before
@@ -4037,9 +4099,11 @@ class DescribePredictorResponse {
   DescribePredictorResponse({
     this.algorithmArn,
     this.autoMLAlgorithmArns,
+    this.autoMLOverrideStrategy,
     this.creationTime,
     this.datasetImportJobArns,
     this.encryptionConfig,
+    this.estimatedTimeRemainingInMinutes,
     this.evaluationParameters,
     this.featurizationConfig,
     this.forecastHorizon,
@@ -4063,6 +4127,8 @@ class DescribePredictorResponse {
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+      autoMLOverrideStrategy: (json['AutoMLOverrideStrategy'] as String?)
+          ?.toAutoMLOverrideStrategy(),
       creationTime: timeStampFromJson(json['CreationTime']),
       datasetImportJobArns: (json['DatasetImportJobArns'] as List?)
           ?.whereNotNull()
@@ -4072,6 +4138,8 @@ class DescribePredictorResponse {
           ? EncryptionConfig.fromJson(
               json['EncryptionConfig'] as Map<String, dynamic>)
           : null,
+      estimatedTimeRemainingInMinutes:
+          json['EstimatedTimeRemainingInMinutes'] as int?,
       evaluationParameters: json['EvaluationParameters'] != null
           ? EvaluationParameters.fromJson(
               json['EvaluationParameters'] as Map<String, dynamic>)
@@ -4658,7 +4726,27 @@ class ForecastExportJobSummary {
   /// The name of the forecast export job.
   final String? forecastExportJobName;
 
-  /// When the last successful export job finished.
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -4673,6 +4761,9 @@ class ForecastExportJobSummary {
   /// <li>
   /// <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>,
   /// <code>CREATE_FAILED</code>
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
@@ -4727,11 +4818,27 @@ class ForecastSummary {
   /// The name of the forecast.
   final String? forecastName;
 
-  /// Initially, the same as <code>CreationTime</code> (status is
-  /// <code>CREATE_PENDING</code>). Updated when inference (creating the forecast)
-  /// starts (status changed to <code>CREATE_IN_PROGRESS</code>), and when
-  /// inference is complete (status changed to <code>ACTIVE</code>) or fails
-  /// (status changed to <code>CREATE_FAILED</code>).
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -4749,6 +4856,9 @@ class ForecastSummary {
   /// <li>
   /// <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>,
   /// <code>CREATE_FAILED</code>
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// <li>
   /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
@@ -4785,14 +4895,24 @@ class ForecastSummary {
 }
 
 class GetAccuracyMetricsResponse {
+  /// The AutoML strategy used to train the predictor. Unless
+  /// <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes
+  /// predictor accuracy.
+  ///
+  /// This parameter is only valid for predictors trained using AutoML.
+  final AutoMLOverrideStrategy? autoMLOverrideStrategy;
+
   /// An array of results from evaluating the predictor.
   final List<EvaluationResult>? predictorEvaluationResults;
 
   GetAccuracyMetricsResponse({
+    this.autoMLOverrideStrategy,
     this.predictorEvaluationResults,
   });
   factory GetAccuracyMetricsResponse.fromJson(Map<String, dynamic> json) {
     return GetAccuracyMetricsResponse(
+      autoMLOverrideStrategy: (json['AutoMLOverrideStrategy'] as String?)
+          ?.toAutoMLOverrideStrategy(),
       predictorEvaluationResults: (json['PredictorEvaluationResults'] as List?)
           ?.whereNotNull()
           .map((e) => EvaluationResult.fromJson(e as Map<String, dynamic>))
@@ -5221,7 +5341,27 @@ class PredictorBacktestExportJobSummary {
   final DateTime? creationTime;
   final DataDestination? destination;
 
-  /// When the last successful export job finished.
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// Information about any errors that may have occurred during the backtest
@@ -5241,21 +5381,14 @@ class PredictorBacktestExportJobSummary {
   /// <code>ACTIVE</code>
   /// </li>
   /// <li>
-  /// <code>CREATE_PENDING</code>
-  /// </li>
-  /// <li>
-  /// <code>CREATE_IN_PROGRESS</code>
-  /// </li>
-  /// <li>
+  /// <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>,
   /// <code>CREATE_FAILED</code>
   /// </li>
   /// <li>
-  /// <code>DELETE_PENDING</code>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// <li>
-  /// <code>DELETE_IN_PROGRESS</code>
-  /// </li>
-  /// <li>
+  /// <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>,
   /// <code>DELETE_FAILED</code>
   /// </li>
   /// </ul>
@@ -5350,11 +5483,27 @@ class PredictorSummary {
   /// used to train the predictor.
   final String? datasetGroupArn;
 
-  /// Initially, the same as <code>CreationTime</code> (status is
-  /// <code>CREATE_PENDING</code>). Updated when training starts (status changed
-  /// to <code>CREATE_IN_PROGRESS</code>), and when training is complete (status
-  /// changed to <code>ACTIVE</code>) or fails (status changed to
-  /// <code>CREATE_FAILED</code>).
+  /// The last time the resource was modified. The timestamp depends on the status
+  /// of the job:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPING</code> - The current timestamp.
+  /// </li>
+  /// <li>
+  /// <code>CREATE_STOPPED</code> - When the job stopped.
+  /// </li>
+  /// <li>
+  /// <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or
+  /// failed.
+  /// </li>
+  /// </ul>
   final DateTime? lastModificationTime;
 
   /// If an error occurred, an informational message about the error.
@@ -5381,8 +5530,7 @@ class PredictorSummary {
   /// <code>DELETE_FAILED</code>
   /// </li>
   /// <li>
-  /// <code>UPDATE_PENDING</code>, <code>UPDATE_IN_PROGRESS</code>,
-  /// <code>UPDATE_FAILED</code>
+  /// <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code>
   /// </li>
   /// </ul> <note>
   /// The <code>Status</code> of the predictor must be <code>ACTIVE</code> before
@@ -5562,17 +5710,40 @@ class Statistics {
   /// For a numeric field, the average value in the field.
   final double? avg;
 
-  /// The number of values in the field.
+  /// The number of values in the field. If the response value is -1, refer to
+  /// <code>CountLong</code>.
   final int? count;
 
-  /// The number of distinct values in the field.
+  /// The number of distinct values in the field. If the response value is -1,
+  /// refer to <code>CountDistinctLong</code>.
   final int? countDistinct;
 
-  /// The number of NAN (not a number) values in the field.
+  /// The number of distinct values in the field. <code>CountDistinctLong</code>
+  /// is used instead of <code>CountDistinct</code> if the value is greater than
+  /// 2,147,483,647.
+  final int? countDistinctLong;
+
+  /// The number of values in the field. <code>CountLong</code> is used instead of
+  /// <code>Count</code> if the value is greater than 2,147,483,647.
+  final int? countLong;
+
+  /// The number of NAN (not a number) values in the field. If the response value
+  /// is -1, refer to <code>CountNanLong</code>.
   final int? countNan;
 
-  /// The number of null values in the field.
+  /// The number of NAN (not a number) values in the field.
+  /// <code>CountNanLong</code> is used instead of <code>CountNan</code> if the
+  /// value is greater than 2,147,483,647.
+  final int? countNanLong;
+
+  /// The number of null values in the field. If the response value is -1, refer
+  /// to <code>CountNullLong</code>.
   final int? countNull;
+
+  /// The number of null values in the field. <code>CountNullLong</code> is used
+  /// instead of <code>CountNull</code> if the value is greater than
+  /// 2,147,483,647.
+  final int? countNullLong;
 
   /// For a numeric field, the maximum value in the field.
   final String? max;
@@ -5587,8 +5758,12 @@ class Statistics {
     this.avg,
     this.count,
     this.countDistinct,
+    this.countDistinctLong,
+    this.countLong,
     this.countNan,
+    this.countNanLong,
     this.countNull,
+    this.countNullLong,
     this.max,
     this.min,
     this.stddev,
@@ -5598,8 +5773,12 @@ class Statistics {
       avg: json['Avg'] as double?,
       count: json['Count'] as int?,
       countDistinct: json['CountDistinct'] as int?,
+      countDistinctLong: json['CountDistinctLong'] as int?,
+      countLong: json['CountLong'] as int?,
       countNan: json['CountNan'] as int?,
+      countNanLong: json['CountNanLong'] as int?,
       countNull: json['CountNull'] as int?,
+      countNullLong: json['CountNullLong'] as int?,
       max: json['Max'] as String?,
       min: json['Min'] as String?,
       stddev: json['Stddev'] as double?,

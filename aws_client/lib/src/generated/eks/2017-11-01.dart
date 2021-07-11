@@ -50,6 +50,108 @@ class Eks {
           endpointUrl: endpointUrl,
         );
 
+  /// Associate encryption configuration to an existing cluster.
+  ///
+  /// You can use this API to enable encryption on existing clusters which do
+  /// not have encryption already enabled. This allows you to implement a
+  /// defense-in-depth security strategy without migrating applications to new
+  /// EKS clusters.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ClientException].
+  /// May throw [ServerException].
+  /// May throw [ResourceInUseException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [clusterName] :
+  /// The name of the cluster that you are associating with encryption
+  /// configuration.
+  ///
+  /// Parameter [encryptionConfig] :
+  /// The configuration you are using for encryption.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// The client request token you are using with the encryption configuration.
+  Future<AssociateEncryptionConfigResponse> associateEncryptionConfig({
+    required String clusterName,
+    required List<EncryptionConfig> encryptionConfig,
+    String? clientRequestToken,
+  }) async {
+    ArgumentError.checkNotNull(clusterName, 'clusterName');
+    ArgumentError.checkNotNull(encryptionConfig, 'encryptionConfig');
+    final $payload = <String, dynamic>{
+      'encryptionConfig': encryptionConfig,
+      'clientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/clusters/${Uri.encodeComponent(clusterName)}/encryption-config/associate',
+      exceptionFnMap: _exceptionFns,
+    );
+    return AssociateEncryptionConfigResponse.fromJson(response);
+  }
+
+  /// Associate an identity provider configuration to a cluster.
+  ///
+  /// If you want to authenticate identities using an identity provider, you can
+  /// create an identity provider configuration and associate it to your
+  /// cluster. After configuring authentication to your cluster you can create
+  /// Kubernetes <code>roles</code> and <code>clusterroles</code> to assign
+  /// permissions to the roles, and then bind the roles to the identities using
+  /// Kubernetes <code>rolebindings</code> and <code>clusterrolebindings</code>.
+  /// For more information see <a
+  /// href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using
+  /// RBAC Authorization</a> in the Kubernetes documentation.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ClientException].
+  /// May throw [ServerException].
+  /// May throw [ResourceInUseException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [clusterName] :
+  /// The name of the cluster to associate the configuration to.
+  ///
+  /// Parameter [oidc] :
+  /// An object that represents an OpenID Connect (OIDC) identity provider
+  /// configuration.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// Unique, case-sensitive identifier that you provide to ensure the
+  /// idempotency of the request.
+  ///
+  /// Parameter [tags] :
+  /// The metadata to apply to the configuration to assist with categorization
+  /// and organization. Each tag consists of a key and an optional value, both
+  /// of which you define.
+  Future<AssociateIdentityProviderConfigResponse>
+      associateIdentityProviderConfig({
+    required String clusterName,
+    required OidcIdentityProviderConfigRequest oidc,
+    String? clientRequestToken,
+    Map<String, String>? tags,
+  }) async {
+    ArgumentError.checkNotNull(clusterName, 'clusterName');
+    ArgumentError.checkNotNull(oidc, 'oidc');
+    final $payload = <String, dynamic>{
+      'oidc': oidc,
+      'clientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
+      if (tags != null) 'tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/clusters/${Uri.encodeComponent(clusterName)}/identity-provider-configs/associate',
+      exceptionFnMap: _exceptionFns,
+    );
+    return AssociateIdentityProviderConfigResponse.fromJson(response);
+  }
+
   /// Creates an Amazon EKS add-on.
   ///
   /// Amazon EKS add-ons help to automate the provisioning and lifecycle
@@ -127,12 +229,6 @@ class Eks {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clusterName',
-      clusterName,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'serviceAccountRoleArn',
       serviceAccountRoleArn,
@@ -170,44 +266,22 @@ class Eks {
   /// The cluster control plane is provisioned across multiple Availability
   /// Zones and fronted by an Elastic Load Balancing Network Load Balancer.
   /// Amazon EKS also provisions elastic network interfaces in your VPC subnets
-  /// to provide connectivity from the control plane instances to the worker
-  /// nodes (for example, to support <code>kubectl exec</code>,
-  /// <code>logs</code>, and <code>proxy</code> data flows).
+  /// to provide connectivity from the control plane instances to the nodes (for
+  /// example, to support <code>kubectl exec</code>, <code>logs</code>, and
+  /// <code>proxy</code> data flows).
   ///
-  /// Amazon EKS worker nodes run in your AWS account and connect to your
-  /// cluster's control plane via the Kubernetes API server endpoint and a
-  /// certificate file that is created for your cluster.
+  /// Amazon EKS nodes run in your AWS account and connect to your cluster's
+  /// control plane via the Kubernetes API server endpoint and a certificate
+  /// file that is created for your cluster.
   ///
-  /// You can use the <code>endpointPublicAccess</code> and
-  /// <code>endpointPrivateAccess</code> parameters to enable or disable public
-  /// and private access to your cluster's Kubernetes API server endpoint. By
-  /// default, public access is enabled, and private access is disabled. For
+  /// Cluster creation typically takes several minutes. After you create an
+  /// Amazon EKS cluster, you must configure your Kubernetes tooling to
+  /// communicate with the API server and launch nodes into your cluster. For
   /// more information, see <a
-  /// href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
-  /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
-  /// Guide</i> </i>.
-  ///
-  /// You can use the <code>logging</code> parameter to enable or disable
-  /// exporting the Kubernetes control plane logs for your cluster to CloudWatch
-  /// Logs. By default, cluster control plane logs aren't exported to CloudWatch
-  /// Logs. For more information, see <a
-  /// href="https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html">Amazon
-  /// EKS Cluster Control Plane Logs</a> in the <i> <i>Amazon EKS User Guide</i>
-  /// </i>.
-  /// <note>
-  /// CloudWatch Logs ingestion, archive storage, and data scanning rates apply
-  /// to exported control plane logs. For more information, see <a
-  /// href="http://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch
-  /// Pricing</a>.
-  /// </note>
-  /// Cluster creation typically takes between 10 and 15 minutes. After you
-  /// create an Amazon EKS cluster, you must configure your Kubernetes tooling
-  /// to communicate with the API server and launch worker nodes into your
-  /// cluster. For more information, see <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html">Managing
   /// Cluster Authentication</a> and <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html">Launching
-  /// Amazon EKS Worker Nodes</a> in the <i>Amazon EKS User Guide</i>.
+  /// Amazon EKS nodes</a> in the <i>Amazon EKS User Guide</i>.
   ///
   /// May throw [ResourceInUseException].
   /// May throw [ResourceLimitExceededException].
@@ -288,12 +362,6 @@ class Eks {
       name,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourcesVpcConfig, 'resourcesVpcConfig');
@@ -431,8 +499,8 @@ class Eks {
     return CreateFargateProfileResponse.fromJson(response);
   }
 
-  /// Creates a managed worker node group for an Amazon EKS cluster. You can
-  /// only create a node group for your cluster that is equal to the current
+  /// Creates a managed node group for an Amazon EKS cluster. You can only
+  /// create a node group for your cluster that is equal to the current
   /// Kubernetes version for the cluster. All node groups are created with the
   /// latest AMI release version for the respective minor Kubernetes version of
   /// the cluster, unless you deploy a custom AMI using a launch template. For
@@ -461,14 +529,14 @@ class Eks {
   /// Parameter [nodeRole] :
   /// The Amazon Resource Name (ARN) of the IAM role to associate with your node
   /// group. The Amazon EKS worker node <code>kubelet</code> daemon makes calls
-  /// to AWS APIs on your behalf. Worker nodes receive permissions for these API
-  /// calls through an IAM instance profile and associated policies. Before you
-  /// can launch worker nodes and register them into a cluster, you must create
-  /// an IAM role for those worker nodes to use when they are launched. For more
-  /// information, see <a
+  /// to AWS APIs on your behalf. Nodes receive permissions for these API calls
+  /// through an IAM instance profile and associated policies. Before you can
+  /// launch nodes and register them into a cluster, you must create an IAM role
+  /// for those nodes to use when they are launched. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html">Amazon
-  /// EKS Worker Node IAM Role</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
-  /// If you specify <code>launchTemplate</code>, then don't specify <a
+  /// EKS node IAM role</a> in the <i> <i>Amazon EKS User Guide</i> </i>. If you
+  /// specify <code>launchTemplate</code>, then don't specify <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html">
   /// <code>IamInstanceProfile</code> </a> in your launch template, or the node
   /// group deployment will fail. For more information about using launch
@@ -481,11 +549,8 @@ class Eks {
   ///
   /// Parameter [subnets] :
   /// The subnets to use for the Auto Scaling group that is created for your
-  /// node group. These subnets must have the tag key
-  /// <code>kubernetes.io/cluster/CLUSTER_NAME</code> with a value of
-  /// <code>shared</code>, where <code>CLUSTER_NAME</code> is replaced with the
-  /// name of your cluster. If you specify <code>launchTemplate</code>, then
-  /// don't specify <a
+  /// node group. If you specify <code>launchTemplate</code>, then don't specify
+  /// <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html">
   /// <code>SubnetId</code> </a> in your launch template, or the node group
   /// deployment will fail. For more information about using launch templates
@@ -535,7 +600,7 @@ class Eks {
   /// <code>Spot</code> for <code>capacityType</code>, then we recommend
   /// specifying multiple values for <code>instanceTypes</code>. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/managed-node-groups.html#managed-node-group-capacity-types">Managed
+  /// href="https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html#managed-node-group-capacity-types">Managed
   /// node group capacity types</a> and <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html">Launch
   /// template support</a> in the <i>Amazon EKS User Guide</i>.
@@ -583,6 +648,9 @@ class Eks {
   /// associated with the node group, such as the Amazon EC2 instances or
   /// subnets.
   ///
+  /// Parameter [taints] :
+  /// The Kubernetes taints to be applied to the nodes in the node group.
+  ///
   /// Parameter [version] :
   /// The Kubernetes version to use for your managed nodes. By default, the
   /// Kubernetes version of the cluster is used, and this is the only accepted
@@ -608,6 +676,8 @@ class Eks {
     RemoteAccessConfig? remoteAccess,
     NodegroupScalingConfig? scalingConfig,
     Map<String, String>? tags,
+    List<Taint>? taints,
+    NodegroupUpdateConfig? updateConfig,
     String? version,
   }) async {
     ArgumentError.checkNotNull(clusterName, 'clusterName');
@@ -629,6 +699,8 @@ class Eks {
       if (remoteAccess != null) 'remoteAccess': remoteAccess,
       if (scalingConfig != null) 'scalingConfig': scalingConfig,
       if (tags != null) 'tags': tags,
+      if (taints != null) 'taints': taints,
+      if (updateConfig != null) 'updateConfig': updateConfig,
       if (version != null) 'version': version,
     };
     final response = await _protocol.send(
@@ -671,12 +743,6 @@ class Eks {
       clusterName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'clusterName',
-      clusterName,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -823,12 +889,6 @@ class Eks {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clusterName',
-      clusterName,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -956,6 +1016,41 @@ class Eks {
     return DescribeFargateProfileResponse.fromJson(response);
   }
 
+  /// Returns descriptive information about an identity provider configuration.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ClientException].
+  /// May throw [ServerException].
+  /// May throw [ServiceUnavailableException].
+  ///
+  /// Parameter [clusterName] :
+  /// The cluster name that the identity provider configuration is associated
+  /// to.
+  ///
+  /// Parameter [identityProviderConfig] :
+  /// An object that represents an identity provider configuration.
+  Future<DescribeIdentityProviderConfigResponse>
+      describeIdentityProviderConfig({
+    required String clusterName,
+    required IdentityProviderConfig identityProviderConfig,
+  }) async {
+    ArgumentError.checkNotNull(clusterName, 'clusterName');
+    ArgumentError.checkNotNull(
+        identityProviderConfig, 'identityProviderConfig');
+    final $payload = <String, dynamic>{
+      'identityProviderConfig': identityProviderConfig,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/clusters/${Uri.encodeComponent(clusterName)}/identity-provider-configs/describe',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeIdentityProviderConfigResponse.fromJson(response);
+  }
+
   /// Returns descriptive information about an Amazon EKS node group.
   ///
   /// May throw [InvalidParameterException].
@@ -1034,6 +1129,50 @@ class Eks {
     return DescribeUpdateResponse.fromJson(response);
   }
 
+  /// Disassociates an identity provider configuration from a cluster. If you
+  /// disassociate an identity provider from your cluster, users included in the
+  /// provider can no longer access the cluster. However, you can still access
+  /// the cluster with AWS IAM users.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ClientException].
+  /// May throw [ServerException].
+  /// May throw [ResourceInUseException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidRequestException].
+  ///
+  /// Parameter [clusterName] :
+  /// The name of the cluster to disassociate an identity provider from.
+  ///
+  /// Parameter [identityProviderConfig] :
+  /// An object that represents an identity provider configuration.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// A unique, case-sensitive identifier that you provide to ensure the
+  /// idempotency of the request.
+  Future<DisassociateIdentityProviderConfigResponse>
+      disassociateIdentityProviderConfig({
+    required String clusterName,
+    required IdentityProviderConfig identityProviderConfig,
+    String? clientRequestToken,
+  }) async {
+    ArgumentError.checkNotNull(clusterName, 'clusterName');
+    ArgumentError.checkNotNull(
+        identityProviderConfig, 'identityProviderConfig');
+    final $payload = <String, dynamic>{
+      'identityProviderConfig': identityProviderConfig,
+      'clientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/clusters/${Uri.encodeComponent(clusterName)}/identity-provider-configs/disassociate',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DisassociateIdentityProviderConfigResponse.fromJson(response);
+  }
+
   /// Lists the available add-ons.
   ///
   /// May throw [InvalidParameterException].
@@ -1078,12 +1217,6 @@ class Eks {
       clusterName,
       1,
       100,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'clusterName',
-      clusterName,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1213,6 +1346,63 @@ class Eks {
       exceptionFnMap: _exceptionFns,
     );
     return ListFargateProfilesResponse.fromJson(response);
+  }
+
+  /// A list of identity provider configurations.
+  ///
+  /// May throw [InvalidParameterException].
+  /// May throw [ClientException].
+  /// May throw [ServerException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [clusterName] :
+  /// The cluster name that you want to list identity provider configurations
+  /// for.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of identity provider configurations returned by
+  /// <code>ListIdentityProviderConfigs</code> in paginated output. When you use
+  /// this parameter, <code>ListIdentityProviderConfigs</code> returns only
+  /// <code>maxResults</code> results in a single page along with a
+  /// <code>nextToken</code> response element. You can see the remaining results
+  /// of the initial request by sending another
+  /// <code>ListIdentityProviderConfigs</code> request with the returned
+  /// <code>nextToken</code> value. This value can be between 1 and 100. If you
+  /// don't use this parameter, <code>ListIdentityProviderConfigs</code> returns
+  /// up to 100 results and a <code>nextToken</code> value, if applicable.
+  ///
+  /// Parameter [nextToken] :
+  /// The <code>nextToken</code> value returned from a previous paginated
+  /// <code>IdentityProviderConfigsRequest</code> where <code>maxResults</code>
+  /// was used and the results exceeded the value of that parameter. Pagination
+  /// continues from the end of the previous results that returned the
+  /// <code>nextToken</code> value.
+  Future<ListIdentityProviderConfigsResponse> listIdentityProviderConfigs({
+    required String clusterName,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(clusterName, 'clusterName');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/clusters/${Uri.encodeComponent(clusterName)}/identity-provider-configs',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListIdentityProviderConfigsResponse.fromJson(response);
   }
 
   /// Lists the Amazon EKS managed node groups associated with the specified
@@ -1366,7 +1556,7 @@ class Eks {
   /// that you create for Amazon EKS resources do not propagate to any other
   /// resources associated with the cluster. For example, if you tag a cluster
   /// with this operation, that tag does not automatically propagate to the
-  /// subnets and worker nodes associated with the cluster.
+  /// subnets and nodes associated with the cluster.
   ///
   /// May throw [BadRequestException].
   /// May throw [NotFoundException].
@@ -1489,12 +1679,6 @@ class Eks {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'clusterName',
-      clusterName,
-      r'''^[0-9A-Za-z][A-Za-z0-9\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'serviceAccountRoleArn',
       serviceAccountRoleArn,
@@ -1545,8 +1729,8 @@ class Eks {
   /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
   /// Guide</i> </i>.
   /// <important>
-  /// At this time, you can not update the subnets or security group IDs for an
-  /// existing cluster.
+  /// You can't update the subnets or security group IDs for an existing
+  /// cluster.
   /// </important>
   /// Cluster updates are asynchronous, and they should finish within a few
   /// minutes. During an update, the cluster status moves to
@@ -1683,12 +1867,18 @@ class Eks {
   /// Parameter [scalingConfig] :
   /// The scaling configuration details for the Auto Scaling group after the
   /// update.
+  ///
+  /// Parameter [taints] :
+  /// The Kubernetes taints to be applied to the nodes in the node group after
+  /// the update.
   Future<UpdateNodegroupConfigResponse> updateNodegroupConfig({
     required String clusterName,
     required String nodegroupName,
     String? clientRequestToken,
     UpdateLabelsPayload? labels,
     NodegroupScalingConfig? scalingConfig,
+    UpdateTaintsPayload? taints,
+    NodegroupUpdateConfig? updateConfig,
   }) async {
     ArgumentError.checkNotNull(clusterName, 'clusterName');
     ArgumentError.checkNotNull(nodegroupName, 'nodegroupName');
@@ -1696,6 +1886,8 @@ class Eks {
       'clientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (labels != null) 'labels': labels,
       if (scalingConfig != null) 'scalingConfig': scalingConfig,
+      if (taints != null) 'taints': taints,
+      if (updateConfig != null) 'updateConfig': updateConfig,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1822,6 +2014,7 @@ enum AMITypes {
   al2X86_64,
   al2X86_64Gpu,
   al2Arm_64,
+  custom,
 }
 
 extension on AMITypes {
@@ -1833,6 +2026,8 @@ extension on AMITypes {
         return 'AL2_x86_64_GPU';
       case AMITypes.al2Arm_64:
         return 'AL2_ARM_64';
+      case AMITypes.custom:
+        return 'CUSTOM';
     }
   }
 }
@@ -1846,6 +2041,8 @@ extension on String {
         return AMITypes.al2X86_64Gpu;
       case 'AL2_ARM_64':
         return AMITypes.al2Arm_64;
+      case 'CUSTOM':
+        return AMITypes.custom;
     }
     throw Exception('$this is not known in enum AMITypes');
   }
@@ -1881,9 +2078,9 @@ class Addon {
   /// The status of the add-on.
   final AddonStatus? status;
 
-  /// The metadata that you apply to the cluster to assist with categorization and
+  /// The metadata that you apply to the add-on to assist with categorization and
   /// organization. Each tag consists of a key and an optional value, both of
-  /// which you define. Cluster tags do not propagate to any other resources
+  /// which you define. Add-on tags do not propagate to any other resources
   /// associated with the cluster.
   final Map<String, String>? tags;
 
@@ -1999,6 +2196,8 @@ enum AddonIssueCode {
   clusterUnreachable,
   insufficientNumberOfReplicas,
   configurationConflict,
+  admissionRequestDenied,
+  unsupportedAddonModification,
 }
 
 extension on AddonIssueCode {
@@ -2014,6 +2213,10 @@ extension on AddonIssueCode {
         return 'InsufficientNumberOfReplicas';
       case AddonIssueCode.configurationConflict:
         return 'ConfigurationConflict';
+      case AddonIssueCode.admissionRequestDenied:
+        return 'AdmissionRequestDenied';
+      case AddonIssueCode.unsupportedAddonModification:
+        return 'UnsupportedAddonModification';
     }
   }
 }
@@ -2031,6 +2234,10 @@ extension on String {
         return AddonIssueCode.insufficientNumberOfReplicas;
       case 'ConfigurationConflict':
         return AddonIssueCode.configurationConflict;
+      case 'AdmissionRequestDenied':
+        return AddonIssueCode.admissionRequestDenied;
+      case 'UnsupportedAddonModification':
+        return AddonIssueCode.unsupportedAddonModification;
     }
     throw Exception('$this is not known in enum AddonIssueCode');
   }
@@ -2116,6 +2323,43 @@ class AddonVersionInfo {
           ?.whereNotNull()
           .map((e) => Compatibility.fromJson(e as Map<String, dynamic>))
           .toList(),
+    );
+  }
+}
+
+class AssociateEncryptionConfigResponse {
+  final Update? update;
+
+  AssociateEncryptionConfigResponse({
+    this.update,
+  });
+  factory AssociateEncryptionConfigResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateEncryptionConfigResponse(
+      update: json['update'] != null
+          ? Update.fromJson(json['update'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+class AssociateIdentityProviderConfigResponse {
+  /// The tags for the resource.
+  final Map<String, String>? tags;
+  final Update? update;
+
+  AssociateIdentityProviderConfigResponse({
+    this.tags,
+    this.update,
+  });
+  factory AssociateIdentityProviderConfigResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateIdentityProviderConfigResponse(
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      update: json['update'] != null
+          ? Update.fromJson(json['update'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -2582,6 +2826,25 @@ class DescribeFargateProfileResponse {
   }
 }
 
+class DescribeIdentityProviderConfigResponse {
+  /// The object that represents an OpenID Connect (OIDC) identity provider
+  /// configuration.
+  final IdentityProviderConfigResponse? identityProviderConfig;
+
+  DescribeIdentityProviderConfigResponse({
+    this.identityProviderConfig,
+  });
+  factory DescribeIdentityProviderConfigResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeIdentityProviderConfigResponse(
+      identityProviderConfig: json['identityProviderConfig'] != null
+          ? IdentityProviderConfigResponse.fromJson(
+              json['identityProviderConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class DescribeNodegroupResponse {
   /// The full description of your node group.
   final Nodegroup? nodegroup;
@@ -2614,10 +2877,26 @@ class DescribeUpdateResponse {
   }
 }
 
+class DisassociateIdentityProviderConfigResponse {
+  final Update? update;
+
+  DisassociateIdentityProviderConfigResponse({
+    this.update,
+  });
+  factory DisassociateIdentityProviderConfigResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateIdentityProviderConfigResponse(
+      update: json['update'] != null
+          ? Update.fromJson(json['update'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 /// The encryption configuration for the cluster.
 class EncryptionConfig {
-  /// AWS Key Management Service (AWS KMS) customer master key (CMK). Either the
-  /// ARN or the alias can be used.
+  /// AWS Key Management Service (AWS KMS) key. Either the ARN or the alias can be
+  /// used.
   final Provider? provider;
 
   /// Specifies the resources to be encrypted. The only supported value is
@@ -2665,6 +2944,8 @@ enum ErrorCode {
   clusterUnreachable,
   insufficientNumberOfReplicas,
   configurationConflict,
+  admissionRequestDenied,
+  unsupportedAddonModification,
 }
 
 extension on ErrorCode {
@@ -2698,6 +2979,10 @@ extension on ErrorCode {
         return 'InsufficientNumberOfReplicas';
       case ErrorCode.configurationConflict:
         return 'ConfigurationConflict';
+      case ErrorCode.admissionRequestDenied:
+        return 'AdmissionRequestDenied';
+      case ErrorCode.unsupportedAddonModification:
+        return 'UnsupportedAddonModification';
     }
   }
 }
@@ -2733,6 +3018,10 @@ extension on String {
         return ErrorCode.insufficientNumberOfReplicas;
       case 'ConfigurationConflict':
         return ErrorCode.configurationConflict;
+      case 'AdmissionRequestDenied':
+        return ErrorCode.admissionRequestDenied;
+      case 'UnsupportedAddonModification':
+        return ErrorCode.unsupportedAddonModification;
     }
     throw Exception('$this is not known in enum ErrorCode');
   }
@@ -2943,10 +3232,10 @@ extension on String {
   }
 }
 
-/// An object representing an identity provider for authentication credentials.
+/// An object representing an identity provider.
 class Identity {
-  /// The <a href="https://openid.net/connect/">OpenID Connect</a> identity
-  /// provider information for the cluster.
+  /// An object representing the <a href="https://openid.net/connect/">OpenID
+  /// Connect</a> identity provider information.
   final OIDC? oidc;
 
   Identity({
@@ -2956,6 +3245,54 @@ class Identity {
     return Identity(
       oidc: json['oidc'] != null
           ? OIDC.fromJson(json['oidc'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// An object representing an identity provider configuration.
+class IdentityProviderConfig {
+  /// The name of the identity provider configuration.
+  final String name;
+
+  /// The type of the identity provider configuration.
+  final String type;
+
+  IdentityProviderConfig({
+    required this.name,
+    required this.type,
+  });
+  factory IdentityProviderConfig.fromJson(Map<String, dynamic> json) {
+    return IdentityProviderConfig(
+      name: json['name'] as String,
+      type: json['type'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    return {
+      'name': name,
+      'type': type,
+    };
+  }
+}
+
+/// An object that represents an identity configuration.
+class IdentityProviderConfigResponse {
+  /// An object that represents an OpenID Connect (OIDC) identity provider
+  /// configuration.
+  final OidcIdentityProviderConfig? oidc;
+
+  IdentityProviderConfigResponse({
+    this.oidc,
+  });
+  factory IdentityProviderConfigResponse.fromJson(Map<String, dynamic> json) {
+    return IdentityProviderConfigResponse(
+      oidc: json['oidc'] != null
+          ? OidcIdentityProviderConfig.fromJson(
+              json['oidc'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -3044,9 +3381,8 @@ class Issue {
   /// <b>NodeCreationFailure</b>: Your launched instances are unable to register
   /// with your Amazon EKS cluster. Common causes of this failure are insufficient
   /// <a
-  /// href="https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html">worker
-  /// node IAM role</a> permissions or lack of outbound internet access for the
-  /// nodes.
+  /// href="https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html">node
+  /// IAM role</a> permissions or lack of outbound internet access for the nodes.
   /// </li>
   /// </ul>
   final NodegroupIssueCode? code;
@@ -3262,6 +3598,34 @@ class ListFargateProfilesResponse {
       fargateProfileNames: (json['fargateProfileNames'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
+class ListIdentityProviderConfigsResponse {
+  /// The identity provider configurations for the cluster.
+  final List<IdentityProviderConfig>? identityProviderConfigs;
+
+  /// The <code>nextToken</code> value returned from a previous paginated
+  /// <code>ListIdentityProviderConfigsResponse</code> where
+  /// <code>maxResults</code> was used and the results exceeded the value of that
+  /// parameter. Pagination continues from the end of the previous results that
+  /// returned the <code>nextToken</code> value.
+  final String? nextToken;
+
+  ListIdentityProviderConfigsResponse({
+    this.identityProviderConfigs,
+    this.nextToken,
+  });
+  factory ListIdentityProviderConfigsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListIdentityProviderConfigsResponse(
+      identityProviderConfigs: (json['identityProviderConfigs'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => IdentityProviderConfig.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
@@ -3487,10 +3851,10 @@ class Nodegroup {
   /// modified.
   final DateTime? modifiedAt;
 
-  /// The IAM role associated with your node group. The Amazon EKS worker node
-  /// <code>kubelet</code> daemon makes calls to AWS APIs on your behalf. Worker
-  /// nodes receive permissions for these API calls through an IAM instance
-  /// profile and associated policies.
+  /// The IAM role associated with your node group. The Amazon EKS node
+  /// <code>kubelet</code> daemon makes calls to AWS APIs on your behalf. Nodes
+  /// receive permissions for these API calls through an IAM instance profile and
+  /// associated policies.
   final String? nodeRole;
 
   /// The Amazon Resource Name (ARN) associated with the managed node group.
@@ -3532,6 +3896,14 @@ class Nodegroup {
   /// associated with the node group, such as the Amazon EC2 instances or subnets.
   final Map<String, String>? tags;
 
+  /// The Kubernetes taints to be applied to the nodes in the node group when they
+  /// are created. Effect is one of <code>NoSchedule</code>,
+  /// <code>PreferNoSchedule</code>, or <code>NoExecute</code>. Kubernetes taints
+  /// can be used together with tolerations to control how workloads are scheduled
+  /// to your nodes.
+  final List<Taint>? taints;
+  final NodegroupUpdateConfig? updateConfig;
+
   /// The Kubernetes version of the managed node group.
   final String? version;
 
@@ -3556,6 +3928,8 @@ class Nodegroup {
     this.status,
     this.subnets,
     this.tags,
+    this.taints,
+    this.updateConfig,
     this.version,
   });
   factory Nodegroup.fromJson(Map<String, dynamic> json) {
@@ -3602,6 +3976,14 @@ class Nodegroup {
           .toList(),
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+      taints: (json['taints'] as List?)
+          ?.whereNotNull()
+          .map((e) => Taint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      updateConfig: json['updateConfig'] != null
+          ? NodegroupUpdateConfig.fromJson(
+              json['updateConfig'] as Map<String, dynamic>)
+          : null,
       version: json['version'] as String?,
     );
   }
@@ -3740,7 +4122,7 @@ class NodegroupResources {
   final List<AutoScalingGroup>? autoScalingGroups;
 
   /// The remote access security group associated with the node group. This
-  /// security group controls SSH access to the worker nodes.
+  /// security group controls SSH access to the nodes.
   final String? remoteAccessSecurityGroup;
 
   NodegroupResources({
@@ -3759,20 +4141,21 @@ class NodegroupResources {
 }
 
 /// An object representing the scaling configuration details for the Auto
-/// Scaling group that is associated with your node group. If you specify a
-/// value for any property, then you must specify values for all of the
-/// properties.
+/// Scaling group that is associated with your node group. When creating a node
+/// group, you must specify all or none of the properties. When updating a node
+/// group, you can specify any or none of the properties.
 class NodegroupScalingConfig {
-  /// The current number of worker nodes that the managed node group should
-  /// maintain.
+  /// The current number of nodes that the managed node group should maintain.
   final int? desiredSize;
 
-  /// The maximum number of worker nodes that the managed node group can scale out
-  /// to. Managed node groups can support up to 100 nodes by default.
+  /// The maximum number of nodes that the managed node group can scale out to.
+  /// For information about the maximum number that you can specify, see <a
+  /// href="https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html">Amazon
+  /// EKS service quotas</a> in the <i>Amazon EKS User Guide</i>.
   final int? maxSize;
 
-  /// The minimum number of worker nodes that the managed node group can scale in
-  /// to. This number must be greater than zero.
+  /// The minimum number of nodes that the managed node group can scale in to.
+  /// This number must be greater than zero.
   final int? minSize;
 
   NodegroupScalingConfig({
@@ -3853,10 +4236,36 @@ extension on String {
   }
 }
 
+class NodegroupUpdateConfig {
+  final int? maxUnavailable;
+  final int? maxUnavailablePercentage;
+
+  NodegroupUpdateConfig({
+    this.maxUnavailable,
+    this.maxUnavailablePercentage,
+  });
+  factory NodegroupUpdateConfig.fromJson(Map<String, dynamic> json) {
+    return NodegroupUpdateConfig(
+      maxUnavailable: json['maxUnavailable'] as int?,
+      maxUnavailablePercentage: json['maxUnavailablePercentage'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxUnavailable = this.maxUnavailable;
+    final maxUnavailablePercentage = this.maxUnavailablePercentage;
+    return {
+      if (maxUnavailable != null) 'maxUnavailable': maxUnavailable,
+      if (maxUnavailablePercentage != null)
+        'maxUnavailablePercentage': maxUnavailablePercentage,
+    };
+  }
+}
+
 /// An object representing the <a href="https://openid.net/connect/">OpenID
-/// Connect</a> identity provider information for the cluster.
+/// Connect</a> (OIDC) identity provider information for the cluster.
 class OIDC {
-  /// The issuer URL for the OpenID Connect identity provider.
+  /// The issuer URL for the OIDC identity provider.
   final String? issuer;
 
   OIDC({
@@ -3869,15 +4278,187 @@ class OIDC {
   }
 }
 
-/// Identifies the AWS Key Management Service (AWS KMS) customer master key
-/// (CMK) used to encrypt the secrets.
+/// An object that represents the configuration for an OpenID Connect (OIDC)
+/// identity provider.
+class OidcIdentityProviderConfig {
+  /// This is also known as <i>audience</i>. The ID of the client application that
+  /// makes authentication requests to the OIDC identity provider.
+  final String? clientId;
+
+  /// The cluster that the configuration is associated to.
+  final String? clusterName;
+
+  /// The JSON web token (JWT) claim that the provider uses to return your groups.
+  final String? groupsClaim;
+
+  /// The prefix that is prepended to group claims to prevent clashes with
+  /// existing names (such as <code>system:</code> groups). For example, the
+  /// value<code> oidc:</code> creates group names like
+  /// <code>oidc:engineering</code> and <code>oidc:infra</code>. The prefix can't
+  /// contain <code>system:</code>
+  final String? groupsPrefix;
+
+  /// The ARN of the configuration.
+  final String? identityProviderConfigArn;
+
+  /// The name of the configuration.
+  final String? identityProviderConfigName;
+
+  /// The URL of the OIDC identity provider that allows the API server to discover
+  /// public signing keys for verifying tokens.
+  final String? issuerUrl;
+
+  /// The key-value pairs that describe required claims in the identity token. If
+  /// set, each claim is verified to be present in the token with a matching
+  /// value.
+  final Map<String, String>? requiredClaims;
+
+  /// The status of the OIDC identity provider.
+  final ConfigStatus? status;
+
+  /// The metadata to apply to the provider configuration to assist with
+  /// categorization and organization. Each tag consists of a key and an optional
+  /// value, both of which you defined.
+  final Map<String, String>? tags;
+
+  /// The JSON Web token (JWT) claim that is used as the username.
+  final String? usernameClaim;
+
+  /// The prefix that is prepended to username claims to prevent clashes with
+  /// existing names. The prefix can't contain <code>system:</code>
+  final String? usernamePrefix;
+
+  OidcIdentityProviderConfig({
+    this.clientId,
+    this.clusterName,
+    this.groupsClaim,
+    this.groupsPrefix,
+    this.identityProviderConfigArn,
+    this.identityProviderConfigName,
+    this.issuerUrl,
+    this.requiredClaims,
+    this.status,
+    this.tags,
+    this.usernameClaim,
+    this.usernamePrefix,
+  });
+  factory OidcIdentityProviderConfig.fromJson(Map<String, dynamic> json) {
+    return OidcIdentityProviderConfig(
+      clientId: json['clientId'] as String?,
+      clusterName: json['clusterName'] as String?,
+      groupsClaim: json['groupsClaim'] as String?,
+      groupsPrefix: json['groupsPrefix'] as String?,
+      identityProviderConfigArn: json['identityProviderConfigArn'] as String?,
+      identityProviderConfigName: json['identityProviderConfigName'] as String?,
+      issuerUrl: json['issuerUrl'] as String?,
+      requiredClaims: (json['requiredClaims'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      status: (json['status'] as String?)?.toConfigStatus(),
+      tags: (json['tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      usernameClaim: json['usernameClaim'] as String?,
+      usernamePrefix: json['usernamePrefix'] as String?,
+    );
+  }
+}
+
+/// An object representing an OpenID Connect (OIDC) configuration. Before
+/// associating an OIDC identity provider to your cluster, review the
+/// considerations in <a
+/// href="https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html">Authenticating
+/// users for your cluster from an OpenID Connect identity provider</a> in the
+/// <i>Amazon EKS User Guide</i>.
+class OidcIdentityProviderConfigRequest {
+  /// This is also known as <i>audience</i>. The ID for the client application
+  /// that makes authentication requests to the OpenID identity provider.
+  final String clientId;
+
+  /// The name of the OIDC provider configuration.
+  final String identityProviderConfigName;
+
+  /// The URL of the OpenID identity provider that allows the API server to
+  /// discover public signing keys for verifying tokens. The URL must begin with
+  /// <code>https://</code> and should correspond to the <code>iss</code> claim in
+  /// the provider's OIDC ID tokens. Per the OIDC standard, path components are
+  /// allowed but query parameters are not. Typically the URL consists of only a
+  /// hostname, like <code>https://server.example.org</code> or
+  /// <code>https://example.com</code>. This URL should point to the level below
+  /// <code>.well-known/openid-configuration</code> and must be publicly
+  /// accessible over the internet.
+  final String issuerUrl;
+
+  /// The JWT claim that the provider uses to return your groups.
+  final String? groupsClaim;
+
+  /// The prefix that is prepended to group claims to prevent clashes with
+  /// existing names (such as <code>system:</code> groups). For example, the
+  /// value<code> oidc:</code> will create group names like
+  /// <code>oidc:engineering</code> and <code>oidc:infra</code>.
+  final String? groupsPrefix;
+
+  /// The key value pairs that describe required claims in the identity token. If
+  /// set, each claim is verified to be present in the token with a matching
+  /// value. For the maximum number of claims that you can require, see <a
+  /// href="https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html">Amazon
+  /// EKS service quotas</a> in the <i>Amazon EKS User Guide</i>.
+  final Map<String, String>? requiredClaims;
+
+  /// The JSON Web Token (JWT) claim to use as the username. The default is
+  /// <code>sub</code>, which is expected to be a unique identifier of the end
+  /// user. You can choose other claims, such as <code>email</code> or
+  /// <code>name</code>, depending on the OpenID identity provider. Claims other
+  /// than <code>email</code> are prefixed with the issuer URL to prevent naming
+  /// clashes with other plug-ins.
+  final String? usernameClaim;
+
+  /// The prefix that is prepended to username claims to prevent clashes with
+  /// existing names. If you do not provide this field, and <code>username</code>
+  /// is a value other than <code>email</code>, the prefix defaults to
+  /// <code>issuerurl#</code>. You can use the value <code>-</code> to disable all
+  /// prefixing.
+  final String? usernamePrefix;
+
+  OidcIdentityProviderConfigRequest({
+    required this.clientId,
+    required this.identityProviderConfigName,
+    required this.issuerUrl,
+    this.groupsClaim,
+    this.groupsPrefix,
+    this.requiredClaims,
+    this.usernameClaim,
+    this.usernamePrefix,
+  });
+  Map<String, dynamic> toJson() {
+    final clientId = this.clientId;
+    final identityProviderConfigName = this.identityProviderConfigName;
+    final issuerUrl = this.issuerUrl;
+    final groupsClaim = this.groupsClaim;
+    final groupsPrefix = this.groupsPrefix;
+    final requiredClaims = this.requiredClaims;
+    final usernameClaim = this.usernameClaim;
+    final usernamePrefix = this.usernamePrefix;
+    return {
+      'clientId': clientId,
+      'identityProviderConfigName': identityProviderConfigName,
+      'issuerUrl': issuerUrl,
+      if (groupsClaim != null) 'groupsClaim': groupsClaim,
+      if (groupsPrefix != null) 'groupsPrefix': groupsPrefix,
+      if (requiredClaims != null) 'requiredClaims': requiredClaims,
+      if (usernameClaim != null) 'usernameClaim': usernameClaim,
+      if (usernamePrefix != null) 'usernamePrefix': usernamePrefix,
+    };
+  }
+}
+
+/// Identifies the AWS Key Management Service (AWS KMS) key used to encrypt the
+/// secrets.
 class Provider {
-  /// Amazon Resource Name (ARN) or alias of the customer master key (CMK). The
-  /// CMK must be symmetric, created in the same region as the cluster, and if the
-  /// CMK was created in a different account, the user must have access to the
-  /// CMK. For more information, see <a
+  /// Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be
+  /// symmetric, created in the same region as the cluster, and if the KMS key was
+  /// created in a different account, the user must have access to the KMS key.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html">Allowing
-  /// Users in Other Accounts to Use a CMK</a> in the <i>AWS Key Management
+  /// Users in Other Accounts to Use a KMS key</a> in the <i>AWS Key Management
   /// Service Developer Guide</i>.
   final String? keyArn;
 
@@ -3902,17 +4483,16 @@ class Provider {
 /// group.
 class RemoteAccessConfig {
   /// The Amazon EC2 SSH key that provides access for SSH communication with the
-  /// worker nodes in the managed node group. For more information, see <a
+  /// nodes in the managed node group. For more information, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">Amazon
   /// EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide for
   /// Linux Instances</i>.
   final String? ec2SshKey;
 
-  /// The security groups that are allowed SSH access (port 22) to the worker
-  /// nodes. If you specify an Amazon EC2 SSH key but do not specify a source
-  /// security group when you create a managed node group, then port 22 on the
-  /// worker nodes is opened to the internet (0.0.0.0/0). For more information,
-  /// see <a
+  /// The security groups that are allowed SSH access (port 22) to the nodes. If
+  /// you specify an Amazon EC2 SSH key but do not specify a source security group
+  /// when you create a managed node group, then port 22 on the nodes is opened to
+  /// the internet (0.0.0.0/0). For more information, see <a
   /// href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html">Security
   /// Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User
   /// Guide</i>.
@@ -3975,6 +4555,75 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+}
+
+/// A property that allows a node to repel a set of pods.
+class Taint {
+  /// The effect of the taint.
+  final TaintEffect? effect;
+
+  /// The key of the taint.
+  final String? key;
+
+  /// The value of the taint.
+  final String? value;
+
+  Taint({
+    this.effect,
+    this.key,
+    this.value,
+  });
+  factory Taint.fromJson(Map<String, dynamic> json) {
+    return Taint(
+      effect: (json['effect'] as String?)?.toTaintEffect(),
+      key: json['key'] as String?,
+      value: json['value'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effect = this.effect;
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (effect != null) 'effect': effect.toValue(),
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
+}
+
+enum TaintEffect {
+  noSchedule,
+  noExecute,
+  preferNoSchedule,
+}
+
+extension on TaintEffect {
+  String toValue() {
+    switch (this) {
+      case TaintEffect.noSchedule:
+        return 'NO_SCHEDULE';
+      case TaintEffect.noExecute:
+        return 'NO_EXECUTE';
+      case TaintEffect.preferNoSchedule:
+        return 'PREFER_NO_SCHEDULE';
+    }
+  }
+}
+
+extension on String {
+  TaintEffect toTaintEffect() {
+    switch (this) {
+      case 'NO_SCHEDULE':
+        return TaintEffect.noSchedule;
+      case 'NO_EXECUTE':
+        return TaintEffect.noExecute;
+      case 'PREFER_NO_SCHEDULE':
+        return TaintEffect.preferNoSchedule;
+    }
+    throw Exception('$this is not known in enum TaintEffect');
   }
 }
 
@@ -4158,13 +4807,21 @@ enum UpdateParamType {
   desiredSize,
   labelsToAdd,
   labelsToRemove,
+  taintsToAdd,
+  taintsToRemove,
   maxSize,
   minSize,
   releaseVersion,
   publicAccessCidrs,
+  launchTemplateName,
+  launchTemplateVersion,
+  identityProviderConfig,
+  encryptionConfig,
   addonVersion,
   serviceAccountRoleArn,
   resolveConflicts,
+  maxUnavailable,
+  maxUnavailablePercentage,
 }
 
 extension on UpdateParamType {
@@ -4186,6 +4843,10 @@ extension on UpdateParamType {
         return 'LabelsToAdd';
       case UpdateParamType.labelsToRemove:
         return 'LabelsToRemove';
+      case UpdateParamType.taintsToAdd:
+        return 'TaintsToAdd';
+      case UpdateParamType.taintsToRemove:
+        return 'TaintsToRemove';
       case UpdateParamType.maxSize:
         return 'MaxSize';
       case UpdateParamType.minSize:
@@ -4194,12 +4855,24 @@ extension on UpdateParamType {
         return 'ReleaseVersion';
       case UpdateParamType.publicAccessCidrs:
         return 'PublicAccessCidrs';
+      case UpdateParamType.launchTemplateName:
+        return 'LaunchTemplateName';
+      case UpdateParamType.launchTemplateVersion:
+        return 'LaunchTemplateVersion';
+      case UpdateParamType.identityProviderConfig:
+        return 'IdentityProviderConfig';
+      case UpdateParamType.encryptionConfig:
+        return 'EncryptionConfig';
       case UpdateParamType.addonVersion:
         return 'AddonVersion';
       case UpdateParamType.serviceAccountRoleArn:
         return 'ServiceAccountRoleArn';
       case UpdateParamType.resolveConflicts:
         return 'ResolveConflicts';
+      case UpdateParamType.maxUnavailable:
+        return 'MaxUnavailable';
+      case UpdateParamType.maxUnavailablePercentage:
+        return 'MaxUnavailablePercentage';
     }
   }
 }
@@ -4223,6 +4896,10 @@ extension on String {
         return UpdateParamType.labelsToAdd;
       case 'LabelsToRemove':
         return UpdateParamType.labelsToRemove;
+      case 'TaintsToAdd':
+        return UpdateParamType.taintsToAdd;
+      case 'TaintsToRemove':
+        return UpdateParamType.taintsToRemove;
       case 'MaxSize':
         return UpdateParamType.maxSize;
       case 'MinSize':
@@ -4231,12 +4908,24 @@ extension on String {
         return UpdateParamType.releaseVersion;
       case 'PublicAccessCidrs':
         return UpdateParamType.publicAccessCidrs;
+      case 'LaunchTemplateName':
+        return UpdateParamType.launchTemplateName;
+      case 'LaunchTemplateVersion':
+        return UpdateParamType.launchTemplateVersion;
+      case 'IdentityProviderConfig':
+        return UpdateParamType.identityProviderConfig;
+      case 'EncryptionConfig':
+        return UpdateParamType.encryptionConfig;
       case 'AddonVersion':
         return UpdateParamType.addonVersion;
       case 'ServiceAccountRoleArn':
         return UpdateParamType.serviceAccountRoleArn;
       case 'ResolveConflicts':
         return UpdateParamType.resolveConflicts;
+      case 'MaxUnavailable':
+        return UpdateParamType.maxUnavailable;
+      case 'MaxUnavailablePercentage':
+        return UpdateParamType.maxUnavailablePercentage;
     }
     throw Exception('$this is not known in enum UpdateParamType');
   }
@@ -4280,11 +4969,36 @@ extension on String {
   }
 }
 
+/// An object representing the details of an update to a taints payload.
+class UpdateTaintsPayload {
+  /// Kubernetes taints to be added or updated.
+  final List<Taint>? addOrUpdateTaints;
+
+  /// Kubernetes taints to be removed.
+  final List<Taint>? removeTaints;
+
+  UpdateTaintsPayload({
+    this.addOrUpdateTaints,
+    this.removeTaints,
+  });
+  Map<String, dynamic> toJson() {
+    final addOrUpdateTaints = this.addOrUpdateTaints;
+    final removeTaints = this.removeTaints;
+    return {
+      if (addOrUpdateTaints != null) 'addOrUpdateTaints': addOrUpdateTaints,
+      if (removeTaints != null) 'removeTaints': removeTaints,
+    };
+  }
+}
+
 enum UpdateType {
   versionUpdate,
   endpointAccessUpdate,
   loggingUpdate,
   configUpdate,
+  associateIdentityProviderConfig,
+  disassociateIdentityProviderConfig,
+  associateEncryptionConfig,
   addonUpdate,
 }
 
@@ -4299,6 +5013,12 @@ extension on UpdateType {
         return 'LoggingUpdate';
       case UpdateType.configUpdate:
         return 'ConfigUpdate';
+      case UpdateType.associateIdentityProviderConfig:
+        return 'AssociateIdentityProviderConfig';
+      case UpdateType.disassociateIdentityProviderConfig:
+        return 'DisassociateIdentityProviderConfig';
+      case UpdateType.associateEncryptionConfig:
+        return 'AssociateEncryptionConfig';
       case UpdateType.addonUpdate:
         return 'AddonUpdate';
     }
@@ -4316,6 +5036,12 @@ extension on String {
         return UpdateType.loggingUpdate;
       case 'ConfigUpdate':
         return UpdateType.configUpdate;
+      case 'AssociateIdentityProviderConfig':
+        return UpdateType.associateIdentityProviderConfig;
+      case 'DisassociateIdentityProviderConfig':
+        return UpdateType.disassociateIdentityProviderConfig;
+      case 'AssociateEncryptionConfig':
+        return UpdateType.associateEncryptionConfig;
       case 'AddonUpdate':
         return UpdateType.addonUpdate;
     }
@@ -4331,9 +5057,9 @@ class VpcConfigRequest {
   /// Kubernetes API requests from within your cluster's VPC use the private VPC
   /// endpoint. The default value for this parameter is <code>false</code>, which
   /// disables private access for your Kubernetes API server. If you disable
-  /// private access and you have worker nodes or AWS Fargate pods in the cluster,
-  /// then ensure that <code>publicAccessCidrs</code> includes the necessary CIDR
-  /// blocks for communication with the worker nodes or Fargate pods. For more
+  /// private access and you have nodes or AWS Fargate pods in the cluster, then
+  /// ensure that <code>publicAccessCidrs</code> includes the necessary CIDR
+  /// blocks for communication with the nodes or Fargate pods. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
   /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
@@ -4355,8 +5081,8 @@ class VpcConfigRequest {
   /// API server endpoint. Communication to the endpoint from addresses outside of
   /// the CIDR blocks that you specify is denied. The default value is
   /// <code>0.0.0.0/0</code>. If you've disabled private endpoint access and you
-  /// have worker nodes or AWS Fargate pods in the cluster, then ensure that you
-  /// specify the necessary CIDR blocks. For more information, see <a
+  /// have nodes or AWS Fargate pods in the cluster, then ensure that you specify
+  /// the necessary CIDR blocks. For more information, see <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
   /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
   /// Guide</i> </i>.
@@ -4364,7 +5090,7 @@ class VpcConfigRequest {
 
   /// Specify one or more security groups for the cross-account elastic network
   /// interfaces that Amazon EKS creates to use to allow communication between
-  /// your worker nodes and the Kubernetes control plane. If you don't specify any
+  /// your nodes and the Kubernetes control plane. If you don't specify any
   /// security groups, then familiarize yourself with the difference between
   /// Amazon EKS defaults for clusters deployed with Kubernetes:
   ///
@@ -4382,9 +5108,9 @@ class VpcConfigRequest {
   /// Guide</i> </i>.
   final List<String>? securityGroupIds;
 
-  /// Specify subnets for your Amazon EKS worker nodes. Amazon EKS creates
-  /// cross-account elastic network interfaces in these subnets to allow
-  /// communication between your worker nodes and the Kubernetes control plane.
+  /// Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account
+  /// elastic network interfaces in these subnets to allow communication between
+  /// your nodes and the Kubernetes control plane.
   final List<String>? subnetIds;
 
   VpcConfigRequest({
@@ -4423,9 +5149,9 @@ class VpcConfigResponse {
   /// is enabled. If the Amazon EKS private API server endpoint is enabled,
   /// Kubernetes API requests that originate from within your cluster's VPC use
   /// the private VPC endpoint instead of traversing the internet. If this value
-  /// is disabled and you have worker nodes or AWS Fargate pods in the cluster,
-  /// then ensure that <code>publicAccessCidrs</code> includes the necessary CIDR
-  /// blocks for communication with the worker nodes or Fargate pods. For more
+  /// is disabled and you have nodes or AWS Fargate pods in the cluster, then
+  /// ensure that <code>publicAccessCidrs</code> includes the necessary CIDR
+  /// blocks for communication with the nodes or Fargate pods. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
   /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
@@ -4442,7 +5168,7 @@ class VpcConfigResponse {
   /// API server endpoint. Communication to the endpoint from addresses outside of
   /// the listed CIDR blocks is denied. The default value is
   /// <code>0.0.0.0/0</code>. If you've disabled private endpoint access and you
-  /// have worker nodes or AWS Fargate pods in the cluster, then ensure that the
+  /// have nodes or AWS Fargate pods in the cluster, then ensure that the
   /// necessary CIDR blocks are listed. For more information, see <a
   /// href="https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html">Amazon
   /// EKS Cluster Endpoint Access Control</a> in the <i> <i>Amazon EKS User
@@ -4450,8 +5176,8 @@ class VpcConfigResponse {
   final List<String>? publicAccessCidrs;
 
   /// The security groups associated with the cross-account elastic network
-  /// interfaces that are used to allow communication between your worker nodes
-  /// and the Kubernetes control plane.
+  /// interfaces that are used to allow communication between your nodes and the
+  /// Kubernetes control plane.
   final List<String>? securityGroupIds;
 
   /// The subnets associated with your cluster.
@@ -4488,6 +5214,39 @@ class VpcConfigResponse {
           .toList(),
       vpcId: json['vpcId'] as String?,
     );
+  }
+}
+
+enum ConfigStatus {
+  creating,
+  deleting,
+  active,
+}
+
+extension on ConfigStatus {
+  String toValue() {
+    switch (this) {
+      case ConfigStatus.creating:
+        return 'CREATING';
+      case ConfigStatus.deleting:
+        return 'DELETING';
+      case ConfigStatus.active:
+        return 'ACTIVE';
+    }
+  }
+}
+
+extension on String {
+  ConfigStatus toConfigStatus() {
+    switch (this) {
+      case 'CREATING':
+        return ConfigStatus.creating;
+      case 'DELETING':
+        return ConfigStatus.deleting;
+      case 'ACTIVE':
+        return ConfigStatus.active;
+    }
+    throw Exception('$this is not known in enum ConfigStatus');
   }
 }
 

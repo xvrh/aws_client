@@ -884,26 +884,37 @@ class Channel {
 class CmafEncryption {
   final SpekeKeyProvider spekeKeyProvider;
 
+  /// An optional 128-bit, 16-byte hex value represented by a 32-character string,
+  /// used in conjunction with the key for encrypting blocks. If you don't specify
+  /// a value, then MediaPackage creates the constant initialization vector (IV).
+  final String? constantInitializationVector;
+
   /// Time (in seconds) between each encryption key rotation.
   final int? keyRotationIntervalSeconds;
 
   CmafEncryption({
     required this.spekeKeyProvider,
+    this.constantInitializationVector,
     this.keyRotationIntervalSeconds,
   });
   factory CmafEncryption.fromJson(Map<String, dynamic> json) {
     return CmafEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
           json['spekeKeyProvider'] as Map<String, dynamic>),
+      constantInitializationVector:
+          json['constantInitializationVector'] as String?,
       keyRotationIntervalSeconds: json['keyRotationIntervalSeconds'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final spekeKeyProvider = this.spekeKeyProvider;
+    final constantInitializationVector = this.constantInitializationVector;
     final keyRotationIntervalSeconds = this.keyRotationIntervalSeconds;
     return {
       'spekeKeyProvider': spekeKeyProvider,
+      if (constantInitializationVector != null)
+        'constantInitializationVector': constantInitializationVector,
       if (keyRotationIntervalSeconds != null)
         'keyRotationIntervalSeconds': keyRotationIntervalSeconds,
     };
@@ -1672,6 +1683,48 @@ class EgressAccessLogs {
     final logGroupName = this.logGroupName;
     return {
       if (logGroupName != null) 'logGroupName': logGroupName,
+    };
+  }
+}
+
+/// Use encryptionContractConfiguration to configure one or more content
+/// encryption keys for your endpoints that use SPEKE 2.0.
+/// The encryption contract defines which content keys are used to encrypt the
+/// audio and video tracks in your stream.
+/// To configure the encryption contract, specify which audio and video
+/// encryption presets to use.
+/// Note the following considerations when using
+/// encryptionContractConfiguration:
+/// encryptionContractConfiguration can be used for DASH endpoints that use
+/// SPEKE 2.0. SPEKE 2.0 relies on the CPIX 2.3 specification.
+/// You must disable key rotation for this endpoint by setting
+/// keyRotationIntervalSeconds to 0.
+class EncryptionContractConfiguration {
+  /// A collection of audio encryption presets.
+  final PresetSpeke20Audio presetSpeke20Audio;
+
+  /// A collection of video encryption presets.
+  final PresetSpeke20Video presetSpeke20Video;
+
+  EncryptionContractConfiguration({
+    required this.presetSpeke20Audio,
+    required this.presetSpeke20Video,
+  });
+  factory EncryptionContractConfiguration.fromJson(Map<String, dynamic> json) {
+    return EncryptionContractConfiguration(
+      presetSpeke20Audio:
+          (json['presetSpeke20Audio'] as String).toPresetSpeke20Audio(),
+      presetSpeke20Video:
+          (json['presetSpeke20Video'] as String).toPresetSpeke20Video(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final presetSpeke20Audio = this.presetSpeke20Audio;
+    final presetSpeke20Video = this.presetSpeke20Video;
+    return {
+      'presetSpeke20Audio': presetSpeke20Audio.toValue(),
+      'presetSpeke20Video': presetSpeke20Video.toValue(),
     };
   }
 }
@@ -2531,6 +2584,52 @@ extension on String {
   }
 }
 
+enum PresetSpeke20Audio {
+  presetAudio_1,
+}
+
+extension on PresetSpeke20Audio {
+  String toValue() {
+    switch (this) {
+      case PresetSpeke20Audio.presetAudio_1:
+        return 'PRESET-AUDIO-1';
+    }
+  }
+}
+
+extension on String {
+  PresetSpeke20Audio toPresetSpeke20Audio() {
+    switch (this) {
+      case 'PRESET-AUDIO-1':
+        return PresetSpeke20Audio.presetAudio_1;
+    }
+    throw Exception('$this is not known in enum PresetSpeke20Audio');
+  }
+}
+
+enum PresetSpeke20Video {
+  presetVideo_1,
+}
+
+extension on PresetSpeke20Video {
+  String toValue() {
+    switch (this) {
+      case PresetSpeke20Video.presetVideo_1:
+        return 'PRESET-VIDEO-1';
+    }
+  }
+}
+
+extension on String {
+  PresetSpeke20Video toPresetSpeke20Video() {
+    switch (this) {
+      case 'PRESET-VIDEO-1':
+        return PresetSpeke20Video.presetVideo_1;
+    }
+    throw Exception('$this is not known in enum PresetSpeke20Video');
+  }
+}
+
 enum Profile {
   none,
   hbbtv_1_5,
@@ -2742,6 +2841,7 @@ class SpekeKeyProvider {
   /// that MediaPackage will use for enforcing secure end-to-end data
   /// transfer with the key provider service.
   final String? certificateArn;
+  final EncryptionContractConfiguration? encryptionContractConfiguration;
 
   SpekeKeyProvider({
     required this.resourceId,
@@ -2749,6 +2849,7 @@ class SpekeKeyProvider {
     required this.systemIds,
     required this.url,
     this.certificateArn,
+    this.encryptionContractConfiguration,
   });
   factory SpekeKeyProvider.fromJson(Map<String, dynamic> json) {
     return SpekeKeyProvider(
@@ -2760,6 +2861,12 @@ class SpekeKeyProvider {
           .toList(),
       url: json['url'] as String,
       certificateArn: json['certificateArn'] as String?,
+      encryptionContractConfiguration:
+          json['encryptionContractConfiguration'] != null
+              ? EncryptionContractConfiguration.fromJson(
+                  json['encryptionContractConfiguration']
+                      as Map<String, dynamic>)
+              : null,
     );
   }
 
@@ -2769,12 +2876,16 @@ class SpekeKeyProvider {
     final systemIds = this.systemIds;
     final url = this.url;
     final certificateArn = this.certificateArn;
+    final encryptionContractConfiguration =
+        this.encryptionContractConfiguration;
     return {
       'resourceId': resourceId,
       'roleArn': roleArn,
       'systemIds': systemIds,
       'url': url,
       if (certificateArn != null) 'certificateArn': certificateArn,
+      if (encryptionContractConfiguration != null)
+        'encryptionContractConfiguration': encryptionContractConfiguration,
     };
   }
 }

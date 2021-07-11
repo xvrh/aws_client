@@ -19,10 +19,11 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// EC2 Image Builder is a fully managed AWS service that makes it easier to
-/// automate the creation, management, and deployment of customized, secure, and
-/// up-to-date "golden" server images that are pre-installed and pre-configured
-/// with software and settings to meet specific IT standards.
+/// EC2 Image Builder is a fully managed Amazon Web Services service that makes
+/// it easier to automate the creation, management, and deployment of
+/// customized, secure, and up-to-date "golden" server images that are
+/// pre-installed and pre-configured with software and settings to meet specific
+/// IT standards.
 class Imagebuilder {
   final _s.RestJsonProtocol _protocol;
   Imagebuilder({
@@ -64,12 +65,6 @@ class Imagebuilder {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(imageBuildVersionArn, 'imageBuildVersionArn');
-    _s.validateStringPattern(
-      'imageBuildVersionArn',
-      imageBuildVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -143,10 +138,11 @@ class Imagebuilder {
   /// The tags of the component.
   ///
   /// Parameter [uri] :
-  /// The uri of the component. Must be an S3 URL and the requester must have
-  /// permission to access the S3 bucket. If you use S3, you can specify
-  /// component content up to your service quota. Either <code>data</code> or
-  /// <code>uri</code> can be used to specify the data within the component.
+  /// The uri of the component. Must be an Amazon S3 URL and the requester must
+  /// have permission to access the Amazon S3 bucket. If you use Amazon S3, you
+  /// can specify component content up to your service quota. Either
+  /// <code>data</code> or <code>uri</code> can be used to specify the data
+  /// within the component.
   Future<CreateComponentResponse> createComponent({
     required String name,
     required Platform platform,
@@ -161,20 +157,8 @@ class Imagebuilder {
     String? uri,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(platform, 'platform');
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringPattern(
-      'semanticVersion',
-      semanticVersion,
-      r'''^[0-9]+\.[0-9]+\.[0-9]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'changeDescription',
       changeDescription,
@@ -192,11 +176,6 @@ class Imagebuilder {
       data,
       1,
       16000,
-    );
-    _s.validateStringPattern(
-      'data',
-      data,
-      r'''[^\x00]+''',
     );
     _s.validateStringLength(
       'description',
@@ -254,9 +233,6 @@ class Imagebuilder {
   /// Parameter [containerType] :
   /// The type of container to create.
   ///
-  /// Parameter [dockerfileTemplateData] :
-  /// The Dockerfile template used to build your image as an inline data blob.
-  ///
   /// Parameter [name] :
   /// The name of the container recipe.
   ///
@@ -276,12 +252,19 @@ class Imagebuilder {
   /// Parameter [description] :
   /// The description of the container recipe.
   ///
+  /// Parameter [dockerfileTemplateData] :
+  /// The Dockerfile template used to build your image as an inline data blob.
+  ///
   /// Parameter [dockerfileTemplateUri] :
-  /// The S3 URI for the Dockerfile that will be used to build your container
-  /// image.
+  /// The Amazon S3 URI for the Dockerfile that will be used to build your
+  /// container image.
   ///
   /// Parameter [imageOsVersionOverride] :
   /// Specifies the operating system version for the source image.
+  ///
+  /// Parameter [instanceConfiguration] :
+  /// A group of options that can be used to configure an instance for building
+  /// and testing container images.
   ///
   /// Parameter [kmsKeyId] :
   /// Identifies which KMS key is used to encrypt the container image.
@@ -298,15 +281,16 @@ class Imagebuilder {
   Future<CreateContainerRecipeResponse> createContainerRecipe({
     required List<ComponentConfiguration> components,
     required ContainerType containerType,
-    required String dockerfileTemplateData,
     required String name,
     required String parentImage,
     required String semanticVersion,
     required TargetContainerRepository targetRepository,
     String? clientToken,
     String? description,
+    String? dockerfileTemplateData,
     String? dockerfileTemplateUri,
     String? imageOsVersionOverride,
+    InstanceConfiguration? instanceConfiguration,
     String? kmsKeyId,
     Platform? platformOverride,
     Map<String, String>? tags,
@@ -314,28 +298,7 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(components, 'components');
     ArgumentError.checkNotNull(containerType, 'containerType');
-    ArgumentError.checkNotNull(
-        dockerfileTemplateData, 'dockerfileTemplateData');
-    _s.validateStringLength(
-      'dockerfileTemplateData',
-      dockerfileTemplateData,
-      1,
-      16000,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dockerfileTemplateData',
-      dockerfileTemplateData,
-      r'''[^\x00]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parentImage, 'parentImage');
     _s.validateStringLength(
       'parentImage',
@@ -345,12 +308,6 @@ class Imagebuilder {
       isRequired: true,
     );
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringPattern(
-      'semanticVersion',
-      semanticVersion,
-      r'''^[0-9]+\.[0-9]+\.[0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetRepository, 'targetRepository');
     _s.validateStringLength(
       'clientToken',
@@ -363,6 +320,12 @@ class Imagebuilder {
       description,
       1,
       1024,
+    );
+    _s.validateStringLength(
+      'dockerfileTemplateData',
+      dockerfileTemplateData,
+      1,
+      16000,
     );
     _s.validateStringLength(
       'imageOsVersionOverride',
@@ -385,17 +348,20 @@ class Imagebuilder {
     final $payload = <String, dynamic>{
       'components': components,
       'containerType': containerType.toValue(),
-      'dockerfileTemplateData': dockerfileTemplateData,
       'name': name,
       'parentImage': parentImage,
       'semanticVersion': semanticVersion,
       'targetRepository': targetRepository,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (description != null) 'description': description,
+      if (dockerfileTemplateData != null)
+        'dockerfileTemplateData': dockerfileTemplateData,
       if (dockerfileTemplateUri != null)
         'dockerfileTemplateUri': dockerfileTemplateUri,
       if (imageOsVersionOverride != null)
         'imageOsVersionOverride': imageOsVersionOverride,
+      if (instanceConfiguration != null)
+        'instanceConfiguration': instanceConfiguration,
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
       if (platformOverride != null)
         'platformOverride': platformOverride.toValue(),
@@ -450,12 +416,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(distributions, 'distributions');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -486,7 +446,8 @@ class Imagebuilder {
 
   /// Creates a new image. This request will create a new image along with all
   /// of the configured output resources defined in the distribution
-  /// configuration.
+  /// configuration. You must specify exactly one recipe for your image, using
+  /// either a ContainerRecipeArn or an ImageRecipeArn.
   ///
   /// May throw [ServiceException].
   /// May throw [ClientException].
@@ -540,32 +501,11 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       36,
-    );
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-    );
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-    );
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
     );
     final $payload = <String, dynamic>{
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
@@ -661,45 +601,18 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       36,
     );
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-    );
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
     );
     final $payload = <String, dynamic>{
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
@@ -752,7 +665,7 @@ class Imagebuilder {
   /// The parent image of the image recipe. The value of the string can be the
   /// ARN of the parent image or an AMI ID. The format for the ARN follows this
   /// example:
-  /// <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/xxxx.x.x</code>.
+  /// <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>.
   /// You can provide the specific version that you want to use, or you can use
   /// a wildcard in all of the fields. If you enter an AMI ID for the string
   /// value, you must have access to the AMI, and the AMI must be in the same
@@ -760,6 +673,9 @@ class Imagebuilder {
   ///
   /// Parameter [semanticVersion] :
   /// The semantic version of the image recipe.
+  ///
+  /// Parameter [additionalInstanceConfiguration] :
+  /// Specify additional settings and launch scripts for your build instances.
   ///
   /// Parameter [blockDeviceMappings] :
   /// The block device mappings of the image recipe.
@@ -774,12 +690,13 @@ class Imagebuilder {
   /// The tags of the image recipe.
   ///
   /// Parameter [workingDirectory] :
-  /// The working directory to be used during build and test workflows.
+  /// The working directory used during build and test workflows.
   Future<CreateImageRecipeResponse> createImageRecipe({
     required List<ComponentConfiguration> components,
     required String name,
     required String parentImage,
     required String semanticVersion,
+    AdditionalInstanceConfiguration? additionalInstanceConfiguration,
     List<InstanceBlockDeviceMapping>? blockDeviceMappings,
     String? clientToken,
     String? description,
@@ -788,12 +705,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(components, 'components');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parentImage, 'parentImage');
     _s.validateStringLength(
       'parentImage',
@@ -803,12 +714,6 @@ class Imagebuilder {
       isRequired: true,
     );
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringPattern(
-      'semanticVersion',
-      semanticVersion,
-      r'''^[0-9]+\.[0-9]+\.[0-9]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -832,6 +737,8 @@ class Imagebuilder {
       'name': name,
       'parentImage': parentImage,
       'semanticVersion': semanticVersion,
+      if (additionalInstanceConfiguration != null)
+        'additionalInstanceConfiguration': additionalInstanceConfiguration,
       if (blockDeviceMappings != null)
         'blockDeviceMappings': blockDeviceMappings,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -865,7 +772,7 @@ class Imagebuilder {
   ///
   /// Parameter [instanceProfileName] :
   /// The instance profile to associate with the instance used to customize your
-  /// EC2 AMI.
+  /// Amazon EC2 AMI.
   ///
   /// Parameter [name] :
   /// The name of the infrastructure configuration.
@@ -893,14 +800,14 @@ class Imagebuilder {
   ///
   /// Parameter [securityGroupIds] :
   /// The security group IDs to associate with the instance used to customize
-  /// your EC2 AMI.
+  /// your Amazon EC2 AMI.
   ///
   /// Parameter [snsTopicArn] :
   /// The SNS topic on which to send image build events.
   ///
   /// Parameter [subnetId] :
-  /// The subnet ID in which to place the instance used to customize your EC2
-  /// AMI.
+  /// The subnet ID in which to place the instance used to customize your Amazon
+  /// EC2 AMI.
   ///
   /// Parameter [tags] :
   /// The tags of the infrastructure configuration.
@@ -931,16 +838,10 @@ class Imagebuilder {
       'instanceProfileName',
       instanceProfileName,
       1,
-      1024,
+      256,
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -958,11 +859,6 @@ class Imagebuilder {
       keyPair,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'snsTopicArn',
-      snsTopicArn,
-      r'''^arn:aws[^:]*:sns:[^:]+:\d{12}:[a-zA-Z0-9-_]{1,256}$''',
     );
     _s.validateStringLength(
       'subnetId',
@@ -1012,12 +908,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         componentBuildVersionArn, 'componentBuildVersionArn');
-    _s.validateStringPattern(
-      'componentBuildVersionArn',
-      componentBuildVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):component/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'componentBuildVersionArn': [componentBuildVersionArn],
     };
@@ -1047,12 +937,6 @@ class Imagebuilder {
     required String containerRecipeArn,
   }) async {
     ArgumentError.checkNotNull(containerRecipeArn, 'containerRecipeArn');
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'containerRecipeArn': [containerRecipeArn],
     };
@@ -1085,12 +969,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         distributionConfigurationArn, 'distributionConfigurationArn');
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'distributionConfigurationArn': [distributionConfigurationArn],
     };
@@ -1120,12 +998,6 @@ class Imagebuilder {
     required String imageBuildVersionArn,
   }) async {
     ArgumentError.checkNotNull(imageBuildVersionArn, 'imageBuildVersionArn');
-    _s.validateStringPattern(
-      'imageBuildVersionArn',
-      imageBuildVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageBuildVersionArn': [imageBuildVersionArn],
     };
@@ -1155,12 +1027,6 @@ class Imagebuilder {
     required String imagePipelineArn,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringPattern(
-      'imagePipelineArn',
-      imagePipelineArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-pipeline/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imagePipelineArn': [imagePipelineArn],
     };
@@ -1190,12 +1056,6 @@ class Imagebuilder {
     required String imageRecipeArn,
   }) async {
     ArgumentError.checkNotNull(imageRecipeArn, 'imageRecipeArn');
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageRecipeArn': [imageRecipeArn],
     };
@@ -1228,12 +1088,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'infrastructureConfigurationArn': [infrastructureConfigurationArn],
     };
@@ -1264,12 +1118,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         componentBuildVersionArn, 'componentBuildVersionArn');
-    _s.validateStringPattern(
-      'componentBuildVersionArn',
-      componentBuildVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):component/[a-z0-9-_]+/(?:(?:(\d+|x)\.(\d+|x)\.(\d+|x))|(?:\d+\.\d+\.\d+/\d+))$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'componentBuildVersionArn': [componentBuildVersionArn],
     };
@@ -1299,12 +1147,6 @@ class Imagebuilder {
     required String componentArn,
   }) async {
     ArgumentError.checkNotNull(componentArn, 'componentArn');
-    _s.validateStringPattern(
-      'componentArn',
-      componentArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):component/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'componentArn': [componentArn],
     };
@@ -1333,12 +1175,6 @@ class Imagebuilder {
     required String containerRecipeArn,
   }) async {
     ArgumentError.checkNotNull(containerRecipeArn, 'containerRecipeArn');
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'containerRecipeArn': [containerRecipeArn],
     };
@@ -1368,12 +1204,6 @@ class Imagebuilder {
     required String containerRecipeArn,
   }) async {
     ArgumentError.checkNotNull(containerRecipeArn, 'containerRecipeArn');
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'containerRecipeArn': [containerRecipeArn],
     };
@@ -1404,12 +1234,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         distributionConfigurationArn, 'distributionConfigurationArn');
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'distributionConfigurationArn': [distributionConfigurationArn],
     };
@@ -1438,12 +1262,6 @@ class Imagebuilder {
     required String imageBuildVersionArn,
   }) async {
     ArgumentError.checkNotNull(imageBuildVersionArn, 'imageBuildVersionArn');
-    _s.validateStringPattern(
-      'imageBuildVersionArn',
-      imageBuildVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/(?:(?:(\d+|x)\.(\d+|x)\.(\d+|x))|(?:\d+\.\d+\.\d+/\d+))$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageBuildVersionArn': [imageBuildVersionArn],
     };
@@ -1473,12 +1291,6 @@ class Imagebuilder {
     required String imagePipelineArn,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringPattern(
-      'imagePipelineArn',
-      imagePipelineArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-pipeline/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imagePipelineArn': [imagePipelineArn],
     };
@@ -1508,12 +1320,6 @@ class Imagebuilder {
     required String imageArn,
   }) async {
     ArgumentError.checkNotNull(imageArn, 'imageArn');
-    _s.validateStringPattern(
-      'imageArn',
-      imageArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageArn': [imageArn],
     };
@@ -1543,12 +1349,6 @@ class Imagebuilder {
     required String imageRecipeArn,
   }) async {
     ArgumentError.checkNotNull(imageRecipeArn, 'imageRecipeArn');
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageRecipeArn': [imageRecipeArn],
     };
@@ -1578,12 +1378,6 @@ class Imagebuilder {
     required String imageRecipeArn,
   }) async {
     ArgumentError.checkNotNull(imageRecipeArn, 'imageRecipeArn');
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'imageRecipeArn': [imageRecipeArn],
     };
@@ -1615,12 +1409,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'infrastructureConfigurationArn': [infrastructureConfigurationArn],
     };
@@ -1688,10 +1476,11 @@ class Imagebuilder {
   /// The tags of the component.
   ///
   /// Parameter [uri] :
-  /// The uri of the component. Must be an S3 URL and the requester must have
-  /// permission to access the S3 bucket. If you use S3, you can specify
-  /// component content up to your service quota. Either <code>data</code> or
-  /// <code>uri</code> can be used to specify the data within the component.
+  /// The uri of the component. Must be an Amazon S3 URL and the requester must
+  /// have permission to access the Amazon S3 bucket. If you use Amazon S3, you
+  /// can specify component content up to your service quota. Either
+  /// <code>data</code> or <code>uri</code> can be used to specify the data
+  /// within the component.
   Future<ImportComponentResponse> importComponent({
     required ComponentFormat format,
     required String name,
@@ -1708,20 +1497,8 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(format, 'format');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[-_A-Za-z-0-9][-_A-Za-z0-9 ]{1,126}[-_A-Za-z-0-9]$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(platform, 'platform');
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringPattern(
-      'semanticVersion',
-      semanticVersion,
-      r'''^[0-9]+\.[0-9]+\.[0-9]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
       'changeDescription',
@@ -1803,12 +1580,6 @@ class Imagebuilder {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(componentVersionArn, 'componentVersionArn');
-    _s.validateStringPattern(
-      'componentVersionArn',
-      componentVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):component/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2046,12 +1817,6 @@ class Imagebuilder {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(imageVersionArn, 'imageVersionArn');
-    _s.validateStringPattern(
-      'imageVersionArn',
-      imageVersionArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2077,6 +1842,61 @@ class Imagebuilder {
       exceptionFnMap: _exceptionFns,
     );
     return ListImageBuildVersionsResponse.fromJson(response);
+  }
+
+  /// List the Packages that are associated with an Image Build Version, as
+  /// determined by Amazon EC2 Systems Manager Inventory at build time.
+  ///
+  /// May throw [ServiceException].
+  /// May throw [ClientException].
+  /// May throw [ServiceUnavailableException].
+  /// May throw [InvalidRequestException].
+  /// May throw [InvalidPaginationTokenException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ForbiddenException].
+  /// May throw [CallRateLimitExceededException].
+  ///
+  /// Parameter [imageBuildVersionArn] :
+  /// Filter results for the ListImagePackages request by the Image Build
+  /// Version ARN
+  ///
+  /// Parameter [maxResults] :
+  /// The maxiumum number of results to return from the ListImagePackages
+  /// request.
+  ///
+  /// Parameter [nextToken] :
+  /// A token to specify where to start paginating. This is the NextToken from a
+  /// previously truncated response.
+  Future<ListImagePackagesResponse> listImagePackages({
+    required String imageBuildVersionArn,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(imageBuildVersionArn, 'imageBuildVersionArn');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      25,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      65535,
+    );
+    final $payload = <String, dynamic>{
+      'imageBuildVersionArn': imageBuildVersionArn,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/ListImagePackages',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListImagePackagesResponse.fromJson(response);
   }
 
   /// Returns a list of images created by the specified pipeline.
@@ -2110,12 +1930,6 @@ class Imagebuilder {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringPattern(
-      'imagePipelineArn',
-      imagePipelineArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-pipeline/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2384,12 +2198,6 @@ class Imagebuilder {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline)/[a-z0-9-_]+(?:/(?:(?:x|\d+)\.(?:x|\d+)\.(?:x|\d+))(?:/\d+)?)?$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2427,12 +2235,6 @@ class Imagebuilder {
     required String policy,
   }) async {
     ArgumentError.checkNotNull(componentArn, 'componentArn');
-    _s.validateStringPattern(
-      'componentArn',
-      componentArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):component/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
     _s.validateStringLength(
       'policy',
@@ -2484,12 +2286,6 @@ class Imagebuilder {
     required String policy,
   }) async {
     ArgumentError.checkNotNull(containerRecipeArn, 'containerRecipeArn');
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
     _s.validateStringLength(
       'policy',
@@ -2539,12 +2335,6 @@ class Imagebuilder {
     required String policy,
   }) async {
     ArgumentError.checkNotNull(imageArn, 'imageArn');
-    _s.validateStringPattern(
-      'imageArn',
-      imageArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image/[a-z0-9-_]+/\d+\.\d+\.\d+/\d+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
     _s.validateStringLength(
       'policy',
@@ -2595,12 +2385,6 @@ class Imagebuilder {
     required String policy,
   }) async {
     ArgumentError.checkNotNull(imageRecipeArn, 'imageRecipeArn');
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
     _s.validateStringLength(
       'policy',
@@ -2645,12 +2429,6 @@ class Imagebuilder {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringPattern(
-      'imagePipelineArn',
-      imagePipelineArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-pipeline/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
@@ -2686,12 +2464,6 @@ class Imagebuilder {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline)/[a-z0-9-_]+(?:/(?:(?:x|\d+)\.(?:x|\d+)\.(?:x|\d+))(?:/\d+)?)?$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -2720,12 +2492,6 @@ class Imagebuilder {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):(?:image-recipe|container-recipe|infrastructure-configuration|distribution-configuration|component|image|image-pipeline)/[a-z0-9-_]+(?:/(?:(?:x|\d+)\.(?:x|\d+)\.(?:x|\d+))(?:/\d+)?)?$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -2773,12 +2539,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         distributionConfigurationArn, 'distributionConfigurationArn');
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(distributions, 'distributions');
     _s.validateStringLength(
       'clientToken',
@@ -2807,8 +2567,13 @@ class Imagebuilder {
     return UpdateDistributionConfigurationResponse.fromJson(response);
   }
 
-  /// Updates a new image pipeline. Image pipelines enable you to automate the
+  /// Updates an image pipeline. Image pipelines enable you to automate the
   /// creation and distribution of images.
+  /// <note>
+  /// UpdateImagePipeline does not support selective updates for the pipeline.
+  /// You must specify all of the required properties in the update request, not
+  /// just the properties that have changed.
+  /// </note>
   ///
   /// May throw [ServiceException].
   /// May throw [ClientException].
@@ -2872,46 +2637,19 @@ class Imagebuilder {
     PipelineStatus? status,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringPattern(
-      'imagePipelineArn',
-      imagePipelineArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-pipeline/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       36,
     );
-    _s.validateStringPattern(
-      'containerRecipeArn',
-      containerRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):container-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'distributionConfigurationArn',
-      distributionConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):distribution-configuration/[a-z0-9-_]+$''',
-    );
-    _s.validateStringPattern(
-      'imageRecipeArn',
-      imageRecipeArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):image-recipe/[a-z0-9-_]+/\d+\.\d+\.\d+$''',
     );
     final $payload = <String, dynamic>{
       'imagePipelineArn': imagePipelineArn,
@@ -2957,7 +2695,7 @@ class Imagebuilder {
   ///
   /// Parameter [instanceProfileName] :
   /// The instance profile to associate with the instance used to customize your
-  /// EC2 AMI.
+  /// Amazon EC2 AMI.
   ///
   /// Parameter [clientToken] :
   /// The idempotency token used to make this request idempotent.
@@ -2982,13 +2720,14 @@ class Imagebuilder {
   ///
   /// Parameter [securityGroupIds] :
   /// The security group IDs to associate with the instance used to customize
-  /// your EC2 AMI.
+  /// your Amazon EC2 AMI.
   ///
   /// Parameter [snsTopicArn] :
   /// The SNS topic on which to send image build events.
   ///
   /// Parameter [subnetId] :
-  /// The subnet ID to place the instance used to customize your EC2 AMI in.
+  /// The subnet ID to place the instance used to customize your Amazon EC2 AMI
+  /// in.
   ///
   /// Parameter [terminateInstanceOnFailure] :
   /// The terminate instance on failure setting of the infrastructure
@@ -3012,18 +2751,12 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringPattern(
-      'infrastructureConfigurationArn',
-      infrastructureConfigurationArn,
-      r'''^arn:aws[^:]*:imagebuilder:[^:]+:(?:\d{12}|aws):infrastructure-configuration/[a-z0-9-_]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceProfileName, 'instanceProfileName');
     _s.validateStringLength(
       'instanceProfileName',
       instanceProfileName,
       1,
-      1024,
+      256,
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3043,11 +2776,6 @@ class Imagebuilder {
       keyPair,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'snsTopicArn',
-      snsTopicArn,
-      r'''^arn:aws[^:]*:sns:[^:]+:\d{12}:[a-zA-Z0-9-_]{1,256}$''',
     );
     _s.validateStringLength(
       'subnetId',
@@ -3080,22 +2808,66 @@ class Imagebuilder {
   }
 }
 
-/// Details of an EC2 AMI.
+/// In addition to your infrastruction configuration, these settings provide an
+/// extra layer of control over your build instances. For instances where Image
+/// Builder installs the SSM agent, you can choose whether to keep it for the
+/// AMI that you create. You can also specify commands to run on launch for all
+/// of your build instances.
+class AdditionalInstanceConfiguration {
+  /// Contains settings for the SSM agent on your build instance.
+  final SystemsManagerAgent? systemsManagerAgent;
+
+  /// Use this property to provide commands or a command script to run when you
+  /// launch your build instance.
+  /// <note>
+  /// The userDataOverride property replaces any commands that Image Builder might
+  /// have added to ensure that SSM is installed on your Linux build instance. If
+  /// you override the user data, make sure that you add commands to install SSM,
+  /// if it is not pre-installed on your source image.
+  /// </note>
+  final String? userDataOverride;
+
+  AdditionalInstanceConfiguration({
+    this.systemsManagerAgent,
+    this.userDataOverride,
+  });
+  factory AdditionalInstanceConfiguration.fromJson(Map<String, dynamic> json) {
+    return AdditionalInstanceConfiguration(
+      systemsManagerAgent: json['systemsManagerAgent'] != null
+          ? SystemsManagerAgent.fromJson(
+              json['systemsManagerAgent'] as Map<String, dynamic>)
+          : null,
+      userDataOverride: json['userDataOverride'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final systemsManagerAgent = this.systemsManagerAgent;
+    final userDataOverride = this.userDataOverride;
+    return {
+      if (systemsManagerAgent != null)
+        'systemsManagerAgent': systemsManagerAgent,
+      if (userDataOverride != null) 'userDataOverride': userDataOverride,
+    };
+  }
+}
+
+/// Details of an Amazon EC2 AMI.
 class Ami {
   /// The account ID of the owner of the AMI.
   final String? accountId;
 
-  /// The description of the EC2 AMI. Minimum and maximum length are in
+  /// The description of the Amazon EC2 AMI. Minimum and maximum length are in
   /// characters.
   final String? description;
 
-  /// The AMI ID of the EC2 AMI.
+  /// The AMI ID of the Amazon EC2 AMI.
   final String? image;
 
-  /// The name of the EC2 AMI.
+  /// The name of the Amazon EC2 AMI.
   final String? name;
 
-  /// The AWS Region of the EC2 AMI.
+  /// The Region of the Amazon EC2 AMI.
   final String? region;
   final ImageState? state;
 
@@ -3133,8 +2905,8 @@ class AmiDistributionConfiguration {
   /// The KMS key identifier used to encrypt the distributed image.
   final String? kmsKeyId;
 
-  /// Launch permissions can be used to configure which AWS accounts can use the
-  /// AMI to launch instances.
+  /// Launch permissions can be used to configure which accounts can use the AMI
+  /// to launch instances.
   final LaunchPermissionConfiguration? launchPermission;
 
   /// The name of the distribution configuration.
@@ -3241,6 +3013,10 @@ class Component {
   /// The owner of the component.
   final String? owner;
 
+  /// Contains parameter details for each of the parameters that are defined for
+  /// the component.
+  final List<ComponentParameterDetail>? parameters;
+
   /// The platform of the component.
   final Platform? platform;
 
@@ -3269,6 +3045,7 @@ class Component {
     this.kmsKeyId,
     this.name,
     this.owner,
+    this.parameters,
     this.platform,
     this.supportedOsVersions,
     this.tags,
@@ -3286,6 +3063,11 @@ class Component {
       kmsKeyId: json['kmsKeyId'] as String?,
       name: json['name'] as String?,
       owner: json['owner'] as String?,
+      parameters: (json['parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ComponentParameterDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
       platform: (json['platform'] as String?)?.toPlatform(),
       supportedOsVersions: (json['supportedOsVersions'] as List?)
           ?.whereNotNull()
@@ -3304,19 +3086,30 @@ class ComponentConfiguration {
   /// The Amazon Resource Name (ARN) of the component.
   final String componentArn;
 
+  /// A group of parameter settings that are used to configure the component for a
+  /// specific recipe.
+  final List<ComponentParameter>? parameters;
+
   ComponentConfiguration({
     required this.componentArn,
+    this.parameters,
   });
   factory ComponentConfiguration.fromJson(Map<String, dynamic> json) {
     return ComponentConfiguration(
       componentArn: json['componentArn'] as String,
+      parameters: (json['parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => ComponentParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final componentArn = this.componentArn;
+    final parameters = this.parameters;
     return {
       'componentArn': componentArn,
+      if (parameters != null) 'parameters': parameters,
     };
   }
 }
@@ -3341,6 +3134,73 @@ extension on String {
         return ComponentFormat.shell;
     }
     throw Exception('$this is not known in enum ComponentFormat');
+  }
+}
+
+/// Contains a key/value pair that sets the named component parameter.
+class ComponentParameter {
+  /// The name of the component parameter to set.
+  final String name;
+
+  /// Sets the value for the named component parameter.
+  final List<String> value;
+
+  ComponentParameter({
+    required this.name,
+    required this.value,
+  });
+  factory ComponentParameter.fromJson(Map<String, dynamic> json) {
+    return ComponentParameter(
+      name: json['name'] as String,
+      value: (json['value'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'name': name,
+      'value': value,
+    };
+  }
+}
+
+/// Defines a parameter that is used to provide configuration details for the
+/// component.
+class ComponentParameterDetail {
+  /// The name of this input parameter.
+  final String name;
+
+  /// The type of input this parameter provides. The currently supported value is
+  /// "string".
+  final String type;
+
+  /// The default value of this parameter if no input is provided.
+  final List<String>? defaultValue;
+
+  /// Describes this parameter.
+  final String? description;
+
+  ComponentParameterDetail({
+    required this.name,
+    required this.type,
+    this.defaultValue,
+    this.description,
+  });
+  factory ComponentParameterDetail.fromJson(Map<String, dynamic> json) {
+    return ComponentParameterDetail(
+      name: json['name'] as String,
+      type: json['type'] as String,
+      defaultValue: (json['defaultValue'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      description: json['description'] as String?,
+    );
   }
 }
 
@@ -3464,7 +3324,7 @@ class ComponentVersion {
   /// The platform of the component.
   final Platform? platform;
 
-  /// The operating system (OS) version supported by the component. If the OS
+  /// he operating system (OS) version supported by the component. If the OS
   /// information is available, a prefix match is performed against the parent
   /// image OS version during image recipe creation.
   final List<String>? supportedOsVersions;
@@ -3598,6 +3458,10 @@ class ContainerRecipe {
   /// A flag that indicates if the target container is encrypted.
   final bool? encrypted;
 
+  /// A group of options that can be used to configure an instance for building
+  /// and testing container images.
+  final InstanceConfiguration? instanceConfiguration;
+
   /// Identifies which KMS key is used to encrypt the container image for
   /// distribution to the target Region.
   final String? kmsKeyId;
@@ -3635,6 +3499,7 @@ class ContainerRecipe {
     this.description,
     this.dockerfileTemplateData,
     this.encrypted,
+    this.instanceConfiguration,
     this.kmsKeyId,
     this.name,
     this.owner,
@@ -3658,6 +3523,10 @@ class ContainerRecipe {
       description: json['description'] as String?,
       dockerfileTemplateData: json['dockerfileTemplateData'] as String?,
       encrypted: json['encrypted'] as bool?,
+      instanceConfiguration: json['instanceConfiguration'] != null
+          ? InstanceConfiguration.fromJson(
+              json['instanceConfiguration'] as Map<String, dynamic>)
+          : null,
       kmsKeyId: json['kmsKeyId'] as String?,
       name: json['name'] as String?,
       owner: json['owner'] as String?,
@@ -4096,12 +3965,16 @@ class Distribution {
   /// The target Region.
   final String region;
 
-  /// The specific AMI settings (for example, launch permissions, AMI tags).
+  /// The specific AMI settings; for example, launch permissions or AMI tags.
   final AmiDistributionConfiguration? amiDistributionConfiguration;
 
   /// Container distribution settings for encryption, licensing, and sharing in a
   /// specific Region.
   final ContainerDistributionConfiguration? containerDistributionConfiguration;
+
+  /// A group of launchTemplateConfiguration settings that apply to image
+  /// distribution for specified accounts.
+  final List<LaunchTemplateConfiguration>? launchTemplateConfigurations;
 
   /// The License Manager Configuration to associate with the AMI in the specified
   /// Region.
@@ -4111,6 +3984,7 @@ class Distribution {
     required this.region,
     this.amiDistributionConfiguration,
     this.containerDistributionConfiguration,
+    this.launchTemplateConfigurations,
     this.licenseConfigurationArns,
   });
   factory Distribution.fromJson(Map<String, dynamic> json) {
@@ -4126,6 +4000,12 @@ class Distribution {
                   json['containerDistributionConfiguration']
                       as Map<String, dynamic>)
               : null,
+      launchTemplateConfigurations: (json['launchTemplateConfigurations']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LaunchTemplateConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
       licenseConfigurationArns: (json['licenseConfigurationArns'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -4138,6 +4018,7 @@ class Distribution {
     final amiDistributionConfiguration = this.amiDistributionConfiguration;
     final containerDistributionConfiguration =
         this.containerDistributionConfiguration;
+    final launchTemplateConfigurations = this.launchTemplateConfigurations;
     final licenseConfigurationArns = this.licenseConfigurationArns;
     return {
       'region': region,
@@ -4146,6 +4027,8 @@ class Distribution {
       if (containerDistributionConfiguration != null)
         'containerDistributionConfiguration':
             containerDistributionConfiguration,
+      if (launchTemplateConfigurations != null)
+        'launchTemplateConfigurations': launchTemplateConfigurations,
       if (licenseConfigurationArns != null)
         'licenseConfigurationArns': licenseConfigurationArns,
     };
@@ -4169,7 +4052,8 @@ class DistributionConfiguration {
   /// The description of the distribution configuration.
   final String? description;
 
-  /// The distributions of the distribution configuration.
+  /// The distribution objects that apply Region-specific settings for the
+  /// deployment of the image to targeted Regions.
   final List<Distribution>? distributions;
 
   /// The name of the distribution configuration.
@@ -4326,6 +4210,7 @@ enum EbsVolumeType {
   io1,
   io2,
   gp2,
+  gp3,
   sc1,
   st1,
 }
@@ -4341,6 +4226,8 @@ extension on EbsVolumeType {
         return 'io2';
       case EbsVolumeType.gp2:
         return 'gp2';
+      case EbsVolumeType.gp3:
+        return 'gp3';
       case EbsVolumeType.sc1:
         return 'sc1';
       case EbsVolumeType.st1:
@@ -4360,6 +4247,8 @@ extension on String {
         return EbsVolumeType.io2;
       case 'gp2':
         return EbsVolumeType.gp2;
+      case 'gp3':
+        return EbsVolumeType.gp3;
       case 'sc1':
         return EbsVolumeType.sc1;
       case 'st1':
@@ -4749,6 +4638,27 @@ class Image {
   }
 }
 
+/// Represents a package installed on an Image Builder image.
+class ImagePackage {
+  /// The name of the package as reported to the operating system package manager.
+  final String? packageName;
+
+  /// The version of the package as reported to the operating system package
+  /// manager.
+  final String? packageVersion;
+
+  ImagePackage({
+    this.packageName,
+    this.packageVersion,
+  });
+  factory ImagePackage.fromJson(Map<String, dynamic> json) {
+    return ImagePackage(
+      packageName: json['packageName'] as String?,
+      packageVersion: json['packageVersion'] as String?,
+    );
+  }
+}
+
 /// Details of an image pipeline.
 class ImagePipeline {
   /// The Amazon Resource Name (ARN) of the image pipeline.
@@ -4862,6 +4772,12 @@ class ImagePipeline {
 
 /// An image recipe.
 class ImageRecipe {
+  /// Before you create a new AMI, Image Builder launches temporary Amazon EC2
+  /// instances to build and test your image configuration. Instance configuration
+  /// adds a layer of control over those instances. You can define settings and
+  /// add scripts to run when an instance is launched from your AMI.
+  final AdditionalInstanceConfiguration? additionalInstanceConfiguration;
+
   /// The Amazon Resource Name (ARN) of the image recipe.
   final String? arn;
 
@@ -4903,6 +4819,7 @@ class ImageRecipe {
   final String? workingDirectory;
 
   ImageRecipe({
+    this.additionalInstanceConfiguration,
     this.arn,
     this.blockDeviceMappings,
     this.components,
@@ -4919,6 +4836,12 @@ class ImageRecipe {
   });
   factory ImageRecipe.fromJson(Map<String, dynamic> json) {
     return ImageRecipe(
+      additionalInstanceConfiguration:
+          json['additionalInstanceConfiguration'] != null
+              ? AdditionalInstanceConfiguration.fromJson(
+                  json['additionalInstanceConfiguration']
+                      as Map<String, dynamic>)
+              : null,
       arn: json['arn'] as String?,
       blockDeviceMappings: (json['blockDeviceMappings'] as List?)
           ?.whereNotNull()
@@ -5308,7 +5231,7 @@ class InfrastructureConfiguration {
   /// The instance types of the infrastructure configuration.
   final List<String>? instanceTypes;
 
-  /// The EC2 key pair of the infrastructure configuration.
+  /// The Amazon EC2 key pair of the infrastructure configuration.
   final String? keyPair;
 
   /// The logging configuration of the infrastructure configuration.
@@ -5385,7 +5308,7 @@ class InfrastructureConfiguration {
   }
 }
 
-/// The infrastructure used when building EC2 AMIs.
+/// The infrastructure used when building Amazon EC2 AMIs.
 class InfrastructureConfigurationSummary {
   /// The Amazon Resource Name (ARN) of the infrastructure configuration.
   final String? arn;
@@ -5398,6 +5321,12 @@ class InfrastructureConfigurationSummary {
 
   /// The description of the infrastructure configuration.
   final String? description;
+
+  /// The instance profile of the infrastructure configuration.
+  final String? instanceProfileName;
+
+  /// The instance types of the infrastructure configuration.
+  final List<String>? instanceTypes;
 
   /// The name of the infrastructure configuration.
   final String? name;
@@ -5413,6 +5342,8 @@ class InfrastructureConfigurationSummary {
     this.dateCreated,
     this.dateUpdated,
     this.description,
+    this.instanceProfileName,
+    this.instanceTypes,
     this.name,
     this.resourceTags,
     this.tags,
@@ -5424,6 +5355,11 @@ class InfrastructureConfigurationSummary {
       dateCreated: json['dateCreated'] as String?,
       dateUpdated: json['dateUpdated'] as String?,
       description: json['description'] as String?,
+      instanceProfileName: json['instanceProfileName'] as String?,
+      instanceTypes: (json['instanceTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
       name: json['name'] as String?,
       resourceTags: (json['resourceTags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -5479,20 +5415,58 @@ class InstanceBlockDeviceMapping {
   }
 }
 
+/// Defines a custom source AMI and block device mapping configurations of an
+/// instance used for building and testing container images.
+class InstanceConfiguration {
+  /// Defines the block devices to attach for building an instance from this Image
+  /// Builder AMI.
+  final List<InstanceBlockDeviceMapping>? blockDeviceMappings;
+
+  /// The AMI ID to use as the base image for a container build and test instance.
+  /// If not specified, Image Builder will use the appropriate ECS-optimized AMI
+  /// as a base image.
+  final String? image;
+
+  InstanceConfiguration({
+    this.blockDeviceMappings,
+    this.image,
+  });
+  factory InstanceConfiguration.fromJson(Map<String, dynamic> json) {
+    return InstanceConfiguration(
+      blockDeviceMappings: (json['blockDeviceMappings'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              InstanceBlockDeviceMapping.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      image: json['image'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final image = this.image;
+    return {
+      if (blockDeviceMappings != null)
+        'blockDeviceMappings': blockDeviceMappings,
+      if (image != null) 'image': image,
+    };
+  }
+}
+
 /// Describes the configuration for a launch permission. The launch permission
 /// modification request is sent to the <a
-/// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html">EC2
-/// ModifyImageAttribute</a> API on behalf of the user for each Region they have
-/// selected to distribute the AMI. To make an AMI public, set the launch
+/// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html">Amazon
+/// EC2 ModifyImageAttribute</a> API on behalf of the user for each Region they
+/// have selected to distribute the AMI. To make an AMI public, set the launch
 /// permission authorized accounts to <code>all</code>. See the examples for
 /// making an AMI public at <a
-/// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html">EC2
-/// ModifyImageAttribute</a>.
+/// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html">Amazon
+/// EC2 ModifyImageAttribute</a>.
 class LaunchPermissionConfiguration {
   /// The name of the group.
   final List<String>? userGroups;
 
-  /// The AWS account ID.
+  /// The account ID.
   final List<String>? userIds;
 
   LaunchPermissionConfiguration({
@@ -5518,6 +5492,43 @@ class LaunchPermissionConfiguration {
     return {
       if (userGroups != null) 'userGroups': userGroups,
       if (userIds != null) 'userIds': userIds,
+    };
+  }
+}
+
+/// Identifies an Amazon EC2 launch template to use for a specific account.
+class LaunchTemplateConfiguration {
+  /// Identifies the Amazon EC2 launch template to use.
+  final String launchTemplateId;
+
+  /// The account ID that this configuration applies to.
+  final String? accountId;
+
+  /// Set the specified Amazon EC2 launch template as the default launch template
+  /// for the specified account.
+  final bool? setDefaultVersion;
+
+  LaunchTemplateConfiguration({
+    required this.launchTemplateId,
+    this.accountId,
+    this.setDefaultVersion,
+  });
+  factory LaunchTemplateConfiguration.fromJson(Map<String, dynamic> json) {
+    return LaunchTemplateConfiguration(
+      launchTemplateId: json['launchTemplateId'] as String,
+      accountId: json['accountId'] as String?,
+      setDefaultVersion: json['setDefaultVersion'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final accountId = this.accountId;
+    final setDefaultVersion = this.setDefaultVersion;
+    return {
+      'launchTemplateId': launchTemplateId,
+      if (accountId != null) 'accountId': accountId,
+      if (setDefaultVersion != null) 'setDefaultVersion': setDefaultVersion,
     };
   }
 }
@@ -5667,6 +5678,34 @@ class ListImageBuildVersionsResponse {
       imageSummaryList: (json['imageSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => ImageSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+      requestId: json['requestId'] as String?,
+    );
+  }
+}
+
+class ListImagePackagesResponse {
+  /// The list of Image Packages returned in the response.
+  final List<ImagePackage>? imagePackageList;
+
+  /// A token to specify where to start paginating. This is the NextToken from a
+  /// previously truncated response.
+  final String? nextToken;
+
+  /// The request ID that uniquely identifies this request.
+  final String? requestId;
+
+  ListImagePackagesResponse({
+    this.imagePackageList,
+    this.nextToken,
+    this.requestId,
+  });
+  factory ListImagePackagesResponse.fromJson(Map<String, dynamic> json) {
+    return ListImagePackagesResponse(
+      imagePackageList: (json['imagePackageList'] as List?)
+          ?.whereNotNull()
+          .map((e) => ImagePackage.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['nextToken'] as String?,
       requestId: json['requestId'] as String?,
@@ -5864,7 +5903,7 @@ class Logging {
 
 /// The resources produced by this image.
 class OutputResources {
-  /// The EC2 AMIs created by this image.
+  /// The Amazon EC2 AMIs created by this image.
   final List<Ami>? amis;
 
   /// Container images that the pipeline has generated and stored in the output
@@ -6141,9 +6180,16 @@ class Schedule {
   /// cron expressions in EC2 Image Builder</a>.
   final String? scheduleExpression;
 
+  /// The timezone that applies to the scheduling expression. For example,
+  /// "Etc/UTC", "America/Los_Angeles" in the <a
+  /// href="https://www.joda.org/joda-time/timezones.html">IANA timezone
+  /// format</a>. If not specified this defaults to UTC.
+  final String? timezone;
+
   Schedule({
     this.pipelineExecutionStartCondition,
     this.scheduleExpression,
+    this.timezone,
   });
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
@@ -6151,6 +6197,7 @@ class Schedule {
           (json['pipelineExecutionStartCondition'] as String?)
               ?.toPipelineExecutionStartCondition(),
       scheduleExpression: json['scheduleExpression'] as String?,
+      timezone: json['timezone'] as String?,
     );
   }
 
@@ -6158,11 +6205,13 @@ class Schedule {
     final pipelineExecutionStartCondition =
         this.pipelineExecutionStartCondition;
     final scheduleExpression = this.scheduleExpression;
+    final timezone = this.timezone;
     return {
       if (pipelineExecutionStartCondition != null)
         'pipelineExecutionStartCondition':
             pipelineExecutionStartCondition.toValue(),
       if (scheduleExpression != null) 'scheduleExpression': scheduleExpression,
+      if (timezone != null) 'timezone': timezone,
     };
   }
 }
@@ -6190,6 +6239,32 @@ class StartImagePipelineExecutionResponse {
       imageBuildVersionArn: json['imageBuildVersionArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+}
+
+/// Contains settings for the SSM agent on your build instance.
+class SystemsManagerAgent {
+  /// This property defaults to true. If Image Builder installs the SSM agent on a
+  /// build instance, it removes the agent before creating a snapshot for the AMI.
+  /// To ensure that the AMI you create includes the SSM agent, set this property
+  /// to false.
+  final bool? uninstallAfterBuild;
+
+  SystemsManagerAgent({
+    this.uninstallAfterBuild,
+  });
+  factory SystemsManagerAgent.fromJson(Map<String, dynamic> json) {
+    return SystemsManagerAgent(
+      uninstallAfterBuild: json['uninstallAfterBuild'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final uninstallAfterBuild = this.uninstallAfterBuild;
+    return {
+      if (uninstallAfterBuild != null)
+        'uninstallAfterBuild': uninstallAfterBuild,
+    };
   }
 }
 

@@ -72,21 +72,11 @@ class HealthLake {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'datastoreName',
       datastoreName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'datastoreName',
-      datastoreName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -129,11 +119,6 @@ class HealthLake {
       1,
       32,
     );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.DeleteFHIRDatastore'
@@ -172,11 +157,6 @@ class HealthLake {
       datastoreId,
       1,
       32,
-    );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -222,24 +202,12 @@ class HealthLake {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
     _s.validateStringLength(
       'jobId',
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -286,24 +254,12 @@ class HealthLake {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
     _s.validateStringLength(
       'jobId',
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -357,11 +313,6 @@ class HealthLake {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\p{ASCII}{0,8192}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -422,24 +373,12 @@ class HealthLake {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
     _s.validateStringLength(
       'datastoreId',
       datastoreId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
@@ -449,21 +388,11 @@ class HealthLake {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -526,24 +455,12 @@ class HealthLake {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
     _s.validateStringLength(
       'datastoreId',
       datastoreId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'datastoreId',
-      datastoreId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
@@ -553,21 +470,11 @@ class HealthLake {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',

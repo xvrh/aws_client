@@ -78,22 +78,11 @@ class CodeStarConnections {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'connectionName',
-      connectionName,
-      r'''[\s\S]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'hostArn',
       hostArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'hostArn',
-      hostArn,
-      r'''arn:aws(-[\w]+)*:codestar-connections:.+:[0-9]{12}:host\/.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -150,6 +139,7 @@ class CodeStarConnections {
     required String name,
     required String providerEndpoint,
     required ProviderType providerType,
+    List<Tag>? tags,
     VpcConfiguration? vpcConfiguration,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
@@ -160,24 +150,12 @@ class CodeStarConnections {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(providerEndpoint, 'providerEndpoint');
     _s.validateStringLength(
       'providerEndpoint',
       providerEndpoint,
       1,
       512,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'providerEndpoint',
-      providerEndpoint,
-      r'''.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(providerType, 'providerType');
@@ -196,6 +174,7 @@ class CodeStarConnections {
         'Name': name,
         'ProviderEndpoint': providerEndpoint,
         'ProviderType': providerType.toValue(),
+        if (tags != null) 'Tags': tags,
         if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
       },
     );
@@ -221,12 +200,6 @@ class CodeStarConnections {
       connectionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'connectionArn',
-      connectionArn,
-      r'''arn:aws(-[\w]+)*:.+:.+:[0-9]{12}:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -269,12 +242,6 @@ class CodeStarConnections {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hostArn',
-      hostArn,
-      r'''arn:aws(-[\w]+)*:codestar-connections:.+:[0-9]{12}:host\/.+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target':
@@ -309,12 +276,6 @@ class CodeStarConnections {
       connectionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'connectionArn',
-      connectionArn,
-      r'''arn:aws(-[\w]+)*:.+:.+:[0-9]{12}:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -353,12 +314,6 @@ class CodeStarConnections {
       hostArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hostArn',
-      hostArn,
-      r'''arn:aws(-[\w]+)*:codestar-connections:.+:[0-9]{12}:host\/.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -409,11 +364,6 @@ class CodeStarConnections {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'hostArnFilter',
-      hostArnFilter,
-      r'''arn:aws(-[\w]+)*:codestar-connections:.+:[0-9]{12}:host\/.+''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -425,11 +375,6 @@ class CodeStarConnections {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -480,11 +425,6 @@ class CodeStarConnections {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target':
@@ -522,12 +462,6 @@ class CodeStarConnections {
       resourceArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-[\w]+)*:.+:.+:[0-9]{12}:.+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -573,12 +507,6 @@ class CodeStarConnections {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-[\w]+)*:.+:.+:[0-9]{12}:.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -617,12 +545,6 @@ class CodeStarConnections {
       resourceArn,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-[\w]+)*:.+:.+:[0-9]{12}:.+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -674,22 +596,11 @@ class CodeStarConnections {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hostArn',
-      hostArn,
-      r'''arn:aws(-[\w]+)*:codestar-connections:.+:[0-9]{12}:host\/.+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'providerEndpoint',
       providerEndpoint,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'providerEndpoint',
-      providerEndpoint,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -828,13 +739,19 @@ class CreateConnectionOutput {
 class CreateHostOutput {
   /// The Amazon Resource Name (ARN) of the host to be created.
   final String? hostArn;
+  final List<Tag>? tags;
 
   CreateHostOutput({
     this.hostArn,
+    this.tags,
   });
   factory CreateHostOutput.fromJson(Map<String, dynamic> json) {
     return CreateHostOutput(
       hostArn: json['HostArn'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }

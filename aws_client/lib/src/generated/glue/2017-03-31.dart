@@ -19,7 +19,7 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// Defines the public endpoint for the AWS Glue service.
+/// Defines the public endpoint for the Glue service.
 class Glue {
   final _s.JsonProtocol _protocol;
   Glue({
@@ -59,7 +59,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the catalog in which the partition is to be created. Currently,
-  /// this should be the AWS account ID.
+  /// this should be the Amazon Web Services account ID.
   Future<BatchCreatePartitionResponse> batchCreatePartition({
     required String databaseName,
     required List<PartitionInput> partitionInputList,
@@ -74,12 +74,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInputList, 'partitionInputList');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -89,22 +83,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -137,7 +120,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the connections reside. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<BatchDeleteConnectionResponse> batchDeleteConnection({
     required List<String> connectionNameList,
     String? catalogId,
@@ -148,11 +131,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -192,7 +170,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partition to be deleted resides. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<BatchDeletePartitionResponse> batchDeletePartition({
     required String databaseName,
     required List<PartitionValueList> partitionsToDelete,
@@ -207,12 +185,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionsToDelete, 'partitionsToDelete');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -222,22 +194,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -263,7 +224,7 @@ class Glue {
   /// Deletes multiple tables at once.
   /// <note>
   /// After completing this operation, you no longer have access to the table
-  /// versions and partitions that belong to the deleted table. AWS Glue deletes
+  /// versions and partitions that belong to the deleted table. Glue deletes
   /// these "orphaned" resources asynchronously in a timely manner, at the
   /// discretion of the service.
   ///
@@ -288,7 +249,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the table resides. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   Future<BatchDeleteTableResponse> batchDeleteTable({
     required String databaseName,
     required List<String> tablesToDelete,
@@ -302,23 +263,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tablesToDelete, 'tablesToDelete');
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -361,7 +311,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the tables reside. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   Future<BatchDeleteTableVersionResponse> batchDeleteTableVersion({
     required String databaseName,
     required String tableName,
@@ -376,12 +326,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -390,23 +334,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionIds, 'versionIds');
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -553,7 +486,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<BatchGetPartitionResponse> batchGetPartition({
     required String databaseName,
     required List<PartitionValueList> partitionsToGet,
@@ -568,12 +501,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionsToGet, 'partitionsToGet');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -583,22 +510,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -721,12 +637,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobRunIds, 'jobRunIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -767,7 +677,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the catalog in which the partition is to be updated. Currently,
-  /// this should be the AWS account ID.
+  /// this should be the Amazon Web Services account ID.
   Future<BatchUpdatePartitionResponse> batchUpdatePartition({
     required String databaseName,
     required List<BatchUpdatePartitionRequestEntry> entries,
@@ -782,12 +692,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entries, 'entries');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -797,22 +701,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -836,11 +729,10 @@ class Glue {
   }
 
   /// Cancels (stops) a task run. Machine learning task runs are asynchronous
-  /// tasks that AWS Glue runs on your behalf as part of various machine
-  /// learning workflows. You can cancel a machine learning task run at any time
-  /// by calling <code>CancelMLTaskRun</code> with a task run's parent
-  /// transform's <code>TransformID</code> and the task run's
-  /// <code>TaskRunId</code>.
+  /// tasks that Glue runs on your behalf as part of various machine learning
+  /// workflows. You can cancel a machine learning task run at any time by
+  /// calling <code>CancelMLTaskRun</code> with a task run's parent transform's
+  /// <code>TransformID</code> and the task run's <code>TaskRunId</code>.
   ///
   /// May throw [EntityNotFoundException].
   /// May throw [InvalidInputException].
@@ -864,24 +756,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskRunId',
-      taskRunId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformId, 'transformId');
     _s.validateStringLength(
       'transformId',
       transformId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -913,8 +793,8 @@ class Glue {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [dataFormat] :
-  /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// The data format of the schema definition. Currently <code>AVRO</code> and
+  /// <code>JSON</code> are supported.
   ///
   /// Parameter [schemaDefinition] :
   /// The definition of the schema that has to be validated.
@@ -929,12 +809,6 @@ class Glue {
       schemaDefinition,
       1,
       170000,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'schemaDefinition',
-      schemaDefinition,
-      r'''.*\S.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1014,7 +888,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which to create the connection. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> createConnection({
     required ConnectionInput connectionInput,
     String? catalogId,
@@ -1025,11 +899,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1084,7 +953,7 @@ class Glue {
   /// this crawler.
   ///
   /// Parameter [databaseName] :
-  /// The AWS Glue database where results are written, such as:
+  /// The Glue database where results are written, such as:
   /// <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.
   ///
   /// Parameter [description] :
@@ -1111,9 +980,9 @@ class Glue {
   ///
   /// Parameter [tags] :
   /// The tags to use with this crawler request. You may use tags to limit
-  /// access to the crawler. For more information about tags in AWS Glue, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a> in the developer guide.
+  /// access to the crawler. For more information about tags in Glue, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a> in the developer guide.
   Future<void> createCrawler({
     required String name,
     required String role,
@@ -1138,12 +1007,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     ArgumentError.checkNotNull(targets, 'targets');
     _s.validateStringLength(
@@ -1157,11 +1020,6 @@ class Glue {
       description,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'tablePrefix',
@@ -1215,7 +1073,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which to create the database. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> createDatabase({
     required DatabaseInput databaseInput,
     String? catalogId,
@@ -1226,11 +1084,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1285,12 +1138,12 @@ class Glue {
   /// </note>
   ///
   /// Parameter [glueVersion] :
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for
-  /// running your ETL scripts on development endpoints.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for running
+  /// your ETL scripts on development endpoints.
   ///
-  /// For more information about the available AWS Glue versions and
-  /// corresponding Spark and Python versions, see <a
+  /// For more information about the available Glue versions and corresponding
+  /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
   ///
@@ -1303,7 +1156,7 @@ class Glue {
   /// no arguments are provided, the version defaults to Python 2.
   ///
   /// Parameter [numberOfNodes] :
-  /// The number of AWS Glue Data Processing Units (DPUs) to allocate to this
+  /// The number of Glue Data Processing Units (DPUs) to allocate to this
   /// <code>DevEndpoint</code>.
   ///
   /// Parameter [numberOfWorkers] :
@@ -1344,9 +1197,9 @@ class Glue {
   ///
   /// Parameter [tags] :
   /// The tags to use with this DevEndpoint. You may use tags to limit access to
-  /// the DevEndpoint. For more information about tags in AWS Glue, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a> in the developer guide.
+  /// the DevEndpoint. For more information about tags in Glue, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a> in the developer guide.
   ///
   /// Parameter [workerType] :
   /// The type of predefined worker that is allocated to the development
@@ -1391,33 +1244,17 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''arn:aws:iam::\d{12}:role/.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'glueVersion',
       glueVersion,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'glueVersion',
-      glueVersion,
-      r'''^\w+\.\w+$''',
-    );
     _s.validateStringLength(
       'securityConfiguration',
       securityConfiguration,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'securityConfiguration',
-      securityConfiguration,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1464,7 +1301,7 @@ class Glue {
   /// May throw [ConcurrentModificationException].
   ///
   /// Parameter [command] :
-  /// The <code>JobCommand</code> that executes this job.
+  /// The <code>JobCommand</code> that runs this job.
   ///
   /// Parameter [name] :
   /// The name you assign to this job definition. It must be unique in your
@@ -1477,11 +1314,11 @@ class Glue {
   /// Parameter [allocatedCapacity] :
   /// This parameter is deprecated. Use <code>MaxCapacity</code> instead.
   ///
-  /// The number of AWS Glue data processing units (DPUs) to allocate to this
-  /// Job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a
+  /// The number of Glue data processing units (DPUs) to allocate to this Job.
+  /// You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a
   /// relative measure of processing power that consists of 4 vCPUs of compute
   /// capacity and 16 GB of memory. For more information, see the <a
-  /// href="https://aws.amazon.com/glue/pricing/">AWS Glue pricing page</a>.
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// Parameter [connections] :
   /// The connections used for this job.
@@ -1490,17 +1327,17 @@ class Glue {
   /// The default arguments for this job.
   ///
   /// You can specify arguments here that your own job-execution script
-  /// consumes, as well as arguments that AWS Glue itself consumes.
+  /// consumes, as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own Job arguments,
   /// see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
+  /// For information about the key-value pairs that Glue consumes to set up
   /// your job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   ///
   /// Parameter [description] :
   /// Description of the job being defined.
@@ -1510,12 +1347,12 @@ class Glue {
   /// concurrent runs allowed for this job.
   ///
   /// Parameter [glueVersion] :
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for jobs
-  /// of type Spark.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for jobs of
+  /// type Spark.
   ///
-  /// For more information about the available AWS Glue versions and
-  /// corresponding Spark and Python versions, see <a
+  /// For more information about the available Glue versions and corresponding
+  /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
   ///
@@ -1526,11 +1363,12 @@ class Glue {
   /// This field is reserved for future use.
   ///
   /// Parameter [maxCapacity] :
-  /// The number of AWS Glue data processing units (DPUs) that can be allocated
-  /// when this job runs. A DPU is a relative measure of processing power that
+  /// For Glue version 1.0 or earlier jobs, using the standard worker type, the
+  /// number of Glue data processing units (DPUs) that can be allocated when
+  /// this job runs. A DPU is a relative measure of processing power that
   /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">Glue
+  /// pricing page</a>.
   ///
   /// Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and
   /// <code>NumberOfWorkers</code>.
@@ -1552,6 +1390,9 @@ class Glue {
   /// DPU allocation.
   /// </li>
   /// </ul>
+  /// For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum
+  /// capacity</code>. Instead, you should specify a <code>Worker type</code>
+  /// and the <code>Number of workers</code>.
   ///
   /// Parameter [maxRetries] :
   /// The maximum number of times to retry this job if it fails.
@@ -1575,9 +1416,9 @@ class Glue {
   ///
   /// Parameter [tags] :
   /// The tags to use with this job. You may use tags to limit access to the
-  /// job. For more information about tags in AWS Glue, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a> in the developer guide.
+  /// job. For more information about tags in Glue, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a> in the developer guide.
   ///
   /// Parameter [timeout] :
   /// The job timeout in minutes. This is the maximum time that a job run can
@@ -1634,12 +1475,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     _s.validateStringLength(
       'description',
@@ -1647,32 +1482,17 @@ class Glue {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'glueVersion',
       glueVersion,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'glueVersion',
-      glueVersion,
-      r'''^\w+\.\w+$''',
-    );
     _s.validateStringLength(
       'securityConfiguration',
       securityConfiguration,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'securityConfiguration',
-      securityConfiguration,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'timeout',
@@ -1719,7 +1539,7 @@ class Glue {
     return CreateJobResponse.fromJson(jsonResponse.body);
   }
 
-  /// Creates an AWS Glue machine learning transform. This operation creates the
+  /// Creates an Glue machine learning transform. This operation creates the
   /// transform and all the necessary parameters to train it.
   ///
   /// Call this operation as the first step in the process of using a machine
@@ -1727,12 +1547,11 @@ class Glue {
   /// deduplicating data. You can provide an optional <code>Description</code>,
   /// in addition to the parameters that you want to use for your algorithm.
   ///
-  /// You must also specify certain parameters for the tasks that AWS Glue runs
-  /// on your behalf as part of learning from your data and creating a
-  /// high-quality machine learning transform. These parameters include
-  /// <code>Role</code>, and optionally, <code>AllocatedCapacity</code>,
-  /// <code>Timeout</code>, and <code>MaxRetries</code>. For more information,
-  /// see <a
+  /// You must also specify certain parameters for the tasks that Glue runs on
+  /// your behalf as part of learning from your data and creating a high-quality
+  /// machine learning transform. These parameters include <code>Role</code>,
+  /// and optionally, <code>AllocatedCapacity</code>, <code>Timeout</code>, and
+  /// <code>MaxRetries</code>. For more information, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html">Jobs</a>.
   ///
   /// May throw [AlreadyExistsException].
@@ -1744,7 +1563,7 @@ class Glue {
   /// May throw [IdempotentParameterMismatchException].
   ///
   /// Parameter [inputRecordTables] :
-  /// A list of AWS Glue table definitions used by the transform.
+  /// A list of Glue table definitions used by the transform.
   ///
   /// Parameter [name] :
   /// The unique name that you give the transform when you create it.
@@ -1755,16 +1574,16 @@ class Glue {
   ///
   /// Parameter [role] :
   /// The name or Amazon Resource Name (ARN) of the IAM role with the required
-  /// permissions. The required permissions include both AWS Glue service role
-  /// permissions to AWS Glue resources, and Amazon S3 permissions required by
-  /// the transform.
+  /// permissions. The required permissions include both Glue service role
+  /// permissions to Glue resources, and Amazon S3 permissions required by the
+  /// transform.
   ///
   /// <ul>
   /// <li>
-  /// This role needs AWS Glue service role permissions to allow access to
-  /// resources in AWS Glue. See <a
+  /// This role needs Glue service role permissions to allow access to resources
+  /// in Glue. See <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/attach-policy-iam-user.html">Attach
-  /// a Policy to IAM Users That Access AWS Glue</a>.
+  /// a Policy to IAM Users That Access Glue</a>.
   /// </li>
   /// <li>
   /// This role needs permission to your Amazon Simple Storage Service (Amazon
@@ -1778,20 +1597,19 @@ class Glue {
   /// default is an empty string.
   ///
   /// Parameter [glueVersion] :
-  /// This value determines which version of AWS Glue this machine learning
+  /// This value determines which version of Glue this machine learning
   /// transform is compatible with. Glue 1.0 is recommended for most customers.
   /// If the value is not set, the Glue compatibility defaults to Glue 0.9. For
   /// more information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">AWS
-  /// Glue Versions</a> in the developer guide.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">Glue
+  /// Versions</a> in the developer guide.
   ///
   /// Parameter [maxCapacity] :
-  /// The number of AWS Glue data processing units (DPUs) that are allocated to
-  /// task runs for this transform. You can allocate from 2 to 100 DPUs; the
-  /// default is 10. A DPU is a relative measure of processing power that
-  /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// The number of Glue data processing units (DPUs) that are allocated to task
+  /// runs for this transform. You can allocate from 2 to 100 DPUs; the default
+  /// is 10. A DPU is a relative measure of processing power that consists of 4
+  /// vCPUs of compute capacity and 16 GB of memory. For more information, see
+  /// the <a href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// <code>MaxCapacity</code> is a mutually exclusive option with
   /// <code>NumberOfWorkers</code> and <code>WorkerType</code>.
@@ -1836,9 +1654,9 @@ class Glue {
   /// Parameter [tags] :
   /// The tags to use with this machine learning transform. You may use tags to
   /// limit access to the machine learning transform. For more information about
-  /// tags in AWS Glue, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a> in the developer guide.
+  /// tags in Glue, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a> in the developer guide.
   ///
   /// Parameter [timeout] :
   /// The timeout of the task run for this transform in minutes. This is the
@@ -1914,12 +1732,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameters, 'parameters');
     ArgumentError.checkNotNull(role, 'role');
     _s.validateStringLength(
@@ -1928,21 +1740,11 @@ class Glue {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'glueVersion',
       glueVersion,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'glueVersion',
-      glueVersion,
-      r'''^\w+\.\w+$''',
     );
     _s.validateNumRange(
       'timeout',
@@ -2002,7 +1804,8 @@ class Glue {
   /// The name of the metadata table in which the partition is to be created.
   ///
   /// Parameter [catalogId] :
-  /// The AWS account ID of the catalog in which the partition is to be created.
+  /// The Amazon Web Services account ID of the catalog in which the partition
+  /// is to be created.
   Future<void> createPartition({
     required String databaseName,
     required PartitionInput partitionInput,
@@ -2017,12 +1820,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInput, 'partitionInput');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -2032,22 +1829,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2106,12 +1892,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionIndex, 'partitionIndex');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -2121,22 +1901,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2175,8 +1944,8 @@ class Glue {
   /// not be any default value for this.
   ///
   /// Parameter [tags] :
-  /// AWS tags that contain a key value pair and may be searched by console,
-  /// command line, or API.
+  /// Amazon Web Services tags that contain a key value pair and may be searched
+  /// by console, command line, or API.
   Future<CreateRegistryResponse> createRegistry({
     required String registryName,
     String? description,
@@ -2190,22 +1959,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'registryName',
-      registryName,
-      r'''[a-zA-Z0-9-_$#]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2250,8 +2008,8 @@ class Glue {
   /// May throw [InternalServiceException].
   ///
   /// Parameter [dataFormat] :
-  /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// The data format of the schema definition. Currently <code>AVRO</code> and
+  /// <code>JSON</code> are supported.
   ///
   /// Parameter [schemaName] :
   /// Name of the schema to be created of max length of 255, and may only
@@ -2329,9 +2087,9 @@ class Glue {
   /// <code>SchemaName</code>.
   ///
   /// Parameter [tags] :
-  /// AWS tags that contain a key value pair and may be searched by console,
-  /// command line, or API. If specified, follows the AWS tags-on-create
-  /// pattern.
+  /// Amazon Web Services tags that contain a key value pair and may be searched
+  /// by console, command line, or API. If specified, follows the Amazon Web
+  /// Services tags-on-create pattern.
   Future<CreateSchemaResponse> createSchema({
     required DataFormat dataFormat,
     required String schemaName,
@@ -2350,33 +2108,17 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'schemaName',
-      schemaName,
-      r'''[a-zA-Z0-9-_$#]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'schemaDefinition',
       schemaDefinition,
       1,
       170000,
-    );
-    _s.validateStringPattern(
-      'schemaDefinition',
-      schemaDefinition,
-      r'''.*\S.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2442,9 +2184,9 @@ class Glue {
   }
 
   /// Creates a new security configuration. A security configuration is a set of
-  /// security properties that can be used by AWS Glue. You can use a security
+  /// security properties that can be used by Glue. You can use a security
   /// configuration to encrypt data at rest. For information about using
-  /// security configurations in AWS Glue, see <a
+  /// security configurations in Glue, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/encryption-security-configuration.html">Encrypting
   /// Data Written by Crawlers, Jobs, and Development Endpoints</a>.
   ///
@@ -2471,12 +2213,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2518,7 +2254,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which to create the <code>Table</code>. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [partitionIndexes] :
   /// A list of partition indexes, <code>PartitionIndex</code> structures, to
@@ -2537,23 +2273,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableInput, 'tableInput');
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2617,9 +2342,9 @@ class Glue {
   ///
   /// Parameter [tags] :
   /// The tags to use with this trigger. You may use tags to limit access to the
-  /// trigger. For more information about tags in AWS Glue, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a> in the developer guide.
+  /// trigger. For more information about tags in Glue, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a> in the developer guide.
   ///
   /// Parameter [workflowName] :
   /// The name of the workflow associated with the trigger.
@@ -2643,12 +2368,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     _s.validateStringLength(
       'description',
@@ -2656,21 +2375,11 @@ class Glue {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'workflowName',
       workflowName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'workflowName',
-      workflowName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2717,7 +2426,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which to create the function. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> createUserDefinedFunction({
     required String databaseName,
     required UserDefinedFunctionInput functionInput,
@@ -2731,23 +2440,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionInput, 'functionInput');
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2811,12 +2509,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateWorkflow'
@@ -2856,12 +2548,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2905,7 +2591,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<void> deleteColumnStatisticsForPartition({
     required String columnName,
     required String databaseName,
@@ -2921,24 +2607,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'columnName',
-      columnName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
     _s.validateStringLength(
       'databaseName',
       databaseName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
@@ -2950,22 +2624,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3009,7 +2672,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<void> deleteColumnStatisticsForTable({
     required String columnName,
     required String databaseName,
@@ -3024,24 +2687,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'columnName',
-      columnName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
     _s.validateStringLength(
       'databaseName',
       databaseName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tableName, 'tableName');
@@ -3052,22 +2703,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3098,7 +2738,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the connection resides. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> deleteConnection({
     required String connectionName,
     String? catalogId,
@@ -3111,22 +2751,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'connectionName',
-      connectionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3145,8 +2774,8 @@ class Glue {
     );
   }
 
-  /// Removes a specified crawler from the AWS Glue Data Catalog, unless the
-  /// crawler state is <code>RUNNING</code>.
+  /// Removes a specified crawler from the Glue Data Catalog, unless the crawler
+  /// state is <code>RUNNING</code>.
   ///
   /// May throw [EntityNotFoundException].
   /// May throw [CrawlerRunningException].
@@ -3164,12 +2793,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3192,9 +2815,9 @@ class Glue {
   /// <note>
   /// After completing this operation, you no longer have access to the tables
   /// (and all table versions and partitions that might belong to the tables)
-  /// and the user-defined functions in the deleted database. AWS Glue deletes
-  /// these "orphaned" resources asynchronously in a timely manner, at the
-  /// discretion of the service.
+  /// and the user-defined functions in the deleted database. Glue deletes these
+  /// "orphaned" resources asynchronously in a timely manner, at the discretion
+  /// of the service.
   ///
   /// To ensure the immediate deletion of all related resources, before calling
   /// <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or
@@ -3215,7 +2838,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the database resides. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> deleteDatabase({
     required String name,
     String? catalogId,
@@ -3228,22 +2851,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3311,12 +2923,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteJob'
@@ -3335,12 +2941,12 @@ class Glue {
     return DeleteJobResponse.fromJson(jsonResponse.body);
   }
 
-  /// Deletes an AWS Glue machine learning transform. Machine learning
-  /// transforms are a special type of transform that use machine learning to
-  /// learn the details of the transformation to be performed by learning from
-  /// examples provided by humans. These transformations are then saved by AWS
-  /// Glue. If you no longer need a transform, you can delete it by calling
-  /// <code>DeleteMLTransforms</code>. However, any AWS Glue jobs that still
+  /// Deletes an Glue machine learning transform. Machine learning transforms
+  /// are a special type of transform that use machine learning to learn the
+  /// details of the transformation to be performed by learning from examples
+  /// provided by humans. These transformations are then saved by Glue. If you
+  /// no longer need a transform, you can delete it by calling
+  /// <code>DeleteMLTransforms</code>. However, any Glue jobs that still
   /// reference the deleted transform will no longer succeed.
   ///
   /// May throw [EntityNotFoundException].
@@ -3359,12 +2965,6 @@ class Glue {
       transformId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3403,7 +3003,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partition to be deleted resides. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<void> deletePartition({
     required String databaseName,
     required List<String> partitionValues,
@@ -3418,12 +3018,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -3433,22 +3027,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3505,24 +3088,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexName, 'indexName');
     _s.validateStringLength(
       'indexName',
       indexName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'indexName',
-      indexName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tableName, 'tableName');
@@ -3533,22 +3104,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3572,8 +3132,8 @@ class Glue {
   /// Delete the entire registry including schema and all of its versions. To
   /// get the status of the delete operation, you can call the
   /// <code>GetRegistry</code> API after the asynchronous call. Deleting a
-  /// registry will disable all online operations for the registry such as the
-  /// <code>UpdateRegistry</code>, <code>CreateSchema</code>,
+  /// registry will deactivate all online operations for the registry such as
+  /// the <code>UpdateRegistry</code>, <code>CreateSchema</code>,
   /// <code>UpdateSchema</code>, and <code>RegisterSchemaVersion</code> APIs.
   ///
   /// May throw [InvalidInputException].
@@ -3618,7 +3178,7 @@ class Glue {
   /// The hash value returned when this policy was set.
   ///
   /// Parameter [resourceArn] :
-  /// The ARN of the AWS Glue resource for the resource policy to be deleted.
+  /// The ARN of the Glue resource for the resource policy to be deleted.
   Future<void> deleteResourcePolicy({
     String? policyHashCondition,
     String? resourceArn,
@@ -3629,21 +3189,11 @@ class Glue {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'policyHashCondition',
-      policyHashCondition,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       1,
       10240,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3666,7 +3216,7 @@ class Glue {
   /// Deletes the entire schema set, including the schema set and all of its
   /// versions. To get the status of the delete operation, you can call
   /// <code>GetSchema</code> API after the asynchronous call. Deleting a
-  /// registry will disable all online operations for the schema, such as the
+  /// registry will deactivate all online operations for the schema, such as the
   /// <code>GetSchemaByDefinition</code>, and <code>RegisterSchemaVersion</code>
   /// APIs.
   ///
@@ -3753,12 +3303,6 @@ class Glue {
       100000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'versions',
-      versions,
-      r'''[1-9][0-9]*|[1-9][0-9]*-[1-9][0-9]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteSchemaVersions'
@@ -3798,12 +3342,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteSecurityConfiguration'
@@ -3823,7 +3361,7 @@ class Glue {
   /// Removes a table definition from the Data Catalog.
   /// <note>
   /// After completing this operation, you no longer have access to the table
-  /// versions and partitions that belong to the deleted table. AWS Glue deletes
+  /// versions and partitions that belong to the deleted table. Glue deletes
   /// these "orphaned" resources asynchronously in a timely manner, at the
   /// discretion of the service.
   ///
@@ -3849,7 +3387,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the table resides. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   Future<void> deleteTable({
     required String databaseName,
     required String name,
@@ -3863,12 +3401,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -3877,22 +3409,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3933,7 +3454,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the tables reside. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   Future<void> deleteTableVersion({
     required String databaseName,
     required String tableName,
@@ -3948,24 +3469,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
       tableName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(versionId, 'versionId');
@@ -3976,22 +3485,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4033,12 +3531,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteTrigger'
@@ -4072,7 +3564,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the function to be deleted is located. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<void> deleteUserDefinedFunction({
     required String databaseName,
     required String functionName,
@@ -4086,12 +3578,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
     _s.validateStringLength(
       'functionName',
@@ -4100,22 +3586,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4155,12 +3630,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteWorkflow'
@@ -4185,8 +3654,8 @@ class Glue {
   /// May throw [OperationTimeoutException].
   ///
   /// Parameter [catalogId] :
-  /// The ID of the catalog to migrate. Currently, this should be the AWS
-  /// account ID.
+  /// The ID of the catalog to migrate. Currently, this should be the Amazon Web
+  /// Services account ID.
   Future<GetCatalogImportStatusResponse> getCatalogImportStatus({
     String? catalogId,
   }) async {
@@ -4195,11 +3664,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4235,12 +3699,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4324,7 +3782,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<GetColumnStatisticsForPartitionResponse>
       getColumnStatisticsForPartition({
     required List<String> columnNames,
@@ -4342,12 +3800,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -4357,22 +3809,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4418,7 +3859,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<GetColumnStatisticsForTableResponse> getColumnStatisticsForTable({
     required List<String> columnNames,
     required String databaseName,
@@ -4434,12 +3875,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -4448,22 +3883,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4498,13 +3922,13 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the connection resides. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [hidePassword] :
   /// Allows you to retrieve the connection metadata without returning the
   /// password. For instance, the AWS Glue console uses this flag to retrieve
   /// the connection, and does not display the password. Set this parameter when
-  /// the caller might not have permission to use the AWS KMS key to decrypt the
+  /// the caller might not have permission to use the KMS key to decrypt the
   /// password, but it does have permission to access the rest of the connection
   /// properties.
   Future<GetConnectionResponse> getConnection({
@@ -4520,22 +3944,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4566,7 +3979,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the connections reside. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [filter] :
   /// A filter that controls which connections are returned.
@@ -4575,7 +3988,7 @@ class Glue {
   /// Allows you to retrieve the connection metadata without returning the
   /// password. For instance, the AWS Glue console uses this flag to retrieve
   /// the connection, and does not display the password. Set this parameter when
-  /// the caller might not have permission to use the AWS KMS key to decrypt the
+  /// the caller might not have permission to use the KMS key to decrypt the
   /// password, but it does have permission to access the rest of the connection
   /// properties.
   ///
@@ -4596,11 +4009,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -4646,12 +4054,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4761,7 +4163,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog to retrieve the security configuration for. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<GetDataCatalogEncryptionSettingsResponse>
       getDataCatalogEncryptionSettings({
     String? catalogId,
@@ -4771,11 +4173,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4809,7 +4206,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the database resides. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<GetDatabaseResponse> getDatabase({
     required String name,
     String? catalogId,
@@ -4822,22 +4219,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4867,7 +4253,8 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog from which to retrieve <code>Databases</code>.
-  /// If none is provided, the AWS account ID is used by default.
+  /// If none is provided, the Amazon Web Services account ID is used by
+  /// default.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of databases to return in one response.
@@ -4902,16 +4289,11 @@ class Glue {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
-      1000,
+      100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4967,9 +4349,9 @@ class Glue {
   /// Retrieves information about a specified development endpoint.
   /// <note>
   /// When you create a development endpoint in a virtual private cloud (VPC),
-  /// AWS Glue returns only a private IP address, and the public IP address
-  /// field is not populated. When you create a non-VPC development endpoint,
-  /// AWS Glue returns only a public IP address.
+  /// Glue returns only a private IP address, and the public IP address field is
+  /// not populated. When you create a non-VPC development endpoint, Glue
+  /// returns only a public IP address.
   /// </note>
   ///
   /// May throw [EntityNotFoundException].
@@ -5004,8 +4386,8 @@ class Glue {
   /// Retrieves all the development endpoints in this AWS account.
   /// <note>
   /// When you create a development endpoint in a virtual private cloud (VPC),
-  /// AWS Glue returns only a private IP address and the public IP address field
-  /// is not populated. When you create a non-VPC development endpoint, AWS Glue
+  /// Glue returns only a private IP address and the public IP address field is
+  /// not populated. When you create a non-VPC development endpoint, Glue
   /// returns only a public IP address.
   /// </note>
   ///
@@ -5066,12 +4448,6 @@ class Glue {
       jobName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5157,24 +4533,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
       'runId',
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5224,12 +4588,6 @@ class Glue {
       jobName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5300,9 +4658,9 @@ class Glue {
   }
 
   /// Gets details for a specific task run on a machine learning transform.
-  /// Machine learning task runs are asynchronous tasks that AWS Glue runs on
-  /// your behalf as part of various machine learning workflows. You can check
-  /// the stats of any task run by calling <code>GetMLTaskRun</code> with the
+  /// Machine learning task runs are asynchronous tasks that Glue runs on your
+  /// behalf as part of various machine learning workflows. You can check the
+  /// stats of any task run by calling <code>GetMLTaskRun</code> with the
   /// <code>TaskRunID</code> and its parent transform's
   /// <code>TransformID</code>.
   ///
@@ -5328,24 +4686,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'taskRunId',
-      taskRunId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformId, 'transformId');
     _s.validateStringLength(
       'transformId',
       transformId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5368,8 +4714,8 @@ class Glue {
   }
 
   /// Gets a list of runs for a machine learning transform. Machine learning
-  /// task runs are asynchronous tasks that AWS Glue runs on your behalf as part
-  /// of various machine learning workflows. You can get a sortable, filterable
+  /// task runs are asynchronous tasks that Glue runs on your behalf as part of
+  /// various machine learning workflows. You can get a sortable, filterable
   /// list of machine learning task runs by calling <code>GetMLTaskRuns</code>
   /// with their parent transform's <code>TransformID</code> and other optional
   /// parameters as documented in this section.
@@ -5412,12 +4758,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5446,12 +4786,12 @@ class Glue {
     return GetMLTaskRunsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Gets an AWS Glue machine learning transform artifact and all its
-  /// corresponding metadata. Machine learning transforms are a special type of
-  /// transform that use machine learning to learn the details of the
-  /// transformation to be performed by learning from examples provided by
-  /// humans. These transformations are then saved by AWS Glue. You can retrieve
-  /// their metadata by calling <code>GetMLTransform</code>.
+  /// Gets an Glue machine learning transform artifact and all its corresponding
+  /// metadata. Machine learning transforms are a special type of transform that
+  /// use machine learning to learn the details of the transformation to be
+  /// performed by learning from examples provided by humans. These
+  /// transformations are then saved by Glue. You can retrieve their metadata by
+  /// calling <code>GetMLTransform</code>.
   ///
   /// May throw [EntityNotFoundException].
   /// May throw [InvalidInputException].
@@ -5472,12 +4812,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetMLTransform'
@@ -5496,11 +4830,11 @@ class Glue {
     return GetMLTransformResponse.fromJson(jsonResponse.body);
   }
 
-  /// Gets a sortable, filterable list of existing AWS Glue machine learning
+  /// Gets a sortable, filterable list of existing Glue machine learning
   /// transforms. Machine learning transforms are a special type of transform
   /// that use machine learning to learn the details of the transformation to be
   /// performed by learning from examples provided by humans. These
-  /// transformations are then saved by AWS Glue, and you can retrieve their
+  /// transformations are then saved by Glue, and you can retrieve their
   /// metadata by calling <code>GetMLTransforms</code>.
   ///
   /// May throw [EntityNotFoundException].
@@ -5612,7 +4946,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partition in question resides. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<GetPartitionResponse> getPartition({
     required String databaseName,
     required List<String> partitionValues,
@@ -5627,12 +4961,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -5642,22 +4970,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5715,12 +5032,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -5729,22 +5040,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5783,7 +5083,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [expression] :
   /// An expression that filters the partitions to be returned.
@@ -5862,7 +5162,7 @@ class Glue {
   /// <code>decimal</code>
   /// </li>
   /// </ul>
-  /// If an invalid type is encountered, an exception is thrown.
+  /// If an type is encountered that is not valid, an exception is thrown.
   ///
   /// The following list shows the valid operators on each type. When you define
   /// a crawler, the <code>partitionKey</code> type is created as a
@@ -5883,6 +5183,7 @@ class Glue {
     required String databaseName,
     required String tableName,
     String? catalogId,
+    bool? excludeColumnSchema,
     String? expression,
     int? maxResults,
     String? nextToken,
@@ -5896,12 +5197,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -5910,33 +5205,17 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'expression',
       expression,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'expression',
-      expression,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -5958,6 +5237,8 @@ class Glue {
         'DatabaseName': databaseName,
         'TableName': tableName,
         if (catalogId != null) 'CatalogId': catalogId,
+        if (excludeColumnSchema != null)
+          'ExcludeColumnSchema': excludeColumnSchema,
         if (expression != null) 'Expression': expression,
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
@@ -5989,8 +5270,8 @@ class Glue {
   /// <li>
   /// <code>inferSchema</code>  —  Specifies whether to set
   /// <code>inferSchema</code> to true or false for the default script generated
-  /// by an AWS Glue job. For example, to set <code>inferSchema</code> to true,
-  /// pass the following key value pair:
+  /// by an Glue job. For example, to set <code>inferSchema</code> to true, pass
+  /// the following key value pair:
   ///
   /// <code>--additional-plan-options-map '{"inferSchema":"true"}'</code>
   /// </li>
@@ -6070,12 +5351,12 @@ class Glue {
     return GetRegistryResponse.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the security configurations for the resource policies set on
-  /// individual resources, and also the account-level policy.
+  /// Retrieves the resource policies set on individual resources by Resource
+  /// Access Manager during cross-account permission grants. Also retrieves the
+  /// Data Catalog resource policy.
   ///
-  /// This operation also returns the Data Catalog resource policy. However, if
-  /// you enabled metadata encryption in Data Catalog settings, and you do not
-  /// have permission on the AWS KMS key, the operation can't return the Data
+  /// If you enabled metadata encryption in Data Catalog settings, and you do
+  /// not have permission on the KMS key, the operation can't return the Data
   /// Catalog resource policy.
   ///
   /// May throw [InternalServiceException].
@@ -6125,10 +5406,12 @@ class Glue {
   /// May throw [InvalidInputException].
   ///
   /// Parameter [resourceArn] :
-  /// The ARN of the AWS Glue resource for the resource policy to be retrieved.
-  /// For more information about AWS Glue resource ARNs, see the <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id">AWS
-  /// Glue ARN string pattern</a>
+  /// The ARN of the Glue resource for which to retrieve the resource policy. If
+  /// not supplied, the Data Catalog resource policy is returned. Use
+  /// <code>GetResourcePolicies</code> to view all existing resource policies.
+  /// For more information see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html">Specifying
+  /// Glue Resource ARNs</a>.
   Future<GetResourcePolicyResponse> getResourcePolicy({
     String? resourceArn,
   }) async {
@@ -6137,11 +5420,6 @@ class Glue {
       resourceArn,
       1,
       10240,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6247,12 +5525,6 @@ class Glue {
       170000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'schemaDefinition',
-      schemaDefinition,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaId, 'schemaId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6316,11 +5588,6 @@ class Glue {
       schemaVersionId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'schemaVersionId',
-      schemaVersionId,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6431,12 +5698,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetSecurityConfiguration'
@@ -6515,7 +5776,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the table resides. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   Future<GetTableResponse> getTable({
     required String databaseName,
     required String name,
@@ -6529,12 +5790,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
@@ -6543,22 +5798,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6598,7 +5842,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the tables reside. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [versionId] :
   /// The ID value of the table version to be retrieved. A
@@ -6618,12 +5862,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -6632,33 +5870,17 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6700,7 +5922,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the tables reside. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of table versions to return in one response.
@@ -6722,12 +5944,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -6736,28 +5952,17 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
-      1000,
+      100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6796,7 +6001,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the tables reside. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [expression] :
   /// A regular expression pattern. If present, only those tables whose names
@@ -6822,22 +6027,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateStringLength(
       'expression',
@@ -6845,16 +6039,11 @@ class Glue {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'expression',
-      expression,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
-      1000,
+      100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6898,12 +6087,6 @@ class Glue {
       10240,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetTags'
@@ -6940,12 +6123,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6994,11 +6171,6 @@ class Glue {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'dependentJobName',
-      dependentJobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -7041,7 +6213,8 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the function to be retrieved is located.
-  /// If none is provided, the AWS account ID is used by default.
+  /// If none is provided, the Amazon Web Services account ID is used by
+  /// default.
   Future<GetUserDefinedFunctionResponse> getUserDefinedFunction({
     required String databaseName,
     required String functionName,
@@ -7055,12 +6228,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
     _s.validateStringLength(
       'functionName',
@@ -7069,22 +6236,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7120,7 +6276,8 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the functions to be retrieved are
-  /// located. If none is provided, the AWS account ID is used by default.
+  /// located. If none is provided, the Amazon Web Services account ID is used
+  /// by default.
   ///
   /// Parameter [databaseName] :
   /// The name of the catalog database where the functions are located. If none
@@ -7147,39 +6304,23 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pattern',
-      pattern,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'databaseName',
       databaseName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
-      1000,
+      100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7226,12 +6367,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7281,24 +6416,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
       'runId',
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7345,24 +6468,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
       'runId',
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7416,12 +6527,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -7449,14 +6554,14 @@ class Glue {
     return GetWorkflowRunsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Imports an existing Amazon Athena Data Catalog to AWS Glue
+  /// Imports an existing Amazon Athena Data Catalog to Glue.
   ///
   /// May throw [InternalServiceException].
   /// May throw [OperationTimeoutException].
   ///
   /// Parameter [catalogId] :
-  /// The ID of the catalog to import. Currently, this should be the AWS account
-  /// ID.
+  /// The ID of the catalog to import. Currently, this should be the Amazon Web
+  /// Services account ID.
   Future<void> importCatalogToGlue({
     String? catalogId,
   }) async {
@@ -7465,11 +6570,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7487,9 +6587,9 @@ class Glue {
     );
   }
 
-  /// Retrieves the names of all crawler resources in this AWS account, or the
-  /// resources with the specified tag. This operation allows you to see which
-  /// resources are available in your account, and their names.
+  /// Retrieves the names of all crawler resources in this Amazon Web Services
+  /// account, or the resources with the specified tag. This operation allows
+  /// you to see which resources are available in your account, and their names.
   ///
   /// This operation takes the optional <code>Tags</code> field, which you can
   /// use as a filter on the response so that tagged resources can be retrieved
@@ -7537,9 +6637,10 @@ class Glue {
     return ListCrawlersResponse.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the names of all <code>DevEndpoint</code> resources in this AWS
-  /// account, or the resources with the specified tag. This operation allows
-  /// you to see which resources are available in your account, and their names.
+  /// Retrieves the names of all <code>DevEndpoint</code> resources in this
+  /// Amazon Web Services account, or the resources with the specified tag. This
+  /// operation allows you to see which resources are available in your account,
+  /// and their names.
   ///
   /// This operation takes the optional <code>Tags</code> field, which you can
   /// use as a filter on the response so that tagged resources can be retrieved
@@ -7590,9 +6691,9 @@ class Glue {
     return ListDevEndpointsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the names of all job resources in this AWS account, or the
-  /// resources with the specified tag. This operation allows you to see which
-  /// resources are available in your account, and their names.
+  /// Retrieves the names of all job resources in this Amazon Web Services
+  /// account, or the resources with the specified tag. This operation allows
+  /// you to see which resources are available in your account, and their names.
   ///
   /// This operation takes the optional <code>Tags</code> field, which you can
   /// use as a filter on the response so that tagged resources can be retrieved
@@ -7643,8 +6744,8 @@ class Glue {
     return ListJobsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves a sortable, filterable list of existing AWS Glue machine
-  /// learning transforms in this AWS account, or the resources with the
+  /// Retrieves a sortable, filterable list of existing Glue machine learning
+  /// transforms in this Amazon Web Services account, or the resources with the
   /// specified tag. This operation takes the optional <code>Tags</code> field,
   /// which you can use as a filter of the responses so that tagged resources
   /// can be retrieved as a group. If you choose to use tag filtering, only
@@ -7868,9 +6969,9 @@ class Glue {
     return ListSchemasResponse.fromJson(jsonResponse.body);
   }
 
-  /// Retrieves the names of all trigger resources in this AWS account, or the
-  /// resources with the specified tag. This operation allows you to see which
-  /// resources are available in your account, and their names.
+  /// Retrieves the names of all trigger resources in this Amazon Web Services
+  /// account, or the resources with the specified tag. This operation allows
+  /// you to see which resources are available in your account, and their names.
   ///
   /// This operation takes the optional <code>Tags</code> field, which you can
   /// use as a filter on the response so that tagged resources can be retrieved
@@ -7906,11 +7007,6 @@ class Glue {
       dependentJobName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'dependentJobName',
-      dependentJobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -7992,7 +7088,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog to set the security configuration for. If none
-  /// is provided, the AWS account ID is used by default.
+  /// is provided, the Amazon Web Services account ID is used by default.
   Future<void> putDataCatalogEncryptionSettings({
     required DataCatalogEncryptionSettings dataCatalogEncryptionSettings,
     String? catalogId,
@@ -8004,11 +7100,6 @@ class Glue {
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8039,19 +7130,26 @@ class Glue {
   /// Contains the policy document to set, in JSON format.
   ///
   /// Parameter [enableHybrid] :
-  /// Allows you to specify if you want to use both resource-level and
-  /// account/catalog-level resource policies. A resource-level policy is a
-  /// policy attached to an individual resource such as a database or a table.
+  /// If <code>'TRUE'</code>, indicates that you are using both methods to grant
+  /// cross-account access to Data Catalog resources:
   ///
-  /// The default value of <code>NO</code> indicates that resource-level
-  /// policies cannot co-exist with an account-level policy. A value of
-  /// <code>YES</code> means the use of both resource-level and
-  /// account/catalog-level resource policies is allowed.
+  /// <ul>
+  /// <li>
+  /// By directly updating the resource policy with
+  /// <code>PutResourePolicy</code>
+  /// </li>
+  /// <li>
+  /// By using the <b>Grant permissions</b> command on the Management Console.
+  /// </li>
+  /// </ul>
+  /// Must be set to <code>'TRUE'</code> if you have already used the Management
+  /// Console to grant cross-account access, otherwise the call fails. Default
+  /// is 'FALSE'.
   ///
   /// Parameter [policyExistsCondition] :
   /// A value of <code>MUST_EXIST</code> is used to update a policy. A value of
   /// <code>NOT_EXIST</code> is used to create a new policy. If a value of
-  /// <code>NONE</code> or a null value is used, the call will not depend on the
+  /// <code>NONE</code> or a null value is used, the call does not depend on the
   /// existence of a policy.
   ///
   /// Parameter [policyHashCondition] :
@@ -8061,10 +7159,7 @@ class Glue {
   /// has been set.
   ///
   /// Parameter [resourceArn] :
-  /// The ARN of the AWS Glue resource for the resource policy to be set. For
-  /// more information about AWS Glue resource ARNs, see the <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id">AWS
-  /// Glue ARN string pattern</a>
+  /// Do not use. For internal use only.
   Future<PutResourcePolicyResponse> putResourcePolicy({
     required String policyInJson,
     EnableHybridValues? enableHybrid,
@@ -8086,21 +7181,11 @@ class Glue {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'policyHashCondition',
-      policyHashCondition,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       1,
       10240,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8160,11 +7245,6 @@ class Glue {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'schemaVersionId',
-      schemaVersionId,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.PutSchemaVersionMetadata'
@@ -8220,24 +7300,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
       'runId',
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(runProperties, 'runProperties');
@@ -8304,11 +7372,6 @@ class Glue {
       schemaVersionId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'schemaVersionId',
-      schemaVersionId,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8387,12 +7450,6 @@ class Glue {
       170000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'schemaDefinition',
-      schemaDefinition,
-      r'''.*\S.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaId, 'schemaId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8444,11 +7501,6 @@ class Glue {
       schemaVersionId,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'schemaVersionId',
-      schemaVersionId,
-      r'''[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8541,12 +7593,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(nodeIds, 'nodeIds');
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
@@ -8554,12 +7600,6 @@ class Glue {
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8662,11 +7702,6 @@ class Glue {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -8725,12 +7760,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartCrawler'
@@ -8768,12 +7797,6 @@ class Glue {
       crawlerName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'crawlerName',
-      crawlerName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8826,12 +7849,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartExportLabelsTaskRun'
@@ -8858,9 +7875,9 @@ class Glue {
   /// that ultimately results in improving the quality of your machine learning
   /// transform.
   ///
-  /// After the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, AWS
-  /// Glue machine learning will have generated a series of questions for humans
-  /// to answer. (Answering these questions is often called 'labeling' in the
+  /// After the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, Glue
+  /// machine learning will have generated a series of questions for humans to
+  /// answer. (Answering these questions is often called 'labeling' in the
   /// machine learning workflows). In the case of the <code>FindMatches</code>
   /// transform, these questions are of the form, “What is the correct way to
   /// group these rows together into groups composed entirely of matching
@@ -8911,12 +7928,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartImportLabelsTaskRun'
@@ -8952,40 +7963,38 @@ class Glue {
   /// Parameter [allocatedCapacity] :
   /// This field is deprecated. Use <code>MaxCapacity</code> instead.
   ///
-  /// The number of AWS Glue data processing units (DPUs) to allocate to this
+  /// The number of Glue data processing units (DPUs) to allocate to this
   /// JobRun. From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a
   /// relative measure of processing power that consists of 4 vCPUs of compute
   /// capacity and 16 GB of memory. For more information, see the <a
-  /// href="https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// Parameter [arguments] :
   /// The job arguments specifically for this run. For this job run, they
   /// replace the default arguments set in the job definition itself.
   ///
   /// You can specify arguments here that your own job-execution script
-  /// consumes, as well as arguments that AWS Glue itself consumes.
+  /// consumes, as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own Job arguments,
   /// see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
+  /// For information about the key-value pairs that Glue consumes to set up
   /// your job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   ///
   /// Parameter [jobRunId] :
   /// The ID of a previous <code>JobRun</code> to retry.
   ///
   /// Parameter [maxCapacity] :
-  /// The number of AWS Glue data processing units (DPUs) that can be allocated
-  /// when this job runs. A DPU is a relative measure of processing power that
+  /// The number of Glue data processing units (DPUs) that can be allocated when
+  /// this job runs. A DPU is a relative measure of processing power that
   /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a
-  /// href="https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">Glue
+  /// pricing page</a>.
   ///
   /// Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and
   /// <code>NumberOfWorkers</code>.
@@ -9065,33 +8074,17 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'jobRunId',
       jobRunId,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'jobRunId',
-      jobRunId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-    );
     _s.validateStringLength(
       'securityConfiguration',
       securityConfiguration,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'securityConfiguration',
-      securityConfiguration,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'timeout',
@@ -9130,9 +8123,9 @@ class Glue {
 
   /// Starts a task to estimate the quality of the transform.
   ///
-  /// When you provide label sets as examples of truth, AWS Glue machine
-  /// learning uses some of those examples to learn from them. The rest of the
-  /// labels are used as a test to estimate quality.
+  /// When you provide label sets as examples of truth, Glue machine learning
+  /// uses some of those examples to learn from them. The rest of the labels are
+  /// used as a test to estimate quality.
   ///
   /// Returns a unique identifier for the run. You can call
   /// <code>GetMLTaskRun</code> to get more information about the stats of the
@@ -9158,12 +8151,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartMLEvaluationTaskRun'
@@ -9186,9 +8173,9 @@ class Glue {
   /// improve the transform's quality by generating label sets and adding
   /// labels.
   ///
-  /// When the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, AWS
-  /// Glue will have generated a "labeling set" or a set of questions for humans
-  /// to answer.
+  /// When the <code>StartMLLabelingSetGenerationTaskRun</code> finishes, Glue
+  /// will have generated a "labeling set" or a set of questions for humans to
+  /// answer.
   ///
   /// In the case of the <code>FindMatches</code> transform, these questions are
   /// of the form, “What is the correct way to group these rows together into
@@ -9224,12 +8211,6 @@ class Glue {
       transformId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9276,12 +8257,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartTrigger'
@@ -9322,12 +8297,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartWorkflowRun'
@@ -9364,12 +8333,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9410,12 +8373,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'crawlerName',
-      crawlerName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StopCrawlerSchedule'
@@ -9451,12 +8408,6 @@ class Glue {
       name,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9502,24 +8453,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
     _s.validateStringLength(
       'runId',
       runId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'runId',
-      runId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9539,11 +8478,11 @@ class Glue {
     );
   }
 
-  /// Adds tags to a resource. A tag is a label you can assign to an AWS
-  /// resource. In AWS Glue, you can tag only certain resources. For information
-  /// about what resources you can tag, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">AWS
-  /// Tags in AWS Glue</a>.
+  /// Adds tags to a resource. A tag is a label you can assign to an Amazon Web
+  /// Services resource. In Glue, you can tag only certain resources. For
+  /// information about what resources you can tag, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html">Amazon
+  /// Web Services Tags in Glue</a>.
   ///
   /// May throw [InvalidInputException].
   /// May throw [InternalServiceException].
@@ -9551,10 +8490,10 @@ class Glue {
   /// May throw [EntityNotFoundException].
   ///
   /// Parameter [resourceArn] :
-  /// The ARN of the AWS Glue resource to which to add the tags. For more
-  /// information about AWS Glue resource ARNs, see the <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id">AWS
-  /// Glue ARN string pattern</a>.
+  /// The ARN of the Glue resource to which to add the tags. For more
+  /// information about Glue resource ARNs, see the <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id">Glue
+  /// ARN string pattern</a>.
   ///
   /// Parameter [tagsToAdd] :
   /// Tags to add to this resource.
@@ -9568,12 +8507,6 @@ class Glue {
       resourceArn,
       1,
       10240,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagsToAdd, 'tagsToAdd');
@@ -9617,12 +8550,6 @@ class Glue {
       resourceArn,
       1,
       10240,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws:glue:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagsToRemove, 'tagsToRemove');
@@ -9713,7 +8640,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<UpdateColumnStatisticsForPartitionResponse>
       updateColumnStatisticsForPartition({
     required List<ColumnStatistics> columnStatisticsList,
@@ -9731,12 +8658,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -9746,22 +8667,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9808,7 +8718,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partitions in question reside. If
-  /// none is supplied, the AWS account ID is used by default.
+  /// none is supplied, the Amazon Web Services account ID is used by default.
   Future<UpdateColumnStatisticsForTableResponse>
       updateColumnStatisticsForTable({
     required List<ColumnStatistics> columnStatisticsList,
@@ -9825,12 +8735,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
       'tableName',
@@ -9839,22 +8743,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9894,7 +8787,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the connection resides. If none is
-  /// provided, the AWS account ID is used by default.
+  /// provided, the Amazon Web Services account ID is used by default.
   Future<void> updateConnection({
     required ConnectionInput connectionInput,
     required String name,
@@ -9909,22 +8802,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9972,7 +8854,7 @@ class Glue {
   /// this crawler.
   ///
   /// Parameter [databaseName] :
-  /// The AWS Glue database where results are stored, such as:
+  /// The Glue database where results are stored, such as:
   /// <code>arn:aws:daylight:us-east-1::database/sometable/*</code>.
   ///
   /// Parameter [description] :
@@ -10026,12 +8908,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'crawlerSecurityConfiguration',
       crawlerSecurityConfiguration,
@@ -10043,11 +8919,6 @@ class Glue {
       description,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'tablePrefix',
@@ -10115,12 +8986,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'crawlerName',
-      crawlerName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateCrawlerSchedule'
@@ -10156,7 +9021,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog in which the metadata database resides. If none
-  /// is provided, the AWS account ID is used by default.
+  /// is provided, the Amazon Web Services account ID is used by default.
   Future<void> updateDatabase({
     required DatabaseInput databaseInput,
     required String name,
@@ -10171,22 +9036,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10226,12 +9080,6 @@ class Glue {
   /// <ul>
   /// <li>
   /// <code>"--enable-glue-datacatalog": ""</code>
-  /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "3"</code>
-  /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "2"</code>
   /// </li>
   /// </ul>
   /// You can specify a version of Python support for development endpoints by
@@ -10320,12 +9168,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobUpdate, 'jobUpdate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10367,20 +9209,19 @@ class Glue {
   /// A description of the transform. The default is an empty string.
   ///
   /// Parameter [glueVersion] :
-  /// This value determines which version of AWS Glue this machine learning
+  /// This value determines which version of Glue this machine learning
   /// transform is compatible with. Glue 1.0 is recommended for most customers.
   /// If the value is not set, the Glue compatibility defaults to Glue 0.9. For
   /// more information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">AWS
-  /// Glue Versions</a> in the developer guide.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">Glue
+  /// Versions</a> in the developer guide.
   ///
   /// Parameter [maxCapacity] :
-  /// The number of AWS Glue data processing units (DPUs) that are allocated to
-  /// task runs for this transform. You can allocate from 2 to 100 DPUs; the
-  /// default is 10. A DPU is a relative measure of processing power that
-  /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// The number of Glue data processing units (DPUs) that are allocated to task
+  /// runs for this transform. You can allocate from 2 to 100 DPUs; the default
+  /// is 10. A DPU is a relative measure of processing power that consists of 4
+  /// vCPUs of compute capacity and 16 GB of memory. For more information, see
+  /// the <a href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// When the <code>WorkerType</code> field is set to a value other than
   /// <code>Standard</code>, the <code>MaxCapacity</code> field is set
@@ -10450,44 +9291,23 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformId',
-      transformId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'glueVersion',
       glueVersion,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'glueVersion',
-      glueVersion,
-      r'''^\w+\.\w+$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     _s.validateNumRange(
       'timeout',
@@ -10549,7 +9369,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the partition to be updated resides. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<void> updatePartition({
     required String databaseName,
     required PartitionInput partitionInput,
@@ -10565,12 +9385,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInput, 'partitionInput');
     ArgumentError.checkNotNull(partitionValueList, 'partitionValueList');
     ArgumentError.checkNotNull(tableName, 'tableName');
@@ -10581,22 +9395,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'tableName',
-      tableName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10645,12 +9448,6 @@ class Glue {
       description,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(registryId, 'registryId');
@@ -10732,11 +9529,6 @@ class Glue {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateSchema'
@@ -10779,7 +9571,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the table resides. If none is provided,
-  /// the AWS account ID is used by default.
+  /// the Amazon Web Services account ID is used by default.
   ///
   /// Parameter [skipArchive] :
   /// By default, <code>UpdateTable</code> always creates an archived version of
@@ -10799,23 +9591,12 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableInput, 'tableInput');
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10861,12 +9642,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(triggerUpdate, 'triggerUpdate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10908,7 +9683,7 @@ class Glue {
   ///
   /// Parameter [catalogId] :
   /// The ID of the Data Catalog where the function to be updated is located. If
-  /// none is provided, the AWS account ID is used by default.
+  /// none is provided, the Amazon Web Services account ID is used by default.
   Future<void> updateUserDefinedFunction({
     required String databaseName,
     required UserDefinedFunctionInput functionInput,
@@ -10923,12 +9698,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'databaseName',
-      databaseName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionInput, 'functionInput');
     ArgumentError.checkNotNull(functionName, 'functionName');
     _s.validateStringLength(
@@ -10938,22 +9707,11 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'functionName',
-      functionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'catalogId',
       catalogId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'catalogId',
-      catalogId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11012,12 +9770,6 @@ class Glue {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateWorkflow'
@@ -11047,23 +9799,23 @@ class Action {
   /// replace the default arguments set in the job definition itself.
   ///
   /// You can specify arguments here that your own job-execution script consumes,
-  /// as well as arguments that AWS Glue itself consumes.
+  /// as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own Job arguments, see
   /// the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
-  /// your job, see the <a
+  /// For information about the key-value pairs that Glue consumes to set up your
+  /// job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   final Map<String, String>? arguments;
 
   /// The name of the crawler to be used with this action.
   final String? crawlerName;
 
-  /// The name of a job to be executed.
+  /// The name of a job to be run.
   final String? jobName;
 
   /// Specifies configuration properties of a job run notification.
@@ -11727,7 +10479,7 @@ extension on String {
   }
 }
 
-/// Specifies a table definition in the AWS Glue Data Catalog.
+/// Specifies a table definition in the Glue Data Catalog.
 class CatalogEntry {
   /// The database in which the table metadata resides.
   final String databaseName;
@@ -11775,7 +10527,7 @@ class CatalogImportStatus {
   }
 }
 
-/// Specifies an AWS Glue Data Catalog target.
+/// Specifies an Glue Data Catalog target.
 class CatalogTarget {
   /// The name of the database to be synchronized.
   final String databaseName;
@@ -11832,12 +10584,12 @@ class CheckSchemaVersionValidityResponse {
 /// schema in the form of a <code>StructType</code> object that matches that
 /// data format.
 ///
-/// You can use the standard classifiers that AWS Glue provides, or you can
-/// write your own classifiers to best categorize your data sources and specify
-/// the appropriate schemas to use for them. A classifier can be a
-/// <code>grok</code> classifier, an <code>XML</code> classifier, a
-/// <code>JSON</code> classifier, or a custom <code>CSV</code> classifier, as
-/// specified in one of the fields in the <code>Classifier</code> object.
+/// You can use the standard classifiers that Glue provides, or you can write
+/// your own classifiers to best categorize your data sources and specify the
+/// appropriate schemas to use for them. A classifier can be a <code>grok</code>
+/// classifier, an <code>XML</code> classifier, a <code>JSON</code> classifier,
+/// or a custom <code>CSV</code> classifier, as specified in one of the fields
+/// in the <code>Classifier</code> object.
 class Classifier {
   /// A classifier for comma-separated values (CSV).
   final CsvClassifier? csvClassifier;
@@ -12624,19 +11376,19 @@ class Connection {
   /// </li>
   /// <li>
   /// <code>CUSTOM_JDBC_CERT</code> - An Amazon S3 location specifying the
-  /// customer's root certificate. AWS Glue uses this root certificate to validate
-  /// the customer’s certificate when connecting to the customer database. AWS
-  /// Glue only handles X.509 certificates. The certificate provided must be
-  /// DER-encoded and supplied in Base64 encoding PEM format.
+  /// customer's root certificate. Glue uses this root certificate to validate the
+  /// customer’s certificate when connecting to the customer database. Glue only
+  /// handles X.509 certificates. The certificate provided must be DER-encoded and
+  /// supplied in Base64 encoding PEM format.
   /// </li>
   /// <li>
   /// <code>SKIP_CUSTOM_JDBC_CERT_VALIDATION</code> - By default, this is
-  /// <code>false</code>. AWS Glue validates the Signature algorithm and Subject
+  /// <code>false</code>. Glue validates the Signature algorithm and Subject
   /// Public Key Algorithm for the customer certificate. The only permitted
   /// algorithms for the Signature algorithm are SHA256withRSA, SHA384withRSA or
   /// SHA512withRSA. For the Subject Public Key Algorithm, the key length must be
   /// at least 2048. You can set the value of this property to <code>true</code>
-  /// to skip AWS Glue’s validation of the customer certificate.
+  /// to skip Glue’s validation of the customer certificate.
   /// </li>
   /// <li>
   /// <code>CUSTOM_JDBC_CERT_STRING</code> - A custom JDBC certificate string
@@ -12664,9 +11416,8 @@ class Connection {
   /// </li>
   /// <li>
   /// <code>KAFKA_SKIP_CUSTOM_CERT_VALIDATION</code> - Whether to skip the
-  /// validation of the CA cert file or not. AWS Glue validates for three
-  /// algorithms: SHA256withRSA, SHA384withRSA and SHA512withRSA. Default value is
-  /// "false".
+  /// validation of the CA cert file or not. Glue validates for three algorithms:
+  /// SHA256withRSA, SHA384withRSA and SHA512withRSA. Default value is "false".
   /// </li>
   /// <li>
   /// <code>SECRET_ID</code> - The secret ID used for the secret manager of
@@ -12683,6 +11434,29 @@ class Connection {
   /// <li>
   /// <code>CONNECTOR_CLASS_NAME</code> - The connector class name for a
   /// MARKETPLACE or CUSTOM connection.
+  /// </li>
+  /// <li>
+  /// <code>KAFKA_CLIENT_KEYSTORE</code> - The Amazon S3 location of the client
+  /// keystore file for Kafka client side authentication (Optional).
+  /// </li>
+  /// <li>
+  /// <code>KAFKA_CLIENT_KEYSTORE_PASSWORD</code> - The password to access the
+  /// provided keystore (Optional).
+  /// </li>
+  /// <li>
+  /// <code>KAFKA_CLIENT_KEY_PASSWORD</code> - A keystore can consist of multiple
+  /// keys, so this is the password to access the client key to be used with the
+  /// Kafka server side key (Optional).
+  /// </li>
+  /// <li>
+  /// <code>ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD</code> - The encrypted
+  /// version of the Kafka client keystore password (if the user has the Glue
+  /// encrypt passwords setting selected).
+  /// </li>
+  /// <li>
+  /// <code>ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD</code> - The encrypted version of
+  /// the Kafka client key password (if the user has the Glue encrypt passwords
+  /// setting selected).
   /// </li>
   /// </ul>
   final Map<ConnectionPropertyKey, String>? connectionProperties;
@@ -12774,13 +11548,13 @@ class ConnectionInput {
   /// </li>
   /// <li>
   /// <code>MARKETPLACE</code> - Uses configuration settings contained in a
-  /// connector purchased from AWS Marketplace to read from and write to data
-  /// stores that are not natively supported by AWS Glue.
+  /// connector purchased from Marketplace to read from and write to data stores
+  /// that are not natively supported by Glue.
   /// </li>
   /// <li>
   /// <code>CUSTOM</code> - Uses configuration settings contained in a custom
   /// connector to read from and write to data stores that are not natively
-  /// supported by AWS Glue.
+  /// supported by Glue.
   /// </li>
   /// </ul>
   /// SFTP is not supported.
@@ -12834,11 +11608,11 @@ class ConnectionInput {
 /// properties. You can enable catalog encryption or only password encryption.
 ///
 /// When a <code>CreationConnection</code> request arrives containing a
-/// password, the Data Catalog first encrypts the password using your AWS KMS
-/// key. It then encrypts the whole connection object again if catalog
-/// encryption is also enabled.
+/// password, the Data Catalog first encrypts the password using your KMS key.
+/// It then encrypts the whole connection object again if catalog encryption is
+/// also enabled.
 ///
-/// This encryption requires that you set AWS KMS key permissions to enable or
+/// This encryption requires that you set KMS key permissions to enable or
 /// restrict access on the password key according to your security requirements.
 /// For example, you might want only administrators to have decrypt permission
 /// on the password key.
@@ -12849,11 +11623,11 @@ class ConnectionPasswordEncryption {
   /// takes effect independently from catalog encryption.
   final bool returnConnectionPasswordEncrypted;
 
-  /// An AWS KMS key that is used to encrypt the connection password.
+  /// An KMS key that is used to encrypt the connection password.
   ///
   /// If connection password protection is enabled, the caller of
   /// <code>CreateConnection</code> and <code>UpdateConnection</code> needs at
-  /// least <code>kms:Encrypt</code> permission on the specified AWS KMS key, to
+  /// least <code>kms:Encrypt</code> permission on the specified KMS key, to
   /// encrypt passwords before storing them in the Data Catalog.
   ///
   /// You can set the decrypt permission to enable or restrict access on the
@@ -12905,6 +11679,11 @@ enum ConnectionPropertyKey {
   kafkaSslEnabled,
   kafkaCustomCert,
   kafkaSkipCustomCertValidation,
+  kafkaClientKeystore,
+  kafkaClientKeystorePassword,
+  kafkaClientKeyPassword,
+  encryptedKafkaClientKeystorePassword,
+  encryptedKafkaClientKeyPassword,
   secretId,
   connectorUrl,
   connectorType,
@@ -12956,6 +11735,16 @@ extension on ConnectionPropertyKey {
         return 'KAFKA_CUSTOM_CERT';
       case ConnectionPropertyKey.kafkaSkipCustomCertValidation:
         return 'KAFKA_SKIP_CUSTOM_CERT_VALIDATION';
+      case ConnectionPropertyKey.kafkaClientKeystore:
+        return 'KAFKA_CLIENT_KEYSTORE';
+      case ConnectionPropertyKey.kafkaClientKeystorePassword:
+        return 'KAFKA_CLIENT_KEYSTORE_PASSWORD';
+      case ConnectionPropertyKey.kafkaClientKeyPassword:
+        return 'KAFKA_CLIENT_KEY_PASSWORD';
+      case ConnectionPropertyKey.encryptedKafkaClientKeystorePassword:
+        return 'ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD';
+      case ConnectionPropertyKey.encryptedKafkaClientKeyPassword:
+        return 'ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD';
       case ConnectionPropertyKey.secretId:
         return 'SECRET_ID';
       case ConnectionPropertyKey.connectorUrl:
@@ -13013,6 +11802,16 @@ extension on String {
         return ConnectionPropertyKey.kafkaCustomCert;
       case 'KAFKA_SKIP_CUSTOM_CERT_VALIDATION':
         return ConnectionPropertyKey.kafkaSkipCustomCertValidation;
+      case 'KAFKA_CLIENT_KEYSTORE':
+        return ConnectionPropertyKey.kafkaClientKeystore;
+      case 'KAFKA_CLIENT_KEYSTORE_PASSWORD':
+        return ConnectionPropertyKey.kafkaClientKeystorePassword;
+      case 'KAFKA_CLIENT_KEY_PASSWORD':
+        return ConnectionPropertyKey.kafkaClientKeyPassword;
+      case 'ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD':
+        return ConnectionPropertyKey.encryptedKafkaClientKeystorePassword;
+      case 'ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD':
+        return ConnectionPropertyKey.encryptedKafkaClientKeyPassword;
       case 'SECRET_ID':
         return ConnectionPropertyKey.secretId;
       case 'CONNECTOR_URL':
@@ -13189,7 +11988,7 @@ extension on String {
 
 /// Specifies a crawler program that examines a data source and uses classifiers
 /// to try to determine its schema. If successful, the crawler records metadata
-/// concerning the data source in the AWS Glue Data Catalog.
+/// concerning the data source in the Glue Data Catalog.
 class Crawler {
   /// A list of UTF-8 strings that specify the custom classifiers that are
   /// associated with the crawler.
@@ -13197,8 +11996,8 @@ class Crawler {
 
   /// Crawler configuration information. This versioned JSON string allows users
   /// to specify aspects of a crawler's behavior. For more information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html">Configuring
-  /// a Crawler</a>.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/define-crawler.html#crawler-data-stores-exclude">Include
+  /// and Exclude Patterns</a>.
   final String? configuration;
 
   /// If the crawler is running, contains the total time elapsed since the last
@@ -13455,7 +12254,7 @@ extension on String {
 
 /// Specifies data stores to crawl.
 class CrawlerTargets {
-  /// Specifies AWS Glue Data Catalog targets.
+  /// Specifies Glue Data Catalog targets.
   final List<CatalogTarget>? catalogTargets;
 
   /// Specifies Amazon DynamoDB targets.
@@ -13611,12 +12410,6 @@ class CreateDevEndpointResponse {
   /// <li>
   /// <code>"--enable-glue-datacatalog": ""</code>
   /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "3"</code>
-  /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "2"</code>
-  /// </li>
   /// </ul>
   /// You can specify a version of Python support for development endpoints by
   /// using the <code>Arguments</code> parameter in the
@@ -13644,12 +12437,17 @@ class CreateDevEndpointResponse {
   /// The reason for a current failure in this <code>DevEndpoint</code>.
   final String? failureReason;
 
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for
-  /// running your ETL scripts on development endpoints.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for running
+  /// your ETL scripts on development endpoints.
+  ///
+  /// For more information about the available Glue versions and corresponding
+  /// Spark and Python versions, see <a
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
+  /// version</a> in the developer guide.
   final String? glueVersion;
 
-  /// The number of AWS Glue Data Processing Units (DPUs) allocated to this
+  /// The number of Glue Data Processing Units (DPUs) allocated to this
   /// DevEndpoint.
   final int? numberOfNodes;
 
@@ -13792,7 +12590,7 @@ class CreateJobResponse {
 /// Specifies a JSON classifier for <code>CreateClassifier</code> to create.
 class CreateJsonClassifierRequest {
   /// A <code>JsonPath</code> string defining the JSON data for the classifier to
-  /// classify. AWS Glue supports a subset of JsonPath, as described in <a
+  /// classify. Glue supports a subset of JsonPath, as described in <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json">Writing
   /// JsonPath Custom Classifiers</a>.
   final String jsonPath;
@@ -13876,8 +12674,8 @@ class CreateSchemaResponse {
   /// The schema compatibility mode.
   final Compatibility? compatibility;
 
-  /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// The data format of the schema definition. Currently <code>AVRO</code> and
+  /// <code>JSON</code> are supported.
   final DataFormat? dataFormat;
 
   /// A description of the schema if specified when created.
@@ -14211,6 +13009,7 @@ class DataCatalogEncryptionSettings {
 
 enum DataFormat {
   avro,
+  json,
 }
 
 extension on DataFormat {
@@ -14218,6 +13017,8 @@ extension on DataFormat {
     switch (this) {
       case DataFormat.avro:
         return 'AVRO';
+      case DataFormat.json:
+        return 'JSON';
     }
   }
 }
@@ -14227,14 +13028,16 @@ extension on String {
     switch (this) {
       case 'AVRO':
         return DataFormat.avro;
+      case 'JSON':
+        return DataFormat.json;
     }
     throw Exception('$this is not known in enum DataFormat');
   }
 }
 
-/// The AWS Lake Formation principal.
+/// The Lake Formation principal.
 class DataLakePrincipal {
-  /// An identifier for the AWS Lake Formation principal.
+  /// An identifier for the Lake Formation principal.
   final String? dataLakePrincipalIdentifier;
 
   DataLakePrincipal({
@@ -14787,12 +13590,6 @@ class DevEndpoint {
   /// <li>
   /// <code>"--enable-glue-datacatalog": ""</code>
   /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "3"</code>
-  /// </li>
-  /// <li>
-  /// <code>"GLUE_PYTHON_VERSION": "2"</code>
-  /// </li>
   /// </ul>
   /// You can specify a version of Python support for development endpoints by
   /// using the <code>Arguments</code> parameter in the
@@ -14830,11 +13627,11 @@ class DevEndpoint {
   /// The reason for a current failure in this <code>DevEndpoint</code>.
   final String? failureReason;
 
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for
-  /// running your ETL scripts on development endpoints.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for running
+  /// your ETL scripts on development endpoints.
   ///
-  /// For more information about the available AWS Glue versions and corresponding
+  /// For more information about the available Glue versions and corresponding
   /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
@@ -14854,7 +13651,7 @@ class DevEndpoint {
   /// The status of the last update.
   final String? lastUpdateStatus;
 
-  /// The number of AWS Glue Data Processing Units (DPUs) allocated to this
+  /// The number of Glue Data Processing Units (DPUs) allocated to this
   /// <code>DevEndpoint</code>.
   final int? numberOfNodes;
 
@@ -15105,7 +13902,7 @@ class DynamoDBTarget {
   /// the value defaults to <code>true</code>.
   final bool? scanAll;
 
-  /// The percentage of the configured read capacity units to use by the AWS Glue
+  /// The percentage of the configured read capacity units to use by the Glue
   /// crawler. Read capacity units is a term defined by DynamoDB, and is a numeric
   /// value that acts as rate limiter for the number of reads that can be
   /// performed on that table per second.
@@ -15141,8 +13938,8 @@ class DynamoDBTarget {
   }
 }
 
-/// An edge represents a directed connection between two AWS Glue components
-/// that are part of the workflow the edge belongs to.
+/// An edge represents a directed connection between two Glue components that
+/// are part of the workflow the edge belongs to.
 class Edge {
   /// The unique of the node within the workflow where the edge ends.
   final String? destinationId;
@@ -15195,7 +13992,7 @@ class EncryptionAtRest {
   /// The encryption-at-rest mode for encrypting Data Catalog data.
   final CatalogEncryptionMode catalogEncryptionMode;
 
-  /// The ID of the AWS KMS key to use for encryption at rest.
+  /// The ID of the KMS key to use for encryption at rest.
   final String? sseAwsKmsKeyId;
 
   EncryptionAtRest({
@@ -16129,15 +14926,15 @@ class GetMLTransformResponse {
   /// The latest evaluation metrics.
   final EvaluationMetrics? evaluationMetrics;
 
-  /// This value determines which version of AWS Glue this machine learning
-  /// transform is compatible with. Glue 1.0 is recommended for most customers. If
-  /// the value is not set, the Glue compatibility defaults to Glue 0.9. For more
+  /// This value determines which version of Glue this machine learning transform
+  /// is compatible with. Glue 1.0 is recommended for most customers. If the value
+  /// is not set, the Glue compatibility defaults to Glue 0.9. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">AWS
-  /// Glue Versions</a> in the developer guide.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">Glue
+  /// Versions</a> in the developer guide.
   final String? glueVersion;
 
-  /// A list of AWS Glue table definitions used by the transform.
+  /// A list of Glue table definitions used by the transform.
   final List<GlueTable>? inputRecordTables;
 
   /// The number of labels available for this transform.
@@ -16146,12 +14943,11 @@ class GetMLTransformResponse {
   /// The date and time when the transform was last modified.
   final DateTime? lastModifiedOn;
 
-  /// The number of AWS Glue data processing units (DPUs) that are allocated to
-  /// task runs for this transform. You can allocate from 2 to 100 DPUs; the
-  /// default is 10. A DPU is a relative measure of processing power that consists
-  /// of 4 vCPUs of compute capacity and 16 GB of memory. For more information,
-  /// see the <a href="https://aws.amazon.com/glue/pricing/">AWS Glue pricing
-  /// page</a>.
+  /// The number of Glue data processing units (DPUs) that are allocated to task
+  /// runs for this transform. You can allocate from 2 to 100 DPUs; the default is
+  /// 10. A DPU is a relative measure of processing power that consists of 4 vCPUs
+  /// of compute capacity and 16 GB of memory. For more information, see the <a
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// When the <code>WorkerType</code> field is set to a value other than
   /// <code>Standard</code>, the <code>MaxCapacity</code> field is set
@@ -16498,7 +15294,7 @@ class GetSchemaByDefinitionResponse {
   final String? createdTime;
 
   /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// and <code>JSON</code> are supported.
   final DataFormat? dataFormat;
 
   /// The Amazon Resource Name (ARN) of the schema.
@@ -16535,8 +15331,8 @@ class GetSchemaResponse {
   /// The date and time the schema was created.
   final String? createdTime;
 
-  /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// The data format of the schema definition. Currently <code>AVRO</code> and
+  /// <code>JSON</code> are supported.
   final DataFormat? dataFormat;
 
   /// A description of schema if specified when created
@@ -16610,8 +15406,8 @@ class GetSchemaVersionResponse {
   /// The date and time the schema version was created.
   final String? createdTime;
 
-  /// The data format of the schema definition. Currently only <code>AVRO</code>
-  /// is supported.
+  /// The data format of the schema definition. Currently <code>AVRO</code> and
+  /// <code>JSON</code> are supported.
   final DataFormat? dataFormat;
 
   /// The Amazon Resource Name (ARN) of the schema.
@@ -16975,19 +15771,19 @@ class GluePolicy {
   }
 }
 
-/// The database and table in the AWS Glue Data Catalog that is used for input
-/// or output data.
+/// The database and table in the Glue Data Catalog that is used for input or
+/// output data.
 class GlueTable {
-  /// A database name in the AWS Glue Data Catalog.
+  /// A database name in the Glue Data Catalog.
   final String databaseName;
 
-  /// A table name in the AWS Glue Data Catalog.
+  /// A table name in the Glue Data Catalog.
   final String tableName;
 
-  /// A unique identifier for the AWS Glue Data Catalog.
+  /// A unique identifier for the Glue Data Catalog.
   final String? catalogId;
 
-  /// The name of the connection to the AWS Glue Data Catalog.
+  /// The name of the connection to the Glue Data Catalog.
   final String? connectionName;
 
   GlueTable({
@@ -17145,15 +15941,15 @@ class JdbcTarget {
 class Job {
   /// This field is deprecated. Use <code>MaxCapacity</code> instead.
   ///
-  /// The number of AWS Glue data processing units (DPUs) allocated to runs of
-  /// this job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a
+  /// The number of Glue data processing units (DPUs) allocated to runs of this
+  /// job. You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a
   /// relative measure of processing power that consists of 4 vCPUs of compute
   /// capacity and 16 GB of memory. For more information, see the <a
-  /// href="https://aws.amazon.com/glue/pricing/">AWS Glue pricing page</a>.
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   /// <p/>
   final int? allocatedCapacity;
 
-  /// The <code>JobCommand</code> that executes this job.
+  /// The <code>JobCommand</code> that runs this job.
   final JobCommand? command;
 
   /// The connections used for this job.
@@ -17165,17 +15961,17 @@ class Job {
   /// The default arguments for this job, specified as name-value pairs.
   ///
   /// You can specify arguments here that your own job-execution script consumes,
-  /// as well as arguments that AWS Glue itself consumes.
+  /// as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own Job arguments, see
   /// the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
-  /// your job, see the <a
+  /// For information about the key-value pairs that Glue consumes to set up your
+  /// job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   final Map<String, String>? defaultArguments;
 
   /// A description of the job.
@@ -17185,11 +15981,11 @@ class Job {
   /// concurrent runs allowed for this job.
   final ExecutionProperty? executionProperty;
 
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for jobs
-  /// of type Spark.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for jobs of
+  /// type Spark.
   ///
-  /// For more information about the available AWS Glue versions and corresponding
+  /// For more information about the available Glue versions and corresponding
   /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
@@ -17203,11 +15999,11 @@ class Job {
   /// This field is reserved for future use.
   final String? logUri;
 
-  /// The number of AWS Glue data processing units (DPUs) that can be allocated
-  /// when this job runs. A DPU is a relative measure of processing power that
-  /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">AWS Glue
-  /// pricing page</a>.
+  /// For Glue version 1.0 or earlier jobs, using the standard worker type, the
+  /// number of Glue data processing units (DPUs) that can be allocated when this
+  /// job runs. A DPU is a relative measure of processing power that consists of 4
+  /// vCPUs of compute capacity and 16 GB of memory. For more information, see the
+  /// <a href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and
   /// <code>NumberOfWorkers</code>.
@@ -17230,6 +16026,9 @@ class Job {
   /// allocation.
   /// </li>
   /// </ul>
+  /// For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum
+  /// capacity</code>. Instead, you should specify a <code>Worker type</code> and
+  /// the <code>Number of workers</code>.
   final double? maxCapacity;
 
   /// The maximum number of times to retry this job after a JobRun fails.
@@ -17453,7 +16252,7 @@ extension on String {
   }
 }
 
-/// Specifies code executed when a job is run.
+/// Specifies code that runs when a job is run.
 class JobCommand {
   /// The name of the job command. For an Apache Spark ETL job, this must be
   /// <code>glueetl</code>. For a Python shell job, it must be
@@ -17461,12 +16260,12 @@ class JobCommand {
   /// be <code>gluestreaming</code>.
   final String? name;
 
-  /// The Python version being used to execute a Python shell job. Allowed values
-  /// are 2 or 3.
+  /// The Python version being used to run a Python shell job. Allowed values are
+  /// 2 or 3.
   final String? pythonVersion;
 
   /// Specifies the Amazon Simple Storage Service (Amazon S3) path to a script
-  /// that executes a job.
+  /// that runs a job.
   final String? scriptLocation;
 
   JobCommand({
@@ -17516,28 +16315,28 @@ class JobNodeDetails {
 class JobRun {
   /// This field is deprecated. Use <code>MaxCapacity</code> instead.
   ///
-  /// The number of AWS Glue data processing units (DPUs) allocated to this
-  /// JobRun. From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a
-  /// relative measure of processing power that consists of 4 vCPUs of compute
-  /// capacity and 16 GB of memory. For more information, see the <a
-  /// href="https://aws.amazon.com/glue/pricing/">AWS Glue pricing page</a>.
+  /// The number of Glue data processing units (DPUs) allocated to this JobRun.
+  /// From 2 to 100 DPUs can be allocated; the default is 10. A DPU is a relative
+  /// measure of processing power that consists of 4 vCPUs of compute capacity and
+  /// 16 GB of memory. For more information, see the <a
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   final int? allocatedCapacity;
 
   /// The job arguments associated with this run. For this job run, they replace
   /// the default arguments set in the job definition itself.
   ///
   /// You can specify arguments here that your own job-execution script consumes,
-  /// as well as arguments that AWS Glue itself consumes.
+  /// as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own job arguments, see
   /// the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
-  /// your job, see the <a
+  /// For information about the key-value pairs that Glue consumes to set up your
+  /// job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   final Map<String, String>? arguments;
 
   /// The number of the attempt to run this job.
@@ -17552,11 +16351,11 @@ class JobRun {
   /// The amount of time (in seconds) that the job run consumed resources.
   final int? executionTime;
 
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for jobs
-  /// of type Spark.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for jobs of
+  /// type Spark.
   ///
-  /// For more information about the available AWS Glue versions and corresponding
+  /// For more information about the available Glue versions and corresponding
   /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
@@ -17572,15 +16371,15 @@ class JobRun {
 
   /// The current state of the job run. For more information about the statuses of
   /// jobs that have terminated abnormally, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html">AWS
-  /// Glue Job Run Statuses</a>.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/job-run-statuses.html">Glue
+  /// Job Run Statuses</a>.
   final JobRunState? jobRunState;
 
   /// The last time that this job run was modified.
   final DateTime? lastModifiedOn;
 
   /// The name of the log group for secure logging that can be server-side
-  /// encrypted in Amazon CloudWatch using AWS KMS. This name can be
+  /// encrypted in Amazon CloudWatch using KMS. This name can be
   /// <code>/aws-glue/jobs/</code>, in which case the default encryption is
   /// <code>NONE</code>. If you add a role name and
   /// <code>SecurityConfiguration</code> name (in other words,
@@ -17588,12 +16387,11 @@ class JobRun {
   /// then that security configuration is used to encrypt the log group.
   final String? logGroupName;
 
-  /// The number of AWS Glue data processing units (DPUs) that can be allocated
-  /// when this job runs. A DPU is a relative measure of processing power that
-  /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a
-  /// href="https://docs.aws.amazon.com/https:/aws.amazon.com/glue/pricing/">AWS
-  /// Glue pricing page</a>.
+  /// The number of Glue data processing units (DPUs) that can be allocated when
+  /// this job runs. A DPU is a relative measure of processing power that consists
+  /// of 4 vCPUs of compute capacity and 16 GB of memory. For more information,
+  /// see the <a href="https://aws.amazon.com/glue/pricing/">Glue pricing
+  /// page</a>.
   ///
   /// Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and
   /// <code>NumberOfWorkers</code>.
@@ -17785,14 +16583,14 @@ extension on String {
 class JobUpdate {
   /// This field is deprecated. Use <code>MaxCapacity</code> instead.
   ///
-  /// The number of AWS Glue data processing units (DPUs) to allocate to this job.
-  /// You can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative
+  /// The number of Glue data processing units (DPUs) to allocate to this job. You
+  /// can allocate from 2 to 100 DPUs; the default is 10. A DPU is a relative
   /// measure of processing power that consists of 4 vCPUs of compute capacity and
   /// 16 GB of memory. For more information, see the <a
-  /// href="https://aws.amazon.com/glue/pricing/">AWS Glue pricing page</a>.
+  /// href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   final int? allocatedCapacity;
 
-  /// The <code>JobCommand</code> that executes this job (required).
+  /// The <code>JobCommand</code> that runs this job (required).
   final JobCommand? command;
 
   /// The connections used for this job.
@@ -17801,17 +16599,17 @@ class JobUpdate {
   /// The default arguments for this job.
   ///
   /// You can specify arguments here that your own job-execution script consumes,
-  /// as well as arguments that AWS Glue itself consumes.
+  /// as well as arguments that Glue itself consumes.
   ///
   /// For information about how to specify and consume your own Job arguments, see
   /// the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-python-calling.html">Calling
-  /// AWS Glue APIs in Python</a> topic in the developer guide.
+  /// Glue APIs in Python</a> topic in the developer guide.
   ///
-  /// For information about the key-value pairs that AWS Glue consumes to set up
-  /// your job, see the <a
+  /// For information about the key-value pairs that Glue consumes to set up your
+  /// job, see the <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-glue-arguments.html">Special
-  /// Parameters Used by AWS Glue</a> topic in the developer guide.
+  /// Parameters Used by Glue</a> topic in the developer guide.
   final Map<String, String>? defaultArguments;
 
   /// Description of the job being defined.
@@ -17821,11 +16619,11 @@ class JobUpdate {
   /// concurrent runs allowed for this job.
   final ExecutionProperty? executionProperty;
 
-  /// Glue version determines the versions of Apache Spark and Python that AWS
-  /// Glue supports. The Python version indicates the version supported for jobs
-  /// of type Spark.
+  /// Glue version determines the versions of Apache Spark and Python that Glue
+  /// supports. The Python version indicates the version supported for jobs of
+  /// type Spark.
   ///
-  /// For more information about the available AWS Glue versions and corresponding
+  /// For more information about the available Glue versions and corresponding
   /// Spark and Python versions, see <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/add-job.html">Glue
   /// version</a> in the developer guide.
@@ -17834,11 +16632,11 @@ class JobUpdate {
   /// This field is reserved for future use.
   final String? logUri;
 
-  /// The number of AWS Glue data processing units (DPUs) that can be allocated
-  /// when this job runs. A DPU is a relative measure of processing power that
-  /// consists of 4 vCPUs of compute capacity and 16 GB of memory. For more
-  /// information, see the <a href="https://aws.amazon.com/glue/pricing/">AWS Glue
-  /// pricing page</a>.
+  /// For Glue version 1.0 or earlier jobs, using the standard worker type, the
+  /// number of Glue data processing units (DPUs) that can be allocated when this
+  /// job runs. A DPU is a relative measure of processing power that consists of 4
+  /// vCPUs of compute capacity and 16 GB of memory. For more information, see the
+  /// <a href="https://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// Do not set <code>Max Capacity</code> if using <code>WorkerType</code> and
   /// <code>NumberOfWorkers</code>.
@@ -17860,6 +16658,9 @@ class JobUpdate {
   /// allocation.
   /// </li>
   /// </ul>
+  /// For Glue version 2.0 jobs, you cannot instead specify a <code>Maximum
+  /// capacity</code>. Instead, you should specify a <code>Worker type</code> and
+  /// the <code>Number of workers</code>.
   final double? maxCapacity;
 
   /// The maximum number of times to retry this job if it fails.
@@ -17977,7 +16778,7 @@ class JobUpdate {
 /// A classifier for <code>JSON</code> content.
 class JsonClassifier {
   /// A <code>JsonPath</code> string defining the JSON data for the classifier to
-  /// classify. AWS Glue supports a subset of JsonPath, as described in <a
+  /// classify. Glue supports a subset of JsonPath, as described in <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json">Writing
   /// JsonPath Custom Classifiers</a>.
   final String jsonPath;
@@ -18533,18 +17334,18 @@ class MLTransform {
   /// estimate of the quality of your machine learning transform.
   final EvaluationMetrics? evaluationMetrics;
 
-  /// This value determines which version of AWS Glue this machine learning
-  /// transform is compatible with. Glue 1.0 is recommended for most customers. If
-  /// the value is not set, the Glue compatibility defaults to Glue 0.9. For more
+  /// This value determines which version of Glue this machine learning transform
+  /// is compatible with. Glue 1.0 is recommended for most customers. If the value
+  /// is not set, the Glue compatibility defaults to Glue 0.9. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">AWS
-  /// Glue Versions</a> in the developer guide.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">Glue
+  /// Versions</a> in the developer guide.
   final String? glueVersion;
 
-  /// A list of AWS Glue table definitions used by the transform.
+  /// A list of Glue table definitions used by the transform.
   final List<GlueTable>? inputRecordTables;
 
-  /// A count identifier for the labeling files generated by AWS Glue for this
+  /// A count identifier for the labeling files generated by Glue for this
   /// transform. As you create a better transform, you can iteratively download,
   /// label, and upload the labeling file.
   final int? labelCount;
@@ -18553,12 +17354,11 @@ class MLTransform {
   /// modified.
   final DateTime? lastModifiedOn;
 
-  /// The number of AWS Glue data processing units (DPUs) that are allocated to
-  /// task runs for this transform. You can allocate from 2 to 100 DPUs; the
-  /// default is 10. A DPU is a relative measure of processing power that consists
-  /// of 4 vCPUs of compute capacity and 16 GB of memory. For more information,
-  /// see the <a href="http://aws.amazon.com/glue/pricing/">AWS Glue pricing
-  /// page</a>.
+  /// The number of Glue data processing units (DPUs) that are allocated to task
+  /// runs for this transform. You can allocate from 2 to 100 DPUs; the default is
+  /// 10. A DPU is a relative measure of processing power that consists of 4 vCPUs
+  /// of compute capacity and 16 GB of memory. For more information, see the <a
+  /// href="http://aws.amazon.com/glue/pricing/">Glue pricing page</a>.
   ///
   /// <code>MaxCapacity</code> is a mutually exclusive option with
   /// <code>NumberOfWorkers</code> and <code>WorkerType</code>.
@@ -18608,16 +17408,16 @@ class MLTransform {
   final TransformParameters? parameters;
 
   /// The name or Amazon Resource Name (ARN) of the IAM role with the required
-  /// permissions. The required permissions include both AWS Glue service role
-  /// permissions to AWS Glue resources, and Amazon S3 permissions required by the
+  /// permissions. The required permissions include both Glue service role
+  /// permissions to Glue resources, and Amazon S3 permissions required by the
   /// transform.
   ///
   /// <ul>
   /// <li>
-  /// This role needs AWS Glue service role permissions to allow access to
-  /// resources in AWS Glue. See <a
+  /// This role needs Glue service role permissions to allow access to resources
+  /// in Glue. See <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/attach-policy-iam-user.html">Attach
-  /// a Policy to IAM Users That Access AWS Glue</a>.
+  /// a Policy to IAM Users That Access Glue</a>.
   /// </li>
   /// <li>
   /// This role needs permission to your Amazon Simple Storage Service (Amazon S3)
@@ -18757,8 +17557,8 @@ class MLUserDataEncryption {
   /// DISABLED: encryption is disabled
   /// </li>
   /// <li>
-  /// SSEKMS: use of server-side encryption with AWS Key Management Service
-  /// (SSE-KMS) for user data stored in Amazon S3.
+  /// SSEKMS: use of server-side encryption with Key Management Service (SSE-KMS)
+  /// for user data stored in Amazon S3.
   /// </li>
   /// </ul>
   final MLUserDataEncryptionModeString mlUserDataEncryptionMode;
@@ -18882,14 +17682,23 @@ class MetadataInfo {
   /// The metadata key’s corresponding value.
   final String? metadataValue;
 
+  /// Other metadata belonging to the same metadata key.
+  final List<OtherMetadataValueListItem>? otherMetadataValueList;
+
   MetadataInfo({
     this.createdTime,
     this.metadataValue,
+    this.otherMetadataValueList,
   });
   factory MetadataInfo.fromJson(Map<String, dynamic> json) {
     return MetadataInfo(
       createdTime: json['CreatedTime'] as String?,
       metadataValue: json['MetadataValue'] as String?,
+      otherMetadataValueList: (json['OtherMetadataValueList'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              OtherMetadataValueListItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -18959,8 +17768,8 @@ class MongoDBTarget {
   }
 }
 
-/// A node represents an AWS Glue component such as a trigger, or job, etc.,
-/// that is part of a workflow.
+/// A node represents an Glue component such as a trigger, or job, etc., that is
+/// part of a workflow.
 class Node {
   /// Details of the crawler when the node represents a crawler.
   final CrawlerNodeDetails? crawlerDetails;
@@ -18968,13 +17777,13 @@ class Node {
   /// Details of the Job when the node represents a Job.
   final JobNodeDetails? jobDetails;
 
-  /// The name of the AWS Glue component represented by the node.
+  /// The name of the Glue component represented by the node.
   final String? name;
 
   /// Details of the Trigger when the node represents a Trigger.
   final TriggerNodeDetails? triggerDetails;
 
-  /// The type of AWS Glue component represented by the node.
+  /// The type of Glue component represented by the node.
   final NodeType? type;
 
   /// The unique Id assigned to the node within the workflow.
@@ -19091,6 +17900,28 @@ class Order {
       'Column': column,
       'SortOrder': sortOrder,
     };
+  }
+}
+
+/// A structure containing other metadata for a schema version belonging to the
+/// same metadata key.
+class OtherMetadataValueListItem {
+  /// The time at which the entry was created.
+  final String? createdTime;
+
+  /// The metadata key’s corresponding value for the other metadata belonging to
+  /// the same metadata key.
+  final String? metadataValue;
+
+  OtherMetadataValueListItem({
+    this.createdTime,
+    this.metadataValue,
+  });
+  factory OtherMetadataValueListItem.fromJson(Map<String, dynamic> json) {
+    return OtherMetadataValueListItem(
+      createdTime: json['CreatedTime'] as String?,
+      metadataValue: json['MetadataValue'] as String?,
+    );
   }
 }
 
@@ -19318,8 +18149,8 @@ class PartitionInput {
   ///
   /// The values for the keys for the new partition must be passed as an array of
   /// String objects that must be ordered in the same order as the partition keys
-  /// appearing in the Amazon S3 prefix. Otherwise AWS Glue will add the values to
-  /// the wrong keys.
+  /// appearing in the Amazon S3 prefix. Otherwise Glue will add the values to the
+  /// wrong keys.
   final List<String>? values;
 
   PartitionInput({
@@ -19767,7 +18598,7 @@ extension on String {
 /// specifies whether to crawl the entire dataset again or to crawl only folders
 /// that were added since the last crawler run. For more information, see <a
 /// href="https://docs.aws.amazon.com/glue/latest/dg/incremental-crawls.html">Incremental
-/// Crawls in AWS Glue</a> in the developer guide.
+/// Crawls in Glue</a> in the developer guide.
 class RecrawlPolicy {
   /// Specifies whether to crawl the entire dataset again or to crawl only folders
   /// that were added since the last crawler run.
@@ -20176,10 +19007,16 @@ class S3Target {
   /// The path to the Amazon S3 target.
   final String? path;
 
+  /// Sets the number of files in each leaf folder to be crawled when crawling
+  /// sample files in a dataset. If not set, all the files are crawled. A valid
+  /// value is an integer between 1 and 249.
+  final int? sampleSize;
+
   S3Target({
     this.connectionName,
     this.exclusions,
     this.path,
+    this.sampleSize,
   });
   factory S3Target.fromJson(Map<String, dynamic> json) {
     return S3Target(
@@ -20189,6 +19026,7 @@ class S3Target {
           .map((e) => e as String)
           .toList(),
       path: json['Path'] as String?,
+      sampleSize: json['SampleSize'] as int?,
     );
   }
 
@@ -20196,10 +19034,12 @@ class S3Target {
     final connectionName = this.connectionName;
     final exclusions = this.exclusions;
     final path = this.path;
+    final sampleSize = this.sampleSize;
     return {
       if (connectionName != null) 'ConnectionName': connectionName,
       if (exclusions != null) 'Exclusions': exclusions,
       if (path != null) 'Path': path,
+      if (sampleSize != null) 'SampleSize': sampleSize,
     };
   }
 }
@@ -20344,7 +19184,7 @@ extension on String {
   }
 }
 
-/// The unique ID of the schema in the AWS Glue schema registry.
+/// The unique ID of the schema in the Glue schema registry.
 class SchemaId {
   /// The name of the schema registry that contains the schema.
   final String? registryName;
@@ -20427,7 +19267,7 @@ class SchemaListItem {
   }
 }
 
-/// An object that references a schema stored in the AWS Glue Schema Registry.
+/// An object that references a schema stored in the Glue Schema Registry.
 class SchemaReference {
   /// A structure that contains schema identity fields. Either this or the
   /// <code>SchemaVersionId</code> has to be provided.
@@ -20672,7 +19512,7 @@ class SecurityConfiguration {
 }
 
 /// Defines a non-overlapping region of a table's partitions, allowing multiple
-/// requests to be executed in parallel.
+/// requests to be run in parallel.
 class Segment {
   /// The zero-based index number of the segment. For example, if the total number
   /// of segments is 4, <code>SegmentNumber</code> values range from 0 through 3.
@@ -21039,7 +19879,7 @@ class StorageDescriptor {
   /// The user-supplied properties in key-value form.
   final Map<String, String>? parameters;
 
-  /// An object that references a schema stored in the AWS Glue Schema Registry.
+  /// An object that references a schema stored in the Glue Schema Registry.
   ///
   /// When creating a table, you can pass an empty list of columns for the schema,
   /// and instead use a schema reference.
@@ -21206,7 +20046,7 @@ class Table {
   /// A description of the table.
   final String? description;
 
-  /// Indicates whether the table has been registered with AWS Lake Formation.
+  /// Indicates whether the table has been registered with Lake Formation.
   final bool? isRegisteredWithLakeFormation;
 
   /// The last time that the table was accessed. This is usually taken from HDFS,
@@ -21893,12 +20733,12 @@ class TransformFilterCriteria {
   /// The time and date before which the transforms were created.
   final DateTime? createdBefore;
 
-  /// This value determines which version of AWS Glue this machine learning
-  /// transform is compatible with. Glue 1.0 is recommended for most customers. If
-  /// the value is not set, the Glue compatibility defaults to Glue 0.9. For more
+  /// This value determines which version of Glue this machine learning transform
+  /// is compatible with. Glue 1.0 is recommended for most customers. If the value
+  /// is not set, the Glue compatibility defaults to Glue 0.9. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">AWS
-  /// Glue Versions</a> in the developer guide.
+  /// href="https://docs.aws.amazon.com/glue/latest/dg/release-notes.html#release-notes-versions">Glue
+  /// Versions</a> in the developer guide.
   final String? glueVersion;
 
   /// Filter on transforms last modified after this date.
@@ -22567,7 +21407,7 @@ class UpdateJsonClassifierRequest {
   final String name;
 
   /// A <code>JsonPath</code> string defining the JSON data for the classifier to
-  /// classify. AWS Glue supports a subset of JsonPath, as described in <a
+  /// classify. Glue supports a subset of JsonPath, as described in <a
   /// href="https://docs.aws.amazon.com/glue/latest/dg/custom-classifier.html#custom-classifier-json">Writing
   /// JsonPath Custom Classifiers</a>.
   final String? jsonPath;
@@ -22854,8 +21694,8 @@ extension on String {
   }
 }
 
-/// A workflow represents a flow in which AWS Glue components should be executed
-/// to complete a logical task.
+/// A workflow represents a flow in which Glue components should be run to
+/// complete a logical task.
 class Workflow {
   /// The date and time when the workflow was created.
   final DateTime? createdOn;
@@ -22867,8 +21707,8 @@ class Workflow {
   /// A description of the workflow.
   final String? description;
 
-  /// The graph representing all the AWS Glue components that belong to the
-  /// workflow as nodes and directed connections between them as edges.
+  /// The graph representing all the Glue components that belong to the workflow
+  /// as nodes and directed connections between them as edges.
   final WorkflowGraph? graph;
 
   /// The date and time when the workflow was last modified.
@@ -22916,15 +21756,15 @@ class Workflow {
   }
 }
 
-/// A workflow graph represents the complete workflow containing all the AWS
-/// Glue components present in the workflow and all the directed connections
-/// between them.
+/// A workflow graph represents the complete workflow containing all the Glue
+/// components present in the workflow and all the directed connections between
+/// them.
 class WorkflowGraph {
   /// A list of all the directed connections between the nodes belonging to the
   /// workflow.
   final List<Edge>? edges;
 
-  /// A list of the the AWS Glue components belong to the workflow represented as
+  /// A list of the the Glue components belong to the workflow represented as
   /// nodes.
   final List<Node>? nodes;
 
@@ -22957,11 +21797,11 @@ class WorkflowRun {
   /// exceeded for workflow: <code>foo</code>."
   final String? errorMessage;
 
-  /// The graph representing all the AWS Glue components that belong to the
-  /// workflow as nodes and directed connections between them as edges.
+  /// The graph representing all the Glue components that belong to the workflow
+  /// as nodes and directed connections between them as edges.
   final WorkflowGraph? graph;
 
-  /// Name of the workflow that was executed.
+  /// Name of the workflow that was run.
   final String? name;
 
   /// The ID of the previous workflow run.

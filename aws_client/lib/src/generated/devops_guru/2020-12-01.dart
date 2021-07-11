@@ -180,12 +180,6 @@ class DevOpsGuru {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[\w-]*$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -193,6 +187,38 @@ class DevOpsGuru {
       exceptionFnMap: _exceptionFns,
     );
     return DescribeAnomalyResponse.fromJson(response);
+  }
+
+  /// Returns the most recent feedback submitted in the current AWS account and
+  /// Region.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [insightId] :
+  /// The ID of the insight for which the feedback was provided.
+  Future<DescribeFeedbackResponse> describeFeedback({
+    String? insightId,
+  }) async {
+    _s.validateStringLength(
+      'insightId',
+      insightId,
+      1,
+      100,
+    );
+    final $payload = <String, dynamic>{
+      if (insightId != null) 'InsightId': insightId,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/feedback',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeFeedbackResponse.fromJson(response);
   }
 
   /// Returns details about an insight that you specify using its ID.
@@ -216,12 +242,6 @@ class DevOpsGuru {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[\w-]*$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -236,7 +256,8 @@ class DevOpsGuru {
   /// collections in your account. You specify the type of AWS resources
   /// collection. The one type of AWS resource collection supported is AWS
   /// CloudFormation stacks. DevOps Guru can be configured to analyze only the
-  /// AWS resources that are defined in the stacks.
+  /// AWS resources that are defined in the stacks. You can specify up to 500
+  /// AWS CloudFormation stacks.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -247,7 +268,8 @@ class DevOpsGuru {
   /// An AWS resource collection type. This type specifies how analyzed AWS
   /// resources are defined. The one type of AWS resource collection supported
   /// is AWS CloudFormation stacks. DevOps Guru can be configured to analyze
-  /// only the AWS resources that are defined in the stacks.
+  /// only the AWS resources that are defined in the stacks. You can specify up
+  /// to 500 AWS CloudFormation stacks.
   ///
   /// Parameter [nextToken] :
   /// The pagination token to use to retrieve the next page of results for this
@@ -264,11 +286,6 @@ class DevOpsGuru {
       nextToken,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
     );
     final $query = <String, List<String>>{
       if (nextToken != null) 'NextToken': [nextToken],
@@ -304,10 +321,49 @@ class DevOpsGuru {
     return DescribeServiceIntegrationResponse.fromJson(response);
   }
 
+  /// Returns an estimate of the monthly cost for DevOps Guru to analyze your
+  /// AWS resources. For more information, see <a
+  /// href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+  /// your Amazon DevOps Guru costs</a> and <a
+  /// href="http://aws.amazon.com/devops-guru/pricing/">Amazon DevOps Guru
+  /// pricing</a>.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [nextToken] :
+  /// The pagination token to use to retrieve the next page of results for this
+  /// operation. If this value is null, it retrieves the first page.
+  Future<GetCostEstimationResponse> getCostEstimation({
+    String? nextToken,
+  }) async {
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      36,
+      36,
+    );
+    final $query = <String, List<String>>{
+      if (nextToken != null) 'NextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/cost-estimation',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetCostEstimationResponse.fromJson(response);
+  }
+
   /// Returns lists AWS resources that are of the specified resource collection
   /// type. The one type of AWS resource collection supported is AWS
   /// CloudFormation stacks. DevOps Guru can be configured to analyze only the
-  /// AWS resources that are defined in the stacks.
+  /// AWS resources that are defined in the stacks. You can specify up to 500
+  /// AWS CloudFormation stacks.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -333,11 +389,6 @@ class DevOpsGuru {
       nextToken,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
     );
     final $query = <String, List<String>>{
       if (nextToken != null) 'NextToken': [nextToken],
@@ -391,12 +442,6 @@ class DevOpsGuru {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'insightId',
-      insightId,
-      r'''^[\w-]*$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -408,11 +453,6 @@ class DevOpsGuru {
       nextToken,
       36,
       36,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -467,11 +507,6 @@ class DevOpsGuru {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       'Filters': filters,
       if (maxResults != null) 'MaxResults': maxResults,
@@ -525,11 +560,6 @@ class DevOpsGuru {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       'StatusFilter': statusFilter,
       if (maxResults != null) 'MaxResults': maxResults,
@@ -567,11 +597,6 @@ class DevOpsGuru {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       if (nextToken != null) 'NextToken': nextToken,
     };
@@ -597,11 +622,15 @@ class DevOpsGuru {
   /// Parameter [insightId] :
   /// The ID of the requested insight.
   ///
+  /// Parameter [locale] :
+  /// A locale that specifies the language to use for recommendations.
+  ///
   /// Parameter [nextToken] :
   /// The pagination token to use to retrieve the next page of results for this
   /// operation. If this value is null, it retrieves the first page.
   Future<ListRecommendationsResponse> listRecommendations({
     required String insightId,
+    Locale? locale,
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(insightId, 'insightId');
@@ -612,25 +641,15 @@ class DevOpsGuru {
       100,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'insightId',
-      insightId,
-      r'''^[\w-]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       36,
       36,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       'InsightId': insightId,
+      if (locale != null) 'Locale': locale.toValue(),
       if (nextToken != null) 'NextToken': nextToken,
     };
     final response = await _protocol.send(
@@ -689,12 +708,6 @@ class DevOpsGuru {
       id,
       36,
       36,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -762,11 +775,6 @@ class DevOpsGuru {
       36,
       36,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$''',
-    );
     final $payload = <String, dynamic>{
       'StartTimeRange': startTimeRange,
       'Type': type.toValue(),
@@ -783,11 +791,51 @@ class DevOpsGuru {
     return SearchInsightsResponse.fromJson(response);
   }
 
+  /// Starts the creation of an estimate of the monthly cost to analyze your AWS
+  /// resources.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [ConflictException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [resourceCollection] :
+  /// The collection of AWS resources used to create a monthly DevOps Guru cost
+  /// estimate.
+  ///
+  /// Parameter [clientToken] :
+  /// The idempotency token used to identify each cost estimate request.
+  Future<void> startCostEstimation({
+    required CostEstimationResourceCollectionFilter resourceCollection,
+    String? clientToken,
+  }) async {
+    ArgumentError.checkNotNull(resourceCollection, 'resourceCollection');
+    _s.validateStringLength(
+      'clientToken',
+      clientToken,
+      1,
+      100,
+    );
+    final $payload = <String, dynamic>{
+      'ResourceCollection': resourceCollection,
+      'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/cost-estimation',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Updates the collection of resources that DevOps Guru analyzes. The one
   /// type of AWS resource collection supported is AWS CloudFormation stacks.
   /// DevOps Guru can be configured to analyze only the AWS resources that are
-  /// defined in the stacks. This method also creates the IAM role required for
-  /// you to use DevOps Guru.
+  /// defined in the stacks. You can specify up to 500 AWS CloudFormation
+  /// stacks. This method also creates the IAM role required for you to use
+  /// DevOps Guru.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ConflictException].
@@ -857,6 +905,29 @@ class AddNotificationChannelResponse {
   factory AddNotificationChannelResponse.fromJson(Map<String, dynamic> json) {
     return AddNotificationChannelResponse(
       id: json['Id'] as String,
+    );
+  }
+}
+
+/// A time range that specifies when DevOps Guru opens and then closes an
+/// anomaly. This is different from <code>AnomalyTimeRange</code>, which
+/// specifies the time range when DevOps Guru actually observes the anomalous
+/// behavior.
+class AnomalyReportedTimeRange {
+  /// The time when an anomaly is opened.
+  final DateTime openTime;
+
+  /// The time when an anomaly is closed.
+  final DateTime? closeTime;
+
+  AnomalyReportedTimeRange({
+    required this.openTime,
+    this.closeTime,
+  });
+  factory AnomalyReportedTimeRange.fromJson(Map<String, dynamic> json) {
+    return AnomalyReportedTimeRange(
+      openTime: nonNullableTimeStampFromJson(json['OpenTime'] as Object),
+      closeTime: timeStampFromJson(json['CloseTime']),
     );
   }
 }
@@ -944,7 +1015,9 @@ extension on String {
 }
 
 /// A time range that specifies when the observed unusual behavior in an anomaly
-/// started and ended.
+/// started and ended. This is different from
+/// <code>AnomalyReportedTimeRange</code>, which specifies the time range when
+/// DevOps Guru opens and then closes an anomaly.
 class AnomalyTimeRange {
   /// The time when the anomalous behavior started.
   final DateTime startTime;
@@ -964,8 +1037,9 @@ class AnomalyTimeRange {
   }
 }
 
-/// Information about AWS CloudFormation stacks. You can use stacks to specify
-/// which AWS resources in your account to analyze. For more information, see <a
+/// Information about AWS CloudFormation stacks. You can use up to 500 stacks to
+/// specify which AWS resources in your account to analyze. For more
+/// information, see <a
 /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a>
 /// in the <i>AWS CloudFormation User Guide</i>.
 class CloudFormationCollection {
@@ -992,8 +1066,9 @@ class CloudFormationCollection {
   }
 }
 
-/// Information about AWS CloudFormation stacks. You can use stacks to specify
-/// which AWS resources in your account to analyze. For more information, see <a
+/// Information about AWS CloudFormation stacks. You can use up to 500 stacks to
+/// specify which AWS resources in your account to analyze. For more
+/// information, see <a
 /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a>
 /// in the <i>AWS CloudFormation User Guide</i>.
 class CloudFormationCollectionFilter {
@@ -1010,6 +1085,38 @@ class CloudFormationCollectionFilter {
           .map((e) => e as String)
           .toList(),
     );
+  }
+}
+
+/// Information about an AWS CloudFormation stack used to create a monthly cost
+/// estimate for DevOps Guru to analyze AWS resources. The maximum number of
+/// stacks you can specify for a cost estimate is one. The estimate created is
+/// for the cost to analyze the AWS resources defined by the stack. For more
+/// information, see <a
+/// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a>
+/// in the <i>AWS CloudFormation User Guide</i>.
+class CloudFormationCostEstimationResourceCollectionFilter {
+  /// An array of CloudFormation stack names. Its size is fixed at 1 item.
+  final List<String>? stackNames;
+
+  CloudFormationCostEstimationResourceCollectionFilter({
+    this.stackNames,
+  });
+  factory CloudFormationCostEstimationResourceCollectionFilter.fromJson(
+      Map<String, dynamic> json) {
+    return CloudFormationCostEstimationResourceCollectionFilter(
+      stackNames: (json['StackNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackNames = this.stackNames;
+    return {
+      if (stackNames != null) 'StackNames': stackNames,
+    };
   }
 }
 
@@ -1092,7 +1199,7 @@ class CloudWatchMetricsDetail {
 
 /// The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
 /// analyzes the resources in your account for operational problems and
-/// anomalous behaviour. A dimension is a name/value pair that is part of the
+/// anomalous behavior. A dimension is a name/value pair that is part of the
 /// identity of a metric. A metric can have up to 10 dimensions. For more
 /// information, see <a
 /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension">Dimensions</a>
@@ -1174,6 +1281,115 @@ extension on String {
   }
 }
 
+/// Information about a filter used to specify which AWS resources are analyzed
+/// to create a monthly DevOps Guru cost estimate. For more information, see <a
+/// href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+/// your Amazon DevOps Guru costs</a> and <a
+/// href="http://aws.amazon.com/devops-guru/pricing/">Amazon DevOps Guru
+/// pricing</a>.
+class CostEstimationResourceCollectionFilter {
+  /// An object that specifies the CloudFormation stack that defines the AWS
+  /// resources used to create a monthly estimate for DevOps Guru.
+  final CloudFormationCostEstimationResourceCollectionFilter? cloudFormation;
+
+  CostEstimationResourceCollectionFilter({
+    this.cloudFormation,
+  });
+  factory CostEstimationResourceCollectionFilter.fromJson(
+      Map<String, dynamic> json) {
+    return CostEstimationResourceCollectionFilter(
+      cloudFormation: json['CloudFormation'] != null
+          ? CloudFormationCostEstimationResourceCollectionFilter.fromJson(
+              json['CloudFormation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFormation = this.cloudFormation;
+    return {
+      if (cloudFormation != null) 'CloudFormation': cloudFormation,
+    };
+  }
+}
+
+enum CostEstimationServiceResourceState {
+  active,
+  inactive,
+}
+
+extension on CostEstimationServiceResourceState {
+  String toValue() {
+    switch (this) {
+      case CostEstimationServiceResourceState.active:
+        return 'ACTIVE';
+      case CostEstimationServiceResourceState.inactive:
+        return 'INACTIVE';
+    }
+  }
+}
+
+extension on String {
+  CostEstimationServiceResourceState toCostEstimationServiceResourceState() {
+    switch (this) {
+      case 'ACTIVE':
+        return CostEstimationServiceResourceState.active;
+      case 'INACTIVE':
+        return CostEstimationServiceResourceState.inactive;
+    }
+    throw Exception(
+        '$this is not known in enum CostEstimationServiceResourceState');
+  }
+}
+
+enum CostEstimationStatus {
+  ongoing,
+  completed,
+}
+
+extension on CostEstimationStatus {
+  String toValue() {
+    switch (this) {
+      case CostEstimationStatus.ongoing:
+        return 'ONGOING';
+      case CostEstimationStatus.completed:
+        return 'COMPLETED';
+    }
+  }
+}
+
+extension on String {
+  CostEstimationStatus toCostEstimationStatus() {
+    switch (this) {
+      case 'ONGOING':
+        return CostEstimationStatus.ongoing;
+      case 'COMPLETED':
+        return CostEstimationStatus.completed;
+    }
+    throw Exception('$this is not known in enum CostEstimationStatus');
+  }
+}
+
+/// The time range of a cost estimation.
+class CostEstimationTimeRange {
+  /// The end time of the cost estimation.
+  final DateTime? endTime;
+
+  /// The start time of the cost estimation.
+  final DateTime? startTime;
+
+  CostEstimationTimeRange({
+    this.endTime,
+    this.startTime,
+  });
+  factory CostEstimationTimeRange.fromJson(Map<String, dynamic> json) {
+    return CostEstimationTimeRange(
+      endTime: timeStampFromJson(json['EndTime']),
+      startTime: timeStampFromJson(json['StartTime']),
+    );
+  }
+}
+
 class DescribeAccountHealthResponse {
   /// An integer that specifies the number of metrics that have been analyzed in
   /// your AWS account.
@@ -1187,16 +1403,22 @@ class DescribeAccountHealthResponse {
   /// account.
   final int openReactiveInsights;
 
+  /// The number of Amazon DevOps Guru resource analysis hours billed to the
+  /// current AWS account in the last hour.
+  final int resourceHours;
+
   DescribeAccountHealthResponse({
     required this.metricsAnalyzed,
     required this.openProactiveInsights,
     required this.openReactiveInsights,
+    required this.resourceHours,
   });
   factory DescribeAccountHealthResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccountHealthResponse(
       metricsAnalyzed: json['MetricsAnalyzed'] as int,
       openProactiveInsights: json['OpenProactiveInsights'] as int,
       openReactiveInsights: json['OpenReactiveInsights'] as int,
+      resourceHours: json['ResourceHours'] as int,
     );
   }
 }
@@ -1230,11 +1452,10 @@ class DescribeAccountOverviewResponse {
 }
 
 class DescribeAnomalyResponse {
-  /// An <code>ReactiveAnomaly</code> object that represents the requested
-  /// anomaly.
+  /// A <code>ReactiveAnomaly</code> object that represents the requested anomaly.
   final ProactiveAnomaly? proactiveAnomaly;
 
-  /// An <code>ProactiveAnomaly</code> object that represents the requested
+  /// A <code>ProactiveAnomaly</code> object that represents the requested
   /// anomaly.
   final ReactiveAnomaly? reactiveAnomaly;
 
@@ -1256,13 +1477,28 @@ class DescribeAnomalyResponse {
   }
 }
 
+class DescribeFeedbackResponse {
+  final InsightFeedback? insightFeedback;
+
+  DescribeFeedbackResponse({
+    this.insightFeedback,
+  });
+  factory DescribeFeedbackResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeFeedbackResponse(
+      insightFeedback: json['InsightFeedback'] != null
+          ? InsightFeedback.fromJson(
+              json['InsightFeedback'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
 class DescribeInsightResponse {
-  /// An <code>ProactiveInsight</code> object that represents the requested
+  /// A <code>ProactiveInsight</code> object that represents the requested
   /// insight.
   final ProactiveInsight? proactiveInsight;
 
-  /// An <code>ReactiveInsight</code> object that represents the requested
-  /// insight.
+  /// A <code>ReactiveInsight</code> object that represents the requested insight.
   final ReactiveInsight? reactiveInsight;
 
   DescribeInsightResponse({
@@ -1293,9 +1529,14 @@ class DescribeResourceCollectionHealthResponse {
   /// operation. If there are no more pages, this value is null.
   final String? nextToken;
 
+  /// An array of <code>ServiceHealth</code> objects that describes the health of
+  /// the AWS services associated with the resources in the collection.
+  final List<ServiceHealth>? service;
+
   DescribeResourceCollectionHealthResponse({
     required this.cloudFormation,
     this.nextToken,
+    this.service,
   });
   factory DescribeResourceCollectionHealthResponse.fromJson(
       Map<String, dynamic> json) {
@@ -1305,6 +1546,10 @@ class DescribeResourceCollectionHealthResponse {
           .map((e) => CloudFormationHealth.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['NextToken'] as String?,
+      service: (json['Service'] as List?)
+          ?.whereNotNull()
+          .map((e) => ServiceHealth.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -1530,6 +1775,61 @@ class EventTimeRange {
   }
 }
 
+class GetCostEstimationResponse {
+  /// An array of <code>ResourceCost</code> objects that each contains details
+  /// about the monthly cost estimate to analyze one of your AWS resources.
+  final List<ServiceResourceCost>? costs;
+
+  /// The pagination token to use to retrieve the next page of results for this
+  /// operation. If there are no more pages, this value is null.
+  final String? nextToken;
+
+  /// The collection of the AWS resources used to create your monthly DevOps Guru
+  /// cost estimate.
+  final CostEstimationResourceCollectionFilter? resourceCollection;
+
+  /// The status of creating this cost estimate. If it's still in progress, the
+  /// status <code>ONGOING</code> is returned. If it is finished, the status
+  /// <code>COMPLETED</code> is returned.
+  final CostEstimationStatus? status;
+
+  /// The start and end time of the cost estimation.
+  final CostEstimationTimeRange? timeRange;
+
+  /// The estimated monthly cost to analyze the AWS resources. This value is the
+  /// sum of the estimated costs to analyze each resource in the
+  /// <code>Costs</code> object in this response.
+  final double? totalCost;
+
+  GetCostEstimationResponse({
+    this.costs,
+    this.nextToken,
+    this.resourceCollection,
+    this.status,
+    this.timeRange,
+    this.totalCost,
+  });
+  factory GetCostEstimationResponse.fromJson(Map<String, dynamic> json) {
+    return GetCostEstimationResponse(
+      costs: (json['Costs'] as List?)
+          ?.whereNotNull()
+          .map((e) => ServiceResourceCost.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      resourceCollection: json['ResourceCollection'] != null
+          ? CostEstimationResourceCollectionFilter.fromJson(
+              json['ResourceCollection'] as Map<String, dynamic>)
+          : null,
+      status: (json['Status'] as String?)?.toCostEstimationStatus(),
+      timeRange: json['TimeRange'] != null
+          ? CostEstimationTimeRange.fromJson(
+              json['TimeRange'] as Map<String, dynamic>)
+          : null,
+      totalCost: json['TotalCost'] as double?,
+    );
+  }
+}
+
 class GetResourceCollectionResponse {
   /// The pagination token to use to retrieve the next page of results for this
   /// operation. If there are no more pages, this value is null.
@@ -1538,6 +1838,7 @@ class GetResourceCollectionResponse {
   /// The requested list of AWS resource collections. The one type of AWS resource
   /// collection supported is AWS CloudFormation stacks. DevOps Guru can be
   /// configured to analyze only the AWS resources that are defined in the stacks.
+  /// You can specify up to 500 AWS CloudFormation stacks.
   final ResourceCollectionFilter? resourceCollection;
 
   GetResourceCollectionResponse({
@@ -1567,6 +1868,13 @@ class InsightFeedback {
     this.feedback,
     this.id,
   });
+  factory InsightFeedback.fromJson(Map<String, dynamic> json) {
+    return InsightFeedback(
+      feedback: (json['Feedback'] as String?)?.toInsightFeedbackOption(),
+      id: json['Id'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final feedback = this.feedback;
     final id = this.id;
@@ -2038,6 +2346,79 @@ class ListRecommendationsResponse {
   }
 }
 
+enum Locale {
+  deDe,
+  enUs,
+  enGb,
+  esEs,
+  frFr,
+  itIt,
+  jaJp,
+  koKr,
+  ptBr,
+  zhCn,
+  zhTw,
+}
+
+extension on Locale {
+  String toValue() {
+    switch (this) {
+      case Locale.deDe:
+        return 'DE_DE';
+      case Locale.enUs:
+        return 'EN_US';
+      case Locale.enGb:
+        return 'EN_GB';
+      case Locale.esEs:
+        return 'ES_ES';
+      case Locale.frFr:
+        return 'FR_FR';
+      case Locale.itIt:
+        return 'IT_IT';
+      case Locale.jaJp:
+        return 'JA_JP';
+      case Locale.koKr:
+        return 'KO_KR';
+      case Locale.ptBr:
+        return 'PT_BR';
+      case Locale.zhCn:
+        return 'ZH_CN';
+      case Locale.zhTw:
+        return 'ZH_TW';
+    }
+  }
+}
+
+extension on String {
+  Locale toLocale() {
+    switch (this) {
+      case 'DE_DE':
+        return Locale.deDe;
+      case 'EN_US':
+        return Locale.enUs;
+      case 'EN_GB':
+        return Locale.enGb;
+      case 'ES_ES':
+        return Locale.esEs;
+      case 'FR_FR':
+        return Locale.frFr;
+      case 'IT_IT':
+        return Locale.itIt;
+      case 'JA_JP':
+        return Locale.jaJp;
+      case 'KO_KR':
+        return Locale.koKr;
+      case 'PT_BR':
+        return Locale.ptBr;
+      case 'ZH_CN':
+        return Locale.zhCn;
+      case 'ZH_TW':
+        return Locale.zhTw;
+    }
+    throw Exception('$this is not known in enum Locale');
+  }
+}
+
 /// Information about a notification channel. A notification channel is used to
 /// notify you when DevOps Guru creates an insight. The one supported
 /// notification channel is Amazon Simple Notification Service (Amazon SNS).
@@ -2205,6 +2586,9 @@ class PredictionTimeRange {
 /// Information about an anomaly. This object is returned by
 /// <code>ListAnomalies</code>.
 class ProactiveAnomaly {
+  /// A <code>AnomalyReportedTimeRange</code> object that specifies the time range
+  /// between when the anomaly is opened and the time when it is closed.
+  final AnomalyReportedTimeRange? anomalyReportedTimeRange;
   final AnomalyTimeRange? anomalyTimeRange;
 
   /// The ID of the insight that contains this anomaly. An insight is composed of
@@ -2235,6 +2619,7 @@ class ProactiveAnomaly {
   final DateTime? updateTime;
 
   ProactiveAnomaly({
+    this.anomalyReportedTimeRange,
     this.anomalyTimeRange,
     this.associatedInsightId,
     this.id,
@@ -2248,6 +2633,10 @@ class ProactiveAnomaly {
   });
   factory ProactiveAnomaly.fromJson(Map<String, dynamic> json) {
     return ProactiveAnomaly(
+      anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
+          ? AnomalyReportedTimeRange.fromJson(
+              json['AnomalyReportedTimeRange'] as Map<String, dynamic>)
+          : null,
       anomalyTimeRange: json['AnomalyTimeRange'] != null
           ? AnomalyTimeRange.fromJson(
               json['AnomalyTimeRange'] as Map<String, dynamic>)
@@ -2277,6 +2666,9 @@ class ProactiveAnomaly {
 /// Details about a proactive anomaly. This object is returned by
 /// <code>DescribeAnomaly.</code>
 class ProactiveAnomalySummary {
+  /// A <code>AnomalyReportedTimeRange</code> object that specifies the time range
+  /// between when the anomaly is opened and the time when it is closed.
+  final AnomalyReportedTimeRange? anomalyReportedTimeRange;
   final AnomalyTimeRange? anomalyTimeRange;
 
   /// The ID of the insight that contains this anomaly. An insight is composed of
@@ -2307,6 +2699,7 @@ class ProactiveAnomalySummary {
   final DateTime? updateTime;
 
   ProactiveAnomalySummary({
+    this.anomalyReportedTimeRange,
     this.anomalyTimeRange,
     this.associatedInsightId,
     this.id,
@@ -2320,6 +2713,10 @@ class ProactiveAnomalySummary {
   });
   factory ProactiveAnomalySummary.fromJson(Map<String, dynamic> json) {
     return ProactiveAnomalySummary(
+      anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
+          ? AnomalyReportedTimeRange.fromJson(
+              json['AnomalyReportedTimeRange'] as Map<String, dynamic>)
+          : null,
       anomalyTimeRange: json['AnomalyTimeRange'] != null
           ? AnomalyTimeRange.fromJson(
               json['AnomalyTimeRange'] as Map<String, dynamic>)
@@ -2414,6 +2811,9 @@ class ProactiveInsightSummary {
   final PredictionTimeRange? predictionTimeRange;
   final ResourceCollection? resourceCollection;
 
+  /// A collection of the names of AWS services.
+  final ServiceCollection? serviceCollection;
+
   /// The severity of the proactive insight.
   final InsightSeverity? severity;
 
@@ -2426,6 +2826,7 @@ class ProactiveInsightSummary {
     this.name,
     this.predictionTimeRange,
     this.resourceCollection,
+    this.serviceCollection,
     this.severity,
     this.status,
   });
@@ -2445,6 +2846,10 @@ class ProactiveInsightSummary {
           ? ResourceCollection.fromJson(
               json['ResourceCollection'] as Map<String, dynamic>)
           : null,
+      serviceCollection: json['ServiceCollection'] != null
+          ? ServiceCollection.fromJson(
+              json['ServiceCollection'] as Map<String, dynamic>)
+          : null,
       severity: (json['Severity'] as String?)?.toInsightSeverity(),
       status: (json['Status'] as String?)?.toInsightStatus(),
     );
@@ -2461,6 +2866,9 @@ class PutFeedbackResponse {
 /// Details about a reactive anomaly. This object is returned by
 /// <code>ListAnomalies</code>.
 class ReactiveAnomaly {
+  /// A <code>AnomalyReportedTimeRange</code> object that specifies the time range
+  /// between when the anomaly is opened and the time when it is closed.
+  final AnomalyReportedTimeRange? anomalyReportedTimeRange;
   final AnomalyTimeRange? anomalyTimeRange;
 
   /// The ID of the insight that contains this anomaly. An insight is composed of
@@ -2482,6 +2890,7 @@ class ReactiveAnomaly {
   final AnomalyStatus? status;
 
   ReactiveAnomaly({
+    this.anomalyReportedTimeRange,
     this.anomalyTimeRange,
     this.associatedInsightId,
     this.id,
@@ -2492,6 +2901,10 @@ class ReactiveAnomaly {
   });
   factory ReactiveAnomaly.fromJson(Map<String, dynamic> json) {
     return ReactiveAnomaly(
+      anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
+          ? AnomalyReportedTimeRange.fromJson(
+              json['AnomalyReportedTimeRange'] as Map<String, dynamic>)
+          : null,
       anomalyTimeRange: json['AnomalyTimeRange'] != null
           ? AnomalyTimeRange.fromJson(
               json['AnomalyTimeRange'] as Map<String, dynamic>)
@@ -2515,6 +2928,9 @@ class ReactiveAnomaly {
 /// Details about a reactive anomaly. This object is returned by
 /// <code>DescribeAnomaly.</code>
 class ReactiveAnomalySummary {
+  /// A <code>AnomalyReportedTimeRange</code> object that specifies the time range
+  /// between when the anomaly is opened and the time when it is closed.
+  final AnomalyReportedTimeRange? anomalyReportedTimeRange;
   final AnomalyTimeRange? anomalyTimeRange;
 
   /// The ID of the insight that contains this anomaly. An insight is composed of
@@ -2536,6 +2952,7 @@ class ReactiveAnomalySummary {
   final AnomalyStatus? status;
 
   ReactiveAnomalySummary({
+    this.anomalyReportedTimeRange,
     this.anomalyTimeRange,
     this.associatedInsightId,
     this.id,
@@ -2546,6 +2963,10 @@ class ReactiveAnomalySummary {
   });
   factory ReactiveAnomalySummary.fromJson(Map<String, dynamic> json) {
     return ReactiveAnomalySummary(
+      anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
+          ? AnomalyReportedTimeRange.fromJson(
+              json['AnomalyReportedTimeRange'] as Map<String, dynamic>)
+          : null,
       anomalyTimeRange: json['AnomalyTimeRange'] != null
           ? AnomalyTimeRange.fromJson(
               json['AnomalyTimeRange'] as Map<String, dynamic>)
@@ -2627,6 +3048,9 @@ class ReactiveInsightSummary {
   final String? name;
   final ResourceCollection? resourceCollection;
 
+  /// A collection of the names of AWS services.
+  final ServiceCollection? serviceCollection;
+
   /// The severity of a reactive insight.
   final InsightSeverity? severity;
 
@@ -2638,6 +3062,7 @@ class ReactiveInsightSummary {
     this.insightTimeRange,
     this.name,
     this.resourceCollection,
+    this.serviceCollection,
     this.severity,
     this.status,
   });
@@ -2652,6 +3077,10 @@ class ReactiveInsightSummary {
       resourceCollection: json['ResourceCollection'] != null
           ? ResourceCollection.fromJson(
               json['ResourceCollection'] as Map<String, dynamic>)
+          : null,
+      serviceCollection: json['ServiceCollection'] != null
+          ? ServiceCollection.fromJson(
+              json['ServiceCollection'] as Map<String, dynamic>)
           : null,
       severity: (json['Severity'] as String?)?.toInsightSeverity(),
       status: (json['Status'] as String?)?.toInsightStatus(),
@@ -2817,7 +3246,8 @@ class RecommendationRelatedEvent {
   final String? name;
 
   /// A <code>ResourceCollection</code> object that contains arrays of the names
-  /// of AWS CloudFormation stacks.
+  /// of AWS CloudFormation stacks. You can specify up to 500 AWS CloudFormation
+  /// stacks.
   final List<RecommendationRelatedEventResource>? resources;
 
   RecommendationRelatedEvent({
@@ -2870,10 +3300,11 @@ class RemoveNotificationChannelResponse {
 /// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 /// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 /// be configured to analyze only the AWS resources that are defined in the
-/// stacks.
+/// stacks. You can specify up to 500 AWS CloudFormation stacks.
 class ResourceCollection {
   /// An array of the names of AWS CloudFormation stacks. The stacks define AWS
-  /// resources that DevOps Guru analyzes.
+  /// resources that DevOps Guru analyzes. You can specify up to 500 AWS
+  /// CloudFormation stacks.
   final CloudFormationCollection? cloudFormation;
 
   ResourceCollection({
@@ -2899,8 +3330,9 @@ class ResourceCollection {
 /// Information about a filter used to specify which AWS resources are analyzed
 /// for anomalous behavior by DevOps Guru.
 class ResourceCollectionFilter {
-  /// Information about AWS CloudFormation stacks. You can use stacks to specify
-  /// which AWS resources in your account to analyze. For more information, see <a
+  /// Information about AWS CloudFormation stacks. You can use up to 500 stacks to
+  /// specify which AWS resources in your account to analyze. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a>
   /// in the <i>AWS CloudFormation User Guide</i>.
   final CloudFormationCollectionFilter? cloudFormation;
@@ -2920,6 +3352,7 @@ class ResourceCollectionFilter {
 
 enum ResourceCollectionType {
   awsCloudFormation,
+  awsService,
 }
 
 extension on ResourceCollectionType {
@@ -2927,6 +3360,8 @@ extension on ResourceCollectionType {
     switch (this) {
       case ResourceCollectionType.awsCloudFormation:
         return 'AWS_CLOUD_FORMATION';
+      case ResourceCollectionType.awsService:
+        return 'AWS_SERVICE';
     }
   }
 }
@@ -2936,6 +3371,8 @@ extension on String {
     switch (this) {
       case 'AWS_CLOUD_FORMATION':
         return ResourceCollectionType.awsCloudFormation;
+      case 'AWS_SERVICE':
+        return ResourceCollectionType.awsService;
     }
     throw Exception('$this is not known in enum ResourceCollectionType');
   }
@@ -2946,6 +3383,9 @@ extension on String {
 class SearchInsightsFilters {
   final ResourceCollection? resourceCollection;
 
+  /// A collection of the names of AWS services.
+  final ServiceCollection? serviceCollection;
+
   /// An array of severity values used to search for insights.
   final List<InsightSeverity>? severities;
 
@@ -2954,15 +3394,18 @@ class SearchInsightsFilters {
 
   SearchInsightsFilters({
     this.resourceCollection,
+    this.serviceCollection,
     this.severities,
     this.statuses,
   });
   Map<String, dynamic> toJson() {
     final resourceCollection = this.resourceCollection;
+    final serviceCollection = this.serviceCollection;
     final severities = this.severities;
     final statuses = this.statuses;
     return {
       if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (serviceCollection != null) 'ServiceCollection': serviceCollection,
       if (severities != null)
         'Severities': severities.map((e) => e.toValue()).toList(),
       if (statuses != null)
@@ -3004,6 +3447,78 @@ class SearchInsightsResponse {
   }
 }
 
+/// A collection of the names of AWS services.
+class ServiceCollection {
+  /// An array of strings that each specifies the name of an AWS service.
+  final List<ServiceName>? serviceNames;
+
+  ServiceCollection({
+    this.serviceNames,
+  });
+  factory ServiceCollection.fromJson(Map<String, dynamic> json) {
+    return ServiceCollection(
+      serviceNames: (json['ServiceNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toServiceName())
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceNames = this.serviceNames;
+    return {
+      if (serviceNames != null)
+        'ServiceNames': serviceNames.map((e) => e.toValue()).toList(),
+    };
+  }
+}
+
+/// Represents the health of an AWS service.
+class ServiceHealth {
+  /// Represents the health of an AWS service. This is a
+  /// <code>ServiceInsightHealth</code> that contains the number of open proactive
+  /// and reactive insights for this service.
+  final ServiceInsightHealth? insight;
+
+  /// The name of the AWS service.
+  final ServiceName? serviceName;
+
+  ServiceHealth({
+    this.insight,
+    this.serviceName,
+  });
+  factory ServiceHealth.fromJson(Map<String, dynamic> json) {
+    return ServiceHealth(
+      insight: json['Insight'] != null
+          ? ServiceInsightHealth.fromJson(
+              json['Insight'] as Map<String, dynamic>)
+          : null,
+      serviceName: (json['ServiceName'] as String?)?.toServiceName(),
+    );
+  }
+}
+
+/// Contains the number of open proactive and reactive insights in an analyzed
+/// AWS service.
+class ServiceInsightHealth {
+  /// The number of open proactive insights in the AWS service
+  final int? openProactiveInsights;
+
+  /// The number of open reactive insights in the AWS service
+  final int? openReactiveInsights;
+
+  ServiceInsightHealth({
+    this.openProactiveInsights,
+    this.openReactiveInsights,
+  });
+  factory ServiceInsightHealth.fromJson(Map<String, dynamic> json) {
+    return ServiceInsightHealth(
+      openProactiveInsights: json['OpenProactiveInsights'] as int?,
+      openReactiveInsights: json['OpenReactiveInsights'] as int?,
+    );
+  }
+}
+
 /// Information about the integration of DevOps Guru with another AWS service,
 /// such as AWS Systems Manager.
 class ServiceIntegrationConfig {
@@ -3020,6 +3535,199 @@ class ServiceIntegrationConfig {
           ? OpsCenterIntegration.fromJson(
               json['OpsCenter'] as Map<String, dynamic>)
           : null,
+    );
+  }
+}
+
+enum ServiceName {
+  apiGateway,
+  applicationElb,
+  autoScalingGroup,
+  cloudFront,
+  dynamoDb,
+  ec2,
+  ecs,
+  eks,
+  elasticBeanstalk,
+  elastiCache,
+  elb,
+  es,
+  kinesis,
+  lambda,
+  natGateway,
+  networkElb,
+  rds,
+  redshift,
+  route_53,
+  s3,
+  sageMaker,
+  sns,
+  sqs,
+  stepFunctions,
+  swf,
+}
+
+extension on ServiceName {
+  String toValue() {
+    switch (this) {
+      case ServiceName.apiGateway:
+        return 'API_GATEWAY';
+      case ServiceName.applicationElb:
+        return 'APPLICATION_ELB';
+      case ServiceName.autoScalingGroup:
+        return 'AUTO_SCALING_GROUP';
+      case ServiceName.cloudFront:
+        return 'CLOUD_FRONT';
+      case ServiceName.dynamoDb:
+        return 'DYNAMO_DB';
+      case ServiceName.ec2:
+        return 'EC2';
+      case ServiceName.ecs:
+        return 'ECS';
+      case ServiceName.eks:
+        return 'EKS';
+      case ServiceName.elasticBeanstalk:
+        return 'ELASTIC_BEANSTALK';
+      case ServiceName.elastiCache:
+        return 'ELASTI_CACHE';
+      case ServiceName.elb:
+        return 'ELB';
+      case ServiceName.es:
+        return 'ES';
+      case ServiceName.kinesis:
+        return 'KINESIS';
+      case ServiceName.lambda:
+        return 'LAMBDA';
+      case ServiceName.natGateway:
+        return 'NAT_GATEWAY';
+      case ServiceName.networkElb:
+        return 'NETWORK_ELB';
+      case ServiceName.rds:
+        return 'RDS';
+      case ServiceName.redshift:
+        return 'REDSHIFT';
+      case ServiceName.route_53:
+        return 'ROUTE_53';
+      case ServiceName.s3:
+        return 'S3';
+      case ServiceName.sageMaker:
+        return 'SAGE_MAKER';
+      case ServiceName.sns:
+        return 'SNS';
+      case ServiceName.sqs:
+        return 'SQS';
+      case ServiceName.stepFunctions:
+        return 'STEP_FUNCTIONS';
+      case ServiceName.swf:
+        return 'SWF';
+    }
+  }
+}
+
+extension on String {
+  ServiceName toServiceName() {
+    switch (this) {
+      case 'API_GATEWAY':
+        return ServiceName.apiGateway;
+      case 'APPLICATION_ELB':
+        return ServiceName.applicationElb;
+      case 'AUTO_SCALING_GROUP':
+        return ServiceName.autoScalingGroup;
+      case 'CLOUD_FRONT':
+        return ServiceName.cloudFront;
+      case 'DYNAMO_DB':
+        return ServiceName.dynamoDb;
+      case 'EC2':
+        return ServiceName.ec2;
+      case 'ECS':
+        return ServiceName.ecs;
+      case 'EKS':
+        return ServiceName.eks;
+      case 'ELASTIC_BEANSTALK':
+        return ServiceName.elasticBeanstalk;
+      case 'ELASTI_CACHE':
+        return ServiceName.elastiCache;
+      case 'ELB':
+        return ServiceName.elb;
+      case 'ES':
+        return ServiceName.es;
+      case 'KINESIS':
+        return ServiceName.kinesis;
+      case 'LAMBDA':
+        return ServiceName.lambda;
+      case 'NAT_GATEWAY':
+        return ServiceName.natGateway;
+      case 'NETWORK_ELB':
+        return ServiceName.networkElb;
+      case 'RDS':
+        return ServiceName.rds;
+      case 'REDSHIFT':
+        return ServiceName.redshift;
+      case 'ROUTE_53':
+        return ServiceName.route_53;
+      case 'S3':
+        return ServiceName.s3;
+      case 'SAGE_MAKER':
+        return ServiceName.sageMaker;
+      case 'SNS':
+        return ServiceName.sns;
+      case 'SQS':
+        return ServiceName.sqs;
+      case 'STEP_FUNCTIONS':
+        return ServiceName.stepFunctions;
+      case 'SWF':
+        return ServiceName.swf;
+    }
+    throw Exception('$this is not known in enum ServiceName');
+  }
+}
+
+/// An object that contains information about the estimated monthly cost to
+/// analyze an AWS resource. For more information, see <a
+/// href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+/// your Amazon DevOps Guru costs</a> and <a
+/// href="http://aws.amazon.com/devops-guru/pricing/">Amazon DevOps Guru
+/// pricing</a>.
+class ServiceResourceCost {
+  /// The total estimated monthly cost to analyze the active resources for this
+  /// resource.
+  final double? cost;
+
+  /// The number of active resources analyzed for this service to create a monthly
+  /// cost estimate.
+  final int? count;
+
+  /// The state of the resource. The resource is <code>ACTIVE</code> if it
+  /// produces metrics, events, or logs within an hour, otherwise it is
+  /// <code>INACTIVE</code>. You pay for the number of active AWS resource hours
+  /// analyzed for each resource. Inactive resources are not charged.
+  final CostEstimationServiceResourceState? state;
+
+  /// The type of the AWS resource.
+  final String? type;
+
+  /// The price per hour to analyze the resources in the service. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+  /// your Amazon DevOps Guru costs</a> and <a
+  /// href="http://aws.amazon.com/devops-guru/pricing/">Amazon DevOps Guru
+  /// pricing</a>.
+  final double? unitCost;
+
+  ServiceResourceCost({
+    this.cost,
+    this.count,
+    this.state,
+    this.type,
+    this.unitCost,
+  });
+  factory ServiceResourceCost.fromJson(Map<String, dynamic> json) {
+    return ServiceResourceCost(
+      cost: json['Cost'] as double?,
+      count: json['Count'] as int?,
+      state: (json['State'] as String?)?.toCostEstimationServiceResourceState(),
+      type: json['Type'] as String?,
+      unitCost: json['UnitCost'] as double?,
     );
   }
 }
@@ -3061,6 +3769,13 @@ class SnsChannelConfig {
   }
 }
 
+class StartCostEstimationResponse {
+  StartCostEstimationResponse();
+  factory StartCostEstimationResponse.fromJson(Map<String, dynamic> _) {
+    return StartCostEstimationResponse();
+  }
+}
+
 /// A time range used to specify when the behavior of an insight or anomaly
 /// started.
 class StartTimeRange {
@@ -3085,9 +3800,10 @@ class StartTimeRange {
 }
 
 /// Contains the names of AWS CloudFormation stacks used to update a collection
-/// of stacks.
+/// of stacks. You can specify up to 500 AWS CloudFormation stacks.
 class UpdateCloudFormationCollectionFilter {
-  /// An array of the name of stacks to update.
+  /// An array of the names of the AWS CloudFormation stacks to update. You can
+  /// specify up to 500 AWS CloudFormation stacks.
   final List<String>? stackNames;
 
   UpdateCloudFormationCollectionFilter({
@@ -3132,7 +3848,8 @@ extension on String {
 
 /// Contains information used to update a collection of AWS resources.
 class UpdateResourceCollectionFilter {
-  /// An collection of AWS CloudFormation stacks.
+  /// An collection of AWS CloudFormation stacks. You can specify up to 500 AWS
+  /// CloudFormation stacks.
   final UpdateCloudFormationCollectionFilter? cloudFormation;
 
   UpdateResourceCollectionFilter({

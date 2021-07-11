@@ -105,24 +105,12 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -170,12 +158,6 @@ class WorkDocs {
       userId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -232,12 +214,6 @@ class WorkDocs {
       resourceId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -323,12 +299,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(text, 'text');
     _s.validateStringLength(
       'text',
@@ -345,12 +315,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -363,21 +327,11 @@ class WorkDocs {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'parentId',
-      parentId,
-      r'''[\w+-.@]+''',
-    );
     _s.validateStringLength(
       'threadId',
       threadId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'threadId',
-      threadId,
-      r'''[\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -441,12 +395,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -458,11 +406,6 @@ class WorkDocs {
       versionId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -519,12 +462,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'parentFolderId',
-      parentFolderId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -536,11 +473,6 @@ class WorkDocs {
       name,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u202D\u202F-\uFFFF]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -591,12 +523,6 @@ class WorkDocs {
       resourceId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -666,12 +592,6 @@ class WorkDocs {
       organizationId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(protocol, 'protocol');
@@ -754,12 +674,6 @@ class WorkDocs {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'password',
-      password,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(surname, 'surname');
     _s.validateStringLength(
       'surname',
@@ -776,12 +690,6 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'username',
-      username,
-      r'''[\w\-+.]+(@[a-zA-Z0-9.\-]+\.[a-zA-Z]+)?''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -794,21 +702,11 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'emailAddress',
-      emailAddress,
-      r'''[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}''',
-    );
     _s.validateStringLength(
       'organizationId',
       organizationId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
     );
     _s.validateStringLength(
       'timeZoneId',
@@ -867,12 +765,6 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -928,12 +820,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'commentId',
-      commentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(documentId, 'documentId');
     _s.validateStringLength(
       'documentId',
@@ -942,24 +828,12 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1023,12 +897,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1040,11 +908,6 @@ class WorkDocs {
       versionId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -1095,12 +958,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1149,12 +1006,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1200,12 +1051,6 @@ class WorkDocs {
       folderId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1261,12 +1106,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1315,24 +1154,12 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subscriptionId, 'subscriptionId');
     _s.validateStringLength(
       'subscriptionId',
       subscriptionId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'subscriptionId',
-      subscriptionId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     await _protocol.send(
@@ -1368,12 +1195,6 @@ class WorkDocs {
       userId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1460,11 +1281,6 @@ class WorkDocs {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'activityTypes',
-      activityTypes,
-      r'''[\w,]+''',
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1483,21 +1299,11 @@ class WorkDocs {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0000-\u00FF]+''',
-    );
     _s.validateStringLength(
       'organizationId',
       organizationId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
     );
     _s.validateStringLength(
       'resourceId',
@@ -1505,21 +1311,11 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[&\w+-.@]+''',
-    );
     _s.validateStringLength(
       'userId',
       userId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -1589,24 +1385,12 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1626,11 +1410,6 @@ class WorkDocs {
       marker,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0000-\u00FF]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -1701,12 +1480,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1719,21 +1492,11 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'fields',
-      fields,
-      r'''[\w,]+''',
-    );
     _s.validateStringLength(
       'include',
       include,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'include',
-      include,
-      r'''[\w,]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -1828,12 +1591,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1845,11 +1602,6 @@ class WorkDocs {
       include,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'include',
-      include,
-      r'''[\w,]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -1925,12 +1677,6 @@ class WorkDocs {
       512,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'searchQuery',
-      searchQuery,
-      r'''[\u0020-\uFFFF]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -1949,21 +1695,11 @@ class WorkDocs {
       1,
       2048,
     );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''[\u0000-\u00FF]+''',
-    );
     _s.validateStringLength(
       'organizationId',
       organizationId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -2013,12 +1749,6 @@ class WorkDocs {
       organizationId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2086,12 +1816,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -2115,11 +1839,6 @@ class WorkDocs {
       principalId,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'principalId',
-      principalId,
-      r'''[&\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -2284,11 +2003,6 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'fields',
-      fields,
-      r'''[\w,]+''',
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2307,32 +2021,17 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'organizationId',
-      organizationId,
-      r'''[&\w+-.@]+''',
-    );
     _s.validateStringLength(
       'query',
       query,
       1,
       512,
     );
-    _s.validateStringPattern(
-      'query',
-      query,
-      r'''[\u0020-\uFFFF]+''',
-    );
     _s.validateStringLength(
       'userIds',
       userIds,
       1,
       2000,
-    );
-    _s.validateStringPattern(
-      'userIds',
-      userIds,
-      r'''[&\w+-.@, ]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -2435,12 +2134,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -2511,12 +2204,6 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[&\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -2528,11 +2215,6 @@ class WorkDocs {
       fields,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'fields',
-      fields,
-      r'''[\w,]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -2607,24 +2289,12 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2638,11 +2308,6 @@ class WorkDocs {
       fields,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'fields',
-      fields,
-      r'''[\w,]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -2695,12 +2360,6 @@ class WorkDocs {
       folderId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2773,12 +2432,6 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[&\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -2790,11 +2443,6 @@ class WorkDocs {
       fields,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'fields',
-      fields,
-      r'''[\w,]+''',
     );
     _s.validateNumRange(
       'limit',
@@ -2885,11 +2533,6 @@ class WorkDocs {
       1,
       256,
     );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
-    );
     final headers = <String, String>{
       if (authenticationToken != null)
         'Authentication': authenticationToken.toString(),
@@ -2975,12 +2618,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'parentFolderId',
-      parentFolderId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -2999,21 +2636,11 @@ class WorkDocs {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'id',
-      id,
-      r'''[\w+-.@]+''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u202D\u202F-\uFFFF]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -3065,12 +2692,6 @@ class WorkDocs {
       resourceId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3127,24 +2748,12 @@ class WorkDocs {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'principalId',
-      principalId,
-      r'''[&\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     _s.validateStringLength(
       'resourceId',
       resourceId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceId',
-      resourceId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3216,12 +2825,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -3234,21 +2837,11 @@ class WorkDocs {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u202D\u202F-\uFFFF]+''',
-    );
     _s.validateStringLength(
       'parentFolderId',
       parentFolderId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'parentFolderId',
-      parentFolderId,
-      r'''[\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -3309,24 +2902,12 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'documentId',
-      documentId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
     _s.validateStringLength(
       'versionId',
       versionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'versionId',
-      versionId,
-      r'''[\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -3397,12 +2978,6 @@ class WorkDocs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'folderId',
-      folderId,
-      r'''[\w+-.@]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'authenticationToken',
       authenticationToken,
@@ -3415,21 +2990,11 @@ class WorkDocs {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u202D\u202F-\uFFFF]+''',
-    );
     _s.validateStringLength(
       'parentFolderId',
       parentFolderId,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'parentFolderId',
-      parentFolderId,
-      r'''[\w+-.@]+''',
     );
     final headers = <String, String>{
       if (authenticationToken != null)
@@ -3506,12 +3071,6 @@ class WorkDocs {
       userId,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''[&\w+-.@]+''',
       isRequired: true,
     );
     _s.validateStringLength(

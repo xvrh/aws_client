@@ -116,24 +116,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'nodeName',
-      nodeName,
-      r'''^[\-\p{Alnum}_:.]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -223,22 +211,11 @@ class OpsWorksCM {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''(?s).*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -451,7 +428,7 @@ class OpsWorksCM {
   /// Parameter [engineVersion] :
   /// The major release version of the engine that you want to use. For a Chef
   /// server, the valid value for EngineVersion is currently <code>2</code>. For
-  /// a Puppet server, the valid value is <code>2017</code>.
+  /// a Puppet server, valid values are <code>2019</code> or <code>2017</code>.
   ///
   /// Parameter [keyPair] :
   /// The Amazon EC2 key pair to set for the instance. This parameter is
@@ -574,24 +551,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'engine',
-      engine,
-      r'''(?s).*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceProfileArn, 'instanceProfileArn');
     _s.validateStringLength(
       'instanceProfileArn',
       instanceProfileArn,
       0,
       10000,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'instanceProfileArn',
-      instanceProfileArn,
-      r'''arn:aws:iam::[0-9]{12}:instance-profile/.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(instanceType, 'instanceType');
@@ -602,24 +567,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'instanceType',
-      instanceType,
-      r'''(?s).*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(serviceRoleArn, 'serviceRoleArn');
@@ -630,22 +583,11 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceRoleArn',
-      serviceRoleArn,
-      r'''arn:aws:iam::[0-9]{12}:role/.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'backupId',
       backupId,
       0,
       79,
-    );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''[a-zA-Z][a-zA-Z0-9\-\.\:]*''',
     );
     _s.validateNumRange(
       'backupRetentionCount',
@@ -659,21 +601,11 @@ class OpsWorksCM {
       0,
       2097152,
     );
-    _s.validateStringPattern(
-      'customCertificate',
-      customCertificate,
-      r'''(?s)\s*-----BEGIN CERTIFICATE-----.+-----END CERTIFICATE-----\s*''',
-    );
     _s.validateStringLength(
       'customDomain',
       customDomain,
       0,
       253,
-    );
-    _s.validateStringPattern(
-      'customDomain',
-      customDomain,
-      r'''^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$''',
     );
     _s.validateStringLength(
       'customPrivateKey',
@@ -681,21 +613,11 @@ class OpsWorksCM {
       0,
       4096,
     );
-    _s.validateStringPattern(
-      'customPrivateKey',
-      customPrivateKey,
-      r'''(?ms)\s*^-----BEGIN (?-s:.*)PRIVATE KEY-----$.*?^-----END (?-s:.*)PRIVATE KEY-----$\s*''',
-    );
     _s.validateStringLength(
       'engineModel',
       engineModel,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'engineModel',
-      engineModel,
-      r'''(?s).*''',
     );
     _s.validateStringLength(
       'engineVersion',
@@ -703,21 +625,11 @@ class OpsWorksCM {
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'engineVersion',
-      engineVersion,
-      r'''(?s).*''',
-    );
     _s.validateStringLength(
       'keyPair',
       keyPair,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'keyPair',
-      keyPair,
-      r'''.*''',
     );
     _s.validateStringLength(
       'preferredBackupWindow',
@@ -725,21 +637,11 @@ class OpsWorksCM {
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'preferredBackupWindow',
-      preferredBackupWindow,
-      r'''^((Mon|Tue|Wed|Thu|Fri|Sat|Sun):)?([0-1][0-9]|2[0-3]):[0-5][0-9]$''',
-    );
     _s.validateStringLength(
       'preferredMaintenanceWindow',
       preferredMaintenanceWindow,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'preferredMaintenanceWindow',
-      preferredMaintenanceWindow,
-      r'''^((Mon|Tue|Wed|Thu|Fri|Sat|Sun):)?([0-1][0-9]|2[0-3]):[0-5][0-9]$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -811,12 +713,6 @@ class OpsWorksCM {
       79,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''[a-zA-Z][a-zA-Z0-9\-\.\:]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'OpsWorksCM_V2016_11_01.DeleteBackup'
@@ -863,12 +759,6 @@ class OpsWorksCM {
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -945,11 +835,6 @@ class OpsWorksCM {
       0,
       79,
     );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''[a-zA-Z][a-zA-Z0-9\-\.\:]*''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -962,21 +847,11 @@ class OpsWorksCM {
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''(?s).*''',
-    );
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1045,12 +920,6 @@ class OpsWorksCM {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1062,11 +931,6 @@ class OpsWorksCM {
       nextToken,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''(?s).*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1118,24 +982,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'nodeAssociationStatusToken',
-      nodeAssociationStatusToken,
-      r'''(?s).*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1198,21 +1050,11 @@ class OpsWorksCM {
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''(?s).*''',
-    );
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1283,24 +1125,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'nodeName',
-      nodeName,
-      r'''^[\-\p{Alnum}_:.]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1389,24 +1219,12 @@ class OpsWorksCM {
       10000,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'exportAttributeName',
-      exportAttributeName,
-      r'''(?s).*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1464,12 +1282,6 @@ class OpsWorksCM {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws.*:opsworks-cm:.*:[0-9]{12}:.*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1481,11 +1293,6 @@ class OpsWorksCM {
       nextToken,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''(?s).*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1549,7 +1356,7 @@ class OpsWorksCM {
   /// Parameter [keyPair] :
   /// The name of the key pair to set on the new EC2 instance. This can be
   /// helpful if the administrator no longer has the SSH key.
-  Future<void> restoreServer({
+  Future<RestoreServerResponse> restoreServer({
     required String backupId,
     required String serverName,
     String? instanceType,
@@ -1563,12 +1370,6 @@ class OpsWorksCM {
       79,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'backupId',
-      backupId,
-      r'''[a-zA-Z][a-zA-Z0-9\-\.\:]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
@@ -1577,39 +1378,23 @@ class OpsWorksCM {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'instanceType',
       instanceType,
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'instanceType',
-      instanceType,
-      r'''(?s).*''',
-    );
     _s.validateStringLength(
       'keyPair',
       keyPair,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'keyPair',
-      keyPair,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'OpsWorksCM_V2016_11_01.RestoreServer'
     };
-    await _protocol.send(
+    final jsonResponse = await _protocol.send(
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
@@ -1622,6 +1407,8 @@ class OpsWorksCM {
         if (keyPair != null) 'KeyPair': keyPair,
       },
     );
+
+    return RestoreServerResponse.fromJson(jsonResponse.body);
   }
 
   /// Manually starts server maintenance. This command can be useful if an
@@ -1670,12 +1457,6 @@ class OpsWorksCM {
       serverName,
       1,
       40,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1740,12 +1521,6 @@ class OpsWorksCM {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws.*:opsworks-cm:.*:[0-9]{12}:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1782,12 +1557,6 @@ class OpsWorksCM {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws.*:opsworks-cm:.*:[0-9]{12}:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1838,33 +1607,17 @@ class OpsWorksCM {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'preferredBackupWindow',
       preferredBackupWindow,
       0,
       10000,
     );
-    _s.validateStringPattern(
-      'preferredBackupWindow',
-      preferredBackupWindow,
-      r'''^((Mon|Tue|Wed|Thu|Fri|Sat|Sun):)?([0-1][0-9]|2[0-3]):[0-5][0-9]$''',
-    );
     _s.validateStringLength(
       'preferredMaintenanceWindow',
       preferredMaintenanceWindow,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'preferredMaintenanceWindow',
-      preferredMaintenanceWindow,
-      r'''^((Mon|Tue|Wed|Thu|Fri|Sat|Sun):)?([0-1][0-9]|2[0-3]):[0-5][0-9]$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1932,12 +1685,6 @@ class OpsWorksCM {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'attributeName',
-      attributeName,
-      r'''[A-Z][A-Z0-9_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serverName, 'serverName');
     _s.validateStringLength(
       'serverName',
@@ -1946,22 +1693,11 @@ class OpsWorksCM {
       40,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serverName',
-      serverName,
-      r'''[a-zA-Z][a-zA-Z0-9\-]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'attributeValue',
       attributeValue,
       0,
       10000,
-    );
-    _s.validateStringPattern(
-      'attributeValue',
-      attributeValue,
-      r'''(?s).*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2423,11 +2159,24 @@ class DescribeServersResponse {
   /// 1 must have had at least one successful maintenance run after November 1,
   /// 2019.
   ///
-  /// <i>For Puppet Server:</i>
-  /// <code>DescribeServersResponse$Servers$EngineAttributes</code> contains
-  /// PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by
-  /// the Puppet API over TCP port number 8140. The CA certificate is also used to
-  /// sign node certificates.
+  /// <i>For Puppet servers:</i>
+  /// <code>DescribeServersResponse$Servers$EngineAttributes</code> contains the
+  /// following two responses:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>PUPPET_API_CA_CERT</code>, the PEM-encoded CA certificate that is used
+  /// by the Puppet API over TCP port number 8140. The CA certificate is also used
+  /// to sign node certificates.
+  /// </li>
+  /// <li>
+  /// <code>PUPPET_API_CRL</code>, a certificate revocation list. The certificate
+  /// revocation list is for internal maintenance purposes only. For more
+  /// information about the Puppet certificate revocation list, see <a
+  /// href="https://puppet.com/docs/puppet/5.5/man/certificate_revocation_list.html">Man
+  /// Page: puppet certificate_revocation_list</a> in the Puppet documentation.
+  /// </li>
+  /// </ul>
   final List<Server>? servers;
 
   DescribeServersResponse({
@@ -2613,9 +2362,17 @@ extension on String {
 }
 
 class RestoreServerResponse {
-  RestoreServerResponse();
-  factory RestoreServerResponse.fromJson(Map<String, dynamic> _) {
-    return RestoreServerResponse();
+  final Server? server;
+
+  RestoreServerResponse({
+    this.server,
+  });
+  factory RestoreServerResponse.fromJson(Map<String, dynamic> json) {
+    return RestoreServerResponse(
+      server: json['Server'] != null
+          ? Server.fromJson(json['Server'] as Map<String, dynamic>)
+          : null,
+    );
   }
 }
 
@@ -2695,8 +2452,8 @@ class Server {
   final String? engineModel;
 
   /// The engine version of the server. For a Chef server, the valid value for
-  /// EngineVersion is currently <code>2</code>. For a Puppet server, the valid
-  /// value is <code>2017</code>.
+  /// EngineVersion is currently <code>2</code>. For a Puppet server, specify
+  /// either <code>2019</code> or <code>2017</code>.
   final String? engineVersion;
 
   /// The instance profile ARN of the server.

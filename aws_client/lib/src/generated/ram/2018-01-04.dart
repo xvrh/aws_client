@@ -108,7 +108,9 @@ class Ram {
   /// idempotency of the request.
   ///
   /// Parameter [principals] :
-  /// The principals.
+  /// The principals to associate with the resource share. The possible values
+  /// are IDs of AWS accounts, and the ARNs of organizational units (OU) or
+  /// organizations from AWS Organizations.
   ///
   /// Parameter [resourceArns] :
   /// The Amazon Resource Names (ARN) of the resources.
@@ -145,7 +147,8 @@ class Ram {
   /// May throw [OperationNotPermittedException].
   ///
   /// Parameter [permissionArn] :
-  /// The ARN of the AWS RAM permission to associate with the resource share.
+  /// The Amazon Resource Name (ARN) of the AWS RAM permissions to associate
+  /// with the resource share.
   ///
   /// Parameter [resourceShareArn] :
   /// The Amazon Resource Name (ARN) of the resource share.
@@ -153,6 +156,10 @@ class Ram {
   /// Parameter [clientToken] :
   /// A unique, case-sensitive identifier that you provide to ensure the
   /// idempotency of the request.
+  ///
+  /// Parameter [permissionVersion] :
+  /// The version of the AWS RAM permissions to associate with the resource
+  /// share.
   ///
   /// Parameter [replace] :
   /// Indicates whether the permission should replace the permissions that are
@@ -164,6 +171,7 @@ class Ram {
     required String permissionArn,
     required String resourceShareArn,
     String? clientToken,
+    int? permissionVersion,
     bool? replace,
   }) async {
     ArgumentError.checkNotNull(permissionArn, 'permissionArn');
@@ -172,6 +180,7 @@ class Ram {
       'permissionArn': permissionArn,
       'resourceShareArn': resourceShareArn,
       if (clientToken != null) 'clientToken': clientToken,
+      if (permissionVersion != null) 'permissionVersion': permissionVersion,
       if (replace != null) 'replace': replace,
     };
     final response = await _protocol.send(
@@ -347,6 +356,7 @@ class Ram {
   /// May throw [ServerInternalException].
   /// May throw [ServiceUnavailableException].
   /// May throw [OperationNotPermittedException].
+  /// May throw [InvalidStateTransitionException].
   ///
   /// Parameter [permissionArn] :
   /// The ARN of the permission to disassociate from the resource share.
@@ -552,7 +562,7 @@ class Ram {
     return GetResourceShareAssociationsResponse.fromJson(response);
   }
 
-  /// Gets the invitations for resource sharing that you've received.
+  /// Gets the invitations that you have received for resource shares.
   ///
   /// May throw [ResourceShareInvitationArnNotFoundException].
   /// May throw [InvalidMaxResultsException].
@@ -628,8 +638,12 @@ class Ram {
   /// Parameter [nextToken] :
   /// The token for the next page of results.
   ///
+  /// Parameter [permissionArn] :
+  /// The Amazon Resource Name (ARN) of the AWS RAM permission that is
+  /// associated with the resource share.
+  ///
   /// Parameter [resourceShareArns] :
-  /// The Amazon Resource Names (ARN) of the resource shares.
+  /// The ARNs of the resource shares.
   ///
   /// Parameter [resourceShareStatus] :
   /// The status of the resource share.
@@ -641,6 +655,7 @@ class Ram {
     int? maxResults,
     String? name,
     String? nextToken,
+    String? permissionArn,
     List<String>? resourceShareArns,
     ResourceShareStatus? resourceShareStatus,
     List<TagFilter>? tagFilters,
@@ -657,6 +672,7 @@ class Ram {
       if (maxResults != null) 'maxResults': maxResults,
       if (name != null) 'name': name,
       if (nextToken != null) 'nextToken': nextToken,
+      if (permissionArn != null) 'permissionArn': permissionArn,
       if (resourceShareArns != null) 'resourceShareArns': resourceShareArns,
       if (resourceShareStatus != null)
         'resourceShareStatus': resourceShareStatus.toValue(),
@@ -800,14 +816,23 @@ class Ram {
   /// Parameter [resourceType] :
   /// The resource type.
   ///
-  /// Valid values: <code>codebuild:Project</code> |
+  /// Valid values: <code>acm-pca:CertificateAuthority</code> |
+  /// <code>appmesh:Mesh</code> | <code>codebuild:Project</code> |
   /// <code>codebuild:ReportGroup</code> | <code>ec2:CapacityReservation</code>
-  /// | <code>ec2:DedicatedHost</code> | <code>ec2:Subnet</code> |
+  /// | <code>ec2:DedicatedHost</code> | <code>ec2:LocalGatewayRouteTable</code>
+  /// | <code>ec2:PrefixList</code> | <code>ec2:Subnet</code> |
   /// <code>ec2:TrafficMirrorTarget</code> | <code>ec2:TransitGateway</code> |
   /// <code>imagebuilder:Component</code> | <code>imagebuilder:Image</code> |
   /// <code>imagebuilder:ImageRecipe</code> |
+  /// <code>imagebuilder:ContainerRecipe</code> | <code>glue:Catalog</code> |
+  /// <code>glue:Database</code> | <code>glue:Table</code> |
   /// <code>license-manager:LicenseConfiguration</code> I
-  /// <code>resource-groups:Group</code> | <code>rds:Cluster</code> |
+  /// <code>network-firewall:FirewallPolicy</code> |
+  /// <code>network-firewall:StatefulRuleGroup</code> |
+  /// <code>network-firewall:StatelessRuleGroup</code> |
+  /// <code>outposts:Outpost</code> | <code>resource-groups:Group</code> |
+  /// <code>rds:Cluster</code> |
+  /// <code>route53resolver:ResolverQueryLogConfig</code> |
   /// <code>route53resolver:ResolverRule</code>
   Future<ListPrincipalsResponse> listPrincipals({
     required ResourceOwner resourceOwner,
@@ -960,14 +985,23 @@ class Ram {
   /// Parameter [resourceType] :
   /// The resource type.
   ///
-  /// Valid values: <code>codebuild:Project</code> |
+  /// Valid values: <code>acm-pca:CertificateAuthority</code> |
+  /// <code>appmesh:Mesh</code> | <code>codebuild:Project</code> |
   /// <code>codebuild:ReportGroup</code> | <code>ec2:CapacityReservation</code>
-  /// | <code>ec2:DedicatedHost</code> | <code>ec2:Subnet</code> |
+  /// | <code>ec2:DedicatedHost</code> | <code>ec2:LocalGatewayRouteTable</code>
+  /// | <code>ec2:PrefixList</code> | <code>ec2:Subnet</code> |
   /// <code>ec2:TrafficMirrorTarget</code> | <code>ec2:TransitGateway</code> |
   /// <code>imagebuilder:Component</code> | <code>imagebuilder:Image</code> |
   /// <code>imagebuilder:ImageRecipe</code> |
+  /// <code>imagebuilder:ContainerRecipe</code> | <code>glue:Catalog</code> |
+  /// <code>glue:Database</code> | <code>glue:Table</code> |
   /// <code>license-manager:LicenseConfiguration</code> I
-  /// <code>resource-groups:Group</code> | <code>rds:Cluster</code> |
+  /// <code>network-firewall:FirewallPolicy</code> |
+  /// <code>network-firewall:StatefulRuleGroup</code> |
+  /// <code>network-firewall:StatelessRuleGroup</code> |
+  /// <code>outposts:Outpost</code> | <code>resource-groups:Group</code> |
+  /// <code>rds:Cluster</code> |
+  /// <code>route53resolver:ResolverQueryLogConfig</code> |
   /// <code>route53resolver:ResolverRule</code>
   Future<ListResourcesResponse> listResources({
     required ResourceOwner resourceOwner,
@@ -1020,6 +1054,7 @@ class Ram {
   /// </ul>
   ///
   /// May throw [MalformedArnException].
+  /// May throw [ResourceShareLimitExceededException].
   /// May throw [OperationNotPermittedException].
   /// May throw [InvalidParameterException].
   /// May throw [MissingRequiredParameterException].
@@ -1089,6 +1124,7 @@ class Ram {
   ///
   /// May throw [InvalidParameterException].
   /// May throw [MalformedArnException].
+  /// May throw [UnknownResourceException].
   /// May throw [TagLimitExceededException].
   /// May throw [ResourceArnNotFoundException].
   /// May throw [TagPolicyViolationException].
@@ -2034,6 +2070,10 @@ class ResourceShareInvitation {
   /// The ID of the AWS account that received the invitation.
   final String? receiverAccountId;
 
+  /// The Amazon Resource Name (ARN) of the IAM user or IAM role that received the
+  /// invitation.
+  final String? receiverArn;
+
   /// The Amazon Resource Name (ARN) of the resource share.
   final String? resourceShareArn;
 
@@ -2058,6 +2098,7 @@ class ResourceShareInvitation {
   ResourceShareInvitation({
     this.invitationTimestamp,
     this.receiverAccountId,
+    this.receiverArn,
     this.resourceShareArn,
     this.resourceShareAssociations,
     this.resourceShareInvitationArn,
@@ -2069,6 +2110,7 @@ class ResourceShareInvitation {
     return ResourceShareInvitation(
       invitationTimestamp: timeStampFromJson(json['invitationTimestamp']),
       receiverAccountId: json['receiverAccountId'] as String?,
+      receiverArn: json['receiverArn'] as String?,
       resourceShareArn: json['resourceShareArn'] as String?,
       resourceShareAssociations: (json['resourceShareAssociations'] as List?)
           ?.whereNotNull()
@@ -2129,9 +2171,13 @@ class ResourceSharePermissionDetail {
   /// The date and time when the permission was created.
   final DateTime? creationTime;
 
-  /// The identifier for the version of the permission that is set as the default
-  /// version.
+  /// Specifies whether the version of the permission is set to the default
+  /// version for this permission.
   final bool? defaultVersion;
+
+  /// Specifies whether the version of the permission is set to the default
+  /// version for this resource type.
+  final bool? isResourceTypeDefault;
 
   /// The date and time when the permission was last updated.
   final DateTime? lastUpdatedTime;
@@ -2155,6 +2201,7 @@ class ResourceSharePermissionDetail {
     this.arn,
     this.creationTime,
     this.defaultVersion,
+    this.isResourceTypeDefault,
     this.lastUpdatedTime,
     this.name,
     this.permission,
@@ -2166,6 +2213,7 @@ class ResourceSharePermissionDetail {
       arn: json['arn'] as String?,
       creationTime: timeStampFromJson(json['creationTime']),
       defaultVersion: json['defaultVersion'] as bool?,
+      isResourceTypeDefault: json['isResourceTypeDefault'] as bool?,
       lastUpdatedTime: timeStampFromJson(json['lastUpdatedTime']),
       name: json['name'] as String?,
       permission: json['permission'] as String?,
@@ -2183,9 +2231,13 @@ class ResourceSharePermissionSummary {
   /// The date and time when the permission was created.
   final DateTime? creationTime;
 
-  /// The identifier for the version of the permission that is set as the default
-  /// version.
+  /// Specifies whether the version of the permission is set to the default
+  /// version for this permission.
   final bool? defaultVersion;
+
+  /// Specifies whether the version of the permission is set to the default
+  /// version for this resource type.
+  final bool? isResourceTypeDefault;
 
   /// The date and time when the permission was last updated.
   final DateTime? lastUpdatedTime;
@@ -2206,6 +2258,7 @@ class ResourceSharePermissionSummary {
     this.arn,
     this.creationTime,
     this.defaultVersion,
+    this.isResourceTypeDefault,
     this.lastUpdatedTime,
     this.name,
     this.resourceType,
@@ -2217,6 +2270,7 @@ class ResourceSharePermissionSummary {
       arn: json['arn'] as String?,
       creationTime: timeStampFromJson(json['creationTime']),
       defaultVersion: json['defaultVersion'] as bool?,
+      isResourceTypeDefault: json['isResourceTypeDefault'] as bool?,
       lastUpdatedTime: timeStampFromJson(json['lastUpdatedTime']),
       name: json['name'] as String?,
       resourceType: json['resourceType'] as String?,

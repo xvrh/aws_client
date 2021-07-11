@@ -93,7 +93,7 @@ class AmplifyBackend {
   /// The name of the backend environment.
   ///
   /// Parameter [resourceConfig] :
-  /// The resource configuration for the backend creation request.
+  /// The resource configuration for the create backend request.
   ///
   /// Parameter [resourceName] :
   /// The name of the resource.
@@ -547,7 +547,7 @@ class AmplifyBackend {
     return GetBackendAPIModelsResponse.fromJson(response);
   }
 
-  /// Gets backend auth details.
+  /// Gets a backend auth details.
   ///
   /// May throw [NotFoundException].
   /// May throw [GatewayTimeoutException].
@@ -646,6 +646,60 @@ class AmplifyBackend {
     return GetTokenResponse.fromJson(response);
   }
 
+  /// Imports an existing backend authentication resource.
+  ///
+  /// May throw [NotFoundException].
+  /// May throw [GatewayTimeoutException].
+  /// May throw [TooManyRequestsException].
+  /// May throw [BadRequestException].
+  ///
+  /// Parameter [appId] :
+  /// The app ID.
+  ///
+  /// Parameter [backendEnvironmentName] :
+  /// The name of the backend environment.
+  ///
+  /// Parameter [nativeClientId] :
+  /// The ID of the Amazon Cognito native client.
+  ///
+  /// Parameter [userPoolId] :
+  /// The ID of the Amazon Cognito user pool.
+  ///
+  /// Parameter [webClientId] :
+  /// The ID of the Amazon Cognito web client.
+  ///
+  /// Parameter [identityPoolId] :
+  /// The ID of the Amazon Cognito identity pool.
+  Future<ImportBackendAuthResponse> importBackendAuth({
+    required String appId,
+    required String backendEnvironmentName,
+    required String nativeClientId,
+    required String userPoolId,
+    required String webClientId,
+    String? identityPoolId,
+  }) async {
+    ArgumentError.checkNotNull(appId, 'appId');
+    ArgumentError.checkNotNull(
+        backendEnvironmentName, 'backendEnvironmentName');
+    ArgumentError.checkNotNull(nativeClientId, 'nativeClientId');
+    ArgumentError.checkNotNull(userPoolId, 'userPoolId');
+    ArgumentError.checkNotNull(webClientId, 'webClientId');
+    final $payload = <String, dynamic>{
+      'nativeClientId': nativeClientId,
+      'userPoolId': userPoolId,
+      'webClientId': webClientId,
+      if (identityPoolId != null) 'identityPoolId': identityPoolId,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/backend/${Uri.encodeComponent(appId)}/auth/${Uri.encodeComponent(backendEnvironmentName)}/import',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ImportBackendAuthResponse.fromJson(response);
+  }
+
   /// Lists the jobs for the backend of an Amplify app.
   ///
   /// May throw [NotFoundException].
@@ -739,8 +793,7 @@ class AmplifyBackend {
     return RemoveAllBackendsResponse.fromJson(response);
   }
 
-  /// Removes the AWS resources that are required to access the Amplify Admin
-  /// UI.
+  /// Removes the AWS resources required to access the Amplify Admin UI.
   ///
   /// May throw [NotFoundException].
   /// May throw [GatewayTimeoutException].
@@ -848,8 +901,7 @@ class AmplifyBackend {
     return UpdateBackendAuthResponse.fromJson(response);
   }
 
-  /// Updates the AWS resources that are required to access the Amplify Admin
-  /// UI.
+  /// Updates the AWS resources required to access the Amplify Admin UI.
   ///
   /// May throw [NotFoundException].
   /// May throw [GatewayTimeoutException].
@@ -895,7 +947,7 @@ class AmplifyBackend {
   /// The ID for the job.
   ///
   /// Parameter [operation] :
-  /// Filters the list of response objects to include only those with the
+  /// Filters the list of response objects to only include those with the
   /// specified operation name.
   ///
   /// Parameter [status] :
@@ -958,33 +1010,33 @@ extension on String {
 /// The authentication settings for accessing provisioned data models in your
 /// Amplify project.
 class BackendAPIAppSyncAuthSettings {
-  /// The Amazon Cognito user pool ID, if Amazon Cognito is used as an
+  /// The Amazon Cognito user pool ID, if Amazon Cognito was used as an
   /// authentication setting to access your data models.
   final String? cognitoUserPoolId;
 
-  /// The API key description for API_KEY, if it is used as an authentication
+  /// The API key description for API_KEY, if it was used as an authentication
   /// mechanism to access your data models.
   final String? description;
 
-  /// The API key expiration time for API_KEY, if it is used as an authentication
+  /// The API key expiration time for API_KEY, if it was used as an authentication
   /// mechanism to access your data models.
   final double? expirationTime;
 
   /// The expiry time for the OpenID authentication mechanism.
   final String? openIDAuthTTL;
 
-  /// The clientID for openID, if openID is used as an authentication setting to
+  /// The clientID for openID, if openID was used as an authentication setting to
   /// access your data models.
   final String? openIDClientId;
 
   /// The expiry time for the OpenID authentication mechanism.
   final String? openIDIatTTL;
 
-  /// The openID issuer URL, if openID is used as an authentication setting to
+  /// The openID issuer URL, if openID was used as an authentication setting to
   /// access your data models.
   final String? openIDIssueURL;
 
-  /// The openID provider name, if openID is used as an authentication mechanism
+  /// The OpenID provider name, if OpenID was used as an authentication mechanism
   /// to access your data models.
   final String? openIDProviderName;
 
@@ -1065,7 +1117,7 @@ class BackendAPIAuthType {
   }
 }
 
-/// Describes the conflict resolution configuration for the data model
+/// Describes the conflict resolution configuration for your data model
 /// configured in your Amplify project.
 class BackendAPIConflictResolution {
   /// The strategy for conflict resolution.
@@ -1090,14 +1142,14 @@ class BackendAPIConflictResolution {
   }
 }
 
-/// The resource configuration for the data model, configured as a part of the
-/// Amplify project.
+/// The resource config for the data model, configured as a part of the Amplify
+/// project.
 class BackendAPIResourceConfig {
   /// Additional authentication methods used to interact with your data models.
   final List<BackendAPIAuthType>? additionalAuthTypes;
 
   /// The API name used to interact with the data model, configured as a part of
-  /// the Amplify project.
+  /// the amplify project.
   final String? apiName;
 
   /// The conflict resolution strategy for your data stored in the data models.
@@ -1164,11 +1216,11 @@ class BackendAPIResourceConfig {
 /// Describes third-party social federation configurations for allowing your app
 /// users to sign in using OAuth.
 class BackendAuthSocialProviderConfig {
-  /// Describes the client_id that can be obtained from the third-party social
+  /// Describes the client_id which can be obtained from the third-party social
   /// federation provider.
   final String? clientId;
 
-  /// Describes the client_secret that can be obtained from third-party social
+  /// Describes the client_secret which can be obtained from third-party social
   /// federation providers.
   final String? clientSecret;
 
@@ -1204,7 +1256,7 @@ class BackendJobRespObj {
   /// The time when the job was created.
   final String? createTime;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1250,7 +1302,7 @@ class CloneBackendResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1289,7 +1341,7 @@ class CreateBackendAPIResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1324,8 +1376,8 @@ class CreateBackendAPIResponse {
 /// Describes the forgot password policy for authenticating into the Amplify
 /// app.
 class CreateBackendAuthForgotPasswordConfig {
-  /// Describes which method to use (either SMS or email) to deliver messages to
-  /// app users that want to recover their password.
+  /// Describes which mode to use (either SMS or email) to deliver messages to app
+  /// users that want to recover their password.
   final DeliveryMethod deliveryMethod;
 
   /// The configuration for the email sent when an app user forgets their
@@ -1370,7 +1422,7 @@ class CreateBackendAuthForgotPasswordConfig {
 /// Describes authorization configurations for the auth resources, configured as
 /// a part of your Amplify project.
 class CreateBackendAuthIdentityPoolConfig {
-  /// Name of the identity pool used for authorization.
+  /// Name of the Amazon Cognito identity pool used for authorization.
   final String identityPoolName;
 
   /// Set to true or false based on whether you want to enable guest authorization
@@ -1399,11 +1451,10 @@ class CreateBackendAuthIdentityPoolConfig {
   }
 }
 
-/// Describes whether to apply multi-factor authentication (MFA) policies for
-/// your Amazon Cognito user pool that's configured as a part of your Amplify
-/// project.
+/// Describes whether multi-factor authentication policies should be applied for
+/// your Amazon Cognito user pool configured as a part of your Amplify project.
 class CreateBackendAuthMFAConfig {
-  /// Describes whether MFA should be [ON, OFF, or OPTIONAL] for authentication in
+  /// Describes whether MFA should be [ON, OFF, OPTIONAL] for authentication in
   /// your Amplify project.
   final MFAMode mFAMode;
 
@@ -1440,21 +1491,20 @@ class CreateBackendAuthOAuthConfig {
   /// your Amplify app.
   final OAuthGrantType oAuthGrantType;
 
-  /// List of OAuth-related flows that allow your app users to authenticate from
-  /// your Amplify app.
+  /// List of OAuth-related flows used to allow your app users to authenticate
+  /// from your Amplify app.
   final List<OAuthScopesElement> oAuthScopes;
 
   /// The redirected URI for signing in to your Amplify app.
   final List<String> redirectSignInURIs;
 
-  /// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
+  /// Redirect URLs used by OAuth when a user signs out of an Amplify app.
   final List<String> redirectSignOutURIs;
 
   /// The domain prefix for your Amplify app.
   final String? domainPrefix;
 
-  /// The settings for using social identity providers for access to your Amplify
-  /// app.
+  /// The settings for using social providers to access your Amplify app.
   final SocialProviderSettings? socialProviderSettings;
 
   CreateBackendAuthOAuthConfig({
@@ -1507,7 +1557,7 @@ class CreateBackendAuthOAuthConfig {
   }
 }
 
-/// The password policy configuration for the backend of your Amplify project.
+/// The password policy configuration for the backend to your Amplify project.
 class CreateBackendAuthPasswordPolicyConfig {
   /// The minimum length of the password used to access the backend of your
   /// Amplify project.
@@ -1555,12 +1605,12 @@ class CreateBackendAuthResourceConfig {
   /// in your Amplify project.
   final Service service;
 
-  /// Describes the authentication configuration for the Amazon Cognito user pool,
-  /// provisioned as a part of the auth resource in your Amplify project.
+  /// Describes authentication configuration for the Amazon Cognito user pool,
+  /// provisioned as a part of your auth resource in the Amplify project.
   final CreateBackendAuthUserPoolConfig userPoolConfigs;
 
   /// Describes the authorization configuration for the Amazon Cognito identity
-  /// pool, provisioned as a part of the auth resource in your Amplify project.
+  /// pool, provisioned as a part of your auth resource in the Amplify project.
   final CreateBackendAuthIdentityPoolConfig? identityPoolConfigs;
 
   CreateBackendAuthResourceConfig({
@@ -1604,7 +1654,7 @@ class CreateBackendAuthResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1639,12 +1689,11 @@ class CreateBackendAuthResponse {
 /// Describes the Amazon Cognito user pool configuration for the auth resource
 /// to be configured for your Amplify project.
 class CreateBackendAuthUserPoolConfig {
-  /// The required attributes to sign up new users in the Amazon Cognito user
-  /// pool.
+  /// The required attributes to sign up new users in the user pool.
   final List<RequiredSignUpAttributesElement> requiredSignUpAttributes;
 
-  /// Describes the sign-in methods that your Amplify app users to log in using
-  /// the Amazon Cognito user pool that's configured as a part of your Amplify
+  /// Describes the sign-in methods that your Amplify app users use to log in
+  /// using the Amazon Cognito user pool, configured as a part of your Amplify
   /// project.
   final SignInMethod signInMethod;
 
@@ -1655,9 +1704,8 @@ class CreateBackendAuthUserPoolConfig {
   /// configured as a part of your Amplify project.
   final CreateBackendAuthForgotPasswordConfig? forgotPassword;
 
-  /// Describes whether to apply multi-factor authentication (MFA) policies for
-  /// your Amazon Cognito user pool that's configured as a part of your Amplify
-  /// project.
+  /// Describes whether multi-factor authentication policies should be applied for
+  /// your Amazon Cognito user pool configured as a part of your Amplify project.
   final CreateBackendAuthMFAConfig? mfa;
 
   /// Describes the OAuth policy and rules for your Amazon Cognito user pool,
@@ -1761,7 +1809,7 @@ class CreateBackendResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1829,7 +1877,7 @@ class DeleteBackendAPIResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1868,7 +1916,7 @@ class DeleteBackendAuthResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -1907,7 +1955,7 @@ class DeleteBackendResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2018,7 +2066,7 @@ class GenerateBackendAPIModelsResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2051,7 +2099,7 @@ class GenerateBackendAPIModelsResponse {
 }
 
 class GetBackendAPIModelsResponse {
-  /// Stringified JSON of the DataStore model.
+  /// Stringified JSON of the datastore model.
   final String? models;
 
   /// The current status of the request.
@@ -2076,7 +2124,7 @@ class GetBackendAPIResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The resource configuration for this response object.
@@ -2113,7 +2161,7 @@ class GetBackendAuthResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The resource configuration for authorization requests to the backend of your
@@ -2154,7 +2202,7 @@ class GetBackendJobResponse {
   /// The time when the job was created.
   final String? createTime;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2194,8 +2242,7 @@ class GetBackendJobResponse {
 }
 
 class GetBackendResponse {
-  /// A stringified version of the current configurations for your Amplify
-  /// project.
+  /// A stringified version of the current configs for your Amplify project.
   final String? amplifyMetaConfig;
 
   /// The app ID.
@@ -2265,6 +2312,45 @@ class GetTokenResponse {
   }
 }
 
+class ImportBackendAuthResponse {
+  /// The app ID.
+  final String? appId;
+
+  /// The name of the backend environment.
+  final String? backendEnvironmentName;
+
+  /// If the request fails, this error is returned.
+  final String? error;
+
+  /// The ID for the job.
+  final String? jobId;
+
+  /// The name of the operation.
+  final String? operation;
+
+  /// The current status of the request.
+  final String? status;
+
+  ImportBackendAuthResponse({
+    this.appId,
+    this.backendEnvironmentName,
+    this.error,
+    this.jobId,
+    this.operation,
+    this.status,
+  });
+  factory ImportBackendAuthResponse.fromJson(Map<String, dynamic> json) {
+    return ImportBackendAuthResponse(
+      appId: json['appId'] as String?,
+      backendEnvironmentName: json['backendEnvironmentName'] as String?,
+      error: json['error'] as String?,
+      jobId: json['jobId'] as String?,
+      operation: json['operation'] as String?,
+      status: json['status'] as String?,
+    );
+  }
+}
+
 class ListBackendJobsResponse {
   /// An array of jobs and their properties.
   final List<BackendJobRespObj>? jobs;
@@ -2289,7 +2375,7 @@ class ListBackendJobsResponse {
 
 /// The request object for this operation.
 class LoginAuthConfigReqObj {
-  /// The Amazon Cognito identity pool ID used for Amplify Admin UI login
+  /// The Amazon Cognito identity pool ID used for the Amplify Admin UI login
   /// authorization.
   final String? awsCognitoIdentityPoolId;
 
@@ -2437,7 +2523,7 @@ class RemoveAllBackendsResponse {
   /// The app ID.
   final String? appId;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2468,7 +2554,7 @@ class RemoveAllBackendsResponse {
 }
 
 class RemoveBackendConfigResponse {
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   RemoveBackendConfigResponse({
@@ -2721,7 +2807,7 @@ class UpdateBackendAPIResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2756,8 +2842,8 @@ class UpdateBackendAPIResponse {
 /// Describes the forgot password policy for authenticating into the Amplify
 /// app.
 class UpdateBackendAuthForgotPasswordConfig {
-  /// Describes which method to use (either SMS or email) to deliver messages to
-  /// app users that want to recover their password.
+  /// Describes which mode to use (either SMS or email) to deliver messages to app
+  /// users that want to recover their password.
   final DeliveryMethod? deliveryMethod;
 
   /// The configuration for the email sent when an app user forgets their
@@ -2788,7 +2874,7 @@ class UpdateBackendAuthForgotPasswordConfig {
 /// Describes the authorization configuration for the Amazon Cognito identity
 /// pool, provisioned as a part of your auth resource in the Amplify project.
 class UpdateBackendAuthIdentityPoolConfig {
-  /// A Boolean value that you can set to allow or disallow guest-level
+  /// A boolean value which can be set to allow or disallow guest-level
   /// authorization into your Amplify app.
   final bool? unauthenticatedLogin;
 
@@ -2842,10 +2928,10 @@ class UpdateBackendAuthOAuthConfig {
   /// your Amplify app.
   final List<OAuthScopesElement>? oAuthScopes;
 
-  /// Redirect URLs that OAuth uses when a user signs in to an Amplify app.
+  /// Redirect URLs used by OAuth when a user signs in to an Amplify app.
   final List<String>? redirectSignInURIs;
 
-  /// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
+  /// Redirect URLs used by OAuth when a user signs out of an Amplify app.
   final List<String>? redirectSignOutURIs;
 
   /// Describes third-party social federation configurations for allowing your
@@ -2881,11 +2967,11 @@ class UpdateBackendAuthOAuthConfig {
   }
 }
 
-/// Describes the password policy for your Amazon Cognito user pool that's
-/// configured as a part of your Amplify project.
+/// Describes the password policy for your Amazon Cognito user pool configured
+/// as a part of your Amplify project.
 class UpdateBackendAuthPasswordPolicyConfig {
-  /// Describes additional constrains on the password requirements to sign in to
-  /// the auth resource, configured as a part of your Amplify project.
+  /// Describes additional constraints on password requirements to sign in to the
+  /// auth resource, configured as a part of your Amplify project.
   final List<AdditionalConstraintsElement>? additionalConstraints;
 
   /// Describes the minimum length of the password required to sign in to the auth
@@ -2920,11 +3006,11 @@ class UpdateBackendAuthResourceConfig {
   final Service service;
 
   /// Describes the authentication configuration for the Amazon Cognito user pool,
-  /// provisioned as a part of the auth resource in your Amplify project.
+  /// provisioned as a part of your auth resource in the Amplify project.
   final UpdateBackendAuthUserPoolConfig userPoolConfigs;
 
   /// Describes the authorization configuration for the Amazon Cognito identity
-  /// pool, provisioned as a part of the auth resource in your Amplify project.
+  /// pool, provisioned as a part of your auth resource in the Amplify project.
   final UpdateBackendAuthIdentityPoolConfig? identityPoolConfigs;
 
   UpdateBackendAuthResourceConfig({
@@ -2955,7 +3041,7 @@ class UpdateBackendAuthResponse {
   /// The name of the backend environment.
   final String? backendEnvironmentName;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.
@@ -2987,16 +3073,15 @@ class UpdateBackendAuthResponse {
   }
 }
 
-/// Describes the Amazon Cognito user pool configuration to configure the
-/// authorization resource for your Amplify project on an update.
+/// Describes the Amazon Cognito user pool configuration for the authorization
+/// resource to be configured for your Amplify project on an update.
 class UpdateBackendAuthUserPoolConfig {
   /// Describes the forgot password policy for your Amazon Cognito user pool,
   /// configured as a part of your Amplify project.
   final UpdateBackendAuthForgotPasswordConfig? forgotPassword;
 
-  /// Describes whether to apply multi-factor authentication (MFA) policies for
-  /// your Amazon Cognito user pool that's configured as a part of your Amplify
-  /// project.
+  /// Describes whether multi-factor authentication policies should be applied for
+  /// your Amazon Cognito user pool configured as a part of your Amplify project.
   final UpdateBackendAuthMFAConfig? mfa;
 
   /// Describes the OAuth policy and rules for your Amazon Cognito user pool,
@@ -3034,7 +3119,7 @@ class UpdateBackendConfigResponse {
   /// The app ID for the backend manager.
   final String? backendManagerAppId;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// Describes the Amazon Cognito configurations for the Admin UI auth resource
@@ -3070,7 +3155,7 @@ class UpdateBackendJobResponse {
   /// The time when the job was created.
   final String? createTime;
 
-  /// If the request failed, this is the returned error.
+  /// If the request fails, this error is returned.
   final String? error;
 
   /// The ID for the job.

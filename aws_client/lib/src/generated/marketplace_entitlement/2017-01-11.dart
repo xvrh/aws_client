@@ -80,11 +80,6 @@ class MarketplaceEntitlement {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''\S+''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMPEntitlementService.GetEntitlements'

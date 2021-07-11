@@ -194,12 +194,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'linkName',
-      linkName,
-      r'''[^\/\[\]\(\):\{\}#@!?\s\\;]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parentReference, 'parentReference');
     final headers = <String, String>{
       'x-amz-data-partition': directoryArn.toString(),
@@ -496,12 +490,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -583,12 +571,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectType, 'objectType');
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
@@ -656,11 +638,6 @@ class CloudDirectory {
       linkName,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'linkName',
-      linkName,
-      r'''[^\/\[\]\(\):\{\}#@!?\s\\;]+''',
     );
     final headers = <String, String>{
       'x-amz-data-partition': directoryArn.toString(),
@@ -732,11 +709,6 @@ class CloudDirectory {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'linkName',
-      linkName,
-      r'''[^\/\[\]\(\):\{\}#@!?\s\\;]+''',
-    );
     final headers = <String, String>{
       'x-amz-data-partition': directoryArn.toString(),
     };
@@ -799,12 +771,6 @@ class CloudDirectory {
       name,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -926,12 +892,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -1045,12 +1005,6 @@ class CloudDirectory {
     required String schemaArn,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -1150,12 +1104,6 @@ class CloudDirectory {
       linkName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'linkName',
-      linkName,
-      r'''[^\/\[\]\(\):\{\}#@!?\s\\;]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(parentReference, 'parentReference');
@@ -1415,12 +1363,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -1653,12 +1595,6 @@ class CloudDirectory {
     required String schemaArn,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -1907,12 +1843,6 @@ class CloudDirectory {
       name,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
@@ -2769,12 +2699,6 @@ class CloudDirectory {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     _s.validateNumRange(
       'maxResults',
@@ -2960,33 +2884,17 @@ class CloudDirectory {
       10,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'version',
-      version,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'minorVersion',
       minorVersion,
       1,
       10,
     );
-    _s.validateStringPattern(
-      'minorVersion',
-      minorVersion,
-      r'''^[a-zA-Z0-9._-]*$''',
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       32,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     final headers = <String, String>{
       'x-amz-data-partition': developmentSchemaArn.toString(),
@@ -3216,12 +3124,6 @@ class CloudDirectory {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -3368,12 +3270,6 @@ class CloudDirectory {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -3439,12 +3335,6 @@ class CloudDirectory {
     ArgumentError.checkNotNull(
         identityAttributeOrder, 'identityAttributeOrder');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaArn, 'schemaArn');
     final headers = <String, String>{
       'x-amz-data-partition': schemaArn.toString(),
@@ -3553,12 +3443,6 @@ class CloudDirectory {
       minorVersion,
       1,
       10,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'minorVersion',
-      minorVersion,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(publishedSchemaArn, 'publishedSchemaArn');

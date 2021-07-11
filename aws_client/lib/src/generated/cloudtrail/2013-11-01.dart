@@ -285,6 +285,7 @@ class CloudTrail {
   /// May throw [OperationNotPermittedException].
   /// May throw [NotOrganizationMasterAccountException].
   /// May throw [InsufficientDependencyServiceAccessPermissionException].
+  /// May throw [ConflictException].
   ///
   /// Parameter [name] :
   /// Specifies the name or the CloudTrail ARN of the trail to be deleted. The
@@ -389,8 +390,8 @@ class CloudTrail {
   /// If your event selector includes management events.
   /// </li>
   /// <li>
-  /// If your event selector includes data events, the Amazon S3 objects or AWS
-  /// Lambda functions that you are logging for data events.
+  /// If your event selector includes data events, the resources on which you
+  /// are logging data events.
   /// </li>
   /// </ul>
   /// For more information, see <a
@@ -1003,6 +1004,8 @@ class CloudTrail {
   /// May throw [InvalidInsightSelectorsException].
   /// May throw [InsufficientS3BucketPolicyException].
   /// May throw [InsufficientEncryptionPolicyException].
+  /// May throw [S3BucketDoesNotExistException].
+  /// May throw [KmsException].
   /// May throw [UnsupportedOperationException].
   /// May throw [OperationNotPermittedException].
   /// May throw [NotOrganizationMasterAccountException].
@@ -1468,8 +1471,11 @@ class AdvancedFieldSelector {
   /// <li>
   /// <b> <code>resources.type</code> </b> - This ﬁeld is required.
   /// <code>resources.type</code> can only use the <code>Equals</code> operator,
-  /// and the value can be one of the following: <code>AWS::S3::Object</code> or
-  /// <code>AWS::Lambda::Function</code>. You can have only one
+  /// and the value can be one of the following: <code>AWS::S3::Object</code>,
+  /// <code>AWS::Lambda::Function</code>, <code>AWS::DynamoDB::Table</code>,
+  /// <code>AWS::S3Outposts::Object</code>,
+  /// <code>AWS::ManagedBlockchain::Node</code>, or
+  /// <code>AWS::S3ObjectLambda::AccessPoint</code>. You can have only one
   /// <code>resources.type</code> ﬁeld per selector. To log data events on more
   /// than one resource type, add another selector.
   /// </li>
@@ -1479,8 +1485,11 @@ class AdvancedFieldSelector {
   /// the value must exactly match the ARN of a valid resource of the type you've
   /// speciﬁed in the template as the value of resources.type. For example, if
   /// resources.type equals <code>AWS::S3::Object</code>, the ARN must be in one
-  /// of the following formats. The trailing slash is intentional; do not exclude
-  /// it.
+  /// of the following formats. To log all data events for all objects in a
+  /// specific S3 bucket, use the <code>StartsWith</code> operator, and include
+  /// only the bucket ARN as the matching value.
+  ///
+  /// The trailing slash is intentional; do not exclude it.
   ///
   /// <ul>
   /// <li>
@@ -1497,6 +1506,45 @@ class AdvancedFieldSelector {
   /// <ul>
   /// <li>
   /// <code>arn:partition:lambda:region:account_ID:function:function_name</code>
+  /// </li>
+  /// </ul>
+  /// When resources.type equals <code>AWS::DynamoDB::Table</code>, and the
+  /// operator is set to <code>Equals</code> or <code>NotEquals</code>, the ARN
+  /// must be in the following format:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>arn:partition:dynamodb:region:account_ID:table:table_name</code>
+  /// </li>
+  /// </ul>
+  /// When <code>resources.type</code> equals
+  /// <code>AWS::S3Outposts::Object</code>, and the operator is set to
+  /// <code>Equals</code> or <code>NotEquals</code>, the ARN must be in the
+  /// following format:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>arn:partition:s3-outposts:region:&gt;account_ID:object_path</code>
+  /// </li>
+  /// </ul>
+  /// When <code>resources.type</code> equals
+  /// <code>AWS::ManagedBlockchain::Node</code>, and the operator is set to
+  /// <code>Equals</code> or <code>NotEquals</code>, the ARN must be in the
+  /// following format:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>arn:partition:managedblockchain:region:account_ID:nodes/node_ID</code>
+  /// </li>
+  /// </ul>
+  /// When <code>resources.type</code> equals
+  /// <code>AWS::S3ObjectLambda::AccessPoint</code>, and the operator is set to
+  /// <code>Equals</code> or <code>NotEquals</code>, the ARN must be in the
+  /// following format:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>arn:partition:s3-object-lambda:region:account_ID:accesspoint/access_point_name</code>
   /// </li>
   /// </ul> </li>
   /// </ul>
@@ -1679,11 +1727,11 @@ class CreateTrailResponse {
   }
 }
 
-/// The Amazon S3 buckets or AWS Lambda functions that you specify in your event
-/// selectors for your trail to log data events. Data events provide information
-/// about the resource operations performed on or within a resource itself.
-/// These are also known as data plane operations. You can specify up to 250
-/// data resources for a trail.
+/// The Amazon S3 buckets, AWS Lambda functions, or Amazon DynamoDB tables that
+/// you specify in your event selectors for your trail to log data events. Data
+/// events provide information about the resource operations performed on or
+/// within a resource itself. These are also known as data plane operations. You
+/// can specify up to 250 data resources for a trail.
 /// <note>
 /// The total number of allowed data resources is 250. This number can be
 /// distributed between 1 and 5 event selectors, but the total cannot exceed 250
@@ -1740,8 +1788,14 @@ class CreateTrailResponse {
 /// </li> </ol>
 class DataResource {
   /// The resource type in which you want to log data events. You can specify
-  /// <code>AWS::S3::Object</code> or <code>AWS::Lambda::Function</code>
-  /// resources.
+  /// <code>AWS::S3::Object</code>, <code>AWS::Lambda::Function</code>, or
+  /// <code>AWS::DynamoDB::Table</code> resources.
+  ///
+  /// The <code>AWS::S3Outposts::Object</code>,
+  /// <code>AWS::ManagedBlockchain::Node</code>, and
+  /// <code>AWS::S3ObjectLambda::AccessPoint</code> resource types are not valid
+  /// in basic event selectors. To log data events on these resource types, use
+  /// advanced event selectors.
   final String? type;
 
   /// An array of Amazon Resource Name (ARN) strings or partial ARN strings for
@@ -1767,8 +1821,8 @@ class DataResource {
   /// logs data events for objects in this S3 bucket that match the prefix.
   /// </li>
   /// <li>
-  /// To log data events for all functions in your AWS account, specify the prefix
-  /// as <code>arn:aws:lambda</code>.
+  /// To log data events for all Lambda functions in your AWS account, specify the
+  /// prefix as <code>arn:aws:lambda</code>.
   /// <note>
   /// This will also enable logging of <code>Invoke</code> activity performed by
   /// any user or role in your AWS account, even if that activity is performed on
@@ -1784,6 +1838,10 @@ class DataResource {
   /// not be logged for
   /// <i>arn:aws:lambda:us-west-2:111111111111:function:helloworld2</i>.
   /// </note> </li>
+  /// <li>
+  /// To log data events for all DynamoDB tables in your AWS account, specify the
+  /// prefix as <code>arn:aws:dynamodb</code>.
+  /// </li>
   /// </ul>
   final List<String>? values;
 
@@ -1943,10 +2001,10 @@ extension on String {
 /// trail.
 class EventSelector {
   /// CloudTrail supports data event logging for Amazon S3 objects and AWS Lambda
-  /// functions. You can specify up to 250 resources for an individual event
-  /// selector, but the total number of data resources cannot exceed 250 across
-  /// all event selectors in a trail. This limit does not apply if you configure
-  /// resource logging for all data events.
+  /// functions with basic event selectors. You can specify up to 250 resources
+  /// for an individual event selector, but the total number of data resources
+  /// cannot exceed 250 across all event selectors in a trail. This limit does not
+  /// apply if you configure resource logging for all data events.
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-and-data-events-with-cloudtrail.html#logging-data-events">Data
@@ -2954,6 +3012,11 @@ class CloudWatchLogsDeliveryUnavailableException
             message: message);
 }
 
+class ConflictException extends _s.GenericAwsException {
+  ConflictException({String? type, String? message})
+      : super(type: type, code: 'ConflictException', message: message);
+}
+
 class InsightNotEnabledException extends _s.GenericAwsException {
   InsightNotEnabledException({String? type, String? message})
       : super(type: type, code: 'InsightNotEnabledException', message: message);
@@ -3221,6 +3284,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       CloudTrailInvalidClientTokenIdException(type: type, message: message),
   'CloudWatchLogsDeliveryUnavailableException': (type, message) =>
       CloudWatchLogsDeliveryUnavailableException(type: type, message: message),
+  'ConflictException': (type, message) =>
+      ConflictException(type: type, message: message),
   'InsightNotEnabledException': (type, message) =>
       InsightNotEnabledException(type: type, message: message),
   'InsufficientDependencyServiceAccessPermissionException': (type, message) =>

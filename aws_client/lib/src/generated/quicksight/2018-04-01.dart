@@ -70,12 +70,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
     _s.validateStringLength(
@@ -83,12 +77,6 @@ class QuickSight {
       ingestionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'ingestionId',
-      ingestionId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -168,22 +156,11 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
@@ -269,12 +246,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -283,24 +254,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
@@ -432,12 +391,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
@@ -446,24 +399,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
@@ -531,6 +472,9 @@ class QuickSight {
   /// A set of one or more definitions of a <code>
   /// <a>ColumnLevelPermissionRule</a> </code>.
   ///
+  /// Parameter [fieldFolders] :
+  /// The folder that contains fields and nested subfolders for your dataset.
+  ///
   /// Parameter [logicalTableMap] :
   /// Configures the combination and transformation of the data from the
   /// physical tables.
@@ -552,6 +496,7 @@ class QuickSight {
     required Map<String, PhysicalTable> physicalTableMap,
     List<ColumnGroup>? columnGroups,
     List<ColumnLevelPermissionRule>? columnLevelPermissionRules,
+    Map<String, FieldFolder>? fieldFolders,
     Map<String, LogicalTable>? logicalTableMap,
     List<ResourcePermission>? permissions,
     RowLevelPermissionDataSet? rowLevelPermissionDataSet,
@@ -563,12 +508,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
@@ -590,6 +529,7 @@ class QuickSight {
       if (columnGroups != null) 'ColumnGroups': columnGroups,
       if (columnLevelPermissionRules != null)
         'ColumnLevelPermissionRules': columnLevelPermissionRules,
+      if (fieldFolders != null) 'FieldFolders': fieldFolders,
       if (logicalTableMap != null) 'LogicalTableMap': logicalTableMap,
       if (permissions != null) 'Permissions': permissions,
       if (rowLevelPermissionDataSet != null)
@@ -628,10 +568,13 @@ class QuickSight {
   ///
   /// Parameter [type] :
   /// The type of the data source. Currently, the supported types for this
-  /// operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL,
-  /// POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER,
-  /// TERADATA</code>. Use <code>ListDataSources</code> to return a list of all
-  /// data sources.
+  /// operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL,
+  /// AMAZON_ELASTICSEARCH, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3,
+  /// SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use
+  /// <code>ListDataSources</code> to return a list of all data sources.
+  ///
+  /// <code>AMAZON_ELASTICSEARCH</code> is for Amazon managed Elasticsearch
+  /// Service.
   ///
   /// Parameter [credentials] :
   /// The credentials QuickSight that uses to connect to your underlying source.
@@ -674,12 +617,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -710,6 +647,157 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return CreateDataSourceResponse.fromJson(response);
+  }
+
+  /// Creates an empty shared folder.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [ThrottlingException].
+  /// May throw [ResourceExistsException].
+  /// May throw [ConflictException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [AccessDeniedException].
+  /// May throw [LimitExceededException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS Account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  ///
+  /// Parameter [folderType] :
+  /// The type of folder. By default, <code>folderType</code> is
+  /// <code>SHARED</code>.
+  ///
+  /// Parameter [name] :
+  /// The name of the folder.
+  ///
+  /// Parameter [parentFolderArn] :
+  /// The Amazon Resource Name (ARN) for the parent folder.
+  ///
+  /// <code>ParentFolderArn</code> can be null. An empty
+  /// <code>parentFolderArn</code> creates a root-level folder.
+  ///
+  /// Parameter [permissions] :
+  /// A structure that describes the principals and the resource-level
+  /// permissions of a folder.
+  ///
+  /// To specify no permissions, omit <code>Permissions</code>.
+  ///
+  /// Parameter [tags] :
+  /// Tags for the folder.
+  Future<CreateFolderResponse> createFolder({
+    required String awsAccountId,
+    required String folderId,
+    FolderType? folderType,
+    String? name,
+    String? parentFolderArn,
+    List<ResourcePermission>? permissions,
+    List<Tag>? tags,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      200,
+    );
+    final $payload = <String, dynamic>{
+      if (folderType != null) 'FolderType': folderType.toValue(),
+      if (name != null) 'Name': name,
+      if (parentFolderArn != null) 'ParentFolderArn': parentFolderArn,
+      if (permissions != null) 'Permissions': permissions,
+      if (tags != null) 'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateFolderResponse.fromJson(response);
+  }
+
+  /// Adds an asset, such as a dashboard, analysis, or dataset into a folder.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceExistsException].
+  /// May throw [ThrottlingException].
+  /// May throw [LimitExceededException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS Account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  ///
+  /// Parameter [memberId] :
+  /// The ID of the asset (the dashboard, analysis, or dataset).
+  ///
+  /// Parameter [memberType] :
+  /// The type of the member, including <code>DASHBOARD</code>,
+  /// <code>ANALYSIS</code>, and <code>DATASET</code>.
+  Future<CreateFolderMembershipResponse> createFolderMembership({
+    required String awsAccountId,
+    required String folderId,
+    required String memberId,
+    required MemberType memberType,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(memberId, 'memberId');
+    _s.validateStringLength(
+      'memberId',
+      memberId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(memberType, 'memberType');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'PUT',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/members/${Uri.encodeComponent(memberType.toValue())}/${Uri.encodeComponent(memberId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateFolderMembershipResponse.fromJson(response);
   }
 
   /// Creates an Amazon QuickSight group.
@@ -756,12 +844,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
@@ -770,24 +852,12 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -846,24 +916,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
       groupName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberName, 'memberName');
@@ -874,24 +932,12 @@ class QuickSight {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberName',
-      memberName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -970,12 +1016,6 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentName',
-      assignmentName,
-      r'''(?=^.{2,256}$)(?!.*\s)[0-9a-zA-Z-_.:=+@]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assignmentStatus, 'assignmentStatus');
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
@@ -985,24 +1025,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1059,12 +1087,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
     _s.validateStringLength(
@@ -1072,12 +1094,6 @@ class QuickSight {
       ingestionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'ingestionId',
-      ingestionId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1140,12 +1156,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityStore, 'identityStore');
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
@@ -1153,12 +1163,6 @@ class QuickSight {
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -1252,12 +1256,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
@@ -1267,22 +1265,11 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
     );
     _s.validateStringLength(
       'versionDescription',
@@ -1346,12 +1333,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -1360,24 +1341,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(templateVersionNumber, 'templateVersionNumber');
@@ -1467,24 +1436,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(baseThemeId, 'baseThemeId');
     _s.validateStringLength(
       'baseThemeId',
       baseThemeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'baseThemeId',
-      baseThemeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(configuration, 'configuration');
@@ -1502,12 +1459,6 @@ class QuickSight {
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -1572,12 +1523,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -1586,24 +1531,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(themeVersionNumber, 'themeVersionNumber');
@@ -1655,22 +1588,11 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
@@ -1741,24 +1663,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1818,24 +1728,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1884,12 +1782,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final response = await _protocol.send(
       payload: null,
@@ -1928,12 +1820,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final response = await _protocol.send(
       payload: null,
@@ -1943,6 +1829,116 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return DeleteDataSourceResponse.fromJson(response);
+  }
+
+  /// Deletes an empty folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [PreconditionNotMetException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConflictException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS Account ID for the folder.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  Future<DeleteFolderResponse> deleteFolder({
+    required String awsAccountId,
+    required String folderId,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DeleteFolderResponse.fromJson(response);
+  }
+
+  /// Removes an asset, such as a dashboard, analysis, or dataset, from a
+  /// folder.
+  ///
+  /// May throw [AccessDeniedException].
+  /// May throw [InvalidParameterValueException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS Account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The Folder ID.
+  ///
+  /// Parameter [memberId] :
+  /// The ID of the asset (the dashboard, analysis, or dataset) that you want to
+  /// delete.
+  ///
+  /// Parameter [memberType] :
+  /// The type of the member, including <code>DASHBOARD</code>,
+  /// <code>ANALYSIS</code>, and <code>DATASET</code>
+  Future<DeleteFolderMembershipResponse> deleteFolderMembership({
+    required String awsAccountId,
+    required String folderId,
+    required String memberId,
+    required MemberType memberType,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(memberId, 'memberId');
+    _s.validateStringLength(
+      'memberId',
+      memberId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(memberType, 'memberType');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/members/${Uri.encodeComponent(memberType.toValue())}/${Uri.encodeComponent(memberId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DeleteFolderMembershipResponse.fromJson(response);
   }
 
   /// Removes a user group from Amazon QuickSight.
@@ -1977,12 +1973,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
@@ -1991,24 +1981,12 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2058,24 +2036,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
       groupName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(memberName, 'memberName');
@@ -2086,24 +2052,12 @@ class QuickSight {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'memberName',
-      memberName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2147,12 +2101,6 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentName',
-      assignmentName,
-      r'''(?=^.{2,256}$)(?!.*\s)[0-9a-zA-Z-_.:=+@]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -2161,24 +2109,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2222,24 +2158,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2285,24 +2209,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2359,12 +2271,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -2373,24 +2279,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2437,24 +2331,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -2509,12 +2391,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -2523,24 +2399,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2587,12 +2451,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
@@ -2601,24 +2459,12 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
     _s.validateStringLength(
       'userName',
       userName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2663,24 +2509,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(principalId, 'principalId');
@@ -2794,22 +2628,11 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
@@ -2850,12 +2673,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2893,24 +2710,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -2951,24 +2756,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3017,12 +2810,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
@@ -3031,22 +2818,11 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'aliasName',
       aliasName,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
     );
     _s.validateNumRange(
       'versionNumber',
@@ -3095,24 +2871,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3149,12 +2913,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
@@ -3197,12 +2955,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final response = await _protocol.send(
       payload: null,
@@ -3238,12 +2990,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
@@ -3283,12 +3029,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final response = await _protocol.send(
       payload: null,
@@ -3298,6 +3038,141 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return DescribeDataSourcePermissionsResponse.fromJson(response);
+  }
+
+  /// Describes a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  Future<DescribeFolderResponse> describeFolder({
+    required String awsAccountId,
+    required String folderId,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeFolderResponse.fromJson(response);
+  }
+
+  /// Describes permissions for a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS Account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  Future<DescribeFolderPermissionsResponse> describeFolderPermissions({
+    required String awsAccountId,
+    required String folderId,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/permissions',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeFolderPermissionsResponse.fromJson(response);
+  }
+
+  /// Describes the folder resolved permissions. Permissions consists of both
+  /// folder direct permissions and the inherited permissions from the ancestor
+  /// folders.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  Future<DescribeFolderResolvedPermissionsResponse>
+      describeFolderResolvedPermissions({
+    required String awsAccountId,
+    required String folderId,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/resolved-permissions',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeFolderResolvedPermissionsResponse.fromJson(response);
   }
 
   /// Returns an Amazon QuickSight group's description and Amazon Resource Name
@@ -3333,12 +3208,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
@@ -3347,24 +3216,12 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3409,12 +3266,6 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentName',
-      assignmentName,
-      r'''(?=^.{2,256}$)(?!.*\s)[0-9a-zA-Z-_.:=+@]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -3423,24 +3274,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3483,12 +3322,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
     _s.validateStringLength(
@@ -3496,12 +3329,6 @@ class QuickSight {
       ingestionId,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'ingestionId',
-      ingestionId,
-      r'''^[a-zA-Z0-9-_]+$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3541,24 +3368,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3614,12 +3429,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
@@ -3628,22 +3437,11 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'aliasName',
       aliasName,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
     );
     _s.validateNumRange(
       'versionNumber',
@@ -3699,12 +3497,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -3713,24 +3505,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3770,24 +3550,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3834,12 +3602,6 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^(aws|[0-9]{12})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
@@ -3848,22 +3610,11 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'aliasName',
       aliasName,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
     );
     _s.validateNumRange(
       'versionNumber',
@@ -3917,12 +3668,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -3931,24 +3676,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -3987,24 +3720,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -4049,12 +3770,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
@@ -4063,24 +3778,12 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
     _s.validateStringLength(
       'userName',
       userName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -4220,12 +3923,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
@@ -4234,23 +3931,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityType, 'identityType');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     _s.validateNumRange(
       'sessionLifetimeInMinutes',
@@ -4386,12 +4072,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'entryPoint',
       entryPoint,
@@ -4447,12 +4127,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4511,24 +4185,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4580,12 +4242,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4642,12 +4298,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4698,12 +4348,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4722,6 +4366,124 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return ListDataSourcesResponse.fromJson(response);
+  }
+
+  /// List all assets (<code>DASHBOARD</code>, <code>ANALYSIS</code>, and
+  /// <code>DATASET</code>) in a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to be returned per request.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results, or null if there are no more
+  /// results.
+  Future<ListFolderMembersResponse> listFolderMembers({
+    required String awsAccountId,
+    required String folderId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'max-results': [maxResults.toString()],
+      if (nextToken != null) 'next-token': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/members',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListFolderMembersResponse.fromJson(response);
+  }
+
+  /// Lists all folders in an account.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to be returned per request.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results, or null if there are no more
+  /// results.
+  Future<ListFoldersResponse> listFolders({
+    required String awsAccountId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'max-results': [maxResults.toString()],
+      if (nextToken != null) 'next-token': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/accounts/${Uri.encodeComponent(awsAccountId)}/folders',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListFoldersResponse.fromJson(response);
   }
 
   /// Lists member users in a group.
@@ -4765,12 +4527,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
@@ -4779,24 +4535,12 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4857,24 +4601,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4937,24 +4669,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5021,12 +4741,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
@@ -5035,24 +4749,12 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
     _s.validateStringLength(
       'userName',
       userName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5112,12 +4814,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     _s.validateNumRange(
       'maxResults',
@@ -5171,12 +4867,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5258,24 +4948,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5335,24 +5013,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5405,12 +5071,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5470,24 +5130,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5547,24 +5195,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5639,12 +5275,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5708,12 +5338,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
@@ -5722,24 +5346,12 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
     _s.validateStringLength(
       'userName',
       userName,
       1,
       1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5801,24 +5413,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -5907,6 +5507,13 @@ class QuickSight {
   /// </li>
   /// </ul>
   ///
+  /// Parameter [customFederationProviderUrl] :
+  /// The URL of the custom OpenID Connect (OIDC) provider that provides
+  /// identity to let a user federate into QuickSight with an associated AWS
+  /// Identity and Access Management (IAM) role. This parameter should only be
+  /// used when <code>ExternalLoginFederationProviderType</code> parameter is
+  /// set to <code>CUSTOM_OIDC</code>.
+  ///
   /// Parameter [customPermissionsName] :
   /// (Enterprise edition only) The name of the custom permissions profile that
   /// you want to assign to this user. Customized permissions allows you to
@@ -5943,6 +5550,30 @@ class QuickSight {
   /// This feature is available only to QuickSight Enterprise edition
   /// subscriptions that use SAML 2.0-Based Federation for Single Sign-On (SSO).
   ///
+  /// Parameter [externalLoginFederationProviderType] :
+  /// The type of supported external login provider that provides identity to
+  /// let a user federate into Amazon QuickSight with an associated AWS Identity
+  /// and Access Management (IAM) role. The type of supported external login
+  /// provider can be one of the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>COGNITO</code>: Amazon Cognito. The provider URL is
+  /// cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code>
+  /// provider type, don’t use the "CustomFederationProviderUrl" parameter which
+  /// is only needed when the external provider is custom.
+  /// </li>
+  /// <li>
+  /// <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When
+  /// choosing <code>CUSTOM_OIDC</code> type, use the
+  /// <code>CustomFederationProviderUrl</code> parameter to provide the custom
+  /// OIDC provider URL.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [externalLoginId] :
+  /// The identity ID for a user in the external login provider.
+  ///
   /// Parameter [iamArn] :
   /// The ARN of the IAM user or role that you are registering with Amazon
   /// QuickSight.
@@ -5966,7 +5597,10 @@ class QuickSight {
     required IdentityType identityType,
     required String namespace,
     required UserRole userRole,
+    String? customFederationProviderUrl,
     String? customPermissionsName,
+    String? externalLoginFederationProviderType,
+    String? externalLoginId,
     String? iamArn,
     String? sessionName,
     String? userName,
@@ -5979,12 +5613,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(email, 'email');
     ArgumentError.checkNotNull(identityType, 'identityType');
     ArgumentError.checkNotNull(namespace, 'namespace');
@@ -5995,12 +5623,6 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userRole, 'userRole');
     _s.validateStringLength(
       'customPermissionsName',
@@ -6008,21 +5630,11 @@ class QuickSight {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'customPermissionsName',
-      customPermissionsName,
-      r'''^[a-zA-Z0-9+=,.@_-]+$''',
-    );
     _s.validateStringLength(
       'sessionName',
       sessionName,
       2,
       64,
-    );
-    _s.validateStringPattern(
-      'sessionName',
-      sessionName,
-      r'''[\w+=.@-]*''',
     );
     _s.validateStringLength(
       'userName',
@@ -6030,17 +5642,18 @@ class QuickSight {
       1,
       1152921504606846976,
     );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
-    );
     final $payload = <String, dynamic>{
       'Email': email,
       'IdentityType': identityType.toValue(),
       'UserRole': userRole.toValue(),
+      if (customFederationProviderUrl != null)
+        'CustomFederationProviderUrl': customFederationProviderUrl,
       if (customPermissionsName != null)
         'CustomPermissionsName': customPermissionsName,
+      if (externalLoginFederationProviderType != null)
+        'ExternalLoginFederationProviderType':
+            externalLoginFederationProviderType,
+      if (externalLoginId != null) 'ExternalLoginId': externalLoginId,
       if (iamArn != null) 'IamArn': iamArn,
       if (sessionName != null) 'SessionName': sessionName,
       if (userName != null) 'UserName': userName,
@@ -6081,24 +5694,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -6145,12 +5746,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(filters, 'filters');
@@ -6214,12 +5809,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filters, 'filters');
     _s.validateNumRange(
       'maxResults',
@@ -6240,6 +5829,67 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return SearchDashboardsResponse.fromJson(response);
+  }
+
+  /// Searches the subfolders in a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [InvalidNextTokenException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [filters] :
+  /// The filters to apply to the search. Currently, you can search only by the
+  /// parent folder ARN. For example, <code>"Filters": [ { "Name":
+  /// "PARENT_FOLDER_ARN", "Operator": "StringEquals", "Value":
+  /// "arn:aws:quicksight:us-east-1:1:folder/folderId" } ]</code>.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to be returned per request.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of results, or null if there are no more
+  /// results.
+  Future<SearchFoldersResponse> searchFolders({
+    required String awsAccountId,
+    required List<FolderSearchFilter> filters,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(filters, 'filters');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $payload = <String, dynamic>{
+      'Filters': filters,
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/search/folders',
+      exceptionFnMap: _exceptionFns,
+    );
+    return SearchFoldersResponse.fromJson(response);
   }
 
   /// Assigns one or more tags (key-value pairs) to the specified QuickSight
@@ -6375,22 +6025,11 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
     );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
@@ -6444,24 +6083,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(defaultNamespace, 'defaultNamespace');
     _s.validateStringLength(
       'defaultNamespace',
       defaultNamespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'defaultNamespace',
-      defaultNamespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -6528,12 +6155,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -6542,24 +6163,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
@@ -6618,24 +6227,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'analysisId',
-      analysisId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -6743,12 +6340,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
@@ -6757,24 +6348,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
@@ -6838,24 +6417,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -6904,24 +6471,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
     _s.validateStringLength(
       'dashboardId',
       dashboardId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'dashboardId',
-      dashboardId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
@@ -6978,6 +6533,9 @@ class QuickSight {
   /// A set of one or more definitions of a <code>
   /// <a>ColumnLevelPermissionRule</a> </code>.
   ///
+  /// Parameter [fieldFolders] :
+  /// The folder that contains fields and nested subfolders for your dataset.
+  ///
   /// Parameter [logicalTableMap] :
   /// Configures the combination and transformation of the data from the
   /// physical tables.
@@ -6992,6 +6550,7 @@ class QuickSight {
     required Map<String, PhysicalTable> physicalTableMap,
     List<ColumnGroup>? columnGroups,
     List<ColumnLevelPermissionRule>? columnLevelPermissionRules,
+    Map<String, FieldFolder>? fieldFolders,
     Map<String, LogicalTable>? logicalTableMap,
     RowLevelPermissionDataSet? rowLevelPermissionDataSet,
   }) async {
@@ -7001,12 +6560,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
@@ -7027,6 +6580,7 @@ class QuickSight {
       if (columnGroups != null) 'ColumnGroups': columnGroups,
       if (columnLevelPermissionRules != null)
         'ColumnLevelPermissionRules': columnLevelPermissionRules,
+      if (fieldFolders != null) 'FieldFolders': fieldFolders,
       if (logicalTableMap != null) 'LogicalTableMap': logicalTableMap,
       if (rowLevelPermissionDataSet != null)
         'RowLevelPermissionDataSet': rowLevelPermissionDataSet,
@@ -7077,12 +6631,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
@@ -7151,12 +6699,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -7220,12 +6762,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
@@ -7239,6 +6775,124 @@ class QuickSight {
       exceptionFnMap: _exceptionFns,
     );
     return UpdateDataSourcePermissionsResponse.fromJson(response);
+  }
+
+  /// Updates the name of a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceExistsException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConflictException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  ///
+  /// Parameter [name] :
+  /// The name of the folder.
+  Future<UpdateFolderResponse> updateFolder({
+    required String awsAccountId,
+    required String folderId,
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      200,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      'Name': name,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateFolderResponse.fromJson(response);
+  }
+
+  /// Updates permissions of a folder.
+  ///
+  /// May throw [InvalidParameterValueException].
+  /// May throw [AccessDeniedException].
+  /// May throw [LimitExceededException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ThrottlingException].
+  /// May throw [UnsupportedUserEditionException].
+  /// May throw [InternalFailureException].
+  ///
+  /// Parameter [awsAccountId] :
+  /// The AWS account ID.
+  ///
+  /// Parameter [folderId] :
+  /// The folder ID.
+  ///
+  /// Parameter [grantPermissions] :
+  /// The permissions that you want to grant on a resource.
+  ///
+  /// Parameter [revokePermissions] :
+  /// The permissions that you want to revoke from a resource.
+  Future<UpdateFolderPermissionsResponse> updateFolderPermissions({
+    required String awsAccountId,
+    required String folderId,
+    List<ResourcePermission>? grantPermissions,
+    List<ResourcePermission>? revokePermissions,
+  }) async {
+    ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
+    _s.validateStringLength(
+      'awsAccountId',
+      awsAccountId,
+      12,
+      12,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(folderId, 'folderId');
+    _s.validateStringLength(
+      'folderId',
+      folderId,
+      1,
+      2048,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (grantPermissions != null) 'GrantPermissions': grantPermissions,
+      if (revokePermissions != null) 'RevokePermissions': revokePermissions,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri:
+          '/accounts/${Uri.encodeComponent(awsAccountId)}/folders/${Uri.encodeComponent(folderId)}/permissions',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateFolderPermissionsResponse.fromJson(response);
   }
 
   /// Changes a group description.
@@ -7277,12 +6931,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
     _s.validateStringLength(
       'groupName',
@@ -7291,24 +6939,12 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupName',
-      groupName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -7393,12 +7029,6 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'assignmentName',
-      assignmentName,
-      r'''(?=^.{2,256}$)(?!.*\s)[0-9a-zA-Z-_.:=+@]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -7407,24 +7037,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -7499,12 +7117,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
@@ -7514,22 +7126,11 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'name',
       name,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''[\u0020-\u00FF]+''',
     );
     _s.validateStringLength(
       'versionDescription',
@@ -7591,12 +7192,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -7605,24 +7200,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(templateVersionNumber, 'templateVersionNumber');
@@ -7680,24 +7263,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
     _s.validateStringLength(
       'templateId',
       templateId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'templateId',
-      templateId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -7762,12 +7333,6 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(baseThemeId, 'baseThemeId');
     _s.validateStringLength(
       'baseThemeId',
@@ -7776,24 +7341,12 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baseThemeId',
-      baseThemeId,
-      r'''[\w\-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -7860,12 +7413,6 @@ class QuickSight {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'aliasName',
-      aliasName,
-      r'''[\w\-]+|(\$LATEST)|(\$PUBLISHED)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     _s.validateStringLength(
       'awsAccountId',
@@ -7874,24 +7421,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(themeVersionNumber, 'themeVersionNumber');
@@ -8016,24 +7551,12 @@ class QuickSight {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
     _s.validateStringLength(
       'themeId',
       themeId,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'themeId',
-      themeId,
-      r'''[\w\-]+''',
       isRequired: true,
     );
     final $payload = <String, dynamic>{
@@ -8093,6 +7616,13 @@ class QuickSight {
   /// Parameter [userName] :
   /// The Amazon QuickSight user name that you want to update.
   ///
+  /// Parameter [customFederationProviderUrl] :
+  /// The URL of the custom OpenID Connect (OIDC) provider that provides
+  /// identity to let a user federate into QuickSight with an associated AWS
+  /// Identity and Access Management (IAM) role. This parameter should only be
+  /// used when <code>ExternalLoginFederationProviderType</code> parameter is
+  /// set to <code>CUSTOM_OIDC</code>.
+  ///
   /// Parameter [customPermissionsName] :
   /// (Enterprise edition only) The name of the custom permissions profile that
   /// you want to assign to this user. Customized permissions allows you to
@@ -8126,6 +7656,35 @@ class QuickSight {
   /// This feature is available only to QuickSight Enterprise edition
   /// subscriptions that use SAML 2.0-Based Federation for Single Sign-On (SSO).
   ///
+  /// Parameter [externalLoginFederationProviderType] :
+  /// The type of supported external login provider that provides identity to
+  /// let a user federate into QuickSight with an associated AWS Identity and
+  /// Access Management (IAM) role. The type of supported external login
+  /// provider can be one of the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>COGNITO</code>: Amazon Cognito. The provider URL is
+  /// cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code>
+  /// provider type, don’t use the "CustomFederationProviderUrl" parameter which
+  /// is only needed when the external provider is custom.
+  /// </li>
+  /// <li>
+  /// <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When
+  /// choosing <code>CUSTOM_OIDC</code> type, use the
+  /// <code>CustomFederationProviderUrl</code> parameter to provide the custom
+  /// OIDC provider URL.
+  /// </li>
+  /// <li>
+  /// <code>NONE</code>: This clears all the previously saved external login
+  /// information for a user. Use <code> <a>DescribeUser</a> </code> API to
+  /// check the external login information.
+  /// </li>
+  /// </ul>
+  ///
+  /// Parameter [externalLoginId] :
+  /// The identity ID for a user in the external login provider.
+  ///
   /// Parameter [unapplyCustomPermissions] :
   /// A flag that you use to indicate that you want to remove all custom
   /// permissions from this user. Using this parameter resets the user to the
@@ -8137,7 +7696,10 @@ class QuickSight {
     required String namespace,
     required UserRole role,
     required String userName,
+    String? customFederationProviderUrl,
     String? customPermissionsName,
+    String? externalLoginFederationProviderType,
+    String? externalLoginId,
     bool? unapplyCustomPermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
@@ -8146,12 +7708,6 @@ class QuickSight {
       awsAccountId,
       12,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'awsAccountId',
-      awsAccountId,
-      r'''^[0-9]{12}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(email, 'email');
@@ -8163,12 +7719,6 @@ class QuickSight {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'namespace',
-      namespace,
-      r'''^[a-zA-Z0-9._-]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     ArgumentError.checkNotNull(userName, 'userName');
     _s.validateStringLength(
@@ -8178,28 +7728,23 @@ class QuickSight {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userName',
-      userName,
-      r'''[\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'customPermissionsName',
       customPermissionsName,
       1,
       64,
     );
-    _s.validateStringPattern(
-      'customPermissionsName',
-      customPermissionsName,
-      r'''^[a-zA-Z0-9+=,.@_-]+$''',
-    );
     final $payload = <String, dynamic>{
       'Email': email,
       'Role': role.toValue(),
+      if (customFederationProviderUrl != null)
+        'CustomFederationProviderUrl': customFederationProviderUrl,
       if (customPermissionsName != null)
         'CustomPermissionsName': customPermissionsName,
+      if (externalLoginFederationProviderType != null)
+        'ExternalLoginFederationProviderType':
+            externalLoginFederationProviderType,
+      if (externalLoginId != null) 'ExternalLoginId': externalLoginId,
       if (unapplyCustomPermissions != null)
         'UnapplyCustomPermissions': unapplyCustomPermissions,
     };
@@ -9339,6 +8884,62 @@ class CreateDataSourceResponse {
   }
 }
 
+class CreateFolderMembershipResponse {
+  /// Information about the member in the folder.
+  final FolderMember? folderMember;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status of the folder membership. If succeeded, the status is <code>SC_OK
+  /// (200)</code>.
+  final int? status;
+
+  CreateFolderMembershipResponse({
+    this.folderMember,
+    this.requestId,
+    this.status,
+  });
+  factory CreateFolderMembershipResponse.fromJson(Map<String, dynamic> json) {
+    return CreateFolderMembershipResponse(
+      folderMember: json['FolderMember'] != null
+          ? FolderMember.fromJson(json['FolderMember'] as Map<String, dynamic>)
+          : null,
+      requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
+    );
+  }
+}
+
+class CreateFolderResponse {
+  /// The Amazon Resource Name (ARN) for the newly created folder.
+  final String? arn;
+
+  /// The folder ID for the newly created folder.
+  final String? folderId;
+
+  /// The request ID for the newly created folder.
+  final String? requestId;
+
+  /// The status of the newly created folder. If succeeded, the status is
+  /// <code>SC_OK (200)</code>.
+  final int? status;
+
+  CreateFolderResponse({
+    this.arn,
+    this.folderId,
+    this.requestId,
+    this.status,
+  });
+  factory CreateFolderResponse.fromJson(Map<String, dynamic> json) {
+    return CreateFolderResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
 class CreateGroupMembershipResponse {
   /// The group member.
   final GroupMember? groupMember;
@@ -10286,6 +9887,9 @@ class DataSet {
   /// The ID of the dataset.
   final String? dataSetId;
 
+  /// The folder that contains fields and nested subfolders for your dataset.
+  final Map<String, FieldFolder>? fieldFolders;
+
   /// A value that indicates whether you want to import the data into SPICE.
   final DataSetImportMode? importMode;
 
@@ -10317,6 +9921,7 @@ class DataSet {
     this.consumedSpiceCapacityInBytes,
     this.createdTime,
     this.dataSetId,
+    this.fieldFolders,
     this.importMode,
     this.lastUpdatedTime,
     this.logicalTableMap,
@@ -10341,6 +9946,9 @@ class DataSet {
           json['ConsumedSpiceCapacityInBytes'] as int?,
       createdTime: timeStampFromJson(json['CreatedTime']),
       dataSetId: json['DataSetId'] as String?,
+      fieldFolders: (json['FieldFolders'] as Map<String, dynamic>?)?.map(
+          (k, e) =>
+              MapEntry(k, FieldFolder.fromJson(e as Map<String, dynamic>))),
       importMode: (json['ImportMode'] as String?)?.toDataSetImportMode(),
       lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
       logicalTableMap: (json['LogicalTableMap'] as Map<String, dynamic>?)?.map(
@@ -11262,6 +10870,55 @@ class DeleteDataSourceResponse {
   }
 }
 
+class DeleteFolderMembershipResponse {
+  /// The request ID.
+  final String? requestId;
+
+  /// The status of deleting the asset. If succeeded, the status is <code>SC_OK
+  /// (200)</code>.
+  final int? status;
+
+  DeleteFolderMembershipResponse({
+    this.requestId,
+    this.status,
+  });
+  factory DeleteFolderMembershipResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteFolderMembershipResponse(
+      requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
+    );
+  }
+}
+
+class DeleteFolderResponse {
+  /// The Amazon Resource Name of the deleted folder.
+  final String? arn;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status of deleting the folder. If succeeded, the status is <code>SC_OK
+  /// (200)</code>.
+  final int? status;
+
+  DeleteFolderResponse({
+    this.arn,
+    this.folderId,
+    this.requestId,
+    this.status,
+  });
+  factory DeleteFolderResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteFolderResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
 class DeleteGroupMembershipResponse {
   /// The AWS request ID for this operation.
   final String? requestId;
@@ -11828,6 +11485,105 @@ class DescribeDataSourceResponse {
   }
 }
 
+class DescribeFolderPermissionsResponse {
+  /// The Amazon Resource Name (ARN) for the folder.
+  final String? arn;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// Information about the permissions on the folder.
+  final List<ResourcePermission>? permissions;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>.
+  final int? status;
+
+  DescribeFolderPermissionsResponse({
+    this.arn,
+    this.folderId,
+    this.permissions,
+    this.requestId,
+    this.status,
+  });
+  factory DescribeFolderPermissionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeFolderPermissionsResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      permissions: (json['Permissions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
+class DescribeFolderResolvedPermissionsResponse {
+  /// The Amazon Resource Name (ARN).
+  final String? arn;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// Information about the permissions on the dashboard.
+  final List<ResourcePermission>? permissions;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>
+  final int? status;
+
+  DescribeFolderResolvedPermissionsResponse({
+    this.arn,
+    this.folderId,
+    this.permissions,
+    this.requestId,
+    this.status,
+  });
+  factory DescribeFolderResolvedPermissionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeFolderResolvedPermissionsResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      permissions: (json['Permissions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
+class DescribeFolderResponse {
+  /// Information about the folder.
+  final Folder? folder;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK (200)</code>.
+  final int? status;
+
+  DescribeFolderResponse({
+    this.folder,
+    this.requestId,
+    this.status,
+  });
+  factory DescribeFolderResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeFolderResponse(
+      folder: json['Folder'] != null
+          ? Folder.fromJson(json['Folder'] as Map<String, dynamic>)
+          : null,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
 class DescribeGroupResponse {
   /// The name of the group.
   final Group? group;
@@ -12232,6 +11988,39 @@ class ExportToCSVOption {
   }
 }
 
+/// A FieldFolder element is a folder that contains fields and nested
+/// subfolders.
+class FieldFolder {
+  /// A folder has a list of columns. A column can only be in one folder.
+  final List<String>? columns;
+
+  /// The description for a field folder.
+  final String? description;
+
+  FieldFolder({
+    this.columns,
+    this.description,
+  });
+  factory FieldFolder.fromJson(Map<String, dynamic> json) {
+    return FieldFolder(
+      columns: (json['columns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      description: json['description'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columns = this.columns;
+    final description = this.description;
+    return {
+      if (columns != null) 'columns': columns,
+      if (description != null) 'description': description,
+    };
+  }
+}
+
 enum FileFormat {
   csv,
   tsv,
@@ -12323,6 +12112,193 @@ extension on String {
         return FilterOperator.stringEquals;
     }
     throw Exception('$this is not known in enum FilterOperator');
+  }
+}
+
+/// A folder.
+class Folder {
+  /// The folder Amazon Resource Name (ARN).
+  final String? arn;
+
+  /// The time that the folder was created.
+  final DateTime? createdTime;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// An array of ancestor folder ARN strings.
+  final List<String>? folderPath;
+
+  /// The type of the folder.
+  final FolderType? folderType;
+
+  /// The time that the folder was last updated.
+  final DateTime? lastUpdatedTime;
+
+  /// A display name for the folder.
+  final String? name;
+
+  Folder({
+    this.arn,
+    this.createdTime,
+    this.folderId,
+    this.folderPath,
+    this.folderType,
+    this.lastUpdatedTime,
+    this.name,
+  });
+  factory Folder.fromJson(Map<String, dynamic> json) {
+    return Folder(
+      arn: json['Arn'] as String?,
+      createdTime: timeStampFromJson(json['CreatedTime']),
+      folderId: json['FolderId'] as String?,
+      folderPath: (json['FolderPath'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      folderType: (json['FolderType'] as String?)?.toFolderType(),
+      lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
+      name: json['Name'] as String?,
+    );
+  }
+}
+
+enum FolderFilterAttribute {
+  parentFolderArn,
+}
+
+extension on FolderFilterAttribute {
+  String toValue() {
+    switch (this) {
+      case FolderFilterAttribute.parentFolderArn:
+        return 'PARENT_FOLDER_ARN';
+    }
+  }
+}
+
+extension on String {
+  FolderFilterAttribute toFolderFilterAttribute() {
+    switch (this) {
+      case 'PARENT_FOLDER_ARN':
+        return FolderFilterAttribute.parentFolderArn;
+    }
+    throw Exception('$this is not known in enum FolderFilterAttribute');
+  }
+}
+
+/// An asset in a folder, such as a dashboard, analysis, or dataset.
+class FolderMember {
+  /// The ID of the asset.
+  final String? memberId;
+
+  /// The type of the asset.
+  final MemberType? memberType;
+
+  FolderMember({
+    this.memberId,
+    this.memberType,
+  });
+  factory FolderMember.fromJson(Map<String, dynamic> json) {
+    return FolderMember(
+      memberId: json['MemberId'] as String?,
+      memberType: (json['MemberType'] as String?)?.toMemberType(),
+    );
+  }
+}
+
+/// Searches a folder by a filter.
+class FolderSearchFilter {
+  /// The name of the value that you want to use as a filter. For example,
+  /// <code>"Name": "PARENT_FOLDER_ARN"</code>.
+  final FolderFilterAttribute? name;
+
+  /// The comparison operator that you want to use as a filter. For example,
+  /// <code>"Operator": "StringEquals"</code>.
+  final FilterOperator? operator;
+
+  /// The value of the named item (in this example,
+  /// <code>PARENT_FOLDER_ARN</code>), that you want to use as a filter. For
+  /// example, <code>"Value":
+  /// "arn:aws:quicksight:us-east-1:1:folder/folderId"</code>.
+  final String? value;
+
+  FolderSearchFilter({
+    this.name,
+    this.operator,
+    this.value,
+  });
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final operator = this.operator;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (operator != null) 'Operator': operator.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
+}
+
+/// A summary of the folder.
+class FolderSummary {
+  /// The Amazon Resource Name (ARN).
+  final String? arn;
+
+  /// The time that the folder was created.
+  final DateTime? createdTime;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// The type of folder.
+  final FolderType? folderType;
+
+  /// The time that the folder was last updated.
+  final DateTime? lastUpdatedTime;
+
+  /// The display name of the folder.
+  final String? name;
+
+  FolderSummary({
+    this.arn,
+    this.createdTime,
+    this.folderId,
+    this.folderType,
+    this.lastUpdatedTime,
+    this.name,
+  });
+  factory FolderSummary.fromJson(Map<String, dynamic> json) {
+    return FolderSummary(
+      arn: json['Arn'] as String?,
+      createdTime: timeStampFromJson(json['CreatedTime']),
+      folderId: json['FolderId'] as String?,
+      folderType: (json['FolderType'] as String?)?.toFolderType(),
+      lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
+      name: json['Name'] as String?,
+    );
+  }
+}
+
+enum FolderType {
+  shared,
+}
+
+extension on FolderType {
+  String toValue() {
+    switch (this) {
+      case FolderType.shared:
+        return 'SHARED';
+    }
+  }
+}
+
+extension on String {
+  FolderType toFolderType() {
+    switch (this) {
+      case 'SHARED':
+        return FolderType.shared;
+    }
+    throw Exception('$this is not known in enum FolderType');
   }
 }
 
@@ -13495,6 +13471,70 @@ class ListDataSourcesResponse {
   }
 }
 
+class ListFolderMembersResponse {
+  /// A structure that contains all of the folder members (dashboards, analyses,
+  /// and datasets) in the folder.
+  final List<MemberIdArnPair>? folderMemberList;
+
+  /// The token for the next set of results, or null if there are no more results.
+  final String? nextToken;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>
+  final int? status;
+
+  ListFolderMembersResponse({
+    this.folderMemberList,
+    this.nextToken,
+    this.requestId,
+    this.status,
+  });
+  factory ListFolderMembersResponse.fromJson(Map<String, dynamic> json) {
+    return ListFolderMembersResponse(
+      folderMemberList: (json['FolderMemberList'] as List?)
+          ?.whereNotNull()
+          .map((e) => MemberIdArnPair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
+class ListFoldersResponse {
+  /// A structure that contains all of the folders in your AWS account. This
+  /// structure provides basic information about the folders.
+  final List<FolderSummary>? folderSummaryList;
+
+  /// The token for the next set of results, or null if there are no more results.
+  final String? nextToken;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>
+  final int? status;
+
+  ListFoldersResponse({
+    this.folderSummaryList,
+    this.nextToken,
+    this.requestId,
+    this.status,
+  });
+  factory ListFoldersResponse.fromJson(Map<String, dynamic> json) {
+    return ListFoldersResponse(
+      folderSummaryList: (json['FolderSummaryList'] as List?)
+          ?.whereNotNull()
+          .map((e) => FolderSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
 class ListGroupMembershipsResponse {
   /// The list of the members of the group.
   final List<GroupMember>? groupMemberList;
@@ -14124,6 +14164,60 @@ class MariaDbParameters {
       'Host': host,
       'Port': port,
     };
+  }
+}
+
+/// An object that consists of the member Amazon Resource Name (ARN) and member
+/// ID.
+class MemberIdArnPair {
+  /// The Amazon Resource Name (ARN) of the member.
+  final String? memberArn;
+
+  /// The ID of the member.
+  final String? memberId;
+
+  MemberIdArnPair({
+    this.memberArn,
+    this.memberId,
+  });
+  factory MemberIdArnPair.fromJson(Map<String, dynamic> json) {
+    return MemberIdArnPair(
+      memberArn: json['MemberArn'] as String?,
+      memberId: json['MemberId'] as String?,
+    );
+  }
+}
+
+enum MemberType {
+  dashboard,
+  analysis,
+  dataset,
+}
+
+extension on MemberType {
+  String toValue() {
+    switch (this) {
+      case MemberType.dashboard:
+        return 'DASHBOARD';
+      case MemberType.analysis:
+        return 'ANALYSIS';
+      case MemberType.dataset:
+        return 'DATASET';
+    }
+  }
+}
+
+extension on String {
+  MemberType toMemberType() {
+    switch (this) {
+      case 'DASHBOARD':
+        return MemberType.dashboard;
+      case 'ANALYSIS':
+        return MemberType.analysis;
+      case 'DATASET':
+        return MemberType.dataset;
+    }
+    throw Exception('$this is not known in enum MemberType');
   }
 }
 
@@ -14896,20 +14990,41 @@ class RowInfo {
   }
 }
 
-/// The row-level security configuration for the dataset.
+/// Information about a dataset that contains permissions for row-level security
+/// (RLS). The permissions dataset maps fields to users or groups. For more
+/// information, see <a
+/// href="https://docs.aws.amazon.com/quicksight/latest/user/restrict-access-to-a-data-set-using-row-level-security.html">Using
+/// Row-Level Security (RLS) to Restrict Access to a Dataset</a> in the
+/// <i>Amazon QuickSight User Guide</i>.
+///
+/// The option to deny permissions by setting <code>PermissionPolicy</code> to
+/// <code>DENY_ACCESS</code> is not supported for new RLS datasets.
 class RowLevelPermissionDataSet {
-  /// The Amazon Resource Name (ARN) of the permission dataset.
+  /// The Amazon Resource Name (ARN) of the dataset that contains permissions for
+  /// RLS.
   final String arn;
 
-  /// Permission policy.
+  /// The type of permissions to use when interpretting the permissions for RLS.
+  /// <code>DENY_ACCESS</code> is included for backward compatibility only.
   final RowLevelPermissionPolicy permissionPolicy;
 
-  /// The namespace associated with the row-level permissions dataset.
+  /// The user or group rules associated with the dataset that contains
+  /// permissions for RLS.
+  ///
+  /// By default, <code>FormatVersion</code> is <code>VERSION_1</code>. When
+  /// <code>FormatVersion</code> is <code>VERSION_1</code>, <code>UserName</code>
+  /// and <code>GroupName</code> are required. When <code>FormatVersion</code> is
+  /// <code>VERSION_2</code>, <code>UserARN</code> and <code>GroupARN</code> are
+  /// required, and <code>Namespace</code> must not exist.
+  final RowLevelPermissionFormatVersion? formatVersion;
+
+  /// The namespace associated with the dataset that contains permissions for RLS.
   final String? namespace;
 
   RowLevelPermissionDataSet({
     required this.arn,
     required this.permissionPolicy,
+    this.formatVersion,
     this.namespace,
   });
   factory RowLevelPermissionDataSet.fromJson(Map<String, dynamic> json) {
@@ -14917,6 +15032,8 @@ class RowLevelPermissionDataSet {
       arn: json['Arn'] as String,
       permissionPolicy:
           (json['PermissionPolicy'] as String).toRowLevelPermissionPolicy(),
+      formatVersion: (json['FormatVersion'] as String?)
+          ?.toRowLevelPermissionFormatVersion(),
       namespace: json['Namespace'] as String?,
     );
   }
@@ -14924,12 +15041,43 @@ class RowLevelPermissionDataSet {
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final permissionPolicy = this.permissionPolicy;
+    final formatVersion = this.formatVersion;
     final namespace = this.namespace;
     return {
       'Arn': arn,
       'PermissionPolicy': permissionPolicy.toValue(),
+      if (formatVersion != null) 'FormatVersion': formatVersion.toValue(),
       if (namespace != null) 'Namespace': namespace,
     };
+  }
+}
+
+enum RowLevelPermissionFormatVersion {
+  version_1,
+  version_2,
+}
+
+extension on RowLevelPermissionFormatVersion {
+  String toValue() {
+    switch (this) {
+      case RowLevelPermissionFormatVersion.version_1:
+        return 'VERSION_1';
+      case RowLevelPermissionFormatVersion.version_2:
+        return 'VERSION_2';
+    }
+  }
+}
+
+extension on String {
+  RowLevelPermissionFormatVersion toRowLevelPermissionFormatVersion() {
+    switch (this) {
+      case 'VERSION_1':
+        return RowLevelPermissionFormatVersion.version_1;
+      case 'VERSION_2':
+        return RowLevelPermissionFormatVersion.version_2;
+    }
+    throw Exception(
+        '$this is not known in enum RowLevelPermissionFormatVersion');
   }
 }
 
@@ -14985,12 +15133,16 @@ class S3Parameters {
   }
 }
 
-/// A physical table type for as S3 data source.
+/// A physical table type for an S3 data source.
 class S3Source {
-  /// The amazon Resource Name (ARN) for the data source.
+  /// The Amazon Resource Name (ARN) for the data source.
   final String dataSourceArn;
 
-  /// A physical table type for as S3 data source.
+  /// A physical table type for an S3 data source.
+  /// <note>
+  /// For non-JSON files, only <code>STRING</code> data types are supported in
+  /// input columns.
+  /// </note>
   final List<InputColumn> inputColumns;
 
   /// Information about the format for the S3 source file or files.
@@ -15083,6 +15235,38 @@ class SearchDashboardsResponse {
       dashboardSummaryList: (json['DashboardSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => DashboardSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
+class SearchFoldersResponse {
+  /// A structure that contains all of the folders in your AWS account. This
+  /// structure provides basic information about the folders.
+  final List<FolderSummary>? folderSummaryList;
+
+  /// The token for the next set of results, or null if there are no more results.
+  final String? nextToken;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>.
+  final int? status;
+
+  SearchFoldersResponse({
+    this.folderSummaryList,
+    this.nextToken,
+    this.requestId,
+    this.status,
+  });
+  factory SearchFoldersResponse.fromJson(Map<String, dynamic> json) {
+    return SearchFoldersResponse(
+      folderSummaryList: (json['FolderSummaryList'] as List?)
+          ?.whereNotNull()
+          .map((e) => FolderSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
@@ -16849,6 +17033,71 @@ class UpdateDataSourceResponse {
   }
 }
 
+class UpdateFolderPermissionsResponse {
+  /// The Amazon Resource Name (ARN).
+  final String? arn;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// Information about the permissions on the dashboard.
+  final List<ResourcePermission>? permissions;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>.
+  final int? status;
+
+  UpdateFolderPermissionsResponse({
+    this.arn,
+    this.folderId,
+    this.permissions,
+    this.requestId,
+    this.status,
+  });
+  factory UpdateFolderPermissionsResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFolderPermissionsResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      permissions: (json['Permissions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
+    );
+  }
+}
+
+class UpdateFolderResponse {
+  /// The Amazon Resource Name (ARN).
+  final String? arn;
+
+  /// The folder ID.
+  final String? folderId;
+
+  /// The request ID.
+  final String? requestId;
+
+  /// The status. If succeeded, the status is <code>SC_OK</code>.
+  final int? status;
+
+  UpdateFolderResponse({
+    this.arn,
+    this.folderId,
+    this.requestId,
+    this.status,
+  });
+  factory UpdateFolderResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateFolderResponse(
+      arn: json['Arn'] as String?,
+      folderId: json['FolderId'] as String?,
+      requestId: json['RequestId'] as String?,
+    );
+  }
+}
+
 class UpdateGroupResponse {
   /// The name of the group.
   final Group? group;
@@ -17229,6 +17478,27 @@ class User {
   /// The user's email address.
   final String? email;
 
+  /// The type of supported external login provider that provides identity to let
+  /// the user federate into Amazon QuickSight with an associated IAM role. The
+  /// type can be one of the following.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>COGNITO</code>: Amazon Cognito. The provider URL is
+  /// cognito-identity.amazonaws.com.
+  /// </li>
+  /// <li>
+  /// <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.
+  /// </li>
+  /// </ul>
+  final String? externalLoginFederationProviderType;
+
+  /// The URL of the external login provider.
+  final String? externalLoginFederationProviderUrl;
+
+  /// The identity ID for the user in the external login provider.
+  final String? externalLoginId;
+
   /// The type of identity authentication used by the user.
   final IdentityType? identityType;
 
@@ -17267,6 +17537,9 @@ class User {
     this.arn,
     this.customPermissionsName,
     this.email,
+    this.externalLoginFederationProviderType,
+    this.externalLoginFederationProviderUrl,
+    this.externalLoginId,
     this.identityType,
     this.principalId,
     this.role,
@@ -17278,6 +17551,11 @@ class User {
       arn: json['Arn'] as String?,
       customPermissionsName: json['CustomPermissionsName'] as String?,
       email: json['Email'] as String?,
+      externalLoginFederationProviderType:
+          json['ExternalLoginFederationProviderType'] as String?,
+      externalLoginFederationProviderUrl:
+          json['ExternalLoginFederationProviderUrl'] as String?,
+      externalLoginId: json['ExternalLoginId'] as String?,
       identityType: (json['IdentityType'] as String?)?.toIdentityType(),
       principalId: json['PrincipalId'] as String?,
       role: (json['Role'] as String?)?.toUserRole(),

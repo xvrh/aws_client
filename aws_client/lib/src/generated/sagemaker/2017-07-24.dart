@@ -106,24 +106,12 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationArn',
-      destinationArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
     _s.validateStringLength(
       'sourceArn',
       sourceArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'sourceArn',
-      sourceArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -155,8 +143,8 @@ class SageMaker {
   /// Each tag consists of a key and an optional value. Tag keys must be unique
   /// per resource. For more information about tags, see For more information,
   /// see <a
-  /// href="https://aws.amazon.com/answers/account-management/aws-tagging-strategies/">AWS
-  /// Tagging Strategies</a>.
+  /// href="https://aws.amazon.com/answers/account-management/aws-tagging-strategies/">Amazon
+  /// Web Services Tagging Strategies</a>.
   /// <note>
   /// Tags that you add to a hyperparameter tuning job by calling this API are
   /// also added to any training jobs that the hyperparameter tuning job
@@ -166,17 +154,26 @@ class SageMaker {
   /// added to all training jobs that the hyperparameter tuning job launches,
   /// add the tags when you first create the tuning job by specifying them in
   /// the <code>Tags</code> parameter of <a>CreateHyperParameterTuningJob</a>
+  /// </note> <note>
+  /// Tags that you add to a SageMaker Studio Domain or User Profile by calling
+  /// this API are also added to any Apps that the Domain or User Profile
+  /// launches after you call this API, but not to Apps that the Domain or User
+  /// Profile launched before you called this API. To make sure that the tags
+  /// associated with a Domain or User Profile are also added to all Apps that
+  /// the Domain or User Profile launches, add the tags when you first create
+  /// the Domain or User Profile by specifying them in the <code>Tags</code>
+  /// parameter of <a>CreateDomain</a> or <a>CreateUserProfile</a>.
   /// </note>
   ///
   /// Parameter [resourceArn] :
   /// The Amazon Resource Name (ARN) of the resource that you want to tag.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   Future<AddTagsOutput> addTags({
     required String resourceArn,
     required List<Tag> tags,
@@ -187,12 +184,6 @@ class SageMaker {
       resourceArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:.+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -239,24 +230,12 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
     _s.validateStringLength(
       'trialName',
       trialName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -284,11 +263,19 @@ class SageMaker {
   /// artifact. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon
   /// SageMaker ML Lineage Tracking</a>.
+  /// <note>
+  /// <code>CreateAction</code> can only be invoked from within an SageMaker
+  /// managed environment. This includes SageMaker training jobs, processing
+  /// jobs, transform jobs, and SageMaker notebooks. A call to
+  /// <code>CreateAction</code> from outside one of these environments results
+  /// in an error.
+  /// </note>
   ///
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [actionName] :
-  /// The name of the action. Must be unique to your account in an AWS Region.
+  /// The name of the action. Must be unique to your account in an Amazon Web
+  /// Services Region.
   ///
   /// Parameter [actionType] :
   /// The action type.
@@ -325,12 +312,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionName',
-      actionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionType, 'actionType');
     _s.validateStringLength(
       'actionType',
@@ -345,11 +326,6 @@ class SageMaker {
       description,
       0,
       3072,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -378,7 +354,7 @@ class SageMaker {
   }
 
   /// Create a machine learning algorithm that you can use in Amazon SageMaker
-  /// and list in the AWS Marketplace.
+  /// and list in the Amazon Web Services Marketplace.
   ///
   /// Parameter [algorithmName] :
   /// The name of the algorithm.
@@ -419,8 +395,8 @@ class SageMaker {
   /// A description of the algorithm.
   ///
   /// Parameter [certifyForMarketplace] :
-  /// Whether to certify the algorithm so that it can be listed in AWS
-  /// Marketplace.
+  /// Whether to certify the algorithm so that it can be listed in Amazon Web
+  /// Services Marketplace.
   ///
   /// Parameter [inferenceSpecification] :
   /// Specifies details about inference jobs that the algorithm runs, including
@@ -442,11 +418,11 @@ class SageMaker {
   /// </ul>
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   ///
   /// Parameter [validationSpecification] :
   /// Specifies configurations for one or more training jobs and that Amazon
@@ -470,23 +446,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'algorithmName',
-      algorithmName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trainingSpecification, 'trainingSpecification');
     _s.validateStringLength(
       'algorithmDescription',
       algorithmDescription,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'algorithmDescription',
-      algorithmDescription,
-      r'''[\p{L}\p{M}\p{Z}\p{S}\p{N}\p{P}]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -516,11 +481,11 @@ class SageMaker {
     return CreateAlgorithmOutput.fromJson(jsonResponse.body);
   }
 
-  /// Creates a running App for the specified UserProfile. Supported Apps are
-  /// JupyterServer and KernelGateway. This operation is automatically invoked
-  /// by Amazon SageMaker Studio upon access to the associated Domain, and when
-  /// new kernel configurations are selected by the user. A user may have
-  /// multiple Apps active simultaneously.
+  /// Creates a running app for the specified UserProfile. Supported apps are
+  /// <code>JupyterServer</code> and <code>KernelGateway</code>. This operation
+  /// is automatically invoked by Amazon SageMaker Studio upon access to the
+  /// associated Domain, and when new kernel configurations are selected by the
+  /// user. A user may have multiple Apps active simultaneously.
   ///
   /// May throw [ResourceLimitExceeded].
   /// May throw [ResourceInUse].
@@ -529,7 +494,8 @@ class SageMaker {
   /// The name of the app.
   ///
   /// Parameter [appType] :
-  /// The type of app.
+  /// The type of app. Supported apps are <code>JupyterServer</code> and
+  /// <code>KernelGateway</code>. <code>TensorBoard</code> is not supported.
   ///
   /// Parameter [domainId] :
   /// The domain ID.
@@ -560,12 +526,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appName',
-      appName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
     _s.validateStringLength(
@@ -581,12 +541,6 @@ class SageMaker {
       userProfileName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -639,12 +593,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appImageConfigName',
-      appImageConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateAppImageConfig'
@@ -672,6 +620,13 @@ class SageMaker {
   /// see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon
   /// SageMaker ML Lineage Tracking</a>.
+  /// <note>
+  /// <code>CreateArtifact</code> can only be invoked from within an SageMaker
+  /// managed environment. This includes SageMaker training jobs, processing
+  /// jobs, transform jobs, and SageMaker notebooks. A call to
+  /// <code>CreateArtifact</code> from outside one of these environments results
+  /// in an error.
+  /// </note>
   ///
   /// May throw [ResourceLimitExceeded].
   ///
@@ -682,7 +637,8 @@ class SageMaker {
   /// The ID, ID type, and URI of the source.
   ///
   /// Parameter [artifactName] :
-  /// The name of the artifact. Must be unique to your account in an AWS Region.
+  /// The name of the artifact. Must be unique to your account in an Amazon Web
+  /// Services Region.
   ///
   /// Parameter [properties] :
   /// A list of properties to add to the artifact.
@@ -712,11 +668,6 @@ class SageMaker {
       1,
       120,
     );
-    _s.validateStringPattern(
-      'artifactName',
-      artifactName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateArtifact'
@@ -744,49 +695,56 @@ class SageMaker {
   /// Creates an Autopilot job.
   ///
   /// Find the best performing model after you run an Autopilot job by calling .
-  /// Deploy that model by following the steps described in <a
-  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html">Step
-  /// 6.1: Deploy the Model to Amazon SageMaker Hosting Services</a>.
   ///
   /// For information about how to use Autopilot, see <a
-  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">
-  /// Automate Model Development with Amazon SageMaker Autopilot</a>.
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html">Automate
+  /// Model Development with Amazon SageMaker Autopilot</a>.
   ///
   /// May throw [ResourceInUse].
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [autoMLJobName] :
-  /// Identifies an Autopilot job. Must be unique to your account and is
-  /// case-insensitive.
+  /// Identifies an Autopilot job. The name must be unique to your account and
+  /// is case-insensitive.
   ///
   /// Parameter [inputDataConfig] :
-  /// Similar to InputDataConfig supported by Tuning. Format(s) supported: CSV.
+  /// An array of channel objects that describes the input data and its
+  /// location. Each channel is a named input source. Similar to
+  /// <code>InputDataConfig</code> supported by . Format(s) supported: CSV.
   /// Minimum of 500 rows.
   ///
   /// Parameter [outputDataConfig] :
-  /// Similar to OutputDataConfig supported by Tuning. Format(s) supported: CSV.
+  /// Provides information about encryption and the Amazon S3 output path needed
+  /// to store artifacts from an AutoML job. Format(s) supported: CSV.
   ///
   /// Parameter [roleArn] :
   /// The ARN of the role that is used to access the data.
   ///
   /// Parameter [autoMLJobConfig] :
-  /// Contains CompletionCriteria and SecurityConfig.
+  /// Contains <code>CompletionCriteria</code> and <code>SecurityConfig</code>
+  /// settings for the AutoML job.
   ///
   /// Parameter [autoMLJobObjective] :
-  /// Defines the objective of a an AutoML job. You provide a
-  /// <a>AutoMLJobObjective$MetricName</a> and Autopilot infers whether to
-  /// minimize or maximize it. If a metric is not specified, the most commonly
-  /// used ObjectiveMetric for problem type is automaically selected.
+  /// Defines the objective metric used to measure the predictive quality of an
+  /// AutoML job. You provide an <a>AutoMLJobObjective$MetricName</a> and
+  /// Autopilot infers whether to minimize or maximize it.
   ///
   /// Parameter [generateCandidateDefinitionsOnly] :
-  /// Generates possible candidates without training a model. A candidate is a
-  /// combination of data preprocessors, algorithms, and algorithm parameter
+  /// Generates possible candidates without training the models. A candidate is
+  /// a combination of data preprocessors, algorithms, and algorithm parameter
   /// settings.
   ///
+  /// Parameter [modelDeployConfig] :
+  /// Specifies how to generate the endpoint name for an automatic one-click
+  /// Autopilot model deployment.
+  ///
   /// Parameter [problemType] :
-  /// Defines the kind of preprocessing and algorithms intended for the
-  /// candidates. Options include: BinaryClassification,
-  /// MulticlassClassification, and Regression.
+  /// Defines the type of supervised learning available for the candidates.
+  /// Options include: <code>BinaryClassification</code>,
+  /// <code>MulticlassClassification</code>, and <code>Regression</code>. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-problem-types.html">
+  /// Amazon SageMaker Autopilot problem types and algorithm support</a>.
   ///
   /// Parameter [tags] :
   /// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -799,6 +757,7 @@ class SageMaker {
     AutoMLJobConfig? autoMLJobConfig,
     AutoMLJobObjective? autoMLJobObjective,
     bool? generateCandidateDefinitionsOnly,
+    ModelDeployConfig? modelDeployConfig,
     ProblemType? problemType,
     List<Tag>? tags,
   }) async {
@@ -810,12 +769,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoMLJobName',
-      autoMLJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
@@ -824,12 +777,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -852,6 +799,7 @@ class SageMaker {
           'AutoMLJobObjective': autoMLJobObjective,
         if (generateCandidateDefinitionsOnly != null)
           'GenerateCandidateDefinitionsOnly': generateCandidateDefinitionsOnly,
+        if (modelDeployConfig != null) 'ModelDeployConfig': modelDeployConfig,
         if (problemType != null) 'ProblemType': problemType.toValue(),
         if (tags != null) 'Tags': tags,
       },
@@ -868,8 +816,8 @@ class SageMaker {
   /// lifecycle of any notebook instances it is associated with.
   ///
   /// The repository can be hosted either in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository.
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository.
   ///
   /// Parameter [codeRepositoryName] :
   /// The name of the Git repository. The name must have 1 to 63 characters.
@@ -881,11 +829,11 @@ class SageMaker {
   /// access the repository.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   Future<CreateCodeRepositoryOutput> createCodeRepository({
     required String codeRepositoryName,
     required GitConfig gitConfig,
@@ -897,12 +845,6 @@ class SageMaker {
       codeRepositoryName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'codeRepositoryName',
-      codeRepositoryName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(gitConfig, 'gitConfig');
@@ -932,8 +874,8 @@ class SageMaker {
   ///
   /// If you choose to host your model using Amazon SageMaker hosting services,
   /// you can use the resulting model artifacts as part of the model. You can
-  /// also use the artifacts with AWS IoT Greengrass. In that case, deploy them
-  /// as an ML resource.
+  /// also use the artifacts with Amazon Web Services IoT Greengrass. In that
+  /// case, deploy them as an ML resource.
   ///
   /// In the request body, you provide the following:
   ///
@@ -967,7 +909,7 @@ class SageMaker {
   ///
   /// Parameter [compilationJobName] :
   /// A name for the model compilation job. The name must be unique within the
-  /// AWS Region and within your AWS account.
+  /// Amazon Web Services Region and within your Amazon Web Services account.
   ///
   /// Parameter [inputConfig] :
   /// Provides information about the location of input model artifacts, the name
@@ -1010,11 +952,18 @@ class SageMaker {
   /// this API to cap model training costs.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
+  ///
+  /// Parameter [vpcConfig] :
+  /// A <a>VpcConfig</a> object that specifies the VPC that you want your
+  /// compilation job to connect to. Control access to your models by
+  /// configuring the VPC. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html">Protect
+  /// Compilation Jobs by Using an Amazon Virtual Private Cloud</a>.
   Future<CreateCompilationJobResponse> createCompilationJob({
     required String compilationJobName,
     required InputConfig inputConfig,
@@ -1022,6 +971,7 @@ class SageMaker {
     required String roleArn,
     required StoppingCondition stoppingCondition,
     List<Tag>? tags,
+    NeoVpcConfig? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(compilationJobName, 'compilationJobName');
     _s.validateStringLength(
@@ -1029,12 +979,6 @@ class SageMaker {
       compilationJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'compilationJobName',
-      compilationJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(inputConfig, 'inputConfig');
@@ -1045,12 +989,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(stoppingCondition, 'stoppingCondition');
@@ -1071,6 +1009,7 @@ class SageMaker {
         'RoleArn': roleArn,
         'StoppingCondition': stoppingCondition,
         if (tags != null) 'Tags': tags,
+        if (vpcConfig != null) 'VpcConfig': vpcConfig,
       },
     );
 
@@ -1083,11 +1022,19 @@ class SageMaker {
   /// see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html">Amazon
   /// SageMaker ML Lineage Tracking</a>.
+  /// <note>
+  /// <code>CreateContext</code> can only be invoked from within an SageMaker
+  /// managed environment. This includes SageMaker training jobs, processing
+  /// jobs, transform jobs, and SageMaker notebooks. A call to
+  /// <code>CreateContext</code> from outside one of these environments results
+  /// in an error.
+  /// </note>
   ///
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [contextName] :
-  /// The name of the context. Must be unique to your account in an AWS Region.
+  /// The name of the context. Must be unique to your account in an Amazon Web
+  /// Services Region.
   ///
   /// Parameter [contextType] :
   /// The context type.
@@ -1119,12 +1066,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'contextName',
-      contextName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(contextType, 'contextType');
     _s.validateStringLength(
       'contextType',
@@ -1139,11 +1080,6 @@ class SageMaker {
       description,
       0,
       3072,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1199,8 +1135,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateDataQualityJobDefinitionResponse>
       createDataQualityJobDefinition({
     required DataQualityAppSpecification dataQualityAppSpecification,
@@ -1227,12 +1163,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
@@ -1240,12 +1170,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1290,9 +1214,17 @@ class SageMaker {
   /// Parameter [description] :
   /// A description of the fleet.
   ///
+  /// Parameter [enableIotRoleAlias] :
+  /// Whether to create an Amazon Web Services IoT Role Alias during device
+  /// fleet creation. The name of the role alias generated will match this
+  /// pattern: "SageMakerEdge-{DeviceFleetName}".
+  ///
+  /// For example, if your device fleet is called "demo-fleet", the name of the
+  /// role alias will be "SageMakerEdge-demo-fleet".
+  ///
   /// Parameter [roleArn] :
-  /// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
-  /// (IoT).
+  /// The Amazon Resource Name (ARN) that has access to Amazon Web Services
+  /// Internet of Things (IoT).
   ///
   /// Parameter [tags] :
   /// Creates tags for the specified fleet.
@@ -1300,6 +1232,7 @@ class SageMaker {
     required String deviceFleetName,
     required EdgeOutputConfig outputConfig,
     String? description,
+    bool? enableIotRoleAlias,
     String? roleArn,
     List<Tag>? tags,
   }) async {
@@ -1311,12 +1244,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     _s.validateStringLength(
       'description',
@@ -1324,21 +1251,11 @@ class SageMaker {
       1,
       800,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\S\s]+''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1354,6 +1271,8 @@ class SageMaker {
         'DeviceFleetName': deviceFleetName,
         'OutputConfig': outputConfig,
         if (description != null) 'Description': description,
+        if (enableIotRoleAlias != null)
+          'EnableIotRoleAlias': enableIotRoleAlias,
         if (roleArn != null) 'RoleArn': roleArn,
         if (tags != null) 'Tags': tags,
       },
@@ -1363,9 +1282,9 @@ class SageMaker {
   /// Creates a <code>Domain</code> used by Amazon SageMaker Studio. A domain
   /// consists of an associated Amazon Elastic File System (EFS) volume, a list
   /// of authorized users, and a variety of security, application, policy, and
-  /// Amazon Virtual Private Cloud (VPC) configurations. An AWS account is
-  /// limited to one domain per region. Users within a domain can share notebook
-  /// files and other artifacts with each other.
+  /// Amazon Virtual Private Cloud (VPC) configurations. An Amazon Web Services
+  /// account is limited to one domain per region. Users within a domain can
+  /// share notebook files and other artifacts with each other.
   ///
   /// <b>EFS storage</b>
   ///
@@ -1373,10 +1292,11 @@ class SageMaker {
   /// users within the domain. Each user receives a private home directory
   /// within the EFS volume for notebooks, Git repositories, and data files.
   ///
-  /// SageMaker uses the AWS Key Management Service (AWS KMS) to encrypt the EFS
-  /// volume attached to the domain with an AWS managed customer master key
-  /// (CMK) by default. For more control, you can specify a customer managed
-  /// CMK. For more information, see <a
+  /// SageMaker uses the Amazon Web Services Key Management Service (Amazon Web
+  /// Services KMS) to encrypt the EFS volume attached to the domain with an
+  /// Amazon Web Services managed customer master key (CMK) by default. For more
+  /// control, you can specify a customer managed CMK. For more information, see
+  /// <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html">Protect
   /// Data at Rest Using Encryption</a>.
   ///
@@ -1405,7 +1325,10 @@ class SageMaker {
   /// endpoint to the SageMaker API and runtime or a NAT gateway and your
   /// security groups allow outbound connections.
   /// </li>
-  /// </ul>
+  /// </ul> <important>
+  /// NFS traffic over TCP on port 2049 needs to be allowed in both inbound and
+  /// outbound rules in order to launch a SageMaker Studio app successfully.
+  /// </important>
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html">Connect
   /// SageMaker Studio Notebooks to Resources in a VPC</a>.
@@ -1417,7 +1340,14 @@ class SageMaker {
   /// The mode of authentication that members use to access the domain.
   ///
   /// Parameter [defaultUserSettings] :
-  /// The default user settings.
+  /// The default settings to use to create a user profile when
+  /// <code>UserSettings</code> isn't specified in the call to the
+  /// <code>CreateUserProfile</code> API.
+  ///
+  /// <code>SecurityGroups</code> is aggregated when specified in both calls.
+  /// For all other settings in <code>UserSettings</code>, the values specified
+  /// in <code>CreateUserProfile</code> take precedence over those specified in
+  /// <code>CreateDomain</code>.
   ///
   /// Parameter [domainName] :
   /// A name for the domain.
@@ -1448,14 +1378,17 @@ class SageMaker {
   /// This member is deprecated and replaced with <code>KmsKeyId</code>.
   ///
   /// Parameter [kmsKeyId] :
-  /// SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain
-  /// with an AWS managed customer master key (CMK) by default. For more
-  /// control, specify a customer managed CMK.
+  /// SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached
+  /// to the domain with an Amazon Web Services managed customer master key
+  /// (CMK) by default. For more control, specify a customer managed CMK.
   ///
   /// Parameter [tags] :
   /// Tags to associated with the Domain. Each tag consists of a key and an
   /// optional value. Tag keys must be unique per resource. Tags are searchable
-  /// using the <a>Search</a> API.
+  /// using the <code>Search</code> API.
+  ///
+  /// Tags that you specify for the Domain are also added to all Apps that the
+  /// Domain launches.
   Future<CreateDomainResponse> createDomain({
     required AuthMode authMode,
     required UserSettings defaultUserSettings,
@@ -1477,12 +1410,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'domainName',
-      domainName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
     ArgumentError.checkNotNull(vpcId, 'vpcId');
     _s.validateStringLength(
@@ -1492,33 +1419,17 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vpcId',
-      vpcId,
-      r'''[-0-9a-zA-Z]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'homeEfsFileSystemKmsKeyId',
       homeEfsFileSystemKmsKeyId,
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'homeEfsFileSystemKmsKeyId',
-      homeEfsFileSystemKmsKeyId,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1599,24 +1510,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'compilationJobName',
-      compilationJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(edgePackagingJobName, 'edgePackagingJobName');
     _s.validateStringLength(
       'edgePackagingJobName',
       edgePackagingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelName, 'modelName');
@@ -1627,24 +1526,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
     _s.validateStringLength(
       'modelVersion',
       modelVersion,
       1,
       30,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelVersion',
-      modelVersion,
-      r'''[a-zA-Z0-9\ \_\.]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
@@ -1656,22 +1543,11 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'resourceKey',
       resourceKey,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'resourceKey',
-      resourceKey,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1706,8 +1582,8 @@ class SageMaker {
   /// For an example that calls this method when deploying a model to Amazon
   /// SageMaker hosting services, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto">Deploy
-  /// the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto
-  /// 3)).</a>
+  /// the Model to Amazon SageMaker Hosting Services (Amazon Web Services SDK
+  /// for Python (Boto 3)).</a>
   /// <note>
   /// You must not delete an <code>EndpointConfig</code> that is in use by an
   /// endpoint that is live or while the <code>UpdateEndpoint</code> or
@@ -1715,7 +1591,8 @@ class SageMaker {
   /// endpoint. To update an endpoint, you must create a new
   /// <code>EndpointConfig</code>.
   /// </note>
-  /// The endpoint name must be unique within an AWS Region in your AWS account.
+  /// The endpoint name must be unique within an Amazon Web Services Region in
+  /// your Amazon Web Services account.
   ///
   /// When it receives the request, Amazon SageMaker creates the endpoint,
   /// launches the resources (ML compute instances), and deploys the model(s) on
@@ -1742,14 +1619,16 @@ class SageMaker {
   /// <a>DescribeEndpoint</a> API.
   ///
   /// If any of the models hosted at this endpoint get model data from an Amazon
-  /// S3 location, Amazon SageMaker uses AWS Security Token Service to download
-  /// model artifacts from the S3 path you provided. AWS STS is activated in
-  /// your IAM user account by default. If you previously deactivated AWS STS
-  /// for a region, you need to reactivate AWS STS for that region. For more
-  /// information, see <a
+  /// S3 location, Amazon SageMaker uses Amazon Web Services Security Token
+  /// Service to download model artifacts from the S3 path you provided. Amazon
+  /// Web Services STS is activated in your IAM user account by default. If you
+  /// previously deactivated Amazon Web Services STS for a region, you need to
+  /// reactivate Amazon Web Services STS for that region. For more information,
+  /// see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html">Activating
-  /// and Deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and
-  /// Access Management User Guide</i>.
+  /// and Deactivating Amazon Web Services STS in an Amazon Web Services
+  /// Region</a> in the <i>Amazon Web Services Identity and Access Management
+  /// User Guide</i>.
   /// <note>
   /// To add the IAM role policies for using this API operation, go to the <a
   /// href="https://console.aws.amazon.com/iam/">IAM console</a>, and choose
@@ -1792,17 +1671,17 @@ class SageMaker {
   /// <a>CreateEndpointConfig</a>.
   ///
   /// Parameter [endpointName] :
-  /// The name of the endpoint.The name must be unique within an AWS Region in
-  /// your AWS account. The name is case-insensitive in
-  /// <code>CreateEndpoint</code>, but the case is preserved and must be matched
-  /// in .
+  /// The name of the endpoint.The name must be unique within an Amazon Web
+  /// Services Region in your Amazon Web Services account. The name is
+  /// case-insensitive in <code>CreateEndpoint</code>, but the case is preserved
+  /// and must be matched in .
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   Future<CreateEndpointOutput> createEndpoint({
     required String endpointConfigName,
     required String endpointName,
@@ -1816,24 +1695,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointConfigName',
-      endpointConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endpointName, 'endpointName');
     _s.validateStringLength(
       'endpointName',
       endpointName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1881,8 +1748,8 @@ class SageMaker {
   /// For an example that calls this method when deploying a model to Amazon
   /// SageMaker hosting services, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto">Deploy
-  /// the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto
-  /// 3)).</a>
+  /// the Model to Amazon SageMaker Hosting Services (Amazon Web Services SDK
+  /// for Python (Boto 3)).</a>
   /// <note>
   /// When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to
   /// verify that your endpoint configuration exists. When you read data from a
@@ -1910,9 +1777,9 @@ class SageMaker {
   /// you want to host at this endpoint.
   ///
   /// Parameter [kmsKeyId] :
-  /// The Amazon Resource Name (ARN) of a AWS Key Management Service key that
-  /// Amazon SageMaker uses to encrypt data on the storage volume attached to
-  /// the ML compute instance that hosts the endpoint.
+  /// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management
+  /// Service key that Amazon SageMaker uses to encrypt data on the storage
+  /// volume attached to the ML compute instance that hosts the endpoint.
   ///
   /// The KmsKeyId can be any of the following formats:
   ///
@@ -1934,9 +1801,10 @@ class SageMaker {
   /// </ul>
   /// The KMS key policy must grant permission to the IAM role that you specify
   /// in your <code>CreateEndpoint</code>, <code>UpdateEndpoint</code> requests.
-  /// For more information, refer to the AWS Key Management Service section<a
+  /// For more information, refer to the Amazon Web Services Key Management
+  /// Service section<a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">
-  /// Using Key Policies in AWS KMS </a>
+  /// Using Key Policies in Amazon Web Services KMS </a>
   /// <note>
   /// Certain Nitro-based instances include local storage, dependent on the
   /// instance type. Local storage volumes are encrypted using a hardware module
@@ -1958,11 +1826,11 @@ class SageMaker {
   /// </note>
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   Future<CreateEndpointConfigOutput> createEndpointConfig({
     required String endpointConfigName,
     required List<ProductionVariant> productionVariants,
@@ -1978,23 +1846,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointConfigName',
-      endpointConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(productionVariants, 'productionVariants');
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2028,10 +1885,10 @@ class SageMaker {
   /// measuring the impact of a change to one or more inputs, while keeping the
   /// remaining inputs constant.
   ///
-  /// When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK,
-  /// all experiments, trials, and trial components are automatically tracked,
-  /// logged, and indexed. When you use the AWS SDK for Python (Boto), you must
-  /// use the logging APIs provided by the SDK.
+  /// When you use SageMaker Studio or the SageMaker Python SDK, all
+  /// experiments, trials, and trial components are automatically tracked,
+  /// logged, and indexed. When you use the Amazon Web Services SDK for Python
+  /// (Boto), you must use the logging APIs provided by the SDK.
   ///
   /// You can add tags to experiments, trials, trial components and then use the
   /// <a>Search</a> API to search for the tags.
@@ -2049,8 +1906,8 @@ class SageMaker {
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [experimentName] :
-  /// The name of the experiment. The name must be unique in your AWS account
-  /// and is not case-sensitive.
+  /// The name of the experiment. The name must be unique in your Amazon Web
+  /// Services account and is not case-sensitive.
   ///
   /// Parameter [description] :
   /// The description of the experiment.
@@ -2077,33 +1934,17 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2135,9 +1976,9 @@ class SageMaker {
   /// list of <code>Features</code>, a <code>RecordIdentifierFeatureName</code>,
   /// an <code>EventTimeFeatureName</code> and configurations for its
   /// <code>OnlineStore</code> and <code>OfflineStore</code>. Check <a
-  /// href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS
-  /// service quotas</a> to see the <code>FeatureGroup</code>s quota for your
-  /// AWS account.
+  /// href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Amazon
+  /// Web Services service quotas</a> to see the <code>FeatureGroup</code>s
+  /// quota for your Amazon Web Services account.
   /// <important>
   /// You must include at least one of <code>OnlineStoreConfig</code> and
   /// <code>OfflineStoreConfig</code> to create a <code>FeatureGroup</code>.
@@ -2193,7 +2034,7 @@ class SageMaker {
   ///
   /// Parameter [featureGroupName] :
   /// The name of the <code>FeatureGroup</code>. The name must be unique within
-  /// an AWS Region in an AWS account. The name:
+  /// an Amazon Web Services Region in an Amazon Web Services account. The name:
   ///
   /// <ul>
   /// <li>
@@ -2240,7 +2081,8 @@ class SageMaker {
   /// <code>OfflineStore</code>.
   /// </li>
   /// <li>
-  /// A configuration for an AWS Glue or AWS Hive data cataolgue.
+  /// A configuration for an Amazon Web Services Glue or Amazon Web Services
+  /// Hive data cataolgue.
   /// </li>
   /// <li>
   /// An KMS encryption key to encrypt the Amazon S3 location used for
@@ -2254,8 +2096,9 @@ class SageMaker {
   /// <code>True</code> for the <code>EnableOnlineStore</code> flag in
   /// <code>OnlineStoreConfig</code>; the default value is <code>False</code>.
   ///
-  /// You can also include an AWS KMS key ID (<code>KMSKeyId</code>) for at-rest
-  /// encryption of the <code>OnlineStore</code>.
+  /// You can also include an Amazon Web Services KMS key ID
+  /// (<code>KMSKeyId</code>) for at-rest encryption of the
+  /// <code>OnlineStore</code>.
   ///
   /// Parameter [roleArn] :
   /// The Amazon Resource Name (ARN) of the IAM execution role used to persist
@@ -2284,12 +2127,6 @@ class SageMaker {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'eventTimeFeatureName',
-      eventTimeFeatureName,
-      r'''^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(featureDefinitions, 'featureDefinitions');
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
     _s.validateStringLength(
@@ -2299,12 +2136,6 @@ class SageMaker {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         recordIdentifierFeatureName, 'recordIdentifierFeatureName');
     _s.validateStringLength(
@@ -2312,12 +2143,6 @@ class SageMaker {
       recordIdentifierFeatureName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'recordIdentifierFeatureName',
-      recordIdentifierFeatureName,
-      r'''^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -2331,11 +2156,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2415,12 +2235,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'flowDefinitionName',
-      flowDefinitionName,
-      r'''^[a-z0-9](-*[a-z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(humanLoopConfig, 'humanLoopConfig');
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
@@ -2429,12 +2243,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2490,12 +2298,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'humanTaskUiName',
-      humanTaskUiName,
-      r'''^[a-z0-9](-*[a-z0-9])*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uiTemplate, 'uiTemplate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2538,16 +2340,16 @@ class SageMaker {
   /// Parameter [hyperParameterTuningJobName] :
   /// The name of the tuning job. This name is the prefix for the names of all
   /// training jobs that this tuning job launches. The name must be unique
-  /// within the same AWS account and AWS Region. The name must have 1 to 32
-  /// characters. Valid characters are a-z, A-Z, 0-9, and : + = @ _ % -
-  /// (hyphen). The name is not case sensitive.
+  /// within the same Amazon Web Services account and Amazon Web Services
+  /// Region. The name must have 1 to 32 characters. Valid characters are a-z,
+  /// A-Z, 0-9, and : + = @ _ % - (hyphen). The name is not case sensitive.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   ///
   /// Tags that you specify for the tuning job are also added to all training
   /// jobs that the tuning job launches.
@@ -2598,12 +2400,6 @@ class SageMaker {
       hyperParameterTuningJobName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2671,12 +2467,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -2685,33 +2475,17 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       512,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^\S(.*\S)?$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2756,8 +2530,9 @@ class SageMaker {
   /// of.
   ///
   /// Parameter [clientToken] :
-  /// A unique ID. If not specified, the AWS CLI and AWS SDKs, such as the SDK
-  /// for Python (Boto3), add a unique value to the call.
+  /// A unique ID. If not specified, the Amazon Web Services CLI and Amazon Web
+  /// Services SDKs, such as the SDK for Python (Boto3), add a unique value to
+  /// the call.
   Future<CreateImageVersionResponse> createImageVersion({
     required String baseImage,
     required String imageName,
@@ -2771,12 +2546,6 @@ class SageMaker {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'baseImage',
-      baseImage,
-      r'''.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(imageName, 'imageName');
     _s.validateStringLength(
       'imageName',
@@ -2785,22 +2554,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientToken',
       clientToken,
       1,
       36,
-    );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2835,8 +2593,8 @@ class SageMaker {
   /// required.
   /// </li>
   /// <li>
-  /// One or more vendors that you select from the AWS Marketplace. Vendors
-  /// provide expertise in specific areas.
+  /// One or more vendors that you select from the Amazon Web Services
+  /// Marketplace. Vendors provide expertise in specific areas.
   /// </li>
   /// <li>
   /// The Amazon Mechanical Turk workforce. This is the largest workforce, but
@@ -2861,6 +2619,19 @@ class SageMaker {
   /// The output can be used as the manifest file for another labeling job or as
   /// training data for your machine learning models.
   ///
+  /// You can use this operation to create a static labeling job or a streaming
+  /// labeling job. A static labeling job stops if all data objects in the input
+  /// manifest file identified in <code>ManifestS3Uri</code> have been labeled.
+  /// A streaming labeling job runs perpetually until it is manually stopped, or
+  /// remains idle for 10 days. You can send new data objects to an active
+  /// (<code>InProgress</code>) streaming labeling job in real time. To learn
+  /// how to create a static labeling job, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-create-labeling-job-api.html">Create
+  /// a Labeling Job (API) </a> in the Amazon SageMaker Developer Guide. To
+  /// learn how to create a streaming labeling job, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-create-job.html">Create
+  /// a Streaming Labeling Job</a>.
+  ///
   /// May throw [ResourceInUse].
   /// May throw [ResourceLimitExceeded].
   ///
@@ -2874,21 +2645,97 @@ class SageMaker {
   /// data objects and the location of the manifest file that describes the data
   /// objects.
   ///
+  /// You must specify at least one of the following: <code>S3DataSource</code>
+  /// or <code>SnsDataSource</code>.
+  ///
+  /// <ul>
+  /// <li>
+  /// Use <code>SnsDataSource</code> to specify an SNS input topic for a
+  /// streaming labeling job. If you do not specify and SNS input topic ARN,
+  /// Ground Truth will create a one-time labeling job that stops after all data
+  /// objects in the input manifest file have been labeled.
+  /// </li>
+  /// <li>
+  /// Use <code>S3DataSource</code> to specify an input manifest file for both
+  /// streaming and one-time labeling jobs. Adding an <code>S3DataSource</code>
+  /// is optional if you use <code>SnsDataSource</code> to create a streaming
+  /// labeling job.
+  /// </li>
+  /// </ul>
+  /// If you use the Amazon Mechanical Turk workforce, your input data should
+  /// not include confidential information, personal information or protected
+  /// health information. Use <code>ContentClassifiers</code> to specify that
+  /// your data is free of personally identifiable information and adult
+  /// content.
+  ///
   /// Parameter [labelAttributeName] :
   /// The attribute name to use for the label in the output manifest file. This
   /// is the key for the key/value pair formed with the label that a worker
-  /// assigns to the object. The name can't end with "-metadata". If you are
-  /// running a semantic segmentation labeling job, the attribute name must end
-  /// with "-ref". If you are running any other kind of labeling job, the
-  /// attribute name must not end with "-ref".
+  /// assigns to the object. The <code>LabelAttributeName</code> must meet the
+  /// following requirements.
+  ///
+  /// <ul>
+  /// <li>
+  /// The name can't end with "-metadata".
+  /// </li>
+  /// <li>
+  /// If you are using one of the following <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html">built-in
+  /// task types</a>, the attribute name <i>must</i> end with "-ref". If the
+  /// task type you are using is not listed below, the attribute name <i>must
+  /// not</i> end with "-ref".
+  ///
+  /// <ul>
+  /// <li>
+  /// Image semantic segmentation (<code>SemanticSegmentation)</code>, and
+  /// adjustment (<code>AdjustmentSemanticSegmentation</code>) and verification
+  /// (<code>VerificationSemanticSegmentation</code>) labeling jobs for this
+  /// task type.
+  /// </li>
+  /// <li>
+  /// Video frame object detection (<code>VideoObjectDetection</code>), and
+  /// adjustment and verification (<code>AdjustmentVideoObjectDetection</code>)
+  /// labeling jobs for this task type.
+  /// </li>
+  /// <li>
+  /// Video frame object tracking (<code>VideoObjectTracking</code>), and
+  /// adjustment and verification (<code>AdjustmentVideoObjectTracking</code>)
+  /// labeling jobs for this task type.
+  /// </li>
+  /// <li>
+  /// 3D point cloud semantic segmentation
+  /// (<code>3DPointCloudSemanticSegmentation</code>), and adjustment and
+  /// verification (<code>Adjustment3DPointCloudSemanticSegmentation</code>)
+  /// labeling jobs for this task type.
+  /// </li>
+  /// <li>
+  /// 3D point cloud object tracking (<code>3DPointCloudObjectTracking</code>),
+  /// and adjustment and verification
+  /// (<code>Adjustment3DPointCloudObjectTracking</code>) labeling jobs for this
+  /// task type.
+  /// </li>
+  /// </ul> </li>
+  /// </ul> <p/> <important>
+  /// If you are creating an adjustment or verification labeling job, you must
+  /// use a <i>different</i> <code>LabelAttributeName</code> than the one used
+  /// in the original labeling job. The original labeling job is the Ground
+  /// Truth labeling job that produced the labels that you want verified or
+  /// adjusted. To learn more about adjustment and verification labeling jobs,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-verification-data.html">Verify
+  /// and Adjust Labels</a>.
+  /// </important>
   ///
   /// Parameter [labelingJobName] :
   /// The name of the labeling job. This name is used to identify the job in a
-  /// list of labeling jobs.
+  /// list of labeling jobs. Labeling job names must be unique within an Amazon
+  /// Web Services account and region. <code>LabelingJobName</code> is not case
+  /// sensitive. For example, Example-job and example-job are considered the
+  /// same labeling job name by Ground Truth.
   ///
   /// Parameter [outputConfig] :
-  /// The location of the output data and the AWS Key Management Service key ID
-  /// for the key used to encrypt the output data, if any.
+  /// The location of the output data and the Amazon Web Services Key Management
+  /// Service key ID for the key used to encrypt the output data, if any.
   ///
   /// Parameter [roleArn] :
   /// The Amazon Resource Number (ARN) that Amazon SageMaker assumes to perform
@@ -2897,10 +2744,12 @@ class SageMaker {
   /// data labeling.
   ///
   /// Parameter [labelCategoryConfigS3Uri] :
-  /// The S3 URI of the file that defines the categories used to label the data
-  /// objects.
+  /// The S3 URI of the file, referred to as a <i>label category configuration
+  /// file</i>, that defines the categories used to label the data objects.
   ///
-  /// For 3D point cloud task types, see <a
+  /// For 3D point cloud and video frame task types, you can add label category
+  /// attributes and frame attributes to your label category configuration file.
+  /// To learn how, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-label-category-config.html">Create
   /// a Labeling Category Configuration File for 3D Point Cloud Labeling
   /// Jobs</a>.
@@ -2915,35 +2764,36 @@ class SageMaker {
   /// <code>label_2</code>,<code>...</code>,<code>label_n</code> with your label
   /// categories.
   ///
-  /// <code>{</code>
+  /// <code>{ </code>
   ///
-  /// <code> "document-version": "2018-11-28"</code>
+  /// <code>"document-version": "2018-11-28",</code>
   ///
-  /// <code> "labels": [</code>
-  ///
-  /// <code> {</code>
-  ///
-  /// <code> "label": "<i>label_1</i>"</code>
-  ///
-  /// <code> },</code>
-  ///
-  /// <code> {</code>
-  ///
-  /// <code> "label": "<i>label_2</i>"</code>
-  ///
-  /// <code> },</code>
-  ///
-  /// <code> ...</code>
-  ///
-  /// <code> {</code>
-  ///
-  /// <code> "label": "<i>label_n</i>"</code>
-  ///
-  /// <code> }</code>
-  ///
-  /// <code> ]</code>
+  /// <code>"labels": [{"label": "label_1"},{"label": "label_2"},...{"label":
+  /// "label_n"}]</code>
   ///
   /// <code>}</code>
+  ///
+  /// Note the following about the label category configuration file:
+  ///
+  /// <ul>
+  /// <li>
+  /// For image classification and text classification (single and multi-label)
+  /// you must specify at least two label categories. For all other task types,
+  /// the minimum number of label categories required is one.
+  /// </li>
+  /// <li>
+  /// Each label category must be unique, you cannot specify duplicate label
+  /// categories.
+  /// </li>
+  /// <li>
+  /// If you create a 3D point cloud or video frame adjustment or verification
+  /// labeling job, you must include <code>auditLabelAttributeName</code> in the
+  /// label category configuration. Use this parameter to enter the <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html#sagemaker-CreateLabelingJob-request-LabelAttributeName">
+  /// <code>LabelAttributeName</code> </a> of the labeling job you want to
+  /// adjust or verify annotations of.
+  /// </li>
+  /// </ul>
   ///
   /// Parameter [labelingJobAlgorithmsConfig] :
   /// Configures the information required to perform automated data labeling.
@@ -2956,8 +2806,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// An array of key/value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateLabelingJobResponse> createLabelingJob({
     required HumanTaskConfig humanTaskConfig,
     required LabelingJobInputConfig inputConfig,
@@ -2980,24 +2830,12 @@ class SageMaker {
       127,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'labelAttributeName',
-      labelAttributeName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,126}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(labelingJobName, 'labelingJobName');
     _s.validateStringLength(
       'labelingJobName',
       labelingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'labelingJobName',
-      labelingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
@@ -3009,22 +2847,11 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'labelCategoryConfigS3Uri',
       labelCategoryConfigS3Uri,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'labelCategoryConfigS3Uri',
-      labelCategoryConfigS3Uri,
-      r'''^(https|s3)://([^/]+)/?(.*)$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3073,8 +2900,8 @@ class SageMaker {
   /// For an example that calls this method when deploying a model to Amazon
   /// SageMaker hosting services, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto">Deploy
-  /// the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto
-  /// 3)).</a>
+  /// the Model to Amazon SageMaker Hosting Services (Amazon Web Services SDK
+  /// for Python (Boto 3)).</a>
   ///
   /// To run a batch transform using your model, you start a job with the
   /// <code>CreateTransformJob</code> API. Amazon SageMaker uses your model and
@@ -3088,8 +2915,8 @@ class SageMaker {
   /// assume to access model artifacts and docker image for deployment on ML
   /// compute hosting instances or for batch transform jobs. In addition, you
   /// also use the IAM role to manage permissions the inference code needs. For
-  /// example, if the inference code access any other AWS resources, you grant
-  /// necessary permissions via this role.
+  /// example, if the inference code access any other Amazon Web Services
+  /// resources, you grant necessary permissions via this role.
   ///
   /// May throw [ResourceLimitExceeded].
   ///
@@ -3115,17 +2942,21 @@ class SageMaker {
   /// Isolates the model container. No inbound or outbound network calls can be
   /// made to or from the model container.
   ///
+  /// Parameter [inferenceExecutionConfig] :
+  /// Specifies details of how containers in a multi-container endpoint are
+  /// called.
+  ///
   /// Parameter [primaryContainer] :
   /// The location of the primary docker image containing inference code,
   /// associated artifacts, and custom environment map that the inference code
   /// uses when the model is deployed for predictions.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   ///
   /// Parameter [vpcConfig] :
   /// A <a>VpcConfig</a> object that specifies the VPC that you want your model
@@ -3141,6 +2972,7 @@ class SageMaker {
     required String modelName,
     List<ContainerDefinition>? containers,
     bool? enableNetworkIsolation,
+    InferenceExecutionConfig? inferenceExecutionConfig,
     ContainerDefinition? primaryContainer,
     List<Tag>? tags,
     VpcConfig? vpcConfig,
@@ -3153,24 +2985,12 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelName, 'modelName');
     _s.validateStringLength(
       'modelName',
       modelName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3189,6 +3009,8 @@ class SageMaker {
         if (containers != null) 'Containers': containers,
         if (enableNetworkIsolation != null)
           'EnableNetworkIsolation': enableNetworkIsolation,
+        if (inferenceExecutionConfig != null)
+          'InferenceExecutionConfig': inferenceExecutionConfig,
         if (primaryContainer != null) 'PrimaryContainer': primaryContainer,
         if (tags != null) 'Tags': tags,
         if (vpcConfig != null) 'VpcConfig': vpcConfig,
@@ -3204,8 +3026,8 @@ class SageMaker {
   /// May throw [ResourceInUse].
   ///
   /// Parameter [jobDefinitionName] :
-  /// The name of the bias job definition. The name must be unique within an AWS
-  /// Region in the AWS account.
+  /// The name of the bias job definition. The name must be unique within an
+  /// Amazon Web Services Region in the Amazon Web Services account.
   ///
   /// Parameter [modelBiasAppSpecification] :
   /// Configures the model bias job to run a specified Docker container image.
@@ -3226,8 +3048,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateModelBiasJobDefinitionResponse> createModelBiasJobDefinition({
     required String jobDefinitionName,
     required MonitoringResources jobResources,
@@ -3248,12 +3070,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(
         modelBiasAppSpecification, 'modelBiasAppSpecification');
@@ -3266,12 +3082,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3309,7 +3119,8 @@ class SageMaker {
   ///
   /// Parameter [jobDefinitionName] :
   /// The name of the model explainability job definition. The name must be
-  /// unique within an AWS Region in the AWS account.
+  /// unique within an Amazon Web Services Region in the Amazon Web Services
+  /// account.
   ///
   /// Parameter [modelExplainabilityAppSpecification] :
   /// Configures the model explainability job to run a specified Docker
@@ -3331,8 +3142,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateModelExplainabilityJobDefinitionResponse>
       createModelExplainabilityJobDefinition({
     required String jobDefinitionName,
@@ -3355,12 +3166,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(modelExplainabilityAppSpecification,
         'modelExplainabilityAppSpecification');
@@ -3374,12 +3179,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3415,15 +3214,15 @@ class SageMaker {
   }
 
   /// Creates a model package that you can use to create Amazon SageMaker models
-  /// or list on AWS Marketplace, or a versioned model that is part of a model
-  /// group. Buyers can subscribe to model packages listed on AWS Marketplace to
-  /// create models in Amazon SageMaker.
+  /// or list on Amazon Web Services Marketplace, or a versioned model that is
+  /// part of a model group. Buyers can subscribe to model packages listed on
+  /// Amazon Web Services Marketplace to create models in Amazon SageMaker.
   ///
   /// To create a model package by specifying a Docker container that contains
   /// your inference code and the Amazon S3 location of your model artifacts,
   /// provide values for <code>InferenceSpecification</code>. To create a model
-  /// from an algorithm resource that you created or subscribed to in AWS
-  /// Marketplace, provide a value for
+  /// from an algorithm resource that you created or subscribed to in Amazon Web
+  /// Services Marketplace, provide a value for
   /// <code>SourceAlgorithmSpecification</code>.
   /// <note>
   /// There are two types of model packages:
@@ -3441,7 +3240,8 @@ class SageMaker {
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [certifyForMarketplace] :
-  /// Whether to certify the model package for listing on AWS Marketplace.
+  /// Whether to certify the model package for listing on Amazon Web Services
+  /// Marketplace.
   ///
   /// This parameter is optional for unversioned models, and does not apply to
   /// versioned models.
@@ -3503,7 +3303,8 @@ class SageMaker {
   /// A list of key value pairs associated with the model. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   ///
   /// Parameter [validationSpecification] :
   /// Specifies configurations for one or more transform jobs that Amazon
@@ -3528,43 +3329,23 @@ class SageMaker {
       1,
       36,
     );
-    _s.validateStringPattern(
-      'clientToken',
-      clientToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'modelPackageDescription',
       modelPackageDescription,
       0,
       1024,
     );
-    _s.validateStringPattern(
-      'modelPackageDescription',
-      modelPackageDescription,
-      r'''[\p{L}\p{M}\p{Z}\p{S}\p{N}\p{P}]*''',
-    );
     _s.validateStringLength(
       'modelPackageGroupName',
       modelPackageGroupName,
       1,
       63,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-    );
     _s.validateStringLength(
       'modelPackageName',
       modelPackageName,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'modelPackageName',
-      modelPackageName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3617,7 +3398,8 @@ class SageMaker {
   /// A list of key value pairs associated with the model group. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   Future<CreateModelPackageGroupOutput> createModelPackageGroup({
     required String modelPackageGroupName,
     String? modelPackageGroupDescription,
@@ -3631,22 +3413,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'modelPackageGroupDescription',
       modelPackageGroupDescription,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'modelPackageGroupDescription',
-      modelPackageGroupDescription,
-      r'''[\p{L}\p{M}\p{Z}\p{S}\p{N}\p{P}]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3700,8 +3471,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateModelQualityJobDefinitionResponse>
       createModelQualityJobDefinition({
     required String jobDefinitionName,
@@ -3723,12 +3494,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(
         modelQualityAppSpecification, 'modelQualityAppSpecification');
@@ -3741,12 +3506,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3788,15 +3547,15 @@ class SageMaker {
   /// defines the monitoring job.
   ///
   /// Parameter [monitoringScheduleName] :
-  /// The name of the monitoring schedule. The name must be unique within an AWS
-  /// Region within an AWS account.
+  /// The name of the monitoring schedule. The name must be unique within an
+  /// Amazon Web Services Region within an Amazon Web Services account.
   ///
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="
   /// https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateMonitoringScheduleResponse> createMonitoringSchedule({
     required MonitoringScheduleConfig monitoringScheduleConfig,
     required String monitoringScheduleName,
@@ -3811,12 +3570,6 @@ class SageMaker {
       monitoringScheduleName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -3894,12 +3647,12 @@ class SageMaker {
   /// The name of the new notebook instance.
   ///
   /// Parameter [roleArn] :
-  /// When you send any requests to AWS resources from the notebook instance,
-  /// Amazon SageMaker assumes this role to perform tasks on your behalf. You
-  /// must grant this role necessary permissions so Amazon SageMaker can perform
-  /// these tasks. The policy must allow the Amazon SageMaker service principal
-  /// (sagemaker.amazonaws.com) permissions to assume this role. For more
-  /// information, see <a
+  /// When you send any requests to Amazon Web Services resources from the
+  /// notebook instance, Amazon SageMaker assumes this role to perform tasks on
+  /// your behalf. You must grant this role necessary permissions so Amazon
+  /// SageMaker can perform these tasks. The policy must allow the Amazon
+  /// SageMaker service principal (sagemaker.amazonaws.com) permissions to
+  /// assume this role. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html">Amazon
   /// SageMaker Roles</a>.
   /// <note>
@@ -3918,10 +3671,10 @@ class SageMaker {
   /// An array of up to three Git repositories to associate with the notebook
   /// instance. These can be either the names of Git repositories stored as
   /// resources in your account, or the URL of Git repositories in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. These repositories are
-  /// cloned at the same level as the default repository of your notebook
-  /// instance. For more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. These
+  /// repositories are cloned at the same level as the default repository of
+  /// your notebook instance. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   ///
@@ -3929,18 +3682,18 @@ class SageMaker {
   /// A Git repository to associate with the notebook instance as its default
   /// code repository. This can be either the name of a Git repository stored as
   /// a resource in your account, or the URL of a Git repository in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. When you open a notebook
-  /// instance, it opens in the directory that contains this repository. For
-  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. When you open
+  /// a notebook instance, it opens in the directory that contains this
+  /// repository. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   ///
   /// Parameter [directInternetAccess] :
   /// Sets whether Amazon SageMaker provides internet access to the notebook
   /// instance. If you set this to <code>Disabled</code> this notebook instance
-  /// will be able to access resources only in your VPC, and will not be able to
-  /// connect to Amazon SageMaker training and endpoint services unless your
+  /// is able to access resources only in your VPC, and is not be able to
+  /// connect to Amazon SageMaker training and endpoint services unless you
   /// configure a NAT Gateway in your VPC.
   ///
   /// For more information, see <a
@@ -3950,13 +3703,13 @@ class SageMaker {
   /// <code>SubnetId</code> parameter.
   ///
   /// Parameter [kmsKeyId] :
-  /// The Amazon Resource Name (ARN) of a AWS Key Management Service key that
-  /// Amazon SageMaker uses to encrypt data on the storage volume attached to
-  /// your notebook instance. The KMS key you provide must be enabled. For
-  /// information, see <a
+  /// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management
+  /// Service key that Amazon SageMaker uses to encrypt data on the storage
+  /// volume attached to your notebook instance. The KMS key you provide must be
+  /// enabled. For information, see <a
   /// href="https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html">Enabling
-  /// and Disabling Keys</a> in the <i>AWS Key Management Service Developer
-  /// Guide</i>.
+  /// and Disabling Keys</a> in the <i>Amazon Web Services Key Management
+  /// Service Developer Guide</i>.
   ///
   /// Parameter [lifecycleConfigName] :
   /// The name of a lifecycle configuration to associate with the notebook
@@ -3983,11 +3736,11 @@ class SageMaker {
   /// connectivity from your ML compute instance.
   ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   ///
   /// Parameter [volumeSizeInGB] :
   /// The size, in GB, of the ML storage volume to attach to the notebook
@@ -4017,12 +3770,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
@@ -4031,22 +3778,11 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'defaultCodeRepository',
       defaultCodeRepository,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'defaultCodeRepository',
-      defaultCodeRepository,
-      r'''^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
     );
     _s.validateStringLength(
       'kmsKeyId',
@@ -4054,32 +3790,17 @@ class SageMaker {
       0,
       2048,
     );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'lifecycleConfigName',
       lifecycleConfigName,
       0,
       63,
     );
-    _s.validateStringPattern(
-      'lifecycleConfigName',
-      lifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-    );
     _s.validateStringLength(
       'subnetId',
       subnetId,
       0,
       32,
-    );
-    _s.validateStringPattern(
-      'subnetId',
-      subnetId,
-      r'''[-0-9a-zA-Z]+''',
     );
     _s.validateNumRange(
       'volumeSizeInGB',
@@ -4172,12 +3893,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateNotebookInstanceLifecycleConfig'
@@ -4245,12 +3960,6 @@ class SageMaker {
       1048576,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineDefinition',
-      pipelineDefinition,
-      r'''.*(?:[ \r\n\t].*)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
     _s.validateStringLength(
       'pipelineName',
@@ -4259,24 +3968,12 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -4291,21 +3988,11 @@ class SageMaker {
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'pipelineDescription',
-      pipelineDescription,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineDisplayName',
       pipelineDisplayName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'pipelineDisplayName',
-      pipelineDisplayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4339,10 +4026,24 @@ class SageMaker {
   /// Studio, and granted access to all of the Apps and files associated with
   /// the Domain's Amazon Elastic File System (EFS) volume. This operation can
   /// only be called when the authentication mode equals IAM.
+  ///
+  /// The IAM role or user used to call this API defines the permissions to
+  /// access the app. Once the presigned URL is created, no additional
+  /// permission is required to access this URL. IAM authorization policies for
+  /// this API are also enforced for every HTTP request and WebSocket frame that
+  /// attempts to connect to the app.
+  ///
+  /// You can restrict access to this API and to the URL that it returns to a
+  /// list of IP addresses, Amazon VPCs or Amazon VPC Endpoints that you
+  /// specify. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-interface-endpoint.html">Connect
+  /// to SageMaker Studio Through an Interface VPC Endpoint</a> .
   /// <note>
   /// The URL that you get from a call to <code>CreatePresignedDomainUrl</code>
-  /// is valid only for 5 minutes. If you try to use the URL after the 5-minute
-  /// limit expires, you are directed to the AWS console sign-in page.
+  /// has a default timeout of 5 minutes. You can configure this value using
+  /// <code>ExpiresInSeconds</code>. If you try to use the URL after the timeout
+  /// limit expires, you are directed to the Amazon Web Services console sign-in
+  /// page.
   /// </note>
   ///
   /// May throw [ResourceNotFound].
@@ -4353,11 +4054,16 @@ class SageMaker {
   /// Parameter [userProfileName] :
   /// The name of the UserProfile to sign-in as.
   ///
+  /// Parameter [expiresInSeconds] :
+  /// The number of seconds until the pre-signed URL expires. This value
+  /// defaults to 300.
+  ///
   /// Parameter [sessionExpirationDurationInSeconds] :
-  /// The session expiration duration in seconds.
+  /// The session expiration duration in seconds. This value defaults to 43200.
   Future<CreatePresignedDomainUrlResponse> createPresignedDomainUrl({
     required String domainId,
     required String userProfileName,
+    int? expiresInSeconds,
     int? sessionExpirationDurationInSeconds,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
@@ -4376,11 +4082,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
+    _s.validateNumRange(
+      'expiresInSeconds',
+      expiresInSeconds,
+      5,
+      300,
     );
     _s.validateNumRange(
       'sessionExpirationDurationInSeconds',
@@ -4401,6 +4107,7 @@ class SageMaker {
       payload: {
         'DomainId': domainId,
         'UserProfileName': userProfileName,
+        if (expiresInSeconds != null) 'ExpiresInSeconds': expiresInSeconds,
         if (sessionExpirationDurationInSeconds != null)
           'SessionExpirationDurationInSeconds':
               sessionExpirationDurationInSeconds,
@@ -4433,7 +4140,7 @@ class SageMaker {
   /// The URL that you get from a call to
   /// <a>CreatePresignedNotebookInstanceUrl</a> is valid only for 5 minutes. If
   /// you try to use the URL after the 5-minute limit expires, you are directed
-  /// to the AWS console sign-in page.
+  /// to the Amazon Web Services console sign-in page.
   /// </note>
   ///
   /// Parameter [notebookInstanceName] :
@@ -4452,12 +4159,6 @@ class SageMaker {
       notebookInstanceName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -4497,8 +4198,8 @@ class SageMaker {
   /// Configures the processing job to run a specified Docker container image.
   ///
   /// Parameter [processingJobName] :
-  /// The name of the processing job. The name must be unique within an AWS
-  /// Region in the AWS account.
+  /// The name of the processing job. The name must be unique within an Amazon
+  /// Web Services Region in the Amazon Web Services account.
   ///
   /// Parameter [processingResources] :
   /// Identifies the resources, ML compute instances, and ML storage volumes to
@@ -4510,13 +4211,17 @@ class SageMaker {
   /// assume to perform tasks on your behalf.
   ///
   /// Parameter [environment] :
-  /// Sets the environment variables in the Docker container.
+  /// The environment variables to set in the Docker container. Up to 100 key
+  /// and values entries in the map are supported.
   ///
   /// Parameter [networkConfig] :
-  /// Networking options for a processing job.
+  /// Networking options for a processing job, such as whether to allow inbound
+  /// and outbound network calls to and from processing containers, and the VPC
+  /// subnets and security groups to use for VPC-enabled processing jobs.
   ///
   /// Parameter [processingInputs] :
-  /// List of input configurations for the processing job.
+  /// An array of inputs configuring the data to download into the processing
+  /// container.
   ///
   /// Parameter [processingOutputConfig] :
   /// Output configuration for the processing job.
@@ -4527,8 +4232,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateProcessingJobResponse> createProcessingJob({
     required AppSpecification appSpecification,
     required String processingJobName,
@@ -4551,12 +4256,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'processingJobName',
-      processingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(processingResources, 'processingResources');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     _s.validateStringLength(
@@ -4564,12 +4263,6 @@ class SageMaker {
       roleArn,
       20,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4614,16 +4307,17 @@ class SageMaker {
   /// The product ID and provisioning artifact ID to provision a service
   /// catalog. For information, see <a
   /// href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What
-  /// is AWS Service Catalog</a>.
+  /// is Amazon Web Services Service Catalog</a>.
   ///
   /// Parameter [projectDescription] :
   /// A description for the project.
   ///
   /// Parameter [tags] :
   /// An array of key-value pairs that you want to use to organize and track
-  /// your AWS resource costs. For more information, see <a
+  /// your Amazon Web Services resource costs. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   Future<CreateProjectOutput> createProject({
     required String projectName,
     required ServiceCatalogProvisioningDetails
@@ -4639,12 +4333,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         serviceCatalogProvisioningDetails, 'serviceCatalogProvisioningDetails');
     _s.validateStringLength(
@@ -4652,11 +4340,6 @@ class SageMaker {
       projectDescription,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'projectDescription',
-      projectDescription,
-      r'''[\p{L}\p{M}\p{Z}\p{S}\p{N}\p{P}]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4711,7 +4394,7 @@ class SageMaker {
   /// <li>
   /// <code>OutputDataConfig</code> - Identifies the Amazon S3 bucket where you
   /// want Amazon SageMaker to save the results of model training.
-  /// <p/> </li>
+  /// </li>
   /// <li>
   /// <code>ResourceConfig</code> - Identifies the resources, ML compute
   /// instances, and ML storage volumes to deploy for model training. In
@@ -4725,7 +4408,7 @@ class SageMaker {
   /// Spot Training</a>.
   /// </li>
   /// <li>
-  /// <code>RoleArn</code> - The Amazon Resource Number (ARN) that Amazon
+  /// <code>RoleArn</code> - The Amazon Resource Name (ARN) that Amazon
   /// SageMaker assumes to perform tasks on your behalf during model training.
   /// You must grant this role the necessary permissions so that Amazon
   /// SageMaker can successfully complete model training.
@@ -4733,8 +4416,16 @@ class SageMaker {
   /// <li>
   /// <code>StoppingCondition</code> - To help cap training costs, use
   /// <code>MaxRuntimeInSeconds</code> to set a time limit for training. Use
-  /// <code>MaxWaitTimeInSeconds</code> to specify how long you are willing to
-  /// wait for a managed spot training job to complete.
+  /// <code>MaxWaitTimeInSeconds</code> to specify how long a managed spot
+  /// training job has to complete.
+  /// </li>
+  /// <li>
+  /// <code>Environment</code> - The environment variables to set in the Docker
+  /// container.
+  /// </li>
+  /// <li>
+  /// <code>RetryStrategy</code> - The number of times to retry the job when the
+  /// job fails due to an <code>InternalServerError</code>.
   /// </li>
   /// </ul>
   /// For more information about Amazon SageMaker, see <a
@@ -4787,9 +4478,10 @@ class SageMaker {
   /// </note>
   ///
   /// Parameter [stoppingCondition] :
-  /// Specifies a limit to how long a model training job can run. When the job
-  /// reaches the time limit, Amazon SageMaker ends the training job. Use this
-  /// API to cap model training costs.
+  /// Specifies a limit to how long a model training job can run. It also
+  /// specifies how long a managed Spot training job has to complete. When the
+  /// job reaches the time limit, Amazon SageMaker ends the training job. Use
+  /// this API to cap model training costs.
   ///
   /// To stop a job, Amazon SageMaker sends the algorithm the
   /// <code>SIGTERM</code> signal, which delays job termination for 120 seconds.
@@ -4797,8 +4489,8 @@ class SageMaker {
   /// the results of training are not lost.
   ///
   /// Parameter [trainingJobName] :
-  /// The name of the training job. The name must be unique within an AWS Region
-  /// in an AWS account.
+  /// The name of the training job. The name must be unique within an Amazon Web
+  /// Services Region in an Amazon Web Services account.
   ///
   /// Parameter [checkpointConfig] :
   /// Contains information about the output location for managed spot training
@@ -4839,6 +4531,9 @@ class SageMaker {
   /// customer data and model artifacts through the specified VPC, but the
   /// training container does not have network access.
   ///
+  /// Parameter [environment] :
+  /// The environment variables to set in the Docker container.
+  ///
   /// Parameter [hyperParameters] :
   /// Algorithm-specific parameters that influence the quality of the model. You
   /// set hyperparameters before you start the learning process. For a list of
@@ -4873,12 +4568,16 @@ class SageMaker {
   /// Configuration information for Debugger rules for profiling system and
   /// framework metrics.
   ///
+  /// Parameter [retryStrategy] :
+  /// The number of times to retry the job when the job fails due to an
+  /// <code>InternalServerError</code>.
+  ///
   /// Parameter [tags] :
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or
-  /// environment. For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon
+  /// Web Services resources in different ways, for example, by purpose, owner,
+  /// or environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   ///
   /// Parameter [vpcConfig] :
   /// A <a>VpcConfig</a> object that specifies the VPC that you want your
@@ -4899,11 +4598,13 @@ class SageMaker {
     bool? enableInterContainerTrafficEncryption,
     bool? enableManagedSpotTraining,
     bool? enableNetworkIsolation,
+    Map<String, String>? environment,
     ExperimentConfig? experimentConfig,
     Map<String, String>? hyperParameters,
     List<Channel>? inputDataConfig,
     ProfilerConfig? profilerConfig,
     List<ProfilerRuleConfiguration>? profilerRuleConfigurations,
+    RetryStrategy? retryStrategy,
     List<Tag>? tags,
     TensorBoardOutputConfig? tensorBoardOutputConfig,
     VpcConfig? vpcConfig,
@@ -4920,12 +4621,6 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stoppingCondition, 'stoppingCondition');
     ArgumentError.checkNotNull(trainingJobName, 'trainingJobName');
     _s.validateStringLength(
@@ -4933,12 +4628,6 @@ class SageMaker {
       trainingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trainingJobName',
-      trainingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -4969,12 +4658,14 @@ class SageMaker {
           'EnableManagedSpotTraining': enableManagedSpotTraining,
         if (enableNetworkIsolation != null)
           'EnableNetworkIsolation': enableNetworkIsolation,
+        if (environment != null) 'Environment': environment,
         if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
         if (hyperParameters != null) 'HyperParameters': hyperParameters,
         if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
         if (profilerConfig != null) 'ProfilerConfig': profilerConfig,
         if (profilerRuleConfigurations != null)
           'ProfilerRuleConfigurations': profilerRuleConfigurations,
+        if (retryStrategy != null) 'RetryStrategy': retryStrategy,
         if (tags != null) 'Tags': tags,
         if (tensorBoardOutputConfig != null)
           'TensorBoardOutputConfig': tensorBoardOutputConfig,
@@ -4997,13 +4688,14 @@ class SageMaker {
   /// <ul>
   /// <li>
   /// <code>TransformJobName</code> - Identifies the transform job. The name
-  /// must be unique within an AWS Region in an AWS account.
+  /// must be unique within an Amazon Web Services Region in an Amazon Web
+  /// Services account.
   /// </li>
   /// <li>
   /// <code>ModelName</code> - Identifies the model to use.
   /// <code>ModelName</code> must be the name of an existing Amazon SageMaker
-  /// model in the same AWS Region and AWS account. For information on creating
-  /// a model, see <a>CreateModel</a>.
+  /// model in the same Amazon Web Services Region and Amazon Web Services
+  /// account. For information on creating a model, see <a>CreateModel</a>.
   /// </li>
   /// <li>
   /// <code>TransformInput</code> - Describes the dataset to be transformed and
@@ -5029,14 +4721,15 @@ class SageMaker {
   /// Parameter [modelName] :
   /// The name of the model that you want to use for the transform job.
   /// <code>ModelName</code> must be the name of an existing Amazon SageMaker
-  /// model within an AWS Region in an AWS account.
+  /// model within an Amazon Web Services Region in an Amazon Web Services
+  /// account.
   ///
   /// Parameter [transformInput] :
   /// Describes the input source and the way the transform job consumes it.
   ///
   /// Parameter [transformJobName] :
-  /// The name of the transform job. The name must be unique within an AWS
-  /// Region in an AWS account.
+  /// The name of the transform job. The name must be unique within an Amazon
+  /// Web Services Region in an Amazon Web Services account.
   ///
   /// Parameter [transformOutput] :
   /// Describes the results of the transform job.
@@ -5110,8 +4803,8 @@ class SageMaker {
   /// Parameter [tags] :
   /// (Optional) An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   Future<CreateTransformJobResponse> createTransformJob({
     required String modelName,
     required TransformInput transformInput,
@@ -5135,12 +4828,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformInput, 'transformInput');
     ArgumentError.checkNotNull(transformJobName, 'transformJobName');
     _s.validateStringLength(
@@ -5148,12 +4835,6 @@ class SageMaker {
       transformJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformJobName',
-      transformJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(transformOutput, 'transformOutput');
@@ -5201,14 +4882,14 @@ class SageMaker {
     return CreateTransformJobResponse.fromJson(jsonResponse.body);
   }
 
-  /// Creates an Amazon SageMaker <i>trial</i>. A trial is a set of steps called
+  /// Creates an SageMaker <i>trial</i>. A trial is a set of steps called
   /// <i>trial components</i> that produce a machine learning model. A trial is
-  /// part of a single Amazon SageMaker <i>experiment</i>.
+  /// part of a single SageMaker <i>experiment</i>.
   ///
-  /// When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK,
-  /// all experiments, trials, and trial components are automatically tracked,
-  /// logged, and indexed. When you use the AWS SDK for Python (Boto), you must
-  /// use the logging APIs provided by the SDK.
+  /// When you use SageMaker Studio or the SageMaker Python SDK, all
+  /// experiments, trials, and trial components are automatically tracked,
+  /// logged, and indexed. When you use the Amazon Web Services SDK for Python
+  /// (Boto), you must use the logging APIs provided by the SDK.
   ///
   /// You can add tags to a trial and then use the <a>Search</a> API to search
   /// for the tags.
@@ -5224,8 +4905,8 @@ class SageMaker {
   /// The name of the experiment to associate the trial with.
   ///
   /// Parameter [trialName] :
-  /// The name of the trial. The name must be unique in your AWS account and is
-  /// not case-sensitive.
+  /// The name of the trial. The name must be unique in your Amazon Web Services
+  /// account and is not case-sensitive.
   ///
   /// Parameter [displayName] :
   /// The name of the trial as displayed. The name doesn't need to be unique. If
@@ -5250,12 +4931,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
     _s.validateStringLength(
       'trialName',
@@ -5264,22 +4939,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5311,26 +4975,19 @@ class SageMaker {
   /// Trial components include pre-processing jobs, training jobs, and batch
   /// transform jobs.
   ///
-  /// When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK,
-  /// all experiments, trials, and trial components are automatically tracked,
-  /// logged, and indexed. When you use the AWS SDK for Python (Boto), you must
-  /// use the logging APIs provided by the SDK.
+  /// When you use SageMaker Studio or the SageMaker Python SDK, all
+  /// experiments, trials, and trial components are automatically tracked,
+  /// logged, and indexed. When you use the Amazon Web Services SDK for Python
+  /// (Boto), you must use the logging APIs provided by the SDK.
   ///
   /// You can add tags to a trial component and then use the <a>Search</a> API
   /// to search for the tags.
-  /// <note>
-  /// <code>CreateTrialComponent</code> can only be invoked from within an
-  /// Amazon SageMaker managed environment. This includes Amazon SageMaker
-  /// training jobs, processing jobs, transform jobs, and Amazon SageMaker
-  /// notebooks. A call to <code>CreateTrialComponent</code> from outside one of
-  /// these environments results in an error.
-  /// </note>
   ///
   /// May throw [ResourceLimitExceeded].
   ///
   /// Parameter [trialComponentName] :
-  /// The name of the component. The name must be unique in your AWS account and
-  /// is not case-sensitive.
+  /// The name of the component. The name must be unique in your Amazon Web
+  /// Services account and is not case-sensitive.
   ///
   /// Parameter [displayName] :
   /// The name of the component as displayed. The name doesn't need to be
@@ -5392,22 +5049,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5453,7 +5099,7 @@ class SageMaker {
   /// The ID of the associated Domain.
   ///
   /// Parameter [userProfileName] :
-  /// A name for the UserProfile.
+  /// A name for the UserProfile. This value is not case sensitive.
   ///
   /// Parameter [singleSignOnUserIdentifier] :
   /// A specifier for the type of value specified in SingleSignOnUserValue.
@@ -5462,14 +5108,17 @@ class SageMaker {
   /// SSO, this field cannot be specified.
   ///
   /// Parameter [singleSignOnUserValue] :
-  /// The username of the associated AWS Single Sign-On User for this
-  /// UserProfile. If the Domain's AuthMode is SSO, this field is required, and
-  /// must match a valid username of a user in your directory. If the Domain's
-  /// AuthMode is not SSO, this field cannot be specified.
+  /// The username of the associated Amazon Web Services Single Sign-On User for
+  /// this UserProfile. If the Domain's AuthMode is SSO, this field is required,
+  /// and must match a valid username of a user in your directory. If the
+  /// Domain's AuthMode is not SSO, this field cannot be specified.
   ///
   /// Parameter [tags] :
   /// Each tag consists of a key and an optional value. Tag keys must be unique
   /// per resource.
+  ///
+  /// Tags that you specify for the User Profile are also added to all Apps that
+  /// the User Profile launches.
   ///
   /// Parameter [userSettings] :
   /// A collection of settings.
@@ -5496,17 +5145,6 @@ class SageMaker {
       0,
       63,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'singleSignOnUserIdentifier',
-      singleSignOnUserIdentifier,
-      r'''UserName''',
     );
     _s.validateStringLength(
       'singleSignOnUserValue',
@@ -5540,12 +5178,14 @@ class SageMaker {
   }
 
   /// Use this operation to create a workforce. This operation will return an
-  /// error if a workforce already exists in the AWS Region that you specify.
-  /// You can only create one workforce in each AWS Region per AWS account.
+  /// error if a workforce already exists in the Amazon Web Services Region that
+  /// you specify. You can only create one workforce in each Amazon Web Services
+  /// Region per Amazon Web Services account.
   ///
-  /// If you want to create a new workforce in an AWS Region where a workforce
-  /// already exists, use the API operation to delete the existing workforce and
-  /// then use <code>CreateWorkforce</code> to create a new workforce.
+  /// If you want to create a new workforce in an Amazon Web Services Region
+  /// where a workforce already exists, use the API operation to delete the
+  /// existing workforce and then use <code>CreateWorkforce</code> to create a
+  /// new workforce.
   ///
   /// To create a private workforce using Amazon Cognito, you must specify a
   /// Cognito user pool in <code>CognitoConfig</code>. You can also create an
@@ -5597,12 +5237,6 @@ class SageMaker {
       workforceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workforceName',
-      workforceName,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5678,8 +5312,8 @@ class SageMaker {
   /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Resource
   /// Tag</a> and <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what">Using
-  /// Cost Allocation Tags</a> in the <i> AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i> Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   ///
   /// Parameter [workforceName] :
   /// The name of the workforce.
@@ -5699,12 +5333,6 @@ class SageMaker {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberDefinitions, 'memberDefinitions');
     ArgumentError.checkNotNull(workteamName, 'workteamName');
     _s.validateStringLength(
@@ -5714,22 +5342,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workteamName',
-      workteamName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'workforceName',
       workforceName,
       1,
       63,
-    );
-    _s.validateStringPattern(
-      'workforceName',
-      workforceName,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5772,12 +5389,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionName',
-      actionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAction'
@@ -5809,12 +5420,6 @@ class SageMaker {
       algorithmName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'algorithmName',
-      algorithmName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5863,12 +5468,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appName',
-      appName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
     _s.validateStringLength(
@@ -5884,12 +5483,6 @@ class SageMaker {
       userProfileName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -5928,12 +5521,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appImageConfigName',
-      appImageConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAppImageConfig'
@@ -5969,11 +5556,6 @@ class SageMaker {
       artifactArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'artifactArn',
-      artifactArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:artifact/.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6015,24 +5597,12 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'destinationArn',
-      destinationArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
     _s.validateStringLength(
       'sourceArn',
       sourceArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'sourceArn',
-      sourceArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6069,12 +5639,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'codeRepositoryName',
-      codeRepositoryName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteCodeRepository'
@@ -6106,12 +5670,6 @@ class SageMaker {
       contextName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'contextName',
-      contextName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6149,12 +5707,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteDataQualityJobDefinition'
@@ -6186,12 +5738,6 @@ class SageMaker {
       deviceFleetName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6275,12 +5821,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteEndpoint'
@@ -6322,12 +5862,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointConfigName',
-      endpointConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteEndpointConfig'
@@ -6344,9 +5878,9 @@ class SageMaker {
     );
   }
 
-  /// Deletes an Amazon SageMaker experiment. All trials associated with the
-  /// experiment must be deleted first. Use the <a>ListTrials</a> API to get a
-  /// list of the trials associated with the experiment.
+  /// Deletes an SageMaker experiment. All trials associated with the experiment
+  /// must be deleted first. Use the <a>ListTrials</a> API to get a list of the
+  /// trials associated with the experiment.
   ///
   /// May throw [ResourceNotFound].
   ///
@@ -6361,12 +5895,6 @@ class SageMaker {
       experimentName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6393,14 +5921,15 @@ class SageMaker {
   /// <code>DeleteFeatureGroup</code> is called.
   ///
   /// Data written into the <code>OfflineStore</code> will not be deleted. The
-  /// AWS Glue database and tables that are automatically created for your
-  /// <code>OfflineStore</code> are not deleted.
+  /// Amazon Web Services Glue database and tables that are automatically
+  /// created for your <code>OfflineStore</code> are not deleted.
   ///
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [featureGroupName] :
   /// The name of the <code>FeatureGroup</code> you want to delete. The name
-  /// must be unique within an AWS Region in an AWS account.
+  /// must be unique within an Amazon Web Services Region in an Amazon Web
+  /// Services account.
   Future<void> deleteFeatureGroup({
     required String featureGroupName,
   }) async {
@@ -6410,12 +5939,6 @@ class SageMaker {
       featureGroupName,
       1,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6450,12 +5973,6 @@ class SageMaker {
       flowDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'flowDefinitionName',
-      flowDefinitionName,
-      r'''^[a-z0-9](-*[a-z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6497,12 +6014,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'humanTaskUiName',
-      humanTaskUiName,
-      r'''^[a-z0-9](-*[a-z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteHumanTaskUi'
@@ -6536,12 +6047,6 @@ class SageMaker {
       imageName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6583,12 +6088,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
     _s.validateNumRange(
       'version',
@@ -6616,8 +6115,9 @@ class SageMaker {
 
   /// Deletes a model. The <code>DeleteModel</code> API deletes only the model
   /// entry that was created in Amazon SageMaker when you called the
-  /// <a>CreateModel</a> API. It does not delete model artifacts, inference
-  /// code, or the IAM role that you specified when creating the model.
+  /// <code>CreateModel</code> API. It does not delete model artifacts,
+  /// inference code, or the IAM role that you specified when creating the
+  /// model.
   ///
   /// Parameter [modelName] :
   /// The name of the model to delete.
@@ -6630,12 +6130,6 @@ class SageMaker {
       modelName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6671,12 +6165,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelBiasJobDefinition'
@@ -6710,12 +6198,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelExplainabilityJobDefinition'
@@ -6734,15 +6216,18 @@ class SageMaker {
 
   /// Deletes a model package.
   ///
-  /// A model package is used to create Amazon SageMaker models or list on AWS
-  /// Marketplace. Buyers can subscribe to model packages listed on AWS
-  /// Marketplace to create models in Amazon SageMaker.
+  /// A model package is used to create Amazon SageMaker models or list on
+  /// Amazon Web Services Marketplace. Buyers can subscribe to model packages
+  /// listed on Amazon Web Services Marketplace to create models in Amazon
+  /// SageMaker.
   ///
   /// May throw [ConflictException].
   ///
   /// Parameter [modelPackageName] :
-  /// The name of the model package. The name must have 1 to 63 characters.
-  /// Valid characters are a-z, A-Z, 0-9, and - (hyphen).
+  /// The name or Amazon Resource Name (ARN) of the model package to delete.
+  ///
+  /// When you specify a name, the name must have 1 to 63 characters. Valid
+  /// characters are a-z, A-Z, 0-9, and - (hyphen).
   Future<void> deleteModelPackage({
     required String modelPackageName,
   }) async {
@@ -6752,12 +6237,6 @@ class SageMaker {
       modelPackageName,
       1,
       176,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelPackageName',
-      modelPackageName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)(\/[0-9]{1,5})?$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6778,6 +6257,8 @@ class SageMaker {
 
   /// Deletes the specified model group.
   ///
+  /// May throw [ConflictException].
+  ///
   /// Parameter [modelPackageGroupName] :
   /// The name of the model group to delete.
   Future<void> deleteModelPackageGroup({
@@ -6789,12 +6270,6 @@ class SageMaker {
       modelPackageGroupName,
       1,
       170,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6828,12 +6303,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelPackageGroupPolicy'
@@ -6865,12 +6334,6 @@ class SageMaker {
       jobDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6907,12 +6370,6 @@ class SageMaker {
       monitoringScheduleName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -6953,12 +6410,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteNotebookInstance'
@@ -6991,12 +6442,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteNotebookInstanceLifecycleConfig'
@@ -7014,7 +6459,10 @@ class SageMaker {
     );
   }
 
-  /// Deletes a pipeline if there are no in-progress executions.
+  /// Deletes a pipeline if there are no running instances of the pipeline. To
+  /// delete a pipeline, you must stop all running instances of the pipeline
+  /// using the <code>StopPipelineExecution</code> API. When you delete a
+  /// pipeline, all instances of the pipeline are deleted.
   ///
   /// May throw [ResourceNotFound].
   ///
@@ -7035,12 +6483,6 @@ class SageMaker {
       pipelineName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -7071,6 +6513,8 @@ class SageMaker {
 
   /// Delete the specified project.
   ///
+  /// May throw [ConflictException].
+  ///
   /// Parameter [projectName] :
   /// The name of the project to delete.
   Future<void> deleteProject({
@@ -7082,12 +6526,6 @@ class SageMaker {
       projectName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7113,6 +6551,11 @@ class SageMaker {
   /// When you call this API to delete tags from a hyperparameter tuning job,
   /// the deleted tags are not removed from training jobs that the
   /// hyperparameter tuning job launched before you called this API.
+  /// </note> <note>
+  /// When you call this API to delete tags from a SageMaker Studio Domain or
+  /// User Profile, the deleted tags are not removed from Apps that the
+  /// SageMaker Studio Domain or User Profile launched before you called this
+  /// API.
   /// </note>
   ///
   /// Parameter [resourceArn] :
@@ -7131,12 +6574,6 @@ class SageMaker {
       resourceArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:.+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -7176,12 +6613,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteTrial'
@@ -7218,12 +6649,6 @@ class SageMaker {
       trialComponentName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7276,12 +6701,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteUserProfile'
@@ -7301,9 +6720,9 @@ class SageMaker {
 
   /// Use this operation to delete a workforce.
   ///
-  /// If you want to create a new workforce in an AWS Region where a workforce
-  /// already exists, use this operation to delete the existing workforce and
-  /// then use to create a new workforce.
+  /// If you want to create a new workforce in an Amazon Web Services Region
+  /// where a workforce already exists, use this operation to delete the
+  /// existing workforce and then use to create a new workforce.
   /// <important>
   /// If a private workforce contains one or more work teams, you must use the
   /// operation to delete all work teams before you delete the workforce. If you
@@ -7322,12 +6741,6 @@ class SageMaker {
       workforceName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workforceName',
-      workforceName,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7361,12 +6774,6 @@ class SageMaker {
       workteamName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workteamName',
-      workteamName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7407,12 +6814,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceNames, 'deviceNames');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7448,12 +6849,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionName',
-      actionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAction'
@@ -7485,12 +6880,6 @@ class SageMaker {
       algorithmName,
       1,
       170,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'algorithmName',
-      algorithmName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7540,12 +6929,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appName',
-      appName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
     _s.validateStringLength(
@@ -7561,12 +6944,6 @@ class SageMaker {
       userProfileName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7607,12 +6984,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'appImageConfigName',
-      appImageConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAppImageConfig'
@@ -7648,12 +7019,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'artifactArn',
-      artifactArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:artifact/.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeArtifact'
@@ -7672,12 +7037,12 @@ class SageMaker {
     return DescribeArtifactResponse.fromJson(jsonResponse.body);
   }
 
-  /// Returns information about an Amazon SageMaker job.
+  /// Returns information about an Amazon SageMaker AutoML job.
   ///
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [autoMLJobName] :
-  /// Request information about a job using that job's unique name.
+  /// Requests information about an AutoML job using its unique name.
   Future<DescribeAutoMLJobResponse> describeAutoMLJob({
     required String autoMLJobName,
   }) async {
@@ -7687,12 +7052,6 @@ class SageMaker {
       autoMLJobName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoMLJobName',
-      autoMLJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7726,12 +7085,6 @@ class SageMaker {
       codeRepositoryName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'codeRepositoryName',
-      codeRepositoryName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7773,12 +7126,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'compilationJobName',
-      compilationJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeCompilationJob'
@@ -7812,12 +7159,6 @@ class SageMaker {
       contextName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'contextName',
-      contextName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7854,12 +7195,6 @@ class SageMaker {
       jobDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -7905,12 +7240,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
     _s.validateStringLength(
       'deviceName',
@@ -7919,22 +7248,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceName',
-      deviceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7971,12 +7289,6 @@ class SageMaker {
       deviceFleetName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8049,12 +7361,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeEdgePackagingJob'
@@ -8086,12 +7392,6 @@ class SageMaker {
       endpointName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8128,12 +7428,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointConfigName',
-      endpointConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeEndpointConfig'
@@ -8167,12 +7461,6 @@ class SageMaker {
       experimentName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8218,22 +7506,11 @@ class SageMaker {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'featureGroupName',
-      featureGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,63}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8269,12 +7546,6 @@ class SageMaker {
       flowDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'flowDefinitionName',
-      flowDefinitionName,
-      r'''^[a-z0-9](-*[a-z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8314,12 +7585,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'humanTaskUiName',
-      humanTaskUiName,
-      r'''^[a-z0-9](-*[a-z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeHumanTaskUi'
@@ -8357,12 +7622,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeHyperParameterTuningJob'
@@ -8396,12 +7655,6 @@ class SageMaker {
       imageName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8442,12 +7695,6 @@ class SageMaker {
       imageName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -8492,12 +7739,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'labelingJobName',
-      labelingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeLabelingJob'
@@ -8531,12 +7772,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModel'
@@ -8561,7 +7796,7 @@ class SageMaker {
   ///
   /// Parameter [jobDefinitionName] :
   /// The name of the model bias job definition. The name must be unique within
-  /// an AWS Region in the AWS account.
+  /// an Amazon Web Services Region in the Amazon Web Services account.
   Future<DescribeModelBiasJobDefinitionResponse>
       describeModelBiasJobDefinition({
     required String jobDefinitionName,
@@ -8572,12 +7807,6 @@ class SageMaker {
       jobDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8604,7 +7833,8 @@ class SageMaker {
   ///
   /// Parameter [jobDefinitionName] :
   /// The name of the model explainability job definition. The name must be
-  /// unique within an AWS Region in the AWS account.
+  /// unique within an Amazon Web Services Region in the Amazon Web Services
+  /// account.
   Future<DescribeModelExplainabilityJobDefinitionResponse>
       describeModelExplainabilityJobDefinition({
     required String jobDefinitionName,
@@ -8615,12 +7845,6 @@ class SageMaker {
       jobDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8643,13 +7867,17 @@ class SageMaker {
   }
 
   /// Returns a description of the specified model package, which is used to
-  /// create Amazon SageMaker models or list them on AWS Marketplace.
+  /// create Amazon SageMaker models or list them on Amazon Web Services
+  /// Marketplace.
   ///
   /// To create models in Amazon SageMaker, buyers can subscribe to model
-  /// packages listed on AWS Marketplace.
+  /// packages listed on Amazon Web Services Marketplace.
   ///
   /// Parameter [modelPackageName] :
-  /// The name of the model package to describe.
+  /// The name or Amazon Resource Name (ARN) of the model package to describe.
+  ///
+  /// When you specify a name, the name must have 1 to 63 characters. Valid
+  /// characters are a-z, A-Z, 0-9, and - (hyphen).
   Future<DescribeModelPackageOutput> describeModelPackage({
     required String modelPackageName,
   }) async {
@@ -8659,12 +7887,6 @@ class SageMaker {
       modelPackageName,
       1,
       176,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelPackageName',
-      modelPackageName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)(\/[0-9]{1,5})?$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8700,12 +7922,6 @@ class SageMaker {
       170,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelPackageGroup'
@@ -8729,8 +7945,8 @@ class SageMaker {
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [jobDefinitionName] :
-  /// The name of the model quality job. The name must be unique within an AWS
-  /// Region in the AWS account.
+  /// The name of the model quality job. The name must be unique within an
+  /// Amazon Web Services Region in the Amazon Web Services account.
   Future<DescribeModelQualityJobDefinitionResponse>
       describeModelQualityJobDefinition({
     required String jobDefinitionName,
@@ -8741,12 +7957,6 @@ class SageMaker {
       jobDefinitionName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobDefinitionName',
-      jobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8786,12 +7996,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeMonitoringSchedule'
@@ -8823,12 +8027,6 @@ class SageMaker {
       notebookInstanceName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8870,12 +8068,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeNotebookInstanceLifecycleConfig'
@@ -8911,12 +8103,6 @@ class SageMaker {
       pipelineName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -8955,12 +8141,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribePipelineDefinitionForExecution'
@@ -8997,12 +8177,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribePipelineExecution'
@@ -9026,8 +8200,8 @@ class SageMaker {
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [processingJobName] :
-  /// The name of the processing job. The name must be unique within an AWS
-  /// Region in the AWS account.
+  /// The name of the processing job. The name must be unique within an Amazon
+  /// Web Services Region in the Amazon Web Services account.
   Future<DescribeProcessingJobResponse> describeProcessingJob({
     required String processingJobName,
   }) async {
@@ -9037,12 +8211,6 @@ class SageMaker {
       processingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'processingJobName',
-      processingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9078,12 +8246,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'projectName',
-      projectName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeProject'
@@ -9103,7 +8265,8 @@ class SageMaker {
   }
 
   /// Gets information about a work team provided by a vendor. It returns
-  /// details about the subscription with a vendor in the AWS Marketplace.
+  /// details about the subscription with a vendor in the Amazon Web Services
+  /// Marketplace.
   ///
   /// Parameter [workteamArn] :
   /// The Amazon Resource Name (ARN) of the subscribed work team to describe.
@@ -9116,12 +8279,6 @@ class SageMaker {
       workteamArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workteamArn',
-      workteamArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:workteam/.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9144,6 +8301,13 @@ class SageMaker {
 
   /// Returns information about a training job.
   ///
+  /// Some of the attributes below only appear if the training job successfully
+  /// starts. If the training job fails, <code>TrainingJobStatus</code> is
+  /// <code>Failed</code> and, depending on the <code>FailureReason</code>,
+  /// attributes like <code>TrainingStartTime</code>,
+  /// <code>TrainingTimeInSeconds</code>, <code>TrainingEndTime</code>, and
+  /// <code>BillableTimeInSeconds</code> may not be present in the response.
+  ///
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [trainingJobName] :
@@ -9157,12 +8321,6 @@ class SageMaker {
       trainingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trainingJobName',
-      trainingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9200,12 +8358,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'transformJobName',
-      transformJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTransformJob'
@@ -9239,12 +8391,6 @@ class SageMaker {
       trialName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9282,12 +8428,6 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTrialComponent'
@@ -9315,7 +8455,7 @@ class SageMaker {
   /// The domain ID.
   ///
   /// Parameter [userProfileName] :
-  /// The user profile name.
+  /// The user profile name. This value is not case sensitive.
   Future<DescribeUserProfileResponse> describeUserProfile({
     required String domainId,
     required String userProfileName,
@@ -9334,12 +8474,6 @@ class SageMaker {
       userProfileName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9385,12 +8519,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workforceName',
-      workforceName,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeWorkforce'
@@ -9424,12 +8552,6 @@ class SageMaker {
       workteamName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'workteamName',
-      workteamName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9496,24 +8618,12 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
     _s.validateStringLength(
       'trialName',
       trialName,
       1,
       120,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9566,12 +8676,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.GetDeviceFleetReport'
@@ -9593,8 +8697,8 @@ class SageMaker {
   /// Gets a resource policy that manages access for a model group. For
   /// information about resource policies, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html">Identity-based
-  /// policies and resource-based policies</a> in the <i>AWS Identity and Access
-  /// Management User Guide.</i>.
+  /// policies and resource-based policies</a> in the <i>Amazon Web Services
+  /// Identity and Access Management User Guide.</i>.
   ///
   /// Parameter [modelPackageGroupName] :
   /// The name of the model group for which to get the resource policy.
@@ -9607,12 +8711,6 @@ class SageMaker {
       modelPackageGroupName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -9747,21 +8845,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sourceUri',
       sourceUri,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'sourceUri',
-      sourceUri,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9839,21 +8927,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9943,21 +9021,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10035,21 +9103,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'userProfileNameEquals',
       userProfileNameEquals,
       0,
       63,
-    );
-    _s.validateStringPattern(
-      'userProfileNameEquals',
-      userProfileNameEquals,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10136,21 +9194,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sourceUri',
       sourceUri,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'sourceUri',
-      sourceUri,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10242,11 +9290,6 @@ class SageMaker {
       0,
       256,
     );
-    _s.validateStringPattern(
-      'destinationArn',
-      destinationArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
-    );
     _s.validateStringLength(
       'destinationType',
       destinationType,
@@ -10265,21 +9308,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sourceArn',
       sourceArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'sourceArn',
-      sourceArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:(experiment|experiment-trial-component|artifact|action|context)/.*''',
     );
     _s.validateStringLength(
       'sourceType',
@@ -10343,10 +9376,11 @@ class SageMaker {
   /// your next request to receive the next set of results.
   ///
   /// Parameter [sortBy] :
-  /// The parameter by which to sort the results. The default is AutoMLJobName.
+  /// The parameter by which to sort the results. The default is
+  /// <code>Name</code>.
   ///
   /// Parameter [sortOrder] :
-  /// The sort order for the results. The default is Descending.
+  /// The sort order for the results. The default is <code>Descending</code>.
   ///
   /// Parameter [statusEquals] :
   /// Request a list of jobs, using a filter for status.
@@ -10374,21 +9408,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10421,31 +9445,32 @@ class SageMaker {
     return ListAutoMLJobsResponse.fromJson(jsonResponse.body);
   }
 
-  /// List the Candidates created for the job.
+  /// List the candidates created for the job.
   ///
   /// May throw [ResourceNotFound].
   ///
   /// Parameter [autoMLJobName] :
-  /// List the Candidates created for the job by providing the job's name.
+  /// List the candidates created for the job by providing the job's name.
   ///
   /// Parameter [candidateNameEquals] :
-  /// List the Candidates for the job and filter by candidate name.
+  /// List the candidates for the job and filter by candidate name.
   ///
   /// Parameter [maxResults] :
-  /// List the job's Candidates up to a specified limit.
+  /// List the job's candidates up to a specified limit.
   ///
   /// Parameter [nextToken] :
   /// If the previous response was truncated, you receive this token. Use it in
   /// your next request to receive the next set of results.
   ///
   /// Parameter [sortBy] :
-  /// The parameter by which to sort the results. The default is Descending.
+  /// The parameter by which to sort the results. The default is
+  /// <code>Descending</code>.
   ///
   /// Parameter [sortOrder] :
-  /// The sort order for the results. The default is Ascending.
+  /// The sort order for the results. The default is <code>Ascending</code>.
   ///
   /// Parameter [statusEquals] :
-  /// List the Candidates for the job and filter by status.
+  /// List the candidates for the job and filter by status.
   Future<ListCandidatesForAutoMLJobResponse> listCandidatesForAutoMLJob({
     required String autoMLJobName,
     String? candidateNameEquals,
@@ -10461,12 +9486,6 @@ class SageMaker {
       autoMLJobName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoMLJobName',
-      autoMLJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -10486,11 +9505,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10575,21 +9589,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10689,21 +9693,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10797,21 +9791,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sourceUri',
       sourceUri,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'sourceUri',
-      sourceUri,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10890,11 +9874,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -10907,21 +9886,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11003,21 +9972,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11080,11 +10039,6 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -11097,21 +10051,11 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'modelName',
-      modelName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11159,11 +10103,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11244,32 +10183,17 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'modelNameContains',
-      modelNameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nameContains',
       nameContains,
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11351,21 +10275,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11412,7 +10326,8 @@ class SageMaker {
   /// specified timestamp.
   ///
   /// Parameter [maxResults] :
-  /// The maximum number of endpoints to return in the response.
+  /// The maximum number of endpoints to return in the response. This value
+  /// defaults to 10.
   ///
   /// Parameter [nameContains] :
   /// A string in endpoint names. This filter returns only endpoints whose name
@@ -11455,21 +10370,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11546,11 +10451,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11639,11 +10539,6 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListFeatureGroups'
@@ -11715,11 +10610,6 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListFlowDefinitions'
@@ -11784,11 +10674,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11877,21 +10762,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11982,12 +10857,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -11999,11 +10868,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12093,21 +10957,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9\-.]+$''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12202,21 +11056,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12301,22 +11145,11 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workteamArn',
-      workteamArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:workteam/.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'jobReferenceCodeContains',
       jobReferenceCodeContains,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'jobReferenceCodeContains',
-      jobReferenceCodeContains,
-      r'''.+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -12329,11 +11162,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12409,11 +11237,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -12426,21 +11249,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12518,11 +11331,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -12535,21 +11343,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12579,7 +11377,7 @@ class SageMaker {
         jsonResponse.body);
   }
 
-  /// Gets a list of the model groups in your AWS account.
+  /// Gets a list of the model groups in your Amazon Web Services account.
   ///
   /// Parameter [creationTimeAfter] :
   /// A filter that returns only model groups created after the specified time.
@@ -12625,21 +11423,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12743,32 +11531,17 @@ class SageMaker {
       1,
       170,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)$''',
-    );
     _s.validateStringLength(
       'nameContains',
       nameContains,
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12852,11 +11625,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -12869,21 +11637,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12912,7 +11670,7 @@ class SageMaker {
     return ListModelQualityJobDefinitionsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Lists models created with the <a>CreateModel</a> API.
+  /// Lists models created with the <code>CreateModel</code> API.
   ///
   /// Parameter [creationTimeAfter] :
   /// A filter that returns only models with a creation time greater than or
@@ -12960,21 +11718,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13078,11 +11826,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -13095,32 +11838,17 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'monitoringJobDefinitionName',
-      monitoringJobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-    );
     _s.validateStringLength(
       'monitoringScheduleName',
       monitoringScheduleName,
       1,
       63,
     );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13236,11 +11964,6 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -13253,32 +11976,17 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'monitoringJobDefinitionName',
-      monitoringJobDefinitionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*$''',
-    );
     _s.validateStringLength(
       'nameContains',
       nameContains,
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13377,21 +12085,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13425,7 +12123,7 @@ class SageMaker {
   }
 
   /// Returns a list of the Amazon SageMaker notebook instances in the
-  /// requester's account in an AWS Region.
+  /// requester's account in an Amazon Web Services Region.
   ///
   /// Parameter [additionalCodeRepositoryEquals] :
   /// A filter that returns only notebook instances with associated with the
@@ -13505,21 +12203,11 @@ class SageMaker {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'additionalCodeRepositoryEquals',
-      additionalCodeRepositoryEquals,
-      r'''^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-    );
     _s.validateStringLength(
       'defaultCodeRepositoryContains',
       defaultCodeRepositoryContains,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'defaultCodeRepositoryContains',
-      defaultCodeRepositoryContains,
-      r'''[a-zA-Z0-9-]+''',
     );
     _s.validateNumRange(
       'maxResults',
@@ -13533,32 +12221,17 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'notebookInstanceLifecycleConfigNameContains',
       notebookInstanceLifecycleConfigNameContains,
       0,
       63,
-    );
-    _s.validateStringPattern(
-      'notebookInstanceLifecycleConfigNameContains',
-      notebookInstanceLifecycleConfigNameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13635,21 +12308,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineExecutionArn',
       pipelineExecutionArn,
       0,
       256,
-    );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13719,12 +12382,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -13736,11 +12393,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13797,12 +12449,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -13814,11 +12460,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13889,21 +12530,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineNamePrefix',
       pipelineNamePrefix,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'pipelineNamePrefix',
-      pipelineNamePrefix,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13994,11 +12625,6 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListProcessingJobs'
@@ -14030,7 +12656,7 @@ class SageMaker {
     return ListProcessingJobsResponse.fromJson(jsonResponse.body);
   }
 
-  /// Gets a list of the projects in an AWS account.
+  /// Gets a list of the projects in an Amazon Web Services account.
   ///
   /// Parameter [creationTimeAfter] :
   /// A filter that returns the projects that were created after a specified
@@ -14078,21 +12704,11 @@ class SageMaker {
       1,
       32,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14120,9 +12736,9 @@ class SageMaker {
     return ListProjectsOutput.fromJson(jsonResponse.body);
   }
 
-  /// Gets a list of the work teams that you are subscribed to in the AWS
-  /// Marketplace. The list may be empty if no work team satisfies the filter
-  /// specified in the <code>NameContains</code> parameter.
+  /// Gets a list of the work teams that you are subscribed to in the Amazon Web
+  /// Services Marketplace. The list may be empty if no work team satisfies the
+  /// filter specified in the <code>NameContains</code> parameter.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of work teams to return in each page of the response.
@@ -14152,21 +12768,11 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14214,12 +12820,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws[a-z-]*:sagemaker:[a-z0-9-]*:[0-9]{12}:.+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -14231,11 +12831,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14258,6 +12853,29 @@ class SageMaker {
   }
 
   /// Lists training jobs.
+  /// <note>
+  /// When <code>StatusEquals</code> and <code>MaxResults</code> are set at the
+  /// same time, the <code>MaxResults</code> number of training jobs are first
+  /// retrieved ignoring the <code>StatusEquals</code> parameter and then they
+  /// are filtered by the <code>StatusEquals</code> parameter, which is returned
+  /// as a response.
+  ///
+  /// For example, if <code>ListTrainingJobs</code> is invoked with the
+  /// following parameters:
+  ///
+  /// <code>{ ... MaxResults: 100, StatusEquals: InProgress ... }</code>
+  ///
+  /// First, 100 trainings jobs with any status, including those other than
+  /// <code>InProgress</code>, are selected (sorted according to the creation
+  /// time, from the most current to the oldest). Next, those with a status of
+  /// <code>InProgress</code> are returned.
+  ///
+  /// You can quickly test the API using the following Amazon Web Services CLI
+  /// code.
+  ///
+  /// <code>aws sagemaker list-training-jobs --max-results 100 --status-equals
+  /// InProgress</code>
+  /// </note>
   ///
   /// Parameter [creationTimeAfter] :
   /// A filter that returns only training jobs created after the specified time
@@ -14319,21 +12937,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14412,12 +13020,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -14429,11 +13031,6 @@ class SageMaker {
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14522,21 +13119,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''[a-zA-Z0-9\-]+''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14641,11 +13228,6 @@ class SageMaker {
       1,
       120,
     );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -14658,11 +13240,6 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sourceArn',
       sourceArn,
@@ -14674,11 +13251,6 @@ class SageMaker {
       trialName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14761,11 +13333,6 @@ class SageMaker {
       1,
       120,
     );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -14778,21 +13345,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'trialComponentName',
       trialComponentName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14868,21 +13425,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'userProfileNameContains',
       userProfileNameContains,
       0,
       63,
-    );
-    _s.validateStringPattern(
-      'userProfileNameContains',
-      userProfileNameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14908,8 +13455,9 @@ class SageMaker {
     return ListUserProfilesResponse.fromJson(jsonResponse.body);
   }
 
-  /// Use this operation to list all private and vendor workforces in an AWS
-  /// Region. Note that you can only have one private workforce per AWS Region.
+  /// Use this operation to list all private and vendor workforces in an Amazon
+  /// Web Services Region. Note that you can only have one private workforce per
+  /// Amazon Web Services Region.
   ///
   /// Parameter [maxResults] :
   /// The maximum number of workforces returned in the response.
@@ -14945,21 +13493,11 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15023,21 +13561,11 @@ class SageMaker {
       1,
       63,
     );
-    _s.validateStringPattern(
-      'nameContains',
-      nameContains,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-    );
     _s.validateStringLength(
       'nextToken',
       nextToken,
       0,
       8192,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15064,8 +13592,8 @@ class SageMaker {
   /// Adds a resouce policy to control access to a model group. For information
   /// about resoure policies, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html">Identity-based
-  /// policies and resource-based policies</a> in the <i>AWS Identity and Access
-  /// Management User Guide.</i>.
+  /// policies and resource-based policies</a> in the <i>Amazon Web Services
+  /// Identity and Access Management User Guide.</i>.
   ///
   /// Parameter [modelPackageGroupName] :
   /// The name of the model group to add a resource policy to.
@@ -15084,24 +13612,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourcePolicy, 'resourcePolicy');
     _s.validateStringLength(
       'resourcePolicy',
       resourcePolicy,
       1,
       20480,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourcePolicy',
-      resourcePolicy,
-      r'''.*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15146,12 +13662,6 @@ class SageMaker {
       deviceFleetName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(devices, 'devices');
@@ -15210,23 +13720,12 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(task, 'task');
     _s.validateStringLength(
       'humanTaskUiArn',
       humanTaskUiArn,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'humanTaskUiArn',
-      humanTaskUiArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:human-task-ui/.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15306,21 +13805,11 @@ class SageMaker {
       0,
       8192,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'sortBy',
       sortBy,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'sortBy',
-      sortBy,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15345,6 +13834,130 @@ class SageMaker {
     return SearchResponse.fromJson(jsonResponse.body);
   }
 
+  /// Notifies the pipeline that the execution of a callback step failed, along
+  /// with a message describing why. When a callback step is run, the pipeline
+  /// generates a callback token and includes the token in a message sent to
+  /// Amazon Simple Queue Service (Amazon SQS).
+  ///
+  /// May throw [ResourceNotFound].
+  /// May throw [ResourceLimitExceeded].
+  ///
+  /// Parameter [callbackToken] :
+  /// The pipeline generated token from the Amazon SQS queue.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// A unique, case-sensitive identifier that you provide to ensure the
+  /// idempotency of the operation. An idempotent operation completes no more
+  /// than one time.
+  ///
+  /// Parameter [failureReason] :
+  /// A message describing why the step failed.
+  Future<SendPipelineExecutionStepFailureResponse>
+      sendPipelineExecutionStepFailure({
+    required String callbackToken,
+    String? clientRequestToken,
+    String? failureReason,
+  }) async {
+    ArgumentError.checkNotNull(callbackToken, 'callbackToken');
+    _s.validateStringLength(
+      'callbackToken',
+      callbackToken,
+      10,
+      10,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clientRequestToken',
+      clientRequestToken,
+      32,
+      128,
+    );
+    _s.validateStringLength(
+      'failureReason',
+      failureReason,
+      0,
+      256,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'SageMaker.SendPipelineExecutionStepFailure'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'CallbackToken': callbackToken,
+        'ClientRequestToken':
+            clientRequestToken ?? _s.generateIdempotencyToken(),
+        if (failureReason != null) 'FailureReason': failureReason,
+      },
+    );
+
+    return SendPipelineExecutionStepFailureResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Notifies the pipeline that the execution of a callback step succeeded and
+  /// provides a list of the step's output parameters. When a callback step is
+  /// run, the pipeline generates a callback token and includes the token in a
+  /// message sent to Amazon Simple Queue Service (Amazon SQS).
+  ///
+  /// May throw [ResourceNotFound].
+  /// May throw [ResourceLimitExceeded].
+  ///
+  /// Parameter [callbackToken] :
+  /// The pipeline generated token from the Amazon SQS queue.
+  ///
+  /// Parameter [clientRequestToken] :
+  /// A unique, case-sensitive identifier that you provide to ensure the
+  /// idempotency of the operation. An idempotent operation completes no more
+  /// than one time.
+  ///
+  /// Parameter [outputParameters] :
+  /// A list of the output parameters of the callback step.
+  Future<SendPipelineExecutionStepSuccessResponse>
+      sendPipelineExecutionStepSuccess({
+    required String callbackToken,
+    String? clientRequestToken,
+    List<OutputParameter>? outputParameters,
+  }) async {
+    ArgumentError.checkNotNull(callbackToken, 'callbackToken');
+    _s.validateStringLength(
+      'callbackToken',
+      callbackToken,
+      10,
+      10,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'clientRequestToken',
+      clientRequestToken,
+      32,
+      128,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'SageMaker.SendPipelineExecutionStepSuccess'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'CallbackToken': callbackToken,
+        'ClientRequestToken':
+            clientRequestToken ?? _s.generateIdempotencyToken(),
+        if (outputParameters != null) 'OutputParameters': outputParameters,
+      },
+    );
+
+    return SendPipelineExecutionStepSuccessResponse.fromJson(jsonResponse.body);
+  }
+
   /// Starts a previously stopped monitoring schedule.
   /// <note>
   /// By default, when you successfully create a new schedule, the status of a
@@ -15365,12 +13978,6 @@ class SageMaker {
       monitoringScheduleName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15408,12 +14015,6 @@ class SageMaker {
       notebookInstanceName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15468,12 +14069,6 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'clientRequestToken',
       clientRequestToken,
@@ -15486,21 +14081,11 @@ class SageMaker {
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionDescription',
-      pipelineExecutionDescription,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineExecutionDisplayName',
       pipelineExecutionDisplayName,
       1,
       82,
-    );
-    _s.validateStringPattern(
-      'pipelineExecutionDisplayName',
-      pipelineExecutionDisplayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,81}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15543,12 +14128,6 @@ class SageMaker {
       autoMLJobName,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoMLJobName',
-      autoMLJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15594,12 +14173,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'compilationJobName',
-      compilationJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopCompilationJob'
@@ -15629,12 +14202,6 @@ class SageMaker {
       edgePackagingJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15678,12 +14245,6 @@ class SageMaker {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopHyperParameterTuningJob'
@@ -15719,12 +14280,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'labelingJobName',
-      labelingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopLabelingJob'
@@ -15757,12 +14312,6 @@ class SageMaker {
       monitoringScheduleName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -15806,12 +14355,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopNotebookInstance'
@@ -15829,6 +14372,20 @@ class SageMaker {
   }
 
   /// Stops a pipeline execution.
+  ///
+  /// A pipeline execution won't stop while a callback step is running. When you
+  /// call <code>StopPipelineExecution</code> on a pipeline execution with a
+  /// running callback step, SageMaker Pipelines sends an additional Amazon SQS
+  /// message to the specified SQS queue. The body of the SQS message contains a
+  /// "Status" field which is set to "Stopping".
+  ///
+  /// You should add logic to your Amazon SQS message consumer to take any
+  /// needed action (for example, resource cleanup) upon receipt of the message
+  /// followed by a call to <code>SendPipelineExecutionStepSuccess</code> or
+  /// <code>SendPipelineExecutionStepFailure</code>.
+  ///
+  /// Only when SageMaker Pipelines receives one of these calls will it stop the
+  /// pipeline execution.
   ///
   /// May throw [ResourceNotFound].
   ///
@@ -15849,12 +14406,6 @@ class SageMaker {
       pipelineExecutionArn,
       0,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -15900,12 +14451,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'processingJobName',
-      processingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopProcessingJob'
@@ -15946,12 +14491,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trainingJobName',
-      trainingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopTrainingJob'
@@ -15989,12 +14528,6 @@ class SageMaker {
       transformJobName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'transformJobName',
-      transformJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -16047,22 +14580,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'actionName',
-      actionName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       3072,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16106,12 +14628,6 @@ class SageMaker {
       appImageConfigName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'appImageConfigName',
-      appImageConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -16164,22 +14680,11 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'artifactArn',
-      artifactArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:artifact/.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'artifactName',
       artifactName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'artifactName',
-      artifactName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16210,9 +14715,10 @@ class SageMaker {
   ///
   /// Parameter [gitConfig] :
   /// The configuration of the git repository, including the URL and the Amazon
-  /// Resource Name (ARN) of the AWS Secrets Manager secret that contains the
-  /// credentials used to access the repository. The secret must have a staging
-  /// label of <code>AWSCURRENT</code> and must be in the following format:
+  /// Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that
+  /// contains the credentials used to access the repository. The secret must
+  /// have a staging label of <code>AWSCURRENT</code> and must be in the
+  /// following format:
   ///
   /// <code>{"username": <i>UserName</i>, "password": <i>Password</i>}</code>
   Future<UpdateCodeRepositoryOutput> updateCodeRepository({
@@ -16225,12 +14731,6 @@ class SageMaker {
       codeRepositoryName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'codeRepositoryName',
-      codeRepositoryName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -16282,22 +14782,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'contextName',
-      contextName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       3072,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16334,12 +14823,21 @@ class SageMaker {
   /// Parameter [description] :
   /// Description of the fleet.
   ///
+  /// Parameter [enableIotRoleAlias] :
+  /// Whether to create an Amazon Web Services IoT Role Alias during device
+  /// fleet creation. The name of the role alias generated will match this
+  /// pattern: "SageMakerEdge-{DeviceFleetName}".
+  ///
+  /// For example, if your device fleet is called "demo-fleet", the name of the
+  /// role alias will be "SageMakerEdge-demo-fleet".
+  ///
   /// Parameter [roleArn] :
   /// The Amazon Resource Name (ARN) of the device.
   Future<void> updateDeviceFleet({
     required String deviceFleetName,
     required EdgeOutputConfig outputConfig,
     String? description,
+    bool? enableIotRoleAlias,
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
@@ -16350,12 +14848,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     _s.validateStringLength(
       'description',
@@ -16363,21 +14855,11 @@ class SageMaker {
       1,
       800,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[\S\s]+''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16393,6 +14875,8 @@ class SageMaker {
         'DeviceFleetName': deviceFleetName,
         'OutputConfig': outputConfig,
         if (description != null) 'Description': description,
+        if (enableIotRoleAlias != null)
+          'EnableIotRoleAlias': enableIotRoleAlias,
         if (roleArn != null) 'RoleArn': roleArn,
       },
     );
@@ -16415,12 +14899,6 @@ class SageMaker {
       deviceFleetName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'deviceFleetName',
-      deviceFleetName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(devices, 'devices');
@@ -16550,24 +15028,12 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointConfigName',
-      endpointConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endpointName, 'endpointName');
     _s.validateStringLength(
       'endpointName',
       endpointName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -16623,12 +15089,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'endpointName',
-      endpointName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateEndpointWeightsAndCapacities'
@@ -16677,33 +15137,17 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'experimentName',
-      experimentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16762,22 +15206,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'imageName',
-      imageName,
-      r'''^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       512,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.*''',
     );
     _s.validateStringLength(
       'displayName',
@@ -16785,21 +15218,11 @@ class SageMaker {
       1,
       128,
     );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^\S(.*\S)?$''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16847,22 +15270,11 @@ class SageMaker {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'modelPackageArn',
-      modelPackageArn,
-      r'''arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:model-package/.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'approvalDescription',
       approvalDescription,
       0,
       1024,
-    );
-    _s.validateStringPattern(
-      'approvalDescription',
-      approvalDescription,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -16895,8 +15307,8 @@ class SageMaker {
   /// defines the monitoring job.
   ///
   /// Parameter [monitoringScheduleName] :
-  /// The name of the monitoring schedule. The name must be unique within an AWS
-  /// Region within an AWS account.
+  /// The name of the monitoring schedule. The name must be unique within an
+  /// Amazon Web Services Region within an Amazon Web Services account.
   Future<UpdateMonitoringScheduleResponse> updateMonitoringSchedule({
     required MonitoringScheduleConfig monitoringScheduleConfig,
     required String monitoringScheduleName,
@@ -16910,12 +15322,6 @@ class SageMaker {
       monitoringScheduleName,
       1,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -16957,10 +15363,10 @@ class SageMaker {
   /// An array of up to three Git repositories to associate with the notebook
   /// instance. These can be either the names of Git repositories stored as
   /// resources in your account, or the URL of Git repositories in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. These repositories are
-  /// cloned at the same level as the default repository of your notebook
-  /// instance. For more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. These
+  /// repositories are cloned at the same level as the default repository of
+  /// your notebook instance. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   ///
@@ -16968,10 +15374,10 @@ class SageMaker {
   /// The Git repository to associate with the notebook instance as its default
   /// code repository. This can be either the name of a Git repository stored as
   /// a resource in your account, or the URL of a Git repository in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. When you open a notebook
-  /// instance, it opens in the directory that contains this repository. For
-  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. When you open
+  /// a notebook instance, it opens in the directory that contains this
+  /// repository. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   ///
@@ -17059,22 +15465,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceName',
-      notebookInstanceName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'defaultCodeRepository',
       defaultCodeRepository,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'defaultCodeRepository',
-      defaultCodeRepository,
-      r'''^https://([^/]+)/?(.*)$|^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
     );
     _s.validateStringLength(
       'lifecycleConfigName',
@@ -17082,21 +15477,11 @@ class SageMaker {
       0,
       63,
     );
-    _s.validateStringPattern(
-      'lifecycleConfigName',
-      lifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     _s.validateNumRange(
       'volumeSizeInGB',
@@ -17172,12 +15557,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9])*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateNotebookInstanceLifecycleConfig'
@@ -17230,22 +15609,11 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineName',
-      pipelineName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'pipelineDefinition',
       pipelineDefinition,
       1,
       1048576,
-    );
-    _s.validateStringPattern(
-      'pipelineDefinition',
-      pipelineDefinition,
-      r'''.*(?:[ \r\n\t].*)*''',
     );
     _s.validateStringLength(
       'pipelineDescription',
@@ -17253,32 +15621,17 @@ class SageMaker {
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'pipelineDescription',
-      pipelineDescription,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineDisplayName',
       pipelineDisplayName,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'pipelineDisplayName',
-      pipelineDisplayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,255}''',
-    );
     _s.validateStringLength(
       'roleArn',
       roleArn,
       20,
       2048,
-    );
-    _s.validateStringPattern(
-      'roleArn',
-      roleArn,
-      r'''^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -17330,33 +15683,17 @@ class SageMaker {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      r'''^arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:pipeline\/.*\/execution\/.*$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'pipelineExecutionDescription',
       pipelineExecutionDescription,
       0,
       3072,
     );
-    _s.validateStringPattern(
-      'pipelineExecutionDescription',
-      pipelineExecutionDescription,
-      r'''.*''',
-    );
     _s.validateStringLength(
       'pipelineExecutionDisplayName',
       pipelineExecutionDisplayName,
       1,
       82,
-    );
-    _s.validateStringPattern(
-      'pipelineExecutionDisplayName',
-      pipelineExecutionDisplayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,81}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -17408,12 +15745,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trainingJobName',
-      trainingJobName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateTrainingJob'
@@ -17459,22 +15790,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialName',
-      trialName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -17558,22 +15878,11 @@ class SageMaker {
       120,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'trialComponentName',
-      trialComponentName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'displayName',
       displayName,
       1,
       120,
-    );
-    _s.validateStringPattern(
-      'displayName',
-      displayName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -17639,12 +15948,6 @@ class SageMaker {
       userProfileName,
       0,
       63,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userProfileName',
-      userProfileName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -17722,12 +16025,6 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workforceName',
-      workforceName,
-      r'''^[a-zA-Z0-9]([a-zA-Z0-9\-]){0,62}$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateWorkforce'
@@ -17803,22 +16100,11 @@ class SageMaker {
       63,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'workteamName',
-      workteamName,
-      r'''^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       1,
       200,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -18117,9 +16403,9 @@ class AlgorithmSpecification {
   final TrainingInputMode trainingInputMode;
 
   /// The name of the algorithm resource to use for the training job. This must be
-  /// an algorithm resource that you created or subscribe to on AWS Marketplace.
-  /// If you specify a value for this parameter, you can't specify a value for
-  /// <code>TrainingImage</code>.
+  /// an algorithm resource that you created or subscribe to on Amazon Web
+  /// Services Marketplace. If you specify a value for this parameter, you can't
+  /// specify a value for <code>TrainingImage</code>.
   final String? algorithmName;
 
   /// To generate and save time-series metrics during training, set to
@@ -18342,7 +16628,7 @@ class AlgorithmSummary {
 /// to validate your algorithm.
 ///
 /// The data provided in the validation profile is made available to your buyers
-/// on AWS Marketplace.
+/// on Amazon Web Services Marketplace.
 class AlgorithmValidationProfile {
   /// The name of the profile for the algorithm. The name must have 1 to 63
   /// characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).
@@ -18444,27 +16730,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-BoundingBox</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-BoundingBox</code>
   /// </li>
   /// </ul>
@@ -18475,27 +16772,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-ImageMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-ImageMultiClass</code>
   /// </li>
   /// </ul>
@@ -18506,27 +16814,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-ImageMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-ImageMultiClassMultiLabel</code>
   /// </li>
   /// </ul>
@@ -18537,27 +16856,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-SemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-SemanticSegmentation</code>
   /// </li>
   /// </ul>
@@ -18567,28 +16897,39 @@ class AnnotationConsolidationConfig {
   ///
   /// <ul>
   /// <li>
-  /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-TextMultiClass</code>
-  ///
+  /// <code>rn:aws:lambda:us-east-1:432418664414:function:ACS-TextMultiClass</code>
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-TextMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-TextMultiClass</code>
   /// </li>
   /// </ul>
@@ -18599,27 +16940,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-TextMultiClassMultiLabel</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-TextMultiClassMultiLabel</code>
   /// </li>
   /// </ul>
@@ -18629,57 +16981,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-NamedEntityRecognition</code>
-  ///
-  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-NamedEntityRecognition</code>
   /// </li>
-  /// </ul>
-  /// <b>Named entity recognition</b> - Groups similar selections and calculates
-  /// aggregate boundaries, resolving to most-assigned label.
-  ///
-  /// <ul>
   /// <li>
-  /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-NamedEntityRecognition</code>
-  ///
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-NamedEntityRecognition</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-NamedEntityRecognition</code>
   /// </li>
   /// </ul>
@@ -18690,27 +17023,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VideoMultiClass</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VideoMultiClass</code>
   /// </li>
   /// </ul>
@@ -18723,27 +17067,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VideoObjectDetection</code>
   /// </li>
   /// </ul>
@@ -18756,31 +17111,42 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VideoObjectTracking</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud object detection</b> - Use this task type when you want
+  /// <b>3D Point Cloud Object Detection</b> - Use this task type when you want
   /// workers to classify objects in a 3D point cloud by drawing 3D cuboids around
   /// objects. For example, you can use this task type to ask workers to identify
   /// different types of objects in a point cloud, such as cars, bikes, and
@@ -18789,31 +17155,42 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-3DPointCloudObjectDetection</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud object tracking</b> - Use this task type when you want
+  /// <b>3D Point Cloud Object Tracking</b> - Use this task type when you want
   /// workers to draw 3D cuboids around objects that appear in a sequence of 3D
   /// point cloud frames. For example, you can use this task type to ask workers
   /// to track the movement of vehicles across multiple point cloud frames.
@@ -18821,31 +17198,42 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-3DPointCloudObjectTracking</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud semantic segmentation</b> - Use this task type when you
+  /// <b>3D Point Cloud Semantic Segmentation</b> - Use this task type when you
   /// want workers to create a point-level semantic segmentation masks by painting
   /// objects in a 3D point cloud using different colors where each color is
   /// assigned to one of the classes you specify.
@@ -18853,27 +17241,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-3DPointCloudSemanticSegmentation</code>
   /// </li>
   /// </ul>
@@ -18884,38 +17283,49 @@ class AnnotationConsolidationConfig {
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-verification-data.html">Verify
   /// and Adjust Labels </a>.
   ///
-  /// <b>Semantic segmentation adjustment</b> - Treats each pixel in an image as a
+  /// <b>Semantic Segmentation Adjustment</b> - Treats each pixel in an image as a
   /// multi-class classification and treats pixel adjusted annotations from
   /// workers as "votes" for the correct label.
   ///
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-AdjustmentSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-AdjustmentSemanticSegmentation</code>
   /// </li>
   /// </ul>
-  /// <b>Semantic segmentation verification</b> - Uses a variant of the
+  /// <b>Semantic Segmentation Verification</b> - Uses a variant of the
   /// Expectation Maximization approach to estimate the true class of verification
   /// judgment for semantic segmentation labels based on annotations from
   /// individual workers.
@@ -18923,89 +17333,122 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VerificationSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VerificationSemanticSegmentation</code>
   /// </li>
   /// </ul>
-  /// <b>Bounding box verification</b> - Uses a variant of the Expectation
+  /// <b>Bounding Box Adjustment</b> - Finds the most similar boxes from different
+  /// workers based on the Jaccard index of the adjusted annotations.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-AdjustmentBoundingBox</code>
+  /// </li>
+  /// </ul>
+  /// <b>Bounding Box Verification</b> - Uses a variant of the Expectation
   /// Maximization approach to estimate the true class of verification judgement
   /// for bounding box labels based on annotations from individual workers.
   ///
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VerificationBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VerificationBoundingBox</code>
   /// </li>
-  /// </ul>
-  /// <b>Bounding box adjustment</b> - Finds the most similar boxes from different
-  /// workers based on the Jaccard index of the adjusted annotations.
-  ///
-  /// <ul>
   /// <li>
-  /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-AdjustmentBoundingBox</code>
-  ///
-  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-AdjustmentBoundingBox</code>
+  /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-VerificationBoundingBox</code>
+  /// </li>
+  /// <li>
+  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-VerificationBoundingBox</code>
   /// </li>
   /// </ul>
   /// <b>Video Frame Object Detection Adjustment</b> - Use this task type when you
@@ -19015,27 +17458,38 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-AdjustmentVideoObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-AdjustmentVideoObjectDetection</code>
   /// </li>
   /// </ul>
@@ -19046,119 +17500,166 @@ class AnnotationConsolidationConfig {
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-AdjustmentVideoObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-AdjustmentVideoObjectTracking</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud object detection adjustment</b> - Use this task type when
+  /// <b>3D Point Cloud Object Detection Adjustment</b> - Use this task type when
   /// you want workers to adjust 3D cuboids around objects in a 3D point cloud.
   ///
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-Adjustment3DPointCloudObjectDetection</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-Adjustment3DPointCloudObjectDetection</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud object tracking adjustment</b> - Use this task type when
+  /// <b>3D Point Cloud Object Tracking Adjustment</b> - Use this task type when
   /// you want workers to adjust 3D cuboids around objects that appear in a
   /// sequence of 3D point cloud frames.
   ///
   /// <ul>
   /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-Adjustment3DPointCloudObjectTracking</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-Adjustment3DPointCloudObjectTracking</code>
   /// </li>
   /// </ul>
-  /// <b>3D point cloud semantic segmentation adjustment</b> - Use this task type
+  /// <b>3D Point Cloud Semantic Segmentation Adjustment</b> - Use this task type
   /// when you want workers to adjust a point-level semantic segmentation masks
   /// using a paint tool.
   ///
   /// <ul>
   /// <li>
+  /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-3DPointCloudSemanticSegmentation</code>
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-1:432418664414:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-east-2:266458841044:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:us-west-2:081040173940:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-1:568282634449:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-south-1:565803892007:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-central-1:203001061592:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:eu-west-2:487402164563:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
-  ///
+  /// </li>
+  /// <li>
   /// <code>arn:aws:lambda:ca-central-1:918755190332:function:ACS-Adjustment3DPointCloudSemanticSegmentation</code>
   /// </li>
   /// </ul>
@@ -19937,8 +18438,9 @@ class AthenaDatasetDefinition {
   final String outputS3Uri;
   final String queryString;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data generated from an Athena query execution.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data generated from an Athena query
+  /// execution.
   final String? kmsKeyId;
   final AthenaResultCompressionType? outputCompression;
   final String? workGroup;
@@ -20097,15 +18599,15 @@ extension on String {
 }
 
 /// An Autopilot job returns recommendations, or candidates. Each candidate has
-/// futher details about the steps involed, and the status.
+/// futher details about the steps involved and the status.
 class AutoMLCandidate {
-  /// The candidate name.
+  /// The name of the candidate.
   final String candidateName;
 
   /// The candidate's status.
   final CandidateStatus candidateStatus;
 
-  /// The candidate's steps.
+  /// Information about the candidate's steps.
   final List<AutoMLCandidateStep> candidateSteps;
 
   /// The creation time.
@@ -20114,8 +18616,11 @@ class AutoMLCandidate {
   /// The last modified time.
   final DateTime lastModifiedTime;
 
-  /// The objective status.
+  /// The objective's status.
   final ObjectiveStatus objectiveStatus;
+
+  /// The AutoML candidate's properties.
+  final CandidateProperties? candidateProperties;
 
   /// The end time.
   final DateTime? endTime;
@@ -20124,7 +18629,7 @@ class AutoMLCandidate {
   final String? failureReason;
   final FinalAutoMLJobObjectiveMetric? finalAutoMLJobObjectiveMetric;
 
-  /// The inference containers.
+  /// Information about the inference container definitions.
   final List<AutoMLContainerDefinition>? inferenceContainers;
 
   AutoMLCandidate({
@@ -20134,6 +18639,7 @@ class AutoMLCandidate {
     required this.creationTime,
     required this.lastModifiedTime,
     required this.objectiveStatus,
+    this.candidateProperties,
     this.endTime,
     this.failureReason,
     this.finalAutoMLJobObjectiveMetric,
@@ -20152,6 +18658,10 @@ class AutoMLCandidate {
       lastModifiedTime:
           nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
       objectiveStatus: (json['ObjectiveStatus'] as String).toObjectiveStatus(),
+      candidateProperties: json['CandidateProperties'] != null
+          ? CandidateProperties.fromJson(
+              json['CandidateProperties'] as Map<String, dynamic>)
+          : null,
       endTime: timeStampFromJson(json['EndTime']),
       failureReason: json['FailureReason'] as String?,
       finalAutoMLJobObjectiveMetric:
@@ -20168,15 +18678,15 @@ class AutoMLCandidate {
   }
 }
 
-/// Information about the steps for a Candidate, and what step it is working on.
+/// Information about the steps for a candidate and what step it is working on.
 class AutoMLCandidateStep {
-  /// The ARN for the Candidate's step.
+  /// The ARN for the candidate's step.
   final String candidateStepArn;
 
-  /// The name for the Candidate's step.
+  /// The name for the candidate's step.
   final String candidateStepName;
 
-  /// Whether the Candidate is at the transform, training, or processing step.
+  /// Whether the candidate is at the transform, training, or processing step.
   final CandidateStepType candidateStepType;
 
   AutoMLCandidateStep({
@@ -20194,16 +18704,18 @@ class AutoMLCandidateStep {
   }
 }
 
-/// Similar to Channel. A channel is a named input source that training
-/// algorithms can consume. Refer to Channel for detailed descriptions.
+/// A channel is a named input source that training algorithms can consume. For
+/// more information, see .
 class AutoMLChannel {
-  /// The data source.
+  /// The data source for an AutoML channel.
   final AutoMLDataSource dataSource;
 
-  /// The name of the target variable in supervised learning, a.k.a. 'y'.
+  /// The name of the target variable in supervised learning, usually represented
+  /// by 'y'.
   final String targetAttributeName;
 
-  /// You can use Gzip or None. The default value is None.
+  /// You can use <code>Gzip</code> or <code>None</code>. The default value is
+  /// <code>None</code>.
   final CompressionType? compressionType;
 
   AutoMLChannel({
@@ -20234,18 +18746,16 @@ class AutoMLChannel {
 }
 
 /// A list of container definitions that describe the different containers that
-/// make up one AutoML candidate. Refer to ContainerDefinition for more details.
+/// make up an AutoML candidate. For more information, see .
 class AutoMLContainerDefinition {
-  /// The ECR path of the container. Refer to ContainerDefinition for more
-  /// details.
+  /// The ECR path of the container. For more information, see .
   final String image;
 
-  /// The location of the model artifacts. Refer to ContainerDefinition for more
-  /// details.
+  /// The location of the model artifacts. For more information, see .
   final String modelDataUrl;
 
-  /// Environment variables to set in the container. Refer to ContainerDefinition
-  /// for more details.
+  /// The environment variables to set in the container. For more information, see
+  /// .
   final Map<String, String>? environment;
 
   AutoMLContainerDefinition({
@@ -20289,12 +18799,12 @@ class AutoMLDataSource {
   }
 }
 
-/// Artifacts that are generation during a job.
+/// The artifacts that are generated during an AutoML job.
 class AutoMLJobArtifacts {
-  /// The URL to the notebook location.
+  /// The URL of the notebook location.
   final String? candidateDefinitionNotebookLocation;
 
-  /// The URL to the notebook location.
+  /// The URL of the notebook location.
   final String? dataExplorationNotebookLocation;
 
   AutoMLJobArtifacts({
@@ -20314,15 +18824,14 @@ class AutoMLJobArtifacts {
 /// How long a job is allowed to run, or how many candidates a job is allowed to
 /// generate.
 class AutoMLJobCompletionCriteria {
-  /// The maximum time, in seconds, an AutoML job is allowed to wait for a trial
-  /// to complete. It must be equal to or greater than
-  /// MaxRuntimePerTrainingJobInSeconds.
+  /// The maximum runtime, in seconds, an AutoML job has to complete.
   final int? maxAutoMLJobRuntimeInSeconds;
 
   /// The maximum number of times a training job is allowed to run.
   final int? maxCandidates;
 
-  /// The maximum time, in seconds, a job is allowed to run.
+  /// The maximum time, in seconds, a training job is allowed to run as part of an
+  /// AutoML job.
   final int? maxRuntimePerTrainingJobInSeconds;
 
   AutoMLJobCompletionCriteria({
@@ -20355,13 +18864,13 @@ class AutoMLJobCompletionCriteria {
   }
 }
 
-/// A collection of settings used for a job.
+/// A collection of settings used for an AutoML job.
 class AutoMLJobConfig {
-  /// How long a job is allowed to run, or how many candidates a job is allowed to
-  /// generate.
+  /// How long an AutoML job is allowed to run, or how many candidates a job is
+  /// allowed to generate.
   final AutoMLJobCompletionCriteria? completionCriteria;
 
-  /// Security configuration for traffic encryption or Amazon VPC settings.
+  /// The security configuration for traffic encryption or Amazon VPC settings.
   final AutoMLSecurityConfig? securityConfig;
 
   AutoMLJobConfig({
@@ -20403,32 +18912,33 @@ class AutoMLJobObjective {
   /// <li>
   /// <code>MSE</code>: The mean squared error (MSE) is the average of the squared
   /// differences between the predicted and actual values. It is used for
-  /// regression. MSE values are always positive, the better a model is at
-  /// predicting the actual values the smaller the MSE value. When the data
-  /// contains outliers, they tend to dominate the MSE which might cause subpar
+  /// regression. MSE values are always positive: the better a model is at
+  /// predicting the actual values, the smaller the MSE value. When the data
+  /// contains outliers, they tend to dominate the MSE, which might cause subpar
   /// prediction performance.
   /// </li>
   /// <li>
-  /// <code>Accuracy</code>: The ratio of the number correctly classified items to
-  /// the total number (correctly and incorrectly) classified. It is used for
-  /// binary and multiclass classification. Measures how close the predicted class
-  /// values are to the actual values. Accuracy values vary between zero and one,
-  /// one being perfect accuracy and zero perfect inaccuracy.
+  /// <code>Accuracy</code>: The ratio of the number of correctly classified items
+  /// to the total number of (correctly and incorrectly) classified items. It is
+  /// used for binary and multiclass classification. It measures how close the
+  /// predicted class values are to the actual values. Accuracy values vary
+  /// between zero and one: one indicates perfect accuracy and zero indicates
+  /// perfect inaccuracy.
   /// </li>
   /// <li>
   /// <code>F1</code>: The F1 score is the harmonic mean of the precision and
   /// recall. It is used for binary classification into classes traditionally
   /// referred to as positive and negative. Predictions are said to be true when
-  /// they match their actual (correct) class; false when they do not. Precision
-  /// is the ratio of the true positive predictions to all positive predictions
-  /// (including the false positives) in a data set and measures the quality of
-  /// the prediction when it predicts the positive class. Recall (or sensitivity)
-  /// is the ratio of the true positive predictions to all actual positive
-  /// instances and measures how completely a model predicts the actual class
-  /// members in a data set. The standard F1 score weighs precision and recall
-  /// equally. But which metric is paramount typically depends on specific aspects
-  /// of a problem. F1 scores vary between zero and one, one being the best
-  /// possible performance and zero the worst.
+  /// they match their actual (correct) class and false when they do not.
+  /// Precision is the ratio of the true positive predictions to all positive
+  /// predictions (including the false positives) in a data set and measures the
+  /// quality of the prediction when it predicts the positive class. Recall (or
+  /// sensitivity) is the ratio of the true positive predictions to all actual
+  /// positive instances and measures how completely a model predicts the actual
+  /// class members in a data set. The standard F1 score weighs precision and
+  /// recall equally. But which metric is paramount typically depends on specific
+  /// aspects of a problem. F1 scores vary between zero and one: one indicates the
+  /// best possible performance and zero the worst.
   /// </li>
   /// <li>
   /// <code>AUC</code>: The area under the curve (AUC) metric is used to compare
@@ -20444,18 +18954,19 @@ class AutoMLJobObjective {
   /// classification thresholds. The AUC score can also be interpreted as the
   /// probability that a randomly selected positive data point is more likely to
   /// be predicted positive than a randomly selected negative example. AUC scores
-  /// vary between zero and one, one being perfect accuracy and one half not
-  /// better than a random classifier. Values less that one half predict worse
-  /// than a random predictor and such consistently bad predictors can be inverted
-  /// to obtain better than random predictors.
+  /// vary between zero and one: a score of one indicates perfect accuracy and a
+  /// score of one half indicates that the prediction is not better than a random
+  /// classifier. Values under one half predict less accurately than a random
+  /// predictor. But such consistently bad predictors can simply be inverted to
+  /// obtain better than random predictors.
   /// </li>
   /// <li>
   /// <code>F1macro</code>: The F1macro score applies F1 scoring to multiclass
   /// classification. In this context, you have multiple classes to predict. You
   /// just calculate the precision and recall for each class as you did for the
-  /// positive class in binary classification. Then used these values to calculate
+  /// positive class in binary classification. Then, use these values to calculate
   /// the F1 score for each class and average them to obtain the F1macro score.
-  /// F1macro scores vary between zero and one, one being the best possible
+  /// F1macro scores vary between zero and one: one indicates the best possible
   /// performance and zero the worst.
   /// </li>
   /// </ul>
@@ -20531,6 +19042,11 @@ enum AutoMLJobSecondaryStatus {
   maxAutoMLJobRuntimeReached,
   stopping,
   candidateDefinitionsGenerated,
+  generatingExplainabilityReport,
+  completed,
+  explainabilityError,
+  deployingModel,
+  modelDeploymentError,
 }
 
 extension on AutoMLJobSecondaryStatus {
@@ -20556,6 +19072,16 @@ extension on AutoMLJobSecondaryStatus {
         return 'Stopping';
       case AutoMLJobSecondaryStatus.candidateDefinitionsGenerated:
         return 'CandidateDefinitionsGenerated';
+      case AutoMLJobSecondaryStatus.generatingExplainabilityReport:
+        return 'GeneratingExplainabilityReport';
+      case AutoMLJobSecondaryStatus.completed:
+        return 'Completed';
+      case AutoMLJobSecondaryStatus.explainabilityError:
+        return 'ExplainabilityError';
+      case AutoMLJobSecondaryStatus.deployingModel:
+        return 'DeployingModel';
+      case AutoMLJobSecondaryStatus.modelDeploymentError:
+        return 'ModelDeploymentError';
     }
   }
 }
@@ -20583,6 +19109,16 @@ extension on String {
         return AutoMLJobSecondaryStatus.stopping;
       case 'CandidateDefinitionsGenerated':
         return AutoMLJobSecondaryStatus.candidateDefinitionsGenerated;
+      case 'GeneratingExplainabilityReport':
+        return AutoMLJobSecondaryStatus.generatingExplainabilityReport;
+      case 'Completed':
+        return AutoMLJobSecondaryStatus.completed;
+      case 'ExplainabilityError':
+        return AutoMLJobSecondaryStatus.explainabilityError;
+      case 'DeployingModel':
+        return AutoMLJobSecondaryStatus.deployingModel;
+      case 'ModelDeploymentError':
+        return AutoMLJobSecondaryStatus.modelDeploymentError;
     }
     throw Exception('$this is not known in enum AutoMLJobSecondaryStatus');
   }
@@ -20631,31 +19167,34 @@ extension on String {
   }
 }
 
-/// Provides a summary about a job.
+/// Provides a summary about an AutoML job.
 class AutoMLJobSummary {
-  /// The ARN of the job.
+  /// The ARN of the AutoML job.
   final String autoMLJobArn;
 
-  /// The name of the object you are requesting.
+  /// The name of the AutoML you are requesting.
   final String autoMLJobName;
 
-  /// The job's secondary status.
+  /// The secondary status of the AutoML job.
   final AutoMLJobSecondaryStatus autoMLJobSecondaryStatus;
 
-  /// The job's status.
+  /// The status of the AutoML job.
   final AutoMLJobStatus autoMLJobStatus;
 
-  /// When the job was created.
+  /// When the AutoML job was created.
   final DateTime creationTime;
 
-  /// When the job was last modified.
+  /// When the AutoML job was last modified.
   final DateTime lastModifiedTime;
 
   /// The end time of an AutoML job.
   final DateTime? endTime;
 
-  /// The failure reason of a job.
+  /// The failure reason of an AutoML job.
   final String? failureReason;
+
+  /// The list of reasons for partial failures within an AutoML job.
+  final List<AutoMLPartialFailureReason>? partialFailureReasons;
 
   AutoMLJobSummary({
     required this.autoMLJobArn,
@@ -20666,6 +19205,7 @@ class AutoMLJobSummary {
     required this.lastModifiedTime,
     this.endTime,
     this.failureReason,
+    this.partialFailureReasons,
   });
   factory AutoMLJobSummary.fromJson(Map<String, dynamic> json) {
     return AutoMLJobSummary(
@@ -20680,6 +19220,11 @@ class AutoMLJobSummary {
           nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
       endTime: timeStampFromJson(json['EndTime']),
       failureReason: json['FailureReason'] as String?,
+      partialFailureReasons: (json['PartialFailureReasons'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AutoMLPartialFailureReason.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -20732,7 +19277,7 @@ class AutoMLOutputDataConfig {
   /// The Amazon S3 output path. Must be 128 characters or less.
   final String s3OutputPath;
 
-  /// The AWS KMS encryption key ID.
+  /// The Amazon Web Services KMS encryption key ID.
   final String? kmsKeyId;
 
   AutoMLOutputDataConfig({
@@ -20753,6 +19298,21 @@ class AutoMLOutputDataConfig {
       'S3OutputPath': s3OutputPath,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
     };
+  }
+}
+
+/// The reason for a partial failure of an AutoML job.
+class AutoMLPartialFailureReason {
+  /// The message containing the reason for a partial failure of an AutoML job.
+  final String? partialFailureMessage;
+
+  AutoMLPartialFailureReason({
+    this.partialFailureMessage,
+  });
+  factory AutoMLPartialFailureReason.fromJson(Map<String, dynamic> json) {
+    return AutoMLPartialFailureReason(
+      partialFailureMessage: json['PartialFailureMessage'] as String?,
+    );
   }
 }
 
@@ -20821,7 +19381,7 @@ class AutoMLSecurityConfig {
   /// The key used to encrypt stored data.
   final String? volumeKmsKeyId;
 
-  /// VPC configuration.
+  /// The VPC configuration.
   final VpcConfig? vpcConfig;
 
   AutoMLSecurityConfig({
@@ -21105,6 +19665,69 @@ class CacheHitResult {
   factory CacheHitResult.fromJson(Map<String, dynamic> json) {
     return CacheHitResult(
       sourcePipelineExecutionArn: json['SourcePipelineExecutionArn'] as String?,
+    );
+  }
+}
+
+/// Metadata about a callback step.
+class CallbackStepMetadata {
+  /// The pipeline generated token from the Amazon SQS queue.
+  final String? callbackToken;
+
+  /// A list of the output parameters of the callback step.
+  final List<OutputParameter>? outputParameters;
+
+  /// The URL of the Amazon Simple Queue Service (Amazon SQS) queue used by the
+  /// callback step.
+  final String? sqsQueueUrl;
+
+  CallbackStepMetadata({
+    this.callbackToken,
+    this.outputParameters,
+    this.sqsQueueUrl,
+  });
+  factory CallbackStepMetadata.fromJson(Map<String, dynamic> json) {
+    return CallbackStepMetadata(
+      callbackToken: json['CallbackToken'] as String?,
+      outputParameters: (json['OutputParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => OutputParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sqsQueueUrl: json['SqsQueueUrl'] as String?,
+    );
+  }
+}
+
+/// The location of artifacts for an AutoML candidate job.
+class CandidateArtifactLocations {
+  /// The Amazon S3 prefix to the explainability artifacts generated for the
+  /// AutoML candidate.
+  final String explainability;
+
+  CandidateArtifactLocations({
+    required this.explainability,
+  });
+  factory CandidateArtifactLocations.fromJson(Map<String, dynamic> json) {
+    return CandidateArtifactLocations(
+      explainability: json['Explainability'] as String,
+    );
+  }
+}
+
+/// The properties of an AutoML candidate job.
+class CandidateProperties {
+  /// The Amazon S3 prefix to the artifacts generated for an AutoML candidate.
+  final CandidateArtifactLocations? candidateArtifactLocations;
+
+  CandidateProperties({
+    this.candidateArtifactLocations,
+  });
+  factory CandidateProperties.fromJson(Map<String, dynamic> json) {
+    return CandidateProperties(
+      candidateArtifactLocations: json['CandidateArtifactLocations'] != null
+          ? CandidateArtifactLocations.fromJson(
+              json['CandidateArtifactLocations'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -21738,8 +20361,8 @@ class CodeRepositorySummary {
   final DateTime lastModifiedTime;
 
   /// Configuration details for the Git repository, including the URL where it is
-  /// located and the ARN of the AWS Secrets Manager secret that contains the
-  /// credentials used to access the repository.
+  /// located and the ARN of the Amazon Web Services Secrets Manager secret that
+  /// contains the credentials used to access the repository.
   final GitConfig? gitConfig;
 
   CodeRepositorySummary({
@@ -22130,14 +20753,16 @@ class ContainerDefinition {
   /// The model artifacts must be in an S3 bucket that is in the same region as
   /// the model or endpoint you are creating.
   /// </note>
-  /// If you provide a value for this parameter, Amazon SageMaker uses AWS
-  /// Security Token Service to download model artifacts from the S3 path you
-  /// provide. AWS STS is activated in your IAM user account by default. If you
-  /// previously deactivated AWS STS for a region, you need to reactivate AWS STS
-  /// for that region. For more information, see <a
+  /// If you provide a value for this parameter, Amazon SageMaker uses Amazon Web
+  /// Services Security Token Service to download model artifacts from the S3 path
+  /// you provide. Amazon Web Services STS is activated in your IAM user account
+  /// by default. If you previously deactivated Amazon Web Services STS for a
+  /// region, you need to reactivate Amazon Web Services STS for that region. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html">Activating
-  /// and Deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and
-  /// Access Management User Guide</i>.
+  /// and Deactivating Amazon Web Services STS in an Amazon Web Services
+  /// Region</a> in the <i>Amazon Web Services Identity and Access Management User
+  /// Guide</i>.
   /// <important>
   /// If you use a built-in algorithm to create a model, Amazon SageMaker requires
   /// that you provide a S3 path to the model artifacts in
@@ -22149,6 +20774,9 @@ class ContainerDefinition {
   /// the model.
   final String? modelPackageName;
 
+  /// Specifies additional configuration for multi-model endpoints.
+  final MultiModelConfig? multiModelConfig;
+
   ContainerDefinition({
     this.containerHostname,
     this.environment,
@@ -22157,6 +20785,7 @@ class ContainerDefinition {
     this.mode,
     this.modelDataUrl,
     this.modelPackageName,
+    this.multiModelConfig,
   });
   factory ContainerDefinition.fromJson(Map<String, dynamic> json) {
     return ContainerDefinition(
@@ -22170,6 +20799,10 @@ class ContainerDefinition {
       mode: (json['Mode'] as String?)?.toContainerMode(),
       modelDataUrl: json['ModelDataUrl'] as String?,
       modelPackageName: json['ModelPackageName'] as String?,
+      multiModelConfig: json['MultiModelConfig'] != null
+          ? MultiModelConfig.fromJson(
+              json['MultiModelConfig'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -22181,6 +20814,7 @@ class ContainerDefinition {
     final mode = this.mode;
     final modelDataUrl = this.modelDataUrl;
     final modelPackageName = this.modelPackageName;
+    final multiModelConfig = this.multiModelConfig;
     return {
       if (containerHostname != null) 'ContainerHostname': containerHostname,
       if (environment != null) 'Environment': environment,
@@ -22189,6 +20823,7 @@ class ContainerDefinition {
       if (mode != null) 'Mode': mode.toValue(),
       if (modelDataUrl != null) 'ModelDataUrl': modelDataUrl,
       if (modelPackageName != null) 'ModelPackageName': modelPackageName,
+      if (multiModelConfig != null) 'MultiModelConfig': multiModelConfig,
     };
   }
 }
@@ -22497,7 +21132,7 @@ class CreateArtifactResponse {
 }
 
 class CreateAutoMLJobResponse {
-  /// When a job is created, it is assigned a unique ARN.
+  /// The unique ARN that is assigned to the AutoML job when it is created.
   final String autoMLJobArn;
 
   CreateAutoMLJobResponse({
@@ -23273,7 +21908,9 @@ class DataProcessing {
   /// is <code>None</code>, which specifies not to join the input with the
   /// transformed data. If you want the batch transform job to join the original
   /// input data with the transformed data, set <code>JoinSource</code> to
-  /// <code>Input</code>.
+  /// <code>Input</code>. You can specify <code>OutputFilter</code> as an
+  /// additional filter to select a portion of the joined dataset and store it in
+  /// the output file.
   ///
   /// For JSON or JSONLines objects, such as a JSON array, Amazon SageMaker adds
   /// the transformed data to the input JSON object in an attribute called
@@ -23283,10 +21920,14 @@ class DataProcessing {
   /// under the <code>SageMakerInput</code> key and the results are stored in
   /// <code>SageMakerOutput</code>.
   ///
-  /// For CSV files, Amazon SageMaker combines the transformed data with the input
-  /// data at the end of the input data and stores it in the output file. The
-  /// joined data has the joined input data followed by the transformed data and
-  /// the output is a CSV file.
+  /// For CSV data, Amazon SageMaker takes each row as a JSON array and joins the
+  /// transformed data with the input by appending each transformed row to the end
+  /// of the input. The joined data has the original input data followed by the
+  /// transformed data and the output is a CSV file.
+  ///
+  /// For information on how joining in applied, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/batch-transform-data-processing.html#batch-transform-data-processing-workflow">Workflow
+  /// for Associating Inferences with Input Records</a>.
   final JoinSource? joinSource;
 
   /// A <a
@@ -24080,7 +22721,8 @@ class DescribeAlgorithmOutput {
   /// A brief summary about the algorithm.
   final String? algorithmDescription;
 
-  /// Whether the algorithm is certified to be listed in AWS Marketplace.
+  /// Whether the algorithm is certified to be listed in Amazon Web Services
+  /// Marketplace.
   final bool? certifyForMarketplace;
 
   /// Details about inference jobs that the algorithm runs.
@@ -24302,22 +22944,22 @@ class DescribeArtifactResponse {
 }
 
 class DescribeAutoMLJobResponse {
-  /// Returns the job's ARN.
+  /// Returns the ARN of the AutoML job.
   final String autoMLJobArn;
 
-  /// Returns the name of a job.
+  /// Returns the name of the AutoML job.
   final String autoMLJobName;
 
-  /// Returns the job's AutoMLJobSecondaryStatus.
+  /// Returns the secondary status of the AutoML job.
   final AutoMLJobSecondaryStatus autoMLJobSecondaryStatus;
 
-  /// Returns the job's AutoMLJobStatus.
+  /// Returns the status of the AutoML job.
   final AutoMLJobStatus autoMLJobStatus;
 
-  /// Returns the job's creation time.
+  /// Returns the creation time of the AutoML job.
   final DateTime creationTime;
 
-  /// Returns the job's input data config.
+  /// Returns the input data configuration for the AutoML job..
   final List<AutoMLChannel> inputDataConfig;
 
   /// Returns the job's last modified time.
@@ -24326,38 +22968,51 @@ class DescribeAutoMLJobResponse {
   /// Returns the job's output data config.
   final AutoMLOutputDataConfig outputDataConfig;
 
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role that has read permission to the input data location and write
-  /// permission to the output data location in Amazon S3.
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and
+  /// Access Management (IAM) role that has read permission to the input data
+  /// location and write permission to the output data location in Amazon S3.
   final String roleArn;
 
-  /// Returns information on the job's artifacts found in AutoMLJobArtifacts.
+  /// Returns information on the job's artifacts found in
+  /// <code>AutoMLJobArtifacts</code>.
   final AutoMLJobArtifacts? autoMLJobArtifacts;
 
-  /// Returns the job's config.
+  /// Returns the configuration for the AutoML job.
   final AutoMLJobConfig? autoMLJobConfig;
 
   /// Returns the job's objective.
   final AutoMLJobObjective? autoMLJobObjective;
 
-  /// Returns the job's BestCandidate.
+  /// Returns the job's best <code>AutoMLCandidate</code>.
   final AutoMLCandidate? bestCandidate;
 
-  /// Returns the job's end time.
+  /// Returns the end time of the AutoML job.
   final DateTime? endTime;
 
-  /// Returns the job's FailureReason.
+  /// Returns the failure reason for an AutoML job, when applicable.
   final String? failureReason;
 
-  /// Returns the job's output from GenerateCandidateDefinitionsOnly.
+  /// Indicates whether the output for an AutoML job generates candidate
+  /// definitions only.
   final bool? generateCandidateDefinitionsOnly;
+
+  /// Indicates whether the model was deployed automatically to an endpoint and
+  /// the name of that endpoint if deployed automatically.
+  final ModelDeployConfig? modelDeployConfig;
+
+  /// Provides information about endpoint for the model deployment.
+  final ModelDeployResult? modelDeployResult;
+
+  /// Returns a list of reasons for partial failures within an AutoML job.
+  final List<AutoMLPartialFailureReason>? partialFailureReasons;
 
   /// Returns the job's problem type.
   final ProblemType? problemType;
 
-  /// This contains ProblemType, AutoMLJobObjective and CompletionCriteria.
-  /// They're auto-inferred values, if not provided by you. If you do provide
-  /// them, then they'll be the same as provided.
+  /// This contains <code>ProblemType</code>, <code>AutoMLJobObjective</code> and
+  /// <code>CompletionCriteria</code>. If you do not provide these values, they
+  /// are auto-inferred. If you do provide them, the values used are the ones you
+  /// provide.
   final ResolvedAttributes? resolvedAttributes;
 
   DescribeAutoMLJobResponse({
@@ -24377,6 +23032,9 @@ class DescribeAutoMLJobResponse {
     this.endTime,
     this.failureReason,
     this.generateCandidateDefinitionsOnly,
+    this.modelDeployConfig,
+    this.modelDeployResult,
+    this.partialFailureReasons,
     this.problemType,
     this.resolvedAttributes,
   });
@@ -24418,6 +23076,19 @@ class DescribeAutoMLJobResponse {
       failureReason: json['FailureReason'] as String?,
       generateCandidateDefinitionsOnly:
           json['GenerateCandidateDefinitionsOnly'] as bool?,
+      modelDeployConfig: json['ModelDeployConfig'] != null
+          ? ModelDeployConfig.fromJson(
+              json['ModelDeployConfig'] as Map<String, dynamic>)
+          : null,
+      modelDeployResult: json['ModelDeployResult'] != null
+          ? ModelDeployResult.fromJson(
+              json['ModelDeployResult'] as Map<String, dynamic>)
+          : null,
+      partialFailureReasons: (json['PartialFailureReasons'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AutoMLPartialFailureReason.fromJson(e as Map<String, dynamic>))
+          .toList(),
       problemType: (json['ProblemType'] as String?)?.toProblemType(),
       resolvedAttributes: json['ResolvedAttributes'] != null
           ? ResolvedAttributes.fromJson(
@@ -24442,8 +23113,8 @@ class DescribeCodeRepositoryOutput {
 
   /// Configuration details about the repository, including the URL where the
   /// repository is located, the default branch, and the Amazon Resource Name
-  /// (ARN) of the AWS Secrets Manager secret that contains the credentials used
-  /// to access the repository.
+  /// (ARN) of the Amazon Web Services Secrets Manager secret that contains the
+  /// credentials used to access the repository.
   final GitConfig? gitConfig;
 
   DescribeCodeRepositoryOutput({
@@ -24469,8 +23140,7 @@ class DescribeCodeRepositoryOutput {
 }
 
 class DescribeCompilationJobResponse {
-  /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker assumes
-  /// to perform the model compilation job.
+  /// The Amazon Resource Name (ARN) of the model compilation job.
   final String compilationJobArn;
 
   /// The name of the model compilation job.
@@ -24501,7 +23171,8 @@ class DescribeCompilationJobResponse {
   /// device that the model runs on.
   final OutputConfig outputConfig;
 
-  /// The Amazon Resource Name (ARN) of the model compilation job.
+  /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker assumes
+  /// to perform the model compilation job.
   final String roleArn;
 
   /// Specifies a limit to how long a model compilation job can run. When the job
@@ -24525,9 +23196,20 @@ class DescribeCompilationJobResponse {
   /// size of the compilation job container.
   final DateTime? compilationStartTime;
 
+  /// The inference image to use when compiling a model. Specify an image only if
+  /// the target device is a cloud instance.
+  final String? inferenceImage;
+
   /// Provides a BLAKE2 hash value that identifies the compiled model artifacts in
   /// Amazon S3.
   final ModelDigests? modelDigests;
+
+  /// A <a>VpcConfig</a> object that specifies the VPC that you want your
+  /// compilation job to connect to. Control access to your models by configuring
+  /// the VPC. For more information, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html">Protect
+  /// Compilation Jobs by Using an Amazon Virtual Private Cloud</a>.
+  final NeoVpcConfig? vpcConfig;
 
   DescribeCompilationJobResponse({
     required this.compilationJobArn,
@@ -24543,7 +23225,9 @@ class DescribeCompilationJobResponse {
     required this.stoppingCondition,
     this.compilationEndTime,
     this.compilationStartTime,
+    this.inferenceImage,
     this.modelDigests,
+    this.vpcConfig,
   });
   factory DescribeCompilationJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCompilationJobResponse(
@@ -24567,8 +23251,12 @@ class DescribeCompilationJobResponse {
           json['StoppingCondition'] as Map<String, dynamic>),
       compilationEndTime: timeStampFromJson(json['CompilationEndTime']),
       compilationStartTime: timeStampFromJson(json['CompilationStartTime']),
+      inferenceImage: json['InferenceImage'] as String?,
       modelDigests: json['ModelDigests'] != null
           ? ModelDigests.fromJson(json['ModelDigests'] as Map<String, dynamic>)
+          : null,
+      vpcConfig: json['VpcConfig'] != null
+          ? NeoVpcConfig.fromJson(json['VpcConfig'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -24732,12 +23420,12 @@ class DescribeDeviceFleetResponse {
   /// A description of the fleet.
   final String? description;
 
-  /// The Amazon Resource Name (ARN) alias created in AWS Internet of Things
-  /// (IoT).
+  /// The Amazon Resource Name (ARN) alias created in Amazon Web Services Internet
+  /// of Things (IoT).
   final String? iotRoleAlias;
 
-  /// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
-  /// (IoT).
+  /// The Amazon Resource Name (ARN) that has access to Amazon Web Services
+  /// Internet of Things (IoT).
   final String? roleArn;
 
   DescribeDeviceFleetResponse({
@@ -24783,8 +23471,8 @@ class DescribeDeviceResponse {
   /// The Amazon Resource Name (ARN) of the device.
   final String? deviceArn;
 
-  /// The AWS Internet of Things (IoT) object thing name associated with the
-  /// device.
+  /// The Amazon Web Services Internet of Things (IoT) object thing name
+  /// associated with the device.
   final String? iotThingName;
 
   /// The last heartbeat received from the device.
@@ -24854,8 +23542,8 @@ class DescribeDomainResponse {
   /// The creation time.
   final DateTime? creationTime;
 
-  /// Settings which are applied to all UserProfiles in this domain, if settings
-  /// are not explicitly specified in a given UserProfile.
+  /// Settings which are applied to UserProfiles in this domain if settings are
+  /// not explicitly specified in a given UserProfile.
   final UserSettings? defaultUserSettings;
 
   /// The domain's Amazon Resource Name (ARN).
@@ -24876,8 +23564,8 @@ class DescribeDomainResponse {
   /// This member is deprecated and replaced with <code>KmsKeyId</code>.
   final String? homeEfsFileSystemKmsKeyId;
 
-  /// The AWS KMS customer managed CMK used to encrypt the EFS volume attached to
-  /// the domain.
+  /// The Amazon Web Services KMS customer managed CMK used to encrypt the EFS
+  /// volume attached to the domain.
   final String? kmsKeyId;
 
   /// The last modified time.
@@ -24987,6 +23675,9 @@ class DescribeEdgePackagingJobResponse {
   /// The output configuration for the edge packaging job.
   final EdgeOutputConfig? outputConfig;
 
+  /// The output of a SageMaker Edge Manager deployable resource.
+  final EdgePresetDeploymentOutput? presetDeploymentOutput;
+
   /// The CMK to use when encrypting the EBS volume the job run on.
   final String? resourceKey;
 
@@ -25007,6 +23698,7 @@ class DescribeEdgePackagingJobResponse {
     this.modelSignature,
     this.modelVersion,
     this.outputConfig,
+    this.presetDeploymentOutput,
     this.resourceKey,
     this.roleArn,
   });
@@ -25029,6 +23721,10 @@ class DescribeEdgePackagingJobResponse {
           ? EdgeOutputConfig.fromJson(
               json['OutputConfig'] as Map<String, dynamic>)
           : null,
+      presetDeploymentOutput: json['PresetDeploymentOutput'] != null
+          ? EdgePresetDeploymentOutput.fromJson(
+              json['PresetDeploymentOutput'] as Map<String, dynamic>)
+          : null,
       resourceKey: json['ResourceKey'] as String?,
       roleArn: json['RoleArn'] as String?,
     );
@@ -25050,8 +23746,8 @@ class DescribeEndpointConfigOutput {
   final List<ProductionVariant> productionVariants;
   final DataCaptureConfig? dataCaptureConfig;
 
-  /// AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the
-  /// ML storage volume attached to the instance.
+  /// Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data when
+  /// storing it on the ML storage volume attached to the instance.
   final String? kmsKeyId;
 
   DescribeEndpointConfigOutput({
@@ -25309,8 +24005,8 @@ class DescribeFeatureGroupResponse {
   final FeatureGroupStatus? featureGroupStatus;
 
   /// The configuration of the <code>OfflineStore</code>, inducing the S3 location
-  /// of the <code>OfflineStore</code>, AWS Glue or AWS Hive data catalogue
-  /// configurations, and the security configuration.
+  /// of the <code>OfflineStore</code>, Amazon Web Services Glue or Amazon Web
+  /// Services Hive data catalogue configurations, and the security configuration.
   final OfflineStoreConfig? offlineStoreConfig;
 
   /// The status of the <code>OfflineStore</code>. Notifies you if replicating
@@ -25397,8 +24093,8 @@ class DescribeFlowDefinitionResponse {
   /// An object containing information about the output file.
   final FlowDefinitionOutputConfig outputConfig;
 
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) execution role for the flow definition.
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and
+  /// Access Management (IAM) execution role for the flow definition.
   final String roleArn;
 
   /// The reason your flow definition failed.
@@ -25756,8 +24452,9 @@ class DescribeLabelingJobResponse {
   /// The date and time that the labeling job was last updated.
   final DateTime lastModifiedTime;
 
-  /// The location of the job's output data and the AWS Key Management Service key
-  /// ID for the key used to encrypt the output data, if any.
+  /// The location of the job's output data and the Amazon Web Services Key
+  /// Management Service key ID for the key used to encrypt the output data, if
+  /// any.
   final LabelingJobOutputConfig outputConfig;
 
   /// The Amazon Resource Name (ARN) that Amazon SageMaker assumes to perform
@@ -25824,11 +24521,11 @@ class DescribeLabelingJobResponse {
   /// are met, the job is automatically stopped.
   final LabelingJobStoppingConditions? stoppingConditions;
 
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or environment.
-  /// For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon Web
+  /// Services resources in different ways, for example, by purpose, owner, or
+  /// environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   final List<Tag>? tags;
 
   DescribeLabelingJobResponse({
@@ -25901,8 +24598,8 @@ class DescribeModelBiasJobDefinitionResponse {
   /// The Amazon Resource Name (ARN) of the model bias job.
   final String jobDefinitionArn;
 
-  /// The name of the bias job definition. The name must be unique within an AWS
-  /// Region in the AWS account.
+  /// The name of the bias job definition. The name must be unique within an
+  /// Amazon Web Services Region in the Amazon Web Services account.
   final String jobDefinitionName;
   final MonitoringResources jobResources;
 
@@ -25913,9 +24610,9 @@ class DescribeModelBiasJobDefinitionResponse {
   final ModelBiasJobInput modelBiasJobInput;
   final MonitoringOutputConfig modelBiasJobOutputConfig;
 
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role that has read permission to the input data location and write
-  /// permission to the output data location in Amazon S3.
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and
+  /// Access Management (IAM) role that has read permission to the input data
+  /// location and write permission to the output data location in Amazon S3.
   final String roleArn;
 
   /// The baseline configuration for a model bias job.
@@ -25978,7 +24675,7 @@ class DescribeModelExplainabilityJobDefinitionResponse {
   final String jobDefinitionArn;
 
   /// The name of the explainability job definition. The name must be unique
-  /// within an AWS Region in the AWS account.
+  /// within an Amazon Web Services Region in the Amazon Web Services account.
   final String jobDefinitionName;
   final MonitoringResources jobResources;
 
@@ -25990,9 +24687,9 @@ class DescribeModelExplainabilityJobDefinitionResponse {
   final ModelExplainabilityJobInput modelExplainabilityJobInput;
   final MonitoringOutputConfig modelExplainabilityJobOutputConfig;
 
-  /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-  /// (IAM) role that has read permission to the input data location and write
-  /// permission to the output data location in Amazon S3.
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and
+  /// Access Management (IAM) role that has read permission to the input data
+  /// location and write permission to the output data location in Amazon S3.
   final String roleArn;
 
   /// The baseline configuration for a model explainability job.
@@ -26072,6 +24769,10 @@ class DescribeModelOutput {
   /// from the model container.
   final bool? enableNetworkIsolation;
 
+  /// Specifies details of how containers in a multi-container endpoint are
+  /// called.
+  final InferenceExecutionConfig? inferenceExecutionConfig;
+
   /// The location of the primary inference code, associated artifacts, and custom
   /// environment map that the inference code uses when it is deployed in
   /// production.
@@ -26090,6 +24791,7 @@ class DescribeModelOutput {
     required this.modelName,
     this.containers,
     this.enableNetworkIsolation,
+    this.inferenceExecutionConfig,
     this.primaryContainer,
     this.vpcConfig,
   });
@@ -26105,6 +24807,10 @@ class DescribeModelOutput {
           .map((e) => ContainerDefinition.fromJson(e as Map<String, dynamic>))
           .toList(),
       enableNetworkIsolation: json['EnableNetworkIsolation'] as bool?,
+      inferenceExecutionConfig: json['InferenceExecutionConfig'] != null
+          ? InferenceExecutionConfig.fromJson(
+              json['InferenceExecutionConfig'] as Map<String, dynamic>)
+          : null,
       primaryContainer: json['PrimaryContainer'] != null
           ? ContainerDefinition.fromJson(
               json['PrimaryContainer'] as Map<String, dynamic>)
@@ -26177,7 +24883,8 @@ class DescribeModelPackageOutput {
   /// A description provided for the model approval.
   final String? approvalDescription;
 
-  /// Whether the model package is certified for listing on AWS Marketplace.
+  /// Whether the model package is certified for listing on Amazon Web Services
+  /// Marketplace.
   final bool? certifyForMarketplace;
   final UserContext? createdBy;
 
@@ -26289,7 +24996,7 @@ class DescribeModelQualityJobDefinitionResponse {
   final String jobDefinitionArn;
 
   /// The name of the quality job definition. The name must be unique within an
-  /// AWS Region in the AWS account.
+  /// Amazon Web Services Region in the Amazon Web Services account.
   final String jobDefinitionName;
   final MonitoringResources jobResources;
 
@@ -26507,10 +25214,10 @@ class DescribeNotebookInstanceOutput {
   /// An array of up to three Git repositories associated with the notebook
   /// instance. These can be either the names of Git repositories stored as
   /// resources in your account, or the URL of Git repositories in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. These repositories are cloned
-  /// at the same level as the default repository of your notebook instance. For
-  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. These
+  /// repositories are cloned at the same level as the default repository of your
+  /// notebook instance. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   final List<String>? additionalCodeRepositories;
@@ -26522,10 +25229,10 @@ class DescribeNotebookInstanceOutput {
   /// The Git repository associated with the notebook instance as its default code
   /// repository. This can be either the name of a Git repository stored as a
   /// resource in your account, or the URL of a Git repository in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. When you open a notebook
-  /// instance, it opens in the directory that contains this repository. For more
-  /// information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. When you open a
+  /// notebook instance, it opens in the directory that contains this repository.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   final String? defaultCodeRepository;
@@ -26546,8 +25253,8 @@ class DescribeNotebookInstanceOutput {
   /// The type of ML compute instance running on the notebook instance.
   final InstanceType? instanceType;
 
-  /// The AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on
-  /// the ML storage volume attached to the instance.
+  /// The Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data
+  /// when storing it on the ML storage volume attached to the instance.
   final String? kmsKeyId;
 
   /// A timestamp. Use this parameter to retrieve the time when the notebook
@@ -26685,6 +25392,9 @@ class DescribePipelineExecutionResponse {
 
   /// The time when the pipeline execution was created.
   final DateTime? creationTime;
+
+  /// If the execution failed, a message describing why.
+  final String? failureReason;
   final UserContext? lastModifiedBy;
 
   /// The time when the pipeline execution was modified last.
@@ -26704,10 +25414,12 @@ class DescribePipelineExecutionResponse {
 
   /// The status of the pipeline execution.
   final PipelineExecutionStatus? pipelineExecutionStatus;
+  final PipelineExperimentConfig? pipelineExperimentConfig;
 
   DescribePipelineExecutionResponse({
     this.createdBy,
     this.creationTime,
+    this.failureReason,
     this.lastModifiedBy,
     this.lastModifiedTime,
     this.pipelineArn,
@@ -26715,6 +25427,7 @@ class DescribePipelineExecutionResponse {
     this.pipelineExecutionDescription,
     this.pipelineExecutionDisplayName,
     this.pipelineExecutionStatus,
+    this.pipelineExperimentConfig,
   });
   factory DescribePipelineExecutionResponse.fromJson(
       Map<String, dynamic> json) {
@@ -26723,6 +25436,7 @@ class DescribePipelineExecutionResponse {
           ? UserContext.fromJson(json['CreatedBy'] as Map<String, dynamic>)
           : null,
       creationTime: timeStampFromJson(json['CreationTime']),
+      failureReason: json['FailureReason'] as String?,
       lastModifiedBy: json['LastModifiedBy'] != null
           ? UserContext.fromJson(json['LastModifiedBy'] as Map<String, dynamic>)
           : null,
@@ -26735,6 +25449,10 @@ class DescribePipelineExecutionResponse {
           json['PipelineExecutionDisplayName'] as String?,
       pipelineExecutionStatus: (json['PipelineExecutionStatus'] as String?)
           ?.toPipelineExecutionStatus(),
+      pipelineExperimentConfig: json['PipelineExperimentConfig'] != null
+          ? PipelineExperimentConfig.fromJson(
+              json['PipelineExperimentConfig'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -26819,8 +25537,8 @@ class DescribeProcessingJobResponse {
   /// The Amazon Resource Name (ARN) of the processing job.
   final String processingJobArn;
 
-  /// The name of the processing job. The name must be unique within an AWS Region
-  /// in the AWS account.
+  /// The name of the processing job. The name must be unique within an Amazon Web
+  /// Services Region in the Amazon Web Services account.
   final String processingJobName;
 
   /// Provides the status of a processing job.
@@ -26969,7 +25687,7 @@ class DescribeProjectOutput {
   /// Information used to provision a service catalog product. For information,
   /// see <a
   /// href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What
-  /// is AWS Service Catalog</a>.
+  /// is Amazon Web Services Service Catalog</a>.
   final ServiceCatalogProvisioningDetails serviceCatalogProvisioningDetails;
   final UserContext? createdBy;
 
@@ -27116,7 +25834,7 @@ class DescribeTrainingJobResponse {
   /// <code>LaunchingMLInstances</code>
   /// </li>
   /// <li>
-  /// <code>PreparingTrainingStack</code>
+  /// <code>PreparingTraining</code>
   /// </li>
   /// <li>
   /// <code>DownloadingTrainingImage</code>
@@ -27125,9 +25843,9 @@ class DescribeTrainingJobResponse {
   final SecondaryStatus secondaryStatus;
 
   /// Specifies a limit to how long a model training job can run. It also
-  /// specifies the maximum time to wait for a spot instance. When the job reaches
-  /// the time limit, Amazon SageMaker ends the training job. Use this API to cap
-  /// model training costs.
+  /// specifies how long a managed Spot training job has to complete. When the job
+  /// reaches the time limit, Amazon SageMaker ends the training job. Use this API
+  /// to cap model training costs.
   ///
   /// To stop a job, Amazon SageMaker sends the algorithm the <code>SIGTERM</code>
   /// signal, which delays job termination for 120 seconds. Algorithms can use
@@ -27170,7 +25888,14 @@ class DescribeTrainingJobResponse {
   /// The Amazon Resource Name (ARN) of an AutoML job.
   final String? autoMLJobArn;
 
-  /// The billable time in seconds.
+  /// The billable time in seconds. Billable time refers to the absolute
+  /// wall-clock time.
+  ///
+  /// Multiply <code>BillableTimeInSeconds</code> by the number of instances
+  /// (<code>InstanceCount</code>) in your training cluster to get the total
+  /// compute time Amazon SageMaker will bill you if you run distributed training.
+  /// The formula is as follows: <code>BillableTimeInSeconds *
+  /// InstanceCount</code> .
   ///
   /// You can calculate the savings from using managed spot training using the
   /// formula <code>(1 - BillableTimeInSeconds / TrainingTimeInSeconds) *
@@ -27204,6 +25929,9 @@ class DescribeTrainingJobResponse {
   /// data and model artifacts through the specified VPC, but the training
   /// container does not have network access.
   final bool? enableNetworkIsolation;
+
+  /// The environment variables to set in the Docker container.
+  final Map<String, String>? environment;
   final ExperimentConfig? experimentConfig;
 
   /// If the training job failed, the reason it failed.
@@ -27244,8 +25972,12 @@ class DescribeTrainingJobResponse {
   /// Profiling status of a training job.
   final ProfilingStatus? profilingStatus;
 
-  /// The AWS Identity and Access Management (IAM) role configured for the
-  /// training job.
+  /// The number of times to retry the job when the job fails due to an
+  /// <code>InternalServerError</code>.
+  final RetryStrategy? retryStrategy;
+
+  /// The Amazon Web Services Identity and Access Management (IAM) role configured
+  /// for the training job.
   final String? roleArn;
 
   /// A history of all of the secondary statuses that the training job has
@@ -27299,6 +26031,7 @@ class DescribeTrainingJobResponse {
     this.enableInterContainerTrafficEncryption,
     this.enableManagedSpotTraining,
     this.enableNetworkIsolation,
+    this.environment,
     this.experimentConfig,
     this.failureReason,
     this.finalMetricDataList,
@@ -27311,6 +26044,7 @@ class DescribeTrainingJobResponse {
     this.profilerRuleConfigurations,
     this.profilerRuleEvaluationStatuses,
     this.profilingStatus,
+    this.retryStrategy,
     this.roleArn,
     this.secondaryStatusTransitions,
     this.tensorBoardOutputConfig,
@@ -27362,6 +26096,8 @@ class DescribeTrainingJobResponse {
           json['EnableInterContainerTrafficEncryption'] as bool?,
       enableManagedSpotTraining: json['EnableManagedSpotTraining'] as bool?,
       enableNetworkIsolation: json['EnableNetworkIsolation'] as bool?,
+      environment: (json['Environment'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
       experimentConfig: json['ExperimentConfig'] != null
           ? ExperimentConfig.fromJson(
               json['ExperimentConfig'] as Map<String, dynamic>)
@@ -27400,6 +26136,10 @@ class DescribeTrainingJobResponse {
           .toList(),
       profilingStatus:
           (json['ProfilingStatus'] as String?)?.toProfilingStatus(),
+      retryStrategy: json['RetryStrategy'] != null
+          ? RetryStrategy.fromJson(
+              json['RetryStrategy'] as Map<String, dynamic>)
+          : null,
       roleArn: json['RoleArn'] as String?,
       secondaryStatusTransitions: (json['SecondaryStatusTransitions'] as List?)
           ?.whereNotNull()
@@ -27826,9 +26566,9 @@ class DescribeUserProfileResponse {
 class DescribeWorkforceResponse {
   /// A single private workforce, which is automatically created when you create
   /// your first private work team. You can create one private work force in each
-  /// AWS Region. By default, any workforce-related API operation used in a
-  /// specific region will apply to the workforce created in that region. To learn
-  /// how to create a private workforce, see <a
+  /// Amazon Web Services Region. By default, any workforce-related API operation
+  /// used in a specific region will apply to the workforce created in that
+  /// region. To learn how to create a private workforce, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">Create
   /// a Private Workforce</a>.
   final Workforce workforce;
@@ -27971,7 +26711,7 @@ class Device {
   /// Description of the device.
   final String? description;
 
-  /// AWS Internet of Things (IoT) object name.
+  /// Amazon Web Services Internet of Things (IoT) object name.
   final String? iotThingName;
 
   Device({
@@ -28055,8 +26795,8 @@ class DeviceSummary {
   /// The name of the fleet the device belongs to.
   final String? deviceFleetName;
 
-  /// The AWS Internet of Things (IoT) object thing name associated with the
-  /// device..
+  /// The Amazon Web Services Internet of Things (IoT) object thing name
+  /// associated with the device..
   final String? iotThingName;
 
   /// The last heartbeat received from the device.
@@ -28346,29 +27086,82 @@ class EdgeOutputConfig {
   /// The Amazon Simple Storage (S3) bucker URI.
   final String s3OutputLocation;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data on the storage volume after compilation job. If you don't
-  /// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
-  /// S3 for your role's account.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data on the storage volume after
+  /// compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses
+  /// the default KMS key for Amazon S3 for your role's account.
   final String? kmsKeyId;
+
+  /// The configuration used to create deployment artifacts. Specify configuration
+  /// options with a JSON string. The available configuration options for each
+  /// type are:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>ComponentName</code> (optional) - Name of the GreenGrass V2 component.
+  /// If not specified, the default name generated consists of
+  /// "SagemakerEdgeManager" and the name of your SageMaker Edge Manager packaging
+  /// job.
+  /// </li>
+  /// <li>
+  /// <code>ComponentDescription</code> (optional) - Description of the component.
+  /// </li>
+  /// <li>
+  /// <code>ComponentVersion</code> (optional) - The version of the component.
+  /// <note>
+  /// Amazon Web Services IoT Greengrass uses semantic versions for components.
+  /// Semantic versions follow a<i> major.minor.patch</i> number system. For
+  /// example, version 1.0.0 represents the first major release for a component.
+  /// For more information, see the <a href="https://semver.org/">semantic version
+  /// specification</a>.
+  /// </note> </li>
+  /// <li>
+  /// <code>PlatformOS</code> (optional) - The name of the operating system for
+  /// the platform. Supported platforms include Windows and Linux.
+  /// </li>
+  /// <li>
+  /// <code>PlatformArchitecture</code> (optional) - The processor architecture
+  /// for the platform.
+  ///
+  /// Supported architectures Windows include: Windows32_x86, Windows64_x64.
+  ///
+  /// Supported architectures for Linux include: Linux x86_64, Linux ARMV8.
+  /// </li>
+  /// </ul>
+  final String? presetDeploymentConfig;
+
+  /// The deployment type SageMaker Edge Manager will create. Currently only
+  /// supports Amazon Web Services IoT Greengrass Version 2 components.
+  final EdgePresetDeploymentType? presetDeploymentType;
 
   EdgeOutputConfig({
     required this.s3OutputLocation,
     this.kmsKeyId,
+    this.presetDeploymentConfig,
+    this.presetDeploymentType,
   });
   factory EdgeOutputConfig.fromJson(Map<String, dynamic> json) {
     return EdgeOutputConfig(
       s3OutputLocation: json['S3OutputLocation'] as String,
       kmsKeyId: json['KmsKeyId'] as String?,
+      presetDeploymentConfig: json['PresetDeploymentConfig'] as String?,
+      presetDeploymentType: (json['PresetDeploymentType'] as String?)
+          ?.toEdgePresetDeploymentType(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final s3OutputLocation = this.s3OutputLocation;
     final kmsKeyId = this.kmsKeyId;
+    final presetDeploymentConfig = this.presetDeploymentConfig;
+    final presetDeploymentType = this.presetDeploymentType;
     return {
       'S3OutputLocation': s3OutputLocation,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (presetDeploymentConfig != null)
+        'PresetDeploymentConfig': presetDeploymentConfig,
+      if (presetDeploymentType != null)
+        'PresetDeploymentType': presetDeploymentType.toValue(),
     };
   }
 }
@@ -28472,6 +27265,88 @@ class EdgePackagingJobSummary {
   }
 }
 
+/// The output of a SageMaker Edge Manager deployable resource.
+class EdgePresetDeploymentOutput {
+  /// The deployment type created by SageMaker Edge Manager. Currently only
+  /// supports Amazon Web Services IoT Greengrass Version 2 components.
+  final EdgePresetDeploymentType type;
+
+  /// The Amazon Resource Name (ARN) of the generated deployable resource.
+  final String? artifact;
+
+  /// The status of the deployable resource.
+  final EdgePresetDeploymentStatus? status;
+
+  /// Returns a message describing the status of the deployed resource.
+  final String? statusMessage;
+
+  EdgePresetDeploymentOutput({
+    required this.type,
+    this.artifact,
+    this.status,
+    this.statusMessage,
+  });
+  factory EdgePresetDeploymentOutput.fromJson(Map<String, dynamic> json) {
+    return EdgePresetDeploymentOutput(
+      type: (json['Type'] as String).toEdgePresetDeploymentType(),
+      artifact: json['Artifact'] as String?,
+      status: (json['Status'] as String?)?.toEdgePresetDeploymentStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+}
+
+enum EdgePresetDeploymentStatus {
+  completed,
+  failed,
+}
+
+extension on EdgePresetDeploymentStatus {
+  String toValue() {
+    switch (this) {
+      case EdgePresetDeploymentStatus.completed:
+        return 'COMPLETED';
+      case EdgePresetDeploymentStatus.failed:
+        return 'FAILED';
+    }
+  }
+}
+
+extension on String {
+  EdgePresetDeploymentStatus toEdgePresetDeploymentStatus() {
+    switch (this) {
+      case 'COMPLETED':
+        return EdgePresetDeploymentStatus.completed;
+      case 'FAILED':
+        return EdgePresetDeploymentStatus.failed;
+    }
+    throw Exception('$this is not known in enum EdgePresetDeploymentStatus');
+  }
+}
+
+enum EdgePresetDeploymentType {
+  greengrassV2Component,
+}
+
+extension on EdgePresetDeploymentType {
+  String toValue() {
+    switch (this) {
+      case EdgePresetDeploymentType.greengrassV2Component:
+        return 'GreengrassV2Component';
+    }
+  }
+}
+
+extension on String {
+  EdgePresetDeploymentType toEdgePresetDeploymentType() {
+    switch (this) {
+      case 'GreengrassV2Component':
+        return EdgePresetDeploymentType.greengrassV2Component;
+    }
+    throw Exception('$this is not known in enum EdgePresetDeploymentType');
+  }
+}
+
 class EnableSagemakerServicecatalogPortfolioOutput {
   EnableSagemakerServicecatalogPortfolioOutput();
   factory EnableSagemakerServicecatalogPortfolioOutput.fromJson(
@@ -28517,7 +27392,8 @@ class Endpoint {
   /// A list of the tags associated with the endpoint. For more information, see
   /// <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   final List<Tag>? tags;
 
   Endpoint({
@@ -28650,7 +27526,7 @@ class EndpointInput {
   final double? probabilityThresholdAttribute;
 
   /// Whether input data distributed in Amazon S3 is fully replicated or sharded
-  /// by an S3 key. Defauts to <code>FullyReplicated</code>
+  /// by an S3 key. Defaults to <code>FullyReplicated</code>
   final ProcessingS3DataDistributionType? s3DataDistributionType;
 
   /// Whether the <code>Pipe</code> or <code>File</code> is used as the input mode
@@ -29849,6 +28725,10 @@ class FinalHyperParameterTuningJobObjectiveMetric {
 class FlowDefinitionOutputConfig {
   /// The Amazon S3 path where the object containing human output will be made
   /// available.
+  ///
+  /// To learn more about the format of Amazon A2I output data, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-output-data.html">Amazon
+  /// A2I Output Data</a>.
   final String s3OutputPath;
 
   /// The Amazon Key Management Service (KMS) key ID for server-side encryption.
@@ -30122,7 +29002,8 @@ class GetSearchSuggestionsResponse {
   }
 }
 
-/// Specifies configuration details for a Git repository in your AWS account.
+/// Specifies configuration details for a Git repository in your Amazon Web
+/// Services account.
 class GitConfig {
   /// The URL where the Git repository is located.
   final String repositoryUrl;
@@ -30130,10 +29011,10 @@ class GitConfig {
   /// The default branch for the Git repository.
   final String? branch;
 
-  /// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that
-  /// contains the credentials used to access the git repository. The secret must
-  /// have a staging label of <code>AWSCURRENT</code> and must be in the following
-  /// format:
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager
+  /// secret that contains the credentials used to access the git repository. The
+  /// secret must have a staging label of <code>AWSCURRENT</code> and must be in
+  /// the following format:
   ///
   /// <code>{"username": <i>UserName</i>, "password": <i>Password</i>}</code>
   final String? secretArn;
@@ -30166,10 +29047,10 @@ class GitConfig {
 /// Specifies configuration details for a Git repository when the repository is
 /// updated.
 class GitConfigForUpdate {
-  /// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that
-  /// contains the credentials used to access the git repository. The secret must
-  /// have a staging label of <code>AWSCURRENT</code> and must be in the following
-  /// format:
+  /// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager
+  /// secret that contains the credentials used to access the git repository. The
+  /// secret must have a staging label of <code>AWSCURRENT</code> and must be in
+  /// the following format:
   ///
   /// <code>{"username": <i>UserName</i>, "password": <i>Password</i>}</code>
   final String? secretArn;
@@ -30250,6 +29131,18 @@ class HumanLoopActivationConfig {
 /// Describes the work to be performed by human workers.
 class HumanLoopConfig {
   /// The Amazon Resource Name (ARN) of the human task user interface.
+  ///
+  /// You can use standard HTML and Crowd HTML Elements to create a custom worker
+  /// task template. You use this template to create a human task UI.
+  ///
+  /// To learn how to create a custom HTML template, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-custom-templates.html">Create
+  /// Custom Worker Task Template</a>.
+  ///
+  /// To learn how to create a human task UI, which is a worker task template that
+  /// can be used in a flow definition, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-worker-template-console.html">Create
+  /// and Delete a Worker Task Templates</a>.
   final String humanTaskUiArn;
 
   /// The number of distinct workers who will perform the same task on each
@@ -30264,7 +29157,11 @@ class HumanLoopConfig {
   /// A title for the human worker task.
   final String taskTitle;
 
-  /// Amazon Resource Name (ARN) of a team of workers.
+  /// Amazon Resource Name (ARN) of a team of workers. To learn more about the
+  /// types of workforces and work teams you can create and use with Amazon A2I,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-management.html">Create
+  /// and Manage Workforces</a>.
   final String workteamArn;
   final PublicWorkforceTaskPrice? publicWorkforceTaskPrice;
 
@@ -30276,7 +29173,7 @@ class HumanLoopConfig {
   final List<String>? taskKeywords;
 
   /// The amount of time that a worker has to complete a task. The default value
-  /// is 3,600 seconds (1 hour)
+  /// is 3,600 seconds (1 hour).
   final int? taskTimeLimitInSeconds;
 
   HumanLoopConfig({
@@ -30959,40 +29856,40 @@ class HumanTaskConfig {
   ///
   /// <ul>
   /// <li>
-  /// <code>arn:aws:lambda:us-east-1:432418664414:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:us-east-1:432418664414:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:us-east-2:266458841044:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:us-east-2:266458841044:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:us-west-2:081040173940:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:us-west-2:081040173940:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:eu-west-1:568282634449:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ap-northeast-1:477331159723:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ap-southeast-2:454466003867:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ap-south-1:565803892007:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:eu-central-1:203001061592:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ap-northeast-2:845288260483:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:eu-west-2:487402164563:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ap-southeast-1:377565633583:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// <li>
-  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:PRE-Adjustment3DPointCloudObjectTracking</code>
+  /// <code>arn:aws:lambda:ca-central-1:918755190332:function:PRE-VerificationBoundingBox</code>
   /// </li>
   /// </ul>
   /// <b>Bounding box adjustment</b> - Finds the most similar boxes from different
@@ -31334,6 +30231,32 @@ class HumanTaskConfig {
   final String taskDescription;
 
   /// The amount of time that a worker has to complete a task.
+  ///
+  /// If you create a custom labeling job, the maximum value for this parameter is
+  /// 8 hours (28,800 seconds).
+  ///
+  /// If you create a labeling job using a <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html">built-in
+  /// task type</a> the maximum for this parameter depends on the task type you
+  /// use:
+  ///
+  /// <ul>
+  /// <li>
+  /// For <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-label-images.html">image</a>
+  /// and <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-label-text.html">text</a>
+  /// labeling jobs, the maximum is 8 hours (28,800 seconds).
+  /// </li>
+  /// <li>
+  /// For <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html">3D
+  /// point cloud</a> and <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html">video
+  /// frame</a> labeling jobs, the maximum is 7 days (604,800 seconds). If you
+  /// want to change these limits, contact Amazon Web Services Support.
+  /// </li>
+  /// </ul>
   final int taskTimeLimitInSeconds;
 
   /// A title for the task for your human workers.
@@ -31357,9 +30280,20 @@ class HumanTaskConfig {
   final PublicWorkforceTaskPrice? publicWorkforceTaskPrice;
 
   /// The length of time that a task remains available for labeling by human
-  /// workers. <b>If you choose the Amazon Mechanical Turk workforce, the maximum
-  /// is 12 hours (43200)</b>. The default value is 864000 seconds (10 days). For
-  /// private and vendor workforces, the maximum is as listed.
+  /// workers. The default and maximum values for this parameter depend on the
+  /// type of workforce you use.
+  ///
+  /// <ul>
+  /// <li>
+  /// If you choose the Amazon Mechanical Turk workforce, the maximum is 12 hours
+  /// (43,200 seconds). The default is 6 hours (21,600 seconds).
+  /// </li>
+  /// <li>
+  /// If you choose a private or vendor workforce, the default value is 10 days
+  /// (864,000 seconds). For most users, the maximum is also 10 days. If you want
+  /// to change this limit, contact Amazon Web Services Support.
+  /// </li>
+  /// </ul>
   final int? taskAvailabilityLifetimeInSeconds;
 
   /// Keywords used to describe the task so that workers on Amazon Mechanical Turk
@@ -31703,9 +30637,9 @@ class HyperParameterTrainingJobDefinition {
   final String roleArn;
 
   /// Specifies a limit to how long a model hyperparameter training job can run.
-  /// It also specifies how long you are willing to wait for a managed spot
-  /// training job to complete. When the job reaches the a limit, Amazon SageMaker
-  /// ends the training job. Use this API to cap model training costs.
+  /// It also specifies how long a managed spot training job has to complete. When
+  /// the job reaches the time limit, Amazon SageMaker ends the training job. Use
+  /// this API to cap model training costs.
   final StoppingCondition stoppingCondition;
   final CheckpointConfig? checkpointConfig;
 
@@ -31736,6 +30670,10 @@ class HyperParameterTrainingJobDefinition {
   /// jobs that the tuning job launches.
   final List<Channel>? inputDataConfig;
 
+  /// The number of times to retry the job when the job fails due to an
+  /// <code>InternalServerError</code>.
+  final RetryStrategy? retryStrategy;
+
   /// Specifies the values of hyperparameters that do not change for the tuning
   /// job.
   final Map<String, String>? staticHyperParameters;
@@ -31762,6 +30700,7 @@ class HyperParameterTrainingJobDefinition {
     this.enableNetworkIsolation,
     this.hyperParameterRanges,
     this.inputDataConfig,
+    this.retryStrategy,
     this.staticHyperParameters,
     this.tuningObjective,
     this.vpcConfig,
@@ -31795,6 +30734,10 @@ class HyperParameterTrainingJobDefinition {
           ?.whereNotNull()
           .map((e) => Channel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      retryStrategy: json['RetryStrategy'] != null
+          ? RetryStrategy.fromJson(
+              json['RetryStrategy'] as Map<String, dynamic>)
+          : null,
       staticHyperParameters:
           (json['StaticHyperParameters'] as Map<String, dynamic>?)
               ?.map((k, e) => MapEntry(k, e as String)),
@@ -31822,6 +30765,7 @@ class HyperParameterTrainingJobDefinition {
     final enableNetworkIsolation = this.enableNetworkIsolation;
     final hyperParameterRanges = this.hyperParameterRanges;
     final inputDataConfig = this.inputDataConfig;
+    final retryStrategy = this.retryStrategy;
     final staticHyperParameters = this.staticHyperParameters;
     final tuningObjective = this.tuningObjective;
     final vpcConfig = this.vpcConfig;
@@ -31843,6 +30787,7 @@ class HyperParameterTrainingJobDefinition {
       if (hyperParameterRanges != null)
         'HyperParameterRanges': hyperParameterRanges,
       if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (retryStrategy != null) 'RetryStrategy': retryStrategy,
       if (staticHyperParameters != null)
         'StaticHyperParameters': staticHyperParameters,
       if (tuningObjective != null) 'TuningObjective': tuningObjective,
@@ -32486,20 +31431,35 @@ class ImageConfig {
   /// </ul>
   final RepositoryAccessMode repositoryAccessMode;
 
+  /// (Optional) Specifies an authentication configuration for the private docker
+  /// registry where your model image is hosted. Specify a value for this property
+  /// only if you specified <code>Vpc</code> as the value for the
+  /// <code>RepositoryAccessMode</code> field, and the private Docker registry
+  /// where the model image is hosted requires authentication.
+  final RepositoryAuthConfig? repositoryAuthConfig;
+
   ImageConfig({
     required this.repositoryAccessMode,
+    this.repositoryAuthConfig,
   });
   factory ImageConfig.fromJson(Map<String, dynamic> json) {
     return ImageConfig(
       repositoryAccessMode:
           (json['RepositoryAccessMode'] as String).toRepositoryAccessMode(),
+      repositoryAuthConfig: json['RepositoryAuthConfig'] != null
+          ? RepositoryAuthConfig.fromJson(
+              json['RepositoryAuthConfig'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final repositoryAccessMode = this.repositoryAccessMode;
+    final repositoryAuthConfig = this.repositoryAuthConfig;
     return {
       'RepositoryAccessMode': repositoryAccessMode.toValue(),
+      if (repositoryAuthConfig != null)
+        'RepositoryAuthConfig': repositoryAuthConfig,
     };
   }
 }
@@ -32768,6 +31728,66 @@ extension on String {
         return ImageVersionStatus.deleteFailed;
     }
     throw Exception('$this is not known in enum ImageVersionStatus');
+  }
+}
+
+/// Specifies details about how containers in a multi-container endpoint are
+/// run.
+class InferenceExecutionConfig {
+  /// How containers in a multi-container are run. The following values are valid.
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>SERIAL</code> - Containers run as a serial pipeline.
+  /// </li>
+  /// <li>
+  /// <code>DIRECT</code> - Only the individual container that you specify is run.
+  /// </li>
+  /// </ul>
+  final InferenceExecutionMode mode;
+
+  InferenceExecutionConfig({
+    required this.mode,
+  });
+  factory InferenceExecutionConfig.fromJson(Map<String, dynamic> json) {
+    return InferenceExecutionConfig(
+      mode: (json['Mode'] as String).toInferenceExecutionMode(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mode = this.mode;
+    return {
+      'Mode': mode.toValue(),
+    };
+  }
+}
+
+enum InferenceExecutionMode {
+  serial,
+  direct,
+}
+
+extension on InferenceExecutionMode {
+  String toValue() {
+    switch (this) {
+      case InferenceExecutionMode.serial:
+        return 'Serial';
+      case InferenceExecutionMode.direct:
+        return 'Direct';
+    }
+  }
+}
+
+extension on String {
+  InferenceExecutionMode toInferenceExecutionMode() {
+    switch (this) {
+      case 'Serial':
+        return InferenceExecutionMode.serial;
+      case 'Direct':
+        return InferenceExecutionMode.direct;
+    }
+    throw Exception('$this is not known in enum InferenceExecutionMode');
   }
 }
 
@@ -33101,6 +32121,44 @@ class InputConfig {
   /// </li>
   /// </ul> </li>
   /// </ul>
+  /// Depending on the model format, <code>DataInputConfig</code> requires the
+  /// following parameters for <code>ml_eia2</code> <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OutputConfig.html#sagemaker-Type-OutputConfig-TargetDevice">OutputConfig:TargetDevice</a>.
+  ///
+  /// <ul>
+  /// <li>
+  /// For TensorFlow models saved in the SavedModel format, specify the input
+  /// names from <code>signature_def_key</code> and the input model shapes for
+  /// <code>DataInputConfig</code>. Specify the <code>signature_def_key</code> in
+  /// <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OutputConfig.html#sagemaker-Type-OutputConfig-CompilerOptions">
+  /// <code>OutputConfig:CompilerOptions</code> </a> if the model does not use
+  /// TensorFlow's default signature def key. For example:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>"DataInputConfig": {"inputs": [1, 224, 224, 3]}</code>
+  /// </li>
+  /// <li>
+  /// <code>"CompilerOptions": {"signature_def_key": "serving_custom"}</code>
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// For TensorFlow models saved as a frozen graph, specify the input tensor
+  /// names and shapes in <code>DataInputConfig</code> and the output tensor names
+  /// for <code>output_names</code> in <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_OutputConfig.html#sagemaker-Type-OutputConfig-CompilerOptions">
+  /// <code>OutputConfig:CompilerOptions</code> </a>. For example:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>"DataInputConfig": {"input_tensor:0": [1, 224, 224, 3]}</code>
+  /// </li>
+  /// <li>
+  /// <code>"CompilerOptions": {"output_names": ["output_tensor:0"]}</code>
+  /// </li>
+  /// </ul> </li>
+  /// </ul>
   final String dataInputConfig;
 
   /// Identifies the framework in which the model was trained. For example:
@@ -33112,16 +32170,27 @@ class InputConfig {
   /// (.tar.gz suffix).
   final String s3Uri;
 
+  /// Specifies the framework version to use.
+  ///
+  /// This API field is only supported for PyTorch framework versions
+  /// <code>1.4</code>, <code>1.5</code>, and <code>1.6</code> for cloud instance
+  /// target devices: <code>ml_c4</code>, <code>ml_c5</code>, <code>ml_m4</code>,
+  /// <code>ml_m5</code>, <code>ml_p2</code>, <code>ml_p3</code>, and
+  /// <code>ml_g4dn</code>.
+  final String? frameworkVersion;
+
   InputConfig({
     required this.dataInputConfig,
     required this.framework,
     required this.s3Uri,
+    this.frameworkVersion,
   });
   factory InputConfig.fromJson(Map<String, dynamic> json) {
     return InputConfig(
       dataInputConfig: json['DataInputConfig'] as String,
       framework: (json['Framework'] as String).toFramework(),
       s3Uri: json['S3Uri'] as String,
+      frameworkVersion: json['FrameworkVersion'] as String?,
     );
   }
 
@@ -33129,10 +32198,12 @@ class InputConfig {
     final dataInputConfig = this.dataInputConfig;
     final framework = this.framework;
     final s3Uri = this.s3Uri;
+    final frameworkVersion = this.frameworkVersion;
     return {
       'DataInputConfig': dataInputConfig,
       'Framework': framework.toValue(),
       'S3Uri': s3Uri,
+      if (frameworkVersion != null) 'FrameworkVersion': frameworkVersion,
     };
   }
 }
@@ -33596,7 +32667,7 @@ class KernelGatewayImageConfig {
 
 /// The specification of a Jupyter kernel.
 class KernelSpec {
-  /// The name of the kernel.
+  /// The name of the Jupyter kernel in the image. This value is case sensitive.
   final String name;
 
   /// The display name of the kernel.
@@ -33804,7 +32875,10 @@ class LabelingJobDataSource {
   /// The Amazon S3 location of the input data objects.
   final LabelingJobS3DataSource? s3DataSource;
 
-  /// An Amazon SNS data source used for streaming labeling jobs.
+  /// An Amazon SNS data source used for streaming labeling jobs. To learn more,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-labeling-job.html#sms-streaming-how-it-works-send-data">Send
+  /// Data to a Streaming Labeling Job</a>.
   final LabelingJobSnsDataSource? snsDataSource;
 
   LabelingJobDataSource({
@@ -33843,7 +32917,8 @@ class LabelingJobForWorkteamSummary {
   /// specific labeling job.
   final String jobReferenceCode;
 
-  /// <p/>
+  /// The Amazon Web Services account ID of the account used to start the labeling
+  /// job.
   final String workRequesterAccountId;
 
   /// Provides information about the progress of a labeling job.
@@ -33940,14 +33015,18 @@ class LabelingJobOutputConfig {
   /// The Amazon S3 location to write output data.
   final String s3OutputPath;
 
-  /// The AWS Key Management Service ID of the key used to encrypt the output
-  /// data, if any.
+  /// The Amazon Web Services Key Management Service ID of the key used to encrypt
+  /// the output data, if any.
   ///
-  /// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
-  /// execution role must include permissions to call <code>kms:Encrypt</code>. If
-  /// you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key
-  /// for Amazon S3 for your role's account. Amazon SageMaker uses server-side
-  /// encryption with KMS-managed keys for <code>LabelingJobOutputConfig</code>.
+  /// If you provide your own KMS key ID, you must add the required permissions to
+  /// your KMS key described in <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html#sms-security-kms-permissions">Encrypt
+  /// Output Data and Storage Volume with Amazon Web Services KMS</a>.
+  ///
+  /// If you don't provide a KMS key ID, Amazon SageMaker uses the default Amazon
+  /// Web Services KMS key for Amazon S3 for your role's account to encrypt your
+  /// output data.
+  ///
   /// If you use a bucket policy with an <code>s3:PutObject</code> permission that
   /// only allows objects with server-side encryption, set the condition key of
   /// <code>s3:x-amz-server-side-encryption</code> to <code>"aws:kms"</code>. For
@@ -33955,21 +33034,20 @@ class LabelingJobOutputConfig {
   /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html">KMS-Managed
   /// Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer
   /// Guide.</i>
-  ///
-  /// The KMS key policy must grant permission to the IAM role that you specify in
-  /// your <code>CreateLabelingJob</code> request. For more information, see <a
-  /// href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
-  /// Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer
-  /// Guide</i>.
   final String? kmsKeyId;
 
-  /// An Amazon Simple Notification Service (Amazon SNS) output topic ARN.
+  /// An Amazon Simple Notification Service (Amazon SNS) output topic ARN. Provide
+  /// a <code>SnsTopicArn</code> if you want to do real time chaining to another
+  /// streaming job and receive an Amazon SNS notifications each time a data
+  /// object is submitted by a worker.
   ///
-  /// When workers complete labeling tasks, Ground Truth will send labeling task
+  /// If you provide an <code>SnsTopicArn</code> in <code>OutputConfig</code>,
+  /// when workers complete labeling tasks, Ground Truth will send labeling task
   /// output data to the SNS output topic you specify here.
   ///
-  /// You must provide a value for this parameter if you provide an Amazon SNS
-  /// input topic in <code>SnsDataSource</code> in <code>InputConfig</code>.
+  /// To learn more, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-labeling-job.html#sms-streaming-how-it-works-output-data">Receive
+  /// Output Data from a Streaming Labeling Job</a>.
   final String? snsTopicArn;
 
   LabelingJobOutputConfig({
@@ -33997,21 +33075,33 @@ class LabelingJobOutputConfig {
   }
 }
 
-/// Provides configuration information for labeling jobs.
+/// Configure encryption on the storage volume attached to the ML compute
+/// instance used to run automated data labeling model training and inference.
 class LabelingJobResourceConfig {
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data on the storage volume attached to the ML compute instance(s)
-  /// that run the training job. The <code>VolumeKmsKeyId</code> can be any of the
-  /// following formats:
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data on the storage volume attached to
+  /// the ML compute instance(s) that run the training and inference jobs used for
+  /// automated data labeling.
+  ///
+  /// You can only specify a <code>VolumeKmsKeyId</code> when you create a
+  /// labeling job with automated data labeling enabled using the API operation
+  /// <code>CreateLabelingJob</code>. You cannot specify an Amazon Web Services
+  /// KMS customer managed CMK to encrypt the storage volume used for automated
+  /// data labeling model training and inference when you create a labeling job
+  /// using the console. To learn more, see <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html">Output
+  /// Data and Storage Volume Encryption</a>.
+  ///
+  /// The <code>VolumeKmsKeyId</code> can be any of the following formats:
   ///
   /// <ul>
   /// <li>
-  /// // KMS Key ID
+  /// KMS Key ID
   ///
   /// <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
   /// </li>
   /// <li>
-  /// // Amazon Resource Name (ARN) of a KMS Key
+  /// Amazon Resource Name (ARN) of a KMS Key
   ///
   /// <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
   /// </li>
@@ -34039,6 +33129,26 @@ class LabelingJobResourceConfig {
 class LabelingJobS3DataSource {
   /// The Amazon S3 location of the manifest file that describes the input data
   /// objects.
+  ///
+  /// The input manifest file referenced in <code>ManifestS3Uri</code> must
+  /// contain one of the following keys: <code>source-ref</code> or
+  /// <code>source</code>. The value of the keys are interpreted as follows:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>source-ref</code>: The source of the object is the Amazon S3 object
+  /// specified in the value. Use this value when the object is a binary object,
+  /// such as an image.
+  /// </li>
+  /// <li>
+  /// <code>source</code>: The source of the object is the value. Use this value
+  /// when the object is a text value.
+  /// </li>
+  /// </ul>
+  /// If you are a new user of Ground Truth, it is recommended you review <a
+  /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-input-data-input-manifest.html">Use
+  /// an Input Manifest File </a> in the Amazon SageMaker Developer Guide to learn
+  /// how to create an input manifest file.
   final String manifestS3Uri;
 
   LabelingJobS3DataSource({
@@ -34063,10 +33173,6 @@ class LabelingJobSnsDataSource {
   /// The Amazon SNS input topic Amazon Resource Name (ARN). Specify the ARN of
   /// the input topic you will use to send new data objects to a streaming
   /// labeling job.
-  ///
-  /// If you specify an input topic for <code>SnsTopicArn</code> in
-  /// <code>InputConfig</code>, you must specify a value for
-  /// <code>SnsTopicArn</code> in <code>OutputConfig</code>.
   final String snsTopicArn;
 
   LabelingJobSnsDataSource({
@@ -34420,7 +33526,7 @@ class ListAutoMLJobsResponse {
 }
 
 class ListCandidatesForAutoMLJobResponse {
-  /// Summaries about the Candidates.
+  /// Summaries about the <code>AutoMLCandidates</code>.
   final List<AutoMLCandidate> candidates;
 
   /// If the previous response was truncated, you receive this token. Use it in
@@ -34462,8 +33568,8 @@ class ListCodeRepositoriesOutput {
   /// </li>
   /// <li>
   /// Configuration information, including the URL location of the repository and
-  /// the ARN of the AWS Secrets Manager secret that contains the credentials used
-  /// to access the repository.
+  /// the ARN of the Amazon Web Services Secrets Manager secret that contains the
+  /// credentials used to access the repository.
   /// </li>
   /// </ul>
   final List<CodeRepositorySummary> codeRepositorySummaryList;
@@ -35098,7 +34204,7 @@ class ListModelExplainabilityJobDefinitionsResponse {
 }
 
 class ListModelPackageGroupsOutput {
-  /// A list of summaries of the model groups in your AWS account.
+  /// A list of summaries of the model groups in your Amazon Web Services account.
   final List<ModelPackageGroupSummary> modelPackageGroupSummaryList;
 
   /// If the response is truncated, SageMaker returns this token. To retrieve the
@@ -35860,7 +34966,7 @@ class MetricData {
 }
 
 /// Specifies a metric that the training algorithm writes to <code>stderr</code>
-/// or <code>stdout</code> . Amazon SageMakerhyperparameter tuning captures all
+/// or <code>stdout</code>. Amazon SageMakerhyperparameter tuning captures all
 /// defined metrics. You specify one metric that a hyperparameter tuning job
 /// uses as its objective metric to choose the best training job.
 class MetricDefinition {
@@ -35968,8 +35074,8 @@ extension on String {
 /// artifacts.
 ///
 /// Model artifacts are the output that results from training a model, and
-/// typically consist of trained parameters, a model defintion that desribes how
-/// to compute inferences, and other metadata.
+/// typically consist of trained parameters, a model defintion that describes
+/// how to compute inferences, and other metadata.
 class ModelArtifacts {
   /// The path of the S3 object that contains the model artifacts. For example,
   /// <code>s3://bucket-name/keynameprefix/model.tar.gz</code>.
@@ -36086,6 +35192,34 @@ class ModelBiasJobInput {
   }
 }
 
+enum ModelCacheSetting {
+  enabled,
+  disabled,
+}
+
+extension on ModelCacheSetting {
+  String toValue() {
+    switch (this) {
+      case ModelCacheSetting.enabled:
+        return 'Enabled';
+      case ModelCacheSetting.disabled:
+        return 'Disabled';
+    }
+  }
+}
+
+extension on String {
+  ModelCacheSetting toModelCacheSetting() {
+    switch (this) {
+      case 'Enabled':
+        return ModelCacheSetting.enabled;
+      case 'Disabled':
+        return ModelCacheSetting.disabled;
+    }
+    throw Exception('$this is not known in enum ModelCacheSetting');
+  }
+}
+
 /// Configures the timeout and maximum number of retries for processing a
 /// transform job invocation.
 class ModelClientConfig {
@@ -36148,6 +35282,67 @@ class ModelDataQuality {
       if (constraints != null) 'Constraints': constraints,
       if (statistics != null) 'Statistics': statistics,
     };
+  }
+}
+
+/// Specifies how to generate the endpoint name for an automatic one-click
+/// Autopilot model deployment.
+class ModelDeployConfig {
+  /// Set to <code>True</code> to automatically generate an endpoint name for a
+  /// one-click Autopilot model deployment; set to <code>False</code> otherwise.
+  /// The default value is <code>False</code>.
+  /// <note>
+  /// If you set <code>AutoGenerateEndpointName</code> to <code>True</code>, do
+  /// not specify the <code>EndpointName</code>; otherwise a 400 error is thrown.
+  /// </note>
+  final bool? autoGenerateEndpointName;
+
+  /// Specifies the endpoint name to use for a one-click Autopilot model
+  /// deployment if the endpoint name is not generated automatically.
+  /// <note>
+  /// Specify the <code>EndpointName</code> if and only if you set
+  /// <code>AutoGenerateEndpointName</code> to <code>False</code>; otherwise a 400
+  /// error is thrown.
+  /// </note>
+  final String? endpointName;
+
+  ModelDeployConfig({
+    this.autoGenerateEndpointName,
+    this.endpointName,
+  });
+  factory ModelDeployConfig.fromJson(Map<String, dynamic> json) {
+    return ModelDeployConfig(
+      autoGenerateEndpointName: json['AutoGenerateEndpointName'] as bool?,
+      endpointName: json['EndpointName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoGenerateEndpointName = this.autoGenerateEndpointName;
+    final endpointName = this.endpointName;
+    return {
+      if (autoGenerateEndpointName != null)
+        'AutoGenerateEndpointName': autoGenerateEndpointName,
+      if (endpointName != null) 'EndpointName': endpointName,
+    };
+  }
+}
+
+/// Provides information about the endpoint of the model deployment.
+class ModelDeployResult {
+  /// The name of the endpoint to which the model has been deployed.
+  /// <note>
+  /// If model deployment fails, this field is omitted from the response.
+  /// </note>
+  final String? endpointName;
+
+  ModelDeployResult({
+    this.endpointName,
+  });
+  factory ModelDeployResult.fromJson(Map<String, dynamic> json) {
+    return ModelDeployResult(
+      endpointName: json['EndpointName'] as String?,
+    );
   }
 }
 
@@ -36320,11 +35515,11 @@ class ModelPackage {
   /// A description provided when the model approval is set.
   final String? approvalDescription;
 
-  /// Whether the model package is to be certified to be listed on AWS
-  /// Marketplace. For information about listing model packages on AWS
-  /// Marketplace, see <a
+  /// Whether the model package is to be certified to be listed on Amazon Web
+  /// Services Marketplace. For information about listing model packages on Amazon
+  /// Web Services Marketplace, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-mkt-list.html">List
-  /// Your Algorithm or Model Package on AWS Marketplace</a>.
+  /// Your Algorithm or Model Package on Amazon Web Services Marketplace</a>.
   final bool? certifyForMarketplace;
   final UserContext? createdBy;
 
@@ -36399,7 +35594,8 @@ class ModelPackage {
   /// A list of the tags associated with the model package. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   final List<Tag>? tags;
   final ModelPackageValidationSpecification? validationSpecification;
 
@@ -36495,6 +35691,11 @@ class ModelPackageContainerDefinition {
   /// The DNS host name for the Docker container.
   final String? containerHostname;
 
+  /// The environment variables to set in the Docker container. Each key and value
+  /// in the <code>Environment</code> string to string map can have length of up
+  /// to 1024. We support up to 16 entries in the map.
+  final Map<String, String>? environment;
+
   /// An MD5 hash of the training algorithm that identifies the Docker image used
   /// for training.
   final String? imageDigest;
@@ -36508,12 +35709,13 @@ class ModelPackageContainerDefinition {
   /// </note>
   final String? modelDataUrl;
 
-  /// The AWS Marketplace product ID of the model package.
+  /// The Amazon Web Services Marketplace product ID of the model package.
   final String? productId;
 
   ModelPackageContainerDefinition({
     required this.image,
     this.containerHostname,
+    this.environment,
     this.imageDigest,
     this.modelDataUrl,
     this.productId,
@@ -36522,6 +35724,8 @@ class ModelPackageContainerDefinition {
     return ModelPackageContainerDefinition(
       image: json['Image'] as String,
       containerHostname: json['ContainerHostname'] as String?,
+      environment: (json['Environment'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
       imageDigest: json['ImageDigest'] as String?,
       modelDataUrl: json['ModelDataUrl'] as String?,
       productId: json['ProductId'] as String?,
@@ -36531,12 +35735,14 @@ class ModelPackageContainerDefinition {
   Map<String, dynamic> toJson() {
     final image = this.image;
     final containerHostname = this.containerHostname;
+    final environment = this.environment;
     final imageDigest = this.imageDigest;
     final modelDataUrl = this.modelDataUrl;
     final productId = this.productId;
     return {
       'Image': image,
       if (containerHostname != null) 'ContainerHostname': containerHostname,
+      if (environment != null) 'Environment': environment,
       if (imageDigest != null) 'ImageDigest': imageDigest,
       if (modelDataUrl != null) 'ModelDataUrl': modelDataUrl,
       if (productId != null) 'ProductId': productId,
@@ -36588,7 +35794,8 @@ class ModelPackageGroup {
   /// A list of the tags associated with the model group. For more information,
   /// see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   final List<Tag>? tags;
 
   ModelPackageGroup({
@@ -36963,7 +36170,7 @@ extension on String {
 /// in the process of validating the model package.
 ///
 /// The data provided in the validation profile is made available to your buyers
-/// on AWS Marketplace.
+/// on Amazon Web Services Marketplace.
 class ModelPackageValidationProfile {
   /// The name of the profile for the model package.
   final String profileName;
@@ -37407,9 +36614,9 @@ class MonitoringClusterConfig {
   /// You must specify sufficient ML storage for your scenario.
   final int volumeSizeInGB;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data on the storage volume attached to the ML compute instance(s)
-  /// that run the model monitoring job.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data on the storage volume attached to
+  /// the ML compute instance(s) that run the model monitoring job.
   final String? volumeKmsKeyId;
 
   MonitoringClusterConfig({
@@ -37842,8 +37049,9 @@ class MonitoringOutputConfig {
   /// periodic monitoring jobs is uploaded.
   final List<MonitoringOutput> monitoringOutputs;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt the model artifacts at rest using
+  /// Amazon S3 server-side encryption.
   final String? kmsKeyId;
 
   MonitoringOutputConfig({
@@ -38018,7 +37226,8 @@ class MonitoringSchedule {
   /// A list of the tags associated with the monitoring schedlue. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS resources</a> in the <i>AWS General Reference Guide</i>.
+  /// Amazon Web Services resources</a> in the <i>Amazon Web Services General
+  /// Reference Guide</i>.
   final List<Tag>? tags;
 
   MonitoringSchedule({
@@ -38227,6 +37436,12 @@ class MonitoringStatisticsResource {
 /// stopping.
 class MonitoringStoppingCondition {
   /// The maximum runtime allowed in seconds.
+  /// <note>
+  /// The <code>MaxRuntimeInSeconds</code> cannot exceed the frequency of the job.
+  /// For data quality and model explainability, this can be up to 3600 seconds
+  /// for an hourly schedule. For model bias and model quality hourly schedules,
+  /// this can be up to 1800 seconds.
+  /// </note>
   final int maxRuntimeInSeconds;
 
   MonitoringStoppingCondition({
@@ -38281,6 +37496,79 @@ extension on String {
         return MonitoringType.modelExplainability;
     }
     throw Exception('$this is not known in enum MonitoringType');
+  }
+}
+
+/// Specifies additional configuration for hosting multi-model endpoints.
+class MultiModelConfig {
+  /// Whether to cache models for a multi-model endpoint. By default, multi-model
+  /// endpoints cache models so that a model does not have to be loaded into
+  /// memory each time it is invoked. Some use cases do not benefit from model
+  /// caching. For example, if an endpoint hosts a large number of models that are
+  /// each invoked infrequently, the endpoint might perform better if you disable
+  /// model caching. To disable model caching, set the value of this parameter to
+  /// <code>Disabled</code>.
+  final ModelCacheSetting? modelCacheSetting;
+
+  MultiModelConfig({
+    this.modelCacheSetting,
+  });
+  factory MultiModelConfig.fromJson(Map<String, dynamic> json) {
+    return MultiModelConfig(
+      modelCacheSetting:
+          (json['ModelCacheSetting'] as String?)?.toModelCacheSetting(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelCacheSetting = this.modelCacheSetting;
+    return {
+      if (modelCacheSetting != null)
+        'ModelCacheSetting': modelCacheSetting.toValue(),
+    };
+  }
+}
+
+/// The <a>VpcConfig</a> configuration object that specifies the VPC that you
+/// want the compilation jobs to connect to. For more information on controlling
+/// access to your Amazon S3 buckets used for compilation job, see <a
+/// href="https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html">Give
+/// Amazon SageMaker Compilation Jobs Access to Resources in Your Amazon
+/// VPC</a>.
+class NeoVpcConfig {
+  /// The VPC security group IDs. IDs have the form of <code>sg-xxxxxxxx</code>.
+  /// Specify the security groups for the VPC that is specified in the
+  /// <code>Subnets</code> field.
+  final List<String> securityGroupIds;
+
+  /// The ID of the subnets in the VPC that you want to connect the compilation
+  /// job to for accessing the model in Amazon S3.
+  final List<String> subnets;
+
+  NeoVpcConfig({
+    required this.securityGroupIds,
+    required this.subnets,
+  });
+  factory NeoVpcConfig.fromJson(Map<String, dynamic> json) {
+    return NeoVpcConfig(
+      securityGroupIds: (json['SecurityGroupIds'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      subnets: (json['Subnets'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnets = this.subnets;
+    return {
+      'SecurityGroupIds': securityGroupIds,
+      'Subnets': subnets,
+    };
   }
 }
 
@@ -38688,10 +37976,10 @@ class NotebookInstanceSummary {
   /// An array of up to three Git repositories associated with the notebook
   /// instance. These can be either the names of Git repositories stored as
   /// resources in your account, or the URL of Git repositories in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. These repositories are cloned
-  /// at the same level as the default repository of your notebook instance. For
-  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. These
+  /// repositories are cloned at the same level as the default repository of your
+  /// notebook instance. For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   final List<String>? additionalCodeRepositories;
@@ -38702,10 +37990,10 @@ class NotebookInstanceSummary {
   /// The Git repository associated with the notebook instance as its default code
   /// repository. This can be either the name of a Git repository stored as a
   /// resource in your account, or the URL of a Git repository in <a
-  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">AWS
-  /// CodeCommit</a> or in any other Git repository. When you open a notebook
-  /// instance, it opens in the directory that contains this repository. For more
-  /// information, see <a
+  /// href="https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html">Amazon
+  /// Web Services CodeCommit</a> or in any other Git repository. When you open a
+  /// notebook instance, it opens in the directory that contains this repository.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
   /// Git Repositories with Amazon SageMaker Notebook Instances</a>.
   final String? defaultCodeRepository;
@@ -38888,8 +38176,8 @@ class ObjectiveStatusCounters {
 /// <code>CreateFeatureGroup</code> to create an <code>OfflineStore</code>.
 ///
 /// To encrypt an <code>OfflineStore</code> using at rest data encryption,
-/// specify AWS Key Management Service (KMS) key ID, or <code>KMSKeyId</code>,
-/// in <code>S3StorageConfig</code>.
+/// specify Amazon Web Services Key Management Service (KMS) key ID, or
+/// <code>KMSKeyId</code>, in <code>S3StorageConfig</code>.
 class OfflineStoreConfig {
   /// The Amazon Simple Storage (Amazon S3) location of <code>OfflineStore</code>.
   final S3StorageConfig s3StorageConfig;
@@ -38898,8 +38186,8 @@ class OfflineStoreConfig {
   /// <code>OfflineStore</code> is created.
   final DataCatalogConfig? dataCatalogConfig;
 
-  /// Set to <code>True</code> to disable the automatic creation of an AWS Glue
-  /// table when configuring an <code>OfflineStore</code>.
+  /// Set to <code>True</code> to disable the automatic creation of an Amazon Web
+  /// Services Glue table when configuring an <code>OfflineStore</code>.
   final bool? disableGlueTableCreation;
 
   OfflineStoreConfig({
@@ -39124,8 +38412,8 @@ class OidcMemberDefinition {
   }
 }
 
-/// Use this to specify the AWS Key Management Service (KMS) Key ID, or
-/// <code>KMSKeyId</code>, for at rest data encryption. You can turn
+/// Use this to specify the Amazon Web Services Key Management Service (KMS) Key
+/// ID, or <code>KMSKeyId</code>, for at rest data encryption. You can turn
 /// <code>OnlineStore</code> on or off by specifying the
 /// <code>EnableOnlineStore</code> flag at General Assembly; the default value
 /// is <code>False</code>.
@@ -39167,9 +38455,9 @@ class OnlineStoreConfig {
 
 /// The security configuration for <code>OnlineStore</code>.
 class OnlineStoreSecurityConfig {
-  /// The ID of the AWS Key Management Service (AWS KMS) key that SageMaker
-  /// Feature Store uses to encrypt the Amazon S3 objects at rest using Amazon S3
-  /// server-side encryption.
+  /// The ID of the Amazon Web Services Key Management Service (Amazon Web
+  /// Services KMS) key that SageMaker Feature Store uses to encrypt the Amazon S3
+  /// objects at rest using Amazon S3 server-side encryption.
   ///
   /// The caller (either IAM user or IAM role) of <code>CreateFeatureGroup</code>
   /// must have below permissions to the <code>OnlineStore</code>
@@ -39354,6 +38642,23 @@ class OutputConfig {
   ///
   /// <ul>
   /// <li>
+  /// <code>DTYPE</code>: Specifies the data type for the input. When compiling
+  /// for <code>ml_*</code> (except for <code>ml_inf</code>) instances using
+  /// PyTorch framework, provide the data type (dtype) of the model's input.
+  /// <code>"float32"</code> is used if <code>"DTYPE"</code> is not specified.
+  /// Options for data type are:
+  ///
+  /// <ul>
+  /// <li>
+  /// float32: Use either <code>"float"</code> or <code>"float32"</code>.
+  /// </li>
+  /// <li>
+  /// int64: Use either <code>"int64"</code> or <code>"long"</code>.
+  /// </li>
+  /// </ul>
+  /// For example, <code>{"dtype" : "float32"}</code>.
+  /// </li>
+  /// <li>
   /// <code>CPU</code>: Compilation for CPU supports the following compiler
   /// options.
   ///
@@ -39433,13 +38738,40 @@ class OutputConfig {
   /// separated by newlines.
   /// </li>
   /// </ul> </li>
+  /// <li>
+  /// <code>EIA</code>: Compilation for the Elastic Inference Accelerator supports
+  /// the following compiler options:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>precision_mode</code>: Specifies the precision of compiled artifacts.
+  /// Supported values are <code>"FP16"</code> and <code>"FP32"</code>. Default is
+  /// <code>"FP32"</code>.
+  /// </li>
+  /// <li>
+  /// <code>signature_def_key</code>: Specifies the signature to use for models in
+  /// SavedModel format. Defaults is TensorFlow's default signature def key.
+  /// </li>
+  /// <li>
+  /// <code>output_names</code>: Specifies a list of output tensor names for
+  /// models in FrozenGraph format. Set at most one API field, either:
+  /// <code>signature_def_key</code> or <code>output_names</code>.
+  /// </li>
+  /// </ul>
+  /// For example: <code>{"precision_mode": "FP32", "output_names":
+  /// ["output:0"]}</code>
+  /// </li>
   /// </ul>
   final String? compilerOptions;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data on the storage volume after compilation job. If you don't
-  /// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
-  /// S3 for your role's account
+  /// The Amazon Web Services Key Management Service key (Amazon Web Services KMS)
+  /// that Amazon SageMaker uses to encrypt your output models with Amazon S3
+  /// server-side encryption after compilation job. If you don't provide a KMS key
+  /// ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's
+  /// account. For more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html">KMS-Managed
+  /// Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer
+  /// Guide.</i>
   ///
   /// The KmsKeyId can be any of the following formats:
   ///
@@ -39566,9 +38898,10 @@ class OutputDataConfig {
   /// artifacts. For example, <code>s3://bucket-name/key-name-prefix</code>.
   final String s3OutputPath;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
-  /// The <code>KmsKeyId</code> can be any of the following formats:
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt the model artifacts at rest using
+  /// Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of
+  /// the following formats:
   ///
   /// <ul>
   /// <li>
@@ -39601,7 +38934,7 @@ class OutputDataConfig {
   /// allows objects with server-side encryption, set the condition key of
   /// <code>s3:x-amz-server-side-encryption</code> to <code>"aws:kms"</code>. For
   /// more information, see <a
-  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html">KMS-Managed
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html">KMS-Managed
   /// Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer
   /// Guide.</i>
   ///
@@ -39609,9 +38942,9 @@ class OutputDataConfig {
   /// your <code>CreateTrainingJob</code>, <code>CreateTransformJob</code>, or
   /// <code>CreateHyperParameterTuningJob</code> requests. For more information,
   /// see <a
-  /// href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
-  /// Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer
-  /// Guide</i>.
+  /// href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
+  /// Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services
+  /// Key Management Service Developer Guide</i>.
   final String? kmsKeyId;
 
   OutputDataConfig({
@@ -39631,6 +38964,35 @@ class OutputDataConfig {
     return {
       'S3OutputPath': s3OutputPath,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+    };
+  }
+}
+
+/// An output parameter of a pipeline step.
+class OutputParameter {
+  /// The name of the output parameter.
+  final String name;
+
+  /// The value of the output parameter.
+  final String value;
+
+  OutputParameter({
+    required this.name,
+    required this.value,
+  });
+  factory OutputParameter.fromJson(Map<String, dynamic> json) {
+    return OutputParameter(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
     };
   }
 }
@@ -39960,6 +39322,9 @@ class PipelineExecution {
 
   /// The creation time of the pipeline execution.
   final DateTime? creationTime;
+
+  /// If the execution failed, a message describing why.
+  final String? failureReason;
   final UserContext? lastModifiedBy;
 
   /// The time that the pipeline execution was last modified.
@@ -39979,6 +39344,7 @@ class PipelineExecution {
 
   /// The status of the pipeline status.
   final PipelineExecutionStatus? pipelineExecutionStatus;
+  final PipelineExperimentConfig? pipelineExperimentConfig;
 
   /// Contains a list of pipeline parameters. This list can be empty.
   final List<Parameter>? pipelineParameters;
@@ -39986,6 +39352,7 @@ class PipelineExecution {
   PipelineExecution({
     this.createdBy,
     this.creationTime,
+    this.failureReason,
     this.lastModifiedBy,
     this.lastModifiedTime,
     this.pipelineArn,
@@ -39993,6 +39360,7 @@ class PipelineExecution {
     this.pipelineExecutionDescription,
     this.pipelineExecutionDisplayName,
     this.pipelineExecutionStatus,
+    this.pipelineExperimentConfig,
     this.pipelineParameters,
   });
   factory PipelineExecution.fromJson(Map<String, dynamic> json) {
@@ -40001,6 +39369,7 @@ class PipelineExecution {
           ? UserContext.fromJson(json['CreatedBy'] as Map<String, dynamic>)
           : null,
       creationTime: timeStampFromJson(json['CreationTime']),
+      failureReason: json['FailureReason'] as String?,
       lastModifiedBy: json['LastModifiedBy'] != null
           ? UserContext.fromJson(json['LastModifiedBy'] as Map<String, dynamic>)
           : null,
@@ -40013,6 +39382,10 @@ class PipelineExecution {
           json['PipelineExecutionDisplayName'] as String?,
       pipelineExecutionStatus: (json['PipelineExecutionStatus'] as String?)
           ?.toPipelineExecutionStatus(),
+      pipelineExperimentConfig: json['PipelineExperimentConfig'] != null
+          ? PipelineExperimentConfig.fromJson(
+              json['PipelineExperimentConfig'] as Map<String, dynamic>)
+          : null,
       pipelineParameters: (json['PipelineParameters'] as List?)
           ?.whereNotNull()
           .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
@@ -40076,7 +39449,7 @@ class PipelineExecutionStep {
   /// failed its execution.
   final String? failureReason;
 
-  /// The metadata for the step execution.
+  /// Metadata for the step execution.
   final PipelineExecutionStepMetadata? metadata;
 
   /// The time that the step started executing.
@@ -40118,6 +39491,8 @@ class PipelineExecutionStep {
 
 /// Metadata for a step execution.
 class PipelineExecutionStepMetadata {
+  final CallbackStepMetadata? callback;
+
   /// If this is a Condition step metadata object, details on the condition.
   final ConditionStepMetadata? condition;
 
@@ -40139,16 +39514,26 @@ class PipelineExecutionStepMetadata {
   /// step execution.
   final TransformJobStepMetadata? transformJob;
 
+  /// The Amazon Resource Name (ARN) of the tuning job that was run by this step
+  /// execution.
+  final TuningJobStepMetaData? tuningJob;
+
   PipelineExecutionStepMetadata({
+    this.callback,
     this.condition,
     this.model,
     this.processingJob,
     this.registerModel,
     this.trainingJob,
     this.transformJob,
+    this.tuningJob,
   });
   factory PipelineExecutionStepMetadata.fromJson(Map<String, dynamic> json) {
     return PipelineExecutionStepMetadata(
+      callback: json['Callback'] != null
+          ? CallbackStepMetadata.fromJson(
+              json['Callback'] as Map<String, dynamic>)
+          : null,
       condition: json['Condition'] != null
           ? ConditionStepMetadata.fromJson(
               json['Condition'] as Map<String, dynamic>)
@@ -40171,6 +39556,10 @@ class PipelineExecutionStepMetadata {
       transformJob: json['TransformJob'] != null
           ? TransformJobStepMetadata.fromJson(
               json['TransformJob'] as Map<String, dynamic>)
+          : null,
+      tuningJob: json['TuningJob'] != null
+          ? TuningJobStepMetaData.fromJson(
+              json['TuningJob'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -40210,6 +39599,26 @@ class PipelineExecutionSummary {
       pipelineExecutionStatus: (json['PipelineExecutionStatus'] as String?)
           ?.toPipelineExecutionStatus(),
       startTime: timeStampFromJson(json['StartTime']),
+    );
+  }
+}
+
+/// Specifies the names of the experiment and trial created by a pipeline.
+class PipelineExperimentConfig {
+  /// The name of the experiment.
+  final String? experimentName;
+
+  /// The name of the trial.
+  final String? trialName;
+
+  PipelineExperimentConfig({
+    this.experimentName,
+    this.trialName,
+  });
+  factory PipelineExperimentConfig.fromJson(Map<String, dynamic> json) {
+    return PipelineExperimentConfig(
+      experimentName: json['ExperimentName'] as String?,
+      trialName: json['TrialName'] as String?,
     );
   }
 }
@@ -40332,11 +39741,37 @@ class ProcessingClusterConfig {
 
   /// The size of the ML storage volume in gigabytes that you want to provision.
   /// You must specify sufficient ML storage for your scenario.
+  /// <note>
+  /// Certain Nitro-based instances include local storage with a fixed total size,
+  /// dependent on the instance type. When using these instances for processing,
+  /// Amazon SageMaker mounts the local instance storage instead of Amazon EBS gp2
+  /// storage. You can't request a <code>VolumeSizeInGB</code> greater than the
+  /// total size of the local instance storage.
+  ///
+  /// For a list of instance types that support local instance storage, including
+  /// the total size per instance type, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes">Instance
+  /// Store Volumes</a>.
+  /// </note>
   final int volumeSizeInGB;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data on the storage volume attached to the ML compute instance(s)
-  /// that run the processing job.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data on the storage volume attached to
+  /// the ML compute instance(s) that run the processing job.
+  /// <note>
+  /// Certain Nitro-based instances include local storage, dependent on the
+  /// instance type. Local storage volumes are encrypted using a hardware module
+  /// on the instance. You can't request a <code>VolumeKmsKeyId</code> when using
+  /// an instance type with local storage.
+  ///
+  /// For a list of instance types that support local instance storage, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes">Instance
+  /// Store Volumes</a>.
+  ///
+  /// For more information about local instance storage encryption, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html">SSD
+  /// Instance Store Volumes</a>.
+  /// </note>
   final String? volumeKmsKeyId;
 
   ProcessingClusterConfig({
@@ -40371,7 +39806,8 @@ class ProcessingClusterConfig {
 /// Configuration for processing job outputs in Amazon SageMaker Feature Store.
 class ProcessingFeatureStoreOutput {
   /// The name of the Amazon SageMaker FeatureGroup to use as the destination for
-  /// processing job output.
+  /// processing job output. Note that your processing script is responsible for
+  /// putting records into your Feature Store.
   final String featureGroupName;
 
   ProcessingFeatureStoreOutput({
@@ -40394,7 +39830,7 @@ class ProcessingFeatureStoreOutput {
 /// The inputs for a processing job. The processing input must specify exactly
 /// one of either <code>S3Input</code> or <code>DatasetDefinition</code> types.
 class ProcessingInput {
-  /// The name of the inputs for the processing job.
+  /// The name for the processing job input.
   final String inputName;
 
   /// When <code>True</code>, input operations such as data download are managed
@@ -40405,7 +39841,8 @@ class ProcessingInput {
   /// Configuration for a Dataset Definition input.
   final DatasetDefinition? datasetDefinition;
 
-  /// Configuration for processing job inputs in Amazon S3.
+  /// Configuration for downloading input data from Amazon S3 into the processing
+  /// container.
   final ProcessingS3Input? s3Input;
 
   ProcessingInput({
@@ -40481,6 +39918,12 @@ enum ProcessingInstanceType {
   mlR5_12xlarge,
   mlR5_16xlarge,
   mlR5_24xlarge,
+  mlG4dnXlarge,
+  mlG4dn_2xlarge,
+  mlG4dn_4xlarge,
+  mlG4dn_8xlarge,
+  mlG4dn_12xlarge,
+  mlG4dn_16xlarge,
 }
 
 extension on ProcessingInstanceType {
@@ -40562,6 +40005,18 @@ extension on ProcessingInstanceType {
         return 'ml.r5.16xlarge';
       case ProcessingInstanceType.mlR5_24xlarge:
         return 'ml.r5.24xlarge';
+      case ProcessingInstanceType.mlG4dnXlarge:
+        return 'ml.g4dn.xlarge';
+      case ProcessingInstanceType.mlG4dn_2xlarge:
+        return 'ml.g4dn.2xlarge';
+      case ProcessingInstanceType.mlG4dn_4xlarge:
+        return 'ml.g4dn.4xlarge';
+      case ProcessingInstanceType.mlG4dn_8xlarge:
+        return 'ml.g4dn.8xlarge';
+      case ProcessingInstanceType.mlG4dn_12xlarge:
+        return 'ml.g4dn.12xlarge';
+      case ProcessingInstanceType.mlG4dn_16xlarge:
+        return 'ml.g4dn.16xlarge';
     }
   }
 }
@@ -40645,6 +40100,18 @@ extension on String {
         return ProcessingInstanceType.mlR5_16xlarge;
       case 'ml.r5.24xlarge':
         return ProcessingInstanceType.mlR5_24xlarge;
+      case 'ml.g4dn.xlarge':
+        return ProcessingInstanceType.mlG4dnXlarge;
+      case 'ml.g4dn.2xlarge':
+        return ProcessingInstanceType.mlG4dn_2xlarge;
+      case 'ml.g4dn.4xlarge':
+        return ProcessingInstanceType.mlG4dn_4xlarge;
+      case 'ml.g4dn.8xlarge':
+        return ProcessingInstanceType.mlG4dn_8xlarge;
+      case 'ml.g4dn.12xlarge':
+        return ProcessingInstanceType.mlG4dn_12xlarge;
+      case 'ml.g4dn.16xlarge':
+        return ProcessingInstanceType.mlG4dn_16xlarge;
     }
     throw Exception('$this is not known in enum ProcessingInstanceType');
   }
@@ -40710,8 +40177,8 @@ class ProcessingJob {
 
   /// An array of key-value pairs. For more information, see <a
   /// href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL">Using
-  /// Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-  /// Guide</i>.
+  /// Cost Allocation Tags</a> in the <i>Amazon Web Services Billing and Cost
+  /// Management User Guide</i>.
   final List<Tag>? tags;
 
   /// The ARN of the training job associated with this processing job.
@@ -40962,15 +40429,17 @@ class ProcessingOutput {
   }
 }
 
-/// The output configuration for the processing job.
+/// Configuration for uploading output from the processing container.
 class ProcessingOutputConfig {
-  /// List of output configurations for the processing job.
+  /// An array of outputs configuring the data to upload from the processing
+  /// container.
   final List<ProcessingOutput> outputs;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt the processing job output. <code>KmsKeyId</code> can be an ID of a
-  /// KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS key. The
-  /// <code>KmsKeyId</code> is applied to all outputs.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt the processing job output.
+  /// <code>KmsKeyId</code> can be an ID of a KMS key, ARN of a KMS key, alias of
+  /// a KMS key, or alias of a KMS key. The <code>KmsKeyId</code> is applied to
+  /// all outputs.
   final String? kmsKeyId;
 
   ProcessingOutputConfig({
@@ -41108,7 +40577,8 @@ extension on String {
   }
 }
 
-/// Configuration for processing job inputs in Amazon S3.
+/// Configuration for downloading input data from Amazon S3 into the processing
+/// container.
 class ProcessingS3Input {
   /// Whether you use an <code>S3Prefix</code> or a <code>ManifestFile</code> for
   /// the data type. If you choose <code>S3Prefix</code>, <code>S3Uri</code>
@@ -41119,31 +40589,36 @@ class ProcessingS3Input {
   /// SageMaker to use for the processing job.
   final ProcessingS3DataType s3DataType;
 
-  /// The URI for the Amazon S3 storage where you want Amazon SageMaker to
-  /// download the artifacts needed to run a processing job.
+  /// The URI of the Amazon S3 prefix Amazon SageMaker downloads data required to
+  /// run a processing job.
   final String s3Uri;
 
-  /// The local path to the Amazon S3 bucket where you want Amazon SageMaker to
-  /// download the inputs to run a processing job. <code>LocalPath</code> is an
-  /// absolute path to the input data. This is a required parameter when
-  /// <code>AppManaged</code> is <code>False</code> (default).
+  /// The local path in your container where you want Amazon SageMaker to write
+  /// input data to. <code>LocalPath</code> is an absolute path to the input data
+  /// and must begin with <code>/opt/ml/processing/</code>. <code>LocalPath</code>
+  /// is a required parameter when <code>AppManaged</code> is <code>False</code>
+  /// (default).
   final String? localPath;
 
-  /// Whether to use <code>Gzip</code> compression for Amazon S3 storage.
+  /// Whether to GZIP-decompress the data in Amazon S3 as it is streamed into the
+  /// processing container. <code>Gzip</code> can only be used when
+  /// <code>Pipe</code> mode is specified as the <code>S3InputMode</code>. In
+  /// <code>Pipe</code> mode, Amazon SageMaker streams input data from the source
+  /// directly to your container without using the EBS volume.
   final ProcessingS3CompressionType? s3CompressionType;
 
-  /// Whether the data stored in Amazon S3 is <code>FullyReplicated</code> or
-  /// <code>ShardedByS3Key</code>.
+  /// Whether to distribute the data from Amazon S3 to all processing instances
+  /// with <code>FullyReplicated</code>, or whether the data from Amazon S3 is
+  /// shared by Amazon S3 key, downloading one shard of data to each processing
+  /// instance.
   final ProcessingS3DataDistributionType? s3DataDistributionType;
 
-  /// Whether to use <code>File</code> or <code>Pipe</code> input mode. In
-  /// <code>File</code> mode, Amazon SageMaker copies the data from the input
-  /// source onto the local Amazon Elastic Block Store (Amazon EBS) volumes before
-  /// starting your training algorithm. This is the most commonly used input mode.
-  /// In <code>Pipe</code> mode, Amazon SageMaker streams input data from the
-  /// source directly to your algorithm without using the EBS volume.This is a
-  /// required parameter when <code>AppManaged</code> is <code>False</code>
-  /// (default).
+  /// Whether to use <code>File</code> or <code>Pipe</code> input mode. In File
+  /// mode, Amazon SageMaker copies the data from the input source onto the local
+  /// ML storage volume before starting your processing container. This is the
+  /// most commonly used input mode. In <code>Pipe</code> mode, Amazon SageMaker
+  /// streams input data from the source directly to your processing container
+  /// into named pipes without using the ML storage volume.
   final ProcessingS3InputMode? s3InputMode;
 
   ProcessingS3Input({
@@ -41215,11 +40690,13 @@ extension on String {
   }
 }
 
-/// Configuration for processing job outputs in Amazon S3.
+/// Configuration for uploading output data to Amazon S3 from the processing
+/// container.
 class ProcessingS3Output {
-  /// The local path to the Amazon S3 bucket where you want Amazon SageMaker to
-  /// save the results of an processing job. <code>LocalPath</code> is an absolute
-  /// path to the input data.
+  /// The local path of a directory where you want Amazon SageMaker to upload its
+  /// contents to Amazon S3. <code>LocalPath</code> is an absolute path to a
+  /// directory containing output files. This directory will be created by the
+  /// platform and exist when your container's entrypoint is invoked.
   final String localPath;
 
   /// Whether to upload the results of the processing job continuously or after
@@ -41283,7 +40760,9 @@ extension on String {
   }
 }
 
-/// Specifies a time limit for how long the processing job is allowed to run.
+/// Configures conditions under which the processing job should be stopped, such
+/// as how long the processing job has been running. After the condition is met,
+/// the processing job is stopped.
 class ProcessingStoppingCondition {
   /// Specifies the maximum runtime in seconds.
   final int maxRuntimeInSeconds;
@@ -41305,9 +40784,9 @@ class ProcessingStoppingCondition {
   }
 }
 
-/// Identifies a model that you want to host and the resources to deploy for
-/// hosting it. If you are deploying multiple models, tell Amazon SageMaker how
-/// to distribute traffic among the models by specifying variant weights.
+/// Identifies a model that you want to host and the resources chosen to deploy
+/// for hosting it. If you are deploying multiple models, tell Amazon SageMaker
+/// how to distribute traffic among the models by specifying variant weights.
 class ProductionVariant {
   /// Number of instances to launch initially.
   final int initialInstanceCount;
@@ -41329,6 +40808,10 @@ class ProductionVariant {
   /// Inference in Amazon SageMaker</a>.
   final ProductionVariantAcceleratorType? acceleratorType;
 
+  /// Specifies configuration for a core dump from the model container when the
+  /// process crashes.
+  final ProductionVariantCoreDumpConfig? coreDumpConfig;
+
   /// Determines initial traffic distribution among all of the models that you
   /// specify in the endpoint configuration. The traffic to a production variant
   /// is determined by the ratio of the <code>VariantWeight</code> to the sum of
@@ -41342,6 +40825,7 @@ class ProductionVariant {
     required this.modelName,
     required this.variantName,
     this.acceleratorType,
+    this.coreDumpConfig,
     this.initialVariantWeight,
   });
   factory ProductionVariant.fromJson(Map<String, dynamic> json) {
@@ -41353,6 +40837,10 @@ class ProductionVariant {
       variantName: json['VariantName'] as String,
       acceleratorType: (json['AcceleratorType'] as String?)
           ?.toProductionVariantAcceleratorType(),
+      coreDumpConfig: json['CoreDumpConfig'] != null
+          ? ProductionVariantCoreDumpConfig.fromJson(
+              json['CoreDumpConfig'] as Map<String, dynamic>)
+          : null,
       initialVariantWeight: json['InitialVariantWeight'] as double?,
     );
   }
@@ -41363,6 +40851,7 @@ class ProductionVariant {
     final modelName = this.modelName;
     final variantName = this.variantName;
     final acceleratorType = this.acceleratorType;
+    final coreDumpConfig = this.coreDumpConfig;
     final initialVariantWeight = this.initialVariantWeight;
     return {
       'InitialInstanceCount': initialInstanceCount,
@@ -41370,6 +40859,7 @@ class ProductionVariant {
       'ModelName': modelName,
       'VariantName': variantName,
       if (acceleratorType != null) 'AcceleratorType': acceleratorType.toValue(),
+      if (coreDumpConfig != null) 'CoreDumpConfig': coreDumpConfig,
       if (initialVariantWeight != null)
         'InitialVariantWeight': initialVariantWeight,
     };
@@ -41422,6 +40912,81 @@ extension on String {
     }
     throw Exception(
         '$this is not known in enum ProductionVariantAcceleratorType');
+  }
+}
+
+/// Specifies configuration for a core dump from the model container when the
+/// process crashes.
+class ProductionVariantCoreDumpConfig {
+  /// The Amazon S3 bucket to send the core dump to.
+  final String destinationS3Uri;
+
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt the core dump data at rest using
+  /// Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of
+  /// the following formats:
+  ///
+  /// <ul>
+  /// <li>
+  /// // KMS Key ID
+  ///
+  /// <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+  /// </li>
+  /// <li>
+  /// // Amazon Resource Name (ARN) of a KMS Key
+  ///
+  /// <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+  /// </li>
+  /// <li>
+  /// // KMS Key Alias
+  ///
+  /// <code>"alias/ExampleAlias"</code>
+  /// </li>
+  /// <li>
+  /// // Amazon Resource Name (ARN) of a KMS Key Alias
+  ///
+  /// <code>"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"</code>
+  /// </li>
+  /// </ul>
+  /// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
+  /// execution role must include permissions to call <code>kms:Encrypt</code>. If
+  /// you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key
+  /// for Amazon S3 for your role's account. Amazon SageMaker uses server-side
+  /// encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you
+  /// use a bucket policy with an <code>s3:PutObject</code> permission that only
+  /// allows objects with server-side encryption, set the condition key of
+  /// <code>s3:x-amz-server-side-encryption</code> to <code>"aws:kms"</code>. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html">KMS-Managed
+  /// Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer
+  /// Guide.</i>
+  ///
+  /// The KMS key policy must grant permission to the IAM role that you specify in
+  /// your <code>CreateEndpoint</code> and <code>UpdateEndpoint</code> requests.
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
+  /// Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services
+  /// Key Management Service Developer Guide</i>.
+  final String? kmsKeyId;
+
+  ProductionVariantCoreDumpConfig({
+    required this.destinationS3Uri,
+    this.kmsKeyId,
+  });
+  factory ProductionVariantCoreDumpConfig.fromJson(Map<String, dynamic> json) {
+    return ProductionVariantCoreDumpConfig(
+      destinationS3Uri: json['DestinationS3Uri'] as String,
+      kmsKeyId: json['KmsKeyId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationS3Uri = this.destinationS3Uri;
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      'DestinationS3Uri': destinationS3Uri,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+    };
   }
 }
 
@@ -42247,7 +41812,7 @@ class PropertyNameSuggestion {
 /// A key value pair used when you provision a project as a service catalog
 /// product. For information, see <a
 /// href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What
-/// is AWS Service Catalog</a>.
+/// is Amazon Web Services Service Catalog</a>.
 class ProvisioningParameter {
   /// The key that identifies a provisioning parameter.
   final String? key;
@@ -42667,8 +42232,8 @@ class RedshiftDatasetDefinition {
   final String outputS3Uri;
   final String queryString;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt data from a Redshift execution.
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt data from a Redshift execution.
   final String? kmsKeyId;
   final RedshiftResultCompressionType? outputCompression;
 
@@ -42903,6 +42468,41 @@ extension on String {
   }
 }
 
+/// Specifies an authentication configuration for the private docker registry
+/// where your model image is hosted. Specify a value for this property only if
+/// you specified <code>Vpc</code> as the value for the
+/// <code>RepositoryAccessMode</code> field of the <code>ImageConfig</code>
+/// object that you passed to a call to <code>CreateModel</code> and the private
+/// Docker registry where the model image is hosted requires authentication.
+class RepositoryAuthConfig {
+  /// The Amazon Resource Name (ARN) of an Amazon Web Services Lambda function
+  /// that provides credentials to authenticate to the private Docker registry
+  /// where your model image is hosted. For information about how to create an
+  /// Amazon Web Services Lambda function, see <a
+  /// href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html">Create
+  /// a Lambda function with the console</a> in the <i>Amazon Web Services Lambda
+  /// Developer Guide</i>.
+  final String repositoryCredentialsProviderArn;
+
+  RepositoryAuthConfig({
+    required this.repositoryCredentialsProviderArn,
+  });
+  factory RepositoryAuthConfig.fromJson(Map<String, dynamic> json) {
+    return RepositoryAuthConfig(
+      repositoryCredentialsProviderArn:
+          json['RepositoryCredentialsProviderArn'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryCredentialsProviderArn =
+        this.repositoryCredentialsProviderArn;
+    return {
+      'RepositoryCredentialsProviderArn': repositoryCredentialsProviderArn,
+    };
+  }
+}
+
 /// The resolved attributes.
 class ResolvedAttributes {
   final AutoMLJobObjective? autoMLJobObjective;
@@ -42967,8 +42567,9 @@ class ResourceConfig {
   /// </note>
   final int volumeSizeInGB;
 
-  /// The AWS KMS key that Amazon SageMaker uses to encrypt data on the storage
-  /// volume attached to the ML compute instance(s) that run the training job.
+  /// The Amazon Web Services KMS key that Amazon SageMaker uses to encrypt data
+  /// on the storage volume attached to the ML compute instance(s) that run the
+  /// training job.
   /// <note>
   /// Certain Nitro-based instances include local storage, dependent on the
   /// instance type. Local storage volumes are encrypted using a hardware module
@@ -43212,6 +42813,34 @@ extension on String {
         return RetentionType.delete;
     }
     throw Exception('$this is not known in enum RetentionType');
+  }
+}
+
+/// The retry strategy to use when a training job fails due to an
+/// <code>InternalServerError</code>. <code>RetryStrategy</code> is specified as
+/// part of the <code>CreateTrainingJob</code> and
+/// <code>CreateHyperParameterTuningJob</code> requests. You can add the
+/// <code>StoppingCondition</code> parameter to the request to limit the
+/// training time for the complete job.
+class RetryStrategy {
+  /// The number of times to retry the job. When the job is retried, it's
+  /// <code>SecondaryStatus</code> is changed to <code>STARTING</code>.
+  final int maximumRetryAttempts;
+
+  RetryStrategy({
+    required this.maximumRetryAttempts,
+  });
+  factory RetryStrategy.fromJson(Map<String, dynamic> json) {
+    return RetryStrategy(
+      maximumRetryAttempts: json['MaximumRetryAttempts'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maximumRetryAttempts = this.maximumRetryAttempts;
+    return {
+      'MaximumRetryAttempts': maximumRetryAttempts,
+    };
   }
 }
 
@@ -43490,8 +43119,9 @@ class S3StorageConfig {
   /// <code>s3://example-bucket/prefix/</code>.
   final String s3Uri;
 
-  /// The AWS Key Management Service (KMS) key ID of the key used to encrypt any
-  /// objects written into the <code>OfflineStore</code> S3 location.
+  /// The Amazon Web Services Key Management Service (KMS) key ID of the key used
+  /// to encrypt any objects written into the <code>OfflineStore</code> S3
+  /// location.
   ///
   /// The IAM <code>roleARN</code> that is passed as a parameter to
   /// <code>CreateFeatureGroup</code> must have below permissions to the
@@ -43504,23 +43134,31 @@ class S3StorageConfig {
   /// </ul>
   final String? kmsKeyId;
 
+  /// The S3 path where offline records are written.
+  final String? resolvedOutputS3Uri;
+
   S3StorageConfig({
     required this.s3Uri,
     this.kmsKeyId,
+    this.resolvedOutputS3Uri,
   });
   factory S3StorageConfig.fromJson(Map<String, dynamic> json) {
     return S3StorageConfig(
       s3Uri: json['S3Uri'] as String,
       kmsKeyId: json['KmsKeyId'] as String?,
+      resolvedOutputS3Uri: json['ResolvedOutputS3Uri'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final s3Uri = this.s3Uri;
     final kmsKeyId = this.kmsKeyId;
+    final resolvedOutputS3Uri = this.resolvedOutputS3Uri;
     return {
       'S3Uri': s3Uri,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (resolvedOutputS3Uri != null)
+        'ResolvedOutputS3Uri': resolvedOutputS3Uri,
     };
   }
 }
@@ -43868,6 +43506,7 @@ enum SecondaryStatus {
   interrupted,
   maxWaitTimeExceeded,
   updating,
+  restarting,
 }
 
 extension on SecondaryStatus {
@@ -43903,6 +43542,8 @@ extension on SecondaryStatus {
         return 'MaxWaitTimeExceeded';
       case SecondaryStatus.updating:
         return 'Updating';
+      case SecondaryStatus.restarting:
+        return 'Restarting';
     }
   }
 }
@@ -43940,6 +43581,8 @@ extension on String {
         return SecondaryStatus.maxWaitTimeExceeded;
       case 'Updating':
         return SecondaryStatus.updating;
+      case 'Restarting':
+        return SecondaryStatus.restarting;
     }
     throw Exception('$this is not known in enum SecondaryStatus');
   }
@@ -44095,10 +43738,40 @@ class SecondaryStatusTransition {
   }
 }
 
+class SendPipelineExecutionStepFailureResponse {
+  /// The Amazon Resource Name (ARN) of the pipeline execution.
+  final String? pipelineExecutionArn;
+
+  SendPipelineExecutionStepFailureResponse({
+    this.pipelineExecutionArn,
+  });
+  factory SendPipelineExecutionStepFailureResponse.fromJson(
+      Map<String, dynamic> json) {
+    return SendPipelineExecutionStepFailureResponse(
+      pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
+    );
+  }
+}
+
+class SendPipelineExecutionStepSuccessResponse {
+  /// The Amazon Resource Name (ARN) of the pipeline execution.
+  final String? pipelineExecutionArn;
+
+  SendPipelineExecutionStepSuccessResponse({
+    this.pipelineExecutionArn,
+  });
+  factory SendPipelineExecutionStepSuccessResponse.fromJson(
+      Map<String, dynamic> json) {
+    return SendPipelineExecutionStepSuccessResponse(
+      pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
+    );
+  }
+}
+
 /// Details of a provisioned service catalog product. For information about
 /// service catalog, see <a
 /// href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What
-/// is AWS Service Catalog</a>.
+/// is Amazon Web Services Service Catalog</a>.
 class ServiceCatalogProvisionedProductDetails {
   /// The ID of the provisioned product.
   final String? provisionedProductId;
@@ -44152,7 +43825,7 @@ class ServiceCatalogProvisionedProductDetails {
 /// Details that you specify to provision a service catalog product. For
 /// information about service catalog, see .<a
 /// href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What
-/// is AWS Service Catalog</a>.
+/// is Amazon Web Services Service Catalog</a>.
 class ServiceCatalogProvisioningDetails {
   /// The ID of the product to provision.
   final String productId;
@@ -44201,22 +43874,24 @@ class ServiceCatalogProvisioningDetails {
   }
 }
 
-/// Specifies options when sharing an Amazon SageMaker Studio notebook. These
-/// settings are specified as part of <code>DefaultUserSettings</code> when the
-/// <a>CreateDomain</a> API is called, and as part of <code>UserSettings</code>
-/// when the <a>CreateUserProfile</a> API is called.
+/// Specifies options for sharing SageMaker Studio notebooks. These settings are
+/// specified as part of <code>DefaultUserSettings</code> when the
+/// <code>CreateDomain</code> API is called, and as part of
+/// <code>UserSettings</code> when the <code>CreateUserProfile</code> API is
+/// called. When <code>SharingSettings</code> is not specified, notebook sharing
+/// isn't allowed.
 class SharingSettings {
   /// Whether to include the notebook cell output when sharing the notebook. The
   /// default is <code>Disabled</code>.
   final NotebookOutputOption? notebookOutputOption;
 
-  /// When <code>NotebookOutputOption</code> is <code>Allowed</code>, the AWS Key
-  /// Management Service (KMS) encryption key ID used to encrypt the notebook cell
-  /// output in the Amazon S3 bucket.
+  /// When <code>NotebookOutputOption</code> is <code>Allowed</code>, the Amazon
+  /// Web Services Key Management Service (KMS) encryption key ID used to encrypt
+  /// the notebook cell output in the Amazon S3 bucket.
   final String? s3KmsKeyId;
 
   /// When <code>NotebookOutputOption</code> is <code>Allowed</code>, the Amazon
-  /// S3 bucket used to save the notebook cell output.
+  /// S3 bucket used to store the shared notebook snapshots.
   final String? s3OutputPath;
 
   SharingSettings({
@@ -44608,11 +44283,13 @@ extension on String {
 
 /// Specifies an algorithm that was used to create the model package. The
 /// algorithm must be either an algorithm resource in your Amazon SageMaker
-/// account or an algorithm in AWS Marketplace that you are subscribed to.
+/// account or an algorithm in Amazon Web Services Marketplace that you are
+/// subscribed to.
 class SourceAlgorithm {
   /// The name of an algorithm that was used to create the model package. The
   /// algorithm must be either an algorithm resource in your Amazon SageMaker
-  /// account or an algorithm in AWS Marketplace that you are subscribed to.
+  /// account or an algorithm in Amazon Web Services Marketplace that you are
+  /// subscribed to.
   final String algorithmName;
 
   /// The Amazon S3 path where the model artifacts, which result from model
@@ -44822,11 +44499,11 @@ class StopPipelineExecutionResponse {
   }
 }
 
-/// Specifies a limit to how long a model training or compilation job can run.
-/// It also specifies how long you are willing to wait for a managed spot
-/// training job to complete. When the job reaches the time limit, Amazon
-/// SageMaker ends the training or compilation job. Use this API to cap model
-/// training costs.
+/// Specifies a limit to how long a model training job, model compilation job,
+/// or hyperparameter tuning job can run. It also specifies how long a managed
+/// Spot training job has to complete. When the job reaches the time limit,
+/// Amazon SageMaker ends the training or compilation job. Use this API to cap
+/// model training costs.
 ///
 /// To stop a job, Amazon SageMaker sends the algorithm the <code>SIGTERM</code>
 /// signal, which delays job termination for 120 seconds. Algorithms can use
@@ -44846,16 +44523,26 @@ class StopPipelineExecutionResponse {
 /// sufficient for the training job to complete.
 /// </note>
 class StoppingCondition {
-  /// The maximum length of time, in seconds, that the training or compilation job
-  /// can run. If job does not complete during this time, Amazon SageMaker ends
-  /// the job. If value is not specified, default value is 1 day. The maximum
-  /// value is 28 days.
+  /// The maximum length of time, in seconds, that a training or compilation job
+  /// can run. If the job does not complete during this time, Amazon SageMaker
+  /// ends the job.
+  ///
+  /// When <code>RetryStrategy</code> is specified in the job request,
+  /// <code>MaxRuntimeInSeconds</code> specifies the maximum time for all of the
+  /// attempts in total, not each individual attempt.
+  ///
+  /// The default value is 1 day. The maximum value is 28 days.
   final int? maxRuntimeInSeconds;
 
-  /// The maximum length of time, in seconds, how long you are willing to wait for
-  /// a managed spot training job to complete. It is the amount of time spent
-  /// waiting for Spot capacity plus the amount of time the training job runs. It
-  /// must be equal to or greater than <code>MaxRuntimeInSeconds</code>.
+  /// The maximum length of time, in seconds, that a managed Spot training job has
+  /// to complete. It is the amount of time spent waiting for Spot capacity plus
+  /// the amount of time the job can run. It must be equal to or greater than
+  /// <code>MaxRuntimeInSeconds</code>. If the job does not complete during this
+  /// time, Amazon SageMaker ends the job.
+  ///
+  /// When <code>RetryStrategy</code> is specified in the job request,
+  /// <code>MaxWaitTimeInSeconds</code> specifies the maximum time for all of the
+  /// attempts in total, not each individual attempt.
   final int? maxWaitTimeInSeconds;
 
   StoppingCondition({
@@ -44934,9 +44621,24 @@ class SuggestionQuery {
   }
 }
 
-/// Describes a tag.
+/// A tag object that consists of a key and an optional value, used to manage
+/// metadata for Amazon SageMaker Amazon Web Services resources.
+///
+/// You can add tags to notebook instances, training jobs, hyperparameter tuning
+/// jobs, batch transform jobs, models, labeling jobs, work teams, endpoint
+/// configurations, and endpoints. For more information on adding tags to Amazon
+/// SageMaker resources, see <a>AddTags</a>.
+///
+/// For more information on adding metadata to your Amazon Web Services
+/// resources with tagging, see <a
+/// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+/// Amazon Web Services resources</a>. For advice on best practices for managing
+/// Amazon Web Services resources with tagging, see <a
+/// href="https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf">Tagging
+/// Best Practices: Implement an Effective Amazon Web Services Resource Tagging
+/// Strategy</a>.
 class Tag {
-  /// The tag key.
+  /// The tag key. Tag keys must be unique per resource.
   final String key;
 
   /// The tag value.
@@ -44973,6 +44675,7 @@ enum TargetDevice {
   mlP3,
   mlG4dn,
   mlInf1,
+  mlEia2,
   jetsonTx1,
   jetsonTx2,
   jetsonNano,
@@ -44988,6 +44691,7 @@ enum TargetDevice {
   qcs603,
   sitaraAm57x,
   ambaCv22,
+  ambaCv25,
   x86Win32,
   x86Win64,
   coreml,
@@ -45015,6 +44719,8 @@ extension on TargetDevice {
         return 'ml_g4dn';
       case TargetDevice.mlInf1:
         return 'ml_inf1';
+      case TargetDevice.mlEia2:
+        return 'ml_eia2';
       case TargetDevice.jetsonTx1:
         return 'jetson_tx1';
       case TargetDevice.jetsonTx2:
@@ -45045,6 +44751,8 @@ extension on TargetDevice {
         return 'sitara_am57x';
       case TargetDevice.ambaCv22:
         return 'amba_cv22';
+      case TargetDevice.ambaCv25:
+        return 'amba_cv25';
       case TargetDevice.x86Win32:
         return 'x86_win32';
       case TargetDevice.x86Win64:
@@ -45078,6 +44786,8 @@ extension on String {
         return TargetDevice.mlG4dn;
       case 'ml_inf1':
         return TargetDevice.mlInf1;
+      case 'ml_eia2':
+        return TargetDevice.mlEia2;
       case 'jetson_tx1':
         return TargetDevice.jetsonTx1;
       case 'jetson_tx2':
@@ -45108,6 +44818,8 @@ extension on String {
         return TargetDevice.sitaraAm57x;
       case 'amba_cv22':
         return TargetDevice.ambaCv22;
+      case 'amba_cv25':
+        return TargetDevice.ambaCv25;
       case 'x86_win32':
         return TargetDevice.x86Win32;
       case 'x86_win64':
@@ -45712,6 +45424,9 @@ class TrainingJob {
   /// value is set to <code>true</code>. If network isolation is enabled, nodes
   /// can't communicate beyond the VPC they run in.
   final bool? enableNetworkIsolation;
+
+  /// The environment variables to set in the Docker container.
+  final Map<String, String>? environment;
   final ExperimentConfig? experimentConfig;
 
   /// If the training job failed, the reason it failed.
@@ -45747,8 +45462,12 @@ class TrainingJob {
   /// configured for model training.
   final ResourceConfig? resourceConfig;
 
-  /// The AWS Identity and Access Management (IAM) role configured for the
-  /// training job.
+  /// The number of times to retry the job when the job fails due to an
+  /// <code>InternalServerError</code>.
+  final RetryStrategy? retryStrategy;
+
+  /// The Amazon Web Services Identity and Access Management (IAM) role configured
+  /// for the training job.
   final String? roleArn;
 
   /// Provides detailed information about the state of the training job. For
@@ -45822,7 +45541,8 @@ class TrainingJob {
   /// transitioned through.
   final List<SecondaryStatusTransition>? secondaryStatusTransitions;
 
-  /// Specifies a limit to how long a model training job can run. When the job
+  /// Specifies a limit to how long a model training job can run. It also
+  /// specifies how long a managed Spot training job has to complete. When the job
   /// reaches the time limit, Amazon SageMaker ends the training job. Use this API
   /// to cap model training costs.
   ///
@@ -45832,11 +45552,11 @@ class TrainingJob {
   /// training are not lost.
   final StoppingCondition? stoppingCondition;
 
-  /// An array of key-value pairs. You can use tags to categorize your AWS
-  /// resources in different ways, for example, by purpose, owner, or environment.
-  /// For more information, see <a
+  /// An array of key-value pairs. You can use tags to categorize your Amazon Web
+  /// Services resources in different ways, for example, by purpose, owner, or
+  /// environment. For more information, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-  /// AWS Resources</a>.
+  /// Amazon Web Services Resources</a>.
   final List<Tag>? tags;
   final TensorBoardOutputConfig? tensorBoardOutputConfig;
 
@@ -45911,6 +45631,7 @@ class TrainingJob {
     this.enableInterContainerTrafficEncryption,
     this.enableManagedSpotTraining,
     this.enableNetworkIsolation,
+    this.environment,
     this.experimentConfig,
     this.failureReason,
     this.finalMetricDataList,
@@ -45921,6 +45642,7 @@ class TrainingJob {
     this.modelArtifacts,
     this.outputDataConfig,
     this.resourceConfig,
+    this.retryStrategy,
     this.roleArn,
     this.secondaryStatus,
     this.secondaryStatusTransitions,
@@ -45968,6 +45690,8 @@ class TrainingJob {
           json['EnableInterContainerTrafficEncryption'] as bool?,
       enableManagedSpotTraining: json['EnableManagedSpotTraining'] as bool?,
       enableNetworkIsolation: json['EnableNetworkIsolation'] as bool?,
+      environment: (json['Environment'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
       experimentConfig: json['ExperimentConfig'] != null
           ? ExperimentConfig.fromJson(
               json['ExperimentConfig'] as Map<String, dynamic>)
@@ -45996,6 +45720,10 @@ class TrainingJob {
       resourceConfig: json['ResourceConfig'] != null
           ? ResourceConfig.fromJson(
               json['ResourceConfig'] as Map<String, dynamic>)
+          : null,
+      retryStrategy: json['RetryStrategy'] != null
+          ? RetryStrategy.fromJson(
+              json['RetryStrategy'] as Map<String, dynamic>)
           : null,
       roleArn: json['RoleArn'] as String?,
       secondaryStatus:
@@ -46046,7 +45774,8 @@ class TrainingJobDefinition {
   /// use for model training.
   final ResourceConfig resourceConfig;
 
-  /// Specifies a limit to how long a model training job can run. When the job
+  /// Specifies a limit to how long a model training job can run. It also
+  /// specifies how long a managed Spot training job has to complete. When the job
   /// reaches the time limit, Amazon SageMaker ends the training job. Use this API
   /// to cap model training costs.
   ///
@@ -46508,7 +46237,7 @@ class TransformInput {
   /// href="https://mxnet.apache.org/api/faq/recordio">Create a Dataset Using
   /// RecordIO</a> in the MXNet documentation. For more information about
   /// <code>TFRecord</code>, see <a
-  /// href="https://www.tensorflow.org/guide/datasets#consuming_tfrecord_data">Consuming
+  /// href="https://www.tensorflow.org/guide/data#consuming_tfrecord_data">Consuming
   /// TFRecord data</a> in the TensorFlow documentation.
   /// </note>
   final SplitType? splitType;
@@ -46571,6 +46300,12 @@ enum TransformInstanceType {
   mlM5_4xlarge,
   mlM5_12xlarge,
   mlM5_24xlarge,
+  mlG4dnXlarge,
+  mlG4dn_2xlarge,
+  mlG4dn_4xlarge,
+  mlG4dn_8xlarge,
+  mlG4dn_12xlarge,
+  mlG4dn_16xlarge,
 }
 
 extension on TransformInstanceType {
@@ -46628,6 +46363,18 @@ extension on TransformInstanceType {
         return 'ml.m5.12xlarge';
       case TransformInstanceType.mlM5_24xlarge:
         return 'ml.m5.24xlarge';
+      case TransformInstanceType.mlG4dnXlarge:
+        return 'ml.g4dn.xlarge';
+      case TransformInstanceType.mlG4dn_2xlarge:
+        return 'ml.g4dn.2xlarge';
+      case TransformInstanceType.mlG4dn_4xlarge:
+        return 'ml.g4dn.4xlarge';
+      case TransformInstanceType.mlG4dn_8xlarge:
+        return 'ml.g4dn.8xlarge';
+      case TransformInstanceType.mlG4dn_12xlarge:
+        return 'ml.g4dn.12xlarge';
+      case TransformInstanceType.mlG4dn_16xlarge:
+        return 'ml.g4dn.16xlarge';
     }
   }
 }
@@ -46687,6 +46434,18 @@ extension on String {
         return TransformInstanceType.mlM5_12xlarge;
       case 'ml.m5.24xlarge':
         return TransformInstanceType.mlM5_24xlarge;
+      case 'ml.g4dn.xlarge':
+        return TransformInstanceType.mlG4dnXlarge;
+      case 'ml.g4dn.2xlarge':
+        return TransformInstanceType.mlG4dn_2xlarge;
+      case 'ml.g4dn.4xlarge':
+        return TransformInstanceType.mlG4dn_4xlarge;
+      case 'ml.g4dn.8xlarge':
+        return TransformInstanceType.mlG4dn_8xlarge;
+      case 'ml.g4dn.12xlarge':
+        return TransformInstanceType.mlG4dn_12xlarge;
+      case 'ml.g4dn.16xlarge':
+        return TransformInstanceType.mlG4dn_16xlarge;
     }
     throw Exception('$this is not known in enum TransformInstanceType');
   }
@@ -47088,9 +46847,10 @@ class TransformOutput {
   /// character at the end of every transformed record, specify <code>Line</code>.
   final AssemblyType? assembleWith;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
-  /// The <code>KmsKeyId</code> can be any of the following formats:
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt the model artifacts at rest using
+  /// Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of
+  /// the following formats:
   ///
   /// <ul>
   /// <li>
@@ -47117,8 +46877,8 @@ class TransformOutput {
   /// The KMS key policy must grant permission to the IAM role that you specify in
   /// your <a>CreateModel</a> request. For more information, see <a
   /// href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">Using
-  /// Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer
-  /// Guide</i>.
+  /// Key Policies in Amazon Web Services KMS</a> in the <i>Amazon Web Services
+  /// Key Management Service Developer Guide</i>.
   final String? kmsKeyId;
 
   TransformOutput({
@@ -47160,13 +46920,27 @@ class TransformResources {
 
   /// The ML compute instance type for the transform job. If you are using
   /// built-in algorithms to transform moderately sized datasets, we recommend
-  /// using ml.m4.xlarge or <code>ml.m5.large</code> instance types.
+  /// using ml.m4.xlarge or <code>ml.m5.large</code>instance types.
   final TransformInstanceType instanceType;
 
-  /// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-  /// encrypt model data on the storage volume attached to the ML compute
-  /// instance(s) that run the batch transform job. The
-  /// <code>VolumeKmsKeyId</code> can be any of the following formats:
+  /// The Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+  /// that Amazon SageMaker uses to encrypt model data on the storage volume
+  /// attached to the ML compute instance(s) that run the batch transform job.
+  /// <note>
+  /// Certain Nitro-based instances include local storage, dependent on the
+  /// instance type. Local storage volumes are encrypted using a hardware module
+  /// on the instance. You can't request a <code>VolumeKmsKeyId</code> when using
+  /// an instance type with local storage.
+  ///
+  /// For a list of instance types that support local instance storage, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes">Instance
+  /// Store Volumes</a>.
+  ///
+  /// For more information about local instance storage encryption, see <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html">SSD
+  /// Instance Store Volumes</a>.
+  /// </note>
+  /// The <code>VolumeKmsKeyId</code> can be any of the following formats:
   ///
   /// <ul>
   /// <li>
@@ -47981,7 +47755,23 @@ class TuningJobCompletionCriteria {
   }
 }
 
-/// Represents an amount of money in United States dollars/
+/// Metadata for a tuning step.
+class TuningJobStepMetaData {
+  /// The Amazon Resource Name (ARN) of the tuning job that was run by this step
+  /// execution.
+  final String? arn;
+
+  TuningJobStepMetaData({
+    this.arn,
+  });
+  factory TuningJobStepMetaData.fromJson(Map<String, dynamic> json) {
+    return TuningJobStepMetaData(
+      arn: json['Arn'] as String?,
+    );
+  }
+}
+
+/// Represents an amount of money in United States dollars.
 class USD {
   /// The fractional portion, in cents, of the amount.
   final int? cents;
@@ -48025,9 +47815,9 @@ class UiConfig {
   ///
   /// Use this parameter when you are creating a labeling job for 3D point cloud
   /// and video fram labeling jobs. Use your labeling job task type to select one
-  /// of the following ARN's and use it with this parameter when you create a
-  /// labeling job. Replace <code>aws-region</code> with the AWS region you are
-  /// creating your labeling job in.
+  /// of the following ARNs and use it with this parameter when you create a
+  /// labeling job. Replace <code>aws-region</code> with the Amazon Web Services
+  /// region you are creating your labeling job in.
   ///
   /// <b>3D Point Cloud HumanTaskUiArns</b>
   ///
@@ -48410,9 +48200,9 @@ class UpdateUserProfileResponse {
 
 class UpdateWorkforceResponse {
   /// A single private workforce. You can create one private work force in each
-  /// AWS Region. By default, any workforce-related API operation used in a
-  /// specific region will apply to the workforce created in that region. To learn
-  /// how to create a private workforce, see <a
+  /// Amazon Web Services Region. By default, any workforce-related API operation
+  /// used in a specific region will apply to the workforce created in that
+  /// region. To learn how to create a private workforce, see <a
   /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">Create
   /// a Private Workforce</a>.
   final Workforce workforce;
@@ -48583,7 +48373,15 @@ extension on String {
   }
 }
 
-/// A collection of settings.
+/// A collection of settings that apply to users of Amazon SageMaker Studio.
+/// These settings are specified when the <code>CreateUserProfile</code> API is
+/// called, and as <code>DefaultUserSettings</code> when the
+/// <code>CreateDomain</code> API is called.
+///
+/// <code>SecurityGroups</code> is aggregated when specified in both calls. For
+/// all other settings in <code>UserSettings</code>, the values specified in
+/// <code>CreateUserProfile</code> take precedence over those specified in
+/// <code>CreateDomain</code>.
 class UserSettings {
   /// The execution role for the user.
   final String? executionRole;
@@ -48602,9 +48400,13 @@ class UserSettings {
   ///
   /// Required when the <code>CreateDomain.AppNetworkAccessType</code> parameter
   /// is set to <code>VpcOnly</code>.
+  ///
+  /// Amazon SageMaker adds a security group to allow NFS traffic from SageMaker
+  /// Studio. Therefore, the number of security groups that you can specify is one
+  /// less than the maximum number shown.
   final List<String>? securityGroups;
 
-  /// The sharing settings.
+  /// Specifies options for sharing SageMaker Studio notebooks.
   final SharingSettings? sharingSettings;
 
   /// The TensorBoard app settings.
@@ -48784,9 +48586,9 @@ class VpcConfig {
 
 /// A single private workforce, which is automatically created when you create
 /// your first private work team. You can create one private work force in each
-/// AWS Region. By default, any workforce-related API operation used in a
-/// specific region will apply to the workforce created in that region. To learn
-/// how to create a private workforce, see <a
+/// Amazon Web Services Region. By default, any workforce-related API operation
+/// used in a specific region will apply to the workforce created in that
+/// region. To learn how to create a private workforce, see <a
 /// href="https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html">Create
 /// a Private Workforce</a>.
 class Workforce {

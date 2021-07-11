@@ -87,22 +87,11 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'opsItemSNSTopicArn',
       opsItemSNSTopicArn,
       20,
       300,
-    );
-    _s.validateStringPattern(
-      'opsItemSNSTopicArn',
-      opsItemSNSTopicArn,
-      r'''^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -156,24 +145,12 @@ class ApplicationInsights {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''^[\d\w\-_\.+]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceList, 'resourceList');
@@ -243,24 +220,12 @@ class ApplicationInsights {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'pattern',
-      pattern,
-      r'''[\S\s]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternName, 'patternName');
     _s.validateStringLength(
       'patternName',
       patternName,
       1,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'patternName',
-      patternName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
@@ -271,12 +236,6 @@ class ApplicationInsights {
       30,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternSetName',
-      patternSetName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(rank, 'rank');
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
@@ -284,12 +243,6 @@ class ApplicationInsights {
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -335,12 +288,6 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DeleteApplication'
@@ -382,24 +329,12 @@ class ApplicationInsights {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''^[\d\w\-_\.+]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -447,12 +382,6 @@ class ApplicationInsights {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternName',
-      patternName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
     _s.validateStringLength(
       'patternSetName',
@@ -461,24 +390,12 @@ class ApplicationInsights {
       30,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternSetName',
-      patternSetName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -516,12 +433,6 @@ class ApplicationInsights {
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -566,24 +477,12 @@ class ApplicationInsights {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''(?:^[\d\w\-_\.+]*$)|(?:^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -629,24 +528,12 @@ class ApplicationInsights {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''(?:^[\d\w\-_\.+]*$)|(?:^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -699,24 +586,12 @@ class ApplicationInsights {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''(?:^[\d\w\-_\.+]*$)|(?:^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tier, 'tier');
@@ -769,12 +644,6 @@ class ApplicationInsights {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternName',
-      patternName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
     _s.validateStringLength(
       'patternSetName',
@@ -783,24 +652,12 @@ class ApplicationInsights {
       30,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternSetName',
-      patternSetName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -842,12 +699,6 @@ class ApplicationInsights {
       38,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'observationId',
-      observationId,
-      r'''o-[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeObservation'
@@ -885,12 +736,6 @@ class ApplicationInsights {
       38,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'problemId',
-      problemId,
-      r'''p-[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeProblem'
@@ -926,12 +771,6 @@ class ApplicationInsights {
       problemId,
       38,
       38,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'problemId',
-      problemId,
-      r'''p-[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -979,11 +818,6 @@ class ApplicationInsights {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1034,12 +868,6 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1051,11 +879,6 @@ class ApplicationInsights {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1148,21 +971,11 @@ class ApplicationInsights {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
-    );
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1216,12 +1029,6 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1233,11 +1040,6 @@ class ApplicationInsights {
       nextToken,
       1,
       1024,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1292,12 +1094,6 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1310,21 +1106,11 @@ class ApplicationInsights {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
-    );
     _s.validateStringLength(
       'patternSetName',
       patternSetName,
       1,
       30,
-    );
-    _s.validateStringPattern(
-      'patternSetName',
-      patternSetName,
-      r'''[a-zA-Z0-9\.\-_]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1391,21 +1177,11 @@ class ApplicationInsights {
       1,
       1024,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.+''',
-    );
     _s.validateStringLength(
       'resourceGroupName',
       resourceGroupName,
       1,
       256,
-    );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1451,12 +1227,6 @@ class ApplicationInsights {
       resourceARN,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1512,12 +1282,6 @@ class ApplicationInsights {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1563,12 +1327,6 @@ class ApplicationInsights {
       resourceARN,
       1,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -1630,22 +1388,11 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'opsItemSNSTopicArn',
       opsItemSNSTopicArn,
       20,
       300,
-    );
-    _s.validateStringPattern(
-      'opsItemSNSTopicArn',
-      opsItemSNSTopicArn,
-      r'''^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1703,12 +1450,6 @@ class ApplicationInsights {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''^[\d\w\-_\.+]*$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
@@ -1717,22 +1458,11 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'newComponentName',
       newComponentName,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'newComponentName',
-      newComponentName,
-      r'''^[\d\w\-_\.+]*$''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1802,12 +1532,6 @@ class ApplicationInsights {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'componentName',
-      componentName,
-      r'''(?:^[\d\w\-_\.+]*$)|(?:^arn:aws(-\w+)*:[\w\d-]+:([\w\d-]*)?:[\w\d_-]*([:/].+)*$)''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
     _s.validateStringLength(
       'resourceGroupName',
@@ -1816,22 +1540,11 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'componentConfiguration',
       componentConfiguration,
       1,
       10000,
-    );
-    _s.validateStringPattern(
-      'componentConfiguration',
-      componentConfiguration,
-      r'''[\S\s]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1902,24 +1615,12 @@ class ApplicationInsights {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'patternName',
-      patternName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
     _s.validateStringLength(
       'patternSetName',
       patternSetName,
       1,
       30,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'patternSetName',
-      patternSetName,
-      r'''[a-zA-Z0-9\.\-_]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
@@ -1930,22 +1631,11 @@ class ApplicationInsights {
       256,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceGroupName',
-      resourceGroupName,
-      r'''[a-zA-Z0-9\.\-_]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'pattern',
       pattern,
       1,
       50,
-    );
-    _s.validateStringPattern(
-      'pattern',
-      pattern,
-      r'''[\S\s]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

@@ -22,8 +22,7 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon EC2 Auto Scaling is designed to automatically launch or terminate EC2
 /// instances based on user-defined scaling policies, scheduled actions, and
-/// health checks. Use this service with AWS Auto Scaling, Amazon CloudWatch,
-/// and Elastic Load Balancing.
+/// health checks.
 class AutoScaling {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
@@ -78,12 +77,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -152,12 +145,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetGroupARNs, 'targetGroupARNs');
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -213,12 +200,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loadBalancerNames, 'loadBalancerNames');
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -259,12 +240,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scheduledActionNames, 'scheduledActionNames');
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -284,8 +259,7 @@ class AutoScaling {
   }
 
   /// Creates or updates one or more scheduled scaling actions for an Auto
-  /// Scaling group. If you leave a parameter unspecified when updating a
-  /// scheduled scaling action, the corresponding value remains unchanged.
+  /// Scaling group.
   ///
   /// May throw [AlreadyExistsFault].
   /// May throw [LimitExceededFault].
@@ -308,12 +282,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -339,9 +307,10 @@ class AutoScaling {
   /// roll back any replacements that have already been completed, but it
   /// prevents new replacements from being started.
   ///
-  /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">Replacing
-  /// Auto Scaling Instances Based on an Instance Refresh</a>.
+  /// This operation is part of the <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">instance
+  /// refresh feature</a> in Amazon EC2 Auto Scaling, which helps you update
+  /// instances in your Auto Scaling group after you make configuration changes.
   ///
   /// May throw [LimitExceededFault].
   /// May throw [ResourceContentionFault].
@@ -358,12 +327,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -450,12 +413,6 @@ class AutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecycleActionResult, 'lifecycleActionResult');
     ArgumentError.checkNotNull(lifecycleHookName, 'lifecycleHookName');
     _s.validateStringLength(
@@ -465,22 +422,11 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'lifecycleHookName',
-      lifecycleHookName,
-      r'''[A-Za-z0-9\-_\/]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'instanceId',
       instanceId,
       1,
       19,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'lifecycleActionToken',
@@ -507,6 +453,10 @@ class AutoScaling {
     );
   }
 
+  /// <b>We strongly recommend using a launch template when calling this
+  /// operation to ensure full functionality for Amazon EC2 Auto Scaling and
+  /// Amazon EC2.</b>
+  ///
   /// Creates an Auto Scaling group with the specified name and attributes.
   ///
   /// If you exceed your maximum limit of Auto Scaling groups, the call fails.
@@ -574,6 +524,9 @@ class AutoScaling {
   /// EC2 Auto Scaling Capacity Rebalancing</a> in the <i>Amazon EC2 Auto
   /// Scaling User Guide</i>.
   ///
+  /// Parameter [context] :
+  /// Reserved.
+  ///
   /// Parameter [defaultCooldown] :
   /// The amount of time, in seconds, after a scaling activity completes before
   /// another scaling activity can start. The default value is <code>300</code>.
@@ -632,9 +585,8 @@ class AutoScaling {
   /// <code>InstanceId</code>).
   ///
   /// Parameter [launchTemplate] :
-  /// Parameters used to specify the <a
-  /// href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html">launch
-  /// template</a> and version to use to launch instances.
+  /// Parameters used to specify the launch template and version to use to
+  /// launch instances.
   ///
   /// Conditional: You must specify either a launch template
   /// (<code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>) or a
@@ -668,13 +620,13 @@ class AutoScaling {
   ///
   /// Parameter [mixedInstancesPolicy] :
   /// An embedded object that specifies a mixed instances policy. The required
-  /// parameters must be specified. If optional parameters are unspecified,
+  /// properties must be specified. If optional properties are unspecified,
   /// their default values are used.
   ///
-  /// The policy includes parameters that not only define the distribution of
+  /// The policy includes properties that not only define the distribution of
   /// On-Demand Instances and Spot Instances, the maximum price to pay for Spot
   /// Instances, and how the Auto Scaling group allocates instance types to
-  /// fulfill On-Demand and Spot capacities, but also the parameters that
+  /// fulfill On-Demand and Spot capacities, but also the properties that
   /// specify the instance configuration information—the launch template and
   /// instance types. The policy can also include a weight for each instance
   /// type and different launch templates for individual instance types. For
@@ -700,10 +652,10 @@ class AutoScaling {
   ///
   /// Parameter [serviceLinkedRoleARN] :
   /// The Amazon Resource Name (ARN) of the service-linked role that the Auto
-  /// Scaling group uses to call other AWS services on your behalf. By default,
-  /// Amazon EC2 Auto Scaling uses a service-linked role named
-  /// AWSServiceRoleForAutoScaling, which it creates if it does not exist. For
-  /// more information, see <a
+  /// Scaling group uses to call other Amazon Web Services on your behalf. By
+  /// default, Amazon EC2 Auto Scaling uses a service-linked role named
+  /// <code>AWSServiceRoleForAutoScaling</code>, which it creates if it does not
+  /// exist. For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html">Service-linked
   /// roles</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
   ///
@@ -750,6 +702,7 @@ class AutoScaling {
     required int minSize,
     List<String>? availabilityZones,
     bool? capacityRebalance,
+    String? context,
     int? defaultCooldown,
     int? desiredCapacity,
     int? healthCheckGracePeriod,
@@ -777,12 +730,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(maxSize, 'maxSize');
     ArgumentError.checkNotNull(minSize, 'minSize');
     _s.validateStringLength(
@@ -791,43 +738,23 @@ class AutoScaling {
       1,
       32,
     );
-    _s.validateStringPattern(
-      'healthCheckType',
-      healthCheckType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'instanceId',
       instanceId,
       1,
       19,
     );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'launchConfigurationName',
       launchConfigurationName,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'launchConfigurationName',
-      launchConfigurationName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'placementGroup',
       placementGroup,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'placementGroup',
-      placementGroup,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'serviceLinkedRoleARN',
@@ -835,21 +762,11 @@ class AutoScaling {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'serviceLinkedRoleARN',
-      serviceLinkedRoleARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'vPCZoneIdentifier',
       vPCZoneIdentifier,
       1,
       2047,
-    );
-    _s.validateStringPattern(
-      'vPCZoneIdentifier',
-      vPCZoneIdentifier,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -857,6 +774,7 @@ class AutoScaling {
     $request['MinSize'] = minSize;
     availabilityZones?.also((arg) => $request['AvailabilityZones'] = arg);
     capacityRebalance?.also((arg) => $request['CapacityRebalance'] = arg);
+    context?.also((arg) => $request['Context'] = arg);
     defaultCooldown?.also((arg) => $request['DefaultCooldown'] = arg);
     desiredCapacity?.also((arg) => $request['DesiredCapacity'] = arg);
     healthCheckGracePeriod
@@ -1033,7 +951,7 @@ class AutoScaling {
   /// For information about available instance types, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">Available
   /// Instance Types</a> in the <i>Amazon EC2 User Guide for Linux
-  /// Instances.</i>
+  /// Instances</i>.
   ///
   /// If you do not specify <code>InstanceId</code>, you must specify
   /// <code>InstanceType</code>.
@@ -1102,11 +1020,15 @@ class AutoScaling {
   /// </note>
   ///
   /// Parameter [userData] :
-  /// The Base64-encoded user data to make available to the launched EC2
-  /// instances. For more information, see <a
+  /// The user data to make available to the launched EC2 instances. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-  /// metadata and user data</a> in the <i>Amazon EC2 User Guide for Linux
-  /// Instances</i>.
+  /// metadata and user data</a> (Linux) and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html">Instance
+  /// metadata and user data</a> (Windows). If you are using a command line
+  /// tool, base64-encoding is performed for you, and you can load the text from
+  /// a file. Otherwise, you must provide base64-encoded text. User data is
+  /// limited to 16 KB.
   Future<void> createLaunchConfiguration({
     required String launchConfigurationName,
     bool? associatePublicIpAddress,
@@ -1137,22 +1059,11 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'launchConfigurationName',
-      launchConfigurationName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'classicLinkVPCId',
       classicLinkVPCId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'classicLinkVPCId',
-      classicLinkVPCId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'iamInstanceProfile',
@@ -1160,21 +1071,11 @@ class AutoScaling {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'iamInstanceProfile',
-      iamInstanceProfile,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'imageId',
       imageId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'imageId',
-      imageId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'instanceId',
@@ -1182,21 +1083,11 @@ class AutoScaling {
       1,
       19,
     );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'instanceType',
       instanceType,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'instanceType',
-      instanceType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'kernelId',
@@ -1204,21 +1095,11 @@ class AutoScaling {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'kernelId',
-      kernelId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'keyName',
       keyName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'keyName',
-      keyName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'placementTenancy',
@@ -1226,21 +1107,11 @@ class AutoScaling {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'placementTenancy',
-      placementTenancy,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'ramdiskId',
       ramdiskId,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'ramdiskId',
-      ramdiskId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'spotPrice',
@@ -1253,11 +1124,6 @@ class AutoScaling {
       userData,
       0,
       21847,
-    );
-    _s.validateStringPattern(
-      'userData',
-      userData,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['LaunchConfigurationName'] = launchConfigurationName;
@@ -1357,8 +1223,8 @@ class AutoScaling {
   /// Parameter [forceDelete] :
   /// Specifies that the group is to be deleted along with all instances
   /// associated with the group, without waiting for all instances to be
-  /// terminated. This parameter also deletes any lifecycle actions associated
-  /// with the group.
+  /// terminated. This parameter also deletes any outstanding lifecycle actions
+  /// associated with the group.
   Future<void> deleteAutoScalingGroup({
     required String autoScalingGroupName,
     bool? forceDelete,
@@ -1369,12 +1235,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1413,12 +1273,6 @@ class AutoScaling {
       launchConfigurationName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'launchConfigurationName',
-      launchConfigurationName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1460,24 +1314,12 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecycleHookName, 'lifecycleHookName');
     _s.validateStringLength(
       'lifecycleHookName',
       lifecycleHookName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'lifecycleHookName',
-      lifecycleHookName,
-      r'''[A-Za-z0-9\-_\/]+''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1518,24 +1360,12 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(topicARN, 'topicARN');
     _s.validateStringLength(
       'topicARN',
       topicARN,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'topicARN',
-      topicARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1583,22 +1413,11 @@ class AutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyName',
-      policyName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'autoScalingGroupName',
       autoScalingGroupName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['PolicyName'] = policyName;
@@ -1636,24 +1455,12 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
     _s.validateStringLength(
       'scheduledActionName',
       scheduledActionName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'scheduledActionName',
-      scheduledActionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -1696,10 +1503,60 @@ class AutoScaling {
     );
   }
 
-  /// Describes the current Amazon EC2 Auto Scaling resource quotas for your AWS
+  /// Deletes the warm pool for the specified Auto Scaling group.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">Warm
+  /// pools for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  ///
+  /// May throw [LimitExceededFault].
+  /// May throw [ResourceContentionFault].
+  /// May throw [ScalingActivityInProgressFault].
+  /// May throw [ResourceInUseFault].
+  ///
+  /// Parameter [autoScalingGroupName] :
+  /// The name of the Auto Scaling group.
+  ///
+  /// Parameter [forceDelete] :
+  /// Specifies that the warm pool is to be deleted along with all of its
+  /// associated instances, without waiting for all instances to be terminated.
+  /// This parameter also deletes any outstanding lifecycle actions associated
+  /// with the warm pool instances.
+  Future<void> deleteWarmPool({
+    required String autoScalingGroupName,
+    bool? forceDelete,
+  }) async {
+    ArgumentError.checkNotNull(autoScalingGroupName, 'autoScalingGroupName');
+    _s.validateStringLength(
+      'autoScalingGroupName',
+      autoScalingGroupName,
+      1,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['AutoScalingGroupName'] = autoScalingGroupName;
+    forceDelete?.also((arg) => $request['ForceDelete'] = arg);
+    await _protocol.send(
+      $request,
+      action: 'DeleteWarmPool',
+      version: '2011-01-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DeleteWarmPoolType'],
+      shapes: shapes,
+      resultWrapper: 'DeleteWarmPoolResult',
+    );
+  }
+
+  /// Describes the current Amazon EC2 Auto Scaling resource quotas for your
   /// account.
   ///
-  /// For information about requesting an increase, see <a
+  /// When you establish an account, the account has initial quotas on the
+  /// maximum number of Auto Scaling groups and launch configurations that you
+  /// can create in a given Region. For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html">Amazon
   /// EC2 Auto Scaling service quotas</a> in the <i>Amazon EC2 Auto Scaling User
   /// Guide</i>.
@@ -1720,21 +1577,20 @@ class AutoScaling {
     return DescribeAccountLimitsAnswer.fromXml($result);
   }
 
-  /// Describes the available adjustment types for Amazon EC2 Auto Scaling
-  /// scaling policies. These settings apply to step scaling policies and simple
-  /// scaling policies; they do not apply to target tracking scaling policies.
+  /// Describes the available adjustment types for step scaling and simple
+  /// scaling policies.
   ///
   /// The following adjustment types are supported:
   ///
   /// <ul>
   /// <li>
-  /// ChangeInCapacity
+  /// <code>ChangeInCapacity</code>
   /// </li>
   /// <li>
-  /// ExactCapacity
+  /// <code>ExactCapacity</code>
   /// </li>
   /// <li>
-  /// PercentChangeInCapacity
+  /// <code>PercentChangeInCapacity</code>
   /// </li>
   /// </ul>
   ///
@@ -1754,7 +1610,11 @@ class AutoScaling {
     return DescribeAdjustmentTypesAnswer.fromXml($result);
   }
 
-  /// Describes one or more Auto Scaling groups.
+  /// Gets information about the Auto Scaling groups in the account and Region.
+  ///
+  /// This operation returns information about instances in Auto Scaling groups.
+  /// To retrieve information about the instances in a warm pool, you must call
+  /// the <a>DescribeWarmPool</a> API.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -1778,11 +1638,6 @@ class AutoScaling {
     int? maxRecords,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     autoScalingGroupNames
         ?.also((arg) => $request['AutoScalingGroupNames'] = arg);
@@ -1802,15 +1657,18 @@ class AutoScaling {
     return AutoScalingGroupsType.fromXml($result);
   }
 
-  /// Describes one or more Auto Scaling instances.
+  /// Gets information about the Auto Scaling instances in the account and
+  /// Region.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
   ///
   /// Parameter [instanceIds] :
-  /// The IDs of the instances. You can specify up to <code>MaxRecords</code>
-  /// IDs. If you omit this parameter, all Auto Scaling instances are described.
-  /// If you specify an ID that does not exist, it is ignored with no error.
+  /// The IDs of the instances. If you omit this parameter, all Auto Scaling
+  /// instances are described. If you specify an ID that does not exist, it is
+  /// ignored with no error.
+  ///
+  /// Array Members: Maximum number of 50 items.
   ///
   /// Parameter [maxRecords] :
   /// The maximum number of items to return with this call. The default value is
@@ -1824,11 +1682,6 @@ class AutoScaling {
     int? maxRecords,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     instanceIds?.also((arg) => $request['InstanceIds'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -1867,10 +1720,21 @@ class AutoScaling {
     return DescribeAutoScalingNotificationTypesAnswer.fromXml($result);
   }
 
-  /// Describes one or more instance refreshes.
+  /// Gets information about the instance refreshes for the specified Auto
+  /// Scaling group.
   ///
-  /// You can determine the status of a request by looking at the
-  /// <code>Status</code> parameter. The following are the possible statuses:
+  /// This operation is part of the <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">instance
+  /// refresh feature</a> in Amazon EC2 Auto Scaling, which helps you update
+  /// instances in your Auto Scaling group after you make configuration changes.
+  ///
+  /// To help you determine the status of an instance refresh, this operation
+  /// returns information about the instance refreshes you previously initiated,
+  /// including their status, end time, the percentage of the instance refresh
+  /// that is complete, and the number of instances remaining to update before
+  /// the instance refresh is complete.
+  ///
+  /// The following are the possible statuses:
   ///
   /// <ul>
   /// <li>
@@ -1896,9 +1760,6 @@ class AutoScaling {
   /// <code>Cancelled</code> - The operation is cancelled.
   /// </li>
   /// </ul>
-  /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">Replacing
-  /// Auto Scaling Instances Based on an Instance Refresh</a>.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -1930,17 +1791,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     instanceRefreshIds?.also((arg) => $request['InstanceRefreshIds'] = arg);
@@ -1960,7 +1810,8 @@ class AutoScaling {
     return DescribeInstanceRefreshesAnswer.fromXml($result);
   }
 
-  /// Describes one or more launch configurations.
+  /// Gets information about the launch configurations in the account and
+  /// Region.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -1968,6 +1819,8 @@ class AutoScaling {
   /// Parameter [launchConfigurationNames] :
   /// The launch configuration names. If you omit this parameter, all launch
   /// configurations are described.
+  ///
+  /// Array Members: Maximum number of 50 items.
   ///
   /// Parameter [maxRecords] :
   /// The maximum number of items to return with this call. The default value is
@@ -1981,11 +1834,6 @@ class AutoScaling {
     int? maxRecords,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     launchConfigurationNames
         ?.also((arg) => $request['LaunchConfigurationNames'] = arg);
@@ -2011,10 +1859,10 @@ class AutoScaling {
   ///
   /// <ul>
   /// <li>
-  /// autoscaling:EC2_INSTANCE_LAUNCHING
+  /// <code>autoscaling:EC2_INSTANCE_LAUNCHING</code>
   /// </li>
   /// <li>
-  /// autoscaling:EC2_INSTANCE_TERMINATING
+  /// <code>autoscaling:EC2_INSTANCE_TERMINATING</code>
   /// </li>
   /// </ul>
   ///
@@ -2034,7 +1882,8 @@ class AutoScaling {
     return DescribeLifecycleHookTypesAnswer.fromXml($result);
   }
 
-  /// Describes the lifecycle hooks for the specified Auto Scaling group.
+  /// Gets information about the lifecycle hooks for the specified Auto Scaling
+  /// group.
   ///
   /// May throw [ResourceContentionFault].
   ///
@@ -2056,12 +1905,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     lifecycleHookNames?.also((arg) => $request['LifecycleHookNames'] = arg);
@@ -2079,7 +1922,35 @@ class AutoScaling {
     return DescribeLifecycleHooksAnswer.fromXml($result);
   }
 
-  /// Describes the target groups for the specified Auto Scaling group.
+  /// Gets information about the load balancer target groups for the specified
+  /// Auto Scaling group.
+  ///
+  /// To determine the availability of registered instances, use the
+  /// <code>State</code> element in the response. When you attach a target group
+  /// to an Auto Scaling group, the initial <code>State</code> value is
+  /// <code>Adding</code>. The state transitions to <code>Added</code> after all
+  /// Auto Scaling instances are registered with the target group. If Elastic
+  /// Load Balancing health checks are enabled for the Auto Scaling group, the
+  /// state transitions to <code>InService</code> after at least one Auto
+  /// Scaling instance passes the health check. When the target group is in the
+  /// <code>InService</code> state, Amazon EC2 Auto Scaling can terminate and
+  /// replace any instances that are reported as unhealthy. If no registered
+  /// instances pass the health checks, the target group doesn't enter the
+  /// <code>InService</code> state.
+  ///
+  /// Target groups also have an <code>InService</code> state if you attach them
+  /// in the <a>CreateAutoScalingGroup</a> API call. If your target group state
+  /// is <code>InService</code>, but it is not working properly, check the
+  /// scaling activities by calling <a>DescribeScalingActivities</a> and take
+  /// any corrective actions necessary.
+  ///
+  /// For help with failed health checks, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-healthchecks.html">Troubleshooting
+  /// Amazon EC2 Auto Scaling: Health checks</a> in the <i>Amazon EC2 Auto
+  /// Scaling User Guide</i>. For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html">Elastic
+  /// Load Balancing and Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto
+  /// Scaling User Guide</i>.
   ///
   /// May throw [ResourceContentionFault].
   ///
@@ -2107,17 +1978,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -2136,11 +1996,39 @@ class AutoScaling {
     return DescribeLoadBalancerTargetGroupsResponse.fromXml($result);
   }
 
-  /// Describes the load balancers for the specified Auto Scaling group.
+  /// Gets information about the load balancers for the specified Auto Scaling
+  /// group.
   ///
   /// This operation describes only Classic Load Balancers. If you have
   /// Application Load Balancers, Network Load Balancers, or Gateway Load
   /// Balancers, use the <a>DescribeLoadBalancerTargetGroups</a> API instead.
+  ///
+  /// To determine the availability of registered instances, use the
+  /// <code>State</code> element in the response. When you attach a load
+  /// balancer to an Auto Scaling group, the initial <code>State</code> value is
+  /// <code>Adding</code>. The state transitions to <code>Added</code> after all
+  /// Auto Scaling instances are registered with the load balancer. If Elastic
+  /// Load Balancing health checks are enabled for the Auto Scaling group, the
+  /// state transitions to <code>InService</code> after at least one Auto
+  /// Scaling instance passes the health check. When the load balancer is in the
+  /// <code>InService</code> state, Amazon EC2 Auto Scaling can terminate and
+  /// replace any instances that are reported as unhealthy. If no registered
+  /// instances pass the health checks, the load balancer doesn't enter the
+  /// <code>InService</code> state.
+  ///
+  /// Load balancers also have an <code>InService</code> state if you attach
+  /// them in the <a>CreateAutoScalingGroup</a> API call. If your load balancer
+  /// state is <code>InService</code>, but it is not working properly, check the
+  /// scaling activities by calling <a>DescribeScalingActivities</a> and take
+  /// any corrective actions necessary.
+  ///
+  /// For help with failed health checks, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-healthchecks.html">Troubleshooting
+  /// Amazon EC2 Auto Scaling: Health checks</a> in the <i>Amazon EC2 Auto
+  /// Scaling User Guide</i>. For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html">Elastic
+  /// Load Balancing and Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto
+  /// Scaling User Guide</i>.
   ///
   /// May throw [ResourceContentionFault].
   ///
@@ -2166,17 +2054,6 @@ class AutoScaling {
       1,
       255,
       isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -2219,8 +2096,8 @@ class AutoScaling {
     return DescribeMetricCollectionTypesAnswer.fromXml($result);
   }
 
-  /// Describes the notification actions associated with the specified Auto
-  /// Scaling group.
+  /// Gets information about the Amazon SNS notifications that are configured
+  /// for one or more Auto Scaling groups.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -2241,11 +2118,6 @@ class AutoScaling {
     int? maxRecords,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     autoScalingGroupNames
         ?.also((arg) => $request['AutoScalingGroupNames'] = arg);
@@ -2265,7 +2137,7 @@ class AutoScaling {
     return DescribeNotificationConfigurationsAnswer.fromXml($result);
   }
 
-  /// Describes the policies for the specified Auto Scaling group.
+  /// Gets information about the scaling policies in the account and Region.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -2285,12 +2157,15 @@ class AutoScaling {
   /// Parameter [policyNames] :
   /// The names of one or more policies. If you omit this parameter, all
   /// policies are described. If a group name is provided, the results are
-  /// limited to that group. This list is limited to 50 items. If you specify an
-  /// unknown policy name, it is ignored with no error.
+  /// limited to that group. If you specify an unknown policy name, it is
+  /// ignored with no error.
+  ///
+  /// Array Members: Maximum number of 50 items.
   ///
   /// Parameter [policyTypes] :
   /// One or more policy types. The valid values are <code>SimpleScaling</code>,
-  /// <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+  /// <code>StepScaling</code>, <code>TargetTrackingScaling</code>, and
+  /// <code>PredictiveScaling</code>.
   Future<PoliciesType> describePolicies({
     String? autoScalingGroupName,
     int? maxRecords,
@@ -2303,16 +2178,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     autoScalingGroupName?.also((arg) => $request['AutoScalingGroupName'] = arg);
@@ -2334,21 +2199,41 @@ class AutoScaling {
     return PoliciesType.fromXml($result);
   }
 
-  /// Describes one or more scaling activities for the specified Auto Scaling
-  /// group.
+  /// Gets information about the scaling activities in the account and Region.
+  ///
+  /// When scaling events occur, you see a record of the scaling activity in the
+  /// scaling activities. For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-verify-scaling-activity.html">Verifying
+  /// a scaling activity for an Auto Scaling group</a> in the <i>Amazon EC2 Auto
+  /// Scaling User Guide</i>.
+  ///
+  /// If the scaling event succeeds, the value of the <code>StatusCode</code>
+  /// element in the response is <code>Successful</code>. If an attempt to
+  /// launch instances failed, the <code>StatusCode</code> value is
+  /// <code>Failed</code> or <code>Cancelled</code> and the
+  /// <code>StatusMessage</code> element in the response indicates the cause of
+  /// the failure. For help interpreting the <code>StatusMessage</code>, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/CHAP_Troubleshooting.html">Troubleshooting
+  /// Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User
+  /// Guide</i>.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
   ///
   /// Parameter [activityIds] :
-  /// The activity IDs of the desired scaling activities. You can specify up to
-  /// 50 IDs. If you omit this parameter, all activities for the past six weeks
-  /// are described. If unknown activities are requested, they are ignored with
-  /// no error. If you specify an Auto Scaling group, the results are limited to
-  /// that group.
+  /// The activity IDs of the desired scaling activities. If you omit this
+  /// parameter, all activities for the past six weeks are described. If unknown
+  /// activities are requested, they are ignored with no error. If you specify
+  /// an Auto Scaling group, the results are limited to that group.
+  ///
+  /// Array Members: Maximum number of 50 IDs.
   ///
   /// Parameter [autoScalingGroupName] :
   /// The name of the Auto Scaling group.
+  ///
+  /// Parameter [includeDeletedGroups] :
+  /// Indicates whether to include scaling activity from deleted Auto Scaling
+  /// groups.
   ///
   /// Parameter [maxRecords] :
   /// The maximum number of items to return with this call. The default value is
@@ -2360,6 +2245,7 @@ class AutoScaling {
   Future<ActivitiesType> describeScalingActivities({
     List<String>? activityIds,
     String? autoScalingGroupName,
+    bool? includeDeletedGroups,
     int? maxRecords,
     String? nextToken,
   }) async {
@@ -2369,19 +2255,10 @@ class AutoScaling {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     activityIds?.also((arg) => $request['ActivityIds'] = arg);
     autoScalingGroupName?.also((arg) => $request['AutoScalingGroupName'] = arg);
+    includeDeletedGroups?.also((arg) => $request['IncludeDeletedGroups'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
     nextToken?.also((arg) => $request['NextToken'] = arg);
     final $result = await _protocol.send(
@@ -2417,9 +2294,11 @@ class AutoScaling {
     return ProcessesType.fromXml($result);
   }
 
-  /// Describes the actions scheduled for your Auto Scaling group that haven't
-  /// run or that have not reached their end time. To describe the actions that
-  /// have already run, call the <a>DescribeScalingActivities</a> API.
+  /// Gets information about the scheduled actions that haven't run or that have
+  /// not reached their end time.
+  ///
+  /// To describe the scaling activities for scheduled actions that have already
+  /// run, call the <a>DescribeScalingActivities</a> API.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [ResourceContentionFault].
@@ -2440,9 +2319,11 @@ class AutoScaling {
   /// from a previous call.)
   ///
   /// Parameter [scheduledActionNames] :
-  /// The names of one or more scheduled actions. You can specify up to 50
-  /// actions. If you omit this parameter, all scheduled actions are described.
-  /// If you specify an unknown scheduled action, it is ignored with no error.
+  /// The names of one or more scheduled actions. If you omit this parameter,
+  /// all scheduled actions are described. If you specify an unknown scheduled
+  /// action, it is ignored with no error.
+  ///
+  /// Array Members: Maximum number of 50 actions.
   ///
   /// Parameter [startTime] :
   /// The earliest scheduled start time to return. If scheduled action names are
@@ -2460,16 +2341,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     autoScalingGroupName?.also((arg) => $request['AutoScalingGroupName'] = arg);
@@ -2528,11 +2399,6 @@ class AutoScaling {
     int? maxRecords,
     String? nextToken,
   }) async {
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     filters?.also((arg) => $request['Filters'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -2573,6 +2439,58 @@ class AutoScaling {
       resultWrapper: 'DescribeTerminationPolicyTypesResult',
     );
     return DescribeTerminationPolicyTypesAnswer.fromXml($result);
+  }
+
+  /// Gets information about a warm pool and its instances.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">Warm
+  /// pools for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  ///
+  /// May throw [InvalidNextToken].
+  /// May throw [LimitExceededFault].
+  /// May throw [ResourceContentionFault].
+  ///
+  /// Parameter [autoScalingGroupName] :
+  /// The name of the Auto Scaling group.
+  ///
+  /// Parameter [maxRecords] :
+  /// The maximum number of instances to return with this call. The maximum
+  /// value is <code>50</code>.
+  ///
+  /// Parameter [nextToken] :
+  /// The token for the next set of instances to return. (You received this
+  /// token from a previous call.)
+  Future<DescribeWarmPoolAnswer> describeWarmPool({
+    required String autoScalingGroupName,
+    int? maxRecords,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(autoScalingGroupName, 'autoScalingGroupName');
+    _s.validateStringLength(
+      'autoScalingGroupName',
+      autoScalingGroupName,
+      1,
+      255,
+      isRequired: true,
+    );
+    final $request = <String, dynamic>{};
+    $request['AutoScalingGroupName'] = autoScalingGroupName;
+    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $result = await _protocol.send(
+      $request,
+      action: 'DescribeWarmPool',
+      version: '2011-01-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['DescribeWarmPoolType'],
+      shapes: shapes,
+      resultWrapper: 'DescribeWarmPoolResult',
+    );
+    return DescribeWarmPoolAnswer.fromXml($result);
   }
 
   /// Removes one or more instances from the specified Auto Scaling group.
@@ -2617,12 +2535,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         shouldDecrementDesiredCapacity, 'shouldDecrementDesiredCapacity');
     final $request = <String, dynamic>{};
@@ -2663,12 +2575,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(targetGroupARNs, 'targetGroupARNs');
@@ -2717,12 +2623,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(loadBalancerNames, 'loadBalancerNames');
@@ -2792,6 +2692,27 @@ class AutoScaling {
   /// <li>
   /// <code>GroupTotalCapacity</code>
   /// </li>
+  /// <li>
+  /// <code>WarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolWarmedCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolPendingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTerminatingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolTotalCapacity</code>
+  /// </li>
   /// </ul>
   /// If you omit this parameter, all metrics are disabled.
   Future<void> disableMetricsCollection({
@@ -2804,12 +2725,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -2891,6 +2806,31 @@ class AutoScaling {
   /// <code>GroupTotalCapacity</code>
   /// </li>
   /// </ul>
+  /// The warm pools feature supports the following additional metrics:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>WarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolWarmedCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolPendingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTerminatingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolTotalCapacity</code>
+  /// </li>
+  /// </ul>
   /// If you omit this parameter, all metrics are enabled.
   Future<void> enableMetricsCollection({
     required String autoScalingGroupName,
@@ -2905,24 +2845,12 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(granularity, 'granularity');
     _s.validateStringLength(
       'granularity',
       granularity,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'granularity',
-      granularity,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -2979,12 +2907,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -3062,22 +2984,11 @@ class AutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyName',
-      policyName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'autoScalingGroupName',
       autoScalingGroupName,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['PolicyName'] = policyName;
@@ -3126,12 +3037,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     instanceIds?.also((arg) => $request['InstanceIds'] = arg);
@@ -3147,6 +3052,85 @@ class AutoScaling {
       resultWrapper: 'ExitStandbyResult',
     );
     return ExitStandbyAnswer.fromXml($result);
+  }
+
+  /// Retrieves the forecast data for a predictive scaling policy.
+  ///
+  /// Load forecasts are predictions of the hourly load values using historical
+  /// load data from CloudWatch and an analysis of historical trends. Capacity
+  /// forecasts are represented as predicted values for the minimum capacity
+  /// that is needed on an hourly basis, based on the hourly load forecast.
+  ///
+  /// A minimum of 24 hours of data is required to create the initial forecasts.
+  /// However, having a full 14 days of historical data results in more accurate
+  /// forecasts.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html">Predictive
+  /// scaling for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  ///
+  /// May throw [ResourceContentionFault].
+  ///
+  /// Parameter [autoScalingGroupName] :
+  /// The name of the Auto Scaling group.
+  ///
+  /// Parameter [endTime] :
+  /// The exclusive end time of the time range for the forecast data to get. The
+  /// maximum time duration between the start and end time is 30 days.
+  ///
+  /// Although this parameter can accept a date and time that is more than two
+  /// days in the future, the availability of forecast data has limits. Amazon
+  /// EC2 Auto Scaling only issues forecasts for periods of two days in advance.
+  ///
+  /// Parameter [policyName] :
+  /// The name of the policy.
+  ///
+  /// Parameter [startTime] :
+  /// The inclusive start time of the time range for the forecast data to get.
+  /// At most, the date and time can be one year before the current date and
+  /// time.
+  Future<GetPredictiveScalingForecastAnswer> getPredictiveScalingForecast({
+    required String autoScalingGroupName,
+    required DateTime endTime,
+    required String policyName,
+    required DateTime startTime,
+  }) async {
+    ArgumentError.checkNotNull(autoScalingGroupName, 'autoScalingGroupName');
+    _s.validateStringLength(
+      'autoScalingGroupName',
+      autoScalingGroupName,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(endTime, 'endTime');
+    ArgumentError.checkNotNull(policyName, 'policyName');
+    _s.validateStringLength(
+      'policyName',
+      policyName,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(startTime, 'startTime');
+    final $request = <String, dynamic>{};
+    $request['AutoScalingGroupName'] = autoScalingGroupName;
+    $request['EndTime'] = _s.iso8601ToJson(endTime);
+    $request['PolicyName'] = policyName;
+    $request['StartTime'] = _s.iso8601ToJson(startTime);
+    final $result = await _protocol.send(
+      $request,
+      action: 'GetPredictiveScalingForecast',
+      version: '2011-01-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['GetPredictiveScalingForecastType'],
+      shapes: shapes,
+      resultWrapper: 'GetPredictiveScalingForecastResult',
+    );
+    return GetPredictiveScalingForecastAnswer.fromXml($result);
   }
 
   /// Creates or updates a lifecycle hook for the specified Auto Scaling group.
@@ -3278,12 +3262,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecycleHookName, 'lifecycleHookName');
     _s.validateStringLength(
       'lifecycleHookName',
@@ -3292,22 +3270,11 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'lifecycleHookName',
-      lifecycleHookName,
-      r'''[A-Za-z0-9\-_\/]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'notificationMetadata',
       notificationMetadata,
       1,
       1023,
-    );
-    _s.validateStringPattern(
-      'notificationMetadata',
-      notificationMetadata,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'notificationTargetARN',
@@ -3315,21 +3282,11 @@ class AutoScaling {
       0,
       255,
     );
-    _s.validateStringPattern(
-      'notificationTargetARN',
-      notificationTargetARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'roleARN',
       roleARN,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'roleARN',
-      roleARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -3396,12 +3353,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(notificationTypes, 'notificationTypes');
     ArgumentError.checkNotNull(topicARN, 'topicARN');
     _s.validateStringLength(
@@ -3409,12 +3360,6 @@ class AutoScaling {
       topicARN,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'topicARN',
-      topicARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -3433,15 +3378,26 @@ class AutoScaling {
     );
   }
 
-  /// Creates or updates a scaling policy for an Auto Scaling group.
+  /// Creates or updates a scaling policy for an Auto Scaling group. Scaling
+  /// policies are used to scale an Auto Scaling group based on configurable
+  /// metrics. If no policies are defined, the dynamic scaling and predictive
+  /// scaling features are not used.
   ///
-  /// For more information about using scaling policies to scale your Auto
-  /// Scaling group, see <a
+  /// For more information about using dynamic scaling, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html">Target
   /// tracking scaling policies</a> and <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html">Step
   /// and simple scaling policies</a> in the <i>Amazon EC2 Auto Scaling User
   /// Guide</i>.
+  ///
+  /// For more information about using predictive scaling, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html">Predictive
+  /// scaling for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  ///
+  /// You can view the scaling policies for an Auto Scaling group using the
+  /// <a>DescribePolicies</a> API call. If you are no longer using a scaling
+  /// policy, you can delete it by calling the <a>DeletePolicy</a> API.
   ///
   /// May throw [LimitExceededFault].
   /// May throw [ResourceContentionFault].
@@ -3534,7 +3490,22 @@ class AutoScaling {
   /// <li>
   /// <code>SimpleScaling</code> (default)
   /// </li>
+  /// <li>
+  /// <code>PredictiveScaling</code>
+  /// </li>
   /// </ul>
+  ///
+  /// Parameter [predictiveScalingConfiguration] :
+  /// A predictive scaling policy. Provides support for only predefined metrics.
+  ///
+  /// Predictive scaling works with CPU utilization, network in/out, and the
+  /// Application Load Balancer request count.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PredictiveScalingConfiguration.html">PredictiveScalingConfiguration</a>
+  /// in the <i>Amazon EC2 Auto Scaling API Reference</i>.
+  ///
+  /// Required if the policy type is <code>PredictiveScaling</code>.
   ///
   /// Parameter [scalingAdjustment] :
   /// The amount by which to scale, based on the specified adjustment type. A
@@ -3553,7 +3524,7 @@ class AutoScaling {
   /// any other policy type.)
   ///
   /// Parameter [targetTrackingConfiguration] :
-  /// A target tracking scaling policy. Includes support for predefined or
+  /// A target tracking scaling policy. Provides support for predefined or
   /// customized metrics.
   ///
   /// The following predefined metrics are available:
@@ -3592,6 +3563,7 @@ class AutoScaling {
     int? minAdjustmentMagnitude,
     int? minAdjustmentStep,
     String? policyType,
+    PredictiveScalingConfiguration? predictiveScalingConfiguration,
     int? scalingAdjustment,
     List<StepAdjustment>? stepAdjustments,
     TargetTrackingConfiguration? targetTrackingConfiguration,
@@ -3604,12 +3576,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
     _s.validateStringLength(
       'policyName',
@@ -3618,22 +3584,11 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyName',
-      policyName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'adjustmentType',
       adjustmentType,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'adjustmentType',
-      adjustmentType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'metricAggregationType',
@@ -3641,21 +3596,11 @@ class AutoScaling {
       1,
       32,
     );
-    _s.validateStringPattern(
-      'metricAggregationType',
-      metricAggregationType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'policyType',
       policyType,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'policyType',
-      policyType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -3671,6 +3616,8 @@ class AutoScaling {
         ?.also((arg) => $request['MinAdjustmentMagnitude'] = arg);
     minAdjustmentStep?.also((arg) => $request['MinAdjustmentStep'] = arg);
     policyType?.also((arg) => $request['PolicyType'] = arg);
+    predictiveScalingConfiguration
+        ?.also((arg) => $request['PredictiveScalingConfiguration'] = arg);
     scalingAdjustment?.also((arg) => $request['ScalingAdjustment'] = arg);
     stepAdjustments?.also((arg) => $request['StepAdjustments'] = arg);
     targetTrackingConfiguration
@@ -3690,12 +3637,15 @@ class AutoScaling {
   }
 
   /// Creates or updates a scheduled scaling action for an Auto Scaling group.
-  /// If you leave a parameter unspecified when updating a scheduled scaling
-  /// action, the corresponding value remains unchanged.
   ///
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html">Scheduled
   /// scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+  ///
+  /// You can view the scheduled actions for an Auto Scaling group using the
+  /// <a>DescribeScheduledActions</a> API call. If you are no longer using a
+  /// scheduled action, you can delete it by calling the
+  /// <a>DeleteScheduledAction</a> API.
   ///
   /// May throw [AlreadyExistsFault].
   /// May throw [LimitExceededFault].
@@ -3713,8 +3663,7 @@ class AutoScaling {
   /// It can scale beyond this capacity if you add more scaling conditions.
   ///
   /// Parameter [endTime] :
-  /// The date and time for the recurring schedule to end. Amazon EC2 Auto
-  /// Scaling does not perform the action after this time.
+  /// The date and time for the recurring schedule to end, in UTC.
   ///
   /// Parameter [maxSize] :
   /// The maximum size of the Auto Scaling group.
@@ -3723,15 +3672,17 @@ class AutoScaling {
   /// The minimum size of the Auto Scaling group.
   ///
   /// Parameter [recurrence] :
-  /// The recurring schedule for this action, in Unix cron syntax format. This
-  /// format consists of five fields separated by white spaces: [Minute] [Hour]
-  /// [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
-  /// (for example, <code>"30 0 1 1,6,12 *"</code>). For more information about
-  /// this format, see <a href="http://crontab.org">Crontab</a>.
+  /// The recurring schedule for this action. This format consists of five
+  /// fields separated by white spaces: [Minute] [Hour] [Day_of_Month]
+  /// [Month_of_Year] [Day_of_Week]. The value must be in quotes (for example,
+  /// <code>"30 0 1 1,6,12 *"</code>). For more information about this format,
+  /// see <a href="http://crontab.org">Crontab</a>.
   ///
   /// When <code>StartTime</code> and <code>EndTime</code> are specified with
   /// <code>Recurrence</code>, they form the boundaries of when the recurring
   /// action starts and stops.
+  ///
+  /// Cron expressions use Universal Coordinated Time (UTC) by default.
   ///
   /// Parameter [startTime] :
   /// The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ format
@@ -3747,6 +3698,15 @@ class AutoScaling {
   ///
   /// Parameter [time] :
   /// This parameter is no longer used.
+  ///
+  /// Parameter [timeZone] :
+  /// Specifies the time zone for a cron expression. If a time zone is not
+  /// provided, UTC is used by default.
+  ///
+  /// Valid values are the canonical names of the IANA time zones, derived from
+  /// the IANA Time Zone Database (such as <code>Etc/GMT+9</code> or
+  /// <code>Pacific/Tahiti</code>). For more information, see <a
+  /// href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a>.
   Future<void> putScheduledUpdateGroupAction({
     required String autoScalingGroupName,
     required String scheduledActionName,
@@ -3757,6 +3717,7 @@ class AutoScaling {
     String? recurrence,
     DateTime? startTime,
     DateTime? time,
+    String? timeZone,
   }) async {
     ArgumentError.checkNotNull(autoScalingGroupName, 'autoScalingGroupName');
     _s.validateStringLength(
@@ -3764,12 +3725,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
@@ -3780,22 +3735,17 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'scheduledActionName',
-      scheduledActionName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'recurrence',
       recurrence,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'recurrence',
-      recurrence,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
+    _s.validateStringLength(
+      'timeZone',
+      timeZone,
+      1,
+      255,
     );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
@@ -3807,6 +3757,7 @@ class AutoScaling {
     recurrence?.also((arg) => $request['Recurrence'] = arg);
     startTime?.also((arg) => $request['StartTime'] = _s.iso8601ToJson(arg));
     time?.also((arg) => $request['Time'] = _s.iso8601ToJson(arg));
+    timeZone?.also((arg) => $request['TimeZone'] = arg);
     await _protocol.send(
       $request,
       action: 'PutScheduledUpdateGroupAction',
@@ -3816,6 +3767,108 @@ class AutoScaling {
       exceptionFnMap: _exceptionFns,
       shape: shapes['PutScheduledUpdateGroupActionType'],
       shapes: shapes,
+    );
+  }
+
+  /// Creates or updates a warm pool for the specified Auto Scaling group. A
+  /// warm pool is a pool of pre-initialized EC2 instances that sits alongside
+  /// the Auto Scaling group. Whenever your application needs to scale out, the
+  /// Auto Scaling group can draw on the warm pool to meet its new desired
+  /// capacity. For more information and example configurations, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-warm-pools.html">Warm
+  /// pools for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  ///
+  /// This operation must be called from the Region in which the Auto Scaling
+  /// group was created. This operation cannot be called on an Auto Scaling
+  /// group that has a mixed instances policy or a launch template or launch
+  /// configuration that requests Spot Instances.
+  ///
+  /// You can view the instances in the warm pool using the
+  /// <a>DescribeWarmPool</a> API call. If you are no longer using a warm pool,
+  /// you can delete it by calling the <a>DeleteWarmPool</a> API.
+  ///
+  /// May throw [LimitExceededFault].
+  /// May throw [ResourceContentionFault].
+  ///
+  /// Parameter [autoScalingGroupName] :
+  /// The name of the Auto Scaling group.
+  ///
+  /// Parameter [maxGroupPreparedCapacity] :
+  /// Specifies the maximum number of instances that are allowed to be in the
+  /// warm pool or in any state except <code>Terminated</code> for the Auto
+  /// Scaling group. This is an optional property. Specify it only if you do not
+  /// want the warm pool size to be determined by the difference between the
+  /// group's maximum capacity and its desired capacity.
+  /// <important>
+  /// If a value for <code>MaxGroupPreparedCapacity</code> is not specified,
+  /// Amazon EC2 Auto Scaling launches and maintains the difference between the
+  /// group's maximum capacity and its desired capacity. If you specify a value
+  /// for <code>MaxGroupPreparedCapacity</code>, Amazon EC2 Auto Scaling uses
+  /// the difference between the <code>MaxGroupPreparedCapacity</code> and the
+  /// desired capacity instead.
+  ///
+  /// The size of the warm pool is dynamic. Only when
+  /// <code>MaxGroupPreparedCapacity</code> and <code>MinSize</code> are set to
+  /// the same value does the warm pool have an absolute size.
+  /// </important>
+  /// If the desired capacity of the Auto Scaling group is higher than the
+  /// <code>MaxGroupPreparedCapacity</code>, the capacity of the warm pool is 0,
+  /// unless you specify a value for <code>MinSize</code>. To remove a value
+  /// that you previously set, include the property but specify -1 for the
+  /// value.
+  ///
+  /// Parameter [minSize] :
+  /// Specifies the minimum number of instances to maintain in the warm pool.
+  /// This helps you to ensure that there is always a certain number of warmed
+  /// instances available to handle traffic spikes. Defaults to 0 if not
+  /// specified.
+  ///
+  /// Parameter [poolState] :
+  /// Sets the instance state to transition to after the lifecycle actions are
+  /// complete. Default is <code>Stopped</code>.
+  Future<void> putWarmPool({
+    required String autoScalingGroupName,
+    int? maxGroupPreparedCapacity,
+    int? minSize,
+    WarmPoolState? poolState,
+  }) async {
+    ArgumentError.checkNotNull(autoScalingGroupName, 'autoScalingGroupName');
+    _s.validateStringLength(
+      'autoScalingGroupName',
+      autoScalingGroupName,
+      1,
+      255,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxGroupPreparedCapacity',
+      maxGroupPreparedCapacity,
+      -1,
+      1152921504606846976,
+    );
+    _s.validateNumRange(
+      'minSize',
+      minSize,
+      0,
+      1152921504606846976,
+    );
+    final $request = <String, dynamic>{};
+    $request['AutoScalingGroupName'] = autoScalingGroupName;
+    maxGroupPreparedCapacity
+        ?.also((arg) => $request['MaxGroupPreparedCapacity'] = arg);
+    minSize?.also((arg) => $request['MinSize'] = arg);
+    poolState?.also((arg) => $request['PoolState'] = arg.toValue());
+    await _protocol.send(
+      $request,
+      action: 'PutWarmPool',
+      version: '2011-01-01',
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      shape: shapes['PutWarmPoolType'],
+      shapes: shapes,
+      resultWrapper: 'PutWarmPoolResult',
     );
   }
 
@@ -3849,8 +3902,9 @@ class AutoScaling {
   /// action.
   /// </li> </ol>
   /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html">Auto
-  /// Scaling lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html">Amazon
+  /// EC2 Auto Scaling lifecycle hooks</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
   ///
   /// May throw [ResourceContentionFault].
   ///
@@ -3882,12 +3936,6 @@ class AutoScaling {
       1600,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecycleHookName, 'lifecycleHookName');
     _s.validateStringLength(
       'lifecycleHookName',
@@ -3896,22 +3944,11 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'lifecycleHookName',
-      lifecycleHookName,
-      r'''[A-Za-z0-9\-_\/]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'instanceId',
       instanceId,
       1,
       19,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'lifecycleActionToken',
@@ -3996,12 +4033,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     scalingProcesses?.also((arg) => $request['ScalingProcesses'] = arg);
@@ -4054,12 +4085,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(desiredCapacity, 'desiredCapacity');
@@ -4119,24 +4144,12 @@ class AutoScaling {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'healthStatus',
-      healthStatus,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     _s.validateStringLength(
       'instanceId',
       instanceId,
       1,
       19,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -4156,7 +4169,8 @@ class AutoScaling {
     );
   }
 
-  /// Updates the instance protection settings of the specified instances.
+  /// Updates the instance protection settings of the specified instances. This
+  /// operation cannot be called on instances in a warm pool.
   ///
   /// For more information about preventing instances that are part of an Auto
   /// Scaling group from terminating on scale in, see <a
@@ -4191,12 +4205,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceIds, 'instanceIds');
     ArgumentError.checkNotNull(protectedFromScaleIn, 'protectedFromScaleIn');
     final $request = <String, dynamic>{};
@@ -4217,19 +4225,20 @@ class AutoScaling {
   }
 
   /// Starts a new instance refresh operation, which triggers a rolling
-  /// replacement of all previously launched instances in the Auto Scaling group
+  /// replacement of previously launched instances in the Auto Scaling group
   /// with a new group of instances.
   ///
-  /// If successful, this call creates a new instance refresh request with a
+  /// This operation is part of the <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">instance
+  /// refresh feature</a> in Amazon EC2 Auto Scaling, which helps you update
+  /// instances in your Auto Scaling group after you make configuration changes.
+  ///
+  /// If the call succeeds, it creates a new instance refresh request with a
   /// unique ID that you can use to track its progress. To query its status,
   /// call the <a>DescribeInstanceRefreshes</a> API. To describe the instance
   /// refreshes that have already run, call the <a>DescribeInstanceRefreshes</a>
   /// API. To cancel an instance refresh operation in progress, use the
   /// <a>CancelInstanceRefresh</a> API.
-  ///
-  /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-refresh.html">Replacing
-  /// Auto Scaling Instances Based on an Instance Refresh</a>.
   ///
   /// May throw [LimitExceededFault].
   /// May throw [ResourceContentionFault].
@@ -4271,12 +4280,6 @@ class AutoScaling {
       autoScalingGroupName,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
       isRequired: true,
     );
     final $request = <String, dynamic>{};
@@ -4361,12 +4364,6 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     scalingProcesses?.also((arg) => $request['ScalingProcesses'] = arg);
@@ -4383,7 +4380,7 @@ class AutoScaling {
   }
 
   /// Terminates the specified instance and optionally adjusts the desired group
-  /// size.
+  /// size. This operation cannot be called on instances in a warm pool.
   ///
   /// This call simply makes a termination request. The instance is not
   /// terminated immediately. When an instance is terminated, the instance
@@ -4423,12 +4420,6 @@ class AutoScaling {
       19,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'instanceId',
-      instanceId,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         shouldDecrementDesiredCapacity, 'shouldDecrementDesiredCapacity');
     final $request = <String, dynamic>{};
@@ -4448,6 +4439,10 @@ class AutoScaling {
     return ActivityType.fromXml($result);
   }
 
+  /// <b>We strongly recommend that all Auto Scaling groups use launch templates
+  /// to ensure full functionality for Amazon EC2 Auto Scaling and Amazon
+  /// EC2.</b>
+  ///
   /// Updates the configuration for the specified Auto Scaling group.
   ///
   /// To update an Auto Scaling group, specify the name of the group and the
@@ -4513,6 +4508,9 @@ class AutoScaling {
   /// EC2 Auto Scaling Capacity Rebalancing</a> in the <i>Amazon EC2 Auto
   /// Scaling User Guide</i>.
   ///
+  /// Parameter [context] :
+  /// Reserved.
+  ///
   /// Parameter [defaultCooldown] :
   /// The amount of time, in seconds, after a scaling activity completes before
   /// another scaling activity can start. The default value is <code>300</code>.
@@ -4541,8 +4539,9 @@ class AutoScaling {
   /// Parameter [healthCheckType] :
   /// The service to use for the health checks. The valid values are
   /// <code>EC2</code> and <code>ELB</code>. If you configure an Auto Scaling
-  /// group to use ELB health checks, it considers the instance unhealthy if it
-  /// fails either the EC2 status checks or the load balancer health checks.
+  /// group to use <code>ELB</code> health checks, it considers the instance
+  /// unhealthy if it fails either the EC2 status checks or the load balancer
+  /// health checks.
   ///
   /// Parameter [launchConfigurationName] :
   /// The name of the launch configuration. If you specify
@@ -4581,7 +4580,7 @@ class AutoScaling {
   ///
   /// Parameter [mixedInstancesPolicy] :
   /// An embedded object that specifies a mixed instances policy. When you make
-  /// changes to an existing policy, all optional parameters are left unchanged
+  /// changes to an existing policy, all optional properties are left unchanged
   /// if not specified. For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html">Auto
   /// Scaling groups with multiple instance types and purchase options</a> in
@@ -4604,8 +4603,8 @@ class AutoScaling {
   ///
   /// Parameter [serviceLinkedRoleARN] :
   /// The Amazon Resource Name (ARN) of the service-linked role that the Auto
-  /// Scaling group uses to call other AWS services on your behalf. For more
-  /// information, see <a
+  /// Scaling group uses to call other Amazon Web Services on your behalf. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html">Service-linked
   /// roles</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
   ///
@@ -4626,6 +4625,7 @@ class AutoScaling {
     required String autoScalingGroupName,
     List<String>? availabilityZones,
     bool? capacityRebalance,
+    String? context,
     int? defaultCooldown,
     int? desiredCapacity,
     int? healthCheckGracePeriod,
@@ -4650,44 +4650,23 @@ class AutoScaling {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'autoScalingGroupName',
-      autoScalingGroupName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'healthCheckType',
       healthCheckType,
       1,
       32,
     );
-    _s.validateStringPattern(
-      'healthCheckType',
-      healthCheckType,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'launchConfigurationName',
       launchConfigurationName,
       1,
       255,
     );
-    _s.validateStringPattern(
-      'launchConfigurationName',
-      launchConfigurationName,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'placementGroup',
       placementGroup,
       1,
       255,
-    );
-    _s.validateStringPattern(
-      'placementGroup',
-      placementGroup,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
     );
     _s.validateStringLength(
       'serviceLinkedRoleARN',
@@ -4695,26 +4674,17 @@ class AutoScaling {
       1,
       1600,
     );
-    _s.validateStringPattern(
-      'serviceLinkedRoleARN',
-      serviceLinkedRoleARN,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     _s.validateStringLength(
       'vPCZoneIdentifier',
       vPCZoneIdentifier,
       1,
       2047,
     );
-    _s.validateStringPattern(
-      'vPCZoneIdentifier',
-      vPCZoneIdentifier,
-      r'''[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*''',
-    );
     final $request = <String, dynamic>{};
     $request['AutoScalingGroupName'] = autoScalingGroupName;
     availabilityZones?.also((arg) => $request['AvailabilityZones'] = arg);
     capacityRebalance?.also((arg) => $request['CapacityRebalance'] = arg);
+    context?.also((arg) => $request['Context'] = arg);
     defaultCooldown?.also((arg) => $request['DefaultCooldown'] = arg);
     desiredCapacity?.also((arg) => $request['DesiredCapacity'] = arg);
     healthCheckGracePeriod
@@ -4792,6 +4762,13 @@ class Activity {
   /// The current status of the activity.
   final ScalingActivityStatusCode statusCode;
 
+  /// The Amazon Resource Name (ARN) of the Auto Scaling group.
+  final String? autoScalingGroupARN;
+
+  /// The state of the Auto Scaling group, which is either <code>InService</code>
+  /// or <code>Deleted</code>.
+  final String? autoScalingGroupState;
+
   /// A friendly, more verbose description of the activity.
   final String? description;
 
@@ -4813,6 +4790,8 @@ class Activity {
     required this.cause,
     required this.startTime,
     required this.statusCode,
+    this.autoScalingGroupARN,
+    this.autoScalingGroupState,
     this.description,
     this.details,
     this.endTime,
@@ -4829,6 +4808,10 @@ class Activity {
       statusCode: _s
           .extractXmlStringValue(elem, 'StatusCode')!
           .toScalingActivityStatusCode(),
+      autoScalingGroupARN:
+          _s.extractXmlStringValue(elem, 'AutoScalingGroupARN'),
+      autoScalingGroupState:
+          _s.extractXmlStringValue(elem, 'AutoScalingGroupState'),
       description: _s.extractXmlStringValue(elem, 'Description'),
       details: _s.extractXmlStringValue(elem, 'Details'),
       endTime: _s.extractXmlDateTimeValue(elem, 'EndTime'),
@@ -4927,8 +4910,9 @@ class AutoScalingGroup {
 
   /// The service to use for the health checks. The valid values are
   /// <code>EC2</code> and <code>ELB</code>. If you configure an Auto Scaling
-  /// group to use ELB health checks, it considers the instance unhealthy if it
-  /// fails either the EC2 status checks or the load balancer health checks.
+  /// group to use <code>ELB</code> health checks, it considers the instance
+  /// unhealthy if it fails either the EC2 status checks or the load balancer
+  /// health checks.
   final String healthCheckType;
 
   /// The maximum size of the group.
@@ -4942,6 +4926,9 @@ class AutoScalingGroup {
 
   /// Indicates whether Capacity Rebalancing is enabled.
   final bool? capacityRebalance;
+
+  /// Reserved.
+  final String? context;
 
   /// The metrics enabled for the group.
   final List<EnabledMetric>? enabledMetrics;
@@ -4977,8 +4964,11 @@ class AutoScalingGroup {
   /// The name of the placement group into which to launch your instances, if any.
   final String? placementGroup;
 
+  /// The predicted capacity of the group when it has a predictive scaling policy.
+  final int? predictedCapacity;
+
   /// The Amazon Resource Name (ARN) of the service-linked role that the Auto
-  /// Scaling group uses to call other AWS services on your behalf.
+  /// Scaling group uses to call other Amazon Web Services on your behalf.
   final String? serviceLinkedRoleARN;
 
   /// The current state of the group when the <a>DeleteAutoScalingGroup</a>
@@ -5000,6 +4990,12 @@ class AutoScalingGroup {
   /// One or more subnet IDs, if applicable, separated by commas.
   final String? vPCZoneIdentifier;
 
+  /// The warm pool for the group.
+  final WarmPoolConfiguration? warmPoolConfiguration;
+
+  /// The current size of the warm pool.
+  final int? warmPoolSize;
+
   AutoScalingGroup({
     required this.autoScalingGroupName,
     required this.availabilityZones,
@@ -5011,6 +5007,7 @@ class AutoScalingGroup {
     required this.minSize,
     this.autoScalingGroupARN,
     this.capacityRebalance,
+    this.context,
     this.enabledMetrics,
     this.healthCheckGracePeriod,
     this.instances,
@@ -5021,6 +5018,7 @@ class AutoScalingGroup {
     this.mixedInstancesPolicy,
     this.newInstancesProtectedFromScaleIn,
     this.placementGroup,
+    this.predictedCapacity,
     this.serviceLinkedRoleARN,
     this.status,
     this.suspendedProcesses,
@@ -5028,6 +5026,8 @@ class AutoScalingGroup {
     this.targetGroupARNs,
     this.terminationPolicies,
     this.vPCZoneIdentifier,
+    this.warmPoolConfiguration,
+    this.warmPoolSize,
   });
   factory AutoScalingGroup.fromXml(_s.XmlElement elem) {
     return AutoScalingGroup(
@@ -5044,6 +5044,7 @@ class AutoScalingGroup {
       autoScalingGroupARN:
           _s.extractXmlStringValue(elem, 'AutoScalingGroupARN'),
       capacityRebalance: _s.extractXmlBoolValue(elem, 'CapacityRebalance'),
+      context: _s.extractXmlStringValue(elem, 'Context'),
       enabledMetrics: _s.extractXmlChild(elem, 'EnabledMetrics')?.let((elem) =>
           elem
               .findElements('member')
@@ -5068,6 +5069,7 @@ class AutoScalingGroup {
       newInstancesProtectedFromScaleIn:
           _s.extractXmlBoolValue(elem, 'NewInstancesProtectedFromScaleIn'),
       placementGroup: _s.extractXmlStringValue(elem, 'PlacementGroup'),
+      predictedCapacity: _s.extractXmlIntValue(elem, 'PredictedCapacity'),
       serviceLinkedRoleARN:
           _s.extractXmlStringValue(elem, 'ServiceLinkedRoleARN'),
       status: _s.extractXmlStringValue(elem, 'Status'),
@@ -5087,6 +5089,10 @@ class AutoScalingGroup {
           .extractXmlChild(elem, 'TerminationPolicies')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       vPCZoneIdentifier: _s.extractXmlStringValue(elem, 'VPCZoneIdentifier'),
+      warmPoolConfiguration: _s
+          .extractXmlChild(elem, 'WarmPoolConfiguration')
+          ?.let((e) => WarmPoolConfiguration.fromXml(e)),
+      warmPoolSize: _s.extractXmlIntValue(elem, 'WarmPoolSize'),
     );
   }
 }
@@ -5134,7 +5140,22 @@ class AutoScalingInstanceDetails {
   /// The ID of the instance.
   final String instanceId;
 
-  /// The lifecycle state for the instance.
+  /// The lifecycle state for the instance. The <code>Quarantined</code> state is
+  /// not used. For information about lifecycle states, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html">Instance
+  /// lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+  ///
+  /// Valid Values: <code>Pending</code> | <code>Pending:Wait</code> |
+  /// <code>Pending:Proceed</code> | <code>Quarantined</code> |
+  /// <code>InService</code> | <code>Terminating</code> |
+  /// <code>Terminating:Wait</code> | <code>Terminating:Proceed</code> |
+  /// <code>Terminated</code> | <code>Detaching</code> | <code>Detached</code> |
+  /// <code>EnteringStandby</code> | <code>Standby</code> |
+  /// <code>Warmed:Pending</code> | <code>Warmed:Pending:Wait</code> |
+  /// <code>Warmed:Pending:Proceed</code> | <code>Warmed:Terminating</code> |
+  /// <code>Warmed:Terminating:Wait</code> |
+  /// <code>Warmed:Terminating:Proceed</code> | <code>Warmed:Terminated</code> |
+  /// <code>Warmed:Stopped</code> | <code>Warmed:Running</code>
   final String lifecycleState;
 
   /// Indicates whether the instance is protected from termination by Amazon EC2
@@ -5333,6 +5354,31 @@ class CancelInstanceRefreshAnswer {
   }
 }
 
+/// A <code>GetPredictiveScalingForecast</code> call returns the capacity
+/// forecast for a predictive scaling policy. This structure includes the data
+/// points for that capacity forecast, along with the timestamps of those data
+/// points.
+class CapacityForecast {
+  /// The time stamps for the data points, in UTC format.
+  final List<DateTime> timestamps;
+
+  /// The values of the data points.
+  final List<double> values;
+
+  CapacityForecast({
+    required this.timestamps,
+    required this.values,
+  });
+  factory CapacityForecast.fromXml(_s.XmlElement elem) {
+    return CapacityForecast(
+      timestamps: _s.extractXmlDateTimeListValues(
+          _s.extractXmlChild(elem, 'Timestamps')!, 'member'),
+      values: _s.extractXmlDoubleListValues(
+          _s.extractXmlChild(elem, 'Values')!, 'member'),
+    );
+  }
+}
+
 class CompleteLifecycleActionAnswer {
   CompleteLifecycleActionAnswer();
   factory CompleteLifecycleActionAnswer.fromXml(
@@ -5431,19 +5477,28 @@ class DeleteLifecycleHookAnswer {
   }
 }
 
+class DeleteWarmPoolAnswer {
+  DeleteWarmPoolAnswer();
+  factory DeleteWarmPoolAnswer.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return DeleteWarmPoolAnswer();
+  }
+}
+
 class DescribeAccountLimitsAnswer {
-  /// The maximum number of groups allowed for your AWS account. The default is
-  /// 200 groups per AWS Region.
+  /// The maximum number of groups allowed for your account. The default is 200
+  /// groups per Region.
   final int? maxNumberOfAutoScalingGroups;
 
-  /// The maximum number of launch configurations allowed for your AWS account.
-  /// The default is 200 launch configurations per AWS Region.
+  /// The maximum number of launch configurations allowed for your account. The
+  /// default is 200 launch configurations per Region.
   final int? maxNumberOfLaunchConfigurations;
 
-  /// The current number of groups for your AWS account.
+  /// The current number of groups for your account.
   final int? numberOfAutoScalingGroups;
 
-  /// The current number of launch configurations for your AWS account.
+  /// The current number of launch configurations for your account.
   final int? numberOfLaunchConfigurations;
 
   DescribeAccountLimitsAnswer({
@@ -5686,6 +5741,34 @@ class DescribeTerminationPolicyTypesAnswer {
   }
 }
 
+class DescribeWarmPoolAnswer {
+  /// The instances that are currently in the warm pool.
+  final List<Instance>? instances;
+
+  /// The token for the next set of items to return. (You received this token from
+  /// a previous call.)
+  final String? nextToken;
+
+  /// The warm pool configuration details.
+  final WarmPoolConfiguration? warmPoolConfiguration;
+
+  DescribeWarmPoolAnswer({
+    this.instances,
+    this.nextToken,
+    this.warmPoolConfiguration,
+  });
+  factory DescribeWarmPoolAnswer.fromXml(_s.XmlElement elem) {
+    return DescribeWarmPoolAnswer(
+      instances: _s.extractXmlChild(elem, 'Instances')?.let((elem) =>
+          elem.findElements('member').map((c) => Instance.fromXml(c)).toList()),
+      nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
+      warmPoolConfiguration: _s
+          .extractXmlChild(elem, 'WarmPoolConfiguration')
+          ?.let((e) => WarmPoolConfiguration.fromXml(e)),
+    );
+  }
+}
+
 class DetachInstancesAnswer {
   /// The activities related to detaching the instances from the Auto Scaling
   /// group.
@@ -5738,17 +5821,17 @@ class Ebs {
   /// encryption value. Volumes that are created from encrypted snapshots are
   /// automatically encrypted, and volumes that are created from unencrypted
   /// snapshots are automatically unencrypted. By default, encrypted snapshots use
-  /// the AWS managed CMK that is used for EBS encryption, but you can specify a
-  /// custom CMK when you create the snapshot. The ability to encrypt a snapshot
-  /// during copying also allows you to apply a new CMK to an already-encrypted
-  /// snapshot. Volumes restored from the resulting copy are only accessible using
-  /// the new CMK.
+  /// the Amazon Web Services managed CMK that is used for EBS encryption, but you
+  /// can specify a custom CMK when you create the snapshot. The ability to
+  /// encrypt a snapshot during copying also allows you to apply a new CMK to an
+  /// already-encrypted snapshot. Volumes restored from the resulting copy are
+  /// only accessible using the new CMK.
   ///
   /// Enabling <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default">encryption
-  /// by default</a> results in all EBS volumes being encrypted with the AWS
-  /// managed CMK or a customer managed CMK, whether or not the snapshot was
-  /// encrypted.
+  /// by default</a> results in all EBS volumes being encrypted with the Amazon
+  /// Web Services managed CMK or a customer managed CMK, whether or not the
+  /// snapshot was encrypted.
   /// </note>
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html">Using
@@ -5759,15 +5842,31 @@ class Ebs {
   /// Scaling User Guide</i>.
   final bool? encrypted;
 
-  /// The number of I/O operations per second (IOPS) to provision for the volume.
-  /// The maximum ratio of IOPS to volume size (in GiB) is 50:1. For more
-  /// information, see <a
-  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
-  /// EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
-  /// Instances</i>.
+  /// The number of input/output (I/O) operations per second (IOPS) to provision
+  /// for the volume. For <code>gp3</code> and <code>io1</code> volumes, this
+  /// represents the number of IOPS that are provisioned for the volume. For
+  /// <code>gp2</code> volumes, this represents the baseline performance of the
+  /// volume and the rate at which the volume accumulates I/O credits for
+  /// bursting.
   ///
-  /// Required when the volume type is <code>io1</code>. (Not used with
-  /// <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+  /// The following are the supported values for each volume type:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>gp3</code>: 3,000-16,000 IOPS
+  /// </li>
+  /// <li>
+  /// <code>io1</code>: 100-64,000 IOPS
+  /// </li>
+  /// </ul>
+  /// For <code>io1</code> volumes, we guarantee 64,000 IOPS only for <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances">Instances
+  /// built on the Nitro System</a>. Other instance families guarantee performance
+  /// up to 32,000 IOPS.
+  ///
+  /// <code>Iops</code> is supported when the volume type is <code>gp3</code> or
+  /// <code>io1</code> and required only when the volume type is <code>io1</code>.
+  /// (Not used with <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
   /// <code>sc1</code> volumes.)
   final int? iops;
 
@@ -5777,32 +5876,39 @@ class Ebs {
   /// <code>SnapshotId</code>.
   final String? snapshotId;
 
-  /// The volume size, in Gibibytes (GiB).
+  /// The throughput (MiBps) to provision for a <code>gp3</code> volume.
+  final int? throughput;
+
+  /// The volume size, in GiBs. The following are the supported volumes sizes for
+  /// each volume type:
   ///
-  /// This can be a number from 1-1,024 for <code>standard</code>, 4-16,384 for
-  /// <code>io1</code>, 1-16,384 for <code>gp2</code>, and 500-16,384 for
-  /// <code>st1</code> and <code>sc1</code>. If you specify a snapshot, the volume
-  /// size must be equal to or larger than the snapshot size.
-  ///
-  /// Default: If you create a volume from a snapshot and you don't specify a
-  /// volume size, the default is the snapshot size.
-  ///
-  /// You must specify either a <code>VolumeSize</code> or a
-  /// <code>SnapshotId</code>. If you specify both <code>SnapshotId</code> and
+  /// <ul>
+  /// <li>
+  /// <code>gp2</code> and <code>gp3</code>: 1-16,384
+  /// </li>
+  /// <li>
+  /// <code>io1</code>: 4-16,384
+  /// </li>
+  /// <li>
+  /// <code>st1</code> and <code>sc1</code>: 125-16,384
+  /// </li>
+  /// <li>
+  /// <code>standard</code>: 1-1,024
+  /// </li>
+  /// </ul>
+  /// You must specify either a <code>SnapshotId</code> or a
+  /// <code>VolumeSize</code>. If you specify both <code>SnapshotId</code> and
   /// <code>VolumeSize</code>, the volume size must be equal or greater than the
   /// size of the snapshot.
   final int? volumeSize;
 
-  /// The volume type, which can be <code>standard</code> for Magnetic,
-  /// <code>io1</code> for Provisioned IOPS SSD, <code>gp2</code> for General
-  /// Purpose SSD, <code>st1</code> for Throughput Optimized HDD, or
-  /// <code>sc1</code> for Cold HDD. For more information, see <a
+  /// The volume type. For more information, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">Amazon
   /// EBS Volume Types</a> in the <i>Amazon EC2 User Guide for Linux
   /// Instances</i>.
   ///
   /// Valid Values: <code>standard</code> | <code>io1</code> | <code>gp2</code> |
-  /// <code>st1</code> | <code>sc1</code>
+  /// <code>st1</code> | <code>sc1</code> | <code>gp3</code>
   final String? volumeType;
 
   Ebs({
@@ -5810,6 +5916,7 @@ class Ebs {
     this.encrypted,
     this.iops,
     this.snapshotId,
+    this.throughput,
     this.volumeSize,
     this.volumeType,
   });
@@ -5819,6 +5926,7 @@ class Ebs {
       encrypted: _s.extractXmlBoolValue(elem, 'Encrypted'),
       iops: _s.extractXmlIntValue(elem, 'Iops'),
       snapshotId: _s.extractXmlStringValue(elem, 'SnapshotId'),
+      throughput: _s.extractXmlIntValue(elem, 'Throughput'),
       volumeSize: _s.extractXmlIntValue(elem, 'VolumeSize'),
       volumeType: _s.extractXmlStringValue(elem, 'VolumeType'),
     );
@@ -5829,6 +5937,7 @@ class Ebs {
     final encrypted = this.encrypted;
     final iops = this.iops;
     final snapshotId = this.snapshotId;
+    final throughput = this.throughput;
     final volumeSize = this.volumeSize;
     final volumeType = this.volumeType;
     return {
@@ -5837,6 +5946,7 @@ class Ebs {
       if (encrypted != null) 'Encrypted': encrypted,
       if (iops != null) 'Iops': iops,
       if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (throughput != null) 'Throughput': throughput,
       if (volumeSize != null) 'VolumeSize': volumeSize,
       if (volumeType != null) 'VolumeType': volumeType,
     };
@@ -5889,6 +5999,27 @@ class EnabledMetric {
   /// </li>
   /// <li>
   /// <code>GroupTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolWarmedCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolPendingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTerminatingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolTotalCapacity</code>
   /// </li>
   /// </ul>
   final String? metric;
@@ -5991,6 +6122,35 @@ class Filter {
   }
 }
 
+class GetPredictiveScalingForecastAnswer {
+  /// The capacity forecast.
+  final CapacityForecast capacityForecast;
+
+  /// The load forecast.
+  final List<LoadForecast> loadForecast;
+
+  /// The time the forecast was made.
+  final DateTime updateTime;
+
+  GetPredictiveScalingForecastAnswer({
+    required this.capacityForecast,
+    required this.loadForecast,
+    required this.updateTime,
+  });
+  factory GetPredictiveScalingForecastAnswer.fromXml(_s.XmlElement elem) {
+    return GetPredictiveScalingForecastAnswer(
+      capacityForecast: CapacityForecast.fromXml(
+          _s.extractXmlChild(elem, 'CapacityForecast')!),
+      loadForecast: _s
+          .extractXmlChild(elem, 'LoadForecast')!
+          .findElements('member')
+          .map((c) => LoadForecast.fromXml(c))
+          .toList(),
+      updateTime: _s.extractXmlDateTimeValue(elem, 'UpdateTime')!,
+    );
+  }
+}
+
 /// Describes an EC2 instance.
 class Instance {
   /// The Availability Zone in which the instance is running.
@@ -6006,7 +6166,9 @@ class Instance {
   final String instanceId;
 
   /// A description of the current lifecycle state. The <code>Quarantined</code>
-  /// state is not used.
+  /// state is not used. For information about lifecycle states, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html">Instance
+  /// lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
   final LifecycleState lifecycleState;
 
   /// Indicates whether the instance is protected from termination by Amazon EC2
@@ -6134,8 +6296,6 @@ class InstanceMetadataOptions {
   /// larger the number, the further instance metadata requests can travel.
   ///
   /// Default: 1
-  ///
-  /// Possible values: Integers from 1 to 64
   final int? httpPutResponseHopLimit;
 
   /// The state of token usage for your instance metadata requests. If the
@@ -6227,9 +6387,12 @@ class InstanceRefresh {
   /// The percentage of the instance refresh that is complete. For each instance
   /// replacement, Amazon EC2 Auto Scaling tracks the instance's health status and
   /// warm-up time. When the instance's health status changes to healthy and the
-  /// specified warm-up time passes, the instance is considered updated and added
-  /// to the percentage complete.
+  /// specified warm-up time passes, the instance is considered updated and is
+  /// added to the percentage complete.
   final int? percentageComplete;
+
+  /// Additional progress details for an Auto Scaling group that has a warm pool.
+  final InstanceRefreshProgressDetails? progressDetails;
 
   /// The date and time at which the instance refresh began.
   final DateTime? startTime;
@@ -6271,6 +6434,7 @@ class InstanceRefresh {
     this.instanceRefreshId,
     this.instancesToUpdate,
     this.percentageComplete,
+    this.progressDetails,
     this.startTime,
     this.status,
     this.statusReason,
@@ -6283,10 +6447,66 @@ class InstanceRefresh {
       instanceRefreshId: _s.extractXmlStringValue(elem, 'InstanceRefreshId'),
       instancesToUpdate: _s.extractXmlIntValue(elem, 'InstancesToUpdate'),
       percentageComplete: _s.extractXmlIntValue(elem, 'PercentageComplete'),
+      progressDetails: _s
+          .extractXmlChild(elem, 'ProgressDetails')
+          ?.let((e) => InstanceRefreshProgressDetails.fromXml(e)),
       startTime: _s.extractXmlDateTimeValue(elem, 'StartTime'),
       status:
           _s.extractXmlStringValue(elem, 'Status')?.toInstanceRefreshStatus(),
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
+    );
+  }
+}
+
+/// Reports the progress of an instance refresh on instances that are in the
+/// Auto Scaling group.
+class InstanceRefreshLivePoolProgress {
+  /// The number of instances remaining to update.
+  final int? instancesToUpdate;
+
+  /// The percentage of instances in the Auto Scaling group that have been
+  /// replaced. For each instance replacement, Amazon EC2 Auto Scaling tracks the
+  /// instance's health status and warm-up time. When the instance's health status
+  /// changes to healthy and the specified warm-up time passes, the instance is
+  /// considered updated and is added to the percentage complete.
+  final int? percentageComplete;
+
+  InstanceRefreshLivePoolProgress({
+    this.instancesToUpdate,
+    this.percentageComplete,
+  });
+  factory InstanceRefreshLivePoolProgress.fromXml(_s.XmlElement elem) {
+    return InstanceRefreshLivePoolProgress(
+      instancesToUpdate: _s.extractXmlIntValue(elem, 'InstancesToUpdate'),
+      percentageComplete: _s.extractXmlIntValue(elem, 'PercentageComplete'),
+    );
+  }
+}
+
+/// Reports the progress of an instance refresh on an Auto Scaling group that
+/// has a warm pool. This includes separate details for instances in the warm
+/// pool and instances in the Auto Scaling group (the live pool).
+class InstanceRefreshProgressDetails {
+  /// Indicates the progress of an instance refresh on instances that are in the
+  /// Auto Scaling group.
+  final InstanceRefreshLivePoolProgress? livePoolProgress;
+
+  /// Indicates the progress of an instance refresh on instances that are in the
+  /// warm pool.
+  final InstanceRefreshWarmPoolProgress? warmPoolProgress;
+
+  InstanceRefreshProgressDetails({
+    this.livePoolProgress,
+    this.warmPoolProgress,
+  });
+  factory InstanceRefreshProgressDetails.fromXml(_s.XmlElement elem) {
+    return InstanceRefreshProgressDetails(
+      livePoolProgress: _s
+          .extractXmlChild(elem, 'LivePoolProgress')
+          ?.let((e) => InstanceRefreshLivePoolProgress.fromXml(e)),
+      warmPoolProgress: _s
+          .extractXmlChild(elem, 'WarmPoolProgress')
+          ?.let((e) => InstanceRefreshWarmPoolProgress.fromXml(e)),
     );
   }
 }
@@ -6339,6 +6559,31 @@ extension on String {
   }
 }
 
+/// Reports the progress of an instance refresh on instances that are in the
+/// warm pool.
+class InstanceRefreshWarmPoolProgress {
+  /// The number of instances remaining to update.
+  final int? instancesToUpdate;
+
+  /// The percentage of instances in the warm pool that have been replaced. For
+  /// each instance replacement, Amazon EC2 Auto Scaling tracks the instance's
+  /// health status and warm-up time. When the instance's health status changes to
+  /// healthy and the specified warm-up time passes, the instance is considered
+  /// updated and is added to the percentage complete.
+  final int? percentageComplete;
+
+  InstanceRefreshWarmPoolProgress({
+    this.instancesToUpdate,
+    this.percentageComplete,
+  });
+  factory InstanceRefreshWarmPoolProgress.fromXml(_s.XmlElement elem) {
+    return InstanceRefreshWarmPoolProgress(
+      instancesToUpdate: _s.extractXmlIntValue(elem, 'InstancesToUpdate'),
+      percentageComplete: _s.extractXmlIntValue(elem, 'PercentageComplete'),
+    );
+  }
+}
+
 /// Describes an instances distribution for an Auto Scaling group with a
 /// <a>MixedInstancesPolicy</a>.
 ///
@@ -6358,12 +6603,12 @@ extension on String {
 class InstancesDistribution {
   /// Indicates how to allocate instance types to fulfill On-Demand capacity. The
   /// only valid value is <code>prioritized</code>, which is also the default
-  /// value. This strategy uses the order of instance types in the overrides to
-  /// define the launch priority of each instance type. The first instance type in
-  /// the array is prioritized higher than the last. If all your On-Demand
-  /// capacity cannot be fulfilled using your highest priority instance, then the
-  /// Auto Scaling groups launches the remaining capacity using the second
-  /// priority instance type, and so on.
+  /// value. This strategy uses the order of instance types in the
+  /// <code>LaunchTemplateOverrides</code> to define the launch priority of each
+  /// instance type. The first instance type in the array is prioritized higher
+  /// than the last. If all your On-Demand capacity cannot be fulfilled using your
+  /// highest priority instance, then the Auto Scaling groups launches the
+  /// remaining capacity using the second priority instance type, and so on.
   final String? onDemandAllocationStrategy;
 
   /// The minimum amount of the Auto Scaling group's capacity that must be
@@ -6381,14 +6626,21 @@ class InstancesDistribution {
   /// Instances are provisioned.
   final int? onDemandPercentageAboveBaseCapacity;
 
-  /// Indicates how to allocate instances across Spot Instance pools. If the
-  /// allocation strategy is <code>capacity-optimized</code> (recommended), the
-  /// Auto Scaling group launches instances using Spot pools that are optimally
-  /// chosen based on the available Spot capacity. If the allocation strategy is
-  /// <code>lowest-price</code>, the Auto Scaling group launches instances using
-  /// the Spot pools with the lowest price, and evenly allocates your instances
-  /// across the number of Spot pools that you specify. Defaults to
-  /// <code>lowest-price</code> if not specified.
+  /// Indicates how to allocate instances across Spot Instance pools.
+  ///
+  /// If the allocation strategy is <code>lowest-price</code>, the Auto Scaling
+  /// group launches instances using the Spot pools with the lowest price, and
+  /// evenly allocates your instances across the number of Spot pools that you
+  /// specify. Defaults to <code>lowest-price</code> if not specified.
+  ///
+  /// If the allocation strategy is <code>capacity-optimized</code> (recommended),
+  /// the Auto Scaling group launches instances using Spot pools that are
+  /// optimally chosen based on the available Spot capacity. Alternatively, you
+  /// can use <code>capacity-optimized-prioritized</code> and set the order of
+  /// instance types in the list of launch template overrides from highest to
+  /// lowest priority (from first to last in the list). Amazon EC2 Auto Scaling
+  /// honors the instance type priorities on a best-effort basis but optimizes for
+  /// capacity first.
   final String? spotAllocationStrategy;
 
   /// The number of Spot Instance pools across which to allocate your Spot
@@ -6466,7 +6718,7 @@ class LaunchConfiguration {
   ///
   /// For information about available instance types, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes">Available
-  /// Instance Types</a> in the <i>Amazon EC2 User Guide for Linux Instances.</i>
+  /// Instance Types</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
   final String instanceType;
 
   /// The name of the launch configuration.
@@ -6577,11 +6829,15 @@ class LaunchConfiguration {
   /// Spot Instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
   final String? spotPrice;
 
-  /// The Base64-encoded user data to make available to the launched EC2
-  /// instances. For more information, see <a
+  /// The user data to make available to the launched EC2 instances. For more
+  /// information, see <a
   /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html">Instance
-  /// metadata and user data</a> in the <i>Amazon EC2 User Guide for Linux
-  /// Instances</i>.
+  /// metadata and user data</a> (Linux) and <a
+  /// href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html">Instance
+  /// metadata and user data</a> (Windows). If you are using a command line tool,
+  /// base64-encoding is performed for you, and you can load the text from a file.
+  /// Otherwise, you must provide base64-encoded text. User data is limited to 16
+  /// KB.
   final String? userData;
 
   LaunchConfiguration({
@@ -6675,7 +6931,7 @@ class LaunchConfigurationsType {
 
 /// Describes a launch template and overrides.
 ///
-/// You specify these parameters as part of a mixed instances policy.
+/// You specify these properties as part of a mixed instances policy.
 ///
 /// When you update the launch template or overrides, existing Amazon EC2
 /// instances continue to run. When scale out occurs, Amazon EC2 Auto Scaling
@@ -6686,7 +6942,7 @@ class LaunchTemplate {
   /// The launch template to use.
   final LaunchTemplateSpecification? launchTemplateSpecification;
 
-  /// Any parameters that you specify override the same parameters in the launch
+  /// Any properties that you specify override the same properties in the launch
   /// template. If not provided, Amazon EC2 Auto Scaling uses the instance type
   /// specified in the launch template when it launches an instance.
   final List<LaunchTemplateOverrides>? overrides;
@@ -6719,8 +6975,9 @@ class LaunchTemplate {
 }
 
 /// Describes an override for a launch template. The maximum number of instance
-/// types that can be associated with an Auto Scaling group is 20. For more
-/// information, see <a
+/// types that can be associated with an Auto Scaling group is 40. The maximum
+/// number of distinct launch templates you can define for an Auto Scaling group
+/// is 20. For more information about configuring overrides, see <a
 /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-override-options.html">Configuring
 /// overrides</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
 class LaunchTemplateOverrides {
@@ -7060,6 +7317,15 @@ enum LifecycleState {
   detached,
   enteringStandby,
   standby,
+  warmedPending,
+  warmedPendingWait,
+  warmedPendingProceed,
+  warmedTerminating,
+  warmedTerminatingWait,
+  warmedTerminatingProceed,
+  warmedTerminated,
+  warmedStopped,
+  warmedRunning,
 }
 
 extension on LifecycleState {
@@ -7091,6 +7357,24 @@ extension on LifecycleState {
         return 'EnteringStandby';
       case LifecycleState.standby:
         return 'Standby';
+      case LifecycleState.warmedPending:
+        return 'Warmed:Pending';
+      case LifecycleState.warmedPendingWait:
+        return 'Warmed:Pending:Wait';
+      case LifecycleState.warmedPendingProceed:
+        return 'Warmed:Pending:Proceed';
+      case LifecycleState.warmedTerminating:
+        return 'Warmed:Terminating';
+      case LifecycleState.warmedTerminatingWait:
+        return 'Warmed:Terminating:Wait';
+      case LifecycleState.warmedTerminatingProceed:
+        return 'Warmed:Terminating:Proceed';
+      case LifecycleState.warmedTerminated:
+        return 'Warmed:Terminated';
+      case LifecycleState.warmedStopped:
+        return 'Warmed:Stopped';
+      case LifecycleState.warmedRunning:
+        return 'Warmed:Running';
     }
   }
 }
@@ -7124,23 +7408,30 @@ extension on String {
         return LifecycleState.enteringStandby;
       case 'Standby':
         return LifecycleState.standby;
+      case 'Warmed:Pending':
+        return LifecycleState.warmedPending;
+      case 'Warmed:Pending:Wait':
+        return LifecycleState.warmedPendingWait;
+      case 'Warmed:Pending:Proceed':
+        return LifecycleState.warmedPendingProceed;
+      case 'Warmed:Terminating':
+        return LifecycleState.warmedTerminating;
+      case 'Warmed:Terminating:Wait':
+        return LifecycleState.warmedTerminatingWait;
+      case 'Warmed:Terminating:Proceed':
+        return LifecycleState.warmedTerminatingProceed;
+      case 'Warmed:Terminated':
+        return LifecycleState.warmedTerminated;
+      case 'Warmed:Stopped':
+        return LifecycleState.warmedStopped;
+      case 'Warmed:Running':
+        return LifecycleState.warmedRunning;
     }
     throw Exception('$this is not known in enum LifecycleState');
   }
 }
 
 /// Describes the state of a Classic Load Balancer.
-///
-/// If you specify a load balancer when creating the Auto Scaling group, the
-/// state of the load balancer is <code>InService</code>.
-///
-/// If you attach a load balancer to an existing Auto Scaling group, the initial
-/// state is <code>Adding</code>. The state transitions to <code>Added</code>
-/// after all instances in the group are registered with the load balancer. If
-/// Elastic Load Balancing health checks are enabled for the load balancer, the
-/// state transitions to <code>InService</code> after at least one instance in
-/// the group passes the health check. If EC2 health checks are enabled instead,
-/// the load balancer remains in the <code>Added</code> state.
 class LoadBalancerState {
   /// The name of the load balancer.
   final String? loadBalancerName;
@@ -7149,25 +7440,25 @@ class LoadBalancerState {
   ///
   /// <ul>
   /// <li>
-  /// <code>Adding</code> - The instances in the group are being registered with
+  /// <code>Adding</code> - The Auto Scaling instances are being registered with
   /// the load balancer.
   /// </li>
   /// <li>
-  /// <code>Added</code> - All instances in the group are registered with the load
+  /// <code>Added</code> - All Auto Scaling instances are registered with the load
   /// balancer.
   /// </li>
   /// <li>
-  /// <code>InService</code> - At least one instance in the group passed an ELB
-  /// health check.
+  /// <code>InService</code> - At least one Auto Scaling instance passed an
+  /// <code>ELB</code> health check.
   /// </li>
   /// <li>
-  /// <code>Removing</code> - The instances in the group are being deregistered
+  /// <code>Removing</code> - The Auto Scaling instances are being deregistered
   /// from the load balancer. If connection draining is enabled, Elastic Load
   /// Balancing waits for in-flight requests to complete before deregistering the
   /// instances.
   /// </li>
   /// <li>
-  /// <code>Removed</code> - All instances in the group are deregistered from the
+  /// <code>Removed</code> - All Auto Scaling instances are deregistered from the
   /// load balancer.
   /// </li>
   /// </ul>
@@ -7186,14 +7477,6 @@ class LoadBalancerState {
 }
 
 /// Describes the state of a target group.
-///
-/// If you attach a target group to an existing Auto Scaling group, the initial
-/// state is <code>Adding</code>. The state transitions to <code>Added</code>
-/// after all Auto Scaling instances are registered with the target group. If
-/// Elastic Load Balancing health checks are enabled, the state transitions to
-/// <code>InService</code> after at least one Auto Scaling instance passes the
-/// health check. If EC2 health checks are enabled instead, the target group
-/// remains in the <code>Added</code> state.
 class LoadBalancerTargetGroupState {
   /// The Amazon Resource Name (ARN) of the target group.
   final String? loadBalancerTargetGroupARN;
@@ -7210,8 +7493,8 @@ class LoadBalancerTargetGroupState {
   /// target group.
   /// </li>
   /// <li>
-  /// <code>InService</code> - At least one Auto Scaling instance passed an ELB
-  /// health check.
+  /// <code>InService</code> - At least one Auto Scaling instance passed an
+  /// <code>ELB</code> health check.
   /// </li>
   /// <li>
   /// <code>Removing</code> - The Auto Scaling instances are being deregistered
@@ -7235,6 +7518,37 @@ class LoadBalancerTargetGroupState {
       loadBalancerTargetGroupARN:
           _s.extractXmlStringValue(elem, 'LoadBalancerTargetGroupARN'),
       state: _s.extractXmlStringValue(elem, 'State'),
+    );
+  }
+}
+
+/// A <code>GetPredictiveScalingForecast</code> call returns the load forecast
+/// for a predictive scaling policy. This structure includes the data points for
+/// that load forecast, along with the timestamps of those data points and the
+/// metric specification.
+class LoadForecast {
+  /// The metric specification for the load forecast.
+  final PredictiveScalingMetricSpecification metricSpecification;
+
+  /// The time stamps for the data points, in UTC format.
+  final List<DateTime> timestamps;
+
+  /// The values of the data points.
+  final List<double> values;
+
+  LoadForecast({
+    required this.metricSpecification,
+    required this.timestamps,
+    required this.values,
+  });
+  factory LoadForecast.fromXml(_s.XmlElement elem) {
+    return LoadForecast(
+      metricSpecification: PredictiveScalingMetricSpecification.fromXml(
+          _s.extractXmlChild(elem, 'MetricSpecification')!),
+      timestamps: _s.extractXmlDateTimeListValues(
+          _s.extractXmlChild(elem, 'Timestamps')!, 'member'),
+      values: _s.extractXmlDoubleListValues(
+          _s.extractXmlChild(elem, 'Values')!, 'member'),
     );
   }
 }
@@ -7282,6 +7596,27 @@ class MetricCollectionType {
   /// </li>
   /// <li>
   /// <code>GroupTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolWarmedCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolPendingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTerminatingCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>WarmPoolTotalCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolDesiredCapacity</code>
+  /// </li>
+  /// <li>
+  /// <code>GroupAndWarmPoolTotalCapacity</code>
   /// </li>
   /// </ul>
   final String? metric;
@@ -7431,11 +7766,11 @@ extension on String {
 ///
 /// You can create a mixed instances policy for a new Auto Scaling group, or you
 /// can create it for an existing group by updating the group to specify
-/// <code>MixedInstancesPolicy</code> as the top-level parameter instead of a
+/// <code>MixedInstancesPolicy</code> as the top-level property instead of a
 /// launch configuration or launch template.
 class MixedInstancesPolicy {
   /// Specifies the instances distribution. If not provided, the value for each
-  /// parameter in <code>InstancesDistribution</code> uses a default value.
+  /// property in <code>InstancesDistribution</code> uses a default value.
   final InstancesDistribution? instancesDistribution;
 
   /// Specifies the launch template to use and optionally the instance types
@@ -7561,6 +7896,82 @@ class PolicyARNType {
   }
 }
 
+enum PredefinedLoadMetricType {
+  aSGTotalCPUUtilization,
+  aSGTotalNetworkIn,
+  aSGTotalNetworkOut,
+  aLBTargetGroupRequestCount,
+}
+
+extension on PredefinedLoadMetricType {
+  String toValue() {
+    switch (this) {
+      case PredefinedLoadMetricType.aSGTotalCPUUtilization:
+        return 'ASGTotalCPUUtilization';
+      case PredefinedLoadMetricType.aSGTotalNetworkIn:
+        return 'ASGTotalNetworkIn';
+      case PredefinedLoadMetricType.aSGTotalNetworkOut:
+        return 'ASGTotalNetworkOut';
+      case PredefinedLoadMetricType.aLBTargetGroupRequestCount:
+        return 'ALBTargetGroupRequestCount';
+    }
+  }
+}
+
+extension on String {
+  PredefinedLoadMetricType toPredefinedLoadMetricType() {
+    switch (this) {
+      case 'ASGTotalCPUUtilization':
+        return PredefinedLoadMetricType.aSGTotalCPUUtilization;
+      case 'ASGTotalNetworkIn':
+        return PredefinedLoadMetricType.aSGTotalNetworkIn;
+      case 'ASGTotalNetworkOut':
+        return PredefinedLoadMetricType.aSGTotalNetworkOut;
+      case 'ALBTargetGroupRequestCount':
+        return PredefinedLoadMetricType.aLBTargetGroupRequestCount;
+    }
+    throw Exception('$this is not known in enum PredefinedLoadMetricType');
+  }
+}
+
+enum PredefinedMetricPairType {
+  aSGCPUUtilization,
+  aSGNetworkIn,
+  aSGNetworkOut,
+  aLBRequestCount,
+}
+
+extension on PredefinedMetricPairType {
+  String toValue() {
+    switch (this) {
+      case PredefinedMetricPairType.aSGCPUUtilization:
+        return 'ASGCPUUtilization';
+      case PredefinedMetricPairType.aSGNetworkIn:
+        return 'ASGNetworkIn';
+      case PredefinedMetricPairType.aSGNetworkOut:
+        return 'ASGNetworkOut';
+      case PredefinedMetricPairType.aLBRequestCount:
+        return 'ALBRequestCount';
+    }
+  }
+}
+
+extension on String {
+  PredefinedMetricPairType toPredefinedMetricPairType() {
+    switch (this) {
+      case 'ASGCPUUtilization':
+        return PredefinedMetricPairType.aSGCPUUtilization;
+      case 'ASGNetworkIn':
+        return PredefinedMetricPairType.aSGNetworkIn;
+      case 'ASGNetworkOut':
+        return PredefinedMetricPairType.aSGNetworkOut;
+      case 'ALBRequestCount':
+        return PredefinedMetricPairType.aLBRequestCount;
+    }
+    throw Exception('$this is not known in enum PredefinedMetricPairType');
+  }
+}
+
 /// Represents a predefined metric for a target tracking scaling policy to use
 /// with Amazon EC2 Auto Scaling.
 class PredefinedMetricSpecification {
@@ -7586,16 +7997,19 @@ class PredefinedMetricSpecification {
   /// </ul>
   final MetricType predefinedMetricType;
 
-  /// Identifies the resource associated with the metric type. You can't specify a
-  /// resource label unless the metric type is
-  /// <code>ALBRequestCountPerTarget</code> and there is a target group attached
-  /// to the Auto Scaling group.
+  /// A label that uniquely identifies a specific Application Load Balancer target
+  /// group from which to determine the average request count served by your Auto
+  /// Scaling group. You can't specify a resource label unless the target group is
+  /// attached to the Auto Scaling group.
   ///
   /// You create the resource label by appending the final portion of the load
   /// balancer ARN and the final portion of the target group ARN into a single
-  /// value, separated by a forward slash (/). The format is
-  /// app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
-  /// where:
+  /// value, separated by a forward slash (/). The format of the resource label
+  /// is:
+  ///
+  /// <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+  ///
+  /// Where:
   ///
   /// <ul>
   /// <li>
@@ -7607,9 +8021,6 @@ class PredefinedMetricSpecification {
   /// portion of the target group ARN.
   /// </li>
   /// </ul>
-  /// This is an example:
-  /// app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
-  ///
   /// To find the ARN for an Application Load Balancer, use the <a
   /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html">DescribeLoadBalancers</a>
   /// API operation. To find the ARN for the target group, use the <a
@@ -7626,6 +8037,497 @@ class PredefinedMetricSpecification {
       predefinedMetricType: _s
           .extractXmlStringValue(elem, 'PredefinedMetricType')!
           .toMetricType(),
+      resourceLabel: _s.extractXmlStringValue(elem, 'ResourceLabel'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predefinedMetricType = this.predefinedMetricType;
+    final resourceLabel = this.resourceLabel;
+    return {
+      'PredefinedMetricType': predefinedMetricType.toValue(),
+      if (resourceLabel != null) 'ResourceLabel': resourceLabel,
+    };
+  }
+}
+
+enum PredefinedScalingMetricType {
+  aSGAverageCPUUtilization,
+  aSGAverageNetworkIn,
+  aSGAverageNetworkOut,
+  aLBRequestCountPerTarget,
+}
+
+extension on PredefinedScalingMetricType {
+  String toValue() {
+    switch (this) {
+      case PredefinedScalingMetricType.aSGAverageCPUUtilization:
+        return 'ASGAverageCPUUtilization';
+      case PredefinedScalingMetricType.aSGAverageNetworkIn:
+        return 'ASGAverageNetworkIn';
+      case PredefinedScalingMetricType.aSGAverageNetworkOut:
+        return 'ASGAverageNetworkOut';
+      case PredefinedScalingMetricType.aLBRequestCountPerTarget:
+        return 'ALBRequestCountPerTarget';
+    }
+  }
+}
+
+extension on String {
+  PredefinedScalingMetricType toPredefinedScalingMetricType() {
+    switch (this) {
+      case 'ASGAverageCPUUtilization':
+        return PredefinedScalingMetricType.aSGAverageCPUUtilization;
+      case 'ASGAverageNetworkIn':
+        return PredefinedScalingMetricType.aSGAverageNetworkIn;
+      case 'ASGAverageNetworkOut':
+        return PredefinedScalingMetricType.aSGAverageNetworkOut;
+      case 'ALBRequestCountPerTarget':
+        return PredefinedScalingMetricType.aLBRequestCountPerTarget;
+    }
+    throw Exception('$this is not known in enum PredefinedScalingMetricType');
+  }
+}
+
+/// Represents a predictive scaling policy configuration to use with Amazon EC2
+/// Auto Scaling.
+class PredictiveScalingConfiguration {
+  /// This structure includes the metrics and target utilization to use for
+  /// predictive scaling.
+  ///
+  /// This is an array, but we currently only support a single metric
+  /// specification. That is, you can specify a target value and a single metric
+  /// pair, or a target value and one scaling metric and one load metric.
+  final List<PredictiveScalingMetricSpecification> metricSpecifications;
+
+  /// Defines the behavior that should be applied if the forecast capacity
+  /// approaches or exceeds the maximum capacity of the Auto Scaling group.
+  /// Defaults to <code>HonorMaxCapacity</code> if not specified.
+  ///
+  /// The following are possible values:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>HonorMaxCapacity</code> - Amazon EC2 Auto Scaling cannot scale out
+  /// capacity higher than the maximum capacity. The maximum capacity is enforced
+  /// as a hard limit.
+  /// </li>
+  /// <li>
+  /// <code>IncreaseMaxCapacity</code> - Amazon EC2 Auto Scaling can scale out
+  /// capacity higher than the maximum capacity when the forecast capacity is
+  /// close to or exceeds the maximum capacity. The upper limit is determined by
+  /// the forecasted capacity and the value for <code>MaxCapacityBuffer</code>.
+  /// </li>
+  /// </ul>
+  final PredictiveScalingMaxCapacityBreachBehavior? maxCapacityBreachBehavior;
+
+  /// The size of the capacity buffer to use when the forecast capacity is close
+  /// to or exceeds the maximum capacity. The value is specified as a percentage
+  /// relative to the forecast capacity. For example, if the buffer is 10, this
+  /// means a 10 percent buffer, such that if the forecast capacity is 50, and the
+  /// maximum capacity is 40, then the effective maximum capacity is 55.
+  ///
+  /// If set to 0, Amazon EC2 Auto Scaling may scale capacity higher than the
+  /// maximum capacity to equal but not exceed forecast capacity.
+  ///
+  /// Required if the <code>MaxCapacityBreachBehavior</code> property is set to
+  /// <code>IncreaseMaxCapacity</code>, and cannot be used otherwise.
+  final int? maxCapacityBuffer;
+
+  /// The predictive scaling mode. Defaults to <code>ForecastOnly</code> if not
+  /// specified.
+  final PredictiveScalingMode? mode;
+
+  /// The amount of time, in seconds, by which the instance launch time can be
+  /// advanced. For example, the forecast says to add capacity at 10:00 AM, and
+  /// you choose to pre-launch instances by 5 minutes. In that case, the instances
+  /// will be launched at 9:55 AM. The intention is to give resources time to be
+  /// provisioned. It can take a few minutes to launch an EC2 instance. The actual
+  /// amount of time required depends on several factors, such as the size of the
+  /// instance and whether there are startup scripts to complete.
+  ///
+  /// The value must be less than the forecast interval duration of 3600 seconds
+  /// (60 minutes). Defaults to 300 seconds if not specified.
+  final int? schedulingBufferTime;
+
+  PredictiveScalingConfiguration({
+    required this.metricSpecifications,
+    this.maxCapacityBreachBehavior,
+    this.maxCapacityBuffer,
+    this.mode,
+    this.schedulingBufferTime,
+  });
+  factory PredictiveScalingConfiguration.fromXml(_s.XmlElement elem) {
+    return PredictiveScalingConfiguration(
+      metricSpecifications: _s
+          .extractXmlChild(elem, 'MetricSpecifications')!
+          .findElements('member')
+          .map((c) => PredictiveScalingMetricSpecification.fromXml(c))
+          .toList(),
+      maxCapacityBreachBehavior: _s
+          .extractXmlStringValue(elem, 'MaxCapacityBreachBehavior')
+          ?.toPredictiveScalingMaxCapacityBreachBehavior(),
+      maxCapacityBuffer: _s.extractXmlIntValue(elem, 'MaxCapacityBuffer'),
+      mode: _s.extractXmlStringValue(elem, 'Mode')?.toPredictiveScalingMode(),
+      schedulingBufferTime: _s.extractXmlIntValue(elem, 'SchedulingBufferTime'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricSpecifications = this.metricSpecifications;
+    final maxCapacityBreachBehavior = this.maxCapacityBreachBehavior;
+    final maxCapacityBuffer = this.maxCapacityBuffer;
+    final mode = this.mode;
+    final schedulingBufferTime = this.schedulingBufferTime;
+    return {
+      'MetricSpecifications': metricSpecifications,
+      if (maxCapacityBreachBehavior != null)
+        'MaxCapacityBreachBehavior': maxCapacityBreachBehavior.toValue(),
+      if (maxCapacityBuffer != null) 'MaxCapacityBuffer': maxCapacityBuffer,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (schedulingBufferTime != null)
+        'SchedulingBufferTime': schedulingBufferTime,
+    };
+  }
+}
+
+enum PredictiveScalingMaxCapacityBreachBehavior {
+  honorMaxCapacity,
+  increaseMaxCapacity,
+}
+
+extension on PredictiveScalingMaxCapacityBreachBehavior {
+  String toValue() {
+    switch (this) {
+      case PredictiveScalingMaxCapacityBreachBehavior.honorMaxCapacity:
+        return 'HonorMaxCapacity';
+      case PredictiveScalingMaxCapacityBreachBehavior.increaseMaxCapacity:
+        return 'IncreaseMaxCapacity';
+    }
+  }
+}
+
+extension on String {
+  PredictiveScalingMaxCapacityBreachBehavior
+      toPredictiveScalingMaxCapacityBreachBehavior() {
+    switch (this) {
+      case 'HonorMaxCapacity':
+        return PredictiveScalingMaxCapacityBreachBehavior.honorMaxCapacity;
+      case 'IncreaseMaxCapacity':
+        return PredictiveScalingMaxCapacityBreachBehavior.increaseMaxCapacity;
+    }
+    throw Exception(
+        '$this is not known in enum PredictiveScalingMaxCapacityBreachBehavior');
+  }
+}
+
+/// This structure specifies the metrics and target utilization settings for a
+/// predictive scaling policy.
+///
+/// You must specify either a metric pair, or a load metric and a scaling metric
+/// individually. Specifying a metric pair instead of individual metrics
+/// provides a simpler way to configure metrics for a scaling policy. You choose
+/// the metric pair, and the policy automatically knows the correct sum and
+/// average statistics to use for the load metric and the scaling metric.
+///
+/// Example
+///
+/// <ul>
+/// <li>
+/// You create a predictive scaling policy and specify
+/// <code>ALBRequestCount</code> as the value for the metric pair and
+/// <code>1000.0</code> as the target value. For this type of metric, you must
+/// provide the metric dimension for the corresponding target group, so you also
+/// provide a resource label for the Application Load Balancer target group that
+/// is attached to your Auto Scaling group.
+/// </li>
+/// <li>
+/// The number of requests the target group receives per minute provides the
+/// load metric, and the request count averaged between the members of the
+/// target group provides the scaling metric. In CloudWatch, this refers to the
+/// <code>RequestCount</code> and <code>RequestCountPerTarget</code> metrics,
+/// respectively.
+/// </li>
+/// <li>
+/// For optimal use of predictive scaling, you adhere to the best practice of
+/// using a dynamic scaling policy to automatically scale between the minimum
+/// capacity and maximum capacity in response to real-time changes in resource
+/// utilization.
+/// </li>
+/// <li>
+/// Amazon EC2 Auto Scaling consumes data points for the load metric over the
+/// last 14 days and creates an hourly load forecast for predictive scaling. (A
+/// minimum of 24 hours of data is required.)
+/// </li>
+/// <li>
+/// After creating the load forecast, Amazon EC2 Auto Scaling determines when to
+/// reduce or increase the capacity of your Auto Scaling group in each hour of
+/// the forecast period so that the average number of requests received by each
+/// instance is as close to 1000 requests per minute as possible at all times.
+/// </li>
+/// </ul>
+class PredictiveScalingMetricSpecification {
+  /// Specifies the target utilization.
+  final double targetValue;
+
+  /// The load metric specification.
+  final PredictiveScalingPredefinedLoadMetric?
+      predefinedLoadMetricSpecification;
+
+  /// The metric pair specification from which Amazon EC2 Auto Scaling determines
+  /// the appropriate scaling metric and load metric to use.
+  final PredictiveScalingPredefinedMetricPair?
+      predefinedMetricPairSpecification;
+
+  /// The scaling metric specification.
+  final PredictiveScalingPredefinedScalingMetric?
+      predefinedScalingMetricSpecification;
+
+  PredictiveScalingMetricSpecification({
+    required this.targetValue,
+    this.predefinedLoadMetricSpecification,
+    this.predefinedMetricPairSpecification,
+    this.predefinedScalingMetricSpecification,
+  });
+  factory PredictiveScalingMetricSpecification.fromXml(_s.XmlElement elem) {
+    return PredictiveScalingMetricSpecification(
+      targetValue: _s.extractXmlDoubleValue(elem, 'TargetValue')!,
+      predefinedLoadMetricSpecification: _s
+          .extractXmlChild(elem, 'PredefinedLoadMetricSpecification')
+          ?.let((e) => PredictiveScalingPredefinedLoadMetric.fromXml(e)),
+      predefinedMetricPairSpecification: _s
+          .extractXmlChild(elem, 'PredefinedMetricPairSpecification')
+          ?.let((e) => PredictiveScalingPredefinedMetricPair.fromXml(e)),
+      predefinedScalingMetricSpecification: _s
+          .extractXmlChild(elem, 'PredefinedScalingMetricSpecification')
+          ?.let((e) => PredictiveScalingPredefinedScalingMetric.fromXml(e)),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetValue = this.targetValue;
+    final predefinedLoadMetricSpecification =
+        this.predefinedLoadMetricSpecification;
+    final predefinedMetricPairSpecification =
+        this.predefinedMetricPairSpecification;
+    final predefinedScalingMetricSpecification =
+        this.predefinedScalingMetricSpecification;
+    return {
+      'TargetValue': targetValue,
+      if (predefinedLoadMetricSpecification != null)
+        'PredefinedLoadMetricSpecification': predefinedLoadMetricSpecification,
+      if (predefinedMetricPairSpecification != null)
+        'PredefinedMetricPairSpecification': predefinedMetricPairSpecification,
+      if (predefinedScalingMetricSpecification != null)
+        'PredefinedScalingMetricSpecification':
+            predefinedScalingMetricSpecification,
+    };
+  }
+}
+
+enum PredictiveScalingMode {
+  forecastAndScale,
+  forecastOnly,
+}
+
+extension on PredictiveScalingMode {
+  String toValue() {
+    switch (this) {
+      case PredictiveScalingMode.forecastAndScale:
+        return 'ForecastAndScale';
+      case PredictiveScalingMode.forecastOnly:
+        return 'ForecastOnly';
+    }
+  }
+}
+
+extension on String {
+  PredictiveScalingMode toPredictiveScalingMode() {
+    switch (this) {
+      case 'ForecastAndScale':
+        return PredictiveScalingMode.forecastAndScale;
+      case 'ForecastOnly':
+        return PredictiveScalingMode.forecastOnly;
+    }
+    throw Exception('$this is not known in enum PredictiveScalingMode');
+  }
+}
+
+/// Describes a load metric for a predictive scaling policy.
+///
+/// When returned in the output of <code>DescribePolicies</code>, it indicates
+/// that a predictive scaling policy uses individually specified load and
+/// scaling metrics instead of a metric pair.
+class PredictiveScalingPredefinedLoadMetric {
+  /// The metric type.
+  final PredefinedLoadMetricType predefinedMetricType;
+
+  /// A label that uniquely identifies a specific Application Load Balancer target
+  /// group from which to determine the request count served by your Auto Scaling
+  /// group. You can't specify a resource label unless the target group is
+  /// attached to the Auto Scaling group.
+  ///
+  /// You create the resource label by appending the final portion of the load
+  /// balancer ARN and the final portion of the target group ARN into a single
+  /// value, separated by a forward slash (/). The format of the resource label
+  /// is:
+  ///
+  /// <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+  ///
+  /// Where:
+  ///
+  /// <ul>
+  /// <li>
+  /// app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt; is the final portion
+  /// of the load balancer ARN
+  /// </li>
+  /// <li>
+  /// targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt; is the final
+  /// portion of the target group ARN.
+  /// </li>
+  /// </ul>
+  /// To find the ARN for an Application Load Balancer, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html">DescribeLoadBalancers</a>
+  /// API operation. To find the ARN for the target group, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html">DescribeTargetGroups</a>
+  /// API operation.
+  final String? resourceLabel;
+
+  PredictiveScalingPredefinedLoadMetric({
+    required this.predefinedMetricType,
+    this.resourceLabel,
+  });
+  factory PredictiveScalingPredefinedLoadMetric.fromXml(_s.XmlElement elem) {
+    return PredictiveScalingPredefinedLoadMetric(
+      predefinedMetricType: _s
+          .extractXmlStringValue(elem, 'PredefinedMetricType')!
+          .toPredefinedLoadMetricType(),
+      resourceLabel: _s.extractXmlStringValue(elem, 'ResourceLabel'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predefinedMetricType = this.predefinedMetricType;
+    final resourceLabel = this.resourceLabel;
+    return {
+      'PredefinedMetricType': predefinedMetricType.toValue(),
+      if (resourceLabel != null) 'ResourceLabel': resourceLabel,
+    };
+  }
+}
+
+/// Represents a metric pair for a predictive scaling policy.
+class PredictiveScalingPredefinedMetricPair {
+  /// Indicates which metrics to use. There are two different types of metrics for
+  /// each metric type: one is a load metric and one is a scaling metric. For
+  /// example, if the metric type is <code>ASGCPUUtilization</code>, the Auto
+  /// Scaling group's total CPU metric is used as the load metric, and the average
+  /// CPU metric is used for the scaling metric.
+  final PredefinedMetricPairType predefinedMetricType;
+
+  /// A label that uniquely identifies a specific Application Load Balancer target
+  /// group from which to determine the total and average request count served by
+  /// your Auto Scaling group. You can't specify a resource label unless the
+  /// target group is attached to the Auto Scaling group.
+  ///
+  /// You create the resource label by appending the final portion of the load
+  /// balancer ARN and the final portion of the target group ARN into a single
+  /// value, separated by a forward slash (/). The format of the resource label
+  /// is:
+  ///
+  /// <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+  ///
+  /// Where:
+  ///
+  /// <ul>
+  /// <li>
+  /// app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt; is the final portion
+  /// of the load balancer ARN
+  /// </li>
+  /// <li>
+  /// targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt; is the final
+  /// portion of the target group ARN.
+  /// </li>
+  /// </ul>
+  /// To find the ARN for an Application Load Balancer, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html">DescribeLoadBalancers</a>
+  /// API operation. To find the ARN for the target group, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html">DescribeTargetGroups</a>
+  /// API operation.
+  final String? resourceLabel;
+
+  PredictiveScalingPredefinedMetricPair({
+    required this.predefinedMetricType,
+    this.resourceLabel,
+  });
+  factory PredictiveScalingPredefinedMetricPair.fromXml(_s.XmlElement elem) {
+    return PredictiveScalingPredefinedMetricPair(
+      predefinedMetricType: _s
+          .extractXmlStringValue(elem, 'PredefinedMetricType')!
+          .toPredefinedMetricPairType(),
+      resourceLabel: _s.extractXmlStringValue(elem, 'ResourceLabel'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predefinedMetricType = this.predefinedMetricType;
+    final resourceLabel = this.resourceLabel;
+    return {
+      'PredefinedMetricType': predefinedMetricType.toValue(),
+      if (resourceLabel != null) 'ResourceLabel': resourceLabel,
+    };
+  }
+}
+
+/// Describes a scaling metric for a predictive scaling policy.
+///
+/// When returned in the output of <code>DescribePolicies</code>, it indicates
+/// that a predictive scaling policy uses individually specified load and
+/// scaling metrics instead of a metric pair.
+class PredictiveScalingPredefinedScalingMetric {
+  /// The metric type.
+  final PredefinedScalingMetricType predefinedMetricType;
+
+  /// A label that uniquely identifies a specific Application Load Balancer target
+  /// group from which to determine the average request count served by your Auto
+  /// Scaling group. You can't specify a resource label unless the target group is
+  /// attached to the Auto Scaling group.
+  ///
+  /// You create the resource label by appending the final portion of the load
+  /// balancer ARN and the final portion of the target group ARN into a single
+  /// value, separated by a forward slash (/). The format of the resource label
+  /// is:
+  ///
+  /// <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+  ///
+  /// Where:
+  ///
+  /// <ul>
+  /// <li>
+  /// app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt; is the final portion
+  /// of the load balancer ARN
+  /// </li>
+  /// <li>
+  /// targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt; is the final
+  /// portion of the target group ARN.
+  /// </li>
+  /// </ul>
+  /// To find the ARN for an Application Load Balancer, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html">DescribeLoadBalancers</a>
+  /// API operation. To find the ARN for the target group, use the <a
+  /// href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html">DescribeTargetGroups</a>
+  /// API operation.
+  final String? resourceLabel;
+
+  PredictiveScalingPredefinedScalingMetric({
+    required this.predefinedMetricType,
+    this.resourceLabel,
+  });
+  factory PredictiveScalingPredefinedScalingMetric.fromXml(_s.XmlElement elem) {
+    return PredictiveScalingPredefinedScalingMetric(
+      predefinedMetricType: _s
+          .extractXmlStringValue(elem, 'PredefinedMetricType')!
+          .toPredefinedScalingMetricType(),
       resourceLabel: _s.extractXmlStringValue(elem, 'ResourceLabel'),
     );
   }
@@ -7715,6 +8617,15 @@ class PutLifecycleHookAnswer {
   }
 }
 
+class PutWarmPoolAnswer {
+  PutWarmPoolAnswer();
+  factory PutWarmPoolAnswer.fromXml(
+      // ignore: avoid_unused_constructor_parameters
+      _s.XmlElement elem) {
+    return PutWarmPoolAnswer();
+  }
+}
+
 class RecordLifecycleActionHeartbeatAnswer {
   RecordLifecycleActionHeartbeatAnswer();
   factory RecordLifecycleActionHeartbeatAnswer.fromXml(
@@ -7725,7 +8636,29 @@ class RecordLifecycleActionHeartbeatAnswer {
 }
 
 /// Describes information used to start an instance refresh.
+///
+/// All properties are optional. However, if you specify a value for
+/// <code>CheckpointDelay</code>, you must also provide a value for
+/// <code>CheckpointPercentages</code>.
 class RefreshPreferences {
+  /// The amount of time, in seconds, to wait after a checkpoint before
+  /// continuing. This property is optional, but if you specify a value for it,
+  /// you must also specify a value for <code>CheckpointPercentages</code>. If you
+  /// specify a value for <code>CheckpointPercentages</code> and not for
+  /// <code>CheckpointDelay</code>, the <code>CheckpointDelay</code> defaults to
+  /// <code>3600</code> (1 hour).
+  final int? checkpointDelay;
+
+  /// Threshold values for each checkpoint in ascending order. Each number must be
+  /// unique. To replace all instances in the Auto Scaling group, the last number
+  /// in the array must be <code>100</code>.
+  ///
+  /// For usage examples, see <a
+  /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-adding-checkpoints-instance-refresh.html">Adding
+  /// checkpoints to an instance refresh</a> in the <i>Amazon EC2 Auto Scaling
+  /// User Guide</i>.
+  final List<int>? checkpointPercentages;
+
   /// The number of seconds until a newly launched instance is configured and
   /// ready to use. During this time, Amazon EC2 Auto Scaling does not immediately
   /// move on to the next replacement. The default is to use the value for the
@@ -7739,13 +8672,20 @@ class RefreshPreferences {
   final int? minHealthyPercentage;
 
   RefreshPreferences({
+    this.checkpointDelay,
+    this.checkpointPercentages,
     this.instanceWarmup,
     this.minHealthyPercentage,
   });
   Map<String, dynamic> toJson() {
+    final checkpointDelay = this.checkpointDelay;
+    final checkpointPercentages = this.checkpointPercentages;
     final instanceWarmup = this.instanceWarmup;
     final minHealthyPercentage = this.minHealthyPercentage;
     return {
+      if (checkpointDelay != null) 'CheckpointDelay': checkpointDelay,
+      if (checkpointPercentages != null)
+        'CheckpointPercentages': checkpointPercentages,
       if (instanceWarmup != null) 'InstanceWarmup': instanceWarmup,
       if (minHealthyPercentage != null)
         'MinHealthyPercentage': minHealthyPercentage,
@@ -7909,6 +8849,9 @@ class ScalingPolicy {
   /// <li>
   /// <code>SimpleScaling</code> (default)
   /// </li>
+  /// <li>
+  /// <code>PredictiveScaling</code>
+  /// </li>
   /// </ul>
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html">Target
@@ -7917,6 +8860,9 @@ class ScalingPolicy {
   /// and simple scaling policies</a> in the <i>Amazon EC2 Auto Scaling User
   /// Guide</i>.
   final String? policyType;
+
+  /// A predictive scaling policy.
+  final PredictiveScalingConfiguration? predictiveScalingConfiguration;
 
   /// The amount by which to scale, based on the specified adjustment type. A
   /// positive value adds to the current capacity while a negative number removes
@@ -7943,6 +8889,7 @@ class ScalingPolicy {
     this.policyARN,
     this.policyName,
     this.policyType,
+    this.predictiveScalingConfiguration,
     this.scalingAdjustment,
     this.stepAdjustments,
     this.targetTrackingConfiguration,
@@ -7966,6 +8913,9 @@ class ScalingPolicy {
       policyARN: _s.extractXmlStringValue(elem, 'PolicyARN'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
       policyType: _s.extractXmlStringValue(elem, 'PolicyType'),
+      predictiveScalingConfiguration: _s
+          .extractXmlChild(elem, 'PredictiveScalingConfiguration')
+          ?.let((e) => PredictiveScalingConfiguration.fromXml(e)),
       scalingAdjustment: _s.extractXmlIntValue(elem, 'ScalingAdjustment'),
       stepAdjustments: _s.extractXmlChild(elem, 'StepAdjustments')?.let(
           (elem) => elem
@@ -8045,6 +8995,9 @@ class ScheduledUpdateGroupAction {
   /// This parameter is no longer used.
   final DateTime? time;
 
+  /// The time zone for the cron expression.
+  final String? timeZone;
+
   ScheduledUpdateGroupAction({
     this.autoScalingGroupName,
     this.desiredCapacity,
@@ -8056,6 +9009,7 @@ class ScheduledUpdateGroupAction {
     this.scheduledActionName,
     this.startTime,
     this.time,
+    this.timeZone,
   });
   factory ScheduledUpdateGroupAction.fromXml(_s.XmlElement elem) {
     return ScheduledUpdateGroupAction(
@@ -8071,15 +9025,13 @@ class ScheduledUpdateGroupAction {
           _s.extractXmlStringValue(elem, 'ScheduledActionName'),
       startTime: _s.extractXmlDateTimeValue(elem, 'StartTime'),
       time: _s.extractXmlDateTimeValue(elem, 'Time'),
+      timeZone: _s.extractXmlStringValue(elem, 'TimeZone'),
     );
   }
 }
 
 /// Describes information used for one or more scheduled scaling action updates
 /// in a <a>BatchPutScheduledUpdateGroupAction</a> operation.
-///
-/// When updating a scheduled scaling action, all optional parameters are left
-/// unchanged if not specified.
 class ScheduledUpdateGroupActionRequest {
   /// The name of the scaling action.
   final String scheduledActionName;
@@ -8088,8 +9040,7 @@ class ScheduledUpdateGroupActionRequest {
   /// the scheduled action runs and the capacity it attempts to maintain.
   final int? desiredCapacity;
 
-  /// The date and time for the recurring schedule to end. Amazon EC2 Auto Scaling
-  /// does not perform the action after this time.
+  /// The date and time for the recurring schedule to end, in UTC.
   final DateTime? endTime;
 
   /// The maximum size of the Auto Scaling group.
@@ -8107,6 +9058,8 @@ class ScheduledUpdateGroupActionRequest {
   /// When <code>StartTime</code> and <code>EndTime</code> are specified with
   /// <code>Recurrence</code>, they form the boundaries of when the recurring
   /// action starts and stops.
+  ///
+  /// Cron expressions use Universal Coordinated Time (UTC) by default.
   final String? recurrence;
 
   /// The date and time for the action to start, in YYYY-MM-DDThh:mm:ssZ format in
@@ -8121,6 +9074,15 @@ class ScheduledUpdateGroupActionRequest {
   /// returns an error message.
   final DateTime? startTime;
 
+  /// Specifies the time zone for a cron expression. If a time zone is not
+  /// provided, UTC is used by default.
+  ///
+  /// Valid values are the canonical names of the IANA time zones, derived from
+  /// the IANA Time Zone Database (such as <code>Etc/GMT+9</code> or
+  /// <code>Pacific/Tahiti</code>). For more information, see <a
+  /// href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a>.
+  final String? timeZone;
+
   ScheduledUpdateGroupActionRequest({
     required this.scheduledActionName,
     this.desiredCapacity,
@@ -8129,6 +9091,7 @@ class ScheduledUpdateGroupActionRequest {
     this.minSize,
     this.recurrence,
     this.startTime,
+    this.timeZone,
   });
   Map<String, dynamic> toJson() {
     final scheduledActionName = this.scheduledActionName;
@@ -8138,6 +9101,7 @@ class ScheduledUpdateGroupActionRequest {
     final minSize = this.minSize;
     final recurrence = this.recurrence;
     final startTime = this.startTime;
+    final timeZone = this.timeZone;
     return {
       'ScheduledActionName': scheduledActionName,
       if (desiredCapacity != null) 'DesiredCapacity': desiredCapacity,
@@ -8146,6 +9110,7 @@ class ScheduledUpdateGroupActionRequest {
       if (minSize != null) 'MinSize': minSize,
       if (recurrence != null) 'Recurrence': recurrence,
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (timeZone != null) 'TimeZone': timeZone,
     };
   }
 }
@@ -8298,7 +9263,7 @@ class Tag {
   /// the group.
   final bool? propagateAtLaunch;
 
-  /// The name of the group.
+  /// The name of the Auto Scaling group.
   final String? resourceId;
 
   /// The type of resource. The only supported value is
@@ -8446,6 +9411,90 @@ class TargetTrackingConfiguration {
       if (predefinedMetricSpecification != null)
         'PredefinedMetricSpecification': predefinedMetricSpecification,
     };
+  }
+}
+
+/// Describes a warm pool configuration.
+class WarmPoolConfiguration {
+  /// The maximum number of instances that are allowed to be in the warm pool or
+  /// in any state except <code>Terminated</code> for the Auto Scaling group.
+  final int? maxGroupPreparedCapacity;
+
+  /// The minimum number of instances to maintain in the warm pool.
+  final int? minSize;
+
+  /// The instance state to transition to after the lifecycle actions are
+  /// complete.
+  final WarmPoolState? poolState;
+
+  /// The status of a warm pool that is marked for deletion.
+  final WarmPoolStatus? status;
+
+  WarmPoolConfiguration({
+    this.maxGroupPreparedCapacity,
+    this.minSize,
+    this.poolState,
+    this.status,
+  });
+  factory WarmPoolConfiguration.fromXml(_s.XmlElement elem) {
+    return WarmPoolConfiguration(
+      maxGroupPreparedCapacity:
+          _s.extractXmlIntValue(elem, 'MaxGroupPreparedCapacity'),
+      minSize: _s.extractXmlIntValue(elem, 'MinSize'),
+      poolState: _s.extractXmlStringValue(elem, 'PoolState')?.toWarmPoolState(),
+      status: _s.extractXmlStringValue(elem, 'Status')?.toWarmPoolStatus(),
+    );
+  }
+}
+
+enum WarmPoolState {
+  stopped,
+  running,
+}
+
+extension on WarmPoolState {
+  String toValue() {
+    switch (this) {
+      case WarmPoolState.stopped:
+        return 'Stopped';
+      case WarmPoolState.running:
+        return 'Running';
+    }
+  }
+}
+
+extension on String {
+  WarmPoolState toWarmPoolState() {
+    switch (this) {
+      case 'Stopped':
+        return WarmPoolState.stopped;
+      case 'Running':
+        return WarmPoolState.running;
+    }
+    throw Exception('$this is not known in enum WarmPoolState');
+  }
+}
+
+enum WarmPoolStatus {
+  pendingDelete,
+}
+
+extension on WarmPoolStatus {
+  String toValue() {
+    switch (this) {
+      case WarmPoolStatus.pendingDelete:
+        return 'PendingDelete';
+    }
+  }
+}
+
+extension on String {
+  WarmPoolStatus toWarmPoolStatus() {
+    switch (this) {
+      case 'PendingDelete':
+        return WarmPoolStatus.pendingDelete;
+    }
+    throw Exception('$this is not known in enum WarmPoolStatus');
   }
 }
 

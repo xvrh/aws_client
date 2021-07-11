@@ -64,7 +64,7 @@ class AcmPca {
   /// certificates issued by the CA. If successful, this action returns the
   /// Amazon Resource Name (ARN) of the CA.
   ///
-  /// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+  /// ACM Private CA assets that are stored in Amazon S3 can be protected with
   /// encryption. For more information, see <a
   /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#crl-encryption">Encrypting
   /// Your CRLs</a>.
@@ -90,12 +90,28 @@ class AcmPca {
   /// The type of the certificate authority.
   ///
   /// Parameter [idempotencyToken] :
-  /// Alphanumeric string that can be used to distinguish between calls to
-  /// <b>CreateCertificateAuthority</b>. For a given token, ACM Private CA
-  /// creates exactly one CA. If you issue a subsequent call using the same
-  /// token, ACM Private CA returns the ARN of the existing CA and takes no
-  /// further action. If you change the idempotency token across multiple calls,
-  /// ACM Private CA creates a unique CA for each unique token.
+  /// Custom string that can be used to distinguish between calls to the
+  /// <b>CreateCertificateAuthority</b> action. Idempotency tokens for
+  /// <b>CreateCertificateAuthority</b> time out after five minutes. Therefore,
+  /// if you call <b>CreateCertificateAuthority</b> multiple times with the same
+  /// idempotency token within five minutes, ACM Private CA recognizes that you
+  /// are requesting only certificate authority and will issue only one. If you
+  /// change the idempotency token for each call, PCA recognizes that you are
+  /// requesting multiple certificate authorities.
+  ///
+  /// Parameter [keyStorageSecurityStandard] :
+  /// Specifies a cryptographic key management compliance standard used for
+  /// handling CA keys.
+  ///
+  /// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
+  ///
+  /// Note: <code>FIPS_140_2_LEVEL_3_OR_HIGHER</code> is not supported in Region
+  /// ap-northeast-3. When creating a CA in the ap-northeast-3, you must provide
+  /// <code>FIPS_140_2_LEVEL_2_OR_HIGHER</code> as the argument for
+  /// <code>KeyStorageSecurityStandard</code>. Failure to do this results in an
+  /// <code>InvalidArgsException</code> with the message, "A certificate
+  /// authority cannot be created in this region with the specified security
+  /// standard."
   ///
   /// Parameter [revocationConfiguration] :
   /// Contains a Boolean value that you can use to enable a certification
@@ -117,6 +133,7 @@ class AcmPca {
         certificateAuthorityConfiguration,
     required CertificateAuthorityType certificateAuthorityType,
     String? idempotencyToken,
+    KeyStorageSecurityStandard? keyStorageSecurityStandard,
     RevocationConfiguration? revocationConfiguration,
     List<Tag>? tags,
   }) async {
@@ -129,11 +146,6 @@ class AcmPca {
       idempotencyToken,
       1,
       36,
-    );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -149,6 +161,8 @@ class AcmPca {
         'CertificateAuthorityConfiguration': certificateAuthorityConfiguration,
         'CertificateAuthorityType': certificateAuthorityType.toValue(),
         if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
+        if (keyStorageSecurityStandard != null)
+          'KeyStorageSecurityStandard': keyStorageSecurityStandard.toValue(),
         if (revocationConfiguration != null)
           'RevocationConfiguration': revocationConfiguration,
         if (tags != null) 'Tags': tags,
@@ -173,7 +187,7 @@ class AcmPca {
   /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaAuthAccess.html">Configure
   /// Access to ACM Private CA</a>.
   /// </note>
-  /// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+  /// ACM Private CA assets that are stored in Amazon S3 can be protected with
   /// encryption. For more information, see <a
   /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaAuditReport.html#audit-report-encryption">Encrypting
   /// Your Audit Reports</a>.
@@ -213,12 +227,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(s3BucketName, 's3BucketName');
@@ -325,12 +333,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
     _s.validateStringLength(
       'principal',
@@ -339,22 +341,11 @@ class AcmPca {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'principal',
-      principal,
-      r'''^[^*]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'sourceAccount',
       sourceAccount,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'sourceAccount',
-      sourceAccount,
-      r'''[0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -437,12 +428,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -538,12 +523,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
     _s.validateStringLength(
       'principal',
@@ -552,22 +531,11 @@ class AcmPca {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'principal',
-      principal,
-      r'''^[^*]+$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'sourceAccount',
       sourceAccount,
       12,
       12,
-    );
-    _s.validateStringPattern(
-      'sourceAccount',
-      sourceAccount,
-      r'''[0-9]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -656,12 +624,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.DeletePolicy'
@@ -704,7 +666,7 @@ class AcmPca {
   /// </li>
   /// <li>
   /// <code>FAILED</code> - Your private CA has failed. Your CA can fail because
-  /// of problems such a network outage or backend AWS failure or other errors.
+  /// of problems such a network outage or back-end AWS failure or other errors.
   /// A failed CA can never return to the pending state. You must create a new
   /// CA.
   /// </li>
@@ -735,12 +697,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -798,12 +754,6 @@ class AcmPca {
       36,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'auditReportId',
-      auditReportId,
-      r'''[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
     _s.validateStringLength(
@@ -811,12 +761,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -882,12 +826,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateArn',
-      certificateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
     _s.validateStringLength(
@@ -895,12 +833,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -948,12 +880,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1007,12 +933,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1091,12 +1011,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.GetPolicy'
@@ -1123,8 +1037,8 @@ class AcmPca {
   /// <li>
   /// In ACM Private CA, call the <a
   /// href="https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthority.html">CreateCertificateAuthority</a>
-  /// action to create the private CA that that you plan to back with the
-  /// imported certificate.
+  /// action to create the private CA that you plan to back with the imported
+  /// certificate.
   /// </li>
   /// <li>
   /// Call the <a
@@ -1154,7 +1068,7 @@ class AcmPca {
   /// externally hosted.
   /// </li>
   /// </ul>
-  /// The following addtitional requirements apply when you import a CA
+  /// The following additional requirements apply when you import a CA
   /// certificate.
   ///
   /// <ul>
@@ -1297,12 +1211,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.ImportCertificateAuthorityCertificate'
@@ -1351,13 +1259,13 @@ class AcmPca {
   ///
   /// Parameter [csr] :
   /// The certificate signing request (CSR) for the certificate you want to
-  /// issue. You can use the following OpenSSL command to create the CSR and a
-  /// 2048 bit RSA private key.
+  /// issue. As an example, you can use the following OpenSSL command to create
+  /// the CSR and a 2048 bit RSA private key.
   ///
   /// <code>openssl req -new -newkey rsa:2048 -days 365 -keyout
   /// private/test_cert_priv_key.pem -out csr/test_cert_.csr</code>
   ///
-  /// If you have a configuration file, you can use the following OpenSSL
+  /// If you have a configuration file, you can then use the following OpenSSL
   /// command. The <code>usr_cert</code> block in the configuration file
   /// contains your X509 version 3 extensions.
   ///
@@ -1373,26 +1281,51 @@ class AcmPca {
   /// issued.
   ///
   /// This parameter should not be confused with the
-  /// <code>SigningAlgorithm</code> parameter used to sign a CSR.
+  /// <code>SigningAlgorithm</code> parameter used to sign a CSR in the
+  /// <code>CreateCertificateAuthority</code> action.
   ///
   /// Parameter [validity] :
-  /// Information describing the validity period of the certificate.
+  /// Information describing the end of the validity period of the certificate.
+  /// This parameter sets the “Not After” date for the certificate.
   ///
-  /// When issuing a certificate, ACM Private CA sets the "Not Before" date in
-  /// the validity field to date and time minus 60 minutes. This is intended to
-  /// compensate for time inconsistencies across systems of 60 minutes or less.
+  /// Certificate validity is the period of time during which a certificate is
+  /// valid. Validity can be expressed as an explicit date and time when the
+  /// certificate expires, or as a span of time after issuance, stated in days,
+  /// months, or years. For more information, see <a
+  /// href="https://tools.ietf.org/html/rfc5280#section-4.1.2.5">Validity</a> in
+  /// RFC 5280.
   ///
-  /// The validity period configured on a certificate must not exceed the limit
-  /// set by its parents in the CA hierarchy.
+  /// This value is unaffected when <code>ValidityNotBefore</code> is also
+  /// specified. For example, if <code>Validity</code> is set to 20 days in the
+  /// future, the certificate will expire 20 days from issuance time regardless
+  /// of the <code>ValidityNotBefore</code> value.
+  ///
+  /// The end of the validity period configured on a certificate must not exceed
+  /// the limit set on its parents in the CA hierarchy.
+  ///
+  /// Parameter [apiPassthrough] :
+  /// Specifies X.509 certificate information to be included in the issued
+  /// certificate. An <code>APIPassthrough</code> or
+  /// <code>APICSRPassthrough</code> template variant must be selected, or else
+  /// this parameter is ignored. For more information about using these
+  /// templates, see <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html">Understanding
+  /// Certificate Templates</a>.
+  ///
+  /// If conflicting or duplicate certificate information is supplied during
+  /// certificate issuance, ACM Private CA applies <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html#template-order-of-operations">order
+  /// of operation rules</a> to determine what information is used.
   ///
   /// Parameter [idempotencyToken] :
-  /// Custom string that can be used to distinguish between calls to the
-  /// <b>IssueCertificate</b> action. Idempotency tokens time out after one
-  /// hour. Therefore, if you call <b>IssueCertificate</b> multiple times with
-  /// the same idempotency token within 5 minutes, ACM Private CA recognizes
-  /// that you are requesting only one certificate and will issue only one. If
-  /// you change the idempotency token for each call, PCA recognizes that you
-  /// are requesting multiple certificates.
+  /// Alphanumeric string that can be used to distinguish between calls to the
+  /// <b>IssueCertificate</b> action. Idempotency tokens for
+  /// <b>IssueCertificate</b> time out after one minute. Therefore, if you call
+  /// <b>IssueCertificate</b> multiple times with the same idempotency token
+  /// within one minute, ACM Private CA recognizes that you are requesting only
+  /// one certificate and will issue only one. If you change the idempotency
+  /// token for each call, PCA recognizes that you are requesting multiple
+  /// certificates.
   ///
   /// Parameter [templateArn] :
   /// Specifies a custom configuration template to use when issuing a
@@ -1407,66 +1340,41 @@ class AcmPca {
   /// Note: The CA depth configured on a subordinate CA certificate must not
   /// exceed the limit set by its parents in the CA hierarchy.
   ///
-  /// The following service-owned <code>TemplateArn</code> values are supported
-  /// by ACM Private CA:
+  /// For a list of <code>TemplateArn</code> values supported by ACM Private CA,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html">Understanding
+  /// Certificate Templates</a>.
   ///
-  /// <ul>
-  /// <li>
-  /// arn:aws:acm-pca:::template/CodeSigningCertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/CodeSigningCertificate_CSRPassthrough/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityCertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityCertificate_CSRPassthrough/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityClientAuthCertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityClientAuthCertificate_CSRPassthrough/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityServerAuthCertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/EndEntityServerAuthCertificate_CSRPassthrough/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/OCSPSigningCertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/OCSPSigningCertificate_CSRPassthrough/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/RootCACertificate/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen0/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen1/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen2/V1
-  /// </li>
-  /// <li>
-  /// arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen3/V1
-  /// </li>
-  /// </ul>
-  /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html">Using
-  /// Templates</a>.
+  /// Parameter [validityNotBefore] :
+  /// Information describing the start of the validity period of the
+  /// certificate. This parameter sets the “Not Before" date for the
+  /// certificate.
+  ///
+  /// By default, when issuing a certificate, ACM Private CA sets the "Not
+  /// Before" date to the issuance time minus 60 minutes. This compensates for
+  /// clock inconsistencies across computer systems. The
+  /// <code>ValidityNotBefore</code> parameter can be used to customize the “Not
+  /// Before” value.
+  ///
+  /// Unlike the <code>Validity</code> parameter, the
+  /// <code>ValidityNotBefore</code> parameter is optional.
+  ///
+  /// The <code>ValidityNotBefore</code> value is expressed as an explicit date
+  /// and time, using the <code>Validity</code> type value
+  /// <code>ABSOLUTE</code>. For more information, see <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_Validity.html">Validity</a>
+  /// in this API reference and <a
+  /// href="https://tools.ietf.org/html/rfc5280#section-4.1.2.5">Validity</a> in
+  /// RFC 5280.
   Future<IssueCertificateResponse> issueCertificate({
     required String certificateAuthorityArn,
     required Uint8List csr,
     required SigningAlgorithm signingAlgorithm,
     required Validity validity,
+    ApiPassthrough? apiPassthrough,
     String? idempotencyToken,
     String? templateArn,
+    Validity? validityNotBefore,
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
@@ -1475,12 +1383,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(csr, 'csr');
@@ -1492,21 +1394,11 @@ class AcmPca {
       1,
       36,
     );
-    _s.validateStringPattern(
-      'idempotencyToken',
-      idempotencyToken,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]*''',
-    );
     _s.validateStringLength(
       'templateArn',
       templateArn,
       5,
       200,
-    );
-    _s.validateStringPattern(
-      'templateArn',
-      templateArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1523,8 +1415,10 @@ class AcmPca {
         'Csr': base64Encode(csr),
         'SigningAlgorithm': signingAlgorithm.toValue(),
         'Validity': validity,
+        if (apiPassthrough != null) 'ApiPassthrough': apiPassthrough,
         if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
         if (templateArn != null) 'TemplateArn': templateArn,
+        if (validityNotBefore != null) 'ValidityNotBefore': validityNotBefore,
       },
     );
 
@@ -1663,12 +1557,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1745,12 +1633,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1835,7 +1717,7 @@ class AcmPca {
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [policy] :
-  /// The path and filename of a JSON-formatted IAM policy to attach to the
+  /// The path and file name of a JSON-formatted IAM policy to attach to the
   /// specified private CA resource. If this policy does not contain all
   /// required statements or if it includes any statement that is not allowed,
   /// the <code>PutPolicy</code> action returns an
@@ -1862,24 +1744,12 @@ class AcmPca {
       20480,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policy',
-      policy,
-      r'''[\u0009\u000A\u000D\u0020-\u00FF]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
     _s.validateStringLength(
       'resourceArn',
       resourceArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1943,12 +1813,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2042,12 +1906,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(certificateSerial, 'certificateSerial');
     _s.validateStringLength(
       'certificateSerial',
@@ -2117,12 +1975,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2177,12 +2029,6 @@ class AcmPca {
       certificateAuthorityArn,
       5,
       200,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -2250,12 +2096,6 @@ class AcmPca {
       200,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      r'''arn:[\w+=/,.@-]+:[\w+=/,.@-]+:[\w+=/,.@-]*:[0-9]*:[\w+=,.@-]+(/[\w+=,.@-]+)*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.UpdateCertificateAuthority'
@@ -2276,16 +2116,12 @@ class AcmPca {
   }
 }
 
-/// Contains information about the certificate subject. The certificate can be
-/// one issued by your private certificate authority (CA) or it can be your
-/// private CA certificate. The <b>Subject</b> field in the certificate
-/// identifies the entity that owns or controls the public key in the
-/// certificate. The entity can be a user, computer, device, or service. The
-/// <b>Subject</b> must contain an X.500 distinguished name (DN). A DN is a
-/// sequence of relative distinguished names (RDNs). The RDNs are separated by
-/// commas in the certificate. The DN must be unique for each entity, but your
-/// private CA can issue more than one certificate with the same DN to the same
-/// entity.
+/// Contains information about the certificate subject. The <code>Subject</code>
+/// field in the certificate identifies the entity that owns or controls the
+/// public key in the certificate. The entity can be a user, computer, device,
+/// or service. The <code>Subject </code>must contain an X.500 distinguished
+/// name (DN). A DN is a sequence of relative distinguished names (RDNs). The
+/// RDNs are separated by commas in the certificate.
 class ASN1Subject {
   /// For CA and end-entity certificates in a private PKI, the common name (CN)
   /// can be any string within the length limit.
@@ -2310,7 +2146,7 @@ class ASN1Subject {
 
   /// Concatenation that typically contains the first letter of the
   /// <b>GivenName</b>, the first letter of the middle name if one exists, and the
-  /// first letter of the <b>SurName</b>.
+  /// first letter of the <b>Surname</b>.
   final String? initials;
 
   /// The locality (such as a city or town) in which the certificate subject is
@@ -2552,6 +2388,34 @@ extension on String {
   }
 }
 
+/// Contains X.509 certificate information to be placed in an issued
+/// certificate. An <code>APIPassthrough</code> or
+/// <code>APICSRPassthrough</code> template variant must be selected, or else
+/// this parameter is ignored.
+///
+/// If conflicting or duplicate certificate information is supplied from other
+/// sources, ACM Private CA applies <a
+/// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html#template-order-of-operations">order
+/// of operation rules</a> to determine what information is used.
+class ApiPassthrough {
+  /// Specifies X.509 extension information for a certificate.
+  final Extensions? extensions;
+  final ASN1Subject? subject;
+
+  ApiPassthrough({
+    this.extensions,
+    this.subject,
+  });
+  Map<String, dynamic> toJson() {
+    final extensions = this.extensions;
+    final subject = this.subject;
+    return {
+      if (extensions != null) 'Extensions': extensions,
+      if (subject != null) 'Subject': subject,
+    };
+  }
+}
+
 enum AuditReportResponseFormat {
   json,
   csv,
@@ -2640,6 +2504,18 @@ class CertificateAuthority {
   /// Reason the request to create your private CA failed.
   final FailureReason? failureReason;
 
+  /// Defines a cryptographic key management compliance standard used for handling
+  /// CA keys.
+  ///
+  /// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
+  ///
+  /// Note: AWS Region ap-northeast-3 supports only FIPS_140_2_LEVEL_2_OR_HIGHER.
+  /// You must explicitly specify this parameter and value when creating a CA in
+  /// that Region. Specifying a different value (or no value) results in an
+  /// <code>InvalidArgsException</code> with the message "A certificate authority
+  /// cannot be created in this region with the specified security standard."
+  final KeyStorageSecurityStandard? keyStorageSecurityStandard;
+
   /// Date and time at which your private CA was last updated.
   final DateTime? lastStateChangeAt;
 
@@ -2676,6 +2552,7 @@ class CertificateAuthority {
     this.certificateAuthorityConfiguration,
     this.createdAt,
     this.failureReason,
+    this.keyStorageSecurityStandard,
     this.lastStateChangeAt,
     this.notAfter,
     this.notBefore,
@@ -2697,6 +2574,9 @@ class CertificateAuthority {
               : null,
       createdAt: timeStampFromJson(json['CreatedAt']),
       failureReason: (json['FailureReason'] as String?)?.toFailureReason(),
+      keyStorageSecurityStandard:
+          (json['KeyStorageSecurityStandard'] as String?)
+              ?.toKeyStorageSecurityStandard(),
       lastStateChangeAt: timeStampFromJson(json['LastStateChangeAt']),
       notAfter: timeStampFromJson(json['NotAfter']),
       notBefore: timeStampFromJson(json['NotBefore']),
@@ -2906,7 +2786,7 @@ class CreateCertificateAuthorityResponse {
 /// certificate it issues. Your S3 bucket policy must give write permission to
 /// ACM Private CA.
 ///
-/// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+/// ACM Private CA assets that are stored in Amazon S3 can be protected with
 /// encryption. For more information, see <a
 /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#crl-encryption">Encrypting
 /// Your CRLs</a>.
@@ -3006,15 +2886,38 @@ class CrlConfiguration {
   /// into the <b>CRL Distribution Points</b> extension of the issued certificate.
   /// You can change the name of your bucket by calling the <a
   /// href="https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_UpdateCertificateAuthority.html">UpdateCertificateAuthority</a>
-  /// action. You must specify a bucket policy that allows ACM Private CA to write
-  /// the CRL to your bucket.
+  /// action. You must specify a <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#s3-policies">bucket
+  /// policy</a> that allows ACM Private CA to write the CRL to your bucket.
   final String? s3BucketName;
+
+  /// Determines whether the CRL will be publicly readable or privately held in
+  /// the CRL Amazon S3 bucket. If you choose PUBLIC_READ, the CRL will be
+  /// accessible over the public internet. If you choose
+  /// BUCKET_OWNER_FULL_CONTROL, only the owner of the CRL S3 bucket can access
+  /// the CRL, and your PKI clients may need an alternative method of access.
+  ///
+  /// If no value is specified, the default is <code>PUBLIC_READ</code>.
+  ///
+  /// <i>Note:</i> This default can cause CA creation to fail in some
+  /// circumstances. If you have have enabled the Block Public Access (BPA)
+  /// feature in your S3 account, then you must specify the value of this
+  /// parameter as <code>BUCKET_OWNER_FULL_CONTROL</code>, and not doing so
+  /// results in an error. If you have disabled BPA in S3, then you can specify
+  /// either <code>BUCKET_OWNER_FULL_CONTROL</code> or <code>PUBLIC_READ</code> as
+  /// the value.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#s3-bpa">Blocking
+  /// public access to the S3 bucket</a>.
+  final S3ObjectAcl? s3ObjectAcl;
 
   CrlConfiguration({
     required this.enabled,
     this.customCname,
     this.expirationInDays,
     this.s3BucketName,
+    this.s3ObjectAcl,
   });
   factory CrlConfiguration.fromJson(Map<String, dynamic> json) {
     return CrlConfiguration(
@@ -3022,6 +2925,7 @@ class CrlConfiguration {
       customCname: json['CustomCname'] as String?,
       expirationInDays: json['ExpirationInDays'] as int?,
       s3BucketName: json['S3BucketName'] as String?,
+      s3ObjectAcl: (json['S3ObjectAcl'] as String?)?.toS3ObjectAcl(),
     );
   }
 
@@ -3030,11 +2934,13 @@ class CrlConfiguration {
     final customCname = this.customCname;
     final expirationInDays = this.expirationInDays;
     final s3BucketName = this.s3BucketName;
+    final s3ObjectAcl = this.s3ObjectAcl;
     return {
       'Enabled': enabled,
       if (customCname != null) 'CustomCname': customCname,
       if (expirationInDays != null) 'ExpirationInDays': expirationInDays,
       if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3ObjectAcl != null) 'S3ObjectAcl': s3ObjectAcl.toValue(),
     };
   }
 }
@@ -3162,6 +3068,143 @@ class EdiPartyName {
   }
 }
 
+/// Specifies additional purposes for which the certified public key may be used
+/// other than basic purposes indicated in the <code>KeyUsage</code> extension.
+class ExtendedKeyUsage {
+  /// Specifies a custom <code>ExtendedKeyUsage</code> with an object identifier
+  /// (OID).
+  final String? extendedKeyUsageObjectIdentifier;
+
+  /// Specifies a standard <code>ExtendedKeyUsage</code> as defined as in <a
+  /// href="https://tools.ietf.org/html/rfc5280#section-4.2.1.12">RFC 5280</a>.
+  final ExtendedKeyUsageType? extendedKeyUsageType;
+
+  ExtendedKeyUsage({
+    this.extendedKeyUsageObjectIdentifier,
+    this.extendedKeyUsageType,
+  });
+  Map<String, dynamic> toJson() {
+    final extendedKeyUsageObjectIdentifier =
+        this.extendedKeyUsageObjectIdentifier;
+    final extendedKeyUsageType = this.extendedKeyUsageType;
+    return {
+      if (extendedKeyUsageObjectIdentifier != null)
+        'ExtendedKeyUsageObjectIdentifier': extendedKeyUsageObjectIdentifier,
+      if (extendedKeyUsageType != null)
+        'ExtendedKeyUsageType': extendedKeyUsageType.toValue(),
+    };
+  }
+}
+
+enum ExtendedKeyUsageType {
+  serverAuth,
+  clientAuth,
+  codeSigning,
+  emailProtection,
+  timeStamping,
+  ocspSigning,
+  smartCardLogin,
+  documentSigning,
+  certificateTransparency,
+}
+
+extension on ExtendedKeyUsageType {
+  String toValue() {
+    switch (this) {
+      case ExtendedKeyUsageType.serverAuth:
+        return 'SERVER_AUTH';
+      case ExtendedKeyUsageType.clientAuth:
+        return 'CLIENT_AUTH';
+      case ExtendedKeyUsageType.codeSigning:
+        return 'CODE_SIGNING';
+      case ExtendedKeyUsageType.emailProtection:
+        return 'EMAIL_PROTECTION';
+      case ExtendedKeyUsageType.timeStamping:
+        return 'TIME_STAMPING';
+      case ExtendedKeyUsageType.ocspSigning:
+        return 'OCSP_SIGNING';
+      case ExtendedKeyUsageType.smartCardLogin:
+        return 'SMART_CARD_LOGIN';
+      case ExtendedKeyUsageType.documentSigning:
+        return 'DOCUMENT_SIGNING';
+      case ExtendedKeyUsageType.certificateTransparency:
+        return 'CERTIFICATE_TRANSPARENCY';
+    }
+  }
+}
+
+extension on String {
+  ExtendedKeyUsageType toExtendedKeyUsageType() {
+    switch (this) {
+      case 'SERVER_AUTH':
+        return ExtendedKeyUsageType.serverAuth;
+      case 'CLIENT_AUTH':
+        return ExtendedKeyUsageType.clientAuth;
+      case 'CODE_SIGNING':
+        return ExtendedKeyUsageType.codeSigning;
+      case 'EMAIL_PROTECTION':
+        return ExtendedKeyUsageType.emailProtection;
+      case 'TIME_STAMPING':
+        return ExtendedKeyUsageType.timeStamping;
+      case 'OCSP_SIGNING':
+        return ExtendedKeyUsageType.ocspSigning;
+      case 'SMART_CARD_LOGIN':
+        return ExtendedKeyUsageType.smartCardLogin;
+      case 'DOCUMENT_SIGNING':
+        return ExtendedKeyUsageType.documentSigning;
+      case 'CERTIFICATE_TRANSPARENCY':
+        return ExtendedKeyUsageType.certificateTransparency;
+    }
+    throw Exception('$this is not known in enum ExtendedKeyUsageType');
+  }
+}
+
+/// Contains X.509 extension information for a certificate.
+class Extensions {
+  /// Contains a sequence of one or more policy information terms, each of which
+  /// consists of an object identifier (OID) and optional qualifiers. For more
+  /// information, see NIST's definition of <a
+  /// href="https://csrc.nist.gov/glossary/term/Object_Identifier">Object
+  /// Identifier (OID)</a>.
+  ///
+  /// In an end-entity certificate, these terms indicate the policy under which
+  /// the certificate was issued and the purposes for which it may be used. In a
+  /// CA certificate, these terms limit the set of policies for certification
+  /// paths that include this certificate.
+  final List<PolicyInformation>? certificatePolicies;
+
+  /// Specifies additional purposes for which the certified public key may be used
+  /// other than basic purposes indicated in the <code>KeyUsage</code> extension.
+  final List<ExtendedKeyUsage>? extendedKeyUsage;
+  final KeyUsage? keyUsage;
+
+  /// The subject alternative name extension allows identities to be bound to the
+  /// subject of the certificate. These identities may be included in addition to
+  /// or in place of the identity in the subject field of the certificate.
+  final List<GeneralName>? subjectAlternativeNames;
+
+  Extensions({
+    this.certificatePolicies,
+    this.extendedKeyUsage,
+    this.keyUsage,
+    this.subjectAlternativeNames,
+  });
+  Map<String, dynamic> toJson() {
+    final certificatePolicies = this.certificatePolicies;
+    final extendedKeyUsage = this.extendedKeyUsage;
+    final keyUsage = this.keyUsage;
+    final subjectAlternativeNames = this.subjectAlternativeNames;
+    return {
+      if (certificatePolicies != null)
+        'CertificatePolicies': certificatePolicies,
+      if (extendedKeyUsage != null) 'ExtendedKeyUsage': extendedKeyUsage,
+      if (keyUsage != null) 'KeyUsage': keyUsage,
+      if (subjectAlternativeNames != null)
+        'SubjectAlternativeNames': subjectAlternativeNames,
+    };
+  }
+}
+
 enum FailureReason {
   requestTimedOut,
   unsupportedAlgorithm,
@@ -3197,7 +3240,7 @@ extension on String {
 
 /// Describes an ASN.1 X.400 <code>GeneralName</code> as defined in <a
 /// href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. Only one of the
-/// following naming options should be providied. Providing more than one option
+/// following naming options should be provided. Providing more than one option
 /// results in an <code>InvalidArgsException</code> error.
 class GeneralName {
   final ASN1Subject? directoryName;
@@ -3403,6 +3446,34 @@ extension on String {
         return KeyAlgorithm.ecSecp384r1;
     }
     throw Exception('$this is not known in enum KeyAlgorithm');
+  }
+}
+
+enum KeyStorageSecurityStandard {
+  fips_140_2Level_2OrHigher,
+  fips_140_2Level_3OrHigher,
+}
+
+extension on KeyStorageSecurityStandard {
+  String toValue() {
+    switch (this) {
+      case KeyStorageSecurityStandard.fips_140_2Level_2OrHigher:
+        return 'FIPS_140_2_LEVEL_2_OR_HIGHER';
+      case KeyStorageSecurityStandard.fips_140_2Level_3OrHigher:
+        return 'FIPS_140_2_LEVEL_3_OR_HIGHER';
+    }
+  }
+}
+
+extension on String {
+  KeyStorageSecurityStandard toKeyStorageSecurityStandard() {
+    switch (this) {
+      case 'FIPS_140_2_LEVEL_2_OR_HIGHER':
+        return KeyStorageSecurityStandard.fips_140_2Level_2OrHigher;
+      case 'FIPS_140_2_LEVEL_3_OR_HIGHER':
+        return KeyStorageSecurityStandard.fips_140_2Level_3OrHigher;
+    }
+    throw Exception('$this is not known in enum KeyStorageSecurityStandard');
   }
 }
 
@@ -3645,6 +3716,100 @@ class Permission {
   }
 }
 
+/// Defines the X.509 <code>CertificatePolicies</code> extension.
+class PolicyInformation {
+  /// Specifies the object identifier (OID) of the certificate policy under which
+  /// the certificate was issued. For more information, see NIST's definition of
+  /// <a href="https://csrc.nist.gov/glossary/term/Object_Identifier">Object
+  /// Identifier (OID)</a>.
+  final String certPolicyId;
+
+  /// Modifies the given <code>CertPolicyId</code> with a qualifier. ACM Private
+  /// CA supports the certification practice statement (CPS) qualifier.
+  final List<PolicyQualifierInfo>? policyQualifiers;
+
+  PolicyInformation({
+    required this.certPolicyId,
+    this.policyQualifiers,
+  });
+  Map<String, dynamic> toJson() {
+    final certPolicyId = this.certPolicyId;
+    final policyQualifiers = this.policyQualifiers;
+    return {
+      'CertPolicyId': certPolicyId,
+      if (policyQualifiers != null) 'PolicyQualifiers': policyQualifiers,
+    };
+  }
+}
+
+enum PolicyQualifierId {
+  cps,
+}
+
+extension on PolicyQualifierId {
+  String toValue() {
+    switch (this) {
+      case PolicyQualifierId.cps:
+        return 'CPS';
+    }
+  }
+}
+
+extension on String {
+  PolicyQualifierId toPolicyQualifierId() {
+    switch (this) {
+      case 'CPS':
+        return PolicyQualifierId.cps;
+    }
+    throw Exception('$this is not known in enum PolicyQualifierId');
+  }
+}
+
+/// Modifies the <code>CertPolicyId</code> of a <code>PolicyInformation</code>
+/// object with a qualifier. ACM Private CA supports the certification practice
+/// statement (CPS) qualifier.
+class PolicyQualifierInfo {
+  /// Identifies the qualifier modifying a <code>CertPolicyId</code>.
+  final PolicyQualifierId policyQualifierId;
+
+  /// Defines the qualifier type. ACM Private CA supports the use of a URI for a
+  /// CPS qualifier in this field.
+  final Qualifier qualifier;
+
+  PolicyQualifierInfo({
+    required this.policyQualifierId,
+    required this.qualifier,
+  });
+  Map<String, dynamic> toJson() {
+    final policyQualifierId = this.policyQualifierId;
+    final qualifier = this.qualifier;
+    return {
+      'PolicyQualifierId': policyQualifierId.toValue(),
+      'Qualifier': qualifier,
+    };
+  }
+}
+
+/// Defines a <code>PolicyInformation</code> qualifier. ACM Private CA supports
+/// the <a
+/// href="https://tools.ietf.org/html/rfc5280#section-4.2.1.4">certification
+/// practice statement (CPS) qualifier</a> defined in RFC 5280.
+class Qualifier {
+  /// Contains a pointer to a certification practice statement (CPS) published by
+  /// the CA.
+  final String cpsUri;
+
+  Qualifier({
+    required this.cpsUri,
+  });
+  Map<String, dynamic> toJson() {
+    final cpsUri = this.cpsUri;
+    return {
+      'CpsUri': cpsUri,
+    };
+  }
+}
+
 enum ResourceOwner {
   self,
   otherAccounts,
@@ -3764,6 +3929,34 @@ extension on String {
   }
 }
 
+enum S3ObjectAcl {
+  publicRead,
+  bucketOwnerFullControl,
+}
+
+extension on S3ObjectAcl {
+  String toValue() {
+    switch (this) {
+      case S3ObjectAcl.publicRead:
+        return 'PUBLIC_READ';
+      case S3ObjectAcl.bucketOwnerFullControl:
+        return 'BUCKET_OWNER_FULL_CONTROL';
+    }
+  }
+}
+
+extension on String {
+  S3ObjectAcl toS3ObjectAcl() {
+    switch (this) {
+      case 'PUBLIC_READ':
+        return S3ObjectAcl.publicRead;
+      case 'BUCKET_OWNER_FULL_CONTROL':
+        return S3ObjectAcl.bucketOwnerFullControl;
+    }
+    throw Exception('$this is not known in enum S3ObjectAcl');
+  }
+}
+
 enum SigningAlgorithm {
   sha256withecdsa,
   sha384withecdsa,
@@ -3848,15 +4041,18 @@ class Tag {
 }
 
 /// Validity specifies the period of time during which a certificate is valid.
-/// Validity can be expressed as an explicit date and time when the certificate
-/// expires, or as a span of time after issuance, stated in days, months, or
-/// years. For more information, see <a
+/// Validity can be expressed as an explicit date and time when the validity of
+/// a certificate starts or expires, or as a span of time after issuance, stated
+/// in days, months, or years. For more information, see <a
 /// href="https://tools.ietf.org/html/rfc5280#section-4.1.2.5">Validity</a> in
 /// RFC 5280.
 ///
-/// You can issue a certificate by calling the <a
-/// href="https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_IssueCertificate.html">IssueCertificate</a>
-/// action.
+/// ACM Private CA API consumes the <code>Validity</code> data type differently
+/// in two distinct parameters of the <code>IssueCertificate</code> action. The
+/// required parameter <code>IssueCertificate</code>:<code>Validity</code>
+/// specifies the end of a certificate's validity period. The optional parameter
+/// <code>IssueCertificate</code>:<code>ValidityNotBefore</code> specifies a
+/// customized starting time for the validity period.
 class Validity {
   /// Determines how <i>ACM Private CA</i> interprets the <code>Value</code>
   /// parameter, an integer. Supported validity types include those listed below.
@@ -3877,8 +4073,8 @@ class Validity {
   /// Output expiration date/time: 12/31/2049 23:59:59
   /// </li>
   /// </ul>
-  /// <code>ABSOLUTE</code>: The specific date and time when the certificate will
-  /// expire, expressed in seconds since the Unix Epoch.
+  /// <code>ABSOLUTE</code>: The specific date and time when the validity of a
+  /// certificate will start or expire, expressed in seconds since the Unix Epoch.
   ///
   /// <ul>
   /// <li>

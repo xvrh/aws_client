@@ -63,12 +63,6 @@ class ComprehendMedical {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -109,12 +103,6 @@ class ComprehendMedical {
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -158,12 +146,6 @@ class ComprehendMedical {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DescribePHIDetectionJob'
@@ -202,12 +184,6 @@ class ComprehendMedical {
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -732,12 +708,6 @@ class ComprehendMedical {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
@@ -747,32 +717,17 @@ class ComprehendMedical {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-    );
     _s.validateStringLength(
       'kMSKey',
       kMSKey,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKey',
-      kMSKey,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -852,12 +807,6 @@ class ComprehendMedical {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
@@ -867,32 +816,17 @@ class ComprehendMedical {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-    );
     _s.validateStringLength(
       'kMSKey',
       kMSKey,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKey',
-      kMSKey,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -972,12 +906,6 @@ class ComprehendMedical {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
@@ -987,32 +915,17 @@ class ComprehendMedical {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-    );
     _s.validateStringLength(
       'kMSKey',
       kMSKey,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKey',
-      kMSKey,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1092,12 +1005,6 @@ class ComprehendMedical {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      r'''arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
@@ -1107,32 +1014,17 @@ class ComprehendMedical {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'clientRequestToken',
-      clientRequestToken,
-      r'''^[a-zA-Z0-9-]+$''',
-    );
     _s.validateStringLength(
       'jobName',
       jobName,
       1,
       256,
     );
-    _s.validateStringPattern(
-      'jobName',
-      jobName,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-    );
     _s.validateStringLength(
       'kMSKey',
       kMSKey,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'kMSKey',
-      kMSKey,
-      r'''.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1178,12 +1070,6 @@ class ComprehendMedical {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopEntitiesDetectionV2Job'
@@ -1219,12 +1105,6 @@ class ComprehendMedical {
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1264,12 +1144,6 @@ class ComprehendMedical {
       32,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopPHIDetectionJob'
@@ -1305,12 +1179,6 @@ class ComprehendMedical {
       jobId,
       1,
       32,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'jobId',
-      jobId,
-      r'''^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -2100,6 +1968,10 @@ class ICD10CMAttribute {
   /// attribute begins. The offset returns the UTF-8 code point in the string.
   final int? beginOffset;
 
+  /// The category of attribute. Can be either of <code>DX_NAME</code> or
+  /// <code>TIME_EXPRESSION</code>.
+  final ICD10CMEntityType? category;
+
   /// The 0-based character offset in the input text that shows where the
   /// attribute ends. The offset returns the UTF-8 code point in the string.
   final int? endOffset;
@@ -2112,6 +1984,11 @@ class ICD10CMAttribute {
   /// The level of confidence that Amazon Comprehend Medical has that this
   /// attribute is correctly related to this entity.
   final double? relationshipScore;
+
+  /// The type of relationship between the entity and attribute. Type for the
+  /// relationship can be either of <code>OVERLAP</code> or
+  /// <code>SYSTEM_ORGAN_SITE</code>.
+  final ICD10CMRelationshipType? relationshipType;
 
   /// The level of confidence that Amazon Comprehend Medical has that the segment
   /// of text is correctly recognized as an attribute.
@@ -2131,9 +2008,11 @@ class ICD10CMAttribute {
 
   ICD10CMAttribute({
     this.beginOffset,
+    this.category,
     this.endOffset,
     this.id,
     this.relationshipScore,
+    this.relationshipType,
     this.score,
     this.text,
     this.traits,
@@ -2142,9 +2021,12 @@ class ICD10CMAttribute {
   factory ICD10CMAttribute.fromJson(Map<String, dynamic> json) {
     return ICD10CMAttribute(
       beginOffset: json['BeginOffset'] as int?,
+      category: (json['Category'] as String?)?.toICD10CMEntityType(),
       endOffset: json['EndOffset'] as int?,
       id: json['Id'] as int?,
       relationshipScore: json['RelationshipScore'] as double?,
+      relationshipType:
+          (json['RelationshipType'] as String?)?.toICD10CMRelationshipType(),
       score: json['Score'] as double?,
       text: json['Text'] as String?,
       traits: (json['Traits'] as List?)
@@ -2162,6 +2044,8 @@ enum ICD10CMAttributeType {
   systemOrganSite,
   quality,
   quantity,
+  timeToDxName,
+  timeExpression,
 }
 
 extension on ICD10CMAttributeType {
@@ -2177,6 +2061,10 @@ extension on ICD10CMAttributeType {
         return 'QUALITY';
       case ICD10CMAttributeType.quantity:
         return 'QUANTITY';
+      case ICD10CMAttributeType.timeToDxName:
+        return 'TIME_TO_DX_NAME';
+      case ICD10CMAttributeType.timeExpression:
+        return 'TIME_EXPRESSION';
     }
   }
 }
@@ -2194,6 +2082,10 @@ extension on String {
         return ICD10CMAttributeType.quality;
       case 'QUANTITY':
         return ICD10CMAttributeType.quantity;
+      case 'TIME_TO_DX_NAME':
+        return ICD10CMAttributeType.timeToDxName;
+      case 'TIME_EXPRESSION':
+        return ICD10CMAttributeType.timeExpression;
     }
     throw Exception('$this is not known in enum ICD10CMAttributeType');
   }
@@ -2271,7 +2163,8 @@ class ICD10CMEntity {
   final List<ICD10CMTrait>? traits;
 
   /// Describes the specific type of entity with category of entities.
-  /// InferICD10CM detects entities of the type <code>DX_NAME</code>.
+  /// InferICD10CM detects entities of the type <code>DX_NAME</code> and
+  /// <code>TIME_EXPRESSION</code>.
   final ICD10CMEntityType? type;
 
   ICD10CMEntity({
@@ -2336,6 +2229,7 @@ extension on String {
 
 enum ICD10CMEntityType {
   dxName,
+  timeExpression,
 }
 
 extension on ICD10CMEntityType {
@@ -2343,6 +2237,8 @@ extension on ICD10CMEntityType {
     switch (this) {
       case ICD10CMEntityType.dxName:
         return 'DX_NAME';
+      case ICD10CMEntityType.timeExpression:
+        return 'TIME_EXPRESSION';
     }
   }
 }
@@ -2352,8 +2248,38 @@ extension on String {
     switch (this) {
       case 'DX_NAME':
         return ICD10CMEntityType.dxName;
+      case 'TIME_EXPRESSION':
+        return ICD10CMEntityType.timeExpression;
     }
     throw Exception('$this is not known in enum ICD10CMEntityType');
+  }
+}
+
+enum ICD10CMRelationshipType {
+  overlap,
+  systemOrganSite,
+}
+
+extension on ICD10CMRelationshipType {
+  String toValue() {
+    switch (this) {
+      case ICD10CMRelationshipType.overlap:
+        return 'OVERLAP';
+      case ICD10CMRelationshipType.systemOrganSite:
+        return 'SYSTEM_ORGAN_SITE';
+    }
+  }
+}
+
+extension on String {
+  ICD10CMRelationshipType toICD10CMRelationshipType() {
+    switch (this) {
+      case 'OVERLAP':
+        return ICD10CMRelationshipType.overlap;
+      case 'SYSTEM_ORGAN_SITE':
+        return ICD10CMRelationshipType.systemOrganSite;
+    }
+    throw Exception('$this is not known in enum ICD10CMRelationshipType');
   }
 }
 
@@ -2485,8 +2411,7 @@ class InferRxNormResponse {
 }
 
 /// The input properties for an entities detection job. This includes the name
-/// of the S3 bucket and the path to the files to be analyzed. See
-/// <a>batch-manifest</a> for more information.
+/// of the S3 bucket and the path to the files to be analyzed.
 class InputDataConfig {
   /// The URI of the S3 bucket that contains the input data. The bucket must be in
   /// the same region as the API endpoint that you are calling.

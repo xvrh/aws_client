@@ -24,8 +24,10 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// storage capacity is elastic, growing and shrinking automatically as you add
 /// and remove files, so your applications have the storage they need, when they
 /// need it. For more information, see the <a
-/// href="https://docs.aws.amazon.com/efs/latest/ug/api-reference.html">User
-/// Guide</a>.
+/// href="https://docs.aws.amazon.com/efs/latest/ug/api-reference.html">Amazon
+/// Elastic File System API Reference</a> and the <a
+/// href="https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html">Amazon
+/// Elastic File System User Guide</a>.
 class Efs {
   final _s.RestJsonProtocol _protocol;
   Efs({
@@ -51,7 +53,7 @@ class Efs {
   /// the access point's root directory. Applications using the access point can
   /// only access data in its own directory and below. To learn more, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html">Mounting
-  /// a File System Using EFS Access Points</a>.
+  /// a file system using EFS access points</a>.
   ///
   /// This operation requires permissions for the
   /// <code>elasticfilesystem:CreateAccessPoint</code> action.
@@ -82,7 +84,13 @@ class Efs {
   /// <code>Path</code> specified does not exist, EFS creates it and applies the
   /// <code>CreationInfo</code> settings when a client connects to an access
   /// point. When specifying a <code>RootDirectory</code>, you need to provide
-  /// the <code>Path</code>, and the <code>CreationInfo</code> is optional.
+  /// the <code>Path</code>, and the <code>CreationInfo</code>.
+  ///
+  /// Amazon EFS creates a root directory only if you have provided the
+  /// CreationInfo: OwnUid, OwnGID, and permissions for the directory. If you do
+  /// not provide this information, Amazon EFS does not create the root
+  /// directory. If the root directory does not exist, attempts to mount using
+  /// the access point will fail.
   ///
   /// Parameter [tags] :
   /// Creates tags associated with the access point. Each tag is a key-value
@@ -100,12 +108,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -159,14 +161,18 @@ class Efs {
   /// reset. As long as you use the same creation token, if the initial call had
   /// succeeded in creating a file system, the client can learn of its existence
   /// from the <code>FileSystemAlreadyExists</code> error.
+  ///
+  /// For more information, see <a
+  /// href="https://docs.aws.amazon.com/efs/latest/ug/creating-using-create-fs.html#creating-using-create-fs-part1">Creating
+  /// a file system</a> in the <i>Amazon EFS User Guide</i>.
   /// <note>
   /// The <code>CreateFileSystem</code> call returns while the file system's
   /// lifecycle state is still <code>creating</code>. You can check the file
   /// system creation status by calling the <a>DescribeFileSystems</a>
   /// operation, which among other things returns the file system state.
   /// </note>
-  /// This operation also takes an optional <code>PerformanceMode</code>
-  /// parameter that you choose for your file system. We recommend
+  /// This operation accepts an optional <code>PerformanceMode</code> parameter
+  /// that you choose for your file system. We recommend
   /// <code>generalPurpose</code> performance mode for most file systems. File
   /// systems using the <code>maxIO</code> performance mode can scale to higher
   /// levels of aggregate throughput and operations per second with a tradeoff
@@ -174,7 +180,10 @@ class Efs {
   /// mode can't be changed after the file system has been created. For more
   /// information, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html">Amazon
-  /// EFS: Performance Modes</a>.
+  /// EFS performance modes</a>.
+  ///
+  /// You can set the throughput mode for the file system using the
+  /// <code>ThroughputMode</code> parameter.
   ///
   /// After the file system is fully created, Amazon EFS sets its lifecycle
   /// state to <code>available</code>, at which point you can create one or more
@@ -194,6 +203,35 @@ class Efs {
   /// May throw [FileSystemLimitExceeded].
   /// May throw [InsufficientThroughputCapacity].
   /// May throw [ThroughputLimitExceeded].
+  /// May throw [UnsupportedAvailabilityZone].
+  ///
+  /// Parameter [availabilityZoneName] :
+  /// Used to create a file system that uses One Zone storage classes. It
+  /// specifies the AWS Availability Zone in which to create the file system.
+  /// Use the format <code>us-east-1a</code> to specify the Availability Zone.
+  /// For more information about One Zone storage classes, see <a
+  /// href="https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html">Using
+  /// EFS storage classes</a> in the <i>Amazon EFS User Guide</i>.
+  /// <note>
+  /// One Zone storage classes are not available in all Availability Zones in
+  /// AWS Regions where Amazon EFS is available.
+  /// </note>
+  ///
+  /// Parameter [backup] :
+  /// Specifies whether automatic backups are enabled on the file system that
+  /// you are creating. Set the value to <code>true</code> to enable automatic
+  /// backups. If you are creating a file system that uses One Zone storage
+  /// classes, automatic backups are enabled by default. For more information,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups">Automatic
+  /// backups</a> in the <i>Amazon EFS User Guide</i>.
+  ///
+  /// Default is <code>false</code>. However, if you specify an
+  /// <code>AvailabilityZoneName</code>, the default is <code>true</code>.
+  /// <note>
+  /// AWS Backup is not available in all AWS Regions where Amazon EFS is
+  /// available.
+  /// </note>
   ///
   /// Parameter [creationToken] :
   /// A string of up to 64 ASCII characters. Amazon EFS uses this to ensure
@@ -208,10 +246,10 @@ class Efs {
   /// is used to protect the encrypted file system.
   ///
   /// Parameter [kmsKeyId] :
-  /// The ID of the AWS KMS CMK to be used to protect the encrypted file system.
-  /// This parameter is only required if you want to use a nondefault CMK. If
-  /// this parameter is not specified, the default CMK for Amazon EFS is used.
-  /// This ID can be in one of the following formats:
+  /// The ID of the AWS KMS CMK that you want to use to protect the encrypted
+  /// file system. This parameter is only required if you want to use a
+  /// non-default KMS key. If this parameter is not specified, the default CMK
+  /// for Amazon EFS is used. This ID can be in one of the following formats:
   ///
   /// <ul>
   /// <li>
@@ -234,8 +272,8 @@ class Efs {
   /// If <code>KmsKeyId</code> is specified, the
   /// <a>CreateFileSystemRequest$Encrypted</a> parameter must be set to true.
   /// <important>
-  /// EFS accepts only symmetric CMKs. You cannot use asymmetric CMKs with EFS
-  /// file systems.
+  /// EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys
+  /// with EFS file systems.
   /// </important>
   ///
   /// Parameter [performanceMode] :
@@ -245,15 +283,19 @@ class Efs {
   /// levels of aggregate throughput and operations per second with a tradeoff
   /// of slightly higher latencies for most file operations. The performance
   /// mode can't be changed after the file system has been created.
+  /// <note>
+  /// The <code>maxIO</code> mode is not supported on file systems using One
+  /// Zone storage classes.
+  /// </note>
   ///
   /// Parameter [provisionedThroughputInMibps] :
   /// The throughput, measured in MiB/s, that you want to provision for a file
   /// system that you're creating. Valid values are 1-1024. Required if
   /// <code>ThroughputMode</code> is set to <code>provisioned</code>. The upper
-  /// limit for throughput is 1024 MiB/s. You can get this limit increased by
-  /// contacting AWS Support. For more information, see <a
+  /// limit for throughput is 1024 MiB/s. To increase this limit, contact AWS
+  /// Support. For more information, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits">Amazon
-  /// EFS Limits That You Can Increase</a> in the <i>Amazon EFS User Guide.</i>
+  /// EFS quotas that you can increase</a> in the <i>Amazon EFS User Guide</i>.
   ///
   /// Parameter [tags] :
   /// A value that specifies to create one or more tags associated with the file
@@ -262,17 +304,21 @@ class Efs {
   /// key-value pair.
   ///
   /// Parameter [throughputMode] :
-  /// The throughput mode for the file system to be created. There are two
-  /// throughput modes to choose from for your file system:
-  /// <code>bursting</code> and <code>provisioned</code>. If you set
+  /// Specifies the throughput mode for the file system, either
+  /// <code>bursting</code> or <code>provisioned</code>. If you set
   /// <code>ThroughputMode</code> to <code>provisioned</code>, you must also set
-  /// a value for <code>ProvisionedThroughPutInMibps</code>. You can decrease
-  /// your file system's throughput in Provisioned Throughput mode or change
-  /// between the throughput modes as long as it’s been more than 24 hours since
-  /// the last decrease or throughput mode change. For more, see <a
+  /// a value for <code>ProvisionedThroughputInMibps</code>. After you create
+  /// the file system, you can decrease your file system's throughput in
+  /// Provisioned Throughput mode or change between the throughput modes, as
+  /// long as it’s been more than 24 hours since the last decrease or throughput
+  /// mode change. For more information, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput">Specifying
-  /// Throughput with Provisioned Mode</a> in the <i>Amazon EFS User Guide.</i>
+  /// throughput with provisioned mode</a> in the <i>Amazon EFS User Guide</i>.
+  ///
+  /// Default is <code>bursting</code>.
   Future<FileSystemDescription> createFileSystem({
+    String? availabilityZoneName,
+    bool? backup,
     String? creationToken,
     bool? encrypted,
     String? kmsKeyId,
@@ -282,26 +328,22 @@ class Efs {
     ThroughputMode? throughputMode,
   }) async {
     _s.validateStringLength(
+      'availabilityZoneName',
+      availabilityZoneName,
+      1,
+      64,
+    );
+    _s.validateStringLength(
       'creationToken',
       creationToken,
       1,
       64,
-    );
-    _s.validateStringPattern(
-      'creationToken',
-      creationToken,
-      r'''.+''',
     );
     _s.validateStringLength(
       'kmsKeyId',
       kmsKeyId,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'kmsKeyId',
-      kmsKeyId,
-      r'''^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$''',
     );
     _s.validateNumRange(
       'provisionedThroughputInMibps',
@@ -310,6 +352,9 @@ class Efs {
       1152921504606846976,
     );
     final $payload = <String, dynamic>{
+      if (availabilityZoneName != null)
+        'AvailabilityZoneName': availabilityZoneName,
+      if (backup != null) 'Backup': backup,
       'CreationToken': creationToken ?? _s.generateIdempotencyToken(),
       if (encrypted != null) 'Encrypted': encrypted,
       if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
@@ -336,29 +381,45 @@ class Efs {
   /// mount target for a given file system. If you have multiple subnets in an
   /// Availability Zone, you create a mount target in one of the subnets. EC2
   /// instances do not need to be in the same subnet as the mount target in
-  /// order to access their file system. For more information, see <a
+  /// order to access their file system.
+  ///
+  /// You can create only one mount target for an EFS file system using One Zone
+  /// storage classes. You must create that mount target in the same
+  /// Availability Zone in which the file system is located. Use the
+  /// <code>AvailabilityZoneName</code> and <code>AvailabiltyZoneId</code>
+  /// properties in the <a>DescribeFileSystems</a> response object to get this
+  /// information. Use the <code>subnetId</code> associated with the file
+  /// system's Availability Zone when creating the mount target.
+  ///
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html">Amazon
   /// EFS: How it Works</a>.
   ///
-  /// In the request, you also specify a file system ID for which you are
-  /// creating the mount target and the file system's lifecycle state must be
-  /// <code>available</code>. For more information, see
+  /// To create a mount target for a file system, the file system's lifecycle
+  /// state must be <code>available</code>. For more information, see
   /// <a>DescribeFileSystems</a>.
   ///
-  /// In the request, you also provide a subnet ID, which determines the
-  /// following:
+  /// In the request, provide the following:
   ///
   /// <ul>
   /// <li>
-  /// VPC in which Amazon EFS creates the mount target
+  /// The file system ID for which you are creating the mount target.
   /// </li>
   /// <li>
-  /// Availability Zone in which Amazon EFS creates the mount target
+  /// A subnet ID, which determines the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// The VPC in which Amazon EFS creates the mount target
   /// </li>
   /// <li>
-  /// IP address range from which Amazon EFS selects the IP address of the mount
-  /// target (if you don't specify an IP address in the request)
+  /// The Availability Zone in which Amazon EFS creates the mount target
   /// </li>
+  /// <li>
+  /// The IP address range from which Amazon EFS selects the IP address of the
+  /// mount target (if you don't specify an IP address in the request)
+  /// </li>
+  /// </ul> </li>
   /// </ul>
   /// After creating the mount target, Amazon EFS returns a response that
   /// includes, a <code>MountTargetId</code> and an <code>IpAddress</code>. You
@@ -478,12 +539,15 @@ class Efs {
   /// May throw [SecurityGroupLimitExceeded].
   /// May throw [SecurityGroupNotFound].
   /// May throw [UnsupportedAvailabilityZone].
+  /// May throw [AvailabilityZonesMismatch].
   ///
   /// Parameter [fileSystemId] :
   /// The ID of the file system for which to create the mount target.
   ///
   /// Parameter [subnetId] :
-  /// The ID of the subnet to add the mount target in.
+  /// The ID of the subnet to add the mount target in. For file systems that use
+  /// One Zone storage classes, use the subnet that is associated with the file
+  /// system's Availability Zone.
   ///
   /// Parameter [ipAddress] :
   /// Valid IPv4 address within the address range of the specified subnet.
@@ -505,12 +569,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetId, 'subnetId');
     _s.validateStringLength(
       'subnetId',
@@ -519,22 +577,11 @@ class Efs {
       47,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'subnetId',
-      subnetId,
-      r'''^subnet-[0-9a-f]{8,40}$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'ipAddress',
       ipAddress,
       7,
       15,
-    );
-    _s.validateStringPattern(
-      'ipAddress',
-      ipAddress,
-      r'''^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$''',
     );
     final $payload = <String, dynamic>{
       'FileSystemId': fileSystemId,
@@ -551,6 +598,10 @@ class Efs {
     return MountTargetDescription.fromJson(response);
   }
 
+  /// <note>
+  /// DEPRECATED - CreateTags is deprecated and not maintained. Please use the
+  /// API action to create tags for EFS resources.
+  /// </note>
   /// Creates or overwrites tags associated with a file system. Each tag is a
   /// key-value pair. If a tag key specified in the request already exists on
   /// the file system, this operation overwrites its value with the value
@@ -585,12 +636,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -622,6 +667,13 @@ class Efs {
     required String accessPointId,
   }) async {
     ArgumentError.checkNotNull(accessPointId, 'accessPointId');
+    _s.validateStringLength(
+      'accessPointId',
+      accessPointId,
+      0,
+      128,
+      isRequired: true,
+    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -667,12 +719,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -708,12 +754,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     await _protocol.send(
@@ -777,12 +817,6 @@ class Efs {
       45,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'mountTargetId',
-      mountTargetId,
-      r'''^fsmt-[0-9a-f]{8,40}$''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -792,6 +826,10 @@ class Efs {
     );
   }
 
+  /// <note>
+  /// DEPRECATED - DeleteTags is deprecated and not maintained. Please use the
+  /// API action to remove tags from EFS resources.
+  /// </note>
   /// Deletes the specified tags from a file system. If the
   /// <code>DeleteTags</code> request includes a tag key that doesn't exist,
   /// Amazon EFS ignores it and doesn't cause an error. For more information
@@ -822,12 +860,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -882,21 +914,28 @@ class Efs {
     String? nextToken,
   }) async {
     _s.validateStringLength(
+      'accessPointId',
+      accessPointId,
+      0,
+      128,
+    );
+    _s.validateStringLength(
       'fileSystemId',
       fileSystemId,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
     );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      128,
     );
     final $query = <String, List<String>>{
       if (accessPointId != null) 'AccessPointId': [accessPointId],
@@ -912,6 +951,33 @@ class Efs {
       exceptionFnMap: _exceptionFns,
     );
     return DescribeAccessPointsResponse.fromJson(response);
+  }
+
+  ///
+  /// May throw [InternalServerError].
+  Future<DescribeAccountPreferencesResponse> describeAccountPreferences({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      128,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/2015-02-01/account-preferences',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeAccountPreferencesResponse.fromJson(response);
   }
 
   /// Returns the backup policy for the specified EFS file system.
@@ -934,12 +1000,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -974,12 +1034,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1054,32 +1108,17 @@ class Efs {
       1,
       64,
     );
-    _s.validateStringPattern(
-      'creationToken',
-      creationToken,
-      r'''.+''',
-    );
     _s.validateStringLength(
       'fileSystemId',
       fileSystemId,
       0,
       128,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-    );
     _s.validateStringLength(
       'marker',
       marker,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''.+''',
     );
     _s.validateNumRange(
       'maxItems',
@@ -1131,12 +1170,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1182,12 +1215,6 @@ class Efs {
       mountTargetId,
       13,
       45,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'mountTargetId',
-      mountTargetId,
-      r'''^fsmt-[0-9a-f]{8,40}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -1253,26 +1280,22 @@ class Efs {
     String? mountTargetId,
   }) async {
     _s.validateStringLength(
+      'accessPointId',
+      accessPointId,
+      0,
+      128,
+    );
+    _s.validateStringLength(
       'fileSystemId',
       fileSystemId,
       0,
       128,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
     );
     _s.validateStringLength(
       'marker',
       marker,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''.+''',
     );
     _s.validateNumRange(
       'maxItems',
@@ -1285,11 +1308,6 @@ class Efs {
       mountTargetId,
       13,
       45,
-    );
-    _s.validateStringPattern(
-      'mountTargetId',
-      mountTargetId,
-      r'''^fsmt-[0-9a-f]{8,40}$''',
     );
     final $query = <String, List<String>>{
       if (accessPointId != null) 'AccessPointId': [accessPointId],
@@ -1308,6 +1326,10 @@ class Efs {
     return DescribeMountTargetsResponse.fromJson(response);
   }
 
+  /// <note>
+  /// DEPRECATED - The DeleteTags action is deprecated and not maintained.
+  /// Please use the API action to remove tags from EFS resources.
+  /// </note>
   /// Returns the tags associated with a file system. The order of tags returned
   /// in the response of one <code>DescribeTags</code> call and the order of
   /// tags returned across the responses of a multiple-call iteration (when
@@ -1347,22 +1369,11 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'marker',
       marker,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'marker',
-      marker,
-      r'''.+''',
     );
     _s.validateNumRange(
       'maxItems',
@@ -1404,20 +1415,33 @@ class Efs {
   /// response. The default value is 100.
   ///
   /// Parameter [nextToken] :
-  /// You can use <code>NextToken</code> in a subsequent request to fetch the
-  /// next page of access point descriptions if the response payload was
-  /// paginated.
+  /// (Optional) You can use <code>NextToken</code> in a subsequent request to
+  /// fetch the next page of access point descriptions if the response payload
+  /// was paginated.
   Future<ListTagsForResourceResponse> listTagsForResource({
     required String resourceId,
     int? maxResults,
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
+    _s.validateStringLength(
+      'resourceId',
+      resourceId,
+      0,
+      128,
+      isRequired: true,
+    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      128,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1481,12 +1505,6 @@ class Efs {
       45,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'mountTargetId',
-      mountTargetId,
-      r'''^fsmt-[0-9a-f]{8,40}$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (securityGroups != null) 'SecurityGroups': securityGroups,
     };
@@ -1497,6 +1515,24 @@ class Efs {
           '/2015-02-01/mount-targets/${Uri.encodeComponent(mountTargetId)}/security-groups',
       exceptionFnMap: _exceptionFns,
     );
+  }
+
+  ///
+  /// May throw [InternalServerError].
+  Future<PutAccountPreferencesResponse> putAccountPreferences({
+    required ResourceIdType resourceIdType,
+  }) async {
+    ArgumentError.checkNotNull(resourceIdType, 'resourceIdType');
+    final $payload = <String, dynamic>{
+      'ResourceIdType': resourceIdType.toValue(),
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/2015-02-01/account-preferences',
+      exceptionFnMap: _exceptionFns,
+    );
+    return PutAccountPreferencesResponse.fromJson(response);
   }
 
   /// Updates the file system's backup policy. Use this action to start or stop
@@ -1526,12 +1562,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'BackupPolicy': backupPolicy,
     };
@@ -1549,11 +1579,14 @@ class Efs {
   /// system. A file system policy is an IAM resource-based policy and can
   /// contain multiple policy statements. A file system always has exactly one
   /// file system policy, which can be the default policy or an explicit policy
-  /// set or updated using this API operation. When an explicit policy is set,
-  /// it overrides the default policy. For more information about the default
-  /// file system policy, see <a
+  /// set or updated using this API operation. EFS file system policies have a
+  /// 20,000 character limit. When an explicit policy is set, it overrides the
+  /// default policy. For more information about the default file system policy,
+  /// see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#default-filesystempolicy">Default
   /// EFS File System Policy</a>.
+  ///
+  /// EFS file system policies have a 20,000 character limit.
   ///
   /// This operation requires permissions for the
   /// <code>elasticfilesystem:PutFileSystemPolicy</code> action.
@@ -1569,8 +1602,9 @@ class Efs {
   ///
   /// Parameter [policy] :
   /// The <code>FileSystemPolicy</code> that you're creating. Accepts a JSON
-  /// formatted policy definition. To find out more about the elements that make
-  /// up a file system policy, see <a
+  /// formatted policy definition. EFS file system policies have a 20,000
+  /// character limit. To find out more about the elements that make up a file
+  /// system policy, see <a
   /// href="https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies">EFS
   /// Resource-based Policies</a>.
   ///
@@ -1597,13 +1631,14 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
+    ArgumentError.checkNotNull(policy, 'policy');
+    _s.validateStringLength(
+      'policy',
+      policy,
+      1,
+      20000,
       isRequired: true,
     );
-    ArgumentError.checkNotNull(policy, 'policy');
     final $payload = <String, dynamic>{
       'Policy': policy,
       if (bypassPolicyLockoutSafetyCheck != null)
@@ -1683,12 +1718,6 @@ class Efs {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecyclePolicies, 'lifecyclePolicies');
     final $payload = <String, dynamic>{
       'LifecyclePolicies': lifecyclePolicies,
@@ -1718,12 +1747,20 @@ class Efs {
   /// The ID specifying the EFS resource that you want to create a tag for.
   ///
   /// Parameter [tags] :
-  /// <p/>
+  /// An array of <code>Tag</code> objects to add. Each <code>Tag</code> object
+  /// is a key-value pair.
   Future<void> tagResource({
     required String resourceId,
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
+    _s.validateStringLength(
+      'resourceId',
+      resourceId,
+      0,
+      128,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1752,13 +1789,20 @@ class Efs {
   /// Specifies the EFS resource that you want to remove tags from.
   ///
   /// Parameter [tagKeys] :
-  /// The keys of the key:value tag pairs that you want to remove from the
+  /// The keys of the key-value tag pairs that you want to remove from the
   /// specified EFS resource.
   Future<void> untagResource({
     required String resourceId,
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
+    _s.validateStringLength(
+      'resourceId',
+      resourceId,
+      0,
+      128,
+      isRequired: true,
+    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1788,17 +1832,17 @@ class Efs {
   /// The ID of the file system that you want to update.
   ///
   /// Parameter [provisionedThroughputInMibps] :
-  /// (Optional) The amount of throughput, in MiB/s, that you want to provision
-  /// for your file system. Valid values are 1-1024. Required if
-  /// <code>ThroughputMode</code> is changed to <code>provisioned</code> on
-  /// update. If you're not updating the amount of provisioned throughput for
-  /// your file system, you don't need to provide this value in your request.
+  /// (Optional) Sets the amount of provisioned throughput, in MiB/s, for the
+  /// file system. Valid values are 1-1024. If you are changing the throughput
+  /// mode to provisioned, you must also provide the amount of provisioned
+  /// throughput. Required if <code>ThroughputMode</code> is changed to
+  /// <code>provisioned</code> on update.
   ///
   /// Parameter [throughputMode] :
-  /// (Optional) The throughput mode that you want your file system to use. If
-  /// you're not updating your throughput mode, you don't need to provide this
-  /// value in your request. If you are changing the <code>ThroughputMode</code>
-  /// to <code>provisioned</code>, you must also set a value for
+  /// (Optional) Updates the file system's throughput mode. If you're not
+  /// updating your throughput mode, you don't need to provide this value in
+  /// your request. If you are changing the <code>ThroughputMode</code> to
+  /// <code>provisioned</code>, you must also set a value for
   /// <code>ProvisionedThroughputInMibps</code>.
   Future<FileSystemDescription> updateFileSystem({
     required String fileSystemId,
@@ -1811,12 +1855,6 @@ class Efs {
       fileSystemId,
       0,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'fileSystemId',
-      fileSystemId,
-      r'''^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$''',
       isRequired: true,
     );
     _s.validateNumRange(
@@ -1914,27 +1952,30 @@ class AccessPointDescription {
   }
 }
 
-/// The backup policy for the file system, showing the curent status. If
-/// <code>ENABLED</code>, the file system is being backed up.
+/// The backup policy for the file system used to create automatic daily
+/// backups. If status has a value of <code>ENABLED</code>, the file system is
+/// being automatically backed up. For more information, see <a
+/// href="https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups">Automatic
+/// backups</a>.
 class BackupPolicy {
   /// Describes the status of the file system's backup policy.
   ///
   /// <ul>
   /// <li>
-  /// <i> <code>ENABLED</code> - EFS is automatically backing up the file
-  /// system.</i>
+  /// <b> <code>ENABLED</code> </b> - EFS is automatically backing up the file
+  /// system.
   /// </li>
   /// <li>
-  /// <i> <code>ENABLING</code> - EFS is turning on automatic backups for the file
-  /// system.</i>
+  /// <b> <code>ENABLING</code> </b> - EFS is turning on automatic backups for the
+  /// file system.
   /// </li>
   /// <li>
-  /// <i> <code>DISABLED</code> - automatic back ups are turned off for the file
-  /// system.</i>
+  /// <b> <code>DISABLED</code> </b> - automatic back ups are turned off for the
+  /// file system.
   /// </li>
   /// <li>
-  /// <i> <code>DISABLED</code> - EFS is turning off automatic backups for the
-  /// file system.</i>
+  /// <b> <code>DISABLING</code> </b> - EFS is turning off automatic backups for
+  /// the file system.
   /// </li>
   /// </ul>
   final Status status;
@@ -1979,6 +2020,12 @@ class BackupPolicyDescription {
 /// access point root directory does not exist, EFS creates it with these
 /// settings when a client connects to the access point. When specifying
 /// <code>CreationInfo</code>, you must include values for all properties.
+///
+/// Amazon EFS creates a root directory only if you have provided the
+/// CreationInfo: OwnUid, OwnGID, and permissions for the directory. If you do
+/// not provide this information, Amazon EFS does not create the root directory.
+/// If the root directory does not exist, attempts to mount using the access
+/// point will fail.
 /// <important>
 /// If you do not provide <code>CreationInfo</code> and the specified
 /// <code>RootDirectory</code> does not exist, attempts to mount the file system
@@ -2043,6 +2090,26 @@ class DescribeAccessPointsResponse {
               (e) => AccessPointDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
       nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class DescribeAccountPreferencesResponse {
+  final String? nextToken;
+  final ResourceIdPreference? resourceIdPreference;
+
+  DescribeAccountPreferencesResponse({
+    this.nextToken,
+    this.resourceIdPreference,
+  });
+  factory DescribeAccountPreferencesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeAccountPreferencesResponse(
+      nextToken: json['NextToken'] as String?,
+      resourceIdPreference: json['ResourceIdPreference'] != null
+          ? ResourceIdPreference.fromJson(
+              json['ResourceIdPreference'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -2202,6 +2269,19 @@ class FileSystemDescription {
   /// <code>Tag</code> objects.
   final List<Tag> tags;
 
+  /// The unique and consistent identifier of the Availability Zone in which the
+  /// file system's One Zone storage classes exist. For example,
+  /// <code>use1-az1</code> is an Availability Zone ID for the us-east-1 AWS
+  /// Region, and it has the same location in every AWS account.
+  final String? availabilityZoneId;
+
+  /// Describes the AWS Availability Zone in which the file system is located, and
+  /// is valid only for file systems using One Zone storage classes. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html">Using
+  /// EFS storage classes</a> in the <i>Amazon EFS User Guide</i>.
+  final String? availabilityZoneName;
+
   /// A Boolean value that, if true, indicates that the file system is encrypted.
   final bool? encrypted;
 
@@ -2220,23 +2300,14 @@ class FileSystemDescription {
   /// <code>Name</code> tag, Amazon EFS returns the value in this field.
   final String? name;
 
-  /// The throughput, measured in MiB/s, that you want to provision for a file
-  /// system. Valid values are 1-1024. Required if <code>ThroughputMode</code> is
-  /// set to <code>provisioned</code>. The limit on throughput is 1024 MiB/s. You
-  /// can get these limits increased by contacting AWS Support. For more
-  /// information, see <a
-  /// href="https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits">Amazon
-  /// EFS Limits That You Can Increase</a> in the <i>Amazon EFS User Guide.</i>
+  /// The amount of provisioned throughput, measured in MiB/s, for the file
+  /// system. Valid for file systems using <code>ThroughputMode</code> set to
+  /// <code>provisioned</code>.
   final double? provisionedThroughputInMibps;
 
-  /// The throughput mode for a file system. There are two throughput modes to
-  /// choose from for your file system: <code>bursting</code> and
-  /// <code>provisioned</code>. If you set <code>ThroughputMode</code> to
-  /// <code>provisioned</code>, you must also set a value for
-  /// <code>ProvisionedThroughPutInMibps</code>. You can decrease your file
-  /// system's throughput in Provisioned Throughput mode or change between the
-  /// throughput modes as long as it’s been more than 24 hours since the last
-  /// decrease or throughput mode change.
+  /// Displays the file system's throughput mode. For more information, see <a
+  /// href="https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes">Throughput
+  /// modes</a> in the <i>Amazon EFS User Guide</i>.
   final ThroughputMode? throughputMode;
 
   FileSystemDescription({
@@ -2249,6 +2320,8 @@ class FileSystemDescription {
     required this.performanceMode,
     required this.sizeInBytes,
     required this.tags,
+    this.availabilityZoneId,
+    this.availabilityZoneName,
     this.encrypted,
     this.fileSystemArn,
     this.kmsKeyId,
@@ -2272,6 +2345,8 @@ class FileSystemDescription {
           .whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
+      availabilityZoneId: json['AvailabilityZoneId'] as String?,
+      availabilityZoneName: json['AvailabilityZoneName'] as String?,
       encrypted: json['Encrypted'] as bool?,
       fileSystemArn: json['FileSystemArn'] as String?,
       kmsKeyId: json['KmsKeyId'] as String?,
@@ -2350,6 +2425,7 @@ enum LifeCycleState {
   updating,
   deleting,
   deleted,
+  error,
 }
 
 extension on LifeCycleState {
@@ -2365,6 +2441,8 @@ extension on LifeCycleState {
         return 'deleting';
       case LifeCycleState.deleted:
         return 'deleted';
+      case LifeCycleState.error:
+        return 'error';
     }
   }
 }
@@ -2382,6 +2460,8 @@ extension on String {
         return LifeCycleState.deleting;
       case 'deleted':
         return LifeCycleState.deleted;
+      case 'error':
+        return LifeCycleState.error;
     }
     throw Exception('$this is not known in enum LifeCycleState');
   }
@@ -2470,15 +2550,16 @@ class MountTargetDescription {
   /// The ID of the mount target's subnet.
   final String subnetId;
 
-  /// The unique and consistent identifier of the Availability Zone (AZ) that the
-  /// mount target resides in. For example, <code>use1-az1</code> is an AZ ID for
-  /// the us-east-1 Region and it has the same location in every AWS account.
+  /// The unique and consistent identifier of the Availability Zone that the mount
+  /// target resides in. For example, <code>use1-az1</code> is an AZ ID for the
+  /// us-east-1 Region and it has the same location in every AWS account.
   final String? availabilityZoneId;
 
-  /// The name of the Availability Zone (AZ) that the mount target resides in. AZs
-  /// are independently mapped to names for each AWS account. For example, the
-  /// Availability Zone <code>us-east-1a</code> for your AWS account might not be
-  /// the same location as <code>us-east-1a</code> for another AWS account.
+  /// The name of the Availability Zone in which the mount target is located.
+  /// Availability Zones are independently mapped to names for each AWS account.
+  /// For example, the Availability Zone <code>us-east-1a</code> for your AWS
+  /// account might not be the same location as <code>us-east-1a</code> for
+  /// another AWS account.
   final String? availabilityZoneName;
 
   /// Address at which the file system can be mounted by using the mount target.
@@ -2491,7 +2572,7 @@ class MountTargetDescription {
   /// AWS account ID that owns the resource.
   final String? ownerId;
 
-  /// The Virtual Private Cloud (VPC) ID that the mount target is configured in.
+  /// The virtual private cloud (VPC) ID that the mount target is configured in.
   final String? vpcId;
 
   MountTargetDescription({
@@ -2594,6 +2675,100 @@ class PosixUser {
   }
 }
 
+class PutAccountPreferencesResponse {
+  final ResourceIdPreference? resourceIdPreference;
+
+  PutAccountPreferencesResponse({
+    this.resourceIdPreference,
+  });
+  factory PutAccountPreferencesResponse.fromJson(Map<String, dynamic> json) {
+    return PutAccountPreferencesResponse(
+      resourceIdPreference: json['ResourceIdPreference'] != null
+          ? ResourceIdPreference.fromJson(
+              json['ResourceIdPreference'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+}
+
+/// An EFS resource, for example a file system or a mount target.
+enum Resource {
+  fileSystem,
+  mountTarget,
+}
+
+extension on Resource {
+  String toValue() {
+    switch (this) {
+      case Resource.fileSystem:
+        return 'FILE_SYSTEM';
+      case Resource.mountTarget:
+        return 'MOUNT_TARGET';
+    }
+  }
+}
+
+extension on String {
+  Resource toResource() {
+    switch (this) {
+      case 'FILE_SYSTEM':
+        return Resource.fileSystem;
+      case 'MOUNT_TARGET':
+        return Resource.mountTarget;
+    }
+    throw Exception('$this is not known in enum Resource');
+  }
+}
+
+class ResourceIdPreference {
+  final ResourceIdType? resourceIdType;
+  final List<Resource>? resources;
+
+  ResourceIdPreference({
+    this.resourceIdType,
+    this.resources,
+  });
+  factory ResourceIdPreference.fromJson(Map<String, dynamic> json) {
+    return ResourceIdPreference(
+      resourceIdType: (json['ResourceIdType'] as String?)?.toResourceIdType(),
+      resources: (json['Resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toResource())
+          .toList(),
+    );
+  }
+}
+
+/// A preference indicating a choice to use 63bit/32bit IDs for all applicable
+/// resources.
+enum ResourceIdType {
+  longId,
+  shortId,
+}
+
+extension on ResourceIdType {
+  String toValue() {
+    switch (this) {
+      case ResourceIdType.longId:
+        return 'LONG_ID';
+      case ResourceIdType.shortId:
+        return 'SHORT_ID';
+    }
+  }
+}
+
+extension on String {
+  ResourceIdType toResourceIdType() {
+    switch (this) {
+      case 'LONG_ID':
+        return ResourceIdType.longId;
+      case 'SHORT_ID':
+        return ResourceIdType.shortId;
+    }
+    throw Exception('$this is not known in enum ResourceIdType');
+  }
+}
+
 /// Specifies the directory on the Amazon EFS file system that the access point
 /// provides access to. The access point exposes the specified file system path
 /// as the root directory of your file system to applications using the access
@@ -2682,7 +2857,7 @@ extension on String {
 
 /// A tag is a key-value pair. Allowed characters are letters, white space, and
 /// numbers that can be represented in UTF-8, and the following
-/// characters:<code> + - = . _ : /</code>
+/// characters:<code> + - = . _ : /</code>.
 class Tag {
   /// The tag key (String). The key can't start with <code>aws:</code>.
   final String key;
@@ -2795,6 +2970,11 @@ class AccessPointLimitExceeded extends _s.GenericAwsException {
 class AccessPointNotFound extends _s.GenericAwsException {
   AccessPointNotFound({String? type, String? message})
       : super(type: type, code: 'AccessPointNotFound', message: message);
+}
+
+class AvailabilityZonesMismatch extends _s.GenericAwsException {
+  AvailabilityZonesMismatch({String? type, String? message})
+      : super(type: type, code: 'AvailabilityZonesMismatch', message: message);
 }
 
 class BadRequest extends _s.GenericAwsException {
@@ -2934,6 +3114,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       AccessPointLimitExceeded(type: type, message: message),
   'AccessPointNotFound': (type, message) =>
       AccessPointNotFound(type: type, message: message),
+  'AvailabilityZonesMismatch': (type, message) =>
+      AvailabilityZonesMismatch(type: type, message: message),
   'BadRequest': (type, message) => BadRequest(type: type, message: message),
   'DependencyTimeout': (type, message) =>
       DependencyTimeout(type: type, message: message),

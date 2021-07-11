@@ -58,14 +58,27 @@ class KinesisAnalyticsV2 {
   /// Parameter [cloudWatchLoggingOption] :
   /// Provides the Amazon CloudWatch log stream Amazon Resource Name (ARN).
   ///
+  /// Parameter [conditionalToken] :
+  /// A value you use to implement strong concurrency for application updates.
+  /// You must provide the <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You get the application's current
+  /// <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
+  ///
   /// Parameter [currentApplicationVersionId] :
-  /// The version ID of the Kinesis Data Analytics application. You can retrieve
-  /// the application version ID using <a>DescribeApplication</a>.
+  /// The version ID of the Kinesis Data Analytics application. You must provide
+  /// the <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>.You can retrieve the application version ID
+  /// using <a>DescribeApplication</a>. For better concurrency support, use the
+  /// <code>ConditionalToken</code> parameter instead of
+  /// <code>CurrentApplicationVersionId</code>.
   Future<AddApplicationCloudWatchLoggingOptionResponse>
       addApplicationCloudWatchLoggingOption({
     required String applicationName,
     required CloudWatchLoggingOption cloudWatchLoggingOption,
-    required int currentApplicationVersionId,
+    String? conditionalToken,
+    int? currentApplicationVersionId,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
     _s.validateStringLength(
@@ -75,22 +88,19 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         cloudWatchLoggingOption, 'cloudWatchLoggingOption');
-    ArgumentError.checkNotNull(
-        currentApplicationVersionId, 'currentApplicationVersionId');
+    _s.validateStringLength(
+      'conditionalToken',
+      conditionalToken,
+      1,
+      512,
+    );
     _s.validateNumRange(
       'currentApplicationVersionId',
       currentApplicationVersionId,
       1,
       999999999,
-      isRequired: true,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -106,7 +116,9 @@ class KinesisAnalyticsV2 {
       payload: {
         'ApplicationName': applicationName,
         'CloudWatchLoggingOption': cloudWatchLoggingOption,
-        'CurrentApplicationVersionId': currentApplicationVersionId,
+        if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+        if (currentApplicationVersionId != null)
+          'CurrentApplicationVersionId': currentApplicationVersionId,
       },
     );
 
@@ -138,9 +150,10 @@ class KinesisAnalyticsV2 {
   /// streaming source.
   ///
   /// Parameter [currentApplicationVersionId] :
-  /// The current version of your application. You can use the
-  /// <a>DescribeApplication</a> operation to find the current application
-  /// version.
+  /// The current version of your application. You must provide the
+  /// <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You
+  /// can use the <a>DescribeApplication</a> operation to find the current
+  /// application version.
   ///
   /// Parameter [input] :
   /// The <a>Input</a> to add.
@@ -155,12 +168,6 @@ class KinesisAnalyticsV2 {
       applicationName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -238,12 +245,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -259,12 +260,6 @@ class KinesisAnalyticsV2 {
       inputId,
       1,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'inputId',
-      inputId,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -348,12 +343,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -428,12 +417,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -493,20 +476,33 @@ class KinesisAnalyticsV2 {
   /// Parameter [applicationName] :
   /// The name of an existing application.
   ///
-  /// Parameter [currentApplicationVersionId] :
-  /// The version of the application to which you want to add the VPC
-  /// configuration. You can use the <a>DescribeApplication</a> operation to get
-  /// the current application version. If the version specified is not the
-  /// current version, the <code>ConcurrentModificationException</code> is
-  /// returned.
-  ///
   /// Parameter [vpcConfiguration] :
   /// Description of the VPC to add to the application.
+  ///
+  /// Parameter [conditionalToken] :
+  /// A value you use to implement strong concurrency for application updates.
+  /// You must provide the <code>ApplicationVersionID</code> or the
+  /// <code>ConditionalToken</code>. You get the application's current
+  /// <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
+  ///
+  /// Parameter [currentApplicationVersionId] :
+  /// The version of the application to which you want to add the VPC
+  /// configuration. You must provide the
+  /// <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a>
+  /// operation to get the current application version. If the version specified
+  /// is not the current version, the
+  /// <code>ConcurrentModificationException</code> is returned. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
   Future<AddApplicationVpcConfigurationResponse>
       addApplicationVpcConfiguration({
     required String applicationName,
-    required int currentApplicationVersionId,
     required VpcConfiguration vpcConfiguration,
+    String? conditionalToken,
+    int? currentApplicationVersionId,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
     _s.validateStringLength(
@@ -516,22 +512,19 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
+    ArgumentError.checkNotNull(vpcConfiguration, 'vpcConfiguration');
+    _s.validateStringLength(
+      'conditionalToken',
+      conditionalToken,
+      1,
+      512,
     );
-    ArgumentError.checkNotNull(
-        currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
       'currentApplicationVersionId',
       currentApplicationVersionId,
       1,
       999999999,
-      isRequired: true,
     );
-    ArgumentError.checkNotNull(vpcConfiguration, 'vpcConfiguration');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'KinesisAnalytics_20180523.AddApplicationVpcConfiguration'
@@ -544,8 +537,10 @@ class KinesisAnalyticsV2 {
       headers: headers,
       payload: {
         'ApplicationName': applicationName,
-        'CurrentApplicationVersionId': currentApplicationVersionId,
         'VpcConfiguration': vpcConfiguration,
+        if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+        if (currentApplicationVersionId != null)
+          'CurrentApplicationVersionId': currentApplicationVersionId,
       },
     );
 
@@ -569,8 +564,9 @@ class KinesisAnalyticsV2 {
   /// The name of your application (for example, <code>sample-app</code>).
   ///
   /// Parameter [runtimeEnvironment] :
-  /// The runtime environment for the application (<code>SQL-1.0</code>,
-  /// <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).
+  /// The runtime environment for the application (<code>SQL-1_0</code>,
+  /// <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or
+  /// <code>FLINK-1_11</code>).
   ///
   /// Parameter [serviceExecutionRole] :
   /// The IAM role used by the application to access Kinesis data streams,
@@ -582,6 +578,11 @@ class KinesisAnalyticsV2 {
   ///
   /// Parameter [applicationDescription] :
   /// A summary description of the application.
+  ///
+  /// Parameter [applicationMode] :
+  /// Use the <code>STREAMING</code> mode to create a Kinesis Data Analytics
+  /// Studio notebook. To create a Kinesis Data Analytics Studio notebook, use
+  /// the <code>INTERACTIVE</code> mode.
   ///
   /// Parameter [cloudWatchLoggingOptions] :
   /// Use this parameter to configure an Amazon CloudWatch log stream to monitor
@@ -600,6 +601,7 @@ class KinesisAnalyticsV2 {
     required String serviceExecutionRole,
     ApplicationConfiguration? applicationConfiguration,
     String? applicationDescription,
+    ApplicationMode? applicationMode,
     List<CloudWatchLoggingOption>? cloudWatchLoggingOptions,
     List<Tag>? tags,
   }) async {
@@ -611,12 +613,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runtimeEnvironment, 'runtimeEnvironment');
     ArgumentError.checkNotNull(serviceExecutionRole, 'serviceExecutionRole');
     _s.validateStringLength(
@@ -624,12 +620,6 @@ class KinesisAnalyticsV2 {
       serviceExecutionRole,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'serviceExecutionRole',
-      serviceExecutionRole,
-      r'''arn:.*''',
       isRequired: true,
     );
     _s.validateStringLength(
@@ -656,6 +646,8 @@ class KinesisAnalyticsV2 {
           'ApplicationConfiguration': applicationConfiguration,
         if (applicationDescription != null)
           'ApplicationDescription': applicationDescription,
+        if (applicationMode != null)
+          'ApplicationMode': applicationMode.toValue(),
         if (cloudWatchLoggingOptions != null)
           'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
         if (tags != null) 'Tags': tags,
@@ -670,10 +662,14 @@ class KinesisAnalyticsV2 {
   /// dashboard.
   ///
   /// The IAM role or user used to call this API defines the permissions to
-  /// access the extension. Once the presigned URL is created, no additional
+  /// access the extension. After the presigned URL is created, no additional
   /// permission is required to access this URL. IAM authorization policies for
   /// this API are also enforced for every HTTP request that attempts to connect
   /// to the extension.
+  ///
+  /// You control the amount of time that the URL will be valid using the
+  /// <code>SessionExpirationDurationInSeconds</code> parameter. If you do not
+  /// provide this parameter, the returned URL is valid for twelve hours.
   /// <note>
   /// The URL that you get from a call to CreateApplicationPresignedUrl must be
   /// used within 3 minutes to be valid. If you first try to use the URL after
@@ -705,12 +701,6 @@ class KinesisAnalyticsV2 {
       applicationName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(urlType, 'urlType');
@@ -769,24 +759,12 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotName, 'snapshotName');
     _s.validateStringLength(
       'snapshotName',
       snapshotName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'snapshotName',
-      snapshotName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -833,12 +811,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(createTimestamp, 'createTimestamp');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -876,14 +848,27 @@ class KinesisAnalyticsV2 {
   /// <code>CloudWatchLoggingOptionId</code> by using the
   /// <a>DescribeApplication</a> operation.
   ///
+  /// Parameter [conditionalToken] :
+  /// A value you use to implement strong concurrency for application updates.
+  /// You must provide the <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You get the application's current
+  /// <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
+  ///
   /// Parameter [currentApplicationVersionId] :
-  /// The version ID of the application. You can retrieve the application
-  /// version ID using <a>DescribeApplication</a>.
+  /// The version ID of the application. You must provide the
+  /// <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You can retrieve the application version ID
+  /// using <a>DescribeApplication</a>. For better concurrency support, use the
+  /// <code>ConditionalToken</code> parameter instead of
+  /// <code>CurrentApplicationVersionId</code>.
   Future<DeleteApplicationCloudWatchLoggingOptionResponse>
       deleteApplicationCloudWatchLoggingOption({
     required String applicationName,
     required String cloudWatchLoggingOptionId,
-    required int currentApplicationVersionId,
+    String? conditionalToken,
+    int? currentApplicationVersionId,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
     _s.validateStringLength(
@@ -891,12 +876,6 @@ class KinesisAnalyticsV2 {
       applicationName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(
@@ -908,20 +887,17 @@ class KinesisAnalyticsV2 {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'cloudWatchLoggingOptionId',
-      cloudWatchLoggingOptionId,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'conditionalToken',
+      conditionalToken,
+      1,
+      512,
     );
-    ArgumentError.checkNotNull(
-        currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
       'currentApplicationVersionId',
       currentApplicationVersionId,
       1,
       999999999,
-      isRequired: true,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -937,7 +913,9 @@ class KinesisAnalyticsV2 {
       payload: {
         'ApplicationName': applicationName,
         'CloudWatchLoggingOptionId': cloudWatchLoggingOptionId,
-        'CurrentApplicationVersionId': currentApplicationVersionId,
+        if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+        if (currentApplicationVersionId != null)
+          'CurrentApplicationVersionId': currentApplicationVersionId,
       },
     );
 
@@ -980,12 +958,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -1001,12 +973,6 @@ class KinesisAnalyticsV2 {
       inputId,
       1,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'inputId',
-      inputId,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1072,12 +1038,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -1093,12 +1053,6 @@ class KinesisAnalyticsV2 {
       outputId,
       1,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'outputId',
-      outputId,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1162,12 +1116,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
@@ -1183,12 +1131,6 @@ class KinesisAnalyticsV2 {
       referenceId,
       1,
       50,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'referenceId',
-      referenceId,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1243,12 +1185,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         snapshotCreationTimestamp, 'snapshotCreationTimestamp');
     ArgumentError.checkNotNull(snapshotName, 'snapshotName');
@@ -1257,12 +1193,6 @@ class KinesisAnalyticsV2 {
       snapshotName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'snapshotName',
-      snapshotName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1295,17 +1225,30 @@ class KinesisAnalyticsV2 {
   /// Parameter [applicationName] :
   /// The name of an existing application.
   ///
-  /// Parameter [currentApplicationVersionId] :
-  /// The current application version ID. You can retrieve the application
-  /// version ID using <a>DescribeApplication</a>.
-  ///
   /// Parameter [vpcConfigurationId] :
   /// The ID of the VPC configuration to delete.
+  ///
+  /// Parameter [conditionalToken] :
+  /// A value you use to implement strong concurrency for application updates.
+  /// You must provide the <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You get the application's current
+  /// <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
+  ///
+  /// Parameter [currentApplicationVersionId] :
+  /// The current application version ID. You must provide the
+  /// <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You can retrieve the application version ID
+  /// using <a>DescribeApplication</a>. For better concurrency support, use the
+  /// <code>ConditionalToken</code> parameter instead of
+  /// <code>CurrentApplicationVersionId</code>.
   Future<DeleteApplicationVpcConfigurationResponse>
       deleteApplicationVpcConfiguration({
     required String applicationName,
-    required int currentApplicationVersionId,
     required String vpcConfigurationId,
+    String? conditionalToken,
+    int? currentApplicationVersionId,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
     _s.validateStringLength(
@@ -1313,21 +1256,6 @@ class KinesisAnalyticsV2 {
       applicationName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
-    ArgumentError.checkNotNull(
-        currentApplicationVersionId, 'currentApplicationVersionId');
-    _s.validateNumRange(
-      'currentApplicationVersionId',
-      currentApplicationVersionId,
-      1,
-      999999999,
       isRequired: true,
     );
     ArgumentError.checkNotNull(vpcConfigurationId, 'vpcConfigurationId');
@@ -1338,11 +1266,17 @@ class KinesisAnalyticsV2 {
       50,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'vpcConfigurationId',
-      vpcConfigurationId,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'conditionalToken',
+      conditionalToken,
+      1,
+      512,
+    );
+    _s.validateNumRange(
+      'currentApplicationVersionId',
+      currentApplicationVersionId,
+      1,
+      999999999,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1357,8 +1291,10 @@ class KinesisAnalyticsV2 {
       headers: headers,
       payload: {
         'ApplicationName': applicationName,
-        'CurrentApplicationVersionId': currentApplicationVersionId,
         'VpcConfigurationId': vpcConfigurationId,
+        if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+        if (currentApplicationVersionId != null)
+          'CurrentApplicationVersionId': currentApplicationVersionId,
       },
     );
 
@@ -1391,12 +1327,6 @@ class KinesisAnalyticsV2 {
       applicationName,
       1,
       128,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1443,24 +1373,12 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotName, 'snapshotName');
     _s.validateStringLength(
       'snapshotName',
       snapshotName,
       1,
       256,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'snapshotName',
-      snapshotName,
-      r'''[a-zA-Z0-9_.-]+''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -1480,6 +1398,64 @@ class KinesisAnalyticsV2 {
     );
 
     return DescribeApplicationSnapshotResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Provides a detailed description of a specified version of the application.
+  /// To see a list of all the versions of an application, invoke the
+  /// <a>ListApplicationVersions</a> operation.
+  /// <note>
+  /// This operation is supported only for Amazon Kinesis Data Analytics for
+  /// Apache Flink.
+  /// </note>
+  ///
+  /// May throw [InvalidArgumentException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [UnsupportedOperationException].
+  ///
+  /// Parameter [applicationName] :
+  /// The name of the application for which you want to get the version
+  /// description.
+  ///
+  /// Parameter [applicationVersionId] :
+  /// The ID of the application version for which you want to get the
+  /// description.
+  Future<DescribeApplicationVersionResponse> describeApplicationVersion({
+    required String applicationName,
+    required int applicationVersionId,
+  }) async {
+    ArgumentError.checkNotNull(applicationName, 'applicationName');
+    _s.validateStringLength(
+      'applicationName',
+      applicationName,
+      1,
+      128,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(applicationVersionId, 'applicationVersionId');
+    _s.validateNumRange(
+      'applicationVersionId',
+      applicationVersionId,
+      1,
+      999999999,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'KinesisAnalytics_20180523.DescribeApplicationVersion'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ApplicationName': applicationName,
+        'ApplicationVersionId': applicationVersionId,
+      },
+    );
+
+    return DescribeApplicationVersionResponse.fromJson(jsonResponse.body);
   }
 
   /// Infers a schema for a SQL-based Kinesis Data Analytics application by
@@ -1531,22 +1507,11 @@ class KinesisAnalyticsV2 {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'serviceExecutionRole',
-      serviceExecutionRole,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'resourceARN',
       resourceARN,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''arn:.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1602,12 +1567,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1638,6 +1597,79 @@ class KinesisAnalyticsV2 {
     );
 
     return ListApplicationSnapshotsResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Lists all the versions for the specified application, including versions
+  /// that were rolled back. The response also includes a summary of the
+  /// configuration associated with each version.
+  ///
+  /// To get the complete description of a specific application version, invoke
+  /// the <a>DescribeApplicationVersion</a> operation.
+  /// <note>
+  /// This operation is supported only for Amazon Kinesis Data Analytics for
+  /// Apache Flink.
+  /// </note>
+  ///
+  /// May throw [InvalidArgumentException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [UnsupportedOperationException].
+  ///
+  /// Parameter [applicationName] :
+  /// The name of the application for which you want to list all versions.
+  ///
+  /// Parameter [limit] :
+  /// The maximum number of versions to list in this invocation of the
+  /// operation.
+  ///
+  /// Parameter [nextToken] :
+  /// If a previous invocation of this operation returned a pagination token,
+  /// pass it into this value to retrieve the next set of results. For more
+  /// information about pagination, see <a
+  /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
+  /// the AWS Command Line Interface's Pagination Options</a>.
+  Future<ListApplicationVersionsResponse> listApplicationVersions({
+    required String applicationName,
+    int? limit,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(applicationName, 'applicationName');
+    _s.validateStringLength(
+      'applicationName',
+      applicationName,
+      1,
+      128,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'limit',
+      limit,
+      1,
+      50,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      512,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'KinesisAnalytics_20180523.ListApplicationVersions'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ApplicationName': applicationName,
+        if (limit != null) 'Limit': limit,
+        if (nextToken != null) 'NextToken': nextToken,
+      },
+    );
+
+    return ListApplicationVersionsResponse.fromJson(jsonResponse.body);
   }
 
   /// Returns a list of Kinesis Data Analytics applications in your account. For
@@ -1673,11 +1705,6 @@ class KinesisAnalyticsV2 {
       nextToken,
       1,
       128,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''[a-zA-Z0-9_.-]+''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1720,12 +1747,6 @@ class KinesisAnalyticsV2 {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'KinesisAnalytics_20180523.ListTagsForResource'
@@ -1742,6 +1763,72 @@ class KinesisAnalyticsV2 {
     );
 
     return ListTagsForResourceResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Reverts the application to the previous running version. You can roll back
+  /// an application if you suspect it is stuck in a transient status.
+  ///
+  /// You can roll back an application only if it is in the
+  /// <code>UPDATING</code> or <code>AUTOSCALING</code> status.
+  ///
+  /// When you rollback an application, it loads state data from the last
+  /// successful snapshot. If the application has no snapshots, Kinesis Data
+  /// Analytics rejects the rollback request.
+  ///
+  /// This action is not supported for Kinesis Data Analytics for SQL
+  /// applications.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [InvalidArgumentException].
+  /// May throw [ResourceInUseException].
+  /// May throw [InvalidRequestException].
+  /// May throw [ConcurrentModificationException].
+  /// May throw [UnsupportedOperationException].
+  ///
+  /// Parameter [applicationName] :
+  /// The name of the application.
+  ///
+  /// Parameter [currentApplicationVersionId] :
+  /// The current application version ID. You can retrieve the application
+  /// version ID using <a>DescribeApplication</a>.
+  Future<RollbackApplicationResponse> rollbackApplication({
+    required String applicationName,
+    required int currentApplicationVersionId,
+  }) async {
+    ArgumentError.checkNotNull(applicationName, 'applicationName');
+    _s.validateStringLength(
+      'applicationName',
+      applicationName,
+      1,
+      128,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(
+        currentApplicationVersionId, 'currentApplicationVersionId');
+    _s.validateNumRange(
+      'currentApplicationVersionId',
+      currentApplicationVersionId,
+      1,
+      999999999,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target': 'KinesisAnalytics_20180523.RollbackApplication'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ApplicationName': applicationName,
+        'CurrentApplicationVersionId': currentApplicationVersionId,
+      },
+    );
+
+    return RollbackApplicationResponse.fromJson(jsonResponse.body);
   }
 
   /// Starts the specified Kinesis Data Analytics application. After creating an
@@ -1762,7 +1849,7 @@ class KinesisAnalyticsV2 {
   /// Analytics application.
   Future<void> startApplication({
     required String applicationName,
-    required RunConfiguration runConfiguration,
+    RunConfiguration? runConfiguration,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
     _s.validateStringLength(
@@ -1772,13 +1859,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
-    ArgumentError.checkNotNull(runConfiguration, 'runConfiguration');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'KinesisAnalytics_20180523.StartApplication'
@@ -1791,7 +1871,7 @@ class KinesisAnalyticsV2 {
       headers: headers,
       payload: {
         'ApplicationName': applicationName,
-        'RunConfiguration': runConfiguration,
+        if (runConfiguration != null) 'RunConfiguration': runConfiguration,
       },
     );
   }
@@ -1843,12 +1923,6 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'KinesisAnalytics_20180523.StopApplication'
@@ -1894,12 +1968,6 @@ class KinesisAnalyticsV2 {
       resourceARN,
       1,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''arn:.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -1949,12 +2017,6 @@ class KinesisAnalyticsV2 {
       2048,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceARN',
-      resourceARN,
-      r'''arn:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1993,13 +2055,10 @@ class KinesisAnalyticsV2 {
   /// May throw [ConcurrentModificationException].
   /// May throw [InvalidRequestException].
   /// May throw [InvalidApplicationConfigurationException].
+  /// May throw [LimitExceededException].
   ///
   /// Parameter [applicationName] :
   /// The name of the application to update.
-  ///
-  /// Parameter [currentApplicationVersionId] :
-  /// The current application version ID. You can retrieve the application
-  /// version ID using <a>DescribeApplication</a>.
   ///
   /// Parameter [applicationConfigurationUpdate] :
   /// Describes application configuration updates.
@@ -2010,6 +2069,22 @@ class KinesisAnalyticsV2 {
   /// new CloudWatch logging option, use
   /// <a>AddApplicationCloudWatchLoggingOption</a>.
   ///
+  /// Parameter [conditionalToken] :
+  /// A value you use to implement strong concurrency for application updates.
+  /// You must provide the <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>. You get the application's current
+  /// <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better
+  /// concurrency support, use the <code>ConditionalToken</code> parameter
+  /// instead of <code>CurrentApplicationVersionId</code>.
+  ///
+  /// Parameter [currentApplicationVersionId] :
+  /// The current application version ID. You must provide the
+  /// <code>CurrentApplicationVersionId</code> or the
+  /// <code>ConditionalToken</code>.You can retrieve the application version ID
+  /// using <a>DescribeApplication</a>. For better concurrency support, use the
+  /// <code>ConditionalToken</code> parameter instead of
+  /// <code>CurrentApplicationVersionId</code>.
+  ///
   /// Parameter [runConfigurationUpdate] :
   /// Describes updates to the application's starting parameters.
   ///
@@ -2017,9 +2092,10 @@ class KinesisAnalyticsV2 {
   /// Describes updates to the service execution role.
   Future<UpdateApplicationResponse> updateApplication({
     required String applicationName,
-    required int currentApplicationVersionId,
     ApplicationConfigurationUpdate? applicationConfigurationUpdate,
     List<CloudWatchLoggingOptionUpdate>? cloudWatchLoggingOptionUpdates,
+    String? conditionalToken,
+    int? currentApplicationVersionId,
     RunConfigurationUpdate? runConfigurationUpdate,
     String? serviceExecutionRoleUpdate,
   }) async {
@@ -2031,31 +2107,23 @@ class KinesisAnalyticsV2 {
       128,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'applicationName',
-      applicationName,
-      r'''[a-zA-Z0-9_.-]+''',
-      isRequired: true,
+    _s.validateStringLength(
+      'conditionalToken',
+      conditionalToken,
+      1,
+      512,
     );
-    ArgumentError.checkNotNull(
-        currentApplicationVersionId, 'currentApplicationVersionId');
     _s.validateNumRange(
       'currentApplicationVersionId',
       currentApplicationVersionId,
       1,
       999999999,
-      isRequired: true,
     );
     _s.validateStringLength(
       'serviceExecutionRoleUpdate',
       serviceExecutionRoleUpdate,
       1,
       2048,
-    );
-    _s.validateStringPattern(
-      'serviceExecutionRoleUpdate',
-      serviceExecutionRoleUpdate,
-      r'''arn:.*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2069,11 +2137,13 @@ class KinesisAnalyticsV2 {
       headers: headers,
       payload: {
         'ApplicationName': applicationName,
-        'CurrentApplicationVersionId': currentApplicationVersionId,
         if (applicationConfigurationUpdate != null)
           'ApplicationConfigurationUpdate': applicationConfigurationUpdate,
         if (cloudWatchLoggingOptionUpdates != null)
           'CloudWatchLoggingOptionUpdates': cloudWatchLoggingOptionUpdates,
+        if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+        if (currentApplicationVersionId != null)
+          'CurrentApplicationVersionId': currentApplicationVersionId,
         if (runConfigurationUpdate != null)
           'RunConfigurationUpdate': runConfigurationUpdate,
         if (serviceExecutionRoleUpdate != null)
@@ -2082,6 +2152,82 @@ class KinesisAnalyticsV2 {
     );
 
     return UpdateApplicationResponse.fromJson(jsonResponse.body);
+  }
+
+  /// Updates the maintenance configuration of the Kinesis Data Analytics
+  /// application.
+  ///
+  /// You can invoke this operation on an application that is in one of the two
+  /// following states: <code>READY</code> or <code>RUNNING</code>. If you
+  /// invoke it when the application is in a state other than these two states,
+  /// it throws a <code>ResourceInUseException</code>. The service makes use of
+  /// the updated configuration the next time it schedules maintenance for the
+  /// application. If you invoke this operation after the service schedules
+  /// maintenance, the service will apply the configuration update the next time
+  /// it schedules maintenance for the application. This means that you might
+  /// not see the maintenance configuration update applied to the maintenance
+  /// process that follows a successful invocation of this operation, but to the
+  /// following maintenance process instead.
+  ///
+  /// To see the current maintenance configuration of your application, invoke
+  /// the <a>DescribeApplication</a> operation.
+  ///
+  /// For information about application maintenance, see <a
+  /// href="https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html">Kinesis
+  /// Data Analytics for Apache Flink Maintenance</a>.
+  /// <note>
+  /// This operation is supported only for Amazon Kinesis Data Analytics for
+  /// Apache Flink.
+  /// </note>
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ResourceInUseException].
+  /// May throw [InvalidArgumentException].
+  /// May throw [ConcurrentModificationException].
+  /// May throw [UnsupportedOperationException].
+  ///
+  /// Parameter [applicationMaintenanceConfigurationUpdate] :
+  /// Describes the application maintenance configuration update.
+  ///
+  /// Parameter [applicationName] :
+  /// The name of the application for which you want to update the maintenance
+  /// configuration.
+  Future<UpdateApplicationMaintenanceConfigurationResponse>
+      updateApplicationMaintenanceConfiguration({
+    required ApplicationMaintenanceConfigurationUpdate
+        applicationMaintenanceConfigurationUpdate,
+    required String applicationName,
+  }) async {
+    ArgumentError.checkNotNull(applicationMaintenanceConfigurationUpdate,
+        'applicationMaintenanceConfigurationUpdate');
+    ArgumentError.checkNotNull(applicationName, 'applicationName');
+    _s.validateStringLength(
+      'applicationName',
+      applicationName,
+      1,
+      128,
+      isRequired: true,
+    );
+    final headers = <String, String>{
+      'Content-Type': 'application/x-amz-json-1.1',
+      'X-Amz-Target':
+          'KinesisAnalytics_20180523.UpdateApplicationMaintenanceConfiguration'
+    };
+    final jsonResponse = await _protocol.send(
+      method: 'POST',
+      requestUri: '/',
+      exceptionFnMap: _exceptionFns,
+      // TODO queryParams
+      headers: headers,
+      payload: {
+        'ApplicationMaintenanceConfigurationUpdate':
+            applicationMaintenanceConfigurationUpdate,
+        'ApplicationName': applicationName,
+      },
+    );
+
+    return UpdateApplicationMaintenanceConfigurationResponse.fromJson(
+        jsonResponse.body);
   }
 }
 
@@ -2275,8 +2421,7 @@ class AddApplicationVpcConfigurationResponse {
   }
 }
 
-/// Describes code configuration for a Flink-based Kinesis Data Analytics
-/// application.
+/// Describes code configuration for an application.
 class ApplicationCodeConfiguration {
   /// Specifies whether the code content is in text or zip format.
   final CodeContentType codeContentType;
@@ -2298,8 +2443,7 @@ class ApplicationCodeConfiguration {
   }
 }
 
-/// Describes code configuration for a Flink-based Kinesis Data Analytics
-/// application.
+/// Describes code configuration for an application.
 class ApplicationCodeConfigurationDescription {
   /// Specifies whether the code content is in text or zip format.
   final CodeContentType codeContentType;
@@ -2323,8 +2467,9 @@ class ApplicationCodeConfigurationDescription {
   }
 }
 
-/// Describes code configuration updates to a Flink-based Kinesis Data Analytics
-/// application.
+/// Describes code configuration updates for an application. This is supported
+/// for a Flink-based Kinesis Data Analytics application or a SQL-based Kinesis
+/// Data Analytics application.
 class ApplicationCodeConfigurationUpdate {
   /// Describes updates to the code content type.
   final CodeContentType? codeContentTypeUpdate;
@@ -2351,7 +2496,7 @@ class ApplicationCodeConfigurationUpdate {
 class ApplicationConfiguration {
   /// The code location and type parameters for a Flink-based Kinesis Data
   /// Analytics application.
-  final ApplicationCodeConfiguration applicationCodeConfiguration;
+  final ApplicationCodeConfiguration? applicationCodeConfiguration;
 
   /// Describes whether snapshots are enabled for a Flink-based Kinesis Data
   /// Analytics application.
@@ -2373,13 +2518,17 @@ class ApplicationConfiguration {
   /// application.
   final List<VpcConfiguration>? vpcConfigurations;
 
+  /// The configuration parameters for a Kinesis Data Analytics Studio notebook.
+  final ZeppelinApplicationConfiguration? zeppelinApplicationConfiguration;
+
   ApplicationConfiguration({
-    required this.applicationCodeConfiguration,
+    this.applicationCodeConfiguration,
     this.applicationSnapshotConfiguration,
     this.environmentProperties,
     this.flinkApplicationConfiguration,
     this.sqlApplicationConfiguration,
     this.vpcConfigurations,
+    this.zeppelinApplicationConfiguration,
   });
   Map<String, dynamic> toJson() {
     final applicationCodeConfiguration = this.applicationCodeConfiguration;
@@ -2389,8 +2538,11 @@ class ApplicationConfiguration {
     final flinkApplicationConfiguration = this.flinkApplicationConfiguration;
     final sqlApplicationConfiguration = this.sqlApplicationConfiguration;
     final vpcConfigurations = this.vpcConfigurations;
+    final zeppelinApplicationConfiguration =
+        this.zeppelinApplicationConfiguration;
     return {
-      'ApplicationCodeConfiguration': applicationCodeConfiguration,
+      if (applicationCodeConfiguration != null)
+        'ApplicationCodeConfiguration': applicationCodeConfiguration,
       if (applicationSnapshotConfiguration != null)
         'ApplicationSnapshotConfiguration': applicationSnapshotConfiguration,
       if (environmentProperties != null)
@@ -2400,6 +2552,8 @@ class ApplicationConfiguration {
       if (sqlApplicationConfiguration != null)
         'SqlApplicationConfiguration': sqlApplicationConfiguration,
       if (vpcConfigurations != null) 'VpcConfigurations': vpcConfigurations,
+      if (zeppelinApplicationConfiguration != null)
+        'ZeppelinApplicationConfiguration': zeppelinApplicationConfiguration,
     };
   }
 }
@@ -2438,6 +2592,10 @@ class ApplicationConfigurationDescription {
   /// application.
   final List<VpcConfigurationDescription>? vpcConfigurationDescriptions;
 
+  /// The configuration parameters for a Kinesis Data Analytics Studio notebook.
+  final ZeppelinApplicationConfigurationDescription?
+      zeppelinApplicationConfigurationDescription;
+
   ApplicationConfigurationDescription({
     this.applicationCodeConfigurationDescription,
     this.applicationSnapshotConfigurationDescription,
@@ -2446,6 +2604,7 @@ class ApplicationConfigurationDescription {
     this.runConfigurationDescription,
     this.sqlApplicationConfigurationDescription,
     this.vpcConfigurationDescriptions,
+    this.zeppelinApplicationConfigurationDescription,
   });
   factory ApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
@@ -2490,14 +2649,19 @@ class ApplicationConfigurationDescription {
           .map((e) =>
               VpcConfigurationDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
+      zeppelinApplicationConfigurationDescription:
+          json['ZeppelinApplicationConfigurationDescription'] != null
+              ? ZeppelinApplicationConfigurationDescription.fromJson(
+                  json['ZeppelinApplicationConfigurationDescription']
+                      as Map<String, dynamic>)
+              : null,
     );
   }
 }
 
 /// Describes updates to an application's configuration.
 class ApplicationConfigurationUpdate {
-  /// Describes updates to a Flink-based Kinesis Data Analytics application's code
-  /// configuration.
+  /// Describes updates to an application's code configuration.
   final ApplicationCodeConfigurationUpdate? applicationCodeConfigurationUpdate;
 
   /// Describes whether snapshots are enabled for a Flink-based Kinesis Data
@@ -2522,6 +2686,10 @@ class ApplicationConfigurationUpdate {
   /// application.
   final List<VpcConfigurationUpdate>? vpcConfigurationUpdates;
 
+  /// Updates to the configuration of a Kinesis Data Analytics Studio notebook.
+  final ZeppelinApplicationConfigurationUpdate?
+      zeppelinApplicationConfigurationUpdate;
+
   ApplicationConfigurationUpdate({
     this.applicationCodeConfigurationUpdate,
     this.applicationSnapshotConfigurationUpdate,
@@ -2529,6 +2697,7 @@ class ApplicationConfigurationUpdate {
     this.flinkApplicationConfigurationUpdate,
     this.sqlApplicationConfigurationUpdate,
     this.vpcConfigurationUpdates,
+    this.zeppelinApplicationConfigurationUpdate,
   });
   Map<String, dynamic> toJson() {
     final applicationCodeConfigurationUpdate =
@@ -2541,6 +2710,8 @@ class ApplicationConfigurationUpdate {
     final sqlApplicationConfigurationUpdate =
         this.sqlApplicationConfigurationUpdate;
     final vpcConfigurationUpdates = this.vpcConfigurationUpdates;
+    final zeppelinApplicationConfigurationUpdate =
+        this.zeppelinApplicationConfigurationUpdate;
     return {
       if (applicationCodeConfigurationUpdate != null)
         'ApplicationCodeConfigurationUpdate':
@@ -2557,6 +2728,9 @@ class ApplicationConfigurationUpdate {
         'SqlApplicationConfigurationUpdate': sqlApplicationConfigurationUpdate,
       if (vpcConfigurationUpdates != null)
         'VpcConfigurationUpdates': vpcConfigurationUpdates,
+      if (zeppelinApplicationConfigurationUpdate != null)
+        'ZeppelinApplicationConfigurationUpdate':
+            zeppelinApplicationConfigurationUpdate,
     };
   }
 }
@@ -2577,21 +2751,44 @@ class ApplicationDetail {
   /// <code>ApplicationVersionId</code> each time you update the application.
   final int applicationVersionId;
 
-  /// The runtime environment for the application (<code>SQL-1.0</code>,
-  /// <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).
+  /// The runtime environment for the application (<code>SQL-1_0</code>,
+  /// <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).
   final RuntimeEnvironment runtimeEnvironment;
 
-  /// Provides details about the application's Java, SQL, or Scala code and
-  /// starting parameters.
+  /// Describes details about the application code and starting parameters for a
+  /// Kinesis Data Analytics application.
   final ApplicationConfigurationDescription?
       applicationConfigurationDescription;
 
   /// The description of the application.
   final String? applicationDescription;
 
+  /// The details of the maintenance configuration for the application.
+  final ApplicationMaintenanceConfigurationDescription?
+      applicationMaintenanceConfigurationDescription;
+
+  /// To create a Kinesis Data Analytics Studio notebook, you must set the mode to
+  /// <code>INTERACTIVE</code>. However, for a Kinesis Data Analytics for Apache
+  /// Flink application, the mode is optional.
+  final ApplicationMode? applicationMode;
+
+  /// If you reverted the application using <a>RollbackApplication</a>, the
+  /// application version when <code>RollbackApplication</code> was called.
+  final int? applicationVersionRolledBackFrom;
+
+  /// The version to which you want to roll back the application.
+  final int? applicationVersionRolledBackTo;
+
+  /// The previous application version before the latest application update.
+  /// <a>RollbackApplication</a> reverts the application to this version.
+  final int? applicationVersionUpdatedFrom;
+
   /// Describes the application Amazon CloudWatch logging options.
   final List<CloudWatchLoggingOptionDescription>?
       cloudWatchLoggingOptionDescriptions;
+
+  /// A value you use to implement strong concurrency for application updates.
+  final String? conditionalToken;
 
   /// The current timestamp when the application was created.
   final DateTime? createTimestamp;
@@ -2611,7 +2808,13 @@ class ApplicationDetail {
     required this.runtimeEnvironment,
     this.applicationConfigurationDescription,
     this.applicationDescription,
+    this.applicationMaintenanceConfigurationDescription,
+    this.applicationMode,
+    this.applicationVersionRolledBackFrom,
+    this.applicationVersionRolledBackTo,
+    this.applicationVersionUpdatedFrom,
     this.cloudWatchLoggingOptionDescriptions,
+    this.conditionalToken,
     this.createTimestamp,
     this.lastUpdateTimestamp,
     this.serviceExecutionRole,
@@ -2632,16 +2835,100 @@ class ApplicationDetail {
                       as Map<String, dynamic>)
               : null,
       applicationDescription: json['ApplicationDescription'] as String?,
+      applicationMaintenanceConfigurationDescription:
+          json['ApplicationMaintenanceConfigurationDescription'] != null
+              ? ApplicationMaintenanceConfigurationDescription.fromJson(
+                  json['ApplicationMaintenanceConfigurationDescription']
+                      as Map<String, dynamic>)
+              : null,
+      applicationMode:
+          (json['ApplicationMode'] as String?)?.toApplicationMode(),
+      applicationVersionRolledBackFrom:
+          json['ApplicationVersionRolledBackFrom'] as int?,
+      applicationVersionRolledBackTo:
+          json['ApplicationVersionRolledBackTo'] as int?,
+      applicationVersionUpdatedFrom:
+          json['ApplicationVersionUpdatedFrom'] as int?,
       cloudWatchLoggingOptionDescriptions:
           (json['CloudWatchLoggingOptionDescriptions'] as List?)
               ?.whereNotNull()
               .map((e) => CloudWatchLoggingOptionDescription.fromJson(
                   e as Map<String, dynamic>))
               .toList(),
+      conditionalToken: json['ConditionalToken'] as String?,
       createTimestamp: timeStampFromJson(json['CreateTimestamp']),
       lastUpdateTimestamp: timeStampFromJson(json['LastUpdateTimestamp']),
       serviceExecutionRole: json['ServiceExecutionRole'] as String?,
     );
+  }
+}
+
+/// The details of the maintenance configuration for the application.
+class ApplicationMaintenanceConfigurationDescription {
+  /// The end time for the maintenance window.
+  final String applicationMaintenanceWindowEndTime;
+
+  /// The start time for the maintenance window.
+  final String applicationMaintenanceWindowStartTime;
+
+  ApplicationMaintenanceConfigurationDescription({
+    required this.applicationMaintenanceWindowEndTime,
+    required this.applicationMaintenanceWindowStartTime,
+  });
+  factory ApplicationMaintenanceConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationMaintenanceConfigurationDescription(
+      applicationMaintenanceWindowEndTime:
+          json['ApplicationMaintenanceWindowEndTime'] as String,
+      applicationMaintenanceWindowStartTime:
+          json['ApplicationMaintenanceWindowStartTime'] as String,
+    );
+  }
+}
+
+/// Describes the updated maintenance configuration for the application.
+class ApplicationMaintenanceConfigurationUpdate {
+  /// The updated start time for the maintenance window.
+  final String applicationMaintenanceWindowStartTimeUpdate;
+
+  ApplicationMaintenanceConfigurationUpdate({
+    required this.applicationMaintenanceWindowStartTimeUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final applicationMaintenanceWindowStartTimeUpdate =
+        this.applicationMaintenanceWindowStartTimeUpdate;
+    return {
+      'ApplicationMaintenanceWindowStartTimeUpdate':
+          applicationMaintenanceWindowStartTimeUpdate,
+    };
+  }
+}
+
+enum ApplicationMode {
+  streaming,
+  interactive,
+}
+
+extension on ApplicationMode {
+  String toValue() {
+    switch (this) {
+      case ApplicationMode.streaming:
+        return 'STREAMING';
+      case ApplicationMode.interactive:
+        return 'INTERACTIVE';
+    }
+  }
+}
+
+extension on String {
+  ApplicationMode toApplicationMode() {
+    switch (this) {
+      case 'STREAMING':
+        return ApplicationMode.streaming;
+      case 'INTERACTIVE':
+        return ApplicationMode.interactive;
+    }
+    throw Exception('$this is not known in enum ApplicationMode');
   }
 }
 
@@ -2751,8 +3038,7 @@ class ApplicationSnapshotConfigurationDescription {
 /// Describes updates to whether snapshots are enabled for a Flink-based Kinesis
 /// Data Analytics application.
 class ApplicationSnapshotConfigurationUpdate {
-  /// Describes updates to whether snapshots are enabled for a Flink-based Kinesis
-  /// Data Analytics application.
+  /// Describes updates to whether snapshots are enabled for an application.
   final bool snapshotsEnabledUpdate;
 
   ApplicationSnapshotConfigurationUpdate({
@@ -2775,6 +3061,9 @@ enum ApplicationStatus {
   updating,
   autoscaling,
   forceStopping,
+  maintenance,
+  rollingBack,
+  rolledBack,
 }
 
 extension on ApplicationStatus {
@@ -2796,6 +3085,12 @@ extension on ApplicationStatus {
         return 'AUTOSCALING';
       case ApplicationStatus.forceStopping:
         return 'FORCE_STOPPING';
+      case ApplicationStatus.maintenance:
+        return 'MAINTENANCE';
+      case ApplicationStatus.rollingBack:
+        return 'ROLLING_BACK';
+      case ApplicationStatus.rolledBack:
+        return 'ROLLED_BACK';
     }
   }
 }
@@ -2819,6 +3114,12 @@ extension on String {
         return ApplicationStatus.autoscaling;
       case 'FORCE_STOPPING':
         return ApplicationStatus.forceStopping;
+      case 'MAINTENANCE':
+        return ApplicationStatus.maintenance;
+      case 'ROLLING_BACK':
+        return ApplicationStatus.rollingBack;
+      case 'ROLLED_BACK':
+        return ApplicationStatus.rolledBack;
     }
     throw Exception('$this is not known in enum ApplicationStatus');
   }
@@ -2839,9 +3140,13 @@ class ApplicationSummary {
   /// Provides the current application version.
   final int applicationVersionId;
 
-  /// The runtime environment for the application (<code>SQL-1.0</code>,
-  /// <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).
+  /// The runtime environment for the application.
   final RuntimeEnvironment runtimeEnvironment;
+
+  /// For a Kinesis Data Analytics for Apache Flink application, the mode is
+  /// <code>STREAMING</code>. For a Kinesis Data Analytics Studio notebook, it is
+  /// <code>INTERACTIVE</code>.
+  final ApplicationMode? applicationMode;
 
   ApplicationSummary({
     required this.applicationARN,
@@ -2849,6 +3154,7 @@ class ApplicationSummary {
     required this.applicationStatus,
     required this.applicationVersionId,
     required this.runtimeEnvironment,
+    this.applicationMode,
   });
   factory ApplicationSummary.fromJson(Map<String, dynamic> json) {
     return ApplicationSummary(
@@ -2859,7 +3165,59 @@ class ApplicationSummary {
       applicationVersionId: json['ApplicationVersionId'] as int,
       runtimeEnvironment:
           (json['RuntimeEnvironment'] as String).toRuntimeEnvironment(),
+      applicationMode:
+          (json['ApplicationMode'] as String?)?.toApplicationMode(),
     );
+  }
+}
+
+/// The summary of the application version.
+class ApplicationVersionSummary {
+  /// The status of the application.
+  final ApplicationStatus applicationStatus;
+
+  /// The ID of the application version. Kinesis Data Analytics updates the
+  /// <code>ApplicationVersionId</code> each time you update the application.
+  final int applicationVersionId;
+
+  ApplicationVersionSummary({
+    required this.applicationStatus,
+    required this.applicationVersionId,
+  });
+  factory ApplicationVersionSummary.fromJson(Map<String, dynamic> json) {
+    return ApplicationVersionSummary(
+      applicationStatus:
+          (json['ApplicationStatus'] as String).toApplicationStatus(),
+      applicationVersionId: json['ApplicationVersionId'] as int,
+    );
+  }
+}
+
+enum ArtifactType {
+  udf,
+  dependencyJar,
+}
+
+extension on ArtifactType {
+  String toValue() {
+    switch (this) {
+      case ArtifactType.udf:
+        return 'UDF';
+      case ArtifactType.dependencyJar:
+        return 'DEPENDENCY_JAR';
+    }
+  }
+}
+
+extension on String {
+  ArtifactType toArtifactType() {
+    switch (this) {
+      case 'UDF':
+        return ArtifactType.udf;
+      case 'DEPENDENCY_JAR':
+        return ArtifactType.dependencyJar;
+    }
+    throw Exception('$this is not known in enum ArtifactType');
   }
 }
 
@@ -2902,6 +3260,68 @@ class CSVMappingParameters {
   }
 }
 
+/// The configuration parameters for the default AWS Glue database. You use this
+/// database for SQL queries that you write in a Kinesis Data Analytics Studio
+/// notebook.
+class CatalogConfiguration {
+  /// The configuration parameters for the default AWS Glue database. You use this
+  /// database for Apache Flink SQL queries and table API transforms that you
+  /// write in a Kinesis Data Analytics Studio notebook.
+  final GlueDataCatalogConfiguration glueDataCatalogConfiguration;
+
+  CatalogConfiguration({
+    required this.glueDataCatalogConfiguration,
+  });
+  Map<String, dynamic> toJson() {
+    final glueDataCatalogConfiguration = this.glueDataCatalogConfiguration;
+    return {
+      'GlueDataCatalogConfiguration': glueDataCatalogConfiguration,
+    };
+  }
+}
+
+/// The configuration parameters for the default AWS Glue database. You use this
+/// database for Apache Flink SQL queries and table API transforms that you
+/// write in a Kinesis Data Analytics Studio notebook.
+class CatalogConfigurationDescription {
+  /// The configuration parameters for the default AWS Glue database. You use this
+  /// database for SQL queries that you write in a Kinesis Data Analytics Studio
+  /// notebook.
+  final GlueDataCatalogConfigurationDescription
+      glueDataCatalogConfigurationDescription;
+
+  CatalogConfigurationDescription({
+    required this.glueDataCatalogConfigurationDescription,
+  });
+  factory CatalogConfigurationDescription.fromJson(Map<String, dynamic> json) {
+    return CatalogConfigurationDescription(
+      glueDataCatalogConfigurationDescription:
+          GlueDataCatalogConfigurationDescription.fromJson(
+              json['GlueDataCatalogConfigurationDescription']
+                  as Map<String, dynamic>),
+    );
+  }
+}
+
+/// Updates to
+class CatalogConfigurationUpdate {
+  /// Updates to the configuration parameters for the default AWS Glue database.
+  /// You use this database for SQL queries that you write in a Kinesis Data
+  /// Analytics Studio notebook.
+  final GlueDataCatalogConfigurationUpdate glueDataCatalogConfigurationUpdate;
+
+  CatalogConfigurationUpdate({
+    required this.glueDataCatalogConfigurationUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final glueDataCatalogConfigurationUpdate =
+        this.glueDataCatalogConfigurationUpdate;
+    return {
+      'GlueDataCatalogConfigurationUpdate': glueDataCatalogConfigurationUpdate,
+    };
+  }
+}
+
 /// Describes an application's checkpointing configuration. Checkpointing is the
 /// process of persisting application state for fault tolerance. For more
 /// information, see <a
@@ -2937,7 +3357,7 @@ class CheckpointConfiguration {
   /// <note>
   /// If <code>CheckpointConfiguration.ConfigurationType</code> is
   /// <code>DEFAULT</code>, the application will use a
-  /// <code>CheckpointInterval</code> vaue of 60000, even if this value is set to
+  /// <code>CheckpointInterval</code> value of 60000, even if this value is set to
   /// another value using this API or in application code.
   /// </note>
   final int? checkpointInterval;
@@ -2998,7 +3418,7 @@ class CheckpointConfigurationDescription {
   /// <note>
   /// If <code>CheckpointConfiguration.ConfigurationType</code> is
   /// <code>DEFAULT</code>, the application will use a
-  /// <code>CheckpointInterval</code> vaue of 60000, even if this value is set to
+  /// <code>CheckpointInterval</code> value of 60000, even if this value is set to
   /// another value using this API or in application code.
   /// </note>
   final int? checkpointInterval;
@@ -3069,7 +3489,7 @@ class CheckpointConfigurationUpdate {
   /// <note>
   /// If <code>CheckpointConfiguration.ConfigurationType</code> is
   /// <code>DEFAULT</code>, the application will use a
-  /// <code>CheckpointInterval</code> vaue of 60000, even if this value is set to
+  /// <code>CheckpointInterval</code> value of 60000, even if this value is set to
   /// another value using this API or in application code.
   /// </note>
   final int? checkpointIntervalUpdate;
@@ -3216,7 +3636,7 @@ class CloudWatchLoggingOptionUpdate {
 /// Specifies either the application code, or the location of the application
 /// code, for a Flink-based Kinesis Data Analytics application.
 class CodeContent {
-  /// Information about the Amazon S3 bucket containing the application code.
+  /// Information about the Amazon S3 bucket that contains the application code.
   final S3ContentLocation? s3ContentLocation;
 
   /// The text-format code for a Flink-based Kinesis Data Analytics application.
@@ -3243,8 +3663,7 @@ class CodeContent {
   }
 }
 
-/// Describes details about the application code for a Flink-based Kinesis Data
-/// Analytics application.
+/// Describes details about the code of a Kinesis Data Analytics application.
 class CodeContentDescription {
   /// The checksum that can be used to validate zip-format code.
   final String? codeMD5;
@@ -3310,8 +3729,8 @@ extension on String {
   }
 }
 
-/// Describes an update to the code of a Flink-based Kinesis Data Analytics
-/// application.
+/// Describes an update to the code of an application. Not supported for Apache
+/// Zeppelin.
 class CodeContentUpdate {
   /// Describes an update to the location of code for an application.
   final S3ContentLocationUpdate? s3ContentLocationUpdate;
@@ -3404,6 +3823,67 @@ class CreateApplicationSnapshotResponse {
   CreateApplicationSnapshotResponse();
   factory CreateApplicationSnapshotResponse.fromJson(Map<String, dynamic> _) {
     return CreateApplicationSnapshotResponse();
+  }
+}
+
+/// Specifies dependency JARs, as well as JAR files that contain user-defined
+/// functions (UDF).
+class CustomArtifactConfiguration {
+  /// <code>UDF</code> stands for user-defined functions. This type of artifact
+  /// must be in an S3 bucket. A <code>DEPENDENCY_JAR</code> can be in either
+  /// Maven or an S3 bucket.
+  final ArtifactType artifactType;
+
+  /// The parameters required to fully specify a Maven reference.
+  final MavenReference? mavenReference;
+  final S3ContentLocation? s3ContentLocation;
+
+  CustomArtifactConfiguration({
+    required this.artifactType,
+    this.mavenReference,
+    this.s3ContentLocation,
+  });
+  Map<String, dynamic> toJson() {
+    final artifactType = this.artifactType;
+    final mavenReference = this.mavenReference;
+    final s3ContentLocation = this.s3ContentLocation;
+    return {
+      'ArtifactType': artifactType.toValue(),
+      if (mavenReference != null) 'MavenReference': mavenReference,
+      if (s3ContentLocation != null) 'S3ContentLocation': s3ContentLocation,
+    };
+  }
+}
+
+/// Specifies a dependency JAR or a JAR of user-defined functions.
+class CustomArtifactConfigurationDescription {
+  /// <code>UDF</code> stands for user-defined functions. This type of artifact
+  /// must be in an S3 bucket. A <code>DEPENDENCY_JAR</code> can be in either
+  /// Maven or an S3 bucket.
+  final ArtifactType? artifactType;
+
+  /// The parameters that are required to specify a Maven dependency.
+  final MavenReference? mavenReferenceDescription;
+  final S3ContentLocation? s3ContentLocationDescription;
+
+  CustomArtifactConfigurationDescription({
+    this.artifactType,
+    this.mavenReferenceDescription,
+    this.s3ContentLocationDescription,
+  });
+  factory CustomArtifactConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return CustomArtifactConfigurationDescription(
+      artifactType: (json['ArtifactType'] as String?)?.toArtifactType(),
+      mavenReferenceDescription: json['MavenReferenceDescription'] != null
+          ? MavenReference.fromJson(
+              json['MavenReferenceDescription'] as Map<String, dynamic>)
+          : null,
+      s3ContentLocationDescription: json['S3ContentLocationDescription'] != null
+          ? S3ContentLocation.fromJson(
+              json['S3ContentLocationDescription'] as Map<String, dynamic>)
+          : null,
+    );
   }
 }
 
@@ -3534,6 +4014,63 @@ class DeleteApplicationVpcConfigurationResponse {
   }
 }
 
+/// The information required to deploy a Kinesis Data Analytics Studio notebook
+/// as an application with durable state..
+class DeployAsApplicationConfiguration {
+  /// The description of an Amazon S3 object that contains the Amazon Data
+  /// Analytics application, including the Amazon Resource Name (ARN) of the S3
+  /// bucket, the name of the Amazon S3 object that contains the data, and the
+  /// version number of the Amazon S3 object that contains the data.
+  final S3ContentBaseLocation s3ContentLocation;
+
+  DeployAsApplicationConfiguration({
+    required this.s3ContentLocation,
+  });
+  Map<String, dynamic> toJson() {
+    final s3ContentLocation = this.s3ContentLocation;
+    return {
+      'S3ContentLocation': s3ContentLocation,
+    };
+  }
+}
+
+/// The configuration information required to deploy an Amazon Data Analytics
+/// Studio notebook as an application with durable state.
+class DeployAsApplicationConfigurationDescription {
+  /// The location that holds the data required to specify an Amazon Data
+  /// Analytics application.
+  final S3ContentBaseLocationDescription s3ContentLocationDescription;
+
+  DeployAsApplicationConfigurationDescription({
+    required this.s3ContentLocationDescription,
+  });
+  factory DeployAsApplicationConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return DeployAsApplicationConfigurationDescription(
+      s3ContentLocationDescription: S3ContentBaseLocationDescription.fromJson(
+          json['S3ContentLocationDescription'] as Map<String, dynamic>),
+    );
+  }
+}
+
+/// Updates to the configuration information required to deploy an Amazon Data
+/// Analytics Studio notebook as an application with durable state..
+class DeployAsApplicationConfigurationUpdate {
+  /// Updates to the location that holds the data required to specify an Amazon
+  /// Data Analytics application.
+  final S3ContentBaseLocationUpdate s3ContentLocationUpdate;
+
+  DeployAsApplicationConfigurationUpdate({
+    required this.s3ContentLocationUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final s3ContentLocationUpdate = this.s3ContentLocationUpdate;
+    return {
+      'S3ContentLocationUpdate': s3ContentLocationUpdate,
+    };
+  }
+}
+
 class DescribeApplicationResponse {
   /// Provides a description of the application, such as the application's Amazon
   /// Resource Name (ARN), status, and latest version.
@@ -3562,6 +4099,23 @@ class DescribeApplicationSnapshotResponse {
     return DescribeApplicationSnapshotResponse(
       snapshotDetails: SnapshotDetails.fromJson(
           json['SnapshotDetails'] as Map<String, dynamic>),
+    );
+  }
+}
+
+class DescribeApplicationVersionResponse {
+  final ApplicationDetail? applicationVersionDetail;
+
+  DescribeApplicationVersionResponse({
+    this.applicationVersionDetail,
+  });
+  factory DescribeApplicationVersionResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeApplicationVersionResponse(
+      applicationVersionDetail: json['ApplicationVersionDetail'] != null
+          ? ApplicationDetail.fromJson(
+              json['ApplicationVersionDetail'] as Map<String, dynamic>)
+          : null,
     );
   }
 }
@@ -3652,8 +4206,7 @@ class EnvironmentProperties {
   }
 }
 
-/// Describes the execution properties for a Flink-based Kinesis Data Analytics
-/// application.
+/// Describes the execution properties for an Apache Flink runtime.
 class EnvironmentPropertyDescriptions {
   /// Describes the execution property groups.
   final List<PropertyGroup>? propertyGroupDescriptions;
@@ -3672,7 +4225,7 @@ class EnvironmentPropertyDescriptions {
 }
 
 /// Describes updates to the execution property groups for a Flink-based Kinesis
-/// Data Analytics application.
+/// Data Analytics application or a Studio notebook.
 class EnvironmentPropertyUpdates {
   /// Describes updates to the execution property groups.
   final List<PropertyGroup> propertyGroups;
@@ -3689,7 +4242,7 @@ class EnvironmentPropertyUpdates {
 }
 
 /// Describes configuration parameters for a Flink-based Kinesis Data Analytics
-/// application.
+/// application or a Studio notebook.
 class FlinkApplicationConfiguration {
   /// Describes an application's checkpointing configuration. Checkpointing is the
   /// process of persisting application state for fault tolerance. For more
@@ -3856,6 +4409,57 @@ class FlinkRunConfiguration {
     return {
       if (allowNonRestoredState != null)
         'AllowNonRestoredState': allowNonRestoredState,
+    };
+  }
+}
+
+/// The configuration of the Glue Data Catalog that you use for Apache Flink SQL
+/// queries and table API transforms that you write in an application.
+class GlueDataCatalogConfiguration {
+  /// The Amazon Resource Name (ARN) of the database.
+  final String databaseARN;
+
+  GlueDataCatalogConfiguration({
+    required this.databaseARN,
+  });
+  Map<String, dynamic> toJson() {
+    final databaseARN = this.databaseARN;
+    return {
+      'DatabaseARN': databaseARN,
+    };
+  }
+}
+
+/// The configuration of the Glue Data Catalog that you use for Apache Flink SQL
+/// queries and table API transforms that you write in an application.
+class GlueDataCatalogConfigurationDescription {
+  /// The Amazon Resource Name (ARN) of the database.
+  final String databaseARN;
+
+  GlueDataCatalogConfigurationDescription({
+    required this.databaseARN,
+  });
+  factory GlueDataCatalogConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return GlueDataCatalogConfigurationDescription(
+      databaseARN: json['DatabaseARN'] as String,
+    );
+  }
+}
+
+/// Updates to the configuration of the Glue Data Catalog that you use for SQL
+/// queries that you write in a Kinesis Data Analytics Studio notebook.
+class GlueDataCatalogConfigurationUpdate {
+  /// The updated Amazon Resource Name (ARN) of the database.
+  final String? databaseARNUpdate;
+
+  GlueDataCatalogConfigurationUpdate({
+    this.databaseARNUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final databaseARNUpdate = this.databaseARNUpdate;
+    return {
+      if (databaseARNUpdate != null) 'DatabaseARNUpdate': databaseARNUpdate,
     };
   }
 }
@@ -4765,6 +5369,39 @@ class ListApplicationSnapshotsResponse {
   }
 }
 
+class ListApplicationVersionsResponse {
+  /// A list of the application versions and the associated configuration
+  /// summaries. The list includes application versions that were rolled back.
+  ///
+  /// To get the complete description of a specific application version, invoke
+  /// the <a>DescribeApplicationVersion</a> operation.
+  final List<ApplicationVersionSummary>? applicationVersionSummaries;
+
+  /// The pagination token for the next set of results, or <code>null</code> if
+  /// there are no additional results. To retrieve the next set of items, pass
+  /// this token into a subsequent invocation of this operation. For more
+  /// information about pagination, see <a
+  /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
+  /// the AWS Command Line Interface's Pagination Options</a>.
+  final String? nextToken;
+
+  ListApplicationVersionsResponse({
+    this.applicationVersionSummaries,
+    this.nextToken,
+  });
+  factory ListApplicationVersionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListApplicationVersionsResponse(
+      applicationVersionSummaries:
+          (json['ApplicationVersionSummaries'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  ApplicationVersionSummary.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
 class ListApplicationsResponse {
   /// A list of <code>ApplicationSummary</code> objects.
   final List<ApplicationSummary> applicationSummaries;
@@ -4889,6 +5526,43 @@ class MappingParameters {
   }
 }
 
+/// The information required to specify a Maven reference. You can use Maven
+/// references to specify dependency JAR files.
+class MavenReference {
+  /// The artifact ID of the Maven reference.
+  final String artifactId;
+
+  /// The group ID of the Maven reference.
+  final String groupId;
+
+  /// The version of the Maven reference.
+  final String version;
+
+  MavenReference({
+    required this.artifactId,
+    required this.groupId,
+    required this.version,
+  });
+  factory MavenReference.fromJson(Map<String, dynamic> json) {
+    return MavenReference(
+      artifactId: json['ArtifactId'] as String,
+      groupId: json['GroupId'] as String,
+      version: json['Version'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactId = this.artifactId;
+    final groupId = this.groupId;
+    final version = this.version;
+    return {
+      'ArtifactId': artifactId,
+      'GroupId': groupId,
+      'Version': version,
+    };
+  }
+}
+
 enum MetricsLevel {
   application,
   task,
@@ -4927,9 +5601,8 @@ extension on String {
   }
 }
 
-/// Describes configuration parameters for Amazon CloudWatch logging for a
-/// Flink-based Kinesis Data Analytics application. For more information about
-/// CloudWatch logging, see <a
+/// Describes configuration parameters for Amazon CloudWatch logging for an
+/// application. For more information about CloudWatch logging, see <a
 /// href="https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html">Monitoring</a>.
 class MonitoringConfiguration {
   /// Describes whether to use the default CloudWatch logging configuration for an
@@ -4962,8 +5635,8 @@ class MonitoringConfiguration {
   }
 }
 
-/// Describes configuration parameters for CloudWatch logging for a Flink-based
-/// Kinesis Data Analytics application.
+/// Describes configuration parameters for CloudWatch logging for an
+/// application.
 class MonitoringConfigurationDescription {
   /// Describes whether to use the default CloudWatch logging configuration for an
   /// application.
@@ -4992,7 +5665,7 @@ class MonitoringConfigurationDescription {
 }
 
 /// Describes updates to configuration parameters for Amazon CloudWatch logging
-/// for a Flink-based Kinesis Data Analytics application.
+/// for an application.
 class MonitoringConfigurationUpdate {
   /// Describes updates to whether to use the default CloudWatch logging
   /// configuration for an application. You must set this property to
@@ -5190,8 +5863,8 @@ class OutputUpdate {
 }
 
 /// Describes parameters for how a Flink-based Kinesis Data Analytics
-/// application application executes multiple tasks simultaneously. For more
-/// information about parallelism, see <a
+/// application executes multiple tasks simultaneously. For more information
+/// about parallelism, see <a
 /// href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html">Parallel
 /// Execution</a> in the <a
 /// href="https://ci.apache.org/projects/flink/flink-docs-release-1.8/">Apache
@@ -5307,11 +5980,12 @@ class ParallelismConfigurationDescription {
   }
 }
 
-/// Describes updates to parameters for how a Flink-based Kinesis Data Analytics
-/// application executes multiple tasks simultaneously.
+/// Describes updates to parameters for how an application executes multiple
+/// tasks simultaneously.
 class ParallelismConfigurationUpdate {
   /// Describes updates to whether the Kinesis Data Analytics service can increase
-  /// the parallelism of the application in response to increased throughput.
+  /// the parallelism of a Flink-based Kinesis Data Analytics application in
+  /// response to increased throughput.
   final bool? autoScalingEnabledUpdate;
 
   /// Describes updates to whether the application uses the default parallelism
@@ -5360,8 +6034,7 @@ class ParallelismConfigurationUpdate {
   }
 }
 
-/// Property key-value pairs passed into a Flink-based Kinesis Data Analytics
-/// application.
+/// Property key-value pairs passed into an application.
 class PropertyGroup {
   /// Describes the key of an application execution property key-value pair.
   final String propertyGroupId;
@@ -5623,6 +6296,20 @@ class ReferenceDataSourceUpdate {
   }
 }
 
+class RollbackApplicationResponse {
+  final ApplicationDetail applicationDetail;
+
+  RollbackApplicationResponse({
+    required this.applicationDetail,
+  });
+  factory RollbackApplicationResponse.fromJson(Map<String, dynamic> json) {
+    return RollbackApplicationResponse(
+      applicationDetail: ApplicationDetail.fromJson(
+          json['ApplicationDetail'] as Map<String, dynamic>),
+    );
+  }
+}
+
 /// Describes the starting parameters for an Kinesis Data Analytics application.
 class RunConfiguration {
   /// Describes the restore behavior of a restarting application.
@@ -5718,6 +6405,7 @@ enum RuntimeEnvironment {
   flink_1_6,
   flink_1_8,
   flink_1_11,
+  zeppelinFlink_1_0,
 }
 
 extension on RuntimeEnvironment {
@@ -5731,6 +6419,8 @@ extension on RuntimeEnvironment {
         return 'FLINK-1_8';
       case RuntimeEnvironment.flink_1_11:
         return 'FLINK-1_11';
+      case RuntimeEnvironment.zeppelinFlink_1_0:
+        return 'ZEPPELIN-FLINK-1_0';
     }
   }
 }
@@ -5746,13 +6436,14 @@ extension on String {
         return RuntimeEnvironment.flink_1_8;
       case 'FLINK-1_11':
         return RuntimeEnvironment.flink_1_11;
+      case 'ZEPPELIN-FLINK-1_0':
+        return RuntimeEnvironment.zeppelinFlink_1_0;
     }
     throw Exception('$this is not known in enum RuntimeEnvironment');
   }
 }
 
-/// Describes the location of a Flink-based Kinesis Data Analytics application's
-/// code stored in an S3 bucket.
+/// Describes the location of an application's code stored in an S3 bucket.
 class S3ApplicationCodeLocationDescription {
   /// The Amazon Resource Name (ARN) for the S3 bucket containing the application
   /// code.
@@ -5803,10 +6494,75 @@ class S3Configuration {
   }
 }
 
-/// For a Flink-based Kinesis Data Analytics application, provides a description
-/// of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3
-/// bucket, the name of the Amazon S3 object that contains the data, and the
-/// version number of the Amazon S3 object that contains the data.
+/// The S3 bucket that holds the application information.
+class S3ContentBaseLocation {
+  /// The Amazon Resource Name (ARN) of the S3 bucket.
+  final String bucketARN;
+
+  /// The base path for the S3 bucket.
+  final String? basePath;
+
+  S3ContentBaseLocation({
+    required this.bucketARN,
+    this.basePath,
+  });
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final basePath = this.basePath;
+    return {
+      'BucketARN': bucketARN,
+      if (basePath != null) 'BasePath': basePath,
+    };
+  }
+}
+
+/// The description of the S3 base location that holds the application.
+class S3ContentBaseLocationDescription {
+  /// The Amazon Resource Name (ARN) of the S3 bucket.
+  final String bucketARN;
+
+  /// The base path for the S3 bucket.
+  final String? basePath;
+
+  S3ContentBaseLocationDescription({
+    required this.bucketARN,
+    this.basePath,
+  });
+  factory S3ContentBaseLocationDescription.fromJson(Map<String, dynamic> json) {
+    return S3ContentBaseLocationDescription(
+      bucketARN: json['BucketARN'] as String,
+      basePath: json['BasePath'] as String?,
+    );
+  }
+}
+
+/// The information required to update the S3 base location that holds the
+/// application.
+class S3ContentBaseLocationUpdate {
+  /// The updated Amazon Resource Name (ARN) of the S3 bucket.
+  final String bucketARNUpdate;
+
+  /// The updated S3 bucket path.
+  final String? basePathUpdate;
+
+  S3ContentBaseLocationUpdate({
+    required this.bucketARNUpdate,
+    this.basePathUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final bucketARNUpdate = this.bucketARNUpdate;
+    final basePathUpdate = this.basePathUpdate;
+    return {
+      'BucketARNUpdate': bucketARNUpdate,
+      if (basePathUpdate != null) 'BasePathUpdate': basePathUpdate,
+    };
+  }
+}
+
+/// For a Kinesis Data Analytics application provides a description of an Amazon
+/// S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the
+/// name of the Amazon S3 object that contains the data, and the version number
+/// of the Amazon S3 object that contains the data.
 class S3ContentLocation {
   /// The Amazon Resource Name (ARN) for the S3 bucket containing the application
   /// code.
@@ -5823,6 +6579,14 @@ class S3ContentLocation {
     required this.fileKey,
     this.objectVersion,
   });
+  factory S3ContentLocation.fromJson(Map<String, dynamic> json) {
+    return S3ContentLocation(
+      bucketARN: json['BucketARN'] as String,
+      fileKey: json['FileKey'] as String,
+      objectVersion: json['ObjectVersion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final fileKey = this.fileKey;
@@ -5835,8 +6599,8 @@ class S3ContentLocation {
   }
 }
 
-/// Describes an update for the Amazon S3 code content location for a
-/// Flink-based Kinesis Data Analytics application.
+/// Describes an update for the Amazon S3 code content location for an
+/// application.
 class S3ContentLocationUpdate {
   /// The new Amazon Resource Name (ARN) for the S3 bucket containing the
   /// application code.
@@ -6257,6 +7021,32 @@ class UntagResourceResponse {
   }
 }
 
+class UpdateApplicationMaintenanceConfigurationResponse {
+  /// The Amazon Resource Name (ARN) of the application.
+  final String? applicationARN;
+
+  /// The application maintenance configuration description after the update.
+  final ApplicationMaintenanceConfigurationDescription?
+      applicationMaintenanceConfigurationDescription;
+
+  UpdateApplicationMaintenanceConfigurationResponse({
+    this.applicationARN,
+    this.applicationMaintenanceConfigurationDescription,
+  });
+  factory UpdateApplicationMaintenanceConfigurationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateApplicationMaintenanceConfigurationResponse(
+      applicationARN: json['ApplicationARN'] as String?,
+      applicationMaintenanceConfigurationDescription:
+          json['ApplicationMaintenanceConfigurationDescription'] != null
+              ? ApplicationMaintenanceConfigurationDescription.fromJson(
+                  json['ApplicationMaintenanceConfigurationDescription']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+}
+
 class UpdateApplicationResponse {
   /// Describes application updates.
   final ApplicationDetail applicationDetail;
@@ -6274,6 +7064,7 @@ class UpdateApplicationResponse {
 
 enum UrlType {
   flinkDashboardUrl,
+  zeppelinUiUrl,
 }
 
 extension on UrlType {
@@ -6281,6 +7072,8 @@ extension on UrlType {
     switch (this) {
       case UrlType.flinkDashboardUrl:
         return 'FLINK_DASHBOARD_URL';
+      case UrlType.zeppelinUiUrl:
+        return 'ZEPPELIN_UI_URL';
     }
   }
 }
@@ -6290,6 +7083,8 @@ extension on String {
     switch (this) {
       case 'FLINK_DASHBOARD_URL':
         return UrlType.flinkDashboardUrl;
+      case 'ZEPPELIN_UI_URL':
+        return UrlType.zeppelinUiUrl;
     }
     throw Exception('$this is not known in enum UrlType');
   }
@@ -6390,6 +7185,199 @@ class VpcConfigurationUpdate {
       if (securityGroupIdUpdates != null)
         'SecurityGroupIdUpdates': securityGroupIdUpdates,
       if (subnetIdUpdates != null) 'SubnetIdUpdates': subnetIdUpdates,
+    };
+  }
+}
+
+/// The configuration of a Kinesis Data Analytics Studio notebook.
+class ZeppelinApplicationConfiguration {
+  /// The AWS Glue Data Catalog that you use in queries in a Kinesis Data
+  /// Analytics Studio notebook.
+  final CatalogConfiguration? catalogConfiguration;
+
+  /// Custom artifacts are dependency JARs and user-defined functions (UDF).
+  final List<CustomArtifactConfiguration>? customArtifactsConfiguration;
+
+  /// The information required to deploy a Kinesis Data Analytics Studio notebook
+  /// as an application with durable state..
+  final DeployAsApplicationConfiguration? deployAsApplicationConfiguration;
+
+  /// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
+  final ZeppelinMonitoringConfiguration? monitoringConfiguration;
+
+  ZeppelinApplicationConfiguration({
+    this.catalogConfiguration,
+    this.customArtifactsConfiguration,
+    this.deployAsApplicationConfiguration,
+    this.monitoringConfiguration,
+  });
+  Map<String, dynamic> toJson() {
+    final catalogConfiguration = this.catalogConfiguration;
+    final customArtifactsConfiguration = this.customArtifactsConfiguration;
+    final deployAsApplicationConfiguration =
+        this.deployAsApplicationConfiguration;
+    final monitoringConfiguration = this.monitoringConfiguration;
+    return {
+      if (catalogConfiguration != null)
+        'CatalogConfiguration': catalogConfiguration,
+      if (customArtifactsConfiguration != null)
+        'CustomArtifactsConfiguration': customArtifactsConfiguration,
+      if (deployAsApplicationConfiguration != null)
+        'DeployAsApplicationConfiguration': deployAsApplicationConfiguration,
+      if (monitoringConfiguration != null)
+        'MonitoringConfiguration': monitoringConfiguration,
+    };
+  }
+}
+
+/// The configuration of a Kinesis Data Analytics Studio notebook.
+class ZeppelinApplicationConfigurationDescription {
+  /// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
+  final ZeppelinMonitoringConfigurationDescription
+      monitoringConfigurationDescription;
+
+  /// The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics
+  /// Studio notebook.
+  final CatalogConfigurationDescription? catalogConfigurationDescription;
+
+  /// Custom artifacts are dependency JARs and user-defined functions (UDF).
+  final List<CustomArtifactConfigurationDescription>?
+      customArtifactsConfigurationDescription;
+
+  /// The parameters required to deploy a Kinesis Data Analytics Studio notebook
+  /// as an application with durable state..
+  final DeployAsApplicationConfigurationDescription?
+      deployAsApplicationConfigurationDescription;
+
+  ZeppelinApplicationConfigurationDescription({
+    required this.monitoringConfigurationDescription,
+    this.catalogConfigurationDescription,
+    this.customArtifactsConfigurationDescription,
+    this.deployAsApplicationConfigurationDescription,
+  });
+  factory ZeppelinApplicationConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return ZeppelinApplicationConfigurationDescription(
+      monitoringConfigurationDescription:
+          ZeppelinMonitoringConfigurationDescription.fromJson(
+              json['MonitoringConfigurationDescription']
+                  as Map<String, dynamic>),
+      catalogConfigurationDescription:
+          json['CatalogConfigurationDescription'] != null
+              ? CatalogConfigurationDescription.fromJson(
+                  json['CatalogConfigurationDescription']
+                      as Map<String, dynamic>)
+              : null,
+      customArtifactsConfigurationDescription:
+          (json['CustomArtifactsConfigurationDescription'] as List?)
+              ?.whereNotNull()
+              .map((e) => CustomArtifactConfigurationDescription.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      deployAsApplicationConfigurationDescription:
+          json['DeployAsApplicationConfigurationDescription'] != null
+              ? DeployAsApplicationConfigurationDescription.fromJson(
+                  json['DeployAsApplicationConfigurationDescription']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+}
+
+/// Updates to the configuration of Kinesis Data Analytics Studio notebook.
+class ZeppelinApplicationConfigurationUpdate {
+  /// Updates to the configuration of the AWS Glue Data Catalog that is associated
+  /// with the Kinesis Data Analytics Studio notebook.
+  final CatalogConfigurationUpdate? catalogConfigurationUpdate;
+
+  /// Updates to the customer artifacts. Custom artifacts are dependency JAR files
+  /// and user-defined functions (UDF).
+  final List<CustomArtifactConfiguration>? customArtifactsConfigurationUpdate;
+  final DeployAsApplicationConfigurationUpdate?
+      deployAsApplicationConfigurationUpdate;
+
+  /// Updates to the monitoring configuration of a Kinesis Data Analytics Studio
+  /// notebook.
+  final ZeppelinMonitoringConfigurationUpdate? monitoringConfigurationUpdate;
+
+  ZeppelinApplicationConfigurationUpdate({
+    this.catalogConfigurationUpdate,
+    this.customArtifactsConfigurationUpdate,
+    this.deployAsApplicationConfigurationUpdate,
+    this.monitoringConfigurationUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final catalogConfigurationUpdate = this.catalogConfigurationUpdate;
+    final customArtifactsConfigurationUpdate =
+        this.customArtifactsConfigurationUpdate;
+    final deployAsApplicationConfigurationUpdate =
+        this.deployAsApplicationConfigurationUpdate;
+    final monitoringConfigurationUpdate = this.monitoringConfigurationUpdate;
+    return {
+      if (catalogConfigurationUpdate != null)
+        'CatalogConfigurationUpdate': catalogConfigurationUpdate,
+      if (customArtifactsConfigurationUpdate != null)
+        'CustomArtifactsConfigurationUpdate':
+            customArtifactsConfigurationUpdate,
+      if (deployAsApplicationConfigurationUpdate != null)
+        'DeployAsApplicationConfigurationUpdate':
+            deployAsApplicationConfigurationUpdate,
+      if (monitoringConfigurationUpdate != null)
+        'MonitoringConfigurationUpdate': monitoringConfigurationUpdate,
+    };
+  }
+}
+
+/// Describes configuration parameters for Amazon CloudWatch logging for a
+/// Kinesis Data Analytics Studio notebook. For more information about
+/// CloudWatch logging, see <a
+/// href="https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html">Monitoring</a>.
+class ZeppelinMonitoringConfiguration {
+  /// The verbosity of the CloudWatch Logs for an application.
+  final LogLevel logLevel;
+
+  ZeppelinMonitoringConfiguration({
+    required this.logLevel,
+  });
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    return {
+      'LogLevel': logLevel.toValue(),
+    };
+  }
+}
+
+/// The monitoring configuration for Apache Zeppelin within a Kinesis Data
+/// Analytics Studio notebook.
+class ZeppelinMonitoringConfigurationDescription {
+  /// Describes the verbosity of the CloudWatch Logs for an application.
+  final LogLevel? logLevel;
+
+  ZeppelinMonitoringConfigurationDescription({
+    this.logLevel,
+  });
+  factory ZeppelinMonitoringConfigurationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return ZeppelinMonitoringConfigurationDescription(
+      logLevel: (json['LogLevel'] as String?)?.toLogLevel(),
+    );
+  }
+}
+
+/// Updates to the monitoring configuration for Apache Zeppelin within a Kinesis
+/// Data Analytics Studio notebook.
+class ZeppelinMonitoringConfigurationUpdate {
+  /// Updates to the logging level for Apache Zeppelin within a Kinesis Data
+  /// Analytics Studio notebook.
+  final LogLevel logLevelUpdate;
+
+  ZeppelinMonitoringConfigurationUpdate({
+    required this.logLevelUpdate,
+  });
+  Map<String, dynamic> toJson() {
+    final logLevelUpdate = this.logLevelUpdate;
+    return {
+      'LogLevelUpdate': logLevelUpdate.toValue(),
     };
   }
 }

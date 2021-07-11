@@ -54,6 +54,104 @@ class GreengrassV2 {
           endpointUrl: endpointUrl,
         );
 
+  /// Associate a list of client devices with a core device. Use this API
+  /// operation to specify which client devices can discover a core device
+  /// through cloud discovery. With cloud discovery, client devices connect to
+  /// AWS IoT Greengrass to retrieve associated core devices' connectivity
+  /// information and certificates. For more information, see <a
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-cloud-discovery.html">Configure
+  /// cloud discovery</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// <note>
+  /// Client devices are local IoT devices that connect to and communicate with
+  /// an AWS IoT Greengrass core device over MQTT. You can connect client
+  /// devices to a core device to sync MQTT messages and data to AWS IoT Core
+  /// and interact with client devices in AWS IoT Greengrass components. For
+  /// more information, see <a
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interact-with-local-iot-devices.html">Interact
+  /// with local IoT devices</a> in the <i>AWS IoT Greengrass V2 Developer
+  /// Guide</i>.
+  /// </note>
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [coreDeviceThingName] :
+  /// The name of the core device. This is also the name of the AWS IoT thing.
+  ///
+  /// Parameter [entries] :
+  /// The list of client devices to associate.
+  Future<BatchAssociateClientDeviceWithCoreDeviceResponse>
+      batchAssociateClientDeviceWithCoreDevice({
+    required String coreDeviceThingName,
+    List<AssociateClientDeviceWithCoreDeviceEntry>? entries,
+  }) async {
+    ArgumentError.checkNotNull(coreDeviceThingName, 'coreDeviceThingName');
+    _s.validateStringLength(
+      'coreDeviceThingName',
+      coreDeviceThingName,
+      1,
+      128,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (entries != null) 'entries': entries,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/greengrass/v2/coreDevices/${Uri.encodeComponent(coreDeviceThingName)}/associateClientDevices',
+      exceptionFnMap: _exceptionFns,
+    );
+    return BatchAssociateClientDeviceWithCoreDeviceResponse.fromJson(response);
+  }
+
+  /// Disassociate a list of client devices from a core device. After you
+  /// disassociate a client device from a core device, the client device won't
+  /// be able to use cloud discovery to retrieve the core device's connectivity
+  /// information and certificates.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [coreDeviceThingName] :
+  /// The name of the core device. This is also the name of the AWS IoT thing.
+  ///
+  /// Parameter [entries] :
+  /// The list of client devices to disassociate.
+  Future<BatchDisassociateClientDeviceFromCoreDeviceResponse>
+      batchDisassociateClientDeviceFromCoreDevice({
+    required String coreDeviceThingName,
+    List<DisassociateClientDeviceFromCoreDeviceEntry>? entries,
+  }) async {
+    ArgumentError.checkNotNull(coreDeviceThingName, 'coreDeviceThingName');
+    _s.validateStringLength(
+      'coreDeviceThingName',
+      coreDeviceThingName,
+      1,
+      128,
+      isRequired: true,
+    );
+    final $payload = <String, dynamic>{
+      if (entries != null) 'entries': entries,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri:
+          '/greengrass/v2/coreDevices/${Uri.encodeComponent(coreDeviceThingName)}/disassociateClientDevices',
+      exceptionFnMap: _exceptionFns,
+    );
+    return BatchDisassociateClientDeviceFromCoreDeviceResponse.fromJson(
+        response);
+  }
+
   /// Cancels a deployment. This operation cancels the deployment for devices
   /// that haven't yet received it. If a device already received the deployment,
   /// this operation doesn't change anything for that device.
@@ -169,7 +267,7 @@ class GreengrassV2 {
   /// Parameter [tags] :
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
   /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   Future<CreateComponentVersionResponse> createComponentVersion({
     Uint8List? inlineRecipe,
@@ -206,7 +304,7 @@ class GreengrassV2 {
   /// number of the new deployment when you create it.
   ///
   /// For more information, see the <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html">Create
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html">Create
   /// deployments</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   ///
   /// May throw [ResourceNotFoundException].
@@ -246,7 +344,7 @@ class GreengrassV2 {
   /// Parameter [tags] :
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
   /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   Future<CreateDeploymentResponse> createDeployment({
     required String targetArn,
@@ -257,12 +355,6 @@ class GreengrassV2 {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(targetArn, 'targetArn');
-    _s.validateStringPattern(
-      'targetArn',
-      targetArn,
-      r'''arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:(thing|thinggroup)/.+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'deploymentName',
       deploymentName,
@@ -310,12 +402,6 @@ class GreengrassV2 {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+:versions:[^:]+''',
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -376,12 +462,6 @@ class GreengrassV2 {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+:versions:[^:]+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -414,12 +494,6 @@ class GreengrassV2 {
     RecipeOutputFormat? recipeOutputFormat,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+:versions:[^:]+''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (recipeOutputFormat != null)
         'recipeOutputFormat': [recipeOutputFormat.toValue()],
@@ -434,8 +508,8 @@ class GreengrassV2 {
     return GetComponentResponse.fromJson(response);
   }
 
-  /// Gets the pre-signed URL to a component artifact in an S3 bucket. Core
-  /// devices can call this operation to identify the URL that they can use to
+  /// Gets the pre-signed URL to download a public component artifact. Core
+  /// devices call this operation to identify the URL that they can use to
   /// download an artifact to install.
   ///
   /// May throw [ValidationException].
@@ -447,21 +521,22 @@ class GreengrassV2 {
   /// Parameter [arn] :
   /// The <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>
-  /// of the component version.
+  /// of the component version. Specify the ARN of a public component version.
   ///
   /// Parameter [artifactName] :
   /// The name of the artifact.
+  ///
+  /// You can use the <a
+  /// href="https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetComponent.html">GetComponent</a>
+  /// operation to download the component recipe, which includes the URI of the
+  /// artifact. The artifact name is the section of the URI after the scheme.
+  /// For example, in the artifact URI <code>greengrass:SomeArtifact.zip</code>,
+  /// the artifact name is <code>SomeArtifact.zip</code>.
   Future<GetComponentVersionArtifactResponse> getComponentVersionArtifact({
     required String arn,
     required String artifactName,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+:versions:[^:]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(artifactName, 'artifactName');
     _s.validateStringLength(
       'artifactName',
@@ -543,7 +618,60 @@ class GreengrassV2 {
     return GetDeploymentResponse.fromJson(response);
   }
 
-  /// Retrieves a paginated list of all versions for a component.
+  /// Retrieves a paginated list of client devices that are associated with a
+  /// core device.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [InternalServerException].
+  /// May throw [ThrottlingException].
+  ///
+  /// Parameter [coreDeviceThingName] :
+  /// The name of the core device. This is also the name of the AWS IoT thing.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to be returned per paginated request.
+  ///
+  /// Parameter [nextToken] :
+  /// The token to be used for the next set of paginated results.
+  Future<ListClientDevicesAssociatedWithCoreDeviceResponse>
+      listClientDevicesAssociatedWithCoreDevice({
+    required String coreDeviceThingName,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(coreDeviceThingName, 'coreDeviceThingName');
+    _s.validateStringLength(
+      'coreDeviceThingName',
+      coreDeviceThingName,
+      1,
+      128,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri:
+          '/greengrass/v2/coreDevices/${Uri.encodeComponent(coreDeviceThingName)}/associatedClientDevices',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListClientDevicesAssociatedWithCoreDeviceResponse.fromJson(response);
+  }
+
+  /// Retrieves a paginated list of all versions for a component. Greater
+  /// versions are listed first.
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
@@ -567,12 +695,6 @@ class GreengrassV2 {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringPattern(
-      'arn',
-      arn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):components:[^:]+''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -685,11 +807,6 @@ class GreengrassV2 {
       1,
       100,
     );
-    _s.validateStringPattern(
-      'thingGroupArn',
-      thingGroupArn,
-      r'''arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:thinggroup/.+''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -749,11 +866,6 @@ class GreengrassV2 {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringPattern(
-      'targetArn',
-      targetArn,
-      r'''arn:aws(-cn|-us-gov)?:iot:[^:]+:[0-9]+:(thing|thinggroup)/.+''',
     );
     final $query = <String, List<String>>{
       if (historyFilter != null) 'historyFilter': [historyFilter.toValue()],
@@ -887,12 +999,6 @@ class GreengrassV2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):(components|deployments|coreDevices):.+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -922,7 +1028,7 @@ class GreengrassV2 {
   /// To use this operation, you must use the data plane API endpoint and
   /// authenticate with an AWS IoT device certificate. For more information, see
   /// <a
-  /// href="https://docs.aws.amazon.com/https:/docs.aws.amazon.com/general/latest/gr/greengrass.html">AWS
+  /// href="https://docs.aws.amazon.com/general/latest/gr/greengrass.html">AWS
   /// IoT Greengrass endpoints and quotas</a>.
   /// </important>
   ///
@@ -972,19 +1078,13 @@ class GreengrassV2 {
   /// Parameter [tags] :
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
   /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   Future<void> tagResource({
     required String resourceArn,
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):(components|deployments|coreDevices):.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -1015,12 +1115,6 @@ class GreengrassV2 {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''arn:aws(-cn|-us-gov)?:greengrass:[^:]+:(aws|[0-9]+):(components|deployments|coreDevices):.+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1031,6 +1125,116 @@ class GreengrassV2 {
       requestUri: '/tags/${Uri.encodeComponent(resourceArn)}',
       queryParams: $query,
       exceptionFnMap: _exceptionFns,
+    );
+  }
+}
+
+/// Contains a request to associate a client device with a core device. The <a
+/// href="https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html">BatchAssociateClientDeviceWithCoreDevice</a>
+/// operation consumes a list of these requests.
+class AssociateClientDeviceWithCoreDeviceEntry {
+  /// The name of the AWS IoT thing that represents the client device to
+  /// associate.
+  final String thingName;
+
+  AssociateClientDeviceWithCoreDeviceEntry({
+    required this.thingName,
+  });
+  Map<String, dynamic> toJson() {
+    final thingName = this.thingName;
+    return {
+      'thingName': thingName,
+    };
+  }
+}
+
+/// Contains an error that occurs from a request to associate a client device
+/// with a core device. The <a
+/// href="https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html">BatchAssociateClientDeviceWithCoreDevice</a>
+/// operation returns a list of these errors.
+class AssociateClientDeviceWithCoreDeviceErrorEntry {
+  /// The error code for the request.
+  final String? code;
+
+  /// A message that provides additional information about the error.
+  final String? message;
+
+  /// The name of the AWS IoT thing whose associate request failed.
+  final String? thingName;
+
+  AssociateClientDeviceWithCoreDeviceErrorEntry({
+    this.code,
+    this.message,
+    this.thingName,
+  });
+  factory AssociateClientDeviceWithCoreDeviceErrorEntry.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateClientDeviceWithCoreDeviceErrorEntry(
+      code: json['code'] as String?,
+      message: json['message'] as String?,
+      thingName: json['thingName'] as String?,
+    );
+  }
+}
+
+/// Contains information about a client device that is associated to a core
+/// device for cloud discovery.
+class AssociatedClientDevice {
+  /// The time that the client device was associated, expressed in ISO 8601
+  /// format.
+  final DateTime? associationTimestamp;
+
+  /// The name of the AWS IoT thing that represents the associated client device.
+  final String? thingName;
+
+  AssociatedClientDevice({
+    this.associationTimestamp,
+    this.thingName,
+  });
+  factory AssociatedClientDevice.fromJson(Map<String, dynamic> json) {
+    return AssociatedClientDevice(
+      associationTimestamp: timeStampFromJson(json['associationTimestamp']),
+      thingName: json['thingName'] as String?,
+    );
+  }
+}
+
+class BatchAssociateClientDeviceWithCoreDeviceResponse {
+  /// The list of any errors for the entries in the request. Each error entry
+  /// contains the name of the AWS IoT thing that failed to associate.
+  final List<AssociateClientDeviceWithCoreDeviceErrorEntry>? errorEntries;
+
+  BatchAssociateClientDeviceWithCoreDeviceResponse({
+    this.errorEntries,
+  });
+  factory BatchAssociateClientDeviceWithCoreDeviceResponse.fromJson(
+      Map<String, dynamic> json) {
+    return BatchAssociateClientDeviceWithCoreDeviceResponse(
+      errorEntries: (json['errorEntries'] as List?)
+          ?.whereNotNull()
+          .map((e) => AssociateClientDeviceWithCoreDeviceErrorEntry.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
+class BatchDisassociateClientDeviceFromCoreDeviceResponse {
+  /// The list of errors (if any) for the entries in the request. Each error entry
+  /// contains the name of the AWS IoT thing that failed to disassociate.
+  final List<DisassociateClientDeviceFromCoreDeviceErrorEntry>? errorEntries;
+
+  BatchDisassociateClientDeviceFromCoreDeviceResponse({
+    this.errorEntries,
+  });
+  factory BatchDisassociateClientDeviceFromCoreDeviceResponse.fromJson(
+      Map<String, dynamic> json) {
+    return BatchDisassociateClientDeviceFromCoreDeviceResponse(
+      errorEntries: (json['errorEntries'] as List?)
+          ?.whereNotNull()
+          .map((e) => DisassociateClientDeviceFromCoreDeviceErrorEntry.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
@@ -1739,8 +1943,8 @@ class DeploymentComponentUpdatePolicy {
   /// IPC operation to receive these notifications. Then, components can respond
   /// with the <a
   /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-defercomponentupdate">DeferComponentUpdate</a>
-  /// IPC operation. For more information, see the <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html">Create
+  /// IPC operation. For more information, see <a
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html">Create
   /// deployments</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   /// </li>
   /// <li>
@@ -1817,8 +2021,8 @@ extension on String {
 /// IPC operation to receive notifications when a deployment specifies a
 /// configuration update. Then, components can respond with the <a
 /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-sendconfigurationvalidityreport">SendConfigurationValidityReport</a>
-/// IPC operation. For more information, see the <a
-/// href="https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html">Create
+/// IPC operation. For more information, see <a
+/// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html">Create
 /// deployments</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
 class DeploymentConfigurationValidationPolicy {
   /// The amount of time in seconds that a component can validate its
@@ -2079,8 +2283,8 @@ class DescribeComponentResponse {
 
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag your
-  /// resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
+  /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   final Map<String, String>? tags;
 
   DescribeComponentResponse({
@@ -2112,6 +2316,55 @@ class DescribeComponentResponse {
           : null,
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
+/// Contains a request to disassociate a client device from a core device. The
+/// <a
+/// href="https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html">BatchDisassociateClientDeviceWithCoreDevice</a>
+/// operation consumes a list of these requests.
+class DisassociateClientDeviceFromCoreDeviceEntry {
+  /// The name of the AWS IoT thing that represents the client device to
+  /// disassociate.
+  final String thingName;
+
+  DisassociateClientDeviceFromCoreDeviceEntry({
+    required this.thingName,
+  });
+  Map<String, dynamic> toJson() {
+    final thingName = this.thingName;
+    return {
+      'thingName': thingName,
+    };
+  }
+}
+
+/// Contains an error that occurs from a request to disassociate a client device
+/// from a core device. The <a
+/// href="https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html">BatchDisassociateClientDeviceWithCoreDevice</a>
+/// operation returns a list of these errors.
+class DisassociateClientDeviceFromCoreDeviceErrorEntry {
+  /// The error code for the request.
+  final String? code;
+
+  /// A message that provides additional information about the error.
+  final String? message;
+
+  /// The name of the AWS IoT thing whose disassociate request failed.
+  final String? thingName;
+
+  DisassociateClientDeviceFromCoreDeviceErrorEntry({
+    this.code,
+    this.message,
+    this.thingName,
+  });
+  factory DisassociateClientDeviceFromCoreDeviceErrorEntry.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateClientDeviceFromCoreDeviceErrorEntry(
+      code: json['code'] as String?,
+      message: json['message'] as String?,
+      thingName: json['thingName'] as String?,
     );
   }
 }
@@ -2254,8 +2507,8 @@ class GetComponentResponse {
 
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag your
-  /// resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
+  /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   final Map<String, String>? tags;
 
   GetComponentResponse({
@@ -2275,7 +2528,7 @@ class GetComponentResponse {
 }
 
 class GetComponentVersionArtifactResponse {
-  /// The URL to the artifact.
+  /// The URL of the artifact.
   final String preSignedUrl;
 
   GetComponentVersionArtifactResponse({
@@ -2328,8 +2581,8 @@ class GetCoreDeviceResponse {
 
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag your
-  /// resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
+  /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   final Map<String, String>? tags;
 
   GetCoreDeviceResponse({
@@ -2405,8 +2658,8 @@ class GetDeploymentResponse {
 
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag your
-  /// resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
+  /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   final Map<String, String>? tags;
 
   /// The <a
@@ -3303,6 +3556,32 @@ class LambdaVolumeMount {
   }
 }
 
+class ListClientDevicesAssociatedWithCoreDeviceResponse {
+  /// A list that describes the client devices that are associated with the core
+  /// device.
+  final List<AssociatedClientDevice>? associatedClientDevices;
+
+  /// The token for the next set of results, or null if there are no additional
+  /// results.
+  final String? nextToken;
+
+  ListClientDevicesAssociatedWithCoreDeviceResponse({
+    this.associatedClientDevices,
+    this.nextToken,
+  });
+  factory ListClientDevicesAssociatedWithCoreDeviceResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListClientDevicesAssociatedWithCoreDeviceResponse(
+      associatedClientDevices: (json['associatedClientDevices'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => AssociatedClientDevice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['nextToken'] as String?,
+    );
+  }
+}
+
 class ListComponentVersionsResponse {
   /// A list of versions that exist for the component.
   final List<ComponentVersionListItem>? componentVersions;
@@ -3445,8 +3724,8 @@ class ListInstalledComponentsResponse {
 class ListTagsForResourceResponse {
   /// A list of key-value pairs that contain metadata for the resource. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/greengrass/v2/tag-resources.html">Tag your
-  /// resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
+  /// href="https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html">Tag
+  /// your resources</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.
   final Map<String, String>? tags;
 
   ListTagsForResourceResponse({

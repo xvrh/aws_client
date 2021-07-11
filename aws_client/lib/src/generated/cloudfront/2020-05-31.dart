@@ -40,6 +40,52 @@ class CloudFront {
           endpointUrl: endpointUrl,
         );
 
+  /// Associates an alias (also known as a CNAME or an alternate domain name)
+  /// with a CloudFront distribution.
+  ///
+  /// With this operation you can move an alias that’s already in use on a
+  /// CloudFront distribution to a different distribution in one step. This
+  /// prevents the downtime that could occur if you first remove the alias from
+  /// one distribution and then separately add the alias to another
+  /// distribution.
+  ///
+  /// To use this operation to associate an alias with a distribution, you
+  /// provide the alias and the ID of the target distribution for the alias. For
+  /// more information, including how to set up the target distribution,
+  /// prerequisites that you must complete, and other restrictions, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move">Moving
+  /// an alternate domain name to a different distribution</a> in the <i>Amazon
+  /// CloudFront Developer Guide</i>.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [NoSuchDistribution].
+  /// May throw [TooManyDistributionCNAMEs].
+  /// May throw [IllegalUpdate].
+  /// May throw [AccessDenied].
+  ///
+  /// Parameter [alias] :
+  /// The alias (also known as a CNAME) to add to the target distribution.
+  ///
+  /// Parameter [targetDistributionId] :
+  /// The ID of the distribution that you’re associating the alias with.
+  Future<void> associateAlias2020_05_31({
+    required String alias,
+    required String targetDistributionId,
+  }) async {
+    ArgumentError.checkNotNull(alias, 'alias');
+    ArgumentError.checkNotNull(targetDistributionId, 'targetDistributionId');
+    final $query = <String, List<String>>{
+      'Alias': [alias],
+    };
+    await _protocol.send(
+      method: 'PUT',
+      requestUri:
+          '/2020-05-31/distribution/${Uri.encodeComponent(targetDistributionId)}/associate-alias',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Creates a cache policy.
   ///
   /// After you create a cache policy, you can attach it to one or more cache
@@ -194,6 +240,9 @@ class CloudFront {
   /// May throw [TooManyDistributionsWithSingleFunctionARN].
   /// May throw [TooManyLambdaFunctionAssociations].
   /// May throw [InvalidLambdaFunctionAssociation].
+  /// May throw [TooManyDistributionsWithFunctionAssociations].
+  /// May throw [TooManyFunctionAssociations].
+  /// May throw [InvalidFunctionAssociation].
   /// May throw [InvalidOriginReadTimeout].
   /// May throw [InvalidOriginKeepaliveTimeout].
   /// May throw [NoSuchFieldLevelEncryptionConfig].
@@ -206,6 +255,8 @@ class CloudFront {
   /// May throw [TooManyDistributionsAssociatedToKeyGroup].
   /// May throw [TooManyKeyGroupsAssociatedToDistribution].
   /// May throw [TrustedKeyGroupDoesNotExist].
+  /// May throw [NoSuchRealtimeLogConfig].
+  /// May throw [RealtimeLogConfigOwnerMismatch].
   ///
   /// Parameter [distributionConfig] :
   /// The distribution's configuration information.
@@ -270,6 +321,9 @@ class CloudFront {
   /// May throw [TooManyDistributionsWithSingleFunctionARN].
   /// May throw [TooManyLambdaFunctionAssociations].
   /// May throw [InvalidLambdaFunctionAssociation].
+  /// May throw [TooManyDistributionsWithFunctionAssociations].
+  /// May throw [TooManyFunctionAssociations].
+  /// May throw [InvalidFunctionAssociation].
   /// May throw [InvalidOriginReadTimeout].
   /// May throw [InvalidOriginKeepaliveTimeout].
   /// May throw [NoSuchFieldLevelEncryptionConfig].
@@ -282,6 +336,8 @@ class CloudFront {
   /// May throw [TooManyDistributionsAssociatedToKeyGroup].
   /// May throw [TooManyKeyGroupsAssociatedToDistribution].
   /// May throw [TrustedKeyGroupDoesNotExist].
+  /// May throw [NoSuchRealtimeLogConfig].
+  /// May throw [RealtimeLogConfigOwnerMismatch].
   ///
   /// Parameter [distributionConfigWithTags] :
   /// The distribution's configuration information.
@@ -373,6 +429,80 @@ class CloudFront {
     );
   }
 
+  /// Creates a CloudFront function.
+  ///
+  /// To create a function, you provide the function code and some configuration
+  /// information about the function. The response contains an Amazon Resource
+  /// Name (ARN) that uniquely identifies the function.
+  ///
+  /// When you create a function, it’s in the <code>DEVELOPMENT</code> stage. In
+  /// this stage, you can test the function with <code>TestFunction</code>, and
+  /// update it with <code>UpdateFunction</code>.
+  ///
+  /// When you’re ready to use your function with a CloudFront distribution, use
+  /// <code>PublishFunction</code> to copy the function from the
+  /// <code>DEVELOPMENT</code> stage to <code>LIVE</code>. When it’s live, you
+  /// can attach the function to a distribution’s cache behavior, using the
+  /// function’s ARN.
+  ///
+  /// May throw [TooManyFunctions].
+  /// May throw [FunctionAlreadyExists].
+  /// May throw [FunctionSizeLimitExceeded].
+  /// May throw [InvalidArgument].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [functionCode] :
+  /// The function code. For more information about writing a CloudFront
+  /// function, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html">Writing
+  /// function code for CloudFront Functions</a> in the <i>Amazon CloudFront
+  /// Developer Guide</i>.
+  ///
+  /// Parameter [functionConfig] :
+  /// Configuration information about the function, including an optional
+  /// comment and the function’s runtime.
+  ///
+  /// Parameter [name] :
+  /// A name to identify the function.
+  Future<CreateFunctionResult> createFunction2020_05_31({
+    required Uint8List functionCode,
+    required FunctionConfig functionConfig,
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(functionCode, 'functionCode');
+    ArgumentError.checkNotNull(functionConfig, 'functionConfig');
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      64,
+      isRequired: true,
+    );
+    final $result = await _protocol.sendRaw(
+      method: 'POST',
+      requestUri: '/2020-05-31/function',
+      payload: CreateFunctionRequest(
+              functionCode: functionCode,
+              functionConfig: functionConfig,
+              name: name)
+          .toXml(
+        'CreateFunctionRequest',
+        attributes: [
+          _s.XmlAttribute(_s.XmlName('xmlns'),
+              'http://cloudfront.amazonaws.com/doc/2020-05-31/'),
+        ],
+      ),
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return CreateFunctionResult(
+      functionSummary: FunctionSummary.fromXml($elem),
+      eTag: _s.extractHeaderStringValue($result.headers, 'ETag'),
+      location: _s.extractHeaderStringValue($result.headers, 'Location'),
+    );
+  }
+
   /// Create a new invalidation.
   ///
   /// May throw [AccessDenied].
@@ -458,6 +588,7 @@ class CloudFront {
   ///
   /// May throw [AccessDenied].
   /// May throw [NoSuchDistribution].
+  /// May throw [UnsupportedOperation].
   ///
   /// Parameter [distributionId] :
   /// The ID of the distribution that you are enabling metrics for.
@@ -898,6 +1029,45 @@ class CloudFront {
     );
   }
 
+  /// Deletes a CloudFront function.
+  ///
+  /// You cannot delete a function if it’s associated with a cache behavior.
+  /// First, update your distributions to remove the function association from
+  /// all cache behaviors, then delete the function.
+  ///
+  /// To delete a function, you must provide the function’s name and version
+  /// (<code>ETag</code> value). To get these values, you can use
+  /// <code>ListFunctions</code> and <code>DescribeFunction</code>.
+  ///
+  /// May throw [InvalidIfMatchVersion].
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [FunctionInUse].
+  /// May throw [PreconditionFailed].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [ifMatch] :
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// deleting, which you can get using <code>DescribeFunction</code>.
+  ///
+  /// Parameter [name] :
+  /// The name of the function that you are deleting.
+  Future<void> deleteFunction2020_05_31({
+    required String ifMatch,
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(ifMatch, 'ifMatch');
+    ArgumentError.checkNotNull(name, 'name');
+    final headers = <String, String>{
+      'If-Match': ifMatch.toString(),
+    };
+    await _protocol.send(
+      method: 'DELETE',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}',
+      headers: headers,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
   /// Deletes a key group.
   ///
   /// You cannot delete a key group that is referenced in a cache behavior.
@@ -942,6 +1112,7 @@ class CloudFront {
   ///
   /// May throw [AccessDenied].
   /// May throw [NoSuchDistribution].
+  /// May throw [UnsupportedOperation].
   ///
   /// Parameter [distributionId] :
   /// The ID of the distribution that you are disabling metrics for.
@@ -1151,6 +1322,44 @@ class CloudFront {
           '/2020-05-31/streaming-distribution/${Uri.encodeComponent(id)}',
       headers: headers,
       exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Gets configuration information and metadata about a CloudFront function,
+  /// but not the function’s code. To get a function’s code, use
+  /// <code>GetFunction</code>.
+  ///
+  /// To get configuration information and metadata about a function, you must
+  /// provide the function’s name and stage. To get these values, you can use
+  /// <code>ListFunctions</code>.
+  ///
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [name] :
+  /// The name of the function that you are getting information about.
+  ///
+  /// Parameter [stage] :
+  /// The function’s stage, either <code>DEVELOPMENT</code> or
+  /// <code>LIVE</code>.
+  Future<DescribeFunctionResult> describeFunction2020_05_31({
+    required String name,
+    FunctionStage? stage,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    final $query = <String, List<String>>{
+      if (stage != null) 'Stage': [stage.toValue()],
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'GET',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}/describe',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return DescribeFunctionResult(
+      functionSummary: FunctionSummary.fromXml($elem),
+      eTag: _s.extractHeaderStringValue($result.headers, 'ETag'),
     );
   }
 
@@ -1433,6 +1642,42 @@ class CloudFront {
     );
   }
 
+  /// Gets the code of a CloudFront function. To get configuration information
+  /// and metadata about a function, use <code>DescribeFunction</code>.
+  ///
+  /// To get a function’s code, you must provide the function’s name and stage.
+  /// To get these values, you can use <code>ListFunctions</code>.
+  ///
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [name] :
+  /// The name of the function whose code you are getting.
+  ///
+  /// Parameter [stage] :
+  /// The function’s stage, either <code>DEVELOPMENT</code> or
+  /// <code>LIVE</code>.
+  Future<GetFunctionResult> getFunction2020_05_31({
+    required String name,
+    FunctionStage? stage,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    final $query = <String, List<String>>{
+      if (stage != null) 'Stage': [stage.toValue()],
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'GET',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetFunctionResult(
+      functionCode: await $result.stream.toBytes(),
+      contentType: _s.extractHeaderStringValue($result.headers, 'Content-Type'),
+      eTag: _s.extractHeaderStringValue($result.headers, 'ETag'),
+    );
+  }
+
   /// Get the information about an invalidation.
   ///
   /// May throw [NoSuchInvalidation].
@@ -1529,6 +1774,7 @@ class CloudFront {
   ///
   /// May throw [AccessDenied].
   /// May throw [NoSuchDistribution].
+  /// May throw [UnsupportedOperation].
   ///
   /// Parameter [distributionId] :
   /// The ID of the distribution that you are getting metrics information for.
@@ -1763,7 +2009,8 @@ class CloudFront {
   /// Gets a list of cache policies.
   ///
   /// You can optionally apply a filter to return only the managed policies
-  /// created by AWS, or only the custom policies created in your AWS account.
+  /// created by Amazon Web Services, or only the custom policies created in
+  /// your account.
   ///
   /// You can optionally specify the maximum number of items to receive in the
   /// response. If the total number of items in the list exceeds the maximum
@@ -1792,10 +2039,11 @@ class CloudFront {
   ///
   /// <ul>
   /// <li>
-  /// <code>managed</code> – Returns only the managed policies created by AWS.
+  /// <code>managed</code> – Returns only the managed policies created by Amazon
+  /// Web Services.
   /// </li>
   /// <li>
-  /// <code>custom</code> – Returns only the custom policies created in your AWS
+  /// <code>custom</code> – Returns only the custom policies created in your
   /// account.
   /// </li>
   /// </ul>
@@ -1855,6 +2103,104 @@ class CloudFront {
     return ListCloudFrontOriginAccessIdentitiesResult(
       cloudFrontOriginAccessIdentityList:
           CloudFrontOriginAccessIdentityList.fromXml($elem),
+    );
+  }
+
+  /// Gets a list of aliases (also called CNAMEs or alternate domain names) that
+  /// conflict or overlap with the provided alias, and the associated CloudFront
+  /// distributions and Amazon Web Services accounts for each conflicting alias.
+  /// In the returned list, the distribution and account IDs are partially
+  /// hidden, which allows you to identify the distributions and accounts that
+  /// you own, but helps to protect the information of ones that you don’t own.
+  ///
+  /// Use this operation to find aliases that are in use in CloudFront that
+  /// conflict or overlap with the provided alias. For example, if you provide
+  /// <code>www.example.com</code> as input, the returned list can include
+  /// <code>www.example.com</code> and the overlapping wildcard alternate domain
+  /// name (<code>*.example.com</code>), if they exist. If you provide
+  /// <code>*.example.com</code> as input, the returned list can include
+  /// <code>*.example.com</code> and any alternate domain names covered by that
+  /// wildcard (for example, <code>www.example.com</code>,
+  /// <code>test.example.com</code>, <code>dev.example.com</code>, and so on),
+  /// if they exist.
+  ///
+  /// To list conflicting aliases, you provide the alias to search and the ID of
+  /// a distribution in your account that has an attached SSL/TLS certificate
+  /// that includes the provided alias. For more information, including how to
+  /// set up the distribution and certificate, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move">Moving
+  /// an alternate domain name to a different distribution</a> in the <i>Amazon
+  /// CloudFront Developer Guide</i>.
+  ///
+  /// You can optionally specify the maximum number of items to receive in the
+  /// response. If the total number of items in the list exceeds the maximum
+  /// that you specify, or the default maximum, the response is paginated. To
+  /// get the next page of items, send a subsequent request that specifies the
+  /// <code>NextMarker</code> value from the current response as the
+  /// <code>Marker</code> value in the subsequent request.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [NoSuchDistribution].
+  ///
+  /// Parameter [alias] :
+  /// The alias (also called a CNAME) to search for conflicting aliases.
+  ///
+  /// Parameter [distributionId] :
+  /// The ID of a distribution in your account that has an attached SSL/TLS
+  /// certificate that includes the provided alias.
+  ///
+  /// Parameter [marker] :
+  /// Use this field when paginating results to indicate where to begin in the
+  /// list of conflicting aliases. The response includes conflicting aliases in
+  /// the list that occur after the marker. To get the next page of the list,
+  /// set this field’s value to the value of <code>NextMarker</code> from the
+  /// current page’s response.
+  ///
+  /// Parameter [maxItems] :
+  /// The maximum number of conflicting aliases that you want in the response.
+  Future<ListConflictingAliasesResult> listConflictingAliases2020_05_31({
+    required String alias,
+    required String distributionId,
+    String? marker,
+    int? maxItems,
+  }) async {
+    ArgumentError.checkNotNull(alias, 'alias');
+    _s.validateStringLength(
+      'alias',
+      alias,
+      0,
+      253,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(distributionId, 'distributionId');
+    _s.validateStringLength(
+      'distributionId',
+      distributionId,
+      0,
+      25,
+      isRequired: true,
+    );
+    _s.validateNumRange(
+      'maxItems',
+      maxItems,
+      0,
+      100,
+    );
+    final $query = <String, List<String>>{
+      'Alias': [alias],
+      'DistributionId': [distributionId],
+      if (marker != null) 'Marker': [marker],
+      if (maxItems != null) 'MaxItems': [maxItems.toString()],
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'GET',
+      requestUri: '/2020-05-31/conflicting-alias',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return ListConflictingAliasesResult(
+      conflictingAliasesList: ConflictingAliasesList.fromXml($elem),
     );
   }
 
@@ -2107,14 +2453,13 @@ class CloudFront {
     );
   }
 
-  /// List the distributions that are associated with a specified AWS WAF web
-  /// ACL.
+  /// List the distributions that are associated with a specified WAF web ACL.
   ///
   /// May throw [InvalidArgument].
   /// May throw [InvalidWebACLId].
   ///
   /// Parameter [webACLId] :
-  /// The ID of the AWS WAF web ACL that you want to list the associated
+  /// The ID of the WAF web ACL that you want to list the associated
   /// distributions. If you specify "null" for the ID, the request returns a
   /// list of the distributions that aren't associated with a web ACL.
   ///
@@ -2227,6 +2572,55 @@ class CloudFront {
     );
   }
 
+  /// Gets a list of all CloudFront functions in your account.
+  ///
+  /// You can optionally apply a filter to return only the functions that are in
+  /// the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.
+  ///
+  /// You can optionally specify the maximum number of items to receive in the
+  /// response. If the total number of items in the list exceeds the maximum
+  /// that you specify, or the default maximum, the response is paginated. To
+  /// get the next page of items, send a subsequent request that specifies the
+  /// <code>NextMarker</code> value from the current response as the
+  /// <code>Marker</code> value in the subsequent request.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [marker] :
+  /// Use this field when paginating results to indicate where to begin in your
+  /// list of functions. The response includes functions in the list that occur
+  /// after the marker. To get the next page of the list, set this field’s value
+  /// to the value of <code>NextMarker</code> from the current page’s response.
+  ///
+  /// Parameter [maxItems] :
+  /// The maximum number of functions that you want in the response.
+  ///
+  /// Parameter [stage] :
+  /// An optional filter to return only the functions that are in the specified
+  /// stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.
+  Future<ListFunctionsResult> listFunctions2020_05_31({
+    String? marker,
+    String? maxItems,
+    FunctionStage? stage,
+  }) async {
+    final $query = <String, List<String>>{
+      if (marker != null) 'Marker': [marker],
+      if (maxItems != null) 'MaxItems': [maxItems],
+      if (stage != null) 'Stage': [stage.toValue()],
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'GET',
+      requestUri: '/2020-05-31/function',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return ListFunctionsResult(
+      functionList: FunctionList.fromXml($elem),
+    );
+  }
+
   /// Lists invalidation batches.
   ///
   /// May throw [InvalidArgument].
@@ -2314,7 +2708,8 @@ class CloudFront {
   /// Gets a list of origin request policies.
   ///
   /// You can optionally apply a filter to return only the managed policies
-  /// created by AWS, or only the custom policies created in your AWS account.
+  /// created by Amazon Web Services, or only the custom policies created in
+  /// your account.
   ///
   /// You can optionally specify the maximum number of items to receive in the
   /// response. If the total number of items in the list exceeds the maximum
@@ -2344,10 +2739,11 @@ class CloudFront {
   ///
   /// <ul>
   /// <li>
-  /// <code>managed</code> – Returns only the managed policies created by AWS.
+  /// <code>managed</code> – Returns only the managed policies created by Amazon
+  /// Web Services.
   /// </li>
   /// <li>
-  /// <code>custom</code> – Returns only the custom policies created in your AWS
+  /// <code>custom</code> – Returns only the custom policies created in your
   /// account.
   /// </li>
   /// </ul>
@@ -2494,12 +2890,6 @@ class CloudFront {
     required String resource,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws(-cn)?:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Resource': [resource],
     };
@@ -2512,6 +2902,52 @@ class CloudFront {
     final $elem = await _s.xmlFromResponse($result);
     return ListTagsForResourceResult(
       tags: Tags.fromXml($elem),
+    );
+  }
+
+  /// Publishes a CloudFront function by copying the function code from the
+  /// <code>DEVELOPMENT</code> stage to <code>LIVE</code>. This automatically
+  /// updates all cache behaviors that are using this function to use the newly
+  /// published copy in the <code>LIVE</code> stage.
+  ///
+  /// When a function is published to the <code>LIVE</code> stage, you can
+  /// attach the function to a distribution’s cache behavior, using the
+  /// function’s Amazon Resource Name (ARN).
+  ///
+  /// To publish a function, you must provide the function’s name and version
+  /// (<code>ETag</code> value). To get these values, you can use
+  /// <code>ListFunctions</code> and <code>DescribeFunction</code>.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [InvalidIfMatchVersion].
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [PreconditionFailed].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [ifMatch] :
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// publishing, which you can get using <code>DescribeFunction</code>.
+  ///
+  /// Parameter [name] :
+  /// The name of the function that you are publishing.
+  Future<PublishFunctionResult> publishFunction2020_05_31({
+    required String ifMatch,
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(ifMatch, 'ifMatch');
+    ArgumentError.checkNotNull(name, 'name');
+    final headers = <String, String>{
+      'If-Match': ifMatch.toString(),
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'POST',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}/publish',
+      headers: headers,
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return PublishFunctionResult(
+      functionSummary: FunctionSummary.fromXml($elem),
     );
   }
 
@@ -2532,12 +2968,6 @@ class CloudFront {
     required Tags tags,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws(-cn)?:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'Resource': [resource],
@@ -2548,6 +2978,81 @@ class CloudFront {
       queryParams: $query,
       payload: tags.toXml('Tags'),
       exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Tests a CloudFront function.
+  ///
+  /// To test a function, you provide an <i>event object</i> that represents an
+  /// HTTP request or response that your CloudFront distribution could receive
+  /// in production. CloudFront runs the function, passing it the event object
+  /// that you provided, and returns the function’s result (the modified event
+  /// object) in the response. The response also contains function logs and
+  /// error messages, if any exist. For more information about testing
+  /// functions, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function">Testing
+  /// functions</a> in the <i>Amazon CloudFront Developer Guide</i>.
+  ///
+  /// To test a function, you provide the function’s name and version
+  /// (<code>ETag</code> value) along with the event object. To get the
+  /// function’s name and version, you can use <code>ListFunctions</code> and
+  /// <code>DescribeFunction</code>.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [InvalidIfMatchVersion].
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [TestFunctionFailed].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [eventObject] :
+  /// The event object to test the function with. For more information about the
+  /// structure of the event object, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function">Testing
+  /// functions</a> in the <i>Amazon CloudFront Developer Guide</i>.
+  ///
+  /// Parameter [ifMatch] :
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// testing, which you can get using <code>DescribeFunction</code>.
+  ///
+  /// Parameter [name] :
+  /// The name of the function that you are testing.
+  ///
+  /// Parameter [stage] :
+  /// The stage of the function that you are testing, either
+  /// <code>DEVELOPMENT</code> or <code>LIVE</code>.
+  Future<TestFunctionResult> testFunction2020_05_31({
+    required Uint8List eventObject,
+    required String ifMatch,
+    required String name,
+    FunctionStage? stage,
+  }) async {
+    ArgumentError.checkNotNull(eventObject, 'eventObject');
+    ArgumentError.checkNotNull(ifMatch, 'ifMatch');
+    ArgumentError.checkNotNull(name, 'name');
+    final headers = <String, String>{
+      'If-Match': ifMatch.toString(),
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'POST',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}/test',
+      headers: headers,
+      payload: TestFunctionRequest(
+              eventObject: eventObject,
+              ifMatch: ifMatch,
+              name: name,
+              stage: stage)
+          .toXml(
+        'TestFunctionRequest',
+        attributes: [
+          _s.XmlAttribute(_s.XmlName('xmlns'),
+              'http://cloudfront.amazonaws.com/doc/2020-05-31/'),
+        ],
+      ),
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return TestFunctionResult(
+      testResult: TestResult.fromXml($elem),
     );
   }
 
@@ -2568,12 +3073,6 @@ class CloudFront {
     required TagKeys tagKeys,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringPattern(
-      'resource',
-      resource,
-      r'''arn:aws(-cn)?:cloudfront::[0-9]+:.*''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'Resource': [resource],
@@ -2834,6 +3333,9 @@ class CloudFront {
   /// May throw [TooManyDistributionsWithSingleFunctionARN].
   /// May throw [TooManyLambdaFunctionAssociations].
   /// May throw [InvalidLambdaFunctionAssociation].
+  /// May throw [TooManyDistributionsWithFunctionAssociations].
+  /// May throw [TooManyFunctionAssociations].
+  /// May throw [InvalidFunctionAssociation].
   /// May throw [InvalidOriginReadTimeout].
   /// May throw [InvalidOriginKeepaliveTimeout].
   /// May throw [NoSuchFieldLevelEncryptionConfig].
@@ -2846,6 +3348,8 @@ class CloudFront {
   /// May throw [TooManyDistributionsAssociatedToKeyGroup].
   /// May throw [TooManyKeyGroupsAssociatedToDistribution].
   /// May throw [TrustedKeyGroupDoesNotExist].
+  /// May throw [NoSuchRealtimeLogConfig].
+  /// May throw [RealtimeLogConfigOwnerMismatch].
   ///
   /// Parameter [distributionConfig] :
   /// The distribution's configuration information.
@@ -2983,6 +3487,77 @@ class CloudFront {
     return UpdateFieldLevelEncryptionProfileResult(
       fieldLevelEncryptionProfile: FieldLevelEncryptionProfile.fromXml($elem),
       eTag: _s.extractHeaderStringValue($result.headers, 'ETag'),
+    );
+  }
+
+  /// Updates a CloudFront function.
+  ///
+  /// You can update a function’s code or the comment that describes the
+  /// function. You cannot update a function’s name.
+  ///
+  /// To update a function, you provide the function’s name and version
+  /// (<code>ETag</code> value) along with the updated function code. To get the
+  /// name and version, you can use <code>ListFunctions</code> and
+  /// <code>DescribeFunction</code>.
+  ///
+  /// May throw [InvalidArgument].
+  /// May throw [InvalidIfMatchVersion].
+  /// May throw [NoSuchFunctionExists].
+  /// May throw [PreconditionFailed].
+  /// May throw [FunctionSizeLimitExceeded].
+  /// May throw [UnsupportedOperation].
+  ///
+  /// Parameter [functionCode] :
+  /// The function code. For more information about writing a CloudFront
+  /// function, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html">Writing
+  /// function code for CloudFront Functions</a> in the <i>Amazon CloudFront
+  /// Developer Guide</i>.
+  ///
+  /// Parameter [functionConfig] :
+  /// Configuration information about the function.
+  ///
+  /// Parameter [ifMatch] :
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// updating, which you can get using <code>DescribeFunction</code>.
+  ///
+  /// Parameter [name] :
+  /// The name of the function that you are updating.
+  Future<UpdateFunctionResult> updateFunction2020_05_31({
+    required Uint8List functionCode,
+    required FunctionConfig functionConfig,
+    required String ifMatch,
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(functionCode, 'functionCode');
+    ArgumentError.checkNotNull(functionConfig, 'functionConfig');
+    ArgumentError.checkNotNull(ifMatch, 'ifMatch');
+    ArgumentError.checkNotNull(name, 'name');
+    final headers = <String, String>{
+      'If-Match': ifMatch.toString(),
+    };
+    final $result = await _protocol.sendRaw(
+      method: 'PUT',
+      requestUri: '/2020-05-31/function/${Uri.encodeComponent(name)}',
+      headers: headers,
+      payload: UpdateFunctionRequest(
+              functionCode: functionCode,
+              functionConfig: functionConfig,
+              ifMatch: ifMatch,
+              name: name)
+          .toXml(
+        'UpdateFunctionRequest',
+        attributes: [
+          _s.XmlAttribute(_s.XmlName('xmlns'),
+              'http://cloudfront.amazonaws.com/doc/2020-05-31/'),
+        ],
+      ),
+      exceptionFnMap: _exceptionFns,
+    );
+    final $elem = await _s.xmlFromResponse($result);
+    return UpdateFunctionResult(
+      functionSummary: FunctionSummary.fromXml($elem),
+      eTag: _s.extractHeaderStringValue($result.headers, 'ETtag'),
     );
   }
 
@@ -3326,19 +3901,19 @@ class ActiveTrustedKeyGroups {
   }
 }
 
-/// A list of AWS accounts and the active CloudFront key pairs in each account
-/// that CloudFront can use to verify the signatures of signed URLs and signed
+/// A list of accounts and the active CloudFront key pairs in each account that
+/// CloudFront can use to verify the signatures of signed URLs and signed
 /// cookies.
 class ActiveTrustedSigners {
-  /// This field is <code>true</code> if any of the AWS accounts in the list have
+  /// This field is <code>true</code> if any of the accounts in the list have
   /// active CloudFront key pairs that CloudFront can use to verify the signatures
   /// of signed URLs and signed cookies. If not, this field is <code>false</code>.
   final bool enabled;
 
-  /// The number of AWS accounts in the list.
+  /// The number of accounts in the list.
   final int quantity;
 
-  /// A list of AWS accounts and the identifiers of active CloudFront key pairs in
+  /// A list of accounts and the identifiers of active CloudFront key pairs in
   /// each account that CloudFront can use to verify the signatures of signed URLs
   /// and signed cookies.
   final List<Signer>? items;
@@ -3358,17 +3933,17 @@ class ActiveTrustedSigners {
   }
 }
 
-/// AWS services in China customers must file for an Internet Content Provider
-/// (ICP) recordal if they want to serve content publicly on an alternate domain
-/// name, also known as a CNAME, that they've added to CloudFront.
-/// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
-/// distributions. The status is returned in the CloudFront response; you can't
-/// configure it yourself.
+/// Amazon Web Services services in China customers must file for an Internet
+/// Content Provider (ICP) recordal if they want to serve content publicly on an
+/// alternate domain name, also known as a CNAME, that they've added to
+/// CloudFront. AliasICPRecordal provides the ICP recordal status for CNAMEs
+/// associated with distributions. The status is returned in the CloudFront
+/// response; you can't configure it yourself.
 ///
 /// For more information about ICP recordals, see <a
 /// href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html">
-/// Signup, Accounts, and Credentials</a> in <i>Getting Started with AWS
-/// services in China</i>.
+/// Signup, Accounts, and Credentials</a> in <i>Getting Started with Amazon Web
+/// Services services in China</i>.
 class AliasICPRecordal {
   /// A domain name associated with a distribution.
   final String? cname;
@@ -3630,6 +4205,10 @@ class CacheBehavior {
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html">Using
   /// the managed cache policies</a> in the <i>Amazon CloudFront Developer
   /// Guide</i>.
+  ///
+  /// A <code>CacheBehavior</code> must include either a
+  /// <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend
+  /// that you use a <code>CachePolicyId</code>.
   final String? cachePolicyId;
 
   /// Whether you want CloudFront to automatically compress certain files for this
@@ -3685,12 +4264,21 @@ class CacheBehavior {
   /// the managed origin request policies</a> in the <i>Amazon CloudFront
   /// Developer Guide</i>.
   ///
+  /// A <code>CacheBehavior</code> must include either a
+  /// <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend
+  /// that you use a <code>CachePolicyId</code>.
+  ///
   /// A complex type that specifies how CloudFront handles query strings, cookies,
   /// and HTTP headers.
   final ForwardedValues? forwardedValues;
 
-  /// A complex type that contains zero or more Lambda function associations for a
-  /// cache behavior.
+  /// A list of CloudFront functions that are associated with this cache behavior.
+  /// CloudFront functions must be published to the <code>LIVE</code> stage to
+  /// associate them with a cache behavior.
+  final FunctionAssociations? functionAssociations;
+
+  /// A complex type that contains zero or more Lambda@Edge function associations
+  /// for a cache behavior.
   final LambdaFunctionAssociations? lambdaFunctionAssociations;
 
   /// This field is deprecated. We recommend that you use the <code>MaxTTL</code>
@@ -3774,13 +4362,13 @@ class CacheBehavior {
   /// We recommend using <code>TrustedKeyGroups</code> instead of
   /// <code>TrustedSigners</code>.
   /// </important>
-  /// A list of AWS account IDs whose public keys CloudFront can use to validate
+  /// A list of account IDs whose public keys CloudFront can use to validate
   /// signed URLs or signed cookies.
   ///
   /// When a cache behavior contains trusted signers, CloudFront requires signed
   /// URLs or signed cookies for all requests that match the cache behavior. The
   /// URLs or cookies must be signed with the private key of a CloudFront key pair
-  /// in the trusted signer’s AWS account. The signed URL or cookie contains
+  /// in the trusted signer’s account. The signed URL or cookie contains
   /// information about which public key CloudFront should use to verify the
   /// signature. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html">Serving
@@ -3797,6 +4385,7 @@ class CacheBehavior {
     this.defaultTTL,
     this.fieldLevelEncryptionId,
     this.forwardedValues,
+    this.functionAssociations,
     this.lambdaFunctionAssociations,
     this.maxTTL,
     this.minTTL,
@@ -3824,6 +4413,9 @@ class CacheBehavior {
       forwardedValues: _s
           .extractXmlChild(elem, 'ForwardedValues')
           ?.let((e) => ForwardedValues.fromXml(e)),
+      functionAssociations: _s
+          .extractXmlChild(elem, 'FunctionAssociations')
+          ?.let((e) => FunctionAssociations.fromXml(e)),
       lambdaFunctionAssociations: _s
           .extractXmlChild(elem, 'LambdaFunctionAssociations')
           ?.let((e) => LambdaFunctionAssociations.fromXml(e)),
@@ -3853,6 +4445,7 @@ class CacheBehavior {
     final defaultTTL = this.defaultTTL;
     final fieldLevelEncryptionId = this.fieldLevelEncryptionId;
     final forwardedValues = this.forwardedValues;
+    final functionAssociations = this.functionAssociations;
     final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
     final maxTTL = this.maxTTL;
     final minTTL = this.minTTL;
@@ -3874,6 +4467,8 @@ class CacheBehavior {
       if (compress != null) _s.encodeXmlBoolValue('Compress', compress),
       if (lambdaFunctionAssociations != null)
         lambdaFunctionAssociations.toXml('LambdaFunctionAssociations'),
+      if (functionAssociations != null)
+        functionAssociations.toXml('FunctionAssociations'),
       if (fieldLevelEncryptionId != null)
         _s.encodeXmlStringValue(
             'FieldLevelEncryptionId', fieldLevelEncryptionId),
@@ -4024,7 +4619,8 @@ class CachePolicyConfig {
   /// A unique name to identify the cache policy.
   final String name;
 
-  /// A comment to describe the cache policy.
+  /// A comment to describe the cache policy. The comment cannot be longer than
+  /// 128 characters.
   final String? comment;
 
   /// The default amount of time, in seconds, that you want objects to stay in the
@@ -4465,8 +5061,8 @@ class CachePolicySummary {
   /// The cache policy.
   final CachePolicy cachePolicy;
 
-  /// The type of cache policy, either <code>managed</code> (created by AWS) or
-  /// <code>custom</code> (created in this AWS account).
+  /// The type of cache policy, either <code>managed</code> (created by Amazon Web
+  /// Services) or <code>custom</code> (created in this account).
   final CachePolicyType type;
 
   CachePolicySummary({
@@ -4658,7 +5254,8 @@ class CloudFrontOriginAccessIdentityConfig {
   /// <code>CloudFrontOriginAccessIdentityAlreadyExists</code> error.
   final String callerReference;
 
-  /// Any comments you want to include about the origin access identity.
+  /// A comment to describe the origin access identity. The comment cannot be
+  /// longer than 128 characters.
   final String comment;
 
   CloudFrontOriginAccessIdentityConfig({
@@ -4718,12 +5315,12 @@ class CloudFrontOriginAccessIdentityList {
   final int maxItems;
 
   /// The number of CloudFront origin access identities that were created by the
-  /// current AWS account.
+  /// current account.
   final int quantity;
 
   /// A complex type that contains one
   /// <code>CloudFrontOriginAccessIdentitySummary</code> element for each origin
-  /// access identity that was created by the current AWS account.
+  /// access identity that was created by the current account.
   final List<CloudFrontOriginAccessIdentitySummary>? items;
 
   /// If <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -4780,6 +5377,77 @@ class CloudFrontOriginAccessIdentitySummary {
       comment: _s.extractXmlStringValue(elem, 'Comment')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       s3CanonicalUserId: _s.extractXmlStringValue(elem, 'S3CanonicalUserId')!,
+    );
+  }
+}
+
+/// An alias (also called a CNAME) and the CloudFront distribution and Amazon
+/// Web Services account ID that it’s associated with. The distribution and
+/// account IDs are partially hidden, which allows you to identify the
+/// distributions and accounts that you own, but helps to protect the
+/// information of ones that you don’t own.
+class ConflictingAlias {
+  /// The (partially hidden) ID of the Amazon Web Services account that owns the
+  /// distribution that’s associated with the alias.
+  final String? accountId;
+
+  /// An alias (also called a CNAME).
+  final String? alias;
+
+  /// The (partially hidden) ID of the CloudFront distribution associated with the
+  /// alias.
+  final String? distributionId;
+
+  ConflictingAlias({
+    this.accountId,
+    this.alias,
+    this.distributionId,
+  });
+  factory ConflictingAlias.fromXml(_s.XmlElement elem) {
+    return ConflictingAlias(
+      accountId: _s.extractXmlStringValue(elem, 'AccountId'),
+      alias: _s.extractXmlStringValue(elem, 'Alias'),
+      distributionId: _s.extractXmlStringValue(elem, 'DistributionId'),
+    );
+  }
+}
+
+/// A list of aliases (also called CNAMEs) and the CloudFront distributions and
+/// Amazon Web Services accounts that they are associated with. In the list, the
+/// distribution and account IDs are partially hidden, which allows you to
+/// identify the distributions and accounts that you own, but helps to protect
+/// the information of ones that you don’t own.
+class ConflictingAliasesList {
+  /// Contains the conflicting aliases in the list.
+  final List<ConflictingAlias>? items;
+
+  /// The maximum number of conflicting aliases requested.
+  final int? maxItems;
+
+  /// If there are more items in the list than are in this response, this element
+  /// is present. It contains the value that you should use in the
+  /// <code>Marker</code> field of a subsequent request to continue listing
+  /// conflicting aliases where you left off.
+  final String? nextMarker;
+
+  /// The number of conflicting aliases returned in the response.
+  final int? quantity;
+
+  ConflictingAliasesList({
+    this.items,
+    this.maxItems,
+    this.nextMarker,
+    this.quantity,
+  });
+  factory ConflictingAliasesList.fromXml(_s.XmlElement elem) {
+    return ConflictingAliasesList(
+      items: _s.extractXmlChild(elem, 'Items')?.let((elem) => elem
+          .findElements('ConflictingAlias')
+          .map((c) => ConflictingAlias.fromXml(c))
+          .toList()),
+      maxItems: _s.extractXmlIntValue(elem, 'MaxItems'),
+      nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
+      quantity: _s.extractXmlIntValue(elem, 'Quantity'),
     );
   }
 }
@@ -5025,7 +5693,7 @@ class CookiePreference {
   /// For the current limit on the number of cookie names that you can whitelist
   /// for each cache behavior, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/xrefaws_service_limits.html#limits_cloudfront">
-  /// CloudFront Limits</a> in the <i>AWS General Reference</i>.
+  /// CloudFront Limits</a> in the <i>Amazon Web Services General Reference</i>.
   final CookieNames? whitelistedNames;
 
   CookiePreference({
@@ -5162,6 +5830,64 @@ class CreateFieldLevelEncryptionProfileResult {
   CreateFieldLevelEncryptionProfileResult({
     this.eTag,
     this.fieldLevelEncryptionProfile,
+    this.location,
+  });
+}
+
+class CreateFunctionRequest {
+  /// The function code. For more information about writing a CloudFront function,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html">Writing
+  /// function code for CloudFront Functions</a> in the <i>Amazon CloudFront
+  /// Developer Guide</i>.
+  final Uint8List functionCode;
+
+  /// Configuration information about the function, including an optional comment
+  /// and the function’s runtime.
+  final FunctionConfig functionConfig;
+
+  /// A name to identify the function.
+  final String name;
+
+  CreateFunctionRequest({
+    required this.functionCode,
+    required this.functionConfig,
+    required this.name,
+  });
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final functionCode = this.functionCode;
+    final functionConfig = this.functionConfig;
+    final name = this.name;
+    final $children = <_s.XmlNode>[
+      _s.encodeXmlStringValue('Name', name),
+      functionConfig.toXml('FunctionConfig'),
+      _s.encodeXmlUint8ListValue('FunctionCode', functionCode),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+class CreateFunctionResult {
+  /// The version identifier for the current version of the CloudFront function.
+  final String? eTag;
+
+  /// Contains configuration information and metadata about a CloudFront function.
+  final FunctionSummary? functionSummary;
+
+  /// The URL of the CloudFront function. Use the URL to manage the function with
+  /// the CloudFront API.
+  final String? location;
+
+  CreateFunctionResult({
+    this.eTag,
+    this.functionSummary,
     this.location,
   });
 }
@@ -5746,6 +6472,10 @@ class DefaultCacheBehavior {
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html">Using
   /// the managed cache policies</a> in the <i>Amazon CloudFront Developer
   /// Guide</i>.
+  ///
+  /// A <code>DefaultCacheBehavior</code> must include either a
+  /// <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend
+  /// that you use a <code>CachePolicyId</code>.
   final String? cachePolicyId;
 
   /// Whether you want CloudFront to automatically compress certain files for this
@@ -5801,12 +6531,21 @@ class DefaultCacheBehavior {
   /// the managed origin request policies</a> in the <i>Amazon CloudFront
   /// Developer Guide</i>.
   ///
+  /// A <code>DefaultCacheBehavior</code> must include either a
+  /// <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend
+  /// that you use a <code>CachePolicyId</code>.
+  ///
   /// A complex type that specifies how CloudFront handles query strings, cookies,
   /// and HTTP headers.
   final ForwardedValues? forwardedValues;
 
-  /// A complex type that contains zero or more Lambda function associations for a
-  /// cache behavior.
+  /// A list of CloudFront functions that are associated with this cache behavior.
+  /// CloudFront functions must be published to the <code>LIVE</code> stage to
+  /// associate them with a cache behavior.
+  final FunctionAssociations? functionAssociations;
+
+  /// A complex type that contains zero or more Lambda@Edge function associations
+  /// for a cache behavior.
   final LambdaFunctionAssociations? lambdaFunctionAssociations;
 
   /// This field is deprecated. We recommend that you use the <code>MaxTTL</code>
@@ -5890,15 +6629,15 @@ class DefaultCacheBehavior {
   /// We recommend using <code>TrustedKeyGroups</code> instead of
   /// <code>TrustedSigners</code>.
   /// </important>
-  /// A list of AWS account IDs whose public keys CloudFront can use to validate
+  /// A list of account IDs whose public keys CloudFront can use to validate
   /// signed URLs or signed cookies.
   ///
   /// When a cache behavior contains trusted signers, CloudFront requires signed
   /// URLs or signed cookies for all requests that match the cache behavior. The
   /// URLs or cookies must be signed with the private key of a CloudFront key pair
-  /// in a trusted signer’s AWS account. The signed URL or cookie contains
-  /// information about which public key CloudFront should use to verify the
-  /// signature. For more information, see <a
+  /// in a trusted signer’s account. The signed URL or cookie contains information
+  /// about which public key CloudFront should use to verify the signature. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html">Serving
   /// private content</a> in the <i>Amazon CloudFront Developer Guide</i>.
   final TrustedSigners? trustedSigners;
@@ -5912,6 +6651,7 @@ class DefaultCacheBehavior {
     this.defaultTTL,
     this.fieldLevelEncryptionId,
     this.forwardedValues,
+    this.functionAssociations,
     this.lambdaFunctionAssociations,
     this.maxTTL,
     this.minTTL,
@@ -5938,6 +6678,9 @@ class DefaultCacheBehavior {
       forwardedValues: _s
           .extractXmlChild(elem, 'ForwardedValues')
           ?.let((e) => ForwardedValues.fromXml(e)),
+      functionAssociations: _s
+          .extractXmlChild(elem, 'FunctionAssociations')
+          ?.let((e) => FunctionAssociations.fromXml(e)),
       lambdaFunctionAssociations: _s
           .extractXmlChild(elem, 'LambdaFunctionAssociations')
           ?.let((e) => LambdaFunctionAssociations.fromXml(e)),
@@ -5966,6 +6709,7 @@ class DefaultCacheBehavior {
     final defaultTTL = this.defaultTTL;
     final fieldLevelEncryptionId = this.fieldLevelEncryptionId;
     final forwardedValues = this.forwardedValues;
+    final functionAssociations = this.functionAssociations;
     final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
     final maxTTL = this.maxTTL;
     final minTTL = this.minTTL;
@@ -5986,6 +6730,8 @@ class DefaultCacheBehavior {
       if (compress != null) _s.encodeXmlBoolValue('Compress', compress),
       if (lambdaFunctionAssociations != null)
         lambdaFunctionAssociations.toXml('LambdaFunctionAssociations'),
+      if (functionAssociations != null)
+        functionAssociations.toXml('FunctionAssociations'),
       if (fieldLevelEncryptionId != null)
         _s.encodeXmlStringValue(
             'FieldLevelEncryptionId', fieldLevelEncryptionId),
@@ -6049,12 +6795,25 @@ class DeleteRealtimeLogConfigRequest {
   }
 }
 
+class DescribeFunctionResult {
+  /// The version identifier for the current version of the CloudFront function.
+  final String? eTag;
+
+  /// Contains configuration information and metadata about a CloudFront function.
+  final FunctionSummary? functionSummary;
+
+  DescribeFunctionResult({
+    this.eTag,
+    this.functionSummary,
+  });
+}
+
 /// A distribution tells CloudFront where you want content to be delivered from,
 /// and the details about how to track and manage content delivery.
 class Distribution {
   /// The ARN (Amazon Resource Name) for the distribution. For example:
   /// <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>,
-  /// where <code>123456789012</code> is your AWS account ID.
+  /// where <code>123456789012</code> is your account ID.
   final String arn;
 
   /// The current configuration information for the distribution. Send a
@@ -6094,21 +6853,21 @@ class Distribution {
   /// </important>
   /// CloudFront automatically adds this field to the response if you’ve
   /// configured a cache behavior in this distribution to serve private content
-  /// using trusted signers. This field contains a list of AWS account IDs and the
+  /// using trusted signers. This field contains a list of account IDs and the
   /// active CloudFront key pairs in each account that CloudFront can use to
   /// verify the signatures of signed URLs or signed cookies.
   final ActiveTrustedSigners? activeTrustedSigners;
 
-  /// AWS services in China customers must file for an Internet Content Provider
-  /// (ICP) recordal if they want to serve content publicly on an alternate domain
-  /// name, also known as a CNAME, that they've added to CloudFront.
-  /// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
-  /// distributions.
+  /// Amazon Web Services services in China customers must file for an Internet
+  /// Content Provider (ICP) recordal if they want to serve content publicly on an
+  /// alternate domain name, also known as a CNAME, that they've added to
+  /// CloudFront. AliasICPRecordal provides the ICP recordal status for CNAMEs
+  /// associated with distributions.
   ///
   /// For more information about ICP recordals, see <a
   /// href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html">
-  /// Signup, Accounts, and Credentials</a> in <i>Getting Started with AWS
-  /// services in China</i>.
+  /// Signup, Accounts, and Credentials</a> in <i>Getting Started with Amazon Web
+  /// Services services in China</i>.
   final List<AliasICPRecordal>? aliasICPRecordals;
 
   Distribution({
@@ -6163,16 +6922,8 @@ class DistributionConfig {
   /// <code>DistributionAlreadyExists</code> error.
   final String callerReference;
 
-  /// Any comments you want to include about the distribution.
-  ///
-  /// If you don't want to specify a comment, include an empty
-  /// <code>Comment</code> element.
-  ///
-  /// To delete an existing comment, update the distribution configuration and
-  /// include an empty <code>Comment</code> element.
-  ///
-  /// To add or change a comment, update the distribution configuration and
-  /// specify the new comment.
+  /// An optional comment to describe the distribution. The comment cannot be
+  /// longer than 128 characters.
   final String comment;
 
   /// A complex type that describes the default cache behavior if you don't
@@ -6269,9 +7020,10 @@ class DistributionConfig {
   /// a Signed URL Using a Custom Policy</a> in the <i>Amazon CloudFront Developer
   /// Guide</i>.
   ///
-  /// If you're using an Amazon Route 53 alias resource record set to route
-  /// traffic to your CloudFront distribution, you need to create a second alias
-  /// resource record set when both of the following are true:
+  /// If you're using an Route 53 Amazon Web Services Integration alias resource
+  /// record set to route traffic to your CloudFront distribution, you need to
+  /// create a second alias resource record set when both of the following are
+  /// true:
   ///
   /// <ul>
   /// <li>
@@ -6284,12 +7036,13 @@ class DistributionConfig {
   /// For more information, see <a
   /// href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html">Routing
   /// Traffic to an Amazon CloudFront Web Distribution by Using Your Domain
-  /// Name</a> in the <i>Amazon Route 53 Developer Guide</i>.
+  /// Name</a> in the <i>Route 53 Amazon Web Services Integration Developer
+  /// Guide</i>.
   ///
-  /// If you created a CNAME resource record set, either with Amazon Route 53 or
-  /// with another DNS service, you don't need to make any changes. A CNAME record
-  /// will route traffic to your distribution regardless of the IP address format
-  /// of the viewer request.
+  /// If you created a CNAME resource record set, either with Route 53 Amazon Web
+  /// Services Integration or with another DNS service, you don't need to make any
+  /// changes. A CNAME record will route traffic to your distribution regardless
+  /// of the IP address format of the viewer request.
   final bool? isIPV6Enabled;
 
   /// A complex type that controls whether access logs are written for the
@@ -6332,23 +7085,23 @@ class DistributionConfig {
   /// communicating with viewers.
   final ViewerCertificate? viewerCertificate;
 
-  /// A unique identifier that specifies the AWS WAF web ACL, if any, to associate
+  /// A unique identifier that specifies the WAF web ACL, if any, to associate
   /// with this distribution. To specify a web ACL created using the latest
-  /// version of AWS WAF, use the ACL ARN, for example
+  /// version of WAF, use the ACL ARN, for example
   /// <code>arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a</code>.
-  /// To specify a web ACL created using AWS WAF Classic, use the ACL ID, for
-  /// example <code>473e64fd-f30b-4765-81a0-62ad96dd167a</code>.
+  /// To specify a web ACL created using WAF Classic, use the ACL ID, for example
+  /// <code>473e64fd-f30b-4765-81a0-62ad96dd167a</code>.
   ///
-  /// AWS WAF is a web application firewall that lets you monitor the HTTP and
-  /// HTTPS requests that are forwarded to CloudFront, and lets you control access
-  /// to your content. Based on conditions that you specify, such as the IP
-  /// addresses that requests originate from or the values of query strings,
-  /// CloudFront responds to requests either with the requested content or with an
-  /// HTTP 403 status code (Forbidden). You can also configure CloudFront to
-  /// return a custom error page when a request is blocked. For more information
-  /// about AWS WAF, see the <a
-  /// href="https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html">AWS
-  /// WAF Developer Guide</a>.
+  /// WAF is a web application firewall that lets you monitor the HTTP and HTTPS
+  /// requests that are forwarded to CloudFront, and lets you control access to
+  /// your content. Based on conditions that you specify, such as the IP addresses
+  /// that requests originate from or the values of query strings, CloudFront
+  /// responds to requests either with the requested content or with an HTTP 403
+  /// status code (Forbidden). You can also configure CloudFront to return a
+  /// custom error page when a request is blocked. For more information about WAF,
+  /// see the <a
+  /// href="https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html">WAF
+  /// Developer Guide</a>.
   final String? webACLId;
 
   DistributionConfig({
@@ -6551,11 +7304,11 @@ class DistributionList {
   /// The value you provided for the <code>MaxItems</code> request parameter.
   final int maxItems;
 
-  /// The number of distributions that were created by the current AWS account.
+  /// The number of distributions that were created by the current account.
   final int quantity;
 
   /// A complex type that contains one <code>DistributionSummary</code> element
-  /// for each distribution that was created by the current AWS account.
+  /// for each distribution that was created by the current account.
   final List<DistributionSummary>? items;
 
   /// If <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -6590,7 +7343,7 @@ class DistributionList {
 class DistributionSummary {
   /// The ARN (Amazon Resource Name) for the distribution. For example:
   /// <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>,
-  /// where <code>123456789012</code> is your AWS account ID.
+  /// where <code>123456789012</code> is your account ID.
   final String arn;
 
   /// A complex type that contains information about CNAMEs (alternate domain
@@ -6662,16 +7415,16 @@ class DistributionSummary {
   /// The Web ACL Id (if any) associated with the distribution.
   final String webACLId;
 
-  /// AWS services in China customers must file for an Internet Content Provider
-  /// (ICP) recordal if they want to serve content publicly on an alternate domain
-  /// name, also known as a CNAME, that they've added to CloudFront.
-  /// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
-  /// distributions.
+  /// Amazon Web Services services in China customers must file for an Internet
+  /// Content Provider (ICP) recordal if they want to serve content publicly on an
+  /// alternate domain name, also known as a CNAME, that they've added to
+  /// CloudFront. AliasICPRecordal provides the ICP recordal status for CNAMEs
+  /// associated with distributions.
   ///
   /// For more information about ICP recordals, see <a
   /// href="https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html">
-  /// Signup, Accounts, and Credentials</a> in <i>Getting Started with AWS
-  /// services in China</i>.
+  /// Signup, Accounts, and Credentials</a> in <i>Getting Started with Amazon Web
+  /// Services services in China</i>.
   final List<AliasICPRecordal>? aliasICPRecordals;
 
   /// A complex type that contains information about origin groups for this
@@ -6953,7 +7706,8 @@ class FieldLevelEncryptionConfig {
   /// A unique number that ensures the request can't be replayed.
   final String callerReference;
 
-  /// An optional comment about the configuration.
+  /// An optional comment about the configuration. The comment cannot be longer
+  /// than 128 characters.
   final String? comment;
 
   /// A complex data type that specifies when to forward content if a content type
@@ -7087,7 +7841,8 @@ class FieldLevelEncryptionProfileConfig {
   /// Profile name for the field-level encryption profile.
   final String name;
 
-  /// An optional comment for the field-level encryption profile.
+  /// An optional comment for the field-level encryption profile. The comment
+  /// cannot be longer than 128 characters.
   final String? comment;
 
   FieldLevelEncryptionProfileConfig({
@@ -7181,7 +7936,8 @@ class FieldLevelEncryptionProfileSummary {
   /// Name for the field-level encryption profile summary.
   final String name;
 
-  /// An optional comment for the field-level encryption profile summary.
+  /// An optional comment for the field-level encryption profile summary. The
+  /// comment cannot be longer than 128 characters.
   final String? comment;
 
   FieldLevelEncryptionProfileSummary({
@@ -7211,7 +7967,8 @@ class FieldLevelEncryptionSummary {
   /// The last time that the summary of field-level encryption items was modified.
   final DateTime lastModifiedTime;
 
-  /// An optional comment about the field-level encryption item.
+  /// An optional comment about the field-level encryption item. The comment
+  /// cannot be longer than 128 characters.
   final String? comment;
 
   /// A summary of a content type-profile mapping.
@@ -7464,6 +8221,289 @@ class ForwardedValues {
       _s.XmlName(elemName),
       $attributes,
       $children,
+    );
+  }
+}
+
+/// A CloudFront function that is associated with a cache behavior in a
+/// CloudFront distribution.
+class FunctionAssociation {
+  /// The event type of the function, either <code>viewer-request</code> or
+  /// <code>viewer-response</code>. You cannot use origin-facing event types
+  /// (<code>origin-request</code> and <code>origin-response</code>) with a
+  /// CloudFront function.
+  final EventType eventType;
+
+  /// The Amazon Resource Name (ARN) of the function.
+  final String functionARN;
+
+  FunctionAssociation({
+    required this.eventType,
+    required this.functionARN,
+  });
+  factory FunctionAssociation.fromXml(_s.XmlElement elem) {
+    return FunctionAssociation(
+      eventType: _s.extractXmlStringValue(elem, 'EventType')!.toEventType(),
+      functionARN: _s.extractXmlStringValue(elem, 'FunctionARN')!,
+    );
+  }
+
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final eventType = this.eventType;
+    final functionARN = this.functionARN;
+    final $children = <_s.XmlNode>[
+      _s.encodeXmlStringValue('FunctionARN', functionARN),
+      _s.encodeXmlStringValue('EventType', eventType.toValue()),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+/// A list of CloudFront functions that are associated with a cache behavior in
+/// a CloudFront distribution. CloudFront functions must be published to the
+/// <code>LIVE</code> stage to associate them with a cache behavior.
+class FunctionAssociations {
+  /// The number of CloudFront functions in the list.
+  final int quantity;
+
+  /// The CloudFront functions that are associated with a cache behavior in a
+  /// CloudFront distribution. CloudFront functions must be published to the
+  /// <code>LIVE</code> stage to associate them with a cache behavior.
+  final List<FunctionAssociation>? items;
+
+  FunctionAssociations({
+    required this.quantity,
+    this.items,
+  });
+  factory FunctionAssociations.fromXml(_s.XmlElement elem) {
+    return FunctionAssociations(
+      quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
+      items: _s.extractXmlChild(elem, 'Items')?.let((elem) => elem
+          .findElements('FunctionAssociation')
+          .map((c) => FunctionAssociation.fromXml(c))
+          .toList()),
+    );
+  }
+
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final quantity = this.quantity;
+    final items = this.items;
+    final $children = <_s.XmlNode>[
+      _s.encodeXmlIntValue('Quantity', quantity),
+      if (items != null)
+        _s.XmlElement(_s.XmlName('Items'), [],
+            items.map((e) => e.toXml('FunctionAssociation'))),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+/// Contains configuration information about a CloudFront function.
+class FunctionConfig {
+  /// A comment to describe the function.
+  final String comment;
+
+  /// The function’s runtime environment. The only valid value is
+  /// <code>cloudfront-js-1.0</code>.
+  final FunctionRuntime runtime;
+
+  FunctionConfig({
+    required this.comment,
+    required this.runtime,
+  });
+  factory FunctionConfig.fromXml(_s.XmlElement elem) {
+    return FunctionConfig(
+      comment: _s.extractXmlStringValue(elem, 'Comment')!,
+      runtime: _s.extractXmlStringValue(elem, 'Runtime')!.toFunctionRuntime(),
+    );
+  }
+
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final comment = this.comment;
+    final runtime = this.runtime;
+    final $children = <_s.XmlNode>[
+      _s.encodeXmlStringValue('Comment', comment),
+      _s.encodeXmlStringValue('Runtime', runtime.toValue()),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+/// A list of CloudFront functions.
+class FunctionList {
+  /// The maximum number of functions requested.
+  final int maxItems;
+
+  /// The number of functions returned in the response.
+  final int quantity;
+
+  /// Contains the functions in the list.
+  final List<FunctionSummary>? items;
+
+  /// If there are more items in the list than are in this response, this element
+  /// is present. It contains the value that you should use in the
+  /// <code>Marker</code> field of a subsequent request to continue listing
+  /// functions where you left off.
+  final String? nextMarker;
+
+  FunctionList({
+    required this.maxItems,
+    required this.quantity,
+    this.items,
+    this.nextMarker,
+  });
+  factory FunctionList.fromXml(_s.XmlElement elem) {
+    return FunctionList(
+      maxItems: _s.extractXmlIntValue(elem, 'MaxItems')!,
+      quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
+      items: _s.extractXmlChild(elem, 'Items')?.let((elem) => elem
+          .findElements('FunctionSummary')
+          .map((c) => FunctionSummary.fromXml(c))
+          .toList()),
+      nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
+    );
+  }
+}
+
+/// Contains metadata about a CloudFront function.
+class FunctionMetadata {
+  /// The Amazon Resource Name (ARN) of the function. The ARN uniquely identifies
+  /// the function.
+  final String functionARN;
+
+  /// The date and time when the function was most recently updated.
+  final DateTime lastModifiedTime;
+
+  /// The date and time when the function was created.
+  final DateTime? createdTime;
+
+  /// The stage that the function is in, either <code>DEVELOPMENT</code> or
+  /// <code>LIVE</code>.
+  ///
+  /// When a function is in the <code>DEVELOPMENT</code> stage, you can test the
+  /// function with <code>TestFunction</code>, and update it with
+  /// <code>UpdateFunction</code>.
+  ///
+  /// When a function is in the <code>LIVE</code> stage, you can attach the
+  /// function to a distribution’s cache behavior, using the function’s ARN.
+  final FunctionStage? stage;
+
+  FunctionMetadata({
+    required this.functionARN,
+    required this.lastModifiedTime,
+    this.createdTime,
+    this.stage,
+  });
+  factory FunctionMetadata.fromXml(_s.XmlElement elem) {
+    return FunctionMetadata(
+      functionARN: _s.extractXmlStringValue(elem, 'FunctionARN')!,
+      lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
+      createdTime: _s.extractXmlDateTimeValue(elem, 'CreatedTime'),
+      stage: _s.extractXmlStringValue(elem, 'Stage')?.toFunctionStage(),
+    );
+  }
+}
+
+enum FunctionRuntime {
+  cloudfrontJs_1_0,
+}
+
+extension on FunctionRuntime {
+  String toValue() {
+    switch (this) {
+      case FunctionRuntime.cloudfrontJs_1_0:
+        return 'cloudfront-js-1.0';
+    }
+  }
+}
+
+extension on String {
+  FunctionRuntime toFunctionRuntime() {
+    switch (this) {
+      case 'cloudfront-js-1.0':
+        return FunctionRuntime.cloudfrontJs_1_0;
+    }
+    throw Exception('$this is not known in enum FunctionRuntime');
+  }
+}
+
+enum FunctionStage {
+  development,
+  live,
+}
+
+extension on FunctionStage {
+  String toValue() {
+    switch (this) {
+      case FunctionStage.development:
+        return 'DEVELOPMENT';
+      case FunctionStage.live:
+        return 'LIVE';
+    }
+  }
+}
+
+extension on String {
+  FunctionStage toFunctionStage() {
+    switch (this) {
+      case 'DEVELOPMENT':
+        return FunctionStage.development;
+      case 'LIVE':
+        return FunctionStage.live;
+    }
+    throw Exception('$this is not known in enum FunctionStage');
+  }
+}
+
+/// Contains configuration information and metadata about a CloudFront function.
+class FunctionSummary {
+  /// Contains configuration information about a CloudFront function.
+  final FunctionConfig functionConfig;
+
+  /// Contains metadata about a CloudFront function.
+  final FunctionMetadata functionMetadata;
+
+  /// The name of the CloudFront function.
+  final String name;
+
+  /// The status of the CloudFront function.
+  final String? status;
+
+  FunctionSummary({
+    required this.functionConfig,
+    required this.functionMetadata,
+    required this.name,
+    this.status,
+  });
+  factory FunctionSummary.fromXml(_s.XmlElement elem) {
+    return FunctionSummary(
+      functionConfig:
+          FunctionConfig.fromXml(_s.extractXmlChild(elem, 'FunctionConfig')!),
+      functionMetadata: FunctionMetadata.fromXml(
+          _s.extractXmlChild(elem, 'FunctionMetadata')!),
+      name: _s.extractXmlStringValue(elem, 'Name')!,
+      status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
 }
@@ -7726,6 +8766,23 @@ class GetFieldLevelEncryptionResult {
   GetFieldLevelEncryptionResult({
     this.eTag,
     this.fieldLevelEncryption,
+  });
+}
+
+class GetFunctionResult {
+  /// The content type (media type) of the response.
+  final String? contentType;
+
+  /// The version identifier for the current version of the CloudFront function.
+  final String? eTag;
+
+  /// The function code of a CloudFront function.
+  final Uint8List? functionCode;
+
+  GetFunctionResult({
+    this.contentType,
+    this.eTag,
+    this.functionCode,
   });
 }
 
@@ -8116,12 +9173,11 @@ class InvalidationList {
   /// The value that you provided for the <code>MaxItems</code> request parameter.
   final int maxItems;
 
-  /// The number of invalidation batches that were created by the current AWS
-  /// account.
+  /// The number of invalidation batches that were created by the current account.
   final int quantity;
 
   /// A complex type that contains one <code>InvalidationSummary</code> element
-  /// for each invalidation batch created by the current AWS account.
+  /// for each invalidation batch created by the current account.
   final List<InvalidationSummary>? items;
 
   /// If <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -8273,7 +9329,8 @@ class KeyGroupConfig {
   /// A name to identify the key group.
   final String name;
 
-  /// A comment to describe the key group.
+  /// A comment to describe the key group. The comment cannot be longer than 128
+  /// characters.
   final String? comment;
 
   KeyGroupConfig({
@@ -8387,9 +9444,9 @@ class KeyPairIds {
 /// Contains information about the Amazon Kinesis data stream where you are
 /// sending real-time log data.
 class KinesisStreamConfig {
-  /// The Amazon Resource Name (ARN) of an AWS Identity and Access Management
-  /// (IAM) role that CloudFront can use to send real-time log data to your
-  /// Kinesis data stream.
+  /// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM)
+  /// role that CloudFront can use to send real-time log data to your Kinesis data
+  /// stream.
   ///
   /// For more information the IAM role, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-iam-role">Real-time
@@ -8430,10 +9487,10 @@ class KinesisStreamConfig {
   }
 }
 
-/// A complex type that contains a Lambda function association.
+/// A complex type that contains a Lambda@Edge function association.
 class LambdaFunctionAssociation {
-  /// Specifies the event type that triggers a Lambda function invocation. You can
-  /// specify the following values:
+  /// Specifies the event type that triggers a Lambda@Edge function invocation.
+  /// You can specify the following values:
   ///
   /// <ul>
   /// <li>
@@ -8463,11 +9520,11 @@ class LambdaFunctionAssociation {
   /// </ul>
   final EventType eventType;
 
-  /// The ARN of the Lambda function. You must specify the ARN of a function
-  /// version; you can't specify a Lambda alias or $LATEST.
+  /// The ARN of the Lambda@Edge function. You must specify the ARN of a function
+  /// version; you can't specify an alias or $LATEST.
   final String lambdaFunctionARN;
 
-  /// A flag that allows a Lambda function to have read access to the body
+  /// A flag that allows a Lambda@Edge function to have read access to the body
   /// content. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html">Accessing
   /// the Request Body by Choosing the Include Body Option</a> in the Amazon
@@ -8508,21 +9565,22 @@ class LambdaFunctionAssociation {
   }
 }
 
-/// A complex type that specifies a list of Lambda functions associations for a
-/// cache behavior.
+/// A complex type that specifies a list of Lambda@Edge functions associations
+/// for a cache behavior.
 ///
-/// If you want to invoke one or more Lambda functions triggered by requests
-/// that match the <code>PathPattern</code> of the cache behavior, specify the
-/// applicable values for <code>Quantity</code> and <code>Items</code>. Note
-/// that there can be up to 4 <code>LambdaFunctionAssociation</code> items in
-/// this list (one for each possible value of <code>EventType</code>) and each
-/// <code>EventType</code> can be associated with the Lambda function only once.
+/// If you want to invoke one or more Lambda@Edge functions triggered by
+/// requests that match the <code>PathPattern</code> of the cache behavior,
+/// specify the applicable values for <code>Quantity</code> and
+/// <code>Items</code>. Note that there can be up to 4
+/// <code>LambdaFunctionAssociation</code> items in this list (one for each
+/// possible value of <code>EventType</code>) and each <code>EventType</code>
+/// can be associated with only one function.
 ///
-/// If you don't want to invoke any Lambda functions for the requests that match
-/// <code>PathPattern</code>, specify <code>0</code> for <code>Quantity</code>
-/// and omit <code>Items</code>.
+/// If you don't want to invoke any Lambda@Edge functions for the requests that
+/// match <code>PathPattern</code>, specify <code>0</code> for
+/// <code>Quantity</code> and omit <code>Items</code>.
 class LambdaFunctionAssociations {
-  /// The number of Lambda function associations for this cache behavior.
+  /// The number of Lambda@Edge function associations for this cache behavior.
   final int quantity;
 
   /// <b>Optional</b>: A complex type that contains
@@ -8580,6 +9638,15 @@ class ListCloudFrontOriginAccessIdentitiesResult {
 
   ListCloudFrontOriginAccessIdentitiesResult({
     this.cloudFrontOriginAccessIdentityList,
+  });
+}
+
+class ListConflictingAliasesResult {
+  /// A list of conflicting aliases.
+  final ConflictingAliasesList? conflictingAliasesList;
+
+  ListConflictingAliasesResult({
+    this.conflictingAliasesList,
   });
 }
 
@@ -8667,7 +9734,7 @@ class ListDistributionsByRealtimeLogConfigResult {
 }
 
 /// The response to a request to list the distributions that are associated with
-/// a specified AWS WAF web ACL.
+/// a specified WAF web ACL.
 class ListDistributionsByWebACLIdResult {
   /// The <code>DistributionList</code> type.
   final DistributionList? distributionList;
@@ -8704,6 +9771,15 @@ class ListFieldLevelEncryptionProfilesResult {
 
   ListFieldLevelEncryptionProfilesResult({
     this.fieldLevelEncryptionProfileList,
+  });
+}
+
+class ListFunctionsResult {
+  /// A list of CloudFront functions.
+  final FunctionList? functionList;
+
+  ListFunctionsResult({
+    this.functionList,
   });
 }
 
@@ -8904,6 +9980,7 @@ enum MinimumProtocolVersion {
   tLSv1_1_2016,
   tLSv1_2_2018,
   tLSv1_2_2019,
+  tLSv1_2_2021,
 }
 
 extension on MinimumProtocolVersion {
@@ -8921,6 +9998,8 @@ extension on MinimumProtocolVersion {
         return 'TLSv1.2_2018';
       case MinimumProtocolVersion.tLSv1_2_2019:
         return 'TLSv1.2_2019';
+      case MinimumProtocolVersion.tLSv1_2_2021:
+        return 'TLSv1.2_2021';
     }
   }
 }
@@ -8940,6 +10019,8 @@ extension on String {
         return MinimumProtocolVersion.tLSv1_2_2018;
       case 'TLSv1.2_2019':
         return MinimumProtocolVersion.tLSv1_2_2019;
+      case 'TLSv1.2_2021':
+        return MinimumProtocolVersion.tLSv1_2_2021;
     }
     throw Exception('$this is not known in enum MinimumProtocolVersion');
   }
@@ -9531,7 +10612,8 @@ class OriginRequestPolicyConfig {
   /// The URL query strings from viewer requests to include in origin requests.
   final OriginRequestPolicyQueryStringsConfig queryStringsConfig;
 
-  /// A comment to describe the origin request policy.
+  /// A comment to describe the origin request policy. The comment cannot be
+  /// longer than 128 characters.
   final String? comment;
 
   OriginRequestPolicyConfig({
@@ -9916,7 +10998,7 @@ class OriginRequestPolicySummary {
   final OriginRequestPolicy originRequestPolicy;
 
   /// The type of origin request policy, either <code>managed</code> (created by
-  /// AWS) or <code>custom</code> (created in this AWS account).
+  /// Amazon Web Services) or <code>custom</code> (created in this account).
   final OriginRequestPolicyType type;
 
   OriginRequestPolicySummary({
@@ -9975,17 +11057,17 @@ class OriginShield {
   /// regional edge caches.
   final bool enabled;
 
-  /// The AWS Region for Origin Shield.
+  /// The Region for Origin Shield.
   ///
-  /// Specify the AWS Region that has the lowest latency to your origin. To
-  /// specify a region, use the region code, not the region name. For example,
-  /// specify the US East (Ohio) region as <code>us-east-2</code>.
+  /// Specify the Region that has the lowest latency to your origin. To specify a
+  /// region, use the region code, not the region name. For example, specify the
+  /// US East (Ohio) region as <code>us-east-2</code>.
   ///
-  /// When you enable CloudFront Origin Shield, you must specify the AWS Region
-  /// for Origin Shield. For the list of AWS Regions that you can specify, and for
-  /// help choosing the best Region for your origin, see <a
+  /// When you enable CloudFront Origin Shield, you must specify the Region for
+  /// Origin Shield. For the list of Regions that you can specify, and for help
+  /// choosing the best Region for your origin, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region">Choosing
-  /// the AWS Region for Origin Shield</a> in the <i>Amazon CloudFront Developer
+  /// the Region for Origin Shield</a> in the <i>Amazon CloudFront Developer
   /// Guide</i>.
   final String? originShieldRegion;
 
@@ -10398,7 +11480,8 @@ class PublicKeyConfig {
   /// A name to help identify the public key.
   final String name;
 
-  /// A comment to describe the public key.
+  /// A comment to describe the public key. The comment cannot be longer than 128
+  /// characters.
   final String? comment;
 
   PublicKeyConfig({
@@ -10491,7 +11574,8 @@ class PublicKeySummary {
   /// A name to help identify the public key.
   final String name;
 
-  /// A comment to describe the public key.
+  /// A comment to describe the public key. The comment cannot be longer than 128
+  /// characters.
   final String? comment;
 
   PublicKeySummary({
@@ -10510,6 +11594,15 @@ class PublicKeySummary {
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
   }
+}
+
+class PublishFunctionResult {
+  /// Contains configuration information and metadata about a CloudFront function.
+  final FunctionSummary? functionSummary;
+
+  PublishFunctionResult({
+    this.functionSummary,
+  });
 }
 
 /// Query argument-profile mapping for field-level encryption.
@@ -11077,15 +12170,14 @@ extension on String {
   }
 }
 
-/// A list of AWS accounts and the active CloudFront key pairs in each account
-/// that CloudFront can use to verify the signatures of signed URLs and signed
+/// A list of accounts and the active CloudFront key pairs in each account that
+/// CloudFront can use to verify the signatures of signed URLs and signed
 /// cookies.
 class Signer {
-  /// An AWS account number that contains active CloudFront key pairs that
-  /// CloudFront can use to verify the signatures of signed URLs and signed
-  /// cookies. If the AWS account that owns the key pairs is the same account that
-  /// owns the CloudFront distribution, the value of this field is
-  /// <code>self</code>.
+  /// An account number that contains active CloudFront key pairs that CloudFront
+  /// can use to verify the signatures of signed URLs and signed cookies. If the
+  /// account that owns the key pairs is the same account that owns the CloudFront
+  /// distribution, the value of this field is <code>self</code>.
   final String? awsAccountNumber;
 
   /// A list of CloudFront key pair identifiers.
@@ -11190,19 +12282,19 @@ class StatusCodes {
 class StreamingDistribution {
   /// The ARN (Amazon Resource Name) for the distribution. For example:
   /// <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>,
-  /// where <code>123456789012</code> is your AWS account ID.
+  /// where <code>123456789012</code> is your account ID.
   final String arn;
 
-  /// A complex type that lists the AWS accounts, if any, that you included in the
+  /// A complex type that lists the accounts, if any, that you included in the
   /// <code>TrustedSigners</code> complex type for this distribution. These are
   /// the accounts that you want to allow to create signed URLs for private
   /// content.
   ///
-  /// The <code>Signer</code> complex type lists the AWS account number of the
-  /// trusted signer or <code>self</code> if the signer is the AWS account that
-  /// created the distribution. The <code>Signer</code> element also includes the
-  /// IDs of any active CloudFront key pairs that are associated with the trusted
-  /// signer's AWS account. If no <code>KeyPairId</code> element appears for a
+  /// The <code>Signer</code> complex type lists the account number of the trusted
+  /// signer or <code>self</code> if the signer is the account that created the
+  /// distribution. The <code>Signer</code> element also includes the IDs of any
+  /// active CloudFront key pairs that are associated with the trusted signer's
+  /// account. If no <code>KeyPairId</code> element appears for a
   /// <code>Signer</code>, that signer can't create signed URLs.
   ///
   /// For more information, see <a
@@ -11279,10 +12371,10 @@ class StreamingDistributionConfig {
   /// which you want CloudFront to get your media files for distribution.
   final S3Origin s3Origin;
 
-  /// A complex type that specifies any AWS accounts that you want to permit to
-  /// create signed URLs for private content. If you want the distribution to use
-  /// signed URLs, include this element; if you want the distribution to use
-  /// public URLs, remove this element. For more information, see <a
+  /// A complex type that specifies any accounts that you want to permit to create
+  /// signed URLs for private content. If you want the distribution to use signed
+  /// URLs, include this element; if you want the distribution to use public URLs,
+  /// remove this element. For more information, see <a
   /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html">Serving
   /// Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer
   /// Guide</i>.
@@ -11403,12 +12495,12 @@ class StreamingDistributionList {
   /// The value you provided for the <code>MaxItems</code> request parameter.
   final int maxItems;
 
-  /// The number of streaming distributions that were created by the current AWS
+  /// The number of streaming distributions that were created by the current
   /// account.
   final int quantity;
 
   /// A complex type that contains one <code>StreamingDistributionSummary</code>
-  /// element for each distribution that was created by the current AWS account.
+  /// element for each distribution that was created by the current account.
   final List<StreamingDistributionSummary>? items;
 
   /// If <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -11443,7 +12535,7 @@ class StreamingDistributionList {
 class StreamingDistributionSummary {
   /// The ARN (Amazon Resource Name) for the streaming distribution. For example:
   /// <code>arn:aws:cloudfront::123456789012:streaming-distribution/EDFDVBD632BHDS5</code>,
-  /// where <code>123456789012</code> is your AWS account ID.
+  /// where <code>123456789012</code> is your account ID.
   final String arn;
 
   /// A complex type that contains information about CNAMEs (alternate domain
@@ -11480,9 +12572,9 @@ class StreamingDistributionSummary {
   /// throughout the Amazon CloudFront system.
   final String status;
 
-  /// A complex type that specifies the AWS accounts, if any, that you want to
-  /// allow to create signed URLs for private content. If you want to require
-  /// signed URLs in requests for objects in the target origin that match the
+  /// A complex type that specifies the accounts, if any, that you want to allow
+  /// to create signed URLs for private content. If you want to require signed
+  /// URLs in requests for objects in the target origin that match the
   /// <code>PathPattern</code> for this cache behavior, specify <code>true</code>
   /// for <code>Enabled</code>, and specify the applicable values for
   /// <code>Quantity</code> and <code>Items</code>.If you don't want to require
@@ -11693,6 +12785,109 @@ class Tags {
   }
 }
 
+class TestFunctionRequest {
+  /// The event object to test the function with. For more information about the
+  /// structure of the event object, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function">Testing
+  /// functions</a> in the <i>Amazon CloudFront Developer Guide</i>.
+  final Uint8List eventObject;
+
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// testing, which you can get using <code>DescribeFunction</code>.
+  final String ifMatch;
+
+  /// The name of the function that you are testing.
+  final String name;
+
+  /// The stage of the function that you are testing, either
+  /// <code>DEVELOPMENT</code> or <code>LIVE</code>.
+  final FunctionStage? stage;
+
+  TestFunctionRequest({
+    required this.eventObject,
+    required this.ifMatch,
+    required this.name,
+    this.stage,
+  });
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final eventObject = this.eventObject;
+    final ifMatch = this.ifMatch;
+    final name = this.name;
+    final stage = this.stage;
+    final $children = <_s.XmlNode>[
+      if (stage != null) _s.encodeXmlStringValue('Stage', stage.toValue()),
+      _s.encodeXmlUint8ListValue('EventObject', eventObject),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+class TestFunctionResult {
+  /// An object that represents the result of running the function with the
+  /// provided event object.
+  final TestResult? testResult;
+
+  TestFunctionResult({
+    this.testResult,
+  });
+}
+
+/// Contains the result of testing a CloudFront function with
+/// <code>TestFunction</code>.
+class TestResult {
+  /// The amount of time that the function took to run as a percentage of the
+  /// maximum allowed time. For example, a compute utilization of 35 means that
+  /// the function completed in 35% of the maximum allowed time.
+  final String? computeUtilization;
+
+  /// If the result of testing the function was an error, this field contains the
+  /// error message.
+  final String? functionErrorMessage;
+
+  /// Contains the log lines that the function wrote (if any) when running the
+  /// test.
+  final List<String>? functionExecutionLogs;
+
+  /// The event object returned by the function. For more information about the
+  /// structure of the event object, see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html">Event
+  /// object structure</a> in the <i>Amazon CloudFront Developer Guide</i>.
+  final String? functionOutput;
+
+  /// Contains configuration information and metadata about the CloudFront
+  /// function that was tested.
+  final FunctionSummary? functionSummary;
+
+  TestResult({
+    this.computeUtilization,
+    this.functionErrorMessage,
+    this.functionExecutionLogs,
+    this.functionOutput,
+    this.functionSummary,
+  });
+  factory TestResult.fromXml(_s.XmlElement elem) {
+    return TestResult(
+      computeUtilization: _s.extractXmlStringValue(elem, 'ComputeUtilization'),
+      functionErrorMessage:
+          _s.extractXmlStringValue(elem, 'FunctionErrorMessage'),
+      functionExecutionLogs: _s
+          .extractXmlChild(elem, 'FunctionExecutionLogs')
+          ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
+      functionOutput: _s.extractXmlStringValue(elem, 'FunctionOutput'),
+      functionSummary: _s
+          .extractXmlChild(elem, 'FunctionSummary')
+          ?.let((e) => FunctionSummary.fromXml(e)),
+    );
+  }
+}
+
 /// A list of key groups whose public keys CloudFront can use to verify the
 /// signatures of signed URLs and signed cookies.
 class TrustedKeyGroups {
@@ -11744,18 +12939,18 @@ class TrustedKeyGroups {
   }
 }
 
-/// A list of AWS accounts whose public keys CloudFront can use to verify the
+/// A list of accounts whose public keys CloudFront can use to verify the
 /// signatures of signed URLs and signed cookies.
 class TrustedSigners {
-  /// This field is <code>true</code> if any of the AWS accounts have public keys
-  /// that CloudFront can use to verify the signatures of signed URLs and signed
+  /// This field is <code>true</code> if any of the accounts have public keys that
+  /// CloudFront can use to verify the signatures of signed URLs and signed
   /// cookies. If not, this field is <code>false</code>.
   final bool enabled;
 
-  /// The number of AWS accounts in the list.
+  /// The number of accounts in the list.
   final int quantity;
 
-  /// A list of AWS account identifiers.
+  /// A list of account identifiers.
   final List<String>? items;
 
   TrustedSigners({
@@ -11861,6 +13056,63 @@ class UpdateFieldLevelEncryptionProfileResult {
   UpdateFieldLevelEncryptionProfileResult({
     this.eTag,
     this.fieldLevelEncryptionProfile,
+  });
+}
+
+class UpdateFunctionRequest {
+  /// The function code. For more information about writing a CloudFront function,
+  /// see <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html">Writing
+  /// function code for CloudFront Functions</a> in the <i>Amazon CloudFront
+  /// Developer Guide</i>.
+  final Uint8List functionCode;
+
+  /// Configuration information about the function.
+  final FunctionConfig functionConfig;
+
+  /// The current version (<code>ETag</code> value) of the function that you are
+  /// updating, which you can get using <code>DescribeFunction</code>.
+  final String ifMatch;
+
+  /// The name of the function that you are updating.
+  final String name;
+
+  UpdateFunctionRequest({
+    required this.functionCode,
+    required this.functionConfig,
+    required this.ifMatch,
+    required this.name,
+  });
+  _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
+    final functionCode = this.functionCode;
+    final functionConfig = this.functionConfig;
+    final ifMatch = this.ifMatch;
+    final name = this.name;
+    final $children = <_s.XmlNode>[
+      functionConfig.toXml('FunctionConfig'),
+      _s.encodeXmlUint8ListValue('FunctionCode', functionCode),
+    ];
+    final $attributes = <_s.XmlAttribute>[
+      ...?attributes,
+    ];
+    return _s.XmlElement(
+      _s.XmlName(elemName),
+      $attributes,
+      $children,
+    );
+  }
+}
+
+class UpdateFunctionResult {
+  /// The version identifier for the current version of the CloudFront function.
+  final String? eTag;
+
+  /// Contains configuration information and metadata about a CloudFront function.
+  final FunctionSummary? functionSummary;
+
+  UpdateFunctionResult({
+    this.eTag,
+    this.functionSummary,
   });
 }
 
@@ -12037,11 +13289,11 @@ class UpdateStreamingDistributionResult {
 /// </li>
 /// <li>
 /// The location of the SSL/TLS certificate, <a
-/// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">AWS
-/// Certificate Manager (ACM)</a> (recommended) or <a
-/// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">AWS
-/// Identity and Access Management (AWS IAM)</a>. You specify the location by
-/// setting a value in one of the following fields (not both):
+/// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">Certificate
+/// Manager (ACM)</a> (recommended) or <a
+/// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Identity
+/// and Access Management (IAM)</a>. You specify the location by setting a value
+/// in one of the following fields (not both):
 ///
 /// <ul>
 /// <li>
@@ -12068,10 +13320,10 @@ class UpdateStreamingDistributionResult {
 class ViewerCertificate {
   /// If the distribution uses <code>Aliases</code> (alternate domain names or
   /// CNAMEs) and the SSL/TLS certificate is stored in <a
-  /// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">AWS
-  /// Certificate Manager (ACM)</a>, provide the Amazon Resource Name (ARN) of the
-  /// ACM certificate. CloudFront only supports ACM certificates in the US East
-  /// (N. Virginia) Region (<code>us-east-1</code>).
+  /// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html">Certificate
+  /// Manager (ACM)</a>, provide the Amazon Resource Name (ARN) of the ACM
+  /// certificate. CloudFront only supports ACM certificates in the US East (N.
+  /// Virginia) Region (<code>us-east-1</code>).
   ///
   /// If you specify an ACM certificate ARN, you must also specify values for
   /// <code>MinimumProtocolVersion</code> and <code>SSLSupportMethod</code>.
@@ -12131,9 +13383,8 @@ class ViewerCertificate {
 
   /// If the distribution uses <code>Aliases</code> (alternate domain names or
   /// CNAMEs) and the SSL/TLS certificate is stored in <a
-  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">AWS
-  /// Identity and Access Management (AWS IAM)</a>, provide the ID of the IAM
-  /// certificate.
+  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Identity
+  /// and Access Management (IAM)</a>, provide the ID of the IAM certificate.
   ///
   /// If you specify an IAM certificate ID, you must also specify values for
   /// <code>MinimumProtocolVersion</code> and <code>SSLSupportMethod</code>.
@@ -12194,7 +13445,8 @@ class ViewerCertificate {
   /// has been enabled for this feature by the CloudFront team. If you have a use
   /// case that requires static IP addresses for a distribution, contact
   /// CloudFront through the <a
-  /// href="https://console.aws.amazon.com/support/home">AWS Support Center</a>.
+  /// href="https://console.aws.amazon.com/support/home">Amazon Web Services
+  /// Support Center</a>.
   /// </li>
   /// </ul>
   /// If the distribution uses the CloudFront domain name such as
@@ -12401,6 +13653,21 @@ class FieldLevelEncryptionProfileSizeExceeded extends _s.GenericAwsException {
             message: message);
 }
 
+class FunctionAlreadyExists extends _s.GenericAwsException {
+  FunctionAlreadyExists({String? type, String? message})
+      : super(type: type, code: 'FunctionAlreadyExists', message: message);
+}
+
+class FunctionInUse extends _s.GenericAwsException {
+  FunctionInUse({String? type, String? message})
+      : super(type: type, code: 'FunctionInUse', message: message);
+}
+
+class FunctionSizeLimitExceeded extends _s.GenericAwsException {
+  FunctionSizeLimitExceeded({String? type, String? message})
+      : super(type: type, code: 'FunctionSizeLimitExceeded', message: message);
+}
+
 class IllegalDelete extends _s.GenericAwsException {
   IllegalDelete({String? type, String? message})
       : super(type: type, code: 'IllegalDelete', message: message);
@@ -12445,6 +13712,11 @@ class InvalidErrorCode extends _s.GenericAwsException {
 class InvalidForwardCookies extends _s.GenericAwsException {
   InvalidForwardCookies({String? type, String? message})
       : super(type: type, code: 'InvalidForwardCookies', message: message);
+}
+
+class InvalidFunctionAssociation extends _s.GenericAwsException {
+  InvalidFunctionAssociation({String? type, String? message})
+      : super(type: type, code: 'InvalidFunctionAssociation', message: message);
 }
 
 class InvalidGeoRestrictionParameter extends _s.GenericAwsException {
@@ -12600,6 +13872,11 @@ class NoSuchFieldLevelEncryptionProfile extends _s.GenericAwsException {
             message: message);
 }
 
+class NoSuchFunctionExists extends _s.GenericAwsException {
+  NoSuchFunctionExists({String? type, String? message})
+      : super(type: type, code: 'NoSuchFunctionExists', message: message);
+}
+
 class NoSuchInvalidation extends _s.GenericAwsException {
   NoSuchInvalidation({String? type, String? message})
       : super(type: type, code: 'NoSuchInvalidation', message: message);
@@ -12682,6 +13959,14 @@ class RealtimeLogConfigInUse extends _s.GenericAwsException {
       : super(type: type, code: 'RealtimeLogConfigInUse', message: message);
 }
 
+class RealtimeLogConfigOwnerMismatch extends _s.GenericAwsException {
+  RealtimeLogConfigOwnerMismatch({String? type, String? message})
+      : super(
+            type: type,
+            code: 'RealtimeLogConfigOwnerMismatch',
+            message: message);
+}
+
 class ResourceInUse extends _s.GenericAwsException {
   ResourceInUse({String? type, String? message})
       : super(type: type, code: 'ResourceInUse', message: message);
@@ -12701,6 +13986,11 @@ class StreamingDistributionNotDisabled extends _s.GenericAwsException {
             type: type,
             code: 'StreamingDistributionNotDisabled',
             message: message);
+}
+
+class TestFunctionFailed extends _s.GenericAwsException {
+  TestFunctionFailed({String? type, String? message})
+      : super(type: type, code: 'TestFunctionFailed', message: message);
 }
 
 class TooManyCacheBehaviors extends _s.GenericAwsException {
@@ -12795,6 +14085,15 @@ class TooManyDistributionsAssociatedToOriginRequestPolicy
             message: message);
 }
 
+class TooManyDistributionsWithFunctionAssociations
+    extends _s.GenericAwsException {
+  TooManyDistributionsWithFunctionAssociations({String? type, String? message})
+      : super(
+            type: type,
+            code: 'TooManyDistributionsWithFunctionAssociations',
+            message: message);
+}
+
 class TooManyDistributionsWithLambdaAssociations
     extends _s.GenericAwsException {
   TooManyDistributionsWithLambdaAssociations({String? type, String? message})
@@ -12862,6 +14161,17 @@ class TooManyFieldLevelEncryptionQueryArgProfiles
             type: type,
             code: 'TooManyFieldLevelEncryptionQueryArgProfiles',
             message: message);
+}
+
+class TooManyFunctionAssociations extends _s.GenericAwsException {
+  TooManyFunctionAssociations({String? type, String? message})
+      : super(
+            type: type, code: 'TooManyFunctionAssociations', message: message);
+}
+
+class TooManyFunctions extends _s.GenericAwsException {
+  TooManyFunctions({String? type, String? message})
+      : super(type: type, code: 'TooManyFunctions', message: message);
 }
 
 class TooManyHeadersInCachePolicy extends _s.GenericAwsException {
@@ -13009,6 +14319,11 @@ class TrustedSignerDoesNotExist extends _s.GenericAwsException {
       : super(type: type, code: 'TrustedSignerDoesNotExist', message: message);
 }
 
+class UnsupportedOperation extends _s.GenericAwsException {
+  UnsupportedOperation({String? type, String? message})
+      : super(type: type, code: 'UnsupportedOperation', message: message);
+}
+
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'AccessDenied': (type, message) => AccessDenied(type: type, message: message),
   'BatchTooLarge': (type, message) =>
@@ -13039,6 +14354,12 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       FieldLevelEncryptionProfileInUse(type: type, message: message),
   'FieldLevelEncryptionProfileSizeExceeded': (type, message) =>
       FieldLevelEncryptionProfileSizeExceeded(type: type, message: message),
+  'FunctionAlreadyExists': (type, message) =>
+      FunctionAlreadyExists(type: type, message: message),
+  'FunctionInUse': (type, message) =>
+      FunctionInUse(type: type, message: message),
+  'FunctionSizeLimitExceeded': (type, message) =>
+      FunctionSizeLimitExceeded(type: type, message: message),
   'IllegalDelete': (type, message) =>
       IllegalDelete(type: type, message: message),
   'IllegalFieldLevelEncryptionConfigAssociationWithCacheBehavior':
@@ -13057,6 +14378,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       InvalidErrorCode(type: type, message: message),
   'InvalidForwardCookies': (type, message) =>
       InvalidForwardCookies(type: type, message: message),
+  'InvalidFunctionAssociation': (type, message) =>
+      InvalidFunctionAssociation(type: type, message: message),
   'InvalidGeoRestrictionParameter': (type, message) =>
       InvalidGeoRestrictionParameter(type: type, message: message),
   'InvalidHeadersForS3Origin': (type, message) =>
@@ -13108,6 +14431,8 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       NoSuchFieldLevelEncryptionConfig(type: type, message: message),
   'NoSuchFieldLevelEncryptionProfile': (type, message) =>
       NoSuchFieldLevelEncryptionProfile(type: type, message: message),
+  'NoSuchFunctionExists': (type, message) =>
+      NoSuchFunctionExists(type: type, message: message),
   'NoSuchInvalidation': (type, message) =>
       NoSuchInvalidation(type: type, message: message),
   'NoSuchOrigin': (type, message) => NoSuchOrigin(type: type, message: message),
@@ -13137,12 +14462,16 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       RealtimeLogConfigAlreadyExists(type: type, message: message),
   'RealtimeLogConfigInUse': (type, message) =>
       RealtimeLogConfigInUse(type: type, message: message),
+  'RealtimeLogConfigOwnerMismatch': (type, message) =>
+      RealtimeLogConfigOwnerMismatch(type: type, message: message),
   'ResourceInUse': (type, message) =>
       ResourceInUse(type: type, message: message),
   'StreamingDistributionAlreadyExists': (type, message) =>
       StreamingDistributionAlreadyExists(type: type, message: message),
   'StreamingDistributionNotDisabled': (type, message) =>
       StreamingDistributionNotDisabled(type: type, message: message),
+  'TestFunctionFailed': (type, message) =>
+      TestFunctionFailed(type: type, message: message),
   'TooManyCacheBehaviors': (type, message) =>
       TooManyCacheBehaviors(type: type, message: message),
   'TooManyCachePolicies': (type, message) =>
@@ -13172,6 +14501,9 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
   'TooManyDistributionsAssociatedToOriginRequestPolicy': (type, message) =>
       TooManyDistributionsAssociatedToOriginRequestPolicy(
           type: type, message: message),
+  'TooManyDistributionsWithFunctionAssociations': (type, message) =>
+      TooManyDistributionsWithFunctionAssociations(
+          type: type, message: message),
   'TooManyDistributionsWithLambdaAssociations': (type, message) =>
       TooManyDistributionsWithLambdaAssociations(type: type, message: message),
   'TooManyDistributionsWithSingleFunctionARN': (type, message) =>
@@ -13190,6 +14522,10 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       TooManyFieldLevelEncryptionProfiles(type: type, message: message),
   'TooManyFieldLevelEncryptionQueryArgProfiles': (type, message) =>
       TooManyFieldLevelEncryptionQueryArgProfiles(type: type, message: message),
+  'TooManyFunctionAssociations': (type, message) =>
+      TooManyFunctionAssociations(type: type, message: message),
+  'TooManyFunctions': (type, message) =>
+      TooManyFunctions(type: type, message: message),
   'TooManyHeadersInCachePolicy': (type, message) =>
       TooManyHeadersInCachePolicy(type: type, message: message),
   'TooManyHeadersInForwardedValues': (type, message) =>
@@ -13234,4 +14570,6 @@ final _exceptionFns = <String, _s.AwsExceptionFn>{
       TrustedKeyGroupDoesNotExist(type: type, message: message),
   'TrustedSignerDoesNotExist': (type, message) =>
       TrustedSignerDoesNotExist(type: type, message: message),
+  'UnsupportedOperation': (type, message) =>
+      UnsupportedOperation(type: type, message: message),
 };

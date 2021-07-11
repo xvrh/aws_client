@@ -45,7 +45,11 @@ class Outposts {
 
   /// Creates an Outpost.
   ///
+  /// You can specify <code>AvailabilityZone</code> or
+  /// <code>AvailabilityZoneId</code>.
+  ///
   /// May throw [ValidationException].
+  /// May throw [ConflictException].
   /// May throw [NotFoundException].
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -69,12 +73,6 @@ class Outposts {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'name',
-      name,
-      r'''^[\S ]+$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(siteId, 'siteId');
     _s.validateStringLength(
       'siteId',
@@ -83,22 +81,11 @@ class Outposts {
       255,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'siteId',
-      siteId,
-      r'''os-[a-f0-9]{17}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'availabilityZone',
       availabilityZone,
       1,
       1000,
-    );
-    _s.validateStringPattern(
-      'availabilityZone',
-      availabilityZone,
-      r'''[a-z\d-]+''',
     );
     _s.validateStringLength(
       'availabilityZoneId',
@@ -106,21 +93,11 @@ class Outposts {
       1,
       255,
     );
-    _s.validateStringPattern(
-      'availabilityZoneId',
-      availabilityZoneId,
-      r'''[a-z]+[0-9]+-az[0-9]+''',
-    );
     _s.validateStringLength(
       'description',
       description,
-      1,
+      0,
       1000,
-    );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''^[\S ]+$''',
     );
     final $payload = <String, dynamic>{
       'Name': name,
@@ -142,6 +119,7 @@ class Outposts {
   /// Deletes the Outpost.
   ///
   /// May throw [ValidationException].
+  /// May throw [ConflictException].
   /// May throw [NotFoundException].
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -156,12 +134,6 @@ class Outposts {
       180,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'outpostId',
-      outpostId,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -173,6 +145,7 @@ class Outposts {
   /// Deletes the site.
   ///
   /// May throw [ValidationException].
+  /// May throw [ConflictException].
   /// May throw [NotFoundException].
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
@@ -185,12 +158,6 @@ class Outposts {
       siteId,
       1,
       255,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'siteId',
-      siteId,
-      r'''os-[a-f0-9]{17}''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -216,12 +183,6 @@ class Outposts {
       outpostId,
       1,
       180,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'outpostId',
-      outpostId,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -252,12 +213,6 @@ class Outposts {
       180,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'outpostId',
-      outpostId,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:outpost/)?op-[a-f0-9]{17}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -269,11 +224,6 @@ class Outposts {
       nextToken,
       1,
       1005,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -289,12 +239,44 @@ class Outposts {
     return GetOutpostInstanceTypesOutput.fromJson(response);
   }
 
-  /// List the Outposts for your AWS account.
+  /// Create a list of the Outposts for your AWS account. Add filters to your
+  /// request to return a more specific list of results. Use filters to match an
+  /// Outpost lifecycle status, Availibility Zone (<code>us-east-1a</code>), and
+  /// AZ ID (<code>use1-az1</code>).
+  ///
+  /// If you specify multiple filters, the filters are joined with an
+  /// <code>AND</code>, and the request returns only results that match all of
+  /// the specified filters.
   ///
   /// May throw [ValidationException].
   /// May throw [AccessDeniedException].
   /// May throw [InternalServerException].
+  ///
+  /// Parameter [availabilityZoneFilter] :
+  /// A filter for the Availibility Zone (<code>us-east-1a</code>) of the
+  /// Outpost.
+  ///
+  /// Filter values are case sensitive. If you specify multiple values for a
+  /// filter, the values are joined with an <code>OR</code>, and the request
+  /// returns all results that match any of the specified values.
+  ///
+  /// Parameter [availabilityZoneIdFilter] :
+  /// A filter for the AZ IDs (<code>use1-az1</code>) of the Outpost.
+  ///
+  /// Filter values are case sensitive. If you specify multiple values for a
+  /// filter, the values are joined with an <code>OR</code>, and the request
+  /// returns all results that match any of the specified values.
+  ///
+  /// Parameter [lifeCycleStatusFilter] :
+  /// A filter for the lifecycle status of the Outpost.
+  ///
+  /// Filter values are case sensitive. If you specify multiple values for a
+  /// filter, the values are joined with an <code>OR</code>, and the request
+  /// returns all results that match any of the specified values.
   Future<ListOutpostsOutput> listOutposts({
+    List<String>? availabilityZoneFilter,
+    List<String>? availabilityZoneIdFilter,
+    List<String>? lifeCycleStatusFilter,
     int? maxResults,
     String? nextToken,
   }) async {
@@ -310,12 +292,13 @@ class Outposts {
       1,
       1005,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
-    );
     final $query = <String, List<String>>{
+      if (availabilityZoneFilter != null)
+        'AvailabilityZoneFilter': availabilityZoneFilter,
+      if (availabilityZoneIdFilter != null)
+        'AvailabilityZoneIdFilter': availabilityZoneIdFilter,
+      if (lifeCycleStatusFilter != null)
+        'LifeCycleStatusFilter': lifeCycleStatusFilter,
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
     };
@@ -350,11 +333,6 @@ class Outposts {
       1,
       1005,
     );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''.*\S.*''',
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
@@ -388,12 +366,6 @@ class Outposts {
       1011,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:([a-z\d-]+)/)[a-z]{2,8}-[a-f0-9]{17}$''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -424,12 +396,6 @@ class Outposts {
       resourceArn,
       0,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:([a-z\d-]+)/)[a-z]{2,8}-[a-f0-9]{17}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -465,12 +431,6 @@ class Outposts {
       resourceArn,
       0,
       1011,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^(arn:aws([a-z-]+)?:outposts:[a-z\d-]+:\d{12}:([a-z\d-]+)/)[a-z]{2,8}-[a-f0-9]{17}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -633,6 +593,7 @@ class Outpost {
   final String? outpostArn;
   final String? outpostId;
   final String? ownerId;
+  final String? siteArn;
   final String? siteId;
 
   /// The Outpost tags.
@@ -647,6 +608,7 @@ class Outpost {
     this.outpostArn,
     this.outpostId,
     this.ownerId,
+    this.siteArn,
     this.siteId,
     this.tags,
   });
@@ -660,6 +622,7 @@ class Outpost {
       outpostArn: json['OutpostArn'] as String?,
       outpostId: json['OutpostId'] as String?,
       ownerId: json['OwnerId'] as String?,
+      siteArn: json['SiteArn'] as String?,
       siteId: json['SiteId'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -672,6 +635,7 @@ class Site {
   final String? accountId;
   final String? description;
   final String? name;
+  final String? siteArn;
   final String? siteId;
 
   /// The site tags.
@@ -681,6 +645,7 @@ class Site {
     this.accountId,
     this.description,
     this.name,
+    this.siteArn,
     this.siteId,
     this.tags,
   });
@@ -689,6 +654,7 @@ class Site {
       accountId: json['AccountId'] as String?,
       description: json['Description'] as String?,
       name: json['Name'] as String?,
+      siteArn: json['SiteArn'] as String?,
       siteId: json['SiteId'] as String?,
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
@@ -713,6 +679,11 @@ class UntagResourceResponse {
 class AccessDeniedException extends _s.GenericAwsException {
   AccessDeniedException({String? type, String? message})
       : super(type: type, code: 'AccessDeniedException', message: message);
+}
+
+class ConflictException extends _s.GenericAwsException {
+  ConflictException({String? type, String? message})
+      : super(type: type, code: 'ConflictException', message: message);
 }
 
 class InternalServerException extends _s.GenericAwsException {
@@ -741,6 +712,8 @@ class ValidationException extends _s.GenericAwsException {
 final _exceptionFns = <String, _s.AwsExceptionFn>{
   'AccessDeniedException': (type, message) =>
       AccessDeniedException(type: type, message: message),
+  'ConflictException': (type, message) =>
+      ConflictException(type: type, message: message),
   'InternalServerException': (type, message) =>
       InternalServerException(type: type, message: message),
   'NotFoundException': (type, message) =>

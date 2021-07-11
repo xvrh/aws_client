@@ -78,24 +78,12 @@ class Dlm {
       500,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[0-9A-Za-z _-]+''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''arn:aws(-[a-z]{1,3}){0,2}:iam::\d+:role/.*''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(policyDetails, 'policyDetails');
@@ -134,12 +122,6 @@ class Dlm {
       policyId,
       0,
       64,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''policy-[A-Za-z0-9]+''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -225,12 +207,6 @@ class Dlm {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''policy-[A-Za-z0-9]+''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -257,12 +233,6 @@ class Dlm {
       resourceArn,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(-[a-z]{1,3}){0,2}:dlm:[A-Za-z0-9_/.-]{0,63}:\d+:policy/[0-9A-Za-z_-]{1,128}$''',
       isRequired: true,
     );
     final response = await _protocol.send(
@@ -295,12 +265,6 @@ class Dlm {
       resourceArn,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(-[a-z]{1,3}){0,2}:dlm:[A-Za-z0-9_/.-]{0,63}:\d+:policy/[0-9A-Za-z_-]{1,128}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tags, 'tags');
@@ -336,12 +300,6 @@ class Dlm {
       resourceArn,
       0,
       2048,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'resourceArn',
-      resourceArn,
-      r'''^arn:aws(-[a-z]{1,3}){0,2}:dlm:[A-Za-z0-9_/.-]{0,63}:\d+:policy/[0-9A-Za-z_-]{1,128}$''',
       isRequired: true,
     );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
@@ -395,33 +353,17 @@ class Dlm {
       64,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'policyId',
-      policyId,
-      r'''policy-[A-Za-z0-9]+''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'description',
       description,
       0,
       500,
     );
-    _s.validateStringPattern(
-      'description',
-      description,
-      r'''[0-9A-Za-z _-]+''',
-    );
     _s.validateStringLength(
       'executionRoleArn',
       executionRoleArn,
       0,
       2048,
-    );
-    _s.validateStringPattern(
-      'executionRoleArn',
-      executionRoleArn,
-      r'''arn:aws(-[a-z]{1,3}){0,2}:iam::\d+:role/.*''',
     );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
@@ -502,6 +444,20 @@ class CreateRule {
   /// The interval unit.
   final IntervalUnitValues? intervalUnit;
 
+  /// Specifies the destination for snapshots created by the policy. To create
+  /// snapshots in the same Region as the source resource, specify
+  /// <code>CLOUD</code>. To create snapshots on the same Outpost as the source
+  /// resource, specify <code>OUTPOST_LOCAL</code>. If you omit this parameter,
+  /// <code>CLOUD</code> is used by default.
+  ///
+  /// If the policy targets resources in an AWS Region, then you must create
+  /// snapshots in the same Region as the source resource.
+  ///
+  /// If the policy targets resources on an Outpost, then you can create snapshots
+  /// on the same Outpost as the source resource, or in the Region of that
+  /// Outpost.
+  final LocationValues? location;
+
   /// The time, in UTC, to start the operation. The supported format is hh:mm.
   ///
   /// The operation occurs within a one-hour window following the specified time.
@@ -513,6 +469,7 @@ class CreateRule {
     this.cronExpression,
     this.interval,
     this.intervalUnit,
+    this.location,
     this.times,
   });
   factory CreateRule.fromJson(Map<String, dynamic> json) {
@@ -520,6 +477,7 @@ class CreateRule {
       cronExpression: json['CronExpression'] as String?,
       interval: json['Interval'] as int?,
       intervalUnit: (json['IntervalUnit'] as String?)?.toIntervalUnitValues(),
+      location: (json['Location'] as String?)?.toLocationValues(),
       times: (json['Times'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
@@ -531,11 +489,13 @@ class CreateRule {
     final cronExpression = this.cronExpression;
     final interval = this.interval;
     final intervalUnit = this.intervalUnit;
+    final location = this.location;
     final times = this.times;
     return {
       if (cronExpression != null) 'CronExpression': cronExpression,
       if (interval != null) 'Interval': interval,
       if (intervalUnit != null) 'IntervalUnit': intervalUnit.toValue(),
+      if (location != null) 'Location': location.toValue(),
       if (times != null) 'Times': times,
     };
   }
@@ -618,9 +578,6 @@ class CrossRegionCopyRule {
   /// default is not enabled.
   final bool encrypted;
 
-  /// The target Region.
-  final String targetRegion;
-
   /// The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to
   /// use for EBS encryption. If this parameter is not specified, your AWS managed
   /// CMK for EBS is used.
@@ -632,38 +589,55 @@ class CrossRegionCopyRule {
   /// The retention rule.
   final CrossRegionCopyRetainRule? retainRule;
 
+  /// The Amazon Resource Name (ARN) of the target AWS Outpost for the snapshot
+  /// copies.
+  ///
+  /// If you specify an ARN, you must omit <b>TargetRegion</b>. You cannot specify
+  /// a target Region and a target Outpost in the same rule.
+  final String? target;
+
+  /// The target Region for the snapshot copies.
+  ///
+  /// If you specify a target Region, you must omit <b>Target</b>. You cannot
+  /// specify a target Region and a target Outpost in the same rule.
+  final String? targetRegion;
+
   CrossRegionCopyRule({
     required this.encrypted,
-    required this.targetRegion,
     this.cmkArn,
     this.copyTags,
     this.retainRule,
+    this.target,
+    this.targetRegion,
   });
   factory CrossRegionCopyRule.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyRule(
       encrypted: json['Encrypted'] as bool,
-      targetRegion: json['TargetRegion'] as String,
       cmkArn: json['CmkArn'] as String?,
       copyTags: json['CopyTags'] as bool?,
       retainRule: json['RetainRule'] != null
           ? CrossRegionCopyRetainRule.fromJson(
               json['RetainRule'] as Map<String, dynamic>)
           : null,
+      target: json['Target'] as String?,
+      targetRegion: json['TargetRegion'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final encrypted = this.encrypted;
-    final targetRegion = this.targetRegion;
     final cmkArn = this.cmkArn;
     final copyTags = this.copyTags;
     final retainRule = this.retainRule;
+    final target = this.target;
+    final targetRegion = this.targetRegion;
     return {
       'Encrypted': encrypted,
-      'TargetRegion': targetRegion,
       if (cmkArn != null) 'CmkArn': cmkArn,
       if (copyTags != null) 'CopyTags': copyTags,
       if (retainRule != null) 'RetainRule': retainRule,
+      if (target != null) 'Target': target,
+      if (targetRegion != null) 'TargetRegion': targetRegion,
     };
   }
 }
@@ -1095,6 +1069,34 @@ class ListTagsForResourceResponse {
   }
 }
 
+enum LocationValues {
+  cloud,
+  outpostLocal,
+}
+
+extension on LocationValues {
+  String toValue() {
+    switch (this) {
+      case LocationValues.cloud:
+        return 'CLOUD';
+      case LocationValues.outpostLocal:
+        return 'OUTPOST_LOCAL';
+    }
+  }
+}
+
+extension on String {
+  LocationValues toLocationValues() {
+    switch (this) {
+      case 'CLOUD':
+        return LocationValues.cloud;
+      case 'OUTPOST_LOCAL':
+        return LocationValues.outpostLocal;
+    }
+    throw Exception('$this is not known in enum LocationValues');
+  }
+}
+
 /// Specifies optional parameters to add to a policy. The set of valid
 /// parameters depends on the combination of policy type and resource type.
 class Parameters {
@@ -1164,6 +1166,15 @@ class PolicyDetails {
   /// The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.
   final PolicyTypeValues? policyType;
 
+  /// The location of the resources to backup. If the source resources are located
+  /// in an AWS Region, specify <code>CLOUD</code>. If the source resources are
+  /// located on an AWS Outpost in your account, specify <code>OUTPOST</code>.
+  ///
+  /// If you specify <code>OUTPOST</code>, Amazon Data Lifecycle Manager backs up
+  /// all resources of the specified type with matching target tags across all of
+  /// the Outposts in your account.
+  final List<ResourceLocationValues>? resourceLocations;
+
   /// The target resource type for snapshot and AMI lifecycle policies. Use
   /// <code>VOLUME </code>to create snapshots of individual volumes or use
   /// <code>INSTANCE</code> to create multi-volume snapshots from the volumes for
@@ -1192,6 +1203,7 @@ class PolicyDetails {
     this.eventSource,
     this.parameters,
     this.policyType,
+    this.resourceLocations,
     this.resourceTypes,
     this.schedules,
     this.targetTags,
@@ -1209,6 +1221,10 @@ class PolicyDetails {
           ? Parameters.fromJson(json['Parameters'] as Map<String, dynamic>)
           : null,
       policyType: (json['PolicyType'] as String?)?.toPolicyTypeValues(),
+      resourceLocations: (json['ResourceLocations'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toResourceLocationValues())
+          .toList(),
       resourceTypes: (json['ResourceTypes'] as List?)
           ?.whereNotNull()
           .map((e) => (e as String).toResourceTypeValues())
@@ -1229,6 +1245,7 @@ class PolicyDetails {
     final eventSource = this.eventSource;
     final parameters = this.parameters;
     final policyType = this.policyType;
+    final resourceLocations = this.resourceLocations;
     final resourceTypes = this.resourceTypes;
     final schedules = this.schedules;
     final targetTags = this.targetTags;
@@ -1237,6 +1254,8 @@ class PolicyDetails {
       if (eventSource != null) 'EventSource': eventSource,
       if (parameters != null) 'Parameters': parameters,
       if (policyType != null) 'PolicyType': policyType.toValue(),
+      if (resourceLocations != null)
+        'ResourceLocations': resourceLocations.map((e) => e.toValue()).toList(),
       if (resourceTypes != null)
         'ResourceTypes': resourceTypes.map((e) => e.toValue()).toList(),
       if (schedules != null) 'Schedules': schedules,
@@ -1275,6 +1294,34 @@ extension on String {
         return PolicyTypeValues.eventBasedPolicy;
     }
     throw Exception('$this is not known in enum PolicyTypeValues');
+  }
+}
+
+enum ResourceLocationValues {
+  cloud,
+  outpost,
+}
+
+extension on ResourceLocationValues {
+  String toValue() {
+    switch (this) {
+      case ResourceLocationValues.cloud:
+        return 'CLOUD';
+      case ResourceLocationValues.outpost:
+        return 'OUTPOST';
+    }
+  }
+}
+
+extension on String {
+  ResourceLocationValues toResourceLocationValues() {
+    switch (this) {
+      case 'CLOUD':
+        return ResourceLocationValues.cloud;
+      case 'OUTPOST':
+        return ResourceLocationValues.outpost;
+    }
+    throw Exception('$this is not known in enum ResourceLocationValues');
   }
 }
 
@@ -1393,6 +1440,12 @@ class Schedule {
   final CreateRule? createRule;
 
   /// The rule for cross-Region snapshot copies.
+  ///
+  /// You can only specify cross-Region copy rules for policies that create
+  /// snapshots in a Region. If the policy creates snapshots on an Outpost, then
+  /// you cannot copy the snapshots to a Region or to an Outpost. If the policy
+  /// creates snapshots in a Region, then snapshots can be copied to up to three
+  /// Regions or Outposts.
   final List<CrossRegionCopyRule>? crossRegionCopyRules;
 
   /// The rule for enabling fast snapshot restore.

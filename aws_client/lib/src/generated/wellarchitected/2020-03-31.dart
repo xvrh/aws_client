@@ -19,7 +19,14 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// This is the <i>AWS Well-Architected Tool API Reference</i>.
+/// This is the <i>AWS Well-Architected Tool API Reference</i>. The AWS
+/// Well-Architected Tool API provides programmatic access to the <a
+/// href="http://aws.amazon.com/well-architected-tool">AWS Well-Architected
+/// Tool</a> in the <a href="https://console.aws.amazon.com/wellarchitected">AWS
+/// Management Console</a>. For information about the AWS Well-Architected Tool,
+/// see the <a
+/// href="https://docs.aws.amazon.com/wellarchitected/latest/userguide/intro.html">AWS
+/// Well-Architected Tool User Guide</a>.
 class WellArchitected {
   final _s.RestJsonProtocol _protocol;
   WellArchitected({
@@ -52,12 +59,6 @@ class WellArchitected {
   }) async {
     ArgumentError.checkNotNull(lensAliases, 'lensAliases');
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'LensAliases': lensAliases,
     };
@@ -93,12 +94,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MilestoneName': milestoneName,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -128,6 +123,9 @@ class WellArchitected {
   /// May throw [InternalServerException].
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
+  ///
+  /// Parameter [tags] :
+  /// The tags to be associated with the workload.
   Future<CreateWorkloadOutput> createWorkload({
     required String description,
     required WorkloadEnvironment environment,
@@ -143,6 +141,7 @@ class WellArchitected {
     List<String>? nonAwsRegions,
     String? notes,
     List<String>? pillarPriorities,
+    Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
     _s.validateStringLength(
@@ -210,6 +209,7 @@ class WellArchitected {
       if (nonAwsRegions != null) 'NonAwsRegions': nonAwsRegions,
       if (notes != null) 'Notes': notes,
       if (pillarPriorities != null) 'PillarPriorities': pillarPriorities,
+      if (tags != null) 'Tags': tags,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -253,12 +253,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'PermissionType': permissionType.toValue(),
       'SharedWith': sharedWith,
@@ -286,12 +280,6 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (clientRequestToken != null)
         'ClientRequestToken': [clientRequestToken],
@@ -319,19 +307,7 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(shareId, 'shareId');
-    _s.validateStringPattern(
-      'shareId',
-      shareId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (clientRequestToken != null)
         'ClientRequestToken': [clientRequestToken],
@@ -364,12 +340,6 @@ class WellArchitected {
   }) async {
     ArgumentError.checkNotNull(lensAliases, 'lensAliases');
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'LensAliases': lensAliases,
     };
@@ -412,12 +382,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'milestoneNumber',
       milestoneNumber,
@@ -460,12 +424,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'milestoneNumber',
       milestoneNumber,
@@ -508,12 +466,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'milestoneNumber',
       milestoneNumber,
@@ -598,12 +550,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -625,12 +571,6 @@ class WellArchitected {
     required String workloadId,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -667,12 +607,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -736,12 +670,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -792,12 +720,6 @@ class WellArchitected {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -869,12 +791,6 @@ class WellArchitected {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -914,11 +830,6 @@ class WellArchitected {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -976,6 +887,23 @@ class WellArchitected {
     return ListShareInvitationsOutput.fromJson(response);
   }
 
+  /// List the tags for a resource.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  Future<ListTagsForResourceOutput> listTagsForResource({
+    required String workloadArn,
+  }) async {
+    ArgumentError.checkNotNull(workloadArn, 'workloadArn');
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/tags/${Uri.encodeComponent(workloadArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListTagsForResourceOutput.fromJson(response);
+  }
+
   /// List the workload shares associated with the workload.
   ///
   /// May throw [ValidationException].
@@ -996,12 +924,6 @@ class WellArchitected {
     String? sharedWithPrefix,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1069,7 +991,56 @@ class WellArchitected {
     return ListWorkloadsOutput.fromJson(response);
   }
 
-  /// Update the answer.
+  /// Adds one or more tags to the specified resource.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [tags] :
+  /// The tags for the resource.
+  Future<void> tagResource({
+    required Map<String, String> tags,
+    required String workloadArn,
+  }) async {
+    ArgumentError.checkNotNull(tags, 'tags');
+    ArgumentError.checkNotNull(workloadArn, 'workloadArn');
+    final $payload = <String, dynamic>{
+      'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/tags/${Uri.encodeComponent(workloadArn)}',
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Deletes specified tags from a resource.
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [tagKeys] :
+  /// The keys of the tags to be removed.
+  Future<void> untagResource({
+    required List<String> tagKeys,
+    required String workloadArn,
+  }) async {
+    ArgumentError.checkNotNull(tagKeys, 'tagKeys');
+    ArgumentError.checkNotNull(workloadArn, 'workloadArn');
+    final $query = <String, List<String>>{
+      'tagKeys': tagKeys,
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/tags/${Uri.encodeComponent(workloadArn)}',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Update the answer to a specific question in a workload review.
   ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
@@ -1102,12 +1073,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'notes',
       notes,
@@ -1152,12 +1117,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'lensNotes',
       lensNotes,
@@ -1195,12 +1154,6 @@ class WellArchitected {
   }) async {
     ArgumentError.checkNotNull(shareInvitationAction, 'shareInvitationAction');
     ArgumentError.checkNotNull(shareInvitationId, 'shareInvitationId');
-    _s.validateStringPattern(
-      'shareInvitationId',
-      shareInvitationId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ShareInvitationAction': shareInvitationAction.toValue(),
     };
@@ -1247,12 +1200,6 @@ class WellArchitected {
     String? workloadName,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     _s.validateStringLength(
       'architecturalDesign',
       architecturalDesign,
@@ -1338,19 +1285,7 @@ class WellArchitected {
   }) async {
     ArgumentError.checkNotNull(permissionType, 'permissionType');
     ArgumentError.checkNotNull(shareId, 'shareId');
-    _s.validateStringPattern(
-      'shareId',
-      shareId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'PermissionType': permissionType.toValue(),
     };
@@ -1395,12 +1330,6 @@ class WellArchitected {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringPattern(
-      'workloadId',
-      workloadId,
-      r'''[0-9a-f]{32}''',
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MilestoneName': milestoneName,
       if (clientRequestToken != null) 'ClientRequestToken': clientRequestToken,
@@ -2121,6 +2050,21 @@ class ListShareInvitationsOutput {
   }
 }
 
+class ListTagsForResourceOutput {
+  /// The tags for the resource.
+  final Map<String, String>? tags;
+
+  ListTagsForResourceOutput({
+    this.tags,
+  });
+  factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceOutput(
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+}
+
 /// Input for List Workload Share
 class ListWorkloadSharesOutput {
   final String? nextToken;
@@ -2534,6 +2478,20 @@ extension on String {
   }
 }
 
+class TagResourceOutput {
+  TagResourceOutput();
+  factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return TagResourceOutput();
+  }
+}
+
+class UntagResourceOutput {
+  UntagResourceOutput();
+  factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return UntagResourceOutput();
+  }
+}
+
 /// Output of a update answer call.
 class UpdateAnswerOutput {
   final Answer? answer;
@@ -2675,6 +2633,9 @@ class Workload {
 
   /// The ID assigned to the share invitation.
   final String? shareInvitationId;
+
+  /// The tags associated with the workload.
+  final Map<String, String>? tags;
   final DateTime? updatedAt;
   final String? workloadArn;
   final String? workloadId;
@@ -2699,6 +2660,7 @@ class Workload {
     this.reviewRestrictionDate,
     this.riskCounts,
     this.shareInvitationId,
+    this.tags,
     this.updatedAt,
     this.workloadArn,
     this.workloadId,
@@ -2742,6 +2704,8 @@ class Workload {
       riskCounts: (json['RiskCounts'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
       shareInvitationId: json['ShareInvitationId'] as String?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
       workloadArn: json['WorkloadArn'] as String?,
       workloadId: json['WorkloadId'] as String?,

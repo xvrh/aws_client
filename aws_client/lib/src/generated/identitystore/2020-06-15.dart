@@ -66,24 +66,12 @@ class IdentityStore {
       47,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'groupId',
-      groupId,
-      r'''^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityStoreId, 'identityStoreId');
     _s.validateStringLength(
       'identityStoreId',
       identityStoreId,
       1,
       12,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'identityStoreId',
-      identityStoreId,
-      r'''^d-[0-9a-f]{10}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -134,24 +122,12 @@ class IdentityStore {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identityStoreId',
-      identityStoreId,
-      r'''^d-[0-9a-f]{10}$''',
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
     _s.validateStringLength(
       'userId',
       userId,
       1,
       47,
-      isRequired: true,
-    );
-    _s.validateStringPattern(
-      'userId',
-      userId,
-      r'''^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$''',
       isRequired: true,
     );
     final headers = <String, String>{
@@ -220,12 +196,6 @@ class IdentityStore {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identityStoreId',
-      identityStoreId,
-      r'''^d-[0-9a-f]{10}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -237,11 +207,6 @@ class IdentityStore {
       nextToken,
       1,
       65535,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[-a-zA-Z0-9+=/:]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -311,12 +276,6 @@ class IdentityStore {
       12,
       isRequired: true,
     );
-    _s.validateStringPattern(
-      'identityStoreId',
-      identityStoreId,
-      r'''^d-[0-9a-f]{10}$''',
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -328,11 +287,6 @@ class IdentityStore {
       nextToken,
       1,
       65535,
-    );
-    _s.validateStringPattern(
-      'nextToken',
-      nextToken,
-      r'''^[-a-zA-Z0-9+=/:]*''',
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
